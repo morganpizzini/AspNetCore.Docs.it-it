@@ -1,1 +1,1 @@
-[<span data-ttu-id="e494b-101">.NET Core SDK 2.0 o versione successiva</span><span class="sxs-lookup"><span data-stu-id="e494b-101">.NET Core SDK 2.0 or later</span></span>](https://dotnet.microsoft.com/download)
+[<span data-ttu-id="49de7-101">.NET Core SDK 2.0 o versione successiva</span><span class="sxs-lookup"><span data-stu-id="49de7-101">.NET Core SDK 2.0 or later</span></span>](https://dotnet.microsoft.com/download)
