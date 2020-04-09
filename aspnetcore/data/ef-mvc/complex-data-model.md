@@ -1,5 +1,5 @@
 ---
-title: 'Esercitazione: creare un modello di dati complesso-ASP.NET MVC con EF Core'
+title: 'Esercitazione: Creare un modello di dati complesso- ASP.NET MVC con EF CoreTutorial: Create a complex data model - ASP.NET MVC with EF Core'
 description: In questa esercitazione si aggiungono altre entità e relazioni e si personalizza il modello di dati specificando regole di formattazione, convalida e mapping.
 author: rick-anderson
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/complex-data-model
 ms.openlocfilehash: 91fd09874ecab8bfdb6a38a404faba04aeb73edc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657430"
 ---
-# <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Esercitazione: creare un modello di dati complesso-ASP.NET MVC con EF Core
+# <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Esercitazione: Creare un modello di dati complesso- ASP.NET MVC con EF CoreTutorial: Create a complex data model - ASP.NET MVC with EF Core
 
 Nelle esercitazioni precedenti è stato usato un modello di dati semplice costituito da tre entità. In questa esercitazione si aggiungeranno altre entità e relazioni e si personalizzerà il modello di dati specificando regole di formattazione, convalida e mapping del database.
 
@@ -38,7 +38,7 @@ In questa esercitazione:
 > * Modificare la stringa di connessione
 > * Aggiornare il database
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [Uso di migrazioni EF Core](migrations.md)
 
@@ -72,7 +72,7 @@ L'impostazione `ApplyFormatInEditMode` specifica che la formattazione deve esser
 
 * Per impostazione predefinita, il browser eseguirà il rendering dei dati usando il formato corretto in base alle impostazioni locali del sistema.
 
-Per altre informazioni, vedere la [documentazione dell'helper tag \<input>](../../mvc/views/working-with-forms.md#the-input-tag-helper).
+Per ulteriori informazioni, consultate la [ \<documentazione](../../mvc/views/working-with-forms.md#the-input-tag-helper)relativa agli helper dei tag di> di input .
 
 Eseguire l'app, passare alla pagina Students Index (Indice studenti) e verificare che l'ora non viene più visualizzata nelle date di iscrizione. Lo stesso vale per tutte le viste che usano il modello Student (Studente).
 
@@ -106,7 +106,7 @@ dotnet ef migrations add MaxLengthOnNames
 dotnet ef database update
 ```
 
-Il comando `migrations add` segnala che può verificarsi la perdita di dati, perché la modifica riduce la lunghezza massima per due colonne.  L'istruzione migrations crea un file con nome *\<timestamp>_MaxLengthOnNames.cs*. Il metodo `Up` di questo file contiene codice che aggiorna il database per adattarlo al modello di dati corrente. Il comando `database update` ha eseguito tale codice.
+Il comando `migrations add` segnala che può verificarsi la perdita di dati, perché la modifica riduce la lunghezza massima per due colonne.  Migrazioni crea un file denominato * \<timeStamp>_MaxLengthOnNames.cs*. Il metodo `Up` di questo file contiene codice che aggiorna il database per adattarlo al modello di dati corrente. Il comando `database update` ha eseguito tale codice.
 
 Il timestamp che precede il nome del file delle migrazioni viene usato da Entity Framework per ordinare le migrazioni. È possibile creare più migrazioni prima di eseguire il comando update-database, dopodiché tutte le migrazioni vengono applicate nell'ordine in cui sono state create.
 
@@ -147,7 +147,7 @@ Prima dell'applicazione delle prime due migrazioni, le colonne del nome erano di
 
 ![Entità Student](complex-data-model/_static/student-entity.png)
 
-In *Models/Student.cs* sostituire il codice aggiunto in precedenza con il codice seguente. Le modifiche vengono evidenziate.
+In *Models/Student.cs* sostituire il codice aggiunto in precedenza con il codice seguente. Le modifiche sono evidenziate.
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
 
@@ -198,7 +198,7 @@ Un insegnante può tenere un numero qualsiasi di corsi, pertanto `CourseAssignme
 public ICollection<CourseAssignment> CourseAssignments { get; set; }
 ```
 
-Se una proprietà di navigazione può contenere più entità, il tipo della proprietà deve essere un elenco in cui le voci possono essere aggiunte, eliminate e aggiornate.  È possibile specificare `ICollection<T>` o un tipo come `List<T>` o `HashSet<T>`. Se si specifica `ICollection<T>`, per impostazione predefinita Entity Framework crea una raccolta `HashSet<T>`.
+Se una proprietà di navigazione può contenere più entità, il tipo della proprietà deve essere un elenco in cui le voci possono essere aggiunte, eliminate e aggiornate.  È possibile specificare `ICollection<T>` o un tipo come `List<T>` o `HashSet<T>`. Se si specifica `ICollection<T>`, per impostazione predefinita EF crea una raccolta `HashSet<T>`.
 
 Il motivo per cui queste sono entità `CourseAssignment` viene illustrato più avanti nella sezione relativa alle relazioni molti-a-molti.
 
@@ -239,7 +239,7 @@ L'entità Instructor dispone di una proprietà di navigazione `OfficeAssignment`
 
 ![Entità Course](complex-data-model/_static/course-entity.png)
 
-In *Models/Course.cs* sostituire il codice aggiunto in precedenza con il codice seguente. Le modifiche vengono evidenziate.
+In *Models/Course.cs* sostituire il codice aggiunto in precedenza con il codice seguente. Le modifiche sono evidenziate.
 
 [!code-csharp[](intro/samples/cu/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,19,21,23)]
 
@@ -482,7 +482,7 @@ Ora la classe `DbInitializer` include nuovo codice che aggiunge dati di iniziali
 Salvare le modifiche apportate ad *appsettings.json*.
 
 > [!NOTE]
-> In alternativa alla modifica del nome del database, è possibile eliminare il database. Usare **Esplora oggetti di SQL Server** o il comando della CLI `database drop`:
+> In alternativa alla modifica del nome del database, è possibile eliminare il database. Usare **Esplora oggetti di SQL Server** (SSOX) o il comando CLI `database drop`:
 >
 > ```dotnetcli
 > dotnet ef database drop
@@ -500,7 +500,7 @@ Eseguire l'app per far sì che il metodo `DbInitializer.Initialize` venga esegui
 
 Aprire il database in SSOX come in precedenza, quindi espandere il nodo **Tabelle** per visualizzare tutte le tabelle che sono state create. Se SSOX è ancora aperto dall'operazione precedente, fare clic sul pulsante **Aggiorna**.
 
-![Tabelle in Esplora oggetti di SQL Server](complex-data-model/_static/ssox-tables.png)
+![Tabelle in SSOX](complex-data-model/_static/ssox-tables.png)
 
 Eseguire l'app per attivare il codice inizializzatore che esegue l'inizializzazione del database.
 
@@ -527,10 +527,10 @@ In questa esercitazione:
 > * Aggiornamento del contesto di database
 > * Seeding del database con dati di test
 > * Aggiunta di una migrazione
-> * È stata modificata la stringa di connessione
+> * Modifica della stringa di connessione
 > * Aggiornamento del database
 
 Passare all'esercitazione successiva per altre informazioni su come accedere ai dati correlati.
 
 > [!div class="nextstepaction"]
-> [Passaggio successivo: accedere ai dati correlati](read-related-data.md)
+> [Successiva: Accedere ai dati correlati](read-related-data.md)

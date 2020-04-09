@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/crud
 ms.openlocfilehash: 05519852fab22bd3ad5b77e3494b49191448286f
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78665648"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---crud---2-of-8"></a>Razor Pages con EF Core in ASP.NET Core - CRUD - 2 di 8
 
-Di [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
+[Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
@@ -36,7 +36,7 @@ Per visualizzare i dati di iscrizione di uno studente nella pagina, è necessari
 
 [!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Pages/Students/Details1.cshtml.cs?name=snippet_OnGetAsync&highlight=8)]
 
-Sostituire il metodo `OnGetAsync` con il codice seguente per leggere i dati di iscrizione per lo studente selezionato. Le modifiche vengono evidenziate.
+Sostituire il metodo `OnGetAsync` con il codice seguente per leggere i dati di iscrizione per lo studente selezionato. Le modifiche sono evidenziate.
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Details.cshtml.cs?name=snippet_OnGetAsync&highlight=8-12)]
 
@@ -46,7 +46,7 @@ Il metodo [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframewo
 
 ### <a name="display-enrollments"></a>Visualizzare le iscrizioni
 
-Sostituire il codice in *Pages/Students/Details.cshtml* con il codice seguente per visualizzare un elenco di iscrizioni. Le modifiche vengono evidenziate.
+Sostituire il codice in *Pages/Students/Details.cshtml* con il codice seguente per visualizzare un elenco di iscrizioni. Le modifiche sono evidenziate.
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Details.cshtml?highlight=32-53)]
 
@@ -118,7 +118,7 @@ Il metodo [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.p
 
 Se si usa `StudentVM` è necessario che [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/2-crud/Pages/Students/CreateVM.cshtml) venga aggiornato per l'uso di `StudentVM` anziché `Student`.
 
-## <a name="update-the-edit-page"></a>Aggiornare la pagina Edit
+## <a name="update-the-edit-page"></a>Aggiornare la pagina Edit (Modifica)
 
 In *Pages/Students/Edit.cshtml.cs* sostituire i metodi `OnGetAsync` e `OnPostAsync` con il codice seguente.
 
@@ -136,7 +136,7 @@ Eseguire l'app e testarla creando e modificando uno studente.
 
 Il contesto del database tiene traccia della sincronizzazione delle entità in memoria con le righe corrispondenti nel database. Queste informazioni di traccia determinano le operazioni eseguite quando viene chiamato [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_). Ad esempio, quando una nuova entità viene passata al metodo [AddAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.addasync), lo stato dell'entità viene impostato su [Added](/dotnet/api/microsoft.entityframeworkcore.entitystate#Microsoft_EntityFrameworkCore_EntityState_Added). Quando viene chiamato `SaveChangesAsync`, il contesto del database genera un comando SQL INSERT.
 
-Un'entità può essere in uno dei [seguenti stati](/dotnet/api/microsoft.entityframeworkcore.entitystate):
+Un'entità può trovarsi in uno dei [seguenti stati:](/dotnet/api/microsoft.entityframeworkcore.entitystate)
 
 * `Added`: l'entità non esiste ancora nel database. Il metodo `SaveChanges` genera un'istruzione INSERT.
 
@@ -152,7 +152,7 @@ In un'applicazione desktop le modifiche dello stato vengono in genere impostate 
 
 In un'app Web il `DbContext` che legge un'entità e visualizza i dati viene eliminato dopo il rendering di una pagina. Quando viene chiamato il metodo `OnPostAsync` di una pagina, viene effettuata una nuova richiesta Web con una nuova istanza di `DbContext`. La rilettura dell'entità nel nuovo contesto simula l'elaborazione desktop.
 
-## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete
+## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
 In questa sezione viene implementato un messaggio di errore personalizzato quando la chiamata a `SaveChanges` ha esito negativo.
 
@@ -176,8 +176,8 @@ Eseguire l'app ed eliminare uno studente per testare la pagina Delete.
 ## <a name="next-steps"></a>Passaggi successivi
 
 > [!div class="step-by-step"]
-> [Esercitazione precedente](xref:data/ef-rp/intro)
-> [Esercitazione successiva](xref:data/ef-rp/sort-filter-page)
+> [Esercitazione](xref:data/ef-rp/intro)
+> precedente[Esercitazione successiva](xref:data/ef-rp/sort-filter-page)
 
 ::: moniker-end
 
@@ -196,7 +196,7 @@ Il codice con scaffolding usa il modello seguente per le pagine Create, Edit e D
 
 Le pagine Index e Details ottengono e visualizzano i dati richiesti con il metodo HTTP GET `OnGetAsync`
 
-## <a name="singleordefaultasync-vs-firstordefaultasync"></a>Confronto tra SingleOrDefaultAsync e FirstOrDefaultAsync
+## <a name="singleordefaultasync-vs-firstordefaultasync"></a>SingleOrDefaultAsync e FirstOrDefaultAsync
 
 Il codice generato usa [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_), che in genere è preferibile rispetto a [SingleOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_).
 
@@ -326,7 +326,7 @@ Se si usa `StudentVM` è necessario che [CreateVM.cshtml](https://github.com/dot
 
 In Razor Pages la classe derivata `PageModel` è il modello di visualizzazione.
 
-## <a name="update-the-edit-page"></a>Aggiornare la pagina Edit
+## <a name="update-the-edit-page"></a>Aggiornare la pagina Edit (Modifica)
 
 Aggiornare il modello di pagina per la pagina Edit. Le modifiche principali sono evidenziate:
 
@@ -346,7 +346,7 @@ Creare e modificare alcune entità studente.
 
 Il contesto del database tiene traccia della sincronizzazione delle entità in memoria con le righe corrispondenti nel database. Le informazioni di sincronizzazione del contesto del database determinano le operazioni eseguite quando viene chiamato [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_). Ad esempio, quando una nuova entità viene passata al metodo [AddAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.addasync), lo stato dell'entità viene impostato su [Added](/dotnet/api/microsoft.entityframeworkcore.entitystate#Microsoft_EntityFrameworkCore_EntityState_Added). Quando viene chiamato `SaveChangesAsync`, il contesto del database genera un comando SQL INSERT.
 
-Un'entità può essere in uno dei [seguenti stati](/dotnet/api/microsoft.entityframeworkcore.entitystate):
+Un'entità può trovarsi in uno dei [seguenti stati:](/dotnet/api/microsoft.entityframeworkcore.entitystate)
 
 * `Added`: l'entità non esiste ancora nel database. Il metodo `SaveChanges` genera un'istruzione INSERT.
 
@@ -362,7 +362,7 @@ In un'applicazione desktop le modifiche dello stato vengono in genere impostate 
 
 In un'app Web il `DbContext` che legge un'entità e visualizza i dati viene eliminato dopo il rendering di una pagina. Quando viene chiamato il metodo `OnPostAsync` di una pagina, viene effettuata una nuova richiesta Web con una nuova istanza di `DbContext`. La rilettura dell'entità nel nuovo contesto simula l'elaborazione desktop.
 
-## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete
+## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
 In questa sezione viene aggiunto un codice per implementare un messaggio di errore personalizzato quando la chiamata a `SaveChanges` ha esito negativo. Aggiungere una stringa per i possibili messaggi di errore:
 
@@ -414,7 +414,7 @@ Ogni pagina Razor deve includere la direttiva `@page`.
 * [Versione YouTube dell'esercitazione](https://www.youtube.com/watch?v=K4X1MT2jt6o)
 
 > [!div class="step-by-step"]
-> [Precedente](xref:data/ef-rp/intro)
-> [Successivo](xref:data/ef-rp/sort-filter-page)
+> [Successivo](xref:data/ef-rp/intro)
+> [precedente](xref:data/ef-rp/sort-filter-page)
 
 ::: moniker-end

@@ -1,5 +1,5 @@
 ---
-title: 'Esercitazione: informazioni sugli scenari avanzati-MVC ASP.NET con EF Core'
+title: 'Esercitazione: informazioni sugli scenari avanzati - ASP.NET MVC con EF CoreTutorial: Learn about advanced scenarios - ASP.NET MVC with EF Core'
 description: Questa esercitazione presenta argomenti utili dopo aver appreso le nozioni di base sullo sviluppo di applicazioni Web ASP.NET Core che usano Entity Framework Core.
 author: rick-anderson
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/advanced
 ms.openlocfilehash: fc6f8d8c4ab09848cf316be2e522bf5ce3b9ac76
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/16/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79416233"
 ---
-# <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Esercitazione: informazioni sugli scenari avanzati-MVC ASP.NET con EF Core
+# <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Esercitazione: informazioni sugli scenari avanzati - ASP.NET MVC con EF CoreTutorial: Learn about advanced scenarios - ASP.NET MVC with EF Core
 
 Nell'esercitazione precedente è stata implementata l'ereditarietà tabella per gerarchia. Questa esercitazione presenta diversi argomenti che è utile tenere presente dopo aver appreso le nozioni di base sullo sviluppo di applicazioni Web ASP.NET Core che usano Entity Framework Core.
 
@@ -31,7 +31,7 @@ In questa esercitazione:
 > * Scoprire di più sul codice sorgente e i piani di sviluppo di EF Core
 > * Imparare a usare LINQ dinamico per semplificare il codice
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [Implementare l'ereditarietà](inheritance.md)
 
@@ -71,7 +71,7 @@ Aggiungere un'istruzione using:
 
 [!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_Usings2)]
 
-Eseguire l'app e passare alla pagina About (Informazioni). Vengono visualizzati gli stessi dati visualizzati in precedenza.
+Eseguire l'app e passare alla pagina About. Vengono visualizzati gli stessi dati visualizzati in precedenza.
 
 ![Pagina About (Informazioni)](advanced/_static/about.png)
 
@@ -109,7 +109,7 @@ Fare clic su **Update**. Viene visualizzato il numero di righe interessate:
 
 Fare clic su **Torna all'elenco** per visualizzare l'elenco dei corsi con il numero di crediti modificato.
 
-Tenere presente che il codice di produzione assicurerà che gli aggiornamenti restituiscano sempre dati validi. Il codice semplificato illustrato potrebbe moltiplicare il numero di crediti e restituire numeri maggiori di 5. (La proprietà `Credits` dispone di un attributo `[Range(0, 5)]`). La query di aggiornamento funzionerebbe ma i dati non validi potrebbero provocare risultati imprevisti in altre parti del sistema che presuppongono che il numero di crediti sia pari o inferiore a 5.
+Tenere presente che il codice di produzione assicurerà che gli aggiornamenti restituiscano sempre dati validi. Il codice semplificato illustrato potrebbe moltiplicare il numero di crediti e restituire numeri maggiori di 5. La `Credits` proprietà ha `[Range(0, 5)]` un attributo. La query di aggiornamento potrebbe funzionare, ma i dati non validi potrebbero causare risultati imprevisti in altre parti del sistema che presuppongono che il numero di crediti è 5 o meno.
 
 Per altre informazioni sulle query SQL non elaborate, vedere [Query SQL non elaborate](/ef/core/querying/raw-sql).
 
@@ -181,7 +181,7 @@ _context.ChangeTracker.AutoDetectChangesEnabled = false;
 
 ## <a name="ef-core-source-code-and-development-plans"></a>Codice sorgente e piani di sviluppo di EF Core
 
-Il codice sorgente di Entity Framework Core è disponibile in [https://github.com/dotnet/efcore](https://github.com/dotnet/efcore). Il repository di EF Core contiene le compilazioni notturne, la gestione dei problemi, le specifiche delle funzionalità, le note delle riunioni di progettazione e [la roadmap per lo sviluppo futuro](https://github.com/dotnet/efcore/wiki/Roadmap). È possibile archiviare o individuare i bug e contribuire.
+L'origine di Entity [https://github.com/dotnet/efcore](https://github.com/dotnet/efcore)Framework Core si trova in . Il repository di EF Core contiene le compilazioni notturne, la gestione dei problemi, le specifiche delle funzionalità, le note delle riunioni di progettazione e [la roadmap per lo sviluppo futuro](https://github.com/dotnet/efcore/wiki/Roadmap). È possibile archiviare o individuare i bug e contribuire.
 
 Sebbene il codice sorgente sia disponibile, Entity Framework Core è completamente supportato come prodotto Microsoft. Il team di Microsoft Entity Framework controlla i contributi accettati ed esegue il test di tutte le modifiche al codice per garantire la qualità di ogni rilascio.
 
@@ -227,7 +227,7 @@ Eseguire il comando `migrations remove`, salvare le modifiche al codice e rieseg
 
 ### <a name="errors-while-running-database-update"></a>Errori durante l'esecuzione dell'aggiornamento del database
 
-Quando si apportano modifiche allo schema in un database con dati esistenti è possibile che si verifichino altri errori. Se si verificano errori di migrazione che non si riesce a risolvere, è possibile modificare il nome del database nella stringa di connessione o eliminare il database. Un nuovo database non contiene dati di cui eseguire la migrazione e ci sono maggiori probabilità che il comando update-database venga completato senza errori.
+Quando si apportano modifiche allo schema in un database con dati esistenti è possibile che si riscontrino altri errori. Se si verificano errori di migrazione che non si riesce a risolvere, è possibile modificare il nome del database nella stringa di connessione o eliminare il database. Un nuovo database non contiene dati di cui eseguire la migrazione e ci sono maggiori probabilità che il comando update-database venga completato senza errori.
 
 L'approccio più semplice consiste nel rinominare il database in *appsettings.json*. Alla successiva esecuzione di `database update`, verrà creato un nuovo database.
 
@@ -279,4 +279,4 @@ In questa esercitazione:
 Questa esercitazione completa la serie di esercitazioni sull'uso di Entity Framework Core in un'applicazione ASP.NET Core MVC. In questa serie di esercitazioni è stato usato un nuovo database; in alternativa, è possibile decompilare un modello di un database esistente.
 
 > [!div class="nextstepaction"]
-> [Esercitazione: EF Core con MVC, database esistente](/ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json)
+> [Esercitazione: EF Core con MVC, database esistenteTutorial: EF Core with MVC, existing database](/ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json)

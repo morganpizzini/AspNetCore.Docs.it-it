@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/10/2020
 uid: fundamentals/servers/kestrel
-ms.openlocfilehash: e9b4b57ee70e4050f9399b90a6e34e8cc9cca78d
-ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
+ms.openlocfilehash: 18846d60fd5c29f17cb4e59192795fd92251e2d0
+ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/24/2020
-ms.locfileid: "80218830"
+ms.lasthandoff: 04/08/2020
+ms.locfileid: "80976768"
 ---
 # <a name="kestrel-web-server-implementation-in-aspnet-core"></a>Implementazione del server Web Kestrel in ASP.NET Core
 
@@ -33,7 +33,7 @@ Kestrel supporta gli scenari seguenti:
 
 Kestrel è supportato in tutte le piattaforme e le versioni supportate da .NET Core.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ( come[scaricare](xref:index#how-to-download-a-sample))
 
 ## <a name="http2-support"></a>Supporto HTTP/2
 
@@ -76,18 +76,18 @@ Un proxy inverso:
 * Può limitare l'area della superficie di attacco pubblica esposta delle app ospitate.
 * Offre un livello aggiuntivo di configurazione e protezione.
 * Potrebbe offrire un'integrazione migliore con l'infrastruttura esistente.
-* Semplifica il bilanciamento del carico e la configurazione di comunicazioni protette (HTTPS). Solo il server proxy inverso richiede un certificato X. 509 e il server è in grado di comunicare con i server dell'app nella rete interna tramite HTTP normale.
+* Semplifica il bilanciamento del carico e la configurazione di comunicazioni protette (HTTPS). Solo il server proxy inverso richiede un certificato X.509 e tale server può comunicare con i server dell'app nella rete interna utilizzando HTTP semplice.
 
 > [!WARNING]
 > Una configurazione che prevede un proxy inverso richiede il [filtro host](#host-filtering).
 
-## <a name="kestrel-in-aspnet-core-apps"></a>Gheppio nelle app ASP.NET Core
+## <a name="kestrel-in-aspnet-core-apps"></a>Kestrel nelle app ASP.NET Core
 
-I modelli di progetto ASP.NET Core usano Kestrel per impostazione predefinita. In *Program.cs*, il metodo <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> chiama <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>:
+I modelli di progetto ASP.NET Core usano Kestrel per impostazione predefinita. In *Program.cs* <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> , <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>il metodo chiama :
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_DefaultBuilder&highlight=8)]
 
-Per ulteriori informazioni sulla compilazione dell'host, vedere le sezioni configurare le impostazioni di *un host* e di un *generatore predefinito* di <xref:fundamentals/host/generic-host#set-up-a-host>.
+Per ulteriori informazioni sulla creazione dell'host, vedere le sezioni <xref:fundamentals/host/generic-host#set-up-a-host> *Configurare un host* e Impostazioni predefinite del *generatore* di .
 
 Per fornire una configurazione aggiuntiva dopo la chiamata di `ConfigureWebHostDefaults`, usare `ConfigureKestrel`:
 
@@ -116,7 +116,7 @@ Negli esempi seguenti viene usato lo spazio dei nomi <xref:Microsoft.AspNetCore.
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Negli esempi illustrati più avanti in questo articolo, le opzioni di C# gheppio sono configurate nel codice. È inoltre possibile impostare le opzioni di Gheppio utilizzando un [provider di configurazione](xref:fundamentals/configuration/index). Il [provider di configurazione file](xref:fundamentals/configuration/index#file-configuration-provider) , ad esempio, può caricare la configurazione di Gheppio da *appSettings. JSON* o *appSettings. { File Environment}. JSON* :
+Negli esempi illustrati più avanti in questo articolo, le opzioni di Kestrel sono configurate nel codice C. Le opzioni di Kestrel possono anche essere impostate utilizzando un provider di [configurazione](xref:fundamentals/configuration/index). Ad esempio, il provider di [configurazione File](xref:fundamentals/configuration/index#file-configuration-provider) può caricare la configurazione di Kestrel da un *file appsettings.json* o *appsettings. Ambiente: file .json:*
 
 ```json
 {
@@ -131,14 +131,14 @@ Negli esempi illustrati più avanti in questo articolo, le opzioni di C# gheppio
 ```
 
 > [!NOTE]
-> la configurazione di <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> e dell' [endpoint](#endpoint-configuration) può essere configurata dai provider di configurazione. La configurazione del gheppio rimanente deve C# essere configurata nel codice.
+> <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions>e [la configurazione degli endpoint](#endpoint-configuration) sono configurabili dai provider di configurazione. La configurazione di Kestrel rimanente deve essere configurata nel codice C.
 
-Usare **uno** degli approcci seguenti:
+Utilizzare **uno** dei seguenti approcci:
 
-* Configurare gheppio in `Startup.ConfigureServices`:
+* Configurare Kestrel in `Startup.ConfigureServices`:
 
-  1. Inserire un'istanza di `IConfiguration` nella classe `Startup`. Nell'esempio seguente si presuppone che la configurazione inserita venga assegnata alla proprietà `Configuration`.
-  2. In `Startup.ConfigureServices`caricare la sezione `Kestrel` della configurazione nella configurazione di Gheppio:
+  1. Inserire un'istanza `IConfiguration` `Startup` di nella classe. Nell'esempio seguente si presuppone che la `Configuration` configurazione inserita sia assegnata alla proprietà.
+  2. In `Startup.ConfigureServices`, `Kestrel` caricare la sezione di configurazione nella configurazione di Kestrel:
 
      ```csharp
      using Microsoft.Extensions.Configuration
@@ -165,9 +165,9 @@ Usare **uno** degli approcci seguenti:
      }
      ```
 
-* Configurare il gheppio durante la compilazione dell'host:
+* Configurare Kestrel durante la creazione dell'host:
 
-  In *Program.cs*caricare la sezione `Kestrel` della configurazione nella configurazione di Gheppio:
+  In *Program.cs*, `Kestrel` caricare la sezione di configurazione nella configurazione di Kestrel:
 
   ```csharp
   // using Microsoft.Extensions.DependencyInjection;
@@ -185,7 +185,7 @@ Usare **uno** degli approcci seguenti:
           });
   ```
 
-Entrambi gli approcci precedenti funzionano con qualsiasi [provider di configurazione](xref:fundamentals/configuration/index).
+Entrambi gli approcci precedenti funzionano con qualsiasi provider di [configurazione.](xref:fundamentals/configuration/index)
 
 ### <a name="keep-alive-timeout"></a>Timeout keep-alive
 
@@ -227,7 +227,7 @@ L'esempio seguente illustra come configurare il vincolo per l'app in ogni richie
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=5)]
 
-Eseguire l'override dell'impostazione per una richiesta specifica nel middleware:
+Eseguire l'override dell'impostazione in una richiesta specifica in middleware:
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=3-4)]
 
@@ -240,7 +240,7 @@ Quando un'app viene eseguita [out-of-process](xref:host-and-deploy/iis/index#out
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinResponseDataRate>
 
-Kestrel controlla ogni secondo se i dati arrivano alla velocità in byte al secondo specificata. Se la frequenza scende sotto il valore minimo, si è verificato il timeout della connessione. Il periodo di tolleranza è la quantità di tempo che il gheppio concede al client di aumentare la velocità di invio fino al minimo. la frequenza non viene controllata durante tale periodo di tempo. Il periodo di prova consente di evitare l'interruzione di connessioni che inizialmente inviano i dati a velocità ridotta a causa dell'avvio lento del protocollo TCP.
+Kestrel controlla ogni secondo se i dati arrivano alla velocità in byte al secondo specificata. Se la velocità scende al di sotto del valore minimo, la connessione viene scaduta. Il periodo di tolleranza è la quantità di tempo che Kestrel dà al cliente per aumentare la sua velocità di invio fino al minimo; la frequenza non viene controllata durante tale periodo. Il periodo di prova consente di evitare l'interruzione di connessioni che inizialmente inviano i dati a velocità ridotta a causa dell'avvio lento del protocollo TCP.
 
 La velocità minima predefinita è di 240 byte al secondo, con un periodo di tolleranza di 5 secondi.
 
@@ -250,7 +250,7 @@ L'esempio seguente visualizza come configurare la velocità minima dei dati in *
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=6-11)]
 
-Ignorare i limiti di velocità minima per ogni richiesta nel middleware:
+Sostituire i limiti di frequenza minimi per richiesta nel middleware:
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-21)]
 
@@ -294,7 +294,7 @@ Il valore predefinito è 4096.
 
 ### <a name="maximum-frame-size"></a>Dimensione massima del frame
 
-`Http2.MaxFrameSize` indica la dimensione massima consentita di un payload del frame di connessione HTTP/2 ricevuto o inviato dal server. Il valore viene specificato in ottetti e deve essere compreso tra 2^14 (16.384) e 2^24-1 (16.777.215).
+`Http2.MaxFrameSize`indica la dimensione massima consentita di un payload del frame di connessione HTTP/2 ricevuto o inviato dal server. Il valore viene specificato in ottetti e deve essere compreso tra 2^14 (16.384) e 2^24-1 (16.777.215).
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -346,12 +346,12 @@ Il valore predefinito è 96 KB (98.304).
 
 ### <a name="synchronous-io"></a>I/O sincrono
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controlla se l'I/O sincrono è consentito per la richiesta e la risposta. Il valore predefinito è `false`.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO>controlla se l'I/O sincrono è consentito per la richiesta e la risposta. Il valore predefinito è `false`.
 
 > [!WARNING]
-> Un numero elevato di operazioni di I/O sincrone bloccanti può portare alla scadenza del pool di thread, a causa della quale l'app smette di rispondere. Abilitare solo `AllowSynchronousIO` quando si usa una libreria che non supporta l'I/O asincrono.
+> Un numero elevato di operazioni di I/O sincrone di blocco può causare la fame del pool di thread, il che rende l'app non risponde. Abilitare `AllowSynchronousIO` solo quando si usa una libreria che non supporta l'I/O asincrono.
 
-L'esempio seguente abilita l'I/O sincrono:
+Nell'esempio seguente viene abilitato l'I/O sincrono:The following example enables synchronous I/O:
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_SyncIO)]
 
@@ -375,7 +375,7 @@ Specificare gli URL usando gli elementi seguenti:
 * La chiave di configurazione dell'host `urls`.
 * Il metodo di estensione `UseUrls`.
 
-Il valore specificato usando i metodi seguenti può essere uno o più endpoint HTTP e HTTPS (HTTPS se è disponibile un certificato predefinito). Configurare il valore come un elenco delimitato da punto e virgola (ad esempio, `"Urls": "http://localhost:8000; http://localhost:8001"`).
+Il valore specificato usando i metodi seguenti può essere uno o più endpoint HTTP e HTTPS (HTTPS se è disponibile un certificato predefinito). Configurare il valore come un elenco delimitato da punto e virgola (ad esempio, `"Urls": "http://localhost:8000;http://localhost:8001"`).
 
 Per altre informazioni su questi approcci, vedere [URL del server](xref:fundamentals/host/web-host#server-urls) e [Override della configurazione](xref:fundamentals/host/web-host#override-configuration).
 
@@ -384,17 +384,17 @@ Viene creato un certificato di sviluppo nei casi seguenti:
 * Quando viene installato [.NET Core SDK](/dotnet/core/sdk).
 * Quando per creare un certificato viene usato [lo strumento dev-certs](xref:aspnetcore-2.1#https).
 
-Alcuni browser richiedono la concessione di autorizzazioni esplicite per considerare attendibile il certificato di sviluppo locale.
+Alcuni browser richiedono la concessione di un'autorizzazione esplicita per considerare attendibile il certificato di sviluppo locale.
 
-I modelli di progetto consentono di configurare le app per l'esecuzione su HTTPS per impostazione predefinita e includono il [reindirizzamento HTTPS e il supporto HSTS](xref:security/enforcing-ssl).
+I modelli di progetto configurano le app per l'esecuzione su HTTPS per impostazione predefinita e includono [il reindirizzamento HTTPS e il supporto HSTS.](xref:security/enforcing-ssl)
 
 Chiamare i metodi <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> oppure <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> su <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> per configurare le porte e i prefissi URL per Kestrel.
 
 Anche `UseUrls`, l'argomento della riga di comando `--urls`, la chiave di configurazione dell'host `urls` e la variabile di ambiente `ASPNETCORE_URLS` funzionano, ma con le limitazioni indicate più avanti nella sezione (deve essere disponibile un certificato predefinito per la configurazione dell'endopoint HTTPS).
 
-configurazione `KestrelServerOptions`:
+`KestrelServerOptions`Conﬁgurazione:
 
-### <a name="configureendpointdefaultsactionlistenoptions"></a>ConfigureEndpointDefaults (azione\<ListenOptions >)
+### <a name="configureendpointdefaultsactionlistenoptions"></a>ConfigureEndpointDefaults(>\<Action ListenOptions)
 
 Specifica un elemento di configurazione `Action` da eseguire per ogni endpoint specificato. Se si chiama `ConfigureEndpointDefaults` più volte, gli elementi `Action` precedenti vengono sostituiti con l'ultimo elemento `Action` specificato.
 
@@ -409,9 +409,9 @@ webBuilder.ConfigureKestrel(serverOptions =>
 ```
 
 > [!NOTE]
-> Per gli endpoint creati chiamando <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** di chiamare <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults*> non verranno applicati i valori predefiniti.
+> Agli endpoint creati <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** della chiamata <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults*> non verranno applicate le impostazioni predefinite.
 
-### <a name="configurehttpsdefaultsactionhttpsconnectionadapteroptions"></a>ConfigureHttpsDefaults (azione\<HttpsConnectionAdapterOptions >)
+### <a name="configurehttpsdefaultsactionhttpsconnectionadapteroptions"></a>ConfigureHttpsDefaults(azione\<HttpsConnectionAdapterOptions>)
 
 Specifica un elemento di configurazione `Action` da eseguire per ogni endpoint HTTPS. Se si chiama `ConfigureHttpsDefaults` più volte, gli elementi `Action` precedenti vengono sostituiti con l'ultimo elemento `Action` specificato.
 
@@ -427,7 +427,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 ```
 
 > [!NOTE]
-> Per gli endpoint creati chiamando <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** di chiamare <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> non verranno applicati i valori predefiniti.
+> Agli endpoint creati <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** della chiamata <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> non verranno applicate le impostazioni predefinite.
 
 ### <a name="configureiconfiguration"></a>Configure(IConfiguration)
 
@@ -439,7 +439,7 @@ Configura Kestrel per l'uso di HTTPS.
 
 Estensioni `ListenOptions.UseHttps`:
 
-* `UseHttps` &ndash; configurare gheppio per l'uso di HTTPS con il certificato predefinito. Genera un'eccezione se non è stato configurato alcun certificato predefinito.
+* `UseHttps`&ndash; Configurare Kestrel per l'utilizzo di HTTPS con il certificato predefinito. Genera un'eccezione se non è stato configurato alcun certificato predefinito.
 * `UseHttps(string fileName)`
 * `UseHttps(string fileName, string password)`
 * `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`
@@ -483,7 +483,7 @@ Kestrel è in ascolto su `http://localhost:5000` e `https://localhost:5001` (se 
 Nel file *appsettings.json* di esempio seguente:
 
 * Impostare **AllowInvalid** su `true` per consentire l'uso di certificati non validi, come ad esempio i certificati autofirmati.
-* Qualsiasi endpoint HTTPS che non specifica un certificato (**HttpsDefaultCert** nell'esempio seguente) esegue il fallback al certificato definito in **certificati** > **valore predefinito** o il certificato di sviluppo.
+* Tutti gli endpoint HTTPS che non specificano un certificato (**HttpsDefaultCert** nell'esempio che segue) usano il certificato definito in **Certificates** > **Default** o il certificato di sviluppo.
 
 ```json
 {
@@ -529,7 +529,7 @@ Nel file *appsettings.json* di esempio seguente:
 }
 ```
 
-Un'alternativa all'uso di **Path** e **Password** per qualsiasi nodo del certificato consiste nello specificare il certificato usando i campi dell'archivio certificati. Ad esempio, il certificato specificato mediante **Certificates** > **Default** può essere specificato come:
+Un'alternativa all'uso di **Path** e **Password** per qualsiasi nodo del certificato consiste nello specificare il certificato usando i campi dell'archivio certificati. Ad esempio, il certificato predefinito Certificati può essere specificato come:For example, the **Certificates** > **Default** certificate can be specified as:
 
 ```json
 "Default": {
@@ -546,7 +546,7 @@ Note di schema:
 * Il parametro `Url` è obbligatorio per ogni endpoint. Il formato per questo parametro è uguale a quello del parametro di configurazione di primo livello `Urls`, con la differenza che si limita a un singolo valore.
 * Questi endpoint sostituiscono quelli definiti nella configurazione di primo livello `Urls`, non vi si aggiungono. Gli endpoint definiti nel codice tramite `Listen` si aggiungono agli endpoint definiti nella sezione di configurazione.
 * La sezione `Certificate` è facoltativa. Se la sezione `Certificate` non è specificata, vengono usati i valori predefiniti definiti negli scenari precedenti. Se non è disponibile alcun valore predefinito, il server genera un'eccezione e non viene avviato.
-* La sezione `Certificate` supporta sia i certificati **Path**&ndash;**Password** che i certificati **Subject**&ndash;**Store**.
+* La `Certificate` sezione supporta i certificati **Path**&ndash;**Password** e **Subject**&ndash;**Store.**
 * In questo modo è possibile definire un numero qualsiasi di endpoint, purché non provochino conflitti di porte.
 * `options.Configure(context.Configuration.GetSection("{SECTION}"))` restituisce un oggetto `KestrelConfigurationLoader` con un metodo `.Endpoint(string name, listenOptions => { })` che può essere usato per integrare le impostazioni dell'endpoint configurato:
 
@@ -561,9 +561,9 @@ webBuilder.UseKestrel((context, serverOptions) =>
 });
 ```
 
-è possibile accedere direttamente a `KestrelServerOptions.ConfigurationLoader` per continuare a scorrere il caricatore esistente, ad esempio quello fornito da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
+`KestrelServerOptions.ConfigurationLoader`è possibile accedere direttamente per continuare l'iterazione sul caricatore esistente, ad esempio quello fornito da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
 
-* La sezione di configurazione per ogni endpoint è disponibile nelle opzioni del metodo `Endpoint` in modo che sia possibile leggere le impostazioni personalizzate.
+* La sezione di configurazione per ogni endpoint `Endpoint` è disponibile nelle opzioni del metodo in modo che le impostazioni personalizzate possano essere lette.
 * È possibile caricare più configurazioni chiamando ancora `options.Configure(context.Configuration.GetSection("{SECTION}"))` con un'altra sezione. Viene usata solo l'ultima configurazione, a meno che `Load` sia stato chiamato esplicitamente in istanze precedenti. Il metapacchetto non chiama `Load` in modo che la sezione di configurazione predefinita venga sostituita.
 * `KestrelConfigurationLoader` riflette la famiglia di API `Listen` da `KestrelServerOptions` all'overload di `Endpoint`, in modo che gli endpoint di codice e di configurazione possano essere configurati nella stessa posizione. Questi overload non usano nomi e usano solo le impostazioni predefinite della configurazione.
 
@@ -594,7 +594,7 @@ Kestrel supporta SNI tramite il callback `ServerCertificateSelector`. Il callbac
 
 Il supporto SNI richiede:
 
-* In esecuzione nel Framework di destinazione `netcoreapp2.1` o versione successiva. In `net461` o versioni successive, il callback viene richiamato, ma il `name` è sempre `null`. L'elemento `name` è `null` anche se il client non specifica il parametro del nome host nell'handshake TLS.
+* In esecuzione `netcoreapp2.1` sul framework di destinazione o versione successiva. In `net461` o versioni successive, il `name` callback `null`viene richiamato ma il metodo è sempre . L'elemento `name` è `null` anche se il client non specifica il parametro del nome host nell'handshake TLS.
 * Esecuzione di tutti i siti Web nella stessa istanza di Kestrel. Kestrel supporta la condivisione di un indirizzo IP e di una porta tra più istanze solo con un proxy inverso.
 
 ```csharp
@@ -633,9 +633,9 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
-### <a name="connection-logging"></a>Registrazione connessione
+### <a name="connection-logging"></a>Registrazione della connessione
 
-Chiamare <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> per creare log a livello di debug per la comunicazione a livello di byte in una connessione. La registrazione delle connessioni è utile per la risoluzione dei problemi nella comunicazione di basso livello, ad esempio durante la crittografia TLS e dietro i proxy. Se `UseConnectionLogging` viene posizionata prima `UseHttps`, viene registrato il traffico crittografato. Se `UseConnectionLogging` viene inserito dopo `UseHttps`, il traffico decrittografato viene registrato.
+Chiamata <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> per generare registri a livello di debug per la comunicazione a livello di byte su una connessione. La registrazione della connessione è utile per la risoluzione dei problemi di comunicazione di basso livello, ad esempio durante la crittografia TLS e i proxy sottostanti. Se `UseConnectionLogging` viene `UseHttps`inserito prima di , viene registrato il traffico crittografato. Se `UseConnectionLogging` viene `UseHttps`inserito dopo , viene registrato il traffico decrittografato.
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -663,8 +663,8 @@ Impostare l'ascolto su un socket Unix con <xref:Microsoft.AspNetCore.Server.Kest
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_UnixSocket)]
 
-* Nel file di configurazione nginx impostare il `server` > `location`voce di `proxy_pass`  > `http://unix:/tmp/{KESTREL SOCKET}:/;`. `{KESTREL SOCKET}` è il nome del socket fornito per <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*>, ad esempio `kestrel-test.sock` nell'esempio precedente.
-* Verificare che il socket sia scrivibile da nginx, ad esempio `chmod go+w /tmp/kestrel-test.sock`.
+* Nel file di configurazione Nginx, impostare `server`  >  `location`  >  `proxy_pass` la voce su `http://unix:/tmp/{KESTREL SOCKET}:/;`. `{KESTREL SOCKET}`è il nome del <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> socket fornito `kestrel-test.sock` a (ad esempio, nell'esempio precedente).
+* Assicurarsi che il socket sia scrivibile da `chmod go+w /tmp/kestrel-test.sock`Nginx (ad esempio, ).
 
 ### <a name="port-0"></a>Porta 0
 
@@ -704,9 +704,9 @@ La proprietà `Protocols` stabilisce i protocolli HTTP (`HttpProtocols`) abilita
 | -------------------------- | ----------------------------- |
 | `Http1`                    | Solo HTTP/1.1. Può essere usato con o senza TLS. |
 | `Http2`                    | Solo HTTP/2. Può essere usato senza TLS solo se il client supporta una [modalità di conoscenza pregressa](https://tools.ietf.org/html/rfc7540#section-3.4). |
-| `Http1AndHttp2`            | HTTP/1.1 e HTTP/2. HTTP/2 richiede che il client selezioni HTTP/2 nell'handshake TLS [(Application-Layer Protocol negotiation) ALPN](https://tools.ietf.org/html/rfc7301#section-3) in caso contrario, il valore predefinito per la connessione è HTTP/1.1. |
+| `Http1AndHttp2`            | HTTP/1.1 e HTTP/2. HTTP/2 richiede al client di selezionare HTTP/2 nell'handshake [TLS Application-Layer Protocol Negotiation (ALPN);](https://tools.ietf.org/html/rfc7301#section-3) in caso contrario, il valore predefinito della connessione è HTTP/1.1. |
 
-Il valore predefinito `ListenOptions.Protocols` per qualsiasi endpoint è `HttpProtocols.Http1AndHttp2`.
+Il `ListenOptions.Protocols` valore predefinito per `HttpProtocols.Http1AndHttp2`qualsiasi endpoint è .
 
 Restrizioni relative a TLS per HTTP/2:
 
@@ -714,11 +714,11 @@ Restrizioni relative a TLS per HTTP/2:
 * Rinegoziazione disabilitata
 * Compressione disabilitata
 * Dimensioni minime per lo scambio di chiavi temporanee:
-  * Diffie-Hellman a curva ellittica (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; minimo 224 bit
-  * Diffie-Hellman del campo finito (DHE) &lbrack;`TLS12`&rbrack; minimo &ndash; 2048 bit
+  * Diffie-Hellman a curva ellittica (ECDH) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; 224 bit (minimo)
+  * Campo finito Diffie-Hellman (DHE) &lbrack; `TLS12` &rbrack; &ndash; minimo 2048 bit
 * Pacchetto di crittografia consentito
 
-`TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; con la curva ellittica P-256 &lbrack;`FIPS186`&rbrack; è supportata per impostazione predefinita.
+`TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256`&lbrack; &lbrack; `FIPS186` &rbrack; con la curva ellittica P-256 è supportata per default. `TLS-ECDHE` &rbrack;
 
 Nell'esempio seguente sono consentite connessioni HTTP/1.1 e HTTP/2 sulla porta 8000. Le connessioni sono protette da TLS con un certificato incluso:
 
@@ -732,11 +732,11 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
-Usare il middleware di connessione per filtrare gli handshake TLS in base alla connessione per le crittografie specifiche, se necessario.
+Utilizzare il middleware di connessione per filtrare gli handshake TLS in base alla connessione per crittografia specifiche, se necessario.
 
-L'esempio seguente genera <xref:System.NotSupportedException> per qualsiasi algoritmo di crittografia non supportato dall'app. In alternativa, definire e confrontare [ITlsHandshakeFeature. CipherAlgorithm](xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm) con un elenco di pacchetti di crittografia accettabili.
+L'esempio seguente <xref:System.NotSupportedException> genera un'eccezione per qualsiasi algoritmo di crittografia non supportato dall'app. In alternativa, definire e confrontare [ITlsHandshakeFeature.CipherAlgorithm](xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm) con un elenco di pacchetti di crittografia accettabili.
 
-Non viene utilizzata alcuna crittografia con un algoritmo di crittografia [CipherAlgorithmType. null](xref:System.Security.Authentication.CipherAlgorithmType) .
+Nessuna crittografia viene utilizzata con un algoritmo di crittografia [CipherAlgorithmType.Null.No](xref:System.Security.Authentication.CipherAlgorithmType) encryption is used with a CipherAlgorithmType.Null cipher algorithm.
 
 ```csharp
 // using System.Net;
@@ -781,7 +781,7 @@ namespace Microsoft.AspNetCore.Connections
 }
 ```
 
-Il filtro della connessione può essere configurato anche tramite un'espressione lambda <xref:Microsoft.AspNetCore.Connections.IConnectionBuilder>:
+Il filtro connessioni può <xref:Microsoft.AspNetCore.Connections.IConnectionBuilder> essere configurato anche tramite un'espressione lambda:Connection filtering can also be configured via an lambda:
 
 ```csharp
 // using System;
@@ -811,7 +811,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
-In Linux è possibile usare <xref:System.Net.Security.CipherSuitesPolicy> per filtrare gli handshake TLS in base alla connessione:
+In Linux, può essere utilizzato per filtrare gli handshake TLS in base alla connessione:On Linux, <xref:System.Net.Security.CipherSuitesPolicy> can be used to filter TLS handshakes on a per-connection basis:
 
 ```csharp
 // using System.Net.Security;
@@ -842,7 +842,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 `CreateDefaultBuilder` chiama `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` per impostazione predefinita per caricare la configurazione di Kestrel.
 
-L'esempio *appSettings. JSON* seguente stabilisce http/1.1 come protocollo di connessione predefinito per tutti gli endpoint:
+L'esempio appsettings.json seguente stabilisce HTTP/1.1 come protocollo di connessione predefinito per tutti gli endpoint:The following *appsettings.json* example establishes HTTP/1.1 as the default connection protocol for all endpoints:
 
 ```json
 {
@@ -854,7 +854,7 @@ L'esempio *appSettings. JSON* seguente stabilisce http/1.1 come protocollo di co
 }
 ```
 
-Nell'esempio *appSettings. JSON* seguente viene stabilito il protocollo di connessione HTTP/1.1 per un endpoint specifico:
+L'esempio appsettings.json seguente stabilisce il protocollo di connessione HTTP/1.1 per un endpoint specifico:The following *appsettings.json* example establishes the HTTP/1.1 connection protocol for a specific endpoint:
 
 ```json
 {
@@ -873,7 +873,7 @@ I protocolli specificati nei valori di override del codice sono impostati dalla 
 
 ## <a name="transport-configuration"></a>Configurazione del trasporto
 
-Per i progetti che richiedono l'uso di libuv (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*>):
+Per i progetti che richiedono<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*>l'uso di Libuv ( ):
 
 * Aggiungere una dipendenza per il pacchetto [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) al file di progetto dell'app:
 
@@ -882,7 +882,7 @@ Per i progetti che richiedono l'uso di libuv (<xref:Microsoft.AspNetCore.Hosting
                      Version="{VERSION}" />
    ```
 
-* Chiamare <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*> sul `IWebHostBuilder`:
+* Chiamare <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*> il `IWebHostBuilder`:
 
    ```csharp
    public class Program
@@ -950,11 +950,11 @@ Sono validi solo i prefissi URL HTTP. Kestrel non supporta HTTPS quando la confi
 
 Mentre supporta la configurazione in base ai prefissi, ad esempio `http://example.com:5000`, Kestrel ignora quasi sempre il nome host. L'host `localhost` è un caso speciale usato per l'associazione agli indirizzi di loopback. Qualsiasi host che non sia un indirizzo IP esplicito esegue l'associazione a tutti gli indirizzi IP pubblici. Le intestazioni `Host` non vengono convalidate.
 
-Come soluzione alternativa, usare il middleware di filtro host. Il middleware di filtro host viene fornito dal pacchetto [Microsoft. AspNetCore. HostFiltering](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering) , fornito in modo implicito per le app ASP.NET Core. Il middleware viene aggiunto da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, che chiama <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering*>:
+Come soluzione alternativa, usare il middleware di filtro host. Host Filtering Middleware viene fornito dal pacchetto [Microsoft.AspNetCore.HostFiltering,](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering) che viene fornito in modo implicito per le app ASP.NET Core. Il middleware viene aggiunto da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, che chiama <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering*>:
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definire una chiave `AllowedHosts` in *appsettings.json*/*appsettings.\<NomeAmbiente>.json*. Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
+Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definisci `AllowedHosts` una chiave in *appsettings.json*/*appsettings.\< EnvironmentName>.json*. Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
 
 *appsettings.json*:
 
@@ -986,7 +986,7 @@ Kestrel supporta gli scenari seguenti:
 
 Kestrel è supportato in tutte le piattaforme e le versioni supportate da .NET Core.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ( come[scaricare](xref:index#how-to-download-a-sample))
 
 ## <a name="http2-support"></a>Supporto HTTP/2
 
@@ -1029,20 +1029,20 @@ Un proxy inverso:
 * Può limitare l'area della superficie di attacco pubblica esposta delle app ospitate.
 * Offre un livello aggiuntivo di configurazione e protezione.
 * Potrebbe offrire un'integrazione migliore con l'infrastruttura esistente.
-* Semplifica il bilanciamento del carico e la configurazione di comunicazioni protette (HTTPS). Solo il server proxy inverso richiede un certificato X. 509 e il server è in grado di comunicare con i server dell'app nella rete interna tramite HTTP normale.
+* Semplifica il bilanciamento del carico e la configurazione di comunicazioni protette (HTTPS). Solo il server proxy inverso richiede un certificato X.509 e tale server può comunicare con i server dell'app nella rete interna utilizzando HTTP semplice.
 
 > [!WARNING]
 > Una configurazione che prevede un proxy inverso richiede il [filtro host](#host-filtering).
 
 ## <a name="how-to-use-kestrel-in-aspnet-core-apps"></a>Come usare Kestrel nelle app ASP.NET Core
 
-Il pacchetto [Microsoft. AspNetCore. Server. gheppio](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) è incluso nel [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
+Il pacchetto [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) è incluso nel [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).
 
 I modelli di progetto ASP.NET Core usano Kestrel per impostazione predefinita. In *Program.cs* il codice del modello chiama <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, che chiama <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> in background.
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_DefaultBuilder&highlight=7)]
 
-Per ulteriori informazioni su `CreateDefaultBuilder` e sulla compilazione dell'host, vedere la sezione *configurare un host* di <xref:fundamentals/host/web-host#set-up-a-host>.
+Per ulteriori `CreateDefaultBuilder` informazioni sulla creazione dell'host e sulla <xref:fundamentals/host/web-host#set-up-a-host>creazione, vedere la sezione *Configurare un host* di .
 
 Per fornire una configurazione aggiuntiva dopo la chiamata di `CreateDefaultBuilder`, usare `ConfigureKestrel`:
 
@@ -1088,7 +1088,7 @@ Negli esempi seguenti viene usato lo spazio dei nomi <xref:Microsoft.AspNetCore.
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Le opzioni di gheppio, che sono C# configurate nel codice negli esempi seguenti, possono essere impostate anche usando un [provider di configurazione](xref:fundamentals/configuration/index). Il provider di configurazione file, ad esempio, può caricare la configurazione di Gheppio da *appSettings. JSON* o *appSettings. { File Environment}. JSON* :
+Le opzioni kestrel, che sono configurate nel codice C , negli esempi seguenti, possono essere impostate anche utilizzando un provider di [configurazione](xref:fundamentals/configuration/index). Ad esempio, il provider di configurazione File può caricare la configurazione di Kestrel da un *file appsettings.json* o *appsettings. Ambiente: file .json:*
 
 ```json
 {
@@ -1101,12 +1101,12 @@ Le opzioni di gheppio, che sono C# configurate nel codice negli esempi seguenti,
 }
 ```
 
-Usare **uno** degli approcci seguenti:
+Utilizzare **uno** dei seguenti approcci:
 
-* Configurare gheppio in `Startup.ConfigureServices`:
+* Configurare Kestrel in `Startup.ConfigureServices`:
 
-  1. Inserire un'istanza di `IConfiguration` nella classe `Startup`. Nell'esempio seguente si presuppone che la configurazione inserita venga assegnata alla proprietà `Configuration`.
-  2. In `Startup.ConfigureServices`caricare la sezione `Kestrel` della configurazione nella configurazione di Gheppio:
+  1. Inserire un'istanza `IConfiguration` `Startup` di nella classe. Nell'esempio seguente si presuppone che la `Configuration` configurazione inserita sia assegnata alla proprietà.
+  2. In `Startup.ConfigureServices`, `Kestrel` caricare la sezione di configurazione nella configurazione di Kestrel:
 
      ```csharp
      using Microsoft.Extensions.Configuration
@@ -1133,9 +1133,9 @@ Usare **uno** degli approcci seguenti:
      }
      ```
 
-* Configurare il gheppio durante la compilazione dell'host:
+* Configurare Kestrel durante la creazione dell'host:
 
-  In *Program.cs*caricare la sezione `Kestrel` della configurazione nella configurazione di Gheppio:
+  In *Program.cs*, `Kestrel` caricare la sezione di configurazione nella configurazione di Kestrel:
 
   ```csharp
   // using Microsoft.Extensions.DependencyInjection;
@@ -1150,7 +1150,7 @@ Usare **uno** degli approcci seguenti:
           .UseStartup<Startup>();
   ```
 
-Entrambi gli approcci precedenti funzionano con qualsiasi [provider di configurazione](xref:fundamentals/configuration/index).
+Entrambi gli approcci precedenti funzionano con qualsiasi provider di [configurazione.](xref:fundamentals/configuration/index)
 
 ### <a name="keep-alive-timeout"></a>Timeout keep-alive
 
@@ -1192,7 +1192,7 @@ L'esempio seguente illustra come configurare il vincolo per l'app in ogni richie
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=5)]
 
-Eseguire l'override dell'impostazione per una richiesta specifica nel middleware:
+Eseguire l'override dell'impostazione in una richiesta specifica in middleware:
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=3-4)]
 
@@ -1205,7 +1205,7 @@ Quando un'app viene eseguita [out-of-process](xref:host-and-deploy/iis/index#out
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinResponseDataRate>
 
-Kestrel controlla ogni secondo se i dati arrivano alla velocità in byte al secondo specificata. Se la frequenza scende sotto il valore minimo, si è verificato il timeout della connessione. Il periodo di tolleranza è la quantità di tempo che il gheppio concede al client di aumentare la velocità di invio fino al minimo. la frequenza non viene controllata durante tale periodo di tempo. Il periodo di prova consente di evitare l'interruzione di connessioni che inizialmente inviano i dati a velocità ridotta a causa dell'avvio lento del protocollo TCP.
+Kestrel controlla ogni secondo se i dati arrivano alla velocità in byte al secondo specificata. Se la velocità scende al di sotto del valore minimo, la connessione viene scaduta. Il periodo di tolleranza è la quantità di tempo che Kestrel dà al cliente per aumentare la sua velocità di invio fino al minimo; la frequenza non viene controllata durante tale periodo. Il periodo di prova consente di evitare l'interruzione di connessioni che inizialmente inviano i dati a velocità ridotta a causa dell'avvio lento del protocollo TCP.
 
 La velocità minima predefinita è di 240 byte al secondo, con un periodo di tolleranza di 5 secondi.
 
@@ -1215,7 +1215,7 @@ L'esempio seguente visualizza come configurare la velocità minima dei dati in *
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=6-9)]
 
-Ignorare i limiti di velocità minima per ogni richiesta nel middleware:
+Sostituire i limiti di frequenza minimi per richiesta nel middleware:
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-21)]
 
@@ -1327,12 +1327,12 @@ Il valore predefinito è 96 KB (98.304).
 
 ### <a name="synchronous-io"></a>I/O sincrono
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controlla se l'I/O sincrono è consentito per la richiesta e la risposta. Il valore predefinito è `true`.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO>controlla se l'I/O sincrono è consentito per la richiesta e la risposta. Il valore predefinito è `true`.
 
 > [!WARNING]
-> Un numero elevato di operazioni di I/O sincrone bloccanti può portare alla scadenza del pool di thread, a causa della quale l'app smette di rispondere. Abilitare solo `AllowSynchronousIO` quando si usa una libreria che non supporta l'I/O asincrono.
+> Un numero elevato di operazioni di I/O sincrone di blocco può causare la fame del pool di thread, il che rende l'app non risponde. Abilitare `AllowSynchronousIO` solo quando si usa una libreria che non supporta l'I/O asincrono.
 
-L'esempio seguente abilita l'I/O sincrono:
+Nell'esempio seguente viene abilitato l'I/O sincrono:The following example enables synchronous I/O:
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_SyncIO)]
 
@@ -1356,7 +1356,7 @@ Specificare gli URL usando gli elementi seguenti:
 * La chiave di configurazione dell'host `urls`.
 * Il metodo di estensione `UseUrls`.
 
-Il valore specificato usando i metodi seguenti può essere uno o più endpoint HTTP e HTTPS (HTTPS se è disponibile un certificato predefinito). Configurare il valore come un elenco delimitato da punto e virgola (ad esempio, `"Urls": "http://localhost:8000; http://localhost:8001"`).
+Il valore specificato usando i metodi seguenti può essere uno o più endpoint HTTP e HTTPS (HTTPS se è disponibile un certificato predefinito). Configurare il valore come un elenco delimitato da punto e virgola (ad esempio, `"Urls": "http://localhost:8000;http://localhost:8001"`).
 
 Per altre informazioni su questi approcci, vedere [URL del server](xref:fundamentals/host/web-host#server-urls) e [Override della configurazione](xref:fundamentals/host/web-host#override-configuration).
 
@@ -1365,17 +1365,17 @@ Viene creato un certificato di sviluppo nei casi seguenti:
 * Quando viene installato [.NET Core SDK](/dotnet/core/sdk).
 * Quando per creare un certificato viene usato [lo strumento dev-certs](xref:aspnetcore-2.1#https).
 
-Alcuni browser richiedono la concessione di autorizzazioni esplicite per considerare attendibile il certificato di sviluppo locale.
+Alcuni browser richiedono la concessione di un'autorizzazione esplicita per considerare attendibile il certificato di sviluppo locale.
 
-I modelli di progetto consentono di configurare le app per l'esecuzione su HTTPS per impostazione predefinita e includono il [reindirizzamento HTTPS e il supporto HSTS](xref:security/enforcing-ssl).
+I modelli di progetto configurano le app per l'esecuzione su HTTPS per impostazione predefinita e includono [il reindirizzamento HTTPS e il supporto HSTS.](xref:security/enforcing-ssl)
 
 Chiamare i metodi <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> oppure <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> su <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> per configurare le porte e i prefissi URL per Kestrel.
 
 Anche `UseUrls`, l'argomento della riga di comando `--urls`, la chiave di configurazione dell'host `urls` e la variabile di ambiente `ASPNETCORE_URLS` funzionano, ma con le limitazioni indicate più avanti nella sezione (deve essere disponibile un certificato predefinito per la configurazione dell'endopoint HTTPS).
 
-configurazione `KestrelServerOptions`:
+`KestrelServerOptions`Conﬁgurazione:
 
-### <a name="configureendpointdefaultsactionlistenoptions"></a>ConfigureEndpointDefaults (azione\<ListenOptions >)
+### <a name="configureendpointdefaultsactionlistenoptions"></a>ConfigureEndpointDefaults(>\<Action ListenOptions)
 
 Specifica un elemento di configurazione `Action` da eseguire per ogni endpoint specificato. Se si chiama `ConfigureEndpointDefaults` più volte, gli elementi `Action` precedenti vengono sostituiti con l'ultimo elemento `Action` specificato.
 
@@ -1393,9 +1393,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 ```
 
 > [!NOTE]
-> Per gli endpoint creati chiamando <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** di chiamare <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults*> non verranno applicati i valori predefiniti.
+> Agli endpoint creati <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** della chiamata <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults*> non verranno applicate le impostazioni predefinite.
 
-### <a name="configurehttpsdefaultsactionhttpsconnectionadapteroptions"></a>ConfigureHttpsDefaults (azione\<HttpsConnectionAdapterOptions >)
+### <a name="configurehttpsdefaultsactionhttpsconnectionadapteroptions"></a>ConfigureHttpsDefaults(azione\<HttpsConnectionAdapterOptions>)
 
 Specifica un elemento di configurazione `Action` da eseguire per ogni endpoint HTTPS. Se si chiama `ConfigureHttpsDefaults` più volte, gli elementi `Action` precedenti vengono sostituiti con l'ultimo elemento `Action` specificato.
 
@@ -1414,7 +1414,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 ```
 
 > [!NOTE]
-> Per gli endpoint creati chiamando <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** di chiamare <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> non verranno applicati i valori predefiniti.
+> Agli endpoint creati <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** della chiamata <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> non verranno applicate le impostazioni predefinite.
 
 
 ### <a name="configureiconfiguration"></a>Configure(IConfiguration)
@@ -1427,7 +1427,7 @@ Configura Kestrel per l'uso di HTTPS.
 
 Estensioni `ListenOptions.UseHttps`:
 
-* `UseHttps` &ndash; configurare gheppio per l'uso di HTTPS con il certificato predefinito. Genera un'eccezione se non è stato configurato alcun certificato predefinito.
+* `UseHttps`&ndash; Configurare Kestrel per l'utilizzo di HTTPS con il certificato predefinito. Genera un'eccezione se non è stato configurato alcun certificato predefinito.
 * `UseHttps(string fileName)`
 * `UseHttps(string fileName, string password)`
 * `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`
@@ -1471,7 +1471,7 @@ Kestrel è in ascolto su `http://localhost:5000` e `https://localhost:5001` (se 
 Nel file *appsettings.json* di esempio seguente:
 
 * Impostare **AllowInvalid** su `true` per consentire l'uso di certificati non validi, come ad esempio i certificati autofirmati.
-* Qualsiasi endpoint HTTPS che non specifica un certificato (**HttpsDefaultCert** nell'esempio seguente) esegue il fallback al certificato definito in **certificati** > **valore predefinito** o il certificato di sviluppo.
+* Tutti gli endpoint HTTPS che non specificano un certificato (**HttpsDefaultCert** nell'esempio che segue) usano il certificato definito in **Certificates** > **Default** o il certificato di sviluppo.
 
 ```json
 {
@@ -1521,7 +1521,7 @@ Nel file *appsettings.json* di esempio seguente:
 }
 ```
 
-Un'alternativa all'uso di **Path** e **Password** per qualsiasi nodo del certificato consiste nello specificare il certificato usando i campi dell'archivio certificati. Ad esempio, il certificato specificato mediante **Certificates** > **Default** può essere specificato come:
+Un'alternativa all'uso di **Path** e **Password** per qualsiasi nodo del certificato consiste nello specificare il certificato usando i campi dell'archivio certificati. Ad esempio, il certificato predefinito Certificati può essere specificato come:For example, the **Certificates** > **Default** certificate can be specified as:
 
 ```json
 "Default": {
@@ -1538,7 +1538,7 @@ Note di schema:
 * Il parametro `Url` è obbligatorio per ogni endpoint. Il formato per questo parametro è uguale a quello del parametro di configurazione di primo livello `Urls`, con la differenza che si limita a un singolo valore.
 * Questi endpoint sostituiscono quelli definiti nella configurazione di primo livello `Urls`, non vi si aggiungono. Gli endpoint definiti nel codice tramite `Listen` si aggiungono agli endpoint definiti nella sezione di configurazione.
 * La sezione `Certificate` è facoltativa. Se la sezione `Certificate` non è specificata, vengono usati i valori predefiniti definiti negli scenari precedenti. Se non è disponibile alcun valore predefinito, il server genera un'eccezione e non viene avviato.
-* La sezione `Certificate` supporta sia i certificati **Path**&ndash;**Password** che i certificati **Subject**&ndash;**Store**.
+* La `Certificate` sezione supporta i certificati **Path**&ndash;**Password** e **Subject**&ndash;**Store.**
 * In questo modo è possibile definire un numero qualsiasi di endpoint, purché non provochino conflitti di porte.
 * `options.Configure(context.Configuration.GetSection("{SECTION}"))` restituisce un oggetto `KestrelConfigurationLoader` con un metodo `.Endpoint(string name, listenOptions => { })` che può essere usato per integrare le impostazioni dell'endpoint configurato:
 
@@ -1556,9 +1556,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-è possibile accedere direttamente a `KestrelServerOptions.ConfigurationLoader` per continuare a scorrere il caricatore esistente, ad esempio quello fornito da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
+`KestrelServerOptions.ConfigurationLoader`è possibile accedere direttamente per continuare l'iterazione sul caricatore esistente, ad esempio quello fornito da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
 
-* La sezione di configurazione per ogni endpoint è disponibile nelle opzioni del metodo `Endpoint` in modo che sia possibile leggere le impostazioni personalizzate.
+* La sezione di configurazione per ogni endpoint `Endpoint` è disponibile nelle opzioni del metodo in modo che le impostazioni personalizzate possano essere lette.
 * È possibile caricare più configurazioni chiamando ancora `options.Configure(context.Configuration.GetSection("{SECTION}"))` con un'altra sezione. Viene usata solo l'ultima configurazione, a meno che `Load` sia stato chiamato esplicitamente in istanze precedenti. Il metapacchetto non chiama `Load` in modo che la sezione di configurazione predefinita venga sostituita.
 * `KestrelConfigurationLoader` riflette la famiglia di API `Listen` da `KestrelServerOptions` all'overload di `Endpoint`, in modo che gli endpoint di codice e di configurazione possano essere configurati nella stessa posizione. Questi overload non usano nomi e usano solo le impostazioni predefinite della configurazione.
 
@@ -1592,7 +1592,7 @@ Kestrel supporta SNI tramite il callback `ServerCertificateSelector`. Il callbac
 
 Il supporto SNI richiede:
 
-* In esecuzione nel Framework di destinazione `netcoreapp2.1` o versione successiva. In `net461` o versioni successive, il callback viene richiamato, ma il `name` è sempre `null`. L'elemento `name` è `null` anche se il client non specifica il parametro del nome host nell'handshake TLS.
+* In esecuzione `netcoreapp2.1` sul framework di destinazione o versione successiva. In `net461` o versioni successive, il `name` callback `null`viene richiamato ma il metodo è sempre . L'elemento `name` è `null` anche se il client non specifica il parametro del nome host nell'handshake TLS.
 * Esecuzione di tutti i siti Web nella stessa istanza di Kestrel. Kestrel supporta la condivisione di un indirizzo IP e di una porta tra più istanze solo con un proxy inverso.
 
 ```csharp
@@ -1634,9 +1634,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-### <a name="connection-logging"></a>Registrazione connessione
+### <a name="connection-logging"></a>Registrazione della connessione
 
-Chiamare <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> per creare log a livello di debug per la comunicazione a livello di byte in una connessione. La registrazione delle connessioni è utile per la risoluzione dei problemi nella comunicazione di basso livello, ad esempio durante la crittografia TLS e dietro i proxy. Se `UseConnectionLogging` viene posizionata prima `UseHttps`, viene registrato il traffico crittografato. Se `UseConnectionLogging` viene inserito dopo `UseHttps`, il traffico decrittografato viene registrato.
+Chiamata <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> per generare registri a livello di debug per la comunicazione a livello di byte su una connessione. La registrazione della connessione è utile per la risoluzione dei problemi di comunicazione di basso livello, ad esempio durante la crittografia TLS e i proxy sottostanti. Se `UseConnectionLogging` viene `UseHttps`inserito prima di , viene registrato il traffico crittografato. Se `UseConnectionLogging` viene `UseHttps`inserito dopo , viene registrato il traffico decrittografato.
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -1664,8 +1664,8 @@ Impostare l'ascolto su un socket Unix con <xref:Microsoft.AspNetCore.Server.Kest
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_UnixSocket)]
 
-* Nel file nginx confiuguration impostare il `server` > `location`voce di `proxy_pass`  > `http://unix:/tmp/{KESTREL SOCKET}:/;`. `{KESTREL SOCKET}` è il nome del socket fornito per <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*>, ad esempio `kestrel-test.sock` nell'esempio precedente.
-* Verificare che il socket sia scrivibile da nginx, ad esempio `chmod go+w /tmp/kestrel-test.sock`. 
+* Nel file di confiuguration Nginx, impostare `server`  >  `location`  >  `proxy_pass` la voce su `http://unix:/tmp/{KESTREL SOCKET}:/;`. `{KESTREL SOCKET}`è il nome del <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> socket fornito `kestrel-test.sock` a (ad esempio, nell'esempio precedente).
+* Assicurarsi che il socket sia scrivibile da `chmod go+w /tmp/kestrel-test.sock`Nginx (ad esempio, ). 
 
 ### <a name="port-0"></a>Porta 0
 
@@ -1705,7 +1705,7 @@ La proprietà `Protocols` stabilisce i protocolli HTTP (`HttpProtocols`) abilita
 | -------------------------- | ----------------------------- |
 | `Http1`                    | Solo HTTP/1.1. Può essere usato con o senza TLS. |
 | `Http2`                    | Solo HTTP/2. Può essere usato senza TLS solo se il client supporta una [modalità di conoscenza pregressa](https://tools.ietf.org/html/rfc7540#section-3.4). |
-| `Http1AndHttp2`            | HTTP/1.1 e HTTP/2. HTTP/2 richiede una connessione TLS e [ALPN (Application-Layer Protocol negotiation)](https://tools.ietf.org/html/rfc7301#section-3) ; in caso contrario, il valore predefinito per la connessione è HTTP/1.1. |
+| `Http1AndHttp2`            | HTTP/1.1 e HTTP/2. HTTP/2 richiede una connessione TLS e [Application-Layer Protocol Negotiation (ALPN);](https://tools.ietf.org/html/rfc7301#section-3) in caso contrario, il valore predefinito della connessione è HTTP/1.1. |
 
 Il protocollo predefinito è HTTP/1.1.
 
@@ -1715,11 +1715,11 @@ Restrizioni relative a TLS per HTTP/2:
 * Rinegoziazione disabilitata
 * Compressione disabilitata
 * Dimensioni minime per lo scambio di chiavi temporanee:
-  * Diffie-Hellman a curva ellittica (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; minimo 224 bit
-  * Diffie-Hellman del campo finito (DHE) &lbrack;`TLS12`&rbrack; minimo &ndash; 2048 bit
+  * Diffie-Hellman a curva ellittica (ECDH) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; 224 bit (minimo)
+  * Campo finito Diffie-Hellman (DHE) &lbrack; `TLS12` &rbrack; &ndash; minimo 2048 bit
 * Pacchetto di crittografia consentito
 
-`TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; con la curva ellittica P-256 &lbrack;`FIPS186`&rbrack; è supportata per impostazione predefinita.
+`TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256`&lbrack; &lbrack; `FIPS186` &rbrack; con la curva ellittica P-256 è supportata per default. `TLS-ECDHE` &rbrack;
 
 Nell'esempio seguente sono consentite connessioni HTTP/1.1 e HTTP/2 sulla porta 8000. Le connessioni sono protette da TLS con un certificato incluso:
 
@@ -1827,7 +1827,7 @@ Con la versione ASP.NET Core 2.1, il trasporto predefinito di Kestrel non si bas
 * [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) (riferimento diretto al pacchetto)
 * [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
 
-Per i progetti che richiedono l'uso di libuv:
+Per i progetti che richiedono l'uso di Libuv:
 
 * Aggiungere una dipendenza per il pacchetto [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) al file di progetto dell'app:
 
@@ -1901,11 +1901,11 @@ Sono validi solo i prefissi URL HTTP. Kestrel non supporta HTTPS quando la confi
 
 Mentre supporta la configurazione in base ai prefissi, ad esempio `http://example.com:5000`, Kestrel ignora quasi sempre il nome host. L'host `localhost` è un caso speciale usato per l'associazione agli indirizzi di loopback. Qualsiasi host che non sia un indirizzo IP esplicito esegue l'associazione a tutti gli indirizzi IP pubblici. Le intestazioni `Host` non vengono convalidate.
 
-Come soluzione alternativa, usare il middleware di filtro host. Il middleware di filtro host viene fornito dal pacchetto [Microsoft. AspNetCore. HostFiltering](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering) , incluso nel [metapacchetto Microsoft. AspNetCore. App](xref:fundamentals/metapackage-app) (ASP.NET Core 2,1 o 2,2). Il middleware viene aggiunto da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, che chiama <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering*>:
+Come soluzione alternativa, usare il middleware di filtro host. Il middleware Host Filtering viene fornito dal pacchetto [Microsoft.AspNetCore.HostFiltering,](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering) incluso nel [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 o 2.2). Il middleware viene aggiunto da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, che chiama <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering*>:
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definire una chiave `AllowedHosts` in *appsettings.json*/*appsettings.\<NomeAmbiente>.json*. Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
+Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definisci `AllowedHosts` una chiave in *appsettings.json*/*appsettings.\< EnvironmentName>.json*. Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
 
 *appsettings.json*:
 
@@ -1934,7 +1934,7 @@ Kestrel supporta gli scenari seguenti:
 
 Kestrel è supportato in tutte le piattaforme e le versioni supportate da .NET Core.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ( come[scaricare](xref:index#how-to-download-a-sample))
 
 ## <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>Quando usare Kestrel con un proxy inverso
 
@@ -1959,14 +1959,14 @@ Un proxy inverso:
 * Può limitare l'area della superficie di attacco pubblica esposta delle app ospitate.
 * Offre un livello aggiuntivo di configurazione e protezione.
 * Potrebbe offrire un'integrazione migliore con l'infrastruttura esistente.
-* Semplifica il bilanciamento del carico e la configurazione di comunicazioni protette (HTTPS). Solo il server proxy inverso richiede un certificato X. 509 e il server è in grado di comunicare con i server dell'app nella rete interna tramite HTTP normale.
+* Semplifica il bilanciamento del carico e la configurazione di comunicazioni protette (HTTPS). Solo il server proxy inverso richiede un certificato X.509 e tale server può comunicare con i server dell'app nella rete interna utilizzando HTTP semplice.
 
 > [!WARNING]
 > Una configurazione che prevede un proxy inverso richiede il [filtro host](#host-filtering).
 
 ## <a name="how-to-use-kestrel-in-aspnet-core-apps"></a>Come usare Kestrel nelle app ASP.NET Core
 
-Il pacchetto [Microsoft. AspNetCore. Server. gheppio](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) è incluso nel [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
+Il pacchetto [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) è incluso nel [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).
 
 I modelli di progetto ASP.NET Core usano Kestrel per impostazione predefinita. In *Program.cs* il codice del modello chiama <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, che chiama <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> in background.
 
@@ -1982,7 +1982,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-Per ulteriori informazioni su `CreateDefaultBuilder` e sulla compilazione dell'host, vedere la sezione *configurare un host* di <xref:fundamentals/host/web-host#set-up-a-host>.
+Per ulteriori `CreateDefaultBuilder` informazioni sulla creazione dell'host e sulla <xref:fundamentals/host/web-host#set-up-a-host>creazione, vedere la sezione *Configurare un host* di .
 
 ## <a name="kestrel-options"></a>Opzioni Kestrel
 
@@ -1996,7 +1996,7 @@ Negli esempi seguenti viene usato lo spazio dei nomi <xref:Microsoft.AspNetCore.
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Le opzioni di gheppio, che sono C# configurate nel codice negli esempi seguenti, possono essere impostate anche usando un [provider di configurazione](xref:fundamentals/configuration/index). Il provider di configurazione file, ad esempio, può caricare la configurazione di Gheppio da *appSettings. JSON* o *appSettings. { File Environment}. JSON* :
+Le opzioni kestrel, che sono configurate nel codice C , negli esempi seguenti, possono essere impostate anche utilizzando un provider di [configurazione](xref:fundamentals/configuration/index). Ad esempio, il provider di configurazione File può caricare la configurazione di Kestrel da un *file appsettings.json* o *appsettings. Ambiente: file .json:*
 
 ```json
 {
@@ -2009,12 +2009,12 @@ Le opzioni di gheppio, che sono C# configurate nel codice negli esempi seguenti,
 }
 ```
 
-Usare **uno** degli approcci seguenti:
+Utilizzare **uno** dei seguenti approcci:
 
-* Configurare gheppio in `Startup.ConfigureServices`:
+* Configurare Kestrel in `Startup.ConfigureServices`:
 
-  1. Inserire un'istanza di `IConfiguration` nella classe `Startup`. Nell'esempio seguente si presuppone che la configurazione inserita venga assegnata alla proprietà `Configuration`.
-  2. In `Startup.ConfigureServices`caricare la sezione `Kestrel` della configurazione nella configurazione di Gheppio:
+  1. Inserire un'istanza `IConfiguration` `Startup` di nella classe. Nell'esempio seguente si presuppone che la `Configuration` configurazione inserita sia assegnata alla proprietà.
+  2. In `Startup.ConfigureServices`, `Kestrel` caricare la sezione di configurazione nella configurazione di Kestrel:
 
      ```csharp
      using Microsoft.Extensions.Configuration
@@ -2041,9 +2041,9 @@ Usare **uno** degli approcci seguenti:
      }
      ```
 
-* Configurare il gheppio durante la compilazione dell'host:
+* Configurare Kestrel durante la creazione dell'host:
 
-  In *Program.cs*caricare la sezione `Kestrel` della configurazione nella configurazione di Gheppio:
+  In *Program.cs*, `Kestrel` caricare la sezione di configurazione nella configurazione di Kestrel:
 
   ```csharp
   // using Microsoft.Extensions.DependencyInjection;
@@ -2058,7 +2058,7 @@ Usare **uno** degli approcci seguenti:
           .UseStartup<Startup>();
   ```
 
-Entrambi gli approcci precedenti funzionano con qualsiasi [provider di configurazione](xref:fundamentals/configuration/index).
+Entrambi gli approcci precedenti funzionano con qualsiasi provider di [configurazione.](xref:fundamentals/configuration/index)
 
 ### <a name="keep-alive-timeout"></a>Timeout keep-alive
 
@@ -2132,7 +2132,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-Eseguire l'override dell'impostazione per una richiesta specifica nel middleware:
+Eseguire l'override dell'impostazione in una richiesta specifica in middleware:
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=3-4)]
 
@@ -2145,7 +2145,7 @@ Quando un'app viene eseguita [out-of-process](xref:host-and-deploy/iis/index#out
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinResponseDataRate>
 
-Kestrel controlla ogni secondo se i dati arrivano alla velocità in byte al secondo specificata. Se la frequenza scende sotto il valore minimo, si è verificato il timeout della connessione. Il periodo di tolleranza è la quantità di tempo che il gheppio concede al client di aumentare la velocità di invio fino al minimo. la frequenza non viene controllata durante tale periodo di tempo. Il periodo di prova consente di evitare l'interruzione di connessioni che inizialmente inviano i dati a velocità ridotta a causa dell'avvio lento del protocollo TCP.
+Kestrel controlla ogni secondo se i dati arrivano alla velocità in byte al secondo specificata. Se la velocità scende al di sotto del valore minimo, la connessione viene scaduta. Il periodo di tolleranza è la quantità di tempo che Kestrel dà al cliente per aumentare la sua velocità di invio fino al minimo; la frequenza non viene controllata durante tale periodo. Il periodo di prova consente di evitare l'interruzione di connessioni che inizialmente inviano i dati a velocità ridotta a causa dell'avvio lento del protocollo TCP.
 
 La velocità minima predefinita è di 240 byte al secondo, con un periodo di tolleranza di 5 secondi.
 
@@ -2184,12 +2184,12 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ### <a name="synchronous-io"></a>I/O sincrono
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controlla se l'I/O sincrono è consentito per la richiesta e la risposta. Il valore predefinito è `true`.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO>controlla se l'I/O sincrono è consentito per la richiesta e la risposta. Il valore predefinito è `true`.
 
 > [!WARNING]
-> Un numero elevato di operazioni di I/O sincrone bloccanti può portare alla scadenza del pool di thread, a causa della quale l'app smette di rispondere. Abilitare solo `AllowSynchronousIO` quando si usa una libreria che non supporta l'I/O asincrono.
+> Un numero elevato di operazioni di I/O sincrone di blocco può causare la fame del pool di thread, il che rende l'app non risponde. Abilitare `AllowSynchronousIO` solo quando si usa una libreria che non supporta l'I/O asincrono.
 
-L'esempio seguente disabilita l'I/O sincrono:
+Nell'esempio seguente viene disabilitato l'I/O sincrono:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -2221,7 +2221,7 @@ Specificare gli URL usando gli elementi seguenti:
 * La chiave di configurazione dell'host `urls`.
 * Il metodo di estensione `UseUrls`.
 
-Il valore specificato usando i metodi seguenti può essere uno o più endpoint HTTP e HTTPS (HTTPS se è disponibile un certificato predefinito). Configurare il valore come un elenco delimitato da punto e virgola (ad esempio, `"Urls": "http://localhost:8000; http://localhost:8001"`).
+Il valore specificato usando i metodi seguenti può essere uno o più endpoint HTTP e HTTPS (HTTPS se è disponibile un certificato predefinito). Configurare il valore come un elenco delimitato da punto e virgola (ad esempio, `"Urls": "http://localhost:8000;http://localhost:8001"`).
 
 Per altre informazioni su questi approcci, vedere [URL del server](xref:fundamentals/host/web-host#server-urls) e [Override della configurazione](xref:fundamentals/host/web-host#override-configuration).
 
@@ -2230,17 +2230,17 @@ Viene creato un certificato di sviluppo nei casi seguenti:
 * Quando viene installato [.NET Core SDK](/dotnet/core/sdk).
 * Quando per creare un certificato viene usato [lo strumento dev-certs](xref:aspnetcore-2.1#https).
 
-Alcuni browser richiedono la concessione di autorizzazioni esplicite per considerare attendibile il certificato di sviluppo locale.
+Alcuni browser richiedono la concessione di un'autorizzazione esplicita per considerare attendibile il certificato di sviluppo locale.
 
-I modelli di progetto consentono di configurare le app per l'esecuzione su HTTPS per impostazione predefinita e includono il [reindirizzamento HTTPS e il supporto HSTS](xref:security/enforcing-ssl).
+I modelli di progetto configurano le app per l'esecuzione su HTTPS per impostazione predefinita e includono [il reindirizzamento HTTPS e il supporto HSTS.](xref:security/enforcing-ssl)
 
 Chiamare i metodi <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> oppure <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> su <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> per configurare le porte e i prefissi URL per Kestrel.
 
 Anche `UseUrls`, l'argomento della riga di comando `--urls`, la chiave di configurazione dell'host `urls` e la variabile di ambiente `ASPNETCORE_URLS` funzionano, ma con le limitazioni indicate più avanti nella sezione (deve essere disponibile un certificato predefinito per la configurazione dell'endopoint HTTPS).
 
-configurazione `KestrelServerOptions`:
+`KestrelServerOptions`Conﬁgurazione:
 
-### <a name="configureendpointdefaultsactionlistenoptions"></a>ConfigureEndpointDefaults (azione\<ListenOptions >)
+### <a name="configureendpointdefaultsactionlistenoptions"></a>ConfigureEndpointDefaults(>\<Action ListenOptions)
 
 Specifica un elemento di configurazione `Action` da eseguire per ogni endpoint specificato. Se si chiama `ConfigureEndpointDefaults` più volte, gli elementi `Action` precedenti vengono sostituiti con l'ultimo elemento `Action` specificato.
 
@@ -2258,9 +2258,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 ```
 
 > [!NOTE]
-> Per gli endpoint creati chiamando <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** di chiamare <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults*> non verranno applicati i valori predefiniti.
+> Agli endpoint creati <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** della chiamata <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults*> non verranno applicate le impostazioni predefinite.
 
-### <a name="configurehttpsdefaultsactionhttpsconnectionadapteroptions"></a>ConfigureHttpsDefaults (azione\<HttpsConnectionAdapterOptions >)
+### <a name="configurehttpsdefaultsactionhttpsconnectionadapteroptions"></a>ConfigureHttpsDefaults(azione\<HttpsConnectionAdapterOptions>)
 
 Specifica un elemento di configurazione `Action` da eseguire per ogni endpoint HTTPS. Se si chiama `ConfigureHttpsDefaults` più volte, gli elementi `Action` precedenti vengono sostituiti con l'ultimo elemento `Action` specificato.
 
@@ -2279,7 +2279,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 ```
 
 > [!NOTE]
-> Per gli endpoint creati chiamando <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** di chiamare <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> non verranno applicati i valori predefiniti.
+> Agli endpoint creati <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **prima** della chiamata <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> non verranno applicate le impostazioni predefinite.
 
 ### <a name="configureiconfiguration"></a>Configure(IConfiguration)
 
@@ -2291,7 +2291,7 @@ Configura Kestrel per l'uso di HTTPS.
 
 Estensioni `ListenOptions.UseHttps`:
 
-* `UseHttps` &ndash; configurare gheppio per l'uso di HTTPS con il certificato predefinito. Genera un'eccezione se non è stato configurato alcun certificato predefinito.
+* `UseHttps`&ndash; Configurare Kestrel per l'utilizzo di HTTPS con il certificato predefinito. Genera un'eccezione se non è stato configurato alcun certificato predefinito.
 * `UseHttps(string fileName)`
 * `UseHttps(string fileName, string password)`
 * `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`
@@ -2335,7 +2335,7 @@ Kestrel è in ascolto su `http://localhost:5000` e `https://localhost:5001` (se 
 Nel file *appsettings.json* di esempio seguente:
 
 * Impostare **AllowInvalid** su `true` per consentire l'uso di certificati non validi, come ad esempio i certificati autofirmati.
-* Qualsiasi endpoint HTTPS che non specifica un certificato (**HttpsDefaultCert** nell'esempio seguente) esegue il fallback al certificato definito in **certificati** > **valore predefinito** o il certificato di sviluppo.
+* Tutti gli endpoint HTTPS che non specificano un certificato (**HttpsDefaultCert** nell'esempio che segue) usano il certificato definito in **Certificates** > **Default** o il certificato di sviluppo.
 
 ```json
 {
@@ -2385,7 +2385,7 @@ Nel file *appsettings.json* di esempio seguente:
 }
 ```
 
-Un'alternativa all'uso di **Path** e **Password** per qualsiasi nodo del certificato consiste nello specificare il certificato usando i campi dell'archivio certificati. Ad esempio, il certificato specificato mediante **Certificates** > **Default** può essere specificato come:
+Un'alternativa all'uso di **Path** e **Password** per qualsiasi nodo del certificato consiste nello specificare il certificato usando i campi dell'archivio certificati. Ad esempio, il certificato predefinito Certificati può essere specificato come:For example, the **Certificates** > **Default** certificate can be specified as:
 
 ```json
 "Default": {
@@ -2402,7 +2402,7 @@ Note di schema:
 * Il parametro `Url` è obbligatorio per ogni endpoint. Il formato per questo parametro è uguale a quello del parametro di configurazione di primo livello `Urls`, con la differenza che si limita a un singolo valore.
 * Questi endpoint sostituiscono quelli definiti nella configurazione di primo livello `Urls`, non vi si aggiungono. Gli endpoint definiti nel codice tramite `Listen` si aggiungono agli endpoint definiti nella sezione di configurazione.
 * La sezione `Certificate` è facoltativa. Se la sezione `Certificate` non è specificata, vengono usati i valori predefiniti definiti negli scenari precedenti. Se non è disponibile alcun valore predefinito, il server genera un'eccezione e non viene avviato.
-* La sezione `Certificate` supporta sia i certificati **Path**&ndash;**Password** che i certificati **Subject**&ndash;**Store**.
+* La `Certificate` sezione supporta i certificati **Path**&ndash;**Password** e **Subject**&ndash;**Store.**
 * In questo modo è possibile definire un numero qualsiasi di endpoint, purché non provochino conflitti di porte.
 * `options.Configure(context.Configuration.GetSection("{SECTION}"))` restituisce un oggetto `KestrelConfigurationLoader` con un metodo `.Endpoint(string name, listenOptions => { })` che può essere usato per integrare le impostazioni dell'endpoint configurato:
 
@@ -2420,9 +2420,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-è possibile accedere direttamente a `KestrelServerOptions.ConfigurationLoader` per continuare a scorrere il caricatore esistente, ad esempio quello fornito da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
+`KestrelServerOptions.ConfigurationLoader`è possibile accedere direttamente per continuare l'iterazione sul caricatore esistente, ad esempio quello fornito da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
 
-* La sezione di configurazione per ogni endpoint è disponibile nelle opzioni del metodo `Endpoint` in modo che sia possibile leggere le impostazioni personalizzate.
+* La sezione di configurazione per ogni endpoint `Endpoint` è disponibile nelle opzioni del metodo in modo che le impostazioni personalizzate possano essere lette.
 * È possibile caricare più configurazioni chiamando ancora `options.Configure(context.Configuration.GetSection("{SECTION}"))` con un'altra sezione. Viene usata solo l'ultima configurazione, a meno che `Load` sia stato chiamato esplicitamente in istanze precedenti. Il metapacchetto non chiama `Load` in modo che la sezione di configurazione predefinita venga sostituita.
 * `KestrelConfigurationLoader` riflette la famiglia di API `Listen` da `KestrelServerOptions` all'overload di `Endpoint`, in modo che gli endpoint di codice e di configurazione possano essere configurati nella stessa posizione. Questi overload non usano nomi e usano solo le impostazioni predefinite della configurazione.
 
@@ -2456,7 +2456,7 @@ Kestrel supporta SNI tramite il callback `ServerCertificateSelector`. Il callbac
 
 Il supporto SNI richiede:
 
-* In esecuzione nel Framework di destinazione `netcoreapp2.1` o versione successiva. In `net461` o versioni successive, il callback viene richiamato, ma il `name` è sempre `null`. L'elemento `name` è `null` anche se il client non specifica il parametro del nome host nell'handshake TLS.
+* In esecuzione `netcoreapp2.1` sul framework di destinazione o versione successiva. In `net461` o versioni successive, il `name` callback `null`viene richiamato ma il metodo è sempre . L'elemento `name` è `null` anche se il client non specifica il parametro del nome host nell'handshake TLS.
 * Esecuzione di tutti i siti Web nella stessa istanza di Kestrel. Kestrel supporta la condivisione di un indirizzo IP e di una porta tra più istanze solo con un proxy inverso.
 
 ```csharp
@@ -2499,9 +2499,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         .Build();
 ```
 
-### <a name="connection-logging"></a>Registrazione connessione
+### <a name="connection-logging"></a>Registrazione della connessione
 
-Chiamare <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> per creare log a livello di debug per la comunicazione a livello di byte in una connessione. La registrazione delle connessioni è utile per la risoluzione dei problemi nella comunicazione di basso livello, ad esempio durante la crittografia TLS e dietro i proxy. Se `UseConnectionLogging` viene posizionata prima `UseHttps`, viene registrato il traffico crittografato. Se `UseConnectionLogging` viene inserito dopo `UseHttps`, il traffico decrittografato viene registrato.
+Chiamata <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> per generare registri a livello di debug per la comunicazione a livello di byte su una connessione. La registrazione della connessione è utile per la risoluzione dei problemi di comunicazione di basso livello, ad esempio durante la crittografia TLS e i proxy sottostanti. Se `UseConnectionLogging` viene `UseHttps`inserito prima di , viene registrato il traffico crittografato. Se `UseConnectionLogging` viene `UseHttps`inserito dopo , viene registrato il traffico decrittografato.
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -2577,8 +2577,8 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-* Nel file nginx confiuguration impostare il `server` > `location`voce di `proxy_pass`  > `http://unix:/tmp/{KESTREL SOCKET}:/;`. `{KESTREL SOCKET}` è il nome del socket fornito per <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*>, ad esempio `kestrel-test.sock` nell'esempio precedente.
-* Verificare che il socket sia scrivibile da nginx, ad esempio `chmod go+w /tmp/kestrel-test.sock`. 
+* Nel file di confiuguration Nginx, impostare `server`  >  `location`  >  `proxy_pass` la voce su `http://unix:/tmp/{KESTREL SOCKET}:/;`. `{KESTREL SOCKET}`è il nome del <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> socket fornito `kestrel-test.sock` a (ad esempio, nell'esempio precedente).
+* Assicurarsi che il socket sia scrivibile da `chmod go+w /tmp/kestrel-test.sock`Nginx (ad esempio, ). 
 
 ### <a name="port-0"></a>Porta 0
 
@@ -2617,7 +2617,7 @@ Con la versione ASP.NET Core 2.1, il trasporto predefinito di Kestrel non si bas
 * [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) (riferimento diretto al pacchetto)
 * [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
 
-Per i progetti che richiedono l'uso di libuv:
+Per i progetti che richiedono l'uso di Libuv:
 
 * Aggiungere una dipendenza per il pacchetto [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) al file di progetto dell'app:
 
@@ -2691,11 +2691,11 @@ Sono validi solo i prefissi URL HTTP. Kestrel non supporta HTTPS quando la confi
 
 Mentre supporta la configurazione in base ai prefissi, ad esempio `http://example.com:5000`, Kestrel ignora quasi sempre il nome host. L'host `localhost` è un caso speciale usato per l'associazione agli indirizzi di loopback. Qualsiasi host che non sia un indirizzo IP esplicito esegue l'associazione a tutti gli indirizzi IP pubblici. Le intestazioni `Host` non vengono convalidate.
 
-Come soluzione alternativa, usare il middleware di filtro host. Il middleware di filtro host viene fornito dal pacchetto [Microsoft. AspNetCore. HostFiltering](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering) , incluso nel [metapacchetto Microsoft. AspNetCore. App](xref:fundamentals/metapackage-app) (ASP.NET Core 2,1 o 2,2). Il middleware viene aggiunto da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, che chiama <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering*>:
+Come soluzione alternativa, usare il middleware di filtro host. Il middleware Host Filtering viene fornito dal pacchetto [Microsoft.AspNetCore.HostFiltering,](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering) incluso nel [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 o 2.2). Il middleware viene aggiunto da <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, che chiama <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering*>:
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definire una chiave `AllowedHosts` in *appsettings.json*/*appsettings.\<NomeAmbiente>.json*. Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
+Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definisci `AllowedHosts` una chiave in *appsettings.json*/*appsettings.\< EnvironmentName>.json*. Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
 
 *appsettings.json*:
 
@@ -2714,7 +2714,7 @@ Per impostazione predefinita, il middleware di filtro host è disabilitato per i
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* Quando si usano i socket UNIX in Linux, il socket non viene eliminato automaticamente all'arresto dell'app. Per altre informazioni, vedere [questo problema in GitHub](https://github.com/dotnet/aspnetcore/issues/14134).
+* Quando si utilizzano socket UNIX su Linux, il socket non viene eliminato automaticamente all'arresto dell'app. Per altre informazioni, vedere [questo problema in GitHub](https://github.com/dotnet/aspnetcore/issues/14134).
 * <xref:test/troubleshoot>
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>

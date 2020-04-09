@@ -9,10 +9,10 @@ no-loc:
 - SignalR
 uid: aspnetcore-2.1
 ms.openlocfilehash: af5807b782d4acec8c7d40111dc508dfa6127057
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78667545"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Novità di ASP.NET Core 2.1
@@ -21,7 +21,7 @@ Questo articolo evidenzia le modifiche più significative apportate ad ASP.NET C
 
 ## SignalR
 
-SignalR è stato riscritto per ASP.NET Core 2,1. ASP.NET Core SignalR include una serie di miglioramenti:
+SignalRè stato riscritto per ASP.NET Core 2.1. ASP.NET SignalR Core include una serie di miglioramenti:
 
 * Un modello semplificato di scale-out.
 * Un nuovo client JavaScript senza dipendenza jQuery.
@@ -30,7 +30,7 @@ SignalR è stato riscritto per ASP.NET Core 2,1. ASP.NET Core SignalR include un
 * Un nuovo modello di risposta streaming.
 * Supporto per client basati su WebSocket.
 
-Per ulteriori informazioni, vedere [ASP.NET Core SignalR](xref:signalr/introduction).
+Per ulteriori informazioni, vedere [ASP.NET Core SignalR ](xref:signalr/introduction).
 
 ## <a name="razor-class-libraries"></a>Librerie di classi Razor
 
@@ -83,7 +83,7 @@ ASP.NET Core offre API e modelli con cui è possibile soddisfare alcuni dei requ
 
 È stato introdotto un nuovo pacchetto che semplifica la creazione e l'esecuzione di test. Con il pacchetto [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/) è possibile gestire le attività seguenti:
 
-* Copiare il file di dipendenza (con estensione *\*deps*) dall'app testata nella cartella *bin* del progetto di test.
+* Copia il file delle dipendenze (*\*.deps*) dall'app testata nella cartella *bin* del progetto di test.
 * Impostare la radice del contenuto sulla radice del progetto dell'app testata in modo che i file statici e le pagine/visualizzazioni siano rilevate durante l'esecuzione dei test.
 * Specificare la classe [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) per semplificare il bootstrap dell'app testata con [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver).
 

@@ -7,10 +7,10 @@ ms.custom: mvc
 ms.date: 07/22/2019
 uid: data/ef-rp/sort-filter-page
 ms.openlocfilehash: 9563f3ef52ce429eb0a58b468acb8e9cd7b276e2
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656464"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging---3-of-8"></a>Razor Pages con EF Core in ASP.NET Core - Ordinamento, filtro, suddivisione in pagine - 3 di 8
@@ -39,7 +39,7 @@ Il codice precedente:
 * Modifica il nome della proprietà `Student` in `Students`.
 * Sostituisce il codice nel metodo `OnGetAsync`.
 
-Il metodo `OnGetAsync` riceve un parametro `sortOrder` dalla stringa di query nell'URL. L'URL (inclusa la stringa di query) viene generato dall'[helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper).
+Il metodo `OnGetAsync` riceve un parametro `sortOrder` dalla stringa di query nell'URL. L'URL (inclusa la stringa di query) viene generato [dall'helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper).
 
 Il parametro `sortOrder` è "Name" o "Data". Il parametro `sortOrder` è facoltativamente seguito da "_desc" per specificare l'ordine decrescente. Per impostazione predefinita, l'ordinamento è crescente.
 
@@ -72,7 +72,7 @@ Quando viene creato o modificato un elemento `IQueryable`, non viene inviata alc
 
 ### <a name="add-column-heading-hyperlinks-to-the-student-index-page"></a>Aggiungere collegamenti ipertestuali delle intestazioni di colonna alla pagina Student Index (Indice degli studenti)
 
-Sostituire il codice in *Students/Index.cshtml* con il codice seguente. Le modifiche vengono evidenziate.
+Sostituire il codice in *Students/Index.cshtml* con il codice seguente. Le modifiche sono evidenziate.
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml?highlight=5,8,17-19,22,25-27,33)]
 
@@ -106,7 +106,7 @@ Il codice precedente:
 * Aggiunge il parametro `searchString` al metodo `OnGetAsync` e salva il valore del parametro nella proprietà `CurrentFilter`. Il valore della stringa di ricerca viene ricevuto da una casella di testo che verrà aggiunta nella sezione seguente.
 * Aggiunge una clausola `Where` all'istruzione LINQ. La clausola `Where` seleziona solo gli studenti il cui nome o cognome contiene la stringa di ricerca. L'istruzione LINQ viene eseguita solo se è presente un valore per la ricerca.
 
-### <a name="iqueryable-vs-ienumerable"></a>IQueryable rispetto a IEnumerable
+### <a name="iqueryable-vs-ienumerable"></a>Confronto tra IQueryable e IEnumerableIQueryable vs.
 
 Il codice chiama il metodo `Where` su un oggetto `IQueryable` e il filtro viene elaborato nel server. In alcuni scenari l'app potrebbe chiamare il metodo `Where` come metodo di estensione per una raccolta in memoria. Si supponga ad esempio che `_context.Students` cambi da `DbSet`Entity Framework Core a un metodo di repository che restituisce una raccolta `IEnumerable`. Il risultato sarebbe in genere lo stesso, ma in alcuni casi potrebbe essere diverso.
 
@@ -132,7 +132,7 @@ Sostituire il codice in *Pages/Students/Index.cshtml* per creare un pulsante **C
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml?highlight=14-23)]
 
-Il codice precedente usa l' [Helper tag](xref:mvc/views/tag-helpers/intro) `<form>` per aggiungere la casella di testo e il pulsante di ricerca. Per impostazione predefinita, l'helper tag `<form>` invia i dati del modulo con POST. Con POST, i parametri vengono passati nel corpo del messaggio HTTP e non nell'URL. Quando viene usato HTTP GET, i dati del modulo vengono passati nell'URL come stringhe di query. Il passaggio di dati con le stringhe di query consente agli utenti di inserire l'URL nei segnalibri. Le [linee guida W3C](https://www.w3.org/2001/tag/doc/whenToUseGet.html) consigliano di usare l'istruzione GET quando l'azione non risulta in un aggiornamento.
+Il codice precedente usa l' [helper tag](xref:mvc/views/tag-helpers/intro)`<form>` per aggiungere la casella di testo e il pulsante di ricerca. Per impostazione predefinita, l'helper tag `<form>` invia i dati del modulo con POST. Con POST, i parametri vengono passati nel corpo del messaggio HTTP e non nell'URL. Quando viene usato HTTP GET, i dati del modulo vengono passati nell'URL come stringhe di query. Il passaggio di dati con le stringhe di query consente agli utenti di inserire l'URL nei segnalibri. Le [linee guida W3C](https://www.w3.org/2001/tag/doc/whenToUseGet.html) consigliano di usare l'istruzione GET quando l'azione non risulta in un aggiornamento.
 
 Eseguire il test dell'app:
 
@@ -205,7 +205,7 @@ Se la stringa di ricerca viene modificata durante la suddivisione in pagine, la 
 
 ### <a name="add-paging-links-to-the-razor-page"></a>Aggiungere collegamenti di suddivisione in pagine alla pagina Razor
 
-Sostituire il codice in *Students/Index.cshtml*, con il codice seguente. Le modifiche sono evidenziate:
+Sostituire il codice in *Students/Index.cshtml* con il codice seguente. Le modifiche sono evidenziate:
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=29-32,38-41,69-87)]
 
@@ -228,7 +228,7 @@ Eseguire l'app e passare alla pagina degli studenti.
 
 Questa sezione crea una pagina About (Informazioni) che visualizza il numero di studenti iscritti per ogni data di iscrizione. L'aggiornamento usa il raggruppamento e include i passaggi seguenti:
 
-* Creare un modello di visualizzazione per i dati usati dalla pagina **About**.
+* Creare un modello di visualizzazione per i dati utilizzati dalla pagina **Informazioni su.**
 * Aggiornare la pagina About in modo che usi il modello di visualizzazione.
 
 ### <a name="create-the-view-model"></a>Creare il modello di visualizzazione
@@ -262,8 +262,8 @@ Eseguire l'app e passare alla pagina About (Informazioni). Il numero di studenti
 Nella prossima esercitazione, l'app usa le migrazioni per aggiornare il modello di dati.
 
 > [!div class="step-by-step"]
-> [Esercitazione precedente](xref:data/ef-rp/crud)
-> [Esercitazione successiva](xref:data/ef-rp/migrations)
+> [Esercitazione](xref:data/ef-rp/crud)
+> precedente[Esercitazione successiva](xref:data/ef-rp/migrations)
 
 ::: moniker-end
 
@@ -279,11 +279,11 @@ Se si verificano problemi che non si è in grado di risolvere, scaricare l'[app 
 
 ## <a name="add-sorting-to-the-index-page"></a>Aggiungere l'ordinamento alla pagina Index (Indice)
 
-Aggiungere le stringhe al `PageModel` *students/index. cshtml. cs* per includere i parametri di ordinamento:
+Aggiungere stringhe a *Students/Index.cshtml.cs* `PageModel` per contenere i parametri di ordinamento:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet1&highlight=10-13)]
 
-Aggiornare il `OnGetAsync` *students/index. cshtml. cs* con il codice seguente:
+Aggiornare *Students/Index.cshtml.cs* `OnGetAsync` con il codice seguente:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly)]
 
@@ -359,7 +359,7 @@ Per aggiungere un filtro alla pagina Students Index (Indice degli studenti):
 
 ### <a name="add-filtering-functionality-to-the-index-method"></a>Aggiungere la funzionalità di filtro al metodo Index
 
-Aggiornare il `OnGetAsync` *students/index. cshtml. cs* con il codice seguente:
+Aggiornare *Students/Index.cshtml.cs* `OnGetAsync` con il codice seguente:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilter&highlight=1,5,9-13)]
 
@@ -387,7 +387,7 @@ In *Pages/Student/Index.cshtml* aggiungere il codice evidenziato seguente per cr
 
 [!code-html[](intro/samples/cu21/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
 
-Il codice precedente usa l' [Helper tag](xref:mvc/views/tag-helpers/intro) `<form>` per aggiungere la casella di testo e il pulsante di ricerca. Per impostazione predefinita, l'helper tag `<form>` invia i dati del modulo con POST. Con POST, i parametri vengono passati nel corpo del messaggio HTTP e non nell'URL. Quando viene usato HTTP GET, i dati del modulo vengono passati nell'URL come stringhe di query. Il passaggio di dati con le stringhe di query consente agli utenti di inserire l'URL nei segnalibri. Le [linee guida W3C](https://www.w3.org/2001/tag/doc/whenToUseGet.html) consigliano di usare l'istruzione GET quando l'azione non risulta in un aggiornamento.
+Il codice precedente usa l' [helper tag](xref:mvc/views/tag-helpers/intro)`<form>` per aggiungere la casella di testo e il pulsante di ricerca. Per impostazione predefinita, l'helper tag `<form>` invia i dati del modulo con POST. Con POST, i parametri vengono passati nel corpo del messaggio HTTP e non nell'URL. Quando viene usato HTTP GET, i dati del modulo vengono passati nell'URL come stringhe di query. Il passaggio di dati con le stringhe di query consente agli utenti di inserire l'URL nei segnalibri. Le [linee guida W3C](https://www.w3.org/2001/tag/doc/whenToUseGet.html) consigliano di usare l'istruzione GET quando l'azione non risulta in un aggiornamento.
 
 Eseguire il test dell'app:
 
@@ -424,7 +424,7 @@ In *Students/Index.cshtml.cs*, aggiornare il tipo di `Student` da `IList<Student
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPageType)]
 
-Aggiornare il `OnGetAsync` *students/index. cshtml. cs* con il codice seguente:
+Aggiornare *Students/Index.cshtml.cs* `OnGetAsync` con il codice seguente:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage&highlight=1-4,7-14,41-999)]
 
@@ -533,8 +533,8 @@ Se si verificano problemi che non si è in grado di risolvere, scaricare l'[app 
 Nella prossima esercitazione, l'app usa le migrazioni per aggiornare il modello di dati.
 
 > [!div class="step-by-step"]
-> [Precedente](xref:data/ef-rp/crud)
-> [Successivo](xref:data/ef-rp/migrations)
+> [Successivo](xref:data/ef-rp/crud)
+> [precedente](xref:data/ef-rp/migrations)
 
 ::: moniker-end
 

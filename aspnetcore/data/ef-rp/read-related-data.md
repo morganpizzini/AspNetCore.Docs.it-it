@@ -7,15 +7,15 @@ ms.custom: mvc
 ms.date: 09/28/2019
 uid: data/ef-rp/read-related-data
 ms.openlocfilehash: d244ce1527486466bcbc6557ec35869aa206bc4f
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656576"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---read-related-data---6-of-8"></a>Razor Pages con EF Core in ASP.NET Core - Leggere dati correlati - 6 di 8
 
-Di [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
+[Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
@@ -48,7 +48,7 @@ Esistono diversi modi con cui EF Core può caricare i dati correlati nelle propr
 
   Nota: EF Core corregge automaticamente le proprietà di navigazione per qualsiasi altra entità caricata in precedenza nell'istanza contesto. Anche se i dati per una proprietà di navigazione *non* sono inclusi in modo esplicito, la proprietà può comunque essere popolata se alcune o tutte le entità correlate sono state caricate in precedenza.
 
-* [Caricamento esplicito](/ef/core/querying/related-data#explicit-loading) Quando un'entità viene letta per la prima volta, i dati correlati non vengono recuperati. Per recuperare i dati correlati quando necessario, è necessario scrivere codice. Il caricamento esplicito con query separate ha come risultato l'invio di più query al database. Con il caricamento esplicito, il codice specifica le proprietà di navigazione da caricare. Per eseguire il caricamento esplicito, usare il metodo `Load`. Ad esempio:
+* [Caricamento esplicito](/ef/core/querying/related-data#explicit-loading). Quando un'entità viene letta per la prima volta, i dati correlati non vengono recuperati. Per recuperare i dati correlati quando necessario, è necessario scrivere codice. Il caricamento esplicito con query separate ha come risultato l'invio di più query al database. Con il caricamento esplicito, il codice specifica le proprietà di navigazione da caricare. Per eseguire il caricamento esplicito, usare il metodo `Load`. Ad esempio:
 
   ![Esempio di caricamento esplicito](read-related-data/_static/explicit-loading.png)
 
@@ -63,7 +63,7 @@ L'entità `Course` include una proprietà di navigazione che contiene l'entità 
 Per visualizzare il nome del dipartimento assegnato per un corso:
 
 * Caricare l'entità `Department` correlata nella proprietà di navigazione `Course.Department`.
-* Ottenere il nome dalla proprietà `Department` dell'entità `Name`.
+* Ottenere il nome dalla proprietà `Name` dell'entità `Department`.
 
 <a name="scaffold"></a>
 
@@ -89,7 +89,7 @@ Per visualizzare il nome del dipartimento assegnato per un corso:
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
   ```
 
-  **In Linux o macOS:**
+  **Su Linux o macOS:**
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages/Courses --referenceScriptLibraries
@@ -148,7 +148,7 @@ Per un esempio completo, vedere [IndexSelect.cshtml](https://github.com/dotnet/A
 Questa sezione descrive come eseguire lo scaffolding delle pagine Instructor e come aggiungere corsi e iscrizioni correlati alla pagina di indice degli insegnanti.
 
 <a name="IP"></a>
-![Pagina di indice degli insegnanti](read-related-data/_static/instructors-index30.png)
+![Pagina Indice Istruttori](read-related-data/_static/instructors-index30.png)
 
 Questa pagina legge e visualizza dati correlati nei modi seguenti:
 
@@ -186,7 +186,7 @@ Creare *SchoolViewModels/InstructorIndexData.cs* con il codice seguente:
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
   ```
 
-  **In Linux o macOS:**
+  **Su Linux o macOS:**
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages/Instructors --referenceScriptLibraries
@@ -196,7 +196,7 @@ Creare *SchoolViewModels/InstructorIndexData.cs* con il codice seguente:
 
 Per visualizzare l'aspetto della pagina con scaffolding prima di aggiornarla, eseguire l'app e passare alla pagina Instructors.
 
-Sostituire *Pages/Instructors/Index.cshtml.cs* con il codice seguente:
+Aggiornare *Pages/Instructors/Index.cshtml.cs* con il codice seguente:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-53)]
 
@@ -225,7 +225,7 @@ L'insegnante selezionato viene recuperato dall'elenco di insegnanti nel modello 
 
 Il metodo `Where` restituisce una raccolta. Tuttavia, in questo caso, il filtro selezionerà una singola entità. Il metodo `Single` viene quindi chiamato per convertire la raccolta in una singola entità `Instructor`. L'entità `Instructor` consente l'accesso alla proprietà `CourseAssignments`. `CourseAssignments` consente l'accesso alle entità `Course` correlate.
 
-![Relazione m:M tra insegnante e corsi](complex-data-model/_static/courseassignment.png)
+![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
 
 Il metodo `Single` viene usato in una raccolta quando quest'ultima ha un solo elemento. Il metodo `Single` genera un'eccezione se la raccolta è vuota o se contiene più elementi. In alternativa, è possibile usare `SingleOrDefault`, che restituisce un valore predefinito (Null in questo caso) se la raccolta è vuota.
 
@@ -258,7 +258,7 @@ Il codice precedente apporta le modifiche seguenti:
   }
   ```
 
-* Aggiunge una colonna **Courses** che visualizza i corsi tenuti da ogni insegnante. Per ulteriori informazioni su questa sintassi Razor, vedere [transizione di riga esplicita](xref:mvc/views/razor#explicit-line-transition) .
+* Aggiunge una colonna **Courses** che visualizza i corsi tenuti da ogni insegnante. Per altre informazioni su questa sintassi del rasoio, vedere [Transizione di linea esplicita.](xref:mvc/views/razor#explicit-line-transition)
 
 * Aggiunge codice che aggiunge `class="success"` in modo dinamico all'elemento `tr` dell'insegnante e del corso selezionati. In questo modo viene impostato un colore di sfondo per la riga selezionata tramite una classe Bootstrap.
 
@@ -281,7 +281,7 @@ Il codice precedente apporta le modifiche seguenti:
 
 * Aggiunge una tabella di iscrizioni degli studenti per il corso selezionato.
 
-Eseguire l'app e selezionare la scheda **Instructors (insegnanti** ). La pagina Visualizza la `Location` (Office) dall'entità `OfficeAssignment` correlata. Se `OfficeAssignment` è null, viene visualizzata una cella di tabella vuota.
+Eseguire l'app e selezionare la scheda **Istruttori.** Nella pagina `Location` viene visualizzato l'ufficio dell'entità correlata. `OfficeAssignment` Se `OfficeAssignment` è null, viene visualizzata una cella di tabella vuota.
 
 Fare clic sul collegamento **Select** per un insegnante. Verranno visualizzate le modifiche dello stile delle righe e i corsi assegnati a tale insegnante.
 
@@ -323,8 +323,8 @@ Testare l'app. Dal punto di vista dell'utente, l'app si comporta in modo identic
 La prossima esercitazione illustra come aggiornare i dati correlati.
 
 >[!div class="step-by-step"]
->[Esercitazione precedente](xref:data/ef-rp/complex-data-model)
->[Esercitazione successiva](xref:data/ef-rp/update-related-data)
+>[Esercitazione](xref:data/ef-rp/complex-data-model)
+>precedente[Esercitazione successiva](xref:data/ef-rp/update-related-data)
 
 ::: moniker-end
 
@@ -359,7 +359,7 @@ Esistono diversi modi con cui EF Core può caricare i dati correlati nelle propr
 
   Nota: EF Core corregge automaticamente le proprietà di navigazione per qualsiasi altra entità caricata in precedenza nell'istanza contesto. Anche se i dati per una proprietà di navigazione *non* sono inclusi in modo esplicito, la proprietà può comunque essere popolata se alcune o tutte le entità correlate sono state caricate in precedenza.
 
-* [Caricamento esplicito](/ef/core/querying/related-data#explicit-loading) Quando un'entità viene letta per la prima volta, i dati correlati non vengono recuperati. Per recuperare i dati correlati quando necessario, è necessario scrivere codice. Il caricamento esplicito con query separate ha come risultato l'invio di più query al database. Con il caricamento esplicito, il codice specifica le proprietà di navigazione da caricare. Per eseguire il caricamento esplicito, usare il metodo `Load`. Ad esempio:
+* [Caricamento esplicito](/ef/core/querying/related-data#explicit-loading). Quando un'entità viene letta per la prima volta, i dati correlati non vengono recuperati. Per recuperare i dati correlati quando necessario, è necessario scrivere codice. Il caricamento esplicito con query separate ha come risultato l'invio di più query al database. Con il caricamento esplicito, il codice specifica le proprietà di navigazione da caricare. Per eseguire il caricamento esplicito, usare il metodo `Load`. Ad esempio:
 
   ![Esempio di caricamento esplicito](read-related-data/_static/explicit-loading.png)
 
@@ -451,7 +451,7 @@ Per un esempio completo, vedere [IndexSelect.cshtml](https://github.com/dotnet/A
 In questa sezione viene creata la pagina Instructors (Insegnanti).
 
 <a name="IP"></a>
-![Pagina di indice degli insegnanti](read-related-data/_static/instructors-index.png)
+![Pagina Indice Istruttori](read-related-data/_static/instructors-index.png)
 
 Questa pagina legge e visualizza dati correlati nei modi seguenti:
 
@@ -527,7 +527,7 @@ Il markup precedente apporta le modifiche seguenti:
   }
   ```
 
-* È stata aggiunta la colonna **Courses** (Corsi) che visualizza i corsi tenuti da ogni insegnante. Per ulteriori informazioni su questa sintassi Razor, vedere [transizione di riga esplicita](xref:mvc/views/razor#explicit-line-transition) .
+* È stata aggiunta la colonna **Courses** (Corsi) che visualizza i corsi tenuti da ogni insegnante. Per altre informazioni su questa sintassi del rasoio, vedere [Transizione di linea esplicita.](xref:mvc/views/razor#explicit-line-transition)
 
 * È stato aggiunto codice che aggiunge `class="success"` in modo dinamico all'elemento `tr` dell'insegnante selezionato. In questo modo viene impostato un colore di sfondo per la riga selezionata tramite una classe Bootstrap.
 
@@ -546,7 +546,7 @@ Il markup precedente apporta le modifiche seguenti:
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 
-Eseguire l'app e selezionare la scheda **Instructors (insegnanti** ). La pagina Visualizza la `Location` (Office) dall'entità `OfficeAssignment` correlata. Se OfficeAssignment è Null, nella tabella viene visualizzata una cella vuota.
+Eseguire l'app e selezionare la scheda **Istruttori.** Nella pagina `Location` viene visualizzato l'ufficio dell'entità correlata. `OfficeAssignment` Se OfficeAssignment è Null, nella tabella viene visualizzata una cella vuota.
 
 Fare clic sul collegamento **Select** (Seleziona). Lo stile delle righe cambia.
 
@@ -572,7 +572,7 @@ Il codice seguente viene eseguito quando viene selezionato un insegnante (`id !=
 
 Il metodo `Where` restituisce una raccolta. Nel metodo `Where` precedente viene restituita una sola entità `Instructor`. Il metodo `Single` converte la raccolta in un'unica entità `Instructor`. L'entità `Instructor` consente l'accesso alla proprietà `CourseAssignments`. `CourseAssignments` consente l'accesso alle entità `Course` correlate.
 
-![Relazione m:M tra insegnante e corsi](complex-data-model/_static/courseassignment.png)
+![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
 
 Il metodo `Single` viene usato in una raccolta quando quest'ultima ha un solo elemento. Il metodo `Single` genera un'eccezione se la raccolta è vuota o se contiene più elementi. In alternativa, è possibile usare `SingleOrDefault`, che restituisce un valore predefinito (Null in questo caso) se la raccolta è vuota. L'uso di `SingleOrDefault` per una raccolta vuota:
 
@@ -646,7 +646,7 @@ La prossima esercitazione illustra come aggiornare i dati correlati.
 * [Versione YouTube dell'esercitazione (parte 2)](https://www.youtube.com/watch?v=xvDDrIHv5ko)
 
 >[!div class="step-by-step"]
->[Precedente](xref:data/ef-rp/complex-data-model)
->[Successivo](xref:data/ef-rp/update-related-data)
+>[Successivo](xref:data/ef-rp/complex-data-model)
+>[precedente](xref:data/ef-rp/update-related-data)
 
 ::: moniker-end

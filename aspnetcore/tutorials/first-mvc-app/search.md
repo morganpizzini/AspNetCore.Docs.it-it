@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/search
 ms.openlocfilehash: 89f1fa84783430f160ca0b840bf7ae9699520cb7
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78662869"
 ---
 # <a name="add-search-to-an-aspnet-core-mvc-app"></a>Aggiungere la funzionalità di ricerca a un'app ASP.NET Core MVC
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In questa sezione si aggiunge la funzionalità di ricerca al metodo di azione `Index` che consente di cercare film in base al *genere* o al *nome*.
 
@@ -147,5 +147,5 @@ Eseguire il test dell'app effettuando una ricerca per genere, titolo del film ed
 ![Finestra del browser con i risultati di https://localhost:5001/Movies?MovieGenre=Comedy&SearchString=2](~/tutorials/first-mvc-app/search/_static/s2.png)
 
 > [!div class="step-by-step"]
-> [Precedente](controller-methods-views.md)
-> [Successivo](new-field.md)
+> [Successivo](controller-methods-views.md)
+> [precedente](new-field.md)

@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Blazor componenti basati su modelli
+title: Componenti Blazor basati su modelli di ASP.NET Core
 author: guardrex
 description: Informazioni su come i componenti basati su modelli possono accettare uno o più modelli di interfaccia utente come parametri, che possono quindi essere usati come parte della logica di rendering del componente.
 monikerRange: '>= aspnetcore-3.1'
@@ -11,30 +11,30 @@ no-loc:
 - SignalR
 uid: blazor/templated-components
 ms.openlocfilehash: b57e3fe186402723607e90b1628062f602c77632
-ms.sourcegitcommit: 9b6e7f421c243963d5e419bdcfc5c4bde71499aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/21/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79989492"
 ---
-# <a name="aspnet-core-opno-locblazor-templated-components"></a>ASP.NET Core Blazor componenti basati su modelli
+# <a name="aspnet-core-opno-locblazor-templated-components"></a>Componenti Blazor basati su modelli di ASP.NET Core
 
 Di [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
 
-I componenti basati su modelli sono componenti che accettano uno o più modelli di interfaccia utente come parametri, che possono quindi essere usati come parte della logica di rendering del componente. I componenti basati su modelli consentono di creare componenti di livello superiore più riutilizzabili rispetto ai componenti normali. Di seguito sono riportati alcuni esempi:
+I componenti basati su modelli sono componenti che accettano uno o più modelli di interfaccia utente come parametri, che possono quindi essere utilizzati come parte della logica di rendering del componente. I componenti basati su modelli consentono di creare componenti di livello superiore più riutilizzabili rispetto ai componenti normali. Un paio di esempi includono:
 
-* Componente della tabella che consente a un utente di specificare i modelli per l'intestazione, le righe e il piè di pagina della tabella.
-* Componente di elenco che consente a un utente di specificare un modello per il rendering degli elementi in un elenco.
+* Componente di tabella che consente all'utente di specificare i modelli per l'intestazione, le righe e il piè di pagina della tabella.
+* Componente elenco che consente a un utente di specificare un modello per il rendering degli elementi in un elenco.
 
-## <a name="template-parameters"></a>Parametri modello
+## <a name="template-parameters"></a>Parametri di modelli
 
-Un componente basato su modelli viene definito specificando uno o più parametri del componente di tipo `RenderFragment` o `RenderFragment<T>`. Un frammento di rendering rappresenta un segmento di interfaccia utente di cui eseguire il rendering. `RenderFragment<T>` accetta un parametro di tipo che può essere specificato quando viene richiamato il frammento di rendering.
+Un componente basato su modelli viene definito specificando `RenderFragment` `RenderFragment<T>`uno o più parametri del componente di tipo o . Un frammento di rendering rappresenta un segmento dell'interfaccia utente di cui eseguire il rendering. `RenderFragment<T>`accetta un parametro di tipo che può essere specificato quando viene richiamato il frammento di rendering.
 
-componente `TableTemplate`:
+`TableTemplate`Componente:
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
 
-Quando si usa un componente basato su modelli, è possibile specificare i parametri del modello usando gli elementi figlio che corrispondono ai nomi dei parametri (`TableHeader` e `RowTemplate` nell'esempio seguente):
+Quando si utilizza un componente basato su modelli, i parametri del`TableHeader` modello `RowTemplate` possono essere specificati utilizzando elementi figlio che corrispondono ai nomi dei parametri ( e nell'esempio seguente):
 
 ```razor
 <TableTemplate Items="pets">
@@ -50,11 +50,11 @@ Quando si usa un componente basato su modelli, è possibile specificare i parame
 ```
 
 > [!NOTE]
-> I vincoli di tipo generico saranno supportati in una versione futura. Per ulteriori informazioni, vedere [Consenti vincoli di tipo generico (DotNet/aspnetcore #8433)](https://github.com/dotnet/aspnetcore/issues/8433).
+> I vincoli di tipo generico saranno supportati in una versione futura. Per ulteriori informazioni, consultate Consentire vincoli di [tipo generico (dotnet/aspnetcore #8433)](https://github.com/dotnet/aspnetcore/issues/8433).
 
 ## <a name="template-context-parameters"></a>Parametri di contesto del modello
 
-Gli argomenti del componente di tipo `RenderFragment<T>` passati come elementi hanno un parametro implicito denominato `context`, ad esempio dall'esempio di codice precedente, `@context.PetId`, ma è possibile modificare il nome del parametro usando l'attributo `Context` nell'elemento figlio. Nell'esempio seguente, l'attributo `Context` dell'elemento `RowTemplate` specifica il parametro `pet`:
+Gli argomenti `RenderFragment<T>` del componente di tipo `context` passato come elementi dispongono di `@context.PetId`un parametro implicito denominato `Context` , ad esempio dall'esempio di codice precedente, ), ma è possibile modificare il nome del parametro utilizzando l'attributo sull'elemento figlio. Nell'esempio seguente, `RowTemplate` l'attributo dell'elemento `Context` specifica il `pet` parametro:
 
 ```razor
 <TableTemplate Items="pets">
@@ -69,7 +69,7 @@ Gli argomenti del componente di tipo `RenderFragment<T>` passati come elementi h
 </TableTemplate>
 ```
 
-In alternativa, è possibile specificare l'attributo `Context` sull'elemento Component. L'attributo `Context` specificato si applica a tutti i parametri di modello specificati. Questa operazione può essere utile quando si desidera specificare il nome del parametro di contenuto per il contenuto figlio implicito (senza alcun elemento figlio di wrapping). Nell'esempio seguente l'attributo `Context` viene visualizzato nell'elemento `TableTemplate` e si applica a tutti i parametri del modello:
+In alternativa, è `Context` possibile specificare l'attributo sull'elemento componente. L'attributo specificato `Context` si applica a tutti i parametri di modello specificati. Ciò può essere utile quando si desidera specificare il nome del parametro di contenuto per il contenuto figlio implicito (senza alcun elemento figlio di ritorno a capo). Nell'esempio seguente, `Context` l'attributo viene visualizzato sull'elemento `TableTemplate` e si applica a tutti i parametri di modello:
 
 ```razor
 <TableTemplate Items="pets" Context="pet">
@@ -84,13 +84,13 @@ In alternativa, è possibile specificare l'attributo `Context` sull'elemento Com
 </TableTemplate>
 ```
 
-## <a name="generic-typed-components"></a>Componenti tipizzati in modo generico
+## <a name="generic-typed-components"></a>Componenti di tipo generico
 
-I componenti basati su modelli spesso sono tipizzati in modo generico. È ad esempio possibile utilizzare un componente `ListViewTemplate` generico per eseguire il rendering dei valori `IEnumerable<T>`. Per definire un componente generico, usare la direttiva [`@typeparam`](xref:mvc/views/razor#typeparam) per specificare i parametri di tipo:
+I componenti basati su modelli sono spesso tipizzato in modo generico. Ad esempio, `ListViewTemplate` un componente generico `IEnumerable<T>` può essere utilizzato per eseguire il rendering dei valori. Per definire un componente [`@typeparam`](xref:mvc/views/razor#typeparam) generico, utilizzare la direttiva per specificare i parametri di tipo:To define a generic component, use the directive to specify type parameters:
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 
-Quando si usano componenti tipizzati generici, il parametro di tipo viene dedotto, se possibile:
+Quando si utilizzano componenti di tipo generico, il parametro di tipo viene dedotto se possibile:
 
 ```razor
 <ListViewTemplate Items="pets">
@@ -100,7 +100,7 @@ Quando si usano componenti tipizzati generici, il parametro di tipo viene dedott
 </ListViewTemplate>
 ```
 
-In caso contrario, il parametro di tipo deve essere specificato in modo esplicito utilizzando un attributo che corrisponde al nome del parametro di tipo. Nell'esempio seguente `TItem="Pet"` specifica il tipo:
+In caso contrario, il parametro di tipo deve essere specificato in modo esplicito utilizzando un attributo che corrisponde al nome del parametro di tipo. Nell'esempio seguente, `TItem="Pet"` specifica il tipo:
 
 ```razor
 <ListViewTemplate Items="pets" TItem="Pet">

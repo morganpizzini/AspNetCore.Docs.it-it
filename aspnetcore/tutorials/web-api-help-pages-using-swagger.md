@@ -7,10 +7,10 @@ ms.custom: mvc
 ms.date: 12/07/2019
 uid: tutorials/web-api-help-pages-using-swagger
 ms.openlocfilehash: 4408e02996b958bf009903aa1e4eeda9ad4f457c
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78658473"
 ---
 # <a name="aspnet-core-web-api-help-pages-with-swagger--openapi"></a>Pagine della Guida dell'API Web ASP.NET Core con Swagger/OpenAPI
@@ -31,7 +31,7 @@ Swagger è una specifica indipendente dal linguaggio per la descrizione delle AP
 
 ## <a name="swagger-specification-swaggerjson"></a>Specifica Swagger (swagger.json)
 
-Il nucleo del flusso di Swagger è la specifica Swagger, che per impostazione predefinita è un documento denominato &mdash;swagger.json *. La specifica viene generata dalla catena di strumenti Swagger (o da implementazioni di terzi della catena) a seconda del servizio. Descrive le funzionalità dell'API e come accedervi mediante HTTP. Gestisce Swagger UI ed è usata dalla catena di strumenti per abilitare l'individuazione e la generazione del codice client. Di seguito è riportato un esempio di specifica di Swagger, ridotto per ragioni di brevità:
+Il nucleo del flusso di Swagger è la specifica Swagger, che per impostazione predefinita è un documento denominato *swagger.json*. La specifica viene generata dalla catena di strumenti Swagger (o da implementazioni di terzi della catena) a seconda del servizio. Descrive le funzionalità dell'API e come accedervi mediante HTTP. Gestisce Swagger UI ed è usata dalla catena di strumenti per abilitare l'individuazione e la generazione del codice client. Di seguito è riportato un esempio di specifica di Swagger, ridotto per ragioni di brevità:
 
 ```json
 {
@@ -108,7 +108,7 @@ Il nucleo del flusso di Swagger è la specifica Swagger, che per impostazione pr
 
 ![Interfaccia utente di Swagger](web-api-help-pages-using-swagger/_static/swagger-ui.png)
 
-Ogni metodo di azione pubblico nei controller può essere testato dall'interfaccia utente. Fare clic su un nome di metodo per espandere la sezione. Aggiungere i parametri necessari e fare clic su **Prova**.
+Ogni metodo di azione pubblico nei controller può essere testato dall'interfaccia utente. Fare clic su un nome di metodo per espandere la sezione. Aggiungere i parametri necessari e fare clic su **Prova!**.
 
 ![Esempio test GET di Swagger](web-api-help-pages-using-swagger/_static/get-try-it-out.png)
 

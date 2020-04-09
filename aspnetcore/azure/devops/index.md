@@ -7,15 +7,15 @@ ms.date: 08/07/2018
 ms.custom: mvc, seodec18
 uid: azure/devops/index
 ms.openlocfilehash: f45bb2a5dd4b3d1a820085ede7ce3219045ed80b
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78658081"
 ---
 # <a name="devops-with-aspnet-core-and-azure"></a>DevOps con ASP.NET Core e Azure
 
-[![Immagine della copertina](./media/cover-large.png)](https://aka.ms/devopsbook)
+[![Immagine di copertina](./media/cover-large.png)](https://aka.ms/devopsbook)
 
 Di [Cam Soper](https://twitter.com/camsoper) e [Scott Addie](https://twitter.com/scottaddie)
 
@@ -45,11 +45,11 @@ Informazioni su come ottenere gli strumenti usati nella guida.
 
 Informazioni sui diversi metodi per distribuire un'app ASP.NET Core nel servizio App di Azure.
 
-### <a name="continuous-integration-and-deployment"></a>[Integrazione e distribuzione continua](xref:azure/devops/cicd)
+### <a name="continuous-integration-and-deployment"></a>[Integrazione e distribuzione continue](xref:azure/devops/cicd)
 
 Compilazione di una soluzione end-to-end di integrazione e distribuzione continua per l'app ASP.NET Core con GitHub, Azure DevOps Services e Azure.
 
-### <a name="monitor-and-debug"></a>[Monitoraggio e debug](xref:azure/devops/monitor)
+### <a name="monitor-and-debug"></a>[Monitorare ed eseguire il debug](xref:azure/devops/monitor)
 
 Informazioni sull'uso degli strumenti di Azure per eseguire il monitoraggio, risolvere i problemi e ottimizzare l'applicazione.
 

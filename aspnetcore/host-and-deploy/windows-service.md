@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 4eed461788f8fffa2ea00d8c931b0a0f5aaf1b46
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 5cb61d330df7e15fbd54396207792596ae018fd3
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78656184"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80417582"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Ospitare ASP.NET Core in un servizio Windows
 
@@ -20,9 +20,9 @@ ms.locfileid: "78656184"
 
 È possibile ospitare un'app ASP.NET Core in Windows come [servizio Windows](/dotnet/framework/windows-services/introduction-to-windows-service-applications) senza usare IIS. Quando è ospitata come servizio di Windows, l'app viene avviata automaticamente dopo il riavvio del server.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ( come[scaricare](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [ASP.NET Core SDK 2.1 o versione successiva](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 o versione successiva](https://github.com/PowerShell/PowerShell)
@@ -38,16 +38,16 @@ Il modello di servizio di ruolo di lavoro di ASP.NET Core rappresenta un punto d
 
 ## <a name="app-configuration"></a>Configurazione dell'app
 
-L'app richiede un riferimento al pacchetto per [Microsoft. Extensions. Hosting. WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices).
+L'app richiede un riferimento al pacchetto per [Microsoft.Extensions.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices).
 
-`IHostBuilder.UseWindowsService` viene chiamato durante la compilazione dell'host. Se l'app è in esecuzione come servizio di Windows, il metodo:
+`IHostBuilder.UseWindowsService`viene chiamato durante la creazione dell'host. Se l'app è in esecuzione come servizio di Windows, il metodo:
 
 * Imposta la durata dell'host su `WindowsServiceLifetime`.
-* Imposta la [radice del contenuto](xref:fundamentals/index#content-root) su [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory). Per altre informazioni, vedere la sezione [Directory corrente e radice del contenuto](#current-directory-and-content-root).
+* Imposta la radice del [contenuto su](xref:fundamentals/index#content-root) [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). Per altre informazioni, vedere la sezione [Directory corrente e radice del contenuto](#current-directory-and-content-root).
 * Abilita la registrazione nel registro eventi:
-  * Il nome dell'applicazione viene usato come nome di origine predefinito.
-  * Il livello di registrazione predefinito è *avviso* o superiore per un'app basata su un modello di ASP.NET Core che chiama `CreateDefaultBuilder` per compilare l'host.
-  * Eseguire l'override del livello di registrazione predefinito con la chiave `Logging:EventLog:LogLevel:Default` in *appSettings. json*/*appSettings. { Environment}. JSON* o un altro provider di configurazione.
+  * Il nome dell'applicazione viene utilizzato come nome di origine predefinito.
+  * Il livello di registrazione predefinito è *Avviso* o superiore per `CreateDefaultBuilder` un'app basata su un modello di ASP.NET Core che chiama per compilare l'host.
+  * Eseguire l'override del `Logging:EventLog:LogLevel:Default` livello di log predefinito con la chiave in *appsettings.json*/*appsettings. Environment: .json* o un altro provider di configurazione.
   * Solo gli amministratori possono creare nuove origini eventi. Quando non è possibile creare un'origine evento usando il nome dell'applicazione, viene registrato un avviso nell'origine *Applicazione* e i log eventi vengono disabilitati.
 
 In `CreateHostBuilder` di *Program.cs*:
@@ -58,12 +58,12 @@ Host.CreateDefaultBuilder(args)
     ...
 ```
 
-Questo argomento è accompagnato dalle app di esempio seguenti:
+Le app di esempio seguenti accompagnano questo argomento:The following sample apps accompany this topic:
 
-* Esempio di servizio di lavoro in background &ndash; un esempio di app non Web basato sul [modello di servizio](#worker-service-template) del ruolo di lavoro che usa i [servizi ospitati](xref:fundamentals/host/hosted-services) per le attività in background.
-* Esempio di servizio app Web &ndash; un esempio di app Web Razor Pages che viene eseguito come servizio Windows con [servizi ospitati](xref:fundamentals/host/hosted-services) per le attività in background.
+* Esempio &ndash; di servizio worker in background Esempio di app non Web basato sul [modello](#worker-service-template) Servizio di lavoro che usa i [servizi ospitati](xref:fundamentals/host/hosted-services) per le attività in background.
+* Esempio di &ndash; servizio app Web Un esempio di app Web Razor Pages che viene eseguito come servizio Windows con [servizi ospitati](xref:fundamentals/host/hosted-services) per le attività in background.
 
-Per informazioni aggiuntive su MVC, vedere gli articoli in <xref:mvc/overview> e <xref:migration/22-to-30>.
+Per indicazioni su MVC, <xref:mvc/overview> <xref:migration/22-to-30>vedere gli articoli in e .
 
 ## <a name="deployment-type"></a>Tipo di distribuzione
 
@@ -71,13 +71,13 @@ Per informazioni e consigli sugli scenari di distribuzione, vedere [Distribuzion
 
 ### <a name="sdk"></a>SDK
 
-Per un servizio basato su app Web che usa i Framework Razor Pages o MVC, specificare Web SDK nel file di progetto:
+Per un servizio basato su app Web che usa le pagine Razor o framework MVC, specificare il Web SDK nel file di progetto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-Se il servizio esegue solo attività in background, ad esempio [servizi ospitati](xref:fundamentals/host/hosted-services), specificare l'SDK del ruolo di lavoro nel file di progetto:
+Se il servizio esegue solo attività in background (ad esempio, [servizi ospitati](xref:fundamentals/host/hosted-services)), specificare l'SDK di lavoro nel file di progetto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Worker">
@@ -87,7 +87,7 @@ Se il servizio esegue solo attività in background, ad esempio [servizi ospitati
 
 La distribuzione dipendente dal framework si basa sulla presenza di una versione condivisa a livello di sistema di .NET Core nel sistema di destinazione. Quando lo scenario di distribuzione dipendente dal framework viene implementato in base alle indicazioni di questo articolo, l'SDK genera un file eseguibile (con estensione *exe*) detto *eseguibile dipendente dal framework*.
 
-Se si usa l' [SDK Web](#sdk), un file *Web. config* , che in genere viene generato quando si pubblica un'app ASP.NET Core, non è necessario per un'app dei servizi Windows. Per disabilitare la creazione del file *web.config*, aggiungere la proprietà `<IsTransformWebConfigDisabled>` impostata su `true`.
+Se si usa [Web SDK](#sdk), un file *web.config,* che normalmente viene prodotto durante la pubblicazione di un'app ASP.NET Core, non è necessario per un'app di servizi Windows. Per disabilitare la creazione del file *web.config*, aggiungere la proprietà `<IsTransformWebConfigDisabled>` impostata su `true`.
 
 ```xml
 <PropertyGroup>
@@ -109,7 +109,7 @@ Un [identificatore di runtime (RID)](/dotnet/core/rid-catalog) di Windows viene 
 Per eseguire la pubblicazione per più identificatori di runtime:
 
 * Specificare gli identificatori di runtime in un elenco delimitato da punto e virgola.
-* Usare il nome di proprietà [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plurale).
+* Utilizzare il [ \<](/dotnet/core/tools/csproj#runtimeidentifiers) nome della proprietà RuntimeIdentifiers>(plurale).
 
 Per altre informazioni, vedere il [Catalogo RID di .NET Core](/dotnet/core/rid-catalog).
 
@@ -147,7 +147,7 @@ Per stabilire i diritti *Accesso come servizio* per un account utente di servizi
 1. Selezionare **Aggiungi utente o gruppo**.
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Avanzate**. Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows
@@ -166,12 +166,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; percorso alla cartella dell'app nell'host, ad esempio `d:\myservice`. Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; account utente del servizio, ad esempio `Contoso\ServiceUser`.
-* `{SERVICE NAME}` &ndash; nome del servizio (ad esempio, `MyService`).
-* `{EXE FILE PATH}` &ndash; percorso eseguibile dell'app, ad esempio `d:\myservice\myservice.exe`. Includere il nome del file eseguibile con l'estensione.
-* `{DESCRIPTION}` Descrizione del servizio &ndash;, ad esempio `My sample service`.
-* `{DISPLAY NAME}` nome visualizzato del servizio &ndash;, ad esempio `My Service`.
+* `{EXE PATH}`&ndash; Percorso della cartella dell'app nell'host, `d:\myservice`ad esempio ). Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
+* `{DOMAIN OR COMPUTER NAME\USER}`&ndash; Account utente del servizio `Contoso\ServiceUser`(ad esempio, ).
+* `{SERVICE NAME}`&ndash; Nome del servizio `MyService`(ad esempio, ).
+* `{EXE FILE PATH}`&ndash; Percorso eseguibile dell'app, `d:\myservice\myservice.exe`ad esempio ). Includere il nome del file eseguibile con l'estensione.
+* `{DESCRIPTION}`&ndash; Descrizione del servizio `My sample service`(ad esempio, ).
+* `{DISPLAY NAME}`&ndash; Nome visualizzato del servizio `My Service`(ad esempio, ).
 
 ### <a name="start-a-service"></a>Avviare un servizio
 
@@ -220,14 +220,14 @@ I servizi che interagiscono con le richieste da Internet o da una rete aziendale
 
 ## <a name="configure-endpoints"></a>Configurare gli endpoint
 
-Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e la porta impostando la variabile di ambiente `ASPNETCORE_URLS`.
+Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e `ASPNETCORE_URLS` la porta impostando la variabile di ambiente.
 
-Per ulteriori approcci alla configurazione di porte e URL, vedere l'articolo relativo al server pertinente:
+Per ulteriori approcci di configurazione di URL e porte, vedere l'articolo relativo al server:
 
 * <xref:fundamentals/servers/kestrel#endpoint-configuration>
 * <xref:fundamentals/servers/httpsys#configure-windows-server>
 
-Le linee guida precedenti riguardano il supporto per gli endpoint HTTPS. Ad esempio, configurare l'app per HTTPS quando si usa l'autenticazione con un servizio Windows.
+Le indicazioni precedenti riguardano il supporto per gli endpoint HTTPS. For example, configure the app for HTTPS when authentication is used with a Windows Service.
 
 > [!NOTE]
 > L'uso del certificato di sviluppo ASP.NET Core HTTPS per proteggere un endpoint del servizio non è supportato.
@@ -240,15 +240,15 @@ La directory di lavoro corrente restituita chiamando <xref:System.IO.Directory.G
 
 Usare [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath) o <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootFileProvider> per individuare le risorse di un'app.
 
-Quando l'app viene eseguita come servizio, <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> imposta l'<xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> su [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory).
+Quando l'app viene <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> eseguita <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> come servizio, imposta l'oggetto su [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory).
 
-File di impostazioni predefinite dell'app, *appSettings. JSON* e *appSettings. { Environment}. JSON*, viene caricato dalla radice del contenuto dell'app chiamando [CreateDefaultBuilder durante la costruzione dell'host](xref:fundamentals/host/generic-host#set-up-a-host).
+File di impostazioni predefinite dell'app, *appsettings.json* e *appsettings. Environment, .json*, vengono caricati dalla radice del contenuto dell'app chiamando [CreateDefaultBuilder durante](xref:fundamentals/host/generic-host#set-up-a-host)la costruzione dell'host.
 
-Per gli altri file di impostazioni caricati dal codice dello sviluppatore in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>, non è necessario chiamare <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. Nell'esempio seguente il file *custom_settings. JSON* esiste nella radice del contenuto dell'app e viene caricato senza impostare esplicitamente un percorso di base:
+Per altri file di impostazioni <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>caricati dal codice <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>dello sviluppatore in , non è necessario chiamare . Nell'esempio seguente il file custom_settings.json è presente nella radice del contenuto dell'app e viene caricato senza impostare in modo esplicito un percorso di base:In the following example, the *custom_settings.json* file exists in the app's content root and is loaded without explicitly setting a base path:
 
 [!code-csharp[](windows-service/samples_snapshot/CustomSettingsExample.cs?highlight=13)]
 
-Non tentare di usare <xref:System.IO.Directory.GetCurrentDirectory*> per ottenere un percorso di risorsa perché un'app di servizio Windows restituisce la cartella *C:\\Windows\\system32* come directory corrente.
+Non tentare di <xref:System.IO.Directory.GetCurrentDirectory*> usare per ottenere un percorso di risorsa perché un'app del servizio Windows restituisce la cartella *system32 di\\C: WINDOWS\\* come directory corrente.
 
 ### <a name="store-a-services-files-in-a-suitable-location-on-disk"></a>Archiviare i file di un servizio in un percorso appropriato nel disco
 
@@ -256,65 +256,65 @@ Specificare un percorso assoluto con <xref:Microsoft.Extensions.Configuration.Fi
 
 ## <a name="troubleshoot"></a>Risolvere problemi
 
-Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:test/troubleshoot>.
+Per risolvere i problemi <xref:test/troubleshoot>relativi a un'app del servizio Windows, vedere .
 
 ### <a name="common-errors"></a>Errori comuni
 
-* È in uso una versione precedente o provvisoria di PowerShell.
-* Il servizio registrato non usa l'output **pubblicato** dell'app dal comando [DotNet Publish](/dotnet/core/tools/dotnet-publish) . L'output del comando [DotNet Build](/dotnet/core/tools/dotnet-build) non è supportato per la distribuzione di app. Gli asset pubblicati si trovano in una delle cartelle seguenti, a seconda del tipo di distribuzione:
-  * *bin/Release/{Target Framework}/Publish* (FDD)
-  * *bin/Release/{Target Framework}/{Runtime Identifier}/Publish* (SCD)
-* Il servizio non è nello stato in esecuzione.
-* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c:\\Windows\\system32*.
-* L'utente non dispone *di diritti di accesso come servizio* .
-* La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione del comando `New-Service` PowerShell.
-* L'app richiede l'autenticazione ASP.NET Core ma non è configurata per le connessioni protette (HTTPS).
+* È in uso una versione precedente o non definitiva di PowerShell.An old or pre-release version of PowerShell is in use.
+* Il servizio registrato non usa l'output **pubblicato** dell'app dal comando [dotnet publish.](/dotnet/core/tools/dotnet-publish) L'output del comando [dotnet build](/dotnet/core/tools/dotnet-build) non è supportato per la distribuzione dell'app. Le risorse pubblicate si trovano in una delle seguenti cartelle a seconda del tipo di distribuzione:
+  * *bin/Release/ TARGET FRAMEWORK/publish* (FDD)
+  * *bin/Release/*
+* Il servizio non è nello stato RUNNING.
+* I percorsi delle risorse utilizzate dall'app (ad esempio, i certificati) non sono corretti. Il percorso di base di un servizio Windows è *c:\\Windows\\System32*.
+* L'utente non dispone dei diritti *di accesso come servizio.*
+* La password dell'utente è scaduta o `New-Service` passata in modo non corretto durante l'esecuzione del comando PowerShell.The user's password is expired or incorrectly passed when executing the PowerShell command.
+* L'app richiede ASP.NET'autenticazione Core, ma non è configurata per le connessioni protette (HTTPS).
 * La porta dell'URL della richiesta non è corretta o non è configurata correttamente nell'app.
 
-### <a name="system-and-application-event-logs"></a>Log eventi di sistema e dell'applicazione
+### <a name="system-and-application-event-logs"></a>Registri eventi di sistema e applicazioni
 
 Accedere ai registri eventi di sistema e dell'applicazione:
 
-1. Aprire il menu Start, cercare *Visualizzatore eventi*e selezionare l'app **Visualizzatore eventi** .
+1. Aprire il menu Start, cercare *Visualizzatore eventi*e selezionare l'app **Visualizzatore eventi.**
 1. In **Visualizzatore eventi** aprire il nodo **Registri di Windows**.
-1. Selezionare **sistema** per aprire il registro eventi di sistema. Selezionare **Applicazione** per aprire il log eventi dell'applicazione.
+1. Selezionare **Sistema** per aprire il registro eventi di sistema. Selezionare **Applicazione** per aprire il log eventi dell'applicazione.
 1. Cercare gli errori associati all'app in cui si è verificato il problema.
 
 ### <a name="run-the-app-at-a-command-prompt"></a>Eseguire l'app da un prompt dei comandi
 
-Molti errori di avvio non producono informazioni utili nei log eventi. È possibile individuare la causa di alcuni errori eseguendo l'app da un prompt dei comandi nel sistema host. Per registrare dettagli aggiuntivi dall'app, abbassare il [livello di registrazione](xref:fundamentals/logging/index#log-level) o eseguire l'app nell' [ambiente di sviluppo](xref:fundamentals/environments).
+Molti errori di avvio non producono informazioni utili nei registri eventi. È possibile individuare la causa di alcuni errori eseguendo l'app da un prompt dei comandi nel sistema host. Per registrare ulteriori dettagli dall'app, abbassare il livello di [log](xref:fundamentals/logging/index#log-level) o eseguire l'app nell'ambiente di [sviluppo](xref:fundamentals/environments).
 
-### <a name="clear-package-caches"></a>Cancella cache di pacchetti
+### <a name="clear-package-caches"></a>Cancellare le cache dei pacchetti
 
-Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del .NET Core SDK nel computer di sviluppo o la modifica delle versioni del pacchetto all'interno dell'app. In alcuni casi i pacchetti incoerenti possono interrompere un'app quando si eseguono aggiornamenti principali. La maggior parte di questi problemi può essere risolta attenendosi alle istruzioni seguenti:
+Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento di .NET Core SDK nel computer di sviluppo o la modifica delle versioni del pacchetto all'interno dell'app. In alcuni casi i pacchetti incoerenti possono interrompere un'app quando si eseguono aggiornamenti principali. La maggior parte di questi problemi può essere risolta attenendosi alle istruzioni seguenti:
 
 1. Eliminare le cartelle *bin* e *obj*.
-1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
+1. Cancellare le cache dei pacchetti eseguendo [dotnet nuget locals all --clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
-   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il comando `nuget locals all -clear`. *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
+   La cancellazione delle cache dei pacchetti può essere eseguita anche `nuget locals all -clear`con lo strumento [nuget.exe](https://www.nuget.org/downloads) e l'esecuzione del comando . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
 
 1. Ripristinare e ricompilare il progetto.
 1. Eliminare tutti i file nella cartella di distribuzione nel server prima di ridistribuire l'app.
 
 ### <a name="slow-or-hanging-app"></a>App lenta o bloccata
 
-Un *dump di arresto anomalo* del sistema è uno snapshot della memoria del sistema e può contribuire a determinare la provocazione di un arresto anomalo dell'app, dell'avvio o dell'applicazione lenta.
+Un dump di *arresto anomalo* del sistema è uno snapshot della memoria del sistema e consente di determinare la causa di un arresto anomalo dell'app, un errore di avvio o un'app lenta.
 
 #### <a name="app-crashes-or-encounters-an-exception"></a>Arresto anomalo o eccezione di un'app
 
 Ottenere e analizzare un dump da [Segnalazione errori Windows](/windows/desktop/wer/windows-error-reporting):
 
 1. Creare una cartella per i file dump di arresto anomalo del sistema in `c:\dumps`.
-1. Eseguire lo [script di PowerShell EnableDumps](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) con il nome dell'eseguibile dell'applicazione:
+1. Eseguire lo [script di PowerShell EnableDumps](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/samples/scripts/EnableDumps.ps1) con il nome dell'eseguibile dell'applicazione:Run the EnableDumps PowerShell script with the application executable name:
 
-   ```console
+   ```powershell
    .\EnableDumps {APPLICATION EXE} c:\dumps
    ```
 
 1. Eseguire l'app nelle condizioni che causano l'arresto anomalo.
-1. Dopo che si è verificato l'arresto anomalo, eseguire lo [script di PowerShell DisableDumps](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1):
+1. Dopo che si è verificato l'arresto anomalo, eseguire lo [script di PowerShell DisableDumps](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/samples/scripts/DisableDumps.ps1):
 
-   ```console
+   ```powershell
    .\DisableDumps {APPLICATION EXE}
    ```
 
@@ -325,7 +325,7 @@ Dopo l'arresto anomalo di un'app e la raccolta dei dump, l'app può terminare no
 
 #### <a name="app-hangs-fails-during-startup-or-runs-normally"></a>L'app si blocca, si verifica un errore durante l'avvio o viene eseguita normalmente
 
-Quando un'app si *blocca* (smette di rispondere ma non si arresta in modo anomalo), si verifica un errore durante l'avvio o viene eseguita normalmente, vedere [file di dump in modalità utente: scegliere lo strumento migliore](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) per selezionare uno strumento appropriato per produrre il dump.
+Quando un'app *si blocca* (si blocca ma non si arresta in modo anomalo), non riesce durante l'avvio o viene eseguito normalmente, vedere File di dump in [modalità utente: Scelta dello strumento migliore](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) per selezionare uno strumento appropriato per produrre il dump.
 
 #### <a name="analyze-the-dump"></a>Analizzare il dump
 
@@ -343,9 +343,9 @@ Quando un'app si *blocca* (smette di rispondere ma non si arresta in modo anomal
 
 È possibile ospitare un'app ASP.NET Core in Windows come [servizio Windows](/dotnet/framework/windows-services/introduction-to-windows-service-applications) senza usare IIS. Quando è ospitata come servizio di Windows, l'app viene avviata automaticamente dopo il riavvio del server.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ( come[scaricare](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [ASP.NET Core SDK 2.1 o versione successiva](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 o versione successiva](https://github.com/PowerShell/PowerShell)
@@ -373,13 +373,13 @@ Per informazioni e consigli sugli scenari di distribuzione, vedere [Distribuzion
 
 ### <a name="sdk"></a>SDK
 
-Per un servizio basato su app Web che usa i Framework Razor Pages o MVC, specificare Web SDK nel file di progetto:
+Per un servizio basato su app Web che usa le pagine Razor o framework MVC, specificare il Web SDK nel file di progetto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-Se il servizio esegue solo attività in background, ad esempio [servizi ospitati](xref:fundamentals/host/hosted-services), specificare l'SDK del ruolo di lavoro nel file di progetto:
+Se il servizio esegue solo attività in background (ad esempio, [servizi ospitati](xref:fundamentals/host/hosted-services)), specificare l'SDK di lavoro nel file di progetto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Worker">
@@ -389,7 +389,7 @@ Se il servizio esegue solo attività in background, ad esempio [servizi ospitati
 
 La distribuzione dipendente dal framework si basa sulla presenza di una versione condivisa a livello di sistema di .NET Core nel sistema di destinazione. Quando lo scenario di distribuzione dipendente dal framework viene implementato in base alle indicazioni di questo articolo, l'SDK genera un file eseguibile (con estensione *exe*) detto *eseguibile dipendente dal framework*.
 
-L'[identificatore di runtime (RID)](/dotnet/core/rid-catalog) di Windows ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contiene il framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe*) per Windows e un'app che dipende dal framework .NET Core condiviso.
+L'identificatore di Windows [Runtime (RID)](/dotnet/core/rid-catalog) ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contiene il framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe*) per Windows e un'app che dipende dal framework .NET Core condiviso.
 
 Un file *web.config*, che viene normalmente generato quando si pubblica un'app ASP.NET Core, non è necessario per un'app di servizi Windows. Per disabilitare la creazione del file *web.config*, aggiungere la proprietà `<IsTransformWebConfigDisabled>` impostata su `true`.
 
@@ -415,7 +415,7 @@ Un [identificatore di runtime (RID)](/dotnet/core/rid-catalog) di Windows viene 
 Per eseguire la pubblicazione per più identificatori di runtime:
 
 * Specificare gli identificatori di runtime in un elenco delimitato da punto e virgola.
-* Usare il nome di proprietà [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plurale).
+* Utilizzare il [ \<](/dotnet/core/tools/csproj#runtimeidentifiers) nome della proprietà RuntimeIdentifiers>(plurale).
 
 Per altre informazioni, vedere il [Catalogo RID di .NET Core](/dotnet/core/rid-catalog).
 
@@ -459,7 +459,7 @@ Per stabilire i diritti *Accesso come servizio* per un account utente di servizi
 1. Selezionare **Aggiungi utente o gruppo**.
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Avanzate**. Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows
@@ -478,12 +478,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; percorso alla cartella dell'app nell'host, ad esempio `d:\myservice`. Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; account utente del servizio, ad esempio `Contoso\ServiceUser`.
-* `{SERVICE NAME}` &ndash; nome del servizio (ad esempio, `MyService`).
-* `{EXE FILE PATH}` &ndash; percorso eseguibile dell'app, ad esempio `d:\myservice\myservice.exe`. Includere il nome del file eseguibile con l'estensione.
-* `{DESCRIPTION}` Descrizione del servizio &ndash;, ad esempio `My sample service`.
-* `{DISPLAY NAME}` nome visualizzato del servizio &ndash;, ad esempio `My Service`.
+* `{EXE PATH}`&ndash; Percorso della cartella dell'app nell'host, `d:\myservice`ad esempio ). Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
+* `{DOMAIN OR COMPUTER NAME\USER}`&ndash; Account utente del servizio `Contoso\ServiceUser`(ad esempio, ).
+* `{SERVICE NAME}`&ndash; Nome del servizio `MyService`(ad esempio, ).
+* `{EXE FILE PATH}`&ndash; Percorso eseguibile dell'app, `d:\myservice\myservice.exe`ad esempio ). Includere il nome del file eseguibile con l'estensione.
+* `{DESCRIPTION}`&ndash; Descrizione del servizio `My sample service`(ad esempio, ).
+* `{DISPLAY NAME}`&ndash; Nome visualizzato del servizio `My Service`(ad esempio, ).
 
 ### <a name="start-a-service"></a>Avviare un servizio
 
@@ -552,14 +552,14 @@ I servizi che interagiscono con le richieste da Internet o da una rete aziendale
 
 ## <a name="configure-endpoints"></a>Configurare gli endpoint
 
-Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e la porta impostando la variabile di ambiente `ASPNETCORE_URLS`.
+Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e `ASPNETCORE_URLS` la porta impostando la variabile di ambiente.
 
-Per ulteriori approcci alla configurazione di porte e URL, vedere l'articolo relativo al server pertinente:
+Per ulteriori approcci di configurazione di URL e porte, vedere l'articolo relativo al server:
 
 * <xref:fundamentals/servers/kestrel#endpoint-configuration>
 * <xref:fundamentals/servers/httpsys#configure-windows-server>
 
-Le linee guida precedenti riguardano il supporto per gli endpoint HTTPS. Ad esempio, configurare l'app per HTTPS quando si usa l'autenticazione con un servizio Windows.
+Le indicazioni precedenti riguardano il supporto per gli endpoint HTTPS. For example, configure the app for HTTPS when authentication is used with a Windows Service.
 
 > [!NOTE]
 > L'uso del certificato di sviluppo ASP.NET Core HTTPS per proteggere un endpoint del servizio non è supportato.
@@ -570,7 +570,7 @@ La directory di lavoro corrente restituita chiamando <xref:System.IO.Directory.G
 
 ### <a name="set-the-content-root-path-to-the-apps-folder"></a>Impostare il percorso radice del contenuto sulla cartella dell'app
 
-<xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> è lo stesso percorso fornito all'argomento `binPath` durante la creazione di un servizio. Anziché chiamare `GetCurrentDirectory` per creare percorsi per i file di impostazioni, chiamare <xref:System.IO.Directory.SetCurrentDirectory*> con il percorso della radice del [contenuto](xref:fundamentals/index#content-root)dell'app.
+<xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> è lo stesso percorso fornito all'argomento `binPath` durante la creazione di un servizio. Invece `GetCurrentDirectory` di chiamare per creare <xref:System.IO.Directory.SetCurrentDirectory*> percorsi ai file di impostazioni, chiamare con il percorso della radice del [contenuto](xref:fundamentals/index#content-root)dell'app.
 
 In `Program.Main`, determinare il percorso della cartella dell'eseguibile del servizio e usare il percorso per stabilire la radice del contenuto dell'app:
 
@@ -590,56 +590,56 @@ Specificare un percorso assoluto con <xref:Microsoft.Extensions.Configuration.Fi
 
 ## <a name="troubleshoot"></a>Risolvere problemi
 
-Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:test/troubleshoot>.
+Per risolvere i problemi <xref:test/troubleshoot>relativi a un'app del servizio Windows, vedere .
 
 ### <a name="common-errors"></a>Errori comuni
 
-* È in uso una versione precedente o provvisoria di PowerShell.
-* Il servizio registrato non usa l'output **pubblicato** dell'app dal comando [DotNet Publish](/dotnet/core/tools/dotnet-publish) . L'output del comando [DotNet Build](/dotnet/core/tools/dotnet-build) non è supportato per la distribuzione di app. Gli asset pubblicati si trovano in una delle cartelle seguenti, a seconda del tipo di distribuzione:
-  * *bin/Release/{Target Framework}/Publish* (FDD)
-  * *bin/Release/{Target Framework}/{Runtime Identifier}/Publish* (SCD)
-* Il servizio non è nello stato in esecuzione.
-* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c:\\Windows\\system32*.
-* L'utente non dispone *di diritti di accesso come servizio* .
-* La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione del comando `New-Service` PowerShell.
-* L'app richiede l'autenticazione ASP.NET Core ma non è configurata per le connessioni protette (HTTPS).
+* È in uso una versione precedente o non definitiva di PowerShell.An old or pre-release version of PowerShell is in use.
+* Il servizio registrato non usa l'output **pubblicato** dell'app dal comando [dotnet publish.](/dotnet/core/tools/dotnet-publish) L'output del comando [dotnet build](/dotnet/core/tools/dotnet-build) non è supportato per la distribuzione dell'app. Le risorse pubblicate si trovano in una delle seguenti cartelle a seconda del tipo di distribuzione:
+  * *bin/Release/ TARGET FRAMEWORK/publish* (FDD)
+  * *bin/Release/*
+* Il servizio non è nello stato RUNNING.
+* I percorsi delle risorse utilizzate dall'app (ad esempio, i certificati) non sono corretti. Il percorso di base di un servizio Windows è *c:\\Windows\\System32*.
+* L'utente non dispone dei diritti *di accesso come servizio.*
+* La password dell'utente è scaduta o `New-Service` passata in modo non corretto durante l'esecuzione del comando PowerShell.The user's password is expired or incorrectly passed when executing the PowerShell command.
+* L'app richiede ASP.NET'autenticazione Core, ma non è configurata per le connessioni protette (HTTPS).
 * La porta dell'URL della richiesta non è corretta o non è configurata correttamente nell'app.
 
-### <a name="system-and-application-event-logs"></a>Log eventi di sistema e dell'applicazione
+### <a name="system-and-application-event-logs"></a>Registri eventi di sistema e applicazioni
 
 Accedere ai registri eventi di sistema e dell'applicazione:
 
-1. Aprire il menu Start, cercare *Visualizzatore eventi*e selezionare l'app **Visualizzatore eventi** .
+1. Aprire il menu Start, cercare *Visualizzatore eventi*e selezionare l'app **Visualizzatore eventi.**
 1. In **Visualizzatore eventi** aprire il nodo **Registri di Windows**.
-1. Selezionare **sistema** per aprire il registro eventi di sistema. Selezionare **Applicazione** per aprire il log eventi dell'applicazione.
+1. Selezionare **Sistema** per aprire il registro eventi di sistema. Selezionare **Applicazione** per aprire il log eventi dell'applicazione.
 1. Cercare gli errori associati all'app in cui si è verificato il problema.
 
 ### <a name="run-the-app-at-a-command-prompt"></a>Eseguire l'app da un prompt dei comandi
 
-Molti errori di avvio non producono informazioni utili nei log eventi. È possibile individuare la causa di alcuni errori eseguendo l'app da un prompt dei comandi nel sistema host. Per registrare dettagli aggiuntivi dall'app, abbassare il [livello di registrazione](xref:fundamentals/logging/index#log-level) o eseguire l'app nell' [ambiente di sviluppo](xref:fundamentals/environments).
+Molti errori di avvio non producono informazioni utili nei registri eventi. È possibile individuare la causa di alcuni errori eseguendo l'app da un prompt dei comandi nel sistema host. Per registrare ulteriori dettagli dall'app, abbassare il livello di [log](xref:fundamentals/logging/index#log-level) o eseguire l'app nell'ambiente di [sviluppo](xref:fundamentals/environments).
 
-### <a name="clear-package-caches"></a>Cancella cache di pacchetti
+### <a name="clear-package-caches"></a>Cancellare le cache dei pacchetti
 
-Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del .NET Core SDK nel computer di sviluppo o la modifica delle versioni del pacchetto all'interno dell'app. In alcuni casi i pacchetti incoerenti possono interrompere un'app quando si eseguono aggiornamenti principali. La maggior parte di questi problemi può essere risolta attenendosi alle istruzioni seguenti:
+Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento di .NET Core SDK nel computer di sviluppo o la modifica delle versioni del pacchetto all'interno dell'app. In alcuni casi i pacchetti incoerenti possono interrompere un'app quando si eseguono aggiornamenti principali. La maggior parte di questi problemi può essere risolta attenendosi alle istruzioni seguenti:
 
 1. Eliminare le cartelle *bin* e *obj*.
-1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
+1. Cancellare le cache dei pacchetti eseguendo [dotnet nuget locals all --clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
-   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il comando `nuget locals all -clear`. *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
+   La cancellazione delle cache dei pacchetti può essere eseguita anche `nuget locals all -clear`con lo strumento [nuget.exe](https://www.nuget.org/downloads) e l'esecuzione del comando . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
 
 1. Ripristinare e ricompilare il progetto.
 1. Eliminare tutti i file nella cartella di distribuzione nel server prima di ridistribuire l'app.
 
 ### <a name="slow-or-hanging-app"></a>App lenta o bloccata
 
-Un *dump di arresto anomalo* del sistema è uno snapshot della memoria del sistema e può contribuire a determinare la provocazione di un arresto anomalo dell'app, dell'avvio o dell'applicazione lenta.
+Un dump di *arresto anomalo* del sistema è uno snapshot della memoria del sistema e consente di determinare la causa di un arresto anomalo dell'app, un errore di avvio o un'app lenta.
 
 #### <a name="app-crashes-or-encounters-an-exception"></a>Arresto anomalo o eccezione di un'app
 
 Ottenere e analizzare un dump da [Segnalazione errori Windows](/windows/desktop/wer/windows-error-reporting):
 
 1. Creare una cartella per i file dump di arresto anomalo del sistema in `c:\dumps`.
-1. Eseguire lo [script di PowerShell EnableDumps](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) con il nome dell'eseguibile dell'applicazione:
+1. Eseguire lo [script di PowerShell EnableDumps](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) con il nome dell'eseguibile dell'applicazione:Run the EnableDumps PowerShell script with the application executable name:
 
    ```console
    .\EnableDumps {APPLICATION EXE} c:\dumps
@@ -659,7 +659,7 @@ Dopo l'arresto anomalo di un'app e la raccolta dei dump, l'app può terminare no
 
 #### <a name="app-hangs-fails-during-startup-or-runs-normally"></a>L'app si blocca, si verifica un errore durante l'avvio o viene eseguita normalmente
 
-Quando un'app si *blocca* (smette di rispondere ma non si arresta in modo anomalo), si verifica un errore durante l'avvio o viene eseguita normalmente, vedere [file di dump in modalità utente: scegliere lo strumento migliore](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) per selezionare uno strumento appropriato per produrre il dump.
+Quando un'app *si blocca* (si blocca ma non si arresta in modo anomalo), non riesce durante l'avvio o viene eseguito normalmente, vedere File di dump in [modalità utente: Scelta dello strumento migliore](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) per selezionare uno strumento appropriato per produrre il dump.
 
 #### <a name="analyze-the-dump"></a>Analizzare il dump
 
@@ -677,9 +677,9 @@ Quando un'app si *blocca* (smette di rispondere ma non si arresta in modo anomal
 
 È possibile ospitare un'app ASP.NET Core in Windows come [servizio Windows](/dotnet/framework/windows-services/introduction-to-windows-service-applications) senza usare IIS. Quando è ospitata come servizio di Windows, l'app viene avviata automaticamente dopo il riavvio del server.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ( come[scaricare](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [ASP.NET Core SDK 2.1 o versione successiva](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 o versione successiva](https://github.com/PowerShell/PowerShell)
@@ -707,13 +707,13 @@ Per informazioni e consigli sugli scenari di distribuzione, vedere [Distribuzion
 
 ### <a name="sdk"></a>SDK
 
-Per un servizio basato su app Web che usa i Framework Razor Pages o MVC, specificare Web SDK nel file di progetto:
+Per un servizio basato su app Web che usa le pagine Razor o framework MVC, specificare il Web SDK nel file di progetto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-Se il servizio esegue solo attività in background, ad esempio [servizi ospitati](xref:fundamentals/host/hosted-services), specificare l'SDK del ruolo di lavoro nel file di progetto:
+Se il servizio esegue solo attività in background (ad esempio, [servizi ospitati](xref:fundamentals/host/hosted-services)), specificare l'SDK di lavoro nel file di progetto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Worker">
@@ -723,7 +723,7 @@ Se il servizio esegue solo attività in background, ad esempio [servizi ospitati
 
 La distribuzione dipendente dal framework si basa sulla presenza di una versione condivisa a livello di sistema di .NET Core nel sistema di destinazione. Quando lo scenario di distribuzione dipendente dal framework viene implementato in base alle indicazioni di questo articolo, l'SDK genera un file eseguibile (con estensione *exe*) detto *eseguibile dipendente dal framework*.
 
-L'[identificatore di runtime (RID)](/dotnet/core/rid-catalog) di Windows ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contiene il framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe*) per Windows e un'app che dipende dal framework .NET Core condiviso.
+L'identificatore di Windows [Runtime (RID)](/dotnet/core/rid-catalog) ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contiene il framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe*) per Windows e un'app che dipende dal framework .NET Core condiviso.
 
 La proprietà `<UseAppHost>` è impostata su `true`. Questa proprietà fornisce il servizio con un percorso di attivazione (un file eseguibile, *.exe*) per una distribuzione dipendente dal framework.
 
@@ -752,7 +752,7 @@ Un [identificatore di runtime (RID)](/dotnet/core/rid-catalog) di Windows viene 
 Per eseguire la pubblicazione per più identificatori di runtime:
 
 * Specificare gli identificatori di runtime in un elenco delimitato da punto e virgola.
-* Usare il nome di proprietà [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plurale).
+* Utilizzare il [ \<](/dotnet/core/tools/csproj#runtimeidentifiers) nome della proprietà RuntimeIdentifiers>(plurale).
 
 Per altre informazioni, vedere il [Catalogo RID di .NET Core](/dotnet/core/rid-catalog).
 
@@ -796,7 +796,7 @@ Per stabilire i diritti *Accesso come servizio* per un account utente di servizi
 1. Selezionare **Aggiungi utente o gruppo**.
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Avanzate**. Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows
@@ -815,12 +815,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; percorso alla cartella dell'app nell'host, ad esempio `d:\myservice`. Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; account utente del servizio, ad esempio `Contoso\ServiceUser`.
-* `{SERVICE NAME}` &ndash; nome del servizio (ad esempio, `MyService`).
-* `{EXE FILE PATH}` &ndash; percorso eseguibile dell'app, ad esempio `d:\myservice\myservice.exe`. Includere il nome del file eseguibile con l'estensione.
-* `{DESCRIPTION}` Descrizione del servizio &ndash;, ad esempio `My sample service`.
-* `{DISPLAY NAME}` nome visualizzato del servizio &ndash;, ad esempio `My Service`.
+* `{EXE PATH}`&ndash; Percorso della cartella dell'app nell'host, `d:\myservice`ad esempio ). Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
+* `{DOMAIN OR COMPUTER NAME\USER}`&ndash; Account utente del servizio `Contoso\ServiceUser`(ad esempio, ).
+* `{SERVICE NAME}`&ndash; Nome del servizio `MyService`(ad esempio, ).
+* `{EXE FILE PATH}`&ndash; Percorso eseguibile dell'app, `d:\myservice\myservice.exe`ad esempio ). Includere il nome del file eseguibile con l'estensione.
+* `{DESCRIPTION}`&ndash; Descrizione del servizio `My sample service`(ad esempio, ).
+* `{DISPLAY NAME}`&ndash; Nome visualizzato del servizio `My Service`(ad esempio, ).
 
 ### <a name="start-a-service"></a>Avviare un servizio
 
@@ -889,14 +889,14 @@ I servizi che interagiscono con le richieste da Internet o da una rete aziendale
 
 ## <a name="configure-endpoints"></a>Configurare gli endpoint
 
-Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e la porta impostando la variabile di ambiente `ASPNETCORE_URLS`.
+Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e `ASPNETCORE_URLS` la porta impostando la variabile di ambiente.
 
-Per ulteriori approcci alla configurazione di porte e URL, vedere l'articolo relativo al server pertinente:
+Per ulteriori approcci di configurazione di URL e porte, vedere l'articolo relativo al server:
 
 * <xref:fundamentals/servers/kestrel#endpoint-configuration>
 * <xref:fundamentals/servers/httpsys#configure-windows-server>
 
-Le linee guida precedenti riguardano il supporto per gli endpoint HTTPS. Ad esempio, configurare l'app per HTTPS quando si usa l'autenticazione con un servizio Windows.
+Le indicazioni precedenti riguardano il supporto per gli endpoint HTTPS. For example, configure the app for HTTPS when authentication is used with a Windows Service.
 
 > [!NOTE]
 > L'uso del certificato di sviluppo ASP.NET Core HTTPS per proteggere un endpoint del servizio non è supportato.
@@ -907,7 +907,7 @@ La directory di lavoro corrente restituita chiamando <xref:System.IO.Directory.G
 
 ### <a name="set-the-content-root-path-to-the-apps-folder"></a>Impostare il percorso radice del contenuto sulla cartella dell'app
 
-<xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> è lo stesso percorso fornito all'argomento `binPath` durante la creazione di un servizio. Anziché chiamare `GetCurrentDirectory` per creare percorsi per i file di impostazioni, chiamare <xref:System.IO.Directory.SetCurrentDirectory*> con il percorso della radice del [contenuto](xref:fundamentals/index#content-root)dell'app.
+<xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> è lo stesso percorso fornito all'argomento `binPath` durante la creazione di un servizio. Invece `GetCurrentDirectory` di chiamare per creare <xref:System.IO.Directory.SetCurrentDirectory*> percorsi ai file di impostazioni, chiamare con il percorso della radice del [contenuto](xref:fundamentals/index#content-root)dell'app.
 
 In `Program.Main`, determinare il percorso della cartella dell'eseguibile del servizio e usare il percorso per stabilire la radice del contenuto dell'app:
 
@@ -927,56 +927,56 @@ Specificare un percorso assoluto con <xref:Microsoft.Extensions.Configuration.Fi
 
 ## <a name="troubleshoot"></a>Risolvere problemi
 
-Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:test/troubleshoot>.
+Per risolvere i problemi <xref:test/troubleshoot>relativi a un'app del servizio Windows, vedere .
 
 ### <a name="common-errors"></a>Errori comuni
 
-* È in uso una versione precedente o provvisoria di PowerShell.
-* Il servizio registrato non usa l'output **pubblicato** dell'app dal comando [DotNet Publish](/dotnet/core/tools/dotnet-publish) . L'output del comando [DotNet Build](/dotnet/core/tools/dotnet-build) non è supportato per la distribuzione di app. Gli asset pubblicati si trovano in una delle cartelle seguenti, a seconda del tipo di distribuzione:
-  * *bin/Release/{Target Framework}/Publish* (FDD)
-  * *bin/Release/{Target Framework}/{Runtime Identifier}/Publish* (SCD)
-* Il servizio non è nello stato in esecuzione.
-* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c:\\Windows\\system32*.
-* L'utente non dispone *di diritti di accesso come servizio* .
-* La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione del comando `New-Service` PowerShell.
-* L'app richiede l'autenticazione ASP.NET Core ma non è configurata per le connessioni protette (HTTPS).
+* È in uso una versione precedente o non definitiva di PowerShell.An old or pre-release version of PowerShell is in use.
+* Il servizio registrato non usa l'output **pubblicato** dell'app dal comando [dotnet publish.](/dotnet/core/tools/dotnet-publish) L'output del comando [dotnet build](/dotnet/core/tools/dotnet-build) non è supportato per la distribuzione dell'app. Le risorse pubblicate si trovano in una delle seguenti cartelle a seconda del tipo di distribuzione:
+  * *bin/Release/ TARGET FRAMEWORK/publish* (FDD)
+  * *bin/Release/*
+* Il servizio non è nello stato RUNNING.
+* I percorsi delle risorse utilizzate dall'app (ad esempio, i certificati) non sono corretti. Il percorso di base di un servizio Windows è *c:\\Windows\\System32*.
+* L'utente non dispone dei diritti *di accesso come servizio.*
+* La password dell'utente è scaduta o `New-Service` passata in modo non corretto durante l'esecuzione del comando PowerShell.The user's password is expired or incorrectly passed when executing the PowerShell command.
+* L'app richiede ASP.NET'autenticazione Core, ma non è configurata per le connessioni protette (HTTPS).
 * La porta dell'URL della richiesta non è corretta o non è configurata correttamente nell'app.
 
-### <a name="system-and-application-event-logs"></a>Log eventi di sistema e dell'applicazione
+### <a name="system-and-application-event-logs"></a>Registri eventi di sistema e applicazioni
 
 Accedere ai registri eventi di sistema e dell'applicazione:
 
-1. Aprire il menu Start, cercare *Visualizzatore eventi*e selezionare l'app **Visualizzatore eventi** .
+1. Aprire il menu Start, cercare *Visualizzatore eventi*e selezionare l'app **Visualizzatore eventi.**
 1. In **Visualizzatore eventi** aprire il nodo **Registri di Windows**.
-1. Selezionare **sistema** per aprire il registro eventi di sistema. Selezionare **Applicazione** per aprire il log eventi dell'applicazione.
+1. Selezionare **Sistema** per aprire il registro eventi di sistema. Selezionare **Applicazione** per aprire il log eventi dell'applicazione.
 1. Cercare gli errori associati all'app in cui si è verificato il problema.
 
 ### <a name="run-the-app-at-a-command-prompt"></a>Eseguire l'app da un prompt dei comandi
 
-Molti errori di avvio non producono informazioni utili nei log eventi. È possibile individuare la causa di alcuni errori eseguendo l'app da un prompt dei comandi nel sistema host. Per registrare dettagli aggiuntivi dall'app, abbassare il [livello di registrazione](xref:fundamentals/logging/index#log-level) o eseguire l'app nell' [ambiente di sviluppo](xref:fundamentals/environments).
+Molti errori di avvio non producono informazioni utili nei registri eventi. È possibile individuare la causa di alcuni errori eseguendo l'app da un prompt dei comandi nel sistema host. Per registrare ulteriori dettagli dall'app, abbassare il livello di [log](xref:fundamentals/logging/index#log-level) o eseguire l'app nell'ambiente di [sviluppo](xref:fundamentals/environments).
 
-### <a name="clear-package-caches"></a>Cancella cache di pacchetti
+### <a name="clear-package-caches"></a>Cancellare le cache dei pacchetti
 
-Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del .NET Core SDK nel computer di sviluppo o la modifica delle versioni del pacchetto all'interno dell'app. In alcuni casi i pacchetti incoerenti possono interrompere un'app quando si eseguono aggiornamenti principali. La maggior parte di questi problemi può essere risolta attenendosi alle istruzioni seguenti:
+Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento di .NET Core SDK nel computer di sviluppo o la modifica delle versioni del pacchetto all'interno dell'app. In alcuni casi i pacchetti incoerenti possono interrompere un'app quando si eseguono aggiornamenti principali. La maggior parte di questi problemi può essere risolta attenendosi alle istruzioni seguenti:
 
 1. Eliminare le cartelle *bin* e *obj*.
-1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
+1. Cancellare le cache dei pacchetti eseguendo [dotnet nuget locals all --clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
-   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il comando `nuget locals all -clear`. *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
+   La cancellazione delle cache dei pacchetti può essere eseguita anche `nuget locals all -clear`con lo strumento [nuget.exe](https://www.nuget.org/downloads) e l'esecuzione del comando . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
 
 1. Ripristinare e ricompilare il progetto.
 1. Eliminare tutti i file nella cartella di distribuzione nel server prima di ridistribuire l'app.
 
 ### <a name="slow-or-hanging-app"></a>App lenta o bloccata
 
-Un *dump di arresto anomalo* del sistema è uno snapshot della memoria del sistema e può contribuire a determinare la provocazione di un arresto anomalo dell'app, dell'avvio o dell'applicazione lenta.
+Un dump di *arresto anomalo* del sistema è uno snapshot della memoria del sistema e consente di determinare la causa di un arresto anomalo dell'app, un errore di avvio o un'app lenta.
 
 #### <a name="app-crashes-or-encounters-an-exception"></a>Arresto anomalo o eccezione di un'app
 
 Ottenere e analizzare un dump da [Segnalazione errori Windows](/windows/desktop/wer/windows-error-reporting):
 
 1. Creare una cartella per i file dump di arresto anomalo del sistema in `c:\dumps`.
-1. Eseguire lo [script di PowerShell EnableDumps](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) con il nome dell'eseguibile dell'applicazione:
+1. Eseguire lo [script di PowerShell EnableDumps](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) con il nome dell'eseguibile dell'applicazione:Run the EnableDumps PowerShell script with the application executable name:
 
    ```console
    .\EnableDumps {APPLICATION EXE} c:\dumps
@@ -996,7 +996,7 @@ Dopo l'arresto anomalo di un'app e la raccolta dei dump, l'app può terminare no
 
 #### <a name="app-hangs-fails-during-startup-or-runs-normally"></a>L'app si blocca, si verifica un errore durante l'avvio o viene eseguita normalmente
 
-Quando un'app si *blocca* (smette di rispondere ma non si arresta in modo anomalo), si verifica un errore durante l'avvio o viene eseguita normalmente, vedere [file di dump in modalità utente: scegliere lo strumento migliore](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) per selezionare uno strumento appropriato per produrre il dump.
+Quando un'app *si blocca* (si blocca ma non si arresta in modo anomalo), non riesce durante l'avvio o viene eseguito normalmente, vedere File di dump in [modalità utente: Scelta dello strumento migliore](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) per selezionare uno strumento appropriato per produrre il dump.
 
 #### <a name="analyze-the-dump"></a>Analizzare il dump
 

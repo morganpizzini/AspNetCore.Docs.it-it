@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 01/13/2020
 uid: host-and-deploy/web-farm
 ms.openlocfilehash: 316c87e5f49593c05991a94cbe5e55d175a49bb3
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78659369"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Ospitare ASP.NET Core in una Web farm
@@ -20,10 +20,10 @@ Di [Chris Ross](https://github.com/Tratcher)
 
 Una *Web farm* è un gruppo di due o più server Web (o *nodi*) che ospita più istanze di un'app. Quando arrivano richieste dagli utenti per una Web farm, un servizio di *bilanciamento del carico* distribuisce le richieste ai nodi della Web farm. Le Web farm consentono di migliorare:
 
-* &ndash; di **affidabilità/disponibilità** quando uno o più nodi hanno esito negativo, il servizio di bilanciamento del carico può indirizzare le richieste ad altri nodi funzionanti per continuare l'elaborazione delle richieste.
-* **Capacità/prestazioni** &ndash; più nodi possono elaborare più richieste rispetto a un singolo server. Il servizio di bilanciamento del carico consente di bilanciare il carico di lavoro distribuendo le richieste ai nodi.
-* **Scalabilità** &ndash; quando è necessaria una capacità maggiore o minore, il numero di nodi attivi può essere aumentato o ridotto in base al carico di lavoro. Le tecnologie della piattaforma per le Web farm, ad esempio [Servizio app di Azure](https://azure.microsoft.com/services/app-service/), possono aggiungere o rimuovere automaticamente nodi su richiesta dell'amministratore di sistema o automaticamente senza intervento umano.
-* La **gestibilità** &ndash; nodi di una Web farm può basarsi su un set di servizi condivisi, il che comporta una gestione più semplice del sistema. Ad esempio, i nodi di una Web farm possono basarsi su un singolo server di database e un percorso di rete comune per le risorse statiche, ad esempio immagini e file scaricabili.
+* **Affidabilità/disponibilità** &ndash; Quando uno o più nodi non funzionano, il servizio di bilanciamento del carico può indirizzare le richieste ad altri nodi funzionanti per continuare l'elaborazione delle richieste.
+* **Capacità/prestazioni** &ndash; Più nodi possono elaborare più richieste rispetto a un singolo server. Il servizio di bilanciamento del carico consente di bilanciare il carico di lavoro distribuendo le richieste ai nodi.
+* **Scalabilità** &ndash; Quando è necessaria più o meno capacità, il numero di nodi attivi può essere aumentato o ridotto in base al carico di lavoro. Le tecnologie della piattaforma per le Web farm, ad esempio [Servizio app di Azure](https://azure.microsoft.com/services/app-service/), possono aggiungere o rimuovere automaticamente nodi su richiesta dell'amministratore di sistema o automaticamente senza intervento umano.
+* **Manutenibilità** &ndash; I nodi di una Web farm possono basarsi su un set di servizi condivisi, con conseguente maggiore facilità di gestione del sistema. Ad esempio, i nodi di una Web farm possono basarsi su un singolo server di database e un percorso di rete comune per le risorse statiche, ad esempio immagini e file scaricabili.
 
 Questo argomento descrive la configurazione e le dipendenze per le app ASP.NET Core ospitate in una Web farm che si basano su risorse condivise.
 
@@ -62,8 +62,8 @@ Gli scenari seguenti non richiedono configurazioni aggiuntive, ma dipendono da t
 | -------- | ------------------- |
 | Authentication | Protezione dei dati (vedere <xref:security/data-protection/configuration/overview>).<br><br>Per altre informazioni, vedere <xref:security/authentication/cookie> e <xref:security/cookie-sharing>. |
 | Identità | Configurazione di autenticazione e database.<br><br>Per altre informazioni, vedere <xref:security/authentication/identity>. |
-| sessione | Protezione dei dati (cookie crittografati) (vedere <xref:security/data-protection/configuration/overview>) e memorizzazione nella cache (vedere <xref:performance/caching/distributed>).<br><br>Per ulteriori informazioni, vedere [sessione e gestione dello stato: stato della sessione](xref:fundamentals/app-state#session-state). |
-| TempData | Protezione dei dati (cookie crittografati) (vedere <xref:security/data-protection/configuration/overview>) o sessione (vedere [gestione di sessioni e Stati: stato sessione](xref:fundamentals/app-state#session-state)).<br><br>Per ulteriori informazioni, vedere [gestione delle sessioni e dello stato: TempData](xref:fundamentals/app-state#tempdata). |
+| sessione | Protezione dei dati (cookie crittografati) (vedere <xref:security/data-protection/configuration/overview>) e memorizzazione nella cache (vedere <xref:performance/caching/distributed>).<br><br>Per ulteriori informazioni, vedere [Gestione delle sessioni e dello stato: Stato sessione](xref:fundamentals/app-state#session-state). |
+| TempData | Protezione dei dati (cookie <xref:security/data-protection/configuration/overview>crittografati) (vedere ) o Sessione (vedere [Gestione sessione e stato: Stato sessione](xref:fundamentals/app-state#session-state)).<br><br>Per ulteriori informazioni, vedere [Gestione delle sessioni e dello stato: TempData](xref:fundamentals/app-state#tempdata). |
 | Antifalsificazione | Protezione dei dati (vedere <xref:security/data-protection/configuration/overview>).<br><br>Per altre informazioni, vedere <xref:security/anti-request-forgery>. |
 
 ## <a name="troubleshoot"></a>Risolvere problemi
@@ -74,7 +74,7 @@ Quando la protezione dei dati o la memorizzazione nella cache non è configurata
 
 Si consideri, ad esempio, un utente che accede all'app usando l'autenticazione basata su cookie. L'utente acceda all'app in un nodo della Web farm. Se la richiesta successiva dell'utente arriva nello stesso nodo in cui ha eseguito l'accesso, l'app è in grado di decrittografare il cookie di autenticazione e consente l'accesso alla risorsa dell'app. Se la richiesta successiva arriva a un nodo diverso, l'app non può decrittografare il cookie di autenticazione dal nodo in cui l'utente ha eseguito l'accesso e l'autorizzazione per la risorsa richiesta ha esito negativo.
 
-Quando si verifica uno dei sintomi seguenti **in modo intermittente**, il problema è in genere da ricondurre a una configurazione non corretta della protezione dei dati o della memorizzazione nella cache per un ambiente Web farm:
+Quando si verifica uno dei seguenti sintomi in **modo intermittente**, il problema viene in genere riconducito a una configurazione non corretta di protezione dei dati o nella cache per un ambiente Web farm:
 
 * Problema di autenticazione &ndash; Il cookie di autenticazione non è configurato correttamente o non può essere decrittografato. Gli accessi OAuth (Facebook, Microsoft, Twitter) o OpenIdConnect non riescono con l'errore "Correlazione non riuscita."
 * Problema di autenticazione &ndash; Identità persa.
@@ -91,6 +91,6 @@ Se le app della Web farm sono in grado di rispondere alle richieste, è possibil
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Estensione script personalizzata per Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; Scarica ed esegue script in macchine virtuali di Azure, utile per la configurazione post-distribuzione e l'installazione del software.
+* [Estensione script personalizzata per](/azure/virtual-machines/extensions/custom-script-windows) &ndash; i download di Windows ed esegue script nelle macchine virtuali di Azure, utile per la configurazione post-distribuzione e l'installazione del software.
 * <xref:host-and-deploy/proxy-load-balancer>
  

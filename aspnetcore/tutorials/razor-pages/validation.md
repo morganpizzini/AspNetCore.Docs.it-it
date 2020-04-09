@@ -7,15 +7,15 @@ ms.custom: mvc
 ms.date: 7/23/2019
 uid: tutorials/razor-pages/validation
 ms.openlocfilehash: f283234ed8a32dc9b7904bc6fee1cc9c04741029
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78666019"
 ---
 # <a name="add-validation-to-an-aspnet-core-razor-page"></a>Aggiungere la convalida a una pagina Razor ASP.NET Core
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In questa sezione la logica di convalida viene aggiunta al modello `Movie`. Le regole di convalida vengono applicate ogni volta che un utente crea o modifica un film.
 
@@ -67,7 +67,7 @@ Selezionare il collegamento **Crea nuovo**. Completare il modulo con alcuni valo
 
 Si noti come il modulo ha eseguito automaticamente il rendering di un messaggio di errore di convalida in ogni campo che contiene un valore non valido. Gli errori vengono applicati sia sul lato client (uso di JavaScript e jQuery) sia sul lato server (quando un utente ha JavaScript disabilitato).
 
-Un vantaggio significativo è che non c'era **nessuna** modifica del codice necessaria nelle pagine Create o Edit. Una volta che le DataAnnotations sono state applicate al modello, è stata abilitata la convalida dell'interfaccia utente. Le pagine Razor create in questa esercitazione hanno selezionato automaticamente le regole di convalida (usando gli attributi di convalida delle proprietà della classe `Movie` del modello). Testa la convalida tramite la pagina Edit: viene applicata la stessa convalida.
+Un vantaggio significativo è che non c'era **nessuna** modifica del codice necessaria nelle pagine Create o Edit. Una volta che le DataAnnotations sono state applicate al modello, è stata abilitata la convalida dell'interfaccia utente. Le pagine Razor create in questa esercitazione hanno selezionato automaticamente le regole di convalida (usando gli attributi di convalida delle proprietà della classe `Movie` del modello). Convalida del test tramite la pagina Modifica, viene applicata la stessa convalida.
 
 I dati del modulo non vengono registrati nel server fino a quando non sono presenti errori di convalida nel lato client. Verificare che i dati del modulo non siano stati registrati da uno o più degli approcci seguenti:
 
@@ -176,7 +176,7 @@ CREATE TABLE [dbo].[Movie] (
 Le modifiche dello schema precedenti non determinano la generazione di un'eccezione da parte di EF. Tuttavia, creare una migrazione in modo che lo schema sia coerente con il modello.
 
 Dal menu **Strumenti** selezionare **Gestione pacchetti NuGet > Console di Gestione pacchetti**.
-In PMC, immettere i comandi seguenti:
+Nella Console di Gestione pacchetti immettere i comandi seguenti:
 
 ```powershell
 Add-Migration New_DataAnnotations
@@ -201,7 +201,7 @@ CREATE TABLE [dbo].[Movie] (
 );
 ```
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Non sono necessarie migrazioni per SQLite.
 
@@ -209,7 +209,7 @@ Non sono necessarie migrazioni per SQLite.
 
 ### <a name="publish-to-azure"></a>Pubblicazione in Azure
 
-Per informazioni sulla distribuzione in Azure, vedere [esercitazione: compilare un'app ASP.NET Core in Azure con il database SQL](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
+Per informazioni sulla distribuzione in Azure, vedere [Esercitazione: Creare un'app ASP.NET Core in Azure con il database SQL.](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 
 Grazie aver completato questa introduzione alle pagine Razor. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) (Introduzione a Razor Pages ed Entity Framework Core) è un complemento ideale per questa esercitazione.
 

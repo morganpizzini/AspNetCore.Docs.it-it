@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 8/04/2019
 uid: tutorials/first-mvc-app/adding-view
 ms.openlocfilehash: 5510fb6844452571ca764e21640f0bd16444c782
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78660209"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Aggiungere una vista a un'app ASP.NET Core MVC
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -53,17 +53,17 @@ Il codice precedente chiama il metodo <xref:Microsoft.AspNetCore.Mvc.Controller.
 Aggiungere una vista `Index` per `HelloWorldController`.
 
 * Aggiungere una nuova cartella denominata *Views/HelloWorld*.
-* Aggiungere un nuovo file al nome di cartella *Views/HelloWorld* *Index.cshtml*.
+* Aggiungere un nuovo file al nome di cartella *Views/HelloWorld**Index.cshtml*.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
 * Fare clic con il pulsante destro del mouse sulla cartella *Views*, quindi su **Aggiungi > Nuova cartella** e denominare la cartella *HelloWorld*.
 * Fare clic con il pulsante destro del mouse sulla cartella *Views/HelloWorld*, quindi su **Aggiungi > Nuovo file**.
-* Nella finestra di dialogo **Nuovo file**:
+* Nel finestra di dialogo **Nuovo file**:
 
   * Selezionare **ASP .NET Core** nel riquadro sinistro.
-  * Selezionare la **pagina visualizzazione MVC** nel riquadro centrale.
-  * Digitare *index* nella casella **nome** .
+  * Selezionare **Pagina visualizzazione MVC** nel riquadro centrale.
+  * Digitare *Index* nella casella **Nome.**
   * Selezionare **Nuovo**.
 
 ![Finestra di dialogo Aggiungi nuovo elemento](adding-view/_static/add_view_mac.png)
@@ -86,7 +86,7 @@ I modelli di [layout](xref:mvc/views/layout) consentono di specificare il layout
 
 ## <a name="change-the-title-footer-and-menu-link-in-the-layout-file"></a>Modificare il titolo, il piè di pagina e il collegamento di menu nel file di layout
 
-Sostituire il contenuto del file *Views/Shared/_Layout. cshtml* con il markup seguente. Le modifiche sono evidenziate:
+Sostituire il contenuto del file *Views/Shared/_Layout.cshtml* con il markup seguente. Le modifiche sono evidenziate:
 
 [!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
 
@@ -95,9 +95,9 @@ Il markup precedente ha apportato le modifiche seguenti:
 * 3 occorrenze di `MvcMovie` sostituite con `Movie App`.
 * L'elemento di ancoraggio `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` è stato sostituito con `<a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
-Nel markup precedente, l'attributo dell' [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-area=""` e il valore dell'attributo sono stati omessi perché l'app non usa le [aree](xref:mvc/controllers/areas).
+Nel markup precedente, l'attributo `asp-area=""` [Helper Tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) e il valore dell'attributo sono stati omessi perché questa app non usa le [Aree](xref:mvc/controllers/areas).
 
-**Nota**: il controller di `Movies` non è stato implementato. A questo punto, il collegamento `Movie App` non è funzionale.
+**Nota:** il `Movies` controller non è stato implementato. A questo punto, il collegamento `Movie App` non è funzionale.
 
 Salvare le modifiche e selezionare il collegamento **Privacy**. Si noti come il titolo sulla scheda del browser visualizzi **Privacy Policy - Movie App** anziché **Privacy Policy - Mvc Movie**:
 
@@ -127,9 +127,9 @@ Il titolo e l'elemento `<h2>`sono leggermente diversi in modo da poter esaminare
 <title>@ViewData["Title"] - Movie App</title>
 ```
 
-Salvare la modifica e passare a `https://localhost:{PORT}/HelloWorld`. Si noti che il titolo del browser, l'intestazione primaria e le intestazioni secondarie sono cambiati. Se le modifiche non sono visibili nel browser, è possibile che si stia visualizzando il contenuto memorizzato nella cache. Premere CTRL + F5 nel browser per forzare il caricamento della risposta dal server. Il titolo del browser viene creato con `ViewData["Title"]` è stato impostato nel modello di vista *index. cshtml* e l'aggiunta di "-Movie app" nel file di layout.
+Salvare la modifica e passare a `https://localhost:{PORT}/HelloWorld`. Si noti che il titolo del browser, l'intestazione primaria e le intestazioni secondarie sono cambiati. Se le modifiche non sono visibili nel browser, è possibile che si stia visualizzando il contenuto memorizzato nella cache. Premete Ctrl-F5 nel browser per forzare il caricamento della risposta dal server.) Il titolo del `ViewData["Title"]` browser viene creato con abbiamo impostato nel modello di visualizzazione *Index.cshtml* e l'ulteriore "- Movie App" aggiunto nel file di layout.
 
-Il contenuto del modello di vista *Index.cshtml* viene unito al modello di vista *Views/Shared/_Layout.cshtml*. Viene inviata una singola risposta HTML al browser. I modelli di layout rendono semplice apportare modifiche che si applicano a tutte le pagine di un'app. Per altre informazioni, vedere [Layout](xref:mvc/views/layout).
+Il contenuto del modello di vista *Index.cshtml* viene unito al modello di vista *Views/Shared/_Layout.cshtml*. Viene inviata una singola risposta HTML al browser. I modelli di layout rendono semplice apportare modifiche che si applicano a tutte le pagine di un'app. Per ulteriori informazioni, consultate [Layout.](xref:mvc/views/layout)
 
 ![Vista dell'elenco di film](~/tutorials/first-mvc-app/adding-view/_static/hell3.png)
 
@@ -163,13 +163,13 @@ I dati vengono prelevati dall'URL e passati al controller usando lo [strumento d
 
 ![Vista Privacy con un'etichetta di benvenuto e la frase Hello Rick riportata quattro volte](~/tutorials/first-mvc-app/adding-view/_static/rick2.png)
 
-Nell'esempio precedente è stato usato il dizionario `ViewData` per passare i dati dal controller a una vista. Più avanti nell'esercitazione si userà un modello di vista per passare i dati da un controller a una vista. In genere l'approccio basato sul modello di vista per passare i dati è preferito rispetto all'approccio basato sul dizionario `ViewData`. Per altre informazioni, vedere [When to use ViewBag, ViewData, or TempData](https://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/) (Quando usare ViewBag, ViewData o TempData).
+Nell'esempio precedente è stato usato il dizionario `ViewData` per passare i dati dal controller a una vista. Più avanti nell'esercitazione si userà un modello di vista per passare i dati da un controller a una vista. In genere l'approccio basato sul modello di vista per passare i dati è preferito rispetto all'approccio basato sul dizionario `ViewData`. Per altre informazioni, vedere [Quando usare ViewBag, ViewData o TempData.](https://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/)
 
 Nella prossima esercitazione, viene creato un database di film.
 
 > [!div class="step-by-step"]
-> [Precedente](adding-controller.md)
-> [Successivo](adding-model.md)
+> [Successivo](adding-controller.md)
+> [precedente](adding-model.md)
 
 ::: moniker-end
 
@@ -210,13 +210,13 @@ Il codice precedente chiama il metodo <xref:Microsoft.AspNetCore.Mvc.Controller.
 Aggiungere una vista `Index` per `HelloWorldController`.
 
 * Aggiungere una nuova cartella denominata *Views/HelloWorld*.
-* Aggiungere un nuovo file al nome di cartella *Views/HelloWorld* *Index.cshtml*.
+* Aggiungere un nuovo file al nome di cartella *Views/HelloWorld**Index.cshtml*.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
 * Fare clic con il pulsante destro del mouse sulla cartella *Views*, quindi su **Aggiungi > Nuova cartella** e denominare la cartella *HelloWorld*.
 * Fare clic con il pulsante destro del mouse sulla cartella *Views/HelloWorld*, quindi su **Aggiungi > Nuovo file**.
-* Nella finestra di dialogo **Nuovo file**:
+* Nel finestra di dialogo **Nuovo file**:
 
   * Selezionare **Web** nel riquadro a sinistra.
   * Selezionare **File HTML vuoto** nel riquadro centrale.
@@ -250,14 +250,14 @@ Il markup seguente visualizza le modifiche evidenziate:
 
 [!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24,51)]
 
-Nel markup precedente, l'attributo dell' [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-area` è stato omesso perché l'app non usa le [aree](xref:mvc/controllers/areas).
+Nel markup precedente, l'attributo `asp-area` [Helper Tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) è stato omesso perché questa app non usa le [Aree](xref:mvc/controllers/areas).
 
 <!-- Routing has changed in 2.2, it's going to the last route.
 >[!WARNING]
 > We haven't implemented the `Movies` controller yet, so if you click the `Movie App` link, you get a 404 (Not found) error.
 -->
 
-**Nota**: il controller di `Movies` non è stato implementato. A questo punto, il collegamento `Movie App` non è funzionale.
+**Nota:** il `Movies` controller non è stato implementato. A questo punto, il collegamento `Movie App` non è funzionale.
 
 Salvare le modifiche e selezionare il collegamento **Privacy**. Si noti come il titolo sulla scheda del browser visualizzi **Privacy Policy - Movie App** anziché **Privacy Policy - Mvc Movie**:
 
@@ -287,7 +287,7 @@ Il titolo e l'elemento `<h2>`sono leggermente diversi in modo da poter esaminare
 <title>@ViewData["Title"] - Movie App</title>
 ```
 
-Salvare la modifica e passare a `https://localhost:{PORT}/HelloWorld`. Si noti che il titolo del browser, l'intestazione primaria e le intestazioni secondarie sono cambiati. Se le modifiche non sono visibili nel browser, è possibile che si stia visualizzando il contenuto memorizzato nella cache. Premere CTRL + F5 nel browser per forzare il caricamento della risposta dal server. Il titolo del browser viene creato con `ViewData["Title"]` è stato impostato nel modello di vista *index. cshtml* e l'aggiunta di "-Movie app" nel file di layout.
+Salvare la modifica e passare a `https://localhost:{PORT}/HelloWorld`. Si noti che il titolo del browser, l'intestazione primaria e le intestazioni secondarie sono cambiati. Se le modifiche non sono visibili nel browser, è possibile che si stia visualizzando il contenuto memorizzato nella cache. Premete Ctrl-F5 nel browser per forzare il caricamento della risposta dal server.) Il titolo del `ViewData["Title"]` browser viene creato con abbiamo impostato nel modello di visualizzazione *Index.cshtml* e l'ulteriore "- Movie App" aggiunto nel file di layout.
 
 Si noti anche come il contenuto del modello di vista *Index.cshtml* sia stato unito con il modello di vista *Views/Shared/_Layout.cshtml* e sia stata inviata una singola risposta HTML al browser. I modelli di layout rendono molto semplice apportare modifiche che si applicano a tutte le pagine dell'applicazione. Per altre informazioni, vedere [Layout](xref:mvc/views/layout).
 
@@ -323,12 +323,12 @@ I dati vengono prelevati dall'URL e passati al controller usando lo [strumento d
 
 ![Vista Privacy con un'etichetta di benvenuto e la frase Hello Rick riportata quattro volte](~/tutorials/first-mvc-app/adding-view/_static/rick2.png)
 
-Nell'esempio precedente è stato usato il dizionario `ViewData` per passare i dati dal controller a una vista. Più avanti nell'esercitazione si userà un modello di vista per passare i dati da un controller a una vista. In genere l'approccio basato sul modello di vista per passare i dati è preferito rispetto all'approccio basato sul dizionario `ViewData`. Per altre informazioni, vedere [When to use ViewBag, ViewData, or TempData](https://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/) (Quando usare ViewBag, ViewData o TempData).
+Nell'esempio precedente è stato usato il dizionario `ViewData` per passare i dati dal controller a una vista. Più avanti nell'esercitazione si userà un modello di vista per passare i dati da un controller a una vista. In genere l'approccio basato sul modello di vista per passare i dati è preferito rispetto all'approccio basato sul dizionario `ViewData`. Per altre informazioni, vedere [Quando usare ViewBag, ViewData o TempData.](https://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/)
 
 Nella prossima esercitazione, viene creato un database di film.
 
 > [!div class="step-by-step"]
-> [Precedente](adding-controller.md)
-> [Successivo](adding-model.md)
+> [Successivo](adding-controller.md)
+> [precedente](adding-model.md)
 
 ::: moniker-end

@@ -7,15 +7,15 @@ ms.custom: mvc
 ms.date: 07/22/2019
 uid: data/ef-rp/complex-data-model
 ms.openlocfilehash: 1d81a0444487c6396bb32381ed2cb26d44312c3a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78665718"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Razor Pages con EF Core in ASP.NET Core - Modello di dati - 5 di 8
 
-[Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
+Di [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
@@ -59,7 +59,7 @@ Il codice precedente aggiunge una proprietà `FullName` e aggiunge gli attributi
 
 Per le date di iscrizione degli studenti, tutte le pagine visualizzano attualmente l'ora del giorno insieme alla data, anche se è pertinente solo la data. Mediante gli attributi di annotazione dei dati è possibile modificare il codice per correggere il formato di visualizzazione in tutte le pagine che visualizzano i dati. 
 
-L'attributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) indica un tipo di dati più specifico rispetto al tipo intrinseco del database. In questo caso deve essere visualizzata solo la data e non la data e l'ora. L' [enumerazione DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornisce per molti tipi di dati, ad esempio date, Time, PhoneNumber, Currency, EmailAddress e così via. L'attributo `DataType` può anche consentire all'app di fornire automaticamente funzionalità specifiche del tipo. Ad esempio:
+L'attributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) indica un tipo di dati più specifico rispetto al tipo intrinseco del database. In questo caso deve essere visualizzata solo la data e non la data e l'ora. Il [DataType Enumerazione](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornisce per molti tipi di dati, ad esempio Data, ora, PhoneNumber, valuta, EmailAddress e così via. L'attributo `DataType` può anche consentire all'app di fornire automaticamente funzionalità specifiche del tipo. Ad esempio:
 
 * Il collegamento `mailto:` viene creato automaticamente per `DataType.EmailAddress`.
 * Il selettore data viene incluso per `DataType.Date` nella maggior parte dei browser.
@@ -81,7 +81,7 @@ L'attributo `DisplayFormat` può essere usato da solo. In genere l'uso dell'attr
 * Il browser può abilitare le funzionalità HTML5. Ad esempio può visualizzare un controllo di calendario, il simbolo della valuta appropriato per le impostazioni locali, i collegamenti alla posta elettronica e la convalida dell'input sul lato client.
 * Per impostazione predefinita, il browser esegue il rendering dei dati usando il formato corretto in base alle impostazioni locali.
 
-Per altre informazioni, vedere la [documentazione dell'helper tag \<input>](xref:mvc/views/working-with-forms#the-input-tag-helper).
+Per ulteriori informazioni, vedere [ \<l'input> documentazione](xref:mvc/views/working-with-forms#the-input-tag-helper)di Esempio di tag .
 
 ### <a name="the-stringlength-attribute"></a>Attributo StringLength
 
@@ -390,7 +390,7 @@ public ICollection<Course> Courses { get; set; }
 
 per convenzione, EF Core abilita l'eliminazione a catena per le chiavi esterne non nullable e per le relazioni molti-a-molti. Questo comportamento predefinito può generare regole di eliminazione a catena circolari. Quando viene aggiunta una migrazione, le regole di eliminazione a catena circolari causano un'eccezione.
 
-Ad esempio, se la definizione della proprietà `Department.InstructorID` specifica che non ammette valori Null, EF Core configurerebbe una regola di eliminazione a catena. In tal caso, il dipartimento verrebbe eliminato in seguito all'eliminazione dell'insegnante assegnato come amministratore. In questo scenario, una regola Restrict potrebbe essere più sensata. L' [API Fluent](#fluent-api-alternative-to-attributes) seguente imposta una regola di limitazione e Disabilita l'eliminazione a catena.
+Ad esempio, se la definizione della proprietà `Department.InstructorID` specifica che non ammette valori Null, EF Core configurerebbe una regola di eliminazione a catena. In tal caso, il dipartimento verrebbe eliminato in seguito all'eliminazione dell'insegnante assegnato come amministratore. In questo scenario, una regola Restrict potrebbe essere più sensata. La seguente [API fluent](#fluent-api-alternative-to-attributes) imposta una regola di restrizione e disabilita l'eliminazione a catena.
 
   ```csharp
   modelBuilder.Entity<Department>()
@@ -431,7 +431,7 @@ public Student Student { get; set; }
 
 Esiste una relazione molti-a-molti tra le entità `Student` e `Course`. L'entità `Enrollment` funziona come una tabella di join molti-a-molti *con payload* nel database. "Con payload" significa che la tabella `Enrollment` contiene dati aggiuntivi oltre alle chiavi esterne delle tabelle di join (in questo caso la chiave primaria e `Grade`).
 
-La figura seguente illustra l'aspetto di queste relazioni in un diagramma di entità. Il diagramma è stato generato con [EF Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) per EF 6.x. La creazione del diagramma non fa parte dell'esercitazione.
+La figura seguente illustra l'aspetto di queste relazioni in un diagramma di entità. (Questo diagramma è stato generato utilizzando [EF Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) per EF 6.x. La creazione del diagramma non fa parte dell'esercitazione.
 
 ![Relazione molti-a-molti Student-Course (Studente-Corso)](complex-data-model/_static/student-course.png)
 
@@ -453,7 +453,7 @@ Creare *Models/CourseAssignment.cs* con il codice seguente:
 
 La relazione molti-a-molti tra insegnanti e corsi richiede una tabella di join e l'entità per tale tabella di join è CourseAssignment.
 
-![Relazione m:M tra insegnante e corsi](complex-data-model/_static/courseassignment.png)
+![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
 
 È pratica comune assegnare a un'entità di join un nome `EntityName1EntityName2`. Ad esempio la tabella di join istruttori-corsi che usa questa convenzione sarebbe `CourseInstructor`. È tuttavia consigliabile usare un nome che descrive la relazione.
 
@@ -579,7 +579,7 @@ Nella sezione successiva si vedrà come evitare questo errore.
 Ora che è disponibile un database esistente, è necessario preoccuparsi di come applicare eventuali modifiche. Questa esercitazione illustra due alternative:
 
 * [Eliminare e ricreare il database](#drop). Scegliere questa sezione se si usa SQLite.
-* [Applicare la migrazione al database esistente](#applyexisting). Le istruzioni riportate in questa sezione funzionano solo per SQL Server e **non per SQLite**. 
+* [Applicare la migrazione al database esistente.](#applyexisting) Le istruzioni riportate in questa sezione funzionano solo per SQL Server e **non per SQLite**. 
 
 Entrambe le scelte funzionano per SQL Server. Anche se il metodo che prevede l'applicazione della migrazione è più complesso e richiede più tempo, si tratta dell'approccio consigliato per gli ambienti di produzione reali. 
 
@@ -634,7 +634,7 @@ Aprire il database in SSOX:
 * Se SSOX è stato aperto in precedenza, fare clic sul pulsante **Aggiorna**.
 * Espandere il nodo **Tabelle**. Vengono visualizzate le tabelle create.
 
-  ![Tabelle in Esplora oggetti di SQL Server](complex-data-model/_static/ssox-tables.png)
+  ![Tabelle in SSOX](complex-data-model/_static/ssox-tables.png)
 
 * Esaminare la tabella **CourseAssignment**:
 
@@ -718,8 +718,8 @@ Eseguire l'app. Quando si esegue l'app viene eseguito il metodo `DbInitializer.I
 Nelle due esercitazioni successive viene illustrato come leggere e aggiornare i dati correlati.
 
 > [!div class="step-by-step"]
-> [Esercitazione precedente](xref:data/ef-rp/migrations)
-> [Esercitazione successiva](xref:data/ef-rp/read-related-data)
+> [Esercitazione](xref:data/ef-rp/migrations)
+> precedente[Esercitazione successiva](xref:data/ef-rp/read-related-data)
 
 ::: moniker-end
 
@@ -749,7 +749,7 @@ Aggiornare *Models/Student.cs* con il codice evidenziato seguente:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
-L'attributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) indica un tipo di dati più specifico rispetto al tipo intrinseco del database. In questo caso deve essere visualizzata solo la data e non la data e l'ora. L' [enumerazione DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornisce per molti tipi di dati, ad esempio date, Time, PhoneNumber, Currency, EmailAddress e così via. L'attributo `DataType` può anche consentire all'app di fornire automaticamente funzionalità specifiche del tipo. Ad esempio:
+L'attributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) indica un tipo di dati più specifico rispetto al tipo intrinseco del database. In questo caso deve essere visualizzata solo la data e non la data e l'ora. Il [DataType Enumerazione](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornisce per molti tipi di dati, ad esempio Data, ora, PhoneNumber, valuta, EmailAddress e così via. L'attributo `DataType` può anche consentire all'app di fornire automaticamente funzionalità specifiche del tipo. Ad esempio:
 
 * Il collegamento `mailto:` viene creato automaticamente per `DataType.EmailAddress`.
 * Il selettore data viene incluso per `DataType.Date` nella maggior parte dei browser.
@@ -771,7 +771,7 @@ L'attributo `DisplayFormat` può essere usato da solo. In genere l'uso dell'attr
 * Il browser può abilitare le funzionalità HTML5. Ad esempio può visualizzare un controllo di calendario, il simbolo della valuta appropriato per le impostazioni locali, i collegamenti alla posta elettronica, alcune istanze di convalida lato client e così via.
 * Per impostazione predefinita, il browser esegue il rendering dei dati usando il formato corretto in base alle impostazioni locali.
 
-Per altre informazioni, vedere la [documentazione dell'helper tag \<input>](xref:mvc/views/working-with-forms#the-input-tag-helper).
+Per ulteriori informazioni, vedere [ \<l'input> documentazione](xref:mvc/views/working-with-forms#the-input-tag-helper)di Esempio di tag .
 
 Eseguire l'app. Passare alla pagina Students Index (Indice studenti). L'ora non viene più visualizzata. Ogni visualizzazione che usa il modello `Student` visualizza la data senza l'ora.
 
@@ -1091,7 +1091,7 @@ Ad esempio, se la proprietà `Department.InstructorID` è stata definita come nu
 
 * EF Core configura una regola di eliminazione a catena per eliminare il reparto quando viene eliminato l'insegnante.
 * L'eliminazione del reparto quando viene eliminato l'insegnante non è il comportamento previsto.
-* L' [API Fluent](#fluent-api-alternative-to-attributes) seguente imposta una regola di limitazione anziché Cascade.
+* La seguente [API fluent](#fluent-api-alternative-to-attributes) imposterebbe una regola di restrizione anziché a catena.
 
    ```csharp
    modelBuilder.Entity<Department>()
@@ -1134,7 +1134,7 @@ public Student Student { get; set; }
 
 Esiste una relazione molti-a-molti tra le entità `Student` e `Course`. L'entità `Enrollment` funziona come una tabella di join molti-a-molti *con payload* nel database. "Con payload" significa che la tabella `Enrollment` contiene dati aggiuntivi oltre alle chiavi esterne delle tabelle di join (in questo caso la chiave primaria e `Grade`).
 
-La figura seguente illustra l'aspetto di queste relazioni in un diagramma di entità. Il diagramma è stato generato con [EF Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) per EF 6.x. La creazione del diagramma non fa parte dell'esercitazione.
+La figura seguente illustra l'aspetto di queste relazioni in un diagramma di entità. (Questo diagramma è stato generato utilizzando [EF Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) per EF 6.x. La creazione del diagramma non fa parte dell'esercitazione.
 
 ![Relazione molti-a-molti Student-Course (Studente-Corso)](complex-data-model/_static/student-course.png)
 
@@ -1156,7 +1156,7 @@ Creare *Models/CourseAssignment.cs* con il codice seguente:
 
 ### <a name="instructor-to-courses"></a>Instructor-to-Courses
 
-![Relazione m:M tra insegnante e corsi](complex-data-model/_static/courseassignment.png)
+![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
 
 La relazione molti-a-molti Instructor-to-Courses (Insegnante-Corsi):
 
@@ -1278,7 +1278,7 @@ database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 Ora che è disponibile un database esistente, è necessario preoccuparsi di come applicare eventuali modifiche future. Questa esercitazione illustra due approcci:
 
 * [Eliminare e ricreare il database](#drop)
-* [Applicare la migrazione al database esistente](#applyexisting). Anche se questo metodo è più complesso e richiede più tempo, è l'approccio consigliato per gli ambienti di produzione reali. **Nota**: questa è una sezione facoltativa dell'esercitazione. È possibile eseguire i passaggi di eliminazione e ricreazione e ignorare questa sezione. Se si vuole seguire la procedura descritta in questa sezione, non eseguire i passaggi di eliminazione e ricreazione. 
+* [Applicare la migrazione al database esistente.](#applyexisting) Anche se questo metodo è più complesso e richiede più tempo, è l'approccio consigliato per gli ambienti di produzione reali. **Nota**: questa è una sezione facoltativa dell'esercitazione. È possibile eseguire i passaggi di eliminazione e ricreazione e ignorare questa sezione. Se si vuole seguire la procedura descritta in questa sezione, non eseguire i passaggi di eliminazione e ricreazione. 
 
 <a name="drop"></a>
 
@@ -1317,7 +1317,7 @@ Aprire il database in SSOX:
 * Se SSOX è stato aperto in precedenza, fare clic sul pulsante **Aggiorna**.
 * Espandere il nodo **Tabelle**. Vengono visualizzate le tabelle create.
 
-![Tabelle in Esplora oggetti di SQL Server](complex-data-model/_static/ssox-tables.png)
+![Tabelle in SSOX](complex-data-model/_static/ssox-tables.png)
 
 Esaminare la tabella **CourseAssignment**:
 
@@ -1347,7 +1347,7 @@ Per far sì che la migrazione `ComplexDataModel` funzioni con i dati esistenti:
 
 #### <a name="fix-the-foreign-key-constraints"></a>Risolvere i vincoli della chiave esterna
 
-Aggiornare il metodo `ComplexDataModel` delle classi `Up`:
+Aggiornare il metodo `Up` delle classi `ComplexDataModel`:
 
 * Aprire il file *{timestamp}_ComplexDataModel.cs*.
 * Impostare come commento la riga di codice che aggiunge la colonna `DepartmentID` alla tabella `Course`.
@@ -1358,7 +1358,7 @@ Aggiungere il codice evidenziato seguente. Il nuovo codice viene inserito dopo i
 
 [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
 
-Con le modifiche precedenti, le righe di `Course` esistenti saranno correlate al reparto "Temp" dopo l'esecuzione del metodo `ComplexDataModel` `Up`.
+Con le modifiche precedenti, le righe `Course` esistenti saranno correlate al dipartimento "Temp" dopo l'esecuzione del metodo `ComplexDataModel` `Up`.
 
 Un'app di produzione:
 
@@ -1373,7 +1373,7 @@ L'esercitazione successiva illustra i dati correlati.
 * [Versione YouTube dell'esercitazione (parte 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)
 
 > [!div class="step-by-step"]
-> [Precedente](xref:data/ef-rp/migrations)
-> [Successivo](xref:data/ef-rp/read-related-data)
+> [Successivo](xref:data/ef-rp/migrations)
+> [precedente](xref:data/ef-rp/read-related-data)
 
 ::: moniker-end

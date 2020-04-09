@@ -8,17 +8,17 @@ ms.custom: mvc
 ms.date: 10/25/2018
 uid: fundamentals/metapackage
 ms.openlocfilehash: cc00c075909da5c17a4aa2fd252c9e662e5a0fc9
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/18/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79511067"
 ---
 # <a name="microsoftaspnetcoreall-metapackage-for-aspnet-core-20"></a>Metapacchetto Microsoft.AspNetCore.All per ASP.NET Core 2.0
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Il metapacchetto `Microsoft.AspNetCore.All` non è incluso in ASP.NET Core 3,0 e versioni successive. Per altre informazioni, vedere [questo problema in GitHub](https://github.com/aspnet/Announcements/issues/314).
+Il `Microsoft.AspNetCore.All` metapacchetto non è incluso in ASP.NET Core 3.0 e versioni successive. Per altre informazioni, vedere [questo problema in GitHub](https://github.com/aspnet/Announcements/issues/314).
 
 ::: moniker-end
 
@@ -55,7 +55,7 @@ Il fatto di specificare un numero di versione nel riferimento del pacchetto `Mic
 
 Il SDK del progetto deve essere impostato su `Microsoft.NET.Sdk.Web` nel file di progetto perché venga usata la versione implicita di `Microsoft.AspNetCore.All`. Se è specificato il SDK `Microsoft.NET.Sdk` (`<Project Sdk="Microsoft.NET.Sdk">` nella parte superiore del file di progetto), viene generato l'avviso seguente:
 
-*Avviso NU1604: la dipendenza del progetto Microsoft. AspNetCore. All non contiene un limite inferiore inclusivo. Includere un limite inferiore nella versione della dipendenza per garantire risultati di ripristino coerenti.*
+*Avviso NU1604: dipendenza del progetto Microsoft.AspNetCore.All non contiene un limite inferiore inclusivo. Includere un limite inferiore nella versione di dipendenza per garantire risultati di ripristino coerenti.*
 
 Si tratta di un problema noto con .NET Core 2.1 SDK, che verrà risolto in .NET Core 2.2 SDK.
 
@@ -85,7 +85,7 @@ I pacchetti seguenti sono inclusi in `Microsoft.AspNetCore.All` ma non il pacche
 
 Per passare da `Microsoft.AspNetCore.All` a `Microsoft.AspNetCore.App`, se l'app usa qualsiasi API dai pacchetti sopra o pacchetti inseriti da tali pacchetti, aggiungere i riferimenti a tali pacchetti nel progetto.
 
-Tutte le dipendenze dei pacchetti precedenti che non sono in altro modo dipendenze di `Microsoft.AspNetCore.App` non sono incluse in modo implicito. Ad esempio,
+Tutte le dipendenze dei pacchetti precedenti che non sono in altro modo dipendenze di `Microsoft.AspNetCore.App` non sono incluse in modo implicito. Ad esempio:
 
 * `StackExchange.Redis` come dipendenza di `Microsoft.Extensions.Caching.Redis`
 * `Microsoft.ApplicationInsights` come dipendenza di `Microsoft.AspNetCore.ApplicationInsights.HostingStartup`

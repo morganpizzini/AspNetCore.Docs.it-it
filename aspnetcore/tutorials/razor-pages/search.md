@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 12/05/2019
 uid: tutorials/razor-pages/search
 ms.openlocfilehash: 8228207b0f37a6923b29891ac3115dd0be115501
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78667706"
 ---
 # <a name="add-search-to-aspnet-core-razor-pages"></a>Aggiungere la funzionalità di ricerca a pagine Razor in ASP.NET Core
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -26,7 +26,7 @@ Aggiungere le proprietà evidenziate seguenti in *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contiene il testo immesso dagli utenti nella casella di testo di ricerca. `SearchString` dispone dell'attributo [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) . `[BindProperty]` associa i valori modulo e le stringhe di query al nome della proprietà. `(SupportsGet = true)` è necessario per l'associazione alle richieste GET.
+* `SearchString`: contiene il testo immesso dagli utenti nella casella di testo di ricerca. `SearchString`ha [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) l'attributo. `[BindProperty]` associa i valori modulo e le stringhe di query al nome della proprietà. `(SupportsGet = true)` è necessario per l'associazione alle richieste GET.
 * `Genres` contiene l'elenco dei generi. `Genres` consente all'utente di selezionare un genere dall'elenco. `SelectList` richiede `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contiene il genere specificato selezionato dall'utente, ad esempio "Western".
 * `Genres` e `MovieGenre` sono utilizzati più avanti in questa esercitazione.
@@ -51,7 +51,7 @@ Se la proprietà `SearchString` non è null o vuota, la query dei film viene mod
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
 
-Il codice `s => s.Title.Contains()` è un'[espressione lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Le espressioni lambda vengono usate nelle query [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) basate su metodo come argomenti dei metodi di operatore query standard, ad esempio il metodo [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) o `Contains` (usato nel codice precedente). Le query LINQ non vengono eseguite al momento della definizione o della modifica chiamando un metodo, ad esempio `Where`, `Contains` o `OrderBy`. L'esecuzione della query viene invece posticipata. Per esecuzione posticipata si intende che la valutazione di un'espressione viene ritardata finché non viene eseguita l'iterazione del valore ottenuto o non viene chiamato il metodo `ToListAsync`. Per altre informazioni, vedere [Esecuzione di query](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
+Il codice `s => s.Title.Contains()` è un'[espressione lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Le espressioni lambda vengono usate nelle query [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) basate sul metodo come argomenti dei metodi di operatore query standard, ad esempio il metodo [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) o `Contains` (usato nel codice precedente). Le query LINQ non vengono eseguite al momento della definizione o della modifica chiamando un metodo, ad esempio `Where`, `Contains` o `OrderBy`. L'esecuzione della query viene invece posticipata. Per esecuzione posticipata si intende che la valutazione di un'espressione viene ritardata finché non viene eseguita l'iterazione del valore ottenuto o non viene chiamato il metodo `ToListAsync`. Per altre informazioni, vedere [Esecuzione di query](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
 
 > [!NOTE]
 > il metodo [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) viene eseguito nel database, non nel codice C#. La distinzione tra maiuscole/minuscole nella query dipende dal database e dalle regole di confronto. In SQL Server `Contains` esegue il mapping a [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql) che fa distinzione tra maiuscole e minuscole. In SQLite, con le regole di confronto predefinite si fa distinzione tra maiuscole e minuscole.
@@ -80,7 +80,7 @@ Aprire il file *Pages/Movies/Index.cshtml* e aggiungere il markup `<form>` evide
 
 Il tag HTML `<form>` usa gli [helper tag](xref:mvc/views/tag-helpers/intro) seguenti:
 
-* [Helper tag Form](xref:mvc/views/working-with-forms#the-form-tag-helper). Quando il modulo viene inviato, la stringa di filtro verrà inviata alla pagina *Pages/Movies/Index* tramite una stringa di query.
+* [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). Quando il modulo viene inviato, la stringa di filtro verrà inviata alla pagina *Pages/Movies/Index* tramite una stringa di query.
 * [Helper tag di input](xref:mvc/views/working-with-forms#the-input-tag-helper)
 
 Salvare le modifiche e testare il filtro.
@@ -97,7 +97,7 @@ Il codice seguente è una query LINQ che recupera tutti i generi dal database.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_LINQ)]
 
-L'elenco `SelectList` di generi viene creato presentando generi distinti.
+L'elenco `SelectList` di generi viene creato selezionando generi distinti.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
@@ -115,7 +115,7 @@ Eseguire il test dell'app effettuando una ricerca per genere, titolo del film e 
 
 > [!div class="step-by-step"]
 > [Precedente: Aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
-> [Successivo: Aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
+> [successivo: Aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end
 
@@ -129,7 +129,7 @@ Aggiungere le proprietà evidenziate seguenti in *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contiene il testo immesso dagli utenti nella casella di testo di ricerca. `SearchString` dispone dell'attributo [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) . `[BindProperty]` associa i valori modulo e le stringhe di query al nome della proprietà. `(SupportsGet = true)` è necessario per l'associazione alle richieste GET.
+* `SearchString`: contiene il testo immesso dagli utenti nella casella di testo di ricerca. `SearchString`ha [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) l'attributo. `[BindProperty]` associa i valori modulo e le stringhe di query al nome della proprietà. `(SupportsGet = true)` è necessario per l'associazione alle richieste GET.
 * `Genres` contiene l'elenco dei generi. `Genres` consente all'utente di selezionare un genere dall'elenco. `SelectList` richiede `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contiene il genere specificato selezionato dall'utente, ad esempio "Western".
 * `Genres` e `MovieGenre` sono utilizzati più avanti in questa esercitazione.
@@ -154,7 +154,7 @@ Se la proprietà `SearchString` non è null o vuota, la query dei film viene mod
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
 
-Il codice `s => s.Title.Contains()` è un'[espressione lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Le espressioni lambda vengono usate nelle query [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) basate su metodo come argomenti dei metodi di operatore query standard, ad esempio il metodo [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) o `Contains` (usato nel codice precedente). Le query LINQ non vengono eseguite al momento della definizione o della modifica chiamando un metodo, ad esempio `Where`, `Contains` o `OrderBy`. L'esecuzione della query viene invece posticipata. Per esecuzione posticipata si intende che la valutazione di un'espressione viene ritardata finché non viene eseguita l'iterazione del valore ottenuto o non viene chiamato il metodo `ToListAsync`. Per altre informazioni, vedere [Esecuzione di query](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
+Il codice `s => s.Title.Contains()` è un'[espressione lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Le espressioni lambda vengono usate nelle query [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) basate sul metodo come argomenti dei metodi di operatore query standard, ad esempio il metodo [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) o `Contains` (usato nel codice precedente). Le query LINQ non vengono eseguite al momento della definizione o della modifica chiamando un metodo, ad esempio `Where`, `Contains` o `OrderBy`. L'esecuzione della query viene invece posticipata. Per esecuzione posticipata si intende che la valutazione di un'espressione viene ritardata finché non viene eseguita l'iterazione del valore ottenuto o non viene chiamato il metodo `ToListAsync`. Per altre informazioni, vedere [Esecuzione di query](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
 
 **Nota:** il metodo [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) viene eseguito sul database, non nel codice C#. La distinzione tra maiuscole/minuscole nella query dipende dal database e dalle regole di confronto. In SQL Server `Contains` esegue il mapping a [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql) che fa distinzione tra maiuscole e minuscole. In SQLite, con le regole di confronto predefinite si fa distinzione tra maiuscole e minuscole.
 
@@ -182,7 +182,7 @@ Aprire il file *Pages/Movies/Index.cshtml* e aggiungere il markup `<form>` evide
 
 Il tag HTML `<form>` usa gli [helper tag](xref:mvc/views/tag-helpers/intro) seguenti:
 
-* [Helper tag Form](xref:mvc/views/working-with-forms#the-form-tag-helper). Quando il modulo viene inviato, la stringa di filtro verrà inviata alla pagina *Pages/Movies/Index* tramite una stringa di query.
+* [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). Quando il modulo viene inviato, la stringa di filtro verrà inviata alla pagina *Pages/Movies/Index* tramite una stringa di query.
 * [Helper tag di input](xref:mvc/views/working-with-forms#the-input-tag-helper)
 
 Salvare le modifiche e testare il filtro.
@@ -199,7 +199,7 @@ Il codice seguente è una query LINQ che recupera tutti i generi dal database.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_LINQ)]
 
-L'elenco `SelectList` di generi viene creato presentando generi distinti.
+L'elenco `SelectList` di generi viene creato selezionando generi distinti.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
@@ -210,7 +210,7 @@ Aggiornare *Index.cshtml* come indicato di seguito:
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
 Eseguire il test dell'app effettuando una ricerca per genere, titolo del film e usando entrambi i filtri.
-Il codice precedente usa l'helper [tag SELECT](xref:mvc/views/working-with-forms#the-select-tag-helper) e l'helper tag option.
+Il codice precedente usa [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper) e Option Tag Helper.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -218,6 +218,6 @@ Il codice precedente usa l'helper [tag SELECT](xref:mvc/views/working-with-forms
 
 > [!div class="step-by-step"]
 > [Precedente: Aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
-> [Successivo: Aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
+> [successivo: Aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end

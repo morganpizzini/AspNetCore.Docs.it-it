@@ -6,7 +6,7 @@ Nel progetto RazorPagesMovie creare una nuova cartella denominata *Data*. Aggiun
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
 
-Il codice precedente crea una proprietà `DbSet` per il set di entità. Nella terminologia di Entity Framework, un set di entità corrisponde in genere alla tabella di un database e un'entità corrisponde a una riga della tabella. Il codice non verrà compilato fino a quando le dipendenze non verranno aggiunte in un passaggio successivo.
+Il codice precedente crea una proprietà `DbSet` per il set di entità. Nella terminologia di Entity Framework, un set di entità corrisponde in genere alla tabella di un database e un'entità corrisponde a una riga della tabella. Il codice non verrà compilato fino a quando le dipendenze non vengono aggiunte in un passaggio successivo.
 
 <a name="cs"></a>
 
@@ -45,7 +45,7 @@ Registrare il contesto del database con il contenitore di [inserimento delle dip
 
 ### <a name="add-required-nuget-packages"></a>Aggiungere i pacchetti NuGet necessari
 
-Eseguire il comando interfaccia della riga di comando di .NET Core seguente per aggiungere SQLite e CodeGeneration. Design al progetto:
+Eseguire il comando CLI .NET Core seguente per aggiungere SQLite e CodeGeneration.Design al progetto:
 
 ```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.SQLite

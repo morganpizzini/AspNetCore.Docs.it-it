@@ -1,15 +1,15 @@
 ---
 title: Aggiungere un modello a un'app ASP.NET Core MVC
 author: rick-anderson
-description: Aggiungere un modello a una app semplice di ASP.NET Core.
+description: Aggiungere un modello a una semplice app ASP.NET Core.
 ms.author: riande
 ms.date: 01/13/2020
 uid: tutorials/first-mvc-app/adding-model
 ms.openlocfilehash: e7fc0496438734e13cfafcecf432da4a94737897
-ms.sourcegitcommit: 5bdc54162d7dea8d9fa54ac3055678db23586af1
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/17/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79434512"
 ---
 # <a name="add-a-model-to-an-aspnet-core-mvc-app"></a>Aggiungere un modello a un'app ASP.NET Core MVC
@@ -38,7 +38,7 @@ Aggiungere un file denominato *Movie.cs* alla cartella *Models*.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-Fare clic con il pulsante destro del mouse sulla cartella *models* > **Aggiungi** > **nuova classe** > **classe vuota**. Denominare il file *Movie.cs*.
+Fare clic con il pulsante destro del mouse sulla cartella *Modelli* > **Aggiungi** > **nuova classe** > **vuota .** Denominare il file *Movie.cs*.
 
 ---
 
@@ -48,18 +48,18 @@ Aggiornare il file *Movie.cs* con il codice seguente:
 
 La classe `Movie` contiene un campo `Id`, richiesto dal database per la chiave primaria.
 
-L'attributo <xref:System.ComponentModel.DataAnnotations.DataType> in `ReleaseDate` specifica il tipo di dati (`Date`). Con questo attributo:
+L'attributo <xref:System.ComponentModel.DataAnnotations.DataType> su `ReleaseDate` specifica il`Date`tipo di dati ( ). Con questo attributo:
 
 * l'utente non deve immettere le informazioni temporali nel campo della data.
 * Viene visualizzata solo la data, non le informazioni temporali.
 
 L'attributo [DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) viene analizzato in un'esercitazione successiva.
 
-## <a name="add-nuget-packages"></a>Aggiungere pacchetti NuGet
+## <a name="add-nuget-packages"></a>Aggiungere i pacchetti NuGet
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Dal menu **strumenti** selezionare **gestione pacchetti NuGet** > console di **Gestione pacchetti** (PMC).
+Dal menu **Strumenti** scegliere **Gestione pacchetti NuGet** > **Console di Gestione pacchetti**.
 
 ![Menu della Console di Gestione pacchetti](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
 
@@ -77,17 +77,17 @@ Il comando precedente aggiunge il provider EF Core SQL Server. Il pacchetto del 
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-Scegliere **Gestisci pacchetti NuGet**dal menu **progetto** .
+Dal menu **Progetto,** selezionare **Gestisci pacchetti NuGet**.
 
-Nel campo di **ricerca** in alto a destra immettere `Microsoft.EntityFrameworkCore.SQLite` e premere il tasto **invio** per eseguire la ricerca. Selezionare il pacchetto NuGet corrispondente e premere il pulsante **Aggiungi pacchetto** .
+Nel campo **Cerca** in alto `Microsoft.EntityFrameworkCore.SQLite` a destra, immettere e premere il tasto **Invio** per eseguire la ricerca. Selezionare il pacchetto NuGet corrispondente e premere il pulsante **Aggiungi pacchetto.**
 
-![Aggiungi Entity Framework Core pacchetto NuGet](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
+![Aggiungi pacchetto NuGet di Entity Framework CoreAdd Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
 
-Verrà visualizzata la finestra di dialogo **Seleziona progetti** con il progetto `MvcMovie` selezionato. Premere il pulsante **OK** .
+Verrà visualizzata la finestra di `MvcMovie` dialogo **Seleziona progetti,** con il progetto selezionato. Premere il pulsante **OK.**
 
-Verrà visualizzata una finestra di dialogo **accettazione licenza** . Esaminare le licenze nel modo desiderato, quindi fare clic sul pulsante **Accetto** .
+Viene visualizzata la finestra di dialogo **Accettazione licenza.** Esaminare le licenze come desiderato, quindi fare clic sul pulsante **Accetta.**
 
-Ripetere i passaggi precedenti per installare i pacchetti NuGet seguenti:
+Ripetere i passaggi precedenti per installare i seguenti pacchetti NuGet:
 
 * `Microsoft.VisualStudio.Web.CodeGeneration.Design`
 * `Microsoft.EntityFrameworkCore.SqlServer`
@@ -128,7 +128,7 @@ Aggiungere il codice evidenziato seguente in `Startup.ConfigureServices`:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=6-7)]
 
@@ -140,13 +140,13 @@ Il nome della stringa di connessione viene passato al contesto chiamando un meto
 
 ## <a name="add-a-database-connection-string"></a>Aggiungere una stringa di connessione del database
 
-Aggiungere una stringa di connessione al file *appsettings.json*:
+Aggiungere una stringa di connessione al file *appsettings.json:Add* a connection string to the appsettings.json file:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings.json?highlight=10-12)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
 
@@ -160,7 +160,7 @@ Usare lo strumento di scaffolding per generare le pagine per le operazioni CRUD 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Controller* **> Aggiungi > Nuovo elemento di scaffolding**.
+In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Controller***> Aggiungi > Nuovo elemento di scaffolding**.
 
 ![vista del passaggio precedente](adding-model/_static/add_controller21.png)
 
@@ -170,8 +170,8 @@ Nella finestra di dialogo **Aggiungi scaffolding** selezionare **Controller MVC 
 
 Completare la finestra di dialogo **Aggiungi controller**:
 
-* **Classe modello:** *Movie (MvcMovie. Models)*
-* **Classe del contesto dati:** *MvcMovieContext (MvcMovie. Data)*
+* **Classe di modello:** *Movie (MvcMovie.Models)*
+* **Classe contesto dati:** *MvcMovieContext (MvcMovie.Data)Data context class: MvcMovieContext (MvcMovie.Data)*
 
 ![Aggiungere il contesto dati](adding-model/_static/dc3.png)
 
@@ -181,7 +181,7 @@ Completare la finestra di dialogo **Aggiungi controller**:
 
 Visual Studio crea:
 
-* Un controller di filmati (*Controllers/MoviesController.cs*)
+* Un controller di film (*Controllers/MoviesController.cs*)
 * File di vista Razor per le pagine Create (Crea), Delete (Elimina), Details (Dettagli), Edit (Modifica) e Index (Indice) (*Views/Movies/\*.cshtml*)
 
 La creazione automatica di questi file è nota come *scaffolding*.
@@ -220,7 +220,7 @@ La creazione automatica di questi file è nota come *scaffolding*.
 
 <!-- End of tabs                  -->
 
-Non è possibile usare ancora le pagine sottoposte a scaffolding perché il database non esiste. Se si esegue l'app e si fa clic sul collegamento dell' **app Movie** , viene visualizzato un messaggio di errore *non è possibile aprire il database* o una *tabella di questo tipo:* il messaggio di errore Movie.
+Non è possibile usare ancora le pagine sottoposte a scaffolding perché il database non esiste. Se si esegue l'applicazione e fare clic sul collegamento **Film App,** si ottiene un *Impossibile aprire il database* o *nessuna tabella di questo tipo: Movie* messaggio di errore.
 
 <a name="migration"></a>
 
@@ -230,16 +230,16 @@ Usare la funzionalità [Migrazioni](xref:data/ef-mvc/migrations) di EF Core per 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Dal menu **strumenti** selezionare **gestione pacchetti NuGet** > console di **Gestione pacchetti** (PMC).
+Dal menu **Strumenti** scegliere **Gestione pacchetti NuGet** > **Console di Gestione pacchetti**.
 
-In PMC, immettere i comandi seguenti:
+Nella Console di Gestione pacchetti immettere i comandi seguenti:
 
 ```powershell
 Add-Migration InitialCreate
 Update-Database
 ```
 
-* `Add-Migration InitialCreate`: genera un file di migrazione *Migrations/{timestamp} _InitialCreate. cs* . L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database si basa sul modello specificato nella classe `MvcMovieContext`.
+* `Add-Migration InitialCreate`: consente di generare un file di migrazione *Migrations/'timestamp'_InitialCreate.cs.* L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database si basa sul modello specificato nella classe `MvcMovieContext`.
 
 * `Update-Database`: aggiorna il database alla migrazione più recente, creata dal comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs*, che crea il database.
 
@@ -251,7 +251,7 @@ Update-Database
 
 [!INCLUDE [more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Eseguire i seguenti comandi dell'interfaccia della riga di comando di .NET Core:
 
@@ -260,7 +260,7 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-* `ef migrations add InitialCreate`: genera un file di migrazione *Migrations/{timestamp} _InitialCreate. cs* . L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database è basato sul modello specificato nella classe `MvcMovieContext` (nel file *Data/MvcMovieContext.cs*).
+* `ef migrations add InitialCreate`: consente di generare un file di migrazione *Migrations/'timestamp'_InitialCreate.cs.* L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database è basato sul modello specificato nella classe `MvcMovieContext` (nel file *Data/MvcMovieContext.cs*).
 
 * `ef database update`: aggiorna il database alla migrazione più recente, creata dal comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs*, che crea il database.
 
@@ -278,7 +278,7 @@ Il metodo `Up` crea la tabella Movie e configura `Id` come chiave primaria. Il m
 
 <a name="test"></a>
 
-## <a name="test-the-app"></a>Eseguire il test dell'applicazione
+## <a name="test-the-app"></a>Testare l'app
 
 * Eseguire l'app e fare clic sul collegamento **Movie App**.
 
@@ -290,7 +290,7 @@ Il metodo `Up` crea la tabella Movie e configura `Id` come chiave primaria. Il m
   SqlException: Cannot open database "MvcMovieContext-1" requested by the login. The login failed.
   ```
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
   ```console
   SqliteException: SQLite Error 1: 'no such table: Movie'.
@@ -299,10 +299,10 @@ Il metodo `Up` crea la tabella Movie e configura `Id` come chiave primaria. Il m
 ---
   Probabilmente non è stato eseguito il [passaggio delle migrazioni](#migration).
 
-* Testare la pagina **Create**. Immettere e inviare i dati.
+* Testare la pagina **Crea.Test** the Create page. Immettere e inviare i dati.
 
   > [!NOTE]
-  > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per impostazioni locali diverse dall'inglese che usano la virgola (",") come separatore decimale e per formati di data diversi da quello dell'inglese (Stati Uniti), è necessario localizzare l'app. Per istruzioni sulla localizzazione, vedere [questo problema su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
+  > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per impostazioni locali diverse dall'inglese che usano la virgola (",") come separatore decimale e per formati di data diversi da quello dell'inglese (Stati Uniti), è necessario localizzare l'app. Per istruzioni sulla globalizzazione, vedere [questo problema su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 * Testare le pagine **Edit**, **Details** e **Delete**.
 
@@ -318,15 +318,15 @@ Aprire il file *Controllers/MoviesController.cs* ed esaminare il costruttore:
 
 Il costruttore usa l'[inserimento dipendenze](xref:fundamentals/dependency-injection) per inserire il contesto del database (`MvcMovieContext`) nel controller. Il contesto di database viene usato in ognuno dei metodi [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) nel controller.
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
 Il costruttore usa l'[inserimento dipendenze](xref:fundamentals/dependency-injection) per inserire il contesto del database (`MvcMovieContext`) nel controller. Il contesto di database viene usato in ognuno dei metodi [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) nel controller.
 
-### <a name="use-sqlite-for-development-sql-server-for-production"></a>Usare SQLite per lo sviluppo, SQL Server per la produzione
+### <a name="use-sqlite-for-development-sql-server-for-production"></a>Usare SQLite per lo sviluppo, SQL Server per la produzioneUse SQLite for development, SQL Server for production
 
-Quando si seleziona SQLite, il codice generato dal modello è pronto per lo sviluppo. Il codice seguente illustra come inserire <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> all'avvio. `IWebHostEnvironment` viene inserito in modo che `ConfigureServices` possa usare SQLite per lo sviluppo e la SQL Server nell'ambiente di produzione.
+Quando SQLite è selezionato, il codice generato dal modello è pronto per lo sviluppo. Il codice seguente viene <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> illustrato come inserire in avvio. `IWebHostEnvironment`viene inserito `ConfigureServices` in modo da poter utilizzare SQLite in fase di sviluppo e SQL Server nell'ambiente di produzione.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=5,10,16-28)]
 
@@ -356,7 +356,7 @@ In genere il parametro `id` viene passato come dati di route. Ad esempio `https:
 
 `https://localhost:5001/movies/details?id=1`
 
-Il parametro `id` viene definito come [tipo nullable](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) nel caso in cui non venga fornito un valore ID.
+Il `id` parametro viene definito come`int?`un tipo [nullable](/dotnet/csharp/programming-guide/nullable-types/index) ( ) nel caso in cui non venga fornito un valore ID.
 
 Un'[espressione lambda](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) viene passata a `FirstOrDefaultAsync` per selezionare le entità film che corrispondono al valore della stringa di query o dei dati di route.
 
@@ -405,8 +405,8 @@ Poiché l'oggetto `Model` è fortemente tipizzato (come un oggetto `IEnumerable<
 * [Globalizzazione e localizzazione](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
-> [Precedente - Aggiunta di una vista](adding-view.md)
-> [Successivo - Utilizzo del linguaggio SQL](working-with-sql.md)
+> [Precedente Aggiunta di una vista](adding-view.md)
+> [successiva Utilizzo di SQL](working-with-sql.md)
 
 ::: moniker-end
 
@@ -420,22 +420,22 @@ Fare clic con il pulsante destro del mouse sulla cartella *Models* > **Aggiungi*
 
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Aggiungere una classe alla cartella *Models* denominata *Movie.cs*.
+* Aggiungere una classe alla cartella *Modello* denominata *Movie.cs*.
 
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 [!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
 
 ---
 
-## <a name="scaffold-the-movie-model"></a>Eseguire lo scaffolding del modello *Movie*
+## <a name="scaffold-the-movie-model"></a>Eseguire lo scaffolding del modello di filmato
 
-In questa sezione viene eseguito lo scaffolding del modello *Movie*. Lo strumento di scaffolding crea quindi le pagine per le operazioni CRUD (creazione, lettura, aggiornamento ed eliminazione) per il modello di filmato.
+In questa sezione viene eseguito lo scaffolding del modello *Movie*. Lo strumento di scaffolding crea quindi le pagine per le operazioni CRUD (creazione, lettura, aggiornamento ed eliminazione) per il modello *Movie*.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Controller* **> Aggiungi > Nuovo elemento di scaffolding**.
+In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Controller***> Aggiungi > Nuovo elemento di scaffolding**.
 
 ![vista del passaggio precedente](adding-model/_static/add_controller21.png)
 
@@ -445,7 +445,7 @@ Nella finestra di dialogo **Aggiungi scaffolding** selezionare **Controller MVC 
 
 Completare la finestra di dialogo **Aggiungi controller**:
 
-* **Classe modello:** *Movie (MvcMovie. Models)*
+* **Classe di modello:** *Movie (MvcMovie.Models)*
 * **Classe del contesto dati:** selezionare l'icona **+** e aggiungere il valore predefinito **MvcMovie.Models.MvcMovieContext**
 
 ![Aggiungere il contesto dati](adding-model/_static/dc.png)
@@ -459,7 +459,7 @@ Completare la finestra di dialogo **Aggiungi controller**:
 Visual Studio crea:
 
 * Una [classe del contesto di database](xref:data/ef-mvc/intro#create-the-database-context) Entity Framework Core (*Data/MvcMovieContext.cs*)
-* Un controller di filmati (*Controllers/MoviesController.cs*)
+* Un controller di film (*Controllers/MoviesController.cs*)
 * File di vista Razor per le pagine Create (Crea), Delete (Elimina), Details (Dettagli), Edit (Modifica) e Index (Indice) (*Views/Movies/\*.cshtml*)
 
 La creazione automatica del contesto di database e di viste e metodi di azione [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, delete) è nota come *scaffolding*.
@@ -526,7 +526,7 @@ Login failed for user 'Rick'.
 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString
 ```
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 ```
 An unhandled exception occurred while processing the request.
@@ -550,11 +550,11 @@ In questa sezione vengono completate le attività seguenti:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Dal menu **strumenti** selezionare **gestione pacchetti NuGet** > console di **Gestione pacchetti** (PMC).
+1. Dal menu **Strumenti** scegliere **Gestione pacchetti NuGet** > **Console di Gestione pacchetti**.
 
    ![Menu della Console di Gestione pacchetti](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
 
-1. In PMC, immettere i comandi seguenti:
+1. Nella Console di Gestione pacchetti immettere i comandi seguenti:
 
    ```powershell
    Add-Migration Initial
@@ -565,9 +565,9 @@ In questa sezione vengono completate le attività seguenti:
 
    Lo schema del database si basa sul modello specificato nella classe `MvcMovieContext`. L'argomento `Initial` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene usato un nome che descrive la migrazione. Per altre informazioni, vedere <xref:data/ef-mvc/migrations>.
 
-   Il comando `Update-Database` esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs*, che crea il database.
+   Il `Update-Database` comando `Up` esegue il metodo nel file *Migrations/'time-stamp'_InitialCreate.cs,* che crea il database.
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
 
@@ -597,7 +597,7 @@ Il codice precedente crea una proprietà [DbSet\<Movie>](/dotnet/api/microsoft.e
 
 Il nome della stringa di connessione viene passato al contesto chiamando un metodo in un oggetto [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). Per lo sviluppo locale, il [sistema di configurazione di ASP.NET Core](xref:fundamentals/configuration/index) legge la stringa di connessione dal file *appsettings.json*.
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 È stato creato un contesto del database, poi registrato per il contenitore di inserimento delle dipendenze.
 
@@ -605,7 +605,7 @@ Il nome della stringa di connessione viene passato al contesto chiamando un meto
 
 <a name="test"></a>
 
-### <a name="test-the-app"></a>Eseguire il test dell'applicazione
+### <a name="test-the-app"></a>Testare l'app
 
 * Eseguire l'app e accodare `/Movies` all'URL nel browser (`http://localhost:port/movies`).
 
@@ -621,9 +621,9 @@ Non è stato eseguita la [migrazione](#pmc).
 * Eseguire il test del collegamento **Crea**. Immettere e inviare i dati.
 
   > [!NOTE]
-  > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per impostazioni locali diverse dall'inglese che usano la virgola (",") come separatore decimale e per formati di data diversi da quello dell'inglese (Stati Uniti), è necessario localizzare l'app. Per istruzioni sulla localizzazione, vedere [questo problema su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
+  > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per impostazioni locali diverse dall'inglese che usano la virgola (",") come separatore decimale e per formati di data diversi da quello dell'inglese (Stati Uniti), è necessario localizzare l'app. Per istruzioni sulla globalizzazione, vedere [questo problema su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
-* Eseguire il test dei collegamenti **Modifica**, **Dettagli** e **Elimina**.
+* Testare i collegamenti **Modifica**, **Dettagli** ed **Elimina**.
 
 Esaminare la classe `Startup`:
 
@@ -632,7 +632,7 @@ Esaminare la classe `Startup`:
 Il codice evidenziato riportato in precedenza mostra il contesto del database dei film che viene aggiunto al contenitore di [inserimento dipendenze](xref:fundamentals/dependency-injection):
 
 * `services.AddDbContext<MvcMovieContext>(options =>` specifica il database da usare e la stringa di connessione.
-* `=>` è un [operatore lambda](/dotnet/articles/csharp/language-reference/operators/lambda-operator)
+* `=>`è un [operatore lambda](/dotnet/articles/csharp/language-reference/operators/lambda-operator)
 
 Aprire il file *Controllers/MoviesController.cs* ed esaminare il costruttore:
 
@@ -665,7 +665,7 @@ In genere il parametro `id` viene passato come dati di route. Ad esempio `https:
 
 `https://localhost:5001/movies/details?id=1`
 
-Il parametro `id` viene definito come [tipo nullable](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) nel caso in cui non venga fornito un valore ID.
+Il `id` parametro viene definito come`int?`un tipo [nullable](/dotnet/csharp/programming-guide/nullable-types/index) ( ) nel caso in cui non venga fornito un valore ID.
 
 Un'[espressione lambda](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) viene passata a `FirstOrDefaultAsync` per selezionare le entità film che corrispondono al valore della stringa di query o dei dati di route.
 
@@ -714,7 +714,7 @@ Poiché l'oggetto `Model` è fortemente tipizzato (come un oggetto `IEnumerable<
 * [Globalizzazione e localizzazione](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
-> [Precedente aggiunta di una vista](adding-view.md)
-> [successiva utilizzo di un database](working-with-sql.md)
+> [Precedente Aggiunta di una vista](adding-view.md)
+> [successiva Utilizzo di un database](working-with-sql.md)
 
 ::: moniker-end

@@ -6,10 +6,10 @@ ms.author: riande
 ms.date: 11/30/2019
 uid: fundamentals/localization
 ms.openlocfilehash: b175354220a8a71c029e005f27443d5a72749a11
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78662120"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalizzazione e localizzazione in ASP.NET Core
@@ -30,7 +30,7 @@ La localizzazione dell'app comporta quanto segue:
 
 3. Implementare una strategia per la selezione della lingua o delle impostazioni cultura per ogni richiesta
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ( come[scaricare](xref:index#how-to-download-a-sample))
 
 ## <a name="make-the-apps-content-localizable"></a>Rendere localizzabile il contenuto dell'app
 
@@ -90,7 +90,7 @@ Per usare un file di risorse condivise in una visualizzazione, inserire `IHtmlLo
 
 I messaggi di errore DataAnnotations vengono localizzati con `IStringLocalizer<T>`. Usando l'opzione `ResourcesPath = "Resources"` è possibile memorizzare i messaggi di errore in `RegisterViewModel` in uno dei percorsi seguenti:
 
-* *Resources/ViewModels.Account.RegisterViewModel.fr.resx*
+* *Risorse/ViewModels.Account.RegisterViewModel.fr.resx*
 * *Resources/ViewModels/Account/RegisterViewModel.fr.resx*
 
 [!code-csharp[](localization/sample/Localization/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
@@ -167,7 +167,7 @@ Se non si usa l'opzione `ResourcesPath`, il file con estensione *resx* per una v
 L'attributo [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1) specifica lo spazio dei nomi radice di un assembly quando tale spazio dei nomi è diverso dal nome dell'assembly. 
 
 > [!WARNING]
-> Questo problema può verificarsi quando il nome di un progetto non è un identificatore .NET valido. Ad esempio `my-project-name.csproj` utilizzerà lo spazio dei nomi radice `my_project_name` e il nome dell'assembly `my-project-name` a causa di questo errore. 
+> Ciò può verificarsi quando il nome di un progetto non è un identificatore .NET valido. Ad `my-project-name.csproj` esempio verrà utilizzato `my_project_name` lo spazio `my-project-name` dei nomi radice e il nome dell'assembly che causa questo errore. 
 
 Se lo spazio dei nomi radice di un assembly è diverso dal nome dell'assembly:
 
@@ -249,7 +249,7 @@ Se si passa uno solo dei due parametri (`culture` o `ui-culture`), il provider d
 
 Le app di produzione offrono spesso la possibilità di specificare le impostazioni cultura con il cookie delle impostazioni cultura di ASP.NET Core. Usare il metodo `MakeCookieValue` per creare un cookie.
 
-Il `DefaultCookieName` `CookieRequestCultureProvider` restituisce il nome del cookie predefinito utilizzato per tenere traccia delle informazioni sulle impostazioni cultura preferite dell'utente. Il nome del cookie predefinito è `.AspNetCore.Culture`.
+Restituisce `CookieRequestCultureProvider` `DefaultCookieName` il nome del cookie predefinito utilizzato per tenere traccia delle informazioni sulle impostazioni cultura preferite dell'utente. Il nome del cookie predefinito è `.AspNetCore.Culture`.
 
 Il formato del cookie è `c=%LANGCODE%|uic=%LANGCODE%`, dove `c` è `Culture` e `uic` è `UICulture`, ad esempio:
 
@@ -280,19 +280,19 @@ L'[intestazione Accept-Language](https://www.w3.org/International/questions/qa-a
 ::: moniker range="> aspnetcore-3.1"
 ### <a name="the-content-language-http-header"></a>Intestazione HTTP Content-Language
 
-Intestazione dell'entità [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) :
+L'intestazione dell'entità [Content-Language:](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language)
 
- - Viene usato per descrivere le lingue destinate ai destinatari.
- - Consente a un utente di distinguere in base alla lingua preferita degli utenti.
+ - Viene utilizzato per descrivere le lingue destinate al pubblico.
+ - Consente a un utente di differenziarsi in base alla lingua preferita degli utenti.
 
-Le intestazioni delle entità vengono usate sia nelle richieste HTTP sia nelle risposte.
+Le intestazioni di entità vengono utilizzate sia nelle richieste HTTP che nelle risposte.
 
-È possibile aggiungere l'intestazione `Content-Language` impostando la proprietà `ApplyCurrentCultureToResponseHeaders`.
+L'intestazione `Content-Language` può essere `ApplyCurrentCultureToResponseHeaders`aggiunta impostando la proprietà .
 
-Aggiunta dell'intestazione `Content-Language`:
+Aggiunta `Content-Language` dell'intestazione:
 
- - Consente a RequestLocalizationMiddleware di impostare l'intestazione del `Content-Language` con il `CurrentUICulture`.
- - Elimina la necessità di impostare l'intestazione della risposta `Content-Language` in modo esplicito.
+ - Consente a RequestLocalizationMiddleware `Content-Language` di impostare l'intestazione con l'oggetto `CurrentUICulture`.
+ - Elimina la necessità di impostare l'intestazione `Content-Language` della risposta in modo esplicito.
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions
@@ -374,9 +374,9 @@ Il metodo `SetLanguage` imposta il cookie delle impostazioni cultura.
 
 Non è possibile collegare *_SelectLanguagePartial.cshtml* al codice di esempio per questo progetto. Il progetto **Localization.StarterWeb** in [GitHub](https://github.com/aspnet/entropy) include codice per scorrere `RequestLocalizationOptions` in una visualizzazione parziale Razor attraverso il contenitore di [inserimento delle dipendenze](dependency-injection.md).
 
-## <a name="model-binding-route-data-and-query-strings"></a>Associazione di modelli dati della route e stringhe di query
+## <a name="model-binding-route-data-and-query-strings"></a>Associazione del modello ai dati della route e alle stringhe di query
 
-Vedere [comportamento di globalizzazione delle stringhe di query e dati della route di associazione di modelli](xref:mvc/models/model-binding#glob).
+Vedere Comportamento di globalizzazione dei dati della route e delle stringhe di [query dell'associazione](xref:mvc/models/model-binding#glob)di modelli.
 
 ## <a name="globalization-and-localization-terms"></a>Termini relativi alla globalizzazione e alla localizzazione
 
@@ -384,7 +384,7 @@ Il processo di localizzazione dell'app richiede anche una conoscenza di base dei
 
 La [localizzabilità](/dotnet/standard/globalization-localization/localizability-review) è un processo intermedio che verifica che un'app globalizzata sia pronta per la localizzazione.
 
-Il formato [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) per il nome delle impostazioni cultura è `<languagecode2>-<country/regioncode2>`, dove `<languagecode2>` è il codice della lingua e `<country/regioncode2>` è il codice della cultura secondaria. Ad esempio, `es-CL` per spagnolo (Cile), `en-US` per inglese (Stati Uniti) e `en-AU` per inglese (Australia). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) è la combinazione di un codice di cultura in lettere minuscole di due lettere ISO 639 associato a una lingua e un codice di cultura secondaria in lettere maiuscole di due lettere ISO 3166 associato a un paese o un'area geografica. Vedere [Language Culture Name](https://msdn.microsoft.com/library/ee825488(v=cs.20).aspx) (Nome delle impostazioni cultura delle lingue).
+Il formato [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) per il nome delle impostazioni cultura è `<languagecode2>-<country/regioncode2>`, dove `<languagecode2>` è il codice della lingua e `<country/regioncode2>` è il codice della cultura secondaria. Ad esempio, `es-CL` per spagnolo (Cile), `en-US` per inglese (Stati Uniti) e `en-AU` per inglese (Australia). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) è la combinazione di un codice di cultura in lettere minuscole di due lettere ISO 639 associato a una lingua e un codice di cultura secondaria in lettere maiuscole di due lettere ISO 3166 associato a un paese o un'area. Vedere [Language Culture Name](https://msdn.microsoft.com/library/ee825488(v=cs.20).aspx) (Nome delle impostazioni cultura delle lingue).
 
 L'internazionalizzazione è spesso abbreviata con "I18N". L'abbreviazione include la prima e l'ultima lettera e il numero di lettere che intercorrono tra di loro nel termine inglese "Internationalization". 18 è il numero di lettere tra la prima "I" e l'ultima "N". Lo stesso vale per globalizzazione (G11N) e localizzazione (L10N).
 
@@ -410,6 +410,6 @@ Termini:
 * <xref:fundamentals/troubleshoot-aspnet-core-localization>
 * [Progetto Localization.StarterWeb](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) usato nell'articolo.
 * [Globalizzazione e localizzazione di applicazioni .NET](/dotnet/standard/globalization-localization/index)
-* [Uso dei file RESX a livello di codice](/dotnet/framework/resources/working-with-resx-files-programmatically)
+* [Risorse nei file resxResources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localizzazione e generics](http://hishambinateya.com/localization-and-generics)

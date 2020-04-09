@@ -7,19 +7,19 @@ ms.custom: mvc
 ms.date: 09/12/2018
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ms.openlocfilehash: 0e6747a3de220b97cc7a84f9cd42b0da54b57ee9
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78664066"
 ---
 # <a name="visual-studio-container-tools-with-aspnet-core"></a>Strumenti contenitore di Visual Studio con ASP.NET Core
 
 Visual Studio 2017 e versioni successive supporta la compilazione, il debug e l'esecuzione di app ASP.NET Core incluse in contenitori destinate a .NET Core. Sono supportati sia contenitori Windows che contenitori Linux.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker/samples) ( come[scaricare](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [Docker per Windows](https://docs.docker.com/docker-for-windows/install/)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) con il carico di lavoro **Sviluppo multipiattaforma .NET Core**
@@ -28,7 +28,7 @@ Visual Studio 2017 e versioni successive supporta la compilazione, il debug e l'
 
 Per l'installazione di Docker, rivedere prima le informazioni riportate in [Docker for Windows: What to know before you install](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install) (Docker per Windows: informazioni da conoscere prima dell'installazione). Installare quindi [Docker per Windows](https://docs.docker.com/docker-for-windows/install/).
 
-**[Le unità condivise](https://docs.docker.com/docker-for-windows/#shared-drives)** in Docker per Windows devono essere configurate per supportare il mapping e il debug del volume. Fare clic con il pulsante destro del mouse sull'icona di Docker sulla barra delle applicazioni, selezionare **Settings** (Impostazioni) e quindi selezionare **Shared Drives** (Unità condivise). Selezionare l'unità in cui Docker archivia i file. Fare clic su **Apply**.
+**[Le unità condivise](https://docs.docker.com/docker-for-windows/#shared-drives)** in Docker per Windows devono essere configurate per supportare il mapping e il debug del volume. Fare clic con il pulsante destro del mouse sull'icona di Docker sulla barra delle applicazioni, selezionare **Settings** (Impostazioni) e quindi selezionare **Shared Drives** (Unità condivise). Selezionare l'unità in cui Docker archivia i file. Fare clic su **Applica**.
 
 ![Finestra di dialogo per la selezione della condivisione dell'unità C locale per i contenitori](visual-studio-tools-for-docker/_static/settings-shared-drives-win.png)
 
@@ -54,13 +54,13 @@ Se il framework di destinazione è .NET Core, l'elenco a discesa **Sistema opera
 Per i progetti ASP.NET Core destinati a .NET Core, esistono due opzioni per l'aggiunta del supporto di Docker tramite gli strumenti. Aprire il progetto in Visual Studio e scegliere una delle opzioni seguenti:
 
 * Scegliere **Supporto Docker** dal menu **Progetto**.
-* Fare clic con il pulsante destro del mouse su **Esplora soluzioni** e selezionare **Aggiungi** > **Supporto Docker**.
+* Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e selezionare **Aggiungi** > **supporto Docker**.
 
 Gli strumenti contenitore in Visual Studio non supportano l'aggiunta di Docker a un progetto di ASP.NET Core esistente destinato a .NET Framework.
 
 ## <a name="dockerfile-overview"></a>Panoramica di Dockerfile
 
-Alla radice del progetto viene aggiunto un *Dockerfile*, ovvero il file recipe per la creazione di un'immagine Docker finale. Vedere le [informazioni di riferimento su Dockerfile](https://docs.docker.com/engine/reference/builder/) per conoscere i comandi inclusi. Questo *Dockerfile* specifico usa una [compilazione in più fasi](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) suddivisa in quattro fasi di compilazione distinte e denominate:
+Alla radice del progetto viene aggiunto un *Dockerfile*, ovvero il file recipe per la creazione di un'immagine Docker finale. Fare riferimento a [Dockerfile reference](https://docs.docker.com/engine/reference/builder/) per comprendere i comandi in esso contenuti. Questo *Dockerfile* specifico usa una [compilazione in più fasi](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) suddivisa in quattro fasi di compilazione distinte e denominate:
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -82,7 +82,7 @@ Il *Dockerfile* precedente si basa sull'immagine [microsoft/aspnetcore](https://
 
 ## <a name="add-container-orchestrator-support-to-an-app"></a>Aggiungere il supporto di un agente di orchestrazione a un'app
 
-Visual Studio 2017 15.7 e versioni precedenti supporta [Docker Compose](https://docs.docker.com/compose/overview/) come unica soluzione di orchestrazione dei contenitori. Gli artefatti di Docker Compose vengono aggiunti tramite**Aggiungi** > **Supporto Docker**.
+Visual Studio 2017 15.7 e versioni precedenti supporta [Docker Compose](https://docs.docker.com/compose/overview/) come unica soluzione di orchestrazione dei contenitori. Gli elementi Docker Compose vengono aggiunti tramite **Aggiungi** > **supporto Docker**.
 
 Visual Studio 2017 versione 15.8 e successive aggiunge una soluzione di orchestrazione solo quando specificamente richiesto. Fare clic con il pulsante destro del mouse su **Esplora soluzioni** e selezionare **Aggiungi** > **Container Orchestrator Support** (Supporto agente di orchestrazione contenitori). È possibile scegliere tra due opzioni diverse: [Docker Compose](#docker-compose) e [Service Fabric](#service-fabric).
 
@@ -90,10 +90,10 @@ Visual Studio 2017 versione 15.8 e successive aggiunge una soluzione di orchestr
 
 Gli strumenti contenitore in Visual Studio aggiungono un progetto *docker-compose* alla soluzione con i file seguenti:
 
-* *Docker-compose. dcproj* &ndash; il file che rappresenta il progetto. Include un elemento `<DockerTargetOS>` che specifica il sistema operativo da usare.
-* *. dockerignore* &ndash; elenca i modelli di file e directory da escludere durante la generazione di un contesto di compilazione.
-* *Docker-compose. yml* &ndash; il file di [Docker compose](https://docs.docker.com/compose/overview/) di base usato per definire la raccolta di immagini compilate ed eseguite rispettivamente con `docker-compose build` e `docker-compose run`.
-* *Docker-compose. override. yml* &ndash; un file facoltativo, letto da Docker compose, con sostituzioni della configurazione per i servizi. Visual Studio esegue `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` per unire questi file.
+* *docker-compose. dcproj* &ndash; File che rappresenta il progetto. Include un elemento `<DockerTargetOS>` che specifica il sistema operativo da usare.
+* File con estensione *dockerignore* &ndash; Elenca i modelli di file e directory da escludere durante la generazione di un contesto di compilazione.
+* *docker-compose.yml* &ndash; File [Docker Compose](https://docs.docker.com/compose/overview/) di base usato per definire la raccolta di immagini da compilare ed eseguire rispettivamente con `docker-compose build` e `docker-compose run`.
+* *docker compose.override.yml* &ndash; File facoltativo, letto da Docker Compose, contenente gli override di configurazione per i servizi. Visual Studio esegue `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` per unire questi file.
 
 Il file *docker-compose.yml* fa riferimento al nome dell'immagine creata quando il progetto viene eseguito:
 
@@ -107,7 +107,7 @@ Se si vuole un comportamento diverso in base alla configurazione della build (ad
 
 Usando i file di override specifici della configurazione, è possibile specificare impostazioni di configurazione diverse (ad esempio, variabili di ambiente o punti di ingresso) per le configurazioni delle build di debug e di versione.
 
-Per Docker Compose visualizzare un'opzione per l'esecuzione in Visual Studio, il progetto Docker deve essere il progetto di avvio.
+Affinché Docker Compose visualizzi un'opzione da eseguire in Visual Studio, il progetto docker deve essere il progetto di avvio.
 
 ### <a name="service-fabric"></a>Service Fabric
 
@@ -120,7 +120,7 @@ Service Fabric non supporta l'esecuzione di contenitori Linux nel cluster di svi
 
 Gli strumenti contenitore in Visual Studio eseguono le attività seguenti:
 
-* Aggiunge un *&lt;project_name&gt;applicazione* **Service Fabric** progetto di applicazione alla soluzione.
+* Aggiunge * &lt;un&gt;project_name* progetto Application **Service Fabric Application** alla soluzione.
 * Aggiunge un *Dockerfile* e un file con estensione *dockerignore* al progetto ASP.NET Core. Se nel progetto ASP.NET Core è già presente un *Dockerfile*, questo viene rinominato in *Dockerfile.original*. Viene creato un nuovo *Dockerfile* simile al seguente:
 
     [!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile)]
@@ -174,7 +174,7 @@ microsoft/aspnetcore  2.0  c69d39472da9  13 days ago    347MB
 ::: moniker-end
 
 > [!NOTE]
-> Nell'immagine *dev* non è presente il contenuto dell'app, poiché le configurazioni **Debug** usano il montaggio su volume per garantire un'esperienza iterativa. Per effettuare il push di un'immagine, usare la configurazione **Versione**.
+> Nell'immagine *dev* non è presente il contenuto dell'app, poiché le configurazioni **Debug** usano il montaggio su volume per garantire un'esperienza iterativa. Per eseguire il push di un'immagine, utilizzare la configurazione **Release.**
 
 Eseguire il comando `docker ps` nella console di Gestione pacchetti. Si noti che l'app viene eseguita usando il contenitore:
 
@@ -227,7 +227,7 @@ Le immagini `microsoft/aspnetcore-build` e `microsoft/aspnetcore` indicate nell'
 ::: moniker-end
 
 > [!NOTE]
-> Il comando `docker images` restituisce le immagini intermedie con i nomi di repository e i tag identificati come *\<none>* (non inclusi nell'elenco precedente). Queste immagini senza nome vengono generate dalla compilazione in più [fasi](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) *Dockerfile*. L'efficienza della creazione dell'immagine finale risulta migliorata, dato che vengono ricompilati solo i livelli necessari in seguito a modifiche. Quando le immagini intermedie non sono più necessarie, eliminarle usando il comando [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/).
+> Il `docker images` comando restituisce immagini * \<intermedie* con nomi di repository e tag identificati come non>(non elencati in precedenza). Queste immagini senza nome vengono prodotte dal *dockerfile*di [compilazione in più fasi.](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) L'efficienza della creazione dell'immagine finale risulta migliorata, dato che vengono ricompilati solo i livelli necessari in seguito a modifiche. Quando le immagini intermedie non sono più necessarie, eliminarle usando il comando [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/).
 
 Ci si potrebbe aspettare che l'immagine di produzione o di versione abbia dimensioni minori rispetto all'immagine *dev*. A causa del mapping del volume, il debugger e l'app sono stati eseguiti dal computer locale e non all'interno del contenitore. L'immagine *latest* include il codice dell'app necessario per eseguire l'app in un computer host. Pertanto, il delta è la dimensione del codice dell'app.
 

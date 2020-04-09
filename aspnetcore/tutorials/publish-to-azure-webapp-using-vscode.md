@@ -7,10 +7,10 @@ ms.custom: mvc
 ms.date: 07/10/2019
 uid: tutorials/publish-to-azure-webapp-using-vscode
 ms.openlocfilehash: 5f117cb2867a6e7b54269ef39abe819256b429ec
-ms.sourcegitcommit: 99e71ae03319ab386baf2ebde956fc2d511df8b8
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/25/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "80242678"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio-code"></a>Pubblicare un'app ASP.NET Core in Azure con Visual Studio Code
@@ -21,7 +21,7 @@ Di [Ricardo Serradas](https://twitter.com/ricardoserradas)
 
 Per risolvere un problema di distribuzione del Servizio app di Azure, vedere <xref:test/troubleshoot-azure-iis>.
 
-## <a name="intro"></a>Intro
+## <a name="intro"></a>Introduzione
 
 Con questa esercitazione si apprenderà come creare un'applicazione ASP.Net Core MVC e distribuirla all'interno di Visual Studio Code.
 
@@ -29,9 +29,9 @@ Con questa esercitazione si apprenderà come creare un'applicazione ASP.Net Core
 
 - Aprire un [account Azure gratuito](https://azure.microsoft.com/free/dotnet/) se non è già disponibile un account.
 - Installare [.NET Core SDK](https://dotnet.microsoft.com/download)
-- Installare [Visual Studio Code](https://code.visualstudio.com/Download)
+- Installare il [codice di Visual StudioInstall Visual Studio Code](https://code.visualstudio.com/Download)
   - Installare l'[estensione C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) in Visual Studio Code
-  - Installare l' [estensione del servizio app Azure](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) per Visual Studio Code e configurarla prima di procedere
+  - Installare [l'estensione del servizio app di Azure](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) nel codice di Visual Studio e configurarlo prima di procedereInstall the Azure App Service Extension to Visual Studio Code and configure it before proceeding
 
 ## <a name="create-an-aspnet-core-mvc-project"></a>Creare un progetto ASP.NET Core MVC
 
@@ -148,4 +148,4 @@ L'estensione distribuirà il contenuto aggiornato nell'app Web. Al termine, fare
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 - [Servizio app di Azure](/azure/app-service/app-service-web-overview)
-- [Gruppi di risorse di Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)
+- [Gruppi di risorse di AzureAzure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)

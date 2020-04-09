@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/details
 ms.openlocfilehash: 04eb2efa4e67d84e575580a6248d0b5b567064af
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78662911"
 ---
 # <a name="examine-the-details-and-delete-methods-of-an-aspnet-core-app"></a>Esaminare i metodi Details e Delete di un'app ASP.NET Core
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Aprire il controller di film ed esaminare il metodo `Details`:
 

@@ -7,10 +7,10 @@ ms.author: riande
 ms.date: 10/07/2019
 uid: fundamentals/change-tokens
 ms.openlocfilehash: 70451e219f1295b854e2f84aac55f0cfd1786b19
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656345"
 ---
 # <a name="detect-changes-with-change-tokens-in-aspnet-core"></a>Rilevare le modifiche apportate con i token di modifica in ASP.NET Core
@@ -19,11 +19,11 @@ ms.locfileid: "78656345"
 
 Un *token di modifica* è un blocco predefinito di uso generico e di basso livello che viene usato per il rilevamento delle modifiche di stato.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ( come[scaricare](xref:index#how-to-download-a-sample))
 
 ## <a name="ichangetoken-interface"></a>Interfaccia IChangeToken
 
-<xref:Microsoft.Extensions.Primitives.IChangeToken> propaga le notifiche relative a una modifica apportata. `IChangeToken` risiede nello spazio dei nomi <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. Il pacchetto NuGet [Microsoft. Extensions. Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) viene fornito in modo implicito alle app ASP.NET Core.
+<xref:Microsoft.Extensions.Primitives.IChangeToken> propaga le notifiche relative a una modifica apportata. `IChangeToken` risiede nello spazio dei nomi <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. Il pacchetto Microsoft.Extensions.Primitives NuGet viene fornito in modo implicito alle app ASP.NET Core.The [Microsoft.Extensions.Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) NuGet package is implicitly provided to the ASP.NET Core apps.
 
 `IChangeToken` ha due proprietà:
 
@@ -34,7 +34,7 @@ L'interfaccia `IChangeToken` include il metodo [RegisterChangeCallback(Action\<O
 
 ## <a name="changetoken-class"></a>Classe ChangeToken
 
-<xref:Microsoft.Extensions.Primitives.ChangeToken> è una classe statica usata per propagare le notifiche relative a una modifica che è stata apportata. `ChangeToken` risiede nello spazio dei nomi <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. Il pacchetto NuGet [Microsoft. Extensions. Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) viene fornito in modo implicito alle app ASP.NET Core.
+<xref:Microsoft.Extensions.Primitives.ChangeToken> è una classe statica usata per propagare le notifiche relative a una modifica che è stata apportata. `ChangeToken` risiede nello spazio dei nomi <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. Il pacchetto Microsoft.Extensions.Primitives NuGet viene fornito in modo implicito alle app ASP.NET Core.The [Microsoft.Extensions.Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) NuGet package is implicitly provided to the ASP.NET Core apps.
 
 Il metodo [ChangeToken.OnChange(Func\<IChangeToken>, Action)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) registra un elemento `Action` da chiamare quando il token viene modificato:
 
@@ -49,7 +49,7 @@ L'overload [ChangeToken.OnChange\<TState>(Func\<IChangeToken>, Action\<TState>, 
 
 I token di modifica vengono usati nelle aree principali di ASP.NET Core per monitorare le modifiche apportate agli oggetti:
 
-* Per monitorare le modifiche ai file, il metodo <xref:Microsoft.Extensions.FileProviders.IFileProvider> di <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*> crea un elemento `IChangeToken` per le cartelle o i file specificati da controllare.
+* Per monitorare le modifiche ai file, il metodo <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*> di <xref:Microsoft.Extensions.FileProviders.IFileProvider> crea un elemento `IChangeToken` per le cartelle o i file specificati da controllare.
 * È possibile aggiungere token `IChangeToken` alle voci della cache per attivare le eliminazioni dalla cache alla modifica.
 * Per le modifiche di `TOptions`, l'implementazione <xref:Microsoft.Extensions.Options.OptionsMonitor`1> predefinita di <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> ha un overload che accetta una o più istanze di <xref:Microsoft.Extensions.Options.IOptionsChangeTokenSource`1>. Ogni istanza restituisce un elemento `IChangeToken` per registrare un callback di notifica delle modifiche per il rilevamento delle modifiche apportate alle opzioni.
 
@@ -69,7 +69,7 @@ La configurazione basata su file è rappresentata da <xref:Microsoft.Extensions.
 
 Per impostazione predefinita, `IFileMonitor` viene offerto da una classe <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> che usa <xref:System.IO.FileSystemWatcher> per monitorare le modifiche apportate al file di configurazione.
 
-L'app di esempio illustra due implementazioni per il monitoraggio delle modifiche alla configurazione. In caso di modifica di uno qualsiasi dei file *appsettings*, entrambe le implementazioni di monitoraggio dei file eseguono codice personalizzato e l'app di esempio scrive un messaggio nella console.
+L'app di esempio illustra due implementazioni per il monitoraggio delle modifiche alla configurazione. In caso di modifica di uno qualsiasi dei file ** appsettings&mdash;, entrambe le implementazioni di monitoraggio dei file eseguono codice personalizzato e l'app di esempio scrive un messaggio nella console.
 
 L'elemento `FileSystemWatcher` di un file di configurazione può attivare più callback del token per una singola modifica del file di configurazione. Per assicurarsi che il codice personalizzato venga eseguito solo una volta quando vengono attivati più callback del token, l'implementazione dell'esempio controlla gli hash dei file. L'esempio usa l'hash di file SHA1. Viene implementato un nuovo tentativo con un'interruzione temporanea esponenziale. Il nuovo tentativo è presente perché potrebbe verificarsi un blocco di file che impedisce temporaneamente l'elaborazione di un nuovo hash in un file.
 
@@ -113,8 +113,8 @@ Il costruttore della classe implementata, `ConfigurationMonitor`, registra un ca
 
 `config.GetReloadToken()` fornisce il token. `InvokeChanged` è il metodo di callback. Il valore `state` in questa istanza è un riferimento all'istanza `IConfigurationMonitor` usata per accedere allo stato di monitoraggio. Vengono usate due proprietà:
 
-* `MonitoringEnabled` &ndash; indica se il callback deve eseguire il codice personalizzato.
-* `CurrentState` &ndash; descrive lo stato di monitoraggio corrente per l'uso nell'interfaccia utente.
+* `MonitoringEnabled`&ndash; Indica se il callback deve eseguire il codice personalizzato.
+* `CurrentState`&ndash; Descrive lo stato di monitoraggio corrente da utilizzare nell'interfaccia utente.
 
 Il metodo `InvokeChanged` è simile all'approccio precedente, ad eccezione del fatto che:
 
@@ -170,7 +170,7 @@ Se non è possibile reperire il contenuto memorizzato nella cache usando la chia
 1. Un token di modifica viene ottenuto dal provider di file con [IFileProviders.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*). Il callback del token viene attivato alla modifica del file.
 1. Il contenuto del file viene memorizzato nella cache con un periodo di [scadenza variabile](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration). Al token di modifica viene associato [MemoryCacheEntryExtensions.AddExpirationToken](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.AddExpirationToken*) per eliminare la voce della cache se il file viene modificato mentre è memorizzato nella cache.
 
-Nell'esempio seguente i file vengono archiviati nella [radice del contenuto](xref:fundamentals/index#content-root)dell'app. `IWebHostEnvironment.ContentRootFileProvider` viene usato per ottenere un <xref:Microsoft.Extensions.FileProviders.IFileProvider> che punta al `IWebHostEnvironment.ContentRootPath`dell'app. `filePath` viene ottenuto con [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
+Nell'esempio seguente, i file vengono archiviati nella radice del [contenuto](xref:fundamentals/index#content-root)dell'app. `IWebHostEnvironment.ContentRootFileProvider`viene utilizzato per <xref:Microsoft.Extensions.FileProviders.IFileProvider> ottenere un punto `IWebHostEnvironment.ContentRootPath`di punto dell'app . `filePath` viene ottenuto con [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Services/FileService.cs?name=snippet1)]
 
@@ -217,7 +217,7 @@ var compositeChangeToken =
 
 Un *token di modifica* è un blocco predefinito di uso generico e di basso livello che viene usato per il rilevamento delle modifiche di stato.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ( come[scaricare](xref:index#how-to-download-a-sample))
 
 ## <a name="ichangetoken-interface"></a>Interfaccia IChangeToken
 
@@ -247,7 +247,7 @@ L'overload [ChangeToken.OnChange\<TState>(Func\<IChangeToken>, Action\<TState>, 
 
 I token di modifica vengono usati nelle aree principali di ASP.NET Core per monitorare le modifiche apportate agli oggetti:
 
-* Per monitorare le modifiche ai file, il metodo <xref:Microsoft.Extensions.FileProviders.IFileProvider> di <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*> crea un elemento `IChangeToken` per le cartelle o i file specificati da controllare.
+* Per monitorare le modifiche ai file, il metodo <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*> di <xref:Microsoft.Extensions.FileProviders.IFileProvider> crea un elemento `IChangeToken` per le cartelle o i file specificati da controllare.
 * È possibile aggiungere token `IChangeToken` alle voci della cache per attivare le eliminazioni dalla cache alla modifica.
 * Per le modifiche di `TOptions`, l'implementazione <xref:Microsoft.Extensions.Options.OptionsMonitor`1> predefinita di <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> ha un overload che accetta una o più istanze di <xref:Microsoft.Extensions.Options.IOptionsChangeTokenSource`1>. Ogni istanza restituisce un elemento `IChangeToken` per registrare un callback di notifica delle modifiche per il rilevamento delle modifiche apportate alle opzioni.
 
@@ -267,7 +267,7 @@ La configurazione basata su file è rappresentata da <xref:Microsoft.Extensions.
 
 Per impostazione predefinita, `IFileMonitor` viene offerto da una classe <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> che usa <xref:System.IO.FileSystemWatcher> per monitorare le modifiche apportate al file di configurazione.
 
-L'app di esempio illustra due implementazioni per il monitoraggio delle modifiche alla configurazione. In caso di modifica di uno qualsiasi dei file *appsettings*, entrambe le implementazioni di monitoraggio dei file eseguono codice personalizzato e l'app di esempio scrive un messaggio nella console.
+L'app di esempio illustra due implementazioni per il monitoraggio delle modifiche alla configurazione. In caso di modifica di uno qualsiasi dei file ** appsettings&mdash;, entrambe le implementazioni di monitoraggio dei file eseguono codice personalizzato e l'app di esempio scrive un messaggio nella console.
 
 L'elemento `FileSystemWatcher` di un file di configurazione può attivare più callback del token per una singola modifica del file di configurazione. Per assicurarsi che il codice personalizzato venga eseguito solo una volta quando vengono attivati più callback del token, l'implementazione dell'esempio controlla gli hash dei file. L'esempio usa l'hash di file SHA1. Viene implementato un nuovo tentativo con un'interruzione temporanea esponenziale. Il nuovo tentativo è presente perché potrebbe verificarsi un blocco di file che impedisce temporaneamente l'elaborazione di un nuovo hash in un file.
 
@@ -311,8 +311,8 @@ Il costruttore della classe implementata, `ConfigurationMonitor`, registra un ca
 
 `config.GetReloadToken()` fornisce il token. `InvokeChanged` è il metodo di callback. Il valore `state` in questa istanza è un riferimento all'istanza `IConfigurationMonitor` usata per accedere allo stato di monitoraggio. Vengono usate due proprietà:
 
-* `MonitoringEnabled` &ndash; indica se il callback deve eseguire il codice personalizzato.
-* `CurrentState` &ndash; descrive lo stato di monitoraggio corrente per l'uso nell'interfaccia utente.
+* `MonitoringEnabled`&ndash; Indica se il callback deve eseguire il codice personalizzato.
+* `CurrentState`&ndash; Descrive lo stato di monitoraggio corrente da utilizzare nell'interfaccia utente.
 
 Il metodo `InvokeChanged` è simile all'approccio precedente, ad eccezione del fatto che:
 
@@ -368,7 +368,7 @@ Se non è possibile reperire il contenuto memorizzato nella cache usando la chia
 1. Un token di modifica viene ottenuto dal provider di file con [IFileProviders.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*). Il callback del token viene attivato alla modifica del file.
 1. Il contenuto del file viene memorizzato nella cache con un periodo di [scadenza variabile](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration). Al token di modifica viene associato [MemoryCacheEntryExtensions.AddExpirationToken](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.AddExpirationToken*) per eliminare la voce della cache se il file viene modificato mentre è memorizzato nella cache.
 
-Nell'esempio seguente i file vengono archiviati nella [radice del contenuto](xref:fundamentals/index#content-root)dell'app. [IHostingEnvironment.ContentRootFileProvider](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootFileProvider) viene usato per ottenere un <xref:Microsoft.Extensions.FileProviders.IFileProvider> che punta al <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath> dell'app. `filePath` viene ottenuto con [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
+Nell'esempio seguente, i file vengono archiviati nella radice del [contenuto](xref:fundamentals/index#content-root)dell'app. [IHostingEnvironment.ContentRootFileProvider](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootFileProvider) viene usato per ottenere un <xref:Microsoft.Extensions.FileProviders.IFileProvider> che punta al <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath> dell'app. `filePath` viene ottenuto con [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Services/FileService.cs?name=snippet1)]
 

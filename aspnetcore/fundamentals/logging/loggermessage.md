@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 08/26/2019
 uid: fundamentals/logging/loggermessage
 ms.openlocfilehash: 48ebba69b5c15a0f9a42f7f6b3d2c1fcb0a2211c
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78663219"
 ---
 # <a name="high-performance-logging-with-loggermessage-in-aspnet-core"></a>Registrazione a prestazioni elevate con LoggerMessage in ASP.NET Core
@@ -25,7 +25,7 @@ Le funzionalità di <xref:Microsoft.Extensions.Logging.LoggerMessage> creano del
 * I metodi di estensione del logger richiedono una "conversione boxing" dei tipi di valori, ad esempio `int`, in `object`. <xref:Microsoft.Extensions.Logging.LoggerMessage> evita la conversione boxing usando campi <xref:System.Action> statici e metodi di estensione con parametri fortemente tipizzati.
 * I metodi di estensione del logger devono analizzare il modello di messaggio (stringa di formato denominata) ogni volta che viene scritto un messaggio del log. Solo <xref:Microsoft.Extensions.Logging.LoggerMessage> richiede una sola analisi del modello durante la definizione del messaggio.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ( come[scaricare](xref:index#how-to-download-a-sample))
 
 L'app di esempio illustra le funzionalità di <xref:Microsoft.Extensions.Logging.LoggerMessage> con un sistema di verifica delle offerte di base. L'app aggiunge ed elimina le offerte usando un database in memoria. Durante l'esecuzione di queste operazioni, i messaggi del log vengono generati usando <xref:Microsoft.Extensions.Logging.LoggerMessage>.
 
@@ -41,7 +41,7 @@ Ogni messaggio di log è un elemento <xref:System.Action> contenuto in un campo 
 
 Per <xref:System.Action>, specificare:
 
-* Livello di registrazione.
+* Il livello del log.
 * Un identificatore di evento univoco (<xref:Microsoft.Extensions.Logging.EventId>) con il nome del metodo di estensione statico.
 * Il modello di messaggio (stringa di formato denominata). 
 
@@ -83,7 +83,7 @@ Il metodo di estensione statico per l'aggiunta di un'offerta, `QuoteAdded`, rice
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-Nel modello della pagina di indice (*Pages/Index.cshtml.cs*) viene chiamato `QuoteAdded` per registrare il messaggio:
+Nel modello di pagina della pagina indice (*Pages/Index.cshtml.cs*), `QuoteAdded` viene chiamato per registrare il messaggio:
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
@@ -191,7 +191,7 @@ Le funzionalità di <xref:Microsoft.Extensions.Logging.LoggerMessage> creano del
 * I metodi di estensione del logger richiedono una "conversione boxing" dei tipi di valori, ad esempio `int`, in `object`. <xref:Microsoft.Extensions.Logging.LoggerMessage> evita la conversione boxing usando campi <xref:System.Action> statici e metodi di estensione con parametri fortemente tipizzati.
 * I metodi di estensione del logger devono analizzare il modello di messaggio (stringa di formato denominata) ogni volta che viene scritto un messaggio del log. Solo <xref:Microsoft.Extensions.Logging.LoggerMessage> richiede una sola analisi del modello durante la definizione del messaggio.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ( come[scaricare](xref:index#how-to-download-a-sample))
 
 L'app di esempio illustra le funzionalità di <xref:Microsoft.Extensions.Logging.LoggerMessage> con un sistema di verifica delle offerte di base. L'app aggiunge ed elimina le offerte usando un database in memoria. Durante l'esecuzione di queste operazioni, i messaggi del log vengono generati usando <xref:Microsoft.Extensions.Logging.LoggerMessage>.
 
@@ -207,7 +207,7 @@ Ogni messaggio di log è un elemento <xref:System.Action> contenuto in un campo 
 
 Per <xref:System.Action>, specificare:
 
-* Livello di registrazione.
+* Il livello del log.
 * Un identificatore di evento univoco (<xref:Microsoft.Extensions.Logging.EventId>) con il nome del metodo di estensione statico.
 * Il modello di messaggio (stringa di formato denominata). 
 
@@ -249,7 +249,7 @@ Il metodo di estensione statico per l'aggiunta di un'offerta, `QuoteAdded`, rice
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-Nel modello della pagina di indice (*Pages/Index.cshtml.cs*) viene chiamato `QuoteAdded` per registrare il messaggio:
+Nel modello di pagina della pagina indice (*Pages/Index.cshtml.cs*), `QuoteAdded` viene chiamato per registrare il messaggio:
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
@@ -352,4 +352,4 @@ info: LoggerMessageSample.Pages.IndexModel[4]
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Logging](xref:fundamentals/logging/index)
+* [Registrazione](xref:fundamentals/logging/index)

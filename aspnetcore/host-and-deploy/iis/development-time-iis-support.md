@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/iis/development-time-iis-support
 ms.openlocfilehash: f87a1d8cf41248f14932908c0633f98a7198853f
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78664045"
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>Supporto di IIS in fase di sviluppo in Visual Studio per ASP.NET Core
@@ -22,7 +22,7 @@ Di [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 Questo articolo descrive il supporto del debug di app ASP.NET Core in [Visual Studio](https://visualstudio.microsoft.com) durante l'esecuzione con IIS in Windows Server. Questo argomento illustra nel dettaglio l'abilitazione di questo scenario e la configurazione di un progetto.
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [Visual Studio per Windows](https://visualstudio.microsoft.com/downloads/)
 * **ASP.NET e carico di lavoro di sviluppo Web**
@@ -31,7 +31,7 @@ Questo articolo descrive il supporto del debug di app ASP.NET Core in [Visual St
 
 ## <a name="enable-iis"></a>Abilitare IIS
 
-1. In Windows passare a **Pannello di controllo** > **programmi** > **programmi e funzionalità** > **attivare o disattivare le funzionalità Windows** (lato sinistro dello schermo).
+1. In Windows passare a **Pannello di controllo** > **Programmi** > **Programmi e funzionalità** > **Attiva o disattiva funzionalità di Windows** (sul lato sinistro dello schermo).
 1. Selezionare la casella di controllo **Internet Information Services**. Selezionare **OK**.
 
 L'installazione di IIS potrebbe richiedere un riavvio del sistema.
@@ -40,7 +40,7 @@ L'installazione di IIS potrebbe richiedere un riavvio del sistema.
 
 IIS deve disporre di un sito Web configurato con gli elementi seguenti:
 
-* **Nome host** &ndash; in genere, il **sito Web predefinito** viene utilizzato con il **nome host** `localhost`. Tuttavia, è appropriato qualsiasi sito Web IIS valido con un nome host univoco.
+* **Nome host** &ndash; In genere viene usato il valore **Sito Web predefinito** come **Nome host** di `localhost`. Tuttavia, è appropriato qualsiasi sito Web IIS valido con un nome host univoco.
 * **Binding del sito**
   * Per le app che richiedono HTTPS, creare un binding alla porta 443 con un certificato. Viene in genere usato il **certificato di sviluppo di IIS Express**, ma può essere usato qualsiasi certificato valido.
   * Per le app che usano HTTP, verificare l'esistenza di un binding alla porta 80 o creare un binding alla porta 80 per un nuovo sito.
@@ -68,7 +68,7 @@ Per un progetto che usa HTTP, il [middleware di reindirizzamento HTTPS e HSTS](x
 
 Creare un nuovo profilo di avvio per aggiungere il supporto IIS in fase di sviluppo:
 
-1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**. Selezionare **Proprietà**. Aprire la scheda **Debug**.
+1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**. Selezionare **Proprietà**. Aprire la scheda **Debug.**
 1. Per **Profilo** selezionare il pulsante **Nuovo**. Denominare il profilo "IIS" nella finestra popup. Selezionare **OK** per creare il profilo.
 1. Per l'impostazione **Avvio** selezionare **IIS** dall'elenco.
 1. Selezionare la casella di controllo **Avvia browser** e specificare l'URL dell'endpoint.
@@ -137,7 +137,7 @@ Se viene usato un certificato di sviluppo non attendibile, il browser potrebbe r
 
 Questo articolo descrive il supporto del debug di app ASP.NET Core in [Visual Studio](https://visualstudio.microsoft.com) durante l'esecuzione con IIS in Windows Server. Questo argomento illustra nel dettaglio l'abilitazione di questo scenario e la configurazione di un progetto.
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [Visual Studio per Windows](https://visualstudio.microsoft.com/downloads/)
 * **ASP.NET e carico di lavoro di sviluppo Web**
@@ -146,7 +146,7 @@ Questo articolo descrive il supporto del debug di app ASP.NET Core in [Visual St
 
 ## <a name="enable-iis"></a>Abilitare IIS
 
-1. In Windows passare a **Pannello di controllo** > **programmi** > **programmi e funzionalità** > **attivare o disattivare le funzionalità Windows** (lato sinistro dello schermo).
+1. In Windows passare a **Pannello di controllo** > **Programmi** > **Programmi e funzionalità** > **Attiva o disattiva funzionalità di Windows** (sul lato sinistro dello schermo).
 1. Selezionare la casella di controllo **Internet Information Services**. Selezionare **OK**.
 
 L'installazione di IIS potrebbe richiedere un riavvio del sistema.
@@ -155,7 +155,7 @@ L'installazione di IIS potrebbe richiedere un riavvio del sistema.
 
 IIS deve disporre di un sito Web configurato con gli elementi seguenti:
 
-* **Nome host** &ndash; in genere, il **sito Web predefinito** viene utilizzato con il **nome host** `localhost`. Tuttavia, è appropriato qualsiasi sito Web IIS valido con un nome host univoco.
+* **Nome host** &ndash; In genere viene usato il valore **Sito Web predefinito** come **Nome host** di `localhost`. Tuttavia, è appropriato qualsiasi sito Web IIS valido con un nome host univoco.
 * **Binding del sito**
   * Per le app che richiedono HTTPS, creare un binding alla porta 443 con un certificato. Viene in genere usato il **certificato di sviluppo di IIS Express**, ma può essere usato qualsiasi certificato valido.
   * Per le app che usano HTTP, verificare l'esistenza di un binding alla porta 80 o creare un binding alla porta 80 per un nuovo sito.
@@ -183,7 +183,7 @@ Per un progetto che usa HTTP, il [middleware di reindirizzamento HTTPS e HSTS](x
 
 Creare un nuovo profilo di avvio per aggiungere il supporto IIS in fase di sviluppo:
 
-1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**. Selezionare **Proprietà**. Aprire la scheda **Debug**.
+1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**. Selezionare **Proprietà**. Aprire la scheda **Debug.**
 1. Per **Profilo** selezionare il pulsante **Nuovo**. Denominare il profilo "IIS" nella finestra popup. Selezionare **OK** per creare il profilo.
 1. Per l'impostazione **Avvio** selezionare **IIS** dall'elenco.
 1. Selezionare la casella di controllo **Avvia browser** e specificare l'URL dell'endpoint.

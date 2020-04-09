@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 08/05/2017
 uid: tutorials/first-mvc-app/adding-controller
 ms.openlocfilehash: fb670902b0dafa7dce2b3372e550095387844936
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78666992"
 ---
 # <a name="add-a-controller-to-an-aspnet-core-mvc-app"></a>Aggiungere un controller a un'app ASP.NET Core MVC
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -26,7 +26,7 @@ Il pattern architetturale Model-View-Controller (MVC) suddivide le app in tre co
 
 * **C**ontroller: classi che gestiscono le richieste del browser. Recuperano i dati del modello e chiamano i modelli di vista che restituiscono una risposta. In un'applicazione MVC, la vista presenta solo le informazioni; il controller gestisce e risponde all'input dell'utente e alle azioni di interazione. Ad esempio, il controller gestisce i valori dei dati della route e della stringa di query e li passa al modello. Il modello può usare questi valori per eseguire query sul database. Ad esempio, `https://localhost:5001/Home/Privacy` contiene come i dati della route `Home` (il controller) e `Privacy` (il metodo di azione da chiamare sul controller Home). `https://localhost:5001/Movies/Edit/5` è una richiesta di modificare il film con ID = 5 usando il controller di film. I dati della route vengono spiegati in seguito nell'esercitazione.
 
-Il pattern MVC consente di creare app che separano i diversi aspetti dell'app (logica di input, logica di business e logica dell'interfaccia utente), fornendo un accoppiamento libero tra questi elementi. Il pattern specifica il punto in cui deve risiedere ogni tipo di logica nell'app. La logica dell'interfaccia risiede nella visualizzazione, la logica di input risiede nel controller e la logica di business risiede nel modello. Questa separazione semplifica la complessità in fase di compilazione di un'app perché consente di lavorare su un aspetto dell'implementazione alla volta senza conseguenze sul codice di un altro aspetto. Ad esempio, è possibile usare il codice della vista senza dipendere dal codice della logica di business.
+Il pattern MVC consente di creare app che separano i diversi aspetti dell'app (logica di input, logica di business e logica dell'interfaccia utente), fornendo un accoppiamento libero tra questi elementi. Il pattern specifica il punto in cui deve risiedere ogni tipo di logica nell'app. La logica dell'interfaccia utente risiede nella vista. La logica di input risiede nel controller. La logica di business risiede nel modello. Questa separazione semplifica la complessità in fase di compilazione di un'app perché consente di lavorare su un aspetto dell'implementazione alla volta senza conseguenze sul codice di un altro aspetto. Ad esempio, è possibile usare il codice della vista senza dipendere dal codice della logica di business.
 
 Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono come compilare un'app per i film. Il progetto MVC contiene le cartelle per i *controller* e le *viste*.
 
@@ -34,8 +34,8 @@ Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Controller > Aggiungi > Controller**
-  ![Menu contestuale](adding-controller/_static/add_controller.png)
+* In **Esplora soluzioni**fare clic con il pulsante destro del mouse su **Controller > menu contestuale Aggiungi controller > controller**
+  ![](adding-controller/_static/add_controller.png)
 
 * Nella finestra di dialogo **Aggiungi scaffolding**, selezionare **Controller MVC - vuoto**
 
@@ -106,11 +106,11 @@ Eseguire l'app e passare a:
 
    `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-Sostituire `{PORT}` con il numero di porta. È possibile provare valori diversi per `name` e `numtimes` nell'URL. Il sistema di [associazione di modelli](xref:mvc/models/model-binding) MVC esegue il mapping dei parametri denominati dalla stringa di query nella barra degli indirizzi ai parametri nel metodo. Per altre informazioni, vedere [Associazione di modelli](xref:mvc/models/model-binding).
+(Sostituire `{PORT}` con il numero di porta.) È possibile provare `name` valori `numtimes` diversi per e nell'URL. Il sistema di [associazione di modelli](xref:mvc/models/model-binding) MVC esegue il mapping dei parametri denominati dalla stringa di query nella barra degli indirizzi ai parametri nel metodo. Per altre informazioni, vedere [Associazione di modelli](xref:mvc/models/model-binding).
 
-![Finestra del browser che mostra la risposta dell'applicazione Hello Rick, NumTimes è\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Finestra del browser che mostra una risposta\: dell'applicazione di Hello Rick, NumTimes è 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
-Nell'immagine precedente non viene usato il segmento di URL (`Parameters`), i parametri `name` e `numTimes` vengono passati nella [stringa di query](https://wikipedia.org/wiki/Query_string). Il `?` (punto interrogativo) nell'URL precedente è un separatore e la stringa di query seguente. Il carattere `&` separa le coppie campo-valore.
+Nell'immagine precedente, il`Parameters`segmento URL ( `name` ) `numTimes` non viene utilizzato, i parametri e vengono passati nella stringa di [query](https://wikipedia.org/wiki/Query_string). Il `?` (punto interrogativo) nell'URL precedente è un separatore e la stringa di query segue. Il `&` carattere separa le coppie campo-valore.
 
 Sostituire il metodo `Welcome` con il codice seguente:
 
@@ -125,8 +125,8 @@ Questa volta il terzo segmento di URL corrisponde al parametro di route `id`. Il
 In questi esempi il controller rappresenta la parte "VC" di MVC, ovvero il ruolo di **v**ista e **c**ontroller. Il controller restituisce direttamente l'HTML. In genere è preferibile che i controller non restituiscano direttamente l'HTML, dal momento che la codifica e la gestione sono molto complesse. In genere usare invece un file del modello di vista Razor separato per generare la risposta HTML. Questa operazione viene eseguita nell'esercitazione successiva.
 
 > [!div class="step-by-step"]
-> [Precedente](start-mvc.md)
-> [Successivo](adding-view.md)
+> [Successivo](start-mvc.md)
+> [precedente](adding-view.md)
 
 ::: moniker-end
 
@@ -140,7 +140,7 @@ Il pattern architetturale Model-View-Controller (MVC) suddivide le app in tre co
 
 * **C**ontroller: classi che gestiscono le richieste del browser. Recuperano i dati del modello e chiamano i modelli di vista che restituiscono una risposta. In un'applicazione MVC, la vista presenta solo le informazioni; il controller gestisce e risponde all'input dell'utente e alle azioni di interazione. Ad esempio, il controller gestisce i valori dei dati della route e della stringa di query e li passa al modello. Il modello può usare questi valori per eseguire query sul database. Ad esempio, `https://localhost:5001/Home/About` contiene come i dati della route `Home` (il controller) e `About` (il metodo di azione da chiamare sul controller Home). `https://localhost:5001/Movies/Edit/5` è una richiesta di modificare il film con ID = 5 usando il controller di film. I dati della route vengono spiegati in seguito nell'esercitazione.
 
-Il pattern MVC consente di creare app che separano i diversi aspetti dell'app (logica di input, logica di business e logica dell'interfaccia utente), fornendo un accoppiamento libero tra questi elementi. Il pattern specifica il punto in cui deve risiedere ogni tipo di logica nell'app. La logica dell'interfaccia risiede nella visualizzazione, la logica di input risiede nel controller e la logica di business risiede nel modello. Questa separazione semplifica la complessità in fase di compilazione di un'app perché consente di lavorare su un aspetto dell'implementazione alla volta senza conseguenze sul codice di un altro aspetto. Ad esempio, è possibile usare il codice della vista senza dipendere dal codice della logica di business.
+Il pattern MVC consente di creare app che separano i diversi aspetti dell'app (logica di input, logica di business e logica dell'interfaccia utente), fornendo un accoppiamento libero tra questi elementi. Il pattern specifica il punto in cui deve risiedere ogni tipo di logica nell'app. La logica dell'interfaccia utente risiede nella vista. La logica di input risiede nel controller. La logica di business risiede nel modello. Questa separazione semplifica la complessità in fase di compilazione di un'app perché consente di lavorare su un aspetto dell'implementazione alla volta senza conseguenze sul codice di un altro aspetto. Ad esempio, è possibile usare il codice della vista senza dipendere dal codice della logica di business.
 
 Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono come compilare un'app per i film. Il progetto MVC contiene le cartelle per i *controller* e le *viste*.
 
@@ -148,8 +148,8 @@ Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Controller > Aggiungi > Controller**
-  ![Menu contestuale](adding-controller/_static/add_controller.png)
+* In **Esplora soluzioni**fare clic con il pulsante destro del mouse su **Controller > menu contestuale Aggiungi controller > controller**
+  ![](adding-controller/_static/add_controller.png)
 
 * Nella finestra di dialogo **Aggiungi scaffolding**, selezionare **Controller MVC - vuoto**
 
@@ -225,11 +225,11 @@ Eseguire l'app e passare a:
 
    `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-Sostituire `{PORT}` con il numero di porta. È possibile provare valori diversi per `name` e `numtimes` nell'URL. Il sistema di [associazione di modelli](xref:mvc/models/model-binding) MVC esegue il mapping dei parametri denominati dalla stringa di query nella barra degli indirizzi ai parametri nel metodo. Per altre informazioni, vedere [Associazione di modelli](xref:mvc/models/model-binding).
+(Sostituire `{PORT}` con il numero di porta.) È possibile provare `name` valori `numtimes` diversi per e nell'URL. Il sistema di [associazione di modelli](xref:mvc/models/model-binding) MVC esegue il mapping dei parametri denominati dalla stringa di query nella barra degli indirizzi ai parametri nel metodo. Per altre informazioni, vedere [Associazione di modelli](xref:mvc/models/model-binding).
 
-![Finestra del browser che mostra la risposta dell'applicazione Hello Rick, NumTimes è\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Finestra del browser che mostra una risposta\: dell'applicazione di Hello Rick, NumTimes è 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
-Nell'immagine precedente non viene usato il segmento di URL (`Parameters`), i parametri `name` e `numTimes` vengono passati nella [stringa di query](https://wikipedia.org/wiki/Query_string). Il `?` (punto interrogativo) nell'URL precedente è un separatore e la stringa di query seguente. Il carattere `&` separa le coppie campo-valore.
+Nell'immagine precedente, il`Parameters`segmento URL ( `name` ) `numTimes` non viene utilizzato, i parametri e vengono passati nella stringa di [query](https://wikipedia.org/wiki/Query_string). Il `?` (punto interrogativo) nell'URL precedente è un separatore e la stringa di query segue. Il `&` carattere separa le coppie campo-valore.
 
 Sostituire il metodo `Welcome` con il codice seguente:
 
@@ -244,7 +244,7 @@ Questa volta il terzo segmento di URL corrisponde al parametro di route `id`. Il
 In questi esempi il controller rappresenta la parte "VC" di MVC, ovvero il ruolo di vista e controller. Il controller restituisce direttamente l'HTML. In genere è preferibile che i controller non restituiscano direttamente l'HTML, dal momento che la codifica e la gestione sono molto complesse. In genere usare invece un file del modello di vista Razor separato per generare la risposta HTML. Questa operazione viene eseguita nell'esercitazione successiva.
 
 > [!div class="step-by-step"]
-> [Precedente](start-mvc.md)
-> [Successivo](adding-view.md)
+> [Successivo](start-mvc.md)
+> [precedente](adding-view.md)
 
 ::: moniker-end

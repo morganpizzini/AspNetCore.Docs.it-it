@@ -1,7 +1,7 @@
 ---
-title: Crea la tua prima app Blazor
+title: Crea la Blazor tua prima app
 author: guardrex
-description: Creazione di un'app Blazor Step-by-Step.
+description: Crea Blazor un'app passo dopo passo.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
@@ -10,27 +10,27 @@ no-loc:
 - Blazor
 uid: tutorials/first-blazor-app
 ms.openlocfilehash: 138057c2ceb9ed01bdf958c01f5cf2275387df23
-ms.sourcegitcommit: 9b6e7f421c243963d5e419bdcfc5c4bde71499aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/21/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79989428"
 ---
-# <a name="build-your-first-opno-locblazor-app"></a>Crea la tua prima app Blazor
+# <a name="build-your-first-opno-locblazor-app"></a>Crea la Blazor tua prima app
 
 Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Questa esercitazione illustra come creare e modificare un'app Blazor.
+Questa esercitazione illustra come compilare e modificare un'app. Blazor
 
 ## <a name="build-components"></a>Compilare i componenti
 
-1. Per creare un progetto Blazor per questa esercitazione, seguire le istruzioni riportate nell'articolo <xref:blazor/get-started>. Denominare il progetto *ToDoList*.
+1. Seguire le indicazioni <xref:blazor/get-started> contenute Blazor nell'articolo per creare un progetto per questa esercitazione. Denominare il progetto *ToDoList*.
 
-1. Passare a ognuna delle tre pagine dell'app nella cartella *pages* : Home, Counter e fetch data. Queste pagine vengono implementate dai file dei componenti Razor *Index.razor*, *Counter.razor* e *FetchData.razor*.
+1. Passare a ognuna delle tre pagine dell'app nella cartella *Pagine:* Dati Home, Contatore e Recupera. Queste pagine vengono implementate dai file dei componenti Razor *Index.razor*, *Counter.razor* e *FetchData.razor*.
 
-1. Nella pagina Counter selezionare il pulsante **Click me** per incrementare il contatore senza un aggiornamento della pagina. Per incrementare un contatore in una pagina Web è in genere necessario scrivere JavaScript. Con Blazorè invece possibile scrivere C# .
+1. Nella pagina Counter selezionare il pulsante **Click me** per incrementare il contatore senza un aggiornamento della pagina. L'incremento di un contatore in una pagina Web richiede in genere la scrittura di JavaScript. Con Blazor, è invece possibile scrivere C .
 
 1. Esaminare l'implementazione del componente `Counter` nel file *Counter.razor*.
 
@@ -44,7 +44,7 @@ Questa esercitazione illustra come creare e modificare un'app Blazor.
 
    Quando viene selezionato il pulsante **Click me**:
 
-   * Viene chiamato il gestore `Counter` registrato del componente `onclick` (metodo `IncrementCount`).
+   * Viene chiamato il gestore `onclick` registrato del componente `Counter` (metodo `IncrementCount`).
    * Il componente `Counter` rigenera il relativo albero di rendering.
    * Il nuovo albero di rendering viene confrontato con quello precedente.
    * Vengono applicate solo le modifiche al modello DOM (Document Object Model). Il conteggio visualizzato viene aggiornato.
@@ -61,7 +61,7 @@ Includere un componente in un altro componente usando una sintassi HTML.
 
 1. Aggiungere il componente `Counter` al componente `Index` dell'app aggiungendo un elemento `<Counter />` al componente `Index` (*Index.razor*).
 
-   Se si usa Blazor webassembly per questa esperienza, il componente `Index` usa un componente di `SurveyPrompt`. Sostituire l'elemento `<SurveyPrompt>` con un elemento `<Counter />`. Se si usa un'app Server Blazor per questa esperienza, aggiungere l'elemento `<Counter />` al componente `Index`:
+   Se si utilizza Blazor WebAssembly per questa `SurveyPrompt` esperienza, un `Index` componente viene utilizzato dal componente. Sostituire l'elemento `<SurveyPrompt>` con un elemento `<Counter />`. Se si usa Blazor un'app Server per `<Counter />` questa esperienza, aggiungere l'elemento al `Index` componente:
 
    *Pages/Index.razor*:
 
@@ -71,12 +71,12 @@ Includere un componente in un altro componente usando una sintassi HTML.
 
 ## <a name="component-parameters"></a>Parametri del componente
 
-I componenti possono avere anche parametri, I parametri del componente vengono definiti usando proprietà pubbliche nella classe Component con l'attributo `[Parameter]`. Usare gli attributi per specificare gli argomenti per un componente nel markup.
+I componenti possono avere anche parametri, I parametri del componente vengono definiti utilizzando `[Parameter]` le proprietà pubbliche nella classe del componente con l'attributo . Usare gli attributi per specificare gli argomenti per un componente nel markup.
 
-1. Aggiornare il codice `@code` C# del componente come segue:
+1. Aggiornare il `@code` codice C' del componente come segue:
 
-   * Aggiungere una proprietà `IncrementAmount` pubblica con l'attributo `[Parameter]`.
-   * Modificare il metodo `IncrementCount` per utilizzare la proprietà `IncrementAmount` quando si aumenta il valore di `currentCount`.
+   * Aggiungere una `IncrementAmount` proprietà `[Parameter]` pubblica con l'attributo .
+   * Modificare `IncrementCount` il metodo `IncrementAmount` in modo da `currentCount`utilizzare la proprietà quando si aumenta il valore di .
 
    *Pages/Counter.razor*:
 
@@ -87,7 +87,7 @@ I componenti possono avere anche parametri, I parametri del componente vengono d
        > From Visual Studio, you can quickly add a component parameter by using the `para` snippet. Type `para` and press the `Tab` key twice.
    -->
 
-1. Specificare un parametro `IncrementAmount` nell'elemento `Index` del componente `<Counter>` usando un attributo. Impostare il valore per incrementare il contatore di dieci unità.
+1. Specificare un parametro `IncrementAmount` nell'elemento `<Counter>` del componente `Index` usando un attributo. Impostare il valore per incrementare il contatore di dieci unità.
 
    *Pages/Index.razor*:
 
@@ -99,15 +99,15 @@ I componenti possono avere anche parametri, I parametri del componente vengono d
 
 La direttiva `@page` all'inizio del file *Counter.razor* specifica che il componente `Counter` è un endpoint di routing. Il componente `Counter` gestisce le richieste inviate a `/counter`. Senza la direttiva `@page`, un componente non gestisce le richieste instradate, ma può comunque essere usato da altri componenti.
 
-## <a name="dependency-injection"></a>Inserimento di dipendenze
+## <a name="dependency-injection"></a>Inserimento delle dipendenze
 
-### <a name="opno-locblazor-server-experience"></a>esperienza del server Blazor
+### <a name="opno-locblazor-server-experience"></a>BlazorEsperienza server
 
-Se si usa un'app Server Blazor, il servizio `WeatherForecastService` viene registrato come [singleton](xref:fundamentals/dependency-injection#service-lifetimes) in `Startup.ConfigureServices`. Un'istanza del servizio è disponibile in tutte le app tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection):
+Se si Blazor utilizza un'app Server, il `WeatherForecastService` servizio viene registrato come [singleton](xref:fundamentals/dependency-injection#service-lifetimes) in `Startup.ConfigureServices`. Un'istanza del servizio è disponibile in tutta l'app tramite inserimento delle [dipendenze (DI)](xref:fundamentals/dependency-injection):
 
 [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-La direttiva `@inject` viene utilizzata per inserire l'istanza del servizio `WeatherForecastService` nel componente `FetchData`.
+La `@inject` direttiva viene utilizzata per `WeatherForecastService` inserire `FetchData` l'istanza del servizio nel componente.
 
 *Pages/FetchData.razor*:
 
@@ -117,15 +117,15 @@ Il componente `FetchData` usa il servizio inserito, come `ForecastService`, per 
 
 [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
 
-### <a name="opno-locblazor-webassembly-experience"></a>esperienza Blazor webassembly
+### <a name="opno-locblazor-webassembly-experience"></a>BlazorEsperienza WebAssembly
 
-Se si usa un'app webassembly Blazor, viene inserito `HttpClient` per ottenere i dati delle previsioni meteo dal file *Weather. JSON* nella cartella *wwwroot/Sample-Data* .
+Se si Blazor utilizza un'app WebAssembly, `HttpClient` viene inserito l'immissione per ottenere i dati delle previsioni meteo dal file *weather.json* nella cartella *wwwroot/sample-data.*
 
 *Pages/FetchData.razor*:
 
 [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-8)]
 
-Viene usato un ciclo [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) per eseguire il rendering di ogni istanza di previsione come riga nella tabella dei dati meteorologici:
+Un [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) ciclo viene utilizzato per eseguire il rendering di ogni istanza di previsione come riga nella tabella dei dati meteo:An loop is used to render each forecast instance as a row in the table of weather data:
 
 [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData3.razor?highlight=11-19)]
 
@@ -133,7 +133,7 @@ Viene usato un ciclo [`@foreach`](/dotnet/csharp/language-reference/keywords/for
 
 Aggiungere all'app un nuovo componente che implementa un semplice elenco attività.
 
-1. Aggiungere un nuovo componente `Todo` Razor all'app nella cartella *pages* . In Visual Studio fare clic con il pulsante destro del mouse sulla cartella **pagine** e scegliere **Aggiungi** > **nuovo elemento** > **componente Razor**. Denominare il file del componente *todo. Razor*. In altri ambienti di sviluppo aggiungere un file vuoto alla cartella **pages** denominata *todo. Razor*.
+1. Aggiungi un `Todo` nuovo componente Razor all'app nella cartella *Pages.* In Visual Studio fare clic con il pulsante destro del mouse sulla cartella **Pages** e scegliere **Aggiungi** > **nuovo** > **componente Razor**elemento . Assegnare al file del componente il nome *Todo.razor*. In altri ambienti di sviluppo, aggiungere un file vuoto alla cartella **Pages** denominata *Todo.razor*.
 
 1. Specificare il markup iniziale per il componente:
 

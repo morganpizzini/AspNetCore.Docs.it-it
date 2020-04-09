@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/migrations
 ms.openlocfilehash: 86fd83c898fce8e121e4d259aaca12c59591e606
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656534"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---migrations---4-of-8"></a>Razor Pages con EF Core in ASP.NET Core - Migrazioni - 4 di 8
 
-Di [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
+[Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
@@ -42,7 +42,7 @@ Drop-Database
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Al prompt dei comandi eseguire il comando seguente per installare l'interfaccia della riga di comando EF:
+* Eseguire il comando seguente al prompt dei comandi per installare l'interfaccia della riga di comando di EF:
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef
@@ -104,7 +104,7 @@ Il parametro del nome della migrazione, nell'esempio "InitialCreate", viene usat
 
 Le migrazioni creano uno *snapshot* del modello di dati corrente in *Migrations/SchoolContextModelSnapshot.cs*. Quando si aggiunge una migrazione, EF determina le modifiche apportate confrontando il modello di dati corrente con il file dello snapshot.
 
-Poiché il file di snapshot tiene traccia dello stato del modello di dati, non è possibile eliminare una migrazione eliminando il file `<timestamp>_<migrationname>.cs`. Per eliminare la migrazione più recente, è necessario usare il comando `migrations remove`. Tale comando elimina la migrazione e garantisce che lo snapshot venga reimpostato correttamente. Per altre informazioni, vedere [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
+Poiché il file di snapshot tiene traccia dello stato del modello di dati, non è possibile eliminare una migrazione eliminando il file `<timestamp>_<migrationname>.cs`. Per eliminare la migrazione più recente, è necessario usare il comando `migrations remove`. Tale comando elimina la migrazione e garantisce che lo snapshot venga reimpostato correttamente. Per ulteriori informazioni, vedere [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
 ## <a name="remove-ensurecreated"></a>Rimuovere EnsureCreated
 
@@ -128,7 +128,7 @@ La migrazione del database deve essere eseguita come parte della distribuzione e
 * Uso delle migrazioni per creare script SQL e uso degli script SQL nella distribuzione.
 * Esecuzione di `dotnet ef database update` da un ambiente controllato.
 
-## <a name="troubleshooting"></a>risoluzione dei problemi
+## <a name="troubleshooting"></a>Risoluzione dei problemi
 
 Se l'app usa SQL Server Local DB e visualizza l'eccezione seguente:
 
@@ -150,8 +150,8 @@ Login failed for user 'user name'.
 L'esercitazione successiva compila il modello di dati, aggiungendo le proprietà delle entità e le nuove entità.
 
 > [!div class="step-by-step"]
-> [Esercitazione precedente](xref:data/ef-rp/sort-filter-page)
-> [Esercitazione successiva](xref:data/ef-rp/complex-data-model)
+> [Esercitazione](xref:data/ef-rp/sort-filter-page)
+> precedente[Esercitazione successiva](xref:data/ef-rp/complex-data-model)
 
 ::: moniker-end
 
@@ -253,7 +253,7 @@ Remove-Migration
 dotnet ef migrations remove
 ```
 
-Per altre informazioni, vedere [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
+Per ulteriori informazioni, vedere [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
 ---
 
@@ -293,7 +293,7 @@ La migrazione del database deve essere eseguita come parte della distribuzione e
 
 EF Core usa la tabella `__MigrationsHistory` per stabilire se è necessario eseguire migrazioni. Se il database è aggiornato, non viene eseguita alcuna migrazione.
 
-## <a name="troubleshooting"></a>risoluzione dei problemi
+## <a name="troubleshooting"></a>Risoluzione dei problemi
 
 Scaricare l'[app completa](
 https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/cu-part4-migrations).
@@ -311,14 +311,14 @@ Soluzione: eseguire `dotnet ef database update`
 ### <a name="additional-resources"></a>Risorse aggiuntive
 
 * [Versione YouTube dell'esercitazione](https://www.youtube.com/watch?v=OWSUuMLKTJo)
-* [Interfaccia della riga di comando di .NET Core](/ef/core/miscellaneous/cli/dotnet)
+* [.NET Core CLI](/ef/core/miscellaneous/cli/dotnet).
 * [Console di Gestione pacchetti (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
 
 
 > [!div class="step-by-step"]
-> [Precedente](xref:data/ef-rp/sort-filter-page)
-> [Successivo](xref:data/ef-rp/complex-data-model)
+> [Successivo](xref:data/ef-rp/sort-filter-page)
+> [precedente](xref:data/ef-rp/complex-data-model)
 
 ::: moniker-end
 

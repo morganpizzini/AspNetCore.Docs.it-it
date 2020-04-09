@@ -6,10 +6,10 @@ ms.author: riande
 ms.date: 7/22/2019
 uid: tutorials/razor-pages/sql
 ms.openlocfilehash: b5acb573f8fa39e5300ecdb359113d8697d78934
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78664339"
 ---
 # <a name="work-with-a-database-and-aspnet-core"></a>Usare un database e ASP.NET Core
@@ -26,13 +26,13 @@ L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al databa
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 ---
 
-Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal file *appsettings.json*.
+Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal file *appsettings.json.*
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -40,7 +40,7 @@ Il valore del nome per il database (`Database={Database name}`) sarà diverso pe
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json?highlight=10-12)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
@@ -71,7 +71,7 @@ Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, 
 
   ![Tabella Movie aperta con i dati della tabella](sql/_static/vd22.png)
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
@@ -84,7 +84,7 @@ Creare una nuova classe denominata `SeedData` nella cartella *Models* usando il 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
-Se sono presenti eventuali film nel database, l'inizializzatore di valore viene restituito e non vengono aggiunti film.
+Se sono presenti eventuali film nel database, l'inizializzatore del valore di inizializzazione viene restituito e non vengono aggiunti film.
 
 ```csharp
 if (context.Movie.Any())
@@ -107,7 +107,7 @@ Il codice seguente illustra il file *Program.cs* aggiornato.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
 
-Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente:
+La seguente eccezione si verifica quando `Update-Database` non è stata eseguita:
 
 > `SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
 > `Login failed for user 'user name'.`
@@ -116,10 +116,10 @@ Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Eliminare tutti i record nel database. È possibile eseguire questa operazione con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+* Eliminare tutti i record nel database. È possibile farlo con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Forzare l'inizializzazione dell'app (chiamare i metodi nella classe `Startup`) in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. È possibile eseguire questa operazione adottando uno degli approcci seguenti:
 
-  * Fare clic con il pulsante destro del mouse sull'icona dell'area di notifica di IIS Express e toccare **Esci** o **Arresta sito**:
+  * Fare clic con il pulsante destro del mouse sull'icona della barra delle applicazioni iIS Express nell'area di notifica e toccare **Esci** o **Arresta sito**:
 
     ![Icona dell'area di notifica di IIS Express](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
@@ -128,7 +128,7 @@ Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente
     * Se Visual Studio è in esecuzione in modalità non di debug, premere F5 per attivare la modalità di debug.
     * Se Visual Studio è in esecuzione in modalità di debug, arrestare il debugger e premere F5.
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Eliminare tutti i record del database; verrà quindi eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
 
@@ -141,8 +141,8 @@ L'esercitazione successiva consentirà di migliorare la presentazione dei dati.
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 > [!div class="step-by-step"]
-> [Articolo precedente: Pagine Razor di scaffolding](xref:tutorials/razor-pages/page)
-> [Articolo successivo: Aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
+> [Precedente: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+> [Next: Aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
 
@@ -156,7 +156,7 @@ L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al databa
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
@@ -167,7 +167,7 @@ Per altre informazioni sui metodi usati in `ConfigureServices`, vedere:
 * [Supporto per il Regolamento generale sulla protezione dei dati (GDPR) dell'Unione Europea in ASP.NET Core](xref:security/gdpr) per `CookiePolicyOptions`.
 * [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
-Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal file *appsettings.json*.
+Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal file *appsettings.json.*
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -228,7 +228,7 @@ Creare una nuova classe denominata `SeedData` nella cartella *Models* usando il 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
 
-Se sono presenti eventuali film nel database, l'inizializzatore di valore viene restituito e non vengono aggiunti film.
+Se sono presenti eventuali film nel database, l'inizializzatore del valore di inizializzazione viene restituito e non vengono aggiunti film.
 
 ```csharp
 if (context.Movie.Any())
@@ -260,7 +260,7 @@ Accesso non riuscito per l'utente "nome-utente".
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Eliminare tutti i record nel database. È possibile eseguire questa operazione con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+* Eliminare tutti i record nel database. È possibile farlo con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Forzare l'inizializzazione dell'app (chiamare i metodi nella classe `Startup`) in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. È possibile eseguire questa operazione adottando uno degli approcci seguenti:
 
   * Fare clic con il pulsante destro del mouse sull'icona dell'area di notifica di IIS Express e toccare **Esci** o **Arresta sito**:
@@ -297,7 +297,7 @@ L'esercitazione successiva consentirà di pulire la presentazione dei dati.
 * [Versione YouTube dell'esercitazione](https://youtu.be/A_5ff11sDHY)
 
 > [!div class="step-by-step"]
-> [Articolo precedente: Pagine Razor di scaffolding](xref:tutorials/razor-pages/page)
-> [Articolo successivo: Aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
+> [Precedente: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+> [Next: Aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end

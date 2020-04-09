@@ -7,15 +7,15 @@ ms.author: riande
 ms.date: 07/04/2019
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ms.openlocfilehash: 1043a578f66d5bb57f4a81e9fe21afa5e3c37cb8
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78665186"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 `dotnet aspnet-codegenerator` - Esegue il motore di scaffolding di ASP.NET Core. `dotnet aspnet-codegenerator` è necessario solo per eseguire lo scaffolding dalla riga di comando. Non è necessario per usare lo scaffolding con Visual Studio.
 
@@ -98,7 +98,7 @@ Nelle sezioni seguenti vengono descritte in dettaglio le opzioni disponibili per
 * Controller
 * Identità  
 * Razorpage
-* Visualizza
+* Visualizzazione
 
 <a name="area"></a>
 
@@ -115,13 +115,13 @@ Il comando precedente genera le cartelle seguenti:
     * *Controller*
     * *Dati*
     * *Modelli*
-    * *Visualizzazioni*
+    * *Viste*
 
 <a name="ctl"></a>
 
 ### <a name="controller-options"></a>Opzioni per controller
 
-Nella tabella seguente sono elencate le opzioni per `aspnet-codegenerator` `controller` e `razorpage`:
+Nella tabella seguente `aspnet-codegenerator` `controller` sono `razorpage`elencate le opzioni per e :
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 
@@ -170,7 +170,7 @@ In genere, il modello e il nome di file generato non vengono specificati e vengo
 * `Details`
 * `List`
 
-Nella tabella seguente sono elencate le opzioni per `aspnet-codegenerator` `razorpage` e `controller`:
+Nella tabella seguente `aspnet-codegenerator` `razorpage` sono `controller`elencate le opzioni per e :
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 

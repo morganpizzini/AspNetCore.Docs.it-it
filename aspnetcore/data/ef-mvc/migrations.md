@@ -1,5 +1,5 @@
 ---
-title: 'Esercitazione: uso della funzionalità Migrations-ASP.NET MVC con EF Core'
+title: 'Esercitazione: Utilizzo della funzionalità migrazioni - ASP.NET MVC con EF CoreTutorial: Using the migrations feature - ASP.NET MVC with EF Core'
 description: In questa esercitazione si inizia a usare la funzionalità delle migrazioni EF Core per la gestione delle modifiche al modello di dati in un'applicazione ASP.NET Core MVC.
 author: rick-anderson
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/migrations
 ms.openlocfilehash: 8b3417205457a5ce5fa16994701a06e2a4d7d350
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78665725"
 ---
-# <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Esercitazione: uso della funzionalità Migrations-ASP.NET MVC con EF Core
+# <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Esercitazione: Utilizzo della funzionalità migrazioni - ASP.NET MVC con EF CoreTutorial: Using the migrations feature - ASP.NET MVC with EF Core
 
 In questa esercitazione si inizia a usare la funzionalità delle migrazioni EF Core per la gestione delle modifiche al modello di dati. Nelle esercitazioni successive si aggiungeranno altre migrazioni quando si modifica il modello di dati.
 
@@ -28,7 +28,7 @@ In questa esercitazione:
 > * Esaminare lo snapshot del modello di dati
 > * Applicare la migrazione
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [Ordinamento, filtro e suddivisione in pagine](sort-filter-page.md)
 
@@ -38,7 +38,7 @@ Quando si sviluppa una nuova applicazione, il modello di dati cambia di frequent
 
 Questo metodo che consiste nel mantenere il database sincronizzato con il modello di dati funziona bene fino a quando non si distribuisce l'applicazione nell'ambiente di produzione. Quando l'applicazione è in esecuzione nell'ambiente di produzione in genere archivia dati che devono essere mantenuti ed è necessario evitare di perdere tutto ad ogni modifica, come ad esempio all'aggiunta di una colonna. La funzionalità delle migrazioni di EF Core risolve questo problema consentendo a EF Core di aggiornare lo schema del database anziché crearne uno nuovo.
 
-Per lavorare con le migrazioni, è possibile usare la **console di gestione pacchetti** (PMC) o l'interfaccia della riga di comando.  Queste esercitazioni illustrano come usare i comandi dell'interfaccia della riga di comando. Per informazioni sulla Console di Gestione pacchetti, vedere [la fine di questa esercitazione](#pmc).
+Per utilizzare le migrazioni, è possibile utilizzare la Console di **gestione pacchetti** (PMC) o l'interfaccia della riga di comando.  Queste esercitazioni illustrano come usare i comandi dell'interfaccia della riga di comando. Per informazioni sulla Console di Gestione pacchetti, vedere [la fine di questa esercitazione](#pmc).
 
 ## <a name="change-the-connection-string"></a>Modificare la stringa di connessione
 
@@ -49,7 +49,7 @@ Nel file *appsettings.json* cambiare il nome del database nella stringa di conne
 Questa modifica configura il progetto in modo che la prima migrazione crei un nuovo database. Questa operazione non è necessaria per iniziare a usare le migrazioni, ma si capirà più avanti perché è utile eseguirla.
 
 > [!NOTE]
-> In alternativa alla modifica del nome del database, è possibile eliminare il database. Usare **Esplora oggetti di SQL Server** o il comando della CLI `database drop`:
+> In alternativa alla modifica del nome del database, è possibile eliminare il database. Usare **Esplora oggetti di SQL Server** (SSOX) o il comando CLI `database drop`:
 >
 > ```dotnetcli
 > dotnet ef database drop
@@ -84,9 +84,9 @@ Done. To undo this action, use 'ef migrations remove'
 ```
 
 > [!NOTE]
-> Se viene visualizzato un messaggio di errore che indica che *non sono stati trovati eseguibili corrispondenti al comando "dotnet-ef"* , vedere [il post di questo blog](https://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/) per risolvere il problema.
+> Se viene visualizzato un messaggio di errore che indica che *non sono stati trovati eseguibili corrispondenti al comando "dotnet-ef"*, vedere [il post di questo blog](https://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/) per risolvere il problema.
 
-Se viene visualizzato un messaggio di errore "*Impossibile accedere al file... ContosoUniversity. dll perché è in uso da un altro processo.* ", trovare l'icona IIS Express nella barra delle applicazioni di Windows e fare clic con il pulsante destro del mouse su di essa, quindi fare clic su **ContosoUniversity > arresta sito**.
+Se viene visualizzato un messaggio di errore "*non può accedere al file ... ContosoUniversity.dll perché è utilizzato da un altro processo.*", individuare l'icona di IIS Express nella barra delle applicazioni di Windows e fare clic con il pulsante destro del mouse su di essa, quindi scegliere **ContosoUniversity > Arrest Site**.
 
 ## <a name="examine-up-and-down-methods"></a>Esaminare i metodi Up e Down
 
@@ -104,7 +104,7 @@ Se la migrazione iniziale è stata creata quando il database esisteva già, il c
 
 Le migrazioni creano uno *snapshot* dello schema del database corrente in *Migrations/SchoolContextModelSnapshot.cs*. Quando si aggiunge una migrazione, EF determina le modifiche apportate confrontando il modello di dati con il file dello snapshot.
 
-Usare il comando [DotNet EF Migrations Remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) per rimuovere una migrazione. `dotnet ef migrations remove` elimina la migrazione e garantisce che lo snapshot venga reimpostato correttamente. Se `dotnet ef migrations remove` ha esito negativo, utilizzare `dotnet ef migrations remove -v` per ottenere ulteriori informazioni sull'errore.
+Utilizzare il [comando dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) per rimuovere una migrazione. `dotnet ef migrations remove` elimina la migrazione e garantisce che lo snapshot venga reimpostato correttamente. Se `dotnet ef migrations remove` non `dotnet ef migrations remove -v` riesce, utilizzare per ottenere ulteriori informazioni sull'errore.
 
 Per altre informazioni sull'uso del file di snapshot, vedere [EF Core Migrations in Team Environments](/ef/core/managing-schemas/migrations/teams) (Migrazioni EF Core in ambienti team).
 
@@ -178,7 +178,7 @@ In questa esercitazione:
 > [!div class="checklist"]
 > * Sono state descritte le migrazioni
 > * Sono stati presentati i pacchetti di migrazione NuGet
-> * È stata modificata la stringa di connessione
+> * Modifica della stringa di connessione
 > * È stata creata una migrazione iniziale
 > * Sono stati esaminati i metodi Up e Down
 > * È stato esaminato lo snapshot del modello di dati

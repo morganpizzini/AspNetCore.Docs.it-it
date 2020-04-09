@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 11/12/2019
 uid: tutorials/razor-pages/razor-pages-start
 ms.openlocfilehash: 6e1d58ccd83f7d7c1083dc2bf9ce7476650812a1
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78658543"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Esercitazione: Introduzione all'uso di Razor Pages in ASP.NET Core
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 Questa è la prima esercitazione di una serie che illustra i concetti di base per la creazione di un'app Web ASP.NET Core Razor Pages.
@@ -36,7 +36,7 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
 
 ![Pagina Home o di indice](razor-pages-start/_static/home2.2.png)
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -56,13 +56,13 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Scegliere **nuovo** > **progetto**dal menu **file** di Visual Studio.
+* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto**.
 * Creare una nuova applicazione Web ASP.NET Core e selezionare **Avanti**.
   ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/np_2.1.png)
 * Denominare il progetto **RazorPagesMovie**. È importante denominare il progetto *RazorPagesMovie* in modo che gli spazi dei nomi corrispondano nell'operazione copia/incolla del codice.
   ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Selezionare **ASP.NET Core 3,1** nell'elenco a discesa, **applicazione Web**, quindi selezionare **Crea**.
+* Selezionare **ASP.NET Core 3.1** nell'elenco a discesa **Applicazione Web**, quindi selezionare **Crea**.
 
 ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/3/npx.png)
 
@@ -86,23 +86,23 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
   * Il comando `dotnet new` crea un nuovo progetto Razor Pages nella cartella *RazorPagesMovie*.
   * Il comando `code` apre la cartella *RazorPagesMovie* nell'istanza corrente di Visual Studio Code.
 
-* Dopo che l'icona di OmniSharp Flame della barra di stato è verde, una finestra di dialogo richiede che le **risorse necessarie per la compilazione e il debug siano mancanti da' RazorPagesMovie '. Aggiungerli?** Selezionare **Sì**.
+* Dopo che l'icona di fiamma OmniSharp della barra di stato diventa verde, una finestra di dialogo chiede **alle risorse necessarie di compilare e debug mancano da 'RazorPagesMovie'. Aggiungerli?** Selezionare **Sì**.
 
   Una directory *.vscode* che contiene i file *launch.json* e *tasks.json* viene aggiunta alla directory radice del progetto.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Selezionare **File** > **nuova soluzione**.
+* Selezionare **File** > **Nuova soluzione**.
 
 ![Nuova soluzione macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* Selezionare l' **applicazione Web** **.NET Core** > **app** > > **Avanti**.
+* Selezionare **.NET Core** > **App** > **Applicazione Web** > **Avanti**.
 
   ![Finestra di dialogo Nuovo progetto di macOS](razor-pages-start/_static/webapp.png)
 
-* Nella finestra di dialogo **Configura nuova applicazione Web** impostare il **Framework di destinazione** su **.NET Core 3,1**.
+* Nella finestra di dialogo **Configura nuova applicazione Web impostare** Framework di **destinazione** su **.NET Core 3.1**.
 
-  ![selezione di macOS .NET Core 3,1](razor-pages-start/_static/targetframework3.png)
+  ![Selezione di macOS .NET Core 3.1](razor-pages-start/_static/targetframework3.png)
 
 * Denominare il progetto **RazorPagesMovie**, quindi selezionare **Crea**.
 
@@ -127,7 +127,7 @@ Contiene le pagine Razor e i file di supporto. Ogni pagina Razor è una coppia d
 * Un file con estensione *cshtml* contenente il markup HTML con codice C# che usa la sintassi Razor.
 * Un file con estensione *cshtml.cs* contenente il codice C# per la gestione degli eventi della pagina.
 
-I nomi dei file di supporto iniziano con un carattere di sottolineatura. Ad esempio, il file *_Layout.cshtml* configura elementi dell'interfaccia utente comuni a tutte le pagine. Questo file imposta il menu di navigazione nella parte superiore della pagina e le informazioni sul copyright in fondo alla pagina. Per altre informazioni, vedere <xref:mvc/views/layout>.
+I nomi dei file di supporto iniziano con un carattere di sottolineatura. Ad esempio, il file *_Layout.cshtml* configura gli elementi dell'interfaccia utente comuni a tutte le pagine. Questo file imposta il menu di navigazione nella parte superiore della pagina e le informazioni sul copyright in fondo alla pagina. Per altre informazioni, vedere <xref:mvc/views/layout>.
 
 ### <a name="wwwroot-folder"></a>Cartella wwwroot
 
@@ -177,7 +177,7 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
 
 ![Pagina Home o di indice](razor-pages-start/_static/home2.2.png)
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -197,7 +197,7 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Scegliere **nuovo** > **progetto**dal menu **file** di Visual Studio.
+* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto**.
 
 * Creare una nuova applicazione Web ASP.NET Core e selezionare **Avanti**.
 
@@ -207,7 +207,7 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
 
   ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Selezionare **ASP.NET Core 2.2** nell'elenco a discesa **Applicazione Web** e quindi selezionare **Crea**.
+* Selezionare** ASP.NET Core 2.2** nell'elenco a discesa **Applicazione Web** e quindi selezionare **Crea**.
 
 ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/np_2_2.2.png)
 
@@ -231,21 +231,21 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
   * Il comando `dotnet new` crea un nuovo progetto Razor Pages nella cartella *RazorPagesMovie*.
   * Il comando `code` apre la cartella *RazorPagesMovie* nell'istanza corrente di Visual Studio Code.
 
-* Dopo che l'icona di OmniSharp Flame della barra di stato è verde, una finestra di dialogo richiede che le **risorse necessarie per la compilazione e il debug siano mancanti da' RazorPagesMovie '. Aggiungerli?** Selezionare **Sì**.
+* Dopo che l'icona di fiamma OmniSharp della barra di stato diventa verde, una finestra di dialogo chiede **alle risorse necessarie di compilare e debug mancano da 'RazorPagesMovie'. Aggiungerli?** Selezionare **Sì**.
 
   Una directory *.vscode* che contiene i file *launch.json* e *tasks.json* viene aggiunta alla directory radice del progetto.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Selezionare **File** > **nuova soluzione**.
+* Selezionare **File** > **Nuova soluzione**.
 
 ![Nuova soluzione macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* Selezionare l' **applicazione Web** **.NET Core** > **app** > > **Avanti**.
+* Selezionare **.NET Core** > **App** > **Applicazione Web** > **Avanti**.
 
   ![Finestra di dialogo Nuovo progetto di macOS](razor-pages-start/_static/webapp.png)
 
-* Nella finestra di dialogo **configurare la nuova ASP.NET Core API Web** impostare il **Framework di destinazione** su **.NET Core 3,1**.
+* Nella finestra di dialogo **Configura il nuovo ASP.NET API Web Core impostare** Framework di **destinazione** su **.NET Core 3.1**.
 
   ![Selezione di .NET Core 3.0 per macOS](razor-pages-start/_static/targetframework3.png)
 
@@ -328,7 +328,7 @@ Contiene le pagine Razor e i file di supporto. Ogni pagina Razor è una coppia d
 * Un file con estensione *cshtml* contenente il markup HTML con codice C# che usa la sintassi Razor.
 * Un file con estensione *cshtml.cs* contenente il codice C# per la gestione degli eventi della pagina.
 
-I nomi dei file di supporto iniziano con un carattere di sottolineatura. Ad esempio, il file *_Layout.cshtml* configura elementi dell'interfaccia utente comuni a tutte le pagine. Questo file imposta il menu di navigazione nella parte superiore della pagina e le informazioni sul copyright in fondo alla pagina. Per altre informazioni, vedere <xref:mvc/views/layout>.
+I nomi dei file di supporto iniziano con un carattere di sottolineatura. Ad esempio, il file *_Layout.cshtml* configura gli elementi dell'interfaccia utente comuni a tutte le pagine. Questo file imposta il menu di navigazione nella parte superiore della pagina e le informazioni sul copyright in fondo alla pagina. Per altre informazioni, vedere <xref:mvc/views/layout>.
 
 ### <a name="wwwroot-folder"></a>Cartella wwwroot
 
@@ -348,7 +348,7 @@ Contiene codice che configura il comportamento dell'app, ad esempio se richiede 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Versione YouTube dell'esercitazione](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
+* [Versione Youtube di questo tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
 
 ## <a name="next-steps"></a>Passaggi successivi
 

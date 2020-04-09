@@ -1,5 +1,5 @@
 ---
-title: 'Esercitazione: gestire la concorrenza ASP.NET MVC con EF Core'
+title: 'Esercitazione: Gestire la concorrenza - ASP.NET MVC con EF CoreTutorial: Handle concurrency - ASP.NET MVC with EF Core'
 description: Questa esercitazione descrive la gestione dei conflitti quando più utenti aggiornano la stessa entità contemporaneamente.
 author: rick-anderson
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/concurrency
 ms.openlocfilehash: 6839e383093b993ff55095f26cf88cd68708f001
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657395"
 ---
-# <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Esercitazione: gestire la concorrenza ASP.NET MVC con EF Core
+# <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Esercitazione: Gestire la concorrenza - ASP.NET MVC con EF CoreTutorial: Handle concurrency - ASP.NET MVC with EF Core
 
 Nelle esercitazioni precedenti è stato descritto come aggiornare i dati. Questa esercitazione descrive la gestione dei conflitti quando più utenti aggiornano la stessa entità contemporaneamente.
 
@@ -34,10 +34,10 @@ In questa esercitazione:
 > * Aggiornare i metodi Edit
 > * Aggiornare la visualizzazione Edit
 > * Testare i conflitti di concorrenza
-> * Aggiornare la pagina Delete
+> * Aggiornare la pagina Delete (Elimina)
 > * Aggiornare le visualizzazioni Details (Dettagli) e Create (Crea)
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [Aggiornare dati correlati](update-related-data.md)
 
@@ -75,11 +75,11 @@ Di seguito sono elencate alcune opzioni:
 
 * È possibile consentire che la modifica di John sovrascriva la modifica di Jane.
 
-     Quando un utente torna a visualizzare il reparto English (Inglese), visualizza 9/1/2013 e il valore $ 350.000,00 ripristinato. Questo scenario è detto *Priorità client* o *Last in Wins* (Priorità ultimo accesso). Tutti i valori del client hanno la precedenza sugli elementi presenti nell'archivio dati. Come indicato nell'introduzione a questa sezione, se non si esegue alcuna codifica per la gestione della concorrenza, questa operazione viene eseguita automaticamente.
+     Quando un utente torna a visualizzare il reparto English (Inglese), visualizza 9/1/2013 e il valore $ 350.000,00 ripristinato. Questo scenario è detto *Priorità client* o *Last in Wins* (Priorità ultimo accesso). Tutti i valori del client hanno la precedenza su ciò che è presente nell'archivio dati. Come indicato nell'introduzione a questa sezione, se non si esegue alcuna codifica per la gestione della concorrenza, questa operazione verrà eseguita automaticamente.
 
 * È possibile impedire l'aggiornamento del database con la modifica di John.
 
-     In genere viene visualizzato un messaggio di errore e lo stato corrente dei dati e si consente all'utente di riapplicare le modifiche se lo desidera. Questo scenario è detto *Store Wins* (Priorità archivio). I valori dell'archivio dati hanno la precedenza sui valori inviati dal client. Verrà implementato lo scenario Store WINS in questa esercitazione. Questo metodo garantisce che nessuna modifica venga sovrascritta senza che un utente riceva un avviso.
+     In genere viene visualizzato un messaggio di errore e lo stato corrente dei dati e si consente all'utente di riapplicare le modifiche se lo desidera. Questo scenario è detto *Store Wins* (Priorità archivio). I valori dell'archivio dati hanno la precedenza sui valori inviati dal client. In questa esercitazione verrà implementato lo scenario Vincita del negozio. Questo metodo garantisce che nessuna modifica venga sovrascritta senza che un utente riceva un avviso.
 
 ### <a name="detecting-concurrency-conflicts"></a>Rilevamento dei conflitti di concorrenza
 
@@ -194,7 +194,7 @@ In *Views/Departments/Edit.cshtml* apportare le modifiche seguenti:
 
 ## <a name="test-concurrency-conflicts"></a>Testare i conflitti di concorrenza
 
-Eseguire l'app e passare alla pagina Departments Index (Indice reparti). Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit**  (Modifica) per il reparto English (Inglese) e selezionare **Apri link in nuova scheda**, quindi fare clic sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese). Le due schede del browser ora visualizzano le stesse informazioni.
+Eseguire l'app e passare alla pagina Departments Index (Indice reparti). Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit ** (Modifica) per il reparto English (Inglese) e selezionare **Apri link in nuova scheda**, quindi fare clic sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese). Le due schede del browser ora visualizzano le stesse informazioni.
 
 Modificare un campo nella prima scheda del browser e fare clic su **Salva**.
 
@@ -212,7 +212,7 @@ Fare clic su **Salva**. Viene visualizzato un messaggio di errore:
 
 Fare clic su **Salva**. Il valore immesso nella seconda scheda del browser viene salvato. I valori salvati vengono visualizzati nella pagina Index.
 
-## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete
+## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
 Per la pagina Delete (Elimina), Entity Framework rileva conflitti di concorrenza causati da un altro utente che ha modificato il reparto con modalità simili. Quando il metodo HttpGet `Delete` visualizza la conferma, la visualizzazione include il valore `RowVersion` originale in un campo nascosto. Questo valore viene quindi reso disponibile al metodo HttpPost `Delete` che viene chiamato quando l'utente conferma l'eliminazione. Quando Entity Framework crea il comando SQL DELETE, include una clausola WHERE con il valore `RowVersion` originale. Se il comando non ha effetto su nessuna riga (ovvero se la riga è stata modificata dopo la visualizzazione della pagina di conferma Delete) viene attivata un'eccezione di concorrenza e viene chiamato il metodo HttpGet `Delete` con un flag di errore impostato su true, per tornare a visualizzare la pagina di conferma con un messaggio di errore. È anche possibile che il comando non abbia effetto su nessuna riga perché la riga è stata eliminata da un altro utente. In questo caso non viene visualizzato nessun messaggio di errore.
 
@@ -240,15 +240,15 @@ Questo parametro è stato convertito in un'istanza di entità Department creata 
 public async Task<IActionResult> Delete(Department department)
 ```
 
-Anche il nome del metodo di azione è stato modificato da `DeleteConfirmed` a `Delete`. Il codice sottoposto a scaffolding usava il nome `DeleteConfirmed` per offrire al metodo HttpPost una firma unica. (CLR richiede che i metodi di overload abbiano parametri di metodo diversi). Ora che le firme sono univoche, è possibile attenersi alla convenzione MVC e usare lo stesso nome per i metodi di eliminazione HttpPost e HttpGet.
+Anche il nome del metodo di azione è stato modificato da `DeleteConfirmed` a `Delete`. Il codice sottoposto a scaffolding usava il nome `DeleteConfirmed` per offrire al metodo HttpPost una firma unica. (CLR richiede metodi di overload per avere diversi parametri del metodo.) Ora che le firme sono univoche, è possibile attenersi alla convenzione MVC e utilizzare lo stesso nome per il HttpPost e HttpGet delete metodi.
 
 Se il reparto è già stato eliminato, il metodo `AnyAsync` restituisce false e l'applicazione torna al metodo Index.
 
 Se viene rilevato un errore di concorrenza, il codice visualizza nuovamente la pagina di conferma Delete (Elimina) e visualizza un flag indicante che è necessario visualizzare un messaggio di errore di concorrenza.
 
-### <a name="update-the-delete-view"></a>Aggiornare la visualizzazione Delete
+### <a name="update-the-delete-view"></a>Aggiornare la pagina Delete
 
-In *Views/Departments/Delete.cshtml*, sostituire il codice sottoposto a scaffolding con il codice seguente, che aggiunge un campo messaggio di errore e campi nascosti per le proprietà DepartmentID e RowVersion. Le modifiche vengono evidenziate.
+In *Views/Departments/Delete.cshtml*, sostituire il codice sottoposto a scaffolding con il codice seguente, che aggiunge un campo messaggio di errore e campi nascosti per le proprietà DepartmentID e RowVersion. Le modifiche sono evidenziate.
 
 [!code-html[](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44,45,48)]
 
@@ -262,7 +262,7 @@ Questa impostazione determina le modifiche seguenti:
 
 * Aggiunge un campo nascosto per la proprietà `RowVersion`.
 
-Eseguire l'app e passare alla pagina Departments Index (Indice reparti). Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit**  (Modifica) per il reparto English (Inglese) e selezionare **Apri link in nuova scheda**, quindi fare clic sul collegamento ipertestuale **Edit** per il reparto English.
+Eseguire l'app e passare alla pagina Departments Index (Indice reparti). Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit ** (Modifica) per il reparto English (Inglese) e selezionare **Apri link in nuova scheda**, quindi fare clic sul collegamento ipertestuale **Edit** per il reparto English.
 
 Nella prima finestra modificare uno dei valori e fare clic su **Salva**:
 
@@ -306,10 +306,10 @@ In questa esercitazione:
 > * Aggiornare i metodi Edit
 > * Aggiornare la visualizzazione Edit
 > * Testare i conflitti di concorrenza
-> * Aggiornare la pagina Delete
+> * Aggiornamento della pagina Delete
 > * Aggiornare le visualizzazioni Details e Create
 
 Passare all'esercitazione successiva per apprendere come implementare l'ereditarietà tabella per gerarchia per le entità Instructor e Student.
 
 > [!div class="nextstepaction"]
-> [Passaggio successivo: implementare l'ereditarietà tabella per gerarchia](inheritance.md)
+> [Successiva: Implementare l'ereditarietà tabella per gerarchia](inheritance.md)

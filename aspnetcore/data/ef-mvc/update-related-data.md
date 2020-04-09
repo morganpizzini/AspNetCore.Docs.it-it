@@ -1,5 +1,5 @@
 ---
-title: 'Esercitazione: aggiornare i dati correlati-ASP.NET MVC con EF Core'
+title: 'Esercitazione: Aggiornare i dati correlati - ASP.NET MVC con EF CoreTutorial: Update related data - ASP.NET MVC with EF Core'
 description: In questa esercitazione verrà effettuato l'aggiornamento di dati correlati tramite l'aggiornamento di campi di chiave esterna e proprietà di navigazione.
 author: rick-anderson
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/update-related-data
 ms.openlocfilehash: 83d662659fb4bc7a2867be563e4e36927d2adafe
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657143"
 ---
-# <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: aggiornare i dati correlati-ASP.NET MVC con EF Core
+# <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: Aggiornare i dati correlati - ASP.NET MVC con EF CoreTutorial: Update related data - ASP.NET MVC with EF Core
 
 Nell'esercitazione precedente sono stati visualizzati dati correlati. In questa esercitazione i dati correlati verranno aggiornati tramite l'aggiornamento di campi di chiave esterna e proprietà di navigazione.
 
@@ -33,7 +33,7 @@ In questa esercitazione:
 > * Aggiornare la pagina Delete
 > * Aggiungere posizione dell'ufficio e corsi alla pagina Create
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [Leggere dati correlati](read-related-data.md)
 
@@ -187,7 +187,7 @@ Creare *AssignedCourseData.cs* nella cartella *SchoolViewModels* e sostituire il
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/AssignedCourseData.cs)]
 
-In *InstructorsController.cs* sostituire il metodo `Edit` HttpGet con il codice seguente. Le modifiche vengono evidenziate.
+In *InstructorsController.cs* sostituire il metodo `Edit` HttpGet con il codice seguente. Le modifiche sono evidenziate.
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?highlight=10,17,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36&name=snippet_EditGetCourses)]
 
@@ -221,7 +221,7 @@ Se la casella di controllo di un corso non è selezionata ma il corso è present
 
 ### <a name="update-the-instructor-views"></a>Aggiornare le visualizzazioni dell'insegnante
 
-In *Views/Instructors/Edit.cshtml* aggiungere un campo **Courses** (Corsi) con una matrice di caselle di controllo aggiungendo il codice seguente immediatamente dopo gli elementi `div` per il campo **Office**  (Ufficio) e prima dell'elemento `div` per il pulsante **Save** (Salva).
+In *Views/Instructors/Edit.cshtml* aggiungere un campo **Courses** (Corsi) con una matrice di caselle di controllo aggiungendo il codice seguente immediatamente dopo gli elementi `div` per il campo **Office ** (Ufficio) e prima dell'elemento `div` per il pulsante **Save** (Salva).
 
 <a id="notepad"></a>
 > [!NOTE]

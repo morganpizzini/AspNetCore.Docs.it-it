@@ -1,5 +1,5 @@
 ---
-title: 'Esercitazione: aggiungere ordinamento, filtro e paging-ASP.NET MVC con EF Core'
+title: 'Esercitazione: Aggiungere ordinamento, filtro e paging: ASP.NET MVC con EF CoreTutorial: Add sorting, filtering, and paging - ASP.NET MVC with EF Core'
 description: In questa esercitazione si aggiungeranno le funzionalità di ordinamento, filtro e suddivisione in pagine alla pagina Student Index (Indice degli studenti). Verrà anche creata una pagina che esegue il raggruppamento semplice.
 author: rick-anderson
 ms.author: riande
@@ -7,13 +7,13 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/sort-filter-page
 ms.openlocfilehash: 99bf9ed59b47e8fbba838b97c3e032b9808f6a94
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657136"
 ---
-# <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Esercitazione: aggiungere ordinamento, filtro e paging-ASP.NET MVC con EF Core
+# <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Esercitazione: Aggiungere ordinamento, filtro e paging: ASP.NET MVC con EF CoreTutorial: Add sorting, filtering, and paging - ASP.NET MVC with EF Core
 
 Nell'esercitazione precedente è stato implementato un set di pagine Web per operazioni CRUD di base per le entità Student. In questa esercitazione si aggiungeranno le funzionalità di ordinamento, filtro e suddivisione in pagine alla pagina Student Index (Indice degli studenti). Verrà anche creata una pagina che esegue il raggruppamento semplice.
 
@@ -31,7 +31,7 @@ In questa esercitazione:
 > * Aggiungere collegamenti per la suddivisione in pagine
 > * Creare una pagina About
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [Implementare la funzionalità CRUD](crud.md)
 
@@ -41,7 +41,7 @@ Per aggiungere l'ordinamento alla pagina Student Index (Indice degli studenti), 
 
 ### <a name="add-sorting-functionality-to-the-index-method"></a>Aggiungere la funzionalità di ordinamento al metodo Index
 
-In *StudentsController.cs* sostituire il metodo `Index` con il codice seguente:
+In *StudentsController.cs*sostituire `Index` il metodo con il codice seguente:
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortOnly)]
 
@@ -91,9 +91,9 @@ In *StudentsController.cs* sostituire il metodo `Index` con il codice seguente (
 È stato aggiunto un parametro `searchString` al metodo `Index`. Il valore della stringa di ricerca viene ricevuto da una casella di testo che verrà aggiunta alla visualizzazione Index (Indice). È stata anche aggiunta all'istruzione LINQ una clausola where che seleziona solo gli studenti il cui nome o cognome contiene la stringa di ricerca. L'istruzione che aggiunge la clausola where viene eseguita solo se è presente un valore per la ricerca.
 
 > [!NOTE]
-> In questo esempio si chiama il metodo `Where` su un oggetto `IQueryable` e il filtro verrà elaborato nel server. In alcuni scenari potrebbe essere chiamato il metodo `Where` come metodo di estensione per una raccolta in memoria. Si supponga, ad esempio, di modificare il riferimento a `_context.Students` in modo che invece di un `DbSet` EF faccia riferimento a un metodo di repository che restituisce una raccolta di `IEnumerable`. Il risultato sarebbe normalmente lo stesso, ma in alcuni casi può essere diverso.
+> In questo esempio si chiama il metodo `Where` su un oggetto `IQueryable` e il filtro verrà elaborato nel server. In alcuni scenari potrebbe essere chiamato il metodo `Where` come metodo di estensione per una raccolta in memoria. Si supponga, ad esempio, `_context.Students` di modificare il riferimento `DbSet` in modo che anziché un eF fa riferimento a un metodo del repository che restituisce una `IEnumerable` raccolta. Il risultato sarebbe normalmente lo stesso, ma in alcuni casi può essere diverso.
 >
->Ad esempio, l'implementazione di .NET Framework del metodo `Contains` esegue un confronto con la distinzione tra maiuscole e minuscole per impostazione predefinita, ma in SQL Server questo è determinato dall'impostazione delle regole di confronto dell'istanza di SQL Server. Questa impostazione usa come valore predefinito la non applicazione della distinzione tra maiuscole e minuscole. È possibile chiamare il metodo `ToUpper` per fare in modo che il test non applichi in modo esplicito la distinzione tra maiuscole e minuscole: *Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())* . Questo fa sì che i risultati rimangano invariati se si modifica il codice in un secondo momento per usare un repository che restituisce una raccolta `IEnumerable` invece di un oggetto `IQueryable`. Quando si chiama il metodo `Contains` su una raccolta di `IEnumerable`, si ottiene l'implementazione di .NET Framework; quando viene chiamato su un oggetto `IQueryable`, si ottiene l'implementazione del provider di database. Tuttavia, si verifica una riduzione delle prestazioni per questa soluzione. Il codice `ToUpper` dovrà inserire una funzione nella clausola WHERE dell'istruzione TSQL SELECT. In questo modo si evita che l'ottimizzazione usi un indice. Dato che SQL viene installato per lo più con l'impostazione senza distinzione tra maiuscole e minuscole, è consigliabile evitare il codice `ToUpper` fino a quando non si esegue la migrazione a un archivio con distinzione tra maiuscole e minuscole.
+>Ad esempio, l'implementazione di .NET Framework del metodo `Contains` esegue un confronto con la distinzione tra maiuscole e minuscole per impostazione predefinita, ma in SQL Server questo è determinato dall'impostazione delle regole di confronto dell'istanza di SQL Server. Questa impostazione usa come valore predefinito la non applicazione della distinzione tra maiuscole e minuscole. È possibile chiamare il metodo `ToUpper` per fare in modo che il test non applichi in modo esplicito la distinzione tra maiuscole e minuscole: *Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())*. Questo fa sì che i risultati rimangano invariati se si modifica il codice in un secondo momento per usare un repository che restituisce una raccolta `IEnumerable` invece di un oggetto `IQueryable`. Quando si chiama `Contains` il `IEnumerable` metodo su una raccolta, si ottiene l'implementazione di .NET Framework; quando viene chiamato su un `IQueryable` oggetto, si ottiene l'implementazione del provider di database. Tuttavia, c'è una riduzione delle prestazioni per questa soluzione. Il codice `ToUpper` dovrà inserire una funzione nella clausola WHERE dell'istruzione TSQL SELECT. In questo modo si evita che l'ottimizzazione usi un indice. Dato che SQL viene installato per lo più con l'impostazione senza distinzione tra maiuscole e minuscole, è consigliabile evitare il codice `ToUpper` fino a quando non si esegue la migrazione a un archivio con distinzione tra maiuscole e minuscole.
 
 ### <a name="add-a-search-box-to-the-student-index-view"></a>Aggiungere una casella di ricerca alla visualizzazione Student Index (Indice degli studenti)
 
@@ -101,7 +101,7 @@ In *Views/Student/Index.cshtml*, aggiungere il codice evidenziato immediatamente
 
 [!code-html[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
 
-Questo codice usa l' [Helper tag](xref:mvc/views/tag-helpers/intro) `<form>` per aggiungere la casella di testo e il pulsante di ricerca. Per impostazione predefinita, l'helper tag `<form>` invia i dati del modulo con una richiesta POST, il che significa che i parametri vengono passati nel corpo del messaggio HTTP e non nell'URL come stringhe di query. Quando si specifica HTTP GET, i dati del modulo vengono passati nell'URL come stringhe di query, il che consente agli utenti di inserire l'URL tra i segnalibri. Le linee guida W3C consigliano di usare l'istruzione GET quando l'azione non risulta in un aggiornamento.
+Questo codice usa l' [helper tag](xref:mvc/views/tag-helpers/intro)`<form>` per aggiungere la casella di testo e il pulsante di ricerca. Per impostazione predefinita, l'helper tag `<form>` invia i dati del modulo con una richiesta POST, il che significa che i parametri vengono passati nel corpo del messaggio HTTP e non nell'URL come stringhe di query. Quando si specifica HTTP GET, i dati del modulo vengono passati nell'URL come stringhe di query, il che consente agli utenti di inserire l'URL tra i segnalibri. Le linee guida W3C consigliano di usare l'istruzione GET quando l'azione non risulta in un aggiornamento.
 
 Eseguire l'app, selezionare la scheda **Students** (Studenti), immettere una stringa di ricerca e fare clic su Search (Ricerca) per verificare che il filtro funzioni.
 
@@ -176,7 +176,7 @@ Il metodo `PaginatedList.CreateAsync` accetta un numero di pagina. I due punti i
 
 ## <a name="add-paging-links"></a>Aggiungere collegamenti per la suddivisione in pagine
 
-In *Views/Students/Index.cshtml* sostituire il codice esistente con il codice seguente. Le modifiche vengono evidenziate.
+In *Views/Students/Index.cshtml* sostituire il codice esistente con il codice seguente. Le modifiche sono evidenziate.
 
 [!code-html[](intro/samples/cu/Views/Students/Index.cshtml?highlight=1,27,30,33,61-79)]
 
@@ -244,7 +244,7 @@ Aggiungere un file *Views/Home/About.cshtml* con il codice seguente:
 
 [!code-html[](intro/samples/cu/Views/Home/About.cshtml)]
 
-Eseguire l'app e passare alla pagina About (Informazioni). Il numero di studenti per ogni data di registrazione viene visualizzato in una tabella.
+Eseguire l'app e passare alla pagina About. Il numero di studenti per ogni data di registrazione viene visualizzato in una tabella.
 
 ## <a name="get-the-code"></a>Ottenere il codice
 
@@ -265,4 +265,4 @@ In questa esercitazione:
 Passare all'esercitazione successiva per apprendere come gestire le modifiche al modello di dati tramite le migrazioni.
 
 > [!div class="nextstepaction"]
-> [Passaggio successivo: gestire le modifiche al modello di dati](migrations.md)
+> [Successiva: Gestire le modifiche al modello di dati](migrations.md)

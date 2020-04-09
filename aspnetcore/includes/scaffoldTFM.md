@@ -1,4 +1,4 @@
-Se viene ricevuto un errore di impalcatura, verificare che il moniker del Framework di destinazione (TFM) corrisponda alla versione del pacchetto NuGet nel file di progetto. Ad esempio, il file di progetto seguente contiene la versione 3,1 per .NET Core e i pacchetti NuGet elencati:
+Se viene visualizzato un errore di scaffolding, verificare che il moniker (TFM) del framework di destinazione corrisponda alla versione del pacchetto NuGet nel file di progetto. Ad esempio, il file di progetto seguente contiene la versione 3.1 per .NET Core e i pacchetti NuGet elencati:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">

@@ -7,15 +7,15 @@ ms.custom: mvc
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/new-field
 ms.openlocfilehash: a5ea9b75cf8bb1f31cb07a2b32f361bdbfd4efa3
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78662904"
 ---
 # <a name="add-a-new-field-to-an-aspnet-core-mvc-app"></a>Aggiungere un nuovo campo a un'app ASP.NET Core MVC
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In questa sezione vengono usate le Migrazioni Code First di [Entity Framework](/ef/core/get-started/aspnetcore/new-db) per:
 
@@ -105,7 +105,7 @@ Dal menu **Strumenti** selezionare **Gestione pacchetti NuGet > Console di Gesti
 
   ![Menu della Console di Gestione pacchetti](adding-model/_static/pmc.png)
 
-In PMC, immettere i comandi seguenti:
+Nella Console di Gestione pacchetti immettere i comandi seguenti:
 
 ```powershell
 Add-Migration Rating
@@ -118,7 +118,7 @@ Il nome "Rating" è arbitrario e viene usato per denominare il file di migrazion
 
 Se vengono eliminati tutti i record del database, il database viene inizializzato dal metodo di inizializzazione e viene incluso il campo `Rating`.
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
@@ -131,11 +131,11 @@ dotnet ef database update
 ---
 <!-- End of VS tabs -->
 
-Eseguire l'app e verificare che sia possibile creare, modificare e visualizzare filmati con un campo `Rating`. Aggiornare l'app:
+Esegui l'app e verifica di poter creare, `Rating` modificare e visualizzare i filmati con un campo. Aggiornare l'app:
 
-* Aggiungere il campo `Rating` ai modelli di visualizzazione `Edit`, `Details`e `Delete`.
-* Aggiornare l'associazione nel metodo di azione di modifica della `MoviesController`.
+* Aggiungere `Rating` il campo `Edit` `Details`ai `Delete` modelli , e View.
+* Aggiornare l'associazione nel `MoviesController`metodo di azione di modifica del file .
 
 > [!div class="step-by-step"]
-> [Precedente](search.md)
-> [Successivo](validation.md)
+> [Successivo](search.md)
+> [precedente](validation.md)

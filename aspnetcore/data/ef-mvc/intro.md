@@ -8,18 +8,18 @@ ms.date: 02/06/2019
 ms.topic: tutorial
 uid: data/ef-mvc/intro
 ms.openlocfilehash: fca9fdc425506ec8b4eec5c609237208f4c0d7b5
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/18/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79511301"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Esercitazione: Introduzione a EF Core in un'app Web MVC ASP.NET
 
-Questa esercitazione **non** è stata aggiornata ad ASP.NET Core 3.0. La [versione di Razor Pages](xref:data/ef-rp/intro) è stata aggiornata. La maggior parte delle modifiche del codice per la ASP.NET Core 3,0 e la versione successiva di questa esercitazione:
+Questa esercitazione **non** è stata aggiornata ad ASP.NET Core 3.0. La [versione di Razor Pages](xref:data/ef-rp/intro) è stata aggiornata. La maggior parte delle modifiche al codice per il ASP.NET Core 3.0 e la versione successiva di questa esercitazione:Most of the code changes for the ASP.NET Core 3.0 and later version of this tutorial:
 
-* Si trovano nei file *Startup.cs* e *Program.cs* .
-* Si trova nella [versione Razor Pages](xref:data/ef-rp/intro). 
+* Sono nei file *di Startup.cs* e *Program.cs.*
+* Può essere trovato nella [versione Razor Pages](xref:data/ef-rp/intro). 
 
 Per informazioni su quando questo potrebbe essere aggiornato, vedere [questo problema in GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
 
@@ -68,7 +68,7 @@ Gli utenti possono visualizzare e aggiornare le informazioni che riguardano stud
 
 ## <a name="create-web-app"></a>Crea app Web
 
-* Apri Visual Studio.
+* Aprire Visual Studio.
 
 * Scegliere **Nuovo > Progetto** dal menu **File**.
 
@@ -82,11 +82,11 @@ Gli utenti possono visualizzare e aggiornare le informazioni che riguardano stud
 
 * Attendere che venga visualizzata la finestra di dialogo **Nuova applicazione Web ASP.NET Core**.
 
-* Selezionare **.NET Core**, **ASP.NET Core 2.2** e il modello **Applicazione Web (MVC)** .
+* Selezionare **.NET Core**, **ASP.NET Core 2.2** e il modello **Applicazione Web (MVC)**.
 
-* Assicurarsi che per **Autenticazione** sia impostata l'opzione **Nessuna autenticazione**.
+* Assicurarsi che **Autenticazione** sia impostata su **Nessuna autenticazione**.
 
-* Selezionare **OK**.
+* Seleziona **OK**.
 
   ![Finestra di dialogo Nuovo progetto ASP.NET Core](intro/_static/new-aspnet2.png)
 
@@ -100,7 +100,7 @@ Aprire *Views/Shared/_Layout.cshtml* e apportare le modifiche seguenti:
 
 * Aggiungere le voci di menu per **About** (Informazioni su), **Students** (Studenti), **Courses** (Corsi), **Instructors** (Insegnanti) e **Departments** (Dipartimenti) ed eliminare la voce di menu **Privacy**.
 
-Le modifiche vengono evidenziate.
+Le modifiche sono evidenziate.
 
 [!code-cshtml[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,34-48,63)]
 
@@ -140,9 +140,9 @@ Nella cartella *Models* (Modelli) creare un file di classe denominato *Student.c
 
 La proprietà `ID` diventa la colonna di chiave primaria della tabella di database che corrisponde a questa classe. Per impostazione predefinita, Entity Framework interpreta una proprietà denominata `ID` o `classnameID` come chiave primaria.
 
-La proprietà `Enrollments` rappresenta una [proprietà di navigazione](/ef/core/modeling/relationships). Le proprietà di navigazione contengono altre entità correlate a questa entità. In questo caso la proprietà `Enrollments` di `Student entity` contiene tutte le entità `Enrollment` correlate all'entità `Student`. In altre parole, se una determinata riga Student (Studente) nel database contiene due righe Enrollment (Iscrizione) correlate (le righe che contengono il valore della chiave primaria dello studente nella colonna della chiave esterna StudentID), la proprietà di navigazione `Student` dell'entità `Enrollments` contiene quelle due entità `Enrollment`.
+La proprietà `Enrollments` rappresenta una [proprietà di navigazione](/ef/core/modeling/relationships). Le proprietà di navigazione contengono altre entità correlate a questa entità. In questo caso la proprietà `Enrollments` di `Student entity` contiene tutte le entità `Enrollment` correlate all'entità `Student`. In altre parole, se una determinata riga Student (Studente) nel database contiene due righe Enrollment (Iscrizione) correlate (le righe che contengono il valore della chiave primaria dello studente nella colonna della chiave esterna StudentID), la proprietà di navigazione `Enrollments` dell'entità `Student` contiene quelle due entità `Enrollment`.
 
-Se una proprietà di navigazione può contenere più entità (come nel caso di relazioni molti-a-molti e uno-a-molti), il tipo della proprietà deve essere un elenco in cui le voci possono essere aggiunte, eliminate e aggiornate, come ad esempio `ICollection<T>`. È possibile specificare `ICollection<T>` o un tipo come `List<T>` o `HashSet<T>`. Se si specifica `ICollection<T>`, per impostazione predefinita Entity Framework crea una raccolta `HashSet<T>`.
+Se una proprietà di navigazione può contenere più entità (come nel caso di relazioni molti-a-molti e uno-a-molti), il tipo della proprietà deve essere un elenco in cui le voci possono essere aggiunte, eliminate e aggiornate, come ad esempio `ICollection<T>`. È possibile specificare `ICollection<T>` o un tipo come `List<T>` o `HashSet<T>`. Se si specifica `ICollection<T>`, per impostazione predefinita EF crea una raccolta `HashSet<T>`.
 
 ### <a name="the-enrollment-entity"></a>Entità Enrollment (Iscrizione)
 
@@ -254,7 +254,7 @@ La creazione automatica di metodi di azione CRUD e di visualizzazioni è nota co
 
   * Selezionare **Controller MVC con visualizzazioni, che usa Entity Framework**.
 
-  * Fare clic su **Add**. Verrà visualizzata la finestra di dialogo **Aggiungi Controller MVC con visualizzazioni, che usa Entity Framework**.
+  * Fare clic su **Aggiungi**. Verrà visualizzata la finestra di dialogo **Aggiungi Controller MVC con visualizzazioni, che usa Entity Framework**.
 
     ![Scaffolding di Student](intro/_static/scaffold-student2.png)
 
@@ -264,7 +264,7 @@ La creazione automatica di metodi di azione CRUD e di visualizzazioni è nota co
 
   * Accettare il valore predefinito **StudentsController** come nome.
 
-  * Fare clic su **Add**.
+  * Fare clic su **Aggiungi**.
 
   Quando si fa clic su **Aggiungi**, il motore di scaffolding di Visual Studio crea un file *StudentsController.cs* e un set di visualizzazioni (file con estensione *cshtml*) che vengono usate insieme al controller.
 
@@ -296,7 +296,7 @@ Fare clic sulla scheda Students (Studenti) per visualizzare i dati di test inser
 
 ## <a name="view-the-database"></a>Visualizzare il database
 
-Dopo aver avviato l'applicazione, il metodo `DbInitializer.Initialize` chiama `EnsureCreated`. Entity Framework ha verificato che non esiste un database e ne ha pertanto creato uno. La parte restante di codice del metodo `Initialize` ha popolato il database con i dati. È possibile usare **Esplora oggetti di SQL Server**  per visualizzare il database in Visual Studio.
+Dopo aver avviato l'applicazione, il metodo `DbInitializer.Initialize` chiama `EnsureCreated`. Entity Framework ha verificato che non esiste un database e ne ha pertanto creato uno. La parte restante di codice del metodo `Initialize` ha popolato il database con i dati. È possibile usare **Esplora oggetti di SQL Server ** per visualizzare il database in Visual Studio.
 
 Chiudere il browser.
 
@@ -306,13 +306,13 @@ In Esplora oggetti di SQL Server fare clic su **(localdb) \MSSQLLocalDB > Databa
 
 Espandere il nodo **Tabelle** per visualizzare le tabelle nel database.
 
-![Tabelle in Esplora oggetti di SQL Server](intro/_static/ssox-tables.png)
+![Tabelle in SSOX](intro/_static/ssox-tables.png)
 
 Fare clic con il pulsante destro del mouse sulla tabella **Student** (Studente) e fare clic su **Visualizza dati** per visualizzare le colonne create e le righe inserite nella tabella.
 
 ![Tabella Student (Studente) in Esplora oggetti di SQL Server](intro/_static/ssox-student-table.png)
 
-I file di database con estensione *mdf* e *ldf* sono contenuti nella cartella *C:\Utenti\\\<nomeutente>* .
+I file di database *con estensione mdf* e *ldf* si trovano nella cartella *c:/Utenti\\\<tuonome utente>* .
 
 Poiché si sta chiamando `EnsureCreated` nel metodo di inizializzatore che viene eseguito all'avvio dell'app, è ora possibile modificare la classe `Student`, eliminare il database ed eseguire nuovamente l'applicazione. Il database sarà automaticamente ricreato e rispecchierà la modifica. Ad esempio, se si aggiunge una proprietà `EmailAddress` alla classe `Student`, una nuova colonna `EmailAddress` sarà visualizzata nella tabella ricreata.
 
@@ -326,7 +326,7 @@ Grazie all'uso di convenzioni o di ipotesi di Entity Framework, la quantità di 
 
 * Le proprietà dell'entità vengono denominate ID o classnameID e vengono riconosciute come proprietà della chiave primaria.
 
-* Una proprietà viene interpretata come proprietà di una chiave esterna se è denominata *\<nome della proprietà di navigazione>\<nome della proprietà della chiave primaria>* , ad esempio `StudentID` per la proprietà di navigazione `Student` poiché la chiave primaria dell'entità `Student` è `ID`. Le proprietà di una chiave esterna possono anche essere denominate semplicemente *\<nome della proprietà della chiave primaria>* , ad esempio `EnrollmentID` poiché la chiave primaria dell'entità `Enrollment` è `EnrollmentID`.
+* Una proprietà viene interpretata come proprietà di chiave esterna se è `StudentID` denominato `Student` `Student` `ID` * \<il nome \<* della proprietà di navigazione>il nome della proprietà della chiave primaria>, ad esempio per la proprietà di navigazione poiché la chiave primaria dell'entità è ). Le proprietà della chiave esterna possono anche essere denominate `Enrollment` semplicemente * \<nome proprietà chiave primaria>* (ad esempio, `EnrollmentID` poiché la chiave primaria dell'entità è `EnrollmentID`).
 
 È possibile eseguire l'override del comportamento convenzionale. Ad esempio, è possibile specificare in modo esplicito i nomi di tabella, come illustrato in precedenza in questa esercitazione. È anche possibile impostare i nomi delle colonne e impostare qualsiasi proprietà come chiave primaria o chiave esterna, come sarà spiegato in un'[esercitazione successiva](complex-data-model.md) di questa serie.
 

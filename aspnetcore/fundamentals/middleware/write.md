@@ -8,15 +8,15 @@ ms.custom: mvc
 ms.date: 08/22/2019
 uid: fundamentals/middleware/write
 ms.openlocfilehash: e74bba9e1bd826d4f493b0ee642a198f984daada
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78663926"
 ---
 # <a name="write-custom-aspnet-core-middleware"></a>Scrivere middleware di ASP.NET Core personalizzato
 
-[Rick Anderson](https://twitter.com/RickAndMSFT) e [Steve Smith](https://ardalis.com/)
+Di [Rick Anderson](https://twitter.com/RickAndMSFT) e [Steve Smith](https://ardalis.com/)
 
 Il middleware è un software che viene assemblato in una pipeline dell'app per gestire richieste e risposte. ASP.NET Core offre un ampio set di componenti middleware integrati, ma in alcuni scenari si potrebbe voler scrivere un middleware personalizzato.
 

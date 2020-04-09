@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/proxy-load-balancer
 ms.openlocfilehash: b5c81e0cfa29cddeb1aeed1119a711fca4d91ae4
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78659383"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>Configurare ASP.NET Core per l'uso di server proxy e servizi di bilanciamento del carico
@@ -41,9 +41,9 @@ Il middleware delle intestazioni inoltrate, dal pacchetto [Microsoft.AspNetCore.
 
 Il middleware aggiorna:
 
-* [HttpContext. Connection. RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress) &ndash; impostato con il valore dell'intestazione `X-Forwarded-For`. Impostazioni aggiuntive influiscono sul modo in cui il middleware imposta `RemoteIpAddress`. Per informazioni dettagliate, vedere [Opzioni del middleware delle intestazioni inoltrate](#forwarded-headers-middleware-options).
-* [HttpContext. Request. Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme) &ndash; set usando il valore dell'intestazione `X-Forwarded-Proto`.
-* [HttpContext. Request. Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host) &ndash; impostato con il valore dell'intestazione `X-Forwarded-Host`.
+* [Set HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress) &ndash; `X-Forwarded-For` utilizzando il valore dell'intestazione. Impostazioni aggiuntive influiscono sul modo in cui il middleware imposta `RemoteIpAddress`. Per informazioni dettagliate, vedere [Opzioni del middleware delle intestazioni inoltrate](#forwarded-headers-middleware-options).
+* [Set HttpContext.Request.Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme) &ndash; `X-Forwarded-Proto` utilizzando il valore dell'intestazione.
+* [Set HttpContext.Request.Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host) &ndash; `X-Forwarded-Host` utilizzando il valore dell'intestazione.
 
 È possibile configurare le [impostazioni predefinite](#forwarded-headers-middleware-options) del middleware delle intestazioni inoltrate. Le impostazioni predefinite sono le seguenti:
 
@@ -258,16 +258,16 @@ if (string.Equals(
 
 ### <a name="azure"></a>Azure
 
-Per configurare app Azure servizio per l'invio di certificati, vedere [configurare l'autenticazione reciproca TLS per il servizio app Azure](/azure/app-service/app-service-web-configure-tls-mutual-auth). Le linee guida seguenti riguardano la configurazione dell'app ASP.NET Core.
+Per configurare il servizio app di Azure per l'inoltro dei certificati, vedere [Configurare l'autenticazione reciproca TLS per](/azure/app-service/app-service-web-configure-tls-mutual-auth)il servizio app di Azure.To configure Azure App Service for certificate forwarding, see Configure TLS mutual authentication for Azure App Service. Le indicazioni seguenti riguardano la configurazione dell'app ASP.NET Core.The following guidance app etains to configuring the ASP.NET Core app.
 
-In `Startup.Configure`aggiungere il codice seguente prima della chiamata a `app.UseAuthentication();`:
+In `Startup.Configure`, aggiungere il codice `app.UseAuthentication();`seguente prima della chiamata a :
 
 ```csharp
 app.UseCertificateForwarding();
 ```
 
 
-Configurare il middleware di invio del certificato per specificare il nome dell'intestazione usato da Azure. In `Startup.ConfigureServices`aggiungere il codice seguente per configurare l'intestazione da cui il middleware compila un certificato:
+Configurare il middleware per l'inoltro dei certificati per specificare il nome dell'intestazione usato da Azure.Configure Certificate Forwarding Middleware to specify the header name that Azure uses. In `Startup.ConfigureServices`, aggiungere il codice seguente per configurare l'intestazione da cui il middleware compila un certificato:
 
 ```csharp
 services.AddCertificateForwarding(options =>
@@ -276,20 +276,20 @@ services.AddCertificateForwarding(options =>
 
 ### <a name="other-web-proxies"></a>Altri proxy Web
 
-Se viene usato un proxy che non è IIS o app Azure Application Request Routing (ARR) del servizio, configurare il proxy in modo che inoltri il certificato ricevuto in un'intestazione HTTP. In `Startup.Configure`aggiungere il codice seguente prima della chiamata a `app.UseAuthentication();`:
+Se viene utilizzato un proxy che non è IIS o Azure App Service Application Request Routing (ARR), configurare il proxy per inoltrare il certificato ricevuto in un'intestazione HTTP. In `Startup.Configure`, aggiungere il codice `app.UseAuthentication();`seguente prima della chiamata a :
 
 ```csharp
 app.UseCertificateForwarding();
 ```
 
-Configurare il middleware di invio del certificato per specificare il nome dell'intestazione. In `Startup.ConfigureServices`aggiungere il codice seguente per configurare l'intestazione da cui il middleware compila un certificato:
+Configurare il middleware di inoltro certificati per specificare il nome dell'intestazione. In `Startup.ConfigureServices`, aggiungere il codice seguente per configurare l'intestazione da cui il middleware compila un certificato:
 
 ```csharp
 services.AddCertificateForwarding(options =>
     options.CertificateHeader = "YOUR_CERTIFICATE_HEADER_NAME");
 ```
 
-Se il proxy non prevede la codifica Base64 del certificato (come nel caso di nginx), impostare l'opzione `HeaderConverter`. Si consideri l'esempio seguente in `Startup.ConfigureServices`:
+Se il proxy non è basato su base64-codifica il certificato `HeaderConverter` (come nel caso di Nginx), impostare l'opzione. Si consideri l'esempio seguente in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddCertificateForwarding(options =>
@@ -419,9 +419,9 @@ Il middleware delle intestazioni inoltrate, dal pacchetto [Microsoft.AspNetCore.
 
 Il middleware aggiorna:
 
-* [HttpContext. Connection. RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress) &ndash; impostato con il valore dell'intestazione `X-Forwarded-For`. Impostazioni aggiuntive influiscono sul modo in cui il middleware imposta `RemoteIpAddress`. Per informazioni dettagliate, vedere [Opzioni del middleware delle intestazioni inoltrate](#forwarded-headers-middleware-options).
-* [HttpContext. Request. Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme) &ndash; set usando il valore dell'intestazione `X-Forwarded-Proto`.
-* [HttpContext. Request. Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host) &ndash; impostato con il valore dell'intestazione `X-Forwarded-Host`.
+* [Set HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress) &ndash; `X-Forwarded-For` utilizzando il valore dell'intestazione. Impostazioni aggiuntive influiscono sul modo in cui il middleware imposta `RemoteIpAddress`. Per informazioni dettagliate, vedere [Opzioni del middleware delle intestazioni inoltrate](#forwarded-headers-middleware-options).
+* [Set HttpContext.Request.Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme) &ndash; `X-Forwarded-Proto` utilizzando il valore dell'intestazione.
+* [Set HttpContext.Request.Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host) &ndash; `X-Forwarded-Host` utilizzando il valore dell'intestazione.
 
 È possibile configurare le [impostazioni predefinite](#forwarded-headers-middleware-options) del middleware delle intestazioni inoltrate. Le impostazioni predefinite sono le seguenti:
 

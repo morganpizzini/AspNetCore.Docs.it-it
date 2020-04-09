@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 10/03/2019
 uid: tutorials/publish-to-iis
 ms.openlocfilehash: 47f78ba78741a8e0175ce801c0c0e51f091273a8
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/18/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79511392"
 ---
 # <a name="publish-an-aspnet-core-app-to-iis"></a>Pubblicare un'app ASP.NET Core in IIS
@@ -28,7 +28,7 @@ Questa esercitazione illustra le operazioni seguenti:
 ## <a name="prerequisites"></a>Prerequisiti
 
 * [.NET Core SDK](/dotnet/core/sdk) installato nel computer di sviluppo.
-* Windows Server configurato con il ruolo del server **Server Web (IIS)** . Se il server non è configurato per ospitare siti Web con IIS, seguire le istruzioni nella sezione *Configurazione di IIS* dell'articolo <xref:host-and-deploy/iis/index#iis-configuration> e quindi tornare a questa esercitazione.
+* Windows Server configurato con il ruolo del server **Server Web (IIS)**. Se il server non è configurato per ospitare siti Web con IIS, seguire le istruzioni nella sezione *Configurazione di IIS* dell'articolo <xref:host-and-deploy/iis/index#iis-configuration> e quindi tornare a questa esercitazione.
 
 > [!WARNING]
 > **La configurazione di IIS e la sicurezza del sito Web coinvolgono concetti non trattati in questa esercitazione.** Consultare le linee guida per IIS nella [documentazione di Microsoft IIS](https://www.iis.net/) e l'[articolo di ASP.NET Core sull'hosting con IIS](xref:host-and-deploy/iis/index) prima di ospitare app di produzione in IIS.
@@ -41,7 +41,7 @@ Questa esercitazione illustra le operazioni seguenti:
 
 ## <a name="install-the-net-core-hosting-bundle"></a>Installare il bundle di hosting .NET Core
 
-Installare il *bundle di hosting .NET Core* nel server IIS. L'aggregazione installa il runtime di .NET Core, la libreria di .NET Core e il [modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module). Il modulo consente l'esecuzione delle app ASP.NET Core dietro IIS.
+Installare il *bundle di hosting .NET Core* nel server IIS. Il pacchetto installa .NET Core Runtime, .NET Core Library e [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). Il modulo consente l'esecuzione delle app ASP.NET Core dietro IIS.
 
 Scaricare il programma di installazione mediante il collegamento seguente:
 
@@ -55,7 +55,7 @@ Scaricare il programma di installazione mediante il collegamento seguente:
 
 1. Nel server IIS creare una cartella per contenere le cartelle e i file pubblicati dell'app. In un passaggio successivo, il percorso della cartella viene fornito a IIS come percorso fisico dell'app.
 
-1. In Gestione IIS aprire il nodo del server nel pannello **Connessioni**. Fare clic con il pulsante destro del mouse sulla cartella **Siti**. Scegliere **Aggiungi sito Web** dal menu di scelta rapida.
+1. In Gestione IIS, aprire il nodo del server nel pannello **Connessioni.** Fare clic con il pulsante destro del mouse sulla cartella **Siti**. Scegliere **Aggiungi sito Web** dal menu di scelta rapida.
 
 1. Specificare un **Nome del sito** e impostare il **Percorso fisico** per la cartella di distribuzione dell'app che è stata creata. Specificare la configurazione in **Binding** e creare il sito Web selezionando **OK**.
 

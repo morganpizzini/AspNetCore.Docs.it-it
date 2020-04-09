@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/15/2020
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: b55235ffc44f0bacf44bd1644e45210b37f19607
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.openlocfilehash: 31161d6841986cb0bd8080468e5d523d59400490
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/18/2020
-ms.locfileid: "79511327"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80405928"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Immagini Docker per ASP.NET Core
 
@@ -178,7 +178,7 @@ Per usare l'applicazione pubblicata manualmente in un contenitore Docker, creare
 
 ::: moniker range="< aspnetcore-3.0"
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
@@ -187,7 +187,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### <a name="the-dockerfile"></a>Dockerfile
 
-Ecco il *Dockerfile* usato dal comando `docker build` eseguito in precedenza.  Usa `dotnet publish` allo stesso modo in cui è stato usato in questa sezione per la compilazione e la distribuzione.  
+Ecco il *Dockerfile* utilizzato `docker build` dal comando eseguito in precedenza.  Usa `dotnet publish` allo stesso modo in cui è stato usato in questa sezione per la compilazione e la distribuzione.  
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
@@ -214,7 +214,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ::: moniker range=">= aspnetcore-3.0"
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
@@ -223,7 +223,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### <a name="the-dockerfile"></a>Dockerfile
 
-Ecco il *Dockerfile* usato dal comando `docker build` eseguito in precedenza.  Usa `dotnet publish` allo stesso modo in cui è stato usato in questa sezione per la compilazione e la distribuzione.  
+Ecco il *Dockerfile* utilizzato `docker build` dal comando eseguito in precedenza.  Usa `dotnet publish` allo stesso modo in cui è stato usato in questa sezione per la compilazione e la distribuzione.  
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
@@ -248,7 +248,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ::: moniker-end
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
@@ -262,7 +262,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 * [Esempio di Docker per ASP.NET Core](https://github.com/dotnet/dotnet-docker) (usato in questa esercitazione)
 * [Configurare ASP.NET Core per l'utilizzo di server proxy e servizi di bilanciamento del carico](/aspnet/core/host-and-deploy/proxy-load-balancer)
 * [Working with Visual Studio Docker Tools](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker) (Uso degli strumenti Docker per Visual Studio)
-* [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers) (Debug con Visual Studio Code) 
+* [Debug con Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers) 
 
 ## <a name="next-steps"></a>Passaggi successivi
 

@@ -1,5 +1,5 @@
 ---
-title: 'Esercitazione: implementare la funzionalità CRUD-ASP.NET MVC con EF Core'
+title: 'Esercitazione: Implementare la funzionalità CRUD - ASP.NET MVC con EF CoreTutorial: Implement CRUD Functionality - ASP.NET MVC with EF Core'
 description: In questa esercitazione verrà esaminato e personalizzato il codice CRUD (Create, Read, Update, Delete) che lo scaffolding di MVC crea automaticamente nei controller e nelle visualizzazioni.
 author: rick-anderson
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 02/04/2019
 ms.topic: tutorial
 uid: data/ef-mvc/crud
 ms.openlocfilehash: 2aa4ef48509b9a34f3b25eb657b1ecac51c1374b
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/16/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79416212"
 ---
-# <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Esercitazione: implementare la funzionalità CRUD-ASP.NET MVC con EF Core
+# <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Esercitazione: Implementare la funzionalità CRUD - ASP.NET MVC con EF CoreTutorial: Implement CRUD Functionality - ASP.NET MVC with EF Core
 
 Nell'esercitazione precedente è stata creata un'applicazione MVC che memorizza e visualizza i dati usando Entity Framework e SQL Server LocalDB. In questa esercitazione verrà esaminato e personalizzato il codice CRUD (Create, Read, Update, Delete) che lo scaffolding di MVC crea automaticamente nei controller e nelle visualizzazioni.
 
@@ -26,11 +26,11 @@ In questa esercitazione:
 > [!div class="checklist"]
 > * Personalizzare la pagina Details
 > * Aggiornare la pagina Create
-> * Aggiornare la pagina Edit
-> * Aggiornare la pagina Delete
+> * Aggiornare la pagina Edit (Modifica)
+> * Aggiornare la pagina Delete (Elimina)
 > * Chiudere le connessioni di database
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [Introduzione a EF Core e ASP.NET Core MVC](intro.md)
 
@@ -58,7 +58,7 @@ Nell'URL seguente la route predefinita mappa Instructor come controller, Index c
 http://localhost:1230/Instructor/Index/1?courseID=2021
 ```
 
-L'ultima parte dell'URL ("?courseID=2021") è un valore di stringa di query. Lo strumento di associazione di modelli passa anche il valore ID al parametro `Index` del metodo `id` se viene passato come un valore di stringa di query:
+L'ultima parte dell'URL ("?courseID=2021") è un valore di stringa di query. Lo strumento di associazione di modelli passa anche il valore ID al parametro `id` del metodo `Index` se viene passato come un valore di stringa di query:
 
 ```
 http://localhost:1230/Instructor/Index?id=1&CourseID=2021
@@ -151,11 +151,11 @@ In alternativa, per impedire l'overposting numerosi sviluppatori usano i modelli
 
 ### <a name="test-the-create-page"></a>Testare la pagina Create
 
-Il codice in *Views/Students/Create.cshtml* usa gli helper tag `label`, `input` e `span` (per i messaggi di convalida) per ogni campo.
+Il codice in *Views/Students/Create.cshtml* utilizza `label`gli helper dei tag , `input`e `span` (per i messaggi di convalida) per ogni campo.
 
 Eseguire l'app, selezionare la scheda **Students** e fare clic su **Crea nuovo**.
 
-Immettere i nomi e una data. Provare a immettere una data non valida se il browser lo consente. Alcuni browser forzano l'uso di una selezione data. Fare quindi clic su **Crea** per visualizzare il messaggio di errore.
+Immettere i nomi e una data. Provare a immettere una data non valida se il browser lo consente. (Alcuni browser ti costringono a utilizzare un controllo selezione data.) Quindi fare clic su **Crea** per visualizzare il messaggio di errore.
 
 ![Errore di convalida della data](crud/_static/date-error.png)
 
@@ -165,7 +165,7 @@ Questa è la convalida lato server che si ottiene per impostazione predefinita; 
 
 Modificare la data impostando un valore valido e fare clic su **Crea** per visualizzare il nuovo studente nella pagina **Index**.
 
-## <a name="update-the-edit-page"></a>Aggiornare la pagina Edit
+## <a name="update-the-edit-page"></a>Aggiornare la pagina Edit (Modifica)
 
 In *StudentController.cs* il metodo HttpGet `Edit`, ovvero il metodo senza l'attributo `HttpPost`, usa il metodo `SingleOrDefaultAsync` per recuperare l'entità Student selezionata, come nel metodo `Details`. Non è necessario modificare questo metodo.
 
@@ -179,7 +179,7 @@ Queste modifiche implementano una procedura di sicurezza consigliata per impedir
 
 Il nuovo codice legge l'entità esistente e chiama `TryUpdateModel` per aggiornare i campi nell'entità recuperata [in base all'input dell'utente nei dati del modulo inviati](xref:mvc/models/model-binding). Il rilevamento modifiche automatico di Entity Framework imposta il flag `Modified` nei campi modificati dall'input del modulo. Quando viene chiamato il metodo `SaveChanges`, Entity Framework crea le istruzioni SQL per aggiornare la riga del database. I conflitti di concorrenza vengono ignorati e vengono aggiornate solo le colonne della tabella che sono state aggiornate dall'utente nel database. (Un'esercitazione successiva illustra come gestire i conflitti di concorrenza).
 
-Per evitare l'overposting, è consigliabile che i campi che devono essere aggiornati dalla pagina **Edit** siano consentiti nei parametri `TryUpdateModel`. La stringa vuota che precede l'elenco dei campi nell'elenco di parametri è relativa a un prefisso da usare con i nomi dei campi del modulo. Attualmente non sono presenti campi aggiuntivi da proteggere, ma elencando i campi che si desidera associare allo strumento di associazione di modelli si garantisce che se si aggiungono i campi al modello di dati in futuro, questi ultimi vengono protetti automaticamente finché non vengono aggiunti in modo esplicito.
+Per evitare l'overposting, è consigliabile che i campi che devono essere aggiornati dalla pagina **Edit** siano consentiti nei parametri `TryUpdateModel`. La stringa vuota che precede l'elenco dei campi nell'elenco dei parametri indica un prefisso da utilizzare con i nomi dei campi modulo. Attualmente non sono disponibili campi aggiuntivi da proteggere, ma l'elenco dei campi che si desidera associare al gestore di associazione del modello garantisce che se si aggiungono campi al modello di dati in futuro, vengono protetti automaticamente fino a quando non vengono aggiunti in modo esplicito qui.
 
 In seguito a queste modifiche, la firma del metodo HttpPost `Edit` corrisponde al metodo HttpGet `Edit`. Di conseguenza, il metodo `EditPost` è stato rinominato.
 
@@ -225,7 +225,7 @@ Eseguire l'app, selezionare la scheda **Students** e quindi fare clic su un coll
 
 Modificare alcuni dati e fare clic su **Salva**. Viene visualizzata la pagina **Index** con i dati modificati.
 
-## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete
+## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
 In *StudentController.cs* il codice di modello per il metodo HttpGet `Delete` usa il metodo `SingleOrDefaultAsync` per recuperare l'entità Student selezionata, come descritto per i metodi Details ed Edit. Tuttavia, per implementare un messaggio di errore personalizzato quando la chiamata di `SaveChanges` ha esito negativo, verrà aggiunta una funzionalità al metodo e alla visualizzazione corrispondente.
 
@@ -255,7 +255,7 @@ Se il miglioramento delle prestazioni in un'applicazione a volume elevato è una
 
 Se l'entità include anche dati correlati che devono essere eliminati, assicurarsi che sia configurata nel database l'eliminazione a catena. Con questo approccio per l'eliminazione di entità, EF potrebbe non rilevare le entità correlate da eliminare.
 
-### <a name="update-the-delete-view"></a>Aggiornare la visualizzazione Delete
+### <a name="update-the-delete-view"></a>Aggiornare la pagina Delete
 
 In *Views/Student/Delete.cshtml* aggiungere un messaggio di errore tra l'intestazione h2 e l'intestazione h3, come illustrato nell'esempio seguente:
 
@@ -289,7 +289,7 @@ Quando un contesto di database recupera righe di tabella e crea oggetti entità 
 
 * Si vuole collegare un'entità per aggiornarla, ma la stessa entità è stata recuperata in precedenza per uno scopo diverso. Poiché l'entità viene già registrata dal contesto di database, non è possibile collegare l'entità che si vuole modificare. Un modo per gestire questa situazione consiste nel chiamare `AsNoTracking` nella query precedente.
 
-Per altre informazioni, vedere [Tracking vs. no-tracking](/ef/core/querying/tracking).
+Per ulteriori informazioni, vedere [Rilevamento e nessun rilevamento](/ef/core/querying/tracking).
 
 ## <a name="get-the-code"></a>Ottenere il codice
 
@@ -303,10 +303,10 @@ In questa esercitazione:
 > * Personalizzazione della pagina Details
 > * Aggiornamento della pagina Create
 > * Aggiornamento della pagina Edit
-> * Aggiornare la pagina Delete
+> * Aggiornamento della pagina Delete
 > * Chiusura delle connessioni di database
 
 Passare all'esercitazione successiva per informazioni su come estendere la funzionalità della pagina **Index** aggiungendo ordinamento, filtro e suddivisione in pagine.
 
 > [!div class="nextstepaction"]
-> [Passaggio successivo: ordinamento, filtro e paging](sort-filter-page.md)
+> [Successiva: Ordinamento, filtro e paging](sort-filter-page.md)

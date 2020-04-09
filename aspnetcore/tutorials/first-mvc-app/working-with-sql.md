@@ -6,17 +6,17 @@ ms.author: riande
 ms.date: 8/16/2019
 uid: tutorials/first-mvc-app/working-with-sql
 ms.openlocfilehash: d556f07111fb2022a1c2f1a066459566e302835d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78665039"
 ---
 # <a name="work-with-sql-in-aspnet-core"></a>Usare SQL in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 L'oggetto `MvcMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato nel contenitore di [inserimento dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` nel file *Startup.cs*:
 
@@ -28,7 +28,7 @@ Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET
 
 [!code-json[](start-mvc/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
@@ -44,13 +44,13 @@ Quando l'app viene distribuita in un server di test o produzione, è possibile u
 
 ## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
-Local DB è una versione leggera del motore di database di SQL Server Express progettata appositamente per lo sviluppo di programmi. Local DB viene avviato su richiesta ed eseguito in modalità utente; non richiede quindi una configurazione complessa. Per impostazione predefinita, il database Local DB crea i file con estensione *mdf* nella directory *C:/Utenti/{utente}* .
+Local DB è una versione leggera del motore di database di SQL Server Express progettata appositamente per lo sviluppo di programmi. Local DB viene avviato su richiesta ed eseguito in modalità utente; non richiede quindi una configurazione complessa. Per impostazione predefinita, il database Local DB crea i file con estensione *mdf* nella directory *C:/Utenti/{utente}*.
 
 * Dal menu **Visualizzazione** aprire **Esplora oggetti di SQL Server** (SSOX).
 
   ![Menu Visualizza](working-with-sql/_static/ssox.png)
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` **> Visualizza finestra di progettazione**
+* Fare clic con il pulsante destro del mouse sulla tabella `Movie`**> Visualizza finestra di progettazione**
 
   ![Menu di scelta rapida aperto per la tabella Movie](working-with-sql/_static/design.png)
 
@@ -58,13 +58,13 @@ Local DB è una versione leggera del motore di database di SQL Server Express pr
 
 Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, Entity Framework userà una proprietà denominata `ID` come chiave primaria.
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` **> Visualizza dati**
+* Fare clic con il pulsante destro del mouse sulla tabella `Movie`**> Visualizza dati**
 
   ![Menu di scelta rapida aperto per la tabella Movie](working-with-sql/_static/ssox2.png)
 
   ![Tabella Movie aperta con i dati della tabella](working-with-sql/_static/vd22.png)
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
@@ -78,7 +78,7 @@ Creare una nuova classe denominata `SeedData` nella cartella *Models*. Sostituir
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/SeedData.cs?name=snippet_1)]
 
-Se sono presenti eventuali film nel database, l'inizializzatore di valore viene restituito e non vengono aggiunti film.
+Se sono presenti eventuali film nel database, l'inizializzatore del valore di inizializzazione viene restituito e non vengono aggiunti film.
 
 ```csharp
 if (context.Movie.Any())
@@ -111,7 +111,7 @@ Testare l'app
     * Se Visual Studio è in esecuzione in modalità non di debug, premere F5 per attivare la modalità di debug
     * Se Visual Studio è in esecuzione in modalità di debug, arrestare il debugger e premere F5
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Eliminare tutti i record del database; verrà quindi eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
 
@@ -122,13 +122,13 @@ L'app mostra i dati inizializzati.
 ![App per i film MVC aperta in Microsoft Edge con i dati sui film](working-with-sql/_static/m55.png)
 
 > [!div class="step-by-step"]
-> [Precedente](adding-model.md)
-> [Successivo](controller-methods-views.md)
+> [Successivo](adding-model.md)
+> [precedente](controller-methods-views.md)
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 L'oggetto `MvcMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato nel contenitore di [inserimento dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` nel file *Startup.cs*:
 
@@ -140,7 +140,7 @@ Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET
 
 [!code-json[](start-mvc/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
@@ -156,13 +156,13 @@ Quando si distribuisce l'app in un server di test o di produzione, è possibile 
 
 ## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
-Local DB è una versione leggera del motore di database di SQL Server Express progettata appositamente per lo sviluppo di programmi. Local DB viene avviato su richiesta ed eseguito in modalità utente; non richiede quindi una configurazione complessa. Per impostazione predefinita, il database Local DB crea i file con estensione *mdf* nella directory *C:/Utenti/{utente}* .
+Local DB è una versione leggera del motore di database di SQL Server Express progettata appositamente per lo sviluppo di programmi. Local DB viene avviato su richiesta ed eseguito in modalità utente; non richiede quindi una configurazione complessa. Per impostazione predefinita, il database Local DB crea i file con estensione *mdf* nella directory *C:/Utenti/{utente}*.
 
 * Dal menu **Visualizzazione** aprire **Esplora oggetti di SQL Server** (SSOX).
 
   ![Menu Visualizza](working-with-sql/_static/ssox.png)
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` **> Visualizza finestra di progettazione**
+* Fare clic con il pulsante destro del mouse sulla tabella `Movie`**> Visualizza finestra di progettazione**
 
   ![Menu di scelta rapida aperto per la tabella Movie](working-with-sql/_static/design.png)
 
@@ -170,13 +170,13 @@ Local DB è una versione leggera del motore di database di SQL Server Express pr
 
 Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, Entity Framework userà una proprietà denominata `ID` come chiave primaria.
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` **> Visualizza dati**
+* Fare clic con il pulsante destro del mouse sulla tabella `Movie`**> Visualizza dati**
 
   ![Menu di scelta rapida aperto per la tabella Movie](working-with-sql/_static/ssox2.png)
 
   ![Tabella Movie aperta con i dati della tabella](working-with-sql/_static/vd22.png)
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
@@ -190,7 +190,7 @@ Creare una nuova classe denominata `SeedData` nella cartella *Models*. Sostituir
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/SeedData.cs?name=snippet_1)]
 
-Se sono presenti eventuali film nel database, l'inizializzatore di valore viene restituito e non vengono aggiunti film.
+Se sono presenti eventuali film nel database, l'inizializzatore del valore di inizializzazione viene restituito e non vengono aggiunti film.
 
 ```csharp
 if (context.Movie.Any())
@@ -223,7 +223,7 @@ Testare l'app
     * Se Visual Studio è in esecuzione in modalità non di debug, premere F5 per attivare la modalità di debug
     * Se Visual Studio è in esecuzione in modalità di debug, arrestare il debugger e premere F5
 
-# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Eliminare tutti i record del database; verrà quindi eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
 
@@ -234,7 +234,7 @@ L'app mostra i dati inizializzati.
 ![App per i film MVC aperta in Microsoft Edge con i dati sui film](working-with-sql/_static/m55_mac.png)
 
 > [!div class="step-by-step"]
-> [Precedente](adding-model.md)
-> [Successivo](controller-methods-views.md)
+> [Successivo](adding-model.md)
+> [precedente](controller-methods-views.md)
 
 ::: moniker-end

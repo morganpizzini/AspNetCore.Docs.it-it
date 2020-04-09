@@ -6,10 +6,10 @@ ms.author: scaddie
 ms.date: 09/26/2017
 uid: fundamentals/portable-object-localization
 ms.openlocfilehash: 08002564eb68bc04eebaeafed560202d0d69958a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656191"
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>Configurare la localizzazione degli oggetti portabili in ASP.NET Core
@@ -20,7 +20,7 @@ Questo articolo descrive i passaggi per l'uso dei file degli oggetti portabili (
 
 **Nota:** Orchard Core non è un prodotto Microsoft. Di conseguenza, Microsoft non fornisce alcun supporto per questa funzionalità.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ( come[scaricare](xref:index#how-to-download-a-sample))
 
 ## <a name="what-is-a-po-file"></a>Che cos'è un file PO?
 
@@ -91,7 +91,7 @@ Viene inserita un'istanza `IViewLocalizer` che viene usata per tradurre il testo
 
 ### <a name="creating-a-po-file"></a>Creazione di un file PO
 
-Creare un file denominato *\<codice delle impostazioni cultura>.po* nella cartella radice dell'applicazione. In questo esempio il nome file è *fr.po* poiché viene usata la lingua francese:
+Creare un file denominato * \<codice delle impostazioni cultura>.po* nella cartella radice dell'applicazione. In questo esempio il nome file è *fr.po* poiché viene usata la lingua francese:
 
 [!code-text[](localization/sample/POLocalization/fr.po)]
 

@@ -7,10 +7,10 @@ ms.custom: mvc
 ms.date: 07/22/2019
 uid: data/ef-rp/concurrency
 ms.openlocfilehash: c4d43f26ba80e7922c3cbd37d9a5f8e1561b11ad
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656912"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---concurrency---8-of-8"></a>Razor Pages con EF Core in ASP.NET Core - Concorrenza - 8 di 8
@@ -62,7 +62,7 @@ John fa clic su **Salva** in una pagina Edit (Modifica) che visualizza ancora un
 
 * È possibile consentire che la modifica di John sovrascriva la modifica di Jane.
 
-  Quando un utente torna a visualizzare il reparto English (Inglese), visualizza 9/1/2013 e il valore $ 350.000,00 recuperato. Questo scenario è detto *Priorità client* o *Last in Wins* (Priorità ultimo accesso). Tutti i valori del client hanno la precedenza sugli elementi presenti nell'archivio dati. Se non si esegue alcuna codifica per la gestione della concorrenza, la WINS client viene eseguita automaticamente.
+  Quando un utente torna a visualizzare il reparto English (Inglese), visualizza 9/1/2013 e il valore $ 350.000,00 recuperato. Questo scenario è detto *Priorità client* o *Last in Wins* (Priorità ultimo accesso). Tutti i valori del client hanno la precedenza su ciò che è presente nell'archivio dati. Se non si esegue alcuna codifica per la gestione della concorrenza, i certificati client vengono eseguiti automaticamente.
 
 * È possibile impedire l'aggiornamento del database con la modifica di John. In genere, l'app:
 
@@ -70,7 +70,7 @@ John fa clic su **Salva** in una pagina Edit (Modifica) che visualizza ancora un
   * Visualizza lo stato corrente dei dati.
   * Consente all'utente di riapplicare le modifiche.
 
-  Questo scenario è detto *Store Wins* (Priorità archivio). I valori dell'archivio dati hanno la precedenza sui valori inviati dal client. In questa esercitazione viene implementato lo scenario di WINS dello Store. Questo metodo garantisce che nessuna modifica venga sovrascritta senza che un utente riceva un avviso.
+  Questo scenario è detto *Store Wins* (Priorità archivio). I valori dell'archivio dati hanno la precedenza sui valori inviati dal client. Implementare lo scenario di vincita del negozio in questa esercitazione. Questo metodo garantisce che nessuna modifica venga sovrascritta senza che un utente riceva un avviso.
 
 ## <a name="conflict-detection-in-ef-core"></a>Rilevamento dei conflitti in EF Core
 
@@ -121,7 +121,7 @@ Il codice evidenziato seguente visualizza la notazione T-SQL che verifica che è
 
 [!code-sql[](intro/samples/cu30snapshots/8-concurrency/sql.txt?highlight=4-6)]
 
-[@@ROWCOUNT](/sql/t-sql/functions/rowcount-transact-sql) restituisce il numero delle righe interessate dall'ultima istruzione. Se non viene aggiornata alcuna riga, EF Core genera `DbUpdateConcurrencyException`.
+[:@ROWCOUNT ](/sql/t-sql/functions/rowcount-transact-sql) restituisce il numero di righe interessate dall'ultima istruzione. Se non viene aggiornata alcuna riga, EF Core genera `DbUpdateConcurrencyException`.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -220,7 +220,7 @@ Questo comando:
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
 
-  **In Linux o macOS:**
+  **Su Linux o macOS:**
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages/Departments --referenceScriptLibraries
@@ -311,11 +311,11 @@ Fare clic su **Salva**. Vengono visualizzati messaggi di errore per tutti i camp
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error30.png)
 
-Questa finestra del browser non prevedeva la modifica del campo Name (Nome). Copiare e incollare il valore corrente Languages (Lingue) nel campo Name (Nome). Tabulazione. La convalida lato client rimuove il messaggio di errore.
+Questa finestra del browser non prevedeva la modifica del campo Name (Nome). Copiare e incollare il valore corrente Languages (Lingue) nel campo Name (Nome). Scheda. La convalida lato client rimuove il messaggio di errore.
 
 Fare clic su **Salva**. Il valore immesso nella seconda scheda del browser viene salvato. I valori salvati vengono visualizzati nella pagina Index.
 
-## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete
+## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
 Aggiornare *Pages/Departments/Delete.cshtml.cs* con il codice seguente:
 
@@ -349,7 +349,7 @@ Aprire due istanze del browser con la pagina Delete (Elimina):
 
 * Eseguire l'app e selezionare Departments (Reparti).
 * Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Delete** (Elimina) per il reparto di test e selezionare **Apri in una nuova scheda**.
-* Fare clic sul collegamento ipertestuale **Edit**  (Modifica) per il reparto di test.
+* Fare clic sul collegamento ipertestuale **Edit ** (Modifica) per il reparto di test.
 
 Le due schede del browser visualizzano le stesse informazioni.
 
@@ -357,7 +357,7 @@ Modificare il budget nella prima scheda del browser e fare clic su **Salva**.
 
 Il browser visualizza la pagina Index con il valore modificato e l'indicatore rowVersion aggiornato. Si noti l'indicatore rowVersion aggiornato, che è visualizzato sul secondo postback nell'altra scheda.
 
-Eliminare il reparto di test dalla seconda scheda. Viene visualizzato un errore di concorrenza con i valori correnti del database. Se si fa clic su **Delete** (Elimina) l'entità viene eliminata, salvo se l'elemento `RowVersion` è stato aggiornato.
+Eliminare il reparto di test dalla seconda scheda. Viene visualizzato un errore di concorrenza con i valori correnti dal database. Se si fa clic su **Delete** (Elimina) l'entità viene eliminata, salvo se l'elemento `RowVersion` è stato aggiornato.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -418,7 +418,7 @@ La concorrenza ottimistica include le opzioni seguenti:
 
 * È possibile consentire che la modifica di John sovrascriva la modifica di Jane.
 
-  Quando un utente torna a visualizzare il reparto English (Inglese), visualizza 9/1/2013 e il valore $ 350.000,00 recuperato. Questo scenario è detto *Priorità client* o *Last in Wins* (Priorità ultimo accesso). Tutti i valori del client hanno la precedenza sugli elementi presenti nell'archivio dati. Se non si esegue alcuna codifica per la gestione della concorrenza, la WINS client viene eseguita automaticamente.
+  Quando un utente torna a visualizzare il reparto English (Inglese), visualizza 9/1/2013 e il valore $ 350.000,00 recuperato. Questo scenario è detto *Priorità client* o *Last in Wins* (Priorità ultimo accesso). Tutti i valori del client hanno la precedenza su ciò che è presente nell'archivio dati. Se non si esegue alcuna codifica per la gestione della concorrenza, i certificati client vengono eseguiti automaticamente.
 
 * È possibile impedire che la modifica di John venga implementata nel database. In genere, l'app:
 
@@ -426,7 +426,7 @@ La concorrenza ottimistica include le opzioni seguenti:
   * Visualizza lo stato corrente dei dati.
   * Consente all'utente di riapplicare le modifiche.
 
-  Questo scenario è detto *Store Wins* (Priorità archivio). I valori dell'archivio dati hanno la precedenza sui valori inviati dal client. In questa esercitazione viene implementato lo scenario di WINS dello Store. Questo metodo garantisce che nessuna modifica venga sovrascritta senza che un utente riceva un avviso.
+  Questo scenario è detto *Store Wins* (Priorità archivio). I valori dell'archivio dati hanno la precedenza sui valori inviati dal client. Implementare lo scenario di vincita del negozio in questa esercitazione. Questo metodo garantisce che nessuna modifica venga sovrascritta senza che un utente riceva un avviso.
 
 ## <a name="handling-concurrency"></a>Gestione della concorrenza 
 
@@ -484,7 +484,7 @@ Il codice evidenziato seguente visualizza la notazione T-SQL che verifica che è
 
 [!code-sql[](intro/samples/cu21snapshots/sql.txt?highlight=4-6)]
 
-[@@ROWCOUNT](/sql/t-sql/functions/rowcount-transact-sql) restituisce il numero delle righe interessate dall'ultima istruzione. Se non viene aggiornata nessuna riga, EF Core genera `DbUpdateConcurrencyException`.
+[:@ROWCOUNT ](/sql/t-sql/functions/rowcount-transact-sql) restituisce il numero di righe interessate dall'ultima istruzione. Se non viene aggiornata nessuna riga, EF Core genera `DbUpdateConcurrencyException`.
 
 Il codice T-SQL generato da EF Core è visibile nella finestra di output di Visual Studio.
 
@@ -570,7 +570,7 @@ Il codice evidenziato seguente imposta il valore `RowVersion` sul nuovo valore r
 
 L'istruzione `ModelState.Remove` è necessaria perché `ModelState` presenta il valore obsoleto `RowVersion`. Nella pagina Razor il valore `ModelState` di un campo ha la precedenza sui valori di proprietà del modello quando entrambi gli elementi sono presenti.
 
-## <a name="update-the-edit-page"></a>Aggiornare la pagina Edit
+## <a name="update-the-edit-page"></a>Aggiornare la pagina Edit (Modifica)
 
 Aggiornare *Pages/Departments/Edit.cshtml* con il markup seguente:
 
@@ -607,13 +607,13 @@ Fare clic su **Salva**. Vengono visualizzati messaggi di errore per tutti i camp
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error.png)
 
-Questa finestra del browser non prevedeva la modifica del campo Name (Nome). Copiare e incollare il valore corrente Languages (Lingue) nel campo Name (Nome). Tabulazione. La convalida lato client rimuove il messaggio di errore.
+Questa finestra del browser non prevedeva la modifica del campo Name (Nome). Copiare e incollare il valore corrente Languages (Lingue) nel campo Name (Nome). Scheda. La convalida lato client rimuove il messaggio di errore.
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/cv.png)
 
 Fare clic su **Salva**. Il valore immesso nella seconda scheda del browser viene salvato. I valori salvati vengono visualizzati nella pagina Index.
 
-## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete
+## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
 Aggiornare il modello di pagina Delete (Elimina) con il codice seguente:
 
@@ -625,7 +625,7 @@ La pagina Delete (Elimina) rileva i conflitti di concorrenza quando l'entità è
 * Viene generata un'eccezione DbUpdateConcurrencyException.
 * `OnGetAsync` viene chiamata con `concurrencyError`.
 
-### <a name="update-the-delete-page"></a>Aggiornare la pagina Delete
+### <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
 Aggiornare *Pages/Departments/Delete.cshtml* con il codice seguente:
 
@@ -647,7 +647,7 @@ Aprire due istanze del browser con la pagina Delete (Elimina):
 
 * Eseguire l'app e selezionare Departments (Reparti).
 * Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Delete** (Elimina) per il reparto di test e selezionare **Apri in una nuova scheda**.
-* Fare clic sul collegamento ipertestuale **Edit**  (Modifica) per il reparto di test.
+* Fare clic sul collegamento ipertestuale **Edit ** (Modifica) per il reparto di test.
 
 Le due schede del browser visualizzano le stesse informazioni.
 

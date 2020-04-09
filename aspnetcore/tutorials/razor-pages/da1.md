@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 12/20/2018
 uid: tutorials/razor-pages/da1
 ms.openlocfilehash: 0f6535462fe2d308825bf7289c10d2b0690cebd4
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78666215"
 ---
 # <a name="update-the-generated-pages-in-an-aspnet-core-app"></a>Aggiornare le pagine generate in un'app ASP.NET Core
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -54,7 +54,7 @@ Usare **Visualizza origine** dal browser preferito per esaminare il codice gener
 
 I collegamenti generati dinamicamente passano l'ID del film con una stringa di query, ad esempio `?id=1` in `https://localhost:5001/Movies/Details?id=1`.
 
-### <a name="add-route-template"></a>Aggiungere un modello di route
+### <a name="add-route-template"></a>Aggiungi modello di percorso
 
 Aggiornare le pagine Razor Edit (Modifica), Details (Dettagli) e Delete (Elimina) in modo da usare il modello di route "{id: int}". Modificare la direttiva page per ognuna di queste pagine da `@page` a `@page "{id:int}"`. Eseguire l'app e quindi visualizzare l'origine. Il codice HTML generato aggiunge l'ID alla parte di percorso dell'URL:
 
@@ -75,10 +75,10 @@ Una richiesta alla pagina con il modello di route "{id: int}" che **non** includ
 Per testare il comportamento di `@page "{id:int?}"`:
 
 * Impostare la direttiva page in *Pages/Movies/Details.cshtml* su `@page "{id:int?}"`.
-* Impostare un breakpoint in `public async Task<IActionResult> OnGetAsync(int? id)` (in *Pages/Movies/Details.cshtml.cs*).
+* Impostare un punto di interruzione in `public async Task<IActionResult> OnGetAsync(int? id)` (in *Pages/Movies/Details.cshtml.cs*).
 * Accedere a `https://localhost:5001/Movies/Details/`.
 
-Con l'istruzione `@page "{id:int}"`, il breakpoint non viene mai raggiunto. Il motore di routing restituisce HTTP 404. Se si utilizza `@page "{id:int?}"`, il metodo `OnGetAsync` restituisce `NotFound` (HTTP 404).
+Con l'istruzione `@page "{id:int}"`, il punto di interruzione non viene mai raggiunto. Il motore di routing restituisce HTTP 404. Se si utilizza `@page "{id:int?}"`, il metodo `OnGetAsync` restituisce `NotFound` (HTTP 404).
 
 ### <a name="review-concurrency-exception-handling"></a>Verificare la gestione delle eccezioni di concorrenza
 
@@ -90,7 +90,7 @@ Il codice precedente rileva le eccezioni di concorrenza quando un client elimina
 
 Per testare il blocco `catch`:
 
-* Impostare un breakpoint su `catch (DbUpdateConcurrencyException)`
+* Impostare un punto di interruzione su `catch (DbUpdateConcurrencyException)`
 * Selezionare **Edit** (Modifica) per un film, apportare modifiche, ma non immettere **Save** (Salva).
 * In un'altra finestra del browser, selezionare il collegamento **Delete** (Elimina) per lo stesso film e quindi eliminare il film.
 * Nella finestra del browser precedente inviare le modifiche al film.
@@ -99,7 +99,7 @@ In alcuni casi, il codice utilizzabile in ambienti di produzione potrebbe voler 
 
 ### <a name="posting-and-binding-review"></a>Invio di post e analisi delle associazioni
 
-Esaminare il file *Pages/Movies/Edit.cshtml.cs*:
+Esaminare il file *Pages/Movies/Edit.cshtml.cs*: 
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/SnapShots/Edit.cshtml.cs?name=snippet2)]
 
@@ -126,8 +126,8 @@ I metodi HTTP GET nelle pagine Razor Index, Create e Delete seguono un criterio 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 > [!div class="step-by-step"]
-> [Precedente: Usare un database](xref:tutorials/razor-pages/sql)
-> [Successivo: Aggiungere la funzionalità di ricerca](xref:tutorials/razor-pages/search)
+> [Precedente: Utilizzo di un database](xref:tutorials/razor-pages/sql)
+> [Successivo: Aggiungi ricerca](xref:tutorials/razor-pages/search)
 
 ::: moniker-end
 
@@ -188,10 +188,10 @@ Una richiesta alla pagina con il modello di route "{id: int}" che **non** includ
 Per testare il comportamento di `@page "{id:int?}"`:
 
 * Impostare la direttiva page in *Pages/Movies/Details.cshtml* su `@page "{id:int?}"`.
-* Impostare un breakpoint in `public async Task<IActionResult> OnGetAsync(int? id)` (in *Pages/Movies/Details.cshtml.cs*).
+* Impostare un punto di interruzione in `public async Task<IActionResult> OnGetAsync(int? id)` (in *Pages/Movies/Details.cshtml.cs*).
 * Accedere a `https://localhost:5001/Movies/Details/`.
 
-Con l'istruzione `@page "{id:int}"`, il breakpoint non viene mai raggiunto. Il motore di routing restituisce HTTP 404. Se si utilizza `@page "{id:int?}"`, il metodo `OnGetAsync` restituisce `NotFound` (HTTP 404).
+Con l'istruzione `@page "{id:int}"`, il punto di interruzione non viene mai raggiunto. Il motore di routing restituisce HTTP 404. Se si utilizza `@page "{id:int?}"`, il metodo `OnGetAsync` restituisce `NotFound` (HTTP 404).
 
 ### <a name="review-concurrency-exception-handling"></a>Verificare la gestione delle eccezioni di concorrenza
 
@@ -203,7 +203,7 @@ Il codice precedente rileva le eccezioni di concorrenza quando un client elimina
 
 Per testare il blocco `catch`:
 
-* Impostare un breakpoint su `catch (DbUpdateConcurrencyException)`
+* Impostare un punto di interruzione su `catch (DbUpdateConcurrencyException)`
 * Selezionare **Edit** (Modifica) per un film, apportare modifiche, ma non immettere **Save** (Salva).
 * In un'altra finestra del browser, selezionare il collegamento **Delete** (Elimina) per lo stesso film e quindi eliminare il film.
 * Nella finestra del browser precedente inviare le modifiche al film.
@@ -212,7 +212,7 @@ In alcuni casi, il codice utilizzabile in ambienti di produzione potrebbe voler 
 
 ### <a name="posting-and-binding-review"></a>Invio di post e analisi delle associazioni
 
-Esaminare il file *Pages/Movies/Edit.cshtml.cs*:
+Esaminare il file *Pages/Movies/Edit.cshtml.cs*: 
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit21.cshtml.cs?name=snippet2)]
 
@@ -243,7 +243,7 @@ La funzionalità di ricerca viene aggiunta nell'esercitazione successiva.
 * [Versione YouTube dell'esercitazione](https://youtu.be/yLnnleREMtQ)
 
 > [!div class="step-by-step"]
-> [Precedente: Usare un database](xref:tutorials/razor-pages/sql)
-> [Successivo: Aggiungere la funzionalità di ricerca](xref:tutorials/razor-pages/search)
+> [Precedente: Utilizzo di un database](xref:tutorials/razor-pages/sql)
+> [Successivo: Aggiungi ricerca](xref:tutorials/razor-pages/search)
 
 ::: moniker-end

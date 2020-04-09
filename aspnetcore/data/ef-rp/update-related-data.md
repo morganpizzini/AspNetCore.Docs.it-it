@@ -6,10 +6,10 @@ ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/update-related-data
 ms.openlocfilehash: fdfdb14ff8414b8bf30f9b95be7ba0a6bcbd2995
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656422"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---update-related-data---7-of-8"></a>Razor Pages con EF Core in ASP.NET Core - Aggiornare dati correlati - 7 di 8
@@ -230,8 +230,8 @@ Eseguire l'app e testare la pagina Delete.
 ## <a name="next-steps"></a>Passaggi successivi
 
 > [!div class="step-by-step"]
-> [Esercitazione precedente](xref:data/ef-rp/read-related-data)
-> [Esercitazione successiva](xref:data/ef-rp/concurrency)
+> [Esercitazione](xref:data/ef-rp/read-related-data)
+> precedente[Esercitazione successiva](xref:data/ef-rp/concurrency)
 
 ::: moniker-end
 
@@ -432,7 +432,7 @@ Aggiornare la pagina Razor Create (Crea) dell'insegnante con il markup seguente:
 
 Testare la pagina Create (Crea) dell'insegnante.
 
-## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete
+## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
 Aggiornare il modello di pagina Delete (Elimina) con il codice seguente:
 
@@ -450,7 +450,7 @@ Il codice precedente apporta le modifiche seguenti:
 * [Versione YouTube dell'esercitazione (parte 2)](https://www.youtube.com/watch?v=mOAankB_Zgc)
 
 > [!div class="step-by-step"]
-> [Precedente](xref:data/ef-rp/read-related-data)
-> [Successivo](xref:data/ef-rp/concurrency)
+> [Successivo](xref:data/ef-rp/read-related-data)
+> [precedente](xref:data/ef-rp/concurrency)
 
 ::: moniker-end

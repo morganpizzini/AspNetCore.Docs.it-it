@@ -7,10 +7,10 @@ ms.custom: H1Hack27Feb2017
 ms.date: 12/18/2018
 uid: fundamentals/owin
 ms.openlocfilehash: 14b23ba6d284413e20417bbd4142e19a656350ac
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78666684"
 ---
 # <a name="open-web-interface-for-net-owin-with-aspnet-core"></a>Open Web Interface for .NET (OWIN) con ASP.NET Core
@@ -29,7 +29,7 @@ In questo modo ASP.NET Core può essere ospitato in un server/host compatibile c
 > [!NOTE]
 > L'uso di questi adattatori comporta una riduzione delle prestazioni. Le app che usano solo componenti di ASP.NET Core non devono usare il pacchetto o gli adattatori `Microsoft.AspNetCore.Owin`.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/owin/sample) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/owin/sample) ( come[scaricare](xref:index#how-to-download-a-sample))
 
 ## <a name="running-owin-middleware-in-the-aspnet-core-pipeline"></a>Esecuzione del middleware OWIN nella pipeline ASP.NET Core
 

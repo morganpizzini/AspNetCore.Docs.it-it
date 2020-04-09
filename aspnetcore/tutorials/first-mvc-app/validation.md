@@ -6,17 +6,17 @@ ms.author: riande
 ms.date: 04/13/2017
 uid: tutorials/first-mvc-app/validation
 ms.openlocfilehash: ecf3d011b38347eb32020df00e44d93ca789443a
-ms.sourcegitcommit: 99e71ae03319ab386baf2ebde956fc2d511df8b8
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/25/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "80242536"
 ---
 # <a name="add-validation-to-an-aspnet-core-mvc-app"></a>Aggiungere la funzionalità di convalida a un'app ASP.NET Core MVC
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-In questa sezione:
+Contenuto della sezione:
 
 * La logica di convalida viene aggiunta al modello `Movie`.
 * Si verifica che le regole di convalida vengano applicate ogni volta che un utente crea o modifica un film.
@@ -51,11 +51,11 @@ Ci si potrebbe chiedere come la convalida dell'interfaccia utente sia stata gene
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Controllers/MoviesController.cs?name=snippetCreate)]
 
-Il primo metodo di azione (HTTP GET) `Create` visualizza il modulo di creazione iniziale. La seconda versione (`[HttpPost]`) gestisce l'invio del modulo. Il secondo metodo `Create` (la versione `[HttpPost]`) chiama `ModelState.IsValid` per verificare se esistono errori di convalida per il film. La chiamata a questo metodo valuta tutti gli attributi di convalida applicati all'oggetto. Se l'oggetto presenta errori di convalida, il metodo `Create` visualizza di nuovo il modulo. Se non sono presenti errori, il metodo salva il nuovo film nel database. Nell'esempio del film, il modulo non viene inviato al server quando vengono rilevati errori di convalida sul lato client; il secondo metodo `Create` non viene mai chiamato quando sono presenti errori di convalida sul lato client. Se si disabilita JavaScript nel browser, la convalida sul lato client viene disabilitata ed è possibile testare `Create` del metodo `ModelState.IsValid` HTTP POST rilevando eventuali errori di convalida.
+Il primo metodo di azione (HTTP GET) `Create` visualizza il modulo di creazione iniziale. La seconda versione (`[HttpPost]`) gestisce l'invio del modulo. Il secondo metodo `Create` (la versione `[HttpPost]`) chiama `ModelState.IsValid` per verificare se esistono errori di convalida per il film. La chiamata a questo metodo valuta tutti gli attributi di convalida applicati all'oggetto. Se l'oggetto presenta errori di convalida, il metodo `Create` visualizza di nuovo il modulo. Se non sono presenti errori, il metodo salva il nuovo film nel database. Nell'esempio del film, il modulo non viene inviato al server quando vengono rilevati errori di convalida sul lato client; il secondo metodo `Create` non viene mai chiamato quando sono presenti errori di convalida sul lato client. Se si disabilita JavaScript nel browser, la convalida sul lato client viene disabilitata ed è possibile testare `ModelState.IsValid` del metodo `Create` HTTP POST rilevando eventuali errori di convalida.
 
 È possibile impostare un punto di interruzione nel metodo `[HttpPost] Create` e verificare che il metodo non venga mai chiamato, la convalida sul lato client non invierà i dati del modulo in caso di rilevamento di errori di convalida. Se si disabilita JavaScript nel browser, quindi si invia il modulo con errori, verrà raggiunto il punto di interruzione. Si ottiene comunque la convalida completa senza JavaScript. 
 
-La figura seguente illustra come disabilitare JavaScript nel browser Firefox.
+L'immagine seguente mostra come disabilitare JavaScript nel browser Firefox.
 
 ![Firefox: nella scheda Contenuti in Opzioni deselezionare la casella di controllo Abilita Javascript.](~/tutorials/first-mvc-app/validation/_static/ff.png)
 
@@ -121,11 +121,11 @@ Nella parte successiva della serie viene esaminata l'app e vengono apportati alc
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Utilizzo dei moduli](xref:mvc/views/working-with-forms)
+* [Uso dei moduli](xref:mvc/views/working-with-forms)
 * [Globalizzazione e localizzazione](xref:fundamentals/localization)
 * [Introduzione agli helper tag](xref:mvc/views/tag-helpers/intro)
 * [Creare helper tag](xref:mvc/views/tag-helpers/authoring)
 
 > [!div class="step-by-step"]
-> [Precedente](new-field.md)
-> [Successivo](details.md)  
+> [Successivo](new-field.md)
+> [precedente](details.md)  

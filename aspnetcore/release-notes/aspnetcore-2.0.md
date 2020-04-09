@@ -7,10 +7,10 @@ ms.custom: mvc
 ms.date: 12/05/2019
 uid: aspnetcore-2.0
 ms.openlocfilehash: 5ca43bab1496aa9fda65282cbb0b1177ad8689eb
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78667258"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Novità di ASP.NET Core 2.0
@@ -86,7 +86,7 @@ Il server Web Kestrel include nuove funzionalità che lo rendono più adatto all
 * Dimensione massima del corpo della richiesta
 * Velocità minima dei dati del corpo della richiesta
 
-Per altre informazioni, vedere l'introduzione all'[implementazione del server Web Kestrel in ASP.NET Core](xref:fundamentals/servers/kestrel).
+Per altre informazioni, vedere [Introduzione all'implementazione di server Web Kestrel in ASP.NET Core](xref:fundamentals/servers/kestrel).
 
 ## <a name="weblistener-renamed-to-httpsys"></a>WebListener rinominato in HTTP.sys
 
@@ -104,7 +104,7 @@ var entityTag = new EntityTagHeaderValue("\"MyCalculatedEtagValue\"");
 return File(data, "text/plain", "downloadName.txt", lastModified: DateTime.UtcNow.AddSeconds(-5), entityTag: entityTag);
 ```
 
-Il file restituito ai visitatori presenta le intestazioni HTTP appropriate per i valori `ETag` e `LastModified`.
+Il file restituito ai visitatori ha le `ETag` `LastModified` intestazioni HTTP appropriate per i valori e .
 
 Se il visitatore di un'applicazione richiede contenuto con un'intestazione di richiesta di intervallo, ASP.NET Core lo riconosce e gestisce l'intestazione. Se il contenuto richiesto può essere recapitato parzialmente, ASP.NET Core ignora e considera le varie parti in modo appropriato restituendo solo il set di byte richiesto. Non è necessario scrivere gestori speciali nei metodi per adattare o gestire questa funzionalità, poiché è gestita automaticamente.
 
@@ -140,8 +140,8 @@ Per informazioni sullo stato delle funzionalità di C# 7.1, vedere il [repositor
 
 ## <a name="other-documentation-updates-for-20"></a>Altri aggiornamenti alla documentazione per la versione 2.0
 
-* [Visual Studio publish profiles for ASP.NET Core app deployment](xref:host-and-deploy/visual-studio-publish-profiles) (Profili di pubblicazione di Visual Studio per la distribuzione di app ASP.NET Core)
-* [Gestione della chiave](xref:security/data-protection/implementation/key-management)
+* [Profili di pubblicazione di Visual Studio per la distribuzione di app ASP.NET Core](xref:host-and-deploy/visual-studio-publish-profiles)
+* [Gestione delle chiavi](xref:security/data-protection/implementation/key-management)
 * [Configurare l'autenticazione di Facebook](xref:security/authentication/facebook-logins)
 * [Configurare l'autenticazione di Twitter](xref:security/authentication/twitter-logins)
 * [Configurare l'autenticazione di Google](xref:security/authentication/google-logins)

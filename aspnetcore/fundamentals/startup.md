@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 12/05/2019
 uid: fundamentals/startup
 ms.openlocfilehash: e3249df4b7388beeff13fe4b4e0ff481c35725c5
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78667657"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Avvio dell'app in ASP.NET Core
@@ -26,7 +26,7 @@ La classe `Startup` configura i servizi e la pipeline delle richieste dell'app.
 
 Le app ASP.NET Core usano una classe `Startup` denominata `Startup` per convenzione. La classe `Startup`:
 
-* Include facoltativamente un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> per configurare i *servizi* dell'app. Un servizio è un componente riutilizzabile che fornisce la funzionalità delle app. I servizi vengono *registrati* in `ConfigureServices` e utilizzati nell'app tramite l' [inserimento di dipendenze (DI)](xref:fundamentals/dependency-injection) o <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
+* Include facoltativamente un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> per configurare i *servizi* dell'app. Un servizio è un componente riutilizzabile che fornisce la funzionalità delle app. I *registered* servizi `ConfigureServices` vengono registrati e utilizzati nell'app tramite inserimento delle [dipendenze (DI)](xref:fundamentals/dependency-injection) o <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
 * Include un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> per creare la pipeline di elaborazione delle richieste dell'app.
 
 `ConfigureServices` e `Configure` sono chiamate dal runtime di ASP.NET Core all'avvio dell'app:
@@ -36,13 +36,13 @@ Le app ASP.NET Core usano una classe `Startup` denominata `Startup` per convenzi
 L'esempio precedente è per [Razor Pages](xref:razor-pages/index). La versione per MVC è simile.
 
 
-La classe `Startup` viene specificata al momento della compilazione dell'[host](xref:fundamentals/index#host) dell'app. La classe `Startup` viene in genere specificata chiamando il metodo [WebHostBuilderExtensions. UseStartup\<TStartup >](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) nel generatore host:
+La classe `Startup` viene specificata al momento della compilazione dell'[host](xref:fundamentals/index#host) dell'app. La `Startup` classe viene in genere specificata chiamando il [metodo WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) sul generatore host:
 
 [!code-csharp[](startup/3.0_samples/Program3.cs?name=snippet_Program&highlight=12)]
 
 L'host fornisce i servizi disponibili al costruttore della classe `Startup`. L'app aggiunge servizi aggiuntivi tramite `ConfigureServices`. I servizi dell'host e dell'app saranno disponibili in `Configure` e nell'app.
 
-Quando si usa l' [host generico](xref:fundamentals/host/generic-host) (<xref:Microsoft.Extensions.Hosting.IHostBuilder>), è possibile inserire solo i tipi di servizio seguenti nel costruttore `Startup`:
+Solo i seguenti tipi di servizio `Startup` possono essere inseriti<xref:Microsoft.Extensions.Hosting.IHostBuilder>nel costruttore quando si utilizza l'host [generico](xref:fundamentals/host/generic-host) ( ):
 
 * <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>
 * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
@@ -80,7 +80,7 @@ Il metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> viene usato
 
 I [modelli ASP.NET Core](/dotnet/core/tools/dotnet-new) configurano la pipeline con il supporto per:
 
-* [Pagina delle eccezioni per gli sviluppatori](xref:fundamentals/error-handling#developer-exception-page)
+* [Pagina delle eccezioni sviluppatore](xref:fundamentals/error-handling#developer-exception-page)
 * [Gestore di eccezioni](xref:fundamentals/error-handling#exception-handler-page)
 * [Protocollo HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [Reindirizzamento HTTPS](xref:security/enforcing-ssl)
@@ -110,10 +110,10 @@ Per configurare i servizi e la pipeline di elaborazione delle richieste senza us
 
 ## <a name="extend-startup-with-startup-filters"></a>Estendere l'avvio con filtri di avvio
 
-Usare <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
+Utilizzare <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
 
-* Per configurare middleware all'inizio o alla fine della pipeline di [configurazione](#the-configure-method) middleware di un'app senza una chiamata esplicita a `Use{Middleware}`. `IStartupFilter` viene usato da ASP.NET Core per aggiungere i valori predefiniti all'inizio della pipeline senza dover fare in modo che l'autore dell'app registri in modo esplicito il middleware predefinito. `IStartupFilter` consente la chiamata di un componente diverso `Use{Middleware}` per conto dell'autore dell'app.
-* Per creare una pipeline di `Configure` metodi. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure*) può impostare un middleware da eseguire prima o dopo l'aggiunta del middleware dalle librerie.
+* Per configurare il middleware all'inizio o alla fine della pipeline `Use{Middleware}` [di middleware Configure](#the-configure-method) di un'app senza una chiamata esplicita a . `IStartupFilter`viene utilizzato da ASP.NET Core per aggiungere impostazioni predefinite all'inizio della pipeline senza dover fare in modo che l'autore dell'app registri in modo esplicito il middleware predefinito. `IStartupFilter`consente una chiamata `Use{Middleware}` componente diversa per conto dell'autore dell'app.
+* Per creare una `Configure` pipeline di metodi. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure*) può impostare un middleware da eseguire prima o dopo l'aggiunta del middleware dalle librerie.
 
 `IStartupFilter` implementa <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*>, che riceve e restituisce un `Action<IApplicationBuilder>`. <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> definisce una classe per configurare la pipeline delle richieste di un'app. Per altre informazioni, vedere [Creare una pipeline middleware con IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
 
@@ -147,7 +147,7 @@ Un'implementazione <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> consente 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [L'host](xref:fundamentals/index#host)
+* [Host](xref:fundamentals/index#host)
 * <xref:fundamentals/environments>
 * <xref:fundamentals/middleware/index>
 * <xref:fundamentals/logging/index>
@@ -161,14 +161,14 @@ Un'implementazione <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> consente 
 
 Le app ASP.NET Core usano una classe `Startup` denominata `Startup` per convenzione. La classe `Startup`:
 
-* Include facoltativamente un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> per configurare i *servizi* dell'app. Un servizio è un componente riutilizzabile che fornisce la funzionalità delle app. I servizi vengono *registrati* in `ConfigureServices` e utilizzati nell'app tramite l' [inserimento di dipendenze (DI)](xref:fundamentals/dependency-injection) o <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
+* Include facoltativamente un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> per configurare i *servizi* dell'app. Un servizio è un componente riutilizzabile che fornisce la funzionalità delle app. I *registered* servizi `ConfigureServices` vengono registrati e utilizzati nell'app tramite inserimento delle [dipendenze (DI)](xref:fundamentals/dependency-injection) o <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
 * Include un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> per creare la pipeline di elaborazione delle richieste dell'app.
 
 `ConfigureServices` e `Configure` sono chiamate dal runtime di ASP.NET Core all'avvio dell'app:
 
 [!code-csharp[](startup/sample_snapshot/Startup1.cs)]
 
-La classe `Startup` viene specificata al momento della compilazione dell'[host](xref:fundamentals/index#host) dell'app. La classe `Startup` viene in genere specificata chiamando il metodo [WebHostBuilderExtensions. UseStartup\<TStartup >](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) nel generatore host:
+La classe `Startup` viene specificata al momento della compilazione dell'[host](xref:fundamentals/index#host) dell'app. La `Startup` classe viene in genere specificata chiamando il [metodo WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) sul generatore host:
 
 [!code-csharp[](startup/sample_snapshot/Program3.cs?name=snippet_Program&highlight=12)]
 
@@ -214,7 +214,7 @@ Il metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> viene usato
 
 I [modelli ASP.NET Core](/dotnet/core/tools/dotnet-new) configurano la pipeline con il supporto per:
 
-* [Pagina delle eccezioni per gli sviluppatori](xref:fundamentals/error-handling#developer-exception-page)
+* [Pagina delle eccezioni sviluppatore](xref:fundamentals/error-handling#developer-exception-page)
 * [Gestore di eccezioni](xref:fundamentals/error-handling#exception-handler-page)
 * [Protocollo HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [Reindirizzamento HTTPS](xref:security/enforcing-ssl)
@@ -242,10 +242,10 @@ Per configurare i servizi e la pipeline di elaborazione delle richieste senza us
 
 ## <a name="extend-startup-with-startup-filters"></a>Estendere l'avvio con filtri di avvio
 
-Usare <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
+Utilizzare <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
 
-* Per configurare middleware all'inizio o alla fine della pipeline di [configurazione](#the-configure-method) middleware di un'app senza una chiamata esplicita a `Use{Middleware}`. `IStartupFilter` viene usato da ASP.NET Core per aggiungere i valori predefiniti all'inizio della pipeline senza dover fare in modo che l'autore dell'app registri in modo esplicito il middleware predefinito. `IStartupFilter` consente la chiamata di un componente diverso `Use{Middleware}` per conto dell'autore dell'app.
-* Per creare una pipeline di `Configure` metodi. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure*) può impostare un middleware da eseguire prima o dopo l'aggiunta del middleware dalle librerie.
+* Per configurare il middleware all'inizio o alla fine della pipeline `Use{Middleware}` [di middleware Configure](#the-configure-method) di un'app senza una chiamata esplicita a . `IStartupFilter`viene utilizzato da ASP.NET Core per aggiungere impostazioni predefinite all'inizio della pipeline senza dover fare in modo che l'autore dell'app registri in modo esplicito il middleware predefinito. `IStartupFilter`consente una chiamata `Use{Middleware}` componente diversa per conto dell'autore dell'app.
+* Per creare una `Configure` pipeline di metodi. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure*) può impostare un middleware da eseguire prima o dopo l'aggiunta del middleware dalle librerie.
 
 `IStartupFilter` implementa <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*>, che riceve e restituisce un `Action<IApplicationBuilder>`. <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> definisce una classe per configurare la pipeline delle richieste di un'app. Per altre informazioni, vedere [Creare una pipeline middleware con IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
 
@@ -279,7 +279,7 @@ Un'implementazione <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> consente 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [L'host](xref:fundamentals/index#host)
+* [Host](xref:fundamentals/index#host)
 * <xref:fundamentals/environments>
 * <xref:fundamentals/middleware/index>
 * <xref:fundamentals/logging/index>

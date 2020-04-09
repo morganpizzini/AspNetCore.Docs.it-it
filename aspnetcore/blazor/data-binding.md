@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Blazor data binding
+title: Associazione Blazor dati di ASP.NET Core
 author: guardrex
-description: Informazioni sulle funzionalità di data binding per i componenti e gli elementi DOM nelle app Blazor.
+description: Informazioni sulle funzionalità di associazione Blazor dati per i componenti e gli elementi DOM nelle app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -11,19 +11,19 @@ no-loc:
 - SignalR
 uid: blazor/data-binding
 ms.openlocfilehash: a7b3730dad48b5bbb6134dab181051da4e3651b4
-ms.sourcegitcommit: f3b1bcfd108e5d53f73abc0bf2555890869d953b
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/26/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "80320957"
 ---
-# <a name="aspnet-core-opno-locblazor-data-binding"></a>ASP.NET Core Blazor data binding
+# <a name="aspnet-core-opno-locblazor-data-binding"></a>Associazione Blazor dati di ASP.NET Core
 
 Di [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
 
-I componenti Razor forniscono data binding funzionalità tramite un attributo dell'elemento HTML denominato [`@bind`](xref:mvc/views/razor#bind) con un valore di campo, una proprietà o un'espressione Razor.
+I componenti Razor forniscono funzionalità di [`@bind`](xref:mvc/views/razor#bind) associazione dati tramite un attributo dell'elemento HTML denominato con un campo, una proprietà o un valore dell'espressione Razor.
 
-Nell'esempio seguente la proprietà `CurrentValue` viene associata al valore della casella di testo:
+L'esempio seguente `CurrentValue` associa la proprietà al valore della casella di testo:
 
 ```razor
 <input @bind="CurrentValue" />
@@ -33,11 +33,11 @@ Nell'esempio seguente la proprietà `CurrentValue` viene associata al valore del
 }
 ```
 
-Quando la casella di testo perde lo stato attivo, viene aggiornato il valore della proprietà.
+Quando la casella di testo perde lo stato attivo, il valore della proprietà viene aggiornato.
 
-La casella di testo viene aggiornata nell'interfaccia utente solo quando viene eseguito il rendering del componente, non in risposta alla modifica del valore della proprietà. Poiché i componenti eseguono il rendering dopo l'esecuzione del codice del gestore eventi, gli aggiornamenti delle proprietà vengono in *genere* riflessi nell'interfaccia utente immediatamente dopo l'attivazione di un gestore eventi.
+La casella di testo viene aggiornata nell'interfaccia utente solo quando viene eseguito il rendering del componente, non in risposta alla modifica del valore della proprietà. Poiché i componenti eseguono il rendering di se stessi dopo l'esecuzione del codice del gestore eventi, gli aggiornamenti delle proprietà vengono *in genere* riflessi nell'interfaccia utente immediatamente dopo l'attivazione di un gestore eventi.
 
-L'uso di `@bind` con la proprietà `CurrentValue` (`<input @bind="CurrentValue" />`) è essenzialmente equivalente a quanto segue:
+`@bind` L'utilizzo `CurrentValue` con`<input @bind="CurrentValue" />`la proprietà ( ) è essenzialmente equivalente a quanto segue:
 
 ```razor
 <input value="@CurrentValue"
@@ -49,9 +49,9 @@ L'uso di `@bind` con la proprietà `CurrentValue` (`<input @bind="CurrentValue" 
 }
 ```
 
-Quando viene eseguito il rendering del componente, il `value` dell'elemento di input deriva dalla proprietà `CurrentValue`. Quando l'utente digita nella casella di testo e modifica lo stato attivo dell'elemento, viene generato l'evento `onchange` e la proprietà `CurrentValue` viene impostata sul valore modificato. In realtà, la generazione del codice è più complessa perché `@bind` gestisce i casi in cui vengono eseguite le conversioni dei tipi. In linea di principio, `@bind` associa il valore corrente di un'espressione a un attributo `value` e gestisce le modifiche utilizzando il gestore registrato.
+Quando viene eseguito `value` il rendering del componente, l'elemento di input proviene dalla `CurrentValue` proprietà. Quando l'utente digita nella casella di `onchange` testo e modifica `CurrentValue` lo stato attivo dell'elemento, l'evento viene generato e la proprietà viene impostata sul valore modificato. In realtà, la generazione di `@bind` codice è più complessa perché gestisce i casi in cui vengono eseguite le conversioni dei tipi. In linea `@bind` di principio, associa il `value` valore corrente di un'espressione a un attributo e gestisce le modifiche utilizzando il gestore registrato.
 
-Associare una proprietà o un campo ad altri eventi includendo anche un attributo `@bind:event` con un parametro di `event`. Nell'esempio seguente viene associata la proprietà `CurrentValue` nell'evento `oninput`:
+Associare una proprietà o un campo `@bind:event` in `event` altri eventi includendo anche un attributo con un parametro. Nell'esempio seguente `CurrentValue` la proprietà `oninput` dell'evento viene associata:
 
 ```razor
 <input @bind="CurrentValue" @bind:event="oninput" />
@@ -61,9 +61,9 @@ Associare una proprietà o un campo ad altri eventi includendo anche un attribut
 }
 ```
 
-A differenza `onchange`, che viene attivato quando l'elemento perde lo stato attivo, `oninput` generato quando viene modificato il valore della casella di testo.
+A `onchange`differenza di , che viene `oninput` generato quando l'elemento perde lo stato attivo, viene generato quando il valore della casella di testo cambia.
 
-Utilizzare `@bind-{ATTRIBUTE}` con `@bind-{ATTRIBUTE}:event` sintassi per associare attributi di elementi diversi da `value`. Nell'esempio seguente lo stile del paragrafo viene aggiornato quando cambia il valore di `_paragraphStyle`:
+Utilizzare `@bind-{ATTRIBUTE}` `@bind-{ATTRIBUTE}:event` con la sintassi `value`per associare attributi di elemento diversi da . Nell'esempio seguente, lo stile del paragrafo viene aggiornato quando il `_paragraphStyle` valore cambia:
 
 ```razor
 @page "/binding-example"
@@ -81,15 +81,15 @@ Utilizzare `@bind-{ATTRIBUTE}` con `@bind-{ATTRIBUTE}:event` sintassi per associ
 }
 ```
 
-L'associazione di attributi distingue tra maiuscole e minuscole. Ad esempio, `@bind` è valido e `@Bind` non è valido.
+Per l'associazione di attributi viene fatta distinzione tra maiuscole e minuscole. Ad esempio, `@bind` è `@Bind` valido e non è valido.
 
-## <a name="unparsable-values"></a>Valori non analizzabili
+## <a name="unparsable-values"></a>Valori impercilabili
 
-Quando un utente fornisce un valore non analizzabile a un elemento associato a un oggetto DataBound, il valore non analizzabile viene automaticamente ripristinato al valore precedente quando viene attivato l'evento bind.
+Quando un utente fornisce un valore non analizzabile a un elemento associato a dati, il valore non analizzabile viene automaticamente ripristinato al valore precedente quando viene attivato l'evento di associazione.
 
 Si consideri lo scenario seguente:
 
-* Un elemento `<input>` è associato a un tipo di `int` con un valore iniziale di `123`:
+* Un `<input>` elemento è `int` associato a un `123`tipo con un valore iniziale di :
 
   ```razor
   <input @bind="MyProperty" />
@@ -99,21 +99,21 @@ Si consideri lo scenario seguente:
       public int MyProperty { get; set; } = 123;
   }
   ```
-* L'utente aggiorna il valore dell'elemento per `123.45` nella pagina e modifica lo stato attivo dell'elemento.
+* L'utente aggiorna il valore `123.45` dell'elemento nella pagina e modifica lo stato attivo dell'elemento.
 
-Nello scenario precedente, il valore dell'elemento viene ripristinato in `123`. Quando il valore `123.45` viene rifiutato a favore del valore originale di `123`, l'utente riconosce che il relativo valore non è stato accettato.
+Nello scenario precedente, il valore dell'elemento `123`viene ripristinato su . Quando il `123.45` valore viene rifiutato a `123`favore del valore originale di , l'utente riconosce che il valore non è stato accettato.
 
-Per impostazione predefinita, l'associazione si applica all'evento `onchange` dell'elemento (`@bind="{PROPERTY OR FIELD}"`). Usare `@bind="{PROPERTY OR FIELD}" @bind:event={EVENT}` per attivare l'associazione in un evento diverso. Per l'evento `oninput` (`@bind:event="oninput"`), la riversione viene eseguita dopo qualsiasi sequenza di tasti che introduce un valore non analizzabile. Quando la destinazione è `oninput` evento con un tipo associato a `int`, a un utente viene impedito di digitare un `.` carattere. Un carattere `.` viene immediatamente rimosso, quindi l'utente riceve il feedback immediato che sono consentiti solo numeri interi. Esistono scenari in cui il ripristino del valore nell'evento `oninput` non è ideale, ad esempio quando l'utente deve essere autorizzato a cancellare un valore `<input>` non analizzabile. Le alternative includono:
+Per impostazione predefinita, l'associazione si applica all'evento dell'elemento `onchange` (`@bind="{PROPERTY OR FIELD}"`). Utilizzare `@bind="{PROPERTY OR FIELD}" @bind:event={EVENT}` per attivare l'associazione su un evento diverso. Per `oninput` l'evento (`@bind:event="oninput"`), la reversione si verifica dopo qualsiasi sequenza di tasti che introduce un valore non analizzabile. Quando si `oninput` ha come `int`destinazione l'evento con un `.` tipo associato a -, a un utente viene impedito di digitare un carattere. Un `.` carattere viene immediatamente rimosso, in modo che l'utente riceve un feedback immediato che solo i numeri interi sono consentiti. Esistono scenari in cui il `oninput` ripristino del valore nell'evento non è ideale, ad esempio `<input>` quando l'utente deve essere autorizzato a cancellare un valore non analizzabile. Le alternative includono:
 
-* Non usare l'evento `oninput`. Usare l'evento `onchange` predefinito (specificare solo `@bind="{PROPERTY OR FIELD}"`), in cui un valore non valido non viene ripristinato fino a quando l'elemento non perde lo stato attivo.
-* Eseguire l'associazione a un tipo nullable, ad esempio `int?` o `string`, e fornire la logica personalizzata per gestire le voci non valide.
-* Utilizzare un [componente di convalida del modulo](xref:blazor/forms-validation), ad esempio `InputNumber` o `InputDate`. I componenti di convalida dei moduli includono il supporto predefinito per la gestione di input non validi. Componenti di convalida dei moduli:
-  * Consente all'utente di fornire un input non valido e di ricevere errori di convalida nel `EditContext`associato.
-  * Visualizzare gli errori di convalida nell'interfaccia utente senza interferire con l'utente che immette dati Web Form aggiuntivi.
+* Non usare l'evento. `oninput` Utilizzare l'evento `onchange` predefinito `@bind="{PROPERTY OR FIELD}"`(specificare solo ) in cui non viene ripristinato un valore non valido finché l'elemento non perde lo stato attivo.
+* Eseguire l'associazione a `int?` un `string`tipo nullable, ad esempio o , e fornire logica personalizzata per gestire le voci non valide.
+* Utilizzare un componente di `InputNumber` convalida `InputDate` [del form,](xref:blazor/forms-validation)ad esempio o . I componenti di convalida dei moduli dispongono del supporto incorporato per gestire input non validi. Componenti di convalida dei moduli:
+  * Consentire all'utente di fornire input non `EditContext`valido e ricevere errori di convalida nell'oggetto associato.
+  * Visualizzare gli errori di convalida nell'interfaccia utente senza interferire con l'utente che immette dati aggiuntivi del modulo Web.
 
-## <a name="format-strings"></a>Stringhe di formato
+## <a name="format-strings"></a>Formattare le stringhe
 
-Il data binding funziona con stringhe di formato <xref:System.DateTime> usando [`@bind:format`](xref:mvc/views/razor#bind). Altre espressioni di formato, ad esempio i formati di valuta o numerici, non sono disponibili in questo momento.
+L'associazione <xref:System.DateTime> dati [`@bind:format`](xref:mvc/views/razor#bind)funziona con le stringhe di formato utilizzando . Al momento non sono disponibili altre espressioni di formato, ad esempio i formati di valuta o numerici.
 
 ```razor
 <input @bind="StartDate" @bind:format="yyyy-MM-dd" />
@@ -124,26 +124,26 @@ Il data binding funziona con stringhe di formato <xref:System.DateTime> usando [
 }
 ```
 
-Nel codice precedente, il tipo di campo dell'elemento `<input>` (`type`) viene impostato come valore predefinito `text`. `@bind:format` è supportato per l'associazione dei tipi .NET seguenti:
+Nel codice precedente, `<input>` il tipo di`type`campo dell'elemento ( ) viene impostato su `text`. `@bind:format`è supportato per l'associazione dei seguenti tipi .NET:
 
 * <xref:System.DateTime?displayProperty=fullName>
 * <xref:System.DateTime?displayProperty=fullName>?
 * <xref:System.DateTimeOffset?displayProperty=fullName>
 * <xref:System.DateTimeOffset?displayProperty=fullName>?
 
-L'attributo `@bind:format` specifica il formato di data da applicare al `value` dell'elemento `<input>`. Il formato viene usato anche per analizzare il valore quando si verifica un evento `onchange`.
+L'attributo `@bind:format` specifica il formato `value` della `<input>` data da applicare all'elemento. Il formato viene utilizzato anche per `onchange` analizzare il valore quando si verifica un evento.
 
-Non è consigliabile specificare un formato per il tipo di campo `date` perché Blazor dispone del supporto incorporato per formattare le date. A prescindere dalla raccomandazione, utilizzare solo il formato di data `yyyy-MM-dd` per il corretto funzionamento dell'associazione se viene fornito un formato con il tipo di campo `date`:
+La specifica di `date` un formato per il Blazor tipo di campo non è consigliata perché dispone del supporto incorporato per formattare le date. Nonostante la raccomandazione, utilizzare `yyyy-MM-dd` il formato della data per il corretto `date` funzionamento dell'associazione solo se viene fornito un formato con il tipo di campo:
 
 ```razor
 <input type="date" @bind="StartDate" @bind:format="yyyy-MM-dd">
 ```
 
-## <a name="parent-to-child-binding-with-component-parameters"></a>Associazione da padre a figlio con parametri dei componenti
+## <a name="parent-to-child-binding-with-component-parameters"></a>Associazione padre-figlio con i parametri del componente
 
-Il binding riconosce i parametri del componente, dove `@bind-{PROPERTY}` può associare un valore di proprietà da un componente padre a un componente figlio. Il binding da un figlio a un padre viene trattato nell' [associazione da figlio a padre con la sezione di binding concatenata](#child-to-parent-binding-with-chained-bind) .
+L'associazione riconosce `@bind-{PROPERTY}` i parametri del componente, in cui è possibile associare il valore di una proprietà da un componente padre a un componente figlio. L'associazione da un elemento figlio a un elemento padre è descritta nella sezione Associazione da [figlio a padre con associazione concatenata.](#child-to-parent-binding-with-chained-bind)
 
-Il componente figlio seguente (`ChildComponent`) dispone di un parametro del componente `Year` e di un callback `YearChanged`:
+Il componente figlio`ChildComponent`seguente `Year` ( ) `YearChanged` ha un parametro del componente e un callback:
 
 ```razor
 <h2>Child Component</h2>
@@ -159,12 +159,12 @@ Il componente figlio seguente (`ChildComponent`) dispone di un parametro del com
 }
 ```
 
-`EventCallback<T>` viene spiegato in <xref:blazor/event-handling#eventcallback>.
+`EventCallback<T>`è spiegato <xref:blazor/event-handling#eventcallback>in .
 
-Il componente padre seguente utilizza:
+Viene utilizzato il seguente componente padre:
 
-* `ChildComponent` e associa il parametro `ParentYear` dall'elemento padre al parametro `Year` sul componente figlio.
-* L'evento `onclick` viene usato per attivare il metodo di `ChangeTheYear`. Per altre informazioni, vedere <xref:blazor/event-handling>.
+* `ChildComponent`e associa `ParentYear` il parametro dal `Year` padre al parametro nel componente figlio.
+* L'evento `onclick` viene utilizzato `ChangeTheYear` per attivare il metodo. Per altre informazioni, vedere <xref:blazor/event-handling>.
 
 ```razor
 @page "/ParentComponent"
@@ -190,7 +190,7 @@ Il componente padre seguente utilizza:
 }
 ```
 
-Il caricamento del `ParentComponent` produce il markup seguente:
+Il `ParentComponent` caricamento del prodotto produce il markup seguente:
 
 ```html
 <h1>Parent Component</h1>
@@ -202,7 +202,7 @@ Il caricamento del `ParentComponent` produce il markup seguente:
 <p>Year: 1978</p>
 ```
 
-Se il valore della proprietà `ParentYear` viene modificato selezionando il pulsante nell'`ParentComponent`, viene aggiornata la proprietà `Year` del `ChildComponent`. Il rendering del nuovo valore di `Year` viene eseguito nell'interfaccia utente quando viene eseguito il rendering del `ParentComponent`:
+Se il valore `ParentYear` della proprietà viene modificato `ParentComponent`selezionando `Year` il pulsante nella proprietà , la proprietà dell'oggetto `ChildComponent` viene aggiornata. Il nuovo `Year` valore di viene eseguito il rendering nell'interfaccia utente quando viene eseguito nuovamente il rendering dell'oggetto: `ParentComponent`
 
 ```html
 <h1>Parent Component</h1>
@@ -214,7 +214,7 @@ Se il valore della proprietà `ParentYear` viene modificato selezionando il puls
 <p>Year: 1986</p>
 ```
 
-Il parametro `Year` è associabile perché contiene un evento `YearChanged` complementare che corrisponde al tipo del parametro `Year`.
+Il `Year` parametro è associabile `YearChanged` perché dispone di un `Year` evento complementare che corrisponde al tipo del parametro.
 
 Per convenzione, `<ChildComponent @bind-Year="ParentYear" />` è essenzialmente equivalente alla scrittura:
 
@@ -222,23 +222,23 @@ Per convenzione, `<ChildComponent @bind-Year="ParentYear" />` è essenzialmente 
 <ChildComponent @bind-Year="ParentYear" @bind-Year:event="YearChanged" />
 ```
 
-In generale, una proprietà può essere associata a un gestore eventi corrispondente includendo un attributo `@bind-{PROPRETY}:event`. Ad esempio, la proprietà `MyProp` può essere associata a `MyEventHandler` utilizzando i due attributi seguenti:
+In generale, una proprietà può essere associata `@bind-{PROPRETY}:event` a un gestore eventi corrispondente includendo un attributo. Ad esempio, `MyProp` la proprietà `MyEventHandler` può essere associata all'utilizzo dei due attributi seguenti:For example, the property can be bound to using the following two attributes:
 
 ```razor
 <MyComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
 ```
 
-## <a name="child-to-parent-binding-with-chained-bind"></a>Associazione da figlio a padre con binding concatenato
+## <a name="child-to-parent-binding-with-chained-bind"></a>Associazione da figlio a padre con associazione concatenata
 
-Uno scenario comune consiste nel concatenare un parametro associato a dati a un elemento Page nell'output del componente. Questo scenario è denominato *Binding concatenato* perché si verificano simultaneamente più livelli di associazione.
+Uno scenario comune è il concatenamento di un parametro con associazione a dati a un elemento di pagina nell'output del componente. Questo scenario è denominato *associazione concatenata* perché più livelli di associazione si verificano contemporaneamente.
 
-Un binding concatenato non può essere implementato con `@bind` sintassi nell'elemento della pagina. Il gestore eventi e il valore devono essere specificati separatamente. Un componente padre, tuttavia, può utilizzare la sintassi `@bind` con il parametro del componente.
+Un'associazione concatenata `@bind` non può essere implementata con la sintassi nell'elemento della pagina. Il gestore eventi e il valore devono essere specificati separatamente. Un componente padre, tuttavia, può utilizzare `@bind` la sintassi con il parametro del componente.
 
-Il componente `PasswordField` seguente (*PasswordField. Razor*):
+Il `PasswordField` componente seguente (*PasswordField.razor*):
 
-* Imposta il valore di un elemento `<input>` su una proprietà `Password`.
-* Espone le modifiche della proprietà `Password` a un componente padre con un [EventCallback](xref:blazor/event-handling#eventcallback).
-* Usa l'evento `onclick` viene usato per attivare il metodo di `ToggleShowPassword`. Per altre informazioni, vedere <xref:blazor/event-handling>.
+* Imposta `<input>` il valore di `Password` un elemento su una proprietà.
+* Espone le modifiche `Password` della proprietà a un componente padre con [un oggetto EventCallback](xref:blazor/event-handling#eventcallback).
+* Utilizza `onclick` l'evento viene `ToggleShowPassword` utilizzato per attivare il metodo. Per altre informazioni, vedere <xref:blazor/event-handling>.
 
 ```razor
 <h1>Child Component</h1>
@@ -277,7 +277,7 @@ Password:
 }
 ```
 
-Il componente `PasswordField` viene usato in un altro componente:
+Il `PasswordField` componente viene utilizzato in un altro componente:
 
 ```razor
 @page "/ParentComponent"
@@ -293,10 +293,10 @@ Il componente `PasswordField` viene usato in un altro componente:
 
 Per eseguire controlli o intercettare gli errori sulla password nell'esempio precedente:
 
-* Creare un campo di supporto per `Password` (`_password` nell'esempio di codice seguente).
-* Eseguire i controlli o gli errori di trap nel Setter del `Password`.
+* Creare un campo `Password` di`_password` backup per ( nel codice di esempio seguente).
+* Eseguire i controlli o `Password` gli errori di intrappolare nel setter.
 
-Nell'esempio seguente viene fornito un feedback immediato all'utente se viene utilizzato uno spazio nel valore della password:
+L'esempio seguente fornisce un feedback immediato all'utente se viene utilizzato uno spazio nel valore della password:The following example provides immediate feedback to the user if a space is used in the password's value:
 
 ```razor
 <h1>Child Component</h1>
@@ -359,4 +359,4 @@ Password:
 
 ## <a name="radio-buttons"></a>Pulsanti di opzione
 
-Per informazioni sull'associazione ai pulsanti di opzione in un modulo, vedere <xref:blazor/forms-validation#work-with-radio-buttons>.
+Per informazioni sull'associazione ai <xref:blazor/forms-validation#work-with-radio-buttons>pulsanti di opzione in un modulo, vedere .

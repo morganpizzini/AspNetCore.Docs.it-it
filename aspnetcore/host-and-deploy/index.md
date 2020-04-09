@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/index
 ms.openlocfilehash: 464d19bd63e1f0f06bd7d218e7644afde04a5672
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657920"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hosting e distribuzione di ASP.NET Core
@@ -44,7 +44,7 @@ Un'app ASP.NET Core è un'app console che deve essere avviata all'avvio di un se
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Apache](xref:host-and-deploy/linux-apache)
 * Windows
-  * [IIS](xref:host-and-deploy/iis/index)
+  * [Iis](xref:host-and-deploy/iis/index)
   * [Servizio Windows](xref:host-and-deploy/windows-service)
 
 ## <a name="set-up-a-reverse-proxy"></a>Configurare un proxy inverso
@@ -73,13 +73,13 @@ Vedere <xref:host-and-deploy/visual-studio-publish-profiles> per istruzioni su c
 
 ## <a name="internet-information-services-iis"></a>Internet Information Services (IIS)
 
-Per le distribuzioni in Internet Information Services (IIS) con la configurazione fornita dal file *Web. config* , vedere gli articoli in <xref:host-and-deploy/iis/index>.
+Per le distribuzioni in Internet Information Services (IIS) con configurazione fornita <xref:host-and-deploy/iis/index>dal file *web.config,* vedere gli articoli in .
 
 ## <a name="host-in-a-web-farm"></a>Hosting in una Web farm
 
 Per informazioni sulla configurazione per ospitare app ASP.NET Core in un ambiente Web farm (ad esempio, distribuzione di più istanze di un'app per la scalabilità), vedere <xref:host-and-deploy/web-farm>.
 
-## <a name="host-on-docker"></a>Host in Docker
+## <a name="host-on-docker"></a>Host su Docker
 
 Per altre informazioni, vedere <xref:host-and-deploy/docker/index>.
 
@@ -90,7 +90,7 @@ Usare il middleware di controllo integrità per eseguire controlli di integrità
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:test/troubleshoot>
-* [Hosting di ASP.NET](https://dotnet.microsoft.com/apps/aspnet/hosting)
+* [ASP.NET Hosting](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
 ::: moniker-end
 
@@ -122,7 +122,7 @@ Un'app ASP.NET Core è un'app console che deve essere avviata all'avvio di un se
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Apache](xref:host-and-deploy/linux-apache)
 * Windows
-  * [IIS](xref:host-and-deploy/iis/index)
+  * [Iis](xref:host-and-deploy/iis/index)
   * [Servizio Windows](xref:host-and-deploy/windows-service)
 
 ## <a name="set-up-a-reverse-proxy"></a>Configurare un proxy inverso
@@ -151,19 +151,19 @@ Vedere <xref:host-and-deploy/visual-studio-publish-profiles> per istruzioni su c
 
 ## <a name="internet-information-services-iis"></a>Internet Information Services (IIS)
 
-Per le distribuzioni in Internet Information Services (IIS) con la configurazione fornita dal file *Web. config* , vedere gli articoli in <xref:host-and-deploy/iis/index>.
+Per le distribuzioni in Internet Information Services (IIS) con configurazione fornita <xref:host-and-deploy/iis/index>dal file *web.config,* vedere gli articoli in .
 
 ## <a name="host-in-a-web-farm"></a>Hosting in una Web farm
 
 Per informazioni sulla configurazione per ospitare app ASP.NET Core in un ambiente Web farm (ad esempio, distribuzione di più istanze di un'app per la scalabilità), vedere <xref:host-and-deploy/web-farm>.
 
-## <a name="host-on-docker"></a>Host in Docker
+## <a name="host-on-docker"></a>Host su Docker
 
 Per altre informazioni, vedere <xref:host-and-deploy/docker/index>.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:test/troubleshoot>
-* [Hosting di ASP.NET](https://dotnet.microsoft.com/apps/aspnet/hosting)
+* [ASP.NET Hosting](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
 ::: moniker-end
