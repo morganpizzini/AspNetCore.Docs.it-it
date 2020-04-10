@@ -5,17 +5,17 @@ description: Inizia a Blazor creare Blazor un'app con gli strumenti di tua scelt
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 04/09/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: c49209afde21046a6bc0b197cc4b8d93b164b23e
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: e9e6eeeb1d29aa529e43d75f5d3951d2c4384d7e
+ms.sourcegitcommit: 4506a8f71ece921010ad6b7edebc8b200618f40d
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80471821"
+ms.lasthandoff: 04/09/2020
+ms.locfileid: "81002912"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introduzione a ASP.NET Core Blazor
 
@@ -78,7 +78,9 @@ Per iniziare a utilizzare Blazor, segui le indicazioni per la tua scelta di uten
 
 1. L'IDE richiede di aggiungere risorse per compilare ed eseguire il debug del progetto. Selezionare **Sì**.
 
-1. Esegui l'app usando il debugger del codice di Visual Studio.
+1. Con Blazor Server, esegui l'app usando il debugger del codice di Visual Studio.
+
+   Con Blazor WebAssembly, avviare l'app utilizzando la configurazione di avvio **di .NET Core Launch (Blazor Standalone)** e quindi avviare il browser utilizzando **.NET Core Debug Blazor Web Assembly nella** configurazione di avvio di Chrome (richiede Chrome). Per altre informazioni, vedere <xref:blazor/debug#visual-studio-code>.
 
 1. In un browser passare a `https://localhost:5001`.
 

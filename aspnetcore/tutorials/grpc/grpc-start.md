@@ -3,14 +3,14 @@ title: Creare un client e un server gRPC .NET Core in ASP.NET Core
 author: juntaoluo
 description: Questa esercitazione illustra come creare un servizio gRPC e un client gRPC in ASP.NET Core. Informazioni su come creare un progetto di servizio gRPC, modificare un file con estensione proto e aggiungere una chiamata con flusso bidirezionale.
 ms.author: johluo
-ms.date: 12/05/2019
+ms.date: 04/08/2020
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: 0cedeb021427455c3f60a8a8cc36b52794a055bc
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 2bbd40b4b89af170dae40b8a5277749d6bcd5faf
+ms.sourcegitcommit: 9a46e78c79d167e5fa0cddf89c1ef584e5fe1779
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78665823"
+ms.lasthandoff: 04/09/2020
+ms.locfileid: "80994634"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Esercitazione: Creare un client e un server gRPC in ASP.NET CoreTutorial: Create a gRPC client and server in ASP.NET Core
 
@@ -298,7 +298,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 ```
 
 > [!NOTE]
-> Il codice in questo articolo richiede il certificato di sviluppo HTTPS ASP.NET Core per proteggere il servizio gRPC. Se il client ha esito negativo con il messaggio `The remote certificate is invalid according to the validation procedure.`, il certificato di sviluppo non è attendibile. Per istruzioni su come risolvere questo problema, vedere [Considerare attendibile il certificato di sviluppo di ASP.NET Core HTTPS in Windows e macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
+> Il codice in questo articolo richiede il certificato di sviluppo HTTPS ASP.NET Core per proteggere il servizio gRPC. Se il client gRPC .NET `The remote certificate is invalid according to the validation procedure.` `The SSL connection could not be established.`non riesce con il messaggio o , il certificato di sviluppo non è attendibile. Per risolvere questo problema, vedere [Chiamare un servizio gRPC con un certificato non attendibile/non valido](xref:grpc/troubleshoot#call-a-grpc-service-with-an-untrustedinvalid-certificate).
 
 [!INCLUDE[](~/includes/gRPCazure.md)]
 

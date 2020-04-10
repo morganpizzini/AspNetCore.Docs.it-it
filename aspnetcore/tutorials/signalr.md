@@ -8,12 +8,12 @@ ms.date: 11/21/2019
 no-loc:
 - SignalR
 uid: tutorials/signalr
-ms.openlocfilehash: 55ebdbfa4556deca74a6cdf0638307425cd1a01a
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 869eb325ee95a78e4b16c61c5b0573bb094292e3
+ms.sourcegitcommit: 9a46e78c79d167e5fa0cddf89c1ef584e5fe1779
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78666747"
+ms.lasthandoff: 04/09/2020
+ms.locfileid: "80994612"
 ---
 # <a name="tutorial-get-started-with-aspnet-core-signalr"></a>Esercitazione: Introduzione ad ASP.NET Core SignalR
 
@@ -89,7 +89,7 @@ Al termine, si disporrà di un'app di chat funzionante:
 
 ## <a name="add-the-signalr-client-library"></a>Aggiungere la libreria client di SignalR
 
-La libreria server di SignalR è inclusa nel framework condiviso ASP.NET Core 3.0. La libreria client JavaScript non viene inclusa automaticamente nel progetto. Per questa esercitazione, usare Gestione librerie (LibMan) per ottenere la libreria client da *unpkg*. Unpkg è una rete per la distribuzione di contenuti (CDN, Content Delivery Network) che può offrire qualsiasi contenuto disponibile in npm, la gestione pacchetti di Node.js.
+La libreria server di SignalR è inclusa nel framework condiviso ASP.NET Core 3.0. La libreria client JavaScript non viene inclusa automaticamente nel progetto. Per questa esercitazione, usare Gestione librerie (LibMan) per ottenere la libreria client da *unpkg*. unpkg è una rete per la distribuzione di contenuti (CDN) in grado di fornire qualsiasi elemento disponibile in npm, il gestore di pacchetti Node.js.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
 
@@ -320,7 +320,7 @@ Alla fine, avrai un'app di ![chat funzionante: l'app di esempio SignalR](signalr
 
 ## <a name="add-the-signalr-client-library"></a>Aggiungere la libreria client di SignalR   
 
-La libreria server di SignalR è inclusa nel metapacchetto `Microsoft.AspNetCore.App`. La libreria client JavaScript non viene inclusa automaticamente nel progetto. Per questa esercitazione, usare Gestione librerie (LibMan) per ottenere la libreria client da *unpkg*. Unpkg è una rete per la distribuzione di contenuti (CDN, Content Delivery Network) che può offrire qualsiasi contenuto disponibile in npm, la gestione pacchetti di Node.js.    
+La libreria server di SignalR è inclusa nel metapacchetto `Microsoft.AspNetCore.App`. La libreria client JavaScript non viene inclusa automaticamente nel progetto. Per questa esercitazione, usare Gestione librerie (LibMan) per ottenere la libreria client da *unpkg*. unpkg è una rete per la distribuzione di contenuti (CDN) in grado di fornire qualsiasi elemento disponibile in npm, il gestore di pacchetti Node.js. 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)  
 

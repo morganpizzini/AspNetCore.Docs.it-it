@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 3/29/2020
 uid: fundamentals/configuration/index
-ms.openlocfilehash: d76ca78bc988f859b4e99752a0e88735e1df1d82
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 506f01ace72d6e915c0f3ebdaae5b4a3328a79b9
+ms.sourcegitcommit: e72a58d6ebde8604badd254daae8077628f9d63e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80501334"
+ms.lasthandoff: 04/10/2020
+ms.locfileid: "81007158"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configurazione in ASP.NET Core
 
@@ -311,7 +311,7 @@ Chiavi di configurazione:
 * Chiavi gerarchiche
   * Nell'ambito dell'API di configurazione, il separatore due punti (`:`) funziona in tutte le piattaforme.
   * Nelle variabili di ambiente, un separatore due punti potrebbe non funzionare in tutte le piattaforme. Un doppio carattere di sottolineatura, `__`, è supportato da tutte le piattaforme e viene convertito automaticamente in due punti `:`.
-  * In Archiviazione chiave di `--` Azure le chiavi gerarchiche vengono usate come separatore. Scrivere il codice `--` per `:` sostituire il con a quando i segreti vengono caricati nella configurazione dell'app.
+  * In Archiviazione chiave di `--` Azure le chiavi gerarchiche vengono usate come separatore. Il provider di configurazione di `--` Azure `:` [Key Vault](xref:security/key-vault-configuration) viene sostituito automaticamente con un quando i segreti vengono caricati nella configurazione dell'app.
 * Il <xref:Microsoft.Extensions.Configuration.ConfigurationBinder> supporta l'associazione di matrici agli oggetti usando gli indici delle matrici nelle chiavi di configurazione. L'associazione di matrici è descritta nella sezione [Associare una matrice a una classe](#boa).
 
 Valori di configurazione:
