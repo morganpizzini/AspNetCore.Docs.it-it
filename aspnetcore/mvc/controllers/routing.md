@@ -5,12 +5,12 @@ description: Informazioni su come ASP.NET Core MVC usa middleware di routing per
 ms.author: riande
 ms.date: 3/25/2020
 uid: mvc/controllers/routing
-ms.openlocfilehash: c63313ec060c5be368fcbd20edf5f0d557046d2e
-ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
+ms.openlocfilehash: 74afd0a076ca8bd753000f547ef0a26308e8a884
+ms.sourcegitcommit: e8dc30453af8bbefcb61857987090d79230a461d
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "80977217"
+ms.lasthandoff: 04/11/2020
+ms.locfileid: "81123493"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing ad azioni del controller in ASP.NET Core
 
@@ -93,10 +93,11 @@ Sostituisce:
 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
-Il routing viene <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> configurato utilizzando il middleware e . Per utilizzare i controller:
-
-* Chiamare <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> `UseEndpoints` all'interno per mappare i controller [instradati dell'attributo.](#ar)
-* Chiamare <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>o , per mappare i controller [instradati convenzionalmente.](#cr)
+> [!IMPORTANT]
+> Il routing viene <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> configurato utilizzando il middleware e . Per utilizzare i controller:
+>
+> * Chiamare <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> `UseEndpoints` all'interno per mappare i controller [instradati dell'attributo.](#ar)
+> * Chiamare <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>o , per mappare i controller [instradati convenzionalmente.](#cr)
 
 <a name="routing-conventional-ref-label"></a>
 <a name="crd"></a>
