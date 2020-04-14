@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/1/2020
 uid: fundamentals/routing
-ms.openlocfilehash: 5742ac6879ce46e01247ddd2f8bfe3e3b8a2a02a
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 0fc89ccf15c14c67f284a7084a21159af300a195
+ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80751155"
+ms.lasthandoff: 04/14/2020
+ms.locfileid: "81277223"
 ---
 # <a name="routing-in-aspnet-core"></a>Routing in ASP.NET Core
 
@@ -454,6 +454,8 @@ L'uso di un modello è in genere l'approccio più semplice al routing. I vincoli
 
 I segmenti complessi vengono elaborati facendo corrispondere i delimitatori letterali da destra a sinistra in modo [non greedy.](#greedy) Ad esempio, `[Route("/a{b}c{d}")]` è un segmento complesso.
 I segmenti complessi funzionano in un modo particolare che deve essere compreso per utilizzarli correttamente. L'esempio in questa sezione illustra perché i segmenti complessi funzionano bene solo quando il testo del delimitatore non viene visualizzato all'interno dei valori dei parametri. L'utilizzo di [un'espressione regolare](/dotnet/standard/base-types/regular-expressions) e quindi l'estrazione manuale dei valori è necessaria per i casi più complessi.
+
+[!INCLUDE[](~/includes/regex.md)]
 
 Questo è un riepilogo dei passaggi eseguiti dal routing con il modello `/a{b}c{d}` e il percorso `/abcd`URL. L'oggetto `|` viene utilizzato per visualizzare il funzionamento dell'algoritmo:
 

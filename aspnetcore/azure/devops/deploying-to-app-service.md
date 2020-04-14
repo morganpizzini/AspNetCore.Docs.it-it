@@ -6,12 +6,12 @@ ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: df41f296e9c4e1eff6e31d45b29ec30ee1e20cf4
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: d7ee3e42d320d35c2aaff6e097203c45289ec5b1
+ms.sourcegitcommit: fbdb8b9ab5a52656384b117ff6e7c92ae070813c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657745"
+ms.lasthandoff: 04/13/2020
+ms.locfileid: "81228127"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Distribuire un'app nel servizio appDeploy an app to App Service
 
@@ -85,7 +85,7 @@ Per distribuire l'app, è necessario creare [un'app Web](/azure/app-service/app-
 
     b. Creare un gruppo di risorse. I gruppi di risorse consentono di aggregare le risorse di Azure da gestire come gruppo.
 
-    ```azure-cli
+    ```azurecli
     az group create --location centralus --name AzureTutorial
     ```
 
@@ -93,25 +93,25 @@ Per distribuire l'app, è necessario creare [un'app Web](/azure/app-service/app-
 
     c. Creare un piano di servizio app nel livello S1. Un piano di servizio app è un raggruppamento di app Web che condividono lo stesso piano tariffario. Il livello S1 non è gratuito, ma è necessario per la funzionalità di slot di gestione temporanea.
 
-    ```azure-cli
+    ```azurecli
     az appservice plan create --name $webappname --resource-group AzureTutorial --sku S1
     ```
 
     d. Creare la risorsa dell'app Web usando il piano di servizio app nello stesso gruppo di risorse.
 
-    ```azure-cli
+    ```azurecli
     az webapp create --name $webappname --resource-group AzureTutorial --plan $webappname
     ```
 
     e. Impostare le credenziali di distribuzione. Queste credenziali di distribuzione si applicano a tutte le app Web nella sottoscrizione. Non utilizzare caratteri speciali nel nome utente.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment user set --user-name REPLACE_WITH_USER_NAME --password REPLACE_WITH_PASSWORD
     ```
 
     f. Configurare l'app Web in modo che accetti le distribuzioni da Git locale e visualizzi *l'URL di distribuzione Git*. **Prendere nota di questo URL per riferimento in un secondo momento**.
 
-    ```azure-cli
+    ```azurecli
     echo Git deployment URL: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --query url --output tsv)
     ```
 
@@ -170,13 +170,13 @@ Gli slot di distribuzione supportano la gestione temporanea delle modifiche senz
 
     a. Creare uno slot di distribuzione con il nome *staging*.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment slot create --name $webappname --resource-group AzureTutorial --slot staging
     ```
 
     b. Configurare lo slot di gestione temporanea per usare la distribuzione da Git locale e ottenere l'URL di distribuzione di **gestione temporanea.** **Prendere nota di questo URL per riferimento in un secondo momento**.
 
-    ```azure-cli
+    ```azurecli
     echo Git deployment URL for staging: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --slot staging --query url --output tsv)
     ```
 
@@ -216,7 +216,7 @@ Gli slot di distribuzione supportano la gestione temporanea delle modifiche senz
 
 7. In Cloud Shell, scambiare lo slot di gestione temporanea verificato/riscaldato nell'ambiente di produzione.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment slot swap --name $webappname --resource-group AzureTutorial --slot staging
     ```
 
@@ -224,7 +224,7 @@ Gli slot di distribuzione supportano la gestione temporanea delle modifiche senz
 
     ![Confrontando le finestre del browser dopo lo scambio](./media/deploying-to-app-service/swapped.png)
 
-## <a name="summary"></a>Summary
+## <a name="summary"></a>Riepilogo
 
 In questa sezione sono state completate le attività seguenti:In this section, the following tasks were completed:
 

@@ -1,5 +1,5 @@
 ---
-title: Configurazione dell'accesso esterno a Twitter con ASP.NET Core
+title: Configurazione dell'accesso esterno di Twitter con ASP.NET Core
 author: rick-anderson
 description: Questa esercitazione illustra l'integrazione dell'autenticazione utente dell'account Twitter in un'app ASP.NET Core esistente.
 ms.author: riande
@@ -7,44 +7,44 @@ ms.custom: mvc
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 uid: security/authentication/twitter-logins
-ms.openlocfilehash: b848486415fd72ce6180b4cf8fc1ba00410d694a
-ms.sourcegitcommit: 9b6e7f421c243963d5e419bdcfc5c4bde71499aa
+ms.openlocfilehash: 1f5d667e905e49ae05f5aa31bd5b69ad126f6e28
+ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/21/2020
-ms.locfileid: "79989747"
+ms.lasthandoff: 04/14/2020
+ms.locfileid: "81277288"
 ---
-# <a name="twitter-external-sign-in-setup-with-aspnet-core"></a>Configurazione dell'accesso esterno a Twitter con ASP.NET Core
+# <a name="twitter-external-sign-in-setup-with-aspnet-core"></a>Configurazione dell'accesso esterno di Twitter con ASP.NET Core
 
 Da [Valeriy Novytskyy](https://github.com/01binary) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Questo esempio illustra come consentire agli utenti di [accedere con il proprio account Twitter](https://dev.twitter.com/web/sign-in/desktop-browser) usando un progetto ASP.NET Core 3,0 di esempio creato nella [pagina precedente](xref:security/authentication/social/index).
+In questo esempio viene illustrato come consentire agli utenti di accedere con il [proprio account Twitter](https://dev.twitter.com/web/sign-in/desktop-browser) utilizzando un progetto ASP.NET Core 3.0 creato nella pagina [precedente.](xref:security/authentication/social/index)
 
 ## <a name="create-the-app-in-twitter"></a>Creare l'app in Twitter
 
-* Aggiungere il pacchetto NuGet [Microsoft. AspNetCore. Authentication. Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter/3.0.0) al progetto.
+* Aggiungere il pacchetto [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter/3.0.0) NuGet al progetto.
 
-* Passare a [https://apps.twitter.com/](https://apps.twitter.com/) ed eseguire l'accesso. Se non si ha già un account Twitter, usare il collegamento **[Iscriviti ora](https://twitter.com/signup)** per crearne uno.
+* Individuare [https://apps.twitter.com/](https://apps.twitter.com/) ed eseguire l'accesso. Se non hai già un account Twitter, usa il link **[Iscriviti ora](https://twitter.com/signup)** per crearne uno.
 
-* Selezionare **Create an app** (Crea un'app). Compilare il **nome dell'app**, la **Descrizione dell'applicazione** e l'URI del **sito Web** pubblico. questa operazione può essere temporanea fino a quando non si registra il nome di dominio:
+* Selezionare **Crea un'app**. Compilare il **nome dell'app**, la **descrizione dell'applicazione** e l'URI **del sito Web** pubblico (questo può essere temporaneo fino a quando non si registra il nome di dominio):
 
-* Selezionare la casella accanto a **Abilita accesso con Twitter**
+* Seleziona la casella accanto a **Abilita l'accesso con Twitter**
 
-* Per impostazione predefinita, Microsoft. AspNetCore. Identity richiede che gli utenti dispongano di un indirizzo di posta elettronica. Passare alla scheda **autorizzazioni** , fare clic sul pulsante **modifica** e selezionare la casella accanto a **Richiedi indirizzo di posta elettronica dagli utenti**.
+* Microsoft.AspNetCore.Identity richiede agli utenti di disporre di un indirizzo di posta elettronica per impostazione predefinita. Passare alla scheda **Autorizzazioni,** fare clic sul pulsante **Modifica** e selezionare la casella accanto a **Richiedi indirizzo di posta elettronica agli utenti**.
 
-* Immettere l'URI di sviluppo con `/signin-twitter` accodato nel campo **URL di callback** (ad esempio: `https://webapp128.azurewebsites.net/signin-twitter`). Lo schema di autenticazione di Twitter configurato più avanti in questo esempio gestirà automaticamente le richieste in `/signin-twitter` route per implementare il flusso OAuth.
+* Immettere l'URI di sviluppo con `/signin-twitter` l'aggiunta nel campo URL di **callback,** ad esempio: `https://webapp128.azurewebsites.net/signin-twitter`. Lo schema di autenticazione di Twitter configurato `/signin-twitter` più avanti in questo esempio gestirà automaticamente le richieste durante la route per implementare il flusso OAuth.
 
   > [!NOTE]
-  > Il `/signin-twitter` del segmento URI è impostato come callback predefinito del provider di autenticazione Twitter. È possibile modificare l'URI di callback predefinito durante la configurazione del middleware di autenticazione Twitter tramite la proprietà [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) ereditata della classe [TwitterOptions](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) .
+  > Il segmento `/signin-twitter` URI viene impostato come callback predefinito del provider di autenticazione di Twitter. È possibile modificare l'URI di callback predefinito durante la configurazione del middleware di autenticazione di Twitter tramite la proprietà [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) ereditata della classe [TwitterOptions.](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions)
 
-* Compilare il resto del modulo e selezionare **Crea**. Vengono visualizzati i dettagli della nuova applicazione:
+* Compilare il resto del modulo e selezionare **Crea**. Vengono visualizzati i nuovi dettagli dell'applicazione:
 
-## <a name="store-the-twitter-consumer-api-key-and-secret"></a>Archiviare la chiave e il segreto API del consumer di Twitter
+## <a name="store-the-twitter-consumer-api-key-and-secret"></a>Memorizzare la chiave API consumer di Twitter e il segreto
 
-Archiviare le impostazioni riservate, ad esempio la chiave API del consumer di Twitter e il segreto con [gestione Secret](xref:security/app-secrets). Per questo esempio, attenersi alla procedura seguente:
+Memorizzare le impostazioni sensibili come la chiave API consumer Twitter e segreto con [Secret Manager](xref:security/app-secrets). Per questo esempio, usare la procedura seguente:For this sample, use the following steps:
 
-1. Inizializzare il progetto per l'archiviazione segreta in base alle istruzioni riportate in [abilitare l'archiviazione segreta](xref:security/app-secrets#enable-secret-storage).
-1. Archiviare le impostazioni sensibili nell'archivio dei segreti locali con le chiavi dei segreti `Authentication:Twitter:ConsumerKey` e `Authentication:Twitter:ConsumerSecret`:
+1. Inizializzare il progetto per l'archiviazione segreta in base alle istruzioni in [Abilitare l'archiviazione segreta.](xref:security/app-secrets#enable-secret-storage)
+1. Memorizzare le impostazioni sensibili nell'archivio `Authentication:Twitter:ConsumerKey` `Authentication:Twitter:ConsumerSecret`segreto locale con le chiavi secrets e :
 
     ```dotnetcli
     dotnet user-secrets set "Authentication:Twitter:ConsumerAPIKey" "<consumer-api-key>"
@@ -53,11 +53,11 @@ Archiviare le impostazioni riservate, ad esempio la chiave API del consumer di T
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-Questi token si trovano nella scheda **chiavi e token di accesso** dopo la creazione di una nuova applicazione Twitter:
+Questi token sono disponibili nella scheda Chiavi e token di accesso dopo aver creato una nuova applicazione Twitter:These tokens can be found on the **Keys and Access Tokens** tab after creating a new Twitter application:
 
 ## <a name="configure-twitter-authentication"></a>Configurare l'autenticazione di Twitter
 
-Aggiungere il servizio Twitter nel metodo `ConfigureServices` nel file *Startup.cs* :
+Aggiungere il servizio `ConfigureServices` Twitter nel metodo nel file *di Startup.cs:*
 
 [!code-csharp[](~/security/authentication/social/social-code/3.x/StartupTwitter3x.cs?name=snippet&highlight=10-15)]
 
@@ -65,29 +65,35 @@ Aggiungere il servizio Twitter nel metodo `ConfigureServices` nel file *Startup.
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-Vedere le informazioni di riferimento sull'API [TwitterOptions](/dotnet/api/microsoft.aspnetcore.builder.twitteroptions) per altre informazioni sulle opzioni di configurazione supportate dall'autenticazione Twitter. Ciò può essere usato per richiedere informazioni diverse sull'utente.
+Per altre informazioni sulle opzioni di configurazione supportate dall'autenticazione di Twitter, vedere le informazioni di riferimento sull'API [TwitterOptions.See](/dotnet/api/microsoft.aspnetcore.builder.twitteroptions) the TwitterOptions API reference for more information on configuration options supported by Twitter authentication. Può essere utilizzato per richiedere informazioni diverse sull'utente.
 
 ## <a name="sign-in-with-twitter"></a>Accedi con Twitter
 
 Eseguire l'app e selezionare **Accedi**. Viene visualizzata un'opzione per accedere con Twitter:
 
-Clic su **Twitter** reindirizza a Twitter per l'autenticazione:
+Cliccando su **Twitter** reindirizza a Twitter per l'autenticazione:
 
-Dopo aver immesso le credenziali di Twitter, viene reindirizzato di nuovo al sito Web in cui è possibile impostare la posta elettronica.
+Dopo aver inserito le credenziali di Twitter, si viene reindirizzati al sito web dove è possibile impostare la posta elettronica.
 
-A questo punto è stato effettuato l'accesso con le credenziali di Twitter:
+Ora hai effettuato l'accesso utilizzando le tue credenziali Twitter:
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
+<!-- 
+### React to cancel Authorize External sign-in
+Twitter doesn't support AccessDeniedPath
+Rather in the twitter setup, you can provide an External sign-in homepage. The external sign-in homepage doesn't support localhost. Tested with https://cors3.azurewebsites.net/ and that works.
+-->
+
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
-* **Solo ASP.NET Core 2. x:** Se l'identità non è configurata chiamando `services.AddIdentity` in `ConfigureServices`, il tentativo di eseguire l'autenticazione determinerà *ArgumentException: è necessario fornire l'opzione ' SignInScheme '* . Il modello di progetto utilizzato in questo esempio garantisce che questa operazione venga eseguita.
-* Se il database del sito non è stato creato applicando la migrazione iniziale, si otterrà *un'operazione di database non riuscita durante l'elaborazione dell'* errore di richiesta. Toccare **applica migrazioni** per creare il database e aggiornare per continuare a superare l'errore.
+* **ASP.NET Solo Core 2.x:** Se Identity non è `services.AddIdentity` configurato `ConfigureServices`chiamando in , il tentativo di autenticazione comporterà *ArgumentException: deve essere fornita l'opzione 'SignInScheme'.* Il modello di progetto utilizzato in questo esempio garantisce che questa operazione venga eseguita.
+* Se il database del sito non è stato creato applicando la migrazione iniziale, si otterrà *un'operazione del database non riuscita durante l'elaborazione dell'errore* di richiesta. Toccare **Applica migrazioni** per creare il database e aggiornare per continuare oltre l'errore.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Questo articolo ha illustrato come è possibile eseguire l'autenticazione con Twitter. È possibile seguire un approccio simile per l'autenticazione con altri provider elencati nella [pagina precedente](xref:security/authentication/social/index).
+* Questo articolo ha mostrato come è possibile eseguire l'autenticazione con Twitter. È possibile seguire un approccio simile per l'autenticazione con altri provider elencati nella [pagina precedente.](xref:security/authentication/social/index)
 
-* Dopo aver pubblicato il sito Web nell'app Web di Azure, è necessario reimpostare il `ConsumerSecret` nel portale per sviluppatori di Twitter.
+* Dopo aver pubblicato il sito Web nell'app `ConsumerSecret` Web di Azure, è necessario reimpostare il sito nel portale per sviluppatori di Twitter.Once you publish your web site to Azure web app, you should reset the in the Twitter developer portal.
 
-* Impostare il `Authentication:Twitter:ConsumerKey` e `Authentication:Twitter:ConsumerSecret` come impostazioni dell'applicazione nella portale di Azure. Il sistema di configurazione è configurato per leggere le chiavi da variabili di ambiente.
+* Impostare `Authentication:Twitter:ConsumerKey` `Authentication:Twitter:ConsumerSecret` le impostazioni e come dell'applicazione nel portale di Azure.Set the and as application settings in the Azure portal. Il sistema di configurazione è impostato per leggere le chiavi dalle variabili di ambiente.
