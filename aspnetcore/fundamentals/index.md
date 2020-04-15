@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/30/2020
 uid: fundamentals/index
-ms.openlocfilehash: da2b42a7cf5d116a36d1dd9fa586d40ab31fc52d
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: c675644d8480ef7a5290045067e6cec2ea6f4764
+ms.sourcegitcommit: f29a12486313e38e0163a643d8a97c8cecc7e871
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417646"
+ms.lasthandoff: 04/14/2020
+ms.locfileid: "81384053"
 ---
 # <a name="aspnet-core-fundamentals"></a>Nozioni fondamentali su ASP.NET Core
 
@@ -205,7 +205,7 @@ La radice del contenuto è il percorso di base per:The content root is the base 
   * File di dati (*.db*)
 * La [directory principale Web](#web-root), in genere la cartella *wwwroot.*
 
-Durante lo sviluppo, per impostazione predefinita la radice del contenuto viene la directory radice del progetto. Questa directory è anche il percorso di base sia per i file di contenuto dell'app che per la [radice Web.](#web-root) Specificare una radice del contenuto diversa impostandone il percorso durante [la compilazione dell'host.](#host) Per altre informazioni, vedere [Radice del contenuto](xref:fundamentals/host/generic-host#contentrootpath-1).
+Durante lo sviluppo, per impostazione predefinita la radice del contenuto viene la directory radice del progetto. Questa directory è anche il percorso di base sia per i file di contenuto dell'app che per la [radice Web.](#web-root) Specificare una radice del contenuto diversa impostandone il percorso durante [la compilazione dell'host.](#host) Per altre informazioni, vedere [Radice del contenuto](xref:fundamentals/host/generic-host#contentroot).
 
 ## <a name="web-root"></a>Radice Web
 
@@ -215,7 +215,7 @@ La radice Web è il percorso di base per i file di risorse statici pubblici, ad 
 * JavaScript (*.js*)
 * Immagini (*.png*, *.jpg*)
 
-Per impostazione predefinita, i file statici vengono serviti solo dalla directory radice Web e dalle relative sottodirectory. Per impostazione predefinita, il percorso radice del Web è impostato su * *. Specificare una radice Web diversa impostandone il percorso durante [la creazione dell'host.](#host) Per altre informazioni, vedere [Web root](xref:fundamentals/host/generic-host#webroot-1) (Radice Web).
+Per impostazione predefinita, i file statici vengono serviti solo dalla directory radice Web e dalle relative sottodirectory. Per impostazione predefinita, il percorso radice del Web è impostato su * *. Specificare una radice Web diversa impostandone il percorso durante [la creazione dell'host.](#host) Per altre informazioni, vedere [Web root](xref:fundamentals/host/generic-host#webroot) (Radice Web).
 
 Impedire la pubblicazione di file in *wwwroot* con [ \<l'elemento](/visualstudio/msbuild/common-msbuild-project-items#content) di progetto Content> nel file di progetto. L'esempio seguente impedisce la pubblicazione del contenuto in *wwwroot/local* e nelle relative sottodirectory:
 
