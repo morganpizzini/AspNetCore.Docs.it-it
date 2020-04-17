@@ -7,18 +7,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/17/2020
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: b528a33fa52bfe56faaf9f3ff8c7e43db0d4e184
-ms.sourcegitcommit: f29a12486313e38e0163a643d8a97c8cecc7e871
+ms.openlocfilehash: 46a56c278e889778e58a1fbb41ec217aaf023b13
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81384028"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488774"
 ---
 # <a name="net-generic-host"></a>Host generico .NET
 
 ::: moniker range=">= aspnetcore-3.0 <= aspnetcore-3.1"
 
-I modelli ASP.NET Core creano un<xref:Microsoft.Extensions.Hosting.HostBuilder>host generico .NET Core ( ).
+I modelli ASP.NET Core creano un <xref:Microsoft.Extensions.Hosting.HostBuilder>host generico .NET Core, .
 
 ## <a name="host-definition"></a>Definizione host
 
@@ -40,7 +40,7 @@ L'host è in genere configurato, compilato ed eseguito da codice nella classe `P
 * Chiama un metodo `CreateHostBuilder` per creare e configurare un oggetto generatore.
 * Chiamate `Build` e metodi `Run` nell'oggetto generatore.
 
-I modelli Web ASP.NET Core generano il codice seguente per creare un host:The ASP.NET Core web templates generate the following code to create a host:
+I modelli Web ASP.NET Core generano il codice seguente per creare un host generico:
 
 ```csharp
 public class Program
@@ -59,7 +59,7 @@ public class Program
 }
 ```
 
-Il codice seguente crea un carico `IHostedService` di lavoro non HTTP con un'implementazione aggiunta al contenitore DI.
+Il codice seguente crea un host generico usando un carico di lavoro non HTTP. L'implementazione `IHostedService` viene aggiunta al contenitore DI:The implementation is added to the DI container:
 
 ```csharp
 public class Program
@@ -88,6 +88,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.UseStartup<Startup>();
         });
 ```
+
+Il codice precedente viene generato dai modelli ASP.NET Core.
 
 Se l'app usa Entity Framework Core, non modificare il nome o la firma del metodo `CreateHostBuilder`. Gli [strumenti di Entity Framework Core](/ef/core/miscellaneous/cli/) si aspettano di trovare un metodo `CreateHostBuilder` che configura l'host senza eseguire l'app. Per altre informazioni, vedere [Creazione DbContext in fase di progettazione](/ef/core/miscellaneous/cli/dbcontext-creation).
 

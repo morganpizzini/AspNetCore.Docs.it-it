@@ -4,14 +4,14 @@ author: scottaddie
 description: Informazioni su come ottimizzare le risorse statiche in un'applicazione Web ASP.NET Core applicando tecniche di raggruppamento e minimizzazione.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/17/2019
+ms.date: 04/15/2020
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: a7a5c40d6c31c4416212c02c1b491dd794f2a1d3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 670ac6a96c3affd2b2ac699836f536aea7d85ff3
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78658270"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488689"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Bundle e minimifico le risorse statiche in ASP.NET Core
 
@@ -63,7 +63,7 @@ I browser sono piuttosto dettagliati per quanto riguarda le intestazioni di rich
 
 ## <a name="choose-a-bundling-and-minification-strategy"></a>Scegliere una strategia di raggruppamento e minimizzazione
 
-I modelli di progetto MVC e Razor Pages forniscono una soluzione predefinita per l'aggregazione e la minimizzazione costituita da un file di configurazione JSON. Strumenti di terze parti, come il corridore di attività [Grunt,](xref:client-side/using-grunt) eseguire le stesse attività con un po 'più di complessità. Uno strumento di terze parti è ideale quando il flusso di lavoro&mdash;di sviluppo richiede l'elaborazione oltre l'aggregazione e la minimizzazione, ad esempio il linting e l'ottimizzazione delle immagini. Utilizzando l'aggregazione e la minimizzazione in fase di progettazione, i file minimizzati vengono creati prima della distribuzione dell'app. L'aggregazione e la minimizzazione prima della distribuzione offrono il vantaggio di ridurre il carico del server. Tuttavia, è importante riconoscere che l'aggregazione e la minimizzazione in fase di progettazione aumenta la complessità di compilazione e funziona solo con i file statici.
+I modelli di progetto MVC e Razor Pages forniscono una soluzione per l'aggregazione e la minimizzazione costituita da un file di configurazione JSON. Strumenti di terze parti, come il corridore di attività [Grunt,](xref:client-side/using-grunt) eseguire le stesse attività con un po 'più di complessità. Uno strumento di terze parti è ideale quando il flusso di lavoro&mdash;di sviluppo richiede l'elaborazione oltre l'aggregazione e la minimizzazione, ad esempio il linting e l'ottimizzazione delle immagini. Utilizzando l'aggregazione e la minimizzazione in fase di progettazione, i file minimizzati vengono creati prima della distribuzione dell'app. L'aggregazione e la minimizzazione prima della distribuzione offrono il vantaggio di ridurre il carico del server. Tuttavia, è importante riconoscere che l'aggregazione e la minimizzazione in fase di progettazione aumenta la complessità di compilazione e funziona solo con i file statici.
 
 ## <a name="configure-bundling-and-minification"></a>Configurare l'aggregazione e la minimizzazione
 
@@ -95,109 +95,6 @@ Le opzioni di configurazione possibili sono:
 * `includeInProject`: flag che indica se aggiungere i file generati al file di progetto. **facoltativo**, *default - false*
 * `sourceMap`: flag che indica se generare una mappa di origine per il file in bundle. **facoltativo**, *default - false*
 * `sourceMapRootPath`: percorso radice per l'archiviazione del file di mappa di origine generato.
-
-## <a name="build-time-execution-of-bundling-and-minification"></a>Esecuzione in fase di compilazione di bundling e minimizzazione
-
-Il pacchetto [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet consente l'esecuzione di raggruppamento e minimizzazione in fase di compilazione. Il pacchetto inserisce [destinazioni MSBuild](/visualstudio/msbuild/msbuild-targets) che vengono eseguite in fase di compilazione e pulizia. Il file *bundleconfig.json* viene analizzato dal processo di compilazione per produrre i file di output in base alla configurazione definita.
-
-> [!NOTE]
-> BuildBundlerMinifier appartiene a un progetto basato sulla community su GitHub per il quale Microsoft non fornisce alcun supporto. I problemi dovrebbero essere depositati [qui](https://github.com/madskristensen/BundlerMinifier/issues).
-
-# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
-
-Aggiungere il pacchetto *BuildBundlerMinifier* al progetto.
-
-Compilare il progetto. Nella finestra Output viene visualizzato quanto segue:
-
-```console
-1>------ Build started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
-1>
-1>Bundler: Begin processing bundleconfig.json
-1>  Minified wwwroot/css/site.min.css
-1>  Minified wwwroot/js/site.min.js
-1>Bundler: Done processing bundleconfig.json
-1>BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
-```
-
-Pulire il progetto. Nella finestra Output viene visualizzato quanto segue:
-
-```console
-1>------ Clean started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
-1>
-1>Bundler: Cleaning output from bundleconfig.json
-1>Bundler: Done cleaning output file from bundleconfig.json
-========== Clean: 1 succeeded, 0 failed, 0 skipped ==========
-```
-
-# <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
-
-Aggiungere il pacchetto BuildBundlerMinifier al progetto:Add the *BuildBundlerMinifier* package to your project:
-
-```dotnetcli
-dotnet add package BuildBundlerMinifier
-```
-
-Se si usa ASP.NET Core 1.x, ripristinare il pacchetto appena aggiunto:
-
-```dotnetcli
-dotnet restore
-```
-
-Compilare il progetto:
-
-```dotnetcli
-dotnet build
-```
-
-Viene visualizzato quanto segue:
-
-```console
-Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-
-    Bundler: Begin processing bundleconfig.json
-    Bundler: Done processing bundleconfig.json
-    BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
-```
-
-Pulire il progetto:
-
-```dotnetcli
-dotnet clean
-```
-
-Viene visualizzato l'output seguente:
-
-```console
-Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-
-  Bundler: Cleaning output from bundleconfig.json
-  Bundler: Done cleaning output file from bundleconfig.json
-```
-
----
-
-## <a name="ad-hoc-execution-of-bundling-and-minification"></a>Esecuzione ad hoc di raggruppamento e minimizzazione
-
-È possibile eseguire le attività di raggruppamento e minimizzazione su base ad hoc, senza compilare il progetto. Aggiungere il pacchetto BundlerMinifier.Core NuGet al progetto:Add the [BundlerMinifier.Core](https://www.nuget.org/packages/BundlerMinifier.Core/) NuGet package to your project:
-
-[!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=10)]
-
-> [!NOTE]
-> BundlerMinifier.Core appartiene a un progetto basato sulla community su GitHub per il quale Microsoft non fornisce alcun supporto. I problemi dovrebbero essere depositati [qui](https://github.com/madskristensen/BundlerMinifier/issues).
-
-Questo pacchetto estende l'interfaccia della riga di comando di .NET Core per includere lo strumento *dotnet-bundle.* Il comando seguente può essere eseguito nella finestra della console di gestione pacchetti (PMC) o in una shell dei comandi:
-
-```dotnetcli
-dotnet bundle
-```
-
-> [!IMPORTANT]
-> NuGet Package Manager aggiunge dipendenze al file `<PackageReference />` con estensione csproj come nodi. Il `dotnet bundle` comando viene registrato con l'interfaccia `<DotNetCliToolReference />` della riga di comando di .NET Core solo quando viene utilizzato un nodo. Modificare di conseguenza il file con estensione csproj.
 
 ## <a name="add-files-to-workflow"></a>Aggiungere file al flusso di lavoro
 
@@ -258,32 +155,7 @@ Il `environment` tag seguente esegue il rendering dei file CSS in `Development`b
 
 In alcuni casi il flusso di lavoro di aggregazione e minimizzazione di un'app richiede un'ulteriore elaborazione. Gli esempi includono l'ottimizzazione delle immagini, il busting della cache e l'elaborazione delle risorse CDN. Per soddisfare questi requisiti, è possibile convertire il flusso di lavoro di raggruppamento e minimizzazione per utilizzare Gulp.
 
-### <a name="use-the-bundler--minifier-extension"></a>Usare l'estensione Bundler & Minifier
-
-L'estensione & Minifier di Visual Studio Gestisce la conversione in Gulp.The Visual Studio [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension handles the conversion to Gulp.
-
-> [!NOTE]
-> Il Bundler & Minifier estensione appartiene a un progetto basato sulla comunità su GitHub per il quale Microsoft non fornisce alcun supporto. I problemi dovrebbero essere depositati [qui](https://github.com/madskristensen/BundlerMinifier/issues).
-
-Fare clic con il pulsante destro del mouse sul file *bundleconfig.json* in Esplora soluzioni e selezionare **Bundler & Minifier** > **Converti in Gulp...**:
-
-![Voce di menu di scelta rapida Converti in Gulp](../client-side/bundling-and-minification/_static/convert-to-gulp.png)
-
-I file *gulpfile.js* e *package.json* vengono aggiunti al progetto. Vengono installati i pacchetti [npm](https://www.npmjs.com/) di supporto `devDependencies` elencati nella sezione del file *package.json.*
-
-Eseguire il comando seguente nella finestra PMC per installare l'interfaccia della riga di comando Gulp come dipendenza globale:
-
-```console
-npm i -g gulp-cli
-```
-
-Il file *gulpfile.js* legge il file *bundleconfig.json* per gli input, gli output e le impostazioni.
-
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-12&highlight=10)]
-
-### <a name="convert-manually"></a>Convertire manualmente
-
-Se Visual Studio e/o l'estensione Bundler & Minifier non sono disponibili, eseguire la conversione manualmente.
+### <a name="manually-convert-the-bundling-and-minification-workflow-to-use-gulp"></a>Convertire manualmente il flusso di lavoro di raggruppamento e minimizzazione per utilizzare Gulp
 
 Aggiungere un file *package.json,* con il seguente `devDependencies`, alla radice del progetto:
 

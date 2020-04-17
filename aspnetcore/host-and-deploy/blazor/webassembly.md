@@ -5,17 +5,17 @@ description: Informazioni su come ospitare Blazor e distribuire un'app usando AS
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/06/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: f364d94085d175fde5596c222ef21852c0106ec1
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: f3508144f1e472ee906a35e427fc57f536008ab6
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80751124"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488858"
 ---
 # <a name="host-and-deploy-aspnet-core-opno-locblazor-webassembly"></a>Ospitare e distribuire Blazor ASP.NET Core WebAssembly
 
@@ -25,13 +25,17 @@ Di [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.time
 
 Con il [ Blazor modello di hosting WebAssembly](xref:blazor/hosting-models#blazor-webassembly):
 
-* L'app, Blazor le relative dipendenze e il runtime .NET vengono scaricati nel browser.
+* L'app, Blazor le relative dipendenze e il runtime .NET vengono scaricati nel browser in parallelo.
 * L'app viene eseguita direttamente nel thread dell'interfaccia utente del browser.
 
 Sono supportate le seguenti strategie di distribuzione:
 
 * L'app Blazor è servita da un'app ASP.NET Core. Questa strategia viene trattata nella sezione [Distribuzione ospitata con ASP.NET Core](#hosted-deployment-with-aspnet-core).
 * L'app Blazor viene inserita in un server Web o un servizio Blazor di hosting statico, in cui .NET non viene usato per servire l'app. Questa strategia è trattata nella sezione [Distribuzione autonoma,](#standalone-deployment) che include informazioni sull'hosting di un'app Blazor WebAssembly come sottoapplicazione IIS.
+
+## <a name="brotli-precompression"></a>Precompressione di Brotli
+
+Quando Blazor un'app WebAssembly viene pubblicata, l'output viene precompresso utilizzando l'algoritmo di [compressione Brotli](https://tools.ietf.org/html/rfc7932) al livello più alto per ridurre le dimensioni dell'app e rimuovere la necessità di compressione di runtime.
 
 ## <a name="rewrite-urls-for-correct-routing"></a>Riscrivere gli URL per il routing corretto
 

@@ -5,17 +5,17 @@ description: Inizia a Blazor creare Blazor un'app con gli strumenti di tua scelt
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/09/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: e9e6eeeb1d29aa529e43d75f5d3951d2c4384d7e
-ms.sourcegitcommit: 4506a8f71ece921010ad6b7edebc8b200618f40d
+ms.openlocfilehash: 7fe4fbb082f08d4f71684c836a826d8b6dd888f6
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/09/2020
-ms.locfileid: "81002912"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488728"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introduzione a ASP.NET Core Blazor
 
@@ -32,6 +32,12 @@ Per iniziare a utilizzare Blazor, segui le indicazioni per la tua scelta di uten
    Per creare app Blazor Server e Blazor WebAssembly, installare l'anteprima più recente di [Visual Studio 2019](https://visualstudio.microsoft.com/vs/preview/) con il carico di lavoro **di ASP.NET e sviluppo Web.**
 
    Per informazioni sui due modelli di hosting Blazor, *Blazor WebAssembly* e *Blazor Server*, vedere <xref:blazor/hosting-models>.
+
+1. Installare il modello di anteprima [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) eseguendo il comando seguente:
+
+   ```dotnetcli
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview4.20210.8
+   ```
 
 1. Creare un nuovo progetto.
 
@@ -50,7 +56,7 @@ Per iniziare a utilizzare Blazor, segui le indicazioni per la tua scelta di uten
 1. Facoltativamente, installare il modello di anteprima [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) eseguendo il comando seguente:
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview4.20210.8
    ```
 
    > [!NOTE]
@@ -113,7 +119,7 @@ Se viene visualizzato un prompt per considerare attendibile il certificato di sv
 1. Facoltativamente, installare il modello di anteprima [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) eseguendo il comando seguente:
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview4.20210.8
    ```
 
    > [!NOTE]
@@ -144,7 +150,7 @@ Se viene visualizzato un prompt per considerare attendibile il certificato di sv
 Più pagine sono disponibili dalle schede nella barra laterale:
 
 * Home
-* Counter
+* Contatore
 * Recuperare i dati
 
 Nella pagina Counter selezionare il pulsante **Click me** per incrementare il contatore senza un aggiornamento della pagina. L'incremento di un contatore in una Blazor pagina Web richiede in genere la scrittura di JavaScript, ma con l'uso di C.

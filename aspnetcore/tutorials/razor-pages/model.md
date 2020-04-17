@@ -5,12 +5,12 @@ description: Scoprire come aggiungere classi per la gestione dei film in un data
 ms.author: riande
 ms.date: 12/05/2019
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: f6dbac81b4efceb30c379ab06dd715005d879228
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7f7c2a09b74e6007ee3ea9c038398bac54988186
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78658935"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488871"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Aggiungere un modello a un'app Razor Pages in ASP.NET Core
 
@@ -20,7 +20,7 @@ Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 <!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
 
-In questa sezione vengono aggiunte classi per la gestione di filmati in un [database SQLite](https://www.sqlite.org/index.html)multipiattaforma. Le app create da un modello ASP.NET Core usano un database SQLite.Apps created from an ASP.NET Core template use a SQLite database. Le classi del modello dell'app vengono usate con [Entity Framework Core (EF Core)](/ef/core) ([SQLite EF Core Database Provider](/ef/core/providers/sqlite)) per lavorare con il database. EF Core è un framework ORM (Object-Relational Mapping) che semplifica l'accesso ai dati.
+In questa sezione vengono aggiunte classi per la gestione dei filmati. Le classi del modello dell'app usano [Entity Framework Core (EF Core)](/ef/core) per lavorare con il database. EF Core è un mapper relazionale a oggetti (O/RM) che semplifica l'accesso ai dati.
 
 Le classi di modello sono dette classi POCO (da "plain-old CLR objects") perché non hanno alcuna dipendenza in EF Core. Definiscono le proprietà dei dati archiviati nel database.
 

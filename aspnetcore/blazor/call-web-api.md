@@ -1,21 +1,21 @@
 ---
-title: Chiamare un'API Web da ASP.NET CoreCall a web API from ASP.NET CoreBlazor
+title: Chiamare un'API Web Blazor da ASP.NET Core WebAssemblyCall a web API from ASP.NET Core WebAssembly
 author: guardrex
-description: Informazioni su come chiamare un'API Web da un'app Blazor usando helper JSON, inclusa la creazione di richieste di condivisione delle risorse tra origini (CORS).
+description: Informazioni su come chiamare un'API Web da un'app Blazor WebAssembly usando helper JSON, incluse le richieste di condivisione delle risorse tra origini (CORS).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/22/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: e6996f0e6731b05038d0a9329152b8afd5f6796d
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 2f2d4150f4fa1e7f47310f2a88b816f445cd1d3a
+ms.sourcegitcommit: 49c91ad4b69f4f8032394cbf2d5ae1b19a7f863b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78660146"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81544856"
 ---
 # <a name="call-a-web-api-from-aspnet-core-opno-locblazor"></a>Chiamare un'API Web da ASP.NET CoreCall a web API from ASP.NET CoreBlazor
 
@@ -36,9 +36,19 @@ Vedere i componenti seguenti nell'app di esempio *BlazorWebAssemblySample:See* t
 
 ## <a name="packages"></a>Pacchetti
 
-Fare riferimento *all'oggetto sperimentale* [BlazorMicrosoft.AspNetCore. . Pacchetto HttpClient](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.HttpClient/) NuGet nel file di progetto. `Microsoft.AspNetCore.Blazor.HttpClient`è basato su `HttpClient` e [System.Text.Json](https://www.nuget.org/packages/System.Text.Json/).
+Fare riferimento al pacchetto [System.Net.Http.Json](https://www.nuget.org/packages/System.Net.Http.Json/) NuGet nel file di progetto.
 
-Per utilizzare un'API stabile, utilizzare il pacchetto [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/) , che utilizza [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)/[Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm). L'uso dell'API stable in `Microsoft.AspNet.WebApi.Client` non fornisce gli helper JSON descritti `Microsoft.AspNetCore.Blazor.HttpClient` in questo argomento, che sono univoci per il pacchetto sperimentale.
+## <a name="add-the-httpclient-service"></a>Aggiungere il servizio HttpClient
+
+In `Program.Main`, `HttpClient` aggiungere un servizio se non esiste già:
+
+```csharp
+builder.Services.AddSingleton(
+    new HttpClient
+    {
+        BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+    });
+```
 
 ## <a name="httpclient-and-json-helpers"></a>Helper HttpClient e JSON
 
@@ -72,7 +82,7 @@ private class TodoItem
 
 I metodi helper JSON inviano richieste a un URI (un'API Web negli esempi seguenti) ed elaborano la risposta:
 
-* `GetJsonAsync`&ndash; Invia una richiesta HTTP GET e analizza il corpo della risposta JSON per creare un oggetto.
+* `GetFromJsonAsync`&ndash; Invia una richiesta HTTP GET e analizza il corpo della risposta JSON per creare un oggetto.
 
   Nel codice seguente, `_todoItems` vengono visualizzati dal componente. Il `GetTodoItems` metodo viene attivato al termine del rendering del componente ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). Vedere l'app di esempio per un esempio completo.
 
@@ -84,11 +94,11 @@ I metodi helper JSON inviano richieste a un URI (un'API Web negli esempi seguent
       private TodoItem[] _todoItems;
 
       protected override async Task OnInitializedAsync() => 
-          _todoItems = await Http.GetJsonAsync<TodoItem[]>("api/TodoItems");
+          _todoItems = await Http.GetFromJsonAsync<TodoItem[]>("api/TodoItems");
   }
   ```
 
-* `PostJsonAsync`&ndash; Invia una richiesta HTTP POST, incluso il contenuto con codifica JSON, e analizza il corpo della risposta JSON per creare un oggetto.
+* `PostAsJsonAsync`&ndash; Invia una richiesta HTTP POST, incluso il contenuto con codifica JSON, e analizza il corpo della risposta JSON per creare un oggetto.
 
   Nel codice seguente, `_newItemName` viene fornito da un elemento associato del componente. Il `AddItem` metodo viene attivato `<button>` selezionando un elemento. Vedere l'app di esempio per un esempio completo.
 
@@ -105,12 +115,14 @@ I metodi helper JSON inviano richieste a un URI (un'API Web negli esempi seguent
       private async Task AddItem()
       {
           var addItem = new TodoItem { Name = _newItemName, IsComplete = false };
-          await Http.PostJsonAsync("api/TodoItems", addItem);
+          await Http.PostAsJsonAsync("api/TodoItems", addItem);
       }
   }
   ```
+  
+  Chiamate `PostAsJsonAsync` per <xref:System.Net.Http.HttpResponseMessage>restituire un file .
 
-* `PutJsonAsync`&ndash; Invia una richiesta HTTP PUT, incluso il contenuto con codifica JSON.
+* `PutAsJsonAsync`&ndash; Invia una richiesta HTTP PUT, incluso il contenuto con codifica JSON.
 
   Nel codice seguente, `_editItem` `Name` i `IsCompleted` valori per e vengono forniti dagli elementi associati del componente. L'elemento `Id` viene impostato quando l'elemento viene selezionato `EditItem` in un'altra parte dell'interfaccia utente e viene chiamato. Il `SaveItem` metodo viene attivato selezionando `<button>` il Save elemento. Vedere l'app di esempio per un esempio completo.
 
@@ -133,9 +145,11 @@ I metodi helper JSON inviano richieste a un URI (un'API Web negli esempi seguent
       }
 
       private async Task SaveItem() =>
-          await Http.PutJsonAsync($"api/TodoItems/{_editItem.Id}, _editItem);
+          await Http.PutAsJsonAsync($"api/TodoItems/{_editItem.Id}, _editItem);
   }
   ```
+  
+  Chiamate `PutAsJsonAsync` per <xref:System.Net.Http.HttpResponseMessage>restituire un file .
 
 <xref:System.Net.Http>include metodi di estensione aggiuntivi per l'invio di richieste HTTP e la ricezione di risposte HTTP. [HttpClient.DeleteAsync](xref:System.Net.Http.HttpClient.DeleteAsync*) viene utilizzato per inviare una richiesta HTTP DELETE a un'API Web.HttpClient.DeleteAsync is used to send an HTTP DELETE request to a web API.
 
