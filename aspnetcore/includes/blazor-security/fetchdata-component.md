@@ -1,21 +1,25 @@
-Il componente `FetchData` Mostra come:
+Il `FetchData` componente mostra come:
 
 * Effettuare il provisioning di un token di accesso.
-* Usare il token di accesso per chiamare un'API di risorse protette nell'app *Server* .
+* Usare il token di accesso per chiamare un'API di risorse protetta nell'app *Server.Use* the access token to call a protected resource API in the Server app.
 
-La direttiva `@attribute [Authorize]` indica al sistema di autorizzazione webassembly di Blaze che l'utente deve essere autorizzato per visitare il componente. La presenza dell'attributo nell'app *client* non impedisce che l'API sul server venga chiamata senza credenziali appropriate. L'app *Server* deve anche usare `[Authorize]` sugli endpoint appropriati per la protezione corretta.
+La `@attribute [Authorize]` direttiva indica al sistema di autorizzazione WebAssembly Blazor che l'utente deve essere autorizzato per visitare questo componente. La presenza dell'attributo nell'app *Client* non impedisce la chiamata dell'API sul server senza credenziali appropriate. L'app *Server* `[Authorize]` deve inoltre essere usata negli endpoint appropriati per proteggerli correttamente.
 
-`AuthenticationService.RequestAccessToken();` si occupa della richiesta di un token di accesso che può essere aggiunto alla richiesta per chiamare l'API. Se il token è memorizzato nella cache oppure il servizio è in grado di effettuare il provisioning di un nuovo token di accesso senza interazione dell'utente, la richiesta del token viene completata. In caso contrario, la richiesta del token non riesce.
+`AuthenticationService.RequestAccessToken();`si occupa di richiedere un token di accesso che può essere aggiunto alla richiesta per chiamare l'API. Se il token è memorizzato nella cache o il servizio è in grado di eseguire il provisioning di un nuovo token di accesso senza l'interazione dell'utente, la richiesta del token ha esito positivo. In caso contrario, la richiesta di token ha esito negativo.
 
-Per ottenere il token effettivo da includere nella richiesta, l'app deve verificare che la richiesta abbia avuto esito positivo chiamando `tokenResult.TryGetToken(out var token)`. 
+Per ottenere il token effettivo da includere nella richiesta, l'app deve `tokenResult.TryGetToken(out var token)`verificare che la richiesta abbia avuto esito positivo chiamando . 
 
-Se la richiesta ha avuto esito positivo, la variabile del token viene popolata con il token di accesso. La proprietà `Value` del token espone la stringa letterale da includere nell'intestazione della richiesta di `Authorization`.
+Se la richiesta ha avuto esito positivo, la variabile di token viene popolata con il token di accesso. La `Value` proprietà del token espone la stringa `Authorization` letterale da includere nell'intestazione della richiesta.
 
-Se la richiesta non è riuscita perché non è stato possibile eseguire il provisioning del token senza l'interazione dell'utente, il risultato del token contiene un URL di reindirizzamento. Se si passa a questo URL, l'utente viene indirizzato alla pagina di accesso e torna alla pagina corrente dopo un'autenticazione corretta.
+Se la richiesta non è riuscita perché non è stato possibile eseguire il provisioning del token senza l'interazione dell'utente, il risultato del token contiene un URL di reindirizzamento. La navigazione a questo URL porta l'utente alla pagina di accesso e torna alla pagina corrente dopo una corretta autenticazione.
 
 ```razor
 @page "/fetchdata"
-...
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject IAccessTokenProvider AuthenticationService
+@inject NavigationManager Navigation
+@using {APPLICATION NAMESPACE}.Shared
 @attribute [Authorize]
 
 ...
@@ -46,4 +50,4 @@ Se la richiesta non è riuscita perché non è stato possibile eseguire il provi
 }
 ```
 
-Per altre informazioni, vedere [salvare lo stato dell'app prima di un'operazione di autenticazione](xref:security/blazor/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation).
+Per altre informazioni, vedere [Salvare lo stato dell'app prima di un'operazione di autenticazione.](xref:security/blazor/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)

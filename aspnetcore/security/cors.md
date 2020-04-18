@@ -4,14 +4,14 @@ author: rick-anderson
 description: Scopri come CORS come standard per consentire o rifiutare le richieste tra origini in un'app ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2020
+ms.date: 04/17/2020
 uid: security/cors
-ms.openlocfilehash: e7731fd967c206679ac93209fdb84f40367bea37
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 56a339d9018f619af38aecc6f4c2ff40c3c43d2f
+ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440909"
+ms.lasthandoff: 04/18/2020
+ms.locfileid: "81642692"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Abilitare le richieste cross-origin (CORS) in ASP.NET CoreEnable Cross-Origin Requests (CORS) in ASP.NET Core
 
@@ -71,7 +71,7 @@ IL middleware CORS gestisce le richieste tra origini. Il codice seguente applica
 Il codice precedente:
 
 * Imposta il nome `_myAllowSpecificOrigins`del criterio su . Il nome del criterio è arbitrario.
-* Chiama <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> il metodo di `_myAllowSpecificOrigins` estensione e specifica il criterio CORS. `UseCors`aggiunge il middleware CORS.
+* Chiama <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> il metodo di `_myAllowSpecificOrigins` estensione e specifica il criterio CORS. `UseCors`aggiunge il middleware CORS. La chiamata `UseCors` a deve `UseRouting`essere `UseAuthorization`effettuata dopo , ma prima di . Per ulteriori informazioni, vedere [Ordine del middleware](xref:fundamentals/middleware/index#middleware-order).
 * Chiamate <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> con [un'espressione lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). L'espressione <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> lambda accetta un oggetto. [Le opzioni](#cors-policy-options)di `WithOrigins`configurazione, ad esempio , sono descritte più avanti in questo articolo.
 * Abilita `_myAllowSpecificOrigins` i criteri CORS per tutti gli endpoint del controller. Vedere [routing degli endpoint](#ecors) per applicare criteri CORS a endpoint specifici.
 

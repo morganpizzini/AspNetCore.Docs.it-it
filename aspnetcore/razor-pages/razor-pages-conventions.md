@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: razor-pages/razor-pages-conventions
-ms.openlocfilehash: b42d63c8f1b5b48fcfc771923171e1105d3f0a29
-ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
+ms.openlocfilehash: 6124554d5f9859179edfb5c545cf0b082369c0c9
+ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81277314"
+ms.lasthandoff: 04/18/2020
+ms.locfileid: "81642739"
 ---
 # <a name="razor-pages-route-and-app-conventions-in-aspnet-core"></a>Convenzioni di route e app per Razor Pages in ASP.NET Core
 
@@ -24,13 +24,13 @@ Quando è necessario configurare la route di una pagina personalizzata per le si
 
 Per specificare una route di pagina, aggiungere segmenti di percorso o `@page` aggiungere parametri a una route, utilizzare la direttiva della pagina. Per ulteriori informazioni, consultate [Route personalizzate.](xref:razor-pages/index#custom-routes)
 
-Sono presenti parole riservate che non possono essere utilizzate come segmenti di route o nomi di parametri. Per ulteriori informazioni, vedere Routing: nomi di [routing riservati](xref:fundamentals/routing#reserved-routing-names).
+Sono presenti parole riservate che non possono essere utilizzate come segmenti di route o nomi di parametri. Per ulteriori informazioni, vedere Routing: nomi di [routing riservati](xref:mvc/controllers/routing#reserved-routing-names).
 
 [Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/) ( come[scaricare](xref:index#how-to-download-a-sample))
 
 | Scenario | L'esempio illustra come eseguire le seguenti operazioni: |
 | -------- | --------------------------- |
-| [Convenzioni modello](#model-conventions)<br><br>Conventions.Add<ul><li>IPageRouteModelConvention</li><li>IPageApplicationModelConvention</li><li>IPageHandlerModelConvention</li></ul> | Aggiungere un modello e un'intestazione di route alle pagine di un'app. |
+| [Convenzioni del modello](#model-conventions)<br><br>Conventions.Add<ul><li>IPageRouteModelConvention</li><li>IPageApplicationModelConvention</li><li>IPageHandlerModelConvention</li></ul> | Aggiungere un modello e un'intestazione di route alle pagine di un'app. |
 | [Convenzioni per le azioni di route di pagina](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Aggiungere un modello di route alle pagine in una cartella e a una pagina singola. |
 | [Convenzioni per le azioni del modello di pagina](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (classe di filtro, espressione lambda o factory di filtro)</li></ul> | Aggiungere un'intestazione alle pagine in una cartella, aggiungere un'intestazione a una pagina singola e configurare una [factory di filtro](xref:mvc/controllers/filters#ifilterfactory) per aggiungere un'intestazione alle pagine di un'app. |
 
@@ -313,7 +313,7 @@ Sono presenti parole riservate che non possono essere utilizzate come segmenti d
 
 | Scenario | L'esempio illustra come eseguire le seguenti operazioni: |
 | -------- | --------------------------- |
-| [Convenzioni modello](#model-conventions)<br><br>Conventions.Add<ul><li>IPageRouteModelConvention</li><li>IPageApplicationModelConvention</li><li>IPageHandlerModelConvention</li></ul> | Aggiungere un modello e un'intestazione di route alle pagine di un'app. |
+| [Convenzioni del modello](#model-conventions)<br><br>Conventions.Add<ul><li>IPageRouteModelConvention</li><li>IPageApplicationModelConvention</li><li>IPageHandlerModelConvention</li></ul> | Aggiungere un modello e un'intestazione di route alle pagine di un'app. |
 | [Convenzioni per le azioni di route di pagina](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Aggiungere un modello di route alle pagine in una cartella e a una pagina singola. |
 | [Convenzioni per le azioni del modello di pagina](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (classe di filtro, espressione lambda o factory di filtro)</li></ul> | Aggiungere un'intestazione alle pagine in una cartella, aggiungere un'intestazione a una pagina singola e configurare una [factory di filtro](xref:mvc/controllers/filters#ifilterfactory) per aggiungere un'intestazione alle pagine di un'app. |
 
@@ -603,7 +603,7 @@ Sono presenti parole riservate che non possono essere utilizzate come segmenti d
 
 | Scenario | L'esempio illustra come eseguire le seguenti operazioni: |
 | -------- | --------------------------- |
-| [Convenzioni modello](#model-conventions)<br><br>Conventions.Add<ul><li>IPageRouteModelConvention</li><li>IPageApplicationModelConvention</li><li>IPageHandlerModelConvention</li></ul> | Aggiungere un modello e un'intestazione di route alle pagine di un'app. |
+| [Convenzioni del modello](#model-conventions)<br><br>Conventions.Add<ul><li>IPageRouteModelConvention</li><li>IPageApplicationModelConvention</li><li>IPageHandlerModelConvention</li></ul> | Aggiungere un modello e un'intestazione di route alle pagine di un'app. |
 | [Convenzioni per le azioni di route di pagina](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Aggiungere un modello di route alle pagine in una cartella e a una pagina singola. |
 | [Convenzioni per le azioni del modello di pagina](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (classe di filtro, espressione lambda o factory di filtro)</li></ul> | Aggiungere un'intestazione alle pagine in una cartella, aggiungere un'intestazione a una pagina singola e configurare una [factory di filtro](xref:mvc/controllers/filters#ifilterfactory) per aggiungere un'intestazione alle pagine di un'app. |
 
