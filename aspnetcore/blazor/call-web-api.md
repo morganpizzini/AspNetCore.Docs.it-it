@@ -5,17 +5,17 @@ description: Informazioni su come chiamare un'API Web da un'app Blazor WebAssemb
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/19/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: 2f2d4150f4fa1e7f47310f2a88b816f445cd1d3a
-ms.sourcegitcommit: 49c91ad4b69f4f8032394cbf2d5ae1b19a7f863b
+ms.openlocfilehash: 943f9d440adbe11ac1977f28aebee53a5510a86b
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81544856"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661574"
 ---
 # <a name="call-a-web-api-from-aspnet-core-opno-locblazor"></a>Chiamare un'API Web da ASP.NET CoreCall a web API from ASP.NET CoreBlazor
 
@@ -120,7 +120,11 @@ I metodi helper JSON inviano richieste a un URI (un'API Web negli esempi seguent
   }
   ```
   
-  Chiamate `PostAsJsonAsync` per <xref:System.Net.Http.HttpResponseMessage>restituire un file .
+  Chiamate `PostAsJsonAsync` per <xref:System.Net.Http.HttpResponseMessage>restituire un file . Per deserializzare il contenuto JSON dal `ReadFromJsonAsync<T>` messaggio di risposta, usare il metodo di estensione:To deserialize the JSON content from the response message, use the extension method:
+  
+  ```csharp
+  var content = response.content.ReadFromJsonAsync<WeatherForecast>();
+  ```
 
 * `PutAsJsonAsync`&ndash; Invia una richiesta HTTP PUT, incluso il contenuto con codifica JSON.
 
@@ -149,7 +153,11 @@ I metodi helper JSON inviano richieste a un URI (un'API Web negli esempi seguent
   }
   ```
   
-  Chiamate `PutAsJsonAsync` per <xref:System.Net.Http.HttpResponseMessage>restituire un file .
+  Chiamate `PutAsJsonAsync` per <xref:System.Net.Http.HttpResponseMessage>restituire un file . Per deserializzare il contenuto JSON dal `ReadFromJsonAsync<T>` messaggio di risposta, usare il metodo di estensione:To deserialize the JSON content from the response message, use the extension method:
+  
+  ```csharp
+  var content = response.content.ReadFromJsonAsync<WeatherForecast>();
+  ```
 
 <xref:System.Net.Http>include metodi di estensione aggiuntivi per l'invio di richieste HTTP e la ricezione di risposte HTTP. [HttpClient.DeleteAsync](xref:System.Net.Http.HttpClient.DeleteAsync*) viene utilizzato per inviare una richiesta HTTP DELETE a un'API Web.HttpClient.DeleteAsync is used to send an HTTP DELETE request to a web API.
 

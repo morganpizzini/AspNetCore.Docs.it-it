@@ -38,7 +38,7 @@ Se la richiesta non è riuscita perché non è stato possibile eseguire il provi
         {
             httpClient.DefaultRequestHeaders.Add("Authorization", 
                 $"Bearer {token.Value}");
-            forecasts = await httpClient.GetJsonAsync<WeatherForecast[]>(
+            forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
         }
         else

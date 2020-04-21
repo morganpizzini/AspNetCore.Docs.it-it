@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/26/2020
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 943ea30c2e4887638f69b6dcdb7e323bcee40240
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 4e990329b7ebcfc9cbbff8a3c9895604a22461d3
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80405983"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661693"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserimento delle dipendenze in ASP.NET Core
 
@@ -196,7 +196,7 @@ I servizi con durata temporanea (<xref:Microsoft.Extensions.DependencyInjection.
 I servizi con durata con ambito (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) vengono creati una volta per ogni richiesta client (connessione).
 
 > [!WARNING]
-> Quando si usa un servizio con ambito in un middleware, inserire il servizio nel metodo `Invoke` o `InvokeAsync`. Evitare l'inserimento tramite il costruttore, che impone al servizio il comportamento singleton. Per altre informazioni, vedere <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+> Quando si usa un servizio con ambito in un middleware, inserire il servizio nel metodo `Invoke` o `InvokeAsync`. Non iniettare tramite [iniezione del costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) perché costringe il servizio a comportarsi come un singleton. Per altre informazioni, vedere <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
 
 ### <a name="singleton"></a>Singleton
 
@@ -261,9 +261,9 @@ I servizi possono essere risolti con due meccanismi:
 
 I costruttori possono accettare argomenti non forniti tramite l'inserimento di dipendenze, ma gli argomenti devono assegnare valori predefiniti.
 
-Quando i servizi vengono risolti da `IServiceProvider` o `ActivatorUtilities`, l'inserimento del costruttore richiede un costruttore *pubblico*.
+Quando i servizi `IServiceProvider` `ActivatorUtilities`vengono risolti da o , [l'inserimento](xref:mvc/controllers/dependency-injection#constructor-injection) del costruttore richiede un costruttore *pubblico.*
 
-Quando i servizi vengono risolti da `ActivatorUtilities`, l'inserimento del costruttore richiede l'esistenza di un solo costruttore applicabile. Sebbene siano supportati gli overload dei costruttori, può essere presente un solo overload i cui argomenti possono essere tutti specificati tramite l'inserimento delle dipendenze.
+Quando i servizi `ActivatorUtilities`vengono risolti da , [l'inserimento del costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) richiede l'esito di un solo costruttore applicabile. Sebbene siano supportati gli overload dei costruttori, può essere presente un solo overload i cui argomenti possono essere tutti specificati tramite l'inserimento delle dipendenze.
 
 ## <a name="entity-framework-contexts"></a>Contesti di Entity Framework
 
@@ -733,7 +733,7 @@ I servizi con durata temporanea (<xref:Microsoft.Extensions.DependencyInjection.
 I servizi con durata con ambito (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) vengono creati una volta per ogni richiesta client (connessione).
 
 > [!WARNING]
-> Quando si usa un servizio con ambito in un middleware, inserire il servizio nel metodo `Invoke` o `InvokeAsync`. Evitare l'inserimento tramite il costruttore, che impone al servizio il comportamento singleton. Per altre informazioni, vedere <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+> Quando si usa un servizio con ambito in un middleware, inserire il servizio nel metodo `Invoke` o `InvokeAsync`. Non iniettare tramite [iniezione del costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) perché costringe il servizio a comportarsi come un singleton. Per altre informazioni, vedere <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
 
 ### <a name="singleton"></a>Singleton
 
@@ -798,9 +798,9 @@ I servizi possono essere risolti con due meccanismi:
 
 I costruttori possono accettare argomenti non forniti tramite l'inserimento di dipendenze, ma gli argomenti devono assegnare valori predefiniti.
 
-Quando i servizi vengono risolti da `IServiceProvider` o `ActivatorUtilities`, l'inserimento del costruttore richiede un costruttore *pubblico*.
+Quando i servizi `IServiceProvider` `ActivatorUtilities`vengono risolti da o , [l'inserimento](xref:mvc/controllers/dependency-injection#constructor-injection) del costruttore richiede un costruttore *pubblico.*
 
-Quando i servizi vengono risolti da `ActivatorUtilities`, l'inserimento del costruttore richiede l'esistenza di un solo costruttore applicabile. Sebbene siano supportati gli overload dei costruttori, può essere presente un solo overload i cui argomenti possono essere tutti specificati tramite l'inserimento delle dipendenze.
+Quando i servizi `ActivatorUtilities`vengono risolti da , [l'inserimento del costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) richiede l'esito di un solo costruttore applicabile. Sebbene siano supportati gli overload dei costruttori, può essere presente un solo overload i cui argomenti possono essere tutti specificati tramite l'inserimento delle dipendenze.
 
 ## <a name="entity-framework-contexts"></a>Contesti di Entity Framework
 
