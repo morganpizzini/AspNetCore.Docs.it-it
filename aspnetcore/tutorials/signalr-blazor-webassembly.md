@@ -5,17 +5,17 @@ description: Creare un'app di SignalR chat Blazor che usa ASP.NET Core con WebAs
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/21/2020
 no-loc:
 - Blazor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 798068c83e16070d3279c88c44af0cd96d182fe2
-ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
+ms.openlocfilehash: 03db8b48bdacec1d6877a4ea09f97c242761c42d
+ms.sourcegitcommit: f976dce28ad887bbd31720c318fd4a97cf96cc6d
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81488884"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81738016"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Utilizzo di ASP.NET Core SignalR con Blazor WebAssembly
 
@@ -168,7 +168,7 @@ Nel progetto **BlazorSignalRApp.Server** creare una cartella *Hubs* (plural) e a
 
 [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
-## <a name="add-signalr-services-and-an-endpoint-for-the-signalr-hub"></a>Aggiungere servizi SignalR e un endpoint per l'hub SignalRAdd SignalR services and an endpoint for the SignalR hub
+## <a name="add-services-and-an-endpoint-for-the-signalr-hub"></a>Aggiungere servizi e un endpoint per l'hub SignalRAdd services and an endpoint for the SignalR hub
 
 1. Nel progetto **BlazorSignalRApp.Server** aprire il file *Startup.cs.*
 
@@ -178,15 +178,13 @@ Nel progetto **BlazorSignalRApp.Server** creare una cartella *Hubs* (plural) e a
    using BlazorSignalRApp.Server.Hubs;
    ```
 
-1. Aggiungere i servizi `Startup.ConfigureServices`SignalR a :
+1. Aggiungere i servizi SignalR e `Startup.ConfigureServices`Response Compression Middleware a :
 
-   ```csharp
-   services.AddSignalR();
-   ```
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
 
-1. Tra `Startup.Configure` gli endpoint per la route del controller predefinito e il fallback lato client, aggiungere un endpoint per l'hub:In between the endpoints for the default controller route and the client-side fallback, add an endpoint for the hub:
+1. Tra `Startup.Configure` gli endpoint per i controller e il fallback lato client, aggiungere un endpoint per l'hub:
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet&highlight=4)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_UseEndpoints&highlight=4)]
 
 ## <a name="add-razor-component-code-for-chat"></a>Aggiungere il codice del componente Razor per la chat
 
@@ -202,7 +200,7 @@ Nel progetto **BlazorSignalRApp.Server** creare una cartella *Hubs* (plural) e a
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. In **Esplora soluzioni**selezionare il progetto **BlazorSignalRApp.Server.** Premete **Ctrl e F5** per eseguire l'app senza eseguire il debug.
+1. In **Esplora soluzioni**selezionare il progetto **BlazorSignalRApp.Server.** Premi <kbd>F5</kbd> per eseguire l'app con il debug o <kbd>Ctrl</kbd>+<kbd>F5</kbd> per eseguire l'app senza eseguire il debug.
 
 1. Copiare l'URL dalla barra degli indirizzi, aprire un'altra istanza o scheda del browser e incollare l'URL nella barra degli indirizzi.
 
@@ -214,7 +212,13 @@ Nel progetto **BlazorSignalRApp.Server** creare una cartella *Hubs* (plural) e a
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-1. Selezionare **Esegui debug** > **senza eseguire debug** dalla barra degli strumenti.
+1. Quando il codice VS si offre di creare un profilo di avvio per l'app Server (*.vscode/launch.json*), la `program` voce viene visualizzata simile alla seguente per puntare all'assembly dell'app ( ):`{APPLICATION NAME}.Server.dll`
+
+   ```json
+   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"
+   ```
+
+1. Premi <kbd>F5</kbd> per eseguire l'app con il debug o <kbd>Ctrl</kbd>+<kbd>F5</kbd> per eseguire l'app senza eseguire il debug.
 
 1. Copiare l'URL dalla barra degli indirizzi, aprire un'altra istanza o scheda del browser e incollare l'URL nella barra degli indirizzi.
 
@@ -226,7 +230,7 @@ Nel progetto **BlazorSignalRApp.Server** creare una cartella *Hubs* (plural) e a
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-1. Nella barra **laterale Soluzione** selezionare il progetto **BlazorSignalRApp.Server.** Scegliere **Esegui** > **senza eseguire debug**dal menu .
+1. Nella barra **laterale Soluzione** selezionare il progetto **BlazorSignalRApp.Server.** Premere <kbd>il</kbd>+tasto<kbd>↩</kbd>per eseguire l'app con il debug o con <kbd>la</kbd>+<kbd>⌘</kbd>+<kbd>↩ per</kbd> eseguire l'app senza eseguire il debug.
 
 1. Copiare l'URL dalla barra degli indirizzi, aprire un'altra istanza o scheda del browser e incollare l'URL nella barra degli indirizzi.
 

@@ -5,17 +5,17 @@ description: Scopri come usare i metodi del Blazor ciclo di vita dei componenti 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/lifecycle
-ms.openlocfilehash: 831f575afa6ce11d06c016d43ecd1bb59d09eab6
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: e7450ad57acc87500bb977aa8349c6ee009e3bf4
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218908"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791459"
 ---
 # <a name="aspnet-core-opno-locblazor-lifecycle"></a>ASP.NET Blazor ciclo di vita di ASP.NET Core
 
@@ -213,7 +213,7 @@ Per informazioni sulla gestione degli errori <xref:blazor/handle-errors#lifecycl
 
 ## <a name="stateful-reconnection-after-prerendering"></a>Riconnessione con stato dopo il prerendering
 
-In Blazor un'app `RenderMode` `ServerPrerendered`Server quando è , il componente viene inizialmente sottoposto a rendering in modo statico come parte della pagina. Una volta stabilita una connessione al server, il rendering del componente viene *eseguito nuovamente*e il componente è interattivo. Se per l'inizializzazione del componente è presente il metodo del ciclo di vita [OnInitialized,Async](xref:blazor/lifecycle#component-initialization-methods) per l'inizializzazione del componente, il metodo viene eseguito *due volte:*
+In Blazor un'app `RenderMode` `ServerPrerendered`Server quando è , il componente viene inizialmente sottoposto a rendering in modo statico come parte della pagina. Una volta stabilita una connessione al server, il rendering del componente viene *eseguito nuovamente*e il componente è interattivo. Se per l'inizializzazione del componente è presente il metodo del ciclo di vita [OnInitialized,Async](#component-initialization-methods) per l'inizializzazione del componente, il metodo viene eseguito *due volte:*
 
 * Quando viene eseguito il prerendering statico del componente.
 * Una volta stabilita la connessione al server.

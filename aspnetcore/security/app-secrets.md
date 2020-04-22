@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 4/20/2020
 uid: security/app-secrets
-ms.openlocfilehash: 9d4e59c003afc253971ee64fce523c7188d3582a
-ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
+ms.openlocfilehash: c62c5e59ad0a72506fb72bda82aa821a4f1719c8
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81661795"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791606"
 ---
 # <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Archiviazione sicura dei segreti delle app in fase di sviluppo in ASP.NET Core
 
@@ -75,7 +75,7 @@ dotnet user-secrets init
 
 Il comando precedente `UserSecretsId` aggiunge un `PropertyGroup` elemento all'interno di un file *con estensione csproj.* Per impostazione predefinita, `UserSecretsId` il testo interno di è un GUID. Il testo interno è arbitrario, ma è univoco per il progetto.
 
-[!code-xml[](app-secrets/samples/2.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+[!code-xml[](app-secrets/samples/3.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
 
 In Visual Studio fare clic con il pulsante destro del mouse sul progetto in Esplora soluzioni e scegliere **Gestisci segreti utente** dal menu di scelta rapida. Questo gesto `UserSecretsId` aggiunge un elemento, popolato con un GUID, al file *con estensione csproj.*
 
@@ -142,18 +142,17 @@ Aprire una shell dei comandi ed eseguire il comando seguente:
 
 [L'API di configurazione di ASP.NET core](xref:fundamentals/configuration/index) fornisce l'accesso ai segreti di Secret Manager.The You You Code Base Configuration API provides access to Secret Manager secrets.
 
-In ASP.NET Core 2.0 o versioni successive, l'origine di configurazione <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> dei segreti utente viene aggiunta automaticamente in modalità di sviluppo quando il progetto chiama per inizializzare una nuova istanza dell'host con i valori predefiniti preconfigurati. `CreateDefaultBuilder`chiamate <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> quando <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development>il è :
+L'origine di configurazione dei segreti utente viene <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> aggiunta automaticamente in modalità di sviluppo quando il progetto chiama per inizializzare una nuova istanza dell'host con i valori predefiniti preconfigurati. `CreateDefaultBuilder`chiamate <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> quando <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development>il è :
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Program.cs?name=snippet_CreateHostBuilder&highlight=2)]
 
-Quando `CreateDefaultBuilder` non viene chiamato, aggiungere l'origine <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> di `Startup` configurazione dei segreti utente in modo esplicito chiamando il costruttore. Chiama `AddUserSecrets` solo quando l'app viene eseguita nell'ambiente di sviluppo, come illustrato nell'esempio seguente:Call only when the app runs in the Development environment, as shown in the following example:
+Quando `CreateDefaultBuilder` non viene chiamato, aggiungere l'origine <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A>di configurazione dei segreti utente in modo esplicito chiamando . Chiama `AddUserSecrets` solo quando l'app viene eseguita nell'ambiente di sviluppo, come illustrato nell'esempio seguente:Call only when the app runs in the Development environment, as shown in the following example:
 
-[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup2.cs?name=snippet_StartupConstructor&highlight=12)]
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Program2.cs?name=snippet_Host&highlight=6-9)]
 
 I segreti utente possono `Configuration` essere recuperati tramite l'API:User secrets can be retrieved via the API:
 
-[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
-
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
 
 ## <a name="map-secrets-to-a-poco"></a>Mappare i segreti a un POCO
 
@@ -163,17 +162,17 @@ Il mapping di un intero valore letterale oggetto a un POCO (una semplice classe 
 
 Per eseguire il mapping dei segreti `Configuration` precedenti a un POCO, usare la funzionalità di [associazione dell'oggetto grafico](xref:fundamentals/configuration/index#bind-to-an-object-graph) dell'API. Il codice seguente esegue `MovieSettings` l'associazione a `ServiceApiKey` un POCO personalizzato e accede al valore della proprietà:
 
-[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 
 I `Movies:ConnectionString` `Movies:ServiceApiKey` segreti e sono mappati `MovieSettings`alle rispettive proprietà in :
 
-[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
 
 ## <a name="string-replacement-with-secrets"></a>Sostituzione di stringhe con segreti
 
 L'archiviazione delle password in testo normale non è sicura. Ad esempio, una stringa di connessione al database archiviata in appsettings.json può includere una password per l'utente specificato:For example, a database connection string stored in *appsettings.json* may include a password for the specified user:
 
-[!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
+[!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
 Un approccio più sicuro consiste nell'archiviare la password come segreto. Ad esempio:
 
@@ -183,11 +182,11 @@ dotnet user-secrets set "DbPassword" "pass123"
 
 Rimuovere `Password` la coppia chiave-valore dalla stringa di connessione in *appsettings.json*. Ad esempio:
 
-[!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings.json?highlight=3)]
+[!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
 
 Il valore del segreto può <xref:System.Data.SqlClient.SqlConnectionStringBuilder> essere <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> impostato sulla proprietà di un oggetto per completare la stringa di connessione:The secret's value can be set on a object's property to complete the connection string:
 
-[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=14-17)]
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=14-17)]
 
 ## <a name="list-the-secrets"></a>Elencare i segreti
 
@@ -388,15 +387,13 @@ Aprire una shell dei comandi ed eseguire il comando seguente:
 
 Se il progetto è destinato a .NET Framework, installare il pacchetto [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet.
 
-
 In ASP.NET Core 2.0 o versioni successive, l'origine di configurazione <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> dei segreti utente viene aggiunta automaticamente in modalità di sviluppo quando il progetto chiama per inizializzare una nuova istanza dell'host con i valori predefiniti preconfigurati. `CreateDefaultBuilder`chiamate <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> quando <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development>il è :
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Program.cs?name=snippet_CreateWebHostBuilder&highlight=2)]
 
-
 Quando `CreateDefaultBuilder` non viene chiamato, aggiungere l'origine <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> di `Startup` configurazione dei segreti utente in modo esplicito chiamando il costruttore. Chiama `AddUserSecrets` solo quando l'app viene eseguita nell'ambiente di sviluppo, come illustrato nell'esempio seguente:Call only when the app runs in the Development environment, as shown in the following example:
 
-[!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=12)]
+[!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup3.cs?name=snippet_StartupConstructor&highlight=12)]
 
 I segreti utente possono `Configuration` essere recuperati tramite l'API:User secrets can be retrieved via the API:
 

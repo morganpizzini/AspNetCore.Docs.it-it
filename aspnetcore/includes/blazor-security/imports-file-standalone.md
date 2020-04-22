@@ -1,3 +1,3 @@
 Lo <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> spazio dei nomi viene reso disponibile in tutta l'app tramite il file *_Imports.razor:*
 
-[!code-razor[](imports-standalone.razor?highlight=2)]
+[!code-razor[](imports-standalone.razor?highlight=3)]

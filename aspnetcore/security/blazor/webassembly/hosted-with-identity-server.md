@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 832109530c4aac372fd75aa1a1d2edbe3768f55f
-ms.sourcegitcommit: 1d8f1396ccc66a0c3fcb5e5f36ea29b50db6d92a
+ms.openlocfilehash: 4c51200159ced16132e15bb4a1f0915ca0cf5945
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/01/2020
-ms.locfileid: "80501275"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791623"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-identity-server"></a>Proteggere un'app ospitata ASP.NET Core WebAssembly con Identity ServerSecure an ASP.NET Core Blazor WebAssembly hosted app with Identity Server
 
@@ -51,14 +51,13 @@ La `Startup` classe ha le seguenti aggiunte:
 
 * In `Startup.ConfigureServices`:
 
-  * Identità con l'interfaccia utente predefinita:Identity with the default UI:
+  * Identità:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
     services.AddDefaultIdentity<ApplicationUser>()
-        .AddDefaultUI(UIFramework.Bootstrap4)
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
