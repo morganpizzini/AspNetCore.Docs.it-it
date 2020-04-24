@@ -5,14 +5,14 @@ description: Informazioni su come usare il framework di registrazione fornito da
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/17/2020
+ms.date: 4/23/2020
 uid: fundamentals/logging/index
-ms.openlocfilehash: b897d0d775da62a11f01a64f39b47b6c5abebc8b
-ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
+ms.openlocfilehash: 7be8cef3377132ed43efde209db67401d7bdb6dc
+ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81791568"
+ms.lasthandoff: 04/24/2020
+ms.locfileid: "82110915"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Registrazione in .NET Core e ASP.NET Core
 
@@ -22,11 +22,11 @@ Di [Tom Dykstra](https://github.com/tdykstra) e [Steve Smith](https://ardalis.co
 
 .NET Core supporta un'API di registrazione che funziona con un'ampia gamma di provider di registrazione predefiniti e di terze parti. Questo articolo illustra come usare l'API di registrazione con i provider predefiniti.
 
-La maggior parte degli esempi di codice illustrati in questo articolo proviene da app ASP.NET Core. Le parti specifiche della registrazione di questi frammenti di codice si applicano a qualsiasi app .NET Core che usa [l'host generico](xref:fundamentals/host/generic-host). Per un esempio di come usare l'host generico in un'app non console<xref:fundamentals/host/hosted-services>Web, vedere il file *Program.cs* dell'app di esempio Attività in [background](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples) ( ).
+La maggior parte degli esempi di codice illustrati in questo articolo proviene da app ASP.NET Core. Le parti specifiche per la registrazione di questi frammenti di codice si applicano a qualsiasi app .NET Core che usa l' [host generico](xref:fundamentals/host/generic-host). Per un esempio di come usare l'host generico in un'app console non Web, vedere il file *Program.cs* dell' [app di esempio attività in background](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
 
 Il codice di registrazione per le app senza host generico differisce per il modo in cui vengono [aggiunti i provider](#add-providers) e [creati i logger](#create-logs). Gli esempi di codice non host sono illustrati nelle sezioni dell'articolo in cui sono riportate queste procedure.
 
-[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ( come[scaricare](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ## <a name="add-providers"></a>Aggiungere provider
 
@@ -46,8 +46,8 @@ I modelli di progetto ASP.NET Core predefiniti chiamano <xref:Microsoft.Extensio
 
 * [Console](#console-provider)
 * [Debug](#debug-provider)
-* [Eventsource](#event-source-provider)
-* [EventLog](#windows-eventlog-provider) (solo quando è in esecuzione in Windows)
+* [EventSource](#event-source-provider)
+* [EventLog](#windows-eventlog-provider) (solo in caso di esecuzione in Windows)
 
 È possibile sostituire i provider predefiniti con quelli di propria scelta. Chiamare <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> e aggiungere i provider desiderati.
 
@@ -81,7 +81,7 @@ Per scrivere log nella classe `Program` di un'app ASP.NET Core, ottenere un'ista
 
 [!code-csharp[](index/samples_snapshot/3.x/TodoApiSample/Program.cs?highlight=9,10)]
 
-La registrazione durante la costruzione dell'host non è supportata direttamente. Tuttavia, è possibile utilizzare un logger separato. Nell'esempio seguente viene utilizzato un logger [Serilog](https://serilog.net/) per l'accesso `CreateHostBuilder`a . `AddSerilog`utilizza la configurazione `Log.Logger`statica specificata in :
+La registrazione durante la costruzione dell'host non è supportata direttamente. Tuttavia, è possibile usare un logger separato. Nell'esempio seguente viene usato un logger [Serilog](https://serilog.net/) per eseguire l'accesso `CreateHostBuilder`. `AddSerilog`Usa la configurazione statica specificata in `Log.Logger`:
 
 ```csharp
 using System;
@@ -165,9 +165,11 @@ Se è necessario configurare un servizio che dipende da `ILogger<T>`, è comunqu
 
 Il precedente codice evidenziato è un oggetto `Func` che viene eseguito la prima volta che il contenitore di inserimento delle dipendenze deve creare un'istanza di `MyService`. È possibile accedere a uno dei servizi registrati in questo modo.
 
-### <a name="create-logs-in-blazor-webassembly"></a>Creare registri in Blazor WebAssembly
+### <a name="create-logs-in-blazor"></a>Creare log in blazer
 
-Configurare la registrazione nelle app Blazor WebAssembly con la `WebAssemblyHostBuilder.Logging` proprietà in `Program.Main`:
+#### <a name="blazor-webassembly"></a>WebAssembly Blazor
+
+Configurare la registrazione nelle app webassembly Blazer con `WebAssemblyHostBuilder.Logging` la proprietà `Program.Main`in:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -180,11 +182,68 @@ builder.Logging.SetMinimumLevel(LogLevel.Debug);
 builder.Logging.AddProvider(new CustomLoggingProvider());
 ```
 
-La `Logging` proprietà è <xref:Microsoft.Extensions.Logging.ILoggingBuilder>di tipo , pertanto <xref:Microsoft.Extensions.Logging.ILoggingBuilder> tutti i `Logging`metodi di estensione disponibili in .
+La `Logging` proprietà è di tipo <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, pertanto tutti i metodi di estensione disponibili in <xref:Microsoft.Extensions.Logging.ILoggingBuilder> sono disponibili anche in `Logging`.
+
+#### <a name="log-in-razor-components"></a>Accedi ai componenti Razor
+
+I logger rispettano la configurazione di avvio dell'app.
+
+La `using` direttiva per <xref:Microsoft.Extensions.Logging> è necessaria per supportare i completamenti IntelliSense per <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> le API, ad <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>esempio e.
+
+Nell'esempio seguente viene illustrata la <xref:Microsoft.Extensions.Logging.ILogger> registrazione con un nei componenti Razor:
+
+```razor
+@page "/counter"
+@using Microsoft.Extensions.Logging;
+@inject ILogger<Counter> logger;
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        logger.LogWarning("Someone has clicked me!");
+
+        currentCount++;
+    }
+}
+```
+
+Nell'esempio seguente viene illustrata la <xref:Microsoft.Extensions.Logging.ILoggerFactory> registrazione con un nei componenti Razor:
+
+```razor
+@page "/counter"
+@using Microsoft.Extensions.Logging;
+@inject ILoggerFactory LoggerFactory
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        var logger = LoggerFactory.CreateLogger<Counter>();
+        logger.LogWarning("Someone has clicked me!");
+
+        currentCount++;
+    }
+}
+```
 
 ### <a name="no-asynchronous-logger-methods"></a>Evitare l'uso di metodi logger asincroni
 
-La registrazione deve essere così rapida da non giustificare l'impatto sulle prestazioni del codice asincrono. Se l'archivio dati di registrazione è lento, non scrivere direttamente al suo interno. Scrivere invece i messaggi di log prima in un archivio veloce e quindi spostarli nell'archivio lento in un secondo momento. Ad esempio, se la registrazione viene eseguita in SQL Server, è preferibile non farlo direttamente in un metodo `Log`, poiché i metodi `Log` sono sincroni. Al contrario, aggiungere i messaggi di log in modo sincrono a una coda in memoria e usare un ruolo di lavoro in background per eseguire il pull dei messaggi dalla coda per eseguire le operazioni asincrone di push dei dati in SQL Server. Per altre informazioni, vedere questo problema di GitHub.For more information, see [this](https://github.com/dotnet/AspNetCore.Docs/issues/11801) GitHub issue.
+La registrazione deve essere così rapida da non giustificare l'impatto sulle prestazioni del codice asincrono. Se l'archivio dati di registrazione è lento, non scrivere direttamente al suo interno. Scrivere invece i messaggi di log prima in un archivio veloce e quindi spostarli nell'archivio lento in un secondo momento. Ad esempio, se la registrazione viene eseguita in SQL Server, è preferibile non farlo direttamente in un metodo `Log`, poiché i metodi `Log` sono sincroni. Al contrario, aggiungere i messaggi di log in modo sincrono a una coda in memoria e usare un ruolo di lavoro in background per eseguire il pull dei messaggi dalla coda per eseguire le operazioni asincrone di push dei dati in SQL Server. Per altre informazioni, vedere [questo](https://github.com/dotnet/AspNetCore.Docs/issues/11801) problema di GitHub.
 
 ## <a name="configuration"></a>Configurazione
 
@@ -220,11 +279,11 @@ La proprietà `Logging` può avere le proprietà `LogLevel` e quella del provide
 
 La proprietà `LogLevel` in `Logging` specifica il [livello](#log-level) minimo per la registrazione per determinate categorie. Nell'esempio, le categorie `System` e `Microsoft` eseguono la registrazione al livello `Information`, mentre tutte le altre la eseguono al livello `Debug`.
 
-Altre proprietà in `Logging` specificano i provider di registrazione. L'esempio si riferisce al provider Console. Se un provider supporta gli `IncludeScopes` ambiti di [log](#log-scopes), indica se sono abilitati. Una proprietà del provider (ad esempio `Console` nell'esempio) può specificare anche una proprietà `LogLevel`. `LogLevel` in un provider specifica i livelli di registrazione per tale provider.
+Altre proprietà in `Logging` specificano i provider di registrazione. L'esempio si riferisce al provider Console. Se un provider supporta gli [ambiti](#log-scopes)del `IncludeScopes` log, indica se sono abilitati. Una proprietà del provider (ad esempio `Console` nell'esempio) può specificare anche una proprietà `LogLevel`. `LogLevel` in un provider specifica i livelli di registrazione per tale provider.
 
 Se i livelli sono specificati in `Logging.{providername}.LogLevel`, eseguono l'override di eventuali valori impostati in `Logging.LogLevel`.
 
-L'API di registrazione non include uno scenario per modificare i livelli di log mentre un'app è in esecuzione. Tuttavia, alcuni provider di configurazione sono in grado di ricaricare la configurazione, che ha effetto immediato sulla configurazione della registrazione. Ad esempio, il provider di configurazione `CreateDefaultBuilder` [file](xref:fundamentals/configuration/index#file-configuration-provider), che viene aggiunto da per leggere i file di impostazioni, ricarica la configurazione di registrazione per impostazione predefinita. Se la configurazione viene modificata nel codice mentre un'app è in esecuzione, l'app può chiamare [IConfigurationRoot.Reload](xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*) per aggiornare la configurazione di registrazione dell'app.
+L'API di registrazione non include uno scenario per modificare i livelli di registrazione mentre un'app è in esecuzione. Alcuni provider di configurazione, tuttavia, sono in grado di ricaricare la configurazione, operazione che ha effetto immediato sulla configurazione della registrazione. Ad esempio, il [provider di configurazione file](xref:fundamentals/configuration/index#file-configuration-provider), aggiunto da `CreateDefaultBuilder` per leggere i file di impostazioni, ricarica la configurazione di registrazione per impostazione predefinita. Se la configurazione viene modificata nel codice mentre un'app è in esecuzione, l'app può chiamare [IConfigurationRoot. Reload](xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*) per aggiornare la configurazione di registrazione dell'app.
 
 Per informazioni sull'implementazione dei provider di configurazione, vedere <xref:fundamentals/configuration/index>.
 
@@ -330,11 +389,11 @@ ASP.NET Core definisce i livelli di registrazione seguenti, ordinati dal meno gr
 Usare il livello di registrazione per controllare la quantità di output di log scritto in un supporto di archiviazione specifico o in una finestra. Ad esempio:
 
 * In produzione:
-  * La registrazione `Trace` `Information` ai livelli through produce un volume elevato di messaggi di log dettagliati. Per controllare i costi e non `Trace` `Information` superare i limiti di archiviazione dei dati, eseguire il log-through dei messaggi di livello in un archivio dati con volumi elevati e a basso costo.
-  * La `Warning` registrazione `Critical` a livelli tramite livelli produce in genere un numero inferiore di messaggi di log più piccoli. Pertanto, i costi e i limiti di archiviazione in genere non sono un problema, il che si traduce in una maggiore flessibilità di scelta dell'archivio dati.
+  * La `Trace` registrazione ai livelli `Information` attraverso produce un volume elevato di messaggi di log dettagliati. Per controllare i costi e non superare i limiti di archiviazione `Trace` dei `Information` dati, accedere ai messaggi di livello elevato a un archivio dati a basso costo.
+  * L'accesso `Warning` ai `Critical` livelli in genere produce un minor numero di messaggi di log più piccoli. Pertanto, i costi e i limiti di archiviazione in genere non rappresentano un problema, il che comporta una maggiore flessibilità di scelta dell'archivio dati.
 * Durante lo sviluppo:
-  * `Warning` Registrare `Critical` i messaggi nella console.
-  * Aggiungere `Trace` `Information` i messaggi durante la risoluzione dei problemi.
+  * Consente `Warning` di `Critical` accedere ai messaggi nella console.
+  * Aggiungere `Trace` `Information` messaggi durante la risoluzione dei problemi.
 
 La sezione [Filtro dei log](#log-filtering) più avanti in questo articolo descrive come controllare quali livelli di registrazione gestisce un provider.
 
@@ -449,7 +508,7 @@ Per eliminare tutti i log, specificare `LogLevel.None` come livello di registraz
 
 ### <a name="create-filter-rules-in-configuration"></a>Creare regole di filtro nella configurazione
 
-Il codice del `CreateDefaultBuilder` modello di progetto chiama per impostare la registrazione per i provider Console, Debug e EventSource (ASP.NET Core 2.2 o versioni successive). Il metodo `CreateDefaultBuilder` imposta inoltre la registrazione per la ricerca della configurazione in una sezione `Logging`, come illustrato [in precedenza in questo articolo](#configuration).
+Il codice del modello di `CreateDefaultBuilder` progetto chiama per impostare la registrazione per i provider console, debug e EventSource (ASP.NET Core 2,2 o versione successiva). Il metodo `CreateDefaultBuilder` imposta inoltre la registrazione per la ricerca della configurazione in una sezione `Logging`, come illustrato [in precedenza in questo articolo](#configuration).
 
 I dati di configurazione specificano i livelli di registrazione minimi in base al provider e alla categoria, come nell'esempio seguente:
 
@@ -477,7 +536,7 @@ I dati di configurazione e il codice `AddFilter` illustrato negli esempi precede
 | 4      | Console       | Microsoft.AspNetCore.Mvc.Razor          | Errore             |
 | 5      | Console       | Tutte le categorie                          | Informazioni       |
 | 6      | Tutti i provider | Tutte le categorie                          | Debug             |
-| 7      | Tutti i provider | Sistema                                  | Debug             |
+| 7      | Tutti i provider | System                                  | Debug             |
 | 8      | Debug         | Microsoft                               | Trace             |
 
 Quando viene creato un oggetto `ILogger`, l'oggetto `ILoggerFactory` seleziona una singola regola per ogni provider da applicare al logger. Tutti i messaggi scritti da un'istanza di `ILogger` vengono filtrati in base alle regole selezionate. Tra le regole disponibili viene selezionata la regola più specifica possibile per ogni coppia di categoria e provider.
@@ -575,7 +634,7 @@ ASP.NET Core include i provider seguenti:
 
 * [Console](#console-provider)
 * [Debug](#debug-provider)
-* [Eventsource](#event-source-provider)
+* [EventSource](#event-source-provider)
 * [EventLog](#windows-eventlog-provider)
 * [TraceSource](#tracesource-provider)
 * [AzureAppServicesFile](#azure-app-service-provider)
@@ -608,45 +667,45 @@ In Linux, questo provider scrive i log in */var/log/message*.
 logging.AddDebug();
 ```
 
-### <a name="event-source-provider"></a>Provider dell'origine eventi
+### <a name="event-source-provider"></a>Provider origine evento
 
-Il pacchetto del provider [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) viene scritto in `Microsoft-Extensions-Logging`una piattaforma multipiattaforma Origine evento con il nome . In Windows, il provider utilizza [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803).
+Il pacchetto del provider [Microsoft. Extensions. Logging. EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) scrive in un'origine evento multipiattaforma con il nome `Microsoft-Extensions-Logging`. In Windows, il provider utilizza [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803).
 
 ```csharp
 logging.AddEventSourceLogger();
 ```
 
-Il provider di origine `CreateDefaultBuilder` evento viene aggiunto automaticamente quando viene chiamato per compilare l'host.
+Il provider di origine eventi viene aggiunto automaticamente `CreateDefaultBuilder` quando viene chiamato per compilare l'host.
 
-#### <a name="dotnet-trace-tooling"></a>strumenti di traccia dotnet
+#### <a name="dotnet-trace-tooling"></a>strumenti di traccia DotNet
 
-Lo strumento [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace) è uno strumento globale CLI multipiattaforma che consente la raccolta di tracce .NET Core di un processo in esecuzione. Lo strumento <xref:Microsoft.Extensions.Logging.EventSource> raccoglie i <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>dati del provider utilizzando un file .
+Lo strumento [DotNet-Trace](/dotnet/core/diagnostics/dotnet-trace) è uno strumento globale dell'interfaccia della riga di comando multipiattaforma che consente la raccolta di tracce .NET Core di un processo in esecuzione. Lo strumento raccoglie i <xref:Microsoft.Extensions.Logging.EventSource> dati del provider utilizzando <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>un.
 
-Installare gli strumenti di traccia dotnet con il comando seguente:
+Installare gli strumenti di traccia DotNet con il comando seguente:
 
 ```dotnetcli
 dotnet tool install --global dotnet-trace
 ```
 
-Usare gli strumenti di traccia dotnet per raccogliere una traccia da un'app:Use the dotnet trace tooling to collect a trace from an app:
+Usare gli strumenti di traccia DotNet per raccogliere una traccia da un'app:
 
-1. Se l'app non compila `CreateDefaultBuilder`l'host con , aggiungi il [provider dell'origine eventi](#event-source-provider) alla configurazione di registrazione dell'app.
+1. Se l'app non compila l'host con `CreateDefaultBuilder`, aggiungere il [provider di origine eventi](#event-source-provider) alla configurazione di registrazione dell'app.
 
-1. Eseguire l'app `dotnet run` con il comando.
+1. Eseguire l'app con il `dotnet run` comando.
 
 1. Determinare l'identificatore di processo (PID) dell'app .NET Core:
 
-   * In Windows, utilizzare uno dei seguenti approcci:
-     * Gestione attività (CTRL-ALT-CANC)
+   * In Windows usare uno degli approcci seguenti:
+     * Gestione attività (CTRL + ALT + CANC)
      * [comando tasklist](/windows-server/administration/windows-commands/tasklist)
-     * [Comando di PowerShell Get-Process](/powershell/module/microsoft.powershell.management/get-process)
-   * Su Linux, utilizzare il [comando pidof](https://refspecs.linuxfoundation.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/pidof.html).
+     * [Comando PowerShell Get-Process](/powershell/module/microsoft.powershell.management/get-process)
+   * In Linux usare il [comando pidof](https://refspecs.linuxfoundation.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/pidof.html).
 
-   Trova il PID per il processo che ha lo stesso nome dell'assembly dell'app.
+   Trovare il PID per il processo con lo stesso nome dell'assembly dell'app.
 
-1. Eseguire `dotnet trace` il comando.
+1. Eseguire il `dotnet trace` comando.
 
-   Sintassi generale dei comandi:
+   Sintassi generale del comando:
 
    ```dotnetcli
    dotnet trace collect -p {PID} 
@@ -658,7 +717,7 @@ Usare gli strumenti di traccia dotnet per raccogliere una traccia da un'app:Use 
                {Logger Category N}:{Event Level N}\"
    ```
 
-   Quando si usa una shell `--providers` dei comandi di`'`PowerShell, racchiudere il valore tra virgolette singole ( ):
+   Quando si usa una shell dei comandi di PowerShell, `--providers` racchiudere il valore tra`'`virgolette singole ():
 
    ```dotnetcli
    dotnet trace collect -p {PID} 
@@ -670,16 +729,16 @@ Usare gli strumenti di traccia dotnet per raccogliere una traccia da un'app:Use 
                {Logger Category N}:{Event Level N}\"'
    ```
 
-   Su piattaforme non Windows, aggiungere l'opzione `-f speedscope` per modificare `speedscope`il formato del file di traccia di output in .
+   Nelle piattaforme non Windows aggiungere l' `-f speedscope` opzione per modificare il formato del file di traccia di output in. `speedscope`
 
    | Parola chiave | Descrizione |
    | :-----: | ----------- |
-   | 1       | Registrare meta `LoggingEventSource`eventi relativi al file . Non registra gli `ILogger`eventi da ). |
-   | 2       | Attiva `Message` l'evento `ILogger.Log()` quando viene chiamato. Fornisce informazioni in modo programmatico (non formattato). |
-   | 4       | Attiva `FormatMessage` l'evento `ILogger.Log()` quando viene chiamato. Fornisce la versione in formato stringa delle informazioni. |
-   | 8       | Attiva `MessageJson` l'evento `ILogger.Log()` quando viene chiamato. Fornisce una rappresentazione JSON degli argomenti. |
+   | 1       | Registra i `LoggingEventSource`metadati relativi a. Non registra gli eventi `ILogger`da). |
+   | 2       | Attiva l'evento `Message` quando `ILogger.Log()` viene chiamato il metodo. Fornisce informazioni in un metodo programmatico (non formattato). |
+   | 4       | Attiva l'evento `FormatMessage` quando `ILogger.Log()` viene chiamato il metodo. Fornisce la versione di stringa formattata delle informazioni. |
+   | 8       | Attiva l'evento `MessageJson` quando `ILogger.Log()` viene chiamato il metodo. Fornisce una rappresentazione JSON degli argomenti. |
 
-   | Livello dell'evento | Descrizione     |
+   | Livello dell'evento | Description     |
    | :---------: | --------------- |
    | 0           | `LogAlways`     |
    | 1           | `Critical`      |
@@ -688,9 +747,9 @@ Usare gli strumenti di traccia dotnet per raccogliere una traccia da un'app:Use 
    | 4           | `Informational` |
    | 5           | `Verbose`       |
 
-   `FilterSpecs`voci per `{Logger Category}` `{Event Level}` e rappresentano condizioni di filtro del registro aggiuntive. Separare `FilterSpecs` le voci con`;`un punto e virgola ( ).
+   `FilterSpecs`le voci `{Logger Category}` per `{Event Level}` e rappresentano altre condizioni di filtro del log. Separare `FilterSpecs` le voci con un punto`;`e virgola ().
 
-   Esempio di utilizzo di una shell dei `--providers` comandi di Windows **(nessuna** virgoletta singola intorno al valore):
+   Esempio di utilizzo di una shell dei**no** comandi di Windows (senza `--providers` virgolette singole intorno al valore):
 
    ```dotnetcli
    dotnet trace collect -p {PID} --providers Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"
@@ -698,27 +757,27 @@ Usare gli strumenti di traccia dotnet per raccogliere una traccia da un'app:Use 
 
    Il comando precedente attiva:
 
-   * Logger origine evento per produrre`4`stringhe formattate`2`( ) per gli errori ( ).
-   * `Microsoft.AspNetCore.Hosting`registrazione a `Informational` livello`4`di registrazione ( ).
+   * Il logger dell'origine evento per produrre stringhe formattate (`4`) per`2`gli errori ().
+   * `Microsoft.AspNetCore.Hosting`registrazione a livello `Informational` di registrazione (`4`).
 
-1. Arrestare gli strumenti di traccia dotnet premendo il tasto Invio o CTRL .
+1. Arrestare gli strumenti di traccia DotNet premendo il tasto invio o CTRL + C.
 
-   La traccia viene salvata con il nome *trace.nettrace* nella cartella in cui viene eseguito il `dotnet trace` comando.
+   La traccia viene salvata con il nome *Trace. NetTrace* nella cartella in cui `dotnet trace` viene eseguito il comando.
 
-1. Aprire la traccia con [Perfview](#perfview). Aprire il file *trace.nettrace* ed esplorare gli eventi di traccia.
+1. Aprire la traccia con [PerfView](#perfview). Aprire il file *Trace. NetTrace* ed esplorare gli eventi di traccia.
 
-Per altre informazioni, vedere:
+Per altre informazioni, vedi:
 
-* [Trace for performance analysis utility (dotnet-trace)](/dotnet/core/diagnostics/dotnet-trace) (documentazione di .NET Core)
-* [Trace for performance analysis utility (dotnet-trace)](https://github.com/dotnet/diagnostics/blob/master/documentation/dotnet-trace-instructions.md) (documentazione del repository GitHub di dotnet/diagnostica)Trace for performance analysis utility (dotnet-trace) (dotnet/diagnostics GitHub repository documentation)
-* [Classe LoggingEventSource](xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource) (browser API.NET)
+* [Trace for Performance Analysis Utility (DotNet-Trace)](/dotnet/core/diagnostics/dotnet-trace) (documentazione di .NET Core)
+* [Trace for Performance Analysis Utility (DotNet-Trace)](https://github.com/dotnet/diagnostics/blob/master/documentation/dotnet-trace-instructions.md) (documentazione del repository GitHub DotNet/Diagnostics)
+* [Classe LoggingEventSource](xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource) (browser API .NET)
 * <xref:System.Diagnostics.Tracing.EventLevel>
-* Origine di [riferimento LoggingEventSource (3.0)](https://github.com/dotnet/extensions/blob/release/3.0/src/Logging/Logging.EventSource/src/LoggingEventSource.cs) &ndash; Per ottenere l'origine `release/{Version}`del `{Version}` riferimento per una versione diversa, modificare il ramo in , dove è la versione di ASP.NET Core desiderato.
-* [Perfview](#perfview) &ndash; Utile per la visualizzazione delle tracce dell'origine evento.
+* [Origine riferimento LoggingEventSource (3,0)](https://github.com/dotnet/extensions/blob/release/3.0/src/Logging/Logging.EventSource/src/LoggingEventSource.cs) &ndash; per ottenere un'origine riferimento per una versione diversa, modificare il ramo `release/{Version}`in, `{Version}` dove è la versione di ASP.NET Core desiderata.
+* [PerfView](#perfview) &ndash; utile per la visualizzazione delle tracce dell'origine evento.
 
-#### <a name="perfview"></a>Perfview
+#### <a name="perfview"></a>PerfView
 
-Utilizzare [l'utilità PerfView](https://github.com/Microsoft/perfview) per raccogliere e visualizzare i log. Sono disponibili altri strumenti per la visualizzazione dei log ETW, ma PerfView fornisce un'esperienza ottimale per l'uso con gli eventi ETW generati da ASP.NET Core.
+Usare l' [utilità PerfView](https://github.com/Microsoft/perfview) per raccogliere e visualizzare i log. Sono disponibili altri strumenti per la visualizzazione dei log ETW, ma PerfView fornisce un'esperienza ottimale per l'uso con gli eventi ETW generati da ASP.NET Core.
 
 Per configurare PerfView per la raccolta degli eventi registrati da questo provider, aggiungere la stringa `*Microsoft-Extensions-Logging` nell'elenco **Provider aggiuntivi** (non dimenticare l'asterisco all'inizio della stringa).
 
@@ -732,13 +791,13 @@ Il pacchetto di provider [Microsoft.Extensions.Logging.AventLog](https://www.nug
 logging.AddEventLog();
 ```
 
-Gli [overload di AddEventLog](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) consentono di passare <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. Se `null` specificato o non specificato, vengono utilizzate le seguenti impostazioni predefinite:
+Gli [overload di AddEventLog](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) consentono di passare <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. Se `null` o non è specificato, vengono usate le impostazioni predefinite seguenti:
 
 * `LogName`&ndash; "Applicazione"
 * `SourceName`&ndash; "Runtime .NET"
 * `MachineName` &ndash; computer locale
 
-Gli eventi vengono registrati per [il livello di avviso e superiore](#log-level). Per registrare `Warning`eventi inferiori a , impostare in modo esplicito il livello di registrazione. Ad esempio, aggiungere quanto segue al file *appsettings.json:*
+Gli eventi vengono registrati per un [livello di avviso e un livello superiore](#log-level). Per registrare eventi inferiori a `Warning`, impostare in modo esplicito il livello di registrazione. Aggiungere ad esempio il codice seguente al file *appSettings. JSON* :
 
 ```json
 "EventLog": {
@@ -795,7 +854,7 @@ Per configurare il flusso di registrazione di Azure:
 
 * Passare alla pagina **Log del servizio app** dalla pagina del portale dell'app.
 * Impostare **Registrazione applicazioni (file system)** su **Attiva**.
-* Scegliere il livello di registrazione in **Livello**. Questa impostazione si applica solo allo streaming dei log di Azure, non agli altri provider di registrazione nell'app.
+* Scegliere il livello di registrazione in **Livello**. Questa impostazione è valida solo per lo streaming dei log di Azure, non per altri provider di registrazione nell'app.
 
 Passare alla pagina **Flusso di registrazione** per visualizzare i messaggi dell'app. I messaggi vengono registrati dall'app tramite l'interfaccia `ILogger`.
 
@@ -823,7 +882,7 @@ Framework di registrazione di terze parti che usano ASP.NET Core:
 * [Gelf](https://docs.graylog.org/en/2.3/pages/gelf.html) ([repository GitHub](https://github.com/mattwcole/gelf-extensions-logging))
 * [JSNLog](https://jsnlog.com/) ([repository GitHub](https://github.com/mperdeck/jsnlog))
 * [KissLog.net](https://kisslog.net/) ([repository GitHub](https://github.com/catalingavan/KissLog-net))
-* [Log4Net](https://logging.apache.org/log4net/) ([repository GitHub](https://github.com/huorswords/Microsoft.Extensions.Logging.Log4Net.AspNetCore))
+* [Log4net](https://logging.apache.org/log4net/) ([repository GitHub](https://github.com/huorswords/Microsoft.Extensions.Logging.Log4Net.AspNetCore))
 * [Loggr](https://loggr.net/) ([repository GitHub](https://github.com/imobile3/Loggr.Extensions.Logging))
 * [NLog](https://nlog-project.org/) ([repository GitHub](https://github.com/NLog/NLog.Extensions.Logging))
 * [Sentry](https://sentry.io/welcome/) ([repository GitHub](https://github.com/getsentry/sentry-dotnet))
@@ -835,7 +894,7 @@ Alcuni framework di terze parti possono eseguire la [registrazione semantica, no
 L'uso di un framework di terze parti è simile a quello di uno dei provider predefiniti:
 
 1. Aggiungere un pacchetto NuGet al progetto.
-1. Chiamare `ILoggerFactory` un metodo di estensione fornito dal framework di registrazione.
+1. Chiamare un `ILoggerFactory` metodo di estensione fornito dal framework di registrazione.
 
 Per altre informazioni, vedere la documentazione di ogni provider. I provider di registrazione di terze parti non sono supportati da Microsoft.
 
@@ -850,7 +909,7 @@ Di [Tom Dykstra](https://github.com/tdykstra) e [Steve Smith](https://ardalis.co
 
 .NET Core supporta un'API di registrazione che funziona con un'ampia gamma di provider di registrazione predefiniti e di terze parti. Questo articolo illustra come usare l'API di registrazione con i provider predefiniti.
 
-[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ( come[scaricare](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ## <a name="add-providers"></a>Aggiungere provider
 
@@ -902,7 +961,7 @@ Per scrivere log nella classe `Program`, ottenere un'istanza di `ILogger` dall'i
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
 
-La registrazione durante la costruzione dell'host non è supportata direttamente. Tuttavia, è possibile utilizzare un logger separato. Nell'esempio seguente viene utilizzato un logger [Serilog](https://serilog.net/) per l'accesso `CreateWebHostBuilder`a . `AddSerilog`utilizza la configurazione `Log.Logger`statica specificata in :
+La registrazione durante la costruzione dell'host non è supportata direttamente. Tuttavia, è possibile usare un logger separato. Nell'esempio seguente viene usato un logger [Serilog](https://serilog.net/) per eseguire l'accesso `CreateWebHostBuilder`. `AddSerilog`Usa la configurazione statica specificata in `Log.Logger`:
 
 ```csharp
 using System;
@@ -964,7 +1023,7 @@ public class Program
 
 ### <a name="no-asynchronous-logger-methods"></a>Evitare l'uso di metodi logger asincroni
 
-La registrazione deve essere così rapida da non giustificare l'impatto sulle prestazioni del codice asincrono. Se l'archivio dati di registrazione è lento, non scrivere direttamente al suo interno. Scrivere invece i messaggi di log prima in un archivio veloce e quindi spostarli nell'archivio lento in un secondo momento. Ad esempio, se la registrazione viene eseguita in SQL Server, è preferibile non farlo direttamente in un metodo `Log`, poiché i metodi `Log` sono sincroni. Al contrario, aggiungere i messaggi di log in modo sincrono a una coda in memoria e usare un ruolo di lavoro in background per eseguire il pull dei messaggi dalla coda per eseguire le operazioni asincrone di push dei dati in SQL Server. Per altre informazioni, vedere questo problema di GitHub.For more information, see [this](https://github.com/dotnet/AspNetCore.Docs/issues/11801) GitHub issue.
+La registrazione deve essere così rapida da non giustificare l'impatto sulle prestazioni del codice asincrono. Se l'archivio dati di registrazione è lento, non scrivere direttamente al suo interno. Scrivere invece i messaggi di log prima in un archivio veloce e quindi spostarli nell'archivio lento in un secondo momento. Ad esempio, se la registrazione viene eseguita in SQL Server, è preferibile non farlo direttamente in un metodo `Log`, poiché i metodi `Log` sono sincroni. Al contrario, aggiungere i messaggi di log in modo sincrono a una coda in memoria e usare un ruolo di lavoro in background per eseguire il pull dei messaggi dalla coda per eseguire le operazioni asincrone di push dei dati in SQL Server. Per altre informazioni, vedere [questo](https://github.com/dotnet/AspNetCore.Docs/issues/11801) problema di GitHub.
 
 ## <a name="configuration"></a>Configurazione
 
@@ -1000,11 +1059,11 @@ La proprietà `Logging` può avere le proprietà `LogLevel` e quella del provide
 
 La proprietà `LogLevel` in `Logging` specifica il [livello](#log-level) minimo per la registrazione per determinate categorie. Nell'esempio, le categorie `System` e `Microsoft` eseguono la registrazione al livello `Information`, mentre tutte le altre la eseguono al livello `Debug`.
 
-Altre proprietà in `Logging` specificano i provider di registrazione. L'esempio si riferisce al provider Console. Se un provider supporta gli `IncludeScopes` ambiti di [log](#log-scopes), indica se sono abilitati. Una proprietà del provider (ad esempio `Console` nell'esempio) può specificare anche una proprietà `LogLevel`. `LogLevel` in un provider specifica i livelli di registrazione per tale provider.
+Altre proprietà in `Logging` specificano i provider di registrazione. L'esempio si riferisce al provider Console. Se un provider supporta gli [ambiti](#log-scopes)del `IncludeScopes` log, indica se sono abilitati. Una proprietà del provider (ad esempio `Console` nell'esempio) può specificare anche una proprietà `LogLevel`. `LogLevel` in un provider specifica i livelli di registrazione per tale provider.
 
 Se i livelli sono specificati in `Logging.{providername}.LogLevel`, eseguono l'override di eventuali valori impostati in `Logging.LogLevel`.
 
-L'API di registrazione non include uno scenario per modificare i livelli di log mentre un'app è in esecuzione. Tuttavia, alcuni provider di configurazione sono in grado di ricaricare la configurazione, che ha effetto immediato sulla configurazione della registrazione. Ad esempio, il provider di configurazione `CreateDefaultBuilder` [file](xref:fundamentals/configuration/index#file-configuration-provider), che viene aggiunto da per leggere i file di impostazioni, ricarica la configurazione di registrazione per impostazione predefinita. Se la configurazione viene modificata nel codice mentre un'app è in esecuzione, l'app può chiamare [IConfigurationRoot.Reload](xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*) per aggiornare la configurazione di registrazione dell'app.
+L'API di registrazione non include uno scenario per modificare i livelli di registrazione mentre un'app è in esecuzione. Alcuni provider di configurazione, tuttavia, sono in grado di ricaricare la configurazione, operazione che ha effetto immediato sulla configurazione della registrazione. Ad esempio, il [provider di configurazione file](xref:fundamentals/configuration/index#file-configuration-provider), aggiunto da `CreateDefaultBuilder` per leggere i file di impostazioni, ricarica la configurazione di registrazione per impostazione predefinita. Se la configurazione viene modificata nel codice mentre un'app è in esecuzione, l'app può chiamare [IConfigurationRoot. Reload](xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*) per aggiornare la configurazione di registrazione dell'app.
 
 Per informazioni sull'implementazione dei provider di configurazione, vedere <xref:fundamentals/configuration/index>.
 
@@ -1106,11 +1165,11 @@ ASP.NET Core definisce i livelli di registrazione seguenti, ordinati dal meno gr
 Usare il livello di registrazione per controllare la quantità di output di log scritto in un supporto di archiviazione specifico o in una finestra. Ad esempio:
 
 * In produzione:
-  * La registrazione `Trace` `Information` ai livelli through produce un volume elevato di messaggi di log dettagliati. Per controllare i costi e non `Trace` `Information` superare i limiti di archiviazione dei dati, eseguire il log-through dei messaggi di livello in un archivio dati con volumi elevati e a basso costo.
-  * La `Warning` registrazione `Critical` a livelli tramite livelli produce in genere un numero inferiore di messaggi di log più piccoli. Pertanto, i costi e i limiti di archiviazione in genere non sono un problema, il che si traduce in una maggiore flessibilità di scelta dell'archivio dati.
+  * La `Trace` registrazione ai livelli `Information` attraverso produce un volume elevato di messaggi di log dettagliati. Per controllare i costi e non superare i limiti di archiviazione `Trace` dei `Information` dati, accedere ai messaggi di livello elevato a un archivio dati a basso costo.
+  * L'accesso `Warning` ai `Critical` livelli in genere produce un minor numero di messaggi di log più piccoli. Pertanto, i costi e i limiti di archiviazione in genere non rappresentano un problema, il che comporta una maggiore flessibilità di scelta dell'archivio dati.
 * Durante lo sviluppo:
-  * `Warning` Registrare `Critical` i messaggi nella console.
-  * Aggiungere `Trace` `Information` i messaggi durante la risoluzione dei problemi.
+  * Consente `Warning` di `Critical` accedere ai messaggi nella console.
+  * Aggiungere `Trace` `Information` messaggi durante la risoluzione dei problemi.
 
 La sezione [Filtro dei log](#log-filtering) più avanti in questo articolo descrive come controllare quali livelli di registrazione gestisce un provider.
 
@@ -1215,7 +1274,7 @@ Per eliminare tutti i log, specificare `LogLevel.None` come livello di registraz
 
 ### <a name="create-filter-rules-in-configuration"></a>Creare regole di filtro nella configurazione
 
-Il codice del `CreateDefaultBuilder` modello di progetto chiama per impostare la registrazione per i provider Console, Debug e EventSource (ASP.NET Core 2.2 o versioni successive). Il metodo `CreateDefaultBuilder` imposta inoltre la registrazione per la ricerca della configurazione in una sezione `Logging`, come illustrato [in precedenza in questo articolo](#configuration).
+Il codice del modello di `CreateDefaultBuilder` progetto chiama per impostare la registrazione per i provider console, debug e EventSource (ASP.NET Core 2,2 o versione successiva). Il metodo `CreateDefaultBuilder` imposta inoltre la registrazione per la ricerca della configurazione in una sezione `Logging`, come illustrato [in precedenza in questo articolo](#configuration).
 
 I dati di configurazione specificano i livelli di registrazione minimi in base al provider e alla categoria, come nell'esempio seguente:
 
@@ -1243,7 +1302,7 @@ I dati di configurazione e il codice `AddFilter` illustrato negli esempi precede
 | 4      | Console       | Microsoft.AspNetCore.Mvc.Razor          | Errore             |
 | 5      | Console       | Tutte le categorie                          | Informazioni       |
 | 6      | Tutti i provider | Tutte le categorie                          | Debug             |
-| 7      | Tutti i provider | Sistema                                  | Debug             |
+| 7      | Tutti i provider | System                                  | Debug             |
 | 8      | Debug         | Microsoft                               | Trace             |
 
 Quando viene creato un oggetto `ILogger`, l'oggetto `ILoggerFactory` seleziona una singola regola per ogni provider da applicare al logger. Tutti i messaggi scritti da un'istanza di `ILogger` vengono filtrati in base alle regole selezionate. Tra le regole disponibili viene selezionata la regola più specifica possibile per ogni coppia di categoria e provider.
@@ -1341,7 +1400,7 @@ ASP.NET Core include i provider seguenti:
 
 * [Console](#console-provider)
 * [Debug](#debug-provider)
-* [Eventsource](#event-source-provider)
+* [EventSource](#event-source-provider)
 * [EventLog](#windows-eventlog-provider)
 * [TraceSource](#tracesource-provider)
 * [AzureAppServicesFile](#azure-app-service-provider)
@@ -1374,17 +1433,17 @@ In Linux, questo provider scrive i log in */var/log/message*.
 logging.AddDebug();
 ```
 
-### <a name="event-source-provider"></a>Provider dell'origine eventi
+### <a name="event-source-provider"></a>Provider origine evento
 
-Il pacchetto del provider [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) viene scritto in `Microsoft-Extensions-Logging`una piattaforma multipiattaforma Origine evento con il nome . In Windows, il provider utilizza [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803).
+Il pacchetto del provider [Microsoft. Extensions. Logging. EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) scrive in un'origine evento multipiattaforma con il nome `Microsoft-Extensions-Logging`. In Windows, il provider utilizza [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803).
 
 ```csharp
 logging.AddEventSourceLogger();
 ```
 
-Il provider di origine `CreateDefaultBuilder` evento viene aggiunto automaticamente quando viene chiamato per compilare l'host.
+Il provider di origine eventi viene aggiunto automaticamente `CreateDefaultBuilder` quando viene chiamato per compilare l'host.
 
-Utilizzare [l'utilità PerfView](https://github.com/Microsoft/perfview) per raccogliere e visualizzare i log. Sono disponibili altri strumenti per la visualizzazione dei log ETW, ma PerfView fornisce un'esperienza ottimale per l'uso con gli eventi ETW generati da ASP.NET Core.
+Usare l' [utilità PerfView](https://github.com/Microsoft/perfview) per raccogliere e visualizzare i log. Sono disponibili altri strumenti per la visualizzazione dei log ETW, ma PerfView fornisce un'esperienza ottimale per l'uso con gli eventi ETW generati da ASP.NET Core.
 
 Per configurare PerfView per la raccolta degli eventi registrati da questo provider, aggiungere la stringa `*Microsoft-Extensions-Logging` nell'elenco **Provider aggiuntivi** (non dimenticare l'asterisco all'inizio della stringa).
 
@@ -1398,13 +1457,13 @@ Il pacchetto di provider [Microsoft.Extensions.Logging.AventLog](https://www.nug
 logging.AddEventLog();
 ```
 
-Gli [overload di AddEventLog](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) consentono di passare <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. Se `null` specificato o non specificato, vengono utilizzate le seguenti impostazioni predefinite:
+Gli [overload di AddEventLog](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) consentono di passare <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. Se `null` o non è specificato, vengono usate le impostazioni predefinite seguenti:
 
 * `LogName`&ndash; "Applicazione"
 * `SourceName`&ndash; "Runtime .NET"
 * `MachineName` &ndash; computer locale
 
-Gli eventi vengono registrati per [il livello di avviso e superiore](#log-level). Per registrare `Warning`eventi inferiori a , impostare in modo esplicito il livello di registrazione. Ad esempio, aggiungere quanto segue al file *appsettings.json:*
+Gli eventi vengono registrati per un [livello di avviso e un livello superiore](#log-level). Per registrare eventi inferiori a `Warning`, impostare in modo esplicito il livello di registrazione. Aggiungere ad esempio il codice seguente al file *appSettings. JSON* :
 
 ```json
 "EventLog": {
@@ -1459,7 +1518,7 @@ Per configurare il flusso di registrazione di Azure:
 
 * Passare alla pagina **Log del servizio app** dalla pagina del portale dell'app.
 * Impostare **Registrazione applicazioni (file system)** su **Attiva**.
-* Scegliere il livello di registrazione in **Livello**. Questa impostazione si applica solo allo streaming dei log di Azure, non agli altri provider di registrazione nell'app.
+* Scegliere il livello di registrazione in **Livello**. Questa impostazione è valida solo per lo streaming dei log di Azure, non per altri provider di registrazione nell'app.
 
 Passare alla pagina **Flusso di registrazione** per visualizzare i messaggi dell'app. I messaggi vengono registrati dall'app tramite l'interfaccia `ILogger`.
 
@@ -1487,7 +1546,7 @@ Framework di registrazione di terze parti che usano ASP.NET Core:
 * [Gelf](https://docs.graylog.org/en/2.3/pages/gelf.html) ([repository GitHub](https://github.com/mattwcole/gelf-extensions-logging))
 * [JSNLog](https://jsnlog.com/) ([repository GitHub](https://github.com/mperdeck/jsnlog))
 * [KissLog.net](https://kisslog.net/) ([repository GitHub](https://github.com/catalingavan/KissLog-net))
-* [Log4Net](https://logging.apache.org/log4net/) ([repository GitHub](https://github.com/huorswords/Microsoft.Extensions.Logging.Log4Net.AspNetCore))
+* [Log4net](https://logging.apache.org/log4net/) ([repository GitHub](https://github.com/huorswords/Microsoft.Extensions.Logging.Log4Net.AspNetCore))
 * [Loggr](https://loggr.net/) ([repository GitHub](https://github.com/imobile3/Loggr.Extensions.Logging))
 * [NLog](https://nlog-project.org/) ([repository GitHub](https://github.com/NLog/NLog.Extensions.Logging))
 * [Sentry](https://sentry.io/welcome/) ([repository GitHub](https://github.com/getsentry/sentry-dotnet))
@@ -1499,7 +1558,7 @@ Alcuni framework di terze parti possono eseguire la [registrazione semantica, no
 L'uso di un framework di terze parti è simile a quello di uno dei provider predefiniti:
 
 1. Aggiungere un pacchetto NuGet al progetto.
-1. Chiamare `ILoggerFactory` un metodo di estensione fornito dal framework di registrazione.
+1. Chiamare un `ILoggerFactory` metodo di estensione fornito dal framework di registrazione.
 
 Per altre informazioni, vedere la documentazione di ogni provider. I provider di registrazione di terze parti non sono supportati da Microsoft.
 

@@ -1,8 +1,8 @@
-Il componente `App` (*app. Razor*) è simile al componente `App` trovato nelle app del server Blazer:
+Il `App` componente (*app. Razor*) è simile al `App` componente presente nelle app del server Blazer:
 
-* Il componente `CascadingAuthenticationState` gestisce l'esposizione del `AuthenticationState` al resto dell'app.
-* Il componente `AuthorizeRouteView` verifica che l'utente corrente sia autorizzato ad accedere a una pagina specificata o altrimenti esegua il rendering del componente `RedirectToLogin`.
-* Il componente `RedirectToLogin` gestisce il reindirizzamento degli utenti non autorizzati alla pagina di accesso.
+* Il `CascadingAuthenticationState` componente gestisce l' `AuthenticationState` esposizione al resto dell'app.
+* Il `AuthorizeRouteView` componente verifica che l'utente corrente sia autorizzato ad accedere a una pagina specificata o altrimenti esegua il `RedirectToLogin` rendering del componente.
+* Il `RedirectToLogin` componente gestisce il reindirizzamento degli utenti non autorizzati alla pagina di accesso.
 
 ```razor
 <CascadingAuthenticationState>
@@ -11,7 +11,17 @@ Il componente `App` (*app. Razor*) è simile al componente `App` trovato nelle a
             <AuthorizeRouteView RouteData="@routeData" 
                 DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    <RedirectToLogin />
+                    @if (!context.User.Identity.IsAuthenticated)
+                    {
+                        <RedirectToLogin />
+                    }
+                    else
+                    {
+                        <p>
+                            You are not authorized to access 
+                            this resource.
+                        </p>
+                    }
                 </NotAuthorized>
             </AuthorizeRouteView>
         </Found>

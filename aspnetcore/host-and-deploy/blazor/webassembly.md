@@ -1,45 +1,47 @@
 ---
-title: Ospitare e distribuire Blazor ASP.NET Core WebAssembly
+title: Ospitare e distribuire ASP.NET Core Blazor webassembly
 author: guardrex
-description: Informazioni su come ospitare Blazor e distribuire un'app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine GitHub.
+description: Informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine github.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/23/2020
 no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: f3508144f1e472ee906a35e427fc57f536008ab6
-ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
+ms.openlocfilehash: daaaab360e93de1cf10feec2db21d3acc25920bd
+ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81488858"
+ms.lasthandoff: 04/24/2020
+ms.locfileid: "82110876"
 ---
-# <a name="host-and-deploy-aspnet-core-opno-locblazor-webassembly"></a>Ospitare e distribuire Blazor ASP.NET Core WebAssembly
+# <a name="host-and-deploy-aspnet-core-opno-locblazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor webassembly
 
-Di [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com) e [Daniel Roth](https://github.com/danroth27)
+Di [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27)e [ben Adams](https://twitter.com/ben_a_adams).
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Con il [ Blazor modello di hosting WebAssembly](xref:blazor/hosting-models#blazor-webassembly):
+Con il [ Blazor modello di hosting webassembly](xref:blazor/hosting-models#blazor-webassembly):
 
-* L'app, Blazor le relative dipendenze e il runtime .NET vengono scaricati nel browser in parallelo.
+* L' Blazor app, le relative dipendenze e il Runtime .NET vengono scaricati nel browser in parallelo.
 * L'app viene eseguita direttamente nel thread dell'interfaccia utente del browser.
 
-Sono supportate le seguenti strategie di distribuzione:
+Sono supportate le strategie di distribuzione seguenti:
 
-* L'app Blazor è servita da un'app ASP.NET Core. Questa strategia viene trattata nella sezione [Distribuzione ospitata con ASP.NET Core](#hosted-deployment-with-aspnet-core).
-* L'app Blazor viene inserita in un server Web o un servizio Blazor di hosting statico, in cui .NET non viene usato per servire l'app. Questa strategia è trattata nella sezione [Distribuzione autonoma,](#standalone-deployment) che include informazioni sull'hosting di un'app Blazor WebAssembly come sottoapplicazione IIS.
+* L' Blazor app viene gestita da un'app ASP.NET Core. Questa strategia viene trattata nella sezione [Distribuzione ospitata con ASP.NET Core](#hosted-deployment-with-aspnet-core).
+* L' Blazor app si trova in un server Web o in un servizio di hosting statico, in cui .NET non Blazor viene usato per gestire l'app. Questa strategia è illustrata nella sezione relativa alla [distribuzione autonoma](#standalone-deployment) , che include informazioni Blazor sull'hosting di un'app webassembly come una sub-app IIS.
 
-## <a name="brotli-precompression"></a>Precompressione di Brotli
+## <a name="brotli-precompression"></a>Precompressione Brotli
 
-Quando Blazor un'app WebAssembly viene pubblicata, l'output viene precompresso utilizzando l'algoritmo di [compressione Brotli](https://tools.ietf.org/html/rfc7932) al livello più alto per ridurre le dimensioni dell'app e rimuovere la necessità di compressione di runtime.
+Quando viene Blazor pubblicata un'app webassembly, l'output viene precompresso usando l' [algoritmo di compressione Brotli](https://tools.ietf.org/html/rfc7932) al livello più alto per ridurre le dimensioni dell'app e rimuovere la necessità di compressione del runtime.
+
+Per la configurazione della compressione IIS *Web. config* , vedere la sezione relativa alla [compressione IIS: Brotli e gzip](#brotli-and-gzip-compression) .
 
 ## <a name="rewrite-urls-for-correct-routing"></a>Riscrivere gli URL per il routing corretto
 
-Il routing delle richieste Blazor per i componenti di pagina in Blazor un'app WebAssembly non è semplice come il routing delle richieste in un'app ospitata server. Si Blazor consideri un'app WebAssembly con due componenti:
+Il routing delle richieste per i componenti Blazor della pagina in un'app webassembly non è semplice come Blazor il routing delle richieste in un server, un'app ospitata. Si consideri un' Blazor app webassembly con due componenti:
 
 * *Main.razor* &ndash; Viene caricato nella radice dell'app e contiene un collegamento al componente `About` (`href="About"`).
 * *About.Razor Componente * &ndash; `About`.
@@ -49,21 +51,21 @@ Quando viene richiesto il documento predefinito dell'app usando la barra degli i
 1. Il browser invia una richiesta.
 1. Viene restituita la pagina predefinita, di solito *index.html*.
 1. *index.html* esegue il bootstrap dell'app.
-1. Blazor'il router viene caricato `Main` e viene eseguito il rendering del componente Razor.
+1. Blazoril router viene caricato e viene eseguito `Main` il rendering del componente Razor.
 
-Nella pagina Principale, la selezione `About` del collegamento al Blazor componente funziona sul client perché il `www.contoso.com` router `About` impedisce `About` al browser di effettuare una richiesta su Internet a per e serve il componente sottoposto a rendering stesso. Tutte le richieste di endpoint interni *all'interno Blazor dell'app WebAssembly* funzionano allo stesso modo: le richieste non attivano le richieste basate su browser alle risorse ospitate dal server su Internet. Le richieste vengono gestite internamente dal router.
+Nella pagina principale, selezionando `About` il collegamento al componente funziona sul client perché il Blazor router interrompe il browser per effettuare una richiesta su Internet `www.contoso.com` per `About` e serve il componente di cui è stato `About` eseguito il rendering. Tutte le richieste per gli endpoint interni *nell' Blazor app webassembly* funzionano allo stesso modo: le richieste non attivano richieste basate su browser a risorse ospitate su server su Internet. Le richieste vengono gestite internamente dal router.
 
 Se una richiesta viene effettuata usando la barra degli indirizzi del browser per `www.contoso.com/About`, la richiesta ha esito negativo. La risorsa non esiste nell'host Internet dell'app, quindi viene restituita la risposta *404 non trovato*.
 
-Dato che i browser inviano le richieste agli host basati su Internet per le pagine sul lato client, i server Web e i servizi di hosting devono riscrivere tutte le richieste per le risorse che non si trovano fisicamente nel server per la pagina *index.html*. Quando viene restituito *index.html,* il Blazor router dell'app prende il sopravvento e risponde con la risorsa corretta.
+Dato che i browser inviano le richieste agli host basati su Internet per le pagine sul lato client, i server Web e i servizi di hosting devono riscrivere tutte le richieste per le risorse che non si trovano fisicamente nel server per la pagina *index.html*. Quando viene restituito *index. html* , il Blazor router dell'app accetta e risponde con la risorsa corretta.
 
-Quando si esegue la distribuzione in un server IIS, è possibile usare il modulo di riscrittura URL con il file *web.config* pubblicato dell'app. Per ulteriori informazioni, vedere la sezione [IIS.](#iis)
+Quando si esegue la distribuzione in un server IIS, è possibile usare il modulo URL Rewrite con il file *Web. config* pubblicato dall'app. Per ulteriori informazioni, vedere la sezione [IIS](#iis) .
 
 ## <a name="hosted-deployment-with-aspnet-core"></a>Distribuzione ospitata con ASP.NET Core
 
-Una *distribuzione ospitata* serve l'app Blazor WebAssembly ai browser di [un'app ASP.NET Core](xref:index) in esecuzione su un server Web.
+Una *distribuzione ospitata* serve Blazor l'app webassembly nei browser da un' [app ASP.NET Core](xref:index) eseguita in un server Web.
 
-L'app WebAssembly client Blazor viene pubblicata nella cartella */bin/Release/* Le due app vengono distribuite insieme. È necessario un server Web in grado di ospitare un'app ASP.NET Core. Per una distribuzione ospitata, Visual Studio include`blazorwasm` il`-ho|--hosted` `dotnet new` ** Blazor ** modello di progetto WebAssembly App (modello quando si utilizza il comando [dotnet new)](/dotnet/core/tools/dotnet-new) con l'opzione **Hosted** selezionata (quando si utilizza il comando ).
+L'app Blazor webassembly client viene pubblicata nella cartella */bin/Release/{Target Framework}/Publish/wwwroot* dell'app Server, insieme a qualsiasi altra risorsa Web statica dell'app Server. Le due app vengono distribuite insieme. È necessario un server Web in grado di ospitare un'app ASP.NET Core. Per una distribuzione ospitata, Visual Studio include`-ho|--hosted` il `dotnet new` `blazorwasm` [dotnet new](/dotnet/core/tools/dotnet-new) **Hosted** ** Blazor ** modello di progetto di app webassembly (modello quando si usa il comando DotNet New) con l'opzione Hosted selezionata (quando si usa il comando).
 
 Per altre informazioni su hosting e distribuzione di app ASP.NET Core, vedere <xref:host-and-deploy/index>.
 
@@ -71,23 +73,23 @@ Per informazioni sulla distribuzione in Servizio app di Azure, vedere <xref:tuto
 
 ## <a name="standalone-deployment"></a>Distribuzione autonoma
 
-Una *distribuzione autonoma* serve l'app Blazor WebAssembly come set di file statici richiesti direttamente dai client. Qualsiasi file server statico è Blazor in grado di servire l'app.
+Una *distribuzione autonoma* serve Blazor l'app webassembly come un set di file statici richiesti direttamente dai client. Qualsiasi file server statico è in grado di gestire Blazor l'app.
 
-Le risorse di distribuzione autonome vengono pubblicate nella cartella */bin/Release/*
+Le risorse di distribuzione autonome vengono pubblicate nella cartella */bin/Release/{Target Framework}/Publish/wwwroot*
 
 ### <a name="iis"></a>IIS
 
-IIS è un file Blazor server statico in grado di applicazioni. Per configurare IIS per l'hosting Blazor, vedere Creare un sito Web statico in [IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
+IIS è un file server statico idoneo Blazor per le app. Per configurare IIS per l' Blazorhosting, vedere [la pagina relativa alla creazione di un sito Web statico in IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
 
 Gli asset pubblicati vengono creati nella cartella */bin/Release/{FRAMEWORK DESTINAZIONE}/publish*. Ospitare il contenuto della cartella *publish* nel server Web o nel servizio di hosting.
 
 #### <a name="webconfig"></a>web.config
 
-Quando Blazor un progetto viene pubblicato, viene creato un file *web.config* con la seguente configurazione IIS:
+Quando viene Blazor pubblicato un progetto, viene creato un file *Web. config* con la seguente configurazione di IIS:
 
 * Vengono impostati tipi MIME per le estensioni di file seguenti:
-  * *.dll (con estensione dll)* &ndash;`application/octet-stream`
-  * *file con estensione json* &ndash;`application/json`
+  * *. dll* &ndash;`application/octet-stream`
+  * *JSON* &ndash;`application/json`
   * *.wasm* &ndash; `application/wasm`
   * *.woff* &ndash; `application/font-woff`
   * *.woff2* &ndash; `application/font-woff`
@@ -95,24 +97,12 @@ Quando Blazor un progetto viene pubblicato, viene creato un file *web.config* co
   * `application/octet-stream`
   * `application/wasm`
 * Vengono stabilite le regole URL Rewrite Module:
-  * Servire la sottodirectory in cui si trovano le risorse statiche dell'app (*wwwroot/ .*
-  * Creare il routing di fallback SPA in modo che le richieste di asset non file vengano reindirizzate al documento predefinito dell'app nella relativa cartella di risorse statiche (*wwwroot/index.html*).
+  * Serve la sottodirectory in cui risiedono gli asset statici dell'app (*wwwroot/{Path richiesto}*).
+  * Creare il routing di fallback SPA in modo che le richieste di risorse non di file vengano reindirizzate al documento predefinito dell'app nella cartella Asset statici (*wwwroot/index.html*).
   
-#### <a name="use-a-custom-webconfig"></a>Utilizzare un file web.config personalizzato
+#### <a name="use-a-custom-webconfig"></a>Usare un file Web. config personalizzato
 
-Per utilizzare un file *web.config* personalizzato:
-
-1. Inserire il file *web.config* personalizzato nella radice della cartella del progetto.
-1. Aggiungere la destinazione seguente al file di progetto (*csproj*):
-
-   ```xml
-   <Target Name="CopyWebConfigOnPublish" AfterTargets="Publish">
-     <Copy SourceFiles="web.config" DestinationFolder="$(PublishDir)" />
-   </Target>
-   ```
-   
-> [!NOTE]
-> L'utilizzo della `<IsWebConfigTransformDisabled>` proprietà `true` MSBuild impostata Blazor su non è supportato nelle app WebAssembly, come [per ASP.NET applicazioni principali distribuite in IIS](xref:host-and-deploy/iis/index#webconfig-file). Per ulteriori informazioni, vedere [Destinazione Blazor di copia necessaria per fornire web.config WASM personalizzato (dotnet/aspnetcore #20569)](https://github.com/dotnet/aspnetcore/issues/20569).
+Per usare un file *Web. config* personalizzato, inserire il file *Web. config* personalizzato alla radice della cartella del progetto e pubblicare il progetto.
 
 #### <a name="install-the-url-rewrite-module"></a>Installare URL Rewrite Module
 
@@ -128,13 +118,13 @@ Impostare il **percorso fisico** del sito Web sulla cartella dell'app. La cartel
 * Il file *web.config* usato da IIS per configurare il sito Web, inclusi le regole di reindirizzamento richieste e i tipi di contenuto di file.
 * Cartella degli asset statici dell'app.
 
-#### <a name="host-as-an-iis-sub-app"></a>Host come sotto-app IIS
+#### <a name="host-as-an-iis-sub-app"></a>Ospitare come applicazione secondaria IIS
 
-Se un'app autonoma è ospitata come sottoapp IIS, eseguire una delle operazioni seguenti:
+Se un'app autonoma è ospitata come una sub-app IIS, eseguire una delle operazioni seguenti:
 
-* Disabilitare il gestore di ASP.NET Core Module ereditato.
+* Disabilitare il gestore del modulo ASP.NET Core ereditato.
 
-  Rimuovi il gestore nel file *web.config* pubblicato `<handlers>` Blazor dall'app aggiungendo una sezione al file:
+  Rimuovere il gestore nel file Blazor *Web. config* pubblicato dall'app aggiungendo una `<handlers>` sezione al file:
 
   ```xml
   <handlers>
@@ -142,7 +132,7 @@ Se un'app autonoma è ospitata come sottoapp IIS, eseguire una delle operazioni 
   </handlers>
   ```
 
-* Disabilita l'ereditarietà della sezione `<system.webServer>` dell'app `inheritInChildApplications` radice `false`(padre) usando un `<location>` elemento con impostato su:
+* Disabilitare `<system.webServer>` l'ereditarietà della sezione radice (padre) dell'app usando un `<location>` elemento con `inheritInChildApplications` impostato su `false`:
 
   ```xml
   <?xml version="1.0" encoding="utf-8"?>
@@ -158,28 +148,32 @@ Se un'app autonoma è ospitata come sottoapp IIS, eseguire una delle operazioni 
   </configuration>
   ```
 
-La rimozione del gestore o la disabilitazione dell'ereditarietà viene eseguita oltre a [configurare il percorso di base dell'app.](xref:host-and-deploy/blazor/index#app-base-path) Impostare il percorso di base dell'app nel file *index.html* dell'app sull'alias IIS usato durante la configurazione della sottoapp in IIS.
+La rimozione del gestore o la disabilitazione dell'ereditarietà viene eseguita oltre alla [configurazione del percorso di base dell'applicazione](xref:host-and-deploy/blazor/index#app-base-path). Impostare il percorso di base dell'app nel file *index.html* dell'app sull'alias IIS usato durante la configurazione della sottoapp in IIS.
+
+#### <a name="brotli-and-gzip-compression"></a>Compressione Brotli e gzip
+
+IIS può essere configurato tramite *Web. config* per gestire gli asset compressi Blazor Brotli o gzip. Per una configurazione di esempio, vedere [Web. config](webassembly/_samples/web.config?raw=true).
 
 #### <a name="troubleshooting"></a>Risoluzione dei problemi
 
-Se si riceve un *errore interno del server 500* e Gestione IIS genera errori durante il tentativo di accedere alla configurazione del sito Web, verificare che sia installato URL Rewrite Module. Quando il modulo non è installato, il file *web.config* non può essere analizzato da IIS. Ciò impedisce a Gestione IIS di caricare la Blazorconfigurazione del sito Web e al sito Web di servire i file statici.
+Se si riceve un *errore interno del server 500* e Gestione IIS genera errori durante il tentativo di accedere alla configurazione del sito Web, verificare che sia installato URL Rewrite Module. Quando il modulo non è installato, il file *web.config* non può essere analizzato da IIS. In questo modo si impedisce al gestore IIS di caricare la configurazione del sito Web e Blazoril sito Web dai file statici del servizio.
 
 Per altre informazioni sulla risoluzione dei problemi relativi alle distribuzioni in IIS, vedere <xref:test/troubleshoot-azure-iis>.
 
 ### <a name="azure-storage"></a>Archiviazione di Azure
 
-[L'hosting](/azure/storage/) di file Blazor statici di Archiviazione di Azure consente l'hosting di app senza server. Sono supportati nomi di dominio personalizzati, la rete per la distribuzione di contenuti (rete CDN) di Azure e HTTPS.
+L'hosting di file statici di [archiviazione](/azure/storage/) di Blazor Azure consente l'hosting di app senza server. Sono supportati nomi di dominio personalizzati, la rete per la distribuzione di contenuti (rete CDN) di Azure e HTTPS.
 
 Quando il servizio BLOB è abilitato per l'hosting di siti Web statici in un account di archiviazione:
 
 * Impostare **Nome del documento di indice** su `index.html`.
-* Impostare **Percorso del documento di errore** su `index.html`. I componenti di Razor e altri endpoint non basati su file non risiedono in percorsi fisici nel contenuto statico archiviato dal servizio BLOB. Quando viene ricevuta una richiesta per Blazor una di queste risorse che il router deve gestire, l'errore *404 - Not Found* generato dal servizio BLOB instrada la richiesta al percorso del documento di **errore**. Viene restituito il BLOB *index.html* e il Blazor router carica ed elabora il percorso.
+* Impostare **Percorso del documento di errore** su `index.html`. I componenti di Razor e altri endpoint non basati su file non risiedono in percorsi fisici nel contenuto statico archiviato dal servizio BLOB. Quando viene ricevuta una richiesta per una di queste risorse che il Blazor router deve gestire, l'errore *404 non trovato* generato dal servizio BLOB instrada la richiesta al **percorso del documento di errore**. Viene restituito il BLOB *index. html* e il Blazor router carica ed elabora il percorso.
 
 Per altre informazioni, vedere [Hosting di siti Web statici in Archiviazione di Azure](/azure/storage/blobs/storage-blob-static-website).
 
 ### <a name="nginx"></a>Nginx
 
-Il seguente file *nginx.conf* è semplificato per mostrare come configurare Nginx per inviare il file *index.html* ogni volta che non riesce a trovare un file corrispondente su disco.
+Il file *nginx. conf* seguente è stato semplificato per illustrare come configurare Nginx per inviare il file *index. html* ogni volta che non riesce a trovare un file corrispondente sul disco.
 
 ```
 events { }
@@ -199,7 +193,7 @@ Per altre informazioni sulla configurazione del server Web Nginx in ambiente di 
 
 ### <a name="nginx-in-docker"></a>Nginx in Docker
 
-Per Blazor ospitare Docker utilizzando Nginx, impostare Dockerfile per utilizzare l'immagine Nginx basata su alpino. Aggiornare il Dockerfile per copiare il file *nginx.config* nel contenitore.
+Per ospitare Blazor in Docker con nginx, configurare Dockerfile per l'uso dell'immagine nginx basata su Alpine. Aggiornare il Dockerfile per copiare il file *nginx.config* nel contenitore.
 
 Aggiungere una riga al Dockerfile, come illustrato nell'esempio seguente:
 
@@ -211,9 +205,9 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 ### <a name="apache"></a>Apache
 
-Per distribuire Blazor un'app WebAssembly a CentOS 7 o versione successiva:
+Per distribuire un' Blazor app webassembly in CentOS 7 o versione successiva:
 
-1. Creare il file di configurazione Apache. L'esempio seguente è un file di configurazione semplificato (*blazorapp.config*):
+1. Creare il file di configurazione Apache. L'esempio seguente è un file di configurazione semplificato (*blazorapp. config*):
 
    ```
    <VirtualHost *:80>
@@ -249,9 +243,9 @@ Per distribuire Blazor un'app WebAssembly a CentOS 7 o versione successiva:
    </VirtualHost>
    ```
 
-1. Inserire il file di configurazione `/etc/httpd/conf.d/` Apache nella directory, che è la directory di configurazione Apache predefinita in CentOS 7.
+1. Inserire il file di configurazione Apache nella `/etc/httpd/conf.d/` directory, ovvero la directory di configurazione predefinita di Apache in CentOS 7.
 
-1. Inserire i file dell'app nella `/var/www/blazorapp` directory `DocumentRoot` (il percorso specificato nel file di configurazione).
+1. Inserire i file dell'app nella `/var/www/blazorapp` directory (il percorso specificato `DocumentRoot` nel file di configurazione).
 
 1. Riavviare il servizio Apache.
 
@@ -265,11 +259,11 @@ Quando si usa un sito di progetto anziché un sito dell'organizzazione, aggiunge
 
 ## <a name="host-configuration-values"></a>Valori di configurazione dell'host
 
-Le app WebAssembly possono accettare i seguenti valori di configurazione host come argomenti della riga di comando in fase di esecuzione nell'ambiente di sviluppo. [ Blazor ](xref:blazor/hosting-models#blazor-webassembly)
+Le app webassembly possono accettare i valori di configurazione host seguenti come argomenti della riga di comando in fase di esecuzione nell'ambiente di sviluppo. [ Blazor ](xref:blazor/hosting-models#blazor-webassembly)
 
 ### <a name="content-root"></a>Radice del contenuto
 
-L'argomento `--contentroot` imposta il percorso assoluto della directory che contiene i file di contenuto dell'app ( radice del[contenuto](xref:fundamentals/index#content-root)). Negli esempi seguenti `/content-root-path` è il percorso radice del contenuto dell'app.
+L' `--contentroot` argomento imposta il percorso assoluto della directory che contiene i file di contenuto dell'app ([radice del contenuto](xref:fundamentals/index#content-root)). Negli esempi seguenti `/content-root-path` è il percorso radice del contenuto dell'app.
 
 * Passare l'argomento quando si esegue localmente l'app a un prompt dei comandi. Dalla directory dell'app, eseguire:
 
@@ -283,7 +277,7 @@ L'argomento `--contentroot` imposta il percorso assoluto della directory che con
   "commandLineArgs": "--contentroot=/content-root-path"
   ```
 
-* In Visual Studio specificare l'argomento in **Proprietà** > **degli argomenti dell'applicazione****di debug** > . Impostando l'argomento nella pagina delle proprietà di Visual Studio, si aggiunge l'argomento al file *launchSettings.json*.
+* In Visual Studio specificare l'argomento in **Proprietà** > **debug** > **argomenti dell'applicazione**. Impostando l'argomento nella pagina delle proprietà di Visual Studio, si aggiunge l'argomento al file *launchSettings.json*.
 
   ```console
   --contentroot=/content-root-path
@@ -291,7 +285,7 @@ L'argomento `--contentroot` imposta il percorso assoluto della directory che con
 
 ### <a name="path-base"></a>Base del percorso
 
-L'argomento `--pathbase` imposta il percorso di base dell'app per un'app eseguita localmente con un percorso URL relativo non radice (il `<base>` tag `href` è impostato su un percorso diverso da `/` quello per la gestione temporanea e la produzione). Negli esempi seguenti `/relative-URL-path` è la base del percorso dell'app. Per ulteriori informazioni, vedere Percorso di [base dell'app](xref:host-and-deploy/blazor/index#app-base-path).
+L' `--pathbase` argomento imposta il percorso di base dell'app per un'app eseguita localmente con un percorso URL relativo non radice ( `<base>` il `href` tag è impostato su un percorso diverso `/` da per la gestione temporanea e la produzione). Negli esempi seguenti `/relative-URL-path` è la base del percorso dell'app. Per altre informazioni, vedere [percorso di base dell'app](xref:host-and-deploy/blazor/index#app-base-path).
 
 > [!IMPORTANT]
 > A differenza del percorso specificato per `href` del tag `<base>`, non includere una barra finale (`/`) quando si passa il valore dell'argomento `--pathbase`. Se il percorso di base dell'app non viene specificato nel tag `<base>` come `<base href="/CoolApp/">` (include una barra finale), passare il valore dell'argomento della riga di comando come `--pathbase=/CoolApp` (senza barra finale).
@@ -308,7 +302,7 @@ L'argomento `--pathbase` imposta il percorso di base dell'app per un'app eseguit
   "commandLineArgs": "--pathbase=/relative-URL-path"
   ```
 
-* In Visual Studio specificare l'argomento in **Proprietà** > **degli argomenti dell'applicazione****di debug** > . Impostando l'argomento nella pagina delle proprietà di Visual Studio, si aggiunge l'argomento al file *launchSettings.json*.
+* In Visual Studio specificare l'argomento in **Proprietà** > **debug** > **argomenti dell'applicazione**. Impostando l'argomento nella pagina delle proprietà di Visual Studio, si aggiunge l'argomento al file *launchSettings.json*.
 
   ```console
   --pathbase=/relative-URL-path
@@ -330,7 +324,7 @@ L'argomento `--urls` imposta gli indirizzi IP o gli indirizzi host con le porte 
   "commandLineArgs": "--urls=http://127.0.0.1:0"
   ```
 
-* In Visual Studio specificare l'argomento in **Proprietà** > **degli argomenti dell'applicazione****di debug** > . Impostando l'argomento nella pagina delle proprietà di Visual Studio, si aggiunge l'argomento al file *launchSettings.json*.
+* In Visual Studio specificare l'argomento in **Proprietà** > **debug** > **argomenti dell'applicazione**. Impostando l'argomento nella pagina delle proprietà di Visual Studio, si aggiunge l'argomento al file *launchSettings.json*.
 
   ```console
   --urls=http://127.0.0.1:0
@@ -338,4 +332,4 @@ L'argomento `--urls` imposta gli indirizzi IP o gli indirizzi host con le porte 
 
 ## <a name="configure-the-linker"></a>Configurare il linker
 
-Blazoresegue il collegamento in linguaggio intermedio (IL) in ogni build di rilascio per rimuovere il linguaggio intermedio non necessario dagli assembly di output. Per altre informazioni, vedere <xref:host-and-deploy/blazor/configure-linker>.
+Blazoresegue il collegamento Intermediate Language (IL) a ogni build di rilascio per rimuovere IL linguaggio intermedio non necessario dagli assembly di output. Per altre informazioni, vedere <xref:host-and-deploy/blazor/configure-linker>.

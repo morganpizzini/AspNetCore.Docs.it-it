@@ -1,23 +1,23 @@
 ---
-title: Proteggere un'app ospitata ASP.NET Core WebAssembly con Azure Active Directory B2CSecure an ASP.NET Core Blazor WebAssembly hosted app with Azure Active Directory B2C
+title: Proteggere un'app Blazor ospitata ASP.NET Core webassembly con Azure Active Directory B2C
 author: guardrex
 description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/09/2020
+ms.date: 04/23/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
-ms.openlocfilehash: e2bb0c1bd807d590331b714e3b80d8c4ab434e2f
-ms.sourcegitcommit: e8dc30453af8bbefcb61857987090d79230a461d
+ms.openlocfilehash: 45ef1e6599777a38da7db753a8868028f3134f4b
+ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/11/2020
-ms.locfileid: "81123464"
+ms.lasthandoff: 04/24/2020
+ms.locfileid: "82110980"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Proteggere un'app ospitata ASP.NET Core WebAssembly con Azure Active Directory B2CSecure an ASP.NET Core Blazor WebAssembly hosted app with Azure Active Directory B2C
+# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Proteggere un'app Blazor ospitata ASP.NET Core webassembly con Azure Active Directory B2C
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
 
@@ -25,84 +25,87 @@ Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https:/
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-Questo articolo descrive come Blazor creare un'app autonoma WebAssembly che usa [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) per l'autenticazione.
+> [!NOTE]
+> Le indicazioni fornite in questo articolo si applicano a ASP.NET Core 3,2 Preview 4. Questo argomento verrà aggiornato per coprire l'anteprima 5 il venerdì 24 aprile.
 
-## <a name="register-apps-in-aad-b2c-and-create-solution"></a>Registrare le app in AAD B2C e creare una soluzione
+Questo articolo descrive come creare un' Blazor app webassembly autonoma che usa [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) per l'autenticazione.
+
+## <a name="register-apps-in-aad-b2c-and-create-solution"></a>Registrare le app in AAD B2C e creare la soluzione
 
 ### <a name="create-a-tenant"></a>Creare un tenant
 
-Seguire le indicazioni in [Esercitazione: Creare un tenant B2C di Azure Active Directory](/azure/active-directory-b2c/tutorial-create-tenant) per creare un tenant AAD B2C e registrare le informazioni seguenti:Follow the guidance in Tutorial: Create an Azure Active Directory B2C tenant to create an AAD B2C tenant and record the following information:
+Seguire le istruzioni in [esercitazione: creare un tenant di Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-create-tenant) per creare un tenant di AAD B2C e registrare le informazioni seguenti:
 
-* AAD B2C (ad `https://contoso.b2clogin.com/`esempio, , che include la barra finale)
-* AAD B2C Dominio tenant `contoso.onmicrosoft.com`(ad esempio, )
+* AAD B2C istanza (ad esempio, `https://contoso.b2clogin.com/`, che include la barra finale)
+* AAD B2C dominio tenant (ad esempio, `contoso.onmicrosoft.com`)
 
-### <a name="register-a-server-api-app"></a>Registrare un'app per le API del serverRegister a server API app
+### <a name="register-a-server-api-app"></a>Registrare un'app per le API server
 
-Seguire le istruzioni in [Esercitazione: Registrare un'applicazione in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) per registrare un'app AAD per *l'app API Server* nell'area Registrazioni di Azure Active Directory App del portale di Azure:Follow the guidance in **Tutorial:** > Register an application in Azure Active Directory B2C to register an AAD app for the Server API app in the Azure Active Directory**App registrations** area of the Azure portal:
+Seguire le istruzioni riportate in [esercitazione: registrare un'applicazione in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) per registrare un'app AAD per l'app per le *API server* nell'area **Azure Active Directory** > **registrazioni app** della portale di Azure:
 
 1. Selezionare **Nuova registrazione**.
-1. Specificare un **nome** per l'app, ** Blazor **ad esempio Server AAD B2C .
-1. Per **Tipi di account supportati**, selezionare Account in qualsiasi directory organizzativa o provider di **identità. Per l'autenticazione degli utenti con Azure AD B2C.** (multi-tenant) per questa esperienza.
-1. *L'app api server* non richiede un URI di **reindirizzamento** in questo scenario, quindi lasciare l'elenco a discesa impostato su **Web** e non immettere un URI di reindirizzamento.
-1. Verificare che **l'opzione Autorizzazioni** > **Concedi autorizzazione amministratore a openid e offline_access autorizzazioni** sia abilitata.
+1. Specificare un **nome** per l'app, ** Blazor ad esempio server AAD B2C**.
+1. Per i **tipi di account supportati**, selezionare **account in qualsiasi directory organizzativa o provider di identità. Per l'autenticazione degli utenti con Azure AD B2C.** (multi-tenant) per questa esperienza.
+1. L' *app* per le API del server non richiede un **URI di reindirizzamento** in questo scenario, quindi lasciare l'elenco a discesa impostato su **Web** e non immettere un URI di reindirizzamento.
+1. Verificare che le **autorizzazioni** > **concessino l'amministratore concent a OpenID e offline_access autorizzazioni** siano abilitate.
 1. Selezionare **Registra**.
 
-In **Esporre un'API**:
+In **esporre un'API**:
 
 1. Selezionare **Aggiungi un ambito**.
-1. Selezionare **Salva e continua**.
-1. Specificare un nome di `API.Access` **ambito,** ad esempio ).
-1. Specificare un nome visualizzato di `Access API` **consenso dell'amministratore,** ad esempio ).
-1. Fornire una descrizione del consenso `Allows the app to access server app API endpoints.`dell'amministratore, ad esempio ). **Admin consent description**
-1. Verificare che **lo stato** sia impostato su **Abilitato**.
+1. Fai clic su **Salva e continua**.
+1. Specificare un **nome** per l'ambito (ad `API.Access`esempio,).
+1. Fornire un **nome visualizzato** per il consenso dell'amministratore, `Access API`ad esempio.
+1. Fornire una **Descrizione del consenso dell'amministratore** , `Allows the app to access server app API endpoints.`ad esempio.
+1. Verificare che lo **stato** sia impostato su **abilitato**.
 1. Selezionare **Aggiungi ambito**.
 
 Registrare le seguenti informazioni:
 
-* *App PER le API del server* ID applicazione (ID client) `11111111-1111-1111-1111-111111111111`(ad esempio, )
-* URI ID app (ad esempio, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`, `api://11111111-1111-1111-1111-111111111111`o il valore personalizzato fornito)
-* ID directory (ID tenant) `222222222-2222-2222-2222-222222222222`(ad esempio, )
-* *App PER le API del server* URI ID app (ad esempio, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`il portale di Azure potrebbe visualizzare per impostazione predefinita il valore per l'ID client)
-* Ambito predefinito (ad `API.Access`esempio, )
+* *App per le API server* ID applicazione (ID client) (ad esempio, `11111111-1111-1111-1111-111111111111`)
+* URI ID app (ad esempio `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111` `api://11111111-1111-1111-1111-111111111111`,, o il valore personalizzato specificato)
+* ID directory (ID tenant) (ad esempio, `222222222-2222-2222-2222-222222222222`)
+* *App per le API server* URI ID app (ad esempio `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`, il portale di Azure potrebbe avere come valore predefinito l'ID client)
+* Ambito predefinito (ad esempio, `API.Access`)
 
 ### <a name="register-a-client-app"></a>Registrare un'app client
 
-Seguire le istruzioni in Esercitazione: Registrare di nuovo [un'applicazione in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) per registrare un'app AAD per *l'app Client* nell'area Registrazioni di Azure Active Directory App del portale di Azure:Follow the guidance in **Tutorial:** > Register an application in Azure Active Directory B2C again to register an AAD app for the Client app in the Azure Active Directory**App registrations** area of the Azure portal:
+Seguire le istruzioni riportate in [esercitazione: registrare un'applicazione in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) di nuovo per registrare un'app AAD per l' *app client* nell'area **Azure Active Directory** > **registrazioni app** della portale di Azure:
 
 1. Selezionare **Nuova registrazione**.
-1. Specificare un **nome** per l'app, ** Blazor **ad esempio AAD B2C client .
-1. Per **Tipi di account supportati**, selezionare Account in qualsiasi directory organizzativa o provider di **identità. Per l'autenticazione degli utenti con Azure AD B2C.** (multi-tenant) per questa esperienza.
-1. Lasciare l'elenco a discesa URI di **reindirizzamento** impostato su **Web**e specificare un URI di reindirizzamento di `https://localhost:5001/authentication/login-callback`.
-1. Verificare che **l'opzione Autorizzazioni** > **Concedi autorizzazione amministratore a openid e offline_access autorizzazioni** sia abilitata.
+1. Specificare un **nome** per l'app, ** Blazor ad esempio AAD B2C client**.
+1. Per i **tipi di account supportati**, selezionare **account in qualsiasi directory organizzativa o provider di identità. Per l'autenticazione degli utenti con Azure AD B2C.** (multi-tenant) per questa esperienza.
+1. Lasciare l'elenco a discesa **URI di reindirizzamento** impostato su **Web**e specificare un URI di `https://localhost:5001/authentication/login-callback`reindirizzamento.
+1. Verificare che le **autorizzazioni** > **concessino l'amministratore concent a OpenID e offline_access autorizzazioni** siano abilitate.
 1. Selezionare **Registra**.
 
-In**Configurazioni** > piattaforma **di autenticazione** > **Web**:
+In **Authentication** >  > **configurazioni piattaforma**di autenticazione**Web**:
 
-1. Verificare che `https://localhost:5001/authentication/login-callback` l'URI di **reindirizzamento** di sia presente.
-1. Per **Concessione implicita**, selezionare le caselle di controllo per Token di **accesso** e **token ID**.
-1. Le impostazioni predefinite rimanenti per l'app sono accettabili per questa esperienza.
+1. Verificare che l' **URI** di `https://localhost:5001/authentication/login-callback` Reindirizzamento di sia presente.
+1. Per **concessione implicita**, selezionare le caselle di controllo per i token di **accesso** e i **token ID**.
+1. Per questa esperienza sono accettabili le impostazioni predefinite rimanenti per l'app.
 1. Fare clic sul pulsante **Salva**.
 
-In **Autorizzazioni API**:
+In **autorizzazioni API**:
 
-1. Verificare che l'app disponga dell'autorizzazione **Microsoft Graph** > **User.Read.**
+1. Verificare che l'app disponga **Microsoft Graph** > autorizzazione**User. Read** .
 1. Selezionare **Aggiungi un'autorizzazione** seguita da **API personali**.
-1. Selezionare *l'app API server* nella colonna **Nome** (ad esempio, ** Blazor AAD B2C**del server).
-1. Aprire l'elenco **delle API.**
-1. Abilitare l'accesso all'API, `API.Access`ad esempio ).
+1. Selezionare l' *app per le API server* dalla colonna **nome** , ** Blazor ad esempio server AAD B2C**.
+1. Aprire l'elenco di **API** .
+1. Abilitare l'accesso all'API (ad esempio, `API.Access`).
 1. Selezionare **Aggiungi autorizzazioni**.
-1. Selezionare il pulsante **Concedi il contenuto dell'amministratore per il** nome di TENANT. Selezionare **Sì** per confermare.
+1. Selezionare il pulsante **Concedi contenuto amministratore per {tenant Name}** . Selezionare **Sì** per confermare.
 
-In **Home** > **Flussi utente****B2C** > di Azure AD:
+In **Home** > **Azure ad B2C** > **flussi utente**:
 
 [Creare un flusso utente di iscrizione e accesso](/azure/active-directory-b2c/tutorial-create-user-flows)
 
-Come minimo, selezionare **l'attributo** > utente `context.User.Identity.Name` Nome `LoginDisplay` **visualizzato** attestazioni applicazione per popolare l'oggetto nel componente (*Shared/LoginDisplay.razor*).
+Selezionare almeno l'attributo utente**nome visualizzato** dell' `context.User.Identity.Name` **applicazione Claims** > per popolare nel `LoginDisplay` componente (*Shared/LoginDisplay. Razor*).
 
 Registrare le seguenti informazioni:
 
-* Registrare *l'ID applicazione dell'app* client `33333333-3333-3333-3333-333333333333`(ID client) (ad esempio, ).
-* Registrare il nome del flusso utente di iscrizione e accesso `B2C_1_signupsignin`creato per l'app, ad esempio ).
+* Registrare l'ID applicazione dell' *app client* (ID client) (ad esempio `33333333-3333-3333-3333-333333333333`,).
+* Registrare il nome del flusso utente di iscrizione e accesso creato per l'app (ad esempio, `B2C_1_signupsignin`).
 
 ### <a name="create-the-app"></a>Creare l'app
 
@@ -112,18 +115,18 @@ Sostituire i segnaposto nel comando seguente con le informazioni registrate in p
 dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{DOMAIN}" -ho -ssp "{SIGN UP OR SIGN IN POLICY}" --tenant-id "{TENANT ID}"
 ```
 
-Per specificare il percorso di output, che crea una cartella di progetto se non esiste, `-o BlazorSample`includere l'opzione di output nel comando con un percorso, ad esempio ). Il nome della cartella diventa anche parte del nome del progetto.
+Per specificare il percorso di output, che crea una cartella di progetto, se non esiste, includere l'opzione di output nel comando con un percorso (ad `-o BlazorSample`esempio,). Il nome della cartella diventa anche parte del nome del progetto.
 
 > [!NOTE]
-> Passare l'URI dell'ID app all'opzione, `app-id-uri` ma si noti che potrebbe essere necessaria una modifica alla configurazione nell'app client, descritta nella sezione Ambiti del token di [accesso.](#access-token-scopes)
+> Passare l'URI ID app all' `app-id-uri` opzione, ma si noti che potrebbe essere necessaria una modifica alla configurazione nell'app client, descritta nella sezione [ambiti dei token di accesso](#access-token-scopes) .
 
-## <a name="server-app-configuration"></a>Configurazione dell'app server
+## <a name="server-app-configuration"></a>Configurazione dell'app Server
 
-*Questa sezione riguarda l'app **Server** della soluzione.*
+*Questa sezione è relativa all'app **Server** della soluzione.*
 
 ### <a name="authentication-package"></a>Pacchetto di autenticazione
 
-Il supporto per l'autenticazione e l'autorizzazione delle chiamate `Microsoft.AspNetCore.Authentication.AzureADB2C.UI`a ASP.NET API Web principali viene fornito dal:
+Il supporto per l'autenticazione e l'autorizzazione delle chiamate a ASP.NET Core API Web viene fornito da `Microsoft.AspNetCore.Authentication.AzureADB2C.UI`:
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" 
@@ -132,17 +135,17 @@ Il supporto per l'autenticazione e l'autorizzazione delle chiamate `Microsoft.As
 
 ### <a name="authentication-service-support"></a>Supporto del servizio di autenticazione
 
-Il `AddAuthentication` metodo imposta i servizi di autenticazione all'interno dell'app e configura il gestore del bearer JWT come metodo di autenticazione predefinito. Il `AddAzureADB2CBearer` metodo imposta i parametri specifici nel gestore JWT Bearer necessari per convalidare i token generati da Azure Active Directory B2C:
+Il `AddAuthentication` metodo imposta i servizi di autenticazione all'interno dell'app e configura il gestore di JWT Bearer come metodo di autenticazione predefinito. Il `AddAzureADB2CBearer` metodo imposta i parametri specifici nel gestore di JWT Bearer necessario per convalidare i token emessi dal Azure Active Directory B2C:
 
 ```csharp
 services.AddAuthentication(AzureADB2CDefaults.BearerAuthenticationScheme)
     .AddAzureADB2CBearer(options => Configuration.Bind("AzureAdB2C", options));
 ```
 
-`UseAuthentication`e `UseAuthorization` assicurarsi che:
+`UseAuthentication`e `UseAuthorization` verificare che:
 
 * L'app tenta di analizzare e convalidare i token nelle richieste in ingresso.
-* Qualsiasi richiesta che tenti di accedere a una risorsa protetta senza credenziali appropriate ha esito negativo.
+* Eventuali richieste che tentano di accedere a una risorsa protetta senza credenziali appropriate hanno esito negativo.
 
 ```csharp
 app.UseAuthentication();
@@ -151,9 +154,9 @@ app.UseAuthorization();
 
 ### <a name="useridentityname"></a>User.Identity.Name
 
-Per impostazione `User.Identity.Name` predefinita, l'oggetto non è popolato.
+Per impostazione predefinita, `User.Identity.Name` non viene popolato.
 
-Per configurare l'app per `name` la ricezione del valore dal tipo di <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> `Startup.ConfigureServices`attestazione, configurare il [TokenValidationParameters.NameClaimType](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) di in :
+Per configurare l'app per la ricezione del valore dal `name` tipo di attestazione, configurare [TokenValidationParameters. NameClaimType](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) di <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices`:
 
 ```csharp
 services.Configure<JwtBearerOptions>(
@@ -165,7 +168,7 @@ services.Configure<JwtBearerOptions>(
 
 ### <a name="app-settings"></a>Impostazioni app
 
-Il file *appsettings.json* contiene le opzioni per configurare il gestore di connessione JWT utilizzato per convalidare i token di accesso.
+Il file *appSettings. JSON* contiene le opzioni per configurare il gestore di connessione JWT usato per convalidare i token di accesso.
 
 ```json
 {
@@ -180,10 +183,10 @@ Il file *appsettings.json* contiene le opzioni per configurare il gestore di con
 
 ### <a name="weatherforecast-controller"></a>Controller WeatherForecast
 
-Il controller WeatherForecast (*Controllers/WeatherForecastController.cs*) espone `[Authorize]` un'API protetta con l'attributo applicato al controller. È **importante** comprendere che:
+Il controller WeatherForecast (*Controllers/WeatherForecastController. cs*) espone un'API protetta con `[Authorize]` l'attributo applicato al controller. È **importante** comprendere che:
 
-* L'attributo `[Authorize]` in questo controller API è l'unica cosa che protegge questa API da accessi non autorizzati.
-* L'attributo `[Authorize]` Blazor utilizzato nell'app WebAssembly funge solo da suggerimento per l'app che l'utente deve essere autorizzato per il corretto funzionamento dell'app.
+* L' `[Authorize]` attributo in questo controller API è l'unico elemento che protegge questa API da accessi non autorizzati.
+* L' `[Authorize]` attributo usato nell' Blazor app webassembly funge solo da hint per l'app che l'utente deve essere autorizzato affinché l'app funzioni correttamente.
 
 ```csharp
 [Authorize]
@@ -201,26 +204,26 @@ public class WeatherForecastController : ControllerBase
 
 ## <a name="client-app-configuration"></a>Configurazione dell'app client
 
-*Questa sezione riguarda l'app **Client** della soluzione.*
+*Questa sezione riguarda l'app **client** della soluzione.*
 
 ### <a name="authentication-package"></a>Pacchetto di autenticazione
 
-Quando viene creata un'app per usare`IndividualB2C`un account B2C individuale ( ), l'app riceve automaticamente un riferimento al pacchetto per la libreria di [autenticazione Microsoft](/azure/active-directory/develop/msal-overview) (`Microsoft.Authentication.WebAssembly.Msal`). Il pacchetto fornisce un set di primitive che consentono all'app di autenticare gli utenti e ottenere token per chiamare API protette.
+Quando viene creata un'app per usare un singolo account B2C (`IndividualB2C`), l'app riceve automaticamente un riferimento al pacchetto per [Microsoft Authentication Library](/azure/active-directory/develop/msal-overview) (`Microsoft.Authentication.WebAssembly.Msal`). Il pacchetto fornisce un set di primitive che consentono all'app di autenticare gli utenti e ottenere i token per chiamare le API protette.
 
-Se si aggiunge l'autenticazione a un'app, aggiungi manualmente il pacchetto al file di progetto dell'app:
+Se si aggiunge l'autenticazione a un'app, aggiungere manualmente il pacchetto al file di progetto dell'app:
 
 ```xml
 <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" 
     Version="{VERSION}" />
 ```
 
-Sostituire `{VERSION}` nel riferimento al pacchetto precedente `Microsoft.AspNetCore.Blazor.Templates` con la <xref:blazor/get-started> versione del pacchetto illustrata nell'articolo.
+Sostituire `{VERSION}` nel riferimento al pacchetto precedente con la versione del `Microsoft.AspNetCore.Blazor.Templates` pacchetto illustrata nell' <xref:blazor/get-started> articolo.
 
-Il `Microsoft.Authentication.WebAssembly.Msal` pacchetto aggiunge in `Microsoft.AspNetCore.Components.WebAssembly.Authentication` modo transitivo il pacchetto all'app.
+Il `Microsoft.Authentication.WebAssembly.Msal` pacchetto aggiunge il `Microsoft.AspNetCore.Components.WebAssembly.Authentication` pacchetto all'app in modo transitivo.
 
 ### <a name="authentication-service-support"></a>Supporto del servizio di autenticazione
 
-Il supporto per l'autenticazione degli utenti `AddMsalAuthentication` viene registrato `Microsoft.Authentication.WebAssembly.Msal` nel contenitore dei servizi con il metodo di estensione fornito dal pacchetto. Questo metodo imposta tutti i servizi necessari all'app per interagire con il provider di identità (IP).
+Il supporto per l'autenticazione degli utenti viene registrato nel contenitore del servizio `AddMsalAuthentication` con il metodo di estensione `Microsoft.Authentication.WebAssembly.Msal` fornito dal pacchetto. Questo metodo configura tutti i servizi necessari per l'interazione dell'app con il provider di identità (IP).
 
 *Program.cs*:
 
@@ -236,16 +239,16 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-Il `AddMsalAuthentication` metodo accetta un callback per configurare i parametri necessari per autenticare un'app. I valori necessari per la configurazione dell'app possono essere ottenuti dalla configurazione di Azure Portal AAD quando si registra l'app.
+Il `AddMsalAuthentication` metodo accetta un callback per configurare i parametri necessari per autenticare un'app. Quando si registra l'app, è possibile ottenere i valori necessari per la configurazione dell'app dalla configurazione di AAD del portale di Azure.
 
-### <a name="access-token-scopes"></a>Ambiti dei token di accessoAccess token scopes
+### <a name="access-token-scopes"></a>Ambiti del token di accesso
 
-Gli ambiti di token di accesso predefiniti rappresentano l'elenco di ambiti di token di accesso:The default access token scopes represent the list of access token scopes that are:
+Gli ambiti dei token di accesso predefiniti rappresentano l'elenco degli ambiti dei token di accesso:
 
 * Incluso per impostazione predefinita nella richiesta di accesso.
 * Utilizzato per eseguire il provisioning di un token di accesso immediatamente dopo l'autenticazione.
 
-Tutti gli ambiti devono appartenere alla stessa app per ogni regola di Azure Active Directory.All scopes must belong to the same app per Azure Active Directory rules. È possibile aggiungere ambiti aggiuntivi per altre app API in base alle esigenze:Additional scopes can be added for additional API apps as needed:
+Tutti gli ambiti devono appartenere alla stessa app per ogni regola di Azure Active Directory. Per altre app per le API è possibile aggiungere altri ambiti, se necessario:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -256,12 +259,12 @@ builder.Services.AddMsalAuthentication(options =>
 ```
 
 > [!NOTE]
-> Se il portale di Azure fornisce un URI di ambito e **l'app genera un'eccezione non gestita** quando riceve una risposta *401 Unauthorized* dall'API, provare a usare un URI di ambito che non includa lo schema e l'host. Ad esempio, il portale di Azure può fornire uno dei seguenti formati URI di ambito:
+> Se il portale di Azure fornisce un URI di ambito e **l'app genera un'eccezione non gestita** quando riceve una risposta *401 non autorizzata* dall'API, provare a usare un URI dell'ambito che non includa lo schema e l'host. Ad esempio, il portale di Azure può fornire uno dei seguenti formati di URI di ambito:
 >
 > * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
 > * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
 >
-> Fornire l'URI dell'ambito senza lo schema e l'host:
+> Specificare l'URI dell'ambito senza lo schema e l'host:
 >
 > ```csharp
 > options.ProviderOptions.DefaultAccessTokenScopes.Add(
@@ -270,7 +273,11 @@ builder.Services.AddMsalAuthentication(options =>
 
 Per altre informazioni, vedere <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
 
-### <a name="imports-file"></a>File di importazione
+<!--
+    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
+-->
+
+### <a name="imports-file"></a>Importa file
 
 [!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
 
@@ -278,7 +285,7 @@ Per altre informazioni, vedere <xref:security/blazor/webassembly/additional-scen
 
 [!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]
 
-### <a name="app-component"></a>Componente dell'app
+### <a name="app-component"></a>Componente app
 
 [!INCLUDE[](~/includes/blazor-security/app-component.md)]
 
@@ -300,7 +307,7 @@ Per altre informazioni, vedere <xref:security/blazor/webassembly/additional-scen
 
 ## <a name="run-the-app"></a>Eseguire l'app
 
-Eseguire l'app dal progetto Server. Quando si usa Visual Studio, selezionare il progetto Server in **Esplora soluzioni** e selezionare il pulsante **Esegui** nella barra degli strumenti o avviare l'app dal menu **Debug.**
+Eseguire l'app dal progetto server. Quando si usa Visual Studio, selezionare il progetto server in **Esplora soluzioni** e selezionare il pulsante **Esegui** sulla barra degli strumenti o avviare l'app dal menu **debug** .
 
 <!-- HOLD
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
@@ -312,7 +319,7 @@ Eseguire l'app dal progetto Server. Quando si usa Visual Studio, selezionare il 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Richiedere token di accesso aggiuntiviRequest additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* <xref:security/blazor/webassembly/additional-scenarios>
 * <xref:security/authentication/azure-ad-b2c>
 * [Esercitazione: Creare un tenant di Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-create-tenant)
 * [Documentazione di Microsoft Identity Platform](/azure/active-directory/develop/)

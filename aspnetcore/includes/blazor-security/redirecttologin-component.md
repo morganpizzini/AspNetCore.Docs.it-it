@@ -1,4 +1,4 @@
-Il componente `RedirectToLogin` (*Shared/RedirectToLogin. Razor*):
+Il `RedirectToLogin` componente (*Shared/RedirectToLogin. Razor*):
 
 * Gestisce il reindirizzamento degli utenti non autorizzati alla pagina di accesso.
 * Conserva l'URL corrente a cui l'utente sta tentando di accedere, in modo che possano essere restituiti a tale pagina se l'autenticazione ha esito positivo.
@@ -9,7 +9,8 @@ Il componente `RedirectToLogin` (*Shared/RedirectToLogin. Razor*):
 @code {
     protected override void OnInitialized()
     {
-        Navigation.NavigateTo($"authentication/login?returnUrl={Navigation.Uri}");
+        Navigation.NavigateTo(
+            $"authentication/login?returnUrl={Uri.EscapeDataString(Navigation.Uri)}");
     }
 }
 ```
