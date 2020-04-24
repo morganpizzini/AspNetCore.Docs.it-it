@@ -1,6 +1,6 @@
 ## <a name="usermanager-and-signinmanager"></a>UserManager e SignInManager
 
-Impostare il tipo di attestazione dell'identificatore utente quando un'app Server richiede:Set the user identifier claim type when a Server app requires:
+Impostare il tipo di attestazione dell'identificatore utente quando un'app Server richiede:
 
 * <xref:Microsoft.AspNetCore.Identity.UserManager%601>o <xref:Microsoft.AspNetCore.Identity.SignInManager%601> in un endpoint API.
 * <xref:Microsoft.AspNetCore.Identity.IdentityUser>dettagli, ad esempio il nome dell'utente, l'indirizzo di posta elettronica o l'ora di fine del blocco.
@@ -12,7 +12,7 @@ services.Configure<IdentityOptions>(options =>
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 ```
 
-Di `WeatherForecastController` seguito <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> viene `Get` registrato il quando viene chiamato il metodo:
+Il codice `WeatherForecastController` seguente registra <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> quando viene `Get` chiamato il metodo:
 
 ```csharp
 using System;
@@ -23,10 +23,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using BlazorAppIdentityServer.Server.Models;
-using BlazorAppIdentityServer.Shared;
+using {APP NAMESPACE}.Server.Models;
+using {APP NAMESPACE}.Shared;
 
-namespace BlazorAppIdentityServer.Server.Controllers
+namespace {APP NAMESPACE}.Server.Controllers
 {
     [Authorize]
     [ApiController]

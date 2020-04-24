@@ -1,8 +1,8 @@
-La pagina prodotta dal componente `Authentication` (*pages/Authentication. Razor*) definisce le route necessarie per la gestione di diverse fasi di autenticazione.
+La pagina prodotta dal `Authentication` componente (*pages/Authentication. Razor*) definisce le route necessarie per la gestione di diverse fasi di autenticazione.
 
-Componente `RemoteAuthenticatorView`:
+Il `RemoteAuthenticatorView` componente:
 
-* Viene fornito dal pacchetto di `Microsoft.AspNetCore.Components.WebAssembly.Authentication`.
+* Viene fornito dal pacchetto [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) .
 * Gestisce l'esecuzione delle azioni appropriate in ogni fase dell'autenticazione.
 
 ```razor

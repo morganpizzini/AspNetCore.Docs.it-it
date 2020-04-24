@@ -5,17 +5,17 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
-ms.openlocfilehash: 45ef1e6599777a38da7db753a8868028f3134f4b
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: b156954b4062c773d1ba5103b435c1429680ac16
+ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82110980"
+ms.locfileid: "82138501"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Proteggere un'app Blazor ospitata ASP.NET Core webassembly con Azure Active Directory B2C
 
@@ -24,9 +24,6 @@ Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https:/
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> Le indicazioni fornite in questo articolo si applicano a ASP.NET Core 3,2 Preview 4. Questo argomento verrà aggiornato per coprire l'anteprima 5 il venerdì 24 aprile.
 
 Questo articolo descrive come creare un' Blazor app webassembly autonoma che usa [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) per l'autenticazione.
 
@@ -130,7 +127,7 @@ Il supporto per l'autenticazione e l'autorizzazione delle chiamate a ASP.NET Cor
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" 
-    Version="3.1.0" />
+    Version="{VERSION}" />
 ```
 
 ### <a name="authentication-service-support"></a>Supporto del servizio di autenticazione
@@ -174,9 +171,22 @@ Il file *appSettings. JSON* contiene le opzioni per configurare il gestore di co
 {
   "AzureAd": {
     "Instance": "https://{ORGANIZATION}.b2clogin.com/",
-    "ClientId": "{API CLIENT ID}",
+    "ClientId": "{SERVER API APP CLIENT ID}",
     "Domain": "{DOMAIN}",
     "SignUpSignInPolicyId": "{SIGN UP OR SIGN IN POLICY}"
+  }
+}
+```
+
+Esempio:
+
+```json
+{
+  "AzureAd": {
+    "Instance": "https://contoso.b2clogin.com/",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "Domain": "contoso.onmicrosoft.com",
+    "SignUpSignInPolicyId": "B2C_1_signupsignin1",
   }
 }
 ```
@@ -223,6 +233,19 @@ Il `Microsoft.Authentication.WebAssembly.Msal` pacchetto aggiunge il `Microsoft.
 
 ### <a name="authentication-service-support"></a>Supporto del servizio di autenticazione
 
+Viene aggiunto `HttpClient` il supporto per le istanze di che includono token di accesso quando si effettuano richieste al progetto server.
+
+*Program.cs*:
+
+```csharp
+builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
+        client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+
+builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+```
+
 Il supporto per l'autenticazione degli utenti viene registrato nel contenitore del servizio `AddMsalAuthentication` con il metodo di estensione `Microsoft.Authentication.WebAssembly.Msal` fornito dal pacchetto. Questo metodo configura tutti i servizi necessari per l'interazione dell'app con il provider di identità (IP).
 
 *Program.cs*:
@@ -233,13 +256,39 @@ builder.Services.AddMsalAuthentication(options =>
     var authentication = options.ProviderOptions.Authentication;
     authentication.Authority = 
         "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}";
-    authentication.ClientId = "{CLIENT ID}";
+    authentication.ClientId = "{CLIENT APP CLIENT ID}";
     authentication.ValidateAuthority = false;
+
+    builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
     options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
 });
 ```
 
 Il `AddMsalAuthentication` metodo accetta un callback per configurare i parametri necessari per autenticare un'app. Quando si registra l'app, è possibile ottenere i valori necessari per la configurazione dell'app dalla configurazione di AAD del portale di Azure.
+
+La configurazione viene fornita dal file *wwwroot/appSettings. JSON* :
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
+    "ClientId": "{CLIENT APP CLIENT ID}",
+    "ValidateAuthority": false
+  }
+}
+```
+
+Esempio:
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "https://contoso.b2clogin.com/contoso.onmicrosoft.com/B2C_1_signupsignin1",
+    "ClientId": "4369008b-21fa-427c-abaa-9b53bf58e538",
+    "ValidateAuthority": false
+  }
+}
+```
 
 ### <a name="access-token-scopes"></a>Ambiti del token di accesso
 
@@ -271,11 +320,11 @@ builder.Services.AddMsalAuthentication(options =>
 >     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
 > ```
 
-Per altre informazioni, vedere <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+Per ulteriori informazioni, vedere le sezioni seguenti dell'articolo *scenari aggiuntivi* :
 
-<!--
-    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
--->
+* [Richiedere token di accesso aggiuntivi](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Connetti token alle richieste in uscita](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+
 
 ### <a name="imports-file"></a>Importa file
 

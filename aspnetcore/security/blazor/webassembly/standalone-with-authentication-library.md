@@ -5,17 +5,17 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: 043e4548ad6f40fdf1e6c27cd51946c7bf59a66e
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: 25aa7761b9c1acc72081653422e80cb004500573
+ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82110948"
+ms.locfileid: "82138521"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-the-authentication-library"></a>Proteggere un'app Blazor ASP.NET Core webassembly autonoma con la libreria di autenticazione
 
@@ -24,9 +24,6 @@ Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https:/
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> Le indicazioni fornite in questo articolo si applicano a ASP.NET Core 3,2 Preview 4. Questo argomento verrà aggiornato per coprire l'anteprima 5 il venerdì 24 aprile.
 
 *Per Azure Active Directory (AAD) e Azure Active Directory B2C (AAD B2C), non seguire le istruzioni riportate in questo argomento. Vedere gli argomenti di AAD e AAD B2C in questo nodo Sommario.*
 
@@ -63,16 +60,26 @@ Il supporto per l'autenticazione degli utenti viene registrato nel contenitore d
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
 {
-    options.ProviderOptions.Authority = "{AUTHORITY}";
-    options.ProviderOptions.ClientId = "{CLIENT ID}";
+    builder.Configuration.Bind("Local", options.ProviderOptions);
 });
+```
+
+La configurazione viene fornita dal file *wwwroot/appSettings. JSON* :
+
+```json
+{
+    "Local": {
+        "Authority": "{AUTHORITY}",
+        "ClientId": "{CLIENT ID}"
+    }
+}
 ```
 
 Il supporto per l'autenticazione per le app autonome è disponibile con Open ID Connect (OIDC). Il `AddOidcAuthentication` metodo accetta un callback per configurare i parametri necessari per autenticare un'app usando OIDC. I valori necessari per la configurazione dell'app possono essere ottenuti dall'IP conforme a OIDC. Ottenere i valori quando si registra l'app, che in genere si verifica nel portale online.
 
 ## <a name="access-token-scopes"></a>Ambiti del token di accesso
 
-Il Blazor modello webassembly non configura automaticamente l'app per richiedere un token di accesso per un'API protetta. Per eseguire il provisioning di un token come parte del flusso di accesso, aggiungere l'ambito agli ambiti dei token `OidcProviderOptions`predefiniti di:
+Il Blazor modello webassembly non configura automaticamente l'app per richiedere un token di accesso per un'API protetta. Per eseguire il provisioning di un token di accesso come parte del flusso di accesso, aggiungere l'ambito agli ambiti dei `OidcProviderOptions`token predefiniti di:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -95,11 +102,10 @@ builder.Services.AddOidcAuthentication(options =>
 >     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
 > ```
 
-Per altre informazioni, vedere <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+Per ulteriori informazioni, vedere le sezioni seguenti dell'articolo *scenari aggiuntivi* :
 
-<!--
-    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
--->
+* [Richiedere token di accesso aggiuntivi](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Connetti token alle richieste in uscita](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 
 ## <a name="imports-file"></a>Importa file
 
@@ -130,4 +136,3 @@ Per altre informazioni, vedere <xref:security/blazor/webassembly/additional-scen
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:security/blazor/webassembly/additional-scenarios>
- 

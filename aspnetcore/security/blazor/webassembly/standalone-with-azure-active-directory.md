@@ -5,17 +5,17 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: 71229f41f3f1021aa9ad02402af21de51d7eeee4
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: 4c5fc6a07ce52ee9560cd2aa0c7dbc3032522f00
+ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82111201"
+ms.locfileid: "82138461"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-azure-active-directory"></a>Proteggere un'app Blazor ASP.NET Core webassembly autonoma con Azure Active Directory
 
@@ -24,9 +24,6 @@ Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https:/
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> Le indicazioni fornite in questo articolo si applicano a ASP.NET Core 3,2 Preview 4. Questo argomento verrà aggiornato per coprire l'anteprima 5 il venerdì 24 aprile.
 
 Per creare un' Blazor app webassembly autonoma che usa [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) per l'autenticazione:
 
@@ -84,17 +81,37 @@ Il supporto per l'autenticazione degli utenti viene registrato nel contenitore d
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
-    var authentication = options.ProviderOptions.Authentication;
-    authentication.Authority = "https://login.microsoftonline.com/{TENANT ID}";
-    authentication.ClientId = "{CLIENT ID}";
+    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 });
 ```
 
-Il `AddMsalAuthentication` metodo accetta un callback per configurare i parametri necessari per autenticare un'app. Quando si registra l'app, è possibile ottenere i valori necessari per la configurazione dell'app dalla configurazione di AAD del portale di Azure.
+Il `AddMsalAuthentication` metodo accetta un callback per configurare i parametri necessari per autenticare un'app. Quando si registra l'app, è possibile ottenere i valori necessari per la configurazione dell'app dalla configurazione degli account Microsoft.
+
+La configurazione viene fornita dal file *wwwroot/appSettings. JSON* :
+
+```json
+{
+    "AzureAd": {
+        "Authority": "https://login.microsoftonline.com/{TENANT ID}",
+        "ClientId": "{CLIENT ID}"
+    }
+}
+```
+
+Esempio:
+
+```json
+{
+    "AzureAd": {
+        "Authority": "https://login.microsoftonline.com/e86c78e2-...-918e0565a45e",
+        "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
+    }
+}
+```
 
 ## <a name="access-token-scopes"></a>Ambiti del token di accesso
 
-Il Blazor modello webassembly non configura automaticamente l'app per richiedere un token di accesso per un'API protetta. Per eseguire il provisioning di un token come parte del flusso di accesso, aggiungere l'ambito agli ambiti dei token di `MsalProviderOptions`accesso predefiniti di:
+Il Blazor modello webassembly non configura automaticamente l'app per richiedere un token di accesso per un'API protetta. Per eseguire il provisioning di un token di accesso come parte del flusso di accesso, aggiungere l'ambito agli ambiti dei token `MsalProviderOptions`di accesso predefiniti di:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -117,11 +134,10 @@ builder.Services.AddMsalAuthentication(options =>
 >     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
 > ```
 
-Per altre informazioni, vedere <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+Per ulteriori informazioni, vedere le sezioni seguenti dell'articolo *scenari aggiuntivi* :
 
-<!--
-    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
--->
+* [Richiedere token di accesso aggiuntivi](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Connetti token alle richieste in uscita](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 
 ## <a name="imports-file"></a>Importa file
 

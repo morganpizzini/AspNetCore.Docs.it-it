@@ -5,17 +5,17 @@ description: Informazioni su come proteggere Blazor le app WebAssemlby come appl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2020
+ms.date: 04/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/index
-ms.openlocfilehash: dba70afdb7a0a50da7ded38437860b52d2ce5f88
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: c096419f4866ea2f1db135594c4b88c89c7c90d1
+ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82110896"
+ms.locfileid: "82138417"
 ---
 # <a name="secure-aspnet-core-opno-locblazor-webassembly"></a>Sicurezza ASP.NET Core Blazor webassembly
 
@@ -24,9 +24,6 @@ Di [Javier Calvarro Nelson](https://github.com/javiercn)
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> Le indicazioni fornite in questo articolo si applicano a ASP.NET Core 3,2 Preview 4. Questo argomento verrà aggiornato per coprire l'anteprima 5 il venerdì 24 aprile.
 
 BlazorLe app webassembly sono protette in modo analogo alle applicazioni a pagina singola (Spa). Esistono diversi approcci per l'autenticazione degli utenti in Spa, ma l'approccio più comune e completo consiste nell'usare un'implementazione basata sul [protocollo OAuth 2,0](https://oauth.net/), ad esempio [Open ID Connect (OIDC)](https://openid.net/connect/).
 

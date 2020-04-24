@@ -5,17 +5,17 @@ description: Per creare una nuova Blazor app ospitata con autenticazione da Visu
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2020
+ms.date: 04/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: f8de07e2e21ca19b5c4e95839e7b7e621c335ad0
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: ffdcd30ae9ce5350113569a500e99cf8db82ad65
+ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82110947"
+ms.locfileid: "82138606"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-identity-server"></a>Proteggere un'app Blazor ospitata in un ASP.NET Core webassembly con Identity Server
 
@@ -24,9 +24,6 @@ Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https:/
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> Le indicazioni fornite in questo articolo si applicano a ASP.NET Core 3,2 Preview 4. Questo argomento verrà aggiornato per coprire l'anteprima 5 il venerdì 24 aprile.
 
 Per creare una nuova Blazor app ospitata in Visual Studio che usa [IdentityServer](https://identityserver.io/) per autenticare gli utenti e le chiamate API:
 
@@ -58,9 +55,11 @@ La `Startup` classe presenta le aggiunte seguenti:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+        options.UseSqlite(
+            Configuration.GetConnectionString("DefaultConnection")));
 
-    services.AddDefaultIdentity<ApplicationUser>()
+    services.AddDefaultIdentity<ApplicationUser>(options => 
+            options.SignIn.RequireConfirmedAccount = true)
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
@@ -90,6 +89,13 @@ La `Startup` classe presenta le aggiunte seguenti:
 
     ```csharp
     app.UseIdentityServer();
+    ```
+
+  * Middleware di autenticazione e autorizzazione:
+
+    ```csharp
+    app.UseAuthentication();
+    app.UseAuthorization();
     ```
 
 ### <a name="addapiauthorization"></a>AddApiAuthorization
@@ -124,19 +130,9 @@ Nel file di impostazioni dell'app (*appSettings. JSON*) nella radice del progett
 ```json
 "IdentityServer": {
   "Clients": {
-    "BlazorApplicationWithAuthentication.Client": {
+    "{APP ASSEMBLY}.Client": {
       "Profile": "IdentityServerSPA"
     }
-  }
-}
-```
-
-Nel file di impostazioni dell'app dell'ambiente di sviluppo (*appSettings. Development. JSON*) nella radice del progetto, la `IdentityServer` sezione descrive la chiave usata per firmare i token. <!-- When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section. -->
-
-```json
-"IdentityServer": {
-  "Key": {
-    "Type": "Development"
   }
 }
 ```
