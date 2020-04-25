@@ -39,5 +39,3 @@ Se la richiesta non è riuscita perché non è stato possibile eseguire il provi
     }
 }
 ```
-
-Per altre informazioni, vedere [salvare lo stato dell'app prima di un'operazione di autenticazione](xref:security/blazor/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation).
