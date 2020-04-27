@@ -1,60 +1,60 @@
 ---
-title: Integra ASP.NET componenti di base di Razor in pagine Razor e app MVC
+title: Integrare ASP.NET Core componenti Razor in app Razor Pages e MVC
 author: guardrex
-description: Informazioni sugli scenari di associazione Blazor dati per i componenti e gli elementi DOM nelle app.
+description: Informazioni sugli scenari di data binding per i componenti e gli Blazor elementi DOM nelle app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/14/2020
+ms.date: 04/25/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/integrate-components
-ms.openlocfilehash: c242fbef70d289929d5c005abc0aa431619862b3
-ms.sourcegitcommit: f29a12486313e38e0163a643d8a97c8cecc7e871
+ms.openlocfilehash: 282f96a4198d20b7fa38c186721b48ace5219ca6
+ms.sourcegitcommit: c6f5ea6397af2dd202632cf2be66fc30f3357bcc
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81383963"
+ms.lasthandoff: 04/26/2020
+ms.locfileid: "82159606"
 ---
-# <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integra ASP.NET componenti di base di Razor in pagine Razor e app MVC
+# <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integrare ASP.NET Core componenti Razor in app Razor Pages e MVC
 
 Di [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
 
-I componenti Razor possono essere integrati nelle pagine Razor e nelle app MVC. Quando viene eseguito il rendering della pagina o della vista, è possibile eseguire il prerendering dei componenti contemporaneamente.
+I componenti Razor possono essere integrati nelle app Razor Pages e MVC. Quando viene eseguito il rendering della pagina o della vista, è possibile eseguire il rendering dei componenti contemporaneamente.
 
-Dopo [aver preparato l'app,](#prepare-the-app)usa le indicazioni riportate nelle sezioni seguenti a seconda dei requisiti dell'app:
+Dopo aver [preparato l'app](#prepare-the-app), usare le istruzioni riportate nelle sezioni seguenti a seconda dei requisiti dell'app:
 
-* Componenti &ndash; instradabili Per i componenti instradabili direttamente dalle richieste dell'utente. Seguire queste indicazioni quando i visitatori devono essere in grado di [`@page`](xref:mvc/views/razor#page) effettuare una richiesta HTTP nel browser per un componente con una direttiva.
+* Componenti &ndash; instradabili per i componenti che sono direttamente instradabili dalle richieste degli utenti. Seguire queste linee guida quando i visitatori devono essere in grado di effettuare una richiesta HTTP nel browser per un componente [`@page`](xref:mvc/views/razor#page) con una direttiva.
   * [Usare componenti instradabili in un'app Razor Pages](#use-routable-components-in-a-razor-pages-app)
-  * [Usare componenti instradabili in un'app MVCUse routable components in an MVC app](#use-routable-components-in-an-mvc-app)
-* [Rendering di componenti da una pagina o una vista](#render-components-from-a-page-or-view) &ndash; Per i componenti che non sono direttamente instradabili dalle richieste dell'utente. Seguire queste indicazioni quando l'app incorpora componenti in pagine e visualizzazioni esistenti con [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+  * [Usare componenti instradabili in un'app MVC](#use-routable-components-in-an-mvc-app)
+* [Esegue il rendering dei componenti da una pagina o da una vista](#render-components-from-a-page-or-view) &ndash; per i componenti che non sono direttamente instradabili dalle richieste degli utenti. Seguire queste linee guida quando l'app incorpora i componenti in pagine e visualizzazioni esistenti con l' [Helper tag dei componenti](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 ## <a name="prepare-the-app"></a>Preparare l'app
 
-Un'app Razor Pages o MVC esistente può integrare i componenti Razor nelle pagine e nelle visualizzazioni:An existing Razor Pages or MVC app can integrate Razor components into pages and views:
+Un'app Razor Pages o MVC esistente può integrare i componenti Razor in pagine e visualizzazioni:
 
-1. Nel file di layout dell'app (*_Layout.cshtml*):
+1. Nel file di layout dell'app (*_Layout. cshtml*):
 
-   * Aggiungere il `<base>` seguente `<head>` tag all'elemento:
+   * Aggiungere il tag `<base>` seguente all' `<head>` elemento:
 
      ```html
      <base href="~/" />
      ```
 
-     Il `href` valore *(percorso di base dell'app*) nell'esempio precedente presuppone che`/`l'app si trovi nel percorso dell'URL radice ( ). Se l'app è un'applicazione secondaria, seguire le indicazioni <xref:host-and-deploy/blazor/index#app-base-path> nella sezione Percorso di *base* dell'app dell'articolo.
+     Il `href` valore (il *percorso di base dell'app*) nell'esempio precedente presuppone che l'app si trovi nel percorso URL radice (`/`). Se l'app è un'applicazione secondaria, seguire le istruzioni nella sezione *percorso di base* dell'applicazione dell' <xref:host-and-deploy/blazor/index#app-base-path> articolo.
 
-     Il file *_Layout.cshtml* si trova nella cartella *Pages/Shared* in un'app Razor Pages o nella cartella *Views/Shared* in un'app MVC.
+     Il file *_Layout. cshtml* si trova nella cartella *pages/Shared* in un'app Razor Pages o in una cartella *Views/Shared* in un'app MVC.
 
-   * Aggiungere `<script>` un tag per lo script *blazor.server.js* immediatamente prima del tag di chiusura: `</body>`
+   * Aggiungere un `<script>` tag per lo script *blazer. Server. js* immediatamente prima del tag di `</body>` chiusura:
 
      ```html
      <script src="_framework/blazor.server.js"></script>
      ```
 
-     Il framework aggiunge lo script *blazor.server.js* all'app. Non è necessario aggiungere manualmente lo script all'app.
+     Il Framework aggiunge lo script *blazer. Server. js* all'app. Non è necessario aggiungere manualmente lo script all'app.
 
-1. Aggiungere un file *_Imports.razor* alla cartella radice del progetto con il `MyAppNamespace`contenuto seguente (modificare l'ultimo spazio dei nomi, , , nello spazio dei nomi dell'app):
+1. Aggiungere un file *_Imports. Razor* alla cartella radice del progetto con il contenuto seguente (modificare l'ultimo spazio dei nomi, `MyAppNamespace`, nello spazio dei nomi dell'app):
 
    ```razor
    @using System.Net.Http
@@ -67,29 +67,29 @@ Un'app Razor Pages o MVC esistente può integrare i componenti Razor nelle pagin
    @using MyAppNamespace
    ```
 
-1. In `Startup.ConfigureServices`, registrare il servizio Blazor Server:
+1. In `Startup.ConfigureServices`registrare il servizio Server Blazer:
 
    ```csharp
    services.AddServerSideBlazor();
    ```
 
-1. In `Startup.Configure`, aggiungere l'endpoint Blazor Hub a `app.UseEndpoints`:
+1. In `Startup.Configure`aggiungere l'endpoint dell'hub blazer a `app.UseEndpoints`:
 
    ```csharp
    endpoints.MapBlazorHub();
    ```
 
-1. Integrare i componenti in qualsiasi pagina o vista. Per ulteriori informazioni, vedere la sezione [Rendering di componenti da una pagina o vista.](#render-components-from-a-page-or-view)
+1. Integrare i componenti in qualsiasi pagina o visualizzazione. Per ulteriori informazioni, vedere la sezione [rendering dei componenti da una pagina o vista](#render-components-from-a-page-or-view) .
 
 ## <a name="use-routable-components-in-a-razor-pages-app"></a>Usare componenti instradabili in un'app Razor Pages
 
-*Questa sezione riguarda l'aggiunta di componenti instradabili direttamente dalle richieste dell'utente.*
+*Questa sezione riguarda l'aggiunta di componenti che sono direttamente instradabili dalle richieste degli utenti.*
 
-Per supportare i componenti Razor instradabili nelle app Razor Pages:
+Per supportare componenti Razor instradabili nelle app Razor Pages:
 
-1. Seguire le istruzioni nella sezione [Preparare l'app.](#prepare-the-app)
+1. Seguire le istruzioni nella sezione [preparare l'app](#prepare-the-app) .
 
-1. Aggiungere un file App.razor alla radice del progetto con il contenuto seguente:Add an *App.razor* file to the project root with the following content:
+1. Aggiungere un file *app. Razor* alla radice del progetto con il contenuto seguente:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -105,7 +105,7 @@ Per supportare i componenti Razor instradabili nelle app Razor Pages:
    </Router>
    ```
 
-1. Aggiungere un file *_Host.cshtml* alla cartella *Pages* con il contenuto seguente:
+1. Aggiungere un file *_Host. cshtml* alla cartella *pages* con il contenuto seguente:
 
    ```cshtml
    @page "/blazor"
@@ -118,22 +118,22 @@ Per supportare i componenti Razor instradabili nelle app Razor Pages:
    </app>
    ```
 
-   I componenti utilizzano il file *condiviso _Layout.cshtml* per il layout.
+   I componenti usano il file Shared *_Layout. cshtml* per il layout.
 
-   <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>configura se `App` il componente:
+   <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>Configura se il `App` componente:
 
-   * Viene eseguito il prerendering nella pagina.
-   * Viene eseguito il rendering come HTML statico nella pagina o se include le informazioni necessarie per eseguire il bootstrap di un'app Blazor dall'agente utente.
+   * Viene preeseguito nella pagina.
+   * Viene visualizzato come HTML statico nella pagina o se include le informazioni necessarie per eseguire il bootstrap di un'app Blazer dall'agente utente.
 
    | Modalità di rendering | Descrizione |
    | ----------- | ----------- |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue `App` il rendering del componente in HTML statico e include un marcatore per un'app Blazor Server. Quando l'agente utente viene avviato, questo marcatore viene utilizzato per eseguire il bootstrap di un'app Blazor.When the user-agent starts, this marker is used to bootstrap a Blazor app. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un'app Blazor Server. L'output `App` del componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene utilizzato per eseguire il bootstrap di un'app Blazor.When the user-agent starts, this marker is used to bootstrap a Blazor app. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Esegue `App` il rendering del componente in codice HTML statico. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering `App` del componente in HTML statico e include un marcatore per un'app del server blazer. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un'app blazer. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un'app del server blazer. L' `App` output del componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un'app blazer. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Esegue il rendering `App` del componente in HTML statico. |
 
-   Per ulteriori informazioni sull'helper <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>tag componente, vedere .
+   Per ulteriori informazioni sull'helper tag dei componenti, vedere <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-1. Aggiungere una route con priorità bassa per la pagina `Startup.Configure` *_Host.cshtml* alla configurazione dell'endpoint in:
+1. Aggiungere una route con priorità bassa per la pagina *_Host. cshtml* alla configurazione dell'endpoint `Startup.Configure`in:
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -154,17 +154,17 @@ Per supportare i componenti Razor instradabili nelle app Razor Pages:
    ...
    ```
 
-Per altre informazioni sugli spazi dei nomi, vedere la sezione [Spazi dei nomi dei](#component-namespaces) componenti.
+Per ulteriori informazioni sugli spazi dei nomi, vedere la sezione relativa agli [spazi dei nomi dei componenti](#component-namespaces) .
 
-## <a name="use-routable-components-in-an-mvc-app"></a>Usare componenti instradabili in un'app MVCUse routable components in an MVC app
+## <a name="use-routable-components-in-an-mvc-app"></a>Usare componenti instradabili in un'app MVC
 
-*Questa sezione riguarda l'aggiunta di componenti instradabili direttamente dalle richieste dell'utente.*
+*Questa sezione riguarda l'aggiunta di componenti che sono direttamente instradabili dalle richieste degli utenti.*
 
 Per supportare i componenti Razor instradabili nelle app MVC:
 
-1. Seguire le istruzioni nella sezione [Preparare l'app.](#prepare-the-app)
+1. Seguire le istruzioni nella sezione [preparare l'app](#prepare-the-app) .
 
-1. Aggiungere un file *App.razor* alla radice del progetto con il contenuto seguente:
+1. Aggiungere un file *app. Razor* alla radice del progetto con il contenuto seguente:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -180,7 +180,7 @@ Per supportare i componenti Razor instradabili nelle app MVC:
    </Router>
    ```
 
-1. Aggiungere un file *_Host.cshtml* alla cartella *Views/Home* con il contenuto seguente:
+1. Aggiungere un file *_Host. cshtml* alla cartella *views/Home* con il contenuto seguente:
 
    ```cshtml
    @{
@@ -192,22 +192,22 @@ Per supportare i componenti Razor instradabili nelle app MVC:
    </app>
    ```
 
-   I componenti utilizzano il file *condiviso _Layout.cshtml* per il layout.
+   I componenti usano il file Shared *_Layout. cshtml* per il layout.
    
-   <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>configura se `App` il componente:
+   <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>Configura se il `App` componente:
 
-   * Viene eseguito il prerendering nella pagina.
-   * Viene eseguito il rendering come HTML statico nella pagina o se include le informazioni necessarie per eseguire il bootstrap di un'app Blazor dall'agente utente.
+   * Viene preeseguito nella pagina.
+   * Viene visualizzato come HTML statico nella pagina o se include le informazioni necessarie per eseguire il bootstrap di un'app Blazer dall'agente utente.
 
    | Modalità di rendering | Descrizione |
    | ----------- | ----------- |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue `App` il rendering del componente in Blazor codice HTML statico e include un marcatore per un'app Server. Quando l'agente utente viene avviato, Blazor questo marcatore viene usato per eseguire il bootstrap di un'app. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering Blazor di un marcatore per un'app Server. L'output `App` del componente non è incluso. Quando l'agente utente viene avviato, Blazor questo marcatore viene usato per eseguire il bootstrap di un'app. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Esegue `App` il rendering del componente in codice HTML statico. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering `App` del componente in HTML statico e include un marcatore Blazor per un'app Server. Quando l'agente utente viene avviato, questo marcatore viene usato per il Blazor bootstrap di un'app. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un' Blazor app Server. L' `App` output del componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il Blazor bootstrap di un'app. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Esegue il rendering `App` del componente in HTML statico. |
 
-   Per ulteriori informazioni sull'helper <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>tag componente, vedere .
+   Per ulteriori informazioni sull'helper tag dei componenti, vedere <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-1. Aggiungere un'azione al controller Home:Add an action to the Home controller:
+1. Aggiungere un'azione al controller Home:
 
    ```csharp
    public IActionResult Blazor()
@@ -216,7 +216,7 @@ Per supportare i componenti Razor instradabili nelle app MVC:
    }
    ```
 
-1. Aggiungere una route con priorità bassa per l'azione del controller che `Startup.Configure`restituisce la visualizzazione *_Host.cshtml* alla configurazione dell'endpoint in:
+1. Aggiungere una route con priorità bassa per l'azione del controller che restituisce la vista *_Host. cshtml* alla configurazione dell'endpoint `Startup.Configure`in:
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -227,7 +227,7 @@ Per supportare i componenti Razor instradabili nelle app MVC:
    });
    ```
 
-1. Creare una cartella *Pages* e aggiungere componenti instradabili all'app. Ad esempio:
+1. Creare una cartella *pages* e aggiungere componenti instradabili all'app. Ad esempio:
 
    ```razor
    @page "/counter"
@@ -237,31 +237,74 @@ Per supportare i componenti Razor instradabili nelle app MVC:
    ...
    ```
 
-Per altre informazioni sugli spazi dei nomi, vedere la sezione [Spazi dei nomi dei](#component-namespaces) componenti.
+Per ulteriori informazioni sugli spazi dei nomi, vedere la sezione relativa agli [spazi dei nomi dei componenti](#component-namespaces) .
 
-## <a name="render-components-from-a-page-or-view"></a>Rendering di componenti da una pagina o una visualizzazione
+## <a name="render-components-from-a-page-or-view"></a>Eseguire il rendering dei componenti da una pagina o da una vista
 
-*Questa sezione riguarda l'aggiunta di componenti a pagine o viste, in cui i componenti non sono instradabili direttamente dalle richieste degli utenti.*
+*Questa sezione riguarda l'aggiunta di componenti a pagine o viste, in cui i componenti non sono direttamente instradabili dalle richieste degli utenti.*
 
-Per eseguire il rendering di un componente da una pagina o da una vista, utilizzate [l'helper tag componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+Per eseguire il rendering di un componente da una pagina o da una vista, usare l' [Helper Tag Component](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
-Per altre informazioni su come viene eseguito `Component` il rendering dei componenti, sullo stato dei componenti e su Tag Helper, vedere gli articoli seguenti:For more information on how components are rendered, component state, and the Tag Helper, see the following articles:
+### <a name="render-stateful-interactive-components"></a>Eseguire il rendering di componenti interattivi con stato
 
-* <xref:blazor/hosting-models>
-* <xref:blazor/hosting-model-configuration>
-* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+I componenti interattivi con stato possono essere aggiunti a una pagina o a una visualizzazione Razor.
 
-## <a name="component-namespaces"></a>Spazi dei nomi dei componentiComponent namespaces
+Quando viene eseguito il rendering della pagina o della visualizzazione:
 
-Quando usi una cartella personalizzata per contenere i componenti dell'app, aggiungi lo spazio dei nomi che rappresenta la cartella alla pagina/visualizzazione o al file *_ViewImports.cshtml.* Nell'esempio seguente:
+* Il componente viene preeseguito con la pagina o la visualizzazione.
+* Lo stato iniziale del componente utilizzato per il prerendering viene perso.
+* Quando viene stabilita la connessione, SignalR viene creato il nuovo stato del componente.
+
+La pagina Razor seguente esegue il rendering `Counter` di un componente:
+
+```cshtml
+<h1>My Razor Page</h1>
+
+<component type="typeof(Counter)" render-mode="ServerPrerendered" 
+    param-InitialValue="InitialValue" />
+
+@functions {
+    [BindProperty(SupportsGet=true)]
+    public int InitialValue { get; set; }
+}
+```
+
+Per altre informazioni, vedere <xref:xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
+### <a name="render-noninteractive-components"></a>Eseguire il rendering di componenti non interattivi
+
+Nella pagina Razor seguente il `Counter` componente viene sottoposto a rendering statico con un valore iniziale specificato usando un modulo. Poiché il componente viene sottoposto a rendering statico, il componente non è interattivo:
+
+```cshtml
+<h1>My Razor Page</h1>
+
+<form>
+    <input type="number" asp-for="InitialValue" />
+    <button type="submit">Set initial value</button>
+</form>
+
+<component type="typeof(Counter)" render-mode="Static" 
+    param-InitialValue="InitialValue" />
+
+@functions {
+    [BindProperty(SupportsGet=true)]
+    public int InitialValue { get; set; }
+}
+```
+
+Per altre informazioni, vedere <xref:xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
+## <a name="component-namespaces"></a>Spazi dei nomi dei componenti
+
+Quando si usa una cartella personalizzata per archiviare i componenti dell'app, aggiungere lo spazio dei nomi che rappresenta la cartella alla pagina/visualizzazione o al file *_ViewImports. cshtml* . Nell'esempio seguente:
 
 * Passare `MyAppNamespace` allo spazio dei nomi dell'app.
-* Se una cartella denominata *Componenti* non viene `Components` utilizzata per contenere i componenti, passare alla cartella in cui risiedono i componenti.
+* Se una cartella denominata *Components* non viene utilizzata per conservare i componenti `Components` , passare alla cartella in cui si trovano i componenti.
 
 ```cshtml
 @using MyAppNamespace.Components
 ```
 
-Il file *_ViewImports.cshtml* si trova nella cartella *Pages* di un'app Razor Pages o nella cartella *Views* di un'app MVC.
+Il file *_ViewImports. cshtml* si trova nella cartella *pagine* di un'app Razor Pages o nella cartella *views* di un'app MVC.
 
 Per altre informazioni, vedere <xref:blazor/components#import-components>.

@@ -5,17 +5,17 @@ description: Informazioni sulla Blazor configurazione del modello di hosting, in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/25/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: cf5776109368dc7353d7e21bcad1e947561e7eb4
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: c7e8d1f2dcba6432072a5cc11a6c5d78e50c2398
+ms.sourcegitcommit: c6f5ea6397af2dd202632cf2be66fc30f3357bcc
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82111058"
+ms.lasthandoff: 04/26/2020
+ms.locfileid: "82159619"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>Configurazione del modello di hosting di ASP.NET Core Blazer
 
@@ -295,60 +295,13 @@ Per impostazione predefinita, le app del server Blaze sono configurate per esegu
 * Viene preeseguito nella pagina.
 * Viene visualizzato come HTML statico nella pagina o se include le informazioni necessarie per eseguire il bootstrap di un'app Blazer dall'agente utente.
 
-| `RenderMode`        | Description |
+| `RenderMode`        | Descrizione |
 | ------------------- | ----------- |
 | `ServerPrerendered` | Esegue il rendering del componente in HTML statico e include un marcatore Blazor per un'app Server. Quando l'agente utente viene avviato, questo marcatore viene usato per il Blazor bootstrap di un'app. |
 | `Server`            | Esegue il rendering di un marcatore per un' Blazor app Server. L'output del componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il Blazor bootstrap di un'app. |
 | `Static`            | Esegue il rendering del componente in HTML statico. |
 
 Il rendering dei componenti server da una pagina HTML statica non è supportato.
-
-### <a name="render-stateful-interactive-components-from-razor-pages-and-views"></a>Eseguire il rendering di componenti interattivi con stato da pagine e visualizzazioni Razor
-
-I componenti interattivi con stato possono essere aggiunti a una pagina o a una visualizzazione Razor.
-
-Quando viene eseguito il rendering della pagina o della visualizzazione:
-
-* Il componente viene preeseguito con la pagina o la visualizzazione.
-* Lo stato iniziale del componente utilizzato per il prerendering viene perso.
-* Quando viene stabilita la connessione, SignalR viene creato il nuovo stato del componente.
-
-La pagina Razor seguente esegue il rendering `Counter` di un componente:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<component type="typeof(Counter)" render-mode="ServerPrerendered" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-### <a name="render-noninteractive-components-from-razor-pages-and-views"></a>Eseguire il rendering di componenti non interattivi da pagine e visualizzazioni Razor
-
-Nella pagina Razor seguente il `Counter` componente viene sottoposto a rendering statico con un valore iniziale specificato usando un form:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<form>
-    <input type="number" asp-for="InitialValue" />
-    <button type="submit">Set initial value</button>
-</form>
-
-<component type="typeof(Counter)" render-mode="Static" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-Poiché `MyComponent` viene sottoposto a rendering statico, il componente non può essere interattivo.
 
 ### <a name="configure-the-opno-locsignalr-client-for-opno-locblazor-server-apps"></a>Configurare il SignalR client per Blazor le app Server
 
