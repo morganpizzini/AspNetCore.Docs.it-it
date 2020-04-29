@@ -348,7 +348,13 @@
                 - name: Scenari aggiuntivi
                   uid: security/blazor/webassembly/additional-scenarios
             - name: Server Blazor
-              uid: security/blazor/server
+              items:
+                - name: Panoramica
+                  uid: security/blazor/server/index
+                - name: Prevenzione delle minacce
+                  uid: security/blazor/server/threat-mitigation
+                - name: Scenari aggiuntivi
+                  uid: security/blazor/server/additional-scenarios
             - name: Criteri di sicurezza del contenuto
               uid: security/blazor/content-security-policy
         - name: Gestione dello stato
@@ -1135,7 +1141,13 @@
             - name: Scenari aggiuntivi
               uid: security/blazor/webassembly/additional-scenarios
         - name: Server Blazor
-          uid: security/blazor/server
+          items:
+            - name: Panoramica
+              uid: security/blazor/server/index
+            - name: Prevenzione delle minacce
+              uid: security/blazor/server/threat-mitigation
+            - name: Scenari aggiuntivi
+              uid: security/blazor/server/additional-scenarios
         - name: Criteri di sicurezza del contenuto
           uid: security/blazor/content-security-policy
 - name: Prestazioni
