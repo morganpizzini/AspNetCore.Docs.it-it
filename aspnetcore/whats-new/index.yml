@@ -1,19 +1,19 @@
 ### YamlMime:Landing
-title: ASP.NET documentazione di base - cosa c'è di nuovo?
-summary: Benvenuti in novità in ASP.NET documenti Core. Utilizzare questa pagina per trovare rapidamente le modifiche più recenti.
+title: 'ASP.NET Core documentazione: novità'
+summary: Introduzione alle novità di ASP.NET Core docs. Utilizzare questa pagina per trovare rapidamente le modifiche più recenti.
 metadata:
-  title: ASP.NET documentazione di base - Novità?
-  description: Scopri di più sui contenuti nuovi e aggiornati nella ASP.NET documenti di Core.
+  title: 'ASP.NET Core documentazione: novità'
+  description: Informazioni sul contenuto nuovo e aggiornato in ASP.NET Core docs.
   ms.topic: landing-page
-  ms.date: 04/01/2020
-  ms.openlocfilehash: 4d1e63bafe1a40110c0b514fcaf0f1eb2f180722
-  ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+  ms.date: 04/26/2020
+  ms.openlocfilehash: 1650541ec9a6c6160f65ce1a3e83caf4b5cd092e
+  ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
   ms.translationtype: MT
   ms.contentlocale: it-IT
-  ms.lasthandoff: 04/06/2020
-  ms.locfileid: "80538983"
+  ms.lasthandoff: 04/28/2020
+  ms.locfileid: "82206086"
 landingContent:
-- title: Trova gli aggiornamenti ASP.NET Documenti principali
+- title: Trovare gli aggiornamenti di ASP.NET Core docs
   linkLists:
   - linkListType: whats-new
     links:
@@ -29,11 +29,11 @@ landingContent:
       url: 2019-11.md
     - text: Ottobre 2019
       url: 2019-10.md
-- title: Partecipa al tuo impegno - contribuisci ai documenti ASP.NET Core
+- title: Partecipa a ASP.NET Core docs
   linkLists:
   - linkListType: overview
     links:
-    - text: ASP.NET di base del repository di documenti
+    - text: Repository ASP.NET Core docs
       url: https://github.com/dotnet/AspNetCore.Docs/blob/master/README.md
     - text: Struttura del progetto ed etichette per problemi e richieste pull
       url: https://github.com/dotnet/docs/blob/master/styleguide/labels-projects.md
@@ -41,25 +41,31 @@ landingContent:
     links:
     - text: Guida per i collaboratori di Microsoft docs
       url: https://docs.microsoft.com/contribute
-    - text: Guida per i collaboratori di ASP.NET Core Docs
+    - text: Guida per i collaboratori di ASP.NET Core docs
       url: https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md
-    - text: ASP.NET guida per i collaboratori di riferimento all'API Core
+    - text: Guida per i collaboratori di documentazione di riferimento per l'API ASP.NET Core
       url: https://github.com/dotnet/AspNetApiDocs/blob/master/CONTRIBUTING.md
-- title: Correlati cinovità pagine
+- title: Community
   linkLists:
   - linkListType: whats-new
     links:
-    - text: Aggiornamenti di Xamarin docs
+    - text: Community
+      url: https://dotnet.microsoft.com/platform/community
+- title: Pagine relative alle novità
+  linkLists:
+  - linkListType: whats-new
+    links:
+    - text: Aggiornamenti docs Novell
       url: /xamarin/whats-new/
     - text: Note sulla versione di .NET Core
       url: https://github.com/dotnet/core/blob/master/release-notes/README.md
     - text: Note sulla versione di ASP.NET Core
       url: /aspnet/core/release-notes/aspnetcore-3.1
-    - text: Note sulla versione del compilatore di C
+    - text: Note sulla versione del compilatore C# (Roslyn)
       url: https://github.com/dotnet/roslyn/tree/master/docs/ide
     - text: Note sulla versione di Visual Studio
       url: /visualstudio/releases/2019/release-notes
     - text: Note sulla versione di Visual Studio per Mac
       url: /visualstudio/releasenotes/vs2019-mac-relnotes
-    - text: Note sulla versione del codice di Visual StudioVisual Studio Code release notes
+    - text: Note sulla versione di Visual Studio Code
       url: https://code.visualstudio.com/updates
