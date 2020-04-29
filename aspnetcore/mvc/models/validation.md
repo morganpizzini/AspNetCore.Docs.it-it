@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
 uid: mvc/models/validation
-ms.openlocfilehash: cf6b77de78f2c5dda48ffcd8ac1f9ed2f8d28bd7
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 0e3d4f4705dbfdae00943de2d85c603b6762a2f8
+ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78661126"
+ms.lasthandoff: 04/28/2020
+ms.locfileid: "82205891"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Convalida del modello in ASP.NET Core MVC e in Razor Pages
 
@@ -41,7 +41,7 @@ La convalida è automatica, ma potrebbe essere necessario ripeterla manualmente.
 
 ## <a name="validation-attributes"></a>Attributi di convalida
 
-Gli attributi di convalida consentono di specificare le regole di convalida per le proprietà del modello. Nell'esempio seguente dall'app di esempio viene illustrata una classe di modello che viene annotata con gli attributi di convalida. `[ClassicMovie]` è un attributo di convalida personalizzato, mentre gli altri sono attributi predefiniti. Non viene visualizzato `[ClassicMovieWithClientValidator]`. `[ClassicMovieWithClientValidator]` Mostra un metodo alternativo per implementare un attributo personalizzato.
+Gli attributi di convalida consentono di specificare le regole di convalida per le proprietà del modello. Nell'esempio seguente dell'app di esempio viene illustrata una classe di modello annotata con attributi di convalida. `[ClassicMovie]` è un attributo di convalida personalizzato, mentre gli altri sono attributi predefiniti. Non viene `[ClassicMovieWithClientValidator]`visualizzato. `[ClassicMovieWithClientValidator]`Mostra un metodo alternativo per implementare un attributo personalizzato.
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Models/Movie.cs?name=snippet_Class)]
 
@@ -49,20 +49,20 @@ Gli attributi di convalida consentono di specificare le regole di convalida per 
 
 Di seguito sono elencati alcuni degli attributi di convalida predefiniti:
 
-* `[CreditCard]`: convalida che la proprietà abbia un formato di carta di credito.
-* `[Compare]`: verifica che due proprietà di un modello corrispondano.
-* `[EmailAddress]`: convalida che la proprietà abbia un formato di posta elettronica.
-* `[Phone]`: convalida che la proprietà abbia un formato di numero di telefono.
-* `[Range]`: verifica che il valore della proprietà sia compreso in un intervallo specificato.
-* `[RegularExpression]`: verifica che il valore della proprietà corrisponda a un'espressione regolare specificata.
-* `[Required]`: verifica che il campo non sia null. Per informazioni dettagliate sul comportamento di questo attributo, vedere [`[Required]` attributo](#required-attribute) .
-* `[StringLength]`: verifica che un valore della proprietà stringa non superi il limite di lunghezza specificato.
-* `[Url]`: convalida che la proprietà abbia un formato URL.
-* `[Remote]`: convalida l'input sul client chiamando un metodo di azione sul server. Per informazioni dettagliate sul comportamento di questo attributo, vedere [`[Remote]` attributo](#remote-attribute) .
+* `[CreditCard]`: Convalida che la proprietà abbia un formato di carta di credito.
+* `[Compare]`: Verifica che due proprietà di un modello corrispondano.
+* `[EmailAddress]`: Convalida che la proprietà abbia un formato di posta elettronica.
+* `[Phone]`: Convalida che la proprietà abbia un formato di numero di telefono.
+* `[Range]`: Convalida che il valore della proprietà rientra in un intervallo specificato.
+* `[RegularExpression]`: Verifica che il valore della proprietà corrisponda a un'espressione regolare specificata.
+* `[Required]`: Verifica che il campo non sia null. Per informazioni dettagliate sul comportamento di questo attributo, vedere [ `[Required]` attributo](#required-attribute) .
+* `[StringLength]`: Verifica che un valore della proprietà stringa non superi il limite di lunghezza specificato.
+* `[Url]`: Convalida che la proprietà abbia un formato URL.
+* `[Remote]`: Convalida l'input sul client chiamando un metodo di azione sul server. Per informazioni dettagliate sul comportamento di questo attributo, vedere [ `[Remote]` attributo](#remote-attribute) .
 
 Nello spazio dei nomi [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) è possibile trovare un elenco completo degli attributi di convalida.
 
-### <a name="error-messages"></a>messaggi di errore
+### <a name="error-messages"></a>Messaggi di errore
 
 Gli attributi di convalida consentono di specificare il messaggio di errore da visualizzare in caso di input non valido. Ad esempio:
 
@@ -78,11 +78,11 @@ Internamente gli attributi chiamano `String.Format` con un segnaposto per il nom
 
 Quando applicato a una proprietà `Name`, il messaggio di errore creato con il codice precedente sarà "La lunghezza del nome utente deve essere compresa tra 6 e 8".
 
-Per scoprire i parametri passati a `String.Format` per un messaggio di errore dell'attributo specifico, vedere il [codice sorgente DataAnnotations](https://github.com/dotnet/corefx/tree/master/src/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
+Per scoprire i parametri passati a `String.Format` per un messaggio di errore dell'attributo specifico, vedere il [codice sorgente DataAnnotations](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
 
 ## <a name="required-attribute"></a>Attributo [Required]
 
-Il sistema di convalida in .NET Core 3,0 e versioni successive considera i parametri non nullable o le proprietà associata come se disponesse di un attributo `[Required]`. I [tipi di valore](/dotnet/csharp/language-reference/keywords/value-types)`decimal` e `int` sono parametri non nullable. Questo comportamento può essere disabilitato configurando <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
+Il sistema di convalida in .NET Core 3,0 e versioni successive considera i parametri non nullable o le proprietà associata come se `[Required]` disponesse di un attributo. I [tipi di valore](/dotnet/csharp/language-reference/keywords/value-types)`decimal` e `int` sono parametri non nullable. Questo comportamento può essere disabilitato configurando <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in: `Startup.ConfigureServices`
 
 ```csharp
 services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
@@ -90,7 +90,7 @@ services.AddControllers(options => options.SuppressImplicitRequiredAttributeForN
 
 ### <a name="required-validation-on-the-server"></a>Convalida dell'attributo [Required] nel server
 
-Nel server un valore obbligatorio viene considerato mancante se la proprietà è Null. Un campo che non ammette i valori null è sempre valido e il messaggio di errore dell'attributo `[Required]` non viene mai visualizzato.
+Nel server un valore obbligatorio viene considerato mancante se la proprietà è Null. Un campo che non ammette i valori null è sempre valido `[Required]` e il messaggio di errore dell'attributo non viene mai visualizzato.
 
 Può però succedere che l'associazione di modelli per una proprietà non nullable abbia esito negativo, generando un messaggio di errore, ad esempio `The value '' is invalid`. Per specificare un messaggio di errore personalizzato per la convalida lato server di tipi non nullable, sono disponibili le opzioni seguenti:
 
@@ -134,11 +134,11 @@ Per implementare la convalida remota:
    
 ### <a name="additional-fields"></a>Campi aggiuntivi
 
-La proprietà `AdditionalFields` dell'attributo `[Remote]` consente di convalidare combinazioni di campi rispetto ai dati nel server. Ad esempio, se il modello `User` avesse le proprietà `FirstName` e `LastName`, potrebbe essere necessario controllare che non siano già esistenti utenti con la stessa coppia di nomi. Nell'esempio riportato di seguito viene illustrato come usare `AdditionalFields`:
+La proprietà `[Remote]` dell'attributo `AdditionalFields` consente di convalidare combinazioni di campi rispetto ai dati nel server. Ad esempio, se il modello `User` avesse le proprietà `FirstName` e `LastName`, potrebbe essere necessario controllare che non siano già esistenti utenti con la stessa coppia di nomi. Nell'esempio riportato di seguito viene illustrato come usare `AdditionalFields`:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Models/User.cs?name=snippet_Name&highlight=1,5)]
 
-`AdditionalFields` possibile impostare in modo esplicito le stringhe "FirstName" e "LastName", ma l'uso dell'operatore [NameOf](/dotnet/csharp/language-reference/keywords/nameof) semplifica il refactoring in un secondo momento. Il metodo di azione per questa convalida deve accettare sia `firstName` che `lastName` argomenti:
+`AdditionalFields`potrebbe essere impostato in modo esplicito sulle stringhe "FirstName" e "LastName", ma l'uso dell'operatore [NameOf](/dotnet/csharp/language-reference/keywords/nameof) semplifica il refactoring in un secondo momento. Il metodo di azione per questa convalida deve accettare `firstName` gli `lastName` argomenti e:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Controllers/UsersController.cs?name=snippet_VerifyName)]
 
@@ -166,7 +166,7 @@ Per gli scenari non gestiti dagli attributi di convalida predefiniti, è possibi
 
 Il metodo `IsValid` accetta un oggetto denominato *value*, ovvero l'input da convalidare. Un overload accetta anche un oggetto `ValidationContext`, che contiene informazioni aggiuntive, ad esempio l'istanza del modello creato dall'associazione di modelli.
 
-Nell'esempio seguente si convalida che la data di uscita di un film di genere *Classic* non sia successiva a un anno specifico. Attributo `[ClassicMovie]`:
+Nell'esempio seguente si convalida che la data di uscita di un film di genere *Classic* non sia successiva a un anno specifico. `[ClassicMovie]` Attributo:
 
 * Viene eseguito solo sul server.
 * Per i filmati classici, convalida la data di rilascio:
@@ -198,7 +198,7 @@ I nodi di primo livello possono usare <xref:Microsoft.AspNetCore.Mvc.ModelBindin
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Controllers/UsersController.cs?name=snippet_CheckAgeSignature)]
 
-La pagina Check Age (*CheckAge.cshtml*), include due moduli. Il primo form invia un valore `Age` di `99` come parametro della stringa di query: `https://localhost:5001/Users/CheckAge?Age=99`.
+La pagina Check Age (*CheckAge.cshtml*), include due moduli. Il primo form invia un `Age` valore di come `99` parametro della stringa di query: `https://localhost:5001/Users/CheckAge?Age=99`.
 
 Quando viene inviato un parametro correttamente formattato `age` dalla stringa di query, il modulo viene convalidato.
 
@@ -259,7 +259,7 @@ Gli helper tag precedenti eseguono il rendering del codice HTML seguente:
 </div>
 ```
 
-Si noti che gli attributi `data-` nell'output HTML corrispondono agli attributi di convalida per la proprietà `Movie.ReleaseDate`. L'attributo `data-val-required` contiene un messaggio di errore che viene visualizzato se l'utente non compila il campo relativo alla data di uscita. jQuery uninvaded Validation passa questo valore al metodo jQuery Validate [Required ()](https://jqueryvalidation.org/required-method/) , che quindi Visualizza il messaggio nell'elemento **>\<span** associato.
+Si noti che gli attributi `data-` nell'output HTML corrispondono agli attributi di convalida per la proprietà `Movie.ReleaseDate`. L'attributo `data-val-required` contiene un messaggio di errore che viene visualizzato se l'utente non compila il campo relativo alla data di uscita. jQuery uninvaded Validation passa questo valore al metodo jQuery Validate [Required ()](https://jqueryvalidation.org/required-method/) , che quindi Visualizza il messaggio nell' ** \<intervallo>** elemento associato.
 
 La convalida del tipo di dati si basa sul tipo .NET di una proprietà, a meno che sia sostituito dall'attributo `[DataType]`. I browser generano messaggi di errore predefiniti propri che il pacchetto jQuery Validation Unobtrusive Validation può comunque sostituire. Gli attributi `[DataType]` e le sottoclassi, ad esempio `[EmailAddress]`, consentono di specificare il messaggio di errore.
 
@@ -373,7 +373,7 @@ Il codice seguente disabilita la convalida client in Razor Pages:
 
 Altre opzioni per disabilitare la convalida sul lato client:
 
-* Impostare come commento il riferimento a `_ValidationScriptsPartial` in tutti i file con *estensione cshtml* .
+* Impostare come commento il riferimento `_ValidationScriptsPartial` a in tutti i file con *estensione cshtml* .
 * Rimuovere il contenuto del file *Pages\Shared\_ValidationScriptsPartial. cshtml* .
 
 L'approccio precedente non impedisce la convalida lato client di ASP.NET Core libreria di classi Razor Identity. Per altre informazioni, vedere <xref:security/authentication/scaffold-identity>.
@@ -409,7 +409,7 @@ La convalida è automatica, ma potrebbe essere necessario ripeterla manualmente.
 
 ## <a name="validation-attributes"></a>Attributi di convalida
 
-Gli attributi di convalida consentono di specificare le regole di convalida per le proprietà del modello. Nell'esempio seguente dell'[app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) viene illustrata una classe di modello annotata con attributi di convalida. `[ClassicMovie]` è un attributo di convalida personalizzato, mentre gli altri sono attributi predefiniti. Non viene mostrato `[ClassicMovie2]`, che mostra un metodo alternativo per implementare un attributo personalizzato.
+Gli attributi di convalida consentono di specificare le regole di convalida per le proprietà del modello. Nell'esempio seguente dell'[app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) viene illustrata una classe di modello annotata con attributi di convalida. `[ClassicMovie]` è un attributo di convalida personalizzato, mentre gli altri sono attributi predefiniti. Non viene `[ClassicMovie2]`mostrato, che mostra un metodo alternativo per implementare un attributo personalizzato.
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Models/Movie.cs?name=snippet_ModelClass)]
 
@@ -417,22 +417,22 @@ Gli attributi di convalida consentono di specificare le regole di convalida per 
 
 Gli attributi di convalida predefiniti includono:
 
-* `[CreditCard]`: convalida che la proprietà abbia un formato di carta di credito.
-* `[Compare]`: verifica che due proprietà di un modello corrispondano. Ad esempio, il file *Register.cshtml.cs* USA `[Compare]` per convalidare le due password immesse corrispondenti. [Identità del patibolo](xref:security/authentication/scaffold-identity) per visualizzare il codice del registro.
-* `[EmailAddress]`: convalida che la proprietà abbia un formato di posta elettronica.
-* `[Phone]`: convalida che la proprietà abbia un formato di numero di telefono.
-* `[Range]`: verifica che il valore della proprietà sia compreso in un intervallo specificato.
-* `[RegularExpression]`: verifica che il valore della proprietà corrisponda a un'espressione regolare specificata.
-* `[Required]`: verifica che il campo non sia null. Per informazioni dettagliate sul comportamento di questo attributo, vedere [`[Required]` attributo](#required-attribute) .
-* `[StringLength]`: verifica che un valore della proprietà stringa non superi il limite di lunghezza specificato.
-* `[Url]`: convalida che la proprietà abbia un formato URL.
-* `[Remote]`: convalida l'input sul client chiamando un metodo di azione sul server. Per informazioni dettagliate sul comportamento di questo attributo, vedere [`[Remote]` attributo](#remote-attribute) .
+* `[CreditCard]`: Convalida che la proprietà abbia un formato di carta di credito.
+* `[Compare]`: Verifica che due proprietà di un modello corrispondano. Ad esempio, il file *Register.cshtml.cs* USA `[Compare]` per convalidare le due password immesse corrispondenti. [Identità del patibolo](xref:security/authentication/scaffold-identity) per visualizzare il codice del registro.
+* `[EmailAddress]`: Convalida che la proprietà abbia un formato di posta elettronica.
+* `[Phone]`: Convalida che la proprietà abbia un formato di numero di telefono.
+* `[Range]`: Convalida che il valore della proprietà rientra in un intervallo specificato.
+* `[RegularExpression]`: Verifica che il valore della proprietà corrisponda a un'espressione regolare specificata.
+* `[Required]`: Verifica che il campo non sia null. Per informazioni dettagliate sul comportamento di questo attributo, vedere [ `[Required]` attributo](#required-attribute) .
+* `[StringLength]`: Verifica che un valore della proprietà stringa non superi il limite di lunghezza specificato.
+* `[Url]`: Convalida che la proprietà abbia un formato URL.
+* `[Remote]`: Convalida l'input sul client chiamando un metodo di azione sul server. Per informazioni dettagliate sul comportamento di questo attributo, vedere [ `[Remote]` attributo](#remote-attribute) .
 
-Quando si usa l'attributo `[RegularExpression]` con la convalida sul lato client, l'espressione regolare viene eseguita in JavaScript nel client. Ciò significa che verrà utilizzato il comportamento di corrispondenza [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) . Per altre informazioni, vedere [questo problema in GitHub](https://github.com/dotnet/corefx/issues/42487).
+Quando si usa `[RegularExpression]` l'attributo con la convalida sul lato client, l'espressione regolare viene eseguita in JavaScript sul client. Ciò significa che verrà utilizzato il comportamento di corrispondenza [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) . Per altre informazioni, vedere [questo problema in GitHub](https://github.com/dotnet/corefx/issues/42487).
 
 Nello spazio dei nomi [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) è possibile trovare un elenco completo degli attributi di convalida.
 
-### <a name="error-messages"></a>messaggi di errore
+### <a name="error-messages"></a>Messaggi di errore
 
 Gli attributi di convalida consentono di specificare il messaggio di errore da visualizzare in caso di input non valido. Ad esempio:
 
@@ -500,11 +500,11 @@ Per implementare la convalida remota:
    
 ### <a name="additional-fields"></a>Campi aggiuntivi
 
-La proprietà `AdditionalFields` dell'attributo `[Remote]` consente di convalidare combinazioni di campi rispetto ai dati nel server. Ad esempio, se il modello `User` avesse le proprietà `FirstName` e `LastName`, potrebbe essere necessario controllare che non siano già esistenti utenti con la stessa coppia di nomi. Nell'esempio riportato di seguito viene illustrato come usare `AdditionalFields`:
+La proprietà `[Remote]` dell'attributo `AdditionalFields` consente di convalidare combinazioni di campi rispetto ai dati nel server. Ad esempio, se il modello `User` avesse le proprietà `FirstName` e `LastName`, potrebbe essere necessario controllare che non siano già esistenti utenti con la stessa coppia di nomi. Nell'esempio riportato di seguito viene illustrato come usare `AdditionalFields`:
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Models/User.cs?name=snippet_UserNameProperties)]
 
-`AdditionalFields` possibile impostare in modo esplicito le stringhe `"FirstName"` e `"LastName"`, ma l'uso dell'operatore [NameOf](/dotnet/csharp/language-reference/keywords/nameof) semplifica il refactoring in un secondo momento. Il metodo di azione per la convalida deve accettare gli argomenti sia per il nome e sia per il cognome:
+`AdditionalFields`potrebbe essere impostato in modo esplicito sulle `"FirstName"` stringhe `"LastName"`e, ma l'uso dell'operatore [NameOf](/dotnet/csharp/language-reference/keywords/nameof) semplifica il refactoring in un secondo momento. Il metodo di azione per la convalida deve accettare gli argomenti sia per il nome e sia per il cognome:
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Controllers/UsersController.cs?name=snippet_VerifyName)]
 
@@ -579,7 +579,7 @@ La convalida si interrompe quando viene raggiunto il numero di errori (200 per i
 
 ## <a name="maximum-recursion"></a>Numero massimo di ricorsioni
 
-<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> attraversare l'oggetto grafico del modello che deve essere convalidato. Per i modelli molti profondi o ricorsivi all'infinito, la convalida può generare un overflow dello stack. [MvcOptions.MaxValidationDepth](xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth) consente di arrestare tempestivamente la convalida se la ricorsione del visitatore supera la profondità configurata. Il valore predefinito di `MvcOptions.MaxValidationDepth` è 32 quando viene eseguito con `CompatibilityVersion.Version_2_2` o versione successiva. Per le versioni precedenti, il valore è Null, vale a dire che non esistono limiti di profondità.
+<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> attraversare l'oggetto grafico del modello che deve essere convalidato. Per i modelli molti profondi o ricorsivi all'infinito, la convalida può generare un overflow dello stack. [MvcOptions.MaxValidationDepth](xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth) consente di arrestare tempestivamente la convalida se la ricorsione del visitatore supera la profondità configurata. Il valore predefinito di `MvcOptions.MaxValidationDepth` è 32 quando viene eseguito `CompatibilityVersion.Version_2_2` con o versione successiva. Per le versioni precedenti, il valore è Null, vale a dire che non esistono limiti di profondità.
 
 ## <a name="automatic-short-circuit"></a>Corto circuito automatico
 
@@ -634,7 +634,7 @@ Gli helper tag precedenti eseguono il rendering del codice HTML seguente.
 </form>
 ```
 
-Si noti che gli attributi `data-` nell'output HTML corrispondono agli attributi di convalida per la proprietà `ReleaseDate`. L'attributo `data-val-required` contiene un messaggio di errore che viene visualizzato se l'utente non compila il campo relativo alla data di uscita. jQuery uninvaded Validation passa questo valore al metodo jQuery Validate [Required ()](https://jqueryvalidation.org/required-method/) , che quindi Visualizza il messaggio nell'elemento **>\<span** associato.
+Si noti che gli attributi `data-` nell'output HTML corrispondono agli attributi di convalida per la proprietà `ReleaseDate`. L'attributo `data-val-required` contiene un messaggio di errore che viene visualizzato se l'utente non compila il campo relativo alla data di uscita. jQuery uninvaded Validation passa questo valore al metodo jQuery Validate [Required ()](https://jqueryvalidation.org/required-method/) , che quindi Visualizza il messaggio nell' ** \<intervallo>** elemento associato.
 
 La convalida del tipo di dati si basa sul tipo .NET di una proprietà, a meno che sia sostituito dall'attributo `[DataType]`. I browser generano messaggi di errore predefiniti propri che il pacchetto jQuery Validation Unobtrusive Validation può comunque sostituire. Gli attributi `[DataType]` e le sottoclassi, ad esempio `[EmailAddress]`, consentono di specificare il messaggio di errore.
 

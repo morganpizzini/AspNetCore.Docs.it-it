@@ -5,40 +5,40 @@ description: Informazioni su come creare e usare i componenti Razor, tra cui la 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/25/2020
+ms.date: 04/21/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: bc1d07aef9cd60b89343a034168daa6754f4421b
-ms.sourcegitcommit: 6ffb583991d6689326605a24565130083a28ef85
+ms.openlocfilehash: a9ae84c36716bfc07ae3cf86214e48ad24770401
+ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/26/2020
-ms.locfileid: "80306502"
+ms.lasthandoff: 04/28/2020
+ms.locfileid: "82205956"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Creare e usare ASP.NET Core componenti Razor
 
-Di [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
+Di [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27)e [Tobias Bartsch](https://www.aveo-solutions.com/)
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-Blazor le app vengono compilate usando i *componenti*. Un componente è un blocco di interfaccia utente (UI) autonomo, ad esempio una pagina, una finestra di dialogo o un form. Un componente include il markup HTML e la logica di elaborazione necessaria per inserire i dati o rispondere agli eventi dell'interfaccia utente. I componenti sono flessibili e leggeri. Possono essere annidati, riutilizzati e condivisi tra i progetti.
+Blazorle app vengono compilate usando i *componenti*. Un componente è un blocco di interfaccia utente (UI) autonomo, ad esempio una pagina, una finestra di dialogo o un form. Un componente include il markup HTML e la logica di elaborazione necessaria per inserire i dati o rispondere agli eventi dell'interfaccia utente. I componenti sono flessibili e leggeri. Possono essere annidati, riutilizzati e condivisi tra i progetti.
 
 ## <a name="component-classes"></a>Classi di componenti
 
-I componenti sono implementati in file di componente [Razor](xref:mvc/views/razor) (*Razor*) usando una C# combinazione di e markup HTML. Un componente in Blazor viene definito formalmente come *componente Razor*.
+I componenti sono implementati in file componente [Razor](xref:mvc/views/razor) (*Razor*) usando una combinazione di markup C# e HTML. Un componente in Blazor viene definito formalmente come *componente Razor*.
 
 Il nome di un componente deve iniziare con un carattere maiuscolo. Ad esempio, *MyCoolComponent. Razor* è valido e *MyCoolComponent. Razor* non è valido.
 
-L'interfaccia utente per un componente viene definita utilizzando HTML. La logica di rendering dinamico (ad esempio, cicli, condizioni, espressioni) viene aggiunta usando una sintassi C# incorporata chiamata [Razor](xref:mvc/views/razor). Quando viene compilata un'app, il markup C# HTML e la logica di rendering vengono convertiti in una classe Component. Il nome della classe generata corrisponde al nome del file.
+L'interfaccia utente per un componente viene definita utilizzando HTML. La logica di rendering dinamico (ad esempio, cicli, condizioni, espressioni) viene aggiunta usando una sintassi C# incorporata chiamata [Razor](xref:mvc/views/razor). Quando viene compilata un'app, il markup HTML e la logica di rendering C# vengono convertiti in una classe Component. Il nome della classe generata corrisponde al nome del file.
 
-I membri della classe del componente vengono definiti in un blocco `@code`. Nel blocco `@code`, lo stato del componente (proprietà, campi) viene specificato con i metodi per la gestione degli eventi o per la definizione di altre logiche dei componenti. È consentito più di un blocco `@code`.
+I membri della classe del componente vengono definiti in un blocco `@code`. Nel blocco `@code` , lo stato del componente (proprietà, campi) viene specificato con i metodi per la gestione degli eventi o per la definizione di altre logiche dei componenti. È consentito più di un blocco `@code`.
 
-I membri dei componenti possono essere usati come parte della logica di rendering del C# componente usando espressioni che iniziano con `@`. Un C# campo, ad esempio, viene sottoposto a rendering anteponendo `@` al nome del campo. Nell'esempio seguente viene valutato ed eseguito il rendering:
+I membri dei componenti possono essere usati come parte della logica di rendering del componente usando espressioni C# che `@`iniziano con. Ad esempio, viene eseguito il rendering di un campo C# `@` anteponendo il nome del campo. Nell'esempio seguente viene valutato ed eseguito il rendering:
 
-* `_headingFontStyle` al valore della proprietà CSS per `font-style`.
-* `_headingText` al contenuto dell'elemento `<h1>`.
+* `_headingFontStyle`al valore della proprietà CSS per `font-style`.
+* `_headingText`al contenuto dell' `<h1>` elemento.
 
 ```razor
 <h1 style="font-style:@_headingFontStyle">@_headingText</h1>
@@ -49,18 +49,18 @@ I membri dei componenti possono essere usati come parte della logica di renderin
 }
 ```
 
-Una volta eseguito il rendering iniziale del componente, il componente rigenera l'albero di rendering in risposta agli eventi. Blazor confronta quindi il nuovo albero di rendering con quello precedente e applica le modifiche apportate al Document Object Model (DOM) del browser.
+Una volta eseguito il rendering iniziale del componente, il componente rigenera l'albero di rendering in risposta agli eventi. BlazorConfronta quindi il nuovo albero di rendering con quello precedente e applica le modifiche apportate al Document Object Model (DOM) del browser.
 
-I componenti sono C# classi ordinarie e possono essere inseriti in qualsiasi punto all'interno di un progetto. I componenti che producono pagine Web in genere risiedono nella cartella *pages* . I componenti non di pagina vengono spesso inseriti nella cartella *condivisa* o in una cartella personalizzata aggiunta al progetto.
+I componenti sono classi C# ordinarie e possono essere inseriti in qualsiasi punto all'interno di un progetto. I componenti che producono pagine Web in genere risiedono nella cartella *pages* . I componenti non di pagina vengono spesso inseriti nella cartella *condivisa* o in una cartella personalizzata aggiunta al progetto.
 
-Lo spazio dei nomi di un componente viene in genere derivato dallo spazio dei nomi radice dell'app e dal percorso (cartella) del componente all'interno dell'app. Se lo spazio dei nomi radice dell'app è `BlazorApp` e il componente `Counter` si trova nella cartella *pages* :
+Lo spazio dei nomi di un componente viene in genere derivato dallo spazio dei nomi radice dell'app e dal percorso (cartella) del componente all'interno dell'app. Se lo spazio dei nomi radice dell' `BlazorApp` app è `Counter` e il componente si trova nella cartella *pages* :
 
-* Lo spazio dei nomi del componente `Counter` è `BlazorApp.Pages`.
+* Lo `Counter` spazio dei nomi del `BlazorApp.Pages`componente è.
 * Il nome completo del tipo del componente è `BlazorApp.Pages.Counter`.
 
 Per ulteriori informazioni, vedere la sezione [Import Components](#import-components) .
 
-Per usare una cartella personalizzata, aggiungere lo spazio dei nomi della cartella personalizzata al componente padre o al file *_Imports. Razor* dell'app. Lo spazio dei nomi seguente, ad esempio, rende disponibili i componenti in una cartella di *componenti* quando lo spazio dei nomi radice dell'app è `BlazorApp`:
+Per usare una cartella personalizzata, aggiungere lo spazio dei nomi della cartella personalizzata al componente padre o al file *_Imports. Razor* dell'app. Lo spazio dei nomi seguente, ad esempio, rende disponibili i componenti in una cartella di *componenti* quando lo `BlazorApp`spazio dei nomi radice dell'app è:
 
 ```razor
 @using BlazorApp.Components
@@ -68,7 +68,7 @@ Per usare una cartella personalizzata, aggiungere lo spazio dei nomi della carte
 
 ## <a name="static-assets"></a>Asset statici
 
-Blazor segue la convenzione di ASP.NET Core app che collocano asset statici nella [cartella radice Web del progetto (wwwroot)](xref:fundamentals/index#web-root).
+Blazorsegue la convenzione di ASP.NET Core app che collocano asset statici nella [cartella radice Web del progetto (wwwroot)](xref:fundamentals/index#web-root).
 
 Usare un percorso relativo di base (`/`) per fare riferimento alla radice Web per un asset statico. Nell'esempio seguente *logo. png* si trova fisicamente nella cartella *{Project root}/wwwroot/images* :
 
@@ -76,19 +76,19 @@ Usare un percorso relativo di base (`/`) per fare riferimento alla radice Web pe
 <img alt="Company logo" src="/images/logo.png" />
 ```
 
-I componenti Razor **non** supportano la notazione tilde-barra (`~/`).
+I componenti Razor **non** supportano la notazione tilde-barra`~/`().
 
-Per informazioni sull'impostazione del percorso di base di un'app, vedere <xref:host-and-deploy/blazor/index#app-base-path>.
+Per informazioni sull'impostazione del percorso di base di un'app <xref:host-and-deploy/blazor/index#app-base-path>, vedere.
 
 ## <a name="tag-helpers-arent-supported-in-components"></a>Gli helper tag non sono supportati nei componenti
 
-Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) non sono supportati nei componenti Razor (file*Razor* ). Per fornire funzionalità di tipo Helper tag in Blazor, creare un componente con le stesse funzionalità dell'helper tag e usare invece il componente.
+Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) non sono supportati nei componenti Razor (file*Razor* ). Per fornire funzionalità di tipo Helper tag in Blazor, creare un componente con la stessa funzionalità dell'helper tag e utilizzare il componente.
 
 ## <a name="use-components"></a>Usare i componenti
 
 I componenti possono includere altri componenti dichiarando questi ultimi usando la sintassi degli elementi HTML. Il markup per l'uso di un componente è simile a un tag HTML, in cui il nome del tag è il tipo di componente.
 
-Il markup seguente in *index. Razor* esegue il rendering di un'istanza di `HeadingComponent`:
+Il markup seguente in *index. Razor* esegue il rendering `HeadingComponent` di un'istanza:
 
 ```razor
 <HeadingComponent />
@@ -98,13 +98,13 @@ Il markup seguente in *index. Razor* esegue il rendering di un'istanza di `Headi
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/HeadingComponent.razor)]
 
-Se un componente contiene un elemento HTML con una prima lettera maiuscola che non corrisponde a un nome di componente, viene emesso un avviso che indica che l'elemento ha un nome imprevisto. L'aggiunta di una direttiva `@using` per lo spazio dei nomi del componente rende disponibile il componente, che risolve l'avviso.
+Se un componente contiene un elemento HTML con una prima lettera maiuscola che non corrisponde a un nome di componente, viene emesso un avviso che indica che l'elemento ha un nome imprevisto. L'aggiunta `@using` di una direttiva per lo spazio dei nomi del componente rende disponibile il componente, che risolve l'avviso.
 
 ## <a name="routing"></a>Routing.
 
-Il routing in Blazor viene effettuato fornendo un modello di route a ogni componente accessibile nell'app.
+Il routing Blazor in viene effettuato fornendo un modello di route a ogni componente accessibile nell'app.
 
-Quando viene compilato un file Razor con una direttiva `@page`, alla classe generata viene assegnato un <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specificando il modello di route. In fase di esecuzione, il router cerca le classi di componenti con una `RouteAttribute` ed esegue il rendering di qualsiasi componente con un modello di route corrispondente all'URL richiesto.
+Quando viene compilato un file Razor `@page` con una direttiva, alla classe generata viene assegnato un <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> oggetto che specifica il modello di route. In fase di esecuzione, il router cerca le classi di `RouteAttribute` componenti con un oggetto ed esegue il rendering di qualsiasi componente con un modello di route corrispondente all'URL richiesto.
 
 ```razor
 @page "/ParentComponent"
@@ -118,44 +118,47 @@ Per altre informazioni, vedere <xref:blazor/routing>.
 
 ### <a name="route-parameters"></a>Parametri di route
 
-I componenti possono ricevere parametri di route dal modello di route fornito nella direttiva `@page`. Il router usa parametri di route per popolare i parametri del componente corrispondente.
+I componenti possono ricevere parametri di route dal modello di route fornito `@page` nella direttiva. Il router usa parametri di route per popolare i parametri del componente corrispondente.
 
 *Pages/RouteParameter. Razor*:
 
 [!code-razor[](components/samples_snapshot/RouteParameter.razor?highlight=2,7-8)]
 
-I parametri facoltativi non sono supportati, pertanto due direttive `@page` vengono applicate nell'esempio precedente. Il primo consente la navigazione al componente senza un parametro. La seconda direttiva `@page` riceve il parametro di route `{text}` e assegna il valore alla proprietà `Text`.
+I parametri facoltativi non sono supportati `@page` , quindi vengono applicate due direttive nell'esempio precedente. Il primo consente la navigazione al componente senza un parametro. La seconda `@page` direttiva riceve il `{text}` parametro di route e assegna il valore alla `Text` proprietà.
 
-La sintassi dei parametri *catch-all* (`*`/`**`), che acquisisce il percorso tra più limiti di cartella, **non** è supportata nei*componenti Razor (Razor).*
+La sintassi dei parametri *catch-all* (`*`/`**`), che acquisisce il percorso tra più limiti di cartella, **non** è supportata nei componenti Razor (*Razor*).
 
 ### <a name="component-parameters"></a>Parametri del componente
 
-I componenti possono avere *parametri del componente*, che vengono definiti usando proprietà pubbliche nella classe Component con l'attributo `[Parameter]`. Usare gli attributi per specificare gli argomenti per un componente nel markup.
+I componenti possono avere *parametri del componente*, che vengono definiti usando proprietà pubbliche nella classe Component con `[Parameter]` l'attributo. Usare gli attributi per specificare gli argomenti per un componente nel markup.
 
 *Components/ChildComponent. Razor*:
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
 
-Nell'esempio seguente dall'app di esempio, il `ParentComponent` imposta il valore della proprietà `Title` dell'`ChildComponent`.
+Nell'esempio seguente dall'app di esempio, `ParentComponent` imposta il valore della `Title` proprietà dell'oggetto. `ChildComponent`
 
 *Pages/ParentComponent. Razor*:
 
 [!code-razor[](components/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
+> [!WARNING]
+> Non creare componenti che scrivono nei propri *parametri del componente*, usare invece un campo privato. Per ulteriori informazioni, vedere la sezione [non creare componenti che scrivono nella relativa proprietà dei parametri](#dont-create-components-that-write-to-their-own-parameter-properties) .
+
 ## <a name="child-content"></a>Contenuto figlio
 
 I componenti possono impostare il contenuto di un altro componente. Il componente di assegnazione fornisce il contenuto tra i tag che specificano il componente di destinazione.
 
-Nell'esempio seguente, il `ChildComponent` dispone di una proprietà `ChildContent` che rappresenta un `RenderFragment`, che rappresenta un segmento di interfaccia utente di cui eseguire il rendering. Il valore di `ChildContent` è posizionato nel markup del componente in cui deve essere eseguito il rendering del contenuto. Il valore di `ChildContent` viene ricevuto dal componente padre e ne viene eseguito il rendering all'interno del `panel-body`del pannello bootstrap.
+Nell'esempio seguente, `ChildComponent` ha una `ChildContent` proprietà che rappresenta un oggetto `RenderFragment`, che rappresenta un segmento di interfaccia utente di cui eseguire il rendering. Il valore di `ChildContent` viene posizionato nel markup del componente in cui deve essere eseguito il rendering del contenuto. Il valore di `ChildContent` viene ricevuto dal componente padre e ne viene eseguito il rendering all'interno `panel-body`del pannello bootstrap.
 
 *Components/ChildComponent. Razor*:
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
 
 > [!NOTE]
-> La proprietà che riceve il contenuto di `RenderFragment` deve essere denominata `ChildContent` per convenzione.
+> La proprietà che riceve `RenderFragment` il contenuto deve essere `ChildContent` denominata per convenzione.
 
-Il `ParentComponent` nell'app di esempio può fornire contenuto per il rendering del `ChildComponent` inserendo il contenuto all'interno dei tag `<ChildComponent>`.
+`ParentComponent` Nell'app di esempio può fornire contenuto per il rendering `ChildComponent` di inserendo il contenuto all'interno dei `<ChildComponent>` tag.
 
 *Pages/ParentComponent. Razor*:
 
@@ -163,9 +166,9 @@ Il `ParentComponent` nell'app di esempio può fornire contenuto per il rendering
 
 ## <a name="attribute-splatting-and-arbitrary-parameters"></a>Attributo splatting e parametri arbitrari
 
-I componenti possono acquisire ed eseguire il rendering di attributi aggiuntivi oltre ai parametri dichiarati del componente. È possibile acquisire attributi aggiuntivi in un dizionario e quindi *Splatted* su un elemento quando il componente viene sottoposto a rendering usando la direttiva Razor [`@attributes`](xref:mvc/views/razor#attributes) . Questo scenario è utile quando si definisce un componente che produce un elemento di markup che supporta un'ampia gamma di personalizzazioni. Ad esempio, può essere noioso definire gli attributi separatamente per un `<input>` che supporta molti parametri.
+I componenti possono acquisire ed eseguire il rendering di attributi aggiuntivi oltre ai parametri dichiarati del componente. È possibile acquisire attributi aggiuntivi in un dizionario e quindi *Splatted* su un elemento quando il componente viene sottoposto a [`@attributes`](xref:mvc/views/razor#attributes) rendering usando la direttiva Razor. Questo scenario è utile quando si definisce un componente che produce un elemento di markup che supporta un'ampia gamma di personalizzazioni. Ad esempio, può essere noioso definire gli attributi separatamente per un `<input>` che supporta molti parametri.
 
-Nell'esempio seguente, il primo elemento `<input>` (`id="useIndividualParams"`) USA parametri dei singoli componenti, mentre il secondo elemento `<input>` (`id="useAttributesDict"`) usa l'attributo splatting:
+Nell'esempio `<input>` seguente, il primo elemento (`id="useIndividualParams"`) USA parametri dei singoli componenti, mentre il secondo `<input>` elemento (`id="useAttributesDict"`) usa l'attributo splatting:
 
 ```razor
 <input id="useIndividualParams"
@@ -202,7 +205,7 @@ Nell'esempio seguente, il primo elemento `<input>` (`id="useIndividualParams"`) 
 }
 ```
 
-Il tipo del parametro deve implementare `IEnumerable<KeyValuePair<string, object>>` con chiavi di stringa. In questo scenario è inoltre possibile utilizzare `IReadOnlyDictionary<string, object>`.
+Il tipo del parametro deve implementare `IEnumerable<KeyValuePair<string, object>>` con chiavi di stringa. L' `IReadOnlyDictionary<string, object>` uso di è anche un'opzione in questo scenario.
 
 Gli elementi `<input>` sottoposti a rendering usando entrambi gli approcci sono identici:
 
@@ -220,7 +223,7 @@ Gli elementi `<input>` sottoposti a rendering usando entrambi gli approcci sono 
        size="50">
 ```
 
-Per accettare attributi arbitrari, definire un parametro component usando l'attributo `[Parameter]` con la proprietà `CaptureUnmatchedValues` impostata su `true`:
+Per accettare attributi arbitrari, definire un parametro component usando l' `[Parameter]` attributo con la `CaptureUnmatchedValues` proprietà impostata su: `true`
 
 ```razor
 @code {
@@ -229,9 +232,9 @@ Per accettare attributi arbitrari, definire un parametro component usando l'attr
 }
 ```
 
-La proprietà `CaptureUnmatchedValues` in `[Parameter]` consente al parametro di trovare la corrispondenza con tutti gli attributi che non corrispondono ad altri parametri. Un componente può definire un solo parametro con `CaptureUnmatchedValues`. Il tipo di proprietà utilizzato con `CaptureUnmatchedValues` deve essere assegnabile da `Dictionary<string, object>` con chiavi di stringa. in questo scenario `IEnumerable<KeyValuePair<string, object>>` o `IReadOnlyDictionary<string, object>` sono inoltre disponibili opzioni.
+La `CaptureUnmatchedValues` proprietà su `[Parameter]` consente al parametro di trovare la corrispondenza con tutti gli attributi che non corrispondono ad altri parametri. Un componente può definire solo un singolo parametro con `CaptureUnmatchedValues`. Il tipo di proprietà utilizzato `CaptureUnmatchedValues` con deve essere assegnabile `Dictionary<string, object>` da con chiavi di stringa. `IEnumerable<KeyValuePair<string, object>>`o `IReadOnlyDictionary<string, object>` sono anche opzioni in questo scenario.
 
-La posizione di `@attributes` rispetto alla posizione degli attributi degli elementi è importante. Quando `@attributes` sono Splatted sull'elemento, gli attributi vengono elaborati da destra a sinistra (dall'ultimo al primo). Si consideri l'esempio seguente di un componente che utilizza un componente `Child`:
+La posizione di `@attributes` relativa alla posizione degli attributi degli elementi è importante. Quando `@attributes` Splatted sull'elemento, gli attributi vengono elaborati da destra a sinistra (da ultimo a primo). Si consideri l'esempio seguente di un componente che `Child` utilizza un componente:
 
 *ParentComponent. Razor*:
 
@@ -248,13 +251,13 @@ La posizione di `@attributes` rispetto alla posizione degli attributi degli elem
 public IDictionary<string, object> AdditionalAttributes { get; set; }
 ```
 
-L'attributo `extra` del componente `Child` è impostato a destra di `@attributes`. Il rendering del componente `Parent` `<div>` contiene `extra="5"` quando viene passato attraverso l'attributo aggiuntivo, perché gli attributi vengono elaborati da destra a sinistra (dall'ultimo al primo):
+L' `Child` `extra` attributo del componente viene impostato a destra di `@attributes`. Il `Parent` rendering `<div>` del componente contiene `extra="5"` quando viene passato attraverso l'attributo aggiuntivo perché gli attributi vengono elaborati da destra a sinistra (da ultimo a primo):
 
 ```html
 <div extra="5" />
 ```
 
-Nell'esempio seguente, l'ordine delle `extra` e `@attributes` viene invertito nell'`<div>`del componente `Child`:
+Nell'esempio seguente, l'ordine `extra` di e `@attributes` viene invertito nell'oggetto `Child` del componente: `<div>`
 
 *ParentComponent. Razor*:
 
@@ -271,7 +274,7 @@ Nell'esempio seguente, l'ordine delle `extra` e `@attributes` viene invertito ne
 public IDictionary<string, object> AdditionalAttributes { get; set; }
 ```
 
-Il `<div>` sottoposto a rendering nel componente `Parent` contiene `extra="10"` quando viene passato tramite l'attributo aggiuntivo:
+Il rendering `<div>` nel `Parent` componente contiene `extra="10"` quando viene passato tramite l'attributo aggiuntivo:
 
 ```html
 <div extra="10" />
@@ -279,9 +282,9 @@ Il `<div>` sottoposto a rendering nel componente `Parent` contiene `extra="10"` 
 
 ## <a name="capture-references-to-components"></a>Acquisisci riferimenti ai componenti
 
-I riferimenti ai componenti forniscono un modo per fare riferimento a un'istanza del componente in modo da poter emettere comandi per tale istanza, ad esempio `Show` o `Reset`. Per acquisire un riferimento a un componente:
+I riferimenti ai componenti forniscono un modo per fare riferimento a un'istanza del componente in modo da poter emettere comandi per `Show` tale `Reset`istanza, ad esempio o. Per acquisire un riferimento a un componente:
 
-* Aggiungere un attributo [`@ref`](xref:mvc/views/razor#ref) al componente figlio.
+* Aggiungere un [`@ref`](xref:mvc/views/razor#ref) attributo al componente figlio.
 * Definire un campo con lo stesso tipo del componente figlio.
 
 ```razor
@@ -297,21 +300,21 @@ I riferimenti ai componenti forniscono un modo per fare riferimento a un'istanza
 }
 ```
 
-Quando viene eseguito il rendering del componente, il campo `_loginDialog` viene popolato con l'istanza `MyLoginDialog` componente figlio. È quindi possibile richiamare i metodi .NET nell'istanza del componente.
+Quando viene eseguito il rendering del componente `_loginDialog` , il campo viene popolato con l'istanza del `MyLoginDialog` componente figlio. È quindi possibile richiamare i metodi .NET nell'istanza del componente.
 
 > [!IMPORTANT]
-> La variabile `_loginDialog` viene popolata solo dopo il rendering del componente e l'output include l'elemento `MyLoginDialog`. Fino a quel momento, non c'è niente a cui fare riferimento. Per modificare i riferimenti ai componenti dopo che il componente ha terminato il rendering, usare i [Metodi OnAfterRenderAsync o OnAfterRender](xref:blazor/lifecycle#after-component-render).
+> La `_loginDialog` variabile viene popolata solo dopo il rendering del componente e l'output include `MyLoginDialog` l'elemento. Fino a quel momento, non c'è niente a cui fare riferimento. Per modificare i riferimenti ai componenti dopo che il componente ha terminato il rendering, usare i [Metodi OnAfterRenderAsync o OnAfterRender](xref:blazor/lifecycle#after-component-render).
 
 Per fare riferimento ai componenti in un ciclo, vedere [Capture References to multiple analogous Child-Components (DotNet/aspnetcore #13358)](https://github.com/dotnet/aspnetcore/issues/13358).
 
-Mentre l'acquisizione di riferimenti ai componenti usa una sintassi simile per l' [acquisizione di riferimenti a elementi](xref:blazor/call-javascript-from-dotnet#capture-references-to-elements), non è una funzionalità di interoperabilità di JavaScript. I riferimenti ai componenti non vengono passati al codice JavaScript&mdash;vengono usati solo nel codice .NET.
+Mentre l'acquisizione di riferimenti ai componenti usa una sintassi simile per l' [acquisizione di riferimenti a elementi](xref:blazor/call-javascript-from-dotnet#capture-references-to-elements), non è una funzionalità di interoperabilità di JavaScript. I riferimenti ai componenti non vengono passati&mdash;al codice JavaScript che vengono usati solo nel codice .NET.
 
 > [!NOTE]
 > **Non** usare i riferimenti ai componenti per mutare lo stato dei componenti figlio. Usare invece i normali parametri dichiarativi per passare i dati ai componenti figlio. L'utilizzo di normali parametri dichiarativi restituisce automaticamente i componenti figlio che eseguono il rendering alle ore corrette.
 
 ## <a name="invoke-component-methods-externally-to-update-state"></a>Richiama i metodi del componente esternamente per aggiornare lo stato
 
-Blazor usa un `SynchronizationContext` per applicare un singolo thread logico di esecuzione. I metodi del [ciclo](xref:blazor/lifecycle) di vita di un componente e tutti i callback di evento generati da Blazor vengono eseguiti in questa `SynchronizationContext`. Nel caso in cui un componente deve essere aggiornato in base a un evento esterno, ad esempio un timer o altre notifiche, usare il metodo `InvokeAsync`, che invierà al `SynchronizationContext`di Blazor.
+BlazorUsa un `SynchronizationContext` oggetto per applicare un singolo thread logico di esecuzione. I metodi del [ciclo](xref:blazor/lifecycle) di vita di un componente e tutti i callback di Blazor evento generati da vengono `SynchronizationContext`eseguiti in questo oggetto. Nel caso in cui un componente deve essere aggiornato in base a un evento esterno, ad esempio un timer o altre notifiche, `InvokeAsync` usare il metodo, che Blazorinvierà `SynchronizationContext`a.
 
 Si consideri ad esempio un *servizio Notifier* che può inviare notifiche a qualsiasi componente in ascolto dello stato aggiornato:
 
@@ -345,7 +348,7 @@ Registrare il `NotifierService` come singletion:
   services.AddSingleton<NotifierService>();
   ```
 
-Usare il `NotifierService` per aggiornare un componente:
+Usare `NotifierService` per aggiornare un componente:
 
 ```razor
 @page "/"
@@ -378,11 +381,11 @@ Usare il `NotifierService` per aggiornare un componente:
 }
 ```
 
-Nell'esempio precedente `NotifierService` richiama il metodo di `OnNotify` del componente al di fuori della `SynchronizationContext`di Blazor. `InvokeAsync` viene utilizzato per passare al contesto corretto e accodare un rendering.
+`NotifierService` Nell'esempio precedente richiama `OnNotify` il metodo del componente all'esterno di. Blazor `SynchronizationContext` `InvokeAsync`viene usato per passare al contesto corretto e accodare un rendering.
 
-## <a name="use-key-to-control-the-preservation-of-elements-and-components"></a>Usare \@chiave per controllare la conservazione di elementi e componenti
+## <a name="use-key-to-control-the-preservation-of-elements-and-components"></a>Usare \@la chiave per controllare la conservazione di elementi e componenti
 
-Quando si esegue il rendering di un elenco di elementi o componenti e gli elementi o i componenti vengono modificati successivamente, l'algoritmo diff di Blazordeve decidere quali elementi o componenti precedenti possono essere conservati e come eseguire il mapping degli oggetti modello. In genere, questo processo è automatico e può essere ignorato, ma in alcuni casi potrebbe essere necessario controllare il processo.
+Quando si esegue il rendering di un elenco di elementi o componenti e gli elementi o Blazori componenti cambiano successivamente, l'algoritmo diffing deve decidere quali elementi o componenti precedenti possono essere conservati e come eseguire il mapping degli oggetti modello. In genere, questo processo è automatico e può essere ignorato, ma in alcuni casi potrebbe essere necessario controllare il processo.
 
 Prendere in considerazione gli esempi seguenti:
 
@@ -398,9 +401,9 @@ Prendere in considerazione gli esempi seguenti:
 }
 ```
 
-Il contenuto della raccolta di `People` può cambiare con le voci inserite, eliminate o riordinate. Quando viene eseguito il rendering del componente, il componente `<DetailsEditor>` può variare in modo da ricevere valori `Details` parametri diversi. Questo può causare un rirendering più complesso del previsto. In alcuni casi, il rirendering può comportare differenze di comportamento visibili, ad esempio lo stato attivo degli elementi persi.
+Il contenuto della `People` raccolta può cambiare con le voci inserite, eliminate o riordinate. Quando viene eseguito il rendering del componente, `<DetailsEditor>` è possibile che il componente venga `Details` modificato in modo da ricevere valori di parametro diversi. Questo può causare un rirendering più complesso del previsto. In alcuni casi, il rirendering può comportare differenze di comportamento visibili, ad esempio lo stato attivo degli elementi persi.
 
-È possibile controllare il processo di mapping con l'attributo `@key` direttiva. `@key` fa in modo che l'algoritmo diffi garantisca la conservazione di elementi o componenti in base al valore della chiave:
+È possibile controllare il processo di mapping con [`@key`](xref:mvc/views/razor#key) l'attributo della direttiva. `@key`fa in modo che l'algoritmo di diffing garantisca la conservazione di elementi o componenti in base al valore della chiave:
 
 ```csharp
 @foreach (var person in People)
@@ -414,22 +417,22 @@ Il contenuto della raccolta di `People` può cambiare con le voci inserite, elim
 }
 ```
 
-Quando la raccolta `People` viene modificata, l'algoritmo diffing mantiene l'associazione tra istanze `<DetailsEditor>` e `person` istanze:
+Quando la `People` raccolta viene modificata, l'algoritmo diffing mantiene l'associazione tra `<DetailsEditor>` istanze e `person` istanze:
 
-* Se un `Person` viene eliminato dall'elenco `People`, solo l'istanza corrispondente di `<DetailsEditor>` viene rimossa dall'interfaccia utente. Altre istanze rimangono invariate.
-* Se un `Person` viene inserito in una determinata posizione nell'elenco, viene inserita una nuova istanza di `<DetailsEditor>` in corrispondenza della posizione corrispondente. Altre istanze rimangono invariate.
-* Se `Person` le voci vengono riordinate, le istanze di `<DetailsEditor>` corrispondenti vengono mantenute e nuovamente ordinate nell'interfaccia utente.
+* Se un `Person` oggetto viene eliminato dall' `People` elenco, solo l'istanza `<DetailsEditor>` corrispondente viene rimossa dall'interfaccia utente. Altre istanze rimangono invariate.
+* Se un `Person` oggetto viene inserito in una determinata posizione nell'elenco, viene `<DetailsEditor>` inserita una nuova istanza in corrispondenza della posizione corrispondente. Altre istanze rimangono invariate.
+* Se `Person` le voci vengono riordinate, le `<DetailsEditor>` istanze corrispondenti vengono mantenute e nuovamente ordinate nell'interfaccia utente.
 
-In alcuni scenari, l'utilizzo di `@key` riduce al minimo la complessità del rendering ed evita potenziali problemi con le parti con stato del DOM che cambiano, ad esempio la posizione di messa a fuoco.
+In alcuni scenari, l'utilizzo `@key` di riduce al minimo la complessità del rendering ed evita potenziali problemi con le parti con stato del DOM che cambiano, ad esempio la posizione dello stato attivo.
 
 > [!IMPORTANT]
 > Le chiavi sono locali per ogni elemento contenitore o componente. Le chiavi non vengono confrontate globalmente nell'intero documento.
 
-### <a name="when-to-use-key"></a>Quando usare \@chiave
+### <a name="when-to-use-key"></a>Quando usare \@la chiave
 
-In genere, è opportuno usare `@key` ogni volta che viene eseguito il rendering di un elenco (ad esempio, in un blocco di `@foreach`) e un valore appropriato per definire il `@key`.
+In genere, è opportuno usare `@key` ogni volta che viene eseguito il rendering di un elenco (ad `@foreach` esempio, in un blocco) e un valore appropriato `@key`per definire.
 
-È anche possibile usare `@key` per impedire Blazor di mantenere un sottoalbero di elementi o componenti quando un oggetto viene modificato:
+È anche possibile usare `@key` per impedire Blazor a di mantenere un sottoalbero di un elemento o di un componente quando un oggetto viene modificato:
 
 ```razor
 <div @key="currentPerson">
@@ -437,31 +440,124 @@ In genere, è opportuno usare `@key` ogni volta che viene eseguito il rendering 
 </div>
 ```
 
-Se `@currentPerson` viene modificata, la direttiva attribute `@key` impone Blazor di rimuovere l'intero `<div>` e i relativi discendenti e ricompilare il sottoalbero all'interno dell'interfaccia utente con nuovi elementi e componenti. Questo può essere utile se è necessario garantire che lo stato dell'interfaccia utente non venga mantenuto quando `@currentPerson` modifiche.
+Se `@currentPerson` viene modificata, `@key` la direttiva attribute Blazor impone di rimuovere l' `<div>` intero oggetto e i relativi discendenti e di ricompilare il sottoalbero all'interno dell'interfaccia utente con nuovi elementi e componenti. Questo può essere utile se è necessario garantire che lo stato dell'interfaccia utente non venga `@currentPerson` mantenuto quando viene modificato.
 
-### <a name="when-not-to-use-key"></a>Quando non usare \@chiave
+### <a name="when-not-to-use-key"></a>Quando non usare \@la chiave
 
-Si verifica un costo in termini di prestazioni quando si verificano differenze con `@key`. Il costo delle prestazioni non è elevato, ma specifica solo `@key` se il controllo delle regole di conservazione degli elementi o dei componenti avvantaggia l'app.
+Si verifica un costo in termini di prestazioni quando `@key`si verificano differenze con. Il costo delle prestazioni non è elevato, ma `@key` è sufficiente specificare solo se il controllo delle regole di conservazione degli elementi o dei componenti avvantaggia l'app.
 
-Anche se non viene usato `@key`, Blazor conserva il più possibile le istanze di elementi e componenti figlio. L'unico vantaggio dell'utilizzo di `@key` è il controllo sulla *modalità* di mapping delle istanze del modello alle istanze dei componenti conservati, anziché sull'algoritmo di diffing che seleziona il mapping.
+Anche se `@key` non viene usato Blazor , conserva le istanze di elementi e componenti figlio il più possibile. L'unico vantaggio dell'utilizzo `@key` di è il controllo sulla *modalità* di mapping delle istanze del modello alle istanze dei componenti mantenute, anziché sull'algoritmo di diffing che seleziona il mapping.
 
-### <a name="what-values-to-use-for-key"></a>Valori da usare per la chiave di \@
+### <a name="what-values-to-use-for-key"></a>Valori da usare per la \@chiave
 
 In genere, è opportuno fornire uno dei seguenti tipi di valore per `@key`:
 
-* Istanze di oggetti modello (ad esempio, un'istanza di `Person` come nell'esempio precedente). In questo modo si garantisce la conservazione in base all'uguaglianza del riferimento all'oggetto.
-* Identificatori univoci (ad esempio, valori di chiave primaria di tipo `int`, `string`o `Guid`).
+* Istanze di oggetti modello (ad esempio, `Person` un'istanza come nell'esempio precedente). In questo modo si garantisce la conservazione in base all'uguaglianza del riferimento all'oggetto.
+* Identificatori univoci, ad esempio valori di chiave primaria di `int`tipo `string`, o `Guid`.
 
-Assicurarsi che i valori usati per `@key` non siano in conflitto. Se vengono rilevati valori di conflitto nello stesso elemento padre, Blazor genera un'eccezione perché non è in grado di eseguire il mapping deterministico di elementi o componenti precedenti a nuovi elementi o componenti. Utilizzare solo valori distinti, ad esempio istanze di oggetti o valori di chiave primaria.
+Verificare che i valori usati `@key` per non siano in conflitto. Se vengono rilevati valori di conflitto nello stesso elemento padre Blazor , genera un'eccezione perché non è in grado di eseguire il mapping deterministico di elementi o componenti precedenti a nuovi elementi o componenti. Utilizzare solo valori distinti, ad esempio istanze di oggetti o valori di chiave primaria.
+
+## <a name="dont-create-components-that-write-to-their-own-parameter-properties"></a>Non creare componenti che scrivono nelle proprie proprietà dei parametri
+
+I parametri vengono sovrascritti nei casi seguenti:
+
+* Viene eseguito il rendering del contenuto di un componente `RenderFragment`figlio con un oggetto.
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>viene chiamato nel componente padre.
+
+I parametri vengono reimpostati perché il componente padre esegue <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> nuovamente il rendering quando viene chiamato il metodo e vengono specificati nuovi valori di parametro per il componente figlio.
+
+Si consideri il componente seguente `Expander` :
+
+* Esegue il rendering del contenuto figlio.
+* Consente di visualizzare o disabilitare il contenuto figlio con un parametro component.
+
+```razor
+<div @onclick="@Toggle">
+    Toggle (Expanded = @Expanded)
+
+    @if (Expanded)
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private void Toggle()
+    {
+        Expanded = !Expanded;
+    }
+}
+```
+
+Il `Expander` componente viene aggiunto a un componente padre che può chiamare `StateHasChanged`:
+
+```razor
+<Expander Expanded="true">
+    <h1>Hello, world!</h1>
+</Expander>
+
+<Expander Expanded="true" />
+
+<button @onclick="@(() => StateHasChanged())">
+    Call StateHasChanged
+</button>
+```
+
+Inizialmente, i `Expander` componenti si comportano in `Expanded` modo indipendente quando le proprietà vengono disposte. I componenti figlio gestiscono gli Stati come previsto. Quando `StateHasChanged` viene chiamato nell'elemento padre, il `Expanded` parametro del primo componente figlio viene reimpostato sul valore iniziale (`true`). Il `Expanded` valore `Expander` del secondo componente non viene reimpostato perché nel secondo componente non viene eseguito il rendering del contenuto figlio.
+
+Per mantenere lo stato nello scenario precedente, usare un *campo privato* nel `Expander` componente per mantenerne lo stato attivato/disattivato.
+
+Il componente `Expander` seguente:
+
+* Accetta il `Expanded` valore del parametro component dall'elemento padre.
+* Assegna il valore del parametro component a un *campo privato* (`_expanded`) nell' [evento OnInitialized](xref:blazor/lifecycle#component-initialization-methods).
+* Usa il campo privato per mantenere lo stato di attivazione/disattivo interno.
+
+```razor
+<div @onclick="@Toggle">
+    Toggle (Expanded = @_expanded)
+
+    @if (_expanded)
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private bool _expanded;
+
+    protected override void OnInitialized()
+    {
+        _expanded = Expanded;
+    }
+
+    private void Toggle()
+    {
+        _expanded = !_expanded;
+    }
+}
+```
 
 ## <a name="partial-class-support"></a>Supporto di classi parziali
 
 I componenti Razor vengono generati come classi parziali. I componenti Razor vengono creati usando uno degli approcci seguenti:
 
-* C#il codice viene definito in un blocco di [`@code`](xref:mvc/views/razor#code) con markup HTML e codice Razor in un singolo file. i modelli di Blazor definiscono i componenti Razor usando questo approccio.
-* C#il codice viene inserito in un file code-behind definito come classe parziale.
+* Il codice C# è definito in [`@code`](xref:mvc/views/razor#code) un blocco con markup HTML e codice Razor in un unico file. Blazori modelli definiscono i componenti Razor usando questo approccio.
+* Il codice C# viene inserito in un file code-behind definito come classe parziale.
 
-L'esempio seguente illustra il componente `Counter` predefinito con un blocco di `@code` in un'app generata da un modello di Blazor. Il markup HTML, il codice Razor C# e il codice si trovano nello stesso file:
+Nell'esempio seguente viene illustrato il `Counter` componente predefinito con `@code` un blocco in un'app generata da Blazor un modello. Il markup HTML, il codice Razor e il codice C# si trovano nello stesso file:
 
 *Counter. Razor*:
 
@@ -484,7 +580,7 @@ L'esempio seguente illustra il componente `Counter` predefinito con un blocco di
 }
 ```
 
-Il componente `Counter` può essere creato anche usando un file code-behind con una classe parziale:
+Il `Counter` componente può essere creato anche usando un file code-behind con una classe parziale:
 
 *Counter. Razor*:
 
@@ -528,7 +624,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 ## <a name="specify-a-base-class"></a>Specificare una classe di base
 
-È possibile utilizzare la direttiva [`@inherits`](xref:mvc/views/razor#inherits) per specificare una classe di base per un componente. Nell'esempio seguente viene illustrato come un componente può ereditare una classe base, `BlazorRocksBase`, per fornire le proprietà e i metodi del componente. La classe base deve derivare da `ComponentBase`.
+La [`@inherits`](xref:mvc/views/razor#inherits) direttiva può essere usata per specificare una classe di base per un componente. Nell'esempio seguente viene illustrato come un componente può ereditare una classe `BlazorRocksBase`base,, per fornire le proprietà e i metodi del componente. La classe base deve derivare `ComponentBase`da.
 
 *Pages/BlazorRocks. Razor*:
 
@@ -556,7 +652,7 @@ namespace BlazorSample
 
 ## <a name="specify-an-attribute"></a>Specificare un attributo
 
-Gli attributi possono essere specificati nei componenti Razor con la direttiva [`@attribute`](xref:mvc/views/razor#attribute) . Nell'esempio seguente viene applicato l'attributo `[Authorize]` alla classe Component:
+Gli attributi possono essere specificati nei componenti Razor con [`@attribute`](xref:mvc/views/razor#attribute) la direttiva. Nell'esempio seguente viene applicato `[Authorize]` l'attributo alla classe Component:
 
 ```razor
 @page "/"
@@ -567,15 +663,15 @@ Gli attributi possono essere specificati nei componenti Razor con la direttiva [
 
 Lo spazio dei nomi di un componente creato con Razor si basa su (in ordine di priorità):
 
-* [`@namespace`](xref:mvc/views/razor#namespace) designazione nel markup del*file Razor (razor) (* `@namespace BlazorSample.MyNamespace`).
-* `RootNamespace` del progetto nel file di progetto (`<RootNamespace>BlazorSample</RootNamespace>`).
-* Il nome del progetto, tratto dal nome file del file di progetto (con*estensione csproj*), e il percorso dalla radice del progetto al componente. Ad esempio, il Framework risolve *{Project root}/pages/index.Razor* (*BlazorSample. csproj*) nello spazio dei nomi `BlazorSample.Pages`. I componenti C# seguono le regole di associazione dei nomi. Per il componente `Index` in questo esempio, i componenti nell'ambito sono tutti componenti:
+* [`@namespace`](xref:mvc/views/razor#namespace)designazione nel markup del file Razor (*Razor*)`@namespace BlazorSample.MyNamespace`().
+* Il progetto nel `RootNamespace` file di progetto (`<RootNamespace>BlazorSample</RootNamespace>`).
+* Il nome del progetto, tratto dal nome file del file di progetto (con*estensione csproj*), e il percorso dalla radice del progetto al componente. Ad esempio, il Framework risolve *{Project root}/pages/index.Razor* (*BlazorSample. csproj*) nello spazio dei nomi `BlazorSample.Pages`. I componenti seguono le regole di associazione dei nomi in C#. Per il `Index` componente in questo esempio, i componenti nell'ambito sono tutti componenti:
   * Nella stessa cartella, *pagine*.
   * Componenti nella radice del progetto che non specificano in modo esplicito uno spazio dei nomi diverso.
 
-I componenti definiti in uno spazio dei nomi diverso vengono introdotti nell'ambito usando la direttiva [`@using`](xref:mvc/views/razor#using) di Razor.
+I componenti definiti in uno spazio dei nomi diverso vengono introdotti nell' [`@using`](xref:mvc/views/razor#using) ambito usando la direttiva Razor.
 
-Se un altro componente, `NavMenu.razor`, esiste nella cartella *BlazorSample/Shared* , il componente può essere utilizzato in `Index.razor` con la seguente istruzione `@using`:
+Se un altro componente `NavMenu.razor`,, è presente nella cartella *BlazorSample/Shared/* , il componente può essere utilizzato `Index.razor` in con l' `@using` istruzione seguente:
 
 ```razor
 @using BlazorSample.Shared
@@ -585,7 +681,7 @@ This is the Index page.
 <NavMenu></NavMenu>
 ```
 
-È anche possibile fare riferimento ai componenti usando i relativi nomi completi, che non richiedono la direttiva [`@using`](xref:mvc/views/razor#using) :
+È anche possibile fare riferimento ai componenti usando i relativi nomi completi, che non richiedono [`@using`](xref:mvc/views/razor#using) la direttiva:
 
 ```razor
 This is the Index page.
@@ -594,17 +690,17 @@ This is the Index page.
 ```
 
 > [!NOTE]
-> La qualificazione `global::` non è supportata.
+> La `global::` qualificazione non è supportata.
 >
-> L'importazione di componenti con istruzioni `using` con alias, ad esempio `@using Foo = Bar`, non è supportata.
+> L'importazione di componenti con `using` istruzioni con alias (ad `@using Foo = Bar`esempio,) non è supportata.
 >
-> I nomi parzialmente qualificati non sono supportati. Ad esempio, l'aggiunta di `@using BlazorSample` e il riferimento `NavMenu.razor` con `<Shared.NavMenu></Shared.NavMenu>` non è supportata.
+> I nomi parzialmente qualificati non sono supportati. Ad esempio, l' `@using BlazorSample` aggiunta e `NavMenu.razor` il `<Shared.NavMenu></Shared.NavMenu>` riferimento a non sono supportate.
 
 ## <a name="conditional-html-element-attributes"></a>Attributi dell'elemento HTML condizionale
 
 Gli attributi degli elementi HTML vengono sottoposti a rendering in modo condizionale in base al valore .NET. Se il valore è `false` o `null`, l'attributo non viene sottoposto a rendering. Se il valore è `true`, l'attributo viene sottoposto a rendering ridotto a icona.
 
-Nell'esempio seguente `IsCompleted` determina se viene eseguito il rendering `checked` nel markup dell'elemento:
+Nell'esempio seguente, `IsCompleted` determina se `checked` viene eseguito il rendering nel markup dell'elemento:
 
 ```razor
 <input type="checkbox" checked="@IsCompleted" />
@@ -630,16 +726,16 @@ Se `IsCompleted` è `false`, viene eseguito il rendering della casella di contro
 Per altre informazioni, vedere <xref:mvc/views/razor>.
 
 > [!WARNING]
-> Alcuni attributi HTML, ad esempio [aria-premuti](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), non funzionano correttamente quando il tipo .NET è un `bool`. In questi casi, usare un tipo di `string` anziché una `bool`.
+> Alcuni attributi HTML, ad esempio [aria-Pressed](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), non funzionano correttamente quando il tipo .NET è `bool`. In questi casi, usare un `string` tipo anziché un `bool`.
 
 ## <a name="raw-html"></a>HTML non elaborato
 
-Le stringhe vengono in genere sottoposte a rendering usando i nodi di testo DOM, il che significa che qualsiasi markup che può contenere viene ignorato e considerato come testo letterale. Per eseguire il rendering del codice HTML non elaborato, eseguire il wrapping del contenuto HTML in un valore `MarkupString`. Il valore viene analizzato in formato HTML o SVG e inserito nel DOM.
+Le stringhe vengono in genere sottoposte a rendering usando i nodi di testo DOM, il che significa che qualsiasi markup che può contenere viene ignorato e considerato come testo letterale. Per eseguire il rendering del codice HTML non elaborato, eseguire `MarkupString` il wrapping del contenuto HTML in un valore. Il valore viene analizzato in formato HTML o SVG e inserito nel DOM.
 
 > [!WARNING]
 > Il rendering di codice HTML non elaborato costruito da un'origine non attendibile costituisce un rischio per la **sicurezza** e deve essere evitato.
 
-Nell'esempio seguente viene illustrato l'utilizzo del tipo di `MarkupString` per aggiungere un blocco di contenuto HTML statico all'output sottoposto a rendering di un componente:
+Nell'esempio seguente viene illustrato l' `MarkupString` utilizzo del tipo per aggiungere un blocco di contenuto HTML statico all'output sottoposto a rendering di un componente:
 
 ```html
 @((MarkupString)_myMarkup)
@@ -656,7 +752,7 @@ In alcuni scenari, non è pratico eseguire il flusso dei dati da un componente p
 
 ### <a name="theme-example"></a>Esempio di tema
 
-Nell'esempio seguente dall'app di esempio, la classe `ThemeInfo` specifica le informazioni sul tema per scorrere la gerarchia dei componenti in modo che tutti i pulsanti all'interno di una determinata parte dell'app condividono lo stesso stile.
+Nell'esempio seguente dall'app di esempio, la `ThemeInfo` classe specifica le informazioni sul tema per scorrere la gerarchia dei componenti in modo che tutti i pulsanti all'interno di una determinata parte dell'app condividono lo stesso stile.
 
 *UIThemeClasses/themeinfo. cs*:
 
@@ -667,11 +763,11 @@ public class ThemeInfo
 }
 ```
 
-Un componente predecessore può fornire un valore di propagazione utilizzando il componente valore di propagazione. Il componente `CascadingValue` esegue il wrapping di un sottoalbero della gerarchia dei componenti e fornisce un singolo valore a tutti i componenti all'interno di tale sottoalbero.
+Un componente predecessore può fornire un valore di propagazione utilizzando il componente valore di propagazione. Il `CascadingValue` componente esegue il wrapping di un sottoalbero della gerarchia dei componenti e fornisce un singolo valore a tutti i componenti all'interno di tale sottoalbero.
 
-Ad esempio, l'app di esempio specifica le informazioni sul tema (`ThemeInfo`) in uno dei layout dell'app come parametro di propagazione per tutti i componenti che costituiscono il corpo del layout della proprietà `@Body`. al `ButtonClass` viene assegnato un valore di `btn-success` nel componente layout. Qualsiasi componente discendente può utilizzare questa proprietà tramite l'`ThemeInfo` oggetto a cascata.
+Ad esempio, l'app di esempio specifica le informazioni`ThemeInfo`sul tema () in uno dei layout dell'app come parametro di propagazione per tutti i componenti che costituiscono il corpo del `@Body` layout della proprietà. `ButtonClass`viene assegnato un valore di `btn-success` nel componente layout. Qualsiasi componente discendente può utilizzare questa proprietà tramite `ThemeInfo` l'oggetto a cascata.
 
-componente `CascadingValuesParametersLayout`:
+`CascadingValuesParametersLayout`componente
 
 ```razor
 @inherits LayoutComponentBase
@@ -697,11 +793,11 @@ componente `CascadingValuesParametersLayout`:
 }
 ```
 
-Per utilizzare i valori di propagazione, i componenti dichiarano i parametri di propagazione utilizzando l'attributo `[CascadingParameter]`. I valori a cascata vengono associati ai parametri di propagazione per tipo.
+Per utilizzare i valori di propagazione, i componenti dichiarano i `[CascadingParameter]` parametri di propagazione utilizzando l'attributo. I valori a cascata vengono associati ai parametri di propagazione per tipo.
 
-Nell'app di esempio il componente `CascadingValuesParametersTheme` associa il `ThemeInfo` valore di propagazione a un parametro di propagazione. Il parametro viene usato per impostare la classe CSS per uno dei pulsanti visualizzati dal componente.
+Nell'app di esempio, il `CascadingValuesParametersTheme` componente associa il `ThemeInfo` valore a cascata a un parametro di propagazione. Il parametro viene usato per impostare la classe CSS per uno dei pulsanti visualizzati dal componente.
 
-componente `CascadingValuesParametersTheme`:
+`CascadingValuesParametersTheme`componente
 
 ```razor
 @page "/cascadingvaluesparameterstheme"
@@ -737,7 +833,7 @@ componente `CascadingValuesParametersTheme`:
 }
 ```
 
-Per eseguire il propagazione di più valori dello stesso tipo all'interno dello stesso sottoalbero, specificare una stringa di `Name` univoca per ogni componente `CascadingValue` e la `CascadingParameter`corrispondente. Nell'esempio seguente due componenti `CascadingValue` propagano istanze diverse di `MyCascadingType` in base al nome:
+Per eseguire il propagazione di più valori dello stesso tipo all'interno dello stesso `Name` sottoalbero, `CascadingValue` fornire una stringa univoca a ogni componente e la corrispondente `CascadingParameter`. Nell'esempio seguente due `CascadingValue` componenti propagano istanze diverse di `MyCascadingType` per nome:
 
 ```razor
 <CascadingValue Value=@_parentCascadeParameter1 Name="CascadeParam1">
@@ -774,11 +870,11 @@ In un componente discendente i parametri a cascata ricevono i rispettivi valori 
 
 I parametri di propagazione consentono inoltre ai componenti di collaborare attraverso la gerarchia dei componenti. Si consideri, ad esempio, l'esempio di *tabulazione* seguente nell'app di esempio.
 
-L'app di esempio dispone di un'interfaccia `ITab` che le schede implementano:
+L'app di esempio ha `ITab` un'interfaccia implementata dalle schede:
 
 [!code-csharp[](common/samples/3.x/BlazorWebAssemblySample/UIInterfaces/ITab.cs)]
 
-Il componente `CascadingValuesParametersTabSet` usa il componente `TabSet`, che contiene diversi componenti di `Tab`:
+Il `CascadingValuesParametersTabSet` componente usa il `TabSet` componente, che contiene diversi `Tab` componenti:
 
 ```razor
 <TabSet>
@@ -804,15 +900,15 @@ Il componente `CascadingValuesParametersTabSet` usa il componente `TabSet`, che 
 </TabSet>
 ```
 
-I componenti di `Tab` figlio non vengono passati in modo esplicito come parametri al `TabSet`. Al contrario, i componenti `Tab` figlio fanno parte del contenuto figlio della `TabSet`. Tuttavia, il `TabSet` deve comunque conoscere ogni componente `Tab` in modo che sia in grado di eseguire il rendering delle intestazioni e della scheda attiva. Per abilitare questo coordinamento senza richiedere codice aggiuntivo, il componente `TabSet` *può fornire se stesso come valore* di propagazione che viene quindi prelevato dai componenti `Tab` discendenti.
+I componenti `Tab` figlio non vengono passati in modo esplicito come `TabSet`parametri a. Al contrario, i `Tab` componenti figlio fanno parte del contenuto figlio di `TabSet`. Tuttavia, è `TabSet` comunque necessario conoscere ogni `Tab` componente in modo che sia in grado di eseguire il rendering delle intestazioni e della scheda attiva. Per abilitare questo coordinamento senza richiedere codice aggiuntivo, il `TabSet` componente *può fornire se stesso come valore* di propagazione che viene quindi prelevato dai `Tab` componenti discendenti.
 
-componente `TabSet`:
+`TabSet`componente
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/TabSet.razor)]
 
-I componenti `Tab` discendenti acquisiscono l'`TabSet` contenitore come parametro di propagazione, quindi i componenti `Tab` si aggiungono al `TabSet` e coordinano la scheda attiva.
+I componenti `Tab` discendenti acquisiscono `TabSet` l'oggetto che contiene come parametro di propagazione, in modo che i `Tab` componenti si aggiungano alla coordinata `TabSet` e della scheda attiva.
 
-componente `Tab`:
+`Tab`componente
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/Tab.razor)]
 
@@ -824,7 +920,7 @@ I frammenti di rendering possono essere definiti usando la sintassi del modello 
 @<{HTML tag}>...</{HTML tag}>
 ```
 
-Nell'esempio seguente viene illustrato come specificare `RenderFragment` e `RenderFragment<T>` valori ed eseguire il rendering dei modelli direttamente in un componente. I frammenti di rendering possono anche essere passati come argomenti ai [componenti basati su modelli](xref:blazor/templated-components).
+Nell'esempio seguente viene illustrato come specificare `RenderFragment` i valori `RenderFragment<T>` e ed eseguire il rendering dei modelli direttamente in un componente. I frammenti di rendering possono anche essere passati come argomenti ai [componenti basati su modelli](xref:blazor/templated-components).
 
 ```razor
 @_timeTemplate
@@ -852,7 +948,7 @@ Output del codice precedente sottoposto a rendering:
 
 ## <a name="scalable-vector-graphics-svg-images"></a>Immagini SVG (Scalable Vector Graphics)
 
-Poiché Blazor esegue il rendering del codice HTML, le immagini supportate dal browser, incluse le immagini SVG (Scalable Vector Graphics *) (SVG),* sono supportate tramite il tag `<img>`:
+Poiché Blazor esegue il rendering del codice HTML, le immagini supportate dal browser, incluse le immagini SVG (Scalable Vector Graphics) (con*estensione SVG*), sono supportate tramite il `<img>` Tag:
 
 ```html
 <img alt="Example image" src="some-image.svg" />
@@ -866,8 +962,8 @@ Analogamente, le immagini SVG sono supportate nelle regole CSS di un file di fog
 }
 ```
 
-Tuttavia, il markup SVG inline non è supportato in tutti gli scenari. Se si inserisce un tag di `<svg>` direttamente in un file di componente (*Razor*), il rendering delle immagini di base è supportato, ma molti scenari avanzati non sono ancora supportati. Ad esempio, i tag di `<use>` non sono attualmente rispettati e non è possibile usare `@bind` con alcuni tag SVG. Queste limitazioni verranno affrontate in una versione futura.
+Tuttavia, il markup SVG inline non è supportato in tutti gli scenari. Se si inserisce un `<svg>` tag direttamente in un file di componente (*Razor*), il rendering delle immagini di base è supportato, ma molti scenari avanzati non sono ancora supportati. Ad esempio, `<use>` i tag non sono attualmente rispettati e `@bind` non possono essere usati con alcuni tag svg. Queste limitazioni verranno affrontate in una versione futura.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* <xref:security/blazor/server> &ndash; include informazioni aggiuntive sulla creazione di app di Blazor server che devono essere confrontate con l'esaurimento delle risorse.
+* <xref:security/blazor/server/threat-mitigation>&ndash; Include informazioni aggiuntive sulla Blazor creazione di app server che devono essere confrontate con l'esaurimento delle risorse.
