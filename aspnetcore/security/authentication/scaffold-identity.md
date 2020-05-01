@@ -5,18 +5,18 @@ description: Informazioni su come eseguire l'impalcatura dell'identità in un pr
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/15/2020
+ms.date: 5/1/2020
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: b3e077aeac11e62d9e992884100476f7be35b59a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: ac95035b114274ddaa6ccb0b5b6e3da98885e39e
+ms.sourcegitcommit: 6318d2bdd63116e178c34492a904be85ec9ac108
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78663870"
+ms.lasthandoff: 04/30/2020
+ms.locfileid: "82604727"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Identità di impalcatura nei progetti ASP.NET Core
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -30,13 +30,25 @@ Sebbene l'impalcatura generi la maggior parte del codice necessario, è necessar
 
 I servizi sono necessari quando si usa [l'autenticazione a due fattori](xref:security/authentication/identity-enable-qrcodes), la [conferma dell'account e il recupero della password](xref:security/authentication/accconfirm)e altre funzionalità di sicurezza con identità. I servizi o gli stub di servizio non vengono generati durante l'identità di ponteggi. I servizi per abilitare queste funzionalità devono essere aggiunti manualmente. Vedere ad esempio [Richiedi conferma tramite posta elettronica](xref:security/authentication/accconfirm#require-email-confirmation).
 
-Questo documento contiene istruzioni più complete rispetto al file *ScaffoldingReadme. txt* che viene generato quando si esegue l'impalcatura.
+Quando si esegue il ponteggi dell'identità con un nuovo contesto dati in un progetto con account singoli esistenti:
+
+* In `Startup.ConfigureServices`rimuovere le chiamate a:
+  * `AddDbContext`
+  * `AddDefaultIdentity`
+
+Ad esempio, `AddDbContext` e `AddDefaultIdentity` sono impostati come commento nel codice seguente:
+
+[!code-csharp[](scaffold-identity/3.1sample/StartupRemove.cs?name=snippet)]
+
+Il codice precedente commenta il codice duplicato in *aree/identità/IdentityHostingStartup. cs*
+
+In genere, le app create con singoli account ***non*** devono creare un nuovo contesto dati.
 
 ## <a name="scaffold-identity-into-an-empty-project"></a>Identità del patibolo in un progetto vuoto
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Aggiornare la classe `Startup` con codice simile al seguente:
+Aggiornare la `Startup` classe con codice simile al seguente:
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
 
@@ -85,7 +97,7 @@ L'identità è configurata in *areas/Identity/IdentityHostingStartup. cs*. Per u
 
 ### <a name="enable-authentication"></a>Abilita autenticazione
 
-Aggiornare la classe `Startup` con codice simile al seguente:
+Aggiornare la `Startup` classe con codice simile al seguente:
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupRP.cs?name=snippet)]
 
@@ -93,7 +105,7 @@ Aggiornare la classe `Startup` con codice simile al seguente:
 
 ### <a name="layout-changes"></a>Modifiche del layout
 
-Facoltativo: aggiungere l'account di accesso parziale (`_LoginPartial`) al file di layout:
+Facoltativo: aggiungere l'account di accesso`_LoginPartial`parziale () al file di layout:
 
 [!code-html[Main](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
@@ -131,7 +143,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Facoltativo: aggiungere l'account di accesso parziale (`_LoginPartial`) al file *Views/Shared/_Layout. cshtml* :
+Facoltativo: aggiungere l'account di accesso`_LoginPartial`parziale () al file *Views/Shared/_Layout. cshtml* :
 
 [!code-html[Main](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
@@ -141,7 +153,7 @@ L'identità è configurata in *areas/Identity/IdentityHostingStartup. cs*. Per u
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-Aggiornare la classe `Startup` con codice simile al seguente:
+Aggiornare la `Startup` classe con codice simile al seguente:
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
 
@@ -177,7 +189,7 @@ Il codice seguente imposta [LoginPath](/dotnet/api/microsoft.aspnetcore.authenti
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
-Registrare un'implementazione di `IEmailSender`, ad esempio:
+Registrare un' `IEmailSender` implementazione, ad esempio:
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
 
@@ -222,7 +234,7 @@ Per disabilitare la registrazione dell'utente:
 * Aggiornare la pagina *aree/identità/pagine/account/RegisterConfirmation* .
 
   * Rimuovere il codice e i collegamenti dal file cshtml.
-  * Rimuovere il codice di conferma dal `PageModel`:
+  * Rimuovere il codice di conferma da `PageModel`:
 
   ```csharp
    [AllowAnonymous]
@@ -259,7 +271,7 @@ Per gli scenari di produzione è possibile seguire un approccio simile.
 
 ## <a name="prevent-publish-of-static-identity-assets"></a>Impedisci la pubblicazione di asset di identità statici
 
-Per evitare la pubblicazione di asset di identità statici nella radice Web, vedere <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.
+Per evitare la pubblicazione di asset di identità statici nella radice Web <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>, vedere.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -286,7 +298,7 @@ Quando si esegue l'impalcatura delle identità, viene creato un file *Scaffoldin
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Aggiungere le seguenti chiamate evidenziate alla classe `Startup`:
+Aggiungere le seguenti chiamate evidenziate alla `Startup` classe:
 
 [!code-csharp[](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=5,20-23)]
 
@@ -327,7 +339,7 @@ L'identità è configurata in *areas/Identity/IdentityHostingStartup. cs*. Per u
 
 ### <a name="enable-authentication"></a>Abilita autenticazione
 
-Nel metodo `Configure` della classe `Startup`, chiamare [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) dopo `UseStaticFiles`:
+Nel `Configure` metodo della `Startup` classe, chiamare [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) dopo: `UseStaticFiles`
 
 [!code-csharp[](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
 
@@ -335,7 +347,7 @@ Nel metodo `Configure` della classe `Startup`, chiamare [UseAuthentication](/dot
 
 ### <a name="layout-changes"></a>Modifiche del layout
 
-Facoltativo: aggiungere l'account di accesso parziale (`_LoginPartial`) al file di layout:
+Facoltativo: aggiungere l'account di accesso`_LoginPartial`parziale () al file di layout:
 
 [!code-html[Main](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
@@ -373,7 +385,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Facoltativo: aggiungere l'account di accesso parziale (`_LoginPartial`) al file *Views/Shared/_Layout. cshtml* :
+Facoltativo: aggiungere l'account di accesso`_LoginPartial`parziale () al file *Views/Shared/_Layout. cshtml* :
 
 [!code-html[](scaffold-identity/sample/_LayoutMvc.cshtml?highlight=37)]
 
@@ -383,7 +395,7 @@ L'identità è configurata in *areas/Identity/IdentityHostingStartup. cs*. Per u
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-Chiamare [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) dopo `UseStaticFiles`:
+Chiama [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) dopo `UseStaticFiles`:
 
 [!code-csharp[](scaffold-identity/sample/StartupMvcNoAuth.cs?name=snippet1&highlight=23)]
 
@@ -421,7 +433,7 @@ Il codice seguente imposta [LoginPath](/dotnet/api/microsoft.aspnetcore.authenti
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
-Registrare un'implementazione di `IEmailSender`, ad esempio:
+Registrare un' `IEmailSender` implementazione, ad esempio:
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
 
@@ -466,7 +478,7 @@ Per disabilitare la registrazione dell'utente:
 * Aggiornare la pagina *aree/identità/pagine/account/RegisterConfirmation* .
 
   * Rimuovere il codice e i collegamenti dal file cshtml.
-  * Rimuovere il codice di conferma dal `PageModel`:
+  * Rimuovere il codice di conferma da `PageModel`:
 
   ```csharp
    [AllowAnonymous]

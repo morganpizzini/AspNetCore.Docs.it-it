@@ -5,17 +5,17 @@ description: Creare un'app di chat che usa SignalR ASP.NET Core Blazor con webas
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/30/2020
 no-loc:
 - Blazor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 78c5fbb8b91b934bcb34525672e9e26b6a95290e
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: e86047c9a830cd3ea906d0798f61d90eaee5a18c
+ms.sourcegitcommit: 6318d2bdd63116e178c34492a904be85ec9ac108
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82111149"
+ms.lasthandoff: 04/30/2020
+ms.locfileid: "82604831"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Usare ASP.NET Core SignalR con il webassembly Blazer
 
@@ -61,7 +61,7 @@ Al termine di questa esercitazione, si disporrà di un'app di chat funzionante.
 Quando non si usa Visual Studio versione 16,6 Preview 2 o versioni successive, installare il modello [Webassembly Blazer](xref:blazor/hosting-models#blazor-webassembly) . Il pacchetto [Microsoft. AspNetCore. Components. webassembly. templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) include una versione di anteprima mentre Webassembly blazer è in anteprima. In una shell dei comandi eseguire il comando seguente:
 
 ```dotnetcli
-dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
+dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
 ```
 
 Seguire le istruzioni per la scelta degli strumenti:
@@ -72,13 +72,13 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Selezionare **app Blazer** e fare clic su **Avanti**.
 
-1. Digitare "BlazorSignalRApp" nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Seleziona **Crea**.
+1. Digitare "BlazorSignalRApp" nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
 
 1. Scegliere il modello **app Webassembly Blazer** .
 
 1. In **Avanzate**selezionare la casella di controllo **ASP.NET Core Hosted** .
 
-1. Seleziona **Crea**.
+1. Selezionare **Create** (Crea).
 
 > [!NOTE]
 > Se è stato eseguito l'aggiornamento o l'installazione di una nuova versione di Visual Studio e il modello webassembly Blazer non viene visualizzato nell'interfaccia utente di `dotnet new` Visual Studio, reinstallare il modello usando il comando illustrato in precedenza.
