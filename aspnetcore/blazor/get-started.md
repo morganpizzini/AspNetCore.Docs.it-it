@@ -5,17 +5,17 @@ description: Inizia Blazor a creare un' Blazor app con gli strumenti che preferi
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2020
+ms.date: 05/02/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: 8ef55b92c45aa07113fd4601a3c7464b42125623
-ms.sourcegitcommit: 6318d2bdd63116e178c34492a904be85ec9ac108
+ms.openlocfilehash: 6cf1de6e68d04505ce4ba5d18f2a7d0bbe5be333
+ms.sourcegitcommit: c19e388c83c981232e6f128d97440262adfe06e2
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82604766"
+ms.lasthandoff: 05/02/2020
+ms.locfileid: "82727651"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introduzione a ASP.NET Core Blazer
 
@@ -33,7 +33,7 @@ Per iniziare a usare blazer, seguire le istruzioni per la scelta degli strumenti
 
    Per informazioni sui due modelli di hosting di Blazer, *Blazer webassembly* e il *Server Blazer*, vedere <xref:blazor/hosting-models>.
 
-1. Installare il modello di anteprima [Webassembly Blazer](xref:blazor/hosting-models#blazor-webassembly) eseguendo il comando seguente:
+1. Installare il modello di anteprima webassembly Blazer eseguendo il comando seguente:
 
    ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
@@ -58,9 +58,11 @@ Per iniziare a usare blazer, seguire le istruzioni per la scelta degli strumenti
    ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
    ```
+   
+   Per informazioni sui due modelli di hosting di Blazer, *Blazer webassembly* e il *Server Blazer*, vedere <xref:blazor/hosting-models>.
 
    > [!NOTE]
-   > Per usare il modello di assembly webassembly 3,2 Preview 4 Blazer è **necessario** il [.NET Core SDK versione 3.1.201 o successiva](https://dotnet.microsoft.com/download/dotnet-core/3.1) . Verificare la versione di .NET Core SDK installata eseguendo `dotnet --version` in una shell dei comandi.
+   > Il [.NET Core SDK versione 3.1.201 o successiva](https://dotnet.microsoft.com/download/dotnet-core/3.1) è **necessario** per usare il modello di assembly webassembly 3,2 Preview. Verificare la versione di .NET Core SDK installata eseguendo `dotnet --version` in una shell dei comandi.
 
 1. Installare [Visual Studio Code](https://code.visualstudio.com/).
 
@@ -78,8 +80,6 @@ Per iniziare a usare blazer, seguire le istruzioni per la scelta degli strumenti
    dotnet new blazorwasm -o WebApplication1
    ```
 
-   Per informazioni sui due modelli di hosting blazer, *Server Blazer* e *webassembly Blazer*, vedere <xref:blazor/hosting-models>.
-
 1. Aprire la cartella *WebApplication1* in Visual Studio Code.
 
 1. Le richieste dell'IDE aggiungono risorse per compilare ed eseguire il debug del progetto. Selezionare **Sì**.
@@ -92,23 +92,49 @@ Per iniziare a usare blazer, seguire le istruzioni per la scelta degli strumenti
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-Il server blazer è supportato in Visual Studio per Mac. Il webassembly Blazer non è supportato in questo momento. Per compilare app webassembly di Blazer in macOS, seguire le istruzioni nella scheda **interfaccia della riga di comando di .NET Core** .
+Il server blazer è supportato in Visual Studio per Mac. Il webassembly Blazer non è supportato in questo momento. Per creare app webassembly Blazer in macOS, seguire le istruzioni nella scheda **interfaccia della riga di comando di .NET Core** . Per informazioni sui due modelli di hosting di Blazer, *Blazer webassembly* e il *Server Blazer*, vedere <xref:blazor/hosting-models>.
 
 1. Installare [Visual Studio per Mac](https://visualstudio.microsoft.com/vs/mac/).
 
-1. Selezionare **file** > **nuova soluzione** o creare un **nuovo progetto**.
+1. Selezionare **file** > **nuova soluzione** o creare un **nuovo** progetto dalla **finestra Start**.
 
-1. Nella barra laterale selezionare app **Web e console** > **App**.
+1. Nella barra laterale selezionare app **.NET Core** > **App**.
 
 1. Selezionare il modello **applicazione server Blazer** . Selezionare **Avanti**.
 
-   Per informazioni sul modello di hosting del server blazer, <xref:blazor/hosting-models>vedere.
+1. Verificare le configurazioni seguenti:
 
-1. Verificare che il **Framework di destinazione** sia impostato su **.NET Core 3,1** e selezionare **Avanti**.
+   * Il **Framework di destinazione** è impostato su **.NET Core 3,1**.
+   * **L'autenticazione** è impostata su **Nessuna autenticazione**.
+   
+   Selezionare **Avanti**.
 
 1. Nel campo **nome progetto** assegnare un nome all'app `WebApplication1`. Selezionare **Create** (Crea).
 
-1. Selezionare **Esegui** > **esecuzione senza debug** per eseguire l'app *senza il debugger*. Eseguire l'app con **Avvia debug** o il pulsante esegui (&#9654;) per eseguire l'app *con il debugger*.
+1. Selezionare **Esegui** > **Avvia senza eseguire debug** per eseguire l'app *senza il debugger*. Il debug non è al momento supportato.
+
+<!-- HOLD FOR 8.6 GA
+
+1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+
+1. In the sidebar, select **Web and Console** > **App**.
+
+1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
+
+   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
+
+1. Confirm the following configurations:
+
+   * **Target Framework** set to **.NET Core 3.1**.
+   * **Authentication** set to **No Authentication**.
+   
+   Select **Next**.
+
+1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
+
+1. Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+
+-->
 
 Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare. Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain.
 
@@ -116,14 +142,16 @@ Se viene visualizzato un messaggio per considerare attendibile il certificato di
 
 1. Installare [.NET Core 3,1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-1. Facoltativamente, installare il modello di anteprima di [Webassembly Blazer](xref:blazor/hosting-models#blazor-webassembly) eseguendo il comando seguente:
+1. Facoltativamente, installare il modello di anteprima di webassembly Blazer eseguendo il comando seguente:
 
    ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
    ```
+   
+   Per informazioni sui due modelli di hosting di Blazer, *Blazer webassembly* e il *Server Blazer*, vedere <xref:blazor/hosting-models>.
 
    > [!NOTE]
-   > Per usare il modello di assembly webassembly 3,2 Preview 4 Blazer è **necessario** il [.NET Core SDK versione 3.1.201 o successiva](https://dotnet.microsoft.com/download/dotnet-core/3.1) . Verificare la versione di .NET Core SDK installata eseguendo `dotnet --version` in una shell dei comandi.
+   > Il [.NET Core SDK versione 3.1.201 o successiva](https://dotnet.microsoft.com/download/dotnet-core/3.1) è **necessario** per usare il modello di assembly webassembly 3,2 Preview. Verificare la versione di .NET Core SDK installata eseguendo `dotnet --version` in una shell dei comandi.
 
 1. Per un'esperienza del server blazer, eseguire i comandi seguenti in una shell dei comandi:
 
@@ -140,8 +168,6 @@ Se viene visualizzato un messaggio per considerare attendibile il certificato di
    cd WebApplication1
    dotnet run
    ```
-
-   Per informazioni sui due modelli di hosting blazer, *Server Blazer* e *webassembly Blazer*, vedere <xref:blazor/hosting-models>.
 
 1. In un browser passare a `https://localhost:5001`.
 
