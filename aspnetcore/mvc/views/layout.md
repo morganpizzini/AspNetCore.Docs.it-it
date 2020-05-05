@@ -4,27 +4,33 @@ author: ardalis
 description: Informazioni su come usare layout comuni, condividere direttive ed eseguire codice comune prima di eseguire il rendering delle visualizzazioni in un'applicazione ASP.NET Core.
 ms.author: riande
 ms.date: 07/30/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: db8c6c30397593c1a8375ebc800c1c0e34d241cb
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: fbae94f315c1bb49f1b04be7e71c841f46826216
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78667902"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766485"
 ---
 # <a name="layout-in-aspnet-core"></a>Layout in ASP.NET Core
 
 Di [Steve Smith](https://ardalis.com/) e [Dave Brock](https://twitter.com/daveabrock)
 
-Le pagine e le visualizzazioni condividono spesso elementi visivi e programmatici. Questo articolo illustra come effettuare le seguenti operazioni:
+Le pagine e le visualizzazioni condividono spesso elementi visivi e programmatici. Questo articolo illustra come:
 
 * Usare layout comuni.
 * Condividere direttive.
 * Eseguire codice comune prima del rendering di pagine o visualizzazioni.
 
-Questo documento illustra i layout per i due diversi approcci per ASP.NET Core MVC: Razor Pages e controller con visualizzazioni. Per questo argomento le differenze siano minime:
+Questo documento illustra i layout per i due diversi approcci per ASP.NET Core MVC: Razor pagine e controller con le visualizzazioni. Per questo argomento le differenze siano minime:
 
-* Le pagine Razor Pages sono disponibili nella cartella *Pages*.
+* RazorLe pagine si trovano nella cartella *pages* .
 * I controller con visualizzazioni usano una cartella *Views* per le visualizzazioni.
 
 ## <a name="what-is-a-layout"></a>Che cos'è il layout?
@@ -37,7 +43,7 @@ Molte pagine all'interno di un'app utilizzano anche strutture HTML comuni, come 
 
 Per convenzione, il layout predefinito per un'app ASP.NET Core è denominato *_Layout.cshtml*. I file di layout per i nuovi progetti ASP.NET Core creati con i modelli sono:
 
-* Razor Pages: *Pages/Shared/_Layout.cshtml*
+* RazorPagine: *pagine/condivise/_Layout. cshtml*
 
   ![Cartella Pages in Esplora soluzioni](layout/_static/rp-web-project-views.png)
 
@@ -53,11 +59,11 @@ Il codice seguente mostra il file di layout per un progetto creato da modello co
 
 ## <a name="specifying-a-layout"></a>Definizione di un layout
 
-Le visualizzazioni Razor hanno una proprietà `Layout`. Le visualizzazioni singole specificano un layout impostando la seguente proprietà:
+Razorle visualizzazioni hanno `Layout` una proprietà. Le visualizzazioni singole specificano un layout impostando la seguente proprietà:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/_ViewStart.cshtml?highlight=2)]
 
-Il layout specificato può usare un percorso completo (ad esempio, */Pages/Shared/_Layout.cshtml* o */Views/Shared/_Layout.cshtml*) oppure un nome parziale (ad esempio: `_Layout`). Quando viene fornito un nome parziale, il motore di visualizzazione Razor cerca il file di layout tramite il processo di individuazione standard. La ricerca viene eseguita prima nella cartella in cui è presente il metodo gestore (o controller) e poi nella cartella *Shared*. Questo processo di individuazione è identico a quello usato per individuare le [visualizzazioni parziali](xref:mvc/views/partial#partial-view-discovery).
+Il layout specificato può usare un percorso completo (ad esempio, */Pages/Shared/_Layout.cshtml* o */Views/Shared/_Layout.cshtml*) oppure un nome parziale (ad esempio: `_Layout`). Quando viene specificato un nome parziale, il Razor motore di visualizzazione Cerca il file di layout utilizzando il processo di individuazione standard. La ricerca viene eseguita prima nella cartella in cui è presente il metodo gestore (o controller) e poi nella cartella *Shared*. Questo processo di individuazione è identico a quello usato per individuare le [visualizzazioni parziali](xref:mvc/views/partial#partial-view-discovery).
 
 Per impostazione predefinita, ogni layout deve chiamare `RenderBody`. Quando viene eseguita la chiamata a `RenderBody`, viene eseguito il rendering del contenuto della visualizzazione.
 
@@ -73,9 +79,9 @@ Un layout può facoltativamente fare riferimento a una o più *sezioni*, chiaman
 @RenderSection("Scripts", required: false)
 ```
 
-Se una sezione richiesta non viene trovata, viene generata un'eccezione. Le viste singole specificano il contenuto da sottoporre a rendering all'interno di una sezione tramite la sintassi Razor `@section`. Se una pagina o una visualizzazione definisce una sezione, è necessario eseguirne il rendering (o si verifica un errore).
+Se una sezione richiesta non viene trovata, viene generata un'eccezione. Le singole visualizzazioni specificano il contenuto di cui eseguire il rendering all' `@section` Razor interno di una sezione usando la sintassi. Se una pagina o una visualizzazione definisce una sezione, è necessario eseguirne il rendering (o si verifica un errore).
 
-Definizione `@section` di esempio nella visualizzazione Razor Pages:
+Una definizione `@section` di esempio Razor nella visualizzazione pagine:
 
 ```html
 @section Scripts {
@@ -93,23 +99,23 @@ Il markup seguente usa l'[helper tag parziale](xref:mvc/views/tag-helpers/builti
 }
 ```
 
-Il markup precedente è stato generato tramite [scaffolding di Identity](xref:security/authentication/scaffold-identity).
+Il markup precedente è stato generato dall' [impalcatura Identity ](xref:security/authentication/scaffold-identity).
 
 Le sezioni definite in una pagina o in una visualizzazione sono disponibili solo nella relativa pagina di layout immediato. Non è possibile farvi riferimento da righe parzialmente eseguite, componenti di visualizzazione o altre parti del sistema di visualizzazione.
 
 ### <a name="ignoring-sections"></a>Esclusione di sezioni
 
-Per impostazione predefinita, la pagina di layout deve eseguire il rendering della parte principale e di tutte le sezioni di una pagina di contenuto. Il motore di visualizzazione Razor impone questa operazione verificando se è stato eseguito il rendering della parte principale e di ogni sezione.
+Per impostazione predefinita, la pagina di layout deve eseguire il rendering della parte principale e di tutte le sezioni di una pagina di contenuto. Il Razor motore di visualizzazione impone questo oggetto tenendo traccia dell'eventuale rendering del corpo e di ogni sezione.
 
 Per indicare al motore di visualizzazione di escludere la parte principale o le sezioni, chiamare i metodi `IgnoreBody` e `IgnoreSection`.
 
-Deve essere eseguito il rendering della parte principale e di tutte le sezioni di una pagina Razor oppure devono essere escluse.
+Il corpo e ogni sezione di una Razor pagina devono essere sottoposti a rendering o ignorati.
 
 <a name="viewimports"></a>
 
 ## <a name="importing-shared-directives"></a>Importazione delle direttive condivise
 
-Viste e pagine possono utilizzare le direttive Razor per importare gli spazi dei nomi e utilizzare l' [inserimento delle dipendenze](dependency-injection.md). Le direttive condivise da numerose visualizzazioni possono essere specificate in un file *_ViewImports.cshtml* comune. Il file `_ViewImports` supporta le direttive seguenti:
+Le viste e le pagine Razor possono utilizzare le direttive per importare gli spazi dei nomi e utilizzare l' [inserimento delle dipendenze](dependency-injection.md). Le direttive condivise da numerose visualizzazioni possono essere specificate in un file *_ViewImports.cshtml* comune. Il file `_ViewImports` supporta le direttive seguenti:
 
 * `@addTagHelper`
 * `@removeTagHelper`
@@ -119,7 +125,7 @@ Viste e pagine possono utilizzare le direttive Razor per importare gli spazi dei
 * `@inherits`
 * `@inject`
 
-Il file non supporta altre funzionalità di Razor, come le funzioni e le definizioni di sezione.
+Il file non supporta altre Razor funzionalità, ad esempio le funzioni e le definizioni delle sezioni.
 
 Esempio di file `_ViewImports.cshtml`:
 

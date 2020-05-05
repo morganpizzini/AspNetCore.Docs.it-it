@@ -5,13 +5,19 @@ description: Informazioni su come creare un'API Web con ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 2/25/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: 4e205c737f606579590854b679e669cbdd0cd5ab
-ms.sourcegitcommit: c19e388c83c981232e6f128d97440262adfe06e2
+ms.openlocfilehash: ddc14aba14e31c5530cda14b4792736da001246a
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/02/2020
-ms.locfileid: "82727790"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767239"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Esercitazione: creare un'API Web con ASP.NET Core
 
@@ -36,7 +42,7 @@ Al termine si avrà un'API Web che può gestire gli elementi di tipo "attività"
 
 Questa esercitazione consente di creare l'API seguente:
 
-|API | Descrizione | Corpo della richiesta | Corpo della risposta |
+|API | Description | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
 |`GET /api/TodoItems` | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
 |`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
@@ -522,7 +528,7 @@ Al termine si dispone di un'API web che può gestire gli elementi di tipo "attiv
 
 Questa esercitazione consente di creare l'API seguente:
 
-|API | Descrizione | Corpo della richiesta | Corpo della risposta |
+|API | Description | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
 |GET /api/TodoItems | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
 |GET /api/TodoItems/{id} | Ottiene un elemento in base all'ID | nessuno | Elemento attività|

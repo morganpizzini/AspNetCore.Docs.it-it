@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: 25aa7761b9c1acc72081653422e80cb004500573
-ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
+ms.openlocfilehash: 6907a1213a6a9089e2aed885093c2fd38f972ad0
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82138521"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768052"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-the-authentication-library"></a>Proteggere un'app Blazor ASP.NET Core webassembly autonoma con la libreria di autenticazione
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Proteggere un'app Blazor ASP.NET Core webassembly autonoma con la libreria di autenticazione
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
 
@@ -53,7 +56,7 @@ Sostituire `{VERSION}` nel riferimento al pacchetto precedente con la versione d
 
 ## <a name="authentication-service-support"></a>Supporto del servizio di autenticazione
 
-Il supporto per l'autenticazione degli utenti viene registrato nel contenitore del servizio `AddOidcAuthentication` con il metodo di estensione `Microsoft.AspNetCore.Components.WebAssembly.Authentication` fornito dal pacchetto. Questo metodo configura tutti i servizi necessari per l'interazione dell'app con il provider di identità (IP).
+Il supporto per l'autenticazione degli utenti viene registrato nel contenitore del servizio `AddOidcAuthentication` con il metodo di estensione `Microsoft.AspNetCore.Components.WebAssembly.Authentication` fornito dal pacchetto. Questo metodo configura tutti i servizi necessari per l'interazione dell'app con il Identity provider (IP).
 
 *Program.cs*:
 

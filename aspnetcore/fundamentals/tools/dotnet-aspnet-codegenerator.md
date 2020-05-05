@@ -5,13 +5,19 @@ description: Il comando dotnet aspnet-codegenerator esegue lo scaffolding dei pr
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 07/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: 1043a578f66d5bb57f4a81e9fe21afa5e3c37cb8
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 58f7aa30d3e916307437d56c61e80765ac0c21cf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78665186"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766472"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -42,11 +48,11 @@ dotnet aspnet-codegenerator [arguments] [-p|--project] [-n|--nuget-package-dir] 
 dotnet aspnet-codegenerator [-h|--help]
 ```
 
-## <a name="description"></a>Descrizione
+## <a name="description"></a>Description
 
 Il comando globale `dotnet aspnet-codegenerator` esegue il generatore di codice e il motore di scaffolding di ASP.NET Core.
 
-## <a name="arguments"></a>Argomenti
+## <a name="arguments"></a>Arguments
 
 `generator`
 
@@ -112,16 +118,16 @@ Il comando precedente genera le cartelle seguenti:
 
 * *Aree*
   * *AreaNameToGenerate*
-    * *Controller*
+    * *Controllers*
     * *Dati*
     * *Modelli*
-    * *Viste*
+    * *Visualizzazioni*
 
 <a name="ctl"></a>
 
 ### <a name="controller-options"></a>Opzioni per controller
 
-Nella tabella seguente `aspnet-codegenerator` `controller` sono `razorpage`elencate le opzioni per e :
+Nella tabella seguente sono elencate le `aspnet-codegenerator` `controller` opzioni `razorpage`per e:
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 
@@ -170,7 +176,7 @@ In genere, il modello e il nome di file generato non vengono specificati e vengo
 * `Details`
 * `List`
 
-Nella tabella seguente `aspnet-codegenerator` `razorpage` sono `controller`elencate le opzioni per e :
+Nella tabella seguente sono elencate le `aspnet-codegenerator` `razorpage` opzioni `controller`per e:
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 
@@ -190,6 +196,6 @@ dotnet aspnet-codegenerator razorpage -h
 
 Vedere [Eseguire lo scaffolding del modello di filmato](/aspnet/core/tutorials/razor-pages/model) per un esempio di `dotnet aspnet-codegenerator razorpage`.
 
-### <a name="identity"></a>Identità
+### Identity
 
-Vedere [Scaffolding dell'identità](/aspnet/core/security/authentication/scaffold-identity)
+Vedere [impalcatura Identity ](/aspnet/core/security/authentication/scaffold-identity)

@@ -4,13 +4,19 @@ author: isaac2004
 description: Indicazioni sulla migrazione di app ASP.NET MVC o Web API esistenti ad ASP.NET Core.web
 ms.author: scaddie
 ms.date: 10/18/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 68a45dc50e00bead564500a12509b62a4a193ec4
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 985c08e0994314cec8d52a6651681c93aca96514
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511088"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766511"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Eseguire la migrazione da ASP.NET ad ASP.NET Core
 
@@ -20,7 +26,7 @@ Questo articolo offre una guida di riferimento per la migrazione delle app ASP.N
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-[.NET Core SDK 2.2 o versione successiva](https://dotnet.microsoft.com/download)
+[.NET Core SDK 2,2 o versione successiva](https://dotnet.microsoft.com/download)
 
 ## <a name="target-frameworks"></a>Framework di destinazione
 
@@ -69,7 +75,7 @@ ASP.NET Core usa un approccio simile, ma non si basa su OWIN per gestire la voce
 - Pagine di errore
 - Protocollo HTTP Strict Transport Security (HSTS)
 - Reindirizzamento HTTP a HTTPS
-- MVC ASP.NET Core
+- ASP.NET Core MVC
 
 [!code-csharp[](samples/startup.cs)]
 
@@ -143,7 +149,7 @@ Una parte importante dello sviluppo Web è la possibilità di distribuire asset 
 
 In ASP.NET i file statici vengono archiviati in directory diverse e viene fatto riferimento ai file nelle viste.
 
-In ASP.NET Core, i file statici vengono memorizzati nella "radice web" (*&lt;radice&gt;del contenuto /wwwroot*), a meno che non sia configurato diversamente. I file vengono caricati nella pipeline delle richieste chiamando il metodo di estensione `UseStaticFiles` da `Startup.Configure`:
+In ASP.NET Core i file statici vengono archiviati nella radice Web (*&lt;/wwwroot radice&gt;del contenuto*), a meno che non sia configurato diversamente. I file vengono caricati nella pipeline delle richieste chiamando il metodo di estensione `UseStaticFiles` da `Startup.Configure`:
 
 [!code-csharp[](../../fundamentals/static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
@@ -157,11 +163,11 @@ Ad esempio, un asset immagine nella cartella *wwwroot/images* è accessibile al 
 
 ## <a name="multi-value-cookies"></a>Cookie multivalore
 
-[I cookie multivalore](xref:System.Web.HttpCookie.Values) non sono supportati in ASP.NET Core. Creare un cookie per valore.
+I [cookie multivalore](xref:System.Web.HttpCookie.Values) non sono supportati in ASP.NET Core. Creare un cookie per valore.
 
 ## <a name="partial-app-migration"></a>Migrazione parziale delle app
 
-Un approccio alla migrazione parziale delle app consiste nel creare un'applicazione secondaria IIS e spostare solo alcune route da ASP.NET 4.x a ASP.NET Core, preservando la struttura dell'URL dell'app. Si consideri, ad esempio, la struttura URL dell'app dal file *applicationHost.config:*
+Un approccio alla migrazione parziale delle app consiste nel creare un'applicazione secondaria IIS e spostare solo determinate route da ASP.NET 4. x a ASP.NET Core mantenendo la struttura dell'URL dell'app. Si consideri, ad esempio, la struttura dell'URL dell'app dal file *ApplicationHost. config* :
 
 ```xml
 <sites>
@@ -181,7 +187,7 @@ Un approccio alla migrazione parziale delle app consiste nel creare un'applicazi
 </sites>
 ```
 
-Struttura directory:
+Struttura di directory:
 
 ```
 .
