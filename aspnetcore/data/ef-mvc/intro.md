@@ -6,20 +6,26 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/06/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: fca9fdc425506ec8b4eec5c609237208f4c0d7b5
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7f17352d2e7e3f4239b338ec961120ab3088c77a
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511301"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773549"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Esercitazione: Introduzione a EF Core in un'app Web MVC ASP.NET
 
-Questa esercitazione **non** è stata aggiornata ad ASP.NET Core 3.0. La [versione di Razor Pages](xref:data/ef-rp/intro) è stata aggiornata. La maggior parte delle modifiche al codice per il ASP.NET Core 3.0 e la versione successiva di questa esercitazione:Most of the code changes for the ASP.NET Core 3.0 and later version of this tutorial:
+Questa esercitazione **non** è stata aggiornata ad ASP.NET Core 3.0. La [ Razor versione delle pagine](xref:data/ef-rp/intro) è stata aggiornata. La maggior parte delle modifiche del codice per la ASP.NET Core 3,0 e la versione successiva di questa esercitazione:
 
-* Sono nei file *di Startup.cs* e *Program.cs.*
-* Può essere trovato nella [versione Razor Pages](xref:data/ef-rp/intro). 
+* Si trovano nei file *Startup.cs* e *Program.cs* .
+* Si trova nella versione delle [ Razor pagine](xref:data/ef-rp/intro). 
 
 Per informazioni su quando questo potrebbe essere aggiornato, vedere [questo problema in GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
 
@@ -84,7 +90,7 @@ Gli utenti possono visualizzare e aggiornare le informazioni che riguardano stud
 
 * Selezionare **.NET Core**, **ASP.NET Core 2.2** e il modello **Applicazione Web (MVC)**.
 
-* Assicurarsi che **Autenticazione** sia impostata su **Nessuna autenticazione**.
+* Assicurarsi che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
 
 * Seleziona **OK**.
 
@@ -254,7 +260,7 @@ La creazione automatica di metodi di azione CRUD e di visualizzazioni è nota co
 
   * Selezionare **Controller MVC con visualizzazioni, che usa Entity Framework**.
 
-  * Fare clic su **Aggiungi**. Verrà visualizzata la finestra di dialogo **Aggiungi Controller MVC con visualizzazioni, che usa Entity Framework**.
+  * Scegliere **Aggiungi**. Verrà visualizzata la finestra di dialogo **Aggiungi Controller MVC con visualizzazioni, che usa Entity Framework**.
 
     ![Scaffolding di Student](intro/_static/scaffold-student2.png)
 
@@ -264,7 +270,7 @@ La creazione automatica di metodi di azione CRUD e di visualizzazioni è nota co
 
   * Accettare il valore predefinito **StudentsController** come nome.
 
-  * Fare clic su **Aggiungi**.
+  * Scegliere **Aggiungi**.
 
   Quando si fa clic su **Aggiungi**, il motore di scaffolding di Visual Studio crea un file *StudentsController.cs* e un set di visualizzazioni (file con estensione *cshtml*) che vengono usate insieme al controller.
 
@@ -312,7 +318,7 @@ Fare clic con il pulsante destro del mouse sulla tabella **Student** (Studente) 
 
 ![Tabella Student (Studente) in Esplora oggetti di SQL Server](intro/_static/ssox-student-table.png)
 
-I file di database *con estensione mdf* e *ldf* si trovano nella cartella *c:/Utenti\\\<tuonome utente>* .
+I file di database con *estensione MDF* e *ldf* si trovano nella cartella *\\\<C:\Users nomeutente>* .
 
 Poiché si sta chiamando `EnsureCreated` nel metodo di inizializzatore che viene eseguito all'avvio dell'app, è ora possibile modificare la classe `Student`, eliminare il database ed eseguire nuovamente l'applicazione. Il database sarà automaticamente ricreato e rispecchierà la modifica. Ad esempio, se si aggiunge una proprietà `EmailAddress` alla classe `Student`, una nuova colonna `EmailAddress` sarà visualizzata nella tabella ricreata.
 
@@ -326,7 +332,7 @@ Grazie all'uso di convenzioni o di ipotesi di Entity Framework, la quantità di 
 
 * Le proprietà dell'entità vengono denominate ID o classnameID e vengono riconosciute come proprietà della chiave primaria.
 
-* Una proprietà viene interpretata come proprietà di chiave esterna se è `StudentID` denominato `Student` `Student` `ID` * \<il nome \<* della proprietà di navigazione>il nome della proprietà della chiave primaria>, ad esempio per la proprietà di navigazione poiché la chiave primaria dell'entità è ). Le proprietà della chiave esterna possono anche essere denominate `Enrollment` semplicemente * \<nome proprietà chiave primaria>* (ad esempio, `EnrollmentID` poiché la chiave primaria dell'entità è `EnrollmentID`).
+* Una proprietà viene interpretata come una proprietà di chiave esterna se è `StudentID` denominata `Student` `Student` `ID` * \<nome della proprietà \<di navigazione>nome della proprietà della chiave primaria>* , ad esempio per la proprietà di navigazione poiché la chiave primaria dell'entità è. Le proprietà di chiave esterna possono anche essere denominate semplicemente * \<nome della proprietà della chiave primaria>* (ad esempio, `EnrollmentID` poiché la chiave primaria dell' `Enrollment` entità è `EnrollmentID`).
 
 È possibile eseguire l'override del comportamento convenzionale. Ad esempio, è possibile specificare in modo esplicito i nomi di tabella, come illustrato in precedenza in questa esercitazione. È anche possibile impostare i nomi delle colonne e impostare qualsiasi proprietà come chiave primaria o chiave esterna, come sarà spiegato in un'[esercitazione successiva](complex-data-model.md) di questa serie.
 

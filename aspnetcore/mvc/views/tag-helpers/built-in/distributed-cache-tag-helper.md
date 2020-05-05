@@ -5,13 +5,19 @@ description: Informazioni su come usare l'helper tag di cache distribuita.
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/24/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
-ms.openlocfilehash: f5957adf3cef8966812a1bf0cbc6b2627d19d026
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: df1daa68a3e18f7aad4507ce9526d76ff6a2114d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78664017"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773916"
 ---
 # <a name="distributed-cache-tag-helper-in-aspnet-core"></a>Helper tag di cache distribuita in ASP.NET Core
 
@@ -19,7 +25,7 @@ Di [Peter Kellner](https://peterkellner.net)
 
 L'helper tag di cache distribuita consente di migliorare notevolmente le prestazioni dell'app ASP.NET Core memorizzandone il contenuto in un'origine cache distribuita.
 
-Per una panoramica degli helper tag, vedere <xref:mvc/views/tag-helpers/intro>.
+Per una panoramica degli helper per tag, vedere <xref:mvc/views/tag-helpers/intro>.
 
 L'helper tag di cache distribuita eredita dalla stessa classe di base da cui eredita l'helper tag di cache. Tutti gli attributi dell'[helper tag di cache](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper) sono disponibili per l'helper tag di cache distribuita.
 
@@ -46,9 +52,9 @@ L'helper tag di cache distribuita eredita dalla stessa classe dell'helper tag di
 
 | Tipo di attributo | Esempio                               |
 | -------------- | ------------------------------------- |
-| string         | `my-distributed-cache-unique-key-101` |
+| Stringa         | `my-distributed-cache-unique-key-101` |
 
-`name` è obbligatorio. L'attributo `name` viene usato come chiave per ogni istanza di cache archiviata. A differenza dell'helper tag di cache, che assegna una chiave di cache a ogni istanza in base al nome della pagina Razor e alla posizione nella pagina Razor, nell'helper tag di cache distribuita la chiave è basata solo sull'attributo `name`.
+`name` è obbligatorio. L'attributo `name` viene usato come chiave per ogni istanza di cache archiviata. Diversamente dall'helper tag di cache che assegna una chiave di cache a ogni istanza in base al nome Razor e alla posizione della pagina, Razor l'helper tag di cache distribuita basa solo la relativa chiave sull'attributo `name`.
 
 Esempio:
 

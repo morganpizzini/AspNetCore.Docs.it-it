@@ -1,20 +1,26 @@
 ---
-title: 'Esercitazione: informazioni sugli scenari avanzati - ASP.NET MVC con EF CoreTutorial: Learn about advanced scenarios - ASP.NET MVC with EF Core'
+title: 'Esercitazione: informazioni sugli scenari avanzati-MVC ASP.NET con EF Core'
 description: Questa esercitazione presenta argomenti utili dopo aver appreso le nozioni di base sullo sviluppo di applicazioni Web ASP.NET Core che usano Entity Framework Core.
 author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: fc6f8d8c4ab09848cf316be2e522bf5ce3b9ac76
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 74153b9a185d382a3418dd9470ce6ca4c3c70041
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79416233"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773614"
 ---
-# <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Esercitazione: informazioni sugli scenari avanzati - ASP.NET MVC con EF CoreTutorial: Learn about advanced scenarios - ASP.NET MVC with EF Core
+# <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Esercitazione: informazioni sugli scenari avanzati-MVC ASP.NET con EF Core
 
 Nell'esercitazione precedente è stata implementata l'ereditarietà tabella per gerarchia. Questa esercitazione presenta diversi argomenti che è utile tenere presente dopo aver appreso le nozioni di base sullo sviluppo di applicazioni Web ASP.NET Core che usano Entity Framework Core.
 
@@ -93,7 +99,7 @@ Quando viene fatto clic sul pulsante **Aggiorna**, viene chiamato il metodo Http
 
 In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Views/Courses* e quindi fare clic su **Aggiungi > Nuovo elemento**.
 
-Nella finestra di dialogo **Aggiungi nuovo elemento** fare clic su **ASP.NET Core** in **Installati** nel riquadro sinistro, fare clic su **Visualizzazione Razor** e assegnare alla nuova visualizzazione il nome *UpdateCourseCredits.cshtml*.
+Nella finestra di dialogo **Aggiungi nuovo elemento** fare clic su **ASP.NET Core** in **installato** nel riquadro sinistro, fare clic su ** Razor Visualizza**e denominare la nuova vista *UpdateCourseCredits. cshtml*.
 
 In *Views/Courses/UpdateCourseCredits.cshtml* sostituire il codice del modello con il codice seguente:
 
@@ -109,7 +115,7 @@ Fare clic su **Update**. Viene visualizzato il numero di righe interessate:
 
 Fare clic su **Torna all'elenco** per visualizzare l'elenco dei corsi con il numero di crediti modificato.
 
-Tenere presente che il codice di produzione assicurerà che gli aggiornamenti restituiscano sempre dati validi. Il codice semplificato illustrato potrebbe moltiplicare il numero di crediti e restituire numeri maggiori di 5. La `Credits` proprietà ha `[Range(0, 5)]` un attributo. La query di aggiornamento potrebbe funzionare, ma i dati non validi potrebbero causare risultati imprevisti in altre parti del sistema che presuppongono che il numero di crediti è 5 o meno.
+Tenere presente che il codice di produzione assicurerà che gli aggiornamenti restituiscano sempre dati validi. Il codice semplificato illustrato potrebbe moltiplicare il numero di crediti e restituire numeri maggiori di 5. (La `Credits` proprietà ha un `[Range(0, 5)]` attributo). La query di aggiornamento funzionerebbe ma i dati non validi potrebbero provocare risultati imprevisti in altre parti del sistema che presuppongono che il numero di crediti sia pari o inferiore a 5.
 
 Per altre informazioni sulle query SQL non elaborate, vedere [Query SQL non elaborate](/ef/core/querying/raw-sql).
 
@@ -181,7 +187,7 @@ _context.ChangeTracker.AutoDetectChangesEnabled = false;
 
 ## <a name="ef-core-source-code-and-development-plans"></a>Codice sorgente e piani di sviluppo di EF Core
 
-L'origine di Entity [https://github.com/dotnet/efcore](https://github.com/dotnet/efcore)Framework Core si trova in . Il repository di EF Core contiene le compilazioni notturne, la gestione dei problemi, le specifiche delle funzionalità, le note delle riunioni di progettazione e [la roadmap per lo sviluppo futuro](https://github.com/dotnet/efcore/wiki/Roadmap). È possibile archiviare o individuare i bug e contribuire.
+Il Entity Framework Core origine si trova [https://github.com/dotnet/efcore](https://github.com/dotnet/efcore)in. Il repository di EF Core contiene le compilazioni notturne, la gestione dei problemi, le specifiche delle funzionalità, le note delle riunioni di progettazione e [la roadmap per lo sviluppo futuro](https://github.com/dotnet/efcore/wiki/Roadmap). È possibile archiviare o individuare i bug e contribuire.
 
 Sebbene il codice sorgente sia disponibile, Entity Framework Core è completamente supportato come prodotto Microsoft. Il team di Microsoft Entity Framework controlla i contributi accettati ed esegue il test di tutte le modifiche al codice per garantire la qualità di ogni rilascio.
 
@@ -211,7 +217,7 @@ Messaggio di errore:
 
 > Impossibile aprire '...bin\Debug\netcoreapp1.0\ContosoUniversity.dll' per la scrittura -- 'Il processo non può accedere al file '...\bin\Debug\netcoreapp1.0\ContosoUniversity.dll' perché è in uso da un altro processo.
 
-Soluzione
+Soluzione:
 
 Arrestare il sito in IIS Express. Passare alla barra delle applicazioni di Windows, trovare IIS Express e fare clic con il pulsante destro del mouse sull'icona, selezionare il sito Contoso University e quindi fare clic su **Arresta sito**.
 
@@ -221,7 +227,7 @@ Possibile causa:
 
 I comandi CLI di EF non chiudono e salvano automaticamente i file di codice. Se sono presenti modifiche non salvate quando si esegue il comando `migrations add`, EF non trova le modifiche.
 
-Soluzione
+Soluzione:
 
 Eseguire il comando `migrations remove`, salvare le modifiche al codice e rieseguire il comando `migrations add`.
 
@@ -245,7 +251,7 @@ Messaggio di errore:
 
 > Si è verificato un errore di rete o specifico dell'istanza mentre veniva stabilita la connessione a SQL Server. Il server non è stato trovato o non è accessibile. Verificare che il nome dell'istanza sia corretto e che il server sia configurato in modo da consentire connessioni remote. (provider: interfacce di rete SQL, errore: 26 - Errore nell'individuazione del server/dell'istanza specificata)
 
-Soluzione
+Soluzione:
 
 Controllare la stringa di connessione. Se il file di database è stato eliminato manualmente, modificare il nome del database nella stringa di costruzione per riniziare con un nuovo database.
 
@@ -279,4 +285,4 @@ In questa esercitazione:
 Questa esercitazione completa la serie di esercitazioni sull'uso di Entity Framework Core in un'applicazione ASP.NET Core MVC. In questa serie di esercitazioni è stato usato un nuovo database; in alternativa, è possibile decompilare un modello di un database esistente.
 
 > [!div class="nextstepaction"]
-> [Esercitazione: EF Core con MVC, database esistenteTutorial: EF Core with MVC, existing database](/ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json)
+> [Esercitazione: EF Core con MVC, database esistente](/ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json)

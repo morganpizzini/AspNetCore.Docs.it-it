@@ -5,13 +5,19 @@ description: Informazioni sui concetti di base di autenticazione, autorizzazione
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/index
-ms.openlocfilehash: 0f8e96fb7d5246e746b95f8907745f849de60e24
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: b507832e34ac850d2bd4e80bab3066e73ea2ad95
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78656037"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776513"
 ---
 # <a name="overview-of-aspnet-core-security"></a>Panoramica sulla sicurezza di ASP.NET Core
 
@@ -19,7 +25,7 @@ ASP.NET Core consente agli sviluppatori di configurare e gestire facilmente la s
 
 ## <a name="aspnet-core-security-features"></a>Funzionalità di sicurezza di ASP.NET Core
 
-ASP.NET Core fornisce numerosi strumenti e librerie per proteggere le app, inclusi i provider di identità predefiniti, ma è anche possibile usare servizi di identità di terze parti, ad esempio Facebook, Twitter e LinkedIn. Con ASP.NET Core, è possibile gestire facilmente i segreti dell'app, che consentono di archiviare e usare informazioni riservate senza la necessità di esporle nel codice.
+ASP.NET Core offre molti strumenti e librerie per proteggere le app, inclusi i Identity provider predefiniti, ma è possibile usare servizi di identità di terze parti, ad esempio Facebook, Twitter o LinkedIn. Con ASP.NET Core, è possibile gestire facilmente i segreti dell'app, che consentono di archiviare e usare informazioni riservate senza la necessità di esporle nel codice.
 
 ## <a name="authentication-vs-authorization"></a>Autenticazione e autorizzazione
 
@@ -36,4 +42,4 @@ ASP.NET Core ed Entity Framework contengono funzionalità che consentono di prot
 * [Richieste intersito false](xref:security/anti-request-forgery)
 * [Attacchi di reindirizzamento aperti](xref:security/preventing-open-redirects)
 
-Esistono altre vulnerabilità di cui è necessario essere consapevoli. Per altre informazioni, vedere gli altri articoli della sezione **Sicurezza e identità** del sommario.
+Esistono altre vulnerabilità di cui è necessario essere consapevoli. Per ulteriori informazioni, vedere gli altri articoli nella sezione **sicurezza e Identity ** contenuto del sommario.

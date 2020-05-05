@@ -1,19 +1,25 @@
 ---
-title: 'Esercitazione: Leggere i dati correlati - ASP.NET MVC con EF CoreTutorial: Read related data - ASP.NET MVC with EF Core'
+title: 'Esercitazione: leggere dati correlati-MVC ASP.NET con EF Core'
 description: In questa esercitazione verranno letti e visualizzati dati correlati, ovvero dati che Entity Framework carica all'interno delle proprietà di navigazione.
 author: rick-anderson
 ms.author: riande
 ms.date: 09/28/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: a6e63723101ab09219db81ee9796c3938a612226
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7cc400218d7ad8717311e56ec5b3fc190857862c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657108"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773536"
 ---
-# <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: Leggere i dati correlati - ASP.NET MVC con EF CoreTutorial: Read related data - ASP.NET MVC with EF Core
+# <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: leggere dati correlati-MVC ASP.NET con EF Core
 
 Nell'esercitazione precedente è stato completato il modello di dati School. In questa esercitazione verranno letti e visualizzati dati correlati, ovvero dati che Entity Framework carica all'interno delle proprietà di navigazione.
 
@@ -188,7 +194,7 @@ Al codice esistente sono state apportate le modifiche seguenti:
   }
   ```
 
-* È stata aggiunta la colonna **Courses** (Corsi) che visualizza i corsi tenuti da ogni insegnante. Per altre informazioni, vedere la sezione [Transizione riga esplicita](xref:mvc/views/razor#explicit-line-transition) dell'articolo sulla sintassi Razor.For more information, see the Explicit line transition section of the Razor syntax article.
+* È stata aggiunta la colonna **Courses** (Corsi) che visualizza i corsi tenuti da ogni insegnante. Per ulteriori informazioni, vedere la sezione relativa alla [transizione di riga esplicita](xref:mvc/views/razor#explicit-line-transition) dell'articolo della Razor sintassi.
 
 * È stato aggiunto codice che aggiunge `class="success"` in modo dinamico all'elemento `tr` dell'insegnante selezionato. In questo modo viene impostato un colore di sfondo per la riga selezionata tramite una classe Bootstrap.
 
@@ -207,7 +213,7 @@ Al codice esistente sono state apportate le modifiche seguenti:
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 
-Eseguire l'app e selezionare la scheda **Istruttori.** Nella pagina viene visualizzata la proprietà Location delle entità OfficeAssignment correlate e una cella di tabella vuota quando non è presente un'entità OfficeAssignment correlata.
+Eseguire l'app e selezionare la scheda **Instructors (insegnanti** ). La pagina Visualizza la proprietà location delle entità OfficeAssignment correlate e una cella della tabella vuota quando non esiste alcuna entità OfficeAssignment correlata.
 
 ![Pagina di indice degli insegnanti con nessuna selezione](read-related-data/_static/instructors-index-no-selection.png)
 

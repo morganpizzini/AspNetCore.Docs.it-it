@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 04/27/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/server/additional-scenarios
-ms.openlocfilehash: 1a3e5a215daedbb9b97c1924275701915806983e
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 95e9e57889fdbb5270f895874c9b8148ae4ca48d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206389"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772804"
 ---
 # <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>Scenari Blazor di sicurezza aggiuntivi di ASP.NET Core Server
 
@@ -23,9 +26,9 @@ Di [Javier Calvarro Nelson](https://github.com/javiercn)
 
 ## <a name="pass-tokens-to-a-blazor-server-app"></a>Passare i token a un' Blazor app Server
 
-I token disponibili all'esterno dei componenti Razor in un' Blazor app Server possono essere passati ai componenti con l'approccio descritto in questa sezione. Per il codice di esempio, incluso `Startup.ConfigureServices` un esempio completo, vedere il [passaggio di token a un'applicazione Blazor lato server](https://github.com/javiercn/blazor-server-aad-sample).
+I token disponibili all'esterno dei Razor componenti di un' Blazor app Server possono essere passati ai componenti di con l'approccio descritto in questa sezione. Per il codice di esempio, incluso `Startup.ConfigureServices` un esempio completo, vedere il [passaggio di token a un'applicazione Blazor lato server](https://github.com/javiercn/blazor-server-aad-sample).
 
-Autenticare l' Blazor app Server come si farebbe con una normale app Razor Pages o MVC. Eseguire il provisioning e salvare i token nel cookie di autenticazione. Ad esempio:
+Autenticare l' Blazor app Server come si farebbe con un'applicazione Razor MVC o pagine normali. Eseguire il provisioning e salvare i token nel cookie di autenticazione. Ad esempio:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;

@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 3/29/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 7715adc9b39edd4f8a5882b2e60a1b5513fe400b
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: c2a7ef9c1523bc179524f328905f3a4b1460a1a5
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205995"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774496"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configurazione in ASP.NET Core
 
@@ -903,7 +909,7 @@ public class HomeController : Controller
 
 I provider di configurazione non possono usare l'inserimento delle dipendenze, perché non è disponibile quando vengono configurati dall'host.
 
-### <a name="keys"></a>Chiavi
+### <a name="keys"></a>Tasti
 
 Le chiavi di configurazione adottano le convenzioni seguenti:
 
@@ -1046,7 +1052,7 @@ L'app di esempio consente di sfruttare il metodo di servizio statico `CreateDefa
 1. Dopo che l'app è in esecuzione, aprire un browser per l'app all'indirizzo `http://localhost:5000`.
 1. Notare che l'output contiene la coppia chiave-valore per l'argomento della riga di comando di configurazione fornito per `dotnet run`.
 
-### <a name="arguments"></a>Argomenti
+### <a name="arguments"></a>Arguments
 
 Il valore deve seguire un segno di uguale (`=`) o la chiave deve avere un prefisso (`--` o `/`) quando il valore segue uno spazio. Il valore non è necessario se viene usato un segno di uguale, ad esempio `CommandLineKey=`.
 
@@ -1101,7 +1107,7 @@ Per le app che usano i mapping di sostituzione, la chiamata a `CreateDefaultBuil
 
 Il dizionario dei mapping di sostituzione creato contiene i dati visualizzati nella tabella seguente.
 
-| Chiave       | valore             |
+| Chiave       | Valore             |
 | --------- | ----------------- |
 | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
@@ -1114,7 +1120,7 @@ dotnet run -CLKey1=value1 -CLKey2=value2
 
 Dopo aver eseguito il comando precedente, la configurazione contiene i valori mostrati nella tabella seguente.
 
-| Chiave               | valore    |
+| Chiave               | Valore    |
 | ----------------- | -------- |
 | `CommandLineKey1` | `value1` |
 | `CommandLineKey2` | `value2` |
@@ -1618,7 +1624,7 @@ Il <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> supporta 
 
 Prendere in considerazione le chiavi di configurazione e i valori indicati nella tabella seguente.
 
-| Chiave             | valore  |
+| Chiave             | Valore  |
 | :-------------: | :----: |
 | array:entries:0 | value0 |
 | array:entries:1 | value1 |
@@ -1678,7 +1684,7 @@ config.AddJsonFile(
 
 La coppia chiave-valore mostrata nella tabella viene caricata nella configurazione.
 
-| Chiave             | valore  |
+| Chiave             | Valore  |
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 
@@ -1701,7 +1707,7 @@ Se un file JSON contiene una matrice, vengono create chiavi di configurazione pe
 
 Il provider di configurazione JSON legge i dati di configurazione nelle coppie chiave-valore seguenti:
 
-| Chiave                     | valore  |
+| Chiave                     | Valore  |
 | ----------------------- | :----: |
 | json_array:key          | valueA |
 | json_array:subsection:0 | valueB |
@@ -1792,11 +1798,11 @@ public class Startup
 
 Per un esempio di accesso alla configurazione usando metodi di servizio di avvio, vedere [Avvio dell'applicazione: Metodi pratici](xref:fundamentals/startup#convenience-methods).
 
-## <a name="access-configuration-in-a-razor-pages-page-or-mvc-view"></a>Accedere alla configurazione in una pagina Razor Pages o in una visualizzazione MVC
+## <a name="access-configuration-in-a-razor-pages-page-or-mvc-view"></a>Accedere alla configurazione in Razor una pagina di pagine o in una visualizzazione MVC
 
-Per accedere alle impostazioni di configurazione in una pagina Razor Pages o in una visualizzazione MVC, aggiungere un [direttiva using](xref:mvc/views/razor#using) ([Informazioni di riferimento su C#: direttiva using](/dotnet/csharp/language-reference/keywords/using-directive)) per lo [spazio dei nomi Microsoft.Extensions.Configuration](xref:Microsoft.Extensions.Configuration) e inserire <xref:Microsoft.Extensions.Configuration.IConfiguration> nella pagina o nella visualizzazione.
+Per accedere alle impostazioni di configurazione Razor in una pagina di pagine o in una visualizzazione MVC, aggiungere una [direttiva using](xref:mvc/views/razor#using) ([riferimenti per C#: direttiva using](/dotnet/csharp/language-reference/keywords/using-directive)) per lo [spazio dei nomi Microsoft. Extensions. Configuration](xref:Microsoft.Extensions.Configuration) e inserire <xref:Microsoft.Extensions.Configuration.IConfiguration> nella pagina o nella vista.
 
-In una pagina Razor Pages:
+In una Razor pagina di pagine:
 
 ```cshtml
 @page

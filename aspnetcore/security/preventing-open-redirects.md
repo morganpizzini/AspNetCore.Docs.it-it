@@ -4,13 +4,19 @@ author: ardalis
 description: Mostra come impedire gli attacchi di reindirizzamento aperti contro un'app ASP.NET Core
 ms.author: riande
 ms.date: 07/07/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/preventing-open-redirects
-ms.openlocfilehash: 9d8cac8708fe9aeadba5af1287362a20df7f6bfe
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: ad4c9806146567b6ef1f5e78eaeca96cb649c1af
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78660524"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774392"
 ---
 # <a name="prevent-open-redirect-attacks-in-aspnet-core"></a>Impedisci attacchi di reindirizzamento aperti in ASP.NET Core
 
@@ -26,18 +32,18 @@ Poiché l'URL di destinazione è specificato nella stringa QueryString della ric
 
 ### <a name="an-example-attack"></a>Un attacco di esempio
 
-Un utente malintenzionato può sviluppare un attacco progettato per consentire all'utente malintenzionato di accedere alle credenziali di un utente o alle informazioni riservate. Per iniziare l'attacco, l'utente malintenzionato convince l'utente a fare clic su un collegamento alla pagina di accesso del sito con un `returnUrl` valore QueryString aggiunto all'URL. Si consideri, ad esempio, un'app in `contoso.com` che include una pagina di accesso `http://contoso.com/Account/LogOn?returnUrl=/Home/About`. L'attacco segue questa procedura:
+Un utente malintenzionato può sviluppare un attacco progettato per consentire all'utente malintenzionato di accedere alle credenziali di un utente o alle informazioni riservate. Per iniziare l'attacco, l'utente malintenzionato convince l'utente a fare clic su un collegamento alla pagina di accesso del `returnUrl` sito con un valore QueryString aggiunto all'URL. Si consideri ad esempio un' `contoso.com` app in che include una pagina `http://contoso.com/Account/LogOn?returnUrl=/Home/About`di accesso all'indirizzo. L'attacco segue questa procedura:
 
-1. L'utente fa clic su un collegamento dannoso per `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` (il secondo URL è "Contoso**1**. com", non "contoso.com").
+1. L'utente fa clic su `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` un collegamento dannoso (il secondo URL è "Contoso**1**. com", non "contoso.com").
 2. L'utente ha eseguito l'accesso.
-3. L'utente viene reindirizzato (dal sito) a `http://contoso1.com/Account/LogOn` (un sito dannoso simile al sito reale).
+3. L'utente viene reindirizzato (dal sito) `http://contoso1.com/Account/LogOn` a (un sito dannoso simile al sito reale).
 4. L'utente accede nuovamente (assegnando loro le credenziali al sito dannoso) e viene reindirizzato di nuovo al sito reale.
 
 È probabile che l'utente ritenga che il primo tentativo di accesso non sia riuscito e che il secondo tentativo abbia avuto esito positivo. L'utente probabilmente rimane inconsapevole del fatto che le relative credenziali sono compromesse.
 
 ![Processo di attacco di reindirizzamento aperto](preventing-open-redirects/_static/open-redirection-attack-process.png)
 
-Oltre alle pagine di accesso, alcuni siti forniscono pagine di reindirizzamento o endpoint. Si supponga che l'app abbia una pagina con un reindirizzamento aperto, `/Home/Redirect`. Un utente malintenzionato potrebbe creare, ad esempio, un collegamento in un messaggio di posta elettronica che passa a `[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login`. Un utente tipico osserverà l'URL e vedrà che inizia con il nome del sito. Considerato attendibile, i colleghi faranno clic sul collegamento. Il reindirizzamento aperto invierà quindi l'utente al sito di phishing, che sembra identico a quello dell'utente e l'utente potrebbe accedere a quello che ritiene sia il sito.
+Oltre alle pagine di accesso, alcuni siti forniscono pagine di reindirizzamento o endpoint. Si supponga che l'app abbia una pagina con un reindirizzamento `/Home/Redirect`aperto,. Un utente malintenzionato potrebbe creare, ad esempio, un collegamento in un messaggio di `[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login`posta elettronica che passa a. Un utente tipico osserverà l'URL e vedrà che inizia con il nome del sito. Considerato attendibile, i colleghi faranno clic sul collegamento. Il reindirizzamento aperto invierà quindi l'utente al sito di phishing, che sembra identico a quello dell'utente e l'utente potrebbe accedere a quello che ritiene sia il sito.
 
 ## <a name="protecting-against-open-redirect-attacks"></a>Protezione da attacchi di reindirizzamento aperti
 
@@ -45,7 +51,7 @@ Quando si sviluppano applicazioni Web, considerare tutti i dati forniti dall'ute
 
 ### <a name="localredirect"></a>LocalRedirect
 
-Usare il metodo helper `LocalRedirect` dalla classe `Controller` di base:
+Usare il `LocalRedirect` metodo helper della classe di base `Controller` :
 
 ```csharp
 public IActionResult SomeAction(string redirectUrl)
@@ -54,7 +60,7 @@ public IActionResult SomeAction(string redirectUrl)
 }
 ```
 
-`LocalRedirect` genererà un'eccezione se viene specificato un URL non locale. In caso contrario, si comporta esattamente come il metodo `Redirect`.
+`LocalRedirect`genererà un'eccezione se viene specificato un URL non locale. In caso contrario, si comporta esattamente come il `Redirect` metodo.
 
 ### <a name="islocalurl"></a>IsLocalUrl
 
@@ -76,4 +82,4 @@ private IActionResult RedirectToLocal(string returnUrl)
 }
 ```
 
-Il metodo `IsLocalUrl` impedisce agli utenti di essere reindirizzati inavvertitamente a un sito dannoso. È possibile registrare i dettagli dell'URL fornito quando viene specificato un URL non locale in una situazione in cui è previsto un URL locale. Gli URL di reindirizzamento della registrazione possono essere utili per la diagnosi degli attacchi di reindirizzamento.
+Il `IsLocalUrl` metodo protegge gli utenti dal reindirizzamento inavvertitamente a un sito dannoso. È possibile registrare i dettagli dell'URL fornito quando viene specificato un URL non locale in una situazione in cui è previsto un URL locale. Gli URL di reindirizzamento della registrazione possono essere utili per la diagnosi degli attacchi di reindirizzamento.
