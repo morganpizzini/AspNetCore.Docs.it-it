@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: d9beae68cc869b665ff5d2b6cf34f120406098dc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 4d0200cd412cce6eda473a64d132d74d8641db34
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78661889"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777098"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testare le API Web con il ciclo Read-Eval-Print (REPL) HTTP
 
@@ -26,17 +32,17 @@ Il ciclo Read-Eval-Print (REPL) HTTP:
 
 Sono supportati i [verbi HTTP](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods) seguenti:
 
-* [DELETE](#test-http-delete-requests)
+* [ELIMINARE](#test-http-delete-requests)
 * [GET](#test-http-get-requests)
 * [HEAD](#test-http-head-requests)
-* [OPTIONS](#test-http-options-requests)
+* [Opzioni](#test-http-options-requests)
 * [PATCH](#test-http-patch-requests)
 * [POST](#test-http-post-requests)
-* [PUT](#test-http-put-requests)
+* [METTERE](#test-http-put-requests)
 
 Per continuare, [visualizzare o scaricare l'API Web ASP.NET Core di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([come scaricare](xref:index#how-to-download-a-sample)).
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 * [!INCLUDE [2.1-SDK](~/includes/2.1-SDK.md)]
 
@@ -50,7 +56,7 @@ dotnet tool install -g Microsoft.dotnet-httprepl
 
 Viene installato uno [strumento globale .NET Core](/dotnet/core/tools/global-tools#install-a-global-tool) dal pacchetto NuGet [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl).
 
-## <a name="usage"></a>Uso
+## <a name="usage"></a>Utilizzo
 
 Dopo aver completato l'installazione dello strumento, eseguire il comando seguente per avviare il ciclo Read-Eval-Print HTTP:
 
@@ -365,9 +371,9 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 
 Per impostazione predefinita, HTTP REPL ha un set di percorsi relativi che usa per trovare il documento di Swagger quando si esegue il comando `connect` senza l'opzione `--swagger`. Questi percorsi relativi vengono combinati con i percorsi radice e di base specificati nel comando `connect`. I percorsi relativi predefiniti sono i seguenti:
 
-- *swagger.json*
-- *swagger/v1/swagger.json*
-- */swagger.json*
+- *spavalderia. JSON*
+- *spavalderia/V1/spavalderia. JSON*
+- */Swagger.JSON*
 - */swagger/v1/swagger.json*
 
 Per usare un set di percorsi di ricerca diverso nell'ambiente in uso, impostare la preferenza `swagger.searchPaths`. Il valore deve essere un elenco di percorsi relativi delimitati da pipe. Ad esempio:
@@ -384,7 +390,7 @@ pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json"
 get <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argomenti
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -468,7 +474,7 @@ Per inviare una richiesta HTTP GET:
 post <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argomenti
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -538,7 +544,7 @@ Per inviare una richiesta HTTP POST:
 put <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argomenti
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -554,7 +560,7 @@ Parametro di route, se presente, previsto dal metodo di azione del controller as
 
 Per inviare una richiesta HTTP PUT:
 
-1. *Facoltativo*: eseguire il comando `get` per visualizzare i dati prima di modificarli:
+1. *Facoltativo*: eseguire il `get` comando per visualizzare i dati prima di modificarli:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -616,7 +622,7 @@ Per inviare una richiesta HTTP PUT:
     Server: Kestrel
     ```
 
-1. *Facoltativo*: eseguire un comando `get` per visualizzare le modifiche. Ad esempio, se si digita "Cherry" nell'editor di testo, `get` restituisce quanto segue:
+1. *Facoltativo*: eseguire un `get` comando per visualizzare le modifiche. Ad esempio, se si digita "Cherry" nell'editor di testo, `get` restituisce quanto segue:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -653,7 +659,7 @@ Per inviare una richiesta HTTP PUT:
 delete <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argomenti
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -667,7 +673,7 @@ Parametro di route, se presente, previsto dal metodo di azione del controller as
 
 Per inviare una richiesta HTTP DELETE:
 
-1. *Facoltativo*: eseguire il comando `get` per visualizzare i dati prima di modificarli:
+1. *Facoltativo*: eseguire il `get` comando per visualizzare i dati prima di modificarli:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -707,7 +713,7 @@ Per inviare una richiesta HTTP DELETE:
     Server: Kestrel
     ```
 
-1. *Facoltativo*: eseguire un comando `get` per visualizzare le modifiche. In questo esempio `get` restituisce quanto segue:
+1. *Facoltativo*: eseguire un `get` comando per visualizzare le modifiche. In questo esempio `get` restituisce quanto segue:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -740,7 +746,7 @@ Per inviare una richiesta HTTP DELETE:
 patch <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argomenti
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -760,7 +766,7 @@ Parametro di route, se presente, previsto dal metodo di azione del controller as
 head <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argomenti
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -778,7 +784,7 @@ Parametro di route, se presente, previsto dal metodo di azione del controller as
 options <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argomenti
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -852,7 +858,7 @@ Per accedere a un endpoint ospitato da Azure o per usare l' [API REST di Azure](
     httprepl https://management.azure.com
     ```
 
-1. Impostare l'intestazione della richiesta HTTP `Authorization`:
+1. Impostare l' `Authorization` intestazione della richiesta http:
 
     ```console
     https://management.azure.com/> set header Authorization "bearer <ACCESS TOKEN>"
@@ -952,7 +958,7 @@ https://localhost:5001/people~ echo off
 Request echoing is off
 ```
 
-## <a name="run-a-script"></a>Eseguire uno script
+## <a name="run-a-script"></a>Esegui uno script
 
 Se si esegue spesso lo stesso set di comandi del ciclo Read-Eval-Print HTTP, può essere utile archiviarlo in un file di testo. I comandi nel file hanno lo stesso formato di quelli eseguiti manualmente nella riga di comando. I comandi possono essere eseguiti in modalità batch usando il comando `run`. Ad esempio:
 

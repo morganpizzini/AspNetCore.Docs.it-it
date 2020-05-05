@@ -5,13 +5,19 @@ description: Informazioni su come usare NSwag per generare le pagine della docum
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/get-started-with-nswag
-ms.openlocfilehash: 3eae5d3c66204a10806a8036c8f114af6c501b2c
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 50096ae6a77d5f8b07e6be795d9401fcbfd421e3
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78666054"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776708"
 ---
 # <a name="get-started-with-nswag-and-aspnet-core"></a>Introduzione a NSwag e ad ASP.NET Core
 
@@ -19,13 +25,13 @@ Di [Christoph Nienaber](https://twitter.com/zuckerthoben), [Rico Suter](https://
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ( come[scaricare](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.0"
 
-[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag) ( come[scaricare](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ::: moniker-end
 
@@ -50,7 +56,7 @@ Usare uno degli approcci seguenti per installare il pacchetto NuGet NSwag:
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Dalla finestra **Console di Gestione pacchetti**:
-  * Passare a **Visualizza** > altra console di Gestione**pacchetti** di**Windows** > 
+  * Passare a **Visualizza** > **altre** > **console di gestione pacchetti** di Windows
   * Passare alla directory che contiene il file *TodoApi.csproj*
   * Eseguire il comando seguente:
 
@@ -59,7 +65,7 @@ Usare uno degli approcci seguenti per installare il pacchetto NuGet NSwag:
     ```
 
 * Dalla finestra di dialogo **Gestisci pacchetti NuGet**:
-  * Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** > Gestire i pacchetti NuGetRight-click the project in Solution Explorer**Manage NuGet Packages**
+  * Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** > **Gestisci pacchetti NuGet**
   * Impostare **Origine pacchetto** su "nuget.org"
   * Immettere "NSwag.AspNetCore" nella casella di ricerca
   * Selezionare il pacchetto "NSwag.AspNetCore" dalla scheda **Sfoglia** e fare clic su **Installa**
@@ -69,7 +75,7 @@ Usare uno degli approcci seguenti per installare il pacchetto NuGet NSwag:
 * Fare clic su con il pulsante destro del mouse sulla cartella *Pacchetti* in **Solution Pad** (Riquadro della soluzione) > **Aggiungi pacchetti**
 * Impostare l'elenco a discesa **Aggiungi pacchetti** della finestra **Origine** su "nuget.org"
 * Immettere "NSwag.AspNetCore" nella casella di ricerca
-* Selezionare il pacchetto "NSwag.AspNetCore" dal riquadro dei risultati e fare clic su **Aggiungi pacchetto**
+* Selezionare il pacchetto "NSwag. AspNetCore" dal riquadro dei risultati e fare clic su **Aggiungi pacchetto**
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
@@ -109,8 +115,8 @@ Aggiungere e configurare Swagger nell'app ASP.NET Core eseguendo i passaggi segu
 
 ### <a name="generate-code-with-nswagstudio"></a>Generare il codice con NSwagStudio
 
-* Installare NSwagStudio seguendo le istruzioni riportate nel [repository di GitHub NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio). Nella pagina di rilascio di NSwag è possibile scaricare una versione xcopy che può essere avviata senza privilegi di installazione e amministratore.
-* Avviare NSwagStudio e immettere l'URL del file *swagger.json* nella casella di testo **Swagger Specification URL** (URL di specifica Swagger). Ad esempio, *http://localhost:44354/swagger/v1/swagger.json*.
+* Installare NSwagStudio seguendo le istruzioni riportate nel [repository di GitHub NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio). Nella pagina della versione NSwag è possibile scaricare una versione di XCOPY che può essere avviata senza privilegi di amministratore e di installazione.
+* Avviare NSwagStudio e immettere l'URL del file *swagger.json* nella casella di testo **Swagger Specification URL** (URL di specifica Swagger). Ad esempio, *http://localhost:44354/swagger/v1/swagger.json* .
 * Fare clic sul pulsante **Create local Copy** (Crea copia locale) per generare una rappresentazione JSON della specifica di Swagger.
 
   ![Creare una copia locale della specifica di Swagger](web-api-help-pages-using-swagger/_static/CreateLocalCopy-NSwagStudio.PNG)
@@ -157,7 +163,7 @@ namespace MyNamespace
 ```
 
 > [!TIP]
-> Il codice client di C' viene generato in base alle selezioni nella scheda **Impostazioni.**
+> Il codice client C# viene generato in base alle selezioni nella scheda **Impostazioni** . modificare le impostazioni per eseguire attività quali la ridenominazione predefinita dello spazio dei nomi e la generazione di un metodo sincrono.
 
 * Copiare il codice C# generato in un file nel progetto client che utilizzerà l'API.
 * Iniziare a usare l'API Web:
@@ -207,7 +213,7 @@ Per abilitare i commenti XML, seguire questa procedura:
 ::: moniker range="<= aspnetcore-1.1"
 
 * Fare clic con il pulsante destro del mouse in **Esplora soluzioni** e selezionare **Proprietà**
-* Selezionare la casella **File di documentazione XML** nella sezione **Output** della scheda **Compila**
+* Controllare la casella **file di documentazione XML** nella sezione **output** della scheda **compilazione**
 
 ::: moniker-end
 
@@ -215,7 +221,7 @@ Per abilitare i commenti XML, seguire questa procedura:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-* Dal *riquadro della soluzione* premere **controllo** e fare clic sul nome del progetto. Passare a **Strumenti** > **Modifica file**.
+* Dal *riquadro della soluzione* premere **controllo** e fare clic sul nome del progetto. Passare a **strumenti** > **modifica file**.
 * Aggiungere manualmente le righe evidenziate al file con estensione *csproj*:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
@@ -225,7 +231,7 @@ Per abilitare i commenti XML, seguire questa procedura:
 ::: moniker range="<= aspnetcore-1.1"
 
 * Aprire la finestra di dialogo **Opzioni progetto** > **Compila** > **Compilatore**.
-* Seleziona la casella **Genera documentazione xml** nella sezione **Opzioni generali**
+* Selezionare la casella **Genera documentazione XML** nella sezione **Opzioni generali**
 
 ::: moniker-end
 
@@ -257,7 +263,7 @@ Prendere in considerazione gli esempi seguenti:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
 
-L'azione precedente restituisce `IActionResult`, ma all'interno dell'azione viene restituito [CreatedAtRoute](xref:System.Web.Http.ApiController.CreatedAtRoute*) o [BadRequest](xref:System.Web.Http.ApiController.BadRequest*). Usare le annotazioni dei dati per indicare ai client i codici di stato HTTP restituiti da questa azione. Contrassegnare l'azione con i seguenti attributi:
+L'azione precedente restituisce `IActionResult`, ma all'interno dell'azione viene restituito [CreatedAtRoute](xref:System.Web.Http.ApiController.CreatedAtRoute*) o [BadRequest](xref:System.Web.Http.ApiController.BadRequest*). Usare le annotazioni dei dati per indicare ai client i codici di stato HTTP restituiti da questa azione. Contrassegnare l'azione con gli attributi seguenti:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
 
@@ -271,7 +277,7 @@ Prendere in considerazione gli esempi seguenti:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
 
-L'azione precedente restituisce `ActionResult<T>`. All'interno dell'azione, viene restituito [CreatedAtRoute](xref:System.Web.Http.ApiController.CreatedAtRoute*). Poiché il [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) controller ha l'attributo, è possibile anche una risposta [BadRequest.](xref:System.Web.Http.ApiController.BadRequest*) Per altre informazioni, vedere [Risposte HTTP 400 automatiche](xref:web-api/index#automatic-http-400-responses). Usare le annotazioni dei dati per indicare ai client i codici di stato HTTP restituiti da questa azione. Contrassegnare l'azione con i seguenti attributi:
+L'azione precedente restituisce `ActionResult<T>`. All'interno dell'azione, viene restituito [CreatedAtRoute](xref:System.Web.Http.ApiController.CreatedAtRoute*). Poiché il controller ha l' [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attributo, è anche possibile una risposta [richiesta non valida](xref:System.Web.Http.ApiController.BadRequest*) . Per altre informazioni, vedere [Risposte HTTP 400 automatiche](xref:web-api/index#automatic-http-400-responses). Usare le annotazioni dei dati per indicare ai client i codici di stato HTTP restituiti da questa azione. Contrassegnare l'azione con gli attributi seguenti:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
 

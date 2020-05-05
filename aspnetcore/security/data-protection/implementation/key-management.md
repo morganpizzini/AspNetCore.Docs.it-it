@@ -4,13 +4,19 @@ author: rick-anderson
 description: Informazioni sui dettagli di implementazione delle API di gestione delle chiavi ASP.NET Core Data Protection.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/key-management
-ms.openlocfilehash: c571222d734fa69183563aefa5cc6ce5a10e7612
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 0f54ceedf3558fb4fa2349903461fdfdb4dc02e6
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78664710"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776903"
 ---
 # <a name="key-management-in-aspnet-core"></a>Gestione delle chiavi in ASP.NET Core
 
@@ -59,7 +65,7 @@ services.AddDataProtection()
        .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
 ```
 
-Un amministratore può anche modificare l'impostazione predefinita a livello di sistema, anche se una chiamata esplicita a `SetDefaultKeyLifetime` eseguirà l'override di tutti i criteri a livello di sistema. La durata predefinita della chiave non può essere inferiore a 7 giorni.
+Un amministratore può anche modificare l'impostazione predefinita a livello di sistema, anche se una `SetDefaultKeyLifetime` chiamata esplicita a eseguirà l'override di tutti i criteri a livello di sistema. La durata predefinita della chiave non può essere inferiore a 7 giorni.
 
 ## <a name="automatic-key-ring-refresh"></a>Aggiornamento automatico dell'anello chiave
 
@@ -68,11 +74,11 @@ Quando il sistema di protezione dei dati viene inizializzato, legge l'anello chi
 >[!WARNING]
 > Gli sviluppatori dovrebbero molto raramente usare direttamente le API di gestione delle chiavi. Il sistema di protezione dei dati eseguirà la gestione automatica delle chiavi come descritto in precedenza.
 
-Il sistema di protezione dei dati espone un'interfaccia `IKeyManager` che può essere usata per controllare e apportare modifiche all'anello di chiave. Il sistema DI DI che ha fornito l'istanza di `IDataProtectionProvider` può anche fornire un'istanza di `IKeyManager` per l'utilizzo. In alternativa, è possibile estrarre il `IKeyManager` direttamente dall'`IServiceProvider` come nell'esempio riportato di seguito.
+Il sistema di protezione dei dati espone `IKeyManager` un'interfaccia che può essere usata per controllare e apportare modifiche all'anello di chiave. Il sistema DI DI che fornisce l'istanza `IDataProtectionProvider` di può inoltre fornire un'istanza `IKeyManager` di per l'utilizzo. In alternativa, è possibile effettuare il `IKeyManager` pull direttamente da `IServiceProvider` come nell'esempio riportato di seguito.
 
-Qualsiasi operazione che modifica l'anello della chiave (creando una nuova chiave in modo esplicito o che esegue una revoca) invalida la cache in memoria. La chiamata successiva a `Protect` o `Unprotect` farà sì che il sistema di protezione dei dati legga nuovamente l'anello chiave e ricrei la cache.
+Qualsiasi operazione che modifica l'anello della chiave (creando una nuova chiave in modo esplicito o che esegue una revoca) invalida la cache in memoria. La chiamata successiva a `Protect` o `Unprotect` farà sì che il sistema di protezione dei dati legga nuovamente l'anello chiave e ricrea la cache.
 
-Nell'esempio seguente viene illustrato l'utilizzo dell'interfaccia `IKeyManager` per controllare e modificare l'anello chiave, inclusa la revoca delle chiavi esistenti e la generazione manuale di una nuova chiave.
+Nell'esempio seguente viene illustrato l' `IKeyManager` utilizzo dell'interfaccia per esaminare e modificare l'anello chiave, inclusa la revoca delle chiavi esistenti e la generazione manuale di una nuova chiave.
 
 [!code-csharp[](key-management/samples/key-management.cs)]
 

@@ -4,17 +4,23 @@ author: ardalis
 description: Informazioni su come creare servizi back-end mediante ASP.NET Core MVC per il supporto di app per dispositivi mobili native.
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mobile/native-mobile-backend
-ms.openlocfilehash: dcd0a29af197ff0ca210c17bdff62b802219fb2d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1ffaf61bb21f44681f530e35e746a30e9e158c6d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78664584"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777267"
 ---
 # <a name="create-backend-services-for-native-mobile-apps-with-aspnet-core"></a>Creare servizi back-end per app native per dispositivi mobili con ASP.NET Core
 
-[Steve Smith](https://ardalis.com/)
+Di [Steve Smith](https://ardalis.com/)
 
 Le app per dispositivi mobili possono comunicare con i servizi back-end di ASP.NET Core. Per istruzioni sulla connessione a servizi Web locali da simulatori iOS ed emulatori Android, vedere [Connettersi a servizi Web locali da simulatori iOS ed emulatori Android](/xamarin/cross-platform/deploy-test/connect-to-local-web-services).
 
@@ -63,7 +69,7 @@ L'applicazione deve rispondere a tutte le richieste effettuate sulla porta 5000.
 > [!NOTE]
 > Assicurarsi di eseguire l'applicazione direttamente anziché dietro IIS Express, che per impostazione predefinita ignora le richieste non locali. Eseguire [dotnet run](/dotnet/core/tools/dotnet-run) al prompt dei comandi oppure scegliere il profilo del nome dell'applicazione nell'elenco a discesa Destinazione di debug sulla barra degli strumenti di Visual Studio.
 
-Aggiungere una classe modello che rappresenti gli elementi attività. Contrassegnare i campi obbligatori con l'attributo `[Required]`:
+Aggiungere una classe modello che rappresenti gli elementi attività. Contrassegnare i campi obbligatori con l' `[Required]` attributo:
 
 [!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Models/ToDoItem.cs)]
 
@@ -108,7 +114,7 @@ Il metodo `List` restituisce un codice di risposta 200 (OK) e tutti gli elementi
 
 ### <a name="creating-items"></a>Creazione di elementi
 
-Per convenzione, la creazione di nuovi elementi di dati viene associata al verbo HTTP POST. Al metodo `Create` è applicato un attributo `[HttpPost]` e viene accettata un'istanza di `ToDoItem`. Poiché l'argomento `item` viene passato nel corpo del POST, questo parametro specifica l'attributo `[FromBody]`.
+Per convenzione, la creazione di nuovi elementi di dati viene associata al verbo HTTP POST. Al `Create` metodo è applicato `[HttpPost]` un attributo e viene accettata un' `ToDoItem` istanza. Poiché l' `item` argomento viene passato nel corpo del post, questo parametro specifica l' `[FromBody]` attributo.
 
 All'interno del metodo, l'elemento viene verificato per validità ed esistenza precedente nell'archivio dati. Se non si verificano problemi, l'elemento viene aggiunto tramite il repository. La verifica `ModelState.IsValid` esegue la [convalida del modello](../mvc/models/validation.md) e deve essere eseguita in ogni metodo dell'API che accetta input utente.
 
