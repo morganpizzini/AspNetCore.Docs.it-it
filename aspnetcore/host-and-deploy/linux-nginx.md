@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/10/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: ceb2ad857649dcfa8d04420dcc37792495edc3ff
-ms.sourcegitcommit: 6f1b516e0c899a49afe9a29044a2383ce2ada3c7
+ms.openlocfilehash: af2bea1b3a149ef8d80970031e939dc083d94a03
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/13/2020
-ms.locfileid: "81224024"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775895"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Hosting di ASP.NET Core in Linux con Nginx
 
@@ -36,13 +42,13 @@ In questa guida:
 
 1. Accedere a un server Ubuntu 16.04 con un account utente standard con privilegio sudo.
 1. Installare il runtime .NET Core nel server.
-   1. Visitare la [pagina Scarica .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-   1. Selezionare l'ultima versione di .NET Core non in anteprima.
-   1. Scaricare l'ultimo runtime non di anteprima nella tabella in **Esegui app - Runtime**.
-   1. Selezionare il collegamento alle istruzioni di **Gestione pacchetti** Linux e seguire le istruzioni di Ubuntu per la versione di Ubuntu in uso.
+   1. Visitare la [pagina di download di .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
+   1. Selezionare la versione più recente di .NET Core non in anteprima.
+   1. Scaricare la versione più recente del runtime non di anteprima nella tabella in **Run Apps-Runtime**.
+   1. Selezionare il collegamento **istruzioni di gestione pacchetti** Linux e seguire le istruzioni di Ubuntu per la versione di Ubuntu.
 1. Un'app ASP.NET Core esistente.
 
-In qualsiasi momento in futuro dopo l'aggiornamento del framework condiviso, riavviare le app ASP.NET Core ospitate dal server.
+In qualsiasi momento in futuro dopo l'aggiornamento del Framework condiviso, riavviare le app ASP.NET Core ospitate dal server.
 
 ## <a name="publish-and-copy-over-the-app"></a>Pubblicare e copiare l'app
 
@@ -81,11 +87,11 @@ Kestrel funziona perfettamente per la gestione del contenuto dinamico da ASP.NET
 
 Ai fini di questa guida viene usata una singola istanza di Nginx. Viene eseguito sullo stesso server, insieme al server HTTP. In base ai requisiti, è possibile scegliere una configurazione diversa.
 
-Poiché le richieste vengono inoltrate dal proxy inverso, utilizzare il [middleware intestazioni inoltrate](xref:host-and-deploy/proxy-load-balancer) dal pacchetto [Microsoft.AspNetCore.HttpOverrides.](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) Il middleware aggiorna `Request.Scheme` usando l'intestazione `X-Forwarded-Proto`, in modo che gli URI di reindirizzamento e altri criteri di sicurezza funzionino correttamente.
+Poiché le richieste vengono inviate dal proxy inverso, usare il [middleware delle intestazioni inoltro](xref:host-and-deploy/proxy-load-balancer) dal pacchetto [Microsoft. AspNetCore. HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) . Il middleware aggiorna `Request.Scheme` usando l'intestazione `X-Forwarded-Proto`, in modo che gli URI di reindirizzamento e altri criteri di sicurezza funzionino correttamente.
 
 Qualsiasi componente che dipende dallo schema, ad esempio l'autenticazione, la generazione di collegamenti, i reindirizzamenti e la georilevazione, deve essere inserito dopo aver richiamato il middleware delle intestazioni inoltrate. Come regola generale,il middleware delle intestazioni inoltrate deve essere eseguito prima degli altri middleware, ad eccezione del middleware di diagnostica e gestione degli errori. Questo ordine garantisce che il middleware basato sulle intestazioni inoltrate possa usare i valori di intestazione per l'elaborazione.
 
-Richiamare <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> il metodo `Startup.Configure` all'inizio di prima di chiamare altri middleware. Configurare il middleware per l'inoltro delle intestazioni `X-Forwarded-For` e `X-Forwarded-Proto`:
+Richiamare il <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> metodo all'inizio di prima `Startup.Configure` di chiamare altro middleware. Configurare il middleware per l'inoltro delle intestazioni `X-Forwarded-For` e `X-Forwarded-Proto`:
 
 ```csharp
 // using Microsoft.AspNetCore.HttpOverrides;
@@ -149,7 +155,7 @@ server {
 }
 ```
 
-Se l'app è un'app Blazor Server che si <xref:host-and-deploy/blazor/server#linux-with-nginx> basa su SignalR `Connection` WebSockets, vedere per informazioni su come impostare l'intestazione.
+Se l'app è un' Blazor app server che si basa su SignalR WebSocket, vedere <xref:host-and-deploy/blazor/server#linux-with-nginx> per informazioni su come impostare l' `Connection` intestazione.
 
 Se nessun `server_name` corrisponde, Nginx usa il server predefinito. Se non è definito alcun server predefinito, il primo server nel file di configurazione è il server predefinito. Come procedura consigliata, aggiungere un server predefinito specifico che restituisce un codice di stato 444 nel file di configurazione. Un esempio di configurazione del server predefinito è il seguente:
 
@@ -211,7 +217,7 @@ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 WantedBy=multi-user.target
 ```
 
-Nell'esempio precedente, l'utente che gestisce il `User` servizio viene specificato dall'opzione. L'utente`www-data`( ) deve esistere e avere la proprietà dei file dell'app.
+Nell'esempio precedente, l'utente che gestisce il servizio viene specificato dall' `User` opzione. L'utente (`www-data`) deve esistere e avere la proprietà appropriata dei file dell'app.
 
 Usare `TimeoutStopSec` per configurare il tempo di attesa prima che l'app si arresti dopo aver ricevuto il segnale di interrupt iniziale. Se l'app non si arresta in questo periodo, viene emesso il comando SIGKILL per terminare l'app. Specificare il valore in secondi senza unità di misura (ad esempio, `150`), un valore per l'intervallo di tempo (ad esempio, `2min 30s`) o `infinity` per disabilitare il timeout. Per impostazione predefinita, il valore di `TimeoutStopSec` viene impostato sul valore di `DefaultTimeoutStopSec` nel file di configurazione del sistema di gestione (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf*, *user.conf.d*). Il timeout predefinito per la maggior parte delle distribuzioni è di 90 secondi.
 
@@ -279,7 +285,7 @@ Per filtrare ulteriormente, opzioni come `--since today`, `--until 1 hour ago` o
 sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-10-18 04:00"
 ```
 
-## <a name="data-protection"></a>Protezione dei dati
+## <a name="data-protection"></a>Protezione dati
 
 Lo [stack di protezione dei dati di ASP.NET Core](xref:security/data-protection/introduction) è usato da diversi [middleware](xref:fundamentals/middleware/index) di ASP.NET Core, tra cui i middleware di autenticazione (ad esempio il middleware per i cookie) e le protezioni CSRF (Cross-Site Request Forgery). Anche se le DPAPI (Data Protection API) non vengono chiamate dal codice dell'utente, è consigliabile configurare la protezione dati per la creazione di un [archivio di chiavi](xref:security/data-protection/implementation/key-management) crittografiche permanente. Se non si configura la protezione dei dati, le chiavi vengono mantenute in memoria ed eliminate al riavvio dell'app.
 
@@ -287,7 +293,7 @@ Se il gruppo di chiavi viene archiviato in memoria quando l'app viene riavviata:
 
 * Tutti i token di autenticazione basati su cookie vengono invalidati.
 * Gli utenti devono ripetere l'accesso alla richiesta successiva.
-* Tutti i dati protetti con il gruppo di chiavi non possono più essere decrittografati. Ciò può includere [token CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e [cookie TempData MVC di ASP.NET](xref:fundamentals/app-state#tempdata).
+* Tutti i dati protetti con il gruppo di chiavi non possono più essere decrittografati. Questo può includere i [token CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e i [cookie TEMPDATA di ASP.NET Core MVC](xref:fundamentals/app-state#tempdata).
 
 Per configurare la protezione dei dati in modo da rendere persistente il gruppo di chiavi e crittografarlo, vedere:
 
@@ -296,7 +302,7 @@ Per configurare la protezione dei dati in modo da rendere persistente il gruppo 
 
 ## <a name="long-request-header-fields"></a>Campi di intestazione della richiesta di grandi dimensioni
 
-Le impostazioni predefinite del server proxy in genere limitano i campi dell'intestazione della richiesta a 4 K o 8 K a seconda della piattaforma. Un'app può richiedere campi più lunghi del valore predefinito, ad esempio app che usano [Azure Active Directory.](https://azure.microsoft.com/services/active-directory/) Se sono necessari campi più lunghi, le impostazioni predefinite del server proxy richiedono una regolazione. I valori da applicare dipendono dallo scenario. Per altre informazioni, vedere la documentazione del server.
+Le impostazioni predefinite del server proxy limitano in genere i campi di intestazione della richiesta a 4 K o 8 K a seconda della piattaforma. Un'app può richiedere campi più lunghi del valore predefinito, ad esempio le app che usano [Azure Active Directory](https://azure.microsoft.com/services/active-directory/). Se sono necessari campi più lunghi, le impostazioni predefinite del server proxy richiedono la regolazione. I valori da applicare dipendono dallo scenario. Per altre informazioni, vedere la documentazione del server.
 
 * [proxy_buffer_size](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffer_size)
 * [proxy_buffers](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffers)
@@ -314,7 +320,7 @@ Linux Security Modules (LSM) è un framework che fa parte del kernel Linux a par
 
 ### <a name="configure-the-firewall"></a>Configurare il firewall
 
-Chiudere tutte le porte esterne che non sono in uso. Firewall semplice (ufw) fornisce un `iptables` front-end per fornendo un'interfaccia della riga di comando per la configurazione del firewall.
+Chiudere tutte le porte esterne che non sono in uso. Un firewall semplice (ufw) fornisce un front-end `iptables` per fornendo un'interfaccia della riga di comando per la configurazione del firewall.
 
 > [!WARNING]
 > Se non è configurato correttamente, un firewall impedisce l'accesso all'intero sistema. Se non si specifica la porta SSH corretta, non sarà possibile accedere al sistema se si usa SSH per la connessione. Il numero di porta predefinito è 22. Per altre informazioni, vedere l'[introduzione a ufw](https://help.ubuntu.com/community/UFW) e il [manuale](https://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html).
@@ -403,9 +409,9 @@ sudo nano /etc/nginx/nginx.conf
 
 Aggiungere la riga `add_header X-Content-Type-Options "nosniff";` e salvare il file, quindi riavviare Nginx.
 
-## <a name="additional-nginx-suggestions"></a>Ulteriori suggerimenti Nginx
+## <a name="additional-nginx-suggestions"></a>Suggerimenti nginx aggiuntivi
 
-Dopo aver aggiornato il framework condiviso nel server, riavviare il ASP.NET le app base ospitate dal server.
+Dopo aver aggiornato il Framework condiviso sul server, riavviare le app ASP.NET Core ospitate dal server.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

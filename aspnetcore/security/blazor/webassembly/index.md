@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/index
-ms.openlocfilehash: c096419f4866ea2f1db135594c4b88c89c7c90d1
-ms.sourcegitcommit: 4f91da9ce4543b39dba5e8920a9500d3ce959746
+ms.openlocfilehash: e8ea5e6b6d7e28906e6109e6730ac25f190b4191
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82138417"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768000"
 ---
-# <a name="secure-aspnet-core-opno-locblazor-webassembly"></a>Sicurezza ASP.NET Core Blazor webassembly
+# <a name="secure-aspnet-core-blazor-webassembly"></a>Sicurezza ASP.NET Core Blazor webassembly
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn)
 
@@ -29,14 +32,14 @@ BlazorLe app webassembly sono protette in modo analogo alle applicazioni a pagin
 
 ## <a name="authentication-library"></a>Libreria di autenticazione
 
-BlazorWebassembly supporta l'autenticazione e l'autorizzazione delle app usando OIDC tramite `Microsoft.AspNetCore.Components.WebAssembly.Authentication` la libreria. La libreria fornisce un set di primitive per l'autenticazione uniforme rispetto a ASP.NET Core backend. La libreria integra ASP.NET Core identità con il supporto dell'autorizzazione API basato su [Identity Server](https://identityserver.io/). La libreria può eseguire l'autenticazione con qualsiasi provider di identità di terze parti (IP) che supporta OIDC, detti provider OpenID (OP).
+BlazorWebassembly supporta l'autenticazione e l'autorizzazione delle app usando OIDC tramite `Microsoft.AspNetCore.Components.WebAssembly.Authentication` la libreria. La libreria fornisce un set di primitive per l'autenticazione uniforme rispetto a ASP.NET Core backend. La libreria integra ASP.NET Core Identity con il supporto dell' [ Identity ](https://identityserver.io/)autorizzazione API basato sul server. La libreria può eseguire l'autenticazione per qualsiasi provider di Identity terze parti (IP) che supporta OIDC, chiamati provider OPENID (op).
 
 Il supporto per l' Blazor autenticazione in webassembly è basato sulla libreria *oidc-client. js* , che consente di gestire i dettagli del protocollo di autenticazione sottostante.
 
 Sono disponibili altre opzioni per l'autenticazione di Spa, ad esempio l'uso di cookie navigava sullostesso sito. Tuttavia, la progettazione ingegneristica Blazor di webassembly viene stabilita in OAuth e OIDC come opzione migliore per l' Blazor autenticazione nelle app webassembly. È stata scelta [l'autenticazione](xref:security/anti-request-forgery#token-based-authentication) basata su token basata su [token Web JSON (token JWT)](https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html) tramite [l'autenticazione basata su cookie](xref:security/anti-request-forgery#cookie-based-authentication) per motivi funzionali e di sicurezza:
 
 * L'uso di un protocollo basato su token offre una superficie di attacco più piccola, poiché i token non vengono inviati in tutte le richieste.
-* Gli endpoint server non richiedono la protezione da [richieste intersito falsificazione (CSRF)](xref:security/anti-request-forgery) perché i token vengono inviati in modo esplicito. Questo consente di ospitare Blazor le app webassembly insieme alle app MVC o Razor Pages.
+* Gli endpoint server non richiedono la protezione da [richieste intersito falsificazione (CSRF)](xref:security/anti-request-forgery) perché i token vengono inviati in modo esplicito. In questo modo è possibile Blazor ospitare le app webassembly insieme Razor alle app MVC o Pages.
 * I token hanno autorizzazioni più strette rispetto ai cookie. Ad esempio, non è possibile usare i token per gestire l'account utente o modificare la password di un utente, a meno che tale funzionalità non venga implementata in modo esplicito.
 * I token hanno una durata breve, un'ora per impostazione predefinita, che limita la finestra di attacco. I token possono anche essere revocati in qualsiasi momento.
 * Il token JWT autonomo offre garanzie al client e al server per il processo di autenticazione. Un client, ad esempio, è in grado di rilevare e verificare che i token ricevuti siano legittimi e che siano stati emessi come parte di un determinato processo di autenticazione. Se una terza parte tenta di cambiare un token durante il processo di autenticazione, il client può rilevare il token cambiato ed evitare di usarlo.
@@ -49,7 +52,7 @@ La `Microsoft.AspNetCore.Components.WebAssembly.Authentication` libreria offre d
 
 * Quando un utente anonimo seleziona il pulsante di accesso o richiede una pagina con [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) l'attributo applicato, l'utente viene reindirizzato alla pagina di accesso`/authentication/login`dell'app ().
 * Nella pagina di accesso, la libreria di autenticazione prepara un reindirizzamento all'endpoint di autorizzazione. L'endpoint di Blazor autorizzazione è esterno all'app webassembly e può essere ospitato a un'origine separata. L'endpoint è responsabile per determinare se l'utente è autenticato e per emettere uno o più token in risposta. La libreria di autenticazione fornisce un callback di accesso per ricevere la risposta di autenticazione.
-  * Se l'utente non è autenticato, l'utente viene reindirizzato al sistema di autenticazione sottostante, che in genere è ASP.NET Core identità.
+  * Se l'utente non è autenticato, l'utente viene reindirizzato al sistema di autenticazione sottostante, che Identityin genere è ASP.NET Core.
   * Se l'utente è già stato autenticato, l'endpoint di autorizzazione genera i token appropriati e reindirizza di nuovo il browser all'endpoint di callback dell'account`/authentication/login-callback`di accesso ().
 * Blazor Quando l'app webassembly carica l'endpoint di callback dell'`/authentication/login-callback`account di accesso (), viene elaborata la risposta di autenticazione.
   * Se il processo di autenticazione viene completato correttamente, l'utente viene autenticato e, facoltativamente, restituito all'URL protetto originale richiesto dall'utente.

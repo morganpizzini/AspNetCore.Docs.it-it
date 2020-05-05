@@ -1,23 +1,26 @@
 ---
-title: Creare e usare ASP.NET Core componenti Razor
+title: Creazione e utilizzo di Razor componenti ASP.NET Core
 author: guardrex
-description: Informazioni su come creare e usare i componenti Razor, tra cui la modalità di associazione ai dati, la gestione degli eventi e la gestione dei cicli di vita dei componenti.
+description: Informazioni su come creare e usare Razor i componenti, tra cui la modalità di associazione ai dati, la gestione degli eventi e la gestione dei cicli di vita dei componenti.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/21/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: a9ae84c36716bfc07ae3cf86214e48ad24770401
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: f8b1ffef1b8375337f66c93d9b4652ad3c5dd616
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205956"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767747"
 ---
-# <a name="create-and-use-aspnet-core-razor-components"></a>Creare e usare ASP.NET Core componenti Razor
+# <a name="create-and-use-aspnet-core-razor-components"></a>Creazione e utilizzo di Razor componenti ASP.NET Core
 
 Di [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27)e [Tobias Bartsch](https://www.aveo-solutions.com/)
 
@@ -27,11 +30,11 @@ Blazorle app vengono compilate usando i *componenti*. Un componente è un blocco
 
 ## <a name="component-classes"></a>Classi di componenti
 
-I componenti sono implementati in file componente [Razor](xref:mvc/views/razor) (*Razor*) usando una combinazione di markup C# e HTML. Un componente in Blazor viene definito formalmente come *componente Razor*.
+I componenti vengono implementati in [Razor](xref:mvc/views/razor) file componente (*Razor*) utilizzando una combinazione di markup C# e HTML. Un componente in Blazor viene definito formalmente come * Razor componente*.
 
 Il nome di un componente deve iniziare con un carattere maiuscolo. Ad esempio, *MyCoolComponent. Razor* è valido e *MyCoolComponent. Razor* non è valido.
 
-L'interfaccia utente per un componente viene definita utilizzando HTML. La logica di rendering dinamico (ad esempio, cicli, condizioni, espressioni) viene aggiunta usando una sintassi C# incorporata chiamata [Razor](xref:mvc/views/razor). Quando viene compilata un'app, il markup HTML e la logica di rendering C# vengono convertiti in una classe Component. Il nome della classe generata corrisponde al nome del file.
+L'interfaccia utente per un componente viene definita utilizzando HTML. La logica di rendering dinamica (ad esempio, cicli, condizionali, espressioni) viene aggiunta usando una sintassi C# [Razor](xref:mvc/views/razor)incorporata denominata. Quando viene compilata un'app, il markup HTML e la logica di rendering C# vengono convertiti in una classe Component. Il nome della classe generata corrisponde al nome del file.
 
 I membri della classe del componente vengono definiti in un blocco `@code`. Nel blocco `@code` , lo stato del componente (proprietà, campi) viene specificato con i metodi per la gestione degli eventi o per la definizione di altre logiche dei componenti. È consentito più di un blocco `@code`.
 
@@ -76,13 +79,13 @@ Usare un percorso relativo di base (`/`) per fare riferimento alla radice Web pe
 <img alt="Company logo" src="/images/logo.png" />
 ```
 
-I componenti Razor **non** supportano la notazione tilde-barra`~/`().
+Razori componenti **non** supportano la notazione tilde-barra`~/`().
 
 Per informazioni sull'impostazione del percorso di base di un'app <xref:host-and-deploy/blazor/index#app-base-path>, vedere.
 
 ## <a name="tag-helpers-arent-supported-in-components"></a>Gli helper tag non sono supportati nei componenti
 
-Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) non sono supportati nei componenti Razor (file*Razor* ). Per fornire funzionalità di tipo Helper tag in Blazor, creare un componente con la stessa funzionalità dell'helper tag e utilizzare il componente.
+Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) non sono supportati Razor nei componenti (file*Razor* ). Per fornire funzionalità di tipo Helper tag in Blazor, creare un componente con la stessa funzionalità dell'helper tag e utilizzare il componente.
 
 ## <a name="use-components"></a>Usare i componenti
 
@@ -100,11 +103,11 @@ Il markup seguente in *index. Razor* esegue il rendering `HeadingComponent` di u
 
 Se un componente contiene un elemento HTML con una prima lettera maiuscola che non corrisponde a un nome di componente, viene emesso un avviso che indica che l'elemento ha un nome imprevisto. L'aggiunta `@using` di una direttiva per lo spazio dei nomi del componente rende disponibile il componente, che risolve l'avviso.
 
-## <a name="routing"></a>Routing.
+## <a name="routing"></a>Routing
 
 Il routing Blazor in viene effettuato fornendo un modello di route a ogni componente accessibile nell'app.
 
-Quando viene compilato un file Razor `@page` con una direttiva, alla classe generata viene assegnato un <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> oggetto che specifica il modello di route. In fase di esecuzione, il router cerca le classi di `RouteAttribute` componenti con un oggetto ed esegue il rendering di qualsiasi componente con un modello di route corrispondente all'URL richiesto.
+Quando viene Razor compilato un file `@page` con una direttiva, alla classe generata viene assegnato un <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> oggetto che specifica il modello di route. In fase di esecuzione, il router cerca le classi di `RouteAttribute` componenti con un oggetto ed esegue il rendering di qualsiasi componente con un modello di route corrispondente all'URL richiesto.
 
 ```razor
 @page "/ParentComponent"
@@ -126,7 +129,7 @@ I componenti possono ricevere parametri di route dal modello di route fornito `@
 
 I parametri facoltativi non sono supportati `@page` , quindi vengono applicate due direttive nell'esempio precedente. Il primo consente la navigazione al componente senza un parametro. La seconda `@page` direttiva riceve il `{text}` parametro di route e assegna il valore alla `Text` proprietà.
 
-La sintassi dei parametri *catch-all* (`*`/`**`), che acquisisce il percorso tra più limiti di cartella, **non** è supportata nei componenti Razor (*Razor*).
+La sintassi dei parametri *catch-all* (`*`/`**`), che acquisisce il percorso tra più limiti di cartella, **non** è supportata nei Razor componenti (*Razor*).
 
 ### <a name="component-parameters"></a>Parametri del componente
 
@@ -166,7 +169,7 @@ Nell'esempio seguente, `ChildComponent` ha una `ChildContent` proprietà che rap
 
 ## <a name="attribute-splatting-and-arbitrary-parameters"></a>Attributo splatting e parametri arbitrari
 
-I componenti possono acquisire ed eseguire il rendering di attributi aggiuntivi oltre ai parametri dichiarati del componente. È possibile acquisire attributi aggiuntivi in un dizionario e quindi *Splatted* su un elemento quando il componente viene sottoposto a [`@attributes`](xref:mvc/views/razor#attributes) rendering usando la direttiva Razor. Questo scenario è utile quando si definisce un componente che produce un elemento di markup che supporta un'ampia gamma di personalizzazioni. Ad esempio, può essere noioso definire gli attributi separatamente per un `<input>` che supporta molti parametri.
+I componenti possono acquisire ed eseguire il rendering di attributi aggiuntivi oltre ai parametri dichiarati del componente. È possibile acquisire attributi aggiuntivi in un dizionario e quindi *Splatted* su un elemento quando il componente viene sottoposto a [`@attributes`](xref:mvc/views/razor#attributes) Razor rendering usando la direttiva. Questo scenario è utile quando si definisce un componente che produce un elemento di markup che supporta un'ampia gamma di personalizzazioni. Ad esempio, può essere noioso definire gli attributi separatamente per un `<input>` che supporta molti parametri.
 
 Nell'esempio `<input>` seguente, il primo elemento (`id="useIndividualParams"`) USA parametri dei singoli componenti, mentre il secondo `<input>` elemento (`id="useAttributesDict"`) usa l'attributo splatting:
 
@@ -552,12 +555,12 @@ Il componente `Expander` seguente:
 
 ## <a name="partial-class-support"></a>Supporto di classi parziali
 
-I componenti Razor vengono generati come classi parziali. I componenti Razor vengono creati usando uno degli approcci seguenti:
+Razori componenti vengono generati come classi parziali. Razori componenti vengono creati utilizzando uno degli approcci seguenti:
 
-* Il codice C# è definito in [`@code`](xref:mvc/views/razor#code) un blocco con markup HTML e codice Razor in un unico file. Blazori modelli definiscono i componenti Razor usando questo approccio.
+* Il codice C# è definito in [`@code`](xref:mvc/views/razor#code) un blocco con markup HTML Razor e codice in un unico file. Blazori modelli definiscono Razor i componenti usando questo approccio.
 * Il codice C# viene inserito in un file code-behind definito come classe parziale.
 
-Nell'esempio seguente viene illustrato il `Counter` componente predefinito con `@code` un blocco in un'app generata da Blazor un modello. Il markup HTML, il codice Razor e il codice C# si trovano nello stesso file:
+Nell'esempio seguente viene illustrato il `Counter` componente predefinito con `@code` un blocco in un'app generata da Blazor un modello. Il markup HTML Razor , il codice e il codice C# si trovano nello stesso file:
 
 *Counter. Razor*:
 
@@ -611,7 +614,7 @@ namespace BlazorApp.Pages
 }
 ```
 
-Aggiungere gli spazi dei nomi necessari al file di classe parziale in base alle esigenze. Gli spazi dei nomi tipici usati dai componenti Razor includono:
+Aggiungere gli spazi dei nomi necessari al file di classe parziale in base alle esigenze. Gli spazi dei nomi tipici Razor usati dai componenti includono:
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -652,7 +655,7 @@ namespace BlazorSample
 
 ## <a name="specify-an-attribute"></a>Specificare un attributo
 
-Gli attributi possono essere specificati nei componenti Razor con [`@attribute`](xref:mvc/views/razor#attribute) la direttiva. Nell'esempio seguente viene applicato `[Authorize]` l'attributo alla classe Component:
+Gli attributi possono essere specificati Razor in componenti con [`@attribute`](xref:mvc/views/razor#attribute) la direttiva. Nell'esempio seguente viene applicato `[Authorize]` l'attributo alla classe Component:
 
 ```razor
 @page "/"
@@ -661,15 +664,15 @@ Gli attributi possono essere specificati nei componenti Razor con [`@attribute`]
 
 ## <a name="import-components"></a>Importa componenti
 
-Lo spazio dei nomi di un componente creato con Razor si basa su (in ordine di priorità):
+Lo spazio dei nomi di un componente creato Razor con è basato su (in ordine di priorità):
 
-* [`@namespace`](xref:mvc/views/razor#namespace)designazione nel markup del file Razor (*Razor*)`@namespace BlazorSample.MyNamespace`().
+* [`@namespace`](xref:mvc/views/razor#namespace)designazione Razor nel markup file (*. Razor*)`@namespace BlazorSample.MyNamespace`().
 * Il progetto nel `RootNamespace` file di progetto (`<RootNamespace>BlazorSample</RootNamespace>`).
 * Il nome del progetto, tratto dal nome file del file di progetto (con*estensione csproj*), e il percorso dalla radice del progetto al componente. Ad esempio, il Framework risolve *{Project root}/pages/index.Razor* (*BlazorSample. csproj*) nello spazio dei nomi `BlazorSample.Pages`. I componenti seguono le regole di associazione dei nomi in C#. Per il `Index` componente in questo esempio, i componenti nell'ambito sono tutti componenti:
   * Nella stessa cartella, *pagine*.
   * Componenti nella radice del progetto che non specificano in modo esplicito uno spazio dei nomi diverso.
 
-I componenti definiti in uno spazio dei nomi diverso vengono introdotti nell' [`@using`](xref:mvc/views/razor#using) ambito usando la direttiva Razor.
+I componenti definiti in uno spazio dei nomi diverso vengono introdotti nell'ambito usando Razorla [`@using`](xref:mvc/views/razor#using) direttiva.
 
 Se un altro componente `NavMenu.razor`,, è presente nella cartella *BlazorSample/Shared/* , il componente può essere utilizzato `Index.razor` in con l' `@using` istruzione seguente:
 
@@ -912,9 +915,9 @@ I componenti `Tab` discendenti acquisiscono `TabSet` l'oggetto che contiene come
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/Tab.razor)]
 
-## <a name="razor-templates"></a>Modelli Razor
+## <a name="razor-templates"></a>Razormodelli
 
-I frammenti di rendering possono essere definiti usando la sintassi del modello Razor. I modelli Razor sono un modo per definire un frammento di interfaccia utente e presupporre il formato seguente:
+I frammenti di rendering possono essere definiti Razor usando la sintassi del modello. Razori modelli sono un modo per definire un frammento di interfaccia utente e presupporre il formato seguente:
 
 ```razor
 @<{HTML tag}>...</{HTML tag}>

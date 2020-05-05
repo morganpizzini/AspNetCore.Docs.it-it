@@ -7,14 +7,18 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/12/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: 7e0cd952fd152ff6adb6e0a7c56214d70d3c7b86
-ms.sourcegitcommit: f9a5069577e8f7c53f8bcec9e13e117950f4f033
+ms.openlocfilehash: 054462c37fffd1973cbbe4f76ae4a3be5a6c1778
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82559006"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767304"
 ---
 # <a name="aspnet-core-signalr-configuration"></a>Configurazione di ASP.NET Core SignalR
 
@@ -188,7 +192,7 @@ let connection = new signalR.HubConnectionBuilder()
 
 Nella tabella seguente sono elencati i livelli di log disponibili. Il valore fornito per impostare `configureLogging` il livello di registrazione **minimo** che verrà registrato. Verranno registrati i messaggi registrati a questo livello **o i livelli elencati dopo tale operazione nella tabella**.
 
-| string                      | LogLevel               |
+| Stringa                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
@@ -520,13 +524,13 @@ La tabella seguente descrive le opzioni per la configurazione delle opzioni HTTP
 
 Il trasporto di polling lungo dispone di opzioni aggiuntive che possono essere configurate tramite la `LongPolling` proprietà:
 
-| Opzione | Default Value | Descrizione |
+| Opzione | Default Value | Description |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 secondi | Quantità massima di tempo di attesa del server per l'invio di un messaggio al client prima che venga terminata una singola richiesta di polling. La riduzione di questo valore determina la frequenza con cui il client rilascia più richieste di polling. |
 
 Il trasporto WebSocket dispone di opzioni aggiuntive che possono essere configurate tramite la `WebSockets` proprietà:
 
-| Opzione | Default Value | Descrizione |
+| Opzione | Default Value | Description |
 | ------ | ------------- | ----------- |
 | `CloseTimeout` | 5 secondi | Dopo la chiusura del server, se il client non riesce a chiudersi entro questo intervallo di tempo, la connessione viene terminata. |
 | `SubProtocolSelector` | `null` | Delegato che può essere utilizzato per impostare l' `Sec-WebSocket-Protocol` intestazione su un valore personalizzato. Il delegato riceve i valori richiesti dal client come input ed è previsto che restituisca il valore desiderato. |
@@ -574,7 +578,7 @@ let connection = new signalR.HubConnectionBuilder()
 
 Nella tabella seguente sono elencati i livelli di log disponibili. Il valore fornito per impostare `configureLogging` il livello di registrazione **minimo** che verrà registrato. Verranno registrati i messaggi registrati a questo livello **o i livelli elencati dopo tale operazione nella tabella**.
 
-| string                      | LogLevel               |
+| Stringa                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
@@ -731,14 +735,14 @@ Opzioni aggiuntive possono essere configurate `WithUrl` nel`withUrl` metodo (in 
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Opzione JavaScript | Default Value | Descrizione |
+| Opzione JavaScript | Default Value | Description |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
 | `skipNegotiation` | `false` | Impostare questa impostazione `true` su per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio Azure SignalR. |
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Opzione Java | Default Value | Descrizione |
+| Opzione Java | Default Value | Description |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
 | `shouldSkipNegotiate` | `false` | Impostare questa impostazione `true` su per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio Azure SignalR. |
@@ -958,7 +962,7 @@ let connection = new signalR.HubConnectionBuilder()
 
 Nella tabella seguente sono elencati i livelli di log disponibili. Il valore fornito per impostare `configureLogging` il livello di registrazione **minimo** che verrà registrato. Verranno registrati i messaggi registrati a questo livello **o i livelli elencati dopo tale operazione nella tabella**.
 
-| string                      | LogLevel               |
+| Stringa                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
@@ -1631,13 +1635,13 @@ La tabella seguente descrive le opzioni per la configurazione delle opzioni HTTP
 
 Il trasporto di polling lungo dispone di opzioni aggiuntive che possono essere configurate tramite la `LongPolling` proprietà:
 
-| Opzione | Default Value | Descrizione |
+| Opzione | Default Value | Description |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 secondi | Quantità massima di tempo di attesa del server per l'invio di un messaggio al client prima che venga terminata una singola richiesta di polling. La riduzione di questo valore determina la frequenza con cui il client rilascia più richieste di polling. |
 
 Il trasporto WebSocket dispone di opzioni aggiuntive che possono essere configurate tramite la `WebSockets` proprietà:
 
-| Opzione | Default Value | Descrizione |
+| Opzione | Default Value | Description |
 | ------ | ------------- | ----------- |
 | `CloseTimeout` | 5 secondi | Dopo la chiusura del server, se il client non riesce a chiudersi entro questo intervallo di tempo, la connessione viene terminata. |
 | `SubProtocolSelector` | `null` | Delegato che può essere utilizzato per impostare l' `Sec-WebSocket-Protocol` intestazione su un valore personalizzato. Il delegato riceve i valori richiesti dal client come input ed è previsto che restituisca il valore desiderato. |

@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: d46793ef54c99fe609b5983c5a658fb7b20032fa
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 74affbb7d18d80e2e55714df100d820aed2ce427
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78666341"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776181"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Implementazioni di server Web in ASP.NET Core
 
@@ -22,7 +28,7 @@ Un'app ASP.NET Core viene eseguita con un'implementazione del server HTTP in-pro
 
 ## <a name="kestrel"></a>Kestrel
 
-Kestrel è il server Web predefinito specificato dai modelli di progetto ASP.NET Core.
+Gheppio è il server Web predefinito specificato dai modelli di progetto ASP.NET Core.
 
 Usare Kestrel:
 
@@ -34,7 +40,7 @@ Usare Kestrel:
 
   ![Kestrel comunica indirettamente con Internet attraverso un server proxy inverso, ad esempio IIS, Nginx o Apache](kestrel/_static/kestrel-to-internet.png)
 
-È supportato l'hosting della configurazione&mdash;con o senza un server&mdash;proxy inverso.
+È supportata una&mdash;configurazione host con o senza un server&mdash;proxy inverso.
 
 Per indicazioni per la configurazione di Kestrel e per informazioni su quando usare Kestrel in una configurazione con proxy inverso, vedere <xref:fundamentals/servers/kestrel>.
 
@@ -50,7 +56,7 @@ ASP.NET Core include quanto segue:
 
 Quando si usa [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture) oppure [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), l'app viene eseguita:
 
-* Nello stesso processo del processo di lavoro IIS (il modello di [hosting in-process](#hosting-models)) con il server HTTP IIS. *In-process* è la configurazione consigliata.
+* Nello stesso processo del processo di lavoro IIS (il [modello di hosting in-process](#hosting-models)) con il server http IIS. *In-process* è la configurazione consigliata.
 * In un processo separato dal processo di lavoro IIS ([modello di hosting out-of-process](#hosting-models)) con il [server Kestrel](#kestrel).
 
 Il [modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) è un modulo IIS nativo che gestisce le richieste IIS native tra IIS e il server HTTP IIS in-process o il server Kestrel. Per altre informazioni, vedere <xref:host-and-deploy/aspnet-core-module>.
@@ -97,7 +103,7 @@ Il diagramma seguente illustra la relazione tra IIS, il modulo ASP.NET Core e un
 
 Le richieste arrivano dal Web al driver HTTP.sys in modalità kernel. Il driver instrada le richieste a IIS sulla porta configurata per il sito Web, in genere 80 (HTTP) o 443 (HTTPS). Il modulo inoltra le richieste a Kestrel su una porta casuale per l'app non corrispondente alla porta 80 o 443.
 
-Il modulo specifica la porta tramite una variabile di ambiente all'avvio e `http://localhost:{port}`il [Middleware di integrazione IIS](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configura il server in ascolto su . Vengono eseguiti controlli aggiuntivi e le richieste che non provengono dal modulo vengono rifiutate. Il modulo non supporta l'inoltro HTTPS, pertanto le richieste vengono inoltrate tramite HTTP anche se sono state ricevute da IIS tramite HTTPS.
+Il modulo specifica la porta tramite una variabile di ambiente all'avvio e il [middleware di integrazione di IIS](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configura il server per l' `http://localhost:{port}`ascolto. Vengono eseguiti controlli aggiuntivi e le richieste che non provengono dal modulo vengono rifiutate. Il modulo non supporta l'inoltro HTTPS, pertanto le richieste vengono inoltrate tramite HTTP anche se sono state ricevute da IIS tramite HTTPS.
 
 Dopo che Kestrel ha prelevato la richiesta dal modulo, viene eseguito il push della richiesta nella pipeline middleware ASP.NET Core. La pipeline middleware gestisce la richiesta e la passa come istanza di `HttpContext` alla logica dell'app. Il middleware aggiunto dall'integrazione di IIS aggiorna lo schema, l'IP remoto e il percorso di base all'account per l'inoltro della richiesta a Kestrel. La risposta dell'app viene quindi passata a IIS, che ne esegue di nuovo il push al client HTTP che ha avviato la richiesta.
 
@@ -158,7 +164,7 @@ Il server viene avviato quando l'editor o l'ambiente di sviluppo integrato (IDE)
 
 All'avvio dell'app dal prompt dei comandi nella cartella del progetto, [dotnet run](/dotnet/core/tools/dotnet-run) avvia l'app e il server (solo Kestrel e HTTP.sys). La configurazione viene specificata dall'opzione `-c|--configuration`, impostata su `Debug` (valore predefinito) o su `Release`.
 
-Un file *launchSettings.json* fornisce la `dotnet run` configurazione quando si avvia un'app con o con un debugger incorporato negli strumenti, ad esempio Visual Studio.A launchSettings.json file provides configuration when launching an app with or with a debugger built into tooling, such as Visual Studio. Se i profili di avvio sono presenti `--launch-profile {PROFILE NAME}` in un `dotnet run` file *launchSettings.json,* usare l'opzione con il comando o selezionare il profilo in Visual Studio.If launch profiles are present in a launchSettings.json file, use the option with the command or select the profile in Visual Studio. Per altre informazioni, vedere [dotnet run](/dotnet/core/tools/dotnet-run) e [Creazione di pacchetti di distribuzione di .NET Core](/dotnet/core/build/distribution-packaging).
+Un file *launchSettings. JSON* fornisce la configurazione quando si avvia un' `dotnet run` app con o con un debugger incorporato in strumenti, ad esempio Visual Studio. Se i profili di avvio sono presenti in un file *launchSettings. JSON* , `--launch-profile {PROFILE NAME}` usare l'opzione `dotnet run` con il comando oppure selezionare il profilo in Visual Studio. Per altre informazioni, vedere [dotnet run](/dotnet/core/tools/dotnet-run) e [Creazione di pacchetti di distribuzione di .NET Core](/dotnet/core/build/distribution-packaging).
 
 ## <a name="http2-support"></a>Supporto HTTP/2
 
@@ -172,7 +178,7 @@ Un file *launchSettings.json* fornisce la `dotnet run` configurazione quando si 
     * Linux con OpenSSL 1.0.2 o versioni successive (ad esempio, Ubuntu 16.04 o versioni successive)
     * HTTP/2 verrà supportato in macOS in una versione futura.
   * Framework di destinazione: .NET Core 2.2 o versioni successive
-* [HTTP.sys (informazioni in stati intrat](xref:fundamentals/servers/httpsys#http2-support)
+* [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 o versioni successive
   * Framework di destinazione: non applicabile alle distribuzioni HTTP.sys.
 * [IIS (in-process)](xref:host-and-deploy/iis/index#http2-support)
@@ -189,7 +195,7 @@ Un file *launchSettings.json* fornisce la `dotnet run` configurazione quando si 
 
 ::: moniker range="< aspnetcore-2.2"
 
-* [HTTP.sys (informazioni in stati intrat](xref:fundamentals/servers/httpsys#http2-support)
+* [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 o versioni successive
   * Framework di destinazione: non applicabile alle distribuzioni HTTP.sys.
 * [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)

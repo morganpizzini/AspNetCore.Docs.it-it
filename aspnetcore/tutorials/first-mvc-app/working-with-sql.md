@@ -4,13 +4,19 @@ author: rick-anderson
 description: Informazioni sull'uso di SQL Server LocalDB o SQLite in un'app ASP.NET Core MVC.
 ms.author: riande
 ms.date: 8/16/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/working-with-sql
-ms.openlocfilehash: d556f07111fb2022a1c2f1a066459566e302835d
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 54b10f10fb048819fced223f77f06a32102512d0
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78665039"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776207"
 ---
 # <a name="work-with-sql-in-aspnet-core"></a>Usare SQL in ASP.NET Core
 
@@ -122,8 +128,8 @@ L'app mostra i dati inizializzati.
 ![App per i film MVC aperta in Microsoft Edge con i dati sui film](working-with-sql/_static/m55.png)
 
 > [!div class="step-by-step"]
-> [Successivo](adding-model.md)
-> [precedente](controller-methods-views.md)
+> [Precedente](adding-model.md)
+> [successivo](controller-methods-views.md)
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -234,7 +240,7 @@ L'app mostra i dati inizializzati.
 ![App per i film MVC aperta in Microsoft Edge con i dati sui film](working-with-sql/_static/m55_mac.png)
 
 > [!div class="step-by-step"]
-> [Successivo](adding-model.md)
-> [precedente](controller-methods-views.md)
+> [Precedente](adding-model.md)
+> [successivo](controller-methods-views.md)
 
 ::: moniker-end

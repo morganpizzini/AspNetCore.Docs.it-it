@@ -1,53 +1,59 @@
 ---
-title: Provider di criteri di autorizzazione personalizzati in ASP.NET CoreCustom Authorization Policy Providers in ASP.NET Core
+title: Provider di criteri di autorizzazione personalizzati in ASP.NET Core
 author: mjrousos
-description: Informazioni su come usare un oggetto Personalizzato IAuthorizationPolicyProvider in un'app ASP.NET Core per generare dinamicamente i criteri di autorizzazione.
+description: Informazioni su come usare un IAuthorizationPolicyProvider personalizzato in un'app ASP.NET Core per generare dinamicamente i criteri di autorizzazione.
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/14/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authorization/iauthorizationpolicyprovider
-ms.openlocfilehash: 2c67e25ff73bc8c3a5f3af4730a509b2385fc1cf
-ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
+ms.openlocfilehash: 1db78e5b2cea964471e4eea090f713f6af5f4740
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81661779"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777540"
 ---
-# <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>Provider di criteri di autorizzazione personalizzati che utilizzano IAuthorizationPolicyProvider in ASP.NET CoreCustom Authorization Policy Providers using IAuthorizationPolicyProvider in ASP.NET Core 
+# <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>Provider di criteri di autorizzazione personalizzati che usano IAuthorizationPolicyProvider in ASP.NET Core 
 
-Di [Mike Rousos](https://github.com/mjrousos)
+Di [Mike risveglia](https://github.com/mjrousos)
 
-In genere quando si utilizza l'autorizzazione `AuthorizationOptions.AddPolicy` [basata su criteri](xref:security/authorization/policies), i criteri vengono registrati chiamando come parte della configurazione del servizio di autorizzazione. In alcuni scenari, potrebbe non essere possibile (o auspicabile) registrare tutti i criteri di autorizzazione in questo modo. In questi casi, è `IAuthorizationPolicyProvider` possibile utilizzare un'usanza per controllare la modalità di fornitura dei criteri di autorizzazione.
+In genere, quando si utilizza l' [autorizzazione basata su criteri](xref:security/authorization/policies), i `AuthorizationOptions.AddPolicy` criteri vengono registrati chiamando come parte della configurazione del servizio di autorizzazione. In alcuni scenari potrebbe non essere possibile (o auspicabile) registrare tutti i criteri di autorizzazione in questo modo. In questi casi, è possibile usare un oggetto `IAuthorizationPolicyProvider` personalizzato per controllare come vengono forniti i criteri di autorizzazione.
 
-Esempi di scenari in cui un [oggetto personalizzato IAuthorizationPolicyProvider](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider) può essere utile includono:Examples of scenarios where a custom IAuthorizationPolicyProvider may be useful include:
+Esempi di scenari in cui un [IAuthorizationPolicyProvider](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider) personalizzato può essere utile includono:
 
-* Utilizzo di un servizio esterno per fornire la valutazione dei criteri.
-* Utilizzando un'ampia gamma di criteri (ad esempio, per diversi numeri di stanza o età), `AuthorizationOptions.AddPolicy` quindi non ha senso aggiungere ogni singolo criterio di autorizzazione con una chiamata.
-* Creazione di criteri in fase di esecuzione in base alle informazioni in un'origine dati esterna (ad esempio un database) o determinazione dinamica dei requisiti di autorizzazione tramite un altro meccanismo.
+* Uso di un servizio esterno per fornire la valutazione dei criteri.
+* Usando un'ampia gamma di criteri (ad esempio, per diversi numeri di stanza o età), non ha senso aggiungere ogni singolo criterio di autorizzazione con una `AuthorizationOptions.AddPolicy` chiamata.
+* Creazione di criteri in fase di esecuzione in base alle informazioni in un'origine dati esterna, ad esempio un database, o determinazione dinamica dei requisiti di autorizzazione tramite un altro meccanismo.
 
-[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider) dal repository [AspNetCore GitHub](https://github.com/dotnet/AspNetCore). Scaricare il file zip del repository dotnet/AspNetCore. Decomprimere il file. Passare alla cartella del progetto *src/Security/samples/CustomPolicyProvider.*
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider) dal [repository GitHub AspNetCore](https://github.com/dotnet/AspNetCore). Scaricare il file ZIP del repository DotNet/AspNetCore. Decomprimere il file. Passare alla cartella di progetto *SRC/Security/Samples/CustomPolicyProvider* .
 
 ## <a name="customize-policy-retrieval"></a>Personalizzare il recupero dei criteri
 
-ASP.NET le app principali `IAuthorizationPolicyProvider` usano un'implementazione dell'interfaccia per recuperare i criteri di autorizzazione. Per impostazione predefinita, [DefaultAuthorizationPolicyProvider](/dotnet/api/microsoft.aspnetcore.authorization.defaultauthorizationpolicyprovider) viene registrato e utilizzato. `DefaultAuthorizationPolicyProvider`restituisce le `AuthorizationOptions` politiche `IServiceCollection.AddAuthorization` dal fornito in una chiamata.
+Le app ASP.NET Core usano un'implementazione dell' `IAuthorizationPolicyProvider` interfaccia per recuperare i criteri di autorizzazione. Per impostazione predefinita, [DefaultAuthorizationPolicyProvider](/dotnet/api/microsoft.aspnetcore.authorization.defaultauthorizationpolicyprovider) è registrato e usato. `DefaultAuthorizationPolicyProvider`Restituisce i criteri dall' `AuthorizationOptions` oggetto fornito in `IServiceCollection.AddAuthorization` una chiamata a.
 
-Personalizza questo comportamento registrando un'implementazione diversa `IAuthorizationPolicyProvider` nel contenitore di inserimento delle [dipendenze](xref:fundamentals/dependency-injection) dell'app. 
+Personalizzare questo comportamento registrando un'implementazione diversa `IAuthorizationPolicyProvider` nel contenitore di inserimento delle [dipendenze](xref:fundamentals/dependency-injection) dell'app. 
 
-L'interfaccia `IAuthorizationPolicyProvider` contiene tre API:The interface contains three APIs:
+L' `IAuthorizationPolicyProvider` interfaccia contiene tre API:
 
 * [GetPolicyAsync](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider.getpolicyasync#Microsoft_AspNetCore_Authorization_IAuthorizationPolicyProvider_GetPolicyAsync_System_String_) restituisce un criterio di autorizzazione per un nome specificato.
-* [GetDefaultPolicyAsync](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider.getdefaultpolicyasync) restituisce i criteri di `[Authorize]` autorizzazione predefiniti (i criteri utilizzati per gli attributi senza un criterio specificato). 
-* [GetFallbackPolicyAsync](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider.getfallbackpolicyasync) restituisce i criteri di autorizzazione di fallback (i criteri utilizzati dal middleware di autorizzazione quando non viene specificato alcun criterio). 
+* [GetDefaultPolicyAsync](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider.getdefaultpolicyasync) restituisce i criteri di autorizzazione predefiniti (il criterio utilizzato `[Authorize]` per gli attributi senza un criterio specificato). 
+* [GetFallbackPolicyAsync](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider.getfallbackpolicyasync) restituisce i criteri di autorizzazione di fallback (il criterio utilizzato dal middleware di autorizzazione quando non è specificato alcun criterio). 
 
-Implementando queste API, è possibile personalizzare la modalità di presentazione dei criteri di autorizzazione.
+Implementando queste API, è possibile personalizzare il modo in cui vengono forniti i criteri di autorizzazione.
 
-## <a name="parameterized-authorize-attribute-example"></a>Esempio di attributo di autorizzazione con parametriParameterized authorize attribute example
+## <a name="parameterized-authorize-attribute-example"></a>Esempio di attributo di autorizzazione con parametri
 
-Uno scenario `IAuthorizationPolicyProvider` in cui `[Authorize]` è utile è l'abilitazione di attributi personalizzati i cui requisiti dipendono da un parametro. Ad esempio, nella documentazione relativa [all'autorizzazione basata su criteri,](xref:security/authorization/policies) un criterio basato sull'età ("AtLeast21") è stato utilizzato come esempio. Se diverse azioni del controller in un'app devono essere rese disponibili per utenti di età *diverse,* potrebbe essere utile disporre di molti criteri basati sull'età diversi. Anziché registrare tutti i diversi criteri basati `AuthorizationOptions`sull'età necessari all'applicazione `IAuthorizationPolicyProvider`in , è possibile generare i criteri in modo dinamico con un oggetto personalizzato . Per semplificare l'utilizzo dei criteri, è possibile `[MinimumAgeAuthorize(20)]`annotare le azioni con l'attributo di autorizzazione personalizzato come .
+Uno scenario in `IAuthorizationPolicyProvider` cui è utile è l' `[Authorize]` abilitazione di attributi personalizzati i cui requisiti dipendono da un parametro. Nella documentazione [sull'autorizzazione basata su criteri](xref:security/authorization/policies) , ad esempio, è stato usato un criterio basato sull'età ("AtLeast21") come esempio. Se le azioni del controller diverse in un'app devono essere rese disponibili agli utenti con età *diverse* , potrebbe essere utile avere molti criteri basati sull'età diversi. Anziché registrare tutti i diversi criteri basati sull'età necessari per l'applicazione, è possibile generare `AuthorizationOptions`i criteri in modo dinamico con un oggetto personalizzato `IAuthorizationPolicyProvider`. Per semplificare l'uso dei criteri, è possibile annotare le azioni con l'attributo `[MinimumAgeAuthorize(20)]`di autorizzazione personalizzato, ad esempio.
 
 ## <a name="custom-authorization-attributes"></a>Attributi di autorizzazione personalizzati
 
-I criteri di autorizzazione sono identificati dai relativi nomi. La `MinimumAgeAuthorizeAttribute` personalizzazione descritta in precedenza deve eseguire il mapping degli argomenti in una stringa che può essere utilizzata per recuperare i criteri di autorizzazione corrispondenti. È possibile eseguire questa `AuthorizeAttribute` operazione derivando da e facendo in modo che la proprietà esetrai il `Age` wrapping della `AuthorizeAttribute.Policy` proprietà.
+I criteri di autorizzazione sono identificati dai rispettivi nomi. L'oggetto `MinimumAgeAuthorizeAttribute` personalizzato descritto in precedenza deve eseguire il mapping degli argomenti in una stringa che può essere utilizzata per recuperare i criteri di autorizzazione corrispondenti. È possibile eseguire questa operazione derivando `AuthorizeAttribute` da e rendendo `Age` la proprietà incapsulata `AuthorizeAttribute.Policy` .
 
 ```csharp
 internal class MinimumAgeAuthorizeAttribute : AuthorizeAttribute
@@ -75,9 +81,9 @@ internal class MinimumAgeAuthorizeAttribute : AuthorizeAttribute
 }
 ```
 
-Questo tipo di `Policy` attributo ha una stringa`"MinimumAge"`basata sul prefisso hardcoded ( ) e un numero intero passato tramite il costruttore.
+Questo tipo di attributo ha `Policy` una stringa basata sul prefisso hardcoded (`"MinimumAge"`) e un numero intero passato tramite il costruttore.
 
-È possibile applicarlo alle azioni nello `Authorize` stesso modo di altri attributi, ad eccezione del fatto che accetta un numero intero come parametro.
+È possibile applicarlo alle azioni in modo analogo ad altri `Authorize` attributi, ad eccezione del fatto che accetta un Integer come parametro.
 
 ```csharp
 [MinimumAgeAuthorize(10)]
@@ -86,14 +92,14 @@ public IActionResult RequiresMinimumAge10()
 
 ## <a name="custom-iauthorizationpolicyprovider"></a>IAuthorizationPolicyProvider personalizzato
 
-Il `MinimumAgeAuthorizeAttribute` costume di misura semplifica la richiesta di criteri di autorizzazione per qualsiasi età minima desiderata. Il problema successivo da risolvere è assicurarsi che i criteri di autorizzazione siano disponibili per tutte queste diverse età. Questo è `IAuthorizationPolicyProvider` dove un è utile.
+Il personalizzato `MinimumAgeAuthorizeAttribute` rende più semplice richiedere i criteri di autorizzazione per qualsiasi età minima desiderata. Il prossimo problema da risolvere è garantire che i criteri di autorizzazione siano disponibili per tutte le epoche diverse. Questa è la posizione `IAuthorizationPolicyProvider` in cui è utile.
 
-Quando `MinimumAgeAuthorizationAttribute`si utilizza , i nomi `"MinimumAge" + Age`dei criteri `IAuthorizationPolicyProvider` di autorizzazione seguiranno il modello , pertanto l'impostazione personalizzata deve generare criteri di autorizzazione:
+Quando si `MinimumAgeAuthorizationAttribute`USA, i nomi dei criteri di autorizzazione seguiranno `"MinimumAge" + Age`il modello, pertanto `IAuthorizationPolicyProvider` l'oggetto personalizzato deve generare i criteri di autorizzazione per:
 
 * Analisi dell'età dal nome del criterio.
-* Utilizzo `AuthorizationPolicyBuilder` per creare un nuovo`AuthorizationPolicy`
-* In questo e in questi esempi si presume che l'utente viene autenticato tramite un cookie. L'oggetto `AuthorizationPolicyBuilder` deve essere costruito con almeno un nome di schema di autorizzazione o avere sempre esito positivo. In caso contrario, non sono disponibili informazioni su come fornire una richiesta di verifica all'utente e verrà generata un'eccezione.
-* Aggiunta di requisiti alla politica `AuthorizationPolicyBuilder.AddRequirements`in base all'età con . In altri scenari, `RequireClaim`è `RequireRole`possibile `RequireUserName` utilizzare , , o invece.
+* Utilizzo `AuthorizationPolicyBuilder` di per creare un nuovo`AuthorizationPolicy`
+* In questo e negli esempi seguenti si presuppone che l'utente venga autenticato tramite un cookie. Il `AuthorizationPolicyBuilder` deve essere costruito con almeno un nome dello schema di autorizzazione o avere sempre esito positivo. In caso contrario, non sono disponibili informazioni su come fornire un problema all'utente e verrà generata un'eccezione.
+* Aggiunta di requisiti ai criteri in base all'età con `AuthorizationPolicyBuilder.AddRequirements`. In altri scenari, è possibile usare `RequireClaim`invece `RequireRole`, o `RequireUserName` .
 
 ```csharp
 internal class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
@@ -119,16 +125,16 @@ internal class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
 }
 ```
 
-## <a name="multiple-authorization-policy-providers"></a>Più provider di criteri di autorizzazioneMultiple authorization policy providers
+## <a name="multiple-authorization-policy-providers"></a>Provider di criteri di autorizzazione multipli
 
-Quando si `IAuthorizationPolicyProvider` utilizzano implementazioni personalizzate, tenere presente `IAuthorizationPolicyProvider`che ASP.NET Core utilizza solo un'istanza di . Se un provider personalizzato non è in grado di fornire criteri di autorizzazione per tutti i nomi di criteri che verranno utilizzati, deve rinviare a un provider di backup. 
+Quando si utilizzano `IAuthorizationPolicyProvider` implementazioni personalizzate, tenere presente che ASP.NET Core utilizza solo un'istanza di `IAuthorizationPolicyProvider`. Se un provider personalizzato non è in grado di fornire i criteri di autorizzazione per tutti i nomi di criteri che verranno usati, deve rinviare a un provider di backup. 
 
-Si consideri, ad esempio, un'applicazione che richiede sia criteri di età personalizzati che un recupero dei criteri basato sui ruoli più tradizionale. Un'app di questo tipo potrebbe usare un provider di criteri di autorizzazione personalizzato che:Such an app could use a custom authorization policy provider that:
+Si consideri, ad esempio, un'applicazione che richiede criteri di validità personalizzati e il recupero di criteri più tradizionali basati sui ruoli. Tale app potrebbe usare un provider di criteri di autorizzazione personalizzato che:
 
 * Tenta di analizzare i nomi dei criteri. 
-* Chiama un provider di `DefaultAuthorizationPolicyProvider`criteri diverso (ad esempio ) se il nome del criterio non contiene un'età.
+* Chiama un provider di criteri diverso (ad `DefaultAuthorizationPolicyProvider`esempio) se il nome dei criteri non contiene un'età.
 
-L'implementazione di esempio `IAuthorizationPolicyProvider` illustrata `DefaultAuthorizationPolicyProvider` in precedenza può essere aggiornata per usare il creando un provider di criteri di backup nel costruttore (da utilizzare nel caso in cui il nome del criterio non corrisponda al modello previsto di 'MinimumAge' e l'età).
+L'implementazione `IAuthorizationPolicyProvider` di esempio illustrata in precedenza può essere aggiornata `DefaultAuthorizationPolicyProvider` per usare il creando un provider di criteri di backup nel relativo costruttore (da usare nel caso in cui il nome dei criteri non corrisponda al modello previsto di "minime" + Age).
 
 ```csharp
 private DefaultAuthorizationPolicyProvider BackupPolicyProvider { get; }
@@ -141,7 +147,7 @@ public MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options)
 }
 ```
 
-Quindi, `GetPolicyAsync` il metodo può essere `BackupPolicyProvider` aggiornato per utilizzare il invece di restituire null:Then, the method can be updated to use the instead of returning null:
+Quindi, il `GetPolicyAsync` metodo può essere aggiornato in modo da `BackupPolicyProvider` usare anziché restituire null:
 
 ```csharp
 ...
@@ -150,37 +156,37 @@ return BackupPolicyProvider.GetPolicyAsync(policyName);
 
 ## <a name="default-policy"></a>Criteri predefiniti
 
-Oltre a fornire criteri di `IAuthorizationPolicyProvider` autorizzazione denominati, è necessario implementare `GetDefaultPolicyAsync` un'autorizzazione per fornire criteri di autorizzazione per `[Authorize]` gli attributi senza un nome di criterio specificato.
+Oltre a fornire i criteri di autorizzazione denominati `IAuthorizationPolicyProvider` , è necessario `GetDefaultPolicyAsync` implementare un oggetto personalizzato per fornire `[Authorize]` un criterio di autorizzazione per gli attributi senza specificare un nome di criterio.
 
-In molti casi, questo attributo di autorizzazione richiede solo un utente autenticato, pertanto è possibile effettuare i criteri necessari con una chiamata a `RequireAuthenticatedUser`:
+In molti casi, questo attributo di autorizzazione richiede solo un utente autenticato, pertanto è possibile effettuare i criteri necessari con una chiamata `RequireAuthenticatedUser`a:
 
 ```csharp
 public Task<AuthorizationPolicy> GetDefaultPolicyAsync() => 
     Task.FromResult(new AuthorizationPolicyBuilder(CookieAuthenticationDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build());
 ```
 
-Come per tutti gli `IAuthorizationPolicyProvider`aspetti di un oggetto custom, è possibile personalizzarlo in base alle esigenze. In alcuni casi, può essere opportuno recuperare `IAuthorizationPolicyProvider`il criterio predefinito da un fallback.
+Come per tutti gli aspetti di un `IAuthorizationPolicyProvider`oggetto personalizzato, è possibile personalizzarlo in base alle esigenze. In alcuni casi, può essere utile recuperare i criteri predefiniti da un fallback `IAuthorizationPolicyProvider`.
 
 ## <a name="fallback-policy"></a>Criteri di fallback
 
-Un'attività `IAuthorizationPolicyProvider` personalizzata `GetFallbackPolicyAsync` può facoltativamente implementare per fornire un criterio che viene utilizzato quando [si combinano i criteri](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicy.combine) e quando non viene specificato alcun criterio. Se `GetFallbackPolicyAsync` restituisce un criterio non null, il criterio restituito viene utilizzato dal middleware di autorizzazione quando non vengono specificati criteri per la richiesta.
+Un oggetto `IAuthorizationPolicyProvider` personalizzato può facoltativamente `GetFallbackPolicyAsync` implementare per fornire un criterio usato durante la [combinazione di criteri](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicy.combine) e quando non vengono specificati criteri. Se `GetFallbackPolicyAsync` restituisce un criterio non null, i criteri restituiti vengono utilizzati dal middleware di autorizzazione quando non vengono specificati criteri per la richiesta.
 
-Se non sono necessari criteri di `null` fallback, il provider può restituire o rinviare al provider di fallback:If no fallback policy is required, the provider can return or defer to the fallback provider:
+Se non è richiesto alcun criterio di fallback, il provider `null` può restituire o rinviare al provider di fallback:
 
 ```csharp
 public Task<AuthorizationPolicy> GetFallbackPolicyAsync() => 
     Task.FromResult<AuthorizationPolicy>(null);
 ```
 
-## <a name="use-a-custom-iauthorizationpolicyprovider"></a>Usare un oggetto personalizzato IAuthorizationPolicyProviderUse a custom IAuthorizationPolicyProvider
+## <a name="use-a-custom-iauthorizationpolicyprovider"></a>Usare un IAuthorizationPolicyProvider personalizzato
 
-Per utilizzare criteri `IAuthorizationPolicyProvider`personalizzati da un oggetto , è necessario:
+Per usare i criteri personalizzati da `IAuthorizationPolicyProvider`un, è necessario:
 
-* Registrare `AuthorizationHandler` i tipi appropriati con inserimento delle dipendenze (descritto nell'autorizzazione [basata su criteri](xref:security/authorization/policies#authorization-handlers)), come con tutti gli scenari di autorizzazione basata su criteri.
-* Registrare `IAuthorizationPolicyProvider` il tipo personalizzato nella raccolta di servizi `Startup.ConfigureServices`di inserimento delle dipendenze dell'app (in ) per sostituire il provider di criteri predefinito.
+* Registrare i tipi `AuthorizationHandler` appropriati con l'inserimento di dipendenze (descritto in [autorizzazione basata su criteri](xref:security/authorization/policies#authorization-handlers)), come per tutti gli scenari di autorizzazione basata su criteri.
+* Registrare il tipo `IAuthorizationPolicyProvider` personalizzato nella raccolta di servizi di inserimento delle dipendenze dell' `Startup.ConfigureServices`app (in) per sostituire il provider di criteri predefinito.
 
 ```csharp
 services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
 ```
 
-Un esempio `IAuthorizationPolicyProvider` personalizzato completo è disponibile nel [repository dotnet/aspnetcore GitHub](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider).
+Un esempio completo `IAuthorizationPolicyProvider` personalizzato è disponibile nel [repository GitHub DotNet/aspnetcore](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider).

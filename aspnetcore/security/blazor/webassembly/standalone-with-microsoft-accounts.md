@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-microsoft-accounts
-ms.openlocfilehash: 95c16bcd8da22792b27b3aaaf8632b2206372270
-ms.sourcegitcommit: 6d271f4b4c3cd1e82267f51d9bfb6de221c394fe
+ms.openlocfilehash: 3ea2b7632fc41e1c8ad72292e45a93e081b6edbe
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82150063"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776155"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-microsoft-accounts"></a>Proteggere un'app Blazor ASP.NET Core webassembly autonoma con account Microsoft
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-microsoft-accounts"></a>Proteggere un'app Blazor ASP.NET Core webassembly autonoma con account Microsoft
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
 
@@ -76,7 +79,7 @@ Il `Microsoft.Authentication.WebAssembly.Msal` pacchetto aggiunge il `Microsoft.
 
 ## <a name="authentication-service-support"></a>Supporto del servizio di autenticazione
 
-Il supporto per l'autenticazione degli utenti viene registrato nel contenitore del servizio `AddMsalAuthentication` con il metodo di estensione `Microsoft.Authentication.WebAssembly.Msal` fornito dal pacchetto. Questo metodo configura tutti i servizi necessari per l'interazione dell'app con il provider di identità (IP).
+Il supporto per l'autenticazione degli utenti viene registrato nel contenitore del servizio `AddMsalAuthentication` con il metodo di estensione `Microsoft.Authentication.WebAssembly.Msal` fornito dal pacchetto. Questo metodo configura tutti i servizi necessari per l'interazione dell'app con il Identity provider (IP).
 
 *Program.cs*:
 
@@ -170,5 +173,5 @@ Per ulteriori informazioni, vedere le sezioni seguenti dell'articolo *scenari ag
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:security/blazor/webassembly/additional-scenarios>
-* [Guida introduttiva: Registrare un'applicazione con Microsoft Identity Platform](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal)
-* [Guida introduttiva: configurare un'applicazione per esporre le API Web](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)
+* [Avvio rapido: Registrare un'applicazione con Microsoft Identity Platform](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal)
+* [Avvio rapido: Configurare un'applicazione per l'esposizione di API Web](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)

@@ -4,13 +4,19 @@ author: rick-anderson
 description: Questa sezione illustra l'utilizzo di un database e di ASP.NET Core.
 ms.author: riande
 ms.date: 7/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: b5acb573f8fa39e5300ecdb359113d8697d78934
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 159588ec750f0ede534522aa9397fc2aefb58cd6
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78664339"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775609"
 ---
 # <a name="work-with-a-database-and-aspnet-core"></a>Usare un database e ASP.NET Core
 
@@ -32,7 +38,7 @@ L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al databa
 
 ---
 
-Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal file *appsettings.json.*
+Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal file *appSettings. JSON* .
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -107,7 +113,7 @@ Il codice seguente illustra il file *Program.cs* aggiornato.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
 
-La seguente eccezione si verifica quando `Update-Database` non è stata eseguita:
+Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente:
 
 > `SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
 > `Login failed for user 'user name'.`
@@ -116,10 +122,10 @@ La seguente eccezione si verifica quando `Update-Database` non è stata eseguita
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Eliminare tutti i record nel database. È possibile farlo con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+* Eliminare tutti i record nel database. Questa operazione può essere eseguita con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Forzare l'inizializzazione dell'app (chiamare i metodi nella classe `Startup`) in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. È possibile eseguire questa operazione adottando uno degli approcci seguenti:
 
-  * Fare clic con il pulsante destro del mouse sull'icona della barra delle applicazioni iIS Express nell'area di notifica e toccare **Esci** o **Arresta sito**:
+  * Fare clic con il pulsante destro del mouse sull'icona della barra di sistema IIS Express nell'area di notifica e toccare **Esci** o **Arresta sito**:
 
     ![Icona dell'area di notifica di IIS Express](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
@@ -141,8 +147,8 @@ L'esercitazione successiva consentirà di migliorare la presentazione dei dati.
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 > [!div class="step-by-step"]
-> [Precedente: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
-> [Next: Aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
+> [Precedente: impalcatura Razor Pages](xref:tutorials/razor-pages/page)
+> [successiva: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
 
@@ -167,7 +173,7 @@ Per altre informazioni sui metodi usati in `ConfigureServices`, vedere:
 * [Supporto per il Regolamento generale sulla protezione dei dati (GDPR) dell'Unione Europea in ASP.NET Core](xref:security/gdpr) per `CookiePolicyOptions`.
 * [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
-Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal file *appsettings.json.*
+Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal file *appSettings. JSON* .
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -260,7 +266,7 @@ Accesso non riuscito per l'utente "nome-utente".
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Eliminare tutti i record nel database. È possibile farlo con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+* Eliminare tutti i record nel database. Questa operazione può essere eseguita con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Forzare l'inizializzazione dell'app (chiamare i metodi nella classe `Startup`) in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. È possibile eseguire questa operazione adottando uno degli approcci seguenti:
 
   * Fare clic con il pulsante destro del mouse sull'icona dell'area di notifica di IIS Express e toccare **Esci** o **Arresta sito**:
@@ -297,7 +303,7 @@ L'esercitazione successiva consentirà di pulire la presentazione dei dati.
 * [Versione YouTube dell'esercitazione](https://youtu.be/A_5ff11sDHY)
 
 > [!div class="step-by-step"]
-> [Precedente: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
-> [Next: Aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
+> [Precedente: Razor pagine](xref:tutorials/razor-pages/page)
+> con impalcature[successive: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end

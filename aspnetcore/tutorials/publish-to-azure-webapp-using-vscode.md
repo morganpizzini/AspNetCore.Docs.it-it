@@ -5,13 +5,19 @@ description: Informazioni su come pubblicare un'app ASP.NET Core in Servizio app
 ms.author: riserrad
 ms.custom: mvc
 ms.date: 07/10/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/publish-to-azure-webapp-using-vscode
-ms.openlocfilehash: 5f117cb2867a6e7b54269ef39abe819256b429ec
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: fde0290020e08701bd19b72ebea0e2739462b232
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80242678"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767844"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio-code"></a>Pubblicare un'app ASP.NET Core in Azure con Visual Studio Code
 
@@ -28,10 +34,10 @@ Con questa esercitazione si apprenderà come creare un'applicazione ASP.Net Core
 ## <a name="set-up"></a>Configurare
 
 - Aprire un [account Azure gratuito](https://azure.microsoft.com/free/dotnet/) se non è già disponibile un account.
-- Installare [.NET Core SDK](https://dotnet.microsoft.com/download)
-- Installare il [codice di Visual StudioInstall Visual Studio Code](https://code.visualstudio.com/Download)
+- Installa [.NET Core SDK](https://dotnet.microsoft.com/download)
+- Installa [Visual Studio Code](https://code.visualstudio.com/Download)
   - Installare l'[estensione C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) in Visual Studio Code
-  - Installare [l'estensione del servizio app di Azure](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) nel codice di Visual Studio e configurarlo prima di procedereInstall the Azure App Service Extension to Visual Studio Code and configure it before proceeding
+  - Installare l' [estensione del servizio app Azure](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) per Visual Studio Code e configurarla prima di procedere
 
 ## <a name="create-an-aspnet-core-mvc-project"></a>Creare un progetto ASP.NET Core MVC
 
@@ -111,7 +117,7 @@ Per mantenere la sessione di debug, fare clic su `Advanced` e quindi su `Continu
 
 ![Struttura della cartella di pubblicazione](publish-to-azure-webapp-using-vscode/_static/publish-folder.jpg)
 
-## <a name="publish-to-azure-app-service"></a>Pubblicare in Servizio app di Azure
+## <a name="publish-to-azure-app-service"></a>Eseguire la pubblicazione nel servizio app di Azure
 
 Sfruttando l'estensione del servizio app di Azure per Visual Studio Code, seguire questa procedura per pubblicare il sito Web direttamente nel servizio app di Azure.
 
@@ -148,4 +154,4 @@ L'estensione distribuirà il contenuto aggiornato nell'app Web. Al termine, fare
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 - [Servizio app di Azure](/azure/app-service/app-service-web-overview)
-- [Gruppi di risorse di AzureAzure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)
+- [Gruppi di risorse di Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)

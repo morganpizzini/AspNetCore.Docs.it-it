@@ -7,14 +7,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: fundamentals/websockets
-ms.openlocfilehash: a8040003374906fd93e12c9fde44c4a5ccc2cf37
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: da713f22582cf17f60a4deda1b689662a4e4ae06
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78655785"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775440"
 ---
 # <a name="websockets-support-in-aspnet-core"></a>Supporto di WebSocket in ASP.NET Core
 
@@ -22,7 +26,7 @@ Di [Tom Dykstra](https://github.com/tdykstra) e [Andrew Stanton-Nurse](https://g
 
 L'articolo contiene l'introduzione all'uso di oggetti WebSocket in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) è un protocollo che consente canali di comunicazione persistente bidirezionale su connessioni TCP. Viene usato nelle app che sfruttano comunicazioni veloci e in tempo reale, ad esempio le app di chat, i dashboard e le app di gioco.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) ([procedura per il download](xref:index#how-to-download-a-sample)). [Come eseguire](#sample-app).
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) ([procedura per il download](xref:index#how-to-download-a-sample)). [Modalità di esecuzione](#sample-app).
 
 ## <a name="signalr"></a>SignalR
 
@@ -184,13 +188,13 @@ Per abilitare il supporto per il protocollo WebSocket in Windows 8 o versioni su
 > [!NOTE]
 > Questi passaggi non sono necessari quando si usa IIS Express
 
-1. Passare a**Programmi** > **e funzionalità** >  **del Pannello di** > controllo**Attiva o disattiva le funzionalità di Windows** (lato sinistro dello schermo).
-1. Aprire i nodi seguenti: **Internet Information Services** > **World Wide Web Services** > **Application Development Features**.
+1. Passare a **Pannello** > di controllo**programmi** > **programmi e funzionalità** > **attiva o disattiva funzionalità Windows** (lato sinistro dello schermo).
+1. Aprire i nodi seguenti: **Internet Information Services** > **funzionalità di sviluppo di applicazioni****World Wide Web Services** > .
 1. Selezionare la funzionalità **Protocollo WebSocket**. Selezionare **OK**.
 
 ### <a name="disable-websocket-when-using-socketio-on-nodejs"></a>Disabilitare WebSocket quando si usa socket.io su node.js
 
-Se si utilizza il supporto WebSocket in [socket.io](https://socket.io/) su [Node.js](https://nodejs.org/) `webSocket` , disabilitare il modulo WebSocket IIS predefinito utilizzando l'elemento in *web.config* o *applicationHost.config*. Se questo passaggio non viene eseguito, il modulo IIS WebSocket tenta di gestire la comunicazione WebSocket anziché Node.js e l'app.
+Se si usa il supporto di WebSocket in [Socket.io](https://socket.io/) in [node. js](https://nodejs.org/), disabilitare il modulo WebSocket IIS predefinito `webSocket` usando l'elemento in *Web. config* o *ApplicationHost. config*. Se questo passaggio non viene eseguito, il modulo IIS WebSocket tenta di gestire la comunicazione WebSocket anziché node. js e l'app.
 
 ```xml
 <system.webServer>

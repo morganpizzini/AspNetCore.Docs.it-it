@@ -5,17 +5,23 @@ description: Un'esercitazione rapida per creare ed eseguire una semplice app Hel
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: getting-started
-ms.openlocfilehash: 86a0c8d017138a949fddc0356f3de548d368a4c0
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 565cde233d6fc5f085ae1709e167e73980d5c3c2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417603"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776233"
 ---
 # <a name="tutorial-get-started-with-aspnet-core"></a>Esercitazione: Introduzione ad ASP.NET Core
 
-Questa esercitazione illustra come creare ed eseguire un'app Web ASP.NET Core usando l'interfaccia della riga di comando di .NET Core.This tutorial shows how to create and run an ASP.NET Core web app using the .NET Core CLI.
+Questa esercitazione illustra come creare ed eseguire un'app Web ASP.NET Core usando il interfaccia della riga di comando di .NET Core.
 
 Si apprenderà come:
 
@@ -93,13 +99,13 @@ dotnet watch run
 
 Dopo che la shell dei comandi indica che l'app è stata avviata, passare a `https://localhost:5001`.
 
-## <a name="edit-a-razor-page"></a>Modificare una pagina Razor
+## <a name="edit-a-razor-page"></a>Modificare una Razor pagina
 
-Aprire *Pages/Index.cshtml* e modificare e salvare la pagina con il seguente markup evidenziato:
+Aprire *pages/index. cshtml* e modificare e salvare la pagina con il markup evidenziato seguente:
 
 [!code-cshtml[](sample/index.cshtml?highlight=9)]
 
-Individuare `https://localhost:5001`, aggiornare la pagina e verificare che le modifiche siano visualizzate.
+Individuare `https://localhost:5001`, aggiornare la pagina e verificare che le modifiche vengano visualizzate.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

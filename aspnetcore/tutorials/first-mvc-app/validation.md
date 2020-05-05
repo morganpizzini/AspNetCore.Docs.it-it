@@ -4,13 +4,19 @@ author: rick-anderson
 description: Come aggiungere la convalida a un'app ASP.NET Core.
 ms.author: riande
 ms.date: 04/13/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/validation
-ms.openlocfilehash: ecf3d011b38347eb32020df00e44d93ca789443a
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 6e46a4ace7c99096f1a7d47946a21fd7a5c657e7
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80242536"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776194"
 ---
 # <a name="add-validation-to-an-aspnet-core-mvc-app"></a>Aggiungere la funzionalità di convalida a un'app ASP.NET Core MVC
 
@@ -55,7 +61,7 @@ Il primo metodo di azione (HTTP GET) `Create` visualizza il modulo di creazione 
 
 È possibile impostare un punto di interruzione nel metodo `[HttpPost] Create` e verificare che il metodo non venga mai chiamato, la convalida sul lato client non invierà i dati del modulo in caso di rilevamento di errori di convalida. Se si disabilita JavaScript nel browser, quindi si invia il modulo con errori, verrà raggiunto il punto di interruzione. Si ottiene comunque la convalida completa senza JavaScript. 
 
-L'immagine seguente mostra come disabilitare JavaScript nel browser Firefox.
+La figura seguente illustra come disabilitare JavaScript nel browser Firefox.
 
 ![Firefox: nella scheda Contenuti in Opzioni deselezionare la casella di controllo Abilita Javascript.](~/tutorials/first-mvc-app/validation/_static/ff.png)
 
@@ -127,5 +133,5 @@ Nella parte successiva della serie viene esaminata l'app e vengono apportati alc
 * [Creare helper tag](xref:mvc/views/tag-helpers/authoring)
 
 > [!div class="step-by-step"]
-> [Successivo](new-field.md)
-> [precedente](details.md)  
+> [Precedente](new-field.md)
+> [successivo](details.md)  

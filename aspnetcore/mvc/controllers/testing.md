@@ -6,17 +6,23 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/controllers/testing
-ms.openlocfilehash: 597f1472bb30ae3b34fa98659c8c8bb464223e84
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 4deae7f7511e3ce94450bc06d5fc8dc77a94f212
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78666285"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767083"
 ---
 # <a name="unit-test-controller-logic-in-aspnet-core"></a>Logica unità test controller in ASP.NET Core
 
-[Steve Smith](https://ardalis.com/)
+Di [Steve Smith](https://ardalis.com/)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -57,7 +63,7 @@ Il metodo `HTTP GET Index` non dispone di cicli o rami e chiama un solo metodo. 
 
 Il metodo `HTTP POST Index` del controller Home verifica che:
 
-* Quando [ModelState. IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) è `false`, il metodo di azione restituisce una *richiesta* non valida 400 <xref:Microsoft.AspNetCore.Mvc.ViewResult> con i dati appropriati.
+* Quando [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) è `false`, il metodo di azione restituisca un elemento * di tipo 400 - Richiesta non valida* <xref:Microsoft.AspNetCore.Mvc.ViewResult> con i dati appropriati.
 * Quando `ModelState.IsValid` è `true`:
   * Venga chiamato il metodo `Add` sul repository.
   * Venga restituito un <xref:Microsoft.AspNetCore.Mvc.RedirectToActionResult> con gli argomenti corretti.
@@ -88,7 +94,7 @@ Gli unit test includono un test per ogni scenario `return` nell'azione `Index` d
 
 Passando al controller Ideas, l'app espone la funzionalità come API Web sulla route `api/ideas`:
 
-* Il metodo `IdeaDTO` restituisce un elenco di idee (`ForSession`) associate a una sessione di brainstorming.
+* Il metodo `ForSession` restituisce un elenco di idee (`IdeaDTO`) associate a una sessione di brainstorming.
 * Il metodo `Create` aggiunge nuove idee a una sessione.
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs?name=snippet_ForSessionAndCreate&highlight=1-2,21-22)]
@@ -113,7 +119,7 @@ Il secondo test `ForSession` determina se `ForSession` restituisce un elenco di 
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ApiIdeasControllerTests5&highlight=5,7-8,15-18)]
 
-Per testare il comportamento del metodo `Create` quando `ModelState` non è valido, l'app di esempio aggiunge un errore del modello al controller come parte del test. Non provare a testare la convalida o l'associazione di modelli negli unit test. Testare solo il comportamento del metodo di azione rispetto a un &mdash; non valido:
+Per testare il comportamento del metodo `Create` quando `ModelState` non è valido, l'app di esempio aggiunge un errore del modello al controller come parte del test. Non provare a testare la convalida o l'associazione di modelli negli unit test. Testare solo il comportamento del metodo di azione rispetto a un `ModelState` non valido:
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ApiIdeasControllerTests1&highlight=7,13)]
 
@@ -125,15 +131,15 @@ Il terzo test di `Create`, `Create_ReturnsNewlyCreatedIdeaForSession`, verifica 
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ApiIdeasControllerTests3&highlight=20-22,28-33)]
 
-## <a name="test-actionresultt"></a>Test ActionResult\<T >
+## <a name="test-actionresultt"></a>Test ActionResult\<T>
 
-In ASP.NET Core 2,1 o versioni successive, [ActionResult\<t >](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) consente di restituire un tipo derivante da `ActionResult` o restituire un tipo specifico.
+In ASP.NET Core 2,1 o versioni successive [,\<ActionResult T>](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) consente di restituire un tipo che deriva da `ActionResult` o restituisce un tipo specifico.
 
 L'app di esempio include un metodo che restituisce un `List<IdeaDTO>` per un determinato `id` di sessione. Se l'`id` di sessione non esiste, il controller restituisce <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>:
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs?name=snippet_ForSessionActionResult&highlight=10,21)]
 
-In `ForSessionActionResult` sono inclusi due test del controller `ApiIdeasControllerTests`.
+In `ApiIdeasControllerTests` sono inclusi due test del controller `ForSessionActionResult`.
 
 Il primo test verifica che il controller restituisca un `ActionResult` ma non un elenco non esistente di idee per un `id` di sessione inesistente:
 
@@ -145,7 +151,7 @@ Il primo test verifica che il controller restituisca un `ActionResult` ma non un
 Per un `id` di sessione valido, il secondo test verifica che il metodo restituisca:
 
 * Il metodo restituisca un `ActionResult` con un tipo `List<IdeaDTO>`.
-* [\<t > ActionResult. Il valore](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) è un tipo di `List<IdeaDTO>`.
+* [> ActionResult\<T. Il valore](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) è `List<IdeaDTO>` un tipo.
 * Il primo elemento nell'elenco sia un'idea valida corrispondente all'idea archiviata nella sessione fittizia (ottenuta chiamando `GetTestSession`).
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ForSessionActionResult_ReturnsIdeasForSession&highlight=7-8,15-18)]
@@ -158,7 +164,7 @@ L'app di esempio include anche un metodo per creare una nuova `Idea` per una det
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs?name=snippet_CreateActionResult&highlight=9,16,29)]
 
-In `CreateActionResult` sono inclusi tre test di `ApiIdeasControllerTests`.
+In `ApiIdeasControllerTests` sono inclusi tre test di `CreateActionResult`.
 
 Il primo test verifica che per un modello non valido venga restituito un elemento <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>.
 
@@ -171,8 +177,8 @@ Il secondo test verifica che venga restituito un elemento <xref:Microsoft.AspNet
 Per un `id` di sessione valido, il test finale verifica che:
 
 * Il metodo restituisca un `ActionResult` di tipo `BrainstormSession`.
-* [\<t > ActionResult. Il risultato](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) è un <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>. `CreatedAtActionResult` è analogo a una risposta *201 - Creato* con un'intestazione `Location`.
-* [\<t > ActionResult. Il valore](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) è un tipo di `BrainstormSession`.
+* [> ActionResult\<T. ](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*)Il <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>risultato è. `CreatedAtActionResult` è analogo a una risposta *201 - Creato* con un'intestazione `Location`.
+* [> ActionResult\<T. Il valore](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) è `BrainstormSession` un tipo.
 * La chiamata fittizia per aggiornare la sessione, `UpdateAsync(testSession)`, sia stata eseguita. La chiamata del metodo `Verifiable` viene controllata eseguendo `mockRepo.Verify()` nelle asserzioni.
 * Siano stati restituiti due oggetti `Idea` per la sessione.
 * L'ultimo elemento (`Idea` aggiunta dalla chiamata fittizia a `UpdateAsync`) corrisponda alla `newIdea` aggiunta alla sessione nel test.
@@ -220,7 +226,7 @@ Il metodo `HTTP GET Index` non dispone di cicli o rami e chiama un solo metodo. 
 
 Il metodo `HTTP POST Index` del controller Home verifica che:
 
-* Quando [ModelState. IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) è `false`, il metodo di azione restituisce una *richiesta* non valida 400 <xref:Microsoft.AspNetCore.Mvc.ViewResult> con i dati appropriati.
+* Quando [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) è `false`, il metodo di azione restituisca un elemento * di tipo 400 - Richiesta non valida* <xref:Microsoft.AspNetCore.Mvc.ViewResult> con i dati appropriati.
 * Quando `ModelState.IsValid` è `true`:
   * Venga chiamato il metodo `Add` sul repository.
   * Venga restituito un <xref:Microsoft.AspNetCore.Mvc.RedirectToActionResult> con gli argomenti corretti.
@@ -251,7 +257,7 @@ Gli unit test includono un test per ogni scenario `return` nell'azione `Index` d
 
 Passando al controller Ideas, l'app espone la funzionalità come API Web sulla route `api/ideas`:
 
-* Il metodo `IdeaDTO` restituisce un elenco di idee (`ForSession`) associate a una sessione di brainstorming.
+* Il metodo `ForSession` restituisce un elenco di idee (`IdeaDTO`) associate a una sessione di brainstorming.
 * Il metodo `Create` aggiunge nuove idee a una sessione.
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs?name=snippet_ForSessionAndCreate&highlight=1-2,21-22)]
@@ -276,7 +282,7 @@ Il secondo test `ForSession` determina se `ForSession` restituisce un elenco di 
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ApiIdeasControllerTests5&highlight=5,7-8,15-18)]
 
-Per testare il comportamento del metodo `Create` quando `ModelState` non è valido, l'app di esempio aggiunge un errore del modello al controller come parte del test. Non provare a testare la convalida o l'associazione di modelli negli unit test. Testare solo il comportamento del metodo di azione rispetto a un &mdash; non valido:
+Per testare il comportamento del metodo `Create` quando `ModelState` non è valido, l'app di esempio aggiunge un errore del modello al controller come parte del test. Non provare a testare la convalida o l'associazione di modelli negli unit test. Testare solo il comportamento del metodo di azione rispetto a un `ModelState` non valido:
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ApiIdeasControllerTests1&highlight=7,13)]
 
@@ -288,15 +294,15 @@ Il terzo test di `Create`, `Create_ReturnsNewlyCreatedIdeaForSession`, verifica 
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ApiIdeasControllerTests3&highlight=20-22,28-33)]
 
-## <a name="test-actionresultt"></a>Test ActionResult\<T >
+## <a name="test-actionresultt"></a>Test ActionResult\<T>
 
-In ASP.NET Core 2,1 o versioni successive, [ActionResult\<t >](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) consente di restituire un tipo derivante da `ActionResult` o restituire un tipo specifico.
+In ASP.NET Core 2,1 o versioni successive [,\<ActionResult T>](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) consente di restituire un tipo che deriva da `ActionResult` o restituisce un tipo specifico.
 
 L'app di esempio include un metodo che restituisce un `List<IdeaDTO>` per un determinato `id` di sessione. Se l'`id` di sessione non esiste, il controller restituisce <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>:
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs?name=snippet_ForSessionActionResult&highlight=10,21)]
 
-In `ForSessionActionResult` sono inclusi due test del controller `ApiIdeasControllerTests`.
+In `ApiIdeasControllerTests` sono inclusi due test del controller `ForSessionActionResult`.
 
 Il primo test verifica che il controller restituisca un `ActionResult` ma non un elenco non esistente di idee per un `id` di sessione inesistente:
 
@@ -308,7 +314,7 @@ Il primo test verifica che il controller restituisca un `ActionResult` ma non un
 Per un `id` di sessione valido, il secondo test verifica che il metodo restituisca:
 
 * Il metodo restituisca un `ActionResult` con un tipo `List<IdeaDTO>`.
-* [\<t > ActionResult. Il valore](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) è un tipo di `List<IdeaDTO>`.
+* [> ActionResult\<T. Il valore](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) è `List<IdeaDTO>` un tipo.
 * Il primo elemento nell'elenco sia un'idea valida corrispondente all'idea archiviata nella sessione fittizia (ottenuta chiamando `GetTestSession`).
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ForSessionActionResult_ReturnsIdeasForSession&highlight=7-8,15-18)]
@@ -321,7 +327,7 @@ L'app di esempio include anche un metodo per creare una nuova `Idea` per una det
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs?name=snippet_CreateActionResult&highlight=9,16,29)]
 
-In `CreateActionResult` sono inclusi tre test di `ApiIdeasControllerTests`.
+In `ApiIdeasControllerTests` sono inclusi tre test di `CreateActionResult`.
 
 Il primo test verifica che per un modello non valido venga restituito un elemento <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>.
 
@@ -334,8 +340,8 @@ Il secondo test verifica che venga restituito un elemento <xref:Microsoft.AspNet
 Per un `id` di sessione valido, il test finale verifica che:
 
 * Il metodo restituisca un `ActionResult` di tipo `BrainstormSession`.
-* [\<t > ActionResult. Il risultato](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) è un <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>. `CreatedAtActionResult` è analogo a una risposta *201 - Creato* con un'intestazione `Location`.
-* [\<t > ActionResult. Il valore](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) è un tipo di `BrainstormSession`.
+* [> ActionResult\<T. ](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*)Il <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>risultato è. `CreatedAtActionResult` è analogo a una risposta *201 - Creato* con un'intestazione `Location`.
+* [> ActionResult\<T. Il valore](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) è `BrainstormSession` un tipo.
 * La chiamata fittizia per aggiornare la sessione, `UpdateAsync(testSession)`, sia stata eseguita. La chiamata del metodo `Verifiable` viene controllata eseguendo `mockRepo.Verify()` nelle asserzioni.
 * Siano stati restituiti due oggetti `Idea` per la sessione.
 * L'ultimo elemento (`Idea` aggiunta dalla chiamata fittizia a `UpdateAsync`) corrisponda alla `newIdea` aggiunta alla sessione nel test.
@@ -348,5 +354,5 @@ Per un `id` di sessione valido, il test finale verifica che:
 
 * <xref:test/integration-tests>
 * [Creazione ed esecuzione di unit test con Visual Studio](/visualstudio/test/unit-test-your-code)
-* [Tested. AspNetCore. Mvc-libreria di test Fluent per ASP.NET Core mvc](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; libreria di unit test fortemente tipizzata, che fornisce un'interfaccia Fluent per il test di app per le API Web e MVC. (*Non mantenuto o supportato da Microsoft).*
+* [Tested. AspNetCore. Mvc-libreria di test Fluent per ASP.NET Core libreria di](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; unit test fortemente tipizzata MVC, che fornisce un'interfaccia Fluent per il test di app per le API Web e MVC. (*Non mantenuto o supportato da Microsoft).*
 
