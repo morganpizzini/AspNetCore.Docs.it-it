@@ -5,13 +5,19 @@ description: Informazioni su come funziona l'associazione di modelli in ASP.NET 
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 12/18/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 19580768679f30131683717792252c03aade68f9
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 2e604cd1869ea077fc0465df91ec083b9db83763
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78666278"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768970"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Associazione di modelli in ASP.NET Core
 
@@ -23,10 +29,10 @@ Questo articolo illustra cos'è l'associazione di modelli, come funziona e come 
 
 ## <a name="what-is-model-binding"></a>Che cos'è l'associazione di modelli
 
-I controller e le pagine Razor operano sui dati provenienti dalle richieste HTTP. Ad esempio, i dati di route possono fornire una chiave del record e i campi modulo inviati possono fornire valori per le proprietà del modello. La scrittura di codice per recuperare tutti i valori e convertirli da stringhe in tipi .NET sarebbe noiosa e soggetta a errori. L'associazione di modelli consente di automatizzare questo processo. Il sistema di associazione di modelli:
+I controller Razor e le pagine funzionano con dati provenienti da richieste HTTP. Ad esempio, i dati di route possono fornire una chiave del record e i campi modulo inviati possono fornire valori per le proprietà del modello. La scrittura di codice per recuperare tutti i valori e convertirli da stringhe in tipi .NET sarebbe noiosa e soggetta a errori. L'associazione di modelli consente di automatizzare questo processo. Il sistema di associazione di modelli:
 
 * Recupera i dati da diverse origini, ad esempio i dati di route, i campi modulo e le stringhe di query.
-* Fornisce i dati ai controller e alle pagine Razor in parametri di metodo e proprietà pubbliche.
+* Fornisce i dati ai controller e Razor alle pagine nei parametri del metodo e nelle proprietà pubbliche.
 * Converte dati stringa in tipi .NET.
 * Aggiorna le proprietà dei tipi complessi.
 
@@ -60,7 +66,7 @@ Nell'esempio precedente le destinazioni dell'associazione di modelli sono parame
 L'associazione di modelli cerca di trovare i valori per i tipi di destinazioni seguenti:
 
 * Parametri del metodo di azione del controller a cui viene indirizzata una richiesta.
-* Parametri del metodo del gestore di Razor Pages a cui viene indirizzata una richiesta. 
+* Parametri del metodo Razor del gestore pagine a cui viene indirizzata una richiesta. 
 * Proprietà pubbliche di un controller o una classe `PageModel`, se specificate dagli attributi.
 
 ### <a name="bindproperty-attribute"></a>Attributo [BindProperty]
@@ -98,11 +104,11 @@ Per ogni parametro o proprietà di destinazione, le origini vengono analizzate n
 
 Se l'origine predefinita non è corretta, usare uno degli attributi seguenti per specificare l'origine:
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) -ottiene i valori dalla stringa di query. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) -ottiene i valori dai dati della route.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) -ottiene i valori dai campi del modulo inviati.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) -ottiene i valori dal corpo della richiesta.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) -ottiene i valori dalle intestazioni HTTP.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)-Ottiene i valori dalla stringa di query. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)-Ottiene i valori dai dati della route.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)-Ottiene i valori dai campi del modulo inviati.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)-Ottiene i valori dal corpo della richiesta.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)-Ottiene i valori dalle intestazioni HTTP.
 
 Questi attributi:
 
@@ -116,15 +122,15 @@ Questi attributi:
 
 ### <a name="frombody-attribute"></a>Attributo [FromBody]
 
-Applicare l'attributo `[FromBody]` a un parametro per popolarne le proprietà dal corpo di una richiesta HTTP. Il runtime di ASP.NET Core delega la responsabilità della lettura del corpo a un formattatore di input. I formattatori di input sono descritti [più avanti in questo articolo](#input-formatters).
+Applicare l' `[FromBody]` attributo a un parametro per popolarne le proprietà dal corpo di una richiesta HTTP. Il runtime di ASP.NET Core delega la responsabilità della lettura del corpo a un formattatore di input. I formattatori di input sono descritti [più avanti in questo articolo](#input-formatters).
 
-Quando `[FromBody]` viene applicato a un parametro di tipo complesso, tutti gli attributi di origine di associazione applicati alle relative proprietà vengono ignorati. Ad esempio, il `Create` azione seguente specifica che il relativo parametro `pet` viene popolato dal corpo:
+Quando `[FromBody]` viene applicato a un parametro di tipo complesso, tutti gli attributi di origine di associazione applicati alle relative proprietà vengono ignorati. Ad esempio, l'azione `Create` seguente specifica che il `pet` relativo parametro viene popolato dal corpo:
 
 ```csharp
 public ActionResult<Pet> Create([FromBody] Pet pet)
 ```
 
-La classe `Pet` specifica che la relativa proprietà `Breed` viene popolata da un parametro della stringa di query:
+La `Pet` classe specifica che la `Breed` proprietà viene popolata da un parametro della stringa di query:
 
 ```csharp
 public class Pet
@@ -138,12 +144,12 @@ public class Pet
 
 Nell'esempio precedente:
 
-* L'attributo `[FromQuery]` viene ignorato.
-* La proprietà `Breed` non viene popolata da un parametro della stringa di query. 
+* L' `[FromQuery]` attributo viene ignorato.
+* La `Breed` proprietà non viene popolata da un parametro della stringa di query. 
 
-I formattatori di input leggono solo il corpo e non comprendono gli attributi di origine del binding. Se nel corpo viene trovato un valore appropriato, tale valore viene usato per popolare la proprietà `Breed`.
+I formattatori di input leggono solo il corpo e non comprendono gli attributi di origine del binding. Se nel corpo viene trovato un valore appropriato, tale valore viene usato per popolare la `Breed` proprietà.
 
-Non applicare `[FromBody]` a più di un parametro per ogni metodo di azione. Quando il flusso di richieste viene letto da un formattatore di input, non è più disponibile per la lettura per l'associazione di altri parametri `[FromBody]`.
+Non applicare `[FromBody]` a più di un parametro per ogni metodo di azione. Una volta che il flusso di richiesta viene letto da un formattatore di input, non è più disponibile per la lettura `[FromBody]` per l'associazione di altri parametri.
 
 ### <a name="additional-sources"></a>Origini aggiuntive
 
@@ -168,7 +174,7 @@ Per impostazione predefinita, non viene creato un errore di stato del modello se
 * Per i tipi complessi, l'associazione di modelli crea un'istanza usando il costruttore predefinito, senza impostare proprietà.
 * Le matrici vengono impostate su `Array.Empty<T>()`, ad eccezione delle matrici `byte[]` che vengono impostate su `null`.
 
-Se lo stato del modello deve essere invalidato quando non viene trovato alcun elemento nei campi del modulo per una proprietà del modello, usare l'attributo [`[BindRequired]`](#bindrequired-attribute) .
+Se lo stato del modello deve essere invalidato quando non viene trovato alcun elemento nei campi del modulo per una [`[BindRequired]`](#bindrequired-attribute) proprietà del modello, usare l'attributo.
 
 Si noti che questo comportamento `[BindRequired]` si applica all'associazione di modelli dai dati di moduli inviati e non ai dati JSON o XML nel corpo di una richiesta. I dati del corpo della richiesta vengono gestiti dai [formattatori di input](#input-formatters).
 
@@ -178,11 +184,11 @@ Se viene trovata un'origine ma non può essere convertita nel tipo di destinazio
 
 In un controller API con l'attributo `[ApiController]`, uno stato del modello non valido genera una risposta HTTP 400 automatica.
 
-In una pagina Razor visualizzare di nuovo la pagina con un messaggio di errore:
+In una Razor pagina, visualizzare nuovamente la pagina con un messaggio di errore:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-La convalida sul lato client consente di rilevare la maggior parte dei dati non validi che, in caso contrario, verrebbero inviati a un modulo di Razor Pages. Questa convalida rende difficile attivare il codice sopra evidenziato. L'app di esempio include un pulsante **Submit with Invalid Date** (Invia con data non valida) che inserisce dati non validi nel campo **Hire Date** (Data assunzione) e invia il modulo. Questo pulsante illustra il funzionamento del codice per visualizzare di nuovo la pagina quando si verificano errori di conversione dei dati.
+La convalida sul lato client rileva la maggior parte dei dati non validi che altrimenti verrebbero Razor inviati a un modulo di pagine. Questa convalida rende difficile attivare il codice sopra evidenziato. L'app di esempio include un pulsante **Submit with Invalid Date** (Invia con data non valida) che inserisce dati non validi nel campo **Hire Date** (Data assunzione) e invia il modulo. Questo pulsante illustra il funzionamento del codice per visualizzare di nuovo la pagina quando si verificano errori di conversione dei dati.
 
 Quando la pagina viene nuovamente visualizzata dal codice precedente, l'input non valido non viene visualizzato nel campo modulo. Questo avviene perché la proprietà del modello è stata impostata su Null o su un valore predefinito. L'input non valido viene visualizzato in un messaggio di errore. Ma se si vogliono visualizzare di nuovo i dati non validi nel campo modulo, è consigliabile impostare la proprietà del modello come stringa ed eseguire manualmente la conversione dei dati.
 
@@ -197,16 +203,16 @@ I tipi semplici in cui lo strumento di associazione di modelli può convertire l
 * [Char](xref:System.ComponentModel.CharConverter)
 * [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
-* [Decimal](xref:System.ComponentModel.DecimalConverter)
+* [Decimale](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
 * [Enum](xref:System.ComponentModel.EnumConverter)
 * [Guid](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
-* [Singolo](xref:System.ComponentModel.SingleConverter)
+* [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
-* [Uri](xref:System.UriTypeConverter)
-* [Version](xref:System.ComponentModel.VersionConverter)
+* [URI](xref:System.UriTypeConverter)
+* [Versione](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>Tipi complessi
 
@@ -446,17 +452,17 @@ Per usare i formattatori di input XML predefiniti:
 
 ### <a name="customize-model-binding-with-input-formatters"></a>Personalizzare l'associazione di modelli con formattatori di input
 
-Un formattatore di input assume la piena responsabilità per la lettura dei dati dal corpo della richiesta. Per personalizzare questo processo, configurare le API usate dal formattatore di input. In questa sezione viene descritto come personalizzare il formattatore di input basato su `System.Text.Json`per comprendere un tipo personalizzato denominato `ObjectId`. 
+Un formattatore di input assume la piena responsabilità per la lettura dei dati dal corpo della richiesta. Per personalizzare questo processo, configurare le API usate dal formattatore di input. In questa sezione viene descritto come personalizzare `System.Text.Json`il formattatore di input basato su per comprendere un `ObjectId`tipo personalizzato denominato. 
 
-Si consideri il modello seguente, che contiene una proprietà `ObjectId` personalizzata denominata `Id`:
+Si consideri il modello seguente, che `ObjectId` contiene una `Id`proprietà personalizzata denominata:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/ModelWithObjectId.cs?name=snippet_Class&highlight=3)]
 
-Per personalizzare il processo di associazione del modello quando si usa `System.Text.Json`, creare una classe derivata da <xref:System.Text.Json.Serialization.JsonConverter%601>:
+Per personalizzare il processo di associazione di modelli `System.Text.Json`quando si usa, creare una <xref:System.Text.Json.Serialization.JsonConverter%601>classe derivata da:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/JsonConverters/ObjectIdConverter.cs?name=snippet_Class)]
 
-Per usare un convertitore personalizzato, applicare l'attributo <xref:System.Text.Json.Serialization.JsonConverterAttribute> al tipo. Nell'esempio seguente il tipo di `ObjectId` viene configurato con `ObjectIdConverter` come convertitore personalizzato:
+Per usare un convertitore personalizzato, applicare l' <xref:System.Text.Json.Serialization.JsonConverterAttribute> attributo al tipo. Nell'esempio seguente il `ObjectId` tipo viene configurato con `ObjectIdConverter` come convertitore personalizzato:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/ObjectId.cs?name=snippet_Class&highlight=1)]
 
@@ -484,9 +490,9 @@ L'associazione di modelli può essere richiamata manualmente usando il metodo <x
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
-<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> usa i provider di valori per ottenere i dati dal corpo del form, dalla stringa di query e dai dati della route. `TryUpdateModelAsync` è in genere: 
+<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>USA i provider di valori per ottenere i dati dal corpo del form, dalla stringa di query e dai dati della route. `TryUpdateModelAsync`è in genere: 
 
-* Usato con le app Razor Pages e MVC usando i controller e le visualizzazioni per impedire l'overposting.
+* Usato con Razor le pagine e le app MVC che usano i controller e le visualizzazioni per impedire l'overposting.
 * Non utilizzato con un'API Web, a meno che non venga utilizzato da dati del modulo, stringhe di query e dati di route. Gli endpoint dell'API Web che utilizzano JSON utilizzano [formattatori di input](#input-formatters) per deserializzare il corpo della richiesta in un oggetto.
 
 Per ulteriori informazioni, vedere [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateModelAsync).
@@ -509,10 +515,10 @@ Questo articolo illustra cos'è l'associazione di modelli, come funziona e come 
 
 ## <a name="what-is-model-binding"></a>Che cos'è l'associazione di modelli
 
-I controller e le pagine Razor operano sui dati provenienti dalle richieste HTTP. Ad esempio, i dati di route possono fornire una chiave del record e i campi modulo inviati possono fornire valori per le proprietà del modello. La scrittura di codice per recuperare tutti i valori e convertirli da stringhe in tipi .NET sarebbe noiosa e soggetta a errori. L'associazione di modelli consente di automatizzare questo processo. Il sistema di associazione di modelli:
+I controller Razor e le pagine funzionano con dati provenienti da richieste HTTP. Ad esempio, i dati di route possono fornire una chiave del record e i campi modulo inviati possono fornire valori per le proprietà del modello. La scrittura di codice per recuperare tutti i valori e convertirli da stringhe in tipi .NET sarebbe noiosa e soggetta a errori. L'associazione di modelli consente di automatizzare questo processo. Il sistema di associazione di modelli:
 
 * Recupera i dati da diverse origini, ad esempio i dati di route, i campi modulo e le stringhe di query.
-* Fornisce i dati ai controller e alle pagine Razor in parametri di metodo e proprietà pubbliche.
+* Fornisce i dati ai controller e Razor alle pagine nei parametri del metodo e nelle proprietà pubbliche.
 * Converte dati stringa in tipi .NET.
 * Aggiorna le proprietà dei tipi complessi.
 
@@ -546,7 +552,7 @@ Nell'esempio precedente le destinazioni dell'associazione di modelli sono parame
 L'associazione di modelli cerca di trovare i valori per i tipi di destinazioni seguenti:
 
 * Parametri del metodo di azione del controller a cui viene indirizzata una richiesta.
-* Parametri del metodo del gestore di Razor Pages a cui viene indirizzata una richiesta. 
+* Parametri del metodo Razor del gestore pagine a cui viene indirizzata una richiesta. 
 * Proprietà pubbliche di un controller o una classe `PageModel`, se specificate dagli attributi.
 
 ### <a name="bindproperty-attribute"></a>Attributo [BindProperty]
@@ -584,11 +590,11 @@ Per ogni parametro o proprietà di destinazione, le origini vengono analizzate n
 
 Se l'origine predefinita non è corretta, usare uno degli attributi seguenti per specificare l'origine:
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) -ottiene i valori dalla stringa di query. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) -ottiene i valori dai dati della route.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) -ottiene i valori dai campi del modulo inviati.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) -ottiene i valori dal corpo della richiesta.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) -ottiene i valori dalle intestazioni HTTP.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)-Ottiene i valori dalla stringa di query. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)-Ottiene i valori dai dati della route.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)-Ottiene i valori dai campi del modulo inviati.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)-Ottiene i valori dal corpo della richiesta.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)-Ottiene i valori dalle intestazioni HTTP.
 
 Questi attributi:
 
@@ -602,15 +608,15 @@ Questi attributi:
 
 ### <a name="frombody-attribute"></a>Attributo [FromBody]
 
-Applicare l'attributo `[FromBody]` a un parametro per popolarne le proprietà dal corpo di una richiesta HTTP. Il runtime di ASP.NET Core delega la responsabilità della lettura del corpo a un formattatore di input. I formattatori di input sono descritti [più avanti in questo articolo](#input-formatters).
+Applicare l' `[FromBody]` attributo a un parametro per popolarne le proprietà dal corpo di una richiesta HTTP. Il runtime di ASP.NET Core delega la responsabilità della lettura del corpo a un formattatore di input. I formattatori di input sono descritti [più avanti in questo articolo](#input-formatters).
 
-Quando `[FromBody]` viene applicato a un parametro di tipo complesso, tutti gli attributi di origine di associazione applicati alle relative proprietà vengono ignorati. Ad esempio, il `Create` azione seguente specifica che il relativo parametro `pet` viene popolato dal corpo:
+Quando `[FromBody]` viene applicato a un parametro di tipo complesso, tutti gli attributi di origine di associazione applicati alle relative proprietà vengono ignorati. Ad esempio, l'azione `Create` seguente specifica che il `pet` relativo parametro viene popolato dal corpo:
 
 ```csharp
 public ActionResult<Pet> Create([FromBody] Pet pet)
 ```
 
-La classe `Pet` specifica che la relativa proprietà `Breed` viene popolata da un parametro della stringa di query:
+La `Pet` classe specifica che la `Breed` proprietà viene popolata da un parametro della stringa di query:
 
 ```csharp
 public class Pet
@@ -624,12 +630,12 @@ public class Pet
 
 Nell'esempio precedente:
 
-* L'attributo `[FromQuery]` viene ignorato.
-* La proprietà `Breed` non viene popolata da un parametro della stringa di query. 
+* L' `[FromQuery]` attributo viene ignorato.
+* La `Breed` proprietà non viene popolata da un parametro della stringa di query. 
 
-I formattatori di input leggono solo il corpo e non comprendono gli attributi di origine del binding. Se nel corpo viene trovato un valore appropriato, tale valore viene usato per popolare la proprietà `Breed`.
+I formattatori di input leggono solo il corpo e non comprendono gli attributi di origine del binding. Se nel corpo viene trovato un valore appropriato, tale valore viene usato per popolare la `Breed` proprietà.
 
-Non applicare `[FromBody]` a più di un parametro per ogni metodo di azione. Quando il flusso di richieste viene letto da un formattatore di input, non è più disponibile per la lettura per l'associazione di altri parametri `[FromBody]`.
+Non applicare `[FromBody]` a più di un parametro per ogni metodo di azione. Una volta che il flusso di richiesta viene letto da un formattatore di input, non è più disponibile per la lettura `[FromBody]` per l'associazione di altri parametri.
 
 ### <a name="additional-sources"></a>Origini aggiuntive
 
@@ -654,7 +660,7 @@ Per impostazione predefinita, non viene creato un errore di stato del modello se
 * Per i tipi complessi, l'associazione di modelli crea un'istanza usando il costruttore predefinito, senza impostare proprietà.
 * Le matrici vengono impostate su `Array.Empty<T>()`, ad eccezione delle matrici `byte[]` che vengono impostate su `null`.
 
-Se lo stato del modello deve essere invalidato quando non viene trovato alcun elemento nei campi del modulo per una proprietà del modello, usare l'attributo [`[BindRequired]`](#bindrequired-attribute) .
+Se lo stato del modello deve essere invalidato quando non viene trovato alcun elemento nei campi del modulo per una [`[BindRequired]`](#bindrequired-attribute) proprietà del modello, usare l'attributo.
 
 Si noti che questo comportamento `[BindRequired]` si applica all'associazione di modelli dai dati di moduli inviati e non ai dati JSON o XML nel corpo di una richiesta. I dati del corpo della richiesta vengono gestiti dai [formattatori di input](#input-formatters).
 
@@ -664,11 +670,11 @@ Se viene trovata un'origine ma non può essere convertita nel tipo di destinazio
 
 In un controller API con l'attributo `[ApiController]`, uno stato del modello non valido genera una risposta HTTP 400 automatica.
 
-In una pagina Razor visualizzare di nuovo la pagina con un messaggio di errore:
+In una Razor pagina, visualizzare nuovamente la pagina con un messaggio di errore:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-La convalida sul lato client consente di rilevare la maggior parte dei dati non validi che, in caso contrario, verrebbero inviati a un modulo di Razor Pages. Questa convalida rende difficile attivare il codice sopra evidenziato. L'app di esempio include un pulsante **Submit with Invalid Date** (Invia con data non valida) che inserisce dati non validi nel campo **Hire Date** (Data assunzione) e invia il modulo. Questo pulsante illustra il funzionamento del codice per visualizzare di nuovo la pagina quando si verificano errori di conversione dei dati.
+La convalida sul lato client rileva la maggior parte dei dati non validi che altrimenti verrebbero Razor inviati a un modulo di pagine. Questa convalida rende difficile attivare il codice sopra evidenziato. L'app di esempio include un pulsante **Submit with Invalid Date** (Invia con data non valida) che inserisce dati non validi nel campo **Hire Date** (Data assunzione) e invia il modulo. Questo pulsante illustra il funzionamento del codice per visualizzare di nuovo la pagina quando si verificano errori di conversione dei dati.
 
 Quando la pagina viene nuovamente visualizzata dal codice precedente, l'input non valido non viene visualizzato nel campo modulo. Questo avviene perché la proprietà del modello è stata impostata su Null o su un valore predefinito. L'input non valido viene visualizzato in un messaggio di errore. Ma se si vogliono visualizzare di nuovo i dati non validi nel campo modulo, è consigliabile impostare la proprietà del modello come stringa ed eseguire manualmente la conversione dei dati.
 
@@ -683,16 +689,16 @@ I tipi semplici in cui lo strumento di associazione di modelli può convertire l
 * [Char](xref:System.ComponentModel.CharConverter)
 * [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
-* [Decimal](xref:System.ComponentModel.DecimalConverter)
+* [Decimale](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
 * [Enum](xref:System.ComponentModel.EnumConverter)
 * [Guid](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
-* [Singolo](xref:System.ComponentModel.SingleConverter)
+* [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
-* [Uri](xref:System.UriTypeConverter)
-* [Version](xref:System.ComponentModel.VersionConverter)
+* [URI](xref:System.UriTypeConverter)
+* [Versione](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>Tipi complessi
 
