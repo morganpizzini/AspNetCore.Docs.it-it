@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 05/02/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: 6cf1de6e68d04505ce4ba5d18f2a7d0bbe5be333
-ms.sourcegitcommit: c19e388c83c981232e6f128d97440262adfe06e2
+ms.openlocfilehash: 052a787fbe6411dbaa953f10fcd982dfbd41f1af
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/02/2020
-ms.locfileid: "82727651"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82769455"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introduzione a ASP.NET Core Blazer
 
@@ -43,9 +46,9 @@ Per iniziare a usare blazer, seguire le istruzioni per la scelta degli strumenti
 
 1. Selezionare **app Blazer**. Selezionare **Avanti**.
 
-1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
+1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
 
-1. Per un'esperienza di webassembly blazer (Visual Studio 16,6 Preview 2 o versione successiva), scegliere il modello di **app Webassembly Blazer** . Per un'esperienza del server blazer (Visual Studio 16,4 o versione successiva), scegliere il modello di **app del server Blazer** . Selezionare **Create** (Crea).
+1. Per un'esperienza di webassembly blazer (Visual Studio 16,6 Preview 2 o versione successiva), scegliere il modello di **app Webassembly Blazer** . Per un'esperienza del server blazer (Visual Studio 16,4 o versione successiva), scegliere il modello di **app del server Blazer** . Selezionare **Crea**.
 
 1. Premere <kbd>CTRL</kbd>+<kbd>F5</kbd> per eseguire l'app.
 
@@ -109,7 +112,7 @@ Il server blazer è supportato in Visual Studio per Mac. Il webassembly Blazer n
    
    Selezionare **Avanti**.
 
-1. Nel campo **nome progetto** assegnare un nome all'app `WebApplication1`. Selezionare **Create** (Crea).
+1. Nel campo **nome progetto** assegnare un nome all'app `WebApplication1`. Selezionare **Crea**.
 
 1. Selezionare **Esegui** > **Avvia senza eseguire debug** per eseguire l'app *senza il debugger*. Il debug non è al momento supportato.
 

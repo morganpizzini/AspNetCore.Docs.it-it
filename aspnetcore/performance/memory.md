@@ -5,13 +5,19 @@ description: Informazioni sulla gestione della memoria in ASP.NET Core e sul fun
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: performance/memory
-ms.openlocfilehash: b2af9cb567cdb1d7b2d0942601fcc3ebd999a5d9
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: db6f8e867fc83a211170aa59f5bad604d9c2730d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440948"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776116"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Gestione della memoria e Garbage Collection (GC) in ASP.NET Core
 
@@ -281,7 +287,7 @@ I collegamenti seguenti illustrano l'approccio ASP.NET Core per mantenere gli og
 * [ResponseCaching/Streams/StreamUtilities. cs](https://github.com/dotnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
 * [ResponseCaching/MemoryResponseCache. cs](https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55)
 
-Per altre informazioni, vedi:
+Per altre informazioni, vedere:
 
 * [Heap Large Object individuato](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
 * [Heap oggetti grandi](/dotnet/standard/garbage-collection/large-object-heap)

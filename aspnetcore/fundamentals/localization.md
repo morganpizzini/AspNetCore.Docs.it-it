@@ -4,13 +4,19 @@ author: rick-anderson
 description: Informazioni su come ASP.NET Core offre servizi e middleware per la localizzazione di contenuti in diverse lingue e culture.
 ms.author: riande
 ms.date: 11/30/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 91db83eb8685c7bee5e976f386c2a12c4090b734
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 1111c0c57baf5bfd52b26b553179338100b9ba79
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440818"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776565"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalizzazione e localizzazione in ASP.NET Core
 
@@ -30,7 +36,7 @@ La localizzazione dell'app comporta quanto segue:
 
 3. Implementare una strategia per la selezione della lingua o delle impostazioni cultura per ogni richiesta
 
-[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ( come[scaricare](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ## <a name="make-the-apps-content-localizable"></a>Rendere localizzabile il contenuto dell'app
 
@@ -74,7 +80,7 @@ L'implementazione predefinita di `IViewLocalizer` individua il file di risorse i
 
 Un file di risorse francese può contenere quanto segue:
 
-| Chiave | valore |
+| Chiave | Valore |
 | ----- | ------ |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
@@ -90,7 +96,7 @@ Per usare un file di risorse condivise in una visualizzazione, inserire `IHtmlLo
 
 I messaggi di errore DataAnnotations vengono localizzati con `IStringLocalizer<T>`. Usando l'opzione `ResourcesPath = "Resources"` è possibile memorizzare i messaggi di errore in `RegisterViewModel` in uno dei percorsi seguenti:
 
-* *Risorse/ViewModels.Account.RegisterViewModel.fr.resx*
+* *Risorse/ViewModels. account. RegisterViewModel. fr. resx*
 * *Resources/ViewModels/Account/RegisterViewModel.fr.resx*
 
 [!code-csharp[](localization/sample/Localization/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
@@ -120,11 +126,11 @@ Nel codice precedente `SharedResource` è la classe corrispondente al file con e
 
 ### <a name="supportedcultures-and-supporteduicultures"></a>SupportedCultures e SupportedUICultures
 
-ASP.NET Core consente di specificare due valori di impostazioni cultura, `SupportedCultures` e `SupportedUICultures`. L'oggetto [CultureInfo](/dotnet/api/system.globalization.cultureinfo) per `SupportedCultures` determina i risultati delle funzioni dipendenti dalle impostazioni cultura, ad esempio date, ore, numeri e formattazione delle valute. `SupportedCultures` determina anche l'ordinamento del testo, le convenzioni di maiuscole e minuscole e i confronti di stringhe. Per altre informazioni su come il server ottiene le impostazioni cultura, vedere [CultureInfo.CurrentCulture](/dotnet/api/system.stringcomparer.currentculture#System_StringComparer_CurrentCulture). Determina `SupportedUICultures` quali stringhe tradotte (da file *RESX)* vengono cercate da [ResourceManager](/dotnet/api/system.resources.resourcemanager). `ResourceManager` esegue la ricerca nelle stringhe specifiche delle impostazioni cultura determinate da `CurrentUICulture`. Ogni thread in .NET include oggetti `CurrentCulture` e `CurrentUICulture`. ASP.NET Core controlla questi valori quando viene eseguito il rendering delle funzioni dipendenti dalle impostazioni cultura. Ad esempio, se le impostazioni cultura del thread corrente sono impostate su "en-US" (inglese, Stati Uniti), `DateTime.Now.ToLongDateString()` visualizza "Thursday, February 18, 2016". Se invece `CurrentCulture` è impostato su "es-ES" (spagnolo, Spagna) l'output sarà "jueves, 18 de febrero de 2016".
+ASP.NET Core consente di specificare due valori di impostazioni cultura, `SupportedCultures` e `SupportedUICultures`. L'oggetto [CultureInfo](/dotnet/api/system.globalization.cultureinfo) per `SupportedCultures` determina i risultati delle funzioni dipendenti dalle impostazioni cultura, ad esempio date, ore, numeri e formattazione delle valute. `SupportedCultures` determina anche l'ordinamento del testo, le convenzioni di maiuscole e minuscole e i confronti di stringhe. Per altre informazioni su come il server ottiene le impostazioni cultura, vedere [CultureInfo.CurrentCulture](/dotnet/api/system.stringcomparer.currentculture#System_StringComparer_CurrentCulture). Determina quali stringhe tradotte (dai file *resx* ) vengono cercate da [ResourceManager.](/dotnet/api/system.resources.resourcemanager) `SupportedUICultures` `ResourceManager` esegue la ricerca nelle stringhe specifiche delle impostazioni cultura determinate da `CurrentUICulture`. Ogni thread in .NET include oggetti `CurrentCulture` e `CurrentUICulture`. ASP.NET Core controlla questi valori quando viene eseguito il rendering delle funzioni dipendenti dalle impostazioni cultura. Ad esempio, se le impostazioni cultura del thread corrente sono impostate su "en-US" (inglese, Stati Uniti), `DateTime.Now.ToLongDateString()` visualizza "Thursday, February 18, 2016". Se invece `CurrentCulture` è impostato su "es-ES" (spagnolo, Spagna) l'output sarà "jueves, 18 de febrero de 2016".
 
 ## <a name="resource-files"></a>File di risorse
 
-Un file di risorse è un meccanismo utile per la separazione delle stringhe localizzabili dal codice. Le stringhe tradotte per la lingua non predefinita vengono isolate nei file di risorse *RESX.* È possibile ad esempio che si voglia creare un file di risorse spagnolo denominato *Welcome.es.resx* contenente le stringhe tradotte. "es" è il codice di lingua per lo spagnolo. Per creare questo file di risorse in Visual Studio:
+Un file di risorse è un meccanismo utile per la separazione delle stringhe localizzabili dal codice. Le stringhe tradotte per la lingua non predefinita sono isolate nei file di risorse *resx* . È possibile ad esempio che si voglia creare un file di risorse spagnolo denominato *Welcome.es.resx* contenente le stringhe tradotte. "es" è il codice di lingua per lo spagnolo. Per creare questo file di risorse in Visual Studio:
 
 1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella che conterrà il file di risorse > **Aggiungi** > **Nuovo elemento**.
 
@@ -154,7 +160,7 @@ Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `Resources
 | Resources/Controllers/HomeController.fr.resx  | Path |
 |    |     |
 
-I file di risorse che usano `@inject IViewLocalizer` nelle visualizzazioni Razor seguono un modello simile. Il file di risorse per una visualizzazione può essere denominato usando la denominazione con il punto o con il percorso. I file di risorse di visualizzazione Razor simulano il percorso del file di visualizzazione associato. Se `ResourcesPath` viene impostato su "Resources", il file di risorse francese associato alla visualizzazione *Views/Home/About.cshtml* sarà uno dei seguenti:
+I file di `@inject IViewLocalizer` risorse Razor che usano nelle viste seguono un modello simile. Il file di risorse per una visualizzazione può essere denominato usando la denominazione con il punto o con il percorso. RazorVisualizza file di risorse riproduce il percorso del file di visualizzazione associato. Se `ResourcesPath` viene impostato su "Resources", il file di risorse francese associato alla visualizzazione *Views/Home/About.cshtml* sarà uno dei seguenti:
 
 * Resources/Views/Home/About.fr.resx
 
@@ -167,7 +173,7 @@ Se non si usa l'opzione `ResourcesPath`, il file con estensione *resx* per una v
 L'attributo [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1) specifica lo spazio dei nomi radice di un assembly quando tale spazio dei nomi è diverso dal nome dell'assembly. 
 
 > [!WARNING]
-> Ciò può verificarsi quando il nome di un progetto non è un identificatore .NET valido. Ad `my-project-name.csproj` esempio verrà utilizzato `my_project_name` lo spazio `my-project-name` dei nomi radice e il nome dell'assembly che causa questo errore. 
+> Questo problema può verificarsi quando il nome di un progetto non è un identificatore .NET valido. Ad esempio `my-project-name.csproj` , utilizzerà lo spazio `my_project_name` dei nomi radice e `my-project-name` il nome dell'assembly che genera questo errore. 
 
 Se lo spazio dei nomi radice di un assembly è diverso dal nome dell'assembly:
 
@@ -249,7 +255,7 @@ Se si passa uno solo dei due parametri (`culture` o `ui-culture`), il provider d
 
 Le app di produzione offrono spesso la possibilità di specificare le impostazioni cultura con il cookie delle impostazioni cultura di ASP.NET Core. Usare il metodo `MakeCookieValue` per creare un cookie.
 
-Restituisce `CookieRequestCultureProvider` `DefaultCookieName` il nome del cookie predefinito utilizzato per tenere traccia delle informazioni sulle impostazioni cultura preferite dell'utente. Il nome del cookie predefinito è `.AspNetCore.Culture`.
+`CookieRequestCultureProvider` Restituisce il nome del cookie predefinito utilizzato per tenere traccia delle informazioni sulle impostazioni cultura preferite dell' `DefaultCookieName` utente. Il nome del cookie predefinito è `.AspNetCore.Culture`.
 
 Il formato del cookie è `c=%LANGCODE%|uic=%LANGCODE%`, dove `c` è `Culture` e `uic` è `UICulture`, ad esempio:
 
@@ -280,18 +286,18 @@ L'[intestazione Accept-Language](https://www.w3.org/International/questions/qa-a
 ::: moniker range="> aspnetcore-3.1"
 ### <a name="the-content-language-http-header"></a>Intestazione HTTP Content-Language
 
-L'intestazione dell'entità [Content-Language:](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language)
+Intestazione dell'entità [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) :
 
- - Viene utilizzato per descrivere le lingue destinate al pubblico.
- - Consente a un utente di differenziarsi in base alla lingua preferita degli utenti.
+ - Viene usato per descrivere le lingue destinate ai destinatari.
+ - Consente a un utente di distinguere in base alla lingua preferita degli utenti.
 
-Le intestazioni di entità vengono utilizzate sia nelle richieste HTTP che nelle risposte.
+Le intestazioni delle entità vengono usate sia nelle richieste HTTP sia nelle risposte.
 
-L'intestazione `Content-Language` può essere `ApplyCurrentCultureToResponseHeaders`aggiunta impostando la proprietà .
+L' `Content-Language` intestazione può essere aggiunta impostando la proprietà `ApplyCurrentCultureToResponseHeaders`.
 
-Aggiunta `Content-Language` dell'intestazione:
+Aggiunta dell' `Content-Language` intestazione:
 
- - Consente a RequestLocalizationMiddleware `Content-Language` di impostare l'intestazione con l'oggetto `CurrentUICulture`.
+ - Consente a RequestLocalizationMiddleware di impostare l' `Content-Language` intestazione con `CurrentUICulture`.
  - Elimina la necessità di impostare l'intestazione `Content-Language` della risposta in modo esplicito.
 
 ```csharp
@@ -372,11 +378,11 @@ Il metodo `SetLanguage` imposta il cookie delle impostazioni cultura.
 
 [!code-csharp[](localization/sample/Localization/Controllers/HomeController.cs?range=57-67)]
 
-Non è possibile collegare *_SelectLanguagePartial.cshtml* al codice di esempio per questo progetto. Il progetto **Localization.StarterWeb** in [GitHub](https://github.com/aspnet/entropy) include codice per scorrere `RequestLocalizationOptions` in una visualizzazione parziale Razor attraverso il contenitore di [inserimento delle dipendenze](dependency-injection.md).
+Non è possibile collegare *_SelectLanguagePartial.cshtml* al codice di esempio per questo progetto. Il progetto **Localization. StarterWeb** in [GitHub](https://github.com/aspnet/entropy) dispone di codice per il `RequestLocalizationOptions` flusso di Razor a un oggetto parziale tramite il contenitore di [inserimento delle dipendenze](dependency-injection.md) .
 
-## <a name="model-binding-route-data-and-query-strings"></a>Associazione del modello ai dati della route e alle stringhe di query
+## <a name="model-binding-route-data-and-query-strings"></a>Associazione di modelli dati della route e stringhe di query
 
-Vedere Comportamento di globalizzazione dei dati della route e delle stringhe di [query dell'associazione](xref:mvc/models/model-binding#glob)di modelli.
+Vedere [comportamento di globalizzazione delle stringhe di query e dati della route di associazione di modelli](xref:mvc/models/model-binding#glob).
 
 ## <a name="globalization-and-localization-terms"></a>Termini relativi alla globalizzazione e alla localizzazione
 
@@ -410,6 +416,6 @@ Termini:
 * <xref:fundamentals/troubleshoot-aspnet-core-localization>
 * [Progetto Localization.StarterWeb](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) usato nell'articolo.
 * [Globalizzazione e localizzazione di applicazioni .NET](/dotnet/standard/globalization-localization/index)
-* [Risorse nei file resxResources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
+* [Risorse nei file con estensione resx](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localizzazione e generics](http://hishambinateya.com/localization-and-generics)

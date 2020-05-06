@@ -1,19 +1,25 @@
 ---
-title: 'Esercitazione: Aggiungere ordinamento, filtro e paging: ASP.NET MVC con EF CoreTutorial: Add sorting, filtering, and paging - ASP.NET MVC with EF Core'
+title: 'Esercitazione: aggiungere ordinamento, filtro e paging-ASP.NET MVC con EF Core'
 description: In questa esercitazione si aggiungeranno le funzionalità di ordinamento, filtro e suddivisione in pagine alla pagina Student Index (Indice degli studenti). Verrà anche creata una pagina che esegue il raggruppamento semplice.
 author: rick-anderson
 ms.author: riande
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/sort-filter-page
-ms.openlocfilehash: 99bf9ed59b47e8fbba838b97c3e032b9808f6a94
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: d9cd3a74c35d531b5e8c91fc7f922b0cdf8e9558
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657136"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773510"
 ---
-# <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Esercitazione: Aggiungere ordinamento, filtro e paging: ASP.NET MVC con EF CoreTutorial: Add sorting, filtering, and paging - ASP.NET MVC with EF Core
+# <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Esercitazione: aggiungere ordinamento, filtro e paging-ASP.NET MVC con EF Core
 
 Nell'esercitazione precedente è stato implementato un set di pagine Web per operazioni CRUD di base per le entità Student. In questa esercitazione si aggiungeranno le funzionalità di ordinamento, filtro e suddivisione in pagine alla pagina Student Index (Indice degli studenti). Verrà anche creata una pagina che esegue il raggruppamento semplice.
 
@@ -41,7 +47,7 @@ Per aggiungere l'ordinamento alla pagina Student Index (Indice degli studenti), 
 
 ### <a name="add-sorting-functionality-to-the-index-method"></a>Aggiungere la funzionalità di ordinamento al metodo Index
 
-In *StudentsController.cs*sostituire `Index` il metodo con il codice seguente:
+In *StudentsController.cs*sostituire il `Index` metodo con il codice seguente:
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortOnly)]
 
@@ -91,9 +97,9 @@ In *StudentsController.cs* sostituire il metodo `Index` con il codice seguente (
 È stato aggiunto un parametro `searchString` al metodo `Index`. Il valore della stringa di ricerca viene ricevuto da una casella di testo che verrà aggiunta alla visualizzazione Index (Indice). È stata anche aggiunta all'istruzione LINQ una clausola where che seleziona solo gli studenti il cui nome o cognome contiene la stringa di ricerca. L'istruzione che aggiunge la clausola where viene eseguita solo se è presente un valore per la ricerca.
 
 > [!NOTE]
-> In questo esempio si chiama il metodo `Where` su un oggetto `IQueryable` e il filtro verrà elaborato nel server. In alcuni scenari potrebbe essere chiamato il metodo `Where` come metodo di estensione per una raccolta in memoria. Si supponga, ad esempio, `_context.Students` di modificare il riferimento `DbSet` in modo che anziché un eF fa riferimento a un metodo del repository che restituisce una `IEnumerable` raccolta. Il risultato sarebbe normalmente lo stesso, ma in alcuni casi può essere diverso.
+> In questo esempio si chiama il metodo `Where` su un oggetto `IQueryable` e il filtro verrà elaborato nel server. In alcuni scenari potrebbe essere chiamato il metodo `Where` come metodo di estensione per una raccolta in memoria. Si supponga, ad esempio, di modificare il riferimento `_context.Students` a in modo che invece di `DbSet` un EF faccia riferimento a un metodo di `IEnumerable` repository che restituisce una raccolta. Il risultato sarebbe normalmente lo stesso, ma in alcuni casi può essere diverso.
 >
->Ad esempio, l'implementazione di .NET Framework del metodo `Contains` esegue un confronto con la distinzione tra maiuscole e minuscole per impostazione predefinita, ma in SQL Server questo è determinato dall'impostazione delle regole di confronto dell'istanza di SQL Server. Questa impostazione usa come valore predefinito la non applicazione della distinzione tra maiuscole e minuscole. È possibile chiamare il metodo `ToUpper` per fare in modo che il test non applichi in modo esplicito la distinzione tra maiuscole e minuscole: *Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())*. Questo fa sì che i risultati rimangano invariati se si modifica il codice in un secondo momento per usare un repository che restituisce una raccolta `IEnumerable` invece di un oggetto `IQueryable`. Quando si chiama `Contains` il `IEnumerable` metodo su una raccolta, si ottiene l'implementazione di .NET Framework; quando viene chiamato su un `IQueryable` oggetto, si ottiene l'implementazione del provider di database. Tuttavia, c'è una riduzione delle prestazioni per questa soluzione. Il codice `ToUpper` dovrà inserire una funzione nella clausola WHERE dell'istruzione TSQL SELECT. In questo modo si evita che l'ottimizzazione usi un indice. Dato che SQL viene installato per lo più con l'impostazione senza distinzione tra maiuscole e minuscole, è consigliabile evitare il codice `ToUpper` fino a quando non si esegue la migrazione a un archivio con distinzione tra maiuscole e minuscole.
+>Ad esempio, l'implementazione di .NET Framework del metodo `Contains` esegue un confronto con la distinzione tra maiuscole e minuscole per impostazione predefinita, ma in SQL Server questo è determinato dall'impostazione delle regole di confronto dell'istanza di SQL Server. Questa impostazione usa come valore predefinito la non applicazione della distinzione tra maiuscole e minuscole. È possibile chiamare il metodo `ToUpper` per fare in modo che il test non applichi in modo esplicito la distinzione tra maiuscole e minuscole: *Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())*. Questo fa sì che i risultati rimangano invariati se si modifica il codice in un secondo momento per usare un repository che restituisce una raccolta `IEnumerable` invece di un oggetto `IQueryable`. Quando si chiama il `Contains` metodo su una `IEnumerable` raccolta, si ottiene l'implementazione di .NET Framework; quando viene chiamato su un `IQueryable` oggetto, si ottiene l'implementazione del provider di database. Tuttavia, si verifica una riduzione delle prestazioni per questa soluzione. Il codice `ToUpper` dovrà inserire una funzione nella clausola WHERE dell'istruzione TSQL SELECT. In questo modo si evita che l'ottimizzazione usi un indice. Dato che SQL viene installato per lo più con l'impostazione senza distinzione tra maiuscole e minuscole, è consigliabile evitare il codice `ToUpper` fino a quando non si esegue la migrazione a un archivio con distinzione tra maiuscole e minuscole.
 
 ### <a name="add-a-search-box-to-the-student-index-view"></a>Aggiungere una casella di ricerca alla visualizzazione Student Index (Indice degli studenti)
 
@@ -265,4 +271,4 @@ In questa esercitazione:
 Passare all'esercitazione successiva per apprendere come gestire le modifiche al modello di dati tramite le migrazioni.
 
 > [!div class="nextstepaction"]
-> [Successiva: Gestire le modifiche al modello di dati](migrations.md)
+> [Passaggio successivo: gestire le modifiche al modello di dati](migrations.md)

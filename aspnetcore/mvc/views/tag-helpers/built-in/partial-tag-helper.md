@@ -6,25 +6,31 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/06/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-ms.openlocfilehash: 269be9ece674b39d03cb50720f4fb182c565a639
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: d3207969dfbeb9a81e0da88f38a38c6889bbfba9
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659649"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775869"
 ---
 # <a name="partial-tag-helper-in-aspnet-core"></a>Helper tag Partial in ASP.NET Core
 
 Di [Scott Addie](https://github.com/scottaddie)
 
-Per una panoramica degli helper tag, vedere <xref:mvc/views/tag-helpers/intro>.
+Per una panoramica degli helper per tag, vedere <xref:mvc/views/tag-helpers/intro>.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ## <a name="overview"></a>Panoramica
 
-L'helper tag Partial viene usato per il rendering di una [visualizzazione parziale](xref:mvc/views/partial) in Razor Pages e nelle app MVC. Tenere presente che:
+L'helper per tag parziale viene usato per il rendering di una [visualizzazione parziale](xref:mvc/views/partial) in Razor pagine e app MVC. Tenere presente che:
 
 * Richiede ASP.NET Core 2.1 o versione successiva.
 * Rappresenta un'alternativa alla [sintassi helper HTML](xref:mvc/views/partial#reference-a-partial-view).

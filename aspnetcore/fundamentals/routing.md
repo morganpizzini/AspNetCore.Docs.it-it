@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/1/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 79a46cac4122728e84fa6f5acb3defa182092bec
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 2dd44a561debddac13250174a8e74dd912302d60
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206125"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850513"
 ---
 # <a name="routing-in-aspnet-core"></a>Routing in ASP.NET Core
 
@@ -348,7 +354,7 @@ I dettagli del funzionamento della precedenza sono associati alla modalità di d
 * Un segmento con testo letterale viene considerato più specifico rispetto a un segmento di parametro.
 * Un segmento di parametro con un vincolo è considerato più specifico di uno senza.
 * Un segmento complesso è considerato specifico come un segmento di parametro con un vincolo.
-* Catch all parameters è il meno specifico.
+* I parametri catch-all sono i meno specifici. Per informazioni importanti sulle route catch-all, vedere **catch-all** nel [riferimento del modello di route](#rtr) .
 
 Per un riferimento di valori esatti, vedere il [codice sorgente su GitHub](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Template/RoutePrecedence.cs#L189) .
 
@@ -416,6 +422,8 @@ Asterisco `*` o doppio asterisco `**`:
   * Corrisponde a qualsiasi URI che inizia `/blog` con e ha un valore che lo segue.
   * Il valore seguente `/blog` viene assegnato al valore di route [Slug](https://developer.mozilla.org/docs/Glossary/Slug) .
 
+[!INCLUDE[](~/includes/catchall.md)]
+
 I parametri catch-all possono anche corrispondere alla stringa vuota.
 
 Il parametro catch-all esegue l'escape dei caratteri appropriati quando la route viene usata per generare un URL, inclusi i `/` caratteri separatori di percorso. Ad esempio, la route `foo/{*path}` con i valori di route `{ path = "my/path" }` genera `foo/my%2Fpath`. Si noti la barra di escape. Per eseguire il round trip dei caratteri di separatore di percorso, usare il prefisso del parametro di route `**`. La route `foo/{**path}` con `{ path = "my/path" }` genera `foo/my/path`.
@@ -425,7 +433,7 @@ I modelli di URL che tentano di acquisire un nome file con un'estensione facolta
 * `/files/myFile.txt`
 * `/files/myFile`
 
-I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo (`?`) alla fine del nome del parametro. Ad esempio: `id?`. La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
+I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo (`?`) alla fine del nome del parametro. Ad esempio, `id?` La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
 
 * Un parametro di route con un valore predefinito produce sempre un valore.
 * Un parametro facoltativo ha un valore solo quando un valore viene fornito dall'URL della richiesta.
@@ -555,7 +563,7 @@ Per `{`eseguire l'escape dei caratteri di delimitazione `}`del `[`parametro `]`d
 
 Le espressioni regolari utilizzate nel routing spesso iniziano con `^` il carattere e corrispondono alla posizione iniziale della stringa. Le espressioni terminano spesso con `$` il carattere e corrispondono alla fine della stringa. I `^` caratteri `$` e assicurano che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i `^` caratteri `$` e, l'espressione regolare trova la corrispondenza con qualsiasi sottostringa all'interno della stringa, che è spesso indesiderata. La tabella seguente fornisce esempi e spiega perché corrispondono o non riescono a corrispondere:
 
-| Expression   | Stringa    | Corrispondenza | Commento               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -573,6 +581,8 @@ Per limitare un parametro a un set noto di valori possibili, usare un'espression
 È possibile creare vincoli di Route personalizzati implementando <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> l'interfaccia. L' `IRouteConstraint` interfaccia contiene <xref:System.Web.Routing.IRouteConstraint.Match*>, che restituisce `true` se il vincolo è soddisfatto e `false` in caso contrario.
 
 I vincoli di Route personalizzati sono raramente necessari. Prima di implementare un vincolo di route personalizzato, prendere in considerazione le alternative, ad esempio l'associazione di modelli.
+
+Nella cartella ASP.NET Core [Constraints](https://github.com/dotnet/aspnetcore/tree/master/src/Http/Routing/src/Constraints) sono disponibili ottimi esempi di creazione di vincoli. Ad esempio, [GuidRouteConstraint](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Constraints/GuidRouteConstraint.cs#L18).
 
 Per usare un oggetto `IRouteConstraint`personalizzato, il tipo di vincolo di route deve essere registrato con <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> l'app nel contenitore del servizio. `ConstraintMap` è un dizionario che esegue il mapping delle chiavi dei vincoli di route alle implementazioni di `IRouteConstraint` che convalidano tali vincoli. La proprietà `ConstraintMap` di un'app può essere aggiornata in `Startup.ConfigureServices` come parte di una chiamata [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) o configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> direttamente con `services.Configure<RouteOptions>`. Ad esempio:
 
@@ -1474,7 +1484,7 @@ Per `{`eseguire l'escape dei caratteri di delimitazione `}`del `[`parametro `]`d
 
 Le espressioni regolari utilizzate nel routing spesso iniziano con il `^` carattere del punto di inserimento e corrispondono alla posizione iniziale della stringa. Le espressioni spesso terminano con il carattere `$` di segno di dollaro e la fine della corrispondenza della stringa. I caratteri `^` e `$` consentono di verificare che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i caratteri `^` e `$` l'espressione regolare corrisponde a qualsiasi sottostringa all'interno della stringa e spesso questo non è il risultato desiderato. La tabella seguente include alcuni esempi e descrive perché si verifica o non si verifica la corrispondenza.
 
-| Expression   | Stringa    | Corrispondenza | Commento               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -1918,7 +1928,7 @@ Le espressioni regolari usano delimitatori e token simili a quelli usati dal rou
 
 Le espressioni regolari usate nel routing spesso iniziano con l'accento circonflesso (`^`) e corrispondono alla posizione iniziale della stringa. Le espressioni spesso terminano con il segno di dollaro (`$`) e corrispondono alla fine della stringa. I caratteri `^` e `$` consentono di verificare che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i caratteri `^` e `$` l'espressione regolare corrisponde a qualsiasi sottostringa all'interno della stringa e spesso questo non è il risultato desiderato. La tabella seguente include alcuni esempi e descrive perché si verifica o non si verifica la corrispondenza.
 
-| Expression   | Stringa    | Corrispondenza | Commento               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |

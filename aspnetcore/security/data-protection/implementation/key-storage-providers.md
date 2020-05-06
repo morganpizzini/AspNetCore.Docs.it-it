@@ -4,20 +4,26 @@ author: rick-anderson
 description: Informazioni sui provider di archiviazione chiavi in ASP.NET Core e su come configurare i percorsi di archiviazione delle chiavi.
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: 19f64e816d88d2fc156915e31dc147645c5a630a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: a8d38f17b066a0aa9a38b1bdfea3491f733cf1bc
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78662960"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776877"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Provider di archiviazione chiavi in ASP.NET Core
 
-Per impostazione predefinita, il sistema di protezione dei dati [utilizza un meccanismo di individuazione](xref:security/data-protection/configuration/default-settings) per determinare dove devono essere rese permanente le chiavi crittografiche. Lo sviluppatore può ignorare il meccanismo di individuazione predefinito e specificare manualmente il percorso.
+Per impostazione predefinita, il sistema di protezione dei dati [utilizza un meccanismo di individuazione](xref:security/data-protection/configuration/default-settings) per determinare dove devono essere rese permanente le chiavi crittografiche. Lo sviluppatore può eseguire l'override del meccanismo di individuazione predefinito e specificare manualmente il percorso.
 
 > [!WARNING]
-> Se si specifica un percorso di persistenza chiave esplicite, il sistema di protezione dati Annulla la registrazione di crittografia della chiave predefinita al meccanismo di rest, in modo che le chiavi non vengono più crittografate a riposo. Si consiglia inoltre di [specificare un meccanismo di crittografia a chiave esplicito](xref:security/data-protection/implementation/key-encryption-at-rest) per le distribuzioni di produzione.
+> Se si specifica un percorso di persistenza della chiave esplicito, il sistema di protezione dei dati Annulla la registrazione del meccanismo di crittografia delle chiavi predefinite, in modo che le chiavi non vengano più crittografate a riposo. Si consiglia inoltre di [specificare un meccanismo di crittografia a chiave esplicito](xref:security/data-protection/implementation/key-encryption-at-rest) per le distribuzioni di produzione.
 
 ## <a name="file-system"></a>File system
 
@@ -35,7 +41,7 @@ Il `DirectoryInfo` può puntare a una directory nel computer locale oppure può 
 
 ## <a name="azure-storage"></a>Archiviazione di Azure
 
-Il pacchetto [Microsoft. AspNetCore. dataprotection. AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) consente di archiviare le chiavi di protezione dei dati nell'archivio BLOB di Azure. Le chiavi possono essere condivisi tra più istanze di un'app web. Le app possono condividere i cookie di autenticazione o CSRF protection tra più server.
+Il pacchetto [Microsoft. AspNetCore. dataprotection. AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) consente di archiviare le chiavi di protezione dei dati nell'archivio BLOB di Azure. Le chiavi possono essere condivise tra più istanze di un'app Web. Le app possono condividere i cookie di autenticazione o la protezione CSRF su più server.
 
 Per configurare il provider di archiviazione BLOB di Azure, chiamare uno degli overload [PersistKeysToAzureBlobStorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage) .
 
@@ -70,13 +76,13 @@ Per [ulteriori informazioni sulla configurazione dell'autenticazione da servizio
 
 ::: moniker range=">= aspnetcore-2.2"
 
-Il pacchetto [Microsoft. AspNetCore. dataprotection. StackExchangeRedis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.StackExchangeRedis/) consente di archiviare le chiavi di protezione dei dati in una cache Redis. Le chiavi possono essere condivisi tra più istanze di un'app web. Le app possono condividere i cookie di autenticazione o CSRF protection tra più server.
+Il pacchetto [Microsoft. AspNetCore. dataprotection. StackExchangeRedis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.StackExchangeRedis/) consente di archiviare le chiavi di protezione dei dati in una cache Redis. Le chiavi possono essere condivise tra più istanze di un'app Web. Le app possono condividere i cookie di autenticazione o la protezione CSRF su più server.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-Il pacchetto [Microsoft. AspNetCore. dataprotection. Redis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Redis/) consente di archiviare le chiavi di protezione dei dati in una cache Redis. Le chiavi possono essere condivisi tra più istanze di un'app web. Le app possono condividere i cookie di autenticazione o CSRF protection tra più server.
+Il pacchetto [Microsoft. AspNetCore. dataprotection. Redis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Redis/) consente di archiviare le chiavi di protezione dei dati in una cache Redis. Le chiavi possono essere condivise tra più istanze di un'app Web. Le app possono condividere i cookie di autenticazione o la protezione CSRF su più server.
 
 ::: moniker-end
 
@@ -110,7 +116,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker-end
 
-Per altre informazioni, vedere gli argomenti seguenti:
+Per altre informazioni, vedere i seguenti argomenti:
 
 * [StackExchange. Redis ConnectionMultiplexer](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/Basics.md)
 * [Cache Redis di Azure](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache#connect-to-the-cache)
@@ -120,7 +126,7 @@ Per altre informazioni, vedere gli argomenti seguenti:
 
 **Si applica solo alle distribuzioni di Windows.**
 
-In alcuni casi l'app potrebbe non avere accesso in scrittura nel file System. Si consideri uno scenario in cui un'app è in esecuzione come account del servizio virtuale, ad esempio l'identità del pool di applicazioni di *w3wp. exe*. In questi casi, l'amministratore può effettuare il provisioning di una chiave del Registro di sistema che è accessibile dall'identità account del servizio. Chiamare il metodo di estensione [PersistKeysToRegistry](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystoregistry) , come illustrato di seguito. Specificare un [RegistryKey](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository.registrykey) che punta alla posizione in cui devono essere archiviate le chiavi crittografiche:
+In alcuni casi l'app potrebbe non avere accesso in scrittura alla file system. Si consideri uno scenario in cui un'app è in esecuzione come account del servizio virtuale, ad esempio l'identità del pool di applicazioni di *w3wp. exe*. In questi casi, l'amministratore può eseguire il provisioning di una chiave del registro di sistema accessibile dall'identità dell'account del servizio. Chiamare il metodo di estensione [PersistKeysToRegistry](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystoregistry) , come illustrato di seguito. Specificare un [RegistryKey](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository.registrykey) che punta alla posizione in cui devono essere archiviate le chiavi crittografiche:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -137,11 +143,11 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="entity-framework-core"></a>Entity Framework Core
 
-Il pacchetto [Microsoft. AspNetCore. dataprotection. EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) fornisce un meccanismo per archiviare le chiavi di protezione dati in un database usando Entity Framework Core. Il pacchetto NuGet di `Microsoft.AspNetCore.DataProtection.EntityFrameworkCore` deve essere aggiunto al file di progetto, non fa parte del [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
+Il pacchetto [Microsoft. AspNetCore. dataprotection. EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) fornisce un meccanismo per archiviare le chiavi di protezione dati in un database usando Entity Framework Core. Il `Microsoft.AspNetCore.DataProtection.EntityFrameworkCore` pacchetto NuGet deve essere aggiunto al file di progetto e non è incluso nel [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
 
-Con questo pacchetto, le chiavi possono essere condivisi tra più istanze di un'app web.
+Con questo pacchetto, le chiavi possono essere condivise tra più istanze di un'app Web.
 
-Per configurare il provider di EF Core, chiamare il metodo [PersistKeysToDbContext\<TContext >](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
+Per configurare il provider di EF Core, chiamare il metodo [\<PersistKeysToDbContext TContext>](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
 
 [!code-csharp[Main](key-storage-providers/sample/Startup.cs?name=snippet&highlight=13-20)]
 
@@ -151,7 +157,7 @@ Il parametro generico, `TContext`, deve ereditare da [DbContext](/dotnet/api/mic
 
 [!code-csharp[Main](key-storage-providers/sample/MyKeysContext.cs)]
 
-Creare la tabella `DataProtectionKeys`.
+Creare la `DataProtectionKeys` tabella.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -173,9 +179,9 @@ dotnet ef database update --context MyKeysContext
 
 ---
 
-`MyKeysContext` è l'`DbContext` definito nell'esempio di codice precedente. Se si usa un `DbContext` con un nome diverso, sostituire il nome del `DbContext` per `MyKeysContext`.
+`MyKeysContext`è l' `DbContext` oggetto definito nel codice di esempio precedente. Se si usa un `DbContext` con un nome diverso, sostituire con il `DbContext` nome. `MyKeysContext`
 
-Il `DataProtectionKeys` classe/entità adotta la struttura illustrata nella tabella seguente.
+La `DataProtectionKeys` classe/entità adotta la struttura illustrata nella tabella seguente.
 
 | Proprietà/campo | Tipo CLR | Tipo SQL              |
 | -------------- | -------- | --------------------- |
@@ -185,6 +191,6 @@ Il `DataProtectionKeys` classe/entità adotta la struttura illustrata nella tabe
 
 ::: moniker-end
 
-## <a name="custom-key-repository"></a>Archivio chiave personalizzato
+## <a name="custom-key-repository"></a>Repository di chiavi personalizzate
 
 Se i meccanismi predefiniti non sono appropriati, lo sviluppatore può specificare il proprio meccanismo di persistenza della chiave fornendo un [IXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.ixmlrepository)personalizzato.

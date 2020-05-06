@@ -4,13 +4,19 @@ author: rick-anderson
 description: Informazioni sui dettagli di implementazione di ASP.NET Core crittografia della chiave di protezione dati inattivi.
 ms.author: riande
 ms.date: 07/16/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/key-encryption-at-rest
-ms.openlocfilehash: 52c3137dbe467096364b42430c92aecc7c15e313
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: e68b8e09dbd876c6f0d37242ebaa415994b3b808
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78658389"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776929"
 ---
 # <a name="key-encryption-at-rest-in-aspnet-core"></a>Crittografia chiave inattiva in ASP.NET Core
 
@@ -23,7 +29,7 @@ Per impostazione predefinita, il sistema di protezione dei dati [utilizza un mec
 
 ## <a name="azure-key-vault"></a>Insieme di credenziali chiave di Azure
 
-Per archiviare le chiavi in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configurare il sistema con [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) nella classe `Startup`:
+Per archiviare le chiavi in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configurare il sistema con [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) nella `Startup` classe:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -38,7 +44,7 @@ Per ulteriori informazioni, vedere [Configure ASP.NET Core Data Protection: Prot
 
 ::: moniker-end
 
-## <a name="windows-dpapi"></a>Windows DPAPI
+## <a name="windows-dpapi"></a>DPAPI di Windows
 
 **Si applica solo alle distribuzioni di Windows.**
 

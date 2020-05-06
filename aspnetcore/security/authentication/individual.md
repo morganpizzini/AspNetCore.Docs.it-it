@@ -4,19 +4,25 @@ author: rick-anderson
 description: Scopri gli articoli in base ai progetti ASP.NET Core creati con singoli account utente.
 ms.author: riande
 ms.date: 12/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/individual
-ms.openlocfilehash: 7ef0d5eabded61d04fb9fe7be384a663ad7ea5f4
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 26f53b6452e307bbd0816c1a3604f38b04c6af15
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659621"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768650"
 ---
 # <a name="articles-based-on-aspnet-core-projects-created-with-individual-user-accounts"></a>Articoli basati su progetti ASP.NET Core creati con account utente singoli
 
 ASP.NET Core identità è inclusa nei modelli di progetto di Visual Studio con l'opzione "singoli account utente".
 
-I modelli di autenticazione sono disponibili in interfaccia della riga di comando di .NET Core con `-au Individual`:
+I modelli di autenticazione sono disponibili in interfaccia della riga di comando di .NET Core `-au Individual`con:
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -42,7 +48,7 @@ Vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore/issues/5
 
 ## <a name="no-authentication"></a>Nessuna autenticazione
 
-L'autenticazione viene specificata nella interfaccia della riga di comando di .NET Core con l'opzione `-au`. In Visual Studio la finestra di dialogo **Modifica autenticazione** è disponibile per le nuove applicazioni Web. Il valore predefinito per le nuove app Web in Visual Studio **non è Authentication**.
+L'autenticazione viene specificata nella interfaccia della riga di comando di .NET Core con l' `-au` opzione. In Visual Studio la finestra di dialogo **Modifica autenticazione** è disponibile per le nuove applicazioni Web. Il valore predefinito per le nuove app Web in Visual Studio **non è Authentication**.
 
 Progetti creati senza autenticazione:
 
@@ -53,7 +59,7 @@ Progetti creati senza autenticazione:
 
 ## <a name="windows-authentication"></a>Autenticazione di Windows
 
-Viene specificata l'autenticazione di Windows per le nuove app Web nella interfaccia della riga di comando di .NET Core con l'opzione `-au Windows`. In Visual Studio la finestra di dialogo **Cambia autenticazione** fornisce le opzioni di **autenticazione di Windows** .
+L'autenticazione di Windows viene specificata per le nuove app Web nella interfaccia della riga di comando di .NET Core `-au Windows` con l'opzione. In Visual Studio la finestra di dialogo **Cambia autenticazione** fornisce le opzioni di **autenticazione di Windows** .
 
 Se è selezionata l'autenticazione di Windows, l'app viene configurata per l'uso del [modulo IIS](xref:host-and-deploy/iis/modules)per l'autenticazione di Windows. L'autenticazione di Windows è destinata ai siti Web Intranet.
 
@@ -61,7 +67,7 @@ Se è selezionata l'autenticazione di Windows, l'app viene configurata per l'uso
 
 La tabella seguente illustra le opzioni di autenticazione disponibili per le nuove app Web:
 
-| Opzione | Tipo di autenticazione | Collegamento per ulteriori informazioni |
+| Opzione | Tipo di autenticazione | Collegamento per altre informazioni |
  | ----------------- | ------------ | ---------- |
 | nessuno            |  Nessuna autenticazione | | 
 | Utenti      |  Autenticazione singola | <xref:security/authentication/identity>
@@ -74,7 +80,7 @@ La tabella seguente illustra le opzioni di autenticazione disponibili per le nuo
 
 La tabella seguente illustra le opzioni di autenticazione disponibili quando si crea una nuova app Web con Visual Studio:
 
-| Opzione | Tipo di autenticazione | Collegamento per ulteriori informazioni |
+| Opzione | Tipo di autenticazione | Collegamento per altre informazioni |
  | ----------------- | ------------ | ---------- |
 | nessuno            |  Nessuna autenticazione | | 
 | Account utente singoli/archivia account utente in-app |  Autenticazione singola | <xref:security/authentication/identity> |

@@ -5,13 +5,19 @@ description: Informazioni su come usare i token di modifica per rilevare le modi
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 10/07/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/change-tokens
-ms.openlocfilehash: 70451e219f1295b854e2f84aac55f0cfd1786b19
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 40868c57507989e1d3040df2cbe2feb4871d4394
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78656345"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774795"
 ---
 # <a name="detect-changes-with-change-tokens-in-aspnet-core"></a>Rilevare le modifiche apportate con i token di modifica in ASP.NET Core
 
@@ -19,11 +25,11 @@ ms.locfileid: "78656345"
 
 Un *token di modifica* è un blocco predefinito di uso generico e di basso livello che viene usato per il rilevamento delle modifiche di stato.
 
-[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ( come[scaricare](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ## <a name="ichangetoken-interface"></a>Interfaccia IChangeToken
 
-<xref:Microsoft.Extensions.Primitives.IChangeToken> propaga le notifiche relative a una modifica apportata. `IChangeToken` risiede nello spazio dei nomi <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. Il pacchetto Microsoft.Extensions.Primitives NuGet viene fornito in modo implicito alle app ASP.NET Core.The [Microsoft.Extensions.Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) NuGet package is implicitly provided to the ASP.NET Core apps.
+<xref:Microsoft.Extensions.Primitives.IChangeToken> propaga le notifiche relative a una modifica apportata. `IChangeToken` risiede nello spazio dei nomi <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. Il pacchetto NuGet [Microsoft. Extensions. Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) viene fornito in modo implicito alle app ASP.NET Core.
 
 `IChangeToken` ha due proprietà:
 
@@ -34,7 +40,7 @@ L'interfaccia `IChangeToken` include il metodo [RegisterChangeCallback(Action\<O
 
 ## <a name="changetoken-class"></a>Classe ChangeToken
 
-<xref:Microsoft.Extensions.Primitives.ChangeToken> è una classe statica usata per propagare le notifiche relative a una modifica che è stata apportata. `ChangeToken` risiede nello spazio dei nomi <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. Il pacchetto Microsoft.Extensions.Primitives NuGet viene fornito in modo implicito alle app ASP.NET Core.The [Microsoft.Extensions.Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) NuGet package is implicitly provided to the ASP.NET Core apps.
+<xref:Microsoft.Extensions.Primitives.ChangeToken> è una classe statica usata per propagare le notifiche relative a una modifica che è stata apportata. `ChangeToken` risiede nello spazio dei nomi <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. Il pacchetto NuGet [Microsoft. Extensions. Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) viene fornito in modo implicito alle app ASP.NET Core.
 
 Il metodo [ChangeToken.OnChange(Func\<IChangeToken>, Action)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) registra un elemento `Action` da chiamare quando il token viene modificato:
 
@@ -114,7 +120,7 @@ Il costruttore della classe implementata, `ConfigurationMonitor`, registra un ca
 `config.GetReloadToken()` fornisce il token. `InvokeChanged` è il metodo di callback. Il valore `state` in questa istanza è un riferimento all'istanza `IConfigurationMonitor` usata per accedere allo stato di monitoraggio. Vengono usate due proprietà:
 
 * `MonitoringEnabled`&ndash; Indica se il callback deve eseguire il codice personalizzato.
-* `CurrentState`&ndash; Descrive lo stato di monitoraggio corrente da utilizzare nell'interfaccia utente.
+* `CurrentState`&ndash; Descrive lo stato di monitoraggio corrente per l'uso nell'interfaccia utente.
 
 Il metodo `InvokeChanged` è simile all'approccio precedente, ad eccezione del fatto che:
 
@@ -141,7 +147,7 @@ Quando viene attivato `OnPostStartMonitoring`, il monitoraggio è abilitato e lo
 
 I pulsanti nell'interfaccia utente abilitano e disabilitano il monitoraggio.
 
-*Pages/Index.cshtml*:
+*Pages/index. cshtml*:
 
 [!code-cshtml[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml?name=snippet_Buttons)]
 
@@ -170,7 +176,7 @@ Se non è possibile reperire il contenuto memorizzato nella cache usando la chia
 1. Un token di modifica viene ottenuto dal provider di file con [IFileProviders.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*). Il callback del token viene attivato alla modifica del file.
 1. Il contenuto del file viene memorizzato nella cache con un periodo di [scadenza variabile](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration). Al token di modifica viene associato [MemoryCacheEntryExtensions.AddExpirationToken](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.AddExpirationToken*) per eliminare la voce della cache se il file viene modificato mentre è memorizzato nella cache.
 
-Nell'esempio seguente, i file vengono archiviati nella radice del [contenuto](xref:fundamentals/index#content-root)dell'app. `IWebHostEnvironment.ContentRootFileProvider`viene utilizzato per <xref:Microsoft.Extensions.FileProviders.IFileProvider> ottenere un punto `IWebHostEnvironment.ContentRootPath`di punto dell'app . `filePath` viene ottenuto con [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
+Nell'esempio seguente i file vengono archiviati nella [radice del contenuto](xref:fundamentals/index#content-root)dell'app. `IWebHostEnvironment.ContentRootFileProvider`viene usato per ottenere un <xref:Microsoft.Extensions.FileProviders.IFileProvider> oggetto che punta all'oggetto `IWebHostEnvironment.ContentRootPath`dell'app. `filePath` viene ottenuto con [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Services/FileService.cs?name=snippet1)]
 
@@ -217,7 +223,7 @@ var compositeChangeToken =
 
 Un *token di modifica* è un blocco predefinito di uso generico e di basso livello che viene usato per il rilevamento delle modifiche di stato.
 
-[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ( come[scaricare](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ## <a name="ichangetoken-interface"></a>Interfaccia IChangeToken
 
@@ -312,7 +318,7 @@ Il costruttore della classe implementata, `ConfigurationMonitor`, registra un ca
 `config.GetReloadToken()` fornisce il token. `InvokeChanged` è il metodo di callback. Il valore `state` in questa istanza è un riferimento all'istanza `IConfigurationMonitor` usata per accedere allo stato di monitoraggio. Vengono usate due proprietà:
 
 * `MonitoringEnabled`&ndash; Indica se il callback deve eseguire il codice personalizzato.
-* `CurrentState`&ndash; Descrive lo stato di monitoraggio corrente da utilizzare nell'interfaccia utente.
+* `CurrentState`&ndash; Descrive lo stato di monitoraggio corrente per l'uso nell'interfaccia utente.
 
 Il metodo `InvokeChanged` è simile all'approccio precedente, ad eccezione del fatto che:
 
@@ -339,7 +345,7 @@ Quando viene attivato `OnPostStartMonitoring`, il monitoraggio è abilitato e lo
 
 I pulsanti nell'interfaccia utente abilitano e disabilitano il monitoraggio.
 
-*Pages/Index.cshtml*:
+*Pages/index. cshtml*:
 
 [!code-cshtml[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml?name=snippet_Buttons)]
 
@@ -368,7 +374,7 @@ Se non è possibile reperire il contenuto memorizzato nella cache usando la chia
 1. Un token di modifica viene ottenuto dal provider di file con [IFileProviders.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*). Il callback del token viene attivato alla modifica del file.
 1. Il contenuto del file viene memorizzato nella cache con un periodo di [scadenza variabile](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration). Al token di modifica viene associato [MemoryCacheEntryExtensions.AddExpirationToken](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.AddExpirationToken*) per eliminare la voce della cache se il file viene modificato mentre è memorizzato nella cache.
 
-Nell'esempio seguente, i file vengono archiviati nella radice del [contenuto](xref:fundamentals/index#content-root)dell'app. [IHostingEnvironment.ContentRootFileProvider](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootFileProvider) viene usato per ottenere un <xref:Microsoft.Extensions.FileProviders.IFileProvider> che punta al <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath> dell'app. `filePath` viene ottenuto con [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
+Nell'esempio seguente i file vengono archiviati nella [radice del contenuto](xref:fundamentals/index#content-root)dell'app. [IHostingEnvironment.ContentRootFileProvider](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootFileProvider) viene usato per ottenere un <xref:Microsoft.Extensions.FileProviders.IFileProvider> che punta al <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath> dell'app. `filePath` viene ottenuto con [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Services/FileService.cs?name=snippet1)]
 

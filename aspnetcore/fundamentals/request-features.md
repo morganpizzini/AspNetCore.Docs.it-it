@@ -4,13 +4,19 @@ author: ardalis
 description: Dettagli dell'implementazione di server Web relativi alle richieste e alle risposte HTTP definiti nelle interfacce per ASP.NET Core.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/request-features
-ms.openlocfilehash: d0f3ae521d1f314dd04cb581d9a921da4719273d
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: e26a1a7b35d40c1214bbc40269571545cbd2c235
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79416226"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776025"
 ---
 # <a name="request-features-in-aspnet-core"></a>Funzionalità di richiesta in ASP.NET Core
 
@@ -71,4 +77,4 @@ Le interfacce di funzionalità definiscono funzionalità HTTP specifiche support
 
 * [Server](xref:fundamentals/servers/index)
 * [Middleware](xref:fundamentals/middleware/index)
-* [Aprire l'interfaccia Web per .NET (OWIN)](xref:fundamentals/owin)
+* [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)

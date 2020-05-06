@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/social/additional-claims
-ms.openlocfilehash: 9dfe5745125e34ed813d078529471a0ba2a53ab0
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 6acc1d78bf5cc39fd69329bad1cff0fbe52d9358
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78666831"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82769030"
 ---
 # <a name="persist-additional-claims-and-tokens-from-external-providers-in-aspnet-core"></a>Mantieni attestazioni e token aggiuntivi da provider esterni in ASP.NET Core
 
@@ -22,7 +28,7 @@ Un'app ASP.NET Core può creare attestazioni e token aggiuntivi da provider di a
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/social/additional-claims/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 Decidere quali provider di autenticazione esterni supportare nell'app. Per ogni provider, registrare l'app e ottenere un ID client e un segreto client. Per altre informazioni, vedere <xref:security/authentication/social/index>. L'app di esempio usa il [provider di autenticazione Google](xref:security/authentication/google-logins).
 
@@ -30,10 +36,10 @@ Decidere quali provider di autenticazione esterni supportare nell'app. Per ogni 
 
 Il provider di autenticazione OAuth stabilisce una relazione di trust con un'app che usa un ID client e un segreto client. I valori relativi all'ID client e al segreto client vengono creati per l'app dal provider di autenticazione esterno quando l'app viene registrata con il provider. Ogni provider esterno usato dall'app deve essere configurato in modo indipendente con l'ID client e il segreto client del provider. Per ulteriori informazioni, vedere gli argomenti del provider di autenticazione esterno applicabili allo scenario:
 
-* [Autenticazione di Facebook](xref:security/authentication/facebook-logins)
-* [Autenticazione di Google](xref:security/authentication/google-logins)
+* [Autenticazione Facebook](xref:security/authentication/facebook-logins)
+* [Autenticazione Google](xref:security/authentication/google-logins)
 * [Autenticazione Microsoft](xref:security/authentication/microsoft-logins)
-* [Autenticazione di Twitter](xref:security/authentication/twitter-logins)
+* [Autenticazione Twitter](xref:security/authentication/twitter-logins)
 * [Altri provider di autenticazione](xref:security/authentication/otherlogins)
 * [OpenIdConnect](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2)
 
@@ -43,7 +49,7 @@ L'app di esempio configura il provider di autenticazione Google con un ID client
 
 ## <a name="establish-the-authentication-scope"></a>Definire l'ambito di autenticazione
 
-Specificare l'elenco di autorizzazioni da recuperare dal provider specificando la <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope*>. Gli ambiti di autenticazione per i provider esterni comuni sono riportati nella tabella seguente.
+Specificare l'elenco di autorizzazioni da recuperare dal provider specificando <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope*>. Gli ambiti di autenticazione per i provider esterni comuni sono riportati nella tabella seguente.
 
 | Provider  | Scope                                                            |
 | --------- | ---------------------------------------------------------------- |
@@ -52,7 +58,7 @@ Specificare l'elenco di autorizzazioni da recuperare dal provider specificando l
 | Microsoft | `https://login.microsoftonline.com/common/oauth2/v2.0/authorize` |
 | Twitter   | `https://api.twitter.com/oauth/authenticate`                     |
 
-Nell'app di esempio, l'ambito `userinfo.profile` di Google viene aggiunto automaticamente dal framework quando viene chiamato <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle*> sul <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder>. Se l'app richiede ambiti aggiuntivi, aggiungerli alle opzioni. Nell'esempio seguente viene aggiunto l'ambito di Google `https://www.googleapis.com/auth/user.birthday.read` per recuperare il compleanno di un utente:
+Nell'app di esempio, l' `userinfo.profile` ambito di Google viene aggiunto automaticamente dal framework quando <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle*> viene chiamato su. <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder> Se l'app richiede ambiti aggiuntivi, aggiungerli alle opzioni. Nell'esempio seguente viene aggiunto l'ambito `https://www.googleapis.com/auth/user.birthday.read` Google per recuperare il compleanno di un utente:
 
 ```csharp
 options.Scope.Add("https://www.googleapis.com/auth/user.birthday.read");
@@ -60,15 +66,15 @@ options.Scope.Add("https://www.googleapis.com/auth/user.birthday.read");
 
 ## <a name="map-user-data-keys-and-create-claims"></a>Eseguire il mapping delle chiavi di dati utente e creare attestazioni
 
-Nelle opzioni del provider specificare un <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonKey*> o <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonSubKey*> per ogni chiave/sottochiave nei dati utente JSON del provider esterno per l'identità dell'app da leggere durante l'accesso. Per ulteriori informazioni sui tipi di attestazione, vedere <xref:System.Security.Claims.ClaimTypes>.
+Nelle opzioni del provider specificare un <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonKey*> o <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonSubKey*> per ogni chiave/sottochiave nei dati utente JSON del provider esterno per l'identità dell'app da leggere durante l'accesso. Per ulteriori informazioni sui tipi di attestazione <xref:System.Security.Claims.ClaimTypes>, vedere.
 
-L'app di esempio crea attestazioni delle impostazioni locali (`urn:google:locale`) e immagini (`urn:google:picture`) dalle chiavi di `locale` e `picture` nei dati utente di Google:
+L'app di esempio crea attestazioni`urn:google:locale`delle impostazioni locali (`urn:google:picture`) e immagini ( `locale` ) `picture` dalle chiavi e nei dati utente di Google:
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=13-14)]
 
-In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, un <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) viene connesso all'app con <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. Durante il processo di accesso, il <xref:Microsoft.AspNetCore.Identity.UserManager%601> può archiviare attestazioni `ApplicationUser` per i dati utente disponibili dal <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
+In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, un <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) è connesso all'app con <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. Durante il processo di accesso, il <xref:Microsoft.AspNetCore.Identity.UserManager%601> può archiviare `ApplicationUser` attestazioni per i dati utente disponibili da <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
 
-Nell'app di esempio, `OnPostConfirmationAsync` (*account/ExternalLogin. cshtml. cs*) stabilisce le attestazioni delle impostazioni locali (`urn:google:locale`) e immagini (`urn:google:picture`) per la `ApplicationUser`con accesso, inclusa un'attestazione per <xref:System.Security.Claims.ClaimTypes.GivenName>:
+Nell'app di `OnPostConfirmationAsync` esempio (*account/ExternalLogin. cshtml. cs*) vengono stabilite le attestazioni`urn:google:locale`delle impostazioni locali (`urn:google:picture`) e immagine () per `ApplicationUser`l'accesso, inclusa un' <xref:System.Security.Claims.ClaimTypes.GivenName>attestazione per:
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=35-51)]
 
@@ -80,25 +86,25 @@ Per impostazione predefinita, le attestazioni di un utente vengono archiviate ne
 Se per l'elaborazione delle richieste utente è richiesta una grande quantità di dati utente:
 
 * Limitare il numero e le dimensioni delle attestazioni utente per l'elaborazione delle richieste solo ai componenti richiesti dall'app.
-* Usare un <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> personalizzato per la <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> del middleware di autenticazione dei cookie per archiviare l'identità tra le richieste. Mantenere grandi quantità di informazioni sull'identità sul server inviando al client solo una chiave di identificatore di sessione di piccole dimensioni.
+* Usare un personalizzato <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> per il middleware di autenticazione dei <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> cookie per archiviare l'identità tra le richieste. Mantenere grandi quantità di informazioni sull'identità sul server inviando al client solo una chiave di identificatore di sessione di piccole dimensioni.
 
 ## <a name="save-the-access-token"></a>Salvare il token di accesso
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*> definisce se i token di accesso e di aggiornamento devono essere archiviati nel <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> dopo una corretta autorizzazione. per impostazione predefinita, `SaveTokens` è impostato su `false` per ridurre le dimensioni del cookie di autenticazione finale.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*>definisce se i <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> token di accesso e di aggiornamento devono essere archiviati in dopo un'autorizzazione riuscita. `SaveTokens`per impostazione predefinita `false` , è impostato su per ridurre le dimensioni del cookie di autenticazione finale.
 
-L'app di esempio imposta il valore di `SaveTokens` su `true` in <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions>:
+L'app di esempio imposta il valore `SaveTokens` di `true` su <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions>in:
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=15)]
 
-Quando `OnPostConfirmationAsync` esegue, archiviare il token di accesso ([ExternalLoginInfo. AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) dal provider esterno nel `AuthenticationProperties`del `ApplicationUser`.
+Quando `OnPostConfirmationAsync` viene eseguito, archivia il token di accesso ([ExternalLoginInfo. AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) dal provider esterno in `ApplicationUser` `AuthenticationProperties`.
 
-L'app di esempio salva il token di accesso in `OnPostConfirmationAsync` (nuova registrazione utente) e `OnGetCallbackAsync` (utente registrato in precedenza) in *account/ExternalLogin. cshtml. cs*:
+L'app di esempio salva il token di `OnPostConfirmationAsync` accesso in (nuova registrazione utente `OnGetCallbackAsync` ) e (utente registrato in precedenza) in *account/ExternalLogin. cshtml. cs*:
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=54-56)]
 
 ## <a name="how-to-add-additional-custom-tokens"></a>Come aggiungere token personalizzati aggiuntivi
 
-Per illustrare come aggiungere un token personalizzato, archiviato come parte di `SaveTokens`, l'app di esempio aggiunge una <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> con il <xref:System.DateTime> corrente per un [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name*) di `TicketCreated`:
+Per illustrare come aggiungere un token personalizzato, archiviato come parte di `SaveTokens`, l'app di esempio aggiunge un oggetto <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> con l'oggetto <xref:System.DateTime> corrente per un [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name*) di `TicketCreated`:
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=17-30)]
 
@@ -106,13 +112,13 @@ Per illustrare come aggiungere un token personalizzato, archiviato come parte di
 
 Il Framework fornisce azioni comuni e metodi di estensione per la creazione e l'aggiunta di attestazioni alla raccolta. Per altre informazioni, vedere <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions> e <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionUniqueExtensions>.
 
-Gli utenti possono definire azioni personalizzate derivando da <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction> e implementando il metodo abstract <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.Run*>.
+Gli utenti possono definire azioni personalizzate derivando <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction> da e implementando <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.Run*> il metodo astratto.
 
 Per altre informazioni, vedere <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims>.
 
 ## <a name="removal-of-claim-actions-and-claims"></a>Rimozione di azioni attestazioni e attestazioni
 
-[ClaimActionCollection. Remove (String)](xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimActionCollection.Remove*) rimuove tutte le azioni di attestazione per il <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.ClaimType> specificato dalla raccolta. [ClaimActionCollectionMapExtensions. DeleteClaim (ClaimActionCollection, String)](xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.DeleteClaim*) Elimina un'attestazione del <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.ClaimType> specificato dall'identità. <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.DeleteClaim*> viene utilizzata principalmente con [OpenID Connect (OIDC)](/azure/active-directory/develop/v2-protocols-oidc) per rimuovere le attestazioni generate dal protocollo.
+[ClaimActionCollection. Remove (String)](xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimActionCollection.Remove*) rimuove tutte le azioni di attestazione <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.ClaimType> per l'oggetto specificato dalla raccolta. [ClaimActionCollectionMapExtensions. DeleteClaim (ClaimActionCollection, String)](xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.DeleteClaim*) Elimina un'attestazione dell'oggetto <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.ClaimType> specificato dall'identità. <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.DeleteClaim*>viene utilizzato principalmente con [OpenID Connect (OIDC)](/azure/active-directory/develop/v2-protocols-oidc) per rimuovere le attestazioni generate dal protocollo.
 
 ## <a name="sample-app-output"></a>Esempio di output dell'app
 
@@ -162,7 +168,7 @@ Un'app ASP.NET Core può creare attestazioni e token aggiuntivi da provider di a
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/social/additional-claims/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 Decidere quali provider di autenticazione esterni supportare nell'app. Per ogni provider, registrare l'app e ottenere un ID client e un segreto client. Per altre informazioni, vedere <xref:security/authentication/social/index>. L'app di esempio usa il [provider di autenticazione Google](xref:security/authentication/google-logins).
 
@@ -170,10 +176,10 @@ Decidere quali provider di autenticazione esterni supportare nell'app. Per ogni 
 
 Il provider di autenticazione OAuth stabilisce una relazione di trust con un'app che usa un ID client e un segreto client. I valori relativi all'ID client e al segreto client vengono creati per l'app dal provider di autenticazione esterno quando l'app viene registrata con il provider. Ogni provider esterno usato dall'app deve essere configurato in modo indipendente con l'ID client e il segreto client del provider. Per ulteriori informazioni, vedere gli argomenti del provider di autenticazione esterno applicabili allo scenario:
 
-* [Autenticazione di Facebook](xref:security/authentication/facebook-logins)
-* [Autenticazione di Google](xref:security/authentication/google-logins)
+* [Autenticazione Facebook](xref:security/authentication/facebook-logins)
+* [Autenticazione Google](xref:security/authentication/google-logins)
 * [Autenticazione Microsoft](xref:security/authentication/microsoft-logins)
-* [Autenticazione di Twitter](xref:security/authentication/twitter-logins)
+* [Autenticazione Twitter](xref:security/authentication/twitter-logins)
 * [Altri provider di autenticazione](xref:security/authentication/otherlogins)
 * [OpenIdConnect](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2)
 
@@ -183,7 +189,7 @@ L'app di esempio configura il provider di autenticazione Google con un ID client
 
 ## <a name="establish-the-authentication-scope"></a>Definire l'ambito di autenticazione
 
-Specificare l'elenco di autorizzazioni da recuperare dal provider specificando la <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope*>. Gli ambiti di autenticazione per i provider esterni comuni sono riportati nella tabella seguente.
+Specificare l'elenco di autorizzazioni da recuperare dal provider specificando <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope*>. Gli ambiti di autenticazione per i provider esterni comuni sono riportati nella tabella seguente.
 
 | Provider  | Scope                                                            |
 | --------- | ---------------------------------------------------------------- |
@@ -192,7 +198,7 @@ Specificare l'elenco di autorizzazioni da recuperare dal provider specificando l
 | Microsoft | `https://login.microsoftonline.com/common/oauth2/v2.0/authorize` |
 | Twitter   | `https://api.twitter.com/oauth/authenticate`                     |
 
-Nell'app di esempio, l'ambito `userinfo.profile` di Google viene aggiunto automaticamente dal framework quando viene chiamato <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle*> sul <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder>. Se l'app richiede ambiti aggiuntivi, aggiungerli alle opzioni. Nell'esempio seguente viene aggiunto l'ambito di Google `https://www.googleapis.com/auth/user.birthday.read` per recuperare il compleanno di un utente:
+Nell'app di esempio, l' `userinfo.profile` ambito di Google viene aggiunto automaticamente dal framework quando <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle*> viene chiamato su. <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder> Se l'app richiede ambiti aggiuntivi, aggiungerli alle opzioni. Nell'esempio seguente viene aggiunto l'ambito `https://www.googleapis.com/auth/user.birthday.read` Google per recuperare il compleanno di un utente:
 
 ```csharp
 options.Scope.Add("https://www.googleapis.com/auth/user.birthday.read");
@@ -200,15 +206,15 @@ options.Scope.Add("https://www.googleapis.com/auth/user.birthday.read");
 
 ## <a name="map-user-data-keys-and-create-claims"></a>Eseguire il mapping delle chiavi di dati utente e creare attestazioni
 
-Nelle opzioni del provider specificare un <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonKey*> o <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonSubKey*> per ogni chiave/sottochiave nei dati utente JSON del provider esterno per l'identità dell'app da leggere durante l'accesso. Per ulteriori informazioni sui tipi di attestazione, vedere <xref:System.Security.Claims.ClaimTypes>.
+Nelle opzioni del provider specificare un <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonKey*> o <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonSubKey*> per ogni chiave/sottochiave nei dati utente JSON del provider esterno per l'identità dell'app da leggere durante l'accesso. Per ulteriori informazioni sui tipi di attestazione <xref:System.Security.Claims.ClaimTypes>, vedere.
 
-L'app di esempio crea attestazioni delle impostazioni locali (`urn:google:locale`) e immagini (`urn:google:picture`) dalle chiavi di `locale` e `picture` nei dati utente di Google:
+L'app di esempio crea attestazioni`urn:google:locale`delle impostazioni locali (`urn:google:picture`) e immagini ( `locale` ) `picture` dalle chiavi e nei dati utente di Google:
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=13-14)]
 
-In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, un <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) viene connesso all'app con <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. Durante il processo di accesso, il <xref:Microsoft.AspNetCore.Identity.UserManager%601> può archiviare attestazioni `ApplicationUser` per i dati utente disponibili dal <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
+In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, un <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) è connesso all'app con <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. Durante il processo di accesso, il <xref:Microsoft.AspNetCore.Identity.UserManager%601> può archiviare `ApplicationUser` attestazioni per i dati utente disponibili da <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
 
-Nell'app di esempio, `OnPostConfirmationAsync` (*account/ExternalLogin. cshtml. cs*) stabilisce le attestazioni delle impostazioni locali (`urn:google:locale`) e immagini (`urn:google:picture`) per la `ApplicationUser`con accesso, inclusa un'attestazione per <xref:System.Security.Claims.ClaimTypes.GivenName>:
+Nell'app di `OnPostConfirmationAsync` esempio (*account/ExternalLogin. cshtml. cs*) vengono stabilite le attestazioni`urn:google:locale`delle impostazioni locali (`urn:google:picture`) e immagine () per `ApplicationUser`l'accesso, inclusa un' <xref:System.Security.Claims.ClaimTypes.GivenName>attestazione per:
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=35-51)]
 
@@ -220,25 +226,25 @@ Per impostazione predefinita, le attestazioni di un utente vengono archiviate ne
 Se per l'elaborazione delle richieste utente è richiesta una grande quantità di dati utente:
 
 * Limitare il numero e le dimensioni delle attestazioni utente per l'elaborazione delle richieste solo ai componenti richiesti dall'app.
-* Usare un <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> personalizzato per la <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> del middleware di autenticazione dei cookie per archiviare l'identità tra le richieste. Mantenere grandi quantità di informazioni sull'identità sul server inviando al client solo una chiave di identificatore di sessione di piccole dimensioni.
+* Usare un personalizzato <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> per il middleware di autenticazione dei <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> cookie per archiviare l'identità tra le richieste. Mantenere grandi quantità di informazioni sull'identità sul server inviando al client solo una chiave di identificatore di sessione di piccole dimensioni.
 
 ## <a name="save-the-access-token"></a>Salvare il token di accesso
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*> definisce se i token di accesso e di aggiornamento devono essere archiviati nel <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> dopo una corretta autorizzazione. per impostazione predefinita, `SaveTokens` è impostato su `false` per ridurre le dimensioni del cookie di autenticazione finale.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*>definisce se i <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> token di accesso e di aggiornamento devono essere archiviati in dopo un'autorizzazione riuscita. `SaveTokens`per impostazione predefinita `false` , è impostato su per ridurre le dimensioni del cookie di autenticazione finale.
 
-L'app di esempio imposta il valore di `SaveTokens` su `true` in <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions>:
+L'app di esempio imposta il valore `SaveTokens` di `true` su <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions>in:
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=15)]
 
-Quando `OnPostConfirmationAsync` esegue, archiviare il token di accesso ([ExternalLoginInfo. AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) dal provider esterno nel `AuthenticationProperties`del `ApplicationUser`.
+Quando `OnPostConfirmationAsync` viene eseguito, archivia il token di accesso ([ExternalLoginInfo. AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) dal provider esterno in `ApplicationUser` `AuthenticationProperties`.
 
-L'app di esempio salva il token di accesso in `OnPostConfirmationAsync` (nuova registrazione utente) e `OnGetCallbackAsync` (utente registrato in precedenza) in *account/ExternalLogin. cshtml. cs*:
+L'app di esempio salva il token di `OnPostConfirmationAsync` accesso in (nuova registrazione utente `OnGetCallbackAsync` ) e (utente registrato in precedenza) in *account/ExternalLogin. cshtml. cs*:
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=54-56)]
 
 ## <a name="how-to-add-additional-custom-tokens"></a>Come aggiungere token personalizzati aggiuntivi
 
-Per illustrare come aggiungere un token personalizzato, archiviato come parte di `SaveTokens`, l'app di esempio aggiunge una <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> con il <xref:System.DateTime> corrente per un [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name*) di `TicketCreated`:
+Per illustrare come aggiungere un token personalizzato, archiviato come parte di `SaveTokens`, l'app di esempio aggiunge un oggetto <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> con l'oggetto <xref:System.DateTime> corrente per un [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name*) di `TicketCreated`:
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=17-30)]
 
@@ -246,13 +252,13 @@ Per illustrare come aggiungere un token personalizzato, archiviato come parte di
 
 Il Framework fornisce azioni comuni e metodi di estensione per la creazione e l'aggiunta di attestazioni alla raccolta. Per altre informazioni, vedere <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions> e <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionUniqueExtensions>.
 
-Gli utenti possono definire azioni personalizzate derivando da <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction> e implementando il metodo abstract <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.Run*>.
+Gli utenti possono definire azioni personalizzate derivando <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction> da e implementando <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.Run*> il metodo astratto.
 
 Per altre informazioni, vedere <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims>.
 
 ## <a name="removal-of-claim-actions-and-claims"></a>Rimozione di azioni attestazioni e attestazioni
 
-[ClaimActionCollection. Remove (String)](xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimActionCollection.Remove*) rimuove tutte le azioni di attestazione per il <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.ClaimType> specificato dalla raccolta. [ClaimActionCollectionMapExtensions. DeleteClaim (ClaimActionCollection, String)](xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.DeleteClaim*) Elimina un'attestazione del <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.ClaimType> specificato dall'identità. <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.DeleteClaim*> viene utilizzata principalmente con [OpenID Connect (OIDC)](/azure/active-directory/develop/v2-protocols-oidc) per rimuovere le attestazioni generate dal protocollo.
+[ClaimActionCollection. Remove (String)](xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimActionCollection.Remove*) rimuove tutte le azioni di attestazione <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.ClaimType> per l'oggetto specificato dalla raccolta. [ClaimActionCollectionMapExtensions. DeleteClaim (ClaimActionCollection, String)](xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.DeleteClaim*) Elimina un'attestazione dell'oggetto <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.ClaimType> specificato dall'identità. <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.DeleteClaim*>viene utilizzato principalmente con [OpenID Connect (OIDC)](/azure/active-directory/develop/v2-protocols-oidc) per rimuovere le attestazioni generate dal protocollo.
 
 ## <a name="sample-app-output"></a>Esempio di output dell'app
 
@@ -298,4 +304,4 @@ Authentication Properties
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [app SocialSample di ingegneria DotNet/AspNetCore](https://github.com/dotnet/AspNetCore/tree/master/src/Security/Authentication/samples/SocialSample) &ndash; l'app di esempio collegata si trova nel ramo di progettazione della `master` del [repository GitHub DotNet/AspNetCore](https://github.com/dotnet/AspNetCore) . Il ramo `master` contiene il codice in fase di sviluppo attivo per la versione successiva di ASP.NET Core. Per visualizzare una versione dell'app di esempio per una versione rilasciata di ASP.NET Core, usare l'elenco a discesa **Branch** per selezionare un ramo di rilascio, ad esempio `release/{X.Y}`.
+* &ndash; [app SocialSample di ingegneria DotNet/AspNetCore](https://github.com/dotnet/AspNetCore/tree/master/src/Security/Authentication/samples/SocialSample) l'app di esempio collegata si trova nel ramo di `master` progettazione del [repository GitHub DotNet/AspNetCore](https://github.com/dotnet/AspNetCore) . Il `master` ramo contiene il codice in fase di sviluppo attivo per la prossima versione di ASP.NET Core. Per visualizzare una versione dell'app di esempio per una versione rilasciata di ASP.NET Core, usare l'elenco a discesa **Branch** per selezionare un ramo di rilascio `release/{X.Y}`(ad esempio).

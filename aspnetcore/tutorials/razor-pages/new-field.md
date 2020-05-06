@@ -1,17 +1,23 @@
 ---
-title: Aggiungere un nuovo campo a una pagina Razor in ASP.NET Core
+title: Aggiungere un nuovo campo a una Razor pagina in ASP.NET Core
 author: rick-anderson
-description: Illustra come aggiungere un nuovo campo a una pagina Razor con Entity Framework Core
+description: Mostra come aggiungere un nuovo campo a una Razor pagina con Entity Framework Core
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: d34b938dbd1b512ddb167cac0c035837889cd38f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 683d6718f4dcdb73c45cbcf94f6ac4f477b71bcd
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657815"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82769734"
 ---
 # <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Aggiungere un nuovo campo a una pagina Razor in ASP.NET Core
 
@@ -28,7 +34,7 @@ In questa sezione vengono usate le Migrazioni Code First di [Entity Framework](/
 
 Quando si usa Code First di Entity Framework per creare automaticamente un database, Code First:
 
-* Aggiunge `__EFMigrationsHistory` una tabella al database per tenere traccia se lo schema del database è sincronizzato con le classi del modello da cui è stato generato.
+* Aggiunge una `__EFMigrationsHistory` tabella al database per rilevare se lo schema del database è sincronizzato con le classi del modello da cui è stato generato.
 * Se le classi di modelli non sono sincronizzate con il database, Entity Framework genera un'eccezione.
 
 La verifica automatica del modello o schema sincronizzato rende più semplice individuare i problemi di codice o database incoerente.
@@ -53,11 +59,11 @@ Aggiornare le pagine seguenti:
 * Aggiornare [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) con un campo `Rating`.
 * Aggiungere il campo `Rating` alla pagina Edit (Modifica).
 
-L'app non funzionerà finché non si aggiorna il database in modo da includere il nuovo campo. L'esecuzione dell'app senza `SqlException`aggiornare il database genera un errore:
+L'app non funzionerà finché non si aggiorna il database in modo da includere il nuovo campo. L'esecuzione dell'app senza aggiornare il database genera `SqlException`un'eccezione:
 
 `SqlException: Invalid column name 'Rating'.`
 
-L'eccezione `SqlException` è causata dalla diversa da parte dello schema della tabella Movie del database aggiornata. Nella tabella del database non è presente una colonna `Rating`.
+L' `SqlException` eccezione è causata dal fatto che la classe del modello di film aggiornata è diversa dallo schema della tabella dei film del database. Nella tabella del database non è presente una colonna `Rating`.
 
 Per correggere questo errore, esistono alcuni approcci:
 
@@ -98,7 +104,7 @@ Il comando `Add-Migration` indica al framework di:
 
 Il nome "Rating" è arbitrario e viene usato per denominare il file di migrazione. È consigliabile usare un nome significativo per il file di migrazione.
 
-Il `Update-Database` comando indica al framework di applicare le modifiche dello schema al database e di mantenere i dati esistenti.
+Il `Update-Database` comando indica al Framework di applicare le modifiche dello schema al database e di mantenere i dati esistenti.
 
 <a name="ssox"></a>
 
@@ -110,7 +116,7 @@ Un'altra opzione è quella di eliminare il database e usare le migrazioni per ri
 * Fare clic con il pulsante destro del mouse sul database e selezionare *Elimina*.
 * Selezionare **Chiudi connessioni esistenti**.
 * Selezionare **OK**.
-* In [PMC](xref:tutorials/razor-pages/new-field#pmc), aggiornare il database:
+* In [PMC](xref:tutorials/razor-pages/new-field#pmc)aggiornare il database:
 
   ```powershell
   Update-Database
@@ -139,8 +145,8 @@ Eseguire l'app e verificare che sia possibile creare/modificare/visualizzare i f
 * [Versione YouTube dell'esercitazione](https://youtu.be/3i7uMxiGGR8)
 
 > [!div class="step-by-step"]
-> [Precedente: Aggiunta della ricerca](xref:tutorials/razor-pages/search)
-> [successiva: Aggiunta della convalidaPrevious:](xref:tutorials/razor-pages/validation) Adding Search Next: Adding Validation
+> [Precedente: aggiunta della ricerca](xref:tutorials/razor-pages/search)
+> [successiva: aggiunta della convalida](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end
 
@@ -235,7 +241,7 @@ Un'altra opzione è quella di eliminare il database e usare le migrazioni per ri
 * Fare clic con il pulsante destro del mouse sul database e selezionare *Elimina*.
 * Selezionare **Chiudi connessioni esistenti**.
 * Selezionare **OK**.
-* In [PMC](xref:tutorials/razor-pages/new-field#pmc), aggiornare il database:
+* In [PMC](xref:tutorials/razor-pages/new-field#pmc)aggiornare il database:
 
   ```powershell
   Update-Database
@@ -262,7 +268,7 @@ Eseguire l'app e verificare che sia possibile creare/modificare/visualizzare i f
 * [Versione YouTube dell'esercitazione](https://youtu.be/3i7uMxiGGR8)
 
 > [!div class="step-by-step"]
-> [Precedente: Aggiunta della ricerca](xref:tutorials/razor-pages/search)
-> [successiva: Aggiunta della convalidaPrevious:](xref:tutorials/razor-pages/validation) Adding Search Next: Adding Validation
+> [Precedente: aggiunta della ricerca](xref:tutorials/razor-pages/search)
+> [successiva: aggiunta della convalida](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end

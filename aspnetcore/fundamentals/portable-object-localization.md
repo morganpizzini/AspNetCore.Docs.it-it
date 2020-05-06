@@ -4,13 +4,19 @@ author: sebastienros
 description: Questo articolo presenta i file degli oggetti portabili e descrive i passaggi per l'uso dei file in un'applicazione ASP.NET Core con il framework Orchard Core.
 ms.author: scaddie
 ms.date: 09/26/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/portable-object-localization
-ms.openlocfilehash: 08002564eb68bc04eebaeafed560202d0d69958a
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 1e544b0f504c2776c678c51bff598cf011b52610
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78656191"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776051"
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>Configurare la localizzazione degli oggetti portabili in ASP.NET Core
 
@@ -20,7 +26,7 @@ Questo articolo descrive i passaggi per l'uso dei file degli oggetti portabili (
 
 **Nota:** Orchard Core non è un prodotto Microsoft. Di conseguenza, Microsoft non fornisce alcun supporto per questa funzionalità.
 
-[Visualizzare o scaricare codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ( come[scaricare](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ## <a name="what-is-a-po-file"></a>Che cos'è un file PO?
 
@@ -83,7 +89,7 @@ Aggiungere il middleware necessario al metodo `Configure` di *Startup.cs*:
 
 [!code-csharp[](localization/sample/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
 
-Aggiungere il codice seguente alla visualizzazione Razor desiderata. In questo esempio viene usata *About.cshtml*.
+Aggiungere il codice seguente alla propria Razor visualizzazione scelta. In questo esempio viene usata *About.cshtml*.
 
 [!code-cshtml[](localization/sample/POLocalization/Views/Home/About.cshtml)]
 
@@ -91,7 +97,7 @@ Viene inserita un'istanza `IViewLocalizer` che viene usata per tradurre il testo
 
 ### <a name="creating-a-po-file"></a>Creazione di un file PO
 
-Creare un file denominato * \<codice delle impostazioni cultura>.po* nella cartella radice dell'applicazione. In questo esempio il nome file è *fr.po* poiché viene usata la lingua francese:
+Creare un file denominato * \<culture code>. po* nella cartella radice dell'applicazione. In questo esempio il nome file è *fr.po* poiché viene usata la lingua francese:
 
 [!code-text[](localization/sample/POLocalization/fr.po)]
 
@@ -187,11 +193,11 @@ Si noti che per le impostazioni cultura per la lingua ceca, le tre traduzioni so
 
 ### <a name="contextualizing-strings"></a>Contestualizzazione delle stringhe
 
-Le applicazioni spesso contengono le stringhe da tradurre in posizioni diverse. La stessa stringa può avere traduzioni diverse in alcune posizioni all'interno dell'app (visualizzazioni Razor o file di classe). Un file PO supporta la nozione di contesto del file, che è possibile usare per categorizzare la stringa rappresentata. Usando un contesto di file è possibile tradurre una stringa in modo diverso a seconda del contesto o della mancanza del contesto.
+Le applicazioni spesso contengono le stringhe da tradurre in posizioni diverse. La stessa stringa può avere una traduzione diversa in determinate posizioni all'interno di un'Razor app (viste o file di classe). Un file PO supporta la nozione di contesto del file, che è possibile usare per categorizzare la stringa rappresentata. Usando un contesto di file è possibile tradurre una stringa in modo diverso a seconda del contesto o della mancanza del contesto.
 
 I servizi di localizzazione PO usano il nome della classe completa o la visualizzazione usata durante la traduzione di una stringa. Questa operazione viene eseguita impostando il valore nella voce `msgctxt`.
 
-Si supponga di eseguire un'aggiunta minore all'esempio *fr.po* precedente. È possibile definire una visualizzazione Razor in *Views/Home/About.cshtml* come contesto del file impostando il valore della voce `msgctxt` riservata:
+Si supponga di eseguire un'aggiunta minore all'esempio *fr.po* precedente. Una Razor visualizzazione che si trova in *views/Home/About. cshtml* può essere definita come contesto del file impostando `msgctxt` il valore della voce riservata:
 
 ```text
 msgctxt "Views.Home.About"

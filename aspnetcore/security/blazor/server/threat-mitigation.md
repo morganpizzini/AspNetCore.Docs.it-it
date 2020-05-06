@@ -5,17 +5,20 @@ description: Informazioni su come attenuare le minacce alla Blazor sicurezza per
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2020
+ms.date: 05/05/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/server/threat-mitigation
-ms.openlocfilehash: 9a5e313153e5c5c17fc723cc9768c49ffd828007
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
-ms.translationtype: MT
+ms.openlocfilehash: f43a46f53dc50cde43c88460b8bd3d6fb7a7076f
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206382"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850500"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Linee guida per la mitigazione delle minacce per ASP.NET Core Server Blazer
 
@@ -144,7 +147,7 @@ Non considerare attendibili le chiamate da JavaScript ai metodi .NET. Quando un 
   * Evitare di passare i dati forniti dall'utente nei parametri alle chiamate JavaScript. Se il passaggio dei dati nei parametri è assolutamente necessario, assicurarsi che il codice JavaScript gestisca il passaggio dei dati senza introdurre vulnerabilità di [Scripting (XSS) tra siti](#cross-site-scripting-xss) . Ad esempio, non scrivere dati specificati dall'utente nel Document Object Model (DOM) impostando la `innerHTML` proprietà di un elemento. Provare a usare i [criteri di sicurezza del contenuto (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) per disabilitare `eval` e altre primitive JavaScript non sicure.
 * Evitare di implementare l'invio personalizzato delle chiamate .NET all'implementazione dell'invio del Framework. L'esposizione di metodi .NET al browser è uno scenario avanzato, non consigliato per lo Blazor sviluppo generale.
 
-### <a name="events"></a>Events
+### <a name="events"></a>Eventi
 
 Gli eventi forniscono un punto di ingresso Blazor a un'app Server. Le stesse regole per la salvaguardia degli endpoint nelle app Web si applicano alla Blazor gestione degli eventi nelle app Server. Un client dannoso può inviare tutti i dati che desidera inviare come payload per un evento.
 
@@ -278,7 +281,7 @@ Le linee guida per la protezione delle app ASP.NET Core Blazor si applicano alle
 
 * [Registrazione e dati sensibili](#logging-and-sensitive-data)
 * [Proteggere le informazioni in transito con HTTPS](#protect-information-in-transit-with-https)
-* [Scripting tra siti (XSS)](#cross-site-scripting-xss))
+* [Scripting tra siti (XSS)](#cross-site-scripting-xss)
 * [Protezione tra le origini](#cross-origin-protection)
 * [Clic su jacking](#click-jacking)
 * [Reindirizzamenti aperti](#open-redirects)
@@ -342,9 +345,9 @@ Oltre alle misure di sicurezza implementate dal Framework, l'app deve essere cod
 
 Per poter esistere una vulnerabilità XSS, l'app deve incorporare l'input dell'utente nella pagina di cui è stato eseguito il rendering. BlazorI componenti server eseguono un passaggio in fase di compilazione, in cui il markup in un file *Razor* viene trasformato in logica C# procedurale. In fase di esecuzione, la logica C# compila un *albero di rendering* che descrive gli elementi, il testo e i componenti figlio. Viene applicato al DOM del browser tramite una sequenza di istruzioni JavaScript (o viene serializzato in HTML in caso di prerendering):
 
-* L'input dell'utente di cui è stato eseguito il `@someStringValue`rendering tramite la normale sintassi Razor (ad esempio,) non espone una vulnerabilità XSS perché il sintassi Razor viene aggiunto al Dom tramite comandi che possono scrivere solo testo. Anche se il valore include il markup HTML, il valore viene visualizzato come testo statico. Quando si esegue il prerendering, l'output è codificato in formato HTML, che visualizza anche il contenuto come testo statico.
+* L'input dell'utente di Razor cui è stato eseguito il `@someStringValue`rendering tramite la sintassi normale (ad esempio Razor ,) non espone una vulnerabilità XSS perché la sintassi viene aggiunta al Dom tramite comandi che possono scrivere solo testo. Anche se il valore include il markup HTML, il valore viene visualizzato come testo statico. Quando si esegue il prerendering, l'output è codificato in formato HTML, che visualizza anche il contenuto come testo statico.
 * I tag di script non sono consentiti e non devono essere inclusi nell'albero di rendering del componente dell'app. Se un tag di script è incluso nel markup di un componente, viene generato un errore in fase di compilazione.
-* Gli autori dei componenti possono creare componenti in C# senza usare Razor. L'autore del componente è responsabile dell'uso delle API corrette durante la creazione dell'output. Usare `builder.AddContent(0, someUserSuppliedString)` , ad esempio, e *non* `builder.AddMarkupContent(0, someUserSuppliedString)`, perché quest'ultimo potrebbe creare una vulnerabilità XSS.
+* Gli autori dei componenti possono creare componenti in C# Razorsenza usare. L'autore del componente è responsabile dell'uso delle API corrette durante la creazione dell'output. Usare `builder.AddContent(0, someUserSuppliedString)` , ad esempio, e *non* `builder.AddMarkupContent(0, someUserSuppliedString)`, perché quest'ultimo potrebbe creare una vulnerabilità XSS.
 
 Come parte della protezione da attacchi XSS, valutare la possibilità di implementare mitigazioni XSS, ad esempio i [criteri di sicurezza del contenuto (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP).
 

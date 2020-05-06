@@ -5,13 +5,19 @@ description: In questa esercitazione viene descritta una procedura dettagliata p
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/07/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/web-api-help-pages-using-swagger
-ms.openlocfilehash: 4408e02996b958bf009903aa1e4eeda9ad4f457c
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: bde38fcbc11ef36c42523acb182fc62a934821c3
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78658473"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774522"
 ---
 # <a name="aspnet-core-web-api-help-pages-with-swagger--openapi"></a>Pagine della Guida dell'API Web ASP.NET Core con Swagger/OpenAPI
 
@@ -108,7 +114,7 @@ Il nucleo del flusso di Swagger è la specifica Swagger, che per impostazione pr
 
 ![Interfaccia utente di Swagger](web-api-help-pages-using-swagger/_static/swagger-ui.png)
 
-Ogni metodo di azione pubblico nei controller può essere testato dall'interfaccia utente. Fare clic su un nome di metodo per espandere la sezione. Aggiungere i parametri necessari e fare clic su **Prova!**.
+Ogni metodo di azione pubblico nei controller può essere testato dall'interfaccia utente. Fare clic su un nome di metodo per espandere la sezione. Aggiungere i parametri necessari e fare clic su **try it out**.
 
 ![Esempio test GET di Swagger](web-api-help-pages-using-swagger/_static/get-try-it-out.png)
 

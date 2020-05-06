@@ -1,16 +1,22 @@
 ---
-title: Introduzione all'identità in ASP.NET Core
+title: Introduzione a Identity on ASP.NET Core
 author: rick-anderson
-description: Usare l'identità con un'app ASP.NET Core. Informazioni su come impostare i requisiti per le password (RequireDigit, RequiredLength, RequiredUniqueChars e altro).
+description: Usare Identity con un'app ASP.NET Core. Informazioni su come impostare i requisiti per le password (RequireDigit, RequiredLength, RequiredUniqueChars e altro).
 ms.author: riande
 ms.date: 01/15/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 4bc5f206b3aee7c2d34055703acc5b6c5218f964
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: d596a8357c5c812b94950809eedf35718328747c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205943"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777007"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>Introduzione all'identità in ASP.NET Core
 
@@ -391,30 +397,30 @@ Post viene specificato nelle *pagine/Shared/_LoginPartial. cshtml*:
 
 [!code-csharp[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 
-## <a name="test-identity"></a>Identità del test
+## <a name="test-identity"></a>TestIdentity
 
-I modelli di progetto Web predefiniti consentono l'accesso anonimo alle Home page. Per verificare l'identità, [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) aggiungere alla pagina privacy.
+I modelli di progetto Web predefiniti consentono l'accesso anonimo alle Home page. Per eseguire Identityil test [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) , aggiungere alla pagina privacy.
 
 [!code-csharp[](identity/sample/WebApp1/Pages/Privacy.cshtml.cs?highlight=7)]
 
 Se è stato eseguito l'accesso, disconnettersi. Eseguire l'app e selezionare il collegamento per la **privacy** . Si verrà reindirizzati alla pagina di accesso.
 
-### <a name="explore-identity"></a>Esplora identità
+### <a name="explore-identity"></a>EsplorareIdentity
 
-Per esplorare l'identità in modo più dettagliato:
+Per esplorare Identity in modo più dettagliato:
 
 * [Crea origine interfaccia utente con identità completa](xref:security/authentication/scaffold-identity#create-full-identity-ui-source)
 * Esaminare l'origine di ogni pagina ed eseguire un'istruzione alla volta nel debugger.
 
-## <a name="identity-components"></a>Componenti Identity
+## <a name="identity-components"></a>IdentityComponenti
 
-Tutti i pacchetti NuGet dipendenti dall'identità sono inclusi nel [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
+Tutti i Identity pacchetti NuGet dipendenti sono inclusi nel [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
 
-Il pacchetto primario per Identity è [Microsoft. AspNetCore. Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). Questo pacchetto contiene il set principale di interfacce per ASP.NET Core identità ed è incluso in `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
+Il pacchetto primario per Identity è [Microsoft. AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/) Questo pacchetto contiene il set principale di interfacce per ASP.NET Core Identityed è incluso in `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 
-## <a name="migrating-to-aspnet-core-identity"></a>Migrazione a identità ASP.NET Core
+## <a name="migrating-to-aspnet-core-identity"></a>Migrazione a ASP.NET CoreIdentity
 
-Per altre informazioni e indicazioni sulla migrazione dell'archivio identità esistente, vedere [eseguire la migrazione dell'autenticazione e dell'identità](xref:migration/identity).
+Per ulteriori informazioni e istruzioni sulla migrazione dell'archivio Identity esistente, vedere [eseguire la migrazione Identitydell'autenticazione e ](xref:migration/identity).
 
 ## <a name="setting-password-strength"></a>Impostazione della complessità della password
 
@@ -422,8 +428,8 @@ Vedere [configurazione](#pw) per un esempio che consente di impostare i requisit
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per informazioni sulla configurazione dell'identità con SQLite, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) .
-* [Configurare Identity](xref:security/authentication/identity-configuration)
+* Per informazioni sulla configurazione Identity di using SQLite, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) .
+* [ConfigurareIdentity](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
 * <xref:security/authentication/identity-enable-qrcodes>

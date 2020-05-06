@@ -6,14 +6,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: aspnetcore-2.2
-ms.openlocfilehash: 54d3f1e7b0c94d69781c052694305a389a675019
-ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
+ms.openlocfilehash: 3b510c7f4788a59145ef16720276fc7e4560f07e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "80977171"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774145"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>Novità di ASP.NET Core 2.2
 
@@ -21,13 +25,13 @@ Questo articolo evidenzia le modifiche più significative apportate ad ASP.NET C
 
 ## <a name="openapi-analyzers--conventions"></a>Convenzioni e analizzatori di OpenAPI
 
-OpenAPI, chiamata in precedenza Swagger, è una specifica indipendente dal linguaggio per la descrizione delle API REST. L'ecosistema OpenAPI include strumenti che consentono di individuare, testare e produrre codice client usando la specifica. Il supporto per la generazione e la visualizzazione di documenti OpenAPI in ASP.NET Core MVC viene fornito tramite progetti guidati dalla community, ad esempio [NSwag](https://github.com/RicoSuter/NSwag) e [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). ASP.NET Core 2.2 offre strumenti ottimizzati e migliori esperienze con il runtime per la creazione di documenti OpenAPI.
+OpenAPI, chiamata in precedenza Swagger, è una specifica indipendente dal linguaggio per la descrizione delle API REST. L'ecosistema OpenAPI include strumenti che consentono di individuare, testare e produrre codice client usando la specifica. Il supporto per la generazione e la visualizzazione di documenti OpenAPI in ASP.NET Core MVC viene fornito tramite progetti basati sulla community, ad esempio [NSwag](https://github.com/RicoSuter/NSwag) e [Swashbuckle. AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). ASP.NET Core 2.2 offre strumenti ottimizzati e migliori esperienze con il runtime per la creazione di documenti OpenAPI.
 
 Per altre informazioni, vedere le seguenti risorse:
 
 * <xref:web-api/advanced/analyzers>
 * <xref:web-api/advanced/conventions>
-* [ASP.NET Core 2.2.0-preview1: & le convenzioni degli analizzatori ApertiAperti](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
+* [ASP.NET Core 2.2.0-preview1: OpenAPI Analyzers & Conventions](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
 
 ## <a name="problem-details-support"></a>Assistenza per i dettagli del problema
 
@@ -57,12 +61,12 @@ Per altre informazioni, vedere [Controlli di integrità in ASP.NET Core](xref:ho
 
 In ASP.NET Core 2.2 è stato aggiunto il supporto per HTTP/2.
 
-HTTP/2 è una revisione principale del protocollo HTTP. Caratteristiche degne di nota di HTTP/2 includono:
+HTTP/2 è una revisione principale del protocollo HTTP. Le funzionalità importanti di HTTP/2 includono:
 
 * Supporto per la compressione dell'intestazione.
-* Flussi completamente multiplex su una singola connessione.
+* Flussi completamente multiplexati in una singola connessione.
 
-Mentre HTTP/2 mantiene la semantica HTTP (ad esempio, intestazioni e metodi HTTP), si tratta di una modifica sostanziale rispetto a HTTP/1.x sul modo in cui i dati vengono frame e inviati tra il client e il server.
+Quando HTTP/2 conserva la semantica HTTP (ad esempio, intestazioni e metodi HTTP), si tratta di una modifica sostanziale rispetto a HTTP/1. x sul modo in cui i dati vengono incorniciati e inviati tra il client e il server.
 
 Come conseguenza di questa modifica del framing, i server e i client devono negoziare la versione del protocollo usata. ALPN (Application Layer Protocol Negotiation) è un'estensione TLS che consente al server e al client di negoziare la versione del protocollo usata nel corso dell'handshake TLS. Sebbene sia possibile che il server e il client dispongano di conoscenze precedenti rispetto al protocollo, tutti i principali browser supportano ALPN e la considerano l'unico modo per stabilire una connessione HTTP/2.
 
@@ -81,11 +85,11 @@ Nelle versioni precedenti di ASP.NET Core, IIS funge da proxy inverso. Nella ver
 
 Per altre informazioni, vedere [Hosting in-process per IIS](xref:host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
 
-## <a name="opno-locsignalr-java-client"></a>SignalRClient Java
+## <a name="signalr-java-client"></a>SignalRClient Java
 
-ASP.NET Core 2.2 introduce un SignalRclient Java per . Questo client supporta la connessione SignalR a un ASP.NET Core Server dal codice Java, incluse le app Android.This client supports connecting to an ASP.NET Core Server from Java code, including Android apps.
+ASP.NET Core 2,2 introduce un client Java per SignalR. Questo client supporta la connessione a un SignalR Server di ASP.NET Core dal codice Java, incluse le app Android.
 
-Per ulteriori informazioni, vedere [ASP.NET client Java di base SignalR ](https://docs.microsoft.com/aspnet/core/signalr/java-client?view=aspnetcore-2.2).
+Per ulteriori informazioni, vedere [ASP.NET Core SignalR Java client](https://docs.microsoft.com/aspnet/core/signalr/java-client?view=aspnetcore-2.2).
 
 ## <a name="cors-improvements"></a>Miglioramenti a CORS
 
@@ -107,7 +111,7 @@ I modelli di progetto Web ASP.NET Core sono stati aggiornati a [Bootstrap 4](htt
 
 ## <a name="validation-performance"></a>Prestazioni della convalida
 
-Il sistema di convalida MVC è progettato per essere estensibile e flessibile, consentendo di determinare in base alle richieste quali validatori si applicano a un determinato modello. Ciò è molto utile per la creazione di provider di convalida complessi. Tuttavia, nel caso più comune un'applicazione utilizza solo i validator incorporati e non richiedono questa flessibilità aggiuntiva. I validator incorporati includono DataAnnotations, ad esempio [Required], [StringLength] e `IValidatableObject`.
+Il sistema di convalida di MVC è progettato per essere estendibile e flessibile, consentendo di determinare in base alle singole richieste quali validator si applicano a un determinato modello. Ciò è molto utile per la creazione di provider di convalida complessi. Tuttavia, nel caso più comune, un'applicazione utilizza solo i validator incorporati e non richiede questa flessibilità aggiuntiva. I validator incorporati includono DataAnnotations, ad esempio [Required], [StringLength] e `IValidatableObject`.
 
 In ASP.NET Core 2.2 MVC può bloccare la convalida se determina che un grafico del modello specifico non richiede la convalida. Ignorando la convalida si ottengono miglioramenti significativi per i modelli che non hanno o non possono avere alcun validator. Ciò riguarda oggetti quali raccolte di primitive (`byte[]`, `string[]`, `Dictionary<string, string>` e così via) o oggetti grafici complessi senza molti validator.
 

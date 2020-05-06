@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 03/31/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 48f5b09199091b2b55974010a2b0715c28eb1bae
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 524fd015278d1a5f784fa306f077d06b865201c4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205969"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772087"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Modelli Blazor di hosting ASP.NET Core
 
@@ -94,9 +97,9 @@ Il Blazor modello di app Server supporta i [contenitori Docker](/dotnet/standard
 
 ### <a name="comparison-to-server-rendered-ui"></a>Confronto con interfaccia utente sottoposta a rendering server
 
-Un modo per comprendere Blazor le app Server consiste nel comprendere come si differenzia dai modelli tradizionali per il rendering dell'interfaccia utente nelle app ASP.NET Core usando le visualizzazioni Razor o Razor Pages. Entrambi i modelli utilizzano il linguaggio Razor per descrivere il contenuto HTML, ma presentano differenze significative per il rendering del markup.
+Un modo per comprendere Blazor le app Server consiste nel comprendere come si differenzia dai modelli tradizionali per il rendering dell'interfaccia utente nelle Razor app ASP.NET Core Razor usando viste o pagine. Entrambi i modelli utilizzano Razor il linguaggio per descrivere il contenuto HTML, ma presentano differenze significative per il rendering del markup.
 
-Quando viene eseguito il rendering di una pagina o di una visualizzazione Razor, ogni riga di codice Razor emette HTML in formato testo. Dopo il rendering, il server Elimina l'istanza della pagina o della vista, incluso qualsiasi stato prodotto. Quando si verifica un'altra richiesta della pagina, ad esempio quando la convalida del server non riesce e viene visualizzato il riepilogo di convalida:
+Quando viene Razor eseguito il rendering di una pagina o di una Razor vista, ogni riga di codice emette codice HTML in formato testo. Dopo il rendering, il server Elimina l'istanza della pagina o della vista, incluso qualsiasi stato prodotto. Quando si verifica un'altra richiesta della pagina, ad esempio quando la convalida del server non riesce e viene visualizzato il riepilogo di convalida:
 
 * Viene nuovamente eseguito il rendering dell'intera pagina in testo HTML.
 * La pagina viene inviata al client.
@@ -106,7 +109,7 @@ Un' Blazor app è costituita da elementi riutilizzabili di un'interfaccia utente
 * Trasformato in testo HTML (durante il prerendering&dagger;).
 * Utilizzato per aggiornare in modo efficiente il markup durante il normale rendering.
 
-&dagger;Il *prerendering* &ndash; del componente Razor richiesto viene compilato nel server in HTML statico e inviato al client, dove viene sottoposto a rendering all'utente. Una volta stattiva la connessione tra il client e il server, gli elementi statici di cui è stato eseguito il rendering sono sostituiti da elementi interattivi. Il prerendering rende l'app più rispondente all'utente.
+&dagger;Il *prerendering* &ndash; del Razor componente richiesto viene compilato nel server in HTML statico e inviato al client, dove viene sottoposto a rendering all'utente. Una volta stattiva la connessione tra il client e il server, gli elementi statici di cui è stato eseguito il rendering sono sostituiti da elementi interattivi. Il prerendering rende l'app più rispondente all'utente.
 
 Un aggiornamento dell'interfaccia Blazor utente in viene attivato da:
 

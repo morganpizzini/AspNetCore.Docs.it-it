@@ -4,13 +4,19 @@ author: rick-anderson
 description: Informazioni su come usare metodi, visualizzazioni e DataAnnotations del controller in ASP.NET Core.
 ms.author: riande
 ms.date: 12/13/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: 87b3cb2f4429157123d30274d1f12cd589c1cc99
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 444c870fcf9e866f0c382e32af174442d11d3af5
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80242510"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777579"
 ---
 # <a name="controller-methods-and-views-in-aspnet-core"></a>Metodi e viste del controller in ASP.NET Core
 
@@ -36,7 +42,7 @@ I collegamenti **Edit** (Modifica), **Details** (Dettagli) e **Delete** (Elimina
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
 
-Gli [helper tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei file Razor. Nel codice precedente, `AnchorTagHelper` il genera `href` dinamicamente il valore dell'attributo HTML dal metodo di azione del controller e dall'id della route. È possibile utilizzare **Visualizza origine** dal browser preferito o gli strumenti di sviluppo per esaminare il markup generato. Di seguito è riportata una parte del codice HTML generato:
+Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi Razor HTML nei file. Nel codice precedente, genera in `AnchorTagHelper` modo dinamico il valore dell' `href` attributo HTML dal metodo di azione del controller e dall'ID della route. Usare **Visualizza origine** dal browser preferito oppure usare gli strumenti di sviluppo per esaminare il markup generato. Di seguito è riportata una parte del codice HTML generato:
 
 ```html
  <td>
@@ -56,7 +62,7 @@ Una delle nuove funzionalità più note di ASP.NET Core è rappresentata dagli [
 
 <a name="get-post"></a>
 
-Aprire il controller `Movies` ed esaminare i due metodi di azione `Edit`. Il codice seguente illustra il metodo `HTTP GET Edit`, che recupera il film e popola il modulo di modifica generato dal file Razor *Edit.cshtml*.
+Aprire il controller `Movies` ed esaminare i due metodi di azione `Edit`. Il codice seguente illustra il `HTTP GET Edit` metodo, che recupera il film e popola il modulo di modifica generato dal file *Edit. cshtml* Razor .
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -114,7 +120,7 @@ Si noti come il modello di vista contiene un'istruzione `@model MvcMovie.Models.
 
 Il codice di scaffolding usa diversi metodi helper tag per semplificare il markup HTML. L'[helper tag di etichetta](xref:mvc/views/working-with-forms) visualizza il nome del campo ("Title", "ReleaseDate", "Genre" o "Price"). L'[helper tag di input](xref:mvc/views/working-with-forms) esegue il rendering di un elemento `<input>` HTML. L'[helper tag di convalida](xref:mvc/views/working-with-forms) visualizza eventuali messaggi di convalida associati a questa proprietà.
 
-Eseguire l'applicazione e passare all'URL `/Movies`. Fare clic su un collegamento **Modifica.** Nel browser visualizzare l'origine per la pagina. Il codice HTML generato per l'elemento `<form>` è riportato di seguito.
+Eseguire l'applicazione e passare all'URL `/Movies`. Fare clic su un collegamento di **modifica** . Nel browser visualizzare l'origine per la pagina. Il codice HTML generato per l'elemento `<form>` è riportato di seguito.
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Shared/edit_view_source.html?highlight=1,6,10,17,24,28)]
 
@@ -151,7 +157,7 @@ Tutti i metodi `HttpGet` nel controller di film seguono un pattern simile. Ricev
 * [Globalizzazione e localizzazione](xref:fundamentals/localization)
 * [Introduzione agli helper tag](xref:mvc/views/tag-helpers/intro)
 * [Creare helper tag](xref:mvc/views/tag-helpers/authoring)
-* [Richiesta intersito falsa](xref:security/anti-request-forgery)
+* [Anti-richiesta falsificazione](xref:security/anti-request-forgery)
 * Proteggere il controller dall'[dall'overposting](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application).
 * [ViewModel](https://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/)
 * [Helper tag di modulo](xref:mvc/views/working-with-forms)
@@ -161,5 +167,5 @@ Tutti i metodi `HttpGet` nel controller di film seguono un pattern simile. Ricev
 * [Helper tag di convalida](xref:mvc/views/working-with-forms)
 
 > [!div class="step-by-step"]
-> [Successivo](working-with-sql.md)
-> [precedente](search.md)  
+> [Precedente](working-with-sql.md)
+> [successivo](search.md)  

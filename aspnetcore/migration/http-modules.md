@@ -4,13 +4,19 @@ author: rick-anderson
 description: ''
 ms.author: riande
 ms.date: 12/07/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/http-modules
-ms.openlocfilehash: bdf27ccb742d4bc05bac71e6c96d71c38dcb4b62
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: c2b49976d2063679eab2403aae432660e8c8932d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659684"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775414"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Eseguire la migrazione di gestori e moduli HTTP a ASP.NET Core middleware
 
@@ -88,7 +94,7 @@ Un modulo HTTP esistente sarà simile al seguente:
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Modules/MyModule.cs?highlight=6,8,24,31)]
 
-Come illustrato nella pagina [middleware](xref:fundamentals/middleware/index) , un middleware ASP.NET Core è una classe che espone un metodo di `Invoke` che accetta un `HttpContext` e restituisce un `Task`. Il nuovo middleware sarà simile al seguente:
+Come illustrato nella pagina [middleware](xref:fundamentals/middleware/index) , un middleware ASP.NET Core è una classe che espone un `Invoke` metodo che accetta un `HttpContext` oggetto e restituisce `Task`un oggetto. Il nuovo middleware sarà simile al seguente:
 
 <a name="http-modules-usemiddleware"></a>
 
@@ -96,7 +102,7 @@ Come illustrato nella pagina [middleware](xref:fundamentals/middleware/index) , 
 
 Il modello middleware precedente è stato ricavato dalla sezione sulla [scrittura del middleware](xref:fundamentals/middleware/write).
 
-La classe helper *MyMiddlewareExtensions* rende più semplice la configurazione del middleware nella classe `Startup`. Il metodo `UseMyMiddleware` aggiunge la classe middleware alla pipeline della richiesta. I servizi richiesti dal middleware vengono inseriti nel costruttore del middleware.
+La classe helper *MyMiddlewareExtensions* rende più semplice la configurazione del middleware nella `Startup` classe. Il `UseMyMiddleware` metodo aggiunge la classe middleware alla pipeline della richiesta. I servizi richiesti dal middleware vengono inseriti nel costruttore del middleware.
 
 <a name="http-modules-shortcircuiting-middleware"></a>
 
@@ -104,11 +110,11 @@ Il modulo potrebbe terminare una richiesta, ad esempio se l'utente non è autori
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Modules/MyTerminatingModule.cs?highlight=9,10,11,12,13&name=snippet_Terminate)]
 
-Un middleware gestisce questa operazione non chiamando `Invoke` sul middleware successivo nella pipeline. Tenere presente che questa operazione non termina completamente la richiesta, perché i middleware precedenti verranno comunque richiamati quando la risposta ripercorre la pipeline.
+Un middleware gestisce questa operazione non chiamando `Invoke` il middleware successivo nella pipeline. Tenere presente che questa operazione non termina completamente la richiesta, perché i middleware precedenti verranno comunque richiamati quando la risposta ripercorre la pipeline.
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyTerminatingMiddleware.cs?highlight=7,8&name=snippet_Terminate)]
 
-Quando si esegue la migrazione della funzionalità del modulo al nuovo middleware, è possibile che il codice non venga compilato perché la classe `HttpContext` è cambiata in modo significativo nell'ASP.NET Core. [Successivamente](#migrating-to-the-new-httpcontext), verrà illustrato come eseguire la migrazione al nuovo ASP.NET Core HttpContext.
+Quando si esegue la migrazione della funzionalità del modulo al nuovo middleware, è possibile che il codice non venga compilato perché `HttpContext` la classe è cambiata in modo significativo in ASP.NET Core. [Successivamente](#migrating-to-the-new-httpcontext), verrà illustrato come eseguire la migrazione al nuovo ASP.NET Core HttpContext.
 
 ## <a name="migrating-module-insertion-into-the-request-pipeline"></a>Migrazione dell'inserimento del modulo nella pipeline delle richieste
 
@@ -116,7 +122,7 @@ I moduli HTTP vengono in genere aggiunti alla pipeline di richiesta tramite *Web
 
 [!code-xml[](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32-33,36,43,50,101)]
 
-Per convertirlo, [aggiungere il nuovo middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) alla pipeline delle richieste nella classe `Startup`:
+Per convertirlo, [aggiungere il nuovo middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) alla pipeline delle richieste nella `Startup` classe:
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=16)]
 
@@ -136,7 +142,7 @@ Nel progetto di ASP.NET Core, è necessario tradurlo in un middleware simile al 
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/ReportHandlerMiddleware.cs?highlight=7,9,13,20,21,22,23,40,42,44)]
 
-Questo middleware è molto simile al middleware corrispondente ai moduli. L'unica differenza reale è che in questo caso non viene chiamata `_next.Invoke(context)`. Questa operazione è sensata, perché il gestore si trova alla fine della pipeline delle richieste, quindi non ci sarà alcun middleware successivo da richiamare.
+Questo middleware è molto simile al middleware corrispondente ai moduli. L'unica differenza reale è che in `_next.Invoke(context)`questo caso non viene chiamata. Questa operazione è sensata, perché il gestore si trova alla fine della pipeline delle richieste, quindi non ci sarà alcun middleware successivo da richiamare.
 
 ## <a name="migrating-handler-insertion-into-the-request-pipeline"></a>Migrazione dell'inserimento del gestore nella pipeline delle richieste
 
@@ -144,17 +150,17 @@ La configurazione di un gestore HTTP viene eseguita in *Web. config* e ha un asp
 
 [!code-xml[](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32,46-48,50,101)]
 
-È possibile eseguire la conversione aggiungendo il middleware del nuovo gestore alla pipeline delle richieste nella classe `Startup`, in modo analogo a middleware convertito da moduli. Il problema con questo approccio è che invia tutte le richieste al nuovo middleware del gestore. Tuttavia, si desidera che le richieste con una determinata estensione raggiungano il middleware. Questo consentirebbe di ottenere le stesse funzionalità con il gestore HTTP.
+È possibile eseguire la conversione aggiungendo il middleware del nuovo gestore alla pipeline delle richieste nella `Startup` classe, simile a middleware convertito da moduli. Il problema con questo approccio è che invia tutte le richieste al nuovo middleware del gestore. Tuttavia, si desidera che le richieste con una determinata estensione raggiungano il middleware. Questo consentirebbe di ottenere le stesse funzionalità con il gestore HTTP.
 
-Una soluzione consiste nell'eseguire il branching della pipeline per le richieste con una determinata estensione, usando il metodo di estensione `MapWhen`. Questa operazione viene eseguita nello stesso `Configure` metodo in cui si aggiunge l'altro middleware:
+Una soluzione consiste nell'eseguire il branching della pipeline per le richieste con una determinata `MapWhen` estensione, usando il metodo di estensione. Questa operazione viene eseguita nello stesso `Configure` metodo in cui si aggiunge l'altro middleware:
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=27-34)]
 
-`MapWhen` accetta i parametri seguenti:
+`MapWhen`accetta i parametri seguenti:
 
-1. Espressione lambda che accetta il `HttpContext` e restituisce `true` se la richiesta deve andare al di sotto del ramo. Ciò significa che è possibile creare branch richieste non solo in base alla relativa estensione, ma anche su intestazioni di richiesta, parametri della stringa di query e così via.
+1. Espressione lambda che accetta l' `HttpContext` oggetto e `true` restituisce se la richiesta deve andare al di sotto del ramo. Ciò significa che è possibile creare branch richieste non solo in base alla relativa estensione, ma anche su intestazioni di richiesta, parametri della stringa di query e così via.
 
-2. Espressione lambda che accetta un `IApplicationBuilder` e aggiunge tutto il middleware per il ramo. Ciò significa che è possibile aggiungere un middleware aggiuntivo al ramo davanti al middleware del gestore.
+2. Espressione lambda che accetta un `IApplicationBuilder` oggetto e aggiunge tutto il middleware per il ramo. Ciò significa che è possibile aggiungere un middleware aggiuntivo al ramo davanti al middleware del gestore.
 
 Middleware aggiunto alla pipeline prima che il ramo venga richiamato in tutte le richieste; il ramo non avrà alcun effetto su di essi.
 
@@ -182,11 +188,11 @@ Il nuovo [sistema di configurazione](xref:fundamentals/configuration/index) offr
 
 3. Associare i valori delle opzioni alla classe Options
 
-    Il modello di opzioni usa il Framework di inserimento delle dipendenze di ASP.NET Core per associare il tipo di opzioni, ad esempio `MyMiddlewareOptions`, a un oggetto `MyMiddlewareOptions` con le opzioni effettive.
+    Il modello di opzioni usa il Framework di inserimento delle dipendenze di ASP.NET Core per associare il `MyMiddlewareOptions`tipo di opzioni `MyMiddlewareOptions` (ad esempio) a un oggetto con le opzioni effettive.
 
-    Aggiornare la classe `Startup`:
+    Aggiornare la `Startup` classe:
 
-   1. Se si usa *appSettings. JSON*, aggiungerlo al generatore di configurazione nel costruttore `Startup`:
+   1. Se si usa *appSettings. JSON*, aggiungerlo al generatore di configurazione nel `Startup` Costruttore:
 
       [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Ctor&highlight=5-6)]
 
@@ -204,7 +210,7 @@ Il nuovo [sistema di configurazione](xref:fundamentals/configuration/index) offr
 
    Il metodo di estensione [UseMiddleware](#http-modules-usemiddleware) che aggiunge il middleware al `IApplicationBuilder` si occupa dell'inserimento delle dipendenze.
 
-   Questo non è limitato agli oggetti `IOptions`. Tutti gli altri oggetti richiesti dal middleware possono essere inseriti in questo modo.
+   Questo non è limitato `IOptions` agli oggetti. Tutti gli altri oggetti richiesti dal middleware possono essere inseriti in questo modo.
 
 ## <a name="loading-middleware-options-through-direct-injection"></a>Caricamento delle opzioni del middleware tramite l'inserimento diretto
 
@@ -212,7 +218,7 @@ Il modello Options presenta il vantaggio di creare un accoppiamento libero tra i
 
 Questa operazione si interrompe anche se si vuole usare lo stesso middleware due volte, con opzioni diverse. Ad esempio un middleware di autorizzazione usato in rami diversi che consentono ruoli diversi. Non è possibile associare due oggetti Options diversi a una classe di opzioni.
 
-La soluzione consiste nell'ottenere gli oggetti Options con i valori effettivi delle opzioni nella classe `Startup` e passarli direttamente a ogni istanza del middleware.
+La soluzione consiste nell'ottenere gli oggetti Options con i valori effettivi delle opzioni `Startup` nella classe e passarli direttamente a ogni istanza del middleware.
 
 1. Aggiungere una seconda chiave a *appSettings. JSON*
 
@@ -220,25 +226,25 @@ La soluzione consiste nell'ottenere gli oggetti Options con i valori effettivi d
 
    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
 
-2. Recuperare i valori delle opzioni e passarli al middleware. Il metodo di estensione `Use...` (che aggiunge il middleware alla pipeline) è una posizione logica per passare i valori delle opzioni: 
+2. Recuperare i valori delle opzioni e passarli al middleware. Il `Use...` metodo di estensione, che aggiunge il middleware alla pipeline, è una posizione logica per passare i valori delle opzioni: 
 
    [!code-csharp[](http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=20-23)]
 
-3. Consentire al middleware di prendere un parametro options. Fornire un overload del metodo di estensione `Use...` (che accetta il parametro options e lo passa a `UseMiddleware`). Quando `UseMiddleware` viene chiamato con parametri, passa i parametri al costruttore del middleware quando crea un'istanza dell'oggetto middleware.
+3. Consentire al middleware di prendere un parametro options. Fornire un overload del metodo `Use...` di estensione (che accetta il parametro options e lo passa a `UseMiddleware`). Quando `UseMiddleware` viene chiamato con parametri, passa i parametri al costruttore del middleware quando crea un'istanza dell'oggetto middleware.
 
    [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Extensions&highlight=9-14)]
 
-   Si noti che in questo modo viene eseguito il wrapping dell'oggetto options in un oggetto `OptionsWrapper`. Implementa `IOptions`, come previsto dal costruttore del middleware.
+   Si noti che in questo modo viene eseguito il wrapping `OptionsWrapper` dell'oggetto options in un oggetto. Implementa `IOptions`, come previsto dal costruttore del middleware.
 
 ## <a name="migrating-to-the-new-httpcontext"></a>Migrazione al nuovo HttpContext
 
-Si è visto in precedenza che il metodo `Invoke` nel middleware accetta un parametro di tipo `HttpContext`:
+Si è visto in precedenza `Invoke` che il metodo nel middleware accetta un parametro di `HttpContext`tipo:
 
 ```csharp
 public async Task Invoke(HttpContext context)
 ```
 
-`HttpContext` è stato modificato in modo significativo nell'ASP.NET Core. Questa sezione illustra come tradurre le proprietà più comunemente usate di [System. Web. HttpContext](/dotnet/api/system.web.httpcontext) nella nuova `Microsoft.AspNetCore.Http.HttpContext`.
+`HttpContext`è stato modificato in modo significativo in ASP.NET Core. In questa sezione viene illustrato come tradurre le proprietà più comunemente utilizzate di [System. Web. HttpContext](/dotnet/api/system.web.httpcontext) nel nuovo `Microsoft.AspNetCore.Http.HttpContext`oggetto.
 
 ### <a name="httpcontext"></a>HttpContext
 
@@ -252,7 +258,7 @@ Fornisce un ID univoco per ogni richiesta. Molto utile da includere nei log.
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Trace)]
 
-### <a name="httpcontextrequest"></a>HttpContext.Request
+### <a name="httpcontextrequest"></a>HttpContext. Request
 
 **HttpContext. Request. HttpMethod** viene convertito in:
 
@@ -316,7 +322,7 @@ Fornisce un ID univoco per ogni richiesta. Molto utile da includere nei log.
 >
 >Questa operazione non si applica alla lettura di un modulo, come illustrato in precedenza, perché viene eseguita da un buffer.
 
-### <a name="httpcontextresponse"></a>HttpContext.Response
+### <a name="httpcontextresponse"></a>HttpContext. Response
 
 **HttpContext. Response. status** e **HttpContext. Response. StatusDescription** vengono convertiti in:
 
@@ -342,9 +348,9 @@ Anche **HttpContext. Response. ContentType** viene convertito in:
 
 L'invio di intestazioni di risposta è complicato dal fatto che, se si impostano elementi che sono stati scritti nel corpo della risposta, non verranno inviati.
 
-La soluzione consiste nell'impostare un metodo di callback che verrà chiamato immediatamente prima di iniziare la scrittura della risposta. Questa operazione è ottimale all'inizio del metodo `Invoke` nel middleware. Si tratta di un metodo di callback che imposta le intestazioni della risposta.
+La soluzione consiste nell'impostare un metodo di callback che verrà chiamato immediatamente prima di iniziare la scrittura della risposta. Questa operazione viene eseguita in modo ottimale all'inizio `Invoke` del metodo nel middleware. Si tratta di un metodo di callback che imposta le intestazioni della risposta.
 
-Il codice seguente imposta un metodo di callback denominato `SetHeaders`:
+Il codice seguente imposta un metodo di callback `SetHeaders`denominato:
 
 ```csharp
 public async Task Invoke(HttpContext httpContext)
@@ -353,7 +359,7 @@ public async Task Invoke(HttpContext httpContext)
     httpContext.Response.OnStarting(SetHeaders, state: httpContext);
 ```
 
-Il metodo di callback `SetHeaders` avrà un aspetto simile al seguente:
+Il `SetHeaders` metodo di callback avrà un aspetto simile al seguente:
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetHeaders)]
 
@@ -369,7 +375,7 @@ public async Task Invoke(HttpContext httpContext)
     httpContext.Response.OnStarting(SetHeaders, state: httpContext);
 ```
 
-Il metodo di callback `SetCookies` avrà un aspetto simile al seguente:
+Il `SetCookies` metodo di callback avrà un aspetto simile al seguente:
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
 

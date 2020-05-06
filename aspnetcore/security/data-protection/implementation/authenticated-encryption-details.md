@@ -4,13 +4,19 @@ author: rick-anderson
 description: Informazioni sui dettagli di implementazione di ASP.NET Core crittografia autenticata per la protezione dei dati.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/authenticated-encryption-details
-ms.openlocfilehash: 9def03e6b27e19fc34a839e923d6152e086889db
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 3066cd505781ed2ddad46626dda9d9ce35307877
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78667762"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776968"
 ---
 # <a name="authenticated-encryption-details-in-aspnet-core"></a>Dettagli della crittografia autenticata in ASP.NET Core
 
@@ -55,4 +61,4 @@ I successivi 128 bit o 16 byte è l'identificatore di chiave (80 9C 81 0C 19 66 
 Il resto contiene il payload ed è specifico del formato utilizzato.
 
 > [!WARNING]
-> Tutti i payload protetti a una determinata chiave inizieranno con la stessa intestazione di 20 byte (valore magico, ID chiave). Gli amministratori possono utilizzare questo fatto a scopo di diagnostica per approssimarsi quando è stato generato un payload. Il payload precedente, ad esempio, corrisponde alla chiave {0c819c80-6619-4019-9536-53f8aaffee57}. Se dopo aver verificato il repository della chiave si è verificato che la data di attivazione della chiave specifica è 2015-01-01 e che la data di scadenza è 2015-03-01, è ragionevole presupporre che il payload (se non alterato) sia stato generato all'interno di tale finestra, assegnare o richiedere un piccolo fattore di Fudge su entrambi i lati.
+> Tutti i payload protetti a una determinata chiave inizieranno con la stessa intestazione di 20 byte (valore magico, ID chiave). Gli amministratori possono utilizzare questo fatto a scopo di diagnostica per approssimarsi quando è stato generato un payload. Il payload precedente, ad esempio, corrisponde alla chiave {0c819c80-6619-4019-9536-53f8aaffee57}. Se dopo aver verificato il repository della chiave si è verificato che la data di attivazione della chiave specifica è 2015-01-01 e che la data di scadenza è 2015-03-01, è ragionevole presupporre che il payload (se non alterato) sia stato generato all'interno di tale finestra, assegnare o assumere un piccolo fattore di Fudge su entrambi i lati.

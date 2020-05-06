@@ -5,13 +5,19 @@ description: Viene illustrato come utilizzare lo strumento ' Microsoft. dotnet-o
 ms.author: rybrande
 ms.date: 09/26/2019
 monikerRange: '>= aspnetcore-3.0'
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/Microsoft.dotnet-openapi
-ms.openlocfilehash: 079e36511b63c186ffa7726bdb1e3c3bcbda9d34
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1924fb8ee5ac1ba8dc31d2175a336c8333c81fb2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78655267"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775713"
 ---
 # <a name="develop-aspnet-core-apps-using-openapi-tools"></a>Sviluppare app ASP.NET Core usando gli strumenti di OpenAPI
 
@@ -29,7 +35,7 @@ dotnet tool install -g Microsoft.dotnet-openapi
 
 ## <a name="add"></a>Add
 
-L'aggiunta di un riferimento OpenAPI usando uno qualsiasi dei comandi in questa pagina aggiunge un elemento `<OpenApiReference />` simile al seguente al file con *estensione csproj* :
+L'aggiunta di un riferimento OpenAPI usando uno qualsiasi dei comandi in questa pagina `<OpenApiReference />` aggiunge un elemento simile al seguente al file con *estensione csproj* :
 
 ```xml
 <OpenApiReference Include="openapi.json" />
@@ -59,10 +65,10 @@ Il riferimento precedente è necessario per l'app per chiamare il codice client 
 | Short-opzione| Opzione Long| Descrizione | Esempio |
 |-------|------|-------|---------|
 | -p|--updateProject | Progetto su cui operare. |file di aggiunta di DotNet openapi *--updateProject .\Ref.csproj* .\OpenAPI.JSON |
-| -c|--generatore di codice| Generatore di codice da applicare al riferimento. Le opzioni sono `NSwagCSharp` e `NSwagTypeScript`. Se `--code-generator` non viene specificato, l'impostazione predefinita degli strumenti è `NSwagCSharp`.|DotNet openapi Add file .\OpenApi.json--Code-Generator
-| -H|--help|Mostra informazioni della Guida|file di aggiunta di DotNet openapi--Help|
+| -c|--generatore di codice| Generatore di codice da applicare al riferimento. Le opzioni `NSwagCSharp` sono `NSwagTypeScript`e. Se `--code-generator` non viene specificato `NSwagCSharp`, l'impostazione predefinita degli strumenti è.|DotNet openapi Add file .\OpenApi.json--Code-Generator
+| -H|--help|Mostra le informazioni della Guida|file di aggiunta di DotNet openapi--Help|
 
-#### <a name="arguments"></a>Argomenti
+#### <a name="arguments"></a>Arguments
 
 |  Argomento  | Descrizione | Esempio |
 |-------------|-------------|---------|
@@ -74,18 +80,18 @@ Il riferimento precedente è necessario per l'app per chiamare il codice client 
 
 | Short-opzione| Opzione Long| Descrizione | Esempio |
 |-------|------|-------------|---------|
-| -p|--updateProject | Progetto su cui operare. |URL di aggiunta di DotNet openapi *--updateProject .\Ref.csproj* `https://contoso.com/openapi.json` |
+| -p|--updateProject | Progetto su cui operare. |URL di aggiunta di DotNet openapi *--updateProject .\Ref.csproj*`https://contoso.com/openapi.json` |
 | -o|--output-file | Posizione in cui inserire la copia locale del file OpenAPI. |DotNet openapi Add URL `https://contoso.com/openapi.json` *--output-file client. JSON* |
-| -c|--generatore di codice| Generatore di codice da applicare al riferimento. Le opzioni sono `NSwagCSharp` e `NSwagTypeScript`. |DotNet openapi Add file .\OpenApi.json--Code-Generator
-| -H|--help|Mostra informazioni della Guida|URL di aggiunta di DotNet openapi--Help|
+| -c|--generatore di codice| Generatore di codice da applicare al riferimento. Le opzioni `NSwagCSharp` sono `NSwagTypeScript`e. |DotNet openapi Add file .\OpenApi.json--Code-Generator
+| -H|--help|Mostra le informazioni della Guida|URL di aggiunta di DotNet openapi--Help|
 
-#### <a name="arguments"></a>Argomenti
+#### <a name="arguments"></a>Arguments
 
 |  Argomento  | Descrizione | Esempio |
 |-------------|-------------|---------|
-| URL origine | Origine da cui creare un riferimento. Deve essere un URL. |`https://contoso.com/openapi.json` di Aggiungi URL DotNet openapi |
+| URL origine | Origine da cui creare un riferimento. Deve essere un URL. |URL di aggiunta di DotNet openapi`https://contoso.com/openapi.json` |
 
-## <a name="remove"></a>Rimuovere
+## <a name="remove"></a>Remove
 
 Rimuove il riferimento OpenAPI che corrisponde al nome file specificato dal file con *estensione csproj* . Quando viene rimosso il riferimento OpenAPI, i client non verranno generati. I file local *. JSON* e *. YAML* vengono eliminati.
 
@@ -94,9 +100,9 @@ Rimuove il riferimento OpenAPI che corrisponde al nome file specificato dal file
 | Short-opzione| Opzione Long| Descrizione| Esempio |
 |-------|------|------------|---------|
 | -p|--updateProject | Progetto su cui operare. |DotNet openapi Remove *--updateProject .\Ref.csproj* .\OpenAPI.JSON |
-| -H|--help|Mostra informazioni della Guida|openapi di DotNet--Guida|
+| -H|--help|Mostra le informazioni della Guida|openapi di DotNet--Guida|
 
-### <a name="arguments"></a>Argomenti
+### <a name="arguments"></a>Arguments
 
 |  Argomento  | Descrizione| Esempio |
 | ------------|------------|---------|
@@ -110,11 +116,11 @@ Aggiorna la versione locale di un file scaricato usando il contenuto più recent
 
 | Short-opzione| Opzione Long| Descrizione | Esempio |
 |-------|------|-------------|---------|
-| -p|--updateProject | Progetto su cui operare. | aggiornamento DotNet openapi *--updateProject .\Ref.csproj* `https://contoso.com/openapi.json` |
-| -H|--help|Mostra informazioni della Guida|aggiornamento di DotNet openapi--Help|
+| -p|--updateProject | Progetto su cui operare. | aggiornamento DotNet openapi *--updateProject .\Ref.csproj*`https://contoso.com/openapi.json` |
+| -H|--help|Mostra le informazioni della Guida|aggiornamento di DotNet openapi--Help|
 
-### <a name="arguments"></a>Argomenti
+### <a name="arguments"></a>Arguments
 
 |  Argomento  | Descrizione | Esempio |
 | ------------|-------------|---------|
-| URL origine | URL da cui aggiornare il riferimento. | `https://contoso.com/openapi.json` di aggiornamento DotNet openapi |
+| URL origine | URL da cui aggiornare il riferimento. | aggiornamento DotNet openapi`https://contoso.com/openapi.json` |

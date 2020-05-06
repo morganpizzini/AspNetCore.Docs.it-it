@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 54783ebbac26a10a92716b5e53ed6cd7cc8bb65d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: 32d3a22b85675d817286e3e72b8b9c8e63df6ca6
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773497"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850422"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: aggiornare i dati correlati-ASP.NET MVC con EF Core
 
@@ -231,7 +231,7 @@ In *Views/Instructors/Edit.cshtml* aggiungere un campo **Courses** (Corsi) con u
 
 <a id="notepad"></a>
 > [!NOTE]
-> Quando si incolla il codice in Visual Studio, è possibile che le interruzioni di riga vengano modificate in un modo che danneggia il codice. Se il codice ha un aspetto diverso dopo aver incollato, premere CTRL+Z una volta per annullare la formattazione automatica. Ciò corregge le interruzioni di riga, che vengono visualizzate come illustrato qui. Il rientro non deve necessariamente essere perfetto, ma le righe `@</tr><tr>`, `@:<td>`, `@:</td>` e `@:</tr>` devono trovarsi in una sola riga, come illustrato. In caso contrario, viene visualizzato un errore di runtime. Dopo aver selezionato il blocco di nuovo codice, premere Tab tre volte per allineare il nuovo codice con il codice esistente. Questo problema è stato risolto in Visual Studio 2019.
+> Quando si incolla il codice in Visual Studio, è possibile che le interruzioni di riga vengano modificate in un modo che danneggia il codice. Se il codice ha un aspetto diverso dopo aver incollato, premere CTRL+Z una volta per annullare la formattazione automatica. Ciò corregge le interruzioni di riga, che vengono visualizzate come illustrato qui. Il rientro non deve necessariamente essere perfetto, ma le righe `@:</tr><tr>`, `@:<td>`, `@:</td>` e `@:</tr>` devono trovarsi in una sola riga, come illustrato. In caso contrario, viene visualizzato un errore di runtime. Dopo aver selezionato il blocco di nuovo codice, premere Tab tre volte per allineare il nuovo codice con il codice esistente. Questo problema è stato risolto in Visual Studio 2019.
 
 [!code-html[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
 

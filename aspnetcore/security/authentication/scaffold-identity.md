@@ -1,36 +1,42 @@
 ---
-title: Identità di impalcatura nei progetti ASP.NET Core
+title: Impalcatura Identity nei progetti ASP.NET Core
 author: rick-anderson
-description: Informazioni su come eseguire l'impalcatura dell'identità in un progetto ASP.NET Core.
+description: Informazioni su come eseguire Identity l'impalcatura in un progetto ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 5/1/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: ac95035b114274ddaa6ccb0b5b6e3da98885e39e
-ms.sourcegitcommit: 6318d2bdd63116e178c34492a904be85ec9ac108
+ms.openlocfilehash: 6f1ff69863e14c73e90496ea61188387f5267b19
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82604727"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768390"
 ---
-# <a name="scaffold-identity-in-aspnet-core-projects"></a>Identità di impalcatura nei progetti ASP.NET Core
+# <a name="scaffold-identity-in-aspnet-core-projects"></a>Impalcatura Identity nei progetti ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core fornisce [ASP.NET Core identità](xref:security/authentication/identity) come [libreria di classi Razor](xref:razor-pages/ui-class). Le applicazioni che includono l'identità possono applicare l'impalcatura per aggiungere selettivamente il codice sorgente contenuto nella libreria di classi Razor (RCL). Se si vuole generare un codice sorgente, è possibile modificare il codice e modificarne il comportamento. Ad esempio, è possibile indicare allo scaffolder di generare il codice usato nella registrazione. Il codice generato ha la precedenza rispetto allo stesso codice nella libreria di classi Razor per Identity. Per ottenere il controllo completo dell'interfaccia utente e non usare il RCL predefinito, vedere la sezione [creare l'origine dell'interfaccia utente Full Identity](#full).
+ASP.NET Core fornisce [ASP.NET Core Identity ](xref:security/authentication/identity) come [ Razor libreria di classi](xref:razor-pages/ui-class). Le applicazioni che Identity includono possono applicare l'impalcatura per aggiungere selettivamente il codice sorgente contenuto nella Identity Razor libreria di classi (RCL). Se si vuole generare un codice sorgente, è possibile modificare il codice e modificarne il comportamento. Ad esempio, è possibile indicare allo scaffolder di generare il codice usato nella registrazione. Il codice generato ha la precedenza sullo stesso codice in Identity RCL. Per ottenere il controllo completo dell'interfaccia utente e non usare il RCL predefinito, vedere la sezione [creare l'origine dell'interfaccia utente Full Identity](#full).
 
-Le applicazioni che **non** includono l'autenticazione possono applicare l'impalcatura per aggiungere il pacchetto di identità RCL. È possibile selezionare il codice Identity da generare.
+Le applicazioni che **non** includono l'autenticazione possono applicare l'impalcatura per aggiungere il Identity pacchetto RCL. È possibile scegliere di selezionare Identity il codice da generare.
 
-Sebbene l'impalcatura generi la maggior parte del codice necessario, è necessario aggiornare il progetto per completare il processo. Questo documento illustra i passaggi necessari per completare un aggiornamento dell'impalcatura delle identità.
+Sebbene l'impalcatura generi la maggior parte del codice necessario, è necessario aggiornare il progetto per completare il processo. Questo documento illustra i passaggi necessari per completare un Identity aggiornamento di ponteggi.
 
-È consigliabile usare un sistema di controllo del codice sorgente che mostra le differenze dei file e consente di eseguire il backup delle modifiche. Controllare le modifiche dopo l'esecuzione dell'impalcatura di identità.
+È consigliabile usare un sistema di controllo del codice sorgente che mostra le differenze dei file e consente di eseguire il backup delle modifiche. Controllare le modifiche dopo l'esecuzione Identity dell'impalcatura.
 
-I servizi sono necessari quando si usa [l'autenticazione a due fattori](xref:security/authentication/identity-enable-qrcodes), la [conferma dell'account e il recupero della password](xref:security/authentication/accconfirm)e altre funzionalità di sicurezza con identità. I servizi o gli stub di servizio non vengono generati durante l'identità di ponteggi. I servizi per abilitare queste funzionalità devono essere aggiunti manualmente. Vedere ad esempio [Richiedi conferma tramite posta elettronica](xref:security/authentication/accconfirm#require-email-confirmation).
+I servizi sono necessari quando si usa [l'autenticazione a due fattori](xref:security/authentication/identity-enable-qrcodes), la [conferma dell'account e il recupero della password](xref:security/authentication/accconfirm)e altre funzionalità di sicurezza con. Identity I servizi o gli stub di servizio non vengono Identitygenerati durante l'impalcatura. I servizi per abilitare queste funzionalità devono essere aggiunti manualmente. Vedere ad esempio [Richiedi conferma tramite posta elettronica](xref:security/authentication/accconfirm#require-email-confirmation).
 
-Quando si esegue il ponteggi dell'identità con un nuovo contesto dati in un progetto con account singoli esistenti:
+Quando si esegue Identity il ponteggi con un nuovo contesto dati in un progetto con account singoli esistenti:
 
 * In `Startup.ConfigureServices`rimuovere le chiamate a:
   * `AddDbContext`
@@ -40,7 +46,7 @@ Ad esempio, `AddDbContext` e `AddDefaultIdentity` sono impostati come commento n
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupRemove.cs?name=snippet)]
 
-Il codice precedente commenta il codice duplicato in *aree/identità/IdentityHostingStartup. cs*
+Il codice precedente commenta il codice duplicato in *aree/Identity/IdentityHostingStartup.cs*
 
 In genere, le app create con singoli account ***non*** devono creare un nuovo contesto dati.
 
@@ -56,7 +62,7 @@ Aggiornare la `Startup` classe con codice simile al seguente:
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-## <a name="scaffold-identity-into-a-razor-project-without-existing-authorization"></a>Identità del patibolo in un progetto Razor senza autorizzazione esistente
+## <a name="scaffold-identity-into-a-razor-project-without-existing-authorization"></a>Identità del patibolo Razor in un progetto senza autorizzazione esistente
 
 <!--  Updated for 3.0
 set projNam=RPnoAuth
@@ -85,7 +91,7 @@ before dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-L'identità è configurata in *areas/Identity/IdentityHostingStartup. cs*. Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Identityviene configurato in *area/Identity/IdentityHostingStartup.cs*. Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 <a name="efm"></a>
 
@@ -109,7 +115,7 @@ Facoltativo: aggiungere l'account di accesso`_LoginPartial`parziale () al file d
 
 [!code-html[Main](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
-## <a name="scaffold-identity-into-a-razor-project-with-authorization"></a>Identità del patibolo in un progetto Razor con autorizzazione
+## <a name="scaffold-identity-into-a-razor-project-with-authorization"></a>Identità del patibolo Razor in un progetto con autorizzazione
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -123,7 +129,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-Alcune opzioni di identità sono configurate in *areas/Identity/IdentityHostingStartup. cs*. Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Alcune Identity opzioni sono configurate in *aree/Identity/IdentityHostingStartup.cs*. Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## <a name="scaffold-identity-into-an-mvc-project-without-existing-authorization"></a>Identità del patibolo in un progetto MVC senza autorizzazione esistente
 
@@ -149,7 +155,7 @@ Facoltativo: aggiungere l'account di accesso`_LoginPartial`parziale () al file *
 
 * Spostare il file *pages/Shared/_LoginPartial. cshtml* in *Views/Shared/_LoginPartial. cshtml*
 
-L'identità è configurata in *areas/Identity/IdentityHostingStartup. cs*. Per ulteriori informazioni, vedere IHostingStartup.
+Identityviene configurato in *area/Identity/IdentityHostingStartup.cs*. Per ulteriori informazioni, vedere IHostingStartup.
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
@@ -175,13 +181,13 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 ## <a name="create-full-identity-ui-source"></a>Crea origine interfaccia utente con identità completa
 
-Per mantenere il controllo completo dell'interfaccia utente di identità, eseguire l'impalcatura delle identità e selezionare **Sostituisci tutti i file**.
+Per mantenere il Identity controllo completo dell'interfaccia utente, eseguire Identity l'impalcatura e selezionare **Sostituisci tutti i file**.
 
-Il codice evidenziato seguente mostra le modifiche per sostituire l'interfaccia utente di identità predefinita con Identity in un'app Web ASP.NET Core 2,1. Questa operazione può essere eseguita per avere il controllo completo dell'interfaccia utente di identità.
+Il codice evidenziato seguente mostra le modifiche per sostituire l' Identity interfaccia utente Identity predefinita con in un'app Web ASP.NET Core 2,1. Questa operazione può essere eseguita per avere il Identity controllo completo dell'interfaccia utente.
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
 
-L'identità predefinita viene sostituita dal codice seguente:
+Il valore Identity predefinito viene sostituito nel codice seguente:
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
 
@@ -207,21 +213,21 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 Per disabilitare la registrazione dell'utente:
 
-* Identità del patibolo. Includere account. Register, account. login e account. RegisterConfirmation. Ad esempio:
+* Impalcature Identity. Includere account. Register, account. login e account. RegisterConfirmation. Ad esempio:
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
   ```
 
-* Aggiornare le *aree/Identity/Pages/account/Register. cshtml. cs,* in modo che gli utenti non possano effettuare la registrazione da questo endpoint:
+* Aggiornare le *areeIdentity//Pages/account/Register.cshtml.cs* in modo che gli utenti non possano effettuare la registrazione da questo endpoint:
 
   [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
 
-* Aggiornare le *aree/Identity/Pages/account/Register. cshtml* in modo che siano coerenti con le modifiche precedenti:
+* Aggiornare le *areeIdentity//Pages/account/Register.cshtml* in modo che siano coerenti con le modifiche precedenti:
 
   [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
 
-* Impostare come commento o rimuovere il collegamento di registrazione da *aree/Identity/Pages/account/login. cshtml*
+* Impostare come commento o rimuovere il collegamento di registrazione da *aree/Identity/Pages/account/login.cshtml*
 
 ```cshtml
 @*
@@ -231,7 +237,7 @@ Per disabilitare la registrazione dell'utente:
 *@
 ```
 
-* Aggiornare la pagina *aree/identità/pagine/account/RegisterConfirmation* .
+* Aggiornare la pagina *areeIdentity//Pages/account/RegisterConfirmation* .
 
   * Rimuovere il codice e i collegamenti dal file cshtml.
   * Rimuovere il codice di conferma da `PageModel`:
@@ -258,7 +264,7 @@ Il codice seguente illustra un approccio per l'aggiunta di utenti:
 
 * Un elenco di utenti viene letto in memoria.
 * Per ogni utente viene generata una password univoca complessa.
-* L'utente viene aggiunto al database di identità.
+* L'utente viene aggiunto al Identity database.
 * Viene inviata una notifica all'utente e viene chiesto di modificare la password.
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Program.cs?name=snippet)]
@@ -269,9 +275,9 @@ Il codice seguente illustra l'aggiunta di un utente:
 
 Per gli scenari di produzione è possibile seguire un approccio simile.
 
-## <a name="prevent-publish-of-static-identity-assets"></a>Impedisci la pubblicazione di asset di identità statici
+## <a name="prevent-publish-of-static-identity-assets"></a>Impedisci la pubblicazione Identity di asset statici
 
-Per evitare la pubblicazione di asset di identità statici nella radice Web <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>, vedere.
+Per evitare la pubblicazione Identity di asset statici nella radice Web, <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>vedere.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -281,18 +287,18 @@ Per evitare la pubblicazione di asset di identità statici nella radice Web <xre
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.NET Core 2,1 e versioni successive fornisce [ASP.NET Core identità](xref:security/authentication/identity) come [libreria di classi Razor](xref:razor-pages/ui-class). Le applicazioni che includono l'identità possono applicare l'impalcatura per aggiungere selettivamente il codice sorgente contenuto nella libreria di classi Razor (RCL). Se si vuole generare un codice sorgente, è possibile modificare il codice e modificarne il comportamento. Ad esempio, è possibile indicare allo scaffolder di generare il codice usato nella registrazione. Il codice generato ha la precedenza rispetto allo stesso codice nella libreria di classi Razor per Identity. Per ottenere il controllo completo dell'interfaccia utente e non usare il RCL predefinito, vedere la sezione [creare l'origine dell'interfaccia utente Full Identity](#full).
+ASP.NET Core 2,1 e versioni successive [fornisce Identity ASP.NET Core](xref:security/authentication/identity) come [ Razor libreria di classi](xref:razor-pages/ui-class). Le applicazioni che Identity includono possono applicare l'impalcatura per aggiungere selettivamente il codice sorgente contenuto nella Identity Razor libreria di classi (RCL). Se si vuole generare un codice sorgente, è possibile modificare il codice e modificarne il comportamento. Ad esempio, è possibile indicare allo scaffolder di generare il codice usato nella registrazione. Il codice generato ha la precedenza sullo stesso codice in Identity RCL. Per ottenere il controllo completo dell'interfaccia utente e non usare il RCL predefinito, vedere la sezione [creare l'origine dell'interfaccia utente Full Identity](#full).
 
-Le applicazioni che **non** includono l'autenticazione possono applicare l'impalcatura per aggiungere il pacchetto di identità RCL. È possibile selezionare il codice Identity da generare.
+Le applicazioni che **non** includono l'autenticazione possono applicare l'impalcatura per aggiungere il Identity pacchetto RCL. È possibile scegliere di selezionare Identity il codice da generare.
 
-Sebbene l'impalcatura generi la maggior parte del codice necessario, sarà necessario aggiornare il progetto per completare il processo. Questo documento illustra i passaggi necessari per completare un aggiornamento dell'impalcatura delle identità.
+Sebbene l'impalcatura generi la maggior parte del codice necessario, sarà necessario aggiornare il progetto per completare il processo. Questo documento illustra i passaggi necessari per completare un Identity aggiornamento di ponteggi.
 
-Quando si esegue l'impalcatura delle identità, viene creato un file *ScaffoldingReadme. txt* nella directory del progetto. Il file *ScaffoldingReadme. txt* contiene istruzioni generali sugli elementi necessari per completare l'aggiornamento dell'impalcatura delle identità. Questo documento contiene istruzioni più complete rispetto al file *ScaffoldingReadme. txt* .
+Quando si Identity esegue l'impalcatura, viene creato un file *ScaffoldingReadme. txt* nella directory del progetto. Il file *ScaffoldingReadme. txt* contiene istruzioni generali sugli elementi necessari per completare l' Identity aggiornamento di ponteggi. Questo documento contiene istruzioni più complete rispetto al file *ScaffoldingReadme. txt* .
 
-È consigliabile usare un sistema di controllo del codice sorgente che mostra le differenze dei file e consente di eseguire il backup delle modifiche. Controllare le modifiche dopo l'esecuzione dell'impalcatura di identità.
+È consigliabile usare un sistema di controllo del codice sorgente che mostra le differenze dei file e consente di eseguire il backup delle modifiche. Controllare le modifiche dopo l'esecuzione Identity dell'impalcatura.
 
 > [!NOTE]
-> I servizi sono necessari quando si usa [l'autenticazione a due fattori](xref:security/authentication/identity-enable-qrcodes), la [conferma dell'account e il recupero della password](xref:security/authentication/accconfirm)e altre funzionalità di sicurezza con identità. I servizi o gli stub di servizio non vengono generati durante l'identità di ponteggi. I servizi per abilitare queste funzionalità devono essere aggiunti manualmente. Vedere ad esempio [Richiedi conferma tramite posta elettronica](xref:security/authentication/accconfirm#require-email-confirmation).
+> I servizi sono necessari quando si usa [l'autenticazione a due fattori](xref:security/authentication/identity-enable-qrcodes), la [conferma dell'account e il recupero della password](xref:security/authentication/accconfirm)e altre funzionalità di sicurezza con. Identity I servizi o gli stub di servizio non vengono Identitygenerati durante l'impalcatura. I servizi per abilitare queste funzionalità devono essere aggiunti manualmente. Vedere ad esempio [Richiedi conferma tramite posta elettronica](xref:security/authentication/accconfirm#require-email-confirmation).
 
 ## <a name="scaffold-identity-into-an-empty-project"></a>Identità del patibolo in un progetto vuoto
 
@@ -306,7 +312,7 @@ Aggiungere le seguenti chiamate evidenziate alla `Startup` classe:
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-## <a name="scaffold-identity-into-a-razor-project-without-existing-authorization"></a>Identità del patibolo in un progetto Razor senza autorizzazione esistente
+## <a name="scaffold-identity-into-a-razor-project-without-existing-authorization"></a>Identità del patibolo Razor in un progetto senza autorizzazione esistente
 
 <!--  Updated for 3.0
 set projNam=RPnoAuth
@@ -327,7 +333,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-L'identità è configurata in *areas/Identity/IdentityHostingStartup. cs*. Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Identityviene configurato in *area/Identity/IdentityHostingStartup.cs*. Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 <a name="efm"></a>
 
@@ -351,7 +357,7 @@ Facoltativo: aggiungere l'account di accesso`_LoginPartial`parziale () al file d
 
 [!code-html[Main](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
-## <a name="scaffold-identity-into-a-razor-project-with-authorization"></a>Identità del patibolo in un progetto Razor con autorizzazione
+## <a name="scaffold-identity-into-a-razor-project-with-authorization"></a>Identità del patibolo Razor in un progetto con autorizzazione
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -365,7 +371,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-Alcune opzioni di identità sono configurate in *areas/Identity/IdentityHostingStartup. cs*. Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Alcune Identity opzioni sono configurate in *aree/Identity/IdentityHostingStartup.cs*. Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## <a name="scaffold-identity-into-an-mvc-project-without-existing-authorization"></a>Identità del patibolo in un progetto MVC senza autorizzazione esistente
 
@@ -391,7 +397,7 @@ Facoltativo: aggiungere l'account di accesso`_LoginPartial`parziale () al file *
 
 * Spostare il file *pages/Shared/_LoginPartial. cshtml* in *Views/Shared/_LoginPartial. cshtml*
 
-L'identità è configurata in *areas/Identity/IdentityHostingStartup. cs*. Per ulteriori informazioni, vedere IHostingStartup.
+Identityviene configurato in *area/Identity/IdentityHostingStartup.cs*. Per ulteriori informazioni, vedere IHostingStartup.
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
@@ -419,13 +425,13 @@ Eliminare le *pagine o* la cartella condivisa e i file in tale cartella.
 
 ## <a name="create-full-identity-ui-source"></a>Crea origine interfaccia utente con identità completa
 
-Per mantenere il controllo completo dell'interfaccia utente di identità, eseguire l'impalcatura delle identità e selezionare **Sostituisci tutti i file**.
+Per mantenere il Identity controllo completo dell'interfaccia utente, eseguire Identity l'impalcatura e selezionare **Sostituisci tutti i file**.
 
-Il codice evidenziato seguente mostra le modifiche per sostituire l'interfaccia utente di identità predefinita con Identity in un'app Web ASP.NET Core 2,1. Questa operazione può essere eseguita per avere il controllo completo dell'interfaccia utente di identità.
+Il codice evidenziato seguente mostra le modifiche per sostituire l' Identity interfaccia utente Identity predefinita con in un'app Web ASP.NET Core 2,1. Questa operazione può essere eseguita per avere il Identity controllo completo dell'interfaccia utente.
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
 
-L'identità predefinita viene sostituita dal codice seguente:
+Il valore Identity predefinito viene sostituito nel codice seguente:
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
 
@@ -451,21 +457,21 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 Per disabilitare la registrazione dell'utente:
 
-* Identità del patibolo. Includere account. Register, account. login e account. RegisterConfirmation. Ad esempio:
+* Impalcature Identity. Includere account. Register, account. login e account. RegisterConfirmation. Ad esempio:
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
   ```
 
-* Aggiornare le *aree/Identity/Pages/account/Register. cshtml. cs,* in modo che gli utenti non possano effettuare la registrazione da questo endpoint:
+* Aggiornare le *areeIdentity//Pages/account/Register.cshtml.cs* in modo che gli utenti non possano effettuare la registrazione da questo endpoint:
 
   [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
 
-* Aggiornare le *aree/Identity/Pages/account/Register. cshtml* in modo che siano coerenti con le modifiche precedenti:
+* Aggiornare le *areeIdentity//Pages/account/Register.cshtml* in modo che siano coerenti con le modifiche precedenti:
 
   [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
 
-* Impostare come commento o rimuovere il collegamento di registrazione da *aree/Identity/Pages/account/login. cshtml*
+* Impostare come commento o rimuovere il collegamento di registrazione da *aree/Identity/Pages/account/login.cshtml*
 
 ```cshtml
 @*
@@ -475,7 +481,7 @@ Per disabilitare la registrazione dell'utente:
 *@
 ```
 
-* Aggiornare la pagina *aree/identità/pagine/account/RegisterConfirmation* .
+* Aggiornare la pagina *areeIdentity//Pages/account/RegisterConfirmation* .
 
   * Rimuovere il codice e i collegamenti dal file cshtml.
   * Rimuovere il codice di conferma da `PageModel`:
@@ -502,7 +508,7 @@ Il codice seguente illustra un approccio per l'aggiunta di utenti:
 
 * Un elenco di utenti viene letto in memoria.
 * Per ogni utente viene generata una password univoca complessa.
-* L'utente viene aggiunto al database di identità.
+* L'utente viene aggiunto al Identity database.
 * Viene inviata una notifica all'utente e viene chiesto di modificare la password.
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Program.cs?name=snippet)]

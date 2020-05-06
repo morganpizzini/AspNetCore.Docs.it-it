@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: 86808e6bdd3bb669a62ad9e333b11df4c09a9cd3
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: HT
+ms.openlocfilehash: d62889ba6dba6748ce3d047f0d37b3a904199496
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774639"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850435"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticazione cloud con Azure Active Directory B2C in ASP.NET Core
 
@@ -40,7 +40,7 @@ In questa esercitazione si apprenderà come:
 
 Per questa procedura dettagliata sono necessari gli elementi seguenti:
 
-* [Sottoscrizione di Microsoft Azure](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
+* [Sottoscrizione di Microsoft Azure](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
 ## <a name="create-the-azure-active-directory-b2c-tenant"></a>Creare il tenant di Azure Active Directory B2C
@@ -53,7 +53,7 @@ Nel tenant di Azure AD B2C appena creato registrare l'app seguendo [la procedura
 
 Usare i valori seguenti:
 
-| Impostazione                       | Valore                     | Note                                                                                                                                                                                              |
+| Impostazione                       | valore                     | Note                                                                                                                                                                                              |
 |-------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nome**                      | *&lt;nome dell'app&gt;*        | Immettere un **nome** per l'app che descriva l'app agli utenti.                                                                                                                                 |
 | **Includi app Web/API Web** | Sì                       |                                                                                                                                                                                                    |
@@ -87,7 +87,7 @@ In Visual Studio:
 
 5. Completare il modulo con i valori seguenti:
     
-    | Impostazione                       | Valore                                                 |
+    | Impostazione                       | valore                                                 |
     |-------------------------------|-------------------------------------------------------|
     | **Nome di dominio**               | *&lt;nome di dominio del tenant B2C&gt;*          |
     | **ID applicazione**            | *&lt;incollare l'ID applicazione dagli Appunti&gt;* |
@@ -168,4 +168,4 @@ Ora che l'app ASP.NET Core è configurata in modo da usare Azure AD B2C per l'au
 * Configurare provider di identità aggiuntivi, ad esempio [Microsoft](/azure/active-directory-b2c/active-directory-b2c-setup-msa-app), [Facebook](/azure/active-directory-b2c/active-directory-b2c-setup-fb-app), [Google](/azure/active-directory-b2c/active-directory-b2c-setup-goog-app), [Amazon](/azure/active-directory-b2c/active-directory-b2c-setup-amzn-app), [Twitter](/azure/active-directory-b2c/active-directory-b2c-setup-twitter-app)e altri.
 * [Usare il API Graph Azure ad](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-graph-dotnet) per recuperare informazioni aggiuntive sull'utente, ad esempio l'appartenenza al gruppo, dal tenant di Azure ad B2C.
 * [Proteggere un'API web ASP.NET Core usando Azure ad B2C](https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapi/).
-* [Chiamare un'API Web .NET da un'app Web .NET usando Azure ad B2C](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-web-api-dotnet).
+* [Esercitazione: concedere l'accesso a un'API web ASP.NET usando Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-web-api-dotnet).

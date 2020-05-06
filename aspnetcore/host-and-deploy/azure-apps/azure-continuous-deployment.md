@@ -5,13 +5,19 @@ description: Informazioni su come creare un'app Web ASP.NET Core tramite Visual 
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
-ms.openlocfilehash: 3b344505739bb4292ed1683c73ff314b6e4e01e9
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 0b9f5f15403c7d18d68a41baa2a59582cf039f44
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78660853"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850565"
 ---
 # <a name="continuous-deployment-to-azure-with-visual-studio-and-git-with-aspnet-core"></a>Distribuzione continua in Azure con Visual Studio e Git con ASP.NET Core
 
@@ -24,7 +30,7 @@ Questa esercitazione mostra come creare un'app Web ASP.NET Core tramite Visual S
 Vedere anche l'articolo [Creare la prima pipeline con Azure Pipelines](/azure/devops/pipelines/get-started-yaml), che illustra come configurare un flusso di lavoro di recapito continuo per il [Servizio app di Azure](/azure/app-service/app-service-web-overview) usando Azure DevOps Services. Azure Pipelines (un servizio di Azure DevOps Services) semplifica la configurazione di una pipeline di distribuzione solida per pubblicare gli aggiornamenti per le app ospitate nel Servizio app di Azure. È possibile configurare la pipeline dal portale di Azure per compilare, eseguire i test, distribuire in uno slot di staging e quindi distribuire nell'ambiente di produzione.
 
 > [!NOTE]
-> Per completare questa esercitazione, è necessario un account di Microsoft Azure. Per ottenere un account, [attivare i benefici per il sottoscrittore MSDN](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/?WT.mc_id=A261C142F) o [iscriversi per una versione di valutazione gratuita](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+> Per completare questa esercitazione, è necessario un account di Microsoft Azure. Per ottenere un account, [attivare i benefici per il sottoscrittore MSDN](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/?WT.mc_id=A261C142F) o [iscriversi per una versione di valutazione gratuita](https://azure.microsoft.com/free/dotnet/?WT.mc_id=A261C142F).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
@@ -40,7 +46,7 @@ In questa esercitazione si presuppone che sia stato installato il software segue
 
 1. Scegliere **Nuovo** > **Progetto** dal menu **File**.
 
-1. Selezionare il modello di progetto **Applicazione Web ASP.NET Core**. Viene visualizzato in**Modelli** >  **installati** > **di Visual Cè** > **.NET Core**. Assegnare al progetto il nome `SampleWebAppDemo`. Selezionare l'opzione **Crea nuovo repository Git** e fare clic su **OK**.
+1. Selezionare il modello di progetto **Applicazione Web ASP.NET Core**. Viene visualizzato in **Installed** > **modelli** > installati**Visual C#** > **.NET Core**. Assegnare al progetto il nome `SampleWebAppDemo`. Selezionare l'opzione **Crea nuovo repository Git** e fare clic su **OK**.
 
    ![Finestra di dialogo Nuovo progetto](azure-continuous-deployment/_static/01-new-project.png)
 
@@ -53,7 +59,7 @@ In questa esercitazione si presuppone che sia stato installato il software segue
 
 ### <a name="running-the-web-app-locally"></a>Esecuzione dell'applicazione Web in locale
 
-1. Al termine della creazione dell'app in Visual Studio, eseguire l'app selezionando **Debug** > **avvio debug**. In alternativa, premere **F5**.
+1. Al termine della creazione dell'app da parte di Visual Studio, eseguire l'app selezionando **debug** > **Avvia debug**. In alternativa, premere **F5**.
 
    L'inizializzazione di Visual Studio e della nuova app potrebbe richiedere tempo. Una volta completata, il browser visualizzerà l'app in esecuzione.
 
@@ -65,11 +71,11 @@ In questa esercitazione si presuppone che sia stato installato il software segue
 
 Eseguire i passaggi seguenti per creare un'app Web nel portale di Azure:
 
-1. Accedere al [portale](https://portal.azure.com)di Azure .
+1. Accedere al portale di [Azure](https://portal.azure.com).
 
 1. Selezionare **NUOVO** nella parte superiore sinistra dell'interfaccia del portale.
 
-1. Selezionare **Web e Mobile** > **Web App**.
+1. Selezionare **Web e dispositivi mobili** > **app Web**.
 
    ![Portale di Microsoft Azure: pulsante Nuovo: Web + Dispositivi mobili in Marketplace: pulsante Web App in App in primo piano](azure-continuous-deployment/_static/05-azure-newwebapp.png)
 
@@ -82,7 +88,7 @@ Eseguire i passaggi seguenti per creare un'app Web nel portale di Azure:
 
    Anche nel pannello **App Web**, selezionare una **Posizione/piano di servizio App** o crearne uno nuovo. Se si crea un nuovo piano, selezionare il piano tariffario, la posizione e altre opzioni. Per altre informazioni sui piani di Servizio app, vedere [Panoramica di approfondimento dei piani del Servizio App di Azure](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview).
 
-1. Selezionare **Create** (Crea). Azure eseguirà il provisioning e avvierà l'app Web.
+1. Selezionare **Crea**. Azure eseguirà il provisioning e avvierà l'app Web.
 
    ![Portale di Azure: campione di pannello di Essentials Demo 01 di App Web](azure-continuous-deployment/_static/07-azure-webappblade.png)
 
@@ -90,7 +96,7 @@ Eseguire i passaggi seguenti per creare un'app Web nel portale di Azure:
 
 Git è un sistema di controllo della versione distribuito che è possibile usare per distribuire un'app Web di Servizio app di Azure. Il codice dell'app Web è archiviato in un repository Git locale e viene distribuito in Azure eseguendone il push in un repository remoto.
 
-1. Accedere al portale di [Azure](https://portal.azure.com).
+1. Accedere al [portale di Azure](https://portal.azure.com).
 
 1. Selezionare **Servizi app** per visualizzare un elenco dei servizi app associati alla sottoscrizione di Azure.
 
@@ -104,7 +110,7 @@ Git è un sistema di controllo della versione distribuito che è possibile usare
 
 1. Se le credenziali di distribuzione per la pubblicazione di un'app Web o di altri servizi app Web non sono state precedentemente configurate, impostarle ora:
 
-   * Selezionare **Impostazioni** > **Credenziali di distribuzione**. Verrà visualizzato il pannello **Imposta credenziali di distribuzione**.
+   * Selezionare **Impostazioni** > **credenziali**per la distribuzione. Verrà visualizzato il pannello **Imposta credenziali di distribuzione**.
    * Creare un nome utente e una password. Salvare la password per un uso successivo durante la configurazione di Git.
    * Selezionare **Salva**.
 
@@ -122,7 +128,7 @@ In questa sezione si creerà un repository Git locale tramite Visual Studio e si
 * Eseguire il commit delle modifiche del progetto.
 * Effettuare il push delle modifiche di progetto dal repository locale al repository remoto in Azure.
 
-1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse **sulla soluzione 'SampleWebAppDemo'** e scegliere **Commit**. Viene visualizzato **Team Explorer**.
+1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **soluzione ' SampleWebAppDemo '** e selezionare **commit**. Viene visualizzato **Team Explorer**.
 
    ![Scheda di connessione Team Explorer](azure-continuous-deployment/_static/10-team-explorer.png)
 
@@ -143,7 +149,7 @@ In questa sezione si creerà un repository Git locale tramite Visual Studio e si
 
 1. Selezionare la **Home** (icona home) > **Impostazioni** > **Impostazioni globali**. Assicurarsi che il nome e l'indirizzo di posta elettronica siano impostati. Selezionare **Aggiorna**, se necessario.
 
-1. Selezionare**Modifiche** **all'interno** > per tornare alla visualizzazione **Modifiche.**
+1. Selezionare **Home** > **modifiche** per tornare alla visualizzazione **modifiche** .
 
 1. Immettere un messaggio di commit, ad esempio **Push iniziale #1** e selezionare **Commit**. Questa azione consente di creare un *commit* a livello locale.
 
@@ -156,7 +162,7 @@ In questa sezione si creerà un repository Git locale tramite Visual Studio e si
    >
    > `git commit -am "Initial Push #1"`
 
-1. Selezionare Home Sync Actions Open Command Prompt **(Azioni** > **di sincronizzazione** >  **domestico** > **aperto al prompt dei comandi).** Verrà aperto il prompt dei comandi nella directory del progetto.
+1. Selezionare **Home** > **Sync** > **Actions** > **Apri prompt dei comandi**. Verrà aperto il prompt dei comandi nella directory del progetto.
 
 1. Immettere il comando seguente nella finestra Comando:
 
@@ -182,7 +188,7 @@ In questa sezione si creerà un repository Git locale tramite Visual Studio e si
 
 Verificare che il trasferimento dell'app Web dall'ambiente locale in Azure abbia esito positivo.
 
-Nel [portale di Azure](https://portal.azure.com) selezionare l'app Web. Selezionare **Opzioni** > **distribuzione**.
+Nel [portale di Azure](https://portal.azure.com) selezionare l'app Web. Selezionare le**Opzioni di distribuzione**della **distribuzione** > .
 
 ![Portale di Azure: pannello impostazioni: pannello di distribuzione che mostra la distribuzione con esito positivo](azure-continuous-deployment/_static/13-verify-deployment.png)
 
@@ -215,7 +221,7 @@ Dopo aver apportato modifiche al codice locale, ripetere la pubblicazione:
 
 1. Premere il pulsante **Commit** per salvare le modifiche del progetto.
 
-1. Selezionare **Home** > **Sync** > **Actions** > **Push**.
+1. Selezionare **Home** > **Sync** > **Actions** > **push**.
 
 > [!NOTE]
 > In alternativa, eseguire il push delle modifiche dalla **Finestra di comando** aprendo la **Finestra di comando**, passando alla directory del progetto e immettendo un comando Git. Esempio:

@@ -4,13 +4,19 @@ author: ardalis
 description: Informazioni su come eseguire la migrazione della configurazione da un progetto MVC ASP.NET a un progetto MVC ASP.NET Core.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/configuration
-ms.openlocfilehash: 2c50ea768a42aa38d14c55d8c403fea4176b3650
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: f65db927d79224695861101aff00897315c6e0b2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659327"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777228"
 ---
 # <a name="migrate-configuration-to-aspnet-core"></a>Eseguire la migrazione della configurazione a ASP.NET Core
 
@@ -22,7 +28,7 @@ Nell'articolo precedente è stata avviata la [migrazione di un progetto mvc ASP.
 
 ## <a name="setup-configuration"></a>Eseguire la configurazione
 
-ASP.NET Core non utilizza più i file *Global. asax* e *Web. config* utilizzati dalle versioni precedenti di ASP.NET. Nelle versioni precedenti di ASP.NET, la logica di avvio dell'applicazione è stata inserita in un metodo di `Application_StartUp` all'interno di *Global. asax*. In seguito, in ASP.NET MVC, è stato incluso un file *Startup.cs* nella radice del progetto. e è stato chiamato all'avvio dell'applicazione. ASP.NET Core ha adottato completamente questo approccio inserendo tutta la logica di avvio nel file *Startup.cs* .
+ASP.NET Core non utilizza più i file *Global. asax* e *Web. config* utilizzati dalle versioni precedenti di ASP.NET. Nelle versioni precedenti di ASP.NET, la logica di avvio dell'applicazione è stata `Application_StartUp` inserita in un metodo all'interno di *Global. asax*. In seguito, in ASP.NET MVC, è stato incluso un file *Startup.cs* nella radice del progetto. e è stato chiamato all'avvio dell'applicazione. ASP.NET Core ha adottato completamente questo approccio inserendo tutta la logica di avvio nel file *Startup.cs* .
 
 Il file *Web. config* è stato sostituito anche in ASP.NET Core. È ora possibile configurare la configurazione, come parte della procedura di avvio dell'applicazione descritta in *Startup.cs*. La configurazione può comunque utilizzare file XML, ma in genere ASP.NET Core progetti inseriranno i valori di configurazione in un file in formato JSON, ad esempio *appSettings. JSON*. Il sistema di configurazione di ASP.NET Core può anche accedere facilmente alle variabili di ambiente, che possono fornire una [posizione più sicura e affidabile](xref:security/app-secrets) per i valori specifici dell'ambiente. Questa operazione è particolarmente valida per i segreti come le stringhe di connessione e le chiavi API che non devono essere archiviate nel controllo del codice sorgente. Per ulteriori informazioni sulla configurazione, vedere la pagina relativa alla [configurazione](xref:fundamentals/configuration/index) ASP.NET Core.
 
@@ -30,7 +36,7 @@ Per questo articolo, si inizia con il progetto di ASP.NET Core parzialmente migr
 
 [!code-csharp[](configuration/samples/WebApp1/src/WebApp1/Startup.cs?range=11-16)]
 
-Si noti che a questo punto il file *Startup.cs* non viene compilato, perché è ancora necessario aggiungere la seguente istruzione `using`:
+Si noti che a questo punto il file *Startup.cs* non verrà compilato, perché è ancora necessario aggiungere l'istruzione `using` seguente:
 
 ```csharp
 using Microsoft.Extensions.Configuration;
@@ -42,7 +48,7 @@ Aggiungere un file *appSettings. JSON* alla radice del progetto usando il modell
 
 ## <a name="migrate-configuration-settings-from-webconfig"></a>Eseguire la migrazione delle impostazioni di configurazione da Web. config
 
-Il progetto MVC ASP.NET include la stringa di connessione del database necessaria in *Web. config*, nell'elemento `<connectionStrings>`. Nel progetto ASP.NET Core le informazioni verranno archiviate nel file *appSettings. JSON* . Aprire *appSettings. JSON*e tenere presente che include già quanto segue:
+Il progetto ASP.NET MVC includeva la stringa di connessione del database necessaria in *Web. config*, nell' `<connectionStrings>` elemento. Nel progetto ASP.NET Core le informazioni verranno archiviate nel file *appSettings. JSON* . Aprire *appSettings. JSON*e tenere presente che include già quanto segue:
 
 [!code-json[](../migration/configuration/samples/WebApp1/src/WebApp1/appsettings.json?highlight=4)]
 

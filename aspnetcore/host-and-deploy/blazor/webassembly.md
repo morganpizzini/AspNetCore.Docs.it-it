@@ -5,17 +5,20 @@ description: Informazioni su come ospitare e distribuire un' Blazor app usando A
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: 2472fd499128a8807b76a3cc031d466140e180f5
-ms.sourcegitcommit: 23243f6d6a3100303802e4310b0634860cc0b268
+ms.openlocfilehash: 9bc1e3aaadb7310f6ea338eea2726bdc592aa06a
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82619369"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776409"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Ospitare e distribuire un webassembly ASP.NET Core Blazer
 
@@ -402,3 +405,53 @@ Un'app webassembly blazer può essere inizializzata con `loadBootResource` la fu
 Per consentire il caricamento delle risorse tra le origini, le origini esterne devono restituire le intestazioni CORS necessarie per i browser. Per impostazione predefinita, CDNs fornisce in genere le intestazioni obbligatorie.
 
 È sufficiente specificare i tipi per i comportamenti personalizzati. I tipi non specificati `loadBootResource` in vengono caricati dal Framework in base ai relativi comportamenti di caricamento predefiniti.
+
+## <a name="change-the-filename-extension-of-dll-files"></a>Modificare l'estensione di file DLL
+
+Se è necessario modificare le estensioni del nome file dei file con *estensione dll* pubblicati dell'app, seguire le istruzioni riportate in questa sezione.
+
+Dopo la pubblicazione dell'app, usare uno script della shell o una pipeline di compilazione DevOps per rinominare i file con estensione *dll* per usare un'estensione di file diversa. Specificare come destinazione i file con *estensione dll* nella directory *wwwroot* dell'output pubblicato dell'app (ad esempio, *{Content root}/bin/Release/netstandard2.1/Publish/wwwroot*).
+
+Negli esempi seguenti, i file con estensione *dll* vengono rinominati per l'utilizzo dell'estensione di file *bin* .
+
+In Windows:
+
+```powershell
+dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+((Get-Content .\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content .\_framework\blazor.boot.json
+```
+
+In Linux o macOS:
+
+```console
+for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.bin/g'`"; done
+sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
+```
+   
+Per usare un'estensione di file diversa da *. bin*, sostituire *. bin* nei comandi precedenti.
+
+Per risolvere i file compressi *blazer. boot. JSON. gz* e *blazor.boot.JSON.br* , adottare uno degli approcci seguenti:
+
+* Rimuovere i file compressi *blazer. boot. JSON. gz* e *blazor.boot.JSON.br* . La compressione è disabilitata con questo approccio.
+* Ricomprimere il file *blazer. boot. JSON* aggiornato.
+
+Nell'esempio di Windows seguente viene usato uno script di PowerShell inserito nella radice del progetto.
+
+*ChangeDLLExtensions. ps1:*:
+
+```powershell
+param([string]$filepath,[string]$tfm)
+dir $filepath\bin\Release\$tfm\wwwroot\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+((Get-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json
+Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
+```
+
+Nel file di progetto, lo script viene eseguito dopo la pubblicazione dell'app:
+
+```xml
+<Target Name="ChangeDLLFileExtensions" AfterTargets="Publish" Condition="'$(Configuration)'=='Release'">
+  <Exec Command="powershell.exe -command &quot;&amp; { .\ChangeDLLExtensions.ps1 '$(SolutionDir)' '$(TargetFramework)'}&quot;" />
+</Target>
+```
+
+Per fornire commenti e suggerimenti, vedere [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477).

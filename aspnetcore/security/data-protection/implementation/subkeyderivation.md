@@ -4,13 +4,19 @@ author: rick-anderson
 description: Informazioni sui dettagli di implementazione della derivazione della sottochiave di ASP.NET Core Data Protection e della crittografia autenticata.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/subkeyderivation
-ms.openlocfilehash: bbfde378755b09cd5b1217b8cf66249b9fa1d6ad
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: c4b4076d532e33b48b3438f842507a8cda2d71b6
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78660552"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776851"
 ---
 # <a name="subkey-derivation-and-authenticated-encryption-in-aspnet-core"></a>Derivazione di sottochiavi e crittografia autenticata in ASP.NET Core
 
@@ -25,17 +31,17 @@ La maggior parte delle chiavi nell'anello chiave conterrà una forma di entropia
 
 ## <a name="additional-authenticated-data-and-subkey-derivation"></a>Derivazione di sottochiavi e dati autenticati aggiuntivi
 
-L'interfaccia `IAuthenticatedEncryptor` funge da interfaccia di base per tutte le operazioni di crittografia autenticata. Il metodo `Encrypt` accetta due buffer: testo normale e additionalAuthenticatedData (AAD). Il contenuto del testo non crittografato passa alla chiamata a `IDataProtector.Protect`, ma AAD viene generato dal sistema ed è costituito da tre componenti:
+L' `IAuthenticatedEncryptor` interfaccia funge da interfaccia di base per tutte le operazioni di crittografia autenticata. Il `Encrypt` metodo accetta due buffer: testo normale e ADDITIONALAUTHENTICATEDDATA (AAD). Il contenuto del testo non crittografato passa alla chiamata `IDataProtector.Protect`a, ma AAD viene generato dal sistema ed è costituito da tre componenti:
 
 1. Intestazione magica a 32 bit 09 F0 C9 F0 che identifica questa versione del sistema di protezione dei dati.
 
 2. ID della chiave a 128 bit.
 
-3. Stringa a lunghezza variabile formata dalla catena di scopi che ha creato la `IDataProtector` che sta eseguendo questa operazione.
+3. Stringa a lunghezza variabile formata dalla catena di scopi che ha creato `IDataProtector` l'oggetto che sta eseguendo questa operazione.
 
 Poiché AAD è univoco per la tupla di tutti e tre i componenti, è possibile usarlo per derivare nuove chiavi da KM anziché usare il KM stesso in tutte le operazioni crittografiche. Per ogni chiamata a `IAuthenticatedEncryptor.Encrypt`, si verifica il seguente processo di derivazione della chiave:
 
-( K_E, K_H ) = SP800_108_CTR_HMACSHA512(K_M, AAD, contextHeader || keyModifier)
+(K_E, K_H) = SP800_108_CTR_HMACSHA512 (K_M, AAD, contextHeader | | tasto di modifica)
 
 Qui viene chiamato il NIST SP800-108 KDF in modalità contatore (vedere [NIST SP800-108](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), Sec. 5,1) con i parametri seguenti:
 
@@ -43,11 +49,11 @@ Qui viene chiamato il NIST SP800-108 KDF in modalità contatore (vedere [NIST SP
 
 * PRF = HMACSHA512
 
-* label = additionalAuthenticatedData
+* Label = additionalAuthenticatedData
 
-* context = contextHeader || keyModifier
+* context = contextHeader | | Modificatore di tasto
 
-L'intestazione del contesto è di lunghezza variabile ed essenzialmente funge da identificazione digitale degli algoritmi per i quali si derivano K_E e K_H. Il modificatore di chiave è una stringa a 128 bit generata in modo casuale per ogni chiamata a `Encrypt` e serve ad assicurare con probabilità travolgente che KE e KH sono univoci per questa specifica operazione di crittografia dell'autenticazione, anche se tutti gli altri input per KDF sono costanti.
+L'intestazione del contesto è di lunghezza variabile ed essenzialmente funge da identificazione digitale degli algoritmi per i quali si derivano K_E e K_H. Il modificatore di chiave è una stringa a 128 bit generata in modo casuale per `Encrypt` ogni chiamata a e serve a garantire con probabilità travolgente che ke e KH sono univoci per questa operazione di crittografia di autenticazione specifica, anche se tutti gli altri input per KDF sono costanti.
 
 Per la crittografia in modalità CBC e le operazioni di convalida HMAC, | K_E | lunghezza della chiave di crittografia a blocchi simmetrica e | K_H | dimensioni del digest della routine HMAC. Per la crittografia GCM + operazioni di convalida, | K_H | = 0.
 
@@ -60,7 +66,7 @@ Una volta generato K_E tramite il meccanismo precedente, viene generato un vetto
 *output: = modificatore di tasto | | IV | | E_cbc (K_E, IV, dati) | | HMAC (K_H, IV | | E_cbc (K_E, IV, dati))*
 
 > [!NOTE]
-> L'implementazione del `IDataProtector.Protect` [antepone l'intestazione magica e l'ID chiave](xref:security/data-protection/implementation/authenticated-encryption-details) a output prima di restituirlo al chiamante. Poiché l'intestazione magica e l'ID chiave sono implicitamente parte di [AAD](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation-aad)e perché il modificatore di chiave viene alimentato come input per KDF, ciò significa che ogni singolo byte del payload finale restituito viene autenticato dal Mac.
+> L' `IDataProtector.Protect` implementazione [antepone l'intestazione magica e l'ID chiave](xref:security/data-protection/implementation/authenticated-encryption-details) a output prima di restituirlo al chiamante. Poiché l'intestazione magica e l'ID chiave sono implicitamente parte di [AAD](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation-aad)e perché il modificatore di chiave viene alimentato come input per KDF, ciò significa che ogni singolo byte del payload finale restituito viene autenticato dal Mac.
 
 ## <a name="galoiscounter-mode-encryption--validation"></a>Crittografia e convalida della modalità di Galois/Counter
 

@@ -4,13 +4,19 @@ author: rick-anderson
 description: Informazioni su come ASP.NET Core MVC usa middleware di routing per verificare la corrispondenza degli URL delle richieste in ingresso ed eseguirne il mapping alle azioni.
 ms.author: riande
 ms.date: 3/25/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 974a5e7653f2b71b124a96650733ff460e60637a
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 4208ef8fb7a9b10621f214f79679ff8d7fd83996
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206112"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775024"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing ad azioni del controller in ASP.NET Core
 
@@ -195,7 +201,9 @@ L'esempio precedente:
 ### <a name="conventional-routing-order"></a>Ordine di routing convenzionale
 
 Il routing convenzionale corrisponde solo a una combinazione di azione e controller definiti dall'app. Questa operazione è progettata per semplificare i casi in cui le route convenzionali si sovrappongono.
-Se si aggiungono <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>Route usando <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, e si assegna automaticamente un valore di ordine ai rispettivi endpoint in base all'ordine in cui vengono richiamati. Corrisponde a una route visualizzata in precedenza con una priorità più alta. Il routing convenzionale dipende dall'ordinamento. In generale, le route con aree devono essere posizionate in precedenza perché sono più specifiche delle route senza un'area. Le route [convenzionali dedicate](#dcr) con intercetta tutti `{*article}` i parametri di route come possono rendere troppo [greedy](xref:fundamentals/routing#greedy)una route, vale a dire che corrisponde agli URL per i quali si intende trovare una corrispondenza con altre route. Inserire le route greedy in un secondo momento nella tabella di route per evitare corrispondenze greedy.
+Se si aggiungono <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>Route usando <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, e si assegna automaticamente un valore di ordine ai rispettivi endpoint in base all'ordine in cui vengono richiamati. Corrisponde a una route visualizzata in precedenza con una priorità più alta. Il routing convenzionale dipende dall'ordinamento. In generale, le route con aree devono essere posizionate in precedenza perché sono più specifiche delle route senza un'area. Le route [convenzionali dedicate](#dcr) con parametri di route `{*article}` catch-all come possono rendere troppo [greedy](xref:fundamentals/routing#greedy)una route, vale a dire che corrisponde agli URL per i quali si intende trovare una corrispondenza con altre route. Inserire le route greedy in un secondo momento nella tabella di route per evitare corrispondenze greedy.
+
+[!INCLUDE[](~/includes/catchall.md)]
 
 <a name="best"></a>
 
@@ -463,7 +471,7 @@ Con il codice precedente, `/home` esegue l' `HomeController.Index` endpoint. Per
 * Il codice precedente è un esempio o una progettazione di routing insufficiente. È stato usato per illustrare la `Order` proprietà.
 * La `Order` proprietà risolve solo l'ambiguità e non è possibile trovare una corrispondenza per il modello. È preferibile rimuovere il `[Route("Home")]` modello.
 
-Per informazioni sull'ordine di route con Razor Pages, vedere [Razor Pages Route e convenzioni delle app: ordine di route](xref:razor-pages/razor-pages-conventions#route-order) .
+Vedere [ Razor la pagina relativa alle convenzioni di route e app: ordine](xref:razor-pages/razor-pages-conventions#route-order) di route Razor per informazioni sull'ordine di route con pagine.
 
 In alcuni casi, viene restituito un errore HTTP 500 con route ambigue. Usare [logging](xref:fundamentals/logging/index) la `AmbiguousMatchException`registrazione per verificare quali endpoint hanno causato.
 
@@ -750,7 +758,7 @@ Il file Razor seguente genera un collegamento HTML a `Destination_Route`:
 
 <a name="routing-gen-urls-html-ref-label"></a>
 
-### <a name="generate-urls-in-html-and-razor"></a>Genera URL in HTML e Razor
+### <a name="generate-urls-in-html-and-razor"></a>Genera URL in HTML eRazor
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper>fornisce i <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> metodi [HTML. BeginForm](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) e [HTML. ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) per generare `<form>` rispettivamente `<a>` gli elementi e. Questi metodi usano il metodo [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) per generare un URL e accettano argomenti simili. Gli oggetti `Url.RouteUrl` complementi di `HtmlHelper` sono `Html.BeginRouteForm` e `Html.RouteLink` e hanno una funzionalità simile.
 
@@ -1212,7 +1220,7 @@ Nelle route con attributi si può configurare un ordine usando la proprietà `Or
 > [!TIP]
 > Evitare la dipendenza da `Order`. Se lo spazio URL richiede i valori in un ordine esplicito per indirizzare correttamente i dati, si può probabilmente creare confusione anche per i client. In genere il routing con attributi seleziona la route corretta con la corrispondenza di URL. Se l'ordine predefinito usato per la generazione di URL non funziona, usare il nome della route come override è in genere più semplice che applicare la proprietà `Order`.
 
-Il routing di Razor Pages e il routing del controller MVC condividono un'implementazione. Per informazioni sull'ordine di routing negli argomenti di Razor Pages, vedere [Convenzioni di route e app per Razor Pages in ASP.NET Core: Ordine della route](xref:razor-pages/razor-pages-conventions#route-order).
+RazorIl routing di pagine e il routing del controller MVC condividono un'implementazione. Le Razor informazioni sull'ordine di route negli argomenti pagine sono disponibili nelle [ Razor pagine Route e app Conventions: Order Route](xref:razor-pages/razor-pages-conventions#route-order).
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 

@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 03/17/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/routing
-ms.openlocfilehash: 291ec33f951008df10f85336c7abd0b3d0a50bbc
-ms.sourcegitcommit: c19e388c83c981232e6f128d97440262adfe06e2
+ms.openlocfilehash: 017fd4d3ab45b75355dabb400ff0e5cbf7009d82
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/02/2020
-ms.locfileid: "82727710"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82771207"
 ---
 # <a name="aspnet-core-blazor-routing"></a>Routing di ASP.NET Core Blazer
 
@@ -200,7 +203,7 @@ Viene eseguito il rendering del markup HTML seguente:
 
 Usare <xref:Microsoft.AspNetCore.Components.NavigationManager> per lavorare con gli URI e la navigazione nel codice C#. `NavigationManager`fornisce l'evento e i metodi illustrati nella tabella seguente.
 
-| Membro | Descrizione |
+| Membro | Description |
 | ------ | ----------- |
 | Uri | Ottiene l'URI assoluto corrente. |
 | BaseUri | Ottiene l'URI di base (con una barra finale) che può essere anteposto ai percorsi URI relativi per produrre un URI assoluto. In genere `BaseUri` , corrisponde all' `href` attributo sull' `<base>` elemento del documento in *wwwroot/index.html* Blazor (webassembly) o *pages/_Host. cshtml* (Blazor Server). |

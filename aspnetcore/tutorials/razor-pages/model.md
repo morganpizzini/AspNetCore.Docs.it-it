@@ -1,16 +1,22 @@
 ---
-title: Aggiungere un modello a un'app Razor Pages in ASP.NET Core
+title: Aggiungere un modello a un' Razor app di pagine in ASP.NET Core
 author: rick-anderson
 description: Scoprire come aggiungere classi per la gestione dei film in un database tramite Entity Framework Core (EF Core).
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 7f7c2a09b74e6007ee3ea9c038398bac54988186
-ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
+ms.openlocfilehash: d093d7c4dc1b355c0042f300f70a830653b168c0
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81488871"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82769832"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Aggiungere un modello a un'app Razor Pages in ASP.NET Core
 
@@ -20,7 +26,7 @@ Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 <!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
 
-In questa sezione vengono aggiunte classi per la gestione dei filmati. Le classi del modello dell'app usano [Entity Framework Core (EF Core)](/ef/core) per lavorare con il database. EF Core è un mapper relazionale a oggetti (O/RM) che semplifica l'accesso ai dati.
+In questa sezione vengono aggiunte le classi per la gestione dei filmati. Le classi modello dell'app usano [Entity Framework Core (EF Core)](/ef/core) per lavorare con il database. EF Core è un mapper relazionale a oggetti (O/RM) che semplifica l'accesso ai dati.
 
 Le classi di modello sono dette classi POCO (da "plain-old CLR objects") perché non hanno alcuna dipendenza in EF Core. Definiscono le proprietà dei dati archiviati nel database.
 
@@ -47,8 +53,8 @@ Fare clic con il pulsante destro del mouse sulla cartella *Models*. Selezionare 
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* In Riquadro della soluzione fare clic con il pulsante destro del mouse sul progetto **RazorPagesMovie** e quindi **scegliere Aggiungi** > **nuova cartella...**. Assegnare alla cartella il nome *Modelli*.
-* Fare clic con il pulsante destro del mouse sulla cartella *Modelli,* quindi scegliere **Aggiungi** > **nuovo file...**.
+* In riquadro della soluzione fare clic con il pulsante destro del mouse sul progetto **RazorPagesMovie** , quindi scegliere **Aggiungi** > **nuova cartella.** Assegnare un nome ai *modelli*di cartella.
+* Fare clic con il pulsante destro del mouse sulla cartella *Models* , quindi scegliere **Aggiungi** > **nuovo file**.
 * Nel finestra di dialogo **Nuovo file**:
 
   * Selezionare **Generale** nel riquadro a sinistra.
@@ -102,7 +108,7 @@ Il file *appsettings.json* è stato aggiornato con la stringa di connessione usa
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* **Per Windows**: Eseguire il seguente comando:
+* **Per Windows**: eseguire il comando seguente:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
@@ -126,33 +132,33 @@ Creare una cartella *Pages/Movies*:
 * Fare clic con il pulsante destro del mouse sulla cartella *Pages* > **Aggiungi** > **Nuova cartella**.
 * Assegnare il nome *Movies* alla cartella
 
-Fare clic con il pulsante destro del mouse sulla cartella *Pagine/film* > **Aggiungi** > **nuovo scaffolding...**.
+Fare clic con il pulsante destro del mouse sulla cartella *pages/Movies* > **Aggiungi** > **Nuova impalcatura...**.
 
 ![Immagine relativa alle istruzioni precedenti.](model/_static/scaMac.png)
 
-Nella finestra di dialogo **Nuovo scaffolding** selezionare **Pagine Razor utilizzando Entity Framework (CRUD)** > **Avanti**.
+Nella finestra di dialogo **Nuova impalcatura** selezionare **Razor Pages usando Entity Framework (CRUD)** > **Avanti**.
 
 ![Immagine relativa alle istruzioni precedenti.](model/_static/add_scaffoldMac.png)
 
 Completare la finestra di dialogo **Pagine Razor che usano Entity Framework (CRUD)**:
 
-* Nell'elenco a discesa **Classe modello** selezionare o digitare **Film (RazorPagesMovie.Models)**.
-* Nella riga **Della classe contesto dati** digitare il nome della nuova classe RazorPagesMovie.In the Data context class row, type the name for the new class, RazorPagesMovie. **Dati**. RazorPagesMovieContext. [Questa modifica](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) non è obbligatoria. Crea la classe del contesto di database con lo spazio dei nomi corretto.
+* Nell'elenco a discesa **classe modello** selezionare o digitare **Movie (RazorPagesMovie. Models)**.
+* Nella riga della **classe del contesto dati** Digitare il nome della nuova classe, RazorPagesMovie. **Dati**. RazorPagesMovieContext. [Questa modifica](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) non è obbligatoria. Crea la classe del contesto di database con lo spazio dei nomi corretto.
 * Selezionare **Aggiungi**.
 
 ![Immagine relativa alle istruzioni precedenti.](model/_static/arpMac.png)
 
 Il file *appsettings.json* è stato aggiornato con la stringa di connessione usata per connettersi a un database locale.
 
-### <a name="add-ef-tools"></a>Aggiungere strumenti di EF
+### <a name="add-ef-tools"></a>Aggiungi strumenti EF
 
-Eseguire il comando CLI .NET Core seguente:
+Eseguire il comando interfaccia della riga di comando di .NET Core seguente:
 
 ```dotnetcli
 dotnet tool install --global dotnet-ef
 ```
 
-Il comando precedente aggiunge gli strumenti di base di Entity Framework per l'interfaccia della riga di comando di .NET Core.
+Il comando precedente aggiunge gli strumenti Entity Framework Core per l'interfaccia della riga di comando di .NET Core.
 
 ---
 
@@ -165,7 +171,7 @@ Il processo di scaffolding crea e aggiorna i file seguenti:
 * *Pages/Movies*: pagine Create (Crea), Delete (Elimina), Details (Dettagli), Edit (Modifica) e Index (Indice).
 * *Data/RazorPagesMovieContext.cs*
 
-### <a name="updated"></a>Updated
+### <a name="updated"></a>Aggiornato
 
 * *Startup.cs*
 
@@ -178,7 +184,7 @@ Il processo di scaffolding crea e aggiorna i file seguenti:
 * *Pages/Movies*: pagine Create (Crea), Delete (Elimina), Details (Dettagli), Edit (Modifica) e Index (Indice).
 * *Data/RazorPagesMovieContext.cs*
 
-### <a name="updated"></a>Updated
+### <a name="updated"></a>Aggiornato
 
 * *Startup.cs*
 
@@ -226,13 +232,13 @@ Update-Database
 
 ---
 
-I comandi precedenti generano il seguente avviso: "Nessun tipo specificato per la colonna decimale 'Prezzo' nel tipo di entità 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. (I valori saranno quindi automaticamente troncati se non rispettano la precisione e la scala predefinite). Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (Specificare in modo esplicito il tipo di colonna di SQL Server che può supportare tutti i valori usando 'HasColumnType()')"
+I comandi precedenti generano l'avviso seguente: "nessun tipo specificato per la colonna decimale ' Price ' nel tipo di entità' Movie '. This will cause values to be silently truncated if they do not fit in the default precision and scale. (I valori saranno quindi automaticamente troncati se non rispettano la precisione e la scala predefinite). Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (Specificare in modo esplicito il tipo di colonna di SQL Server che può supportare tutti i valori usando 'HasColumnType()')"
 
 È possibile ignorare tale avviso. Verrà risolto in un'esercitazione successiva.
 
-Il comando migrations genera il codice per creare lo schema iniziale del database. Lo schema è basato `DbContext`sul modello specificato in . L'argomento `InitialCreate` viene usato per denominare le migrazioni. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione.
+Il comando Migrations genera il codice per creare lo schema del database iniziale. Lo schema è basato sul modello specificato in `DbContext`. L'argomento `InitialCreate` viene usato per denominare le migrazioni. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione.
 
-Il `update` comando `Up` esegue il metodo nelle migrazioni che non sono state applicate. In questo `update` caso, `Up` esegue il metodo nel file *Migrations/time-stamp\<>_InitialCreate.cs,* che crea il database.
+Il `update` comando esegue il `Up` metodo nelle migrazioni che non sono state applicate. In tal caso, `update` esegue il `Up` metodo in *migrazioni/\<timestamp>_InitialCreate file. cs* , che crea il database.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -293,15 +299,15 @@ L'esercitazione successiva illustra i file creati tramite scaffolding.
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 > [!div class="step-by-step"]
-> [Precedente: Get Started](xref:tutorials/razor-pages/razor-pages-start)
-> [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+> [Precedente: introduzione](xref:tutorials/razor-pages/razor-pages-start)
+> :[Razor Pages con impalcature](xref:tutorials/razor-pages/page)
 
 ::: moniker-end
 
 <!--  ::: moniker previous version   -->
 ::: moniker range="< aspnetcore-3.0"
 
-In questa sezione vengono aggiunte classi per la gestione di filmati in un [database SQLite](https://www.sqlite.org/index.html)multipiattaforma. Le app create da un modello ASP.NET Core usano un database SQLite.Apps created from an ASP.NET Core template use a SQLite database. Le classi del modello dell'app vengono usate con [Entity Framework Core (EF Core)](/ef/core) ([SQLite EF Core Database Provider](/ef/core/providers/sqlite)) per lavorare con il database. EF Core è un framework ORM (Object-Relational Mapping) che semplifica l'accesso ai dati.
+In questa sezione vengono aggiunte le classi per la gestione dei film in un [database SQLite](https://www.sqlite.org/index.html)multipiattaforma. Le app create da un modello di ASP.NET Core usano un database SQLite. Le classi modello dell'app vengono usate con [Entity Framework Core (EF Core)](/ef/core) ([SQLite EF Core provider di database](/ef/core/providers/sqlite)) per lavorare con il database. EF Core è un framework ORM (Object-Relational Mapping) che semplifica l'accesso ai dati.
 
 Le classi di modello sono dette classi POCO (da "plain-old CLR objects") perché non hanno alcuna dipendenza in EF Core. Definiscono le proprietà dei dati archiviati nel database.
 
@@ -382,7 +388,7 @@ Il file *appsettings.json* è stato aggiornato con la stringa di connessione usa
 
 * Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs*, *Startup.cs* e *csproj*).
 
-* **Per Windows**: Eseguire il seguente comando:
+* **Per Windows**: eseguire il comando seguente:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
@@ -407,14 +413,14 @@ Fare clic con il pulsante destro del mouse sulla cartella *Pages/Movies* > **Agg
 
 ![Immagine relativa alle istruzioni precedenti.](model/_static/scaMac.png)
 
-Nella finestra di dialogo **Aggiungi nuovo scaffolding** selezionare **Pagine Razor utilizzando Entity Framework (CRUD)** > **Aggiungi**.
+Nella finestra di dialogo **Aggiungi nuova impalcatura** selezionare **Razor Pages con Entity Framework (CRUD)** > **Aggiungi**.
 
 ![Immagine relativa alle istruzioni precedenti.](model/_static/add_scaffoldMac.png)
 
 Completare la finestra di dialogo **Pagine Razor che usano Entity Framework (CRUD)**:
 
-* Nell'elenco a discesa **Classe modello** selezionare o digitare **Film .**
-* Nella riga **Classe contesto dati** digitare selezionare **RazorPagesMovieContext** in modo da creare una nuova classe di contesto db con lo spazio dei nomi corretto. In questo caso sarà **RazorPagesMovie.Models.RazorPagesMovieContext**.
+* Nell'elenco a discesa **classe modello** selezionare o digitare **Movie**.
+* Nella riga della **classe del contesto dati** Digitare select the **RazorPagesMovieContext** . verrà creata una nuova classe del contesto DB con lo spazio dei nomi corretto. In questo caso sarà **RazorPagesMovie. Models. RazorPagesMovieContext**.
 * Selezionare **Aggiungi**.
 
 ![Immagine relativa alle istruzioni precedenti.](model/_static/arpMac.png)
@@ -458,7 +464,7 @@ Add-Migration Initial
 Update-Database
 ```
 
-Il comando `Add-Migration` genera un codice per creare lo schema del database iniziale. Lo schema è basato sul modello specificato in `DbContext` (nel file *RazorPagesMovieContext.cs*). L'argomento `InitialCreate` viene utilizzato per denominare la migrazione. È possibile usare qualsiasi nome, ma per convenzione viene usato un nome che descrive la migrazione. Per altre informazioni, vedere <xref:data/ef-mvc/migrations>.
+Il comando `Add-Migration` genera un codice per creare lo schema del database iniziale. Lo schema è basato sul modello specificato in `DbContext` (nel file *RazorPagesMovieContext.cs*). L' `InitialCreate` argomento viene usato per assegnare un nome alla migrazione. È possibile usare qualsiasi nome, ma per convenzione viene usato un nome che descrive la migrazione. Per altre informazioni, vedere <xref:data/ef-mvc/migrations>.
 
 Il comando `Update-Database` esegue il metodo `Up` nel file *Migrations/\<time-stamp>_InitialCreate.cs*. Il metodo `Up` crea il database.
 
@@ -472,7 +478,7 @@ Il comando `Update-Database` esegue il metodo `Up` nel file *Migrations/\<time-s
 
 ---
 > [!NOTE]
-> I comandi precedenti generano il seguente avviso:*"Nessun tipo specificato per la colonna decimale 'Prezzo' nel tipo di entità 'Film'. In questo modo i valori verranno troncati automaticamente se non rientrano nella precisione e nella scala predefinite. Specificare in modo esplicito il tipo di colonna di SQL Server che può contenere tutti i valori utilizzando 'HasColumnType()'.*" È possibile ignorare tale avviso, verrà risolto in un'esercitazione successiva.
+> I comandi precedenti generano l'avviso seguente: "*nessun tipo specificato per la colonna decimale ' Price ' nel tipo di entità' Movie '. In questo modo i valori verranno troncati automaticamente se non rientrano nella precisione e nella scala predefinite. Specificare in modo esplicito il tipo di colonna di SQL Server in grado di contenere tutti i valori utilizzando ' HasColumnType ()'.* È possibile ignorare l'avviso, che verrà risolto in un'esercitazione successiva.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -533,7 +539,7 @@ L'esercitazione successiva illustra i file creati tramite scaffolding.
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 > [!div class="step-by-step"]
-> [Precedente: Get Started](xref:tutorials/razor-pages/razor-pages-start)
-> [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+> [Precedente: introduzione](xref:tutorials/razor-pages/razor-pages-start)
+> [successiva: Razor pagine con impalcature](xref:tutorials/razor-pages/page)
 
 ::: moniker-end

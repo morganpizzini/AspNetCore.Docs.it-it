@@ -1,26 +1,32 @@
 ---
-title: Profili di pubblicazione di Visual Studio (pubxml) per la distribuzione di app ASP.NET Core
+title: Profili di pubblicazione di Visual Studio (con estensione pubxml) per la distribuzione di app ASP.NET Core
 author: rick-anderson
 description: Informazioni su come creare profili di pubblicazione in Visual Studio e usarli per la gestione delle distribuzioni di app ASP.NET Core in varie destinazioni.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/visual-studio-publish-profiles
-ms.openlocfilehash: 274dd2cd528d3766aa07f69aac3470a131c79ffe
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 0de20b93929162f79d4d15fc4731959e48bb3b6c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78659376"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776370"
 ---
-# <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>Profili di pubblicazione di Visual Studio (pubxml) per la distribuzione di app ASP.NET Core
+# <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>Profili di pubblicazione di Visual Studio (con estensione pubxml) per la distribuzione di app ASP.NET Core
 
 Di [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Questo documento descrive come usare Visual Studio 2019 o versioni successive per la creazione e l'uso di profili di pubblicazione. I profili di pubblicazione creati con Visual Studio possono essere usati con MSBuild e Visual Studio. Per istruzioni sulla pubblicazione in Azure, vedere <xref:tutorials/publish-to-azure-webapp-using-vs>.
 
-Il `dotnet new mvc` comando produce un file di progetto contenente il seguente [ \<elemento Project>](/visualstudio/msbuild/project-element-msbuild)livello radice:
+Il `dotnet new mvc` comando produce un file di progetto contenente l' [ \<elemento> del progetto](/visualstudio/msbuild/project-element-msbuild)a livello di radice seguente:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -61,7 +67,7 @@ Per aggiungere esplicitamente un file all'elenco di pubblicazione, aggiungere il
 Quando si seleziona il pulsante **Pubblica** in Visual Studio o quando si pubblica dalla riga di comando:
 
 * Vengono calcolati le proprietà/gli elementi (i file necessari per compilare).
-* **Solo Visual Studio:** vengono ripristinati i pacchetti NuGet. (Il ripristino deve essere esplicito da parte dell'utente nell'interfaccia della riga di comando.)
+* **Solo Visual Studio**: i pacchetti NuGet vengono ripristinati. (Il ripristino deve essere esplicito da parte dell'utente nell'interfaccia della riga di comando.)
 * Il progetto viene compilato.
 * Vengono calcolati gli elementi di pubblicazione (i file necessari per pubblicare).
 * Il progetto viene pubblicato (i file calcolati vengono copiati nella destinazione di pubblicazione).
@@ -152,9 +158,9 @@ Quando si esegue la pubblicazione in una destinazione di Azure, il file *.pubxml
 
 Le informazioni riservate, come la password di pubblicazione, vengono crittografate a livello di singolo utente/computer. Sono memorizzate nel file *Properties/PublishProfiles/{NOME PROFILO}.pubxml.user*. Poiché questo file può contenere informazioni riservate, non deve essere archiviato nel controllo del codice sorgente.
 
-Per una panoramica su come pubblicare un'app Web ASP.NET Core, vedere <xref:host-and-deploy/index>. Le attività e le destinazioni MSBuild necessarie per pubblicare un'app Web ASP.NET Core sono open source nel [repository aspnet/websdk.](https://github.com/aspnet/websdk)
+Per una panoramica su come pubblicare un'app Web ASP.NET Core, vedere <xref:host-and-deploy/index>. Le attività e le destinazioni di MSBuild necessarie per pubblicare un'app Web ASP.NET Core sono open source nel [repository ASPNET/WebSDK](https://github.com/aspnet/websdk).
 
-I comandi seguenti possono utilizzare i profili di pubblicazione folder, MSDeploy e [Kudu.](https://github.com/projectkudu/kudu/wiki) Dato che MSDeploy non include il supporto multipiattaforma, le opzioni seguenti di MSDeploy sono supportate solo in Windows.
+I comandi seguenti possono usare i profili di pubblicazione cartella, MSDeploy e [Kudu](https://github.com/projectkudu/kudu/wiki) . Dato che MSDeploy non include il supporto multipiattaforma, le opzioni seguenti di MSDeploy sono supportate solo in Windows.
 
 **Cartella (multipiattaforma):**
 
@@ -212,9 +218,9 @@ Aggiungere un profilo di pubblicazione alla cartella *Properties/PublishProfiles
 </Project>
 ```
 
-## <a name="folder-publish-example"></a>Esempio di pubblicazione delle cartelle
+## <a name="folder-publish-example"></a>Esempio di pubblicazione cartella
 
-Quando si esegue la pubblicazione con un profilo denominato *FolderProfile*, utilizzare uno dei seguenti comandi:
+Quando si esegue la pubblicazione con un profilo denominato *FolderProfile*, usare uno dei comandi seguenti:
 
 <!--
 
@@ -308,7 +314,7 @@ msbuild {PATH}
 * {NOMEUTENTE} &ndash; Nome utente MSDeploy. {NOMEUTENTE} è disponibile nel profilo di pubblicazione.
 * {PASSWORD} &ndash; Password di MSDeploy. Il valore {PASSWORD} è disponibile nel file *{PROFILO}.PublishSettings*. Scaricare il file *.PublishSettings* da:
   * **Esplora soluzioni**: selezionare **Visualizza** > **Cloud Explorer**. Connettersi alla sottoscrizione di Azure. Aprire **Servizi app**. Fare clic con il pulsante destro del mouse sull'app. Selezionare **Scarica profilo di pubblicazione**.
-  * Portale di Azure: selezionare Ottieni profilo di pubblicazione nel riquadro **Panoramica** dell'app Web.Azure portal: select **Get publish profile** in the web app's Overview panel.
+  * Portale di Azure: selezionare **Ottieni profilo di pubblicazione** nel pannello **Panoramica** dell'app Web.
 
 L'esempio seguente usa un profilo di pubblicazione denominato *AzureWebApp - Web Deploy*:
 
@@ -365,7 +371,7 @@ MSBuild supporta i [criteri GLOB](https://gruntjs.com/configuring-tasks#globbing
 
 Il markup precedente può essere aggiunto a un profilo di pubblicazione o al file *.csproj*. Quando viene aggiunta al file *.csproj*, la regola viene aggiunta a tutti i profili di pubblicazione del progetto.
 
-L'elemento seguente `<MsDeploySkipRules>` esclude tutti i file dalla cartella *wwwroot:*
+L'elemento `<MsDeploySkipRules>` seguente esclude tutti i file dalla cartella *wwwroot\content* :
 
 ```xml
 <ItemGroup>
@@ -513,6 +519,6 @@ Selezionare la voce di menu [Console di debug](https://github.com/projectkudu/ku
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * [Distribuzione Web](https://www.iis.net/downloads/microsoft/web-deploy) (MSDeploy) semplifica la distribuzione di app Web e siti Web sui server IIS.
-* [Repository GitHub di Web SDK:](https://github.com/aspnet/websdk/issues)problemi di file e funzionalità di richiesta per la distribuzione.
+* [Repository GitHub Web SDK](https://github.com/aspnet/websdk/issues): problemi di file e funzionalità di richiesta per la distribuzione.
 * [Pubblicare un'app Web ASP.NET in una macchina virtuale di Azure da Visual Studio](/azure/virtual-machines/windows/publish-web-app-from-visual-studio)
 * <xref:host-and-deploy/iis/transform-webconfig>

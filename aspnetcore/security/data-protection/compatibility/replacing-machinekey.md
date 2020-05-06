@@ -4,19 +4,25 @@ author: rick-anderson
 description: Scopri come sostituire machineKey in ASP.NET per consentire l'uso di un nuovo e più sicuro sistema di protezione dei dati.
 ms.author: riande
 ms.date: 04/06/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/compatibility/replacing-machinekey
-ms.openlocfilehash: 2317cb50cfe63226baf336ebfc5d681d1cebe5c6
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 72e736f820ec243a7ad1461fc70e2711ac8b76ee
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78667986"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777462"
 ---
 # <a name="replace-the-aspnet-machinekey-in-aspnet-core"></a>Sostituire ASP.NET machineKey in ASP.NET Core
 
 <a name="compatibility-replacing-machinekey"></a>
 
-L'implementazione dell'elemento `<machineKey>` in ASP.NET [è sostituibile](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/). In questo modo è possibile indirizzare la maggior parte delle chiamate alle routine di crittografia ASP.NET tramite un meccanismo di protezione dei dati sostitutivo, incluso il nuovo sistema di protezione dei dati.
+L'implementazione dell' `<machineKey>` elemento in ASP.NET [è sostituibile](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/). In questo modo è possibile indirizzare la maggior parte delle chiamate alle routine di crittografia ASP.NET tramite un meccanismo di protezione dei dati sostitutivo, incluso il nuovo sistema di protezione dei dati.
 
 ## <a name="package-installation"></a>Installazione del pacchetto
 
@@ -32,7 +38,7 @@ Quando si installa il pacchetto, viene inserita una riga in *Web. config* che in
 ```
 
 >[!TIP]
-> È possibile stabilire se il nuovo sistema di protezione dei dati è attivo controllando i campi come `__VIEWSTATE`, che dovrebbe iniziare con "CfDJ8", come nell'esempio riportato di seguito. "CfDJ8" è la rappresentazione Base64 dell'intestazione "09 F0 C9 F0" di Magic che identifica un payload protetto dal sistema di protezione dei dati.
+> È possibile stabilire se il nuovo sistema di protezione dei dati è attivo controllando i `__VIEWSTATE`campi come, che dovrebbe iniziare con "CfDJ8", come nell'esempio riportato di seguito. "CfDJ8" è la rappresentazione Base64 dell'intestazione "09 F0 C9 F0" di Magic che identifica un payload protetto dal sistema di protezione dei dati.
 
 ```html
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="CfDJ8AWPr2EQPTBGs3L2GCZOpk...">
@@ -67,9 +73,9 @@ namespace DataProtectionDemo
 ```
 
 >[!TIP]
-> È inoltre possibile utilizzare `<machineKey applicationName="my-app" ... />` al posto di una chiamata esplicita a MyApplicationName. Si tratta di un meccanismo utile per evitare di forzare lo sviluppatore a creare un tipo derivato da DataProtectionStartup se si desidera configurare il nome dell'applicazione.
+> È anche possibile usare `<machineKey applicationName="my-app" ... />` al posto di una chiamata esplicita a MyApplicationName. Si tratta di un meccanismo utile per evitare di forzare lo sviluppatore a creare un tipo derivato da DataProtectionStartup se si desidera configurare il nome dell'applicazione.
 
-Per abilitare questa configurazione personalizzata, tornare a Web. config e cercare l'elemento `<appSettings>` aggiunto dall'installazione del pacchetto al file di configurazione. Il markup sarà simile al seguente:
+Per abilitare questa configurazione personalizzata, tornare a Web. config e cercare l' `<appSettings>` elemento che l'installazione del pacchetto ha aggiunto al file di configurazione. Il markup sarà simile al seguente:
 
 ```xml
 <appSettings>

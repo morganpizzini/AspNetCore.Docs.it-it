@@ -4,13 +4,19 @@ author: rick-anderson
 description: Informazioni introduttive su ASP.NET Core MVC.
 ms.author: riande
 ms.date: 10/16/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 901257efdfbc7b36249233745175f5ed253da2c7
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 0b28e99d9c56d92e157e9010880e58ec5165196a
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78662477"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774985"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introduzione ad ASP.NET Core MVC
 
@@ -83,10 +89,10 @@ Nell'esercitazione si presuppone una familarità con Visual Studio Code. Vedere 
    code -r MvcMovie
    ```
 
-  * Viene visualizzata una finestra di dialogo con **le risorse necessarie per compilare e debug non sono presenti in 'MvcMovie'. Aggiungerli?**  Selezionare **Sì**
+  * Viene visualizzata una finestra di dialogo con le **risorse necessarie per la compilazione e il debug non è presente in ' MvcMovie '. Aggiungerli?**  Selezionare **Sì**
 
   * `dotnet new mvc -o MvcMovie`: crea un nuovo progetto ASP.NET Core MVC nella cartella *MvcMovie*.
-  * `code -r MvcMovie`: carica il file di progetto *MvcMovie.csproj* nel codice di Visual Studio.
+  * `code -r MvcMovie`: Carica il file di progetto *MvcMovie. csproj* in Visual Studio Code.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
@@ -98,9 +104,9 @@ Nell'esercitazione si presuppone una familarità con Visual Studio Code. Vedere 
 
   ![Finestra di dialogo Nuovo progetto di macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
 
-* Nella finestra di dialogo Configura il **nuovo ASP.NET API Web core impostare** il Framework di **destinazione** di **.NET Core 3.1**.
+* Nella finestra di dialogo **configurare la nuova ASP.NET Core API Web** impostare il **Framework di destinazione** di **.NET Core 3,1**.
 
-  ![Selezione di macOS .NET Core 3.1](./start-mvc/_static/new_project_31_vsmac.png)
+  ![selezione di macOS .NET Core 3,1](./start-mvc/_static/new_project_31_vsmac.png)
 
 * Denominare il progetto **MvcMovie**, quindi selezionare **Crea**.
 
@@ -142,7 +148,7 @@ Premere CTRL+F5 per l'esecuzione senza il debugger.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-Selezionare **Esegui** > **di avvio senza debuggingo** per avviare l'app. Visual Studio per Mac avvia il server [Kestrel](xref:fundamentals/servers/index#kestrel), apre un browser e naviga all'indirizzo `http://localhost:port`, dove *port* è un numero di porta selezionato a caso.
+Selezionare **Esegui** > **Avvia senza eseguire debug** per avviare l'app. Visual Studio per Mac avvia il server [Kestrel](xref:fundamentals/servers/index#kestrel), apre un browser e naviga all'indirizzo `http://localhost:port`, dove *port* è un numero di porta selezionato a caso.
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
@@ -231,10 +237,10 @@ Nell'esercitazione si presuppone una familarità con Visual Studio Code. Vedere 
    code -r MvcMovie
    ```
 
-  * Viene visualizzata una finestra di dialogo con **le risorse necessarie per compilare e debug non sono presenti in 'MvcMovie'. Aggiungerli?**  Selezionare **Sì**
+  * Viene visualizzata una finestra di dialogo con le **risorse necessarie per la compilazione e il debug non è presente in ' MvcMovie '. Aggiungerli?**  Selezionare **Sì**
 
   * `dotnet new mvc -o MvcMovie`: crea un nuovo progetto ASP.NET Core MVC nella cartella *MvcMovie*.
-  * `code -r MvcMovie`: carica il file di progetto *MvcMovie.csproj* nel codice di Visual Studio.
+  * `code -r MvcMovie`: Carica il file di progetto *MvcMovie. csproj* in Visual Studio Code.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
@@ -246,7 +252,7 @@ Nell'esercitazione si presuppone una familarità con Visual Studio Code. Vedere 
 
   ![Finestra di dialogo Nuovo progetto di macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
 
-* Nella finestra di dialogo **Configura il nuovo ASP.NET API Web di base** accettare il Framework di **destinazione** predefinito di **.NET Core 2.2.**
+* Nella finestra di dialogo **configurare la nuova ASP.NET Core API Web** accettare il **Framework di destinazione** predefinito di **.NET Core 2,2**.
 
   ![Selezione di .NET Core 2.2 per macOS](./start-mvc/_static/new_project_22_vsmac.png)
 
@@ -300,7 +306,7 @@ Premere CTRL+F5 per l'esecuzione senza il debugger.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-Selezionare **Esegui** > **di avvio senza debuggingo** per avviare l'app. Visual Studio per Mac avvia il server [Kestrel](xref:fundamentals/servers/index#kestrel), apre un browser e naviga all'indirizzo `http://localhost:port`, dove *port* è un numero di porta selezionato a caso.
+Selezionare **Esegui** > **Avvia senza eseguire debug** per avviare l'app. Visual Studio per Mac avvia il server [Kestrel](xref:fundamentals/servers/index#kestrel), apre un browser e naviga all'indirizzo `http://localhost:port`, dove *port* è un numero di porta selezionato a caso.
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 

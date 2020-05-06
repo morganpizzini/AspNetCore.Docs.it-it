@@ -1,20 +1,24 @@
 ---
 title: ASP.NET Core SignalR l'hosting e la scalabilità di produzione
 author: bradygaster
-description: Informazioni su come evitare problemi di prestazioni e scalabilità nelle app che usano ASP.NET Core SignalR.
+description: Informazioni su come evitare problemi di prestazioni e scalabilità nelle app che SignalRusano ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/17/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: 260e2f0c16288fec2e0a694d070f357529782d8d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 23ac2b1c80b9d73d6e9ac57f0ef774ac2ea54be4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78668154"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775076"
 ---
 # <a name="aspnet-core-signalr-hosting-and-scaling"></a>Hosting e scalabilità di ASP.NET Core SignalR
 
@@ -32,7 +36,7 @@ SignalR richiede che tutte le richieste HTTP per una connessione specifica siano
 
 In tutti gli altri casi (incluso quando viene usato il backplane Redis), è necessario configurare l'ambiente server per le sessioni permanenti.
 
-Per informazioni sulla configurazione del servizio app Azure per SignalR, vedere <xref:signalr/publish-to-azure-web-app>.
+Per informazioni sulla configurazione del servizio app Azure per SignalR, <xref:signalr/publish-to-azure-web-app>vedere.
 
 ## <a name="tcp-connection-resources"></a>Risorse di connessione TCP
 
@@ -94,12 +98,12 @@ I vantaggi del servizio Azure SignalR indicati in precedenza sono gli svantaggi 
   * Tutti i client sono configurati in modo da usare **solo** WebSocket.
   * L' [impostazione SkipNegotiation](xref:signalr/configuration#configure-additional-options) è abilitata nella configurazione client. 
    Una volta avviata una connessione in un server, la connessione deve rimanere nel server.
-* Un'app SignalR deve essere scalata in base al numero di client anche se sono stati inviati pochi messaggi.
-* Un'app SignalR USA notevolmente più risorse di connessione rispetto a un'app Web senza SignalR.
+* Un' SignalR applicazione deve essere scalata in base al numero di client anche se sono stati inviati pochi messaggi.
+* Un' SignalR app usa significativamente più risorse di connessione rispetto a un'app SignalRWeb senza.
 
 ## <a name="iis-limitations-on-windows-client-os"></a>Limitazioni di IIS sul sistema operativo client Windows
 
-Windows 10 e Windows 8. x sono sistemi operativi client. IIS nei sistemi operativi client ha un limite di 10 connessioni simultanee. le connessioni di SignalRsono:
+Windows 10 e Windows 8. x sono sistemi operativi client. IIS nei sistemi operativi client ha un limite di 10 connessioni simultanee. SignalRle connessioni sono:
 
 * Temporaneo e ristabilito di frequente.
 * **Non** viene eliminato immediatamente quando non viene più utilizzato.
@@ -111,7 +115,7 @@ Le condizioni precedenti consentono di raggiungere il limite di 10 connessioni i
 
 ## <a name="linux-with-nginx"></a>Linux con Nginx
 
-Impostare le intestazioni `Connection` e `Upgrade` del proxy sul seguente per SignalR WebSocket:
+Impostare le intestazioni `Connection` e `Upgrade` del proxy sul seguente per SignalR i WebSocket:
 
 ```nginx
 proxy_set_header Upgrade $http_upgrade;
@@ -120,7 +124,7 @@ proxy_set_header Connection $connection_upgrade;
 
 Per altre informazioni, vedere [nginx come proxy WebSocket](https://www.nginx.com/blog/websocket-nginx/).
 
-## <a name="third-party-opno-locsignalr-backplane-providers"></a>Provider backplane SignalR di terze parti
+## <a name="third-party-signalr-backplane-providers"></a>Provider backplane di SignalR terze parti
 
 * [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
 * [Orleans](https://github.com/OrleansContrib/SignalR.Orleans)
@@ -129,5 +133,5 @@ Per altre informazioni, vedere [nginx come proxy WebSocket](https://www.nginx.co
 
 Per altre informazioni, vedere le seguenti risorse:
 
-* [Documentazione del servizio Azure SignalR](/azure/azure-signalr/signalr-overview)
+* [Documentazione SignalR del servizio Azure](/azure/azure-signalr/signalr-overview)
 * [Configurare un backplane Redis](xref:signalr/redis-backplane)

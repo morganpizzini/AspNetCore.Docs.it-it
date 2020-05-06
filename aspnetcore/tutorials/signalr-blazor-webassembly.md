@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 04/30/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: e86047c9a830cd3ea906d0798f61d90eaee5a18c
-ms.sourcegitcommit: 6318d2bdd63116e178c34492a904be85ec9ac108
+ms.openlocfilehash: 1579b92dbc9db08bfdc5572e5d4245bd18d50590
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82604831"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773788"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Usare ASP.NET Core SignalR con il webassembly Blazer
 
@@ -72,13 +75,13 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Selezionare **app Blazer** e fare clic su **Avanti**.
 
-1. Digitare "BlazorSignalRApp" nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
+1. Digitare "BlazorSignalRApp" nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
 
 1. Scegliere il modello **app Webassembly Blazer** .
 
 1. In **Avanzate**selezionare la casella di controllo **ASP.NET Core Hosted** .
 
-1. Selezionare **Create** (Crea).
+1. Selezionare **Crea**.
 
 > [!NOTE]
 > Se è stato eseguito l'aggiornamento o l'installazione di una nuova versione di Visual Studio e il modello webassembly Blazer non viene visualizzato nell'interfaccia utente di `dotnet new` Visual Studio, reinstallare il modello usando il comando illustrato in precedenza.
@@ -268,7 +271,7 @@ In questa esercitazione sono state illustrate le procedure per:
 > * Aggiungere la SignalR libreria client
 > * Aggiungere un SignalR Hub
 > * Aggiungere SignalR servizi e un endpoint per l' SignalR Hub
-> * Aggiungere il codice del componente Razor per la chat
+> * Aggiungi Razor codice componente per la chat
 
 Per altre informazioni sulla creazione Blazor di app, vedere Blazor la documentazione:
 

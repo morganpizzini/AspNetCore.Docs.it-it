@@ -1,18 +1,24 @@
 ---
-title: Eseguire la migrazione da ASP.NET MVC a ASP.NET Core MVC
+title: Eseguire la migrazione da ASP.NET MVC ad ASP.NET Core MVC
 author: ardalis
 description: Informazioni su come iniziare a migrare un progetto MVC ASP.NET a ASP.NET Core MVC.
 ms.author: riande
 ms.date: 04/06/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/mvc
-ms.openlocfilehash: 6c9449fb43960d05db8aa6dcba64d3d830834cdb
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 59a10c002958e5f719dbd59686f21df69da5f43e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78661168"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777046"
 ---
-# <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Eseguire la migrazione da ASP.NET MVC a ASP.NET Core MVC
+# <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Eseguire la migrazione da ASP.NET MVC ad ASP.NET Core MVC
 
 Di [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27), [Steve Smith](https://ardalis.com/)e [Scott Addie](https://scottaddie.com)
 
@@ -61,13 +67,13 @@ Creare una nuova app Web ASP.NET Core *vuota* con lo stesso nome del progetto pr
 
 ::: moniker-end
 
-`Microsoft.AspNetCore.Mvc` è il Framework di ASP.NET Core MVC. `Microsoft.AspNetCore.StaticFiles` è il gestore di file statici. Il runtime di ASP.NET Core è modulare ed è necessario acconsentire esplicitamente a gestire i file statici (vedere [file statici](xref:fundamentals/static-files)).
+`Microsoft.AspNetCore.Mvc`è il Framework di MVC ASP.NET Core. `Microsoft.AspNetCore.StaticFiles`è il gestore di file statici. Il runtime di ASP.NET Core è modulare ed è necessario acconsentire esplicitamente a gestire i file statici (vedere [file statici](xref:fundamentals/static-files)).
 
 * Aprire il file *Startup.cs* e modificare il codice in modo che corrisponda a quanto segue:
 
   [!code-csharp[](mvc/sample/Startup.cs?highlight=13,26-31)]
 
-Il metodo di estensione `UseStaticFiles` aggiunge il gestore di file statici. Come indicato in precedenza, il runtime di ASP.NET è modulare ed è necessario acconsentire esplicitamente a gestire i file statici. Il metodo di estensione `UseMvc` aggiunge il routing. Per ulteriori informazioni, vedere Startup e [routing](xref:fundamentals/routing) [dell'applicazione](xref:fundamentals/startup) .
+Il `UseStaticFiles` metodo di estensione aggiunge il gestore di file statici. Come indicato in precedenza, il runtime di ASP.NET è modulare ed è necessario acconsentire esplicitamente a gestire i file statici. Il `UseMvc` metodo di estensione aggiunge il routing. Per ulteriori informazioni, vedere Startup e [routing](xref:fundamentals/routing) [dell'applicazione](xref:fundamentals/startup) .
 
 ## <a name="add-a-controller-and-view"></a>Aggiungere un controller e una visualizzazione
 
@@ -83,7 +89,7 @@ In questa sezione si aggiungeranno un controller e una visualizzazione minimi pe
 
 * Aggiungere una cartella *views/Home* .
 
-* Aggiungere una **visualizzazione Razor** denominata *index. cshtml* alla cartella *views/Home* .
+* Aggiungere una ** Razor vista** denominata *index. cshtml* alla cartella *views/Home* .
 
 ![Finestra di dialogo Aggiungi nuovo elemento](mvc/_static/view.png)
 
@@ -117,15 +123,15 @@ Ora che è disponibile un progetto di ASP.NET Core di lavoro minimo, è possibil
 
 * filters
 
-* Accesso/uscita, identità (operazione eseguita nell'esercitazione successiva).
+* Accesso/uscita Identity (operazione eseguita nell'esercitazione successiva).
 
 ## <a name="controllers-and-views"></a>Controller e visualizzazioni
 
-* Copiare ognuno dei metodi dal `HomeController` MVC ASP.NET alla nuova `HomeController`. Si noti che in ASP.NET MVC il tipo restituito del metodo di azione del controller del modello predefinito è [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); in ASP.NET Core MVC i metodi di azione restituiscono invece `IActionResult`. `ActionResult` implementa `IActionResult`, pertanto non è necessario modificare il tipo restituito dei metodi di azione.
+* Copiare tutti i metodi da ASP.NET MVC `HomeController` al nuovo. `HomeController` Si noti che in ASP.NET MVC il tipo restituito del metodo di azione del controller del modello predefinito è [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); in ASP.NET Core MVC i metodi di azione restituiscono `IActionResult` invece. `ActionResult`implementa `IActionResult`, quindi non è necessario modificare il tipo restituito dei metodi di azione.
 
-* Copiare i file di visualizzazione Razor *About. cshtml*, *Contact. cshtml*e *index. cshtml* dal progetto MVC ASP.NET al progetto ASP.NET Core.
+* Copiare i file *di visualizzazione About. cshtml*, *Contact. cshtml*e *index. cshtml* Razor dal progetto MVC ASP.NET al progetto ASP.NET Core.
 
-* Eseguire l'app ASP.NET Core e testare ogni metodo. Non è ancora stata eseguita la migrazione del file di layout o degli stili, quindi le visualizzazioni sottoposte a rendering contengono solo il contenuto dei file di visualizzazione. Il file di layout non include collegamenti generati per le visualizzazioni `About` e `Contact`, quindi è necessario richiamarli dal browser (sostituire **4492** con il numero di porta usato nel progetto).
+* Eseguire l'app ASP.NET Core e testare ogni metodo. Non è ancora stata eseguita la migrazione del file di layout o degli stili, quindi le visualizzazioni sottoposte a rendering contengono solo il contenuto dei file di visualizzazione. Il file di layout non include collegamenti generati per le `About` visualizzazioni `Contact` e, quindi è necessario richiamarli dal browser (sostituire **4492** con il numero di porta usato nel progetto).
 
   * `http://localhost:4492/home/about`
 
@@ -155,15 +161,15 @@ Il vecchio progetto MVC ASP.NET usa [bootstrap](https://getbootstrap.com/) per l
 
 Aprire *_Layout file cshtml* e apportare le modifiche seguenti (il codice completato è riportato di seguito):
 
-* Sostituire `@Styles.Render("~/Content/css")` con un elemento `<link>` per caricare *bootstrap. CSS* (vedere di seguito).
+* Sostituire `@Styles.Render("~/Content/css")` con un `<link>` elemento per caricare *bootstrap. CSS* (vedere di seguito).
 
 * Rimuovere `@Scripts.Render("~/bundles/modernizr")`.
 
-* Impostare come commento la riga di `@Html.Partial("_LoginPartial")` (racchiudere la riga con `@*...*@`). Per altre informazioni, vedere [eseguire la migrazione dell'autenticazione e dell'identità a ASP.NET Core](xref:migration/identity)
+* Imposta come commento `@Html.Partial("_LoginPartial")` la riga, che racchiude la `@*...*@`riga con. Per ulteriori informazioni, vedere la pagina relativa [alla migrazione dell'autenticazione Identity e alla ASP.NET Core](xref:migration/identity)
 
-* Sostituire `@Scripts.Render("~/bundles/jquery")` con un elemento `<script>` (vedere di seguito).
+* Sostituire `@Scripts.Render("~/bundles/jquery")` con un `<script>` elemento (vedere di seguito).
 
-* Sostituire `@Scripts.Render("~/bundles/bootstrap")` con un elemento `<script>` (vedere di seguito).
+* Sostituire `@Scripts.Render("~/bundles/bootstrap")` con un `<script>` elemento (vedere di seguito).
 
 Markup sostitutivo per l'inclusione CSS bootstrap:
 
@@ -196,7 +202,7 @@ Per informazioni su come configurare la creazione di bundle e minification, vede
 
 ## <a name="solve-http-500-errors"></a>Risolvere gli errori HTTP 500
 
-Ci sono molti problemi che possono causare un messaggio di errore HTTP 500 che non contiene informazioni sull'origine del problema. Se, ad esempio, il file *views/_ViewImports. cshtml* contiene uno spazio dei nomi che non esiste nel progetto, verrà ricevuto un errore HTTP 500. Per impostazione predefinita, nelle app ASP.NET Core, l'estensione `UseDeveloperExceptionPage` viene aggiunta al `IApplicationBuilder` ed eseguita quando la configurazione è in *fase di sviluppo*. Questa operazione è descritta in dettaglio nel codice seguente:
+Ci sono molti problemi che possono causare un messaggio di errore HTTP 500 che non contiene informazioni sull'origine del problema. Se, ad esempio, il file *views/_ViewImports. cshtml* contiene uno spazio dei nomi che non esiste nel progetto, verrà ricevuto un errore HTTP 500. Per impostazione predefinita, nelle app ASP.NET Core `UseDeveloperExceptionPage` , l'estensione viene aggiunta `IApplicationBuilder` a ed eseguita quando la configurazione è in *fase di sviluppo*. Questa operazione è descritta in dettaglio nel codice seguente:
 
 [!code-csharp[](mvc/sample/Startup.cs?highlight=19-22)]
 

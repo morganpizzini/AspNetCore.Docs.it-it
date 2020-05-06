@@ -6,19 +6,25 @@ monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/25/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/metapackage
-ms.openlocfilehash: cc00c075909da5c17a4aa2fd252c9e662e5a0fc9
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: fe9e2f8f8970f9e5c182b68b2660c35cd09b97b2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511067"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775544"
 ---
 # <a name="microsoftaspnetcoreall-metapackage-for-aspnet-core-20"></a>Metapacchetto Microsoft.AspNetCore.All per ASP.NET Core 2.0
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Il `Microsoft.AspNetCore.All` metapacchetto non è incluso in ASP.NET Core 3.0 e versioni successive. Per altre informazioni, vedere [questo problema in GitHub](https://github.com/aspnet/Announcements/issues/314).
+Il `Microsoft.AspNetCore.All` metapacchetto non è incluso in ASP.NET Core 3,0 e versioni successive. Per altre informazioni, vedere [questo problema di GitHub](https://github.com/aspnet/Announcements/issues/314).
 
 ::: moniker-end
 
@@ -55,7 +61,7 @@ Il fatto di specificare un numero di versione nel riferimento del pacchetto `Mic
 
 Il SDK del progetto deve essere impostato su `Microsoft.NET.Sdk.Web` nel file di progetto perché venga usata la versione implicita di `Microsoft.AspNetCore.All`. Se è specificato il SDK `Microsoft.NET.Sdk` (`<Project Sdk="Microsoft.NET.Sdk">` nella parte superiore del file di progetto), viene generato l'avviso seguente:
 
-*Avviso NU1604: dipendenza del progetto Microsoft.AspNetCore.All non contiene un limite inferiore inclusivo. Includere un limite inferiore nella versione di dipendenza per garantire risultati di ripristino coerenti.*
+*Avviso NU1604: la dipendenza del progetto Microsoft. AspNetCore. All non contiene un limite inferiore inclusivo. Includere un limite inferiore nella versione della dipendenza per garantire risultati di ripristino coerenti.*
 
 Si tratta di un problema noto con .NET Core 2.1 SDK, che verrà risolto in .NET Core 2.2 SDK.
 
