@@ -1,18 +1,24 @@
 ---
-title: Aggiungere la funzionalità di ricerca a pagine Razor in ASP.NET Core
+title: Aggiungere la ricerca a Razor pagine ASP.NET Core
 author: rick-anderson
-description: Illustra come aggiungere la funzionalità di ricerca alle pagine Razor di ASP.NET Core
+description: Mostra come aggiungere la ricerca a pagine Razor ASP.NET Core
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: 8228207b0f37a6923b29891ac3115dd0be115501
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: baa5e1cb2098a60155a4196f0e602feeff04f102
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78667706"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774998"
 ---
-# <a name="add-search-to-aspnet-core-razor-pages"></a>Aggiungere la funzionalità di ricerca a pagine Razor in ASP.NET Core
+# <a name="add-search-to-aspnet-core-razor-pages"></a>Aggiungere la ricerca a Razor pagine ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -26,7 +32,7 @@ Aggiungere le proprietà evidenziate seguenti in *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contiene il testo immesso dagli utenti nella casella di testo di ricerca. `SearchString`ha [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) l'attributo. `[BindProperty]` associa i valori modulo e le stringhe di query al nome della proprietà. `(SupportsGet = true)` è necessario per l'associazione alle richieste GET.
+* `SearchString`: contiene il testo immesso dagli utenti nella casella di testo di ricerca. `SearchString`dispone dell' [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attributo. `[BindProperty]` associa i valori modulo e le stringhe di query al nome della proprietà. `(SupportsGet = true)` è necessario per l'associazione alle richieste GET.
 * `Genres` contiene l'elenco dei generi. `Genres` consente all'utente di selezionare un genere dall'elenco. `SelectList` richiede `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contiene il genere specificato selezionato dall'utente, ad esempio "Western".
 * `Genres` e `MovieGenre` sono utilizzati più avanti in questa esercitazione.
@@ -80,7 +86,7 @@ Aprire il file *Pages/Movies/Index.cshtml* e aggiungere il markup `<form>` evide
 
 Il tag HTML `<form>` usa gli [helper tag](xref:mvc/views/tag-helpers/intro) seguenti:
 
-* [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). Quando il modulo viene inviato, la stringa di filtro verrà inviata alla pagina *Pages/Movies/Index* tramite una stringa di query.
+* [Helper tag di form](xref:mvc/views/working-with-forms#the-form-tag-helper). Quando il modulo viene inviato, la stringa di filtro verrà inviata alla pagina *Pages/Movies/Index* tramite una stringa di query.
 * [Helper tag di input](xref:mvc/views/working-with-forms#the-input-tag-helper)
 
 Salvare le modifiche e testare il filtro.
@@ -101,7 +107,7 @@ L'elenco `SelectList` di generi viene creato selezionando generi distinti.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-razor-page"></a>Aggiungere la ricerca in base al genere alla pagina Razor
+### <a name="add-search-by-genre-to-the-razor-page"></a>Aggiungi la Razor ricerca per genere alla pagina
 
 Aggiornare *Index.cshtml* come indicato di seguito:
 
@@ -114,8 +120,8 @@ Eseguire il test dell'app effettuando una ricerca per genere, titolo del film e 
 * [Versione YouTube dell'esercitazione](https://youtu.be/4B6pHtdyo08)
 
 > [!div class="step-by-step"]
-> [Precedente: Aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
-> [successivo: Aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
+> [Precedente: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
+> [successivo: aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end
 
@@ -129,7 +135,7 @@ Aggiungere le proprietà evidenziate seguenti in *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contiene il testo immesso dagli utenti nella casella di testo di ricerca. `SearchString`ha [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) l'attributo. `[BindProperty]` associa i valori modulo e le stringhe di query al nome della proprietà. `(SupportsGet = true)` è necessario per l'associazione alle richieste GET.
+* `SearchString`: contiene il testo immesso dagli utenti nella casella di testo di ricerca. `SearchString`dispone dell' [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attributo. `[BindProperty]` associa i valori modulo e le stringhe di query al nome della proprietà. `(SupportsGet = true)` è necessario per l'associazione alle richieste GET.
 * `Genres` contiene l'elenco dei generi. `Genres` consente all'utente di selezionare un genere dall'elenco. `SelectList` richiede `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contiene il genere specificato selezionato dall'utente, ad esempio "Western".
 * `Genres` e `MovieGenre` sono utilizzati più avanti in questa esercitazione.
@@ -182,7 +188,7 @@ Aprire il file *Pages/Movies/Index.cshtml* e aggiungere il markup `<form>` evide
 
 Il tag HTML `<form>` usa gli [helper tag](xref:mvc/views/tag-helpers/intro) seguenti:
 
-* [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). Quando il modulo viene inviato, la stringa di filtro verrà inviata alla pagina *Pages/Movies/Index* tramite una stringa di query.
+* [Helper tag di form](xref:mvc/views/working-with-forms#the-form-tag-helper). Quando il modulo viene inviato, la stringa di filtro verrà inviata alla pagina *Pages/Movies/Index* tramite una stringa di query.
 * [Helper tag di input](xref:mvc/views/working-with-forms#the-input-tag-helper)
 
 Salvare le modifiche e testare il filtro.
@@ -203,21 +209,21 @@ L'elenco `SelectList` di generi viene creato selezionando generi distinti.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-razor-page"></a>Aggiungere la ricerca in base al genere alla pagina Razor
+### <a name="add-search-by-genre-to-the-razor-page"></a>Aggiungi la Razor ricerca per genere alla pagina
 
 Aggiornare *Index.cshtml* come indicato di seguito:
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
 Eseguire il test dell'app effettuando una ricerca per genere, titolo del film e usando entrambi i filtri.
-Il codice precedente usa [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper) e Option Tag Helper.
+Il codice precedente usa l'helper [tag SELECT](xref:mvc/views/working-with-forms#the-select-tag-helper) e l'helper tag option.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * [Versione YouTube dell'esercitazione](https://youtu.be/4B6pHtdyo08)
 
 > [!div class="step-by-step"]
-> [Precedente: Aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
-> [successivo: Aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
+> [Precedente: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
+> [successivo: aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end

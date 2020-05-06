@@ -1,19 +1,25 @@
 ---
-title: "Esercitazione: Chiamare un'API Web ASP.NET Core con JavaScriptTutorial: Call an ASP.NET Core web API with JavaScript"
+title: "Esercitazione: chiamare un'API Web ASP.NET Core con JavaScript"
 author: rick-anderson
 description: Informazioni su come chiamare un'API Web ASP.NET Core con JavaScript.
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/26/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: 2a19a7d16ca8b8f5d6ac8eb99ad919b89f1e368b
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: c3eb003812a31d8cf3168453fcc11601ffba19fb
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78655253"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774353"
 ---
-# <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Esercitazione: Chiamare un'API Web ASP.NET Core con JavaScriptTutorial: Call an ASP.NET Core web API with JavaScript
+# <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Esercitazione: chiamare un'API Web ASP.NET Core con JavaScript
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -29,37 +35,37 @@ Per ASP.NET Core 2.2, vedere la versione 2.2 di [Chiamare l'API Web con JavaScri
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-* [Esercitazione completa: Creare un'API Web](xref:tutorials/first-web-api)
+* [Esercitazione completa: creare un'API Web](xref:tutorials/first-web-api)
 * Familiarità con CSS, HTML e JavaScript
 
 ## <a name="call-the-web-api-with-javascript"></a>Chiamare l'API Web con JavaScript
 
 In questa sezione verrà aggiunta una pagina HTML contenente i moduli per la creazione e la gestione di elementi attività. Agli elementi della pagina vengono associati gestori eventi. I gestori eventi generano richieste HTTP ai metodi di azione dell'API Web. La funzione `fetch` dell'API Fetch avvia ogni richiesta HTTP.
 
-La `fetch` funzione restituisce un oggetto [Promise,](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) che `Response` contiene una risposta HTTP rappresentata come oggetto. Un modello comune consiste nell'estrarre il corpo della risposta JSON richiamando la funzione `json` per l'oggetto `Response`. JavaScript aggiorna la pagina con i dettagli della risposta dell'API Web.
+La `fetch` funzione restituisce un oggetto [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) , che contiene una risposta HTTP rappresentata `Response` come un oggetto. Un modello comune consiste nell'estrarre il corpo della risposta JSON richiamando la funzione `json` per l'oggetto `Response`. JavaScript aggiorna la pagina con i dettagli della risposta dell'API Web.
 
 La chiamata `fetch` più semplice accetta un solo parametro che rappresenta la route. Un secondo parametro, noto come oggetto `init`, è facoltativo. `init` viene usato per configurare la richiesta HTTP.
 
-1. Configurare l'app per [la gestione di file statici](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e abilitare il mapping di file [predefinito.](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) Il codice evidenziato seguente è necessario nel metodo `Configure` di *Startup.cs*:
+1. Configurare l'app in modo da [gestire i file statici](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [abilitare il mapping dei file predefiniti](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_). Il codice evidenziato seguente è necessario nel metodo `Configure` di *Startup.cs*:
 
     [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJavaScript.cs?highlight=8-9&name=snippet_configure)]
 
 1. Creare una cartella *wwwroot* nella radice del progetto.
 
-1. Creare una cartella *js* all'interno della cartella *wwwroot.*
+1. Creare una cartella *JS* all'interno della cartella *wwwroot* .
 
-1. Aggiungere un file HTML denominato *index.html* alla cartella *wwwroot.* Sostituire il contenuto di *index.html* con il markup seguente:
+1. Aggiungere un file HTML denominato *index. html* alla cartella *wwwroot* Sostituire il contenuto di *index. html* con il markup seguente:
 
     [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
-1. Aggiungere un file JavaScript denominato *site.js* alla cartella *wwwroot/js.* Sostituire il contenuto di *site.js* con il codice seguente:
+1. Aggiungere un file JavaScript denominato *site. js* alla cartella *wwwroot/JS* . Sostituire il contenuto di *site. js* con il codice seguente:
 
     [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
 
 Può essere necessario modificare le impostazioni di avvio del progetto ASP.NET Core per il test della pagina HTML in locale:
 
 1. Aprire *Properties\launchSettings.json*.
-1. Rimuovere `launchUrl` la proprietà per forzare l'app per aprire in corrispondenza *di index.html*&mdash;il file predefinito del progetto.
+1. Rimuovere la `launchUrl` proprietà per forzare l'apertura dell'app nel file *index. html*&mdash;del file predefinito del progetto.
 
 In questo esempio vengono chiamati tutti i metodi CRUD dell'API Web. Di seguito sono disponibili spiegazioni per le richieste dell'API Web.
 

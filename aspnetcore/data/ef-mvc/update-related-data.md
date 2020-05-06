@@ -1,20 +1,26 @@
 ---
-title: 'Esercitazione: Aggiornare i dati correlati - ASP.NET MVC con EF CoreTutorial: Update related data - ASP.NET MVC with EF Core'
+title: 'Esercitazione: aggiornare i dati correlati-ASP.NET MVC con EF Core'
 description: In questa esercitazione verrà effettuato l'aggiornamento di dati correlati tramite l'aggiornamento di campi di chiave esterna e proprietà di navigazione.
 author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 83d662659fb4bc7a2867be563e4e36927d2adafe
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
-ms.translationtype: MT
+ms.openlocfilehash: 54783ebbac26a10a92716b5e53ed6cd7cc8bb65d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657143"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773497"
 ---
-# <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: Aggiornare i dati correlati - ASP.NET MVC con EF CoreTutorial: Update related data - ASP.NET MVC with EF Core
+# <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: aggiornare i dati correlati-ASP.NET MVC con EF Core
 
 Nell'esercitazione precedente sono stati visualizzati dati correlati. In questa esercitazione i dati correlati verranno aggiornati tramite l'aggiornamento di campi di chiave esterna e proprietà di navigazione.
 
@@ -101,7 +107,7 @@ Eseguire l'app, selezionare la scheda **Courses** (Corsi), fare clic su **Create
 
 ![Pagina di creazione del corso](update-related-data/_static/course-create.png)
 
-Fare clic su **Crea**. La pagina di indice dei corsi viene visualizzata con il nuovo corso aggiunto all'elenco. Il nome del dipartimento nell'elenco della pagina di indice deriva dalla proprietà di navigazione, che mostra che la relazione è stata stabilita correttamente.
+Scegliere **Crea**. La pagina di indice dei corsi viene visualizzata con il nuovo corso aggiunto all'elenco. Il nome del dipartimento nell'elenco della pagina di indice deriva dalla proprietà di navigazione, che mostra che la relazione è stata stabilita correttamente.
 
 Fare clic su **Edit** (Modifica) per un corso nella pagina di indice dei corsi.
 

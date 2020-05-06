@@ -4,13 +4,19 @@ author: ardalis
 description: ''
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/controllers/actions
-ms.openlocfilehash: 715a73863513870d1cbd522e75013d41830da1e7
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: b7c4d61c4a71939e84bdea180a2f77b6438b15d5
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78662792"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774197"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Gestire le richieste con controller in ASP.NET Core MVC
 
@@ -29,9 +35,9 @@ Per convenzione, le classi controller:
 
 Un controller è una classe istanziabile per cui almeno una delle condizioni seguenti è vera:
 
-* Il nome della classe è suffisso con `Controller`.
-* La classe eredita da una classe il cui nome è suffisso con `Controller`.
-* L'attributo `[Controller]` viene applicato alla classe.
+* Il nome della classe è con `Controller`suffisso.
+* La classe eredita da una classe il cui nome è con `Controller`suffisso.
+* L' `[Controller]` attributo viene applicato alla classe.
 
 A una classe controller non deve essere associato un attributo `[NonController]`.
 
@@ -45,11 +51,11 @@ Il controller è un'astrazione *a livello di interfaccia utente*. Il suo compito
 
 ## <a name="defining-actions"></a>Definizione di azioni
 
-I metodi pubblici in un controller, ad eccezione di quelli con l'attributo `[NonAction]`, sono azioni. I parametri delle azioni sono associati a dati di richiesta e vengono convalidati tramite [associazione di modelli](xref:mvc/models/model-binding). La convalida del modello viene eseguita per tutto ciò che è associato a un modello. Il valore della proprietà `ModelState.IsValid` indica se l'associazione e la convalida dei modelli hanno avuto esito positivo.
+I metodi pubblici in un controller, ad eccezione di `[NonAction]` quelli con l'attributo, sono azioni. I parametri delle azioni sono associati a dati di richiesta e vengono convalidati tramite [associazione di modelli](xref:mvc/models/model-binding). La convalida del modello viene eseguita per tutto ciò che è associato a un modello. Il valore della proprietà `ModelState.IsValid` indica se l'associazione e la convalida dei modelli hanno avuto esito positivo.
 
 I metodi di azione devono contenere la logica per il mapping di una richiesta a un problema di business. È di solito consigliabile rappresentare i problemi di business come servizi a cui il controller accede tramite [inserimento di dipendenze](xref:mvc/controllers/dependency-injection). Le azioni eseguono quindi il mapping del risultato dell'azione di business a uno stato dell'applicazione.
 
-Le azioni possono restituire qualsiasi valore, ma spesso restituiscono un'istanza di `IActionResult` (o di `Task<IActionResult>` per i metodi asincroni) che genera una risposta. Il metodo di azione è responsabile della scelta del *tipo di risposta*. Il risultato dell'azione  *esegue la risposta*.
+Le azioni possono restituire qualsiasi valore, ma spesso restituiscono un'istanza di `IActionResult` (o di `Task<IActionResult>` per i metodi asincroni) che genera una risposta. Il metodo di azione è responsabile della scelta del *tipo di risposta*. Il risultato dell'azione * esegue la risposta*.
 
 ### <a name="controller-helper-methods"></a>Metodi helper dei controller
 
@@ -65,7 +71,7 @@ All'interno di questa categoria sono presenti due tipi di risultati: reindirizza
 
     Questo tipo restituisce un codice di stato HTTP. Alcuni metodi helper di questo tipo sono `BadRequest`, `NotFound` e `Ok`. Il metodo `return BadRequest();`, ad esempio, quando viene eseguito genera un codice di stato 400. Quando metodi come `BadRequest`, `NotFound` e `Ok` vengono sottoposti a overload, non sono più risponditori del codice di stato HTTP, poiché è in corso la negoziazione del contenuto.
 
-* **Reindirizzamento**
+* **Reindirizzare**
 
     Questo tipo restituisce un reindirizzamento a un'azione o a una destinazione (tramite `Redirect`, `LocalRedirect`, `RedirectToAction` o `RedirectToRoute`). `return RedirectToAction("Complete", new {id = 123});`, ad esempio, reindirizza a `Complete`, passando un oggetto anonimo.
 

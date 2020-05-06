@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: 0f13ef3eb1da03960ef1fa54d33532b6ebbdc128
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7262b9ea18e4cf6acd278d087fcc44262f8f9c80
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657906"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775947"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>Moduli IIS con ASP.NET Core
 
@@ -32,13 +38,13 @@ La tabella indica i moduli di IIS nativi che funzionano con le app ASP.NET Core 
 | **Errori HTTP**<br>`CustomErrorModule`                                                           | No  | [Middleware delle tabelle codici di stato](xref:fundamentals/error-handling#usestatuscodepages) |
 | **Registrazione personalizzata**<br>`CustomLoggingModule`                                                      | Sì | |
 | **Documento predefinito**<br>`DefaultDocumentModule`                                                  | No  | [Middleware dei file predefiniti](xref:fundamentals/static-files#serve-a-default-document) |
-| **Autenticazione digest**<br>`DigestAuthenticationModule`                                        | Sì | |
+| **Autenticazione del digest**<br>`DigestAuthenticationModule`                                        | Sì | |
 | **Esplorazione directory**<br>`DirectoryListingModule`                                               | No  | [Middleware di esplorazione directory](xref:fundamentals/static-files#enable-directory-browsing) |
 | **Compressione dinamica**<br>`DynamicCompressionModule`                                            | Sì | [Middleware di compressione delle risposte](xref:performance/response-compression) |
-| **Traccia delle richieste non riuscite**<br>`FailedRequestsTracingModule`                                     | Sì | [Registrazione di ASP.NET Core](xref:fundamentals/logging/index#tracesource-provider) |
-| **Memorizzazione nella cache dei file**<br>`FileCacheModule`                                                            | No  | [Middleware di memorizzazione nella cache di risposta](xref:performance/caching/middleware) |
-| **Memorizzazione nella cache HTTP**<br>`HttpCacheModule`                                                            | No  | [Middleware di memorizzazione nella cache di risposta](xref:performance/caching/middleware) |
-| **Registrazione HTTP**<br>`HttpLoggingModule`                                                          | Sì | [Registrazione di ASP.NET Core](xref:fundamentals/logging/index) |
+| **Traccia delle richieste non riuscite**<br>`FailedRequestsTracingModule`                                     | Sì | [Registrazione ASP.NET Core](xref:fundamentals/logging/index#tracesource-provider) |
+| **Memorizzazione nella cache dei file**<br>`FileCacheModule`                                                            | No  | [Middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) |
+| **Memorizzazione nella cache HTTP**<br>`HttpCacheModule`                                                            | No  | [Middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) |
+| **Registrazione HTTP**<br>`HttpLoggingModule`                                                          | Sì | [Registrazione ASP.NET Core](xref:fundamentals/logging/index) |
 | **Reindirizzamento HTTP**<br>`HttpRedirectionModule`                                                  | Sì | [Middleware di riscrittura URL](xref:fundamentals/url-rewriting) |
 | **Traccia HTTP**<br>`TracingModule`                                                              | Sì | |
 | **Autenticazione mapping certificati client IIS**<br>`IISCertificateMappingAuthenticationModule` | Sì | |
@@ -46,13 +52,13 @@ La tabella indica i moduli di IIS nativi che funzionano con le app ASP.NET Core 
 | **Filtri ISAPI**<br>`IsapiFilterModule`                                                         | Sì | [Middleware](xref:fundamentals/middleware/index) |
 | **ISAPI**<br>`IsapiModule`                                                                       | Sì | [Middleware](xref:fundamentals/middleware/index) |
 | **Protocolli supportati**<br>`ProtocolSupportModule`                                                  | Sì | |
-| **Filtro richieste**<br>`RequestFilteringModule`                                                | Sì | [Middleware per la riscrittura URL`IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
+| **Filtro richieste**<br>`RequestFilteringModule`                                                | Sì | [Middleware di riscrittura URL`IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
 | **Monitoraggio richieste**<br>`RequestMonitorModule`                                                    | Sì | |
 | **Riscrittura degli URL**&#8224;<br>`RewriteModule`                                                      | Sì | [Middleware di riscrittura URL](xref:fundamentals/url-rewriting) |
-| **Server-Side Include**<br>`ServerSideIncludeModule`                                            | No  | |
+| **Inclusioni lato server**<br>`ServerSideIncludeModule`                                            | No  | |
 | **Compressione statica**<br>`StaticCompressionModule`                                              | No  | [Middleware di compressione delle risposte](xref:performance/response-compression) |
 | **Contenuto statico**<br>`StaticFileModule`                                                         | No  | [Middleware dei file statici](xref:fundamentals/static-files) |
-| **Memorizzazione nella cache dei tokenToken Caching**<br>`TokenCacheModule`                                                          | Sì | |
+| **Memorizzazione di token nella cache**<br>`TokenCacheModule`                                                          | Sì | |
 | **Memorizzazione nella cache degli URI**<br>`UriCacheModule`                                                              | Sì | |
 | **Autorizzazione URL**<br>`UrlAuthorizationModule`                                                | Sì | [Identità di ASP.NET Core](xref:security/authentication/identity) |
 | **Autenticazione di Windows**<br>`WindowsAuthenticationModule`                                      | Sì | |
@@ -69,14 +75,14 @@ I moduli gestiti *non* funzionano con le app ASP.NET Core ospitate quando la ver
 | DefaultAuthentication   | |
 | FileAuthorization       | |
 | FormsAuthentication     | [Cookie del middleware di autenticazione](xref:security/authentication/cookie) |
-| OutputCache             | [Middleware di memorizzazione nella cache di risposta](xref:performance/caching/middleware) |
+| OutputCache             | [Middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) |
 | Profilo                 | |
 | RoleManager             | |
 | ScriptModule-4.0        | |
 | sessione                 | [Middleware di sessione](xref:fundamentals/app-state) |
 | UrlAuthorization        | |
 | UrlMappingsModule       | [Middleware di riscrittura URL](xref:fundamentals/url-rewriting) |
-| UrlRoutingModule-4.0    | [Identità di ASP.NET Core](xref:security/authentication/identity) |
+| UrlRoutingModule-4.0    | [ASP.NET CoreIdentity](xref:security/authentication/identity) |
 | WindowsAuthentication   | |
 
 ## <a name="iis-manager-application-changes"></a>Modifiche dell'applicazione Gestione IIS
@@ -107,9 +113,9 @@ Se si sceglie di rimuovere un modulo con un'impostazione in *web.config*, sblocc
 
 1. Sbloccare il modulo a livello di server. Selezionare il server IIS nella barra laterale **Connessioni** di Gestione IIS. Aprire **Moduli** nell'area **IIS**. Selezionare il modulo nell'elenco. Nella barra laterale **Azioni** sulla destra selezionare **Sblocca**. Se la voce di azione per il modulo viene visualizzata come **Blocca**, il modulo è già sbloccato e non è richiesta alcuna azione. Sbloccare tutti i moduli che si prevede di rimuovere da *web.config* in un secondo momento.
 
-2. Distribuire l'app `<modules>` senza una sezione in *web.config*. Se un'app viene distribuita con `<modules>` un *file web.config* contenente la sezione senza aver sbloccato prima la sezione in Gestione IIS, Configuration Manager genera un'eccezione quando si tenta di sbloccare la sezione. Di conseguenza, distribuire l'app senza una sezione `<modules>`.
+2. Distribuire l'app senza una `<modules>` sezione nel *file Web. config*. Se un'app viene distribuita con un *file Web. config* contenente la `<modules>` sezione senza che sia stata sbloccata la sezione per la prima volta in gestione IIS, il Configuration Manager genera un'eccezione durante il tentativo di sbloccare la sezione. Di conseguenza, distribuire l'app senza una sezione `<modules>`.
 
-3. Sbloccare `<modules>` la sezione di *web.config*. Nella barra laterale **Connessioni,** seleziona il sito Web in **Sites**. Nell'area **Gestione** aprire **Editor configurazione**. Usare i controlli di navigazione per selezionare la sezione `system.webServer/modules`. Nella barra laterale **Azioni** sulla destra selezionare **Sblocca** per la sezione. Se la voce di azione per la sezione del modulo viene visualizzata come **Blocca sezione**, la sezione del modulo è già sbloccata e non è richiesta alcuna azione.
+3. Sbloccare la `<modules>` sezione del *file Web. config*. Nella barra laterale **connessioni** selezionare il sito Web in **siti**. Nell'area **Gestione** aprire **Editor configurazione**. Usare i controlli di navigazione per selezionare la sezione `system.webServer/modules`. Nella barra laterale **Azioni** sulla destra selezionare **Sblocca** per la sezione. Se la voce di azione per la sezione del modulo viene visualizzata come **Blocca sezione**, la sezione del modulo è già sbloccata e non è richiesta alcuna azione.
 
 4. Aggiungere una sezione `<modules>` al file *web.config* locale dell'app con un elemento `<remove>` per rimuovere il modulo dall'app. Aggiungere più elementi `<remove>` per rimuovere più moduli. Se le modifiche a *web.config* vengono apportate sul server, apportare immediatamente le stesse modifiche al file *web.config* del progetto in locale. La rimozione di un modulo in questo modo non influisce sull'uso del modulo con le altre app nel server.
 
@@ -168,4 +174,4 @@ Il modulo di memorizzazione nella cache HTTP (`HttpCacheModule`) implementa la c
 * [Introduction to IIS Architectures: Modules in IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#modules-in-iis) (Introduzione alle architetture IIS: moduli di IIS)
 * [IIS Modules Overview](/iis/get-started/introduction-to-iis/iis-modules-overview) (Panoramica dei moduli IIS)
 * [Customizing IIS 7.0 Roles and Modules](https://technet.microsoft.com/library/cc627313.aspx) (Personalizzazione di ruoli e moduli di IIS 7.0)
-* [IIS \<system.webServer>](/iis/configuration/system.webServer/)
+* [>\<IIS System. webserver](/iis/configuration/system.webServer/)

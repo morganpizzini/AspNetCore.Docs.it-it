@@ -1,5 +1,5 @@
 ---
-title: Piattaforme supportate da ASP.NET Core SignalR
+title: Piattaforme SignalR supportate ASP.NET Core
 author: bradygaster
 description: Informazioni sulle piattaforme supportate per ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,14 +7,18 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: signalr/supported-platforms
-ms.openlocfilehash: 054965921c87c1a9be27e5ddaa8a87b0fa1f4113
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 70a05dabb95aaf561aa78d5c8b24b430c51bd973
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78668140"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772605"
 ---
 # <a name="aspnet-core-signalr-supported-platforms"></a>Piattaforme supportate da ASP.NET Core SignalR
 
@@ -28,17 +32,17 @@ Il [client JavaScript](xref:signalr/javascript-client) viene eseguito in NodeJS 
 
 | Browser                         | Versione         |
 | ------------------------------- | --------------- |
-| Microsoft Edge                  | &dagger; corrente |
-| Mozilla Firefox                 | &dagger; corrente |
-| Google Chrome; include Android | &dagger; corrente |
-| Safari include iOS            | &dagger; corrente |
+| Microsoft Edge                  | Corrente&dagger; |
+| Mozilla Firefox                 | Corrente&dagger; |
+| Google Chrome; include Android | Corrente&dagger; |
+| Safari include iOS            | Corrente&dagger; |
 | Microsoft Internet Explorer     | 11              |
 
-&dagger;*corrente* si riferisce alla versione più recente del browser.
+&dagger;*Current* si riferisce alla versione più recente del browser.
 
 ## <a name="net-client"></a>Client .NET
 
-Il [client .NET](xref:signalr/dotnet-client) viene eseguito su qualsiasi piattaforma supportata da ASP.NET Core. Ad esempio, [gli sviluppatori Novell possono usare SignalR](https://github.com/aspnet/Announcements/issues/305) per creare app Android usando Novell. Android 8.4.0.1 e versioni successive e app iOS usando Novell. iOS 11.14.0.4 e versioni successive.
+Il [client .NET](xref:signalr/dotnet-client) viene eseguito su qualsiasi piattaforma supportata da ASP.NET Core. Ad esempio, [gli sviluppatori Novell possono SignalR usare](https://github.com/aspnet/Announcements/issues/305) per compilare app Android usando Novell. Android 8.4.0.1 e versioni successive e le app iOS usando Novell. iOS 11.14.0.4 e versioni successive.
 
 Se il server esegue IIS, il trasporto WebSocket richiede IIS 8,0 o versioni successive in Windows Server 2012 o versioni successive. Gli altri trasporti sono supportati in tutte le piattaforme.
 
@@ -50,6 +54,6 @@ Il [client Java](xref:signalr/java-client) supporta Java 8 e versioni successive
 
 I client seguenti sono disponibili, ma sono sperimentali o non ufficiali. Non sono attualmente supportati e potrebbero non essere mai.
 
-* [C++client](https://github.com/aspnet/SignalR-Client-Cpp)
+* [Client C++](https://github.com/aspnet/SignalR-Client-Cpp)
 
 * [Client Swift](https://github.com/moozzyk/SignalR-Client-Swift)

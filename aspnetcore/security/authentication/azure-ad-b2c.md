@@ -5,22 +5,28 @@ description: Scopri come configurare l'autenticazione Azure Active Directory B2C
 ms.author: casoper
 ms.custom: mvc
 ms.date: 01/21/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: 136fa47788456492a9a7fe6d9d9e5996c13e8c20
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
-ms.translationtype: MT
+ms.openlocfilehash: 86808e6bdd3bb669a62ad9e333b11df4c09a9cd3
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78663660"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774639"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticazione cloud con Azure Active Directory B2C in ASP.NET Core
 
 Di [Cam Soper](https://twitter.com/camsoper)
 
-[Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure ad B2C) è una soluzione di gestione delle identità cloud per app Web e per dispositivi mobili. Il servizio fornisce l'autenticazione per le app ospitate nel cloud e locali. Tipi di autenticazione includono account individuali, gli account di social network e account aziendali federati. Inoltre, Azure AD B2C possibile fornire l'autenticazione a più fattori con la configurazione minima.
+[Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure ad B2C) è una soluzione di gestione delle identità cloud per app Web e per dispositivi mobili. Il servizio fornisce l'autenticazione per le app ospitate nel cloud e in locale. I tipi di autenticazione includono singoli account, account social network e account aziendali federati. Inoltre, Azure AD B2C possibile fornire l'autenticazione a più fattori con la configurazione minima.
 
 > [!TIP]
-> Azure Active Directory (Azure AD) e Azure AD B2C vengono offerti come prodotti separati. Un tenant di Azure AD rappresenta un'organizzazione, mentre un tenant di Azure AD B2C rappresenta una raccolta di identità da usare con le applicazioni relying party. Per altre informazioni, vedere [Azure ad B2C: domande frequenti (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
+> Azure Active Directory (Azure AD) e Azure AD B2C sono offerte di prodotti separate. Un tenant di Azure AD rappresenta un'organizzazione, mentre un tenant Azure AD B2C rappresenta una raccolta di identità da usare con le applicazioni di relying party. Per altre informazioni, vedere [Azure ad B2C: domande frequenti (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
 
 In questa esercitazione si apprenderà come:
 
@@ -30,30 +36,30 @@ In questa esercitazione si apprenderà come:
 > * Usare Visual Studio per creare un'app Web ASP.NET Core configurata per l'uso del tenant Azure AD B2C per l'autenticazione
 > * Configurare i criteri che controllano il comportamento del tenant Azure AD B2C
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
-Di seguito sono necessarie per questa procedura dettagliata:
+Per questa procedura dettagliata sono necessari gli elementi seguenti:
 
 * [Sottoscrizione di Microsoft Azure](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
 ## <a name="create-the-azure-active-directory-b2c-tenant"></a>Creare il tenant di Azure Active Directory B2C
 
-Creare un tenant [di Azure Active Directory B2C come descritto nella documentazione](/azure/active-directory-b2c/active-directory-b2c-get-started). Quando richiesto, associare il tenant con una sottoscrizione di Azure è facoltativa per questa esercitazione.
+Creare un tenant [di Azure Active Directory B2C come descritto nella documentazione](/azure/active-directory-b2c/active-directory-b2c-get-started). Quando richiesto, l'associazione del tenant a una sottoscrizione di Azure è facoltativa per questa esercitazione.
 
 ## <a name="register-the-app-in-azure-ad-b2c"></a>Registrare l'app in Azure AD B2C
 
-Nel tenant di Azure AD B2C appena creato registrare l'app seguendo [la procedura descritta nella documentazione](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application) nella sezione **registrare un'app Web** . Arrestare la sezione **creare un segreto client dell'app Web** . Un segreto client non è necessario per questa esercitazione. 
+Nel tenant di Azure AD B2C appena creato registrare l'app seguendo [la procedura descritta nella documentazione](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application) nella sezione **registrare un'app Web** . Arrestare la sezione **creare un segreto client dell'app Web** . Per questa esercitazione non è necessario un segreto client. 
 
 Usare i valori seguenti:
 
-| Impostazione                       | valore                     | Note                                                                                                                                                                                              |
+| Impostazione                       | Valore                     | Note                                                                                                                                                                                              |
 |-------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nome**                      | *nome dell'app &lt;&gt;*        | Immettere un **nome** per l'app che descriva l'app agli utenti.                                                                                                                                 |
+| **Nome**                      | *&lt;nome dell'app&gt;*        | Immettere un **nome** per l'app che descriva l'app agli utenti.                                                                                                                                 |
 | **Includi app Web/API Web** | Sì                       |                                                                                                                                                                                                    |
 | **Consenti il flusso implicito**       | Sì                       |                                                                                                                                                                                                    |
-| **URL di risposta**                 | `https://localhost:44300/signin-oidc` | Gli URL di risposta sono gli endpoint a cui Azure AD B2C restituisce eventuali token richiesti dall'app. Visual Studio fornisce l'URL di risposta da usare. Per il momento, immettere `https://localhost:44300/signin-oidc` per completare il modulo. |
-| **URI ID app**                | Lasciare vuoto               | Non è obbligatorio per questa esercitazione.                                                                                                                                                                    |
+| **URL di risposta**                 | `https://localhost:44300/signin-oidc` | Gli URL di risposta sono gli endpoint a cui Azure AD B2C restituisce eventuali token richiesti dall'app. Visual Studio fornisce l'URL di risposta da usare. Per il momento, `https://localhost:44300/signin-oidc` immettere per completare il modulo. |
+| **URI ID app**                | Lasciare vuoto               | Non richiesto per questa esercitazione.                                                                                                                                                                    |
 | **Includi client nativo**     | No                        |                                                                                                                                                                                                    |
 
 > [!WARNING]
@@ -65,7 +71,7 @@ Al momento non è possibile configurare altre informazioni nel tenant di Azure A
 
 ## <a name="create-an-aspnet-core-app-in-visual-studio"></a>Creare un'app ASP.NET Core in Visual Studio
 
-Il modello di applicazione Web di Visual Studio può essere configurato per usare il tenant di Azure AD B2C per l'autenticazione.
+Il modello di applicazione Web di Visual Studio può essere configurato per l'uso del tenant Azure AD B2C per l'autenticazione.
 
 In Visual Studio:
 
@@ -77,18 +83,18 @@ In Visual Studio:
 
 4. Nella finestra di dialogo **Cambia autenticazione** selezionare **account utente singoli**, quindi selezionare **Connetti a un archivio utente esistente nel cloud** nell'elenco a discesa. 
     
-    ![Finestra di dialogo Modifica autenticazione](./azure-ad-b2c/_static/changeauthdialog.png)
+    ![Finestra di dialogo Cambia autenticazione](./azure-ad-b2c/_static/changeauthdialog.png)
 
-5. Compilare il modulo con i valori seguenti:
+5. Completare il modulo con i valori seguenti:
     
-    | Impostazione                       | valore                                                 |
+    | Impostazione                       | Valore                                                 |
     |-------------------------------|-------------------------------------------------------|
-    | **Nome di dominio**               | *&lt;il nome di dominio del tenant B2C&gt;*          |
+    | **Nome di dominio**               | *&lt;nome di dominio del tenant B2C&gt;*          |
     | **ID applicazione**            | *&lt;incollare l'ID applicazione dagli Appunti&gt;* |
-    | **Percorso di callback**             | *&lt;usare il valore predefinito&gt;*                       |
+    | **Percorso di callback**             | *&lt;Usa il valore predefinito&gt;*                       |
     | **Criteri di iscrizione o di accesso** | `B2C_1_SiUpIn`                                        |
     | **Reimposta criteri password**     | `B2C_1_SSPR`                                          |
-    | **Modificare i criteri del profilo**       | *&lt;lasciare vuoto&gt;*                                 |
+    | **Modificare i criteri del profilo**       | *&lt;lascia vuoto&gt;*                                 |
     
     Selezionare il collegamento **copia** accanto a **URI di risposta** per copiare l'URI di risposta negli Appunti. Selezionare **OK** per chiudere la finestra di dialogo **Modifica autenticazione** . Selezionare **OK** per creare l'app Web.
 
@@ -101,14 +107,14 @@ Tornare alla finestra del browser con le proprietà dell'app B2C ancora aperte. 
 
 ## <a name="configure-policies"></a>Configurare i criteri
 
-Usare la procedura descritta nella documentazione di Azure AD B2C per [creare un criterio di iscrizione o di accesso](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), quindi [creare un criterio di reimpostazione della password](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Usare i valori di esempio forniti nella documentazione per i **provider di identità**, **gli attributi di iscrizione**e le **attestazioni dell'applicazione**. Usare il pulsante **Esegui adesso** per testare i criteri come descritto nella documentazione è facoltativo.
+Usare la procedura descritta nella documentazione di Azure AD B2C per [creare un criterio di iscrizione o di accesso](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), quindi [creare un criterio di reimpostazione della password](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Usare i valori di esempio forniti nella documentazione per ** Identity i provider**, **gli attributi di iscrizione**e le **attestazioni dell'applicazione**. Usare il pulsante **Esegui adesso** per testare i criteri come descritto nella documentazione è facoltativo.
 
 > [!WARNING]
 > Verificare che i nomi dei criteri siano esattamente come descritto nella documentazione, perché tali criteri sono stati usati nella finestra di dialogo **Cambia autenticazione** in Visual Studio. I nomi dei criteri possono essere verificati in *appSettings. JSON*.
 
 ## <a name="configure-the-underlying-openidconnectoptionsjwtbearercookie-options"></a>Configurare le opzioni di OpenIdConnectOptions/JwtBearer/cookie sottostanti
 
-Per configurare direttamente le opzioni sottostanti, utilizzare la costante dello schema appropriato in `Startup.ConfigureServices`:
+Per configurare direttamente le opzioni sottostanti, utilizzare la costante dello schema `Startup.ConfigureServices`appropriata in:
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(

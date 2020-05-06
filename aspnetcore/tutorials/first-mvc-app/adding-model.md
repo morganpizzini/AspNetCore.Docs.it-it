@@ -4,13 +4,19 @@ author: rick-anderson
 description: Aggiungere un modello a una semplice app ASP.NET Core.
 ms.author: riande
 ms.date: 01/13/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: e7fc0496438734e13cfafcecf432da4a94737897
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 1347659ee25e2b85b0a479f6bbcc5eb1a956fab2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79434512"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776760"
 ---
 # <a name="add-a-model-to-an-aspnet-core-mvc-app"></a>Aggiungere un modello a un'app ASP.NET Core MVC
 
@@ -38,7 +44,7 @@ Aggiungere un file denominato *Movie.cs* alla cartella *Models*.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-Fare clic con il pulsante destro del mouse sulla cartella *Modelli* > **Aggiungi** > **nuova classe** > **vuota .** Denominare il file *Movie.cs*.
+Fare clic con il pulsante destro del mouse sulla cartella *Models* > **Aggiungi** > **nuova classe** > **vuota**classe. Denominare il file *Movie.cs*.
 
 ---
 
@@ -48,7 +54,7 @@ Aggiornare il file *Movie.cs* con il codice seguente:
 
 La classe `Movie` contiene un campo `Id`, richiesto dal database per la chiave primaria.
 
-L'attributo <xref:System.ComponentModel.DataAnnotations.DataType> su `ReleaseDate` specifica il`Date`tipo di dati ( ). Con questo attributo:
+L' <xref:System.ComponentModel.DataAnnotations.DataType> attributo on `ReleaseDate` specifica il tipo di dati (`Date`). Con questo attributo:
 
 * l'utente non deve immettere le informazioni temporali nel campo della data.
 * Viene visualizzata solo la data, non le informazioni temporali.
@@ -77,17 +83,17 @@ Il comando precedente aggiunge il provider EF Core SQL Server. Il pacchetto del 
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-Dal menu **Progetto,** selezionare **Gestisci pacchetti NuGet**.
+Scegliere **Gestisci pacchetti NuGet**dal menu **progetto** .
 
-Nel campo **Cerca** in alto `Microsoft.EntityFrameworkCore.SQLite` a destra, immettere e premere il tasto **Invio** per eseguire la ricerca. Selezionare il pacchetto NuGet corrispondente e premere il pulsante **Aggiungi pacchetto.**
+Nel campo di **ricerca** in alto a destra, immettere `Microsoft.EntityFrameworkCore.SQLite` e premere il tasto **invio** per eseguire la ricerca. Selezionare il pacchetto NuGet corrispondente e premere il pulsante **Aggiungi pacchetto** .
 
-![Aggiungi pacchetto NuGet di Entity Framework CoreAdd Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
+![Aggiungi Entity Framework Core pacchetto NuGet](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
 
-Verrà visualizzata la finestra di `MvcMovie` dialogo **Seleziona progetti,** con il progetto selezionato. Premere il pulsante **OK.**
+Verrà visualizzata la finestra di dialogo **Seleziona progetti** con il `MvcMovie` progetto selezionato. Premere il pulsante **OK** .
 
-Viene visualizzata la finestra di dialogo **Accettazione licenza.** Esaminare le licenze come desiderato, quindi fare clic sul pulsante **Accetta.**
+Verrà visualizzata una finestra di dialogo **accettazione licenza** . Esaminare le licenze nel modo desiderato, quindi fare clic sul pulsante **Accetto** .
 
-Ripetere i passaggi precedenti per installare i seguenti pacchetti NuGet:
+Ripetere i passaggi precedenti per installare i pacchetti NuGet seguenti:
 
 * `Microsoft.VisualStudio.Web.CodeGeneration.Design`
 * `Microsoft.EntityFrameworkCore.SqlServer`
@@ -140,7 +146,7 @@ Il nome della stringa di connessione viene passato al contesto chiamando un meto
 
 ## <a name="add-a-database-connection-string"></a>Aggiungere una stringa di connessione del database
 
-Aggiungere una stringa di connessione al file *appsettings.json:Add* a connection string to the appsettings.json file:
+Aggiungere una stringa di connessione al file *appSettings. JSON* :
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -171,7 +177,7 @@ Nella finestra di dialogo **Aggiungi scaffolding** selezionare **Controller MVC 
 Completare la finestra di dialogo **Aggiungi controller**:
 
 * **Classe di modello:** *Movie (MvcMovie.Models)*
-* **Classe contesto dati:** *MvcMovieContext (MvcMovie.Data)Data context class: MvcMovieContext (MvcMovie.Data)*
+* **Classe del contesto dati:** *MvcMovieContext (MvcMovie. Data)*
 
 ![Aggiungere il contesto dati](adding-model/_static/dc3.png)
 
@@ -220,7 +226,7 @@ La creazione automatica di questi file è nota come *scaffolding*.
 
 <!-- End of tabs                  -->
 
-Non è possibile usare ancora le pagine sottoposte a scaffolding perché il database non esiste. Se si esegue l'applicazione e fare clic sul collegamento **Film App,** si ottiene un *Impossibile aprire il database* o *nessuna tabella di questo tipo: Movie* messaggio di errore.
+Non è possibile usare ancora le pagine sottoposte a scaffolding perché il database non esiste. Se si esegue l'app e si fa clic sul collegamento dell' **app Movie** , viene visualizzato un messaggio di errore *non è possibile aprire il database* o una *tabella di questo tipo:* il messaggio di errore Movie.
 
 <a name="migration"></a>
 
@@ -239,9 +245,9 @@ Add-Migration InitialCreate
 Update-Database
 ```
 
-* `Add-Migration InitialCreate`: consente di generare un file di migrazione *Migrations/'timestamp'_InitialCreate.cs.* L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database si basa sul modello specificato nella classe `MvcMovieContext`.
+* `Add-Migration InitialCreate`: Genera un file di migrazione *Migrations/{timestamp} _InitialCreate. cs* . L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database si basa sul modello specificato nella classe `MvcMovieContext`.
 
-* `Update-Database`: aggiorna il database alla migrazione più recente, creata dal comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs*, che crea il database.
+* `Update-Database`: Aggiorna il database alla migrazione più recente, che ha creato il comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs*, che crea il database.
 
   Il comando database update genera l'avviso seguente: 
 
@@ -260,9 +266,9 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-* `ef migrations add InitialCreate`: consente di generare un file di migrazione *Migrations/'timestamp'_InitialCreate.cs.* L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database è basato sul modello specificato nella classe `MvcMovieContext` (nel file *Data/MvcMovieContext.cs*).
+* `ef migrations add InitialCreate`: Genera un file di migrazione *Migrations/{timestamp} _InitialCreate. cs* . L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database è basato sul modello specificato nella classe `MvcMovieContext` (nel file *Data/MvcMovieContext.cs*).
 
-* `ef database update`: aggiorna il database alla migrazione più recente, creata dal comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs*, che crea il database.
+* `ef database update`: Aggiorna il database alla migrazione più recente, che ha creato il comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs*, che crea il database.
 
 [!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
 
@@ -299,7 +305,7 @@ Il metodo `Up` crea la tabella Movie e configura `Id` come chiave primaria. Il m
 ---
   Probabilmente non è stato eseguito il [passaggio delle migrazioni](#migration).
 
-* Testare la pagina **Crea.Test** the Create page. Immettere e inviare i dati.
+* Testare la pagina **create** . Immettere e inviare i dati.
 
   > [!NOTE]
   > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per impostazioni locali diverse dall'inglese che usano la virgola (",") come separatore decimale e per formati di data diversi da quello dell'inglese (Stati Uniti), è necessario localizzare l'app. Per istruzioni sulla globalizzazione, vedere [questo problema su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
@@ -324,9 +330,9 @@ Il costruttore usa l'[inserimento dipendenze](xref:fundamentals/dependency-injec
 
 Il costruttore usa l'[inserimento dipendenze](xref:fundamentals/dependency-injection) per inserire il contesto del database (`MvcMovieContext`) nel controller. Il contesto di database viene usato in ognuno dei metodi [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) nel controller.
 
-### <a name="use-sqlite-for-development-sql-server-for-production"></a>Usare SQLite per lo sviluppo, SQL Server per la produzioneUse SQLite for development, SQL Server for production
+### <a name="use-sqlite-for-development-sql-server-for-production"></a>Usare SQLite per lo sviluppo, SQL Server per la produzione
 
-Quando SQLite è selezionato, il codice generato dal modello è pronto per lo sviluppo. Il codice seguente viene <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> illustrato come inserire in avvio. `IWebHostEnvironment`viene inserito `ConfigureServices` in modo da poter utilizzare SQLite in fase di sviluppo e SQL Server nell'ambiente di produzione.
+Quando si seleziona SQLite, il codice generato dal modello è pronto per lo sviluppo. Il codice seguente illustra come inserire <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> all'avvio. `IWebHostEnvironment`viene inserito in modo `ConfigureServices` che possa usare SQLite per lo sviluppo e la SQL Server nell'ambiente di produzione.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=5,10,16-28)]
 
@@ -356,7 +362,7 @@ In genere il parametro `id` viene passato come dati di route. Ad esempio `https:
 
 `https://localhost:5001/movies/details?id=1`
 
-Il `id` parametro viene definito come`int?`un tipo [nullable](/dotnet/csharp/programming-guide/nullable-types/index) ( ) nel caso in cui non venga fornito un valore ID.
+Il `id` parametro viene definito come [tipo Nullable](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) nel caso in cui non venga fornito un valore ID.
 
 Un'[espressione lambda](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) viene passata a `FirstOrDefaultAsync` per selezionare le entità film che corrispondono al valore della stringa di query o dei dati di route.
 
@@ -405,8 +411,8 @@ Poiché l'oggetto `Model` è fortemente tipizzato (come un oggetto `IEnumerable<
 * [Globalizzazione e localizzazione](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
-> [Precedente Aggiunta di una vista](adding-view.md)
-> [successiva Utilizzo di SQL](working-with-sql.md)
+> [Precedente aggiunta di una visualizzazione](adding-view.md)
+> [successiva utilizzo di SQL](working-with-sql.md)
 
 ::: moniker-end
 
@@ -565,7 +571,7 @@ In questa sezione vengono completate le attività seguenti:
 
    Lo schema del database si basa sul modello specificato nella classe `MvcMovieContext`. L'argomento `Initial` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene usato un nome che descrive la migrazione. Per altre informazioni, vedere <xref:data/ef-mvc/migrations>.
 
-   Il `Update-Database` comando `Up` esegue il metodo nel file *Migrations/'time-stamp'_InitialCreate.cs,* che crea il database.
+   Il `Update-Database` comando esegue il `Up` metodo nel file *Migrations/{Time-Stamp} _InitialCreate. cs* , che crea il database.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -665,7 +671,7 @@ In genere il parametro `id` viene passato come dati di route. Ad esempio `https:
 
 `https://localhost:5001/movies/details?id=1`
 
-Il `id` parametro viene definito come`int?`un tipo [nullable](/dotnet/csharp/programming-guide/nullable-types/index) ( ) nel caso in cui non venga fornito un valore ID.
+Il `id` parametro viene definito come [tipo Nullable](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) nel caso in cui non venga fornito un valore ID.
 
 Un'[espressione lambda](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) viene passata a `FirstOrDefaultAsync` per selezionare le entità film che corrispondono al valore della stringa di query o dei dati di route.
 
@@ -714,7 +720,7 @@ Poiché l'oggetto `Model` è fortemente tipizzato (come un oggetto `IEnumerable<
 * [Globalizzazione e localizzazione](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
-> [Precedente Aggiunta di una vista](adding-view.md)
-> [successiva Utilizzo di un database](working-with-sql.md)
+> [Precedente aggiunta di una visualizzazione](adding-view.md)
+> [successiva utilizzo di un database](working-with-sql.md)
 
 ::: moniker-end

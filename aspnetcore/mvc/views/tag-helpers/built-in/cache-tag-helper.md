@@ -5,13 +5,19 @@ description: Informazioni su come usare l'helper tag di cache.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: db9e1a968588410f11e5f137dfdd4542df505ebc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: ced10a7b7b221188fdac2a4e3c54f66292110ece
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78662736"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773942"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Helper tag di cache in ASP.NET Core MVC
 
@@ -19,7 +25,7 @@ Di [Peter Kellner](https://peterkellner.net)
 
 L'helper tag di cache consente di migliorare le prestazioni dell'app ASP.NET Core memorizzandone il contenuto nel provider di cache ASP.NET Core interno.
 
-Per una panoramica degli helper tag, vedere <xref:mvc/views/tag-helpers/intro>.
+Per una panoramica degli helper per tag, vedere <xref:mvc/views/tag-helpers/intro>.
 
 Il seguente markup Razor memorizza nella cache la data corrente:
 
@@ -101,7 +107,7 @@ Esempio:
 
 | Tipo di attributo | Esempi                                    |
 | -------------- | ------------------------------------------- |
-| string         | `User-Agent`, `User-Agent,content-encoding` |
+| Stringa         | `User-Agent`, `User-Agent,content-encoding` |
 
 `vary-by-header` accetta un elenco delimitato da virgole di valori di intestazione che attivano un aggiornamento della cache quando vengono modificati.
 
@@ -117,7 +123,7 @@ L'esempio seguente esegue il monitoraggio del valore dell'intestazione `User-Age
 
 | Tipo di attributo | Esempi             |
 | -------------- | -------------------- |
-| string         | `Make`, `Make,Model` |
+| Stringa         | `Make`, `Make,Model` |
 
 `vary-by-query` accetta un elenco delimitato da virgole di <xref:Microsoft.AspNetCore.Http.IQueryCollection.Keys*> in una stringa di query (<xref:Microsoft.AspNetCore.Http.HttpRequest.Query*>) che attiva un aggiornamento della cache quando cambia il valore di qualsiasi chiave inclusa nell'elenco.
 
@@ -133,7 +139,7 @@ L'esempio seguente esegue il monitoraggio dei valori di `Make` e `Model`. L'esem
 
 | Tipo di attributo | Esempi             |
 | -------------- | -------------------- |
-| string         | `Make`, `Make,Model` |
+| Stringa         | `Make`, `Make,Model` |
 
 `vary-by-route` accetta un elenco delimitato da virgole di nomi di parametri di route che attivano un aggiornamento della cache quando cambia il valore del parametro dei dati di route.
 
@@ -147,7 +153,7 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{Make?}/{Model?}");
 ```
 
-*Index.cshtml*:
+*Index. cshtml*:
 
 ```cshtml
 <cache vary-by-route="Make,Model">
@@ -159,7 +165,7 @@ routes.MapRoute(
 
 | Tipo di attributo | Esempi                                                                         |
 | -------------- | -------------------------------------------------------------------------------- |
-| string         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
+| Stringa         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
 `vary-by-cookie` accetta un elenco delimitato da virgole di nomi di cookie che attivano un aggiornamento della cache quando cambiano i valori dei cookie.
 
@@ -193,7 +199,7 @@ Questo attributo consente di mantenere il contenuto nella cache durante un ciclo
 
 | Tipo di attributo | Esempio  |
 | -------------- | -------- |
-| string         | `@Model` |
+| Stringa         | `@Model` |
 
 `vary-by` consente di personalizzare quali dati vengono memorizzati nella cache. Quando l'oggetto al quale fa riferimento il valore stringa dell'attributo cambia, il contenuto dell'helper tag di cache viene aggiornato. Spesso a questo attributo viene assegnata una concatenazione stringa di valori del modello. In effetti, da ciò risulta uno scenario in cui un aggiornamento di uno qualsiasi dei valori concatenati invalida la cache.
 
@@ -212,7 +218,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 }
 ```
 
-*Index.cshtml*:
+*Index. cshtml*:
 
 ```cshtml
 <cache vary-by="@Model">

@@ -1,20 +1,26 @@
 ---
-title: 'Esercitazione: Gestire la concorrenza - ASP.NET MVC con EF CoreTutorial: Handle concurrency - ASP.NET MVC with EF Core'
+title: 'Esercitazione: gestire la concorrenza ASP.NET MVC con EF Core'
 description: Questa esercitazione descrive la gestione dei conflitti quando più utenti aggiornano la stessa entità contemporaneamente.
 author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/concurrency
-ms.openlocfilehash: 6839e383093b993ff55095f26cf88cd68708f001
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: bbf04e3500b11a339dc59b6086d910b76eace735
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657395"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773601"
 ---
-# <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Esercitazione: Gestire la concorrenza - ASP.NET MVC con EF CoreTutorial: Handle concurrency - ASP.NET MVC with EF Core
+# <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Esercitazione: gestire la concorrenza ASP.NET MVC con EF Core
 
 Nelle esercitazioni precedenti è stato descritto come aggiornare i dati. Questa esercitazione descrive la gestione dei conflitti quando più utenti aggiornano la stessa entità contemporaneamente.
 
@@ -75,11 +81,11 @@ Di seguito sono elencate alcune opzioni:
 
 * È possibile consentire che la modifica di John sovrascriva la modifica di Jane.
 
-     Quando un utente torna a visualizzare il reparto English (Inglese), visualizza 9/1/2013 e il valore $ 350.000,00 ripristinato. Questo scenario è detto *Priorità client* o *Last in Wins* (Priorità ultimo accesso). Tutti i valori del client hanno la precedenza su ciò che è presente nell'archivio dati. Come indicato nell'introduzione a questa sezione, se non si esegue alcuna codifica per la gestione della concorrenza, questa operazione verrà eseguita automaticamente.
+     Quando un utente torna a visualizzare il reparto English (Inglese), visualizza 9/1/2013 e il valore $ 350.000,00 ripristinato. Questo scenario è detto *Priorità client* o *Last in Wins* (Priorità ultimo accesso). Tutti i valori del client hanno la precedenza sugli elementi presenti nell'archivio dati. Come indicato nell'introduzione a questa sezione, se non si esegue alcuna codifica per la gestione della concorrenza, questa operazione viene eseguita automaticamente.
 
 * È possibile impedire l'aggiornamento del database con la modifica di John.
 
-     In genere viene visualizzato un messaggio di errore e lo stato corrente dei dati e si consente all'utente di riapplicare le modifiche se lo desidera. Questo scenario è detto *Store Wins* (Priorità archivio). I valori dell'archivio dati hanno la precedenza sui valori inviati dal client. In questa esercitazione verrà implementato lo scenario Vincita del negozio. Questo metodo garantisce che nessuna modifica venga sovrascritta senza che un utente riceva un avviso.
+     In genere viene visualizzato un messaggio di errore e lo stato corrente dei dati e si consente all'utente di riapplicare le modifiche se lo desidera. Questo scenario è detto *Store Wins* (Priorità archivio). I valori dell'archivio dati hanno la precedenza sui valori inviati dal client. Verrà implementato lo scenario Store WINS in questa esercitazione. Questo metodo garantisce che nessuna modifica venga sovrascritta senza che un utente riceva un avviso.
 
 ### <a name="detecting-concurrency-conflicts"></a>Rilevamento dei conflitti di concorrenza
 
@@ -240,7 +246,7 @@ Questo parametro è stato convertito in un'istanza di entità Department creata 
 public async Task<IActionResult> Delete(Department department)
 ```
 
-Anche il nome del metodo di azione è stato modificato da `DeleteConfirmed` a `Delete`. Il codice sottoposto a scaffolding usava il nome `DeleteConfirmed` per offrire al metodo HttpPost una firma unica. (CLR richiede metodi di overload per avere diversi parametri del metodo.) Ora che le firme sono univoche, è possibile attenersi alla convenzione MVC e utilizzare lo stesso nome per il HttpPost e HttpGet delete metodi.
+Anche il nome del metodo di azione è stato modificato da `DeleteConfirmed` a `Delete`. Il codice sottoposto a scaffolding usava il nome `DeleteConfirmed` per offrire al metodo HttpPost una firma unica. (CLR richiede che i metodi di overload abbiano parametri di metodo diversi). Ora che le firme sono univoche, è possibile attenersi alla convenzione MVC e usare lo stesso nome per i metodi di eliminazione HttpPost e HttpGet.
 
 Se il reparto è già stato eliminato, il metodo `AnyAsync` restituisce false e l'applicazione torna al metodo Index.
 
@@ -312,4 +318,4 @@ In questa esercitazione:
 Passare all'esercitazione successiva per apprendere come implementare l'ereditarietà tabella per gerarchia per le entità Instructor e Student.
 
 > [!div class="nextstepaction"]
-> [Successiva: Implementare l'ereditarietà tabella per gerarchia](inheritance.md)
+> [Passaggio successivo: implementare l'ereditarietà tabella per gerarchia](inheritance.md)

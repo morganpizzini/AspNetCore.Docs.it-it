@@ -1,5 +1,5 @@
 ---
-title: Integrare ASP.NET Core componenti Razor in app Razor Pages e MVC
+title: Integrare ASP.NET Core Razor componenti in Razor pagine e app MVC
 author: guardrex
 description: Informazioni sugli scenari di data binding per i componenti e gli Blazor elementi DOM nelle app.
 monikerRange: '>= aspnetcore-3.1'
@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 04/25/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/integrate-components
-ms.openlocfilehash: 4e2103b7e8b65478808093d7a31e8cfe29b04984
-ms.sourcegitcommit: f9a5069577e8f7c53f8bcec9e13e117950f4f033
+ms.openlocfilehash: eb4378223c40594ac52f50b7b890785067515555
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82558911"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82771774"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integrare ASP.NET Core componenti Razor in app Razor Pages e MVC
 
@@ -125,7 +128,7 @@ Per supportare componenti Razor instradabili nelle app Razor Pages:
    * Viene preeseguito nella pagina.
    * Viene visualizzato come HTML statico nella pagina o se include le informazioni necessarie per eseguire il bootstrap di un'app Blazer dall'agente utente.
 
-   | Modalità di rendering | Descrizione |
+   | Modalità di rendering | Description |
    | ----------- | ----------- |
    | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering `App` del componente in HTML statico e include un marcatore per un'app del server blazer. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un'app blazer. |
    | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un'app del server blazer. L' `App` output del componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un'app blazer. |
@@ -199,7 +202,7 @@ Per supportare i componenti Razor instradabili nelle app MVC:
    * Viene preeseguito nella pagina.
    * Viene visualizzato come HTML statico nella pagina o se include le informazioni necessarie per eseguire il bootstrap di un'app Blazer dall'agente utente.
 
-   | Modalità di rendering | Descrizione |
+   | Modalità di rendering | Description |
    | ----------- | ----------- |
    | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering `App` del componente in HTML statico e include un marcatore Blazor per un'app Server. Quando l'agente utente viene avviato, questo marcatore viene usato per il Blazor bootstrap di un'app. |
    | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un' Blazor app Server. L' `App` output del componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il Blazor bootstrap di un'app. |
@@ -247,7 +250,7 @@ Per eseguire il rendering di un componente da una pagina o da una vista, usare l
 
 ### <a name="render-stateful-interactive-components"></a>Eseguire il rendering di componenti interattivi con stato
 
-I componenti interattivi con stato possono essere aggiunti a una pagina o a una visualizzazione Razor.
+I componenti interattivi con stato possono essere aggiunti Razor a una pagina o a una vista.
 
 Quando viene eseguito il rendering della pagina o della visualizzazione:
 
@@ -255,7 +258,7 @@ Quando viene eseguito il rendering della pagina o della visualizzazione:
 * Lo stato iniziale del componente utilizzato per il prerendering viene perso.
 * Quando viene stabilita la connessione, SignalR viene creato il nuovo stato del componente.
 
-La pagina Razor seguente esegue il rendering `Counter` di un componente:
+Nella pagina Razor seguente viene eseguito il `Counter` rendering di un componente:
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -273,7 +276,7 @@ Per altre informazioni, vedere <xref:mvc/views/tag-helpers/builtin-th/component-
 
 ### <a name="render-noninteractive-components"></a>Eseguire il rendering di componenti non interattivi
 
-Nella pagina Razor seguente il `Counter` componente viene sottoposto a rendering statico con un valore iniziale specificato usando un modulo. Poiché il componente viene sottoposto a rendering statico, il componente non è interattivo:
+Nella pagina seguente Razor il `Counter` componente viene sottoposto a rendering statico con un valore iniziale specificato utilizzando un form. Poiché il componente viene sottoposto a rendering statico, il componente non è interattivo:
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -305,6 +308,6 @@ Quando si usa una cartella personalizzata per archiviare i componenti dell'app, 
 @using MyAppNamespace.Components
 ```
 
-Il file *_ViewImports. cshtml* si trova nella cartella *pagine* di un'app Razor Pages o nella cartella *views* di un'app MVC.
+Il file *_ViewImports. cshtml* si trova nella cartella *pagine* di un' Razor app pagine o nella cartella *views* di un'app MVC.
 
 Per altre informazioni, vedere <xref:blazor/components#import-components>.

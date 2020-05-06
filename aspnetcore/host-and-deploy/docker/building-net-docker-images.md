@@ -5,13 +5,19 @@ description: Informazioni su come usare le immagini Docker per .NET Core pubblic
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/15/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: ced0cb7cbeed1b8811813a70035c2e0b42c3e35a
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: bce04caf20dcf23ab7160066d55a279b29dca1ae
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440779"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774106"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Immagini Docker per ASP.NET Core
 
@@ -187,7 +193,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### <a name="the-dockerfile"></a>Dockerfile
 
-Ecco il *Dockerfile* utilizzato `docker build` dal comando eseguito in precedenza.  Usa `dotnet publish` allo stesso modo in cui è stato usato in questa sezione per la compilazione e la distribuzione.  
+Ecco il *Dockerfile* usato dal `docker build` comando che è stato eseguito in precedenza.  Usa `dotnet publish` allo stesso modo in cui è stato usato in questa sezione per la compilazione e la distribuzione.  
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
@@ -223,7 +229,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### <a name="the-dockerfile"></a>Dockerfile
 
-Ecco il *Dockerfile* utilizzato `docker build` dal comando eseguito in precedenza.  Usa `dotnet publish` allo stesso modo in cui è stato usato in questa sezione per la compilazione e la distribuzione.  
+Ecco il *Dockerfile* usato dal `docker build` comando che è stato eseguito in precedenza.  Usa `dotnet publish` allo stesso modo in cui è stato usato in questa sezione per la compilazione e la distribuzione.  
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
@@ -263,7 +269,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 * [Configurare ASP.NET Core per l'utilizzo di server proxy e servizi di bilanciamento del carico](/aspnet/core/host-and-deploy/proxy-load-balancer)
 * [Working with Visual Studio Docker Tools](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker) (Uso degli strumenti Docker per Visual Studio)
 * [Debug con Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
-* [GC con Docker e contenitori di piccole dimensioni](xref:performance/memory#sc)
+* [GC con contenitori Docker e Small](xref:performance/memory#sc)
 
 ## <a name="next-steps"></a>Passaggi successivi
 

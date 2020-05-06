@@ -5,17 +5,23 @@ ms.author: riande
 description: Individuare gli attributi degli helper tag di script ASP.NET Core e il ruolo di ciascun attributo per estendere il comportamento del tag di script HTML.
 ms.custom: mvc
 ms.date: 12/02/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
-ms.openlocfilehash: a037abb6a454e6d06305e7d7f6ecad0c2a0ca717
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 4162221ef3401427c44fb54dee9c36b78b39564f
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659838"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774665"
 ---
 # <a name="script-tag-helper-in-aspnet-core"></a>Helper tag di script in ASP.NET Core
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 L' [Helper tag script](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper) genera un collegamento a un file di script primario o di fallback. In genere il file di script primario si trova in una rete per la [distribuzione di contenuti](/office365/enterprise/content-delivery-networks#what-exactly-is-a-cdn) (CDN).
 
@@ -23,7 +29,7 @@ L' [Helper tag script](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper)
 
 L'helper tag script consente di specificare una rete CDN per il file di script e un fallback quando la rete CDN non è disponibile. L'helper tag script offre il vantaggio in merito alle prestazioni di una rete CDN con l'affidabilità dell'hosting locale.
 
-Il markup Razor seguente mostra un elemento `script` con un fallback:
+Il markup Razor seguente mostra un `script` elemento con un fallback:
 
 ```html
 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
@@ -34,7 +40,7 @@ Il markup Razor seguente mostra un elemento `script` con un fallback:
 </script>
 ```
 
-Non usare l'attributo [rinvia](https://developer.mozilla.org/docs/Web/HTML/Element/script) dell'elemento `<script>` per rinviare il caricamento dello script della rete CDN. L'helper tag script esegue il rendering di JavaScript che esegue immediatamente l'espressione [ASP-fallback-test](#asp-fallback-test) . L'espressione ha esito negativo se viene posticipato il caricamento dello script della rete CDN.
+Non usare l' `<script>` attributo [rinvia](https://developer.mozilla.org/docs/Web/HTML/Element/script) dell'elemento per rinviare il caricamento dello script della rete CDN. L'helper tag script esegue il rendering di JavaScript che esegue immediatamente l'espressione [ASP-fallback-test](#asp-fallback-test) . L'espressione ha esito negativo se viene posticipato il caricamento dello script della rete CDN.
 
 ## <a name="commonly-used-script-tag-helper-attributes"></a>Attributi di helper tag di script di uso comune
 

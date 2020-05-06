@@ -5,19 +5,25 @@ description: Informazioni sul concetto di protezione dei dati e sui principi di 
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/introduction
-ms.openlocfilehash: 37f170a3e8a46ef2215b0999358d46dd402636df
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: db2c22454fc6c7e663ca603e9d70b6c12ce31af4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78664444"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775804"
 ---
 # <a name="aspnet-core-data-protection"></a>Protezione dei dati ASP.NET Core
 
 Le applicazioni Web spesso devono archiviare dati sensibili alla sicurezza. Windows fornisce DPAPI per le applicazioni desktop, ma questo non è adatto per le applicazioni Web. Lo stack di protezione dei dati ASP.NET Core fornisce un'API di crittografia semplice e facile da usare che uno sviluppatore può usare per proteggere i dati, tra cui la gestione e la rotazione delle chiavi.
 
-Lo stack di protezione dei dati ASP.NET Core è progettato per fungere da sostituzione a lungo termine per l'elemento&gt; &lt;machineKey in ASP.NET 1. x-4. x. È stato progettato per risolvere molti dei difetti del vecchio stack di crittografia, offrendo al tempo stesso una soluzione predefinita per la maggior parte dei casi d'uso che è probabile che si verifichino le applicazioni moderne.
+Lo stack di protezione dei dati ASP.NET Core è progettato per fungere da sostituzione a lungo termine &lt;per&gt; l'elemento machineKey in ASP.NET 1. x-4. x. È stato progettato per risolvere molti dei difetti del vecchio stack di crittografia, offrendo al tempo stesso una soluzione predefinita per la maggior parte dei casi d'uso che è probabile che si verifichino le applicazioni moderne.
 
 ## <a name="problem-statement"></a>Presentazione del problema
 
@@ -67,13 +73,13 @@ Il sistema di protezione dei dati è suddiviso in cinque pacchetti principali. I
 
 Lo stack di protezione dei dati è costituito da cinque pacchetti.
 
-* [Microsoft. AspNetCore. dataprotection. abstracts](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Abstractions/) contiene le interfacce <xref:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider> e <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> per la creazione di servizi di protezione dei dati. Contiene inoltre metodi di estensione utili per l'utilizzo di questi tipi (ad esempio, [IDataProtector. Protect](xref:Microsoft.AspNetCore.DataProtection.DataProtectionCommonExtensions.Protect*)). Se viene creata un'istanza del sistema di protezione dei dati in un'altra posizione e si utilizza l'API, fare riferimento `Microsoft.AspNetCore.DataProtection.Abstractions`.
+* [Microsoft. AspNetCore. dataprotection. abstracts](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Abstractions/) contiene le <xref:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider> interfacce <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> e per la creazione di servizi di protezione dei dati. Contiene inoltre metodi di estensione utili per l'utilizzo di questi tipi (ad esempio, [IDataProtector. Protect](xref:Microsoft.AspNetCore.DataProtection.DataProtectionCommonExtensions.Protect*)). Se viene creata un'istanza del sistema di protezione dei dati in un'altra posizione e si utilizza `Microsoft.AspNetCore.DataProtection.Abstractions`l'API, fare riferimento a.
 
-* [Microsoft. AspNetCore. dataprotection](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection/) contiene l'implementazione principale del sistema di protezione dei dati, tra cui operazioni di crittografia di base, gestione delle chiavi, configurazione ed estensibilità. Per creare un'istanza del sistema di protezione dei dati (ad esempio, aggiungendolo a un <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>) o modificando o estendendo il comportamento, fare riferimento a `Microsoft.AspNetCore.DataProtection`.
+* [Microsoft. AspNetCore. dataprotection](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection/) contiene l'implementazione principale del sistema di protezione dei dati, tra cui operazioni di crittografia di base, gestione delle chiavi, configurazione ed estensibilità. Per creare un'istanza del sistema di protezione dei dati (ad esempio, aggiungendolo a un <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>) o modificando o estendendo il comportamento, fare riferimento `Microsoft.AspNetCore.DataProtection`a.
 
-* [Microsoft. AspNetCore. dataprotection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) contiene altre API che gli sviluppatori possono trovare utili ma che non appartengono al pacchetto principale. Ad esempio, questo pacchetto contiene i metodi factory per creare un'istanza del sistema di protezione dati per archiviare le chiavi in una posizione nella file system senza inserimento delle dipendenze (vedere <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>). Contiene inoltre i metodi di estensione per limitare la durata dei payload protetti (vedere <xref:Microsoft.AspNetCore.DataProtection.ITimeLimitedDataProtector>).
+* [Microsoft. AspNetCore. dataprotection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) contiene altre API che gli sviluppatori possono trovare utili ma che non appartengono al pacchetto principale. Ad esempio, questo pacchetto contiene i metodi factory per creare un'istanza del sistema di protezione dati per archiviare le chiavi in una posizione nella file system senza inserimento <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>delle dipendenze (vedere). Contiene inoltre i metodi di estensione per limitare la durata dei payload protetti (vedere <xref:Microsoft.AspNetCore.DataProtection.ITimeLimitedDataProtector>).
 
-* [Microsoft. AspNetCore. dataprotection. systemWeb](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.SystemWeb/) può essere installato in un'app ASP.NET 4. x esistente per reindirizzare le operazioni di `<machineKey>` per l'uso della nuova ASP.NET Core stack di protezione dei dati. Per altre informazioni, vedere <xref:security/data-protection/compatibility/replacing-machinekey>.
+* [Microsoft. AspNetCore. dataprotection. systemWeb](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.SystemWeb/) può essere installato in un'app ASP.NET 4. x esistente per reindirizzare le `<machineKey>` operazioni per l'uso del nuovo ASP.NET Core stack di protezione dei dati. Per altre informazioni, vedere <xref:security/data-protection/compatibility/replacing-machinekey>.
 
 * [Microsoft. AspNetCore. Cryptography. Derivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) fornisce un'implementazione della routine di hashing delle password PBKDF2 e può essere utilizzata dai sistemi che devono gestire le password utente in modo sicuro. Per altre informazioni, vedere <xref:security/data-protection/consumer-apis/password-hashing>.
 

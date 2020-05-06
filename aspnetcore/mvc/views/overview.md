@@ -4,13 +4,19 @@ author: ardalis
 description: Informazioni su come le visualizzazioni gestiscono la presentazione dei dati dell'app e l'interazione dell'utente in ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/overview
-ms.openlocfilehash: 70b8c2c01a28f99dd384351041a3b77d23f46a48
-ms.sourcegitcommit: f29a12486313e38e0163a643d8a97c8cecc7e871
+ms.openlocfilehash: bda00a416ac34883e0a70a265156fa3ddcde3c6f
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81384075"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777137"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Visualizzazioni in ASP.NET Core MVC
 
@@ -199,16 +205,16 @@ Oltre alle visualizzazioni fortemente tipizzate, le visualizzazioni hanno access
 | Passaggio dei dati tra...                        | Esempio                                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------------------------ |
 | Un controller e una visualizzazione                             | Popolamento di dati in un elenco a discesa.                                          |
-| Una visualizzazione e una [visualizzazione Layout](xref:mvc/views/layout)   | L'impostazione del ** \<titolo>** contenuto dell'elemento nella vista layout da un file di visualizzazione.  |
+| Una visualizzazione e una [visualizzazione Layout](xref:mvc/views/layout)   | Impostazione del ** \<titolo>** contenuto dell'elemento nella visualizzazione layout da un file di visualizzazione.  |
 | Una [visualizzazione parziale](xref:mvc/views/partial) e una visualizzazione | Widget che visualizza i dati in base alla pagina Web richiesta dall'utente.      |
 
-È possibile fare riferimento a questa raccolta tramite le proprietà `ViewData` o `ViewBag` nei controller e nelle visualizzazioni. La proprietà `ViewData` è un dizionario di oggetti con tipizzazione debole. La proprietà `ViewBag` è un wrapper di `ViewData` che offre proprietà dinamiche per la raccolta `ViewData` sottostante. Nota: le ricerche di chiavi `ViewData` non `ViewBag`fanno distinzione tra maiuscole e minuscole per entrambi e .
+È possibile fare riferimento a questa raccolta tramite le proprietà `ViewData` o `ViewBag` nei controller e nelle visualizzazioni. La proprietà `ViewData` è un dizionario di oggetti con tipizzazione debole. La proprietà `ViewBag` è un wrapper di `ViewData` che offre proprietà dinamiche per la raccolta `ViewData` sottostante. Nota: le ricerche chiave non fanno distinzione tra maiuscole e `ViewData` minuscole sia per che `ViewBag`per.
 
 `ViewData` e `ViewBag` vengono risolte in modo dinamico in fase di esecuzione. Poiché non offrono il controllo del tipo in fase di compilazione, entrambe sono in genere più soggette a errori rispetto all'uso di un elemento viewmodel. Per questo motivo, alcuni sviluppatori preferiscono non usare mai `ViewData` e `ViewBag` o usarle il meno possibile.
 
 <a name="VD"></a>
 
-**Viewdata**
+**ViewData**
 
 `ViewData` è un oggetto [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) a cui si accede tramite le chiavi `string`. I dati di tipo stringa possono essere archiviati e usati direttamente, senza la necessità di un cast, ma è necessario eseguire il cast di altri valori dell'oggetto `ViewData` in tipi specifici quando vengono estratti. È possibile usare `ViewData` per passare i dati dai controller alle visualizzazioni e al loro interno, inclusi [visualizzazioni parziali](xref:mvc/views/partial) e [layout](xref:mvc/views/layout).
 
@@ -252,9 +258,9 @@ Lavorare con i dati in una visualizzazione:
 
 **Attributo viewData**
 
-Un altro approccio che usa [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) è [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Le proprietà nei controller o nei `[ViewData]` modelli di pagina Razor contrassegnati con l'attributo hanno i valori archiviati e caricati dal dizionario.
+Un altro approccio che usa [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) è [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). I valori delle proprietà Razor nei controller o nei modelli `[ViewData]` di pagina contrassegnati con l'attributo sono archiviati e caricati dal dizionario.
 
-Nell'esempio seguente, il controller `Title` Home `[ViewData]`contiene una proprietà contrassegnata con . Il metodo `About` imposta il titolo per la visualizzazione About (Informazioni):
+Nell'esempio seguente il controller Home contiene una `Title` proprietà contrassegnata con. `[ViewData]` Il metodo `About` imposta il titolo per la visualizzazione About (Informazioni):
 
 ```csharp
 public class HomeController : Controller
@@ -286,7 +292,7 @@ Nel layout il titolo viene letto dal dizionario ViewData:
 
 **ViewBag**
 
-`ViewBag` *non è disponibile in Razor Pages.*
+`ViewBag`*non è disponibile Razor nelle pagine.*
 
 `ViewBag`è un oggetto [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) che fornisce l'accesso dinamico agli oggetti archiviati in `ViewData`. `ViewBag` può risultare più comodo da usare poiché non richiede l'esecuzione del cast. Nell'esempio seguente viene illustrato come usare `ViewBag` con lo stesso risultato che si ottiene con l'uso di `ViewData` descritto in precedenza:
 
@@ -319,7 +325,7 @@ public IActionResult SomeAction()
 
 **Uso simultaneo di ViewData e ViewBag**
 
-`ViewBag` *non è disponibile in Razor Pages.*
+`ViewBag`*non è disponibile Razor nelle pagine.*
 
 Dal momento che `ViewData` e `ViewBag` fanno riferimento alla stessa raccolta `ViewData` sottostante, è possibile usare `ViewData` e `ViewBag` e combinarle durante la lettura e la scrittura dei valori.
 
@@ -359,10 +365,10 @@ L'uso simultaneo di `ViewData` e `ViewBag` funziona, così come funziona la comb
 
 **Riepilogo delle differenze tra ViewData e ViewBag**
 
- `ViewBag` non è disponibile in Razor Pages.
+ `ViewBag`non è disponibile nelle Razor pagine.
 
 * `ViewData`
-  * Deriva da [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), pertanto dispone di proprietà `ContainsKey`del `Add`dizionario che possono essere utili, ad esempio , `Remove`, e . `Clear`
+  * Deriva da [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), quindi presenta proprietà del dizionario che possono essere utili, ad `ContainsKey`esempio `Add`, `Remove`, e. `Clear`
   * Le chiavi nel dizionario sono stringhe, pertanto lo spazio vuoto è consentito. Esempio: `ViewData["Some Key With Whitespace"]`
   * Per usare `ViewData` è necessario eseguire il cast di tutti i tipi diversi da `string` nella visualizzazione.
 * `ViewBag`

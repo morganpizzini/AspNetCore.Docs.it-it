@@ -1,45 +1,51 @@
 ---
-title: Considerazioni sulla sicurezza in gRPC per ASP.NET CoreSecurity considerations in gRPC for ASP.NET Core
+title: Considerazioni sulla sicurezza in gRPC per ASP.NET Core
 author: jamesnk
-description: Scopri di più sulle considerazioni sulla sicurezza per gRPC per ASP.NET Core.
+description: Informazioni sulle considerazioni relative alla sicurezza per gRPC per ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
 ms.date: 07/07/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: grpc/security
-ms.openlocfilehash: f84bec0ef485b701b2be36384a2e49b9b28e473d
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 8bbe198087f8ba80abfe6b518f8223c719801a85
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78667321"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774955"
 ---
-# <a name="security-considerations-in-grpc-for-aspnet-core"></a>Considerazioni sulla sicurezza in gRPC per ASP.NET CoreSecurity considerations in gRPC for ASP.NET Core
+# <a name="security-considerations-in-grpc-for-aspnet-core"></a>Considerazioni sulla sicurezza in gRPC per ASP.NET Core
 
 Di [James Newton-King](https://twitter.com/jamesnk)
 
-In questo articolo vengono fornite informazioni sulla protezione di gRPC con .NET Core.This article provides information on securing gRPC with .NET Core.
+Questo articolo fornisce informazioni sulla protezione di gRPC con .NET Core.
 
 ## <a name="transport-security"></a>Sicurezza del trasporto
 
-I messaggi gRPC vengono inviati e ricevuti tramite HTTP/2. Si consiglia di:
+i messaggi gRPC vengono inviati e ricevuti tramite HTTP/2. È consigliabile:
 
-* [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) da utilizzare per proteggere i messaggi nelle app gRPC di produzione.
-* I servizi gRPC devono solo ascoltare e rispondere tramite porte protette.
+* [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) viene usato per proteggere i messaggi nelle app gRPC di produzione.
+* i servizi gRPC devono restare in ascolto e rispondere solo su porte protette.
 
-TLS è configurato in Kestrel. Per ulteriori informazioni sulla configurazione degli endpoint Kestrel, vedere [Configurazione degli endpoint Kestrel](xref:fundamentals/servers/kestrel#endpoint-configuration).
+TLS è configurato in gheppio. Per altre informazioni sulla configurazione degli endpoint di gheppio, vedere la pagina relativa alla [configurazione dell'endpoint gheppio](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 ## <a name="exceptions"></a>Eccezioni
 
-I messaggi di eccezione sono in genere considerati dati sensibili che non devono essere rivelati a un client. Per impostazione predefinita, gRPC non invia al client i dettagli di un'eccezione generata da un servizio gRPC. Al contrario, il client riceve un messaggio generico che indica che si è verificato un errore. Il recapito dei messaggi di eccezione al client può essere sottoposto a override (ad esempio, in fase di sviluppo o test) con [EnableDetailedErrors](xref:grpc/configuration#configure-services-options). I messaggi di eccezione non devono essere esposti al client nelle app di produzione.
+I messaggi di eccezione vengono in genere considerati dati sensibili che non devono essere rivelati a un client. Per impostazione predefinita, gRPC non invia al client i dettagli di un'eccezione generata da un servizio gRPC. Il client riceve invece un messaggio generico che indica che si è verificato un errore. Il recapito dei messaggi di eccezione al client può essere sottoposto a override (ad esempio, in fase di sviluppo o test) con [EnableDetailedErrors](xref:grpc/configuration#configure-services-options). I messaggi di eccezione non devono essere esposti al client nelle app di produzione.
 
-## <a name="message-size-limits"></a>Limiti di dimensione dei messaggi
+## <a name="message-size-limits"></a>Limiti delle dimensioni dei messaggi
 
-I messaggi in arrivo ai client e ai servizi gRPC vengono caricati in memoria. I limiti di dimensione dei messaggi sono un meccanismo che consente di evitare che gRPC consumi un numero eccessivo di risorse.
+I messaggi in ingresso per i client e i servizi di gRPC vengono caricati in memoria. I limiti delle dimensioni dei messaggi sono un meccanismo che consente di impedire a gRPC di consumare risorse eccessive.
 
-gRPC utilizza i limiti di dimensione per messaggio per gestire i messaggi in arrivo e in uscita. Per impostazione predefinita, gRPC limita i messaggi in arrivo a 4 MB. Non vi è alcun limite ai messaggi in uscita.
+gRPC utilizza i limiti delle dimensioni per messaggio per gestire i messaggi in ingresso e in uscita. Per impostazione predefinita, gRPC limita i messaggi in ingresso a 4 MB. Non esiste alcun limite per i messaggi in uscita.
 
-Sul server, i limiti dei messaggi gRPC possono `AddGrpc`essere configurati per tutti i servizi in un'app con:
+Sul server, è possibile configurare i limiti dei messaggi gRPC per tutti i servizi in un' `AddGrpc`app con:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -52,14 +58,14 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-I limiti possono anche essere `AddServiceOptions<TService>`configurati per un singolo servizio utilizzando . Per ulteriori informazioni sulla configurazione dei limiti di dimensione dei messaggi, vedere [configurazione gRPC](xref:grpc/configuration).
+È anche possibile configurare i limiti per un singolo servizio `AddServiceOptions<TService>`usando. Per ulteriori informazioni sulla configurazione dei limiti delle dimensioni dei messaggi, vedere [configurazione di gRPC](xref:grpc/configuration).
 
 ## <a name="client-certificate-validation"></a>Convalida del certificato client
 
-[I certificati client](https://tools.ietf.org/html/rfc5246#section-7.4.4) vengono inizialmente convalidati quando viene stabilita la connessione. Per impostazione predefinita, Kestrel non esegue la convalida aggiuntiva del certificato client di una connessione.
+I [certificati client](https://tools.ietf.org/html/rfc5246#section-7.4.4) vengono inizialmente convalidati quando viene stabilita la connessione. Per impostazione predefinita, gheppio non esegue la convalida aggiuntiva del certificato client di una connessione.
 
-È consigliabile che i servizi gRPC protetti dai certificati client utilizzino il pacchetto [Microsoft.AspNetCore.Authentication.Certificate.](xref:security/authentication/certauth) ASP.NET'autenticazione di certificazione di base eseguirà una convalida aggiuntiva su un certificato client, tra cui:ASP.NET Core certification authentication will perform additional validation on a client certificate, including:
+È consigliabile che i servizi gRPC protetti dai certificati client usino il pacchetto [Microsoft. AspNetCore. Authentication. Certificate](xref:security/authentication/certauth) . ASP.NET Core Autenticazione della certificazione eseguirà una convalida aggiuntiva per un certificato client, tra cui:
 
-* Il certificato ha un utilizzo della chiave estesa (EKU) valido
-* È entro il suo periodo di validità
+* Il certificato ha un utilizzo chiave esteso valido (EKU)
+* Rientra nel periodo di validità
 * Controllare la revoca dei certificati

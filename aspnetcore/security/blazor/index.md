@@ -5,17 +5,20 @@ description: Informazioni sugli Blazor scenari di autenticazione e autorizzazion
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/index
-ms.openlocfilehash: ced8e90147b08bc75aec4534fdd8d8552506f88c
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: d55880265ed1ceedf8f115412e5ac47309521239
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206099"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772895"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Autenticazione Blazor e autorizzazione ASP.NET Core
 
@@ -35,12 +38,12 @@ Gli scenari di sicurezza Blazor sono diversi Blazor tra le app Server e webassem
 
 BlazorLe app webassembly vengono eseguite sul client. L'autorizzazione viene usata *solo* per determinare quali opzioni dell'interfaccia utente visualizzare. Poiché i controlli lato client possono essere modificati o ignorati da un utente, un' Blazor app webassembly non può applicare le regole di accesso all'autorizzazione.
 
-[Razor Pages le convenzioni di autorizzazione](xref:security/authorization/razor-pages-authorization) non si applicano ai componenti Razor instradabili. Se un componente Razor non instradabile è [incorporato in una pagina](xref:blazor/integrate-components#render-components-from-a-page-or-view), le convenzioni di autorizzazione della pagina influiscono indirettamente sul componente Razor insieme al resto del contenuto della pagina.
+Le convenzioni di Razor [autorizzazione pagine non si applicano ai componenti instradabili Razor ](xref:security/authorization/razor-pages-authorization) . Se un Razor componente non instradabile è [incorporato in una pagina](xref:blazor/integrate-components#render-components-from-a-page-or-view), le convenzioni di autorizzazione della pagina influiscono indirettamente sul Razor componente insieme al resto del contenuto della pagina.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Identity.SignInManager%601>e <xref:Microsoft.AspNetCore.Identity.UserManager%601> non sono supportati nei componenti Razor.
+> <xref:Microsoft.AspNetCore.Identity.SignInManager%601>e <xref:Microsoft.AspNetCore.Identity.UserManager%601> non sono supportati Razor nei componenti di.
 
-## <a name="authentication"></a>Autenticazione
+## <a name="authentication"></a>Authentication
 
 BlazorUSA i meccanismi di autenticazione ASP.NET Core esistenti per stabilire l'identità dell'utente. Il meccanismo esatto dipende dal modo in cui Blazor l'app è ospitata, Blazor webassembly o Blazor server.
 
@@ -246,7 +249,7 @@ L'accesso viene in genere concesso o negato in base alle condizioni seguenti:
 * L'utente ha un'*attestazione*.
 * I *criteri* sono soddisfatti.
 
-Questi concetti sono uguali a quelli validi per un'app ASP.NET Core MVC o Razor Pages. Per altre informazioni sulla sicurezza di ASP.NET Core, vedere gli articoli in [Sicurezza e identità per ASP.NET Core](xref:security/index).
+Ognuno di questi concetti è identico a quello di un'app ASP.NET Core Razor MVC o Pages. Per ulteriori informazioni sulla sicurezza ASP.NET Core, vedere gli articoli in [sicurezza ASP.NET Core e Identity ](xref:security/index).
 
 ## <a name="authorizeview-component"></a>Componente AuthorizeView
 
@@ -338,7 +341,7 @@ Questo approccio non è in genere Blazor applicabile alle app Server. BlazorLe a
 
 ## <a name="authorize-attribute"></a>Attributo [Authorize]
 
-L' `[Authorize]` attributo può essere usato nei componenti Razor:
+L' `[Authorize]` attributo può essere utilizzato nei Razor componenti di:
 
 ```razor
 @page "/"
@@ -426,6 +429,7 @@ Se l'app determina che i dati sullo stato di autenticazione sottostanti sono sta
 Se l'app deve controllare le regole di autorizzazione come parte della logica procedurale, usare un parametro a catena di tipo `Task<AuthenticationState>` per ottenere il <xref:System.Security.Claims.ClaimsPrincipal> dell'utente. `Task<AuthenticationState>` può essere combinato con altri servizi, ad esempio `IAuthorizationService`, per valutare i criteri.
 
 ```razor
+@using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService AuthorizationService
 
 <button @onclick="@DoSomething">Do something important</button>

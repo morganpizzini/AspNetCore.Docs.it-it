@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/23/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: 63bb791958785fa9a4a676f1aab79126c6873068
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: 7eefc988da275c0efccd97958d04e76f04e7cad4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82111045"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772113"
 ---
-# <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Gestione degli errori nelle Blazor app ASP.NET Core
+# <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Gestione degli errori nelle Blazor app ASP.NET Core
 
 Di [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -80,7 +83,7 @@ L' `blazor-error-ui` elemento è nascosto dagli stili inclusi nei Blazor modelli
 }
 ```
 
-## <a name="how-a-opno-locblazor-server-app-reacts-to-unhandled-exceptions"></a>Reazione di Blazor un'app Server a eccezioni non gestite
+## <a name="how-a-blazor-server-app-reacts-to-unhandled-exceptions"></a>Reazione di Blazor un'app Server a eccezioni non gestite
 
 BlazorIl server è un Framework con stato. Mentre gli utenti interagiscono con un'app, mantengono una connessione al server noto come *circuito*. Il circuito include istanze di componenti attive, oltre a molti altri aspetti dello stato, ad esempio:
 
@@ -216,7 +219,7 @@ Per altre informazioni, vedere gli articoli seguenti:
 * <xref:blazor/call-javascript-from-dotnet>
 * <xref:blazor/call-dotnet-from-javascript>
 
-### <a name="opno-locblazor-server-prerendering"></a>BlazorPrerendering server
+### <a name="blazor-server-prerendering"></a>BlazorPrerendering server
 
 Blazorè possibile eseguire il prerendering dei componenti usando l' [Helper Tag Component](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) , in modo che il markup HTML sottoposto a rendering venga restituito come parte della richiesta HTTP iniziale dell'utente. Funziona per:
 

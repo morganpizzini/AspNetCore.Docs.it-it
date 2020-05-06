@@ -5,13 +5,19 @@ description: Collegamenti alle risorse che illustrano come eseguire l'hosting di
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/08/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/docker/index
-ms.openlocfilehash: 78eb6f467c7e779e1bf998e8ac8e917a90895db9
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 94996f279929f6e3837efb613c99927edbd9143e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440727"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774587"
 ---
 # <a name="host-aspnet-core-in-docker-containers"></a>Eseguire l'hosting di ASP.NET Core nei contenitori Docker
 
@@ -31,7 +37,7 @@ Informazioni sulle modalità con cui le immagini del contenitore Docker vengono 
 
 <xref:host-and-deploy/docker/building-net-docker-images> Informazioni sulle procedure per compilare un'app di ASP.NET Core e inserirla in un contenitore Docker. Si analizzano le immagini Docker gestite da Microsoft e si esaminano casi d'uso.
 
-[Visual Studio Container Tools](xref:host-and-deploy/docker/visual-studio-tools-for-docker)  
+[Strumenti contenitore di Visual Studio](xref:host-and-deploy/docker/visual-studio-tools-for-docker)  
 Informazioni su come Visual Studio supporta la compilazione, il debug e l'esecuzione di app ASP.NET Core destinate a .NET Framework o .NET Core in Docker per Windows. Sono supportati sia contenitori Windows che contenitori Linux.
 
 [Eseguire la pubblicazione in Registro Azure Container](/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)  
@@ -40,4 +46,4 @@ Informazioni su come usare l'estensione degli Strumenti contenitore di Visual St
 [Configurare ASP.NET Core per l'utilizzo di server proxy e servizi di bilanciamento del carico](xref:host-and-deploy/proxy-load-balancer)  
 Potrebbero essere necessari interventi di configurazione aggiuntivi per le app ospitate dietro a server proxy e a servizi di bilanciamento del carico. Il passaggio delle richieste attraverso un proxy spesso oscura le informazioni sulla richiesta originale, ad esempio lo schema e l'indirizzo IP del client. Potrebbe essere necessario inoltrare alcune informazioni sulla richiesta manualmente all'app.
 
-[GC con Docker e contenitori di piccole dimensioni](xref:performance/memory#sc) Viene illustrata la selezione GC con contenitori di piccole dimensioni.
+[GC con contenitori Docker e Small](xref:performance/memory#sc) Viene descritta la selezione GC con piccoli contenitori.

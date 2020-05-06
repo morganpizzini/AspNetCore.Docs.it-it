@@ -1,16 +1,22 @@
 ---
-title: "Esercitazione: Introduzione all'uso di Razor Pages in ASP.NET Core"
+title: 'Esercitazione: Introduzione alle Razor pagine in ASP.NET Core'
 author: rick-anderson
-description: Questa serie di esercitazioni illustra come usare Razor Pages in ASP.NET Core. Offre informazioni su come creare un modello, generare codice per Razor Pages, usare Entity Framework Core e SQL Server per l'accesso ai dati, aggiungere funzionalità di ricerca, aggiungere la convalida dell'input e usare le migrazioni per aggiornare il modello.
+description: Questa serie di esercitazioni illustra come usare Razor le pagine in ASP.NET Core. Informazioni su come creare un modello, generare codice per Razor le pagine, usare Entity Framework Core e SQL Server per l'accesso ai dati, aggiungere funzionalità di ricerca, aggiungere la convalida dell'input e usare le migrazioni per aggiornare il modello.
 ms.author: riande
 ms.date: 11/12/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 6e1d58ccd83f7d7c1083dc2bf9ce7476650812a1
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 8ed12b1778673962fe0b174e005bd6d8a7f54168
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78658543"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774873"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Esercitazione: Introduzione all'uso di Razor Pages in ASP.NET Core
 
@@ -62,7 +68,7 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
 * Denominare il progetto **RazorPagesMovie**. È importante denominare il progetto *RazorPagesMovie* in modo che gli spazi dei nomi corrispondano nell'operazione copia/incolla del codice.
   ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Selezionare **ASP.NET Core 3.1** nell'elenco a discesa **Applicazione Web**, quindi selezionare **Crea**.
+* Selezionare **ASP.NET Core 3,1** nell'elenco a discesa, **applicazione Web**, quindi selezionare **Crea**.
 
 ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/3/npx.png)
 
@@ -86,7 +92,7 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
   * Il comando `dotnet new` crea un nuovo progetto Razor Pages nella cartella *RazorPagesMovie*.
   * Il comando `code` apre la cartella *RazorPagesMovie* nell'istanza corrente di Visual Studio Code.
 
-* Dopo che l'icona di fiamma OmniSharp della barra di stato diventa verde, una finestra di dialogo chiede **alle risorse necessarie di compilare e debug mancano da 'RazorPagesMovie'. Aggiungerli?** Selezionare **Sì**.
+* Dopo che l'icona di OmniSharp Flame della barra di stato è verde, una finestra di dialogo richiede che le **risorse necessarie per la compilazione e il debug siano mancanti da' RazorPagesMovie '. Aggiungerli?** Selezionare **Sì**.
 
   Una directory *.vscode* che contiene i file *launch.json* e *tasks.json* viene aggiunta alla directory radice del progetto.
 
@@ -100,9 +106,9 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
 
   ![Finestra di dialogo Nuovo progetto di macOS](razor-pages-start/_static/webapp.png)
 
-* Nella finestra di dialogo **Configura nuova applicazione Web impostare** Framework di **destinazione** su **.NET Core 3.1**.
+* Nella finestra di dialogo **Configura nuova applicazione Web** impostare il **Framework di destinazione** su **.NET Core 3,1**.
 
-  ![Selezione di macOS .NET Core 3.1](razor-pages-start/_static/targetframework3.png)
+  ![selezione di macOS .NET Core 3,1](razor-pages-start/_static/targetframework3.png)
 
 * Denominare il progetto **RazorPagesMovie**, quindi selezionare **Crea**.
 
@@ -127,7 +133,7 @@ Contiene le pagine Razor e i file di supporto. Ogni pagina Razor è una coppia d
 * Un file con estensione *cshtml* contenente il markup HTML con codice C# che usa la sintassi Razor.
 * Un file con estensione *cshtml.cs* contenente il codice C# per la gestione degli eventi della pagina.
 
-I nomi dei file di supporto iniziano con un carattere di sottolineatura. Ad esempio, il file *_Layout.cshtml* configura gli elementi dell'interfaccia utente comuni a tutte le pagine. Questo file imposta il menu di navigazione nella parte superiore della pagina e le informazioni sul copyright in fondo alla pagina. Per altre informazioni, vedere <xref:mvc/views/layout>.
+I nomi dei file di supporto iniziano con un carattere di sottolineatura. Ad esempio, il file *_Layout. cshtml* configura gli elementi dell'interfaccia utente comuni a tutte le pagine. Questo file imposta il menu di navigazione nella parte superiore della pagina e le informazioni sul copyright in fondo alla pagina. Per altre informazioni, vedere <xref:mvc/views/layout>.
 
 ### <a name="wwwroot-folder"></a>Cartella wwwroot
 
@@ -231,7 +237,7 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
   * Il comando `dotnet new` crea un nuovo progetto Razor Pages nella cartella *RazorPagesMovie*.
   * Il comando `code` apre la cartella *RazorPagesMovie* nell'istanza corrente di Visual Studio Code.
 
-* Dopo che l'icona di fiamma OmniSharp della barra di stato diventa verde, una finestra di dialogo chiede **alle risorse necessarie di compilare e debug mancano da 'RazorPagesMovie'. Aggiungerli?** Selezionare **Sì**.
+* Dopo che l'icona di OmniSharp Flame della barra di stato è verde, una finestra di dialogo richiede che le **risorse necessarie per la compilazione e il debug siano mancanti da' RazorPagesMovie '. Aggiungerli?** Selezionare **Sì**.
 
   Una directory *.vscode* che contiene i file *launch.json* e *tasks.json* viene aggiunta alla directory radice del progetto.
 
@@ -245,7 +251,7 @@ Alla fine di questa esercitazione si avrà un'app Web Razor Pages funzionante, c
 
   ![Finestra di dialogo Nuovo progetto di macOS](razor-pages-start/_static/webapp.png)
 
-* Nella finestra di dialogo **Configura il nuovo ASP.NET API Web Core impostare** Framework di **destinazione** su **.NET Core 3.1**.
+* Nella finestra di dialogo **configurare la nuova ASP.NET Core API Web** impostare il **Framework di destinazione** su **.NET Core 3,1**.
 
   ![Selezione di .NET Core 3.0 per macOS](razor-pages-start/_static/targetframework3.png)
 
@@ -323,12 +329,12 @@ Di seguito viene visualizzata una panoramica delle cartelle e dei file principal
 
 ### <a name="pages-folder"></a>Cartella Pages
 
-Contiene le pagine Razor e i file di supporto. Ogni pagina Razor è una coppia di file:
+Contiene Razor pagine e file di supporto. Ogni Razor pagina è una coppia di file:
 
-* Un file con estensione *cshtml* contenente il markup HTML con codice C# che usa la sintassi Razor.
+* Un file con *estensione cshtml* che contiene markup HTML con codice C# Razor che utilizza la sintassi.
 * Un file con estensione *cshtml.cs* contenente il codice C# per la gestione degli eventi della pagina.
 
-I nomi dei file di supporto iniziano con un carattere di sottolineatura. Ad esempio, il file *_Layout.cshtml* configura gli elementi dell'interfaccia utente comuni a tutte le pagine. Questo file imposta il menu di navigazione nella parte superiore della pagina e le informazioni sul copyright in fondo alla pagina. Per altre informazioni, vedere <xref:mvc/views/layout>.
+I nomi dei file di supporto iniziano con un carattere di sottolineatura. Ad esempio, il file *_Layout. cshtml* configura gli elementi dell'interfaccia utente comuni a tutte le pagine. Questo file imposta il menu di navigazione nella parte superiore della pagina e le informazioni sul copyright in fondo alla pagina. Per altre informazioni, vedere <xref:mvc/views/layout>.
 
 ### <a name="wwwroot-folder"></a>Cartella wwwroot
 
@@ -348,7 +354,7 @@ Contiene codice che configura il comportamento dell'app, ad esempio se richiede 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Versione Youtube di questo tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
+* [Versione di YouTube di questa esercitazione](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
 
 ## <a name="next-steps"></a>Passaggi successivi
 

@@ -1,21 +1,24 @@
 ---
 title: Configurazione Blazor del modello di hosting ASP.NET Core
 author: guardrex
-description: Informazioni sulla Blazor configurazione del modello di hosting, incluse informazioni su come integrare i componenti Razor nelle app Razor Pages e MVC.
+description: Informazioni sulla Blazor configurazione del modello di hosting, incluse informazioni Razor su come Razor integrare i componenti in pagine e app MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/25/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: c7e8d1f2dcba6432072a5cc11a6c5d78e50c2398
-ms.sourcegitcommit: c6f5ea6397af2dd202632cf2be66fc30f3357bcc
+ms.openlocfilehash: 17ed43a12643f067da73658bec72400acbe1be43
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159619"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772074"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>Configurazione del modello di hosting di ASP.NET Core Blazer
 
@@ -27,7 +30,7 @@ Questo articolo illustra la configurazione del modello di hosting.
 
 ## <a name="blazor-webassembly"></a>WebAssembly Blazor
 
-### <a name="environment"></a>Environment
+### <a name="environment"></a>Ambiente
 
 Quando si esegue un'app localmente, per impostazione predefinita viene impostato lo sviluppo per l'ambiente. Quando l'app viene pubblicata, per impostazione predefinita viene impostato l'ambiente di produzione.
 
@@ -100,12 +103,12 @@ La `IWebAssemblyHostEnvironment.BaseAddress` proprietà può essere utilizzata d
 
 ### <a name="configuration"></a>Configurazione
 
-Blazer webassembly supporta la configurazione da:
+La configurazione viene caricata dal webassembly blazer da:
 
-* Il [provider di configurazione file](xref:fundamentals/configuration/index#file-configuration-provider) per i file di impostazioni dell'app per impostazione predefinita:
+* File di impostazioni dell'app per impostazione predefinita:
   * *Wwwroot/appSettings. JSON*
   * *Wwwroot/appSettings. {ENVIRONMENT}. JSON*
-* Altri [provider di configurazione](xref:fundamentals/configuration/index) registrati dall'app.
+* Altri [provider di configurazione](xref:fundamentals/configuration/index) registrati dall'app. Non tutti i provider sono appropriati per le app webassembly blazer. Per verificare quali provider sono supportati per l'assembly WebBlazer, è necessario [chiarire i provider di configurazione per blazer WASM (DotNet/AspNetCore. Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
 
 > [!WARNING]
 > La configurazione in un'app webassembly blazer è visibile agli utenti. **Non archiviare i segreti dell'app o le credenziali nella configurazione.**
@@ -136,12 +139,12 @@ Inserire un' <xref:Microsoft.Extensions.Configuration.IConfiguration> istanza in
 
 #### <a name="provider-configuration"></a>Configurazione provider
 
-Nell'esempio seguente vengono utilizzati <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> un e il [provider di configurazione file](xref:fundamentals/configuration/index#file-configuration-provider) per fornire una configurazione aggiuntiva:
+Nell'esempio seguente viene usato <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> un oggetto per fornire la configurazione aggiuntiva:
 
 `Program.Main`:
 
 ```csharp
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Memory;
 
 ...
 
@@ -159,9 +162,7 @@ var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
 
 ...
 
-builder.Configuration
-    .Add(memoryConfig)
-    .AddJsonFile("cars.json", optional: false, reloadOnChange: true);
+builder.Configuration.Add(memoryConfig);
 ```
 
 Inserire un' <xref:Microsoft.Extensions.Configuration.IConfiguration> istanza in un componente per accedere ai dati di configurazione:
@@ -176,10 +177,10 @@ Inserire un' <xref:Microsoft.Extensions.Configuration.IConfiguration> istanza in
 <h2>Wheels</h2>
 
 <ul>
-    <li>Count: @Configuration["wheels:count"]</p>
-    <li>Brand: @Configuration["wheels:brand"]</p>
-    <li>Type: @Configuration["wheels:brand:type"]</p>
-    <li>Year: @Configuration["wheels:year"]</p>
+    <li>Count: @Configuration["wheels:count"]</li>
+    <li>Brand: @Configuration["wheels:brand"]</li>
+    <li>Type: @Configuration["wheels:brand:type"]</li>
+    <li>Year: @Configuration["wheels:year"]</li>
 </ul>
 
 @code {
@@ -187,6 +188,36 @@ Inserire un' <xref:Microsoft.Extensions.Configuration.IConfiguration> istanza in
     
     ...
 }
+```
+
+Per leggere altri file di configurazione dalla cartella *wwwroot* alla configurazione, usare un `HttpClient` per ottenere il contenuto del file. Quando si utilizza questo approccio, la `HttpClient` registrazione del servizio esistente può utilizzare il client locale creato per leggere il file, come illustrato nell'esempio seguente:
+
+*wwwroot/Cars. JSON*:
+
+```json
+{
+    "size": "tiny"
+}
+```
+
+`Program.Main`:
+
+```csharp
+using Microsoft.Extensions.Configuration;
+
+...
+
+var client = new HttpClient()
+{
+    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+};
+
+builder.Services.AddTransient(sp => client);
+
+using var response = await client.GetAsync("cars.json");
+using var stream = await response.Content.ReadAsStreamAsync();
+
+builder.Configuration.AddJsonStream(stream);
 ```
 
 #### <a name="authentication-configuration"></a>Configurazione dell'autenticazione
@@ -295,7 +326,7 @@ Per impostazione predefinita, le app del server Blaze sono configurate per esegu
 * Viene preeseguito nella pagina.
 * Viene visualizzato come HTML statico nella pagina o se include le informazioni necessarie per eseguire il bootstrap di un'app Blazer dall'agente utente.
 
-| `RenderMode`        | Descrizione |
+| `RenderMode`        | Description |
 | ------------------- | ----------- |
 | `ServerPrerendered` | Esegue il rendering del componente in HTML statico e include un marcatore Blazor per un'app Server. Quando l'agente utente viene avviato, questo marcatore viene usato per il Blazor bootstrap di un'app. |
 | `Server`            | Esegue il rendering di un marcatore per un' Blazor app Server. L'output del componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il Blazor bootstrap di un'app. |
@@ -303,7 +334,7 @@ Per impostazione predefinita, le app del server Blaze sono configurate per esegu
 
 Il rendering dei componenti server da una pagina HTML statica non è supportato.
 
-### <a name="configure-the-opno-locsignalr-client-for-opno-locblazor-server-apps"></a>Configurare il SignalR client per Blazor le app Server
+### <a name="configure-the-signalr-client-for-blazor-server-apps"></a>Configurare il SignalR client per Blazor le app Server
 
 In alcuni casi, è necessario configurare SignalR il client usato Blazor dalle app Server. È ad esempio possibile configurare la SignalR registrazione sul client per diagnosticare un problema di connessione.
 

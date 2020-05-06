@@ -5,17 +5,23 @@ description: Informazioni su come creare helper tag in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: 43bd4eccfc06d27ade5de0e3387247a753609336
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 0b60468b96ded559d180e7b3bf5f799ce2f4d7e3
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78662372"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775089"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Creare helper tag in ASP.NET Core
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT)
+Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/authoring/sample) ([procedura per il download](xref:index#how-to-download-a-sample))
 
@@ -27,7 +33,7 @@ Un helper tag è una classe che implementa l'interfaccia `ITagHelper`. Quando si
 
 1. Creare un nuovo progetto ASP.NET Core denominato **AuthoringTagHelpers**. Per questo progetto non sarà necessaria l'autenticazione.
 
-1. Creare una cartella che contenga gli helper tag denominata *TagHelpers*. La cartella *TagHelpers* *non* è obbligatoria, ma rappresenta una convenzione sensata. È ora possibile iniziare a scrivere alcuni helper tag semplici.
+1. Creare una cartella che contenga gli helper tag denominata *TagHelpers*. La cartella *TagHelpers**non* è obbligatoria, ma rappresenta una convenzione sensata. È ora possibile iniziare a scrivere alcuni helper tag semplici.
 
 ## <a name="a-minimal-tag-helper"></a>Un helper tag piccolissimo
 
@@ -49,7 +55,7 @@ In altre parole, un tag di ancoraggio che dà come risultato un collegamento di 
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1EmailTagHelperCopy.cs)]
 
-   * Gli helper tag usano una convenzione di denominazione che interessa gli elementi del nome della classe di base (meno la parte *TagHelper* del nome della classe). In questo esempio il nome radice di **EmailTagHelper** è *email*, pertanto il tag `<email>` viene considerato come destinazione. Questa convenzione di denominazione dovrebbe funzionare per la maggior parte degli helper tag. Più avanti verrà illustrato come eseguirne l'override.
+   * Gli helper tag usano una convenzione di denominazione che interessa gli elementi del nome della classe di base (meno la parte *TagHelper* del nome della classe). In questo esempio, il nome radice di **EmailTagHelper** è *posta elettronica*, quindi `<email>` il tag verrà assegnato come destinazione. Questa convenzione di denominazione dovrebbe funzionare per la maggior parte degli helper tag. Più avanti verrà illustrato come eseguirne l'override.
 
    * La classe `EmailTagHelper` deriva da `TagHelper`. La classe `TagHelper` mette a disposizione metodi e proprietà per la scrittura di helper tag.
 
@@ -65,11 +71,11 @@ In altre parole, un tag di ancoraggio che dà come risultato un collegamento di 
    public class Email : TagHelper
    ```
 
-1. Per rendere la classe `EmailTagHelper` disponibile per tutte le visualizzazioni Razor in uso, aggiungere la direttiva `addTagHelper` al file *Views/_ViewImports.cshtml*:
+1. Per rendere la `EmailTagHelper` classe disponibile a tutte le Razor Visualizzazioni, aggiungere la `addTagHelper` direttiva al file *views/_ViewImports. cshtml* :
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml?highlight=2,3)]
 
-   Il codice qui sopra usa la sintassi con caratteri jolly per specificare che tutti gli helper tag in questo assembly saranno disponibili. La prima stringa dopo `@addTagHelper` specifica l'helper tag da caricare (usare "*" per indicare tutti gli helper tag), e la seconda stringa "AuthoringTagHelpers" specifica l'assembly in cui si trova l'helper tag. Si noti anche che la seconda riga introduce gli helper tag di ASP.NET Core MVC usando la sintassi con caratteri jolly (gli helper sono descritti in [Introduzione agli helper Tag](intro.md)). Si tratta della direttiva `@addTagHelper` che rende l'helper tag disponibile per la visualizzazione Razor. In alternativa, è possibile specificare il nome completo dell'helper tag, come illustrato di seguito:
+   Il codice qui sopra usa la sintassi con caratteri jolly per specificare che tutti gli helper tag in questo assembly saranno disponibili. La prima stringa dopo `@addTagHelper` specifica l'helper tag da caricare (usare "*" per indicare tutti gli helper tag), e la seconda stringa "AuthoringTagHelpers" specifica l'assembly in cui si trova l'helper tag. Si noti anche che la seconda riga introduce gli helper tag di ASP.NET Core MVC usando la sintassi con caratteri jolly (gli helper sono descritti in [Introduzione agli helper Tag](intro.md)). Si tratta della `@addTagHelper` direttiva che rende l'helper tag disponibile per la Razor visualizzazione. In alternativa, è possibile specificare il nome completo dell'helper tag, come illustrato di seguito:
 
 ```csharp
 @using AuthoringTagHelpers
@@ -92,7 +98,7 @@ Per aggiungere un helper tag a una visualizzazione usando un nome completo, aggi
 
 ## <a name="setattribute-and-setcontent"></a>SetAttribute e SetContent
 
-In questa sezione la classe `EmailTagHelper` verrà aggiornata in modo che crei un tag di ancoraggio valido per la posta elettronica. La classe verrà aggiornata in modo da ricevere informazioni da una visualizzazione Razor (sotto forma di un attributo `mail-to`) e in modo da usare tali informazioni per generare l'ancoraggio.
+In questa sezione la classe `EmailTagHelper` verrà aggiornata in modo che crei un tag di ancoraggio valido per la posta elettronica. Il modulo verrà aggiornato in modo da ottenere le Razor informazioni da una vista (sotto forma `mail-to` di attributo) e usarle per generare l'ancoraggio.
 
 Aggiornare la classe `EmailTagHelper` con il codice seguente:
 
@@ -117,7 +123,7 @@ Questo approccio funziona per l'attributo "href" a condizione che non esista nel
 <a name="self-closing"></a>
 
    > [!NOTE]
-   > Se si scrive il tag di posta elettronica a chiusura automatica (`<email mail-to="Rick" />`), anche l'output finale è a chiusura automatica. Per consentire la scrittura del tag con solo un tag di inizio (`<email mail-to="Rick">`), è necessario contrassegnare la classe con quanto segue:
+   > Se si scrive il tag di posta elettronica a chiusura automatica (`<email mail-to="Rick" />`), anche l'output finale è a chiusura automatica. Per consentire la scrittura del tag con solo un tag di inizio (`<email mail-to="Rick">`) è necessario contrassegnare la classe con quanto segue:
    >
    > [!code-csharp[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/EmailTagHelperMailVoid.cs?highlight=1&range=6-10)]
 
@@ -193,7 +199,7 @@ Se si aggiungono più attributi alla stessa istruzione, il runtime li gestisce c
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs)]
 
-   * Come affermato in precedenza, gli helper tag convertono i nomi delle relative classi e proprietà C#, definiti secondo la convenzione Pascal, in formato [kebab case](https://wiki.c2.com/?KebabCase). Per usare `WebsiteInformationTagHelper` in Razor, quindi, è necessario scrivere `<website-information />`.
+   * Come affermato in precedenza, gli helper tag convertono i nomi delle relative classi e proprietà C#, definiti secondo la convenzione Pascal, in formato [kebab case](https://wiki.c2.com/?KebabCase). Pertanto, per utilizzare `WebsiteInformationTagHelper` in Razor, si scriverà. `<website-information />`
 
    * Non si sta identificando in modo esplicito l'elemento di destinazione con l'attributo `[HtmlTargetElement]` e quindi verrà considerato come destinazione il valore predefinito di `website-information`. Se è stato applicato l'attributo seguente (si noti che non è nel formato kebab case ma corrisponde al nome della classe):
 
@@ -207,7 +213,7 @@ Se si aggiungono più attributi alla stessa istruzione, il runtime li gestisce c
    [HtmlTargetElement("Website-Information")]
    ```
 
-   * Gli elementi a chiusura automatica non hanno contenuto. Per questo esempio, il markup Razor userà un tag a chiusura automatica, ma l'helper tag creerà un elemento [section](https://www.w3.org/TR/html5/sections.html#the-section-element), che non è a chiusura automatica, e si sta scrivendo contenuto all'interno dell'elemento `section`. Per scrivere output, è pertanto necessario impostare `TagMode` su `StartTagAndEndTag`. In alternativa, è possibile impostare come commento la riga che imposta `TagMode` e scrivere markup con un tag di chiusura. Del markup di esempio viene fornito più avanti in questa esercitazione.
+   * Gli elementi a chiusura automatica non hanno contenuto. Per questo esempio, il Razor markup userà un tag di chiusura automatica, ma l'helper Tag creerà un elemento [Section](https://www.w3.org/TR/html5/sections.html#the-section-element) , che non è a chiusura automatica e si sta scrivendo contenuto all'interno dell' `section` elemento. Per scrivere output, è pertanto necessario impostare `TagMode` su `StartTagAndEndTag`. In alternativa, è possibile impostare come commento la riga che imposta `TagMode` e scrivere markup con un tag di chiusura. Del markup di esempio viene fornito più avanti in questa esercitazione.
 
    * Il simbolo `$` (segno di dollaro) nella riga seguente usa una [stringa interpolata](/dotnet/csharp/language-reference/keywords/interpolated-strings):
 
@@ -220,11 +226,11 @@ Se si aggiungono più attributi alla stessa istruzione, il runtime li gestisce c
    [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
 
    > [!NOTE]
-   > Nel markup Razor illustrato di seguito:
+   > Nel Razor markup mostrato di seguito:
    >
    > [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?range=18-18)]
    >
-   > Razor sa che l'attributo `info` è una classe, non una stringa, e si vuole scrivere codice C#. Qualsiasi attributo di helper tag non di tipo stringa deve essere scritto senza il carattere `@`.
+   > Razorsa che `info` l'attributo è una classe, non una stringa, e si vuole scrivere il codice C#. Qualsiasi attributo di helper tag non di tipo stringa deve essere scritto senza il carattere `@`.
 
 1. Eseguire l'app e passare alla visualizzazione About per visualizzare le informazioni sul sito Web.
 

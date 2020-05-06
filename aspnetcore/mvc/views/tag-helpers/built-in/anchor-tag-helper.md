@@ -5,13 +5,19 @@ description: Informazioni sugli attributi dell'helper tag di ancoraggio ASP.NET 
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: 6bfbad39115c7823b5677d3c52ca64cfb0683037
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 142ad62bbbc25fc5390331b253a6173f064ef162
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78664003"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773965"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Helper tag di ancoraggio in ASP.NET Core
 
@@ -19,7 +25,7 @@ Di [Peter Kellner](https://peterkellner.net) e [Scott Addie](https://github.com/
 
 L'[helper tag](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper) di ancoraggio migliora il tag di ancoraggio HTML standard (`<a ... ></a>`) con l'aggiunta di nuovi attributi. Per convenzione, i nomi di attributo hanno il prefisso `asp-`. Il valore dell'attributo `href` dell'elemento di ancoraggio visualizzato dipende dai valori degli attributi `asp-`.
 
-Per una panoramica degli helper tag, vedere <xref:mvc/views/tag-helpers/intro>.
+Per una panoramica degli helper per tag, vedere <xref:mvc/views/tag-helpers/intro>.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 
@@ -41,7 +47,7 @@ Codice HTML generato:
 <a href="/Speaker">All Speakers</a>
 ```
 
-Se si specifica l'attributo `asp-controller` e l'attributo `asp-action` viene omesso, il valore `asp-action` predefinito è l'azione del controller associata alla visualizzazione di esecuzione corrente. Se `asp-action` viene omesso dal markup precedente e viene usato l'helper tag di ancoraggio nella visualizzazione *Index* di *HomeController* ( */Home*), il codice HTML generato è:
+Se si specifica l'attributo `asp-controller` e l'attributo `asp-action` viene omesso, il valore `asp-action` predefinito è l'azione del controller associata alla visualizzazione di esecuzione corrente. Se `asp-action` viene omesso dal markup precedente e viene usato l'helper tag di ancoraggio nella visualizzazione *Index* di *HomeController* (*/Home*), il codice HTML generato è:
 
 ```html
 <a href="/Home">All Speakers</a>
@@ -139,7 +145,7 @@ Se è specificato `asp-controller` o `asp-action` in aggiunta a `asp-route`, la 
 
 L'attributo [asp-all-route-data](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.RouteValues*) supporta la creazione di un dizionario di coppie chiave-valore. La chiave è il nome del parametro e il valore è il valore del parametro.
 
-Nell'esempio seguente viene inizializzato un dizionario che viene poi passato a una visualizzazione Razor. In alternativa è possibile passare i dati con il modello.
+Nell'esempio seguente un dizionario viene inizializzato e passato a una Razor visualizzazione. In alternativa è possibile passare i dati con il modello.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAllRouteData)]
 
@@ -173,9 +179,9 @@ I tag hash sono utili per la compilazione di app sul lato client. Ad esempio pos
 
 L'attributo [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) imposta il nome dell'area usato per impostare la route appropriata. Gli esempi seguenti illustrano come l'attributo `asp-area` determina la modifica del mapping delle route.
 
-#### <a name="usage-in-razor-pages"></a>Utilizzo in Razor Pages
+#### <a name="usage-in-razor-pages"></a>Utilizzo nelle Razor pagine
 
-Le aree Razor Pages sono supportate in ASP.NET Core 2.1 o versioni successive.
+RazorLe aree delle pagine sono supportate in ASP.NET Core 2,1 o versioni successive.
 
 Considerare la gerarchia di directory seguente:
 
@@ -183,13 +189,13 @@ Considerare la gerarchia di directory seguente:
   * **wwwroot**
   * **Aree**
     * **Sessioni**
-      * **Pagine**
-        * *\_ViewStart.cshtml*
+      * **.NET**
+        * *\_ViewStart. cshtml*
         * *Index.cshtml*
         * *Index.cshtml.cs*
-  * **Pagine**
+  * **.NET**
 
-Il markup per fare riferimento alla pagina Razor *Index* dell'area *Sessioni* è:
+Il markup per fare riferimento alla pagina di *Indice* Razor dell'area *sessioni* è:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAreaRazorPages)]
 
@@ -200,7 +206,7 @@ Codice HTML generato:
 ```
 
 > [!TIP]
-> Per supportare le aree in un'app Razor Pages, eseguire una delle operazioni seguenti in `Startup.ConfigureServices`:
+> Per supportare le aree in Razor un'app pagine, effettuare una delle operazioni seguenti `Startup.ConfigureServices`in:
 >
 > * Impostare la [versione di compatibilità](xref:mvc/compatibility-version) su 2.1 o successiva.
 > * Impostare la proprietà [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) su `true`:
@@ -215,14 +221,14 @@ Considerare la gerarchia di directory seguente:
   * **wwwroot**
   * **Aree**
     * **Blog**
-      * **Controller**
+      * **Controllers**
         * *HomeController.cs*
       * **Visualizzazioni**
         * **Home**
           * *AboutBlog.cshtml*
           * *Index.cshtml*
-        * *\_ViewStart.cshtml*
-  * **Controller**
+        * *\_ViewStart. cshtml*
+  * **Controllers**
 
 Se si imposta `asp-area` su "Blogs", la directory *Areas/Blogs* viene aggiunta come prefisso alle route dei controller e delle visualizzazioni associati per questo tag di ancoraggio. Il markup per fare riferimento alla visualizzazione *AboutBlog* è:
 
@@ -235,7 +241,7 @@ Codice HTML generato:
 ```
 
 > [!TIP]
-> Per supportare le aree in un'app MVC, il modello di route deve includere un riferimento all'area, se esistente. Tale modello è rappresentato dal secondo parametro della chiamata del metodo `routes.MapRoute` in *Startup.Configure*:
+> Per supportare le aree in un'app MVC, il modello di route deve includere un riferimento all'area, se esistente. Tale modello è rappresentato dal secondo parametro della chiamata al `routes.MapRoute` metodo in *Startup. Configure*:
 >
 > [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=5)]
 
@@ -267,9 +273,9 @@ Codice HTML generato:
 
 ### <a name="asp-page"></a>asp-page
 
-L'attributo [asp-page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) viene usato con le pagine Razor. Usarlo per impostare il valore dell'attributo `href` per un tag di ancoraggio su una pagina specifica. L'URL viene creato anteponendo una barra ("/") al nome della pagina.
+L'attributo [asp-page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) viene utilizzato con Razor le pagine. Usarlo per impostare il valore dell'attributo `href` per un tag di ancoraggio su una pagina specifica. L'URL viene creato anteponendo una barra ("/") al nome della pagina.
 
-L'esempio seguente fa riferimento alla pagina Razor Attendee:
+L'esempio seguente fa riferimento alla Razor pagina partecipante:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspPage)]
 
@@ -291,7 +297,7 @@ Codice HTML generato:
 
 ### <a name="asp-page-handler"></a>asp-page-handler
 
-L'attributo [asp-page-handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) viene usato con le pagine Razor. È progettato per il collegamento di gestori di pagine specifici.
+L'attributo [ASP-Page-Handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) viene utilizzato con Razor le pagine. È progettato per il collegamento di gestori di pagine specifici.
 
 Si consideri il gestore di pagine seguente:
 

@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/23/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/logging/index
-ms.openlocfilehash: 7be8cef3377132ed43efde209db67401d7bdb6dc
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
-ms.translationtype: MT
+ms.openlocfilehash: ca62e374c6031ca3c2d438df87f2d13636d9c612
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82110915"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776103"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Registrazione in .NET Core e ASP.NET Core
 
@@ -536,7 +542,7 @@ I dati di configurazione e il codice `AddFilter` illustrato negli esempi precede
 | 4      | Console       | Microsoft.AspNetCore.Mvc.Razor          | Errore             |
 | 5      | Console       | Tutte le categorie                          | Informazioni       |
 | 6      | Tutti i provider | Tutte le categorie                          | Debug             |
-| 7      | Tutti i provider | System                                  | Debug             |
+| 7      | Tutti i provider | Sistema                                  | Debug             |
 | 8      | Debug         | Microsoft                               | Trace             |
 
 Quando viene creato un oggetto `ILogger`, l'oggetto `ILoggerFactory` seleziona una singola regola per ogni provider da applicare al logger. Tutti i messaggi scritti da un'istanza di `ILogger` vengono filtrati in base alle regole selezionate. Tra le regole disponibili viene selezionata la regola più specifica possibile per ogni coppia di categoria e provider.
@@ -766,7 +772,7 @@ Usare gli strumenti di traccia DotNet per raccogliere una traccia da un'app:
 
 1. Aprire la traccia con [PerfView](#perfview). Aprire il file *Trace. NetTrace* ed esplorare gli eventi di traccia.
 
-Per altre informazioni, vedi:
+Per altre informazioni, vedere:
 
 * [Trace for Performance Analysis Utility (DotNet-Trace)](/dotnet/core/diagnostics/dotnet-trace) (documentazione di .NET Core)
 * [Trace for Performance Analysis Utility (DotNet-Trace)](https://github.com/dotnet/diagnostics/blob/master/documentation/dotnet-trace-instructions.md) (documentazione del repository GitHub DotNet/Diagnostics)
@@ -1302,7 +1308,7 @@ I dati di configurazione e il codice `AddFilter` illustrato negli esempi precede
 | 4      | Console       | Microsoft.AspNetCore.Mvc.Razor          | Errore             |
 | 5      | Console       | Tutte le categorie                          | Informazioni       |
 | 6      | Tutti i provider | Tutte le categorie                          | Debug             |
-| 7      | Tutti i provider | System                                  | Debug             |
+| 7      | Tutti i provider | Sistema                                  | Debug             |
 | 8      | Debug         | Microsoft                               | Trace             |
 
 Quando viene creato un oggetto `ILogger`, l'oggetto `ILoggerFactory` seleziona una singola regola per ogni provider da applicare al logger. Tutti i messaggi scritti da un'istanza di `ILogger` vengono filtrati in base alle regole selezionate. Tra le regole disponibili viene selezionata la regola più specifica possibile per ogni coppia di categoria e provider.
@@ -1358,7 +1364,7 @@ Di seguito sono elencate alcune categorie usate da ASP.NET Core ed Entity Framew
 | Microsoft.AspNetCore.DataProtection | Chiavi considerate, trovate e usate. |
 | Microsoft.AspNetCore.HostFiltering  | Host consentiti. |
 | Microsoft.AspNetCore.Hosting        | Tempo impiegato per il completamento delle richieste HTTP e ora di inizio delle richieste. Assembly di avvio dell'hosting caricati. |
-| Microsoft.AspNetCore.Mvc            | Diagnostica di MVC e Razor. Associazione di modelli, esecuzione di filtri, compilazione di viste, selezione di azioni. |
+| Microsoft.AspNetCore.Mvc            | MVC e Razor diagnostica. Associazione di modelli, esecuzione di filtri, compilazione di viste, selezione di azioni. |
 | Microsoft.AspNetCore.Routing        | Informazioni sulla corrispondenza di route. |
 | Microsoft.AspNetCore.Server         | Risposte di avvio, arresto e keep-alive per la connessione. Informazioni sui certificati HTTPS. |
 | Microsoft.AspNetCore.StaticFiles    | File forniti. |

@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/web-farm
-ms.openlocfilehash: 316c87e5f49593c05991a94cbe5e55d175a49bb3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 3474b6b1d85774a15a912efcb37ec8f206695eaf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78659369"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776357"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Ospitare ASP.NET Core in una Web farm
 
@@ -46,7 +52,7 @@ Quando un'app viene distribuita su più istanze, potrebbe essere necessario cond
 
 Occorre configurare la protezione dei dati e la memorizzazione nella cache per le app distribuite in una Web farm.
 
-### <a name="data-protection"></a>Protezione dei dati
+### <a name="data-protection"></a>Protezione dati
 
 Il [sistema di protezione dei dati di ASP.NET Core](xref:security/data-protection/introduction) viene usato dalle app per proteggere i dati. La protezione dei dati si basa su un set di chiavi di crittografia archiviate in un *KeyRing*. Quando il sistema di protezione dei dati viene inizializzato, vengono applicate le [impostazioni predefinite](xref:security/data-protection/configuration/default-settings) che archiviano il KeyRing in locale. In base alla configurazione predefinita, viene archiviato un unico KeyRing in ogni nodo della Web farm. Di conseguenza, ogni nodo della Web farm non può decrittografare i dati crittografati da un'app su qualsiasi altro nodo. La configurazione predefinita non è in genere adatta per l'hosting di app in una Web farm. In alternativa all'implementazione di un KeyRing condiviso, è sempre possibile indirizzare le richieste utente allo stesso nodo. Per altre informazioni sulla configurazione del sistema di protezione dei dati per le distribuzioni di Web farm, vedere <xref:security/data-protection/configuration/overview>.
 
@@ -61,9 +67,9 @@ Gli scenari seguenti non richiedono configurazioni aggiuntive, ma dipendono da t
 | Scenario | Dipende da &hellip; |
 | -------- | ------------------- |
 | Authentication | Protezione dei dati (vedere <xref:security/data-protection/configuration/overview>).<br><br>Per altre informazioni, vedere <xref:security/authentication/cookie> e <xref:security/cookie-sharing>. |
-| Identità | Configurazione di autenticazione e database.<br><br>Per altre informazioni, vedere <xref:security/authentication/identity>. |
-| sessione | Protezione dei dati (cookie crittografati) (vedere <xref:security/data-protection/configuration/overview>) e memorizzazione nella cache (vedere <xref:performance/caching/distributed>).<br><br>Per ulteriori informazioni, vedere [Gestione delle sessioni e dello stato: Stato sessione](xref:fundamentals/app-state#session-state). |
-| TempData | Protezione dei dati (cookie <xref:security/data-protection/configuration/overview>crittografati) (vedere ) o Sessione (vedere [Gestione sessione e stato: Stato sessione](xref:fundamentals/app-state#session-state)).<br><br>Per ulteriori informazioni, vedere [Gestione delle sessioni e dello stato: TempData](xref:fundamentals/app-state#tempdata). |
+| Identity | Configurazione di autenticazione e database.<br><br>Per altre informazioni, vedere <xref:security/authentication/identity>. |
+| sessione | Protezione dei dati (cookie crittografati) (vedere <xref:security/data-protection/configuration/overview>) e memorizzazione nella cache (vedere <xref:performance/caching/distributed>).<br><br>Per ulteriori informazioni, vedere [sessione e gestione dello stato: stato della sessione](xref:fundamentals/app-state#session-state). |
+| TempData | Protezione dei dati (cookie crittografati) <xref:security/data-protection/configuration/overview>(vedere) o sessione (vedere [gestione di sessioni e Stati: stato sessione](xref:fundamentals/app-state#session-state)).<br><br>Per ulteriori informazioni, vedere [gestione delle sessioni e dello stato: TempData](xref:fundamentals/app-state#tempdata). |
 | Antifalsificazione | Protezione dei dati (vedere <xref:security/data-protection/configuration/overview>).<br><br>Per altre informazioni, vedere <xref:security/anti-request-forgery>. |
 
 ## <a name="troubleshoot"></a>Risolvere problemi
@@ -74,10 +80,10 @@ Quando la protezione dei dati o la memorizzazione nella cache non è configurata
 
 Si consideri, ad esempio, un utente che accede all'app usando l'autenticazione basata su cookie. L'utente acceda all'app in un nodo della Web farm. Se la richiesta successiva dell'utente arriva nello stesso nodo in cui ha eseguito l'accesso, l'app è in grado di decrittografare il cookie di autenticazione e consente l'accesso alla risorsa dell'app. Se la richiesta successiva arriva a un nodo diverso, l'app non può decrittografare il cookie di autenticazione dal nodo in cui l'utente ha eseguito l'accesso e l'autorizzazione per la risorsa richiesta ha esito negativo.
 
-Quando si verifica uno dei seguenti sintomi in **modo intermittente**, il problema viene in genere riconducito a una configurazione non corretta di protezione dei dati o nella cache per un ambiente Web farm:
+Quando si verificano **intermittenti**di uno dei seguenti sintomi, il problema viene in genere tracciato a una configurazione di protezione dei dati o di memorizzazione nella cache non corretta per un ambiente Web farm:
 
 * Problema di autenticazione &ndash; Il cookie di autenticazione non è configurato correttamente o non può essere decrittografato. Gli accessi OAuth (Facebook, Microsoft, Twitter) o OpenIdConnect non riescono con l'errore "Correlazione non riuscita."
-* Problema di autenticazione &ndash; Identità persa.
+* Le interruzioni &ndash; Identity di autorizzazione vengono perse.
 * Perdita dei dati per lo stato della sessione.
 * Gli elementi memorizzati nella cache scompaiono.
 * Errore di TempData.
@@ -91,6 +97,6 @@ Se le app della Web farm sono in grado di rispondere alle richieste, è possibil
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Estensione script personalizzata per](/azure/virtual-machines/extensions/custom-script-windows) &ndash; i download di Windows ed esegue script nelle macchine virtuali di Azure, utile per la configurazione post-distribuzione e l'installazione del software.
+* L' [estensione di script personalizzata per Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; Scarica ed esegue script in macchine virtuali di Azure, utile per la configurazione post-distribuzione e l'installazione del software.
 * <xref:host-and-deploy/proxy-load-balancer>
  

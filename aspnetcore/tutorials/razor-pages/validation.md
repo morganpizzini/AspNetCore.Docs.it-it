@@ -1,17 +1,23 @@
 ---
-title: Aggiungere la convalida a una pagina Razor ASP.NET Core
+title: Aggiungere la convalida a una Razor pagina ASP.NET Core
 author: rick-anderson
-description: Informazioni su come aggiungere la convalida a una pagina Razor in ASP.NET Core.
+description: Scopri come aggiungere la convalida a una Razor pagina in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: f283234ed8a32dc9b7904bc6fee1cc9c04741029
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 91f0ac5fcd607f2423f9fc4647413b2bbb2336fc
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78666019"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773775"
 ---
 # <a name="add-validation-to-an-aspnet-core-razor-page"></a>Aggiungere la convalida a una pagina Razor ASP.NET Core
 
@@ -209,9 +215,9 @@ Non sono necessarie migrazioni per SQLite.
 
 ### <a name="publish-to-azure"></a>Pubblicazione in Azure
 
-Per informazioni sulla distribuzione in Azure, vedere [Esercitazione: Creare un'app ASP.NET Core in Azure con il database SQL.](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
+Per informazioni sulla distribuzione in Azure, vedere [esercitazione: compilare un'app ASP.NET Core in Azure con il database SQL](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
 
-Grazie aver completato questa introduzione alle pagine Razor. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) (Introduzione a Razor Pages ed Entity Framework Core) è un complemento ideale per questa esercitazione.
+Grazie per aver completato questa introduzione Razor alle pagine. Iniziare a [usare Razor le pagine e EF Core](xref:data/ef-rp/intro) è un'ottima procedura per completare questa esercitazione.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
