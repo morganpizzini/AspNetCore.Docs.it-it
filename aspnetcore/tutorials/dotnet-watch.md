@@ -4,23 +4,29 @@ author: rick-anderson
 description: Questa esercitazione illustra come installare e usare lo strumento watcher per file (dotnet watch) dell'interfaccia della riga di comando di .NET Core in un'app ASP.NET Core.
 ms.author: riande
 ms.date: 05/31/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/dotnet-watch
-ms.openlocfilehash: bedb3e6a65839db915ca7bc821a267a14d34bf30
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 17fc7fd2d65fd314d9f6f9530db5d511af248569
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78667412"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776591"
 ---
 # <a name="develop-aspnet-core-apps-using-a-file-watcher"></a>Sviluppare app ASP.NET Core usando un watcher per file
 
 Di [Rick Anderson](https://twitter.com/RickAndMSFT) e [Victor Hurdugaci](https://twitter.com/victorhurdugaci)
 
-[dotnet watch](https://www.nuget.org/packages/dotnet-watch) è uno strumento che esegue un comando [.NET Core CLI](/dotnet/core/tools) quando i file di origine vengono modificati. Ad esempio, una modifica di file può attivare la compilazione, l'esecuzione di test o la distribuzione.
+[DotNet Watch](https://www.nuget.org/packages/dotnet-watch) è uno strumento che esegue un comando [interfaccia della riga di comando di .NET Core](/dotnet/core/tools) quando i file di origine cambiano. Ad esempio, una modifica di file può attivare la compilazione, l'esecuzione di test o la distribuzione.
 
 Questa esercitazione usa un'API Web esistente con due endpoint, di cui uno restituisce una somma e l'altro un prodotto. Il metodo del prodotto ha un bug, che verrà corretto in questa esercitazione.
 
-Scaricare [l'app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). Questa è costituita da due progetti: *WebApp* (un'API Web di ASP.NET Core) e *WebAppTests* (unit test per l'API Web).
+Scaricare l' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). Questa è costituita da due progetti: *WebApp* (un'API Web di ASP.NET Core) e *WebAppTests* (unit test per l'API Web).
 
 In una shell dei comandi passare alla cartella *WebApp*. Eseguire il comando seguente:
 
@@ -154,7 +160,7 @@ Per impostazione predefinita, `dotnet-watch` tiene traccia di tutti i file che s
 
 `dotnet-watch` non è limitato a progetti C#. È possibile creare progetti di controllo personalizzati per gestire scenari diversi. Si consideri il layout di progetto seguente:
 
-* **prova/**
+* **test**
   * *UnitTests/UnitTests.csproj*
   * *IntegrationTests/IntegrationTests.csproj*
 
@@ -185,4 +191,4 @@ VSTest viene eseguito quando un qualsiasi file viene modificato in uno dei proge
 
 ## <a name="dotnet-watch-in-github"></a>`dotnet-watch` in GitHub
 
-`dotnet-watch`fa parte del repository GitHub [dotnet/AspNetCore](https://github.com/dotnet/AspNetCore/tree/master/src/Tools/dotnet-watch).
+`dotnet-watch`fa parte del [repository DotNet/AspNetCore](https://github.com/dotnet/AspNetCore/tree/master/src/Tools/dotnet-watch)di GitHub.

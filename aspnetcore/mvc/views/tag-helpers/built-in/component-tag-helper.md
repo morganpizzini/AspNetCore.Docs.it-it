@@ -1,34 +1,37 @@
 ---
-title: Helper tag componente in ASP.NET CoreComponent Tag Helper in ASP.NET Core
+title: Helper tag di componente in ASP.NET Core
 author: guardrex
 ms.author: riande
-description: Informazioni su come utilizzare ASP.NET Core Component Tag Helper per eseguire il rendering dei componenti Razor nelle pagine e nelle viste.
+description: Informazioni su come usare l'helper Tag componente ASP.NET Core per eseguire il Razor rendering dei componenti in pagine e visualizzazioni.
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: aaa4b92a8912b4f52d861ed07432aa7cf3ca5240
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 4e003e5ed5e7863d8a218c0f02bb37e214e31910
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440961"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773929"
 ---
-# <a name="component-tag-helper-in-aspnet-core"></a>Helper tag componente in ASP.NET CoreComponent Tag Helper in ASP.NET Core
+# <a name="component-tag-helper-in-aspnet-core"></a>Helper tag di componente in ASP.NET Core
 
 Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
-Per eseguire il rendering di un componente da una pagina o da una vista, utilizzate [l'helper tag componente](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper).
+Per eseguire il rendering di un componente da una pagina o da una vista, usare l' [Helper Tag Component](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Seguire le istruzioni nella sezione *Preparare l'app per l'uso* dei componenti nelle pagine e nelle visualizzazioni dell'articolo. <xref:blazor/integrate-components#prepare-the-app>
+Seguire le istruzioni riportate nella sezione *preparare l'app per l'uso dei componenti in pagine e viste* dell' <xref:blazor/integrate-components#prepare-the-app> articolo.
 
-## <a name="component-tag-helper"></a>Helper tag componente
+## <a name="component-tag-helper"></a>Helper Tag componente
 
-Il seguente Component Tag `Counter` Helper esegue il rendering del componente in una pagina o in una vista:
+L'helper tag di componente seguente esegue il rendering `Counter` del componente in una pagina o in una visualizzazione:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -39,9 +42,9 @@ Il seguente Component Tag `Counter` Helper esegue il rendering del componente in
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-L'esempio precedente presuppone `Counter` che il componente si trova nella cartella *Pages* dell'app.
+Nell'esempio precedente si presuppone che `Counter` il componente si trovi nella cartella *pages* dell'app.
 
-L'helper tag componente può anche passare parametri ai componenti. Si consideri il componente seguente `ColorfulCheckbox` che imposta il colore e le dimensioni dell'etichetta della casella di controllo:
+L'helper Tag Component può anche passare parametri ai componenti. Si consideri il componente seguente `ColorfulCheckbox` che imposta il colore e le dimensioni dell'etichetta della casella di controllo:
 
 ```razor
 <label style="font-size:@(Size)px;color:@Color">
@@ -69,7 +72,7 @@ L'helper tag componente può anche passare parametri ai componenti. Si consideri
 }
 ```
 
-I `Size` `int`parametri `Color` del`string` [componente](xref:blazor/components#component-parameters) ( ) e ( ) possono essere impostati dall'helper tag componente:
+I `Size` parametri`int`del `Color` [componente](xref:blazor/components#component-parameters) (`string`) e () possono essere impostati dall'helper tag dei componenti:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -81,9 +84,9 @@ I `Size` `int`parametri `Color` del`string` [componente](xref:blazor/components#
     param-Size="14" param-Color="@("blue")" />
 ```
 
-Nell'esempio precedente si `ColorfulCheckbox` presuppone che il componente si trova nella cartella *Shared* dell'app.
+Nell'esempio precedente si presuppone che `ColorfulCheckbox` il componente si trovi nella cartella *condivisa* dell'app.
 
-Nella pagina o nella visualizzazione viene eseguito il rendering del codice HTML seguente:
+Viene eseguito il rendering del codice HTML seguente nella pagina o nella visualizzazione:
 
 ```html
 <label style="font-size:24px;color:blue">
@@ -92,11 +95,11 @@ Nella pagina o nella visualizzazione viene eseguito il rendering del codice HTML
 </label>
 ```
 
-Il passaggio di una stringa tra virgolette `param-Color` richiede [un'espressione Razor esplicita,](xref:mvc/views/razor#explicit-razor-expressions)come illustrato nell'esempio precedente. Il comportamento di analisi Razor per un `string` valore `param-*` di tipo non `object` si applica a un attributo perché l'attributo è un tipo.
+Il passaggio di una stringa racchiusa tra virgolette richiede un' [espressione Razor esplicita](xref:mvc/views/razor#explicit-razor-expressions), come illustrato `param-Color` nell'esempio precedente. Il comportamento di analisi Razor per un `string` valore di tipo non è applicabile `param-*` a un attributo perché l'attributo `object` è di tipo.
 
-Il tipo di parametro deve essere serializzabile IN JSON, il che in genere significa che il tipo deve avere un costruttore predefinito e proprietà impostabili. Ad esempio, è possibile `Size` specificare `Color` un valore per e `Size` `Color` nell'esempio precedente`int` perché i tipi di e sono tipi primitivi ( e `string`), supportati dal serializzatore JSON.
+Il tipo di parametro deve essere serializzabile JSON, che in genere significa che il tipo deve avere un costruttore predefinito e le proprietà impostabili. Ad esempio, è possibile specificare un valore per `Size` e `Color` nell'esempio precedente perché i tipi `Size` di e `Color` sono tipi primitivi (`int` e `string`), che sono supportati dal serializzatore JSON.
 
-Nell'esempio seguente, un oggetto di classe viene passato al componente:In the following example, a class object is passed to the component:
+Nell'esempio seguente viene passato un oggetto classe al componente:
 
 *MyClass.cs*:
 
@@ -114,7 +117,7 @@ public class MyClass
 
 **La classe deve avere un costruttore pubblico senza parametri.**
 
-*Condiviso/MyComponent.razor*:
+*Shared/componente. Razor*:
 
 ```razor
 <h2>MyComponent</h2>
@@ -129,7 +132,7 @@ public class MyClass
 }
 ```
 
-*Pages/MyPage.cshtml*:
+*Pagine/pagina. cshtml*:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -148,20 +151,20 @@ public class MyClass
     param-MyObject="@myObject" />
 ```
 
-Nell'esempio precedente si `MyComponent` presuppone che il componente si trova nella cartella *Shared* dell'app. `MyClass`è nello spazio dei`{APP ASSEMBLY}`nomi dell'app ( ).
+Nell'esempio precedente si presuppone che `MyComponent` il componente si trovi nella cartella *condivisa* dell'app. `MyClass`si trova nello spazio dei nomi dell'`{APP ASSEMBLY}`app ().
 
-<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>configura se il componente:
+<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>Configura se il componente:
 
-* Viene eseguito il prerendering nella pagina.
-* Viene eseguito il rendering come HTML statico nella pagina o se include le informazioni necessarie per eseguire il bootstrap di un'app Blazor dall'agente utente.
+* Viene preeseguito nella pagina.
+* Viene visualizzato come HTML statico nella pagina o se include le informazioni necessarie per eseguire il bootstrap di un'app Blazer dall'agente utente.
 
-| Modalità di rendering | Descrizione |
+| Modalità di rendering | Description |
 | ----------- | ----------- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering del componente in Blazor codice HTML statico e include un marcatore per un'app Server. Quando l'agente utente viene avviato, Blazor questo marcatore viene usato per eseguire il bootstrap di un'app. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering Blazor di un marcatore per un'app Server. L'output del componente non è incluso. Quando l'agente utente viene avviato, Blazor questo marcatore viene usato per eseguire il bootstrap di un'app. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Esegue il rendering del componente in codice HTML statico. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering del componente in HTML statico e include un marcatore Blazor per un'app Server. Quando l'agente utente viene avviato, questo marcatore viene usato per il Blazor bootstrap di un'app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un' Blazor app Server. L'output del componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il Blazor bootstrap di un'app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Esegue il rendering del componente in HTML statico. |
 
-Mentre le pagine e le viste possono utilizzare i componenti, il contrario non è vero. I componenti non possono utilizzare funzionalità specifiche della visualizzazione e della pagina, ad esempio viste parziali e sezioni. Per usare la logica da una visualizzazione parziale in un componente, eseguire il factorout della logica di visualizzazione parziale in un componente.
+Mentre le pagine e le visualizzazioni possono usare i componenti, il contrario non è vero. I componenti non possono utilizzare funzionalità specifiche di visualizzazione e pagina, ad esempio visualizzazioni parziali e sezioni. Per usare la logica da una visualizzazione parziale in un componente, scomporre la logica di visualizzazione parziale in un componente.
 
 Il rendering dei componenti server da una pagina HTML statica non è supportato.
 

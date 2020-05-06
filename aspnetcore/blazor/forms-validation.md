@@ -1,29 +1,32 @@
 ---
-title: ASP.NET Blazor core e convalida
+title: ASP.NET Core Blazor moduli e convalida
 author: guardrex
-description: Informazioni su come utilizzare moduli Blazore scenari di convalida dei campi in .
+description: Informazioni su come usare i moduli e gli scenari di Blazorconvalida di campi in.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/17/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 0359a9337860d9b8ce0b81d8833a034a898b05a5
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 9ffcacc404aa868d533196e5c1bb52d9acdeb337
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218960"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768981"
 ---
-# <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET i moduli e la convalida di Core Blazor
+# <a name="aspnet-core-blazor-forms-and-validation"></a>Moduli e convalida di ASP.NET Core Blazer
 
 Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
-I moduli e la convalida sono supportati in Blazor utilizzando [le annotazioni dei dati.](xref:mvc/models/validation)
+I moduli e la convalida sono supportati in blazer usando le [annotazioni dei dati](xref:mvc/models/validation).
 
-Il `ExampleModel` tipo seguente definisce la logica di convalida utilizzando le annotazioni dei dati:The following type defines validation logic using data annotations:
+Il tipo `ExampleModel` seguente definisce la logica di convalida usando le annotazioni dei dati:
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +39,7 @@ public class ExampleModel
 }
 ```
 
-Un modulo viene `EditForm` definito utilizzando il componente. Nel formato seguente vengono illustrati gli elementi, i componenti e il codice Razor tipici:
+Un modulo viene definito usando il `EditForm` componente. Il modulo seguente illustra elementi tipici, componenti e codice Razor:
 
 ```razor
 <EditForm Model="@_exampleModel" OnValidSubmit="HandleValidSubmit">
@@ -60,17 +63,17 @@ Un modulo viene `EditForm` definito utilizzando il componente. Nel formato segue
 
 Nell'esempio precedente:
 
-* Il modulo convalida l'input dell'utente `name` nel `ExampleModel` campo utilizzando la convalida definita nel tipo. Il modello viene creato nel `@code` blocco del componente e`_exampleModel`conservato in un campo privato ( ). Il campo viene `Model` assegnato all'attributo dell'elemento. `<EditForm>`
-* Il `InputText` componente `@bind-Value` è associato:
-  * Proprietà del`_exampleModel.Name`modello ( `InputText` ) `Value` alla proprietà del componente.
-  * Delegato dell'evento `InputText` di modifica `ValueChanged` alla proprietà del componente.
-* Il `DataAnnotationsValidator` componente associa la convalida supporta l'utilizzo delle annotazioni dei dati.
+* Il modulo convalida l'input dell'utente nel `name` campo usando la convalida definita nel `ExampleModel` tipo. Il modello viene creato nel `@code` blocco del componente e viene mantenuto in un campo privato (`_exampleModel`). Il campo viene assegnato all' `Model` attributo dell' `<EditForm>` elemento.
+* Le `InputText` `@bind-Value` associazioni del componente:
+  * Proprietà del modello (`_exampleModel.Name`) della `Value` proprietà `InputText` del componente.
+  * Delegato dell'evento di modifica alla `InputText` `ValueChanged` proprietà del componente.
+* Il `DataAnnotationsValidator` componente connette il supporto di convalida usando le annotazioni dei dati.
 * Il `ValidationSummary` componente riepiloga i messaggi di convalida.
-* `HandleValidSubmit`viene attivato quando il modulo viene inviato correttamente (supera la convalida).
+* `HandleValidSubmit`viene attivato quando il form viene inviato correttamente (supera la convalida).
 
-È disponibile un set di componenti di input incorporati per ricevere e convalidare l'input dell'utente. Gli input vengono convalidati quando vengono modificati e quando viene inviato un modulo. I componenti di input disponibili sono riportati nella tabella seguente.
+È disponibile un set di componenti di input predefiniti per la ricezione e la convalida dell'input dell'utente. Gli input vengono convalidati quando vengono modificati e quando viene inviato un modulo. I componenti di input disponibili sono illustrati nella tabella seguente.
 
-| Componente di ingresso | Rendering come&hellip;       |
+| Componente di input | Con rendering come&hellip;       |
 | --------------- | ------------------------- |
 | `InputText`     | `<input>`                 |
 | `InputTextArea` | `<textarea>`              |
@@ -79,11 +82,11 @@ Nell'esempio precedente:
 | `InputCheckbox` | `<input type="checkbox">` |
 | `InputDate`     | `<input type="date">`     |
 
-Tutti i componenti di `EditForm`input, inclusi , supportano attributi arbitrari. Qualsiasi attributo che non corrisponde a un parametro del componente viene aggiunto all'elemento HTML di cui è stato eseguito il rendering.
+Tutti i componenti di input, tra `EditForm`cui, supportano attributi arbitrari. Qualsiasi attributo che non corrisponde a un parametro component viene aggiunto all'elemento HTML sottoposto a rendering.
 
-I componenti di input forniscono il comportamento predefinito per la convalida in seguito alla modifica e alla modifica della relativa classe CSS in modo da riflettere lo stato del campo. Alcuni componenti includono un'utile logica di analisi. Ad `InputDate` esempio, `InputNumber` e gestire i valori non analizzabili normalmente registrandoli come errori di convalida. I tipi che possono accettare valori null supportano anche `int?`il supporto di valori Null del campo di destinazione, ad esempio .
+I componenti di input forniscono il comportamento predefinito per la convalida in base alla modifica e alla modifica della classe CSS in modo da riflettere lo stato del campo. Alcuni componenti includono una logica di analisi utile. E `InputNumber` , ad `InputDate` esempio, gestire i valori non analizzabili con la registrazione normale come errori di convalida. I tipi che possono accettare valori null supportano anche il supporto di valori null del campo di destinazione `int?`, ad esempio.
 
-Il `Starship` tipo seguente definisce la logica di convalida utilizzando un `ExampleModel`set più ampio di proprietà e annotazioni dei dati rispetto al precedente:
+Il tipo `Starship` seguente definisce la logica di convalida usando un set di proprietà e annotazioni di dati `ExampleModel`più ampio rispetto a quello precedente:
 
 ```csharp
 using System;
@@ -113,9 +116,9 @@ public class Starship
 }
 ```
 
-Nell'esempio precedente, `Description` è facoltativo perché non sono presenti annotazioni dei dati.
+Nell'esempio precedente `Description` è facoltativo perché non sono presenti annotazioni di dati.
 
-Il modulo seguente convalida l'input dell'utente utilizzando la convalida definita nel `Starship` modello:
+Il form seguente convalida l'input dell'utente utilizzando la convalida definita nel `Starship` modello:
 
 ```razor
 @page "/FormsValidation"
@@ -189,14 +192,14 @@ Il modulo seguente convalida l'input dell'utente utilizzando la convalida defini
 }
 ```
 
-Viene `EditForm` creato `EditContext` un [come valore a catena](xref:blazor/components#cascading-values-and-parameters) che tiene traccia dei metadati relativi al processo di modifica, inclusi i campi modificati e i messaggi di convalida correnti. Fornisce `EditForm` inoltre eventi convenienti per gli`OnValidSubmit` `OnInvalidSubmit`invii validi e non validi ( , ). In alternativa, `OnSubmit` utilizzare per attivare la convalida e controllare i valori dei campi con codice di convalida personalizzato.
+`EditForm` Crea un oggetto `EditContext` come [valore](xref:blazor/components#cascading-values-and-parameters) di propagazione che tiene traccia dei metadati relativi al processo di modifica, inclusi i campi modificati e i messaggi di convalida correnti. Fornisce `EditForm` inoltre eventi pratici per invii validi e non validi (`OnValidSubmit`, `OnInvalidSubmit`). In alternativa, usare `OnSubmit` per attivare la convalida e verificare i valori dei campi con il codice di convalida personalizzato.
 
 Nell'esempio seguente:
 
-* Il `HandleSubmit` metodo viene eseguito quando viene selezionato il pulsante **Invia.**
-* Il modulo viene convalidato utilizzando `EditContext`il file .
-* Il form viene ulteriormente `EditContext` convalidato `ServerValidate` passando l'oggetto al metodo che chiama un endpoint API Web sul server *(non mostrato*).
-* Il codice aggiuntivo viene eseguito in base al risultato `isValid`della convalida lato client e lato server controllando .
+* Il `HandleSubmit` metodo viene eseguito quando viene selezionato il pulsante **Invia** .
+* Il modulo viene convalidato usando il modulo `EditContext`.
+* Il form viene ulteriormente convalidato passando al `EditContext` `ServerValidate` metodo che chiama un endpoint dell'API Web nel server (*non illustrato*).
+* Il codice aggiuntivo viene eseguito a seconda del risultato della convalida lato client e lato server verificando `isValid`.
 
 ```razor
 <EditForm EditContext="@_editContext" OnSubmit="@HandleSubmit">
@@ -239,11 +242,11 @@ Nell'esempio seguente:
 }
 ```
 
-## <a name="inputtext-based-on-the-input-event"></a>InputText in base all'evento di input
+## <a name="inputtext-based-on-the-input-event"></a>InputText basato sull'evento di input
 
-Utilizzare `InputText` il componente per creare un `input` componente personalizzato `change` che utilizza l'evento anziché l'evento.
+Utilizzare il `InputText` componente per creare un componente personalizzato che utilizza l' `input` evento anziché l' `change` evento.
 
-Creare un componente con la marcatura seguente `InputText` e utilizzare il componente come viene utilizzato:
+Creare un componente con il markup seguente e usare il componente Analogamente a `InputText` quanto viene usato:
 
 ```razor
 @inherits InputText
@@ -256,12 +259,12 @@ Creare un componente con la marcatura seguente `InputText` e utilizzare il compo
         this, __value => CurrentValueAsString = __value, CurrentValueAsString)" />
 ```
 
-## <a name="work-with-radio-buttons"></a>Utilizzare i pulsanti di opzione
+## <a name="work-with-radio-buttons"></a>Usare i pulsanti di opzione
 
-Quando si utilizzano i pulsanti di opzione in un form, l'associazione dati viene gestita in modo diverso rispetto ad altri elementi perché i pulsanti di opzione vengono valutati come gruppo. Il valore di ogni pulsante di opzione è fisso, ma il valore del gruppo di pulsanti di opzione è il valore del pulsante di opzione selezionato. L'esempio seguente illustra come:
+Quando si utilizzano pulsanti di opzione in un modulo, data binding viene gestito in modo diverso rispetto ad altri elementi perché i pulsanti di opzione vengono valutati come un gruppo. Il valore di ogni pulsante di opzione è fisso, ma il valore del gruppo di pulsanti di opzione è il valore del pulsante di opzione selezionato. L'esempio seguente illustra come:
 
-* Gestire l'associazione dati per un gruppo di pulsanti di opzione.
-* Supportare la `InputRadio` convalida utilizzando un componente personalizzato.
+* Gestire data binding per un gruppo di pulsanti di opzione.
+* Supportare la convalida usando un `InputRadio` componente personalizzato.
 
 ```razor
 @using System.Globalization
@@ -303,7 +306,7 @@ Quando si utilizzano i pulsanti di opzione in un form, l'associazione dati viene
 }
 ```
 
-Di `EditForm` seguito viene `InputRadio` utilizzato il componente precedente per ottenere e convalidare una classificazione dall'utente:
+Nell'esempio `EditForm` seguente viene utilizzato `InputRadio` il componente precedente per ottenere e convalidare una classificazione dall'utente:
 
 ```razor
 @page "/RadioButtonExample"
@@ -344,40 +347,40 @@ Di `EditForm` seguito viene `InputRadio` utilizzato il componente precedente per
 }
 ```
 
-## <a name="validation-support"></a>Supporto di convalida
+## <a name="validation-support"></a>Supporto della convalida
 
-Il `DataAnnotationsValidator` componente associa il supporto di convalida tramite annotazioni dei dati all'oggetto in cascata. `EditContext` L'abilitazione del supporto per la convalida tramite annotazioni dei dati richiede questo gesto esplicito. Per utilizzare un sistema di convalida diverso `DataAnnotationsValidator` rispetto alle annotazioni dei dati, sostituire il con un'implementazione personalizzata. L'implementazione ASP.NET Core è disponibile per l'ispezione nell'origine di riferimento: [DataAnnotationsValidator](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[AddDataAnnotationsValidation](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
+Il `DataAnnotationsValidator` componente connette il supporto di convalida usando le annotazioni dei dati `EditContext`a a cascata. L'abilitazione del supporto per la convalida usando le annotazioni dei dati richiede questo movimento esplicito. Per usare un sistema di convalida diverso rispetto alle annotazioni dei `DataAnnotationsValidator` dati, sostituire con un'implementazione personalizzata. L'implementazione del ASP.NET Core è disponibile per l'ispezione nell'origine riferimento: [DataAnnotationsValidator](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[AddDataAnnotationsValidation](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
 
 Blazoresegue due tipi di convalida:
 
-* *La convalida* del campo viene eseguita quando l'utente esce da un campo. Durante la convalida `DataAnnotationsValidator` del campo, il componente associa tutti i risultati della convalida riportata al campo.
-* *La convalida* del modello viene eseguita quando l'utente invia il modulo. Durante la convalida `DataAnnotationsValidator` del modello, il componente tenta di determinare il campo in base al nome del membro segnalato dal risultato della convalida. I risultati della convalida non associati a un singolo membro sono associati al modello anziché a un campo.
+* La *convalida dei campi* viene eseguita quando l'utente esce da un campo. Durante la convalida dei campi `DataAnnotationsValidator` , il componente associa tutti i risultati della convalida segnalati al campo.
+* La *convalida del modello* viene eseguita quando l'utente invia il modulo. Durante la convalida del modello `DataAnnotationsValidator` , il componente tenta di determinare il campo in base al nome del membro segnalato dal risultato della convalida. I risultati della convalida che non sono associati a un singolo membro sono associati al modello anziché a un campo.
 
-### <a name="validation-summary-and-validation-message-components"></a>Componenti di Riepilogo di convalida e Messaggio di convalida
+### <a name="validation-summary-and-validation-message-components"></a>Componenti del messaggio di convalida e di riepilogo della convalida
 
-Il `ValidationSummary` componente riepiloga tutti i messaggi di convalida, che è simile al [convalida Summary Tag Helper](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper):
+Il `ValidationSummary` componente riepiloga tutti i messaggi di convalida, che è simile all' [Helper tag del riepilogo di convalida](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper):
 
 ```razor
 <ValidationSummary />
 ```
 
-Messaggi di convalida dell'output `Model` per un modello specifico con il parametro:
+Messaggi di convalida dell'output per un modello specifico `Model` con il parametro:
   
 ```razor
 <ValidationSummary Model="@_starship" />
 ```
 
-Il `ValidationMessage` componente visualizza i messaggi di convalida per un campo specifico, che è simile a [Convalida Message Tag Helper](xref:mvc/views/working-with-forms#the-validation-message-tag-helper). Specificare il campo `For` per la convalida con l'attributo e un'espressione lambda che denomina la proprietà del modello:
+Il `ValidationMessage` componente Visualizza i messaggi di convalida per un campo specifico, che è simile all' [Helper tag del messaggio di convalida](xref:mvc/views/working-with-forms#the-validation-message-tag-helper). Specificare il campo per la convalida con `For` l'attributo e un'espressione lambda che denomina la proprietà del modello:
 
 ```razor
 <ValidationMessage For="@(() => _starship.MaximumAccommodation)" />
 ```
 
-I `ValidationMessage` `ValidationSummary` componenti e supportano attributi arbitrari. Qualsiasi attributo che non corrisponde a un `<div>` parametro del componente viene aggiunto all'elemento o `<ul>` alla generazione.
+I `ValidationMessage` componenti `ValidationSummary` e supportano attributi arbitrari. Qualsiasi attributo che non corrisponde a un parametro component viene aggiunto all'elemento `<div>` generato `<ul>` o.
 
 ### <a name="custom-validation-attributes"></a>Attributi di convalida personalizzati
 
-Per assicurarsi che un risultato di convalida sia associato correttamente a <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> un campo <xref:System.ComponentModel.DataAnnotations.ValidationResult>quando si utilizza un attributo di [convalida personalizzato,](xref:mvc/models/validation#custom-attributes)passare il contesto di convalida durante la creazione del comando :
+Per assicurarsi che un risultato di convalida venga associato correttamente a un campo quando si usa un [attributo di convalida personalizzato](xref:mvc/models/validation#custom-attributes), passare il <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> contesto di convalida <xref:System.ComponentModel.DataAnnotations.ValidationResult>durante la creazione di:
 
 ```csharp
 using System;
@@ -396,19 +399,19 @@ private class MyCustomValidator : ValidationAttribute
 }
 ```
 
-### <a name="opno-locblazor-data-annotations-validation-package"></a>Blazorpacchetto di convalida delle annotazioni dei dati
+### <a name="blazor-data-annotations-validation-package"></a>Blazorpacchetto di convalida delle annotazioni dei dati
 
-[Microsoft.AspNetCore.Components.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) è un pacchetto che colma le `DataAnnotationsValidator` lacune nell'esperienza di convalida utilizzando il componente. Il pacchetto è attualmente *sperimentale.*
+[Microsoft. AspNetCore. Components. DataAnnotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) è un pacchetto che colma i gap dell'esperienza di convalida `DataAnnotationsValidator` usando il componente. Il pacchetto è attualmente *sperimentale*.
 
-### <a name="compareproperty-attribute"></a>[CompareProperty] (attributo)
+### <a name="compareproperty-attribute"></a>Attributo [CompareProperty]
 
-Il <xref:System.ComponentModel.DataAnnotations.CompareAttribute> non funziona bene `DataAnnotationsValidator` con il componente perché non associa il risultato della convalida a un membro specifico. Ciò può causare un comportamento incoerente tra la convalida a livello di campo e quando l'intero modello viene convalidato in un invio. Il pacchetto *sperimentale* [Microsoft.AspNetCore.Components.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) introduce `ComparePropertyAttribute`un attributo di convalida aggiuntivo, , che aggira queste limitazioni. In Blazor un'app, `[CompareProperty]` è una `[Compare]` sostituzione diretta per l'attributo.
+<xref:System.ComponentModel.DataAnnotations.CompareAttribute> Non funziona bene con il `DataAnnotationsValidator` componente perché non associa il risultato della convalida a un membro specifico. Ciò può comportare un comportamento incoerente tra la convalida a livello di campo e quando l'intero modello viene convalidato in un invio. Il pacchetto *sperimentale* [Microsoft. AspNetCore. Components. DataAnnotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) introduce un attributo di `ComparePropertyAttribute`convalida aggiuntivo,, che aggira queste limitazioni. In un' Blazor applicazione, `[CompareProperty]` è una sostituzione diretta per l' `[Compare]` attributo.
 
-### <a name="nested-models-collection-types-and-complex-types"></a>Modelli annidati, tipi di raccolta e tipi complessiNested models, collection types, and complex types
+### <a name="nested-models-collection-types-and-complex-types"></a>Modelli annidati, tipi di raccolta e tipi complessi
 
-Blazorfornisce supporto per la convalida dell'input del `DataAnnotationsValidator`modulo utilizzando le annotazioni dei dati con l'oggetto incorporato in . Tuttavia, `DataAnnotationsValidator` l'unico convalida le proprietà di primo livello del modello associate al form che non sono proprietà di tipo raccolta o complesso.
+Blazorfornisce supporto per la convalida dell'input del form utilizzando le annotazioni dei `DataAnnotationsValidator`dati con l'oggetto incorporato. Tuttavia, l' `DataAnnotationsValidator` oggetto convalida solo le proprietà di primo livello del modello associate al form che non sono proprietà di tipo raccolta o complesso.
 
-Per convalidare l'intero object graph del modello associato, incluse `ObjectGraphDataAnnotationsValidator` le proprietà di tipo complesso e di raccolta, utilizzare il pacchetto di [microsoft.AspNetCore.Components.DataAnnotations.Validation fornito dal pacchetto sperimentale Microsoft.AspNetCore.Components.DataAnnotations.Validation:](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) *experimental*
+Per convalidare l'intero grafico di oggetti del modello associato, incluse le proprietà della raccolta e del tipo `ObjectGraphDataAnnotationsValidator` complesso, usare l'oggetto fornito dal pacchetto *sperimentale* [Microsoft. AspNetCore. Components. DataAnnotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) :
 
 ```razor
 <EditForm Model="@_model" OnValidSubmit="HandleValidSubmit">
@@ -417,7 +420,7 @@ Per convalidare l'intero object graph del modello associato, incluse `ObjectGrap
 </EditForm>
 ```
 
-Annotare le `[ValidateComplexType]`proprietà del modello con . Nelle classi del modello `ShipDescription` seguenti, la classe contiene annotazioni di dati aggiuntive da convalidare quando il modello è associato al form:
+Annotare le proprietà `[ValidateComplexType]`del modello con. Nelle classi di modelli seguenti la `ShipDescription` classe contiene annotazioni di dati aggiuntive da convalidare quando il modello è associato al form:
 
 *Starship.cs*:
 
@@ -454,13 +457,13 @@ public class ShipDescription
 }
 ```
 
-### <a name="enable-the-submit-button-based-on-form-validation"></a>Abilitare il pulsante di invio in base alla convalida del modulo
+### <a name="enable-the-submit-button-based-on-form-validation"></a>Abilita il pulsante Invia in base alla convalida del modulo
 
-Per abilitare e disabilitare il pulsante di invio in base alla convalida del modulo:
+Per abilitare e disabilitare il pulsante Invia in base alla convalida del modulo:
 
-* Utilizzare i moduli `EditContext` per assegnare il modello quando il componente viene inizializzato.
-* Convalidare il modulo nel `OnFieldChanged` callback del contesto per abilitare e disabilitare il pulsante di invio.
-* Annullare l'hook `Dispose` del gestore eventi nel metodo. Per altre informazioni, vedere <xref:blazor/lifecycle#component-disposal-with-idisposable>.
+* Utilizzare il modulo `EditContext` per assegnare il modello quando il componente viene inizializzato.
+* Convalidare il form nel `OnFieldChanged` callback del contesto per abilitare e disabilitare il pulsante Submit.
+* Sganciare il gestore eventi nel `Dispose` metodo. Per altre informazioni, vedere <xref:blazor/lifecycle#component-disposal-with-idisposable>.
 
 ```razor
 @implements IDisposable
@@ -498,15 +501,15 @@ Per abilitare e disabilitare il pulsante di invio in base alla convalida del mod
 }
 ```
 
-Nell'esempio precedente, `_formInvalid` impostare su `false` if:
+Nell'esempio precedente, impostare `_formInvalid` su `false` if:
 
 * Il modulo viene precaricato con valori predefiniti validi.
-* Si desidera attivare il pulsante di invio al caricamento del modulo.
+* Si desidera attivare il pulsante Invia quando il modulo viene caricato.
 
-Un effetto collaterale dell'approccio `ValidationSummary` precedente è che un componente viene popolato con campi non validi dopo che l'utente interagisce con qualsiasi campo. Questo scenario può essere affrontato in uno dei seguenti modi:
+Un effetto collaterale dell'approccio precedente è che un `ValidationSummary` componente viene popolato con campi non validi dopo che l'utente interagisce con un qualsiasi campo. Questo scenario può essere risolto in uno dei modi seguenti:
 
-* Non utilizzare un `ValidationSummary` componente nel modulo.
-* Rendere `ValidationSummary` il componente visibile quando è selezionato il `HandleValidSubmit` pulsante di invio (ad esempio, in un metodo).
+* Non usare un `ValidationSummary` componente nel form.
+* Rendere visibile `ValidationSummary` il componente quando viene selezionato il pulsante Invia, ad esempio in un `HandleValidSubmit` metodo.
 
 ```razor
 <EditForm EditContext="@_editContext" OnValidSubmit="HandleValidSubmit">

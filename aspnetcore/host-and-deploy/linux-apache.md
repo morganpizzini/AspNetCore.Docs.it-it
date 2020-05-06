@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
 ms.custom: mvc
 ms.date: 04/10/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: 1256f6d21f94ef6c4baad7aae4bd0e751af5c675
-ms.sourcegitcommit: 6f1b516e0c899a49afe9a29044a2383ce2ada3c7
+ms.openlocfilehash: 9f0825f65f316ee4caf67e82fe5812e3a1ae813e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/13/2020
-ms.locfileid: "81224037"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775908"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hosting di ASP.NET Core in Linux con Apache
 
@@ -24,13 +30,13 @@ Questa guida fornisce informazioni su come configurare [Apache](https://httpd.ap
 
 * Server che esegue CentOS 7 con un account utente standard con privilegio sudo.
 * Installare il runtime .NET Core nel server.
-   1. Visitare la [pagina Scarica .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-   1. Selezionare l'ultima versione di .NET Core non in anteprima.
-   1. Scaricare l'ultimo runtime non di anteprima nella tabella in **Esegui app - Runtime**.
-   1. Selezionare il collegamento Alle istruzioni di **Gestione pacchetti** Linux e seguire le istruzioni di CentOS.
+   1. Visitare la [pagina di download di .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
+   1. Selezionare la versione più recente di .NET Core non in anteprima.
+   1. Scaricare la versione più recente del runtime non di anteprima nella tabella in **Run Apps-Runtime**.
+   1. Selezionare il collegamento **istruzioni di gestione pacchetti** Linux e seguire le istruzioni CentOS.
 * Un'app ASP.NET Core esistente.
 
-In qualsiasi momento in futuro dopo l'aggiornamento del framework condiviso, riavviare le app ASP.NET Core ospitate dal server.
+In qualsiasi momento in futuro dopo l'aggiornamento del Framework condiviso, riavviare le app ASP.NET Core ospitate dal server.
 
 ## <a name="publish-and-copy-over-the-app"></a>Pubblicare e copiare l'app
 
@@ -60,11 +66,11 @@ Un proxy inverso è una configurazione comune per la gestione delle app Web dina
 
 Un server proxy inoltra le richieste del client a un altro server anziché evaderle da solo. Un proxy inverso inoltra a una destinazione fissa, in genere per conto di client non autorizzati. In questa guida Apache viene configurato come proxy inverso in esecuzione nello stesso server usato da Kestrel per gestire l'app ASP.NET Core.
 
-Poiché le richieste vengono inoltrate dal proxy inverso, utilizzare il [middleware intestazioni inoltrate](xref:host-and-deploy/proxy-load-balancer) dal pacchetto [Microsoft.AspNetCore.HttpOverrides.](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) Il middleware aggiorna `Request.Scheme` usando l'intestazione `X-Forwarded-Proto`, in modo che gli URI di reindirizzamento e altri criteri di sicurezza funzionino correttamente.
+Poiché le richieste vengono inviate dal proxy inverso, usare il [middleware delle intestazioni inoltro](xref:host-and-deploy/proxy-load-balancer) dal pacchetto [Microsoft. AspNetCore. HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) . Il middleware aggiorna `Request.Scheme` usando l'intestazione `X-Forwarded-Proto`, in modo che gli URI di reindirizzamento e altri criteri di sicurezza funzionino correttamente.
 
 Qualsiasi componente che dipende dallo schema, ad esempio l'autenticazione, la generazione di collegamenti, i reindirizzamenti e la georilevazione, deve essere inserito dopo aver richiamato il middleware delle intestazioni inoltrate. Come regola generale,il middleware delle intestazioni inoltrate deve essere eseguito prima degli altri middleware, ad eccezione del middleware di diagnostica e gestione degli errori. Questo ordine garantisce che il middleware basato sulle intestazioni inoltrate possa usare i valori di intestazione per l'elaborazione.
 
-Richiamare <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> il metodo `Startup.Configure` all'inizio di prima di chiamare altri middleware. Configurare il middleware per l'inoltro delle intestazioni `X-Forwarded-For` e `X-Forwarded-Proto`:
+Richiamare il <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> metodo all'inizio di prima `Startup.Configure` di chiamare altro middleware. Configurare il middleware per l'inoltro delle intestazioni `X-Forwarded-For` e `X-Forwarded-Proto`:
 
 ```csharp
 // using Microsoft.AspNetCore.HttpOverrides;
@@ -202,7 +208,7 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 ```
 
-Nell'esempio precedente, l'utente che gestisce il `User` servizio viene specificato dall'opzione. L'utente`apache`( ) deve esistere e avere la proprietà dei file dell'app.
+Nell'esempio precedente, l'utente che gestisce il servizio viene specificato dall' `User` opzione. L'utente (`apache`) deve esistere e avere la proprietà appropriata dei file dell'app.
 
 Usare `TimeoutStopSec` per configurare il tempo di attesa prima che l'app si arresti dopo aver ricevuto il segnale di interrupt iniziale. Se l'app non si arresta in questo periodo, viene emesso il comando SIGKILL per terminare l'app. Specificare il valore in secondi senza unità di misura (ad esempio, `150`), un valore per l'intervallo di tempo (ad esempio, `2min 30s`) o `infinity` per disabilitare il timeout. Per impostazione predefinita, il valore di `TimeoutStopSec` viene impostato sul valore di `DefaultTimeoutStopSec` nel file di configurazione del sistema di gestione (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf*, *user.conf.d*). Il timeout predefinito per la maggior parte delle distribuzioni è di 90 secondi.
 
@@ -268,7 +274,7 @@ Per il filtro di data e ora, specificare le opzioni di tempo con il comando. Ad 
 sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-10-18 04:00"
 ```
 
-## <a name="data-protection"></a>Protezione dei dati
+## <a name="data-protection"></a>Protezione dati
 
 Lo [stack di protezione dei dati di ASP.NET Core](xref:security/data-protection/introduction) è usato da diversi [middleware](xref:fundamentals/middleware/index) di ASP.NET Core, tra cui i middleware di autenticazione (ad esempio il middleware per i cookie) e le protezioni CSRF (Cross-Site Request Forgery). Anche se le DPAPI (Data Protection API) non vengono chiamate dal codice dell'utente, è consigliabile configurare la protezione dati per la creazione di un [archivio di chiavi](xref:security/data-protection/implementation/key-management) crittografiche permanente. Se non si configura la protezione dei dati, le chiavi vengono mantenute in memoria ed eliminate al riavvio dell'app.
 
@@ -276,7 +282,7 @@ Se il gruppo di chiavi viene archiviato in memoria quando l'app viene riavviata:
 
 * Tutti i token di autenticazione basati su cookie vengono invalidati.
 * Gli utenti devono ripetere l'accesso alla richiesta successiva.
-* Tutti i dati protetti con il gruppo di chiavi non possono più essere decrittografati. Ciò può includere [token CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e [cookie TempData MVC di ASP.NET](xref:fundamentals/app-state#tempdata).
+* Tutti i dati protetti con il gruppo di chiavi non possono più essere decrittografati. Questo può includere i [token CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e i [cookie TEMPDATA di ASP.NET Core MVC](xref:fundamentals/app-state#tempdata).
 
 Per configurare la protezione dei dati in modo da rendere persistente il gruppo di chiavi e crittografarlo, vedere:
 
@@ -388,9 +394,9 @@ sudo systemctl restart httpd
 
 ## <a name="additional-apache-suggestions"></a>Altri suggerimenti di Apache
 
-### <a name="restart-apps-with-shared-framework-updates"></a>Riavviare le app con gli aggiornamenti condivisi del framework
+### <a name="restart-apps-with-shared-framework-updates"></a>Riavviare le app con gli aggiornamenti del Framework condiviso
 
-Dopo aver aggiornato il framework condiviso nel server, riavviare il ASP.NET le app base ospitate dal server.
+Dopo aver aggiornato il Framework condiviso sul server, riavviare le app ASP.NET Core ospitate dal server.
 
 ### <a name="additional-headers"></a>Intestazioni aggiuntive
 
@@ -495,7 +501,7 @@ Il file di esempio limita la larghezza di banda a 600 KB al secondo nel percorso
 
 ### <a name="long-request-header-fields"></a>Campi di intestazione della richiesta di grandi dimensioni
 
-Le impostazioni predefinite del server proxy limitano in genere i campi dell'intestazione della richiesta a 8.190 byte. Un'app può richiedere campi più lunghi del valore predefinito, ad esempio app che usano [Azure Active Directory.](https://azure.microsoft.com/services/active-directory/) Se sono necessari campi più lunghi, la direttiva [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize) del server proxy richiede modifiche. Il valore da applicare dipende dallo scenario. Per altre informazioni, vedere la documentazione del server.
+Le impostazioni predefinite del server proxy limitano in genere i campi di intestazione della richiesta a 8.190 byte. Un'app può richiedere campi più lunghi del valore predefinito, ad esempio le app che usano [Azure Active Directory](https://azure.microsoft.com/services/active-directory/). Se sono necessari campi più lunghi, la direttiva [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize) del server proxy richiede la regolazione. Il valore da applicare dipende dallo scenario. Per altre informazioni, vedere la documentazione del server.
 
 > [!WARNING]
 > Aumentare il valore predefinito di `LimitRequestFieldSize` solo se necessario. Se si aumenta il valore, si aumenta il rischio di sovraccarico del buffer (overflow) e di attacchi Denial of Service (DoS) da parte di utenti malintenzionati.

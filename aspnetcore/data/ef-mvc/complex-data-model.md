@@ -1,20 +1,26 @@
 ---
-title: 'Esercitazione: Creare un modello di dati complesso- ASP.NET MVC con EF CoreTutorial: Create a complex data model - ASP.NET MVC with EF Core'
+title: 'Esercitazione: creare un modello di dati complesso-ASP.NET MVC con EF Core'
 description: In questa esercitazione si aggiungono altre entità e relazioni e si personalizza il modello di dati specificando regole di formattazione, convalida e mapping.
 author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: 91fd09874ecab8bfdb6a38a404faba04aeb73edc
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 5e617a201cbd133e695bdadc08dc6c797f97b6be
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657430"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773627"
 ---
-# <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Esercitazione: Creare un modello di dati complesso- ASP.NET MVC con EF CoreTutorial: Create a complex data model - ASP.NET MVC with EF Core
+# <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Esercitazione: creare un modello di dati complesso-ASP.NET MVC con EF Core
 
 Nelle esercitazioni precedenti è stato usato un modello di dati semplice costituito da tre entità. In questa esercitazione si aggiungeranno altre entità e relazioni e si personalizzerà il modello di dati specificando regole di formattazione, convalida e mapping del database.
 
@@ -72,7 +78,7 @@ L'impostazione `ApplyFormatInEditMode` specifica che la formattazione deve esser
 
 * Per impostazione predefinita, il browser eseguirà il rendering dei dati usando il formato corretto in base alle impostazioni locali del sistema.
 
-Per ulteriori informazioni, consultate la [ \<documentazione](../../mvc/views/working-with-forms.md#the-input-tag-helper)relativa agli helper dei tag di> di input .
+Per ulteriori informazioni, vedere la [ \<documentazione dell'helper tag di input>](../../mvc/views/working-with-forms.md#the-input-tag-helper).
 
 Eseguire l'app, passare alla pagina Students Index (Indice studenti) e verificare che l'ora non viene più visualizzata nelle date di iscrizione. Lo stesso vale per tutte le viste che usano il modello Student (Studente).
 
@@ -106,7 +112,7 @@ dotnet ef migrations add MaxLengthOnNames
 dotnet ef database update
 ```
 
-Il comando `migrations add` segnala che può verificarsi la perdita di dati, perché la modifica riduce la lunghezza massima per due colonne.  Migrazioni crea un file denominato * \<timeStamp>_MaxLengthOnNames.cs*. Il metodo `Up` di questo file contiene codice che aggiorna il database per adattarlo al modello di dati corrente. Il comando `database update` ha eseguito tale codice.
+Il comando `migrations add` segnala che può verificarsi la perdita di dati, perché la modifica riduce la lunghezza massima per due colonne.  Migrations crea un file denominato * \<timestamp>_MaxLengthOnNames. cs*. Il metodo `Up` di questo file contiene codice che aggiorna il database per adattarlo al modello di dati corrente. Il comando `database update` ha eseguito tale codice.
 
 Il timestamp che precede il nome del file delle migrazioni viene usato da Entity Framework per ordinare le migrazioni. È possibile creare più migrazioni prima di eseguire il comando update-database, dopodiché tutte le migrazioni vengono applicate nell'ordine in cui sono state create.
 
@@ -533,4 +539,4 @@ In questa esercitazione:
 Passare all'esercitazione successiva per altre informazioni su come accedere ai dati correlati.
 
 > [!div class="nextstepaction"]
-> [Successiva: Accedere ai dati correlati](read-related-data.md)
+> [Passaggio successivo: accedere ai dati correlati](read-related-data.md)

@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/iis/development-time-iis-support
-ms.openlocfilehash: f87a1d8cf41248f14932908c0633f98a7198853f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: a6719b4f84b1bc60c7c2aea2aa3a97ef79f43e2e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78664045"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777020"
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>Supporto di IIS in fase di sviluppo in Visual Studio per ASP.NET Core
 
@@ -68,7 +74,7 @@ Per un progetto che usa HTTP, il [middleware di reindirizzamento HTTPS e HSTS](x
 
 Creare un nuovo profilo di avvio per aggiungere il supporto IIS in fase di sviluppo:
 
-1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**. Selezionare **Proprietà**. Aprire la scheda **Debug.**
+1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**. Selezionare **Proprietà**. Aprire la scheda **debug** .
 1. Per **Profilo** selezionare il pulsante **Nuovo**. Denominare il profilo "IIS" nella finestra popup. Selezionare **OK** per creare il profilo.
 1. Per l'impostazione **Avvio** selezionare **IIS** dall'elenco.
 1. Selezionare la casella di controllo **Avvia browser** e specificare l'URL dell'endpoint.
@@ -183,7 +189,7 @@ Per un progetto che usa HTTP, il [middleware di reindirizzamento HTTPS e HSTS](x
 
 Creare un nuovo profilo di avvio per aggiungere il supporto IIS in fase di sviluppo:
 
-1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**. Selezionare **Proprietà**. Aprire la scheda **Debug.**
+1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**. Selezionare **Proprietà**. Aprire la scheda **debug** .
 1. Per **Profilo** selezionare il pulsante **Nuovo**. Denominare il profilo "IIS" nella finestra popup. Selezionare **OK** per creare il profilo.
 1. Per l'impostazione **Avvio** selezionare **IIS** dall'elenco.
 1. Selezionare la casella di controllo **Avvia browser** e specificare l'URL dell'endpoint.

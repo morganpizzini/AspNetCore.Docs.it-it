@@ -4,13 +4,19 @@ author: ardalis
 description: Informazioni su come l'associazione di modelli consente alle azioni del controller di funzionare direttamente con i tipi di modello in ASP.NET Core.
 ms.author: riande
 ms.date: 01/06/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: 511cf39bfedfc55d2f75842daf4445d2aaf4872d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 109bebe79c9e77d26b02ca27367b8ff33191a4b4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659866"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776695"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>Associazione di modelli personalizzata in ASP.NET Core
 
@@ -30,13 +36,13 @@ Gli strumenti di associazione di modelli predefiniti supportano la maggior parte
 
 L'associazione di modelli usa definizioni specifiche per i tipi sui quali opera. Un *tipo semplice* viene convertito da una stringa singola dell'input. Un *tipo complesso* viene convertito da più valori di input. Il framework determina la differenza in base all'esistenza di un elemento `TypeConverter`. È consigliabile creare un convertitore di tipi se è presente un mapping `string` -> `SomeType` semplice che non richiede risorse esterne.
 
-Prima di creare uno strumento di associazione di modelli personalizzato, è utile esaminare le modalità di implementazione degli strumenti di associazione di modelli esistenti. Si consideri il <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinder> che può essere usato per convertire le stringhe con codifica Base64 in matrici di byte. Le matrici di byte vengono spesso archiviate come file o campi BLOB del database.
+Prima di creare uno strumento di associazione di modelli personalizzato, è utile esaminare le modalità di implementazione degli strumenti di associazione di modelli esistenti. Si consideri l'oggetto che può essere usato per convertire le <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinder> stringhe con codifica Base64 in matrici di byte. Le matrici di byte vengono spesso archiviate come file o campi BLOB del database.
 
 ### <a name="working-with-the-bytearraymodelbinder"></a>Uso di ByteArrayModelBinder
 
 Le stringhe con codifica Base64 possono essere usate per rappresentare i dati binari. Un'immagine, ad esempio, può essere codificata come stringa. Nell'esempio è inclusa un'immagine come stringa con codifica Base64 in [Base64String. txt](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/samples/3.x/CustomModelBindingSample/Base64String.txt).
 
-ASP.NET Core MVC può accettare una stringa con codifica base64 e usare un oggetto `ByteArrayModelBinder` per convertirla in una matrice di byte. Il <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider> esegue il mapping degli argomenti di `byte[]` a `ByteArrayModelBinder`:
+ASP.NET Core MVC può accettare una stringa con codifica base64 e usare un oggetto `ByteArrayModelBinder` per convertirla in una matrice di byte. Esegue <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider> il `byte[]` mapping degli `ByteArrayModelBinder`argomenti a:
 
 ```csharp
 public IModelBinder GetBinder(ModelBinderProviderContext context)
@@ -56,7 +62,7 @@ public IModelBinder GetBinder(ModelBinderProviderContext context)
 }
 ```
 
-Quando si crea un gestore di associazione di modelli personalizzato, è possibile implementare il proprio tipo di `IModelBinderProvider` o usare il <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute>.
+Quando si crea un gestore di associazione di modelli personalizzato, è possibile `IModelBinderProvider` implementare un proprio tipo o <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute>usare.
 
 L'esempio indica come usare `ByteArrayModelBinder` per convertire una stringa con codifica base64 in un `byte[]` e salvare il risultato in un file:
 
@@ -135,12 +141,12 @@ Gli strumenti di associazione di modelli personalizzati:
 
 - Non devono provare a impostare codici di stato o restituire risultati (ad esempio 404 Non trovato). Se si verifica un errore nell'associazione di modelli, l'errore deve essere gestito da un [filtro azioni](xref:mvc/controllers/filters) o da logica inclusa nel metodo di azione.
 - Sono particolarmente utili per eliminare codice ripetitivo e problemi di montaggio incrociato dai metodi di azione.
-- In genere non è consigliabile usare per convertire una stringa in un tipo personalizzato, un <xref:System.ComponentModel.TypeConverter> è in genere un'opzione migliore.
+- In genere non devono essere usati per convertire una stringa in un tipo personalizzato. Un elemento <xref:System.ComponentModel.TypeConverter> rappresenta solitamente una scelta migliore.
 
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
 
-[Steve Smith](https://ardalis.com/)
+Di [Steve Smith](https://ardalis.com/)
 
 Mediante l'associazione di modelli le azioni dei controller possono operare direttamente con i tipi di modello (passati come argomenti dei metodi), anziché con le richieste HTTP. Il mapping tra i dati delle richieste in ingresso e i modelli applicativi è gestito dagli strumenti di associazione di modelli. Gli sviluppatori possono estendere la funzionalità di associazione di modelli predefinita implementando strumenti di associazione di modelli personalizzati (anche se in genere non è necessario creare un provider personalizzato).
 
@@ -154,13 +160,13 @@ Gli strumenti di associazione di modelli predefiniti supportano la maggior parte
 
 L'associazione di modelli usa definizioni specifiche per i tipi sui quali opera. Un *tipo semplice* viene convertito da una stringa singola dell'input. Un *tipo complesso* viene convertito da più valori di input. Il framework determina la differenza in base all'esistenza di un elemento `TypeConverter`. È consigliabile creare un convertitore di tipi se è presente un mapping `string` -> `SomeType` semplice che non richiede risorse esterne.
 
-Prima di creare uno strumento di associazione di modelli personalizzato, è utile esaminare le modalità di implementazione degli strumenti di associazione di modelli esistenti. Si consideri il <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinder> che può essere usato per convertire le stringhe con codifica Base64 in matrici di byte. Le matrici di byte vengono spesso archiviate come file o campi BLOB del database.
+Prima di creare uno strumento di associazione di modelli personalizzato, è utile esaminare le modalità di implementazione degli strumenti di associazione di modelli esistenti. Si consideri l'oggetto che può essere usato per convertire le <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinder> stringhe con codifica Base64 in matrici di byte. Le matrici di byte vengono spesso archiviate come file o campi BLOB del database.
 
 ### <a name="working-with-the-bytearraymodelbinder"></a>Uso di ByteArrayModelBinder
 
 Le stringhe con codifica Base64 possono essere usate per rappresentare i dati binari. Un'immagine, ad esempio, può essere codificata come stringa. Nell'esempio è inclusa un'immagine come stringa con codifica Base64 in [Base64String. txt](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/samples/2.x/CustomModelBindingSample/Base64String.txt).
 
-ASP.NET Core MVC può accettare una stringa con codifica base64 e usare un oggetto `ByteArrayModelBinder` per convertirla in una matrice di byte. Il <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider> esegue il mapping degli argomenti di `byte[]` a `ByteArrayModelBinder`:
+ASP.NET Core MVC può accettare una stringa con codifica base64 e usare un oggetto `ByteArrayModelBinder` per convertirla in una matrice di byte. Esegue <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider> il `byte[]` mapping degli `ByteArrayModelBinder`argomenti a:
 
 ```csharp
 public IModelBinder GetBinder(ModelBinderProviderContext context)
@@ -179,7 +185,7 @@ public IModelBinder GetBinder(ModelBinderProviderContext context)
 }
 ```
 
-Quando si crea un gestore di associazione di modelli personalizzato, è possibile implementare il proprio tipo di `IModelBinderProvider` o usare il <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute>.
+Quando si crea un gestore di associazione di modelli personalizzato, è possibile `IModelBinderProvider` implementare un proprio tipo o <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute>usare.
 
 L'esempio indica come usare `ByteArrayModelBinder` per convertire una stringa con codifica base64 in un `byte[]` e salvare il risultato in un file:
 
@@ -257,6 +263,6 @@ Gli strumenti di associazione di modelli personalizzati:
 
 - Non devono provare a impostare codici di stato o restituire risultati (ad esempio 404 Non trovato). Se si verifica un errore nell'associazione di modelli, l'errore deve essere gestito da un [filtro azioni](xref:mvc/controllers/filters) o da logica inclusa nel metodo di azione.
 - Sono particolarmente utili per eliminare codice ripetitivo e problemi di montaggio incrociato dai metodi di azione.
-- In genere non è consigliabile usare per convertire una stringa in un tipo personalizzato, un <xref:System.ComponentModel.TypeConverter> è in genere un'opzione migliore.
+- In genere non devono essere usati per convertire una stringa in un tipo personalizzato. Un elemento <xref:System.ComponentModel.TypeConverter> rappresenta solitamente una scelta migliore.
 
 ::: moniker-end

@@ -1,25 +1,31 @@
 ---
 title: Convalida del modello in ASP.NET Core MVC
 author: rick-anderson
-description: Informazioni sulla convalida del modello in ASP.NET Core MVC e in Razor Pages.
+description: Informazioni sulla convalida dei modelli in ASP.NET Core MVC Razor e pagine.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: 0e3d4f4705dbfdae00943de2d85c603b6762a2f8
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: a0f7c070514de26ae007526a5587c13d26d1eb1b
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205891"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777176"
 ---
-# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Convalida del modello in ASP.NET Core MVC e in Razor Pages
+# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Convalida di modelli in ASP.NET Core MVC Razor e pagine
 
 ::: moniker range=">= aspnetcore-3.0"
 
 Di [Kirk Larkin](https://github.com/serpent5)
 
-Questo articolo illustra come convalidare l'input utente in un'app ASP.NET Core MVC o Razor Pages.
+Questo articolo illustra come convalidare l'input dell'utente in un' Razor app ASP.NET Core MVC o Pages.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples) ([procedura per il download](xref:index#how-to-download-a-sample)).
 
@@ -27,7 +33,7 @@ Questo articolo illustra come convalidare l'input utente in un'app ASP.NET Core 
 
 Lo stato del modello rappresenta gli errori che provengono da due sottosistemi: associazione di modelli e convalida del modello. Gli errori originati dall' [associazione di modelli](model-binding.md) sono in genere errori di conversione dei dati. Ad esempio, una "x" viene immessa in un campo integer. La convalida del modello avviene dopo l'associazione di modelli e segnala gli errori in cui i dati non sono conformi alle regole business Ad esempio, un valore 0 viene immesso in un campo che prevede una classificazione compresa tra 1 e 5.
 
-L'associazione di modelli e la convalida del modello si verificano prima dell'esecuzione di un'azione del controller o di un metodo del gestore Razor Pages. Per le app Web, è responsabilità dell'app esaminare `ModelState.IsValid` e rispondere nel modo appropriato. Le app Web in genere visualizzare di nuovo la pagina con un messaggio di errore:
+L'associazione di modelli e la convalida del modello si verificano prima dell'esecuzione di Razor un'azione del controller o di un metodo del gestore di pagine. Per le app Web, è responsabilità dell'app esaminare `ModelState.IsValid` e rispondere nel modo appropriato. Le app Web in genere visualizzare di nuovo la pagina con un messaggio di errore:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=3-6)]
 
@@ -367,7 +373,7 @@ Questo metodo di rendering degli attributi `data-` in HTML viene usato dall'attr
 
 ## <a name="disable-client-side-validation"></a>Disabilitare la convalida lato client
 
-Il codice seguente disabilita la convalida client in Razor Pages:
+Il codice seguente disabilita la convalida client nelle Razor pagine:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Startup.cs?name=snippet_DisableClientValidation&highlight=2-5)]
 
@@ -376,7 +382,7 @@ Altre opzioni per disabilitare la convalida sul lato client:
 * Impostare come commento il riferimento `_ValidationScriptsPartial` a in tutti i file con *estensione cshtml* .
 * Rimuovere il contenuto del file *Pages\Shared\_ValidationScriptsPartial. cshtml* .
 
-L'approccio precedente non impedisce la convalida lato client di ASP.NET Core libreria di classi Razor Identity. Per altre informazioni, vedere <xref:security/authentication/scaffold-identity>.
+L'approccio precedente non impedisce la convalida lato client della Identity Razor libreria di classi ASP.NET Core. Per altre informazioni, vedere <xref:security/authentication/scaffold-identity>.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -387,7 +393,7 @@ L'approccio precedente non impedisce la convalida lato client di ASP.NET Core li
 
 ::: moniker range="< aspnetcore-3.0"
 
-Questo articolo illustra come convalidare l'input utente in un'app ASP.NET Core MVC o Razor Pages.
+Questo articolo illustra come convalidare l'input dell'utente in un' Razor app ASP.NET Core MVC o Pages.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) ([procedura per il download](xref:index#how-to-download-a-sample)).
 
@@ -395,7 +401,7 @@ Questo articolo illustra come convalidare l'input utente in un'app ASP.NET Core 
 
 Lo stato del modello rappresenta gli errori che provengono da due sottosistemi: associazione di modelli e convalida del modello. Gli errori provenienti dall'[associazione di modelli](model-binding.md) sono in genere errori di conversione dei dati, ad esempio l'immissione di una "x" in un campo in cui è previsto un intero. La convalida del modello è un processo successivo all'associazione di modelli e segnala gli errori in caso di dati non conformi alle regole di business, ad esempio l'immissione del valore 0 in un campo in cui è previsto un valore compreso tra 1 e 5.
 
-Sia l'associazione che la convalida di modelli avviene prima di eseguire un'azione del controller o un metodo gestore di Razor Pages. Per le app Web, è responsabilità dell'app esaminare `ModelState.IsValid` e rispondere nel modo appropriato. Le app Web in genere visualizzare di nuovo la pagina con un messaggio di errore:
+Sia l'associazione di modelli che la convalida si verificano prima dell'esecuzione di Razor un'azione del controller o di un metodo del gestore di pagine. Per le app Web, è responsabilità dell'app esaminare `ModelState.IsValid` e rispondere nel modo appropriato. Le app Web in genere visualizzare di nuovo la pagina con un messaggio di errore:
 
 [!code-csharp[](validation/samples_snapshot/2.x/Create.cshtml.cs?name=snippet&highlight=3-6)]
 
@@ -418,7 +424,7 @@ Gli attributi di convalida consentono di specificare le regole di convalida per 
 Gli attributi di convalida predefiniti includono:
 
 * `[CreditCard]`: Convalida che la proprietà abbia un formato di carta di credito.
-* `[Compare]`: Verifica che due proprietà di un modello corrispondano. Ad esempio, il file *Register.cshtml.cs* USA `[Compare]` per convalidare le due password immesse corrispondenti. [Identità del patibolo](xref:security/authentication/scaffold-identity) per visualizzare il codice del registro.
+* `[Compare]`: Verifica che due proprietà di un modello corrispondano. Ad esempio, il file *Register.cshtml.cs* USA `[Compare]` per convalidare le due password immesse corrispondenti. [Impalcatura Identity ](xref:security/authentication/scaffold-identity) per visualizzare il codice del registro.
 * `[EmailAddress]`: Convalida che la proprietà abbia un formato di posta elettronica.
 * `[Phone]`: Convalida che la proprietà abbia un formato di numero di telefono.
 * `[Range]`: Convalida che il valore della proprietà rientra in un intervallo specificato.
@@ -428,7 +434,7 @@ Gli attributi di convalida predefiniti includono:
 * `[Url]`: Convalida che la proprietà abbia un formato URL.
 * `[Remote]`: Convalida l'input sul client chiamando un metodo di azione sul server. Per informazioni dettagliate sul comportamento di questo attributo, vedere [ `[Remote]` attributo](#remote-attribute) .
 
-Quando si usa `[RegularExpression]` l'attributo con la convalida sul lato client, l'espressione regolare viene eseguita in JavaScript sul client. Ciò significa che verrà utilizzato il comportamento di corrispondenza [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) . Per altre informazioni, vedere [questo problema in GitHub](https://github.com/dotnet/corefx/issues/42487).
+Quando si usa `[RegularExpression]` l'attributo con la convalida sul lato client, l'espressione regolare viene eseguita in JavaScript sul client. Ciò significa che verrà utilizzato il comportamento di corrispondenza [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) . Per altre informazioni, vedere [questo problema di GitHub](https://github.com/dotnet/corefx/issues/42487).
 
 Nello spazio dei nomi [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) è possibile trovare un elenco completo degli attributi di convalida.
 
@@ -742,7 +748,7 @@ Il codice seguente disabilita la convalida lato client nelle visualizzazioni MVC
 
 [!code-csharp[](validation/samples_snapshot/2.x/Startup2.cs?name=snippet_DisableClientValidation)]
 
-E in Razor Pages:
+E nelle Razor pagine:
 
 [!code-csharp[](validation/samples_snapshot/2.x/Startup3.cs?name=snippet_DisableClientValidation)]
 

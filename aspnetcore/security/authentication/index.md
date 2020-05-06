@@ -1,35 +1,41 @@
 ---
-title: Panoramica dell'autenticazione di base di ASP.NET
+title: Panoramica dell'autenticazione ASP.NET Core
 author: mjrousos
-description: Informazioni sull'autenticazione in ASP.NET Core.Learn about authentication in ASP.NET Core.
+description: Informazioni sull'autenticazione in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/index
-ms.openlocfilehash: 404904ecfa30d1fe7e47f0daaa423ddd6f1b06e8
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 4e47bd91ce15836035d3e8f0a8ceed264f308b22
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79434330"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768637"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Panoramica dell'autenticazione ASP.NET Core
 
-Di [Mike Rousos](https://github.com/mjrousos)
+Di [Mike risveglia](https://github.com/mjrousos)
 
-L'autenticazione è il processo di determinazione dell'identità di un utente. [L'autorizzazione](xref:security/authorization/introduction) è il processo che consente di determinare se un utente ha accesso a una risorsa. In ASP.NET Core l'autenticazione `IAuthenticationService`viene gestita dalla proprietà , utilizzata dal [middleware](xref:fundamentals/middleware/index)di autenticazione. Il servizio di autenticazione usa i gestori di autenticazione registrati per completare le azioni correlate all'autenticazione. Esempi di azioni correlate all'autenticazione includono:Examples of authentication-related actions include:
+L'autenticazione è il processo di determinazione dell'identità di un utente. L' [autorizzazione](xref:security/authorization/introduction) è il processo che consente di determinare se un utente ha accesso a una risorsa. In ASP.NET Core, l' `IAuthenticationService`autenticazione viene gestita da, che viene utilizzata dal [middleware](xref:fundamentals/middleware/index)di autenticazione. Il servizio di autenticazione usa i gestori di autenticazione registrati per completare le azioni correlate all'autenticazione. Di seguito sono riportati alcuni esempi di azioni correlate all'autenticazione:
 
 * Autenticazione di un utente.
 * Risposta quando un utente non autenticato tenta di accedere a una risorsa con restrizioni.
 
 I gestori di autenticazione registrati e le relative opzioni di configurazione sono denominati "schemi".
 
-Gli schemi di autenticazione vengono `Startup.ConfigureServices`specificati registrando i servizi di autenticazione in:
+Gli schemi di autenticazione vengono specificati registrando i servizi `Startup.ConfigureServices`di autenticazione in:
 
-* Chiamando un metodo di estensione specifico `services.AddAuthentication` dello schema `AddJwtBearer` `AddCookie`dopo una chiamata a (ad esempio, , ). Questi metodi di estensione utilizzano [AuthenticationBuilder.AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) per registrare gli schemi con le impostazioni appropriate.
-* Meno comunemente, chiamando [AuthenticationBuilder.AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) direttamente.
+* Chiamando un metodo di estensione specifico dello schema dopo una chiamata a `services.AddAuthentication` (ad esempio `AddJwtBearer` o `AddCookie`, ad esempio). Questi metodi di estensione usano [AuthenticationBuilder. AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) per registrare gli schemi con le impostazioni appropriate.
+* Meno comunemente, chiamando direttamente [AuthenticationBuilder. AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) .
 
-Ad esempio, il codice seguente registra i servizi di autenticazione e i gestori per gli schemi di autenticazione dei cookie e del portatore JWT:
+Il codice seguente, ad esempio, registra i servizi di autenticazione e i gestori per gli schemi di autenticazione di JWT e cookie:
 
 ```csharp
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -37,16 +43,16 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => Configuration.Bind("CookieSettings", options));
 ```
 
-Il `AddAuthentication` `JwtBearerDefaults.AuthenticationScheme` parametro è il nome dello schema da utilizzare per impostazione predefinita quando non è richiesto uno schema specifico.
+Il `AddAuthentication` parametro `JwtBearerDefaults.AuthenticationScheme` è il nome dello schema da utilizzare per impostazione predefinita quando non è richiesto uno schema specifico.
 
-Se vengono utilizzati più schemi, i criteri di autorizzazione (o attributi di autorizzazione) possono specificare lo schema di [autenticazione (o schemi)](xref:security/authorization/limitingidentitybyscheme) da cui dipendono per autenticare l'utente. Nell'esempio precedente, lo schema di autenticazione dei`CookieAuthenticationDefaults.AuthenticationScheme` cookie può essere utilizzato specificandone `AddCookie`il nome (per impostazione predefinita, anche se durante la chiamata potrebbe essere fornito un nome diverso).
+Se si utilizzano più schemi, i criteri di autorizzazione o gli attributi di autorizzazione possono [specificare lo schema di autenticazione (o gli schemi)](xref:security/authorization/limitingidentitybyscheme) da cui dipendono per autenticare l'utente. Nell'esempio precedente, è possibile usare lo schema di autenticazione dei cookie specificandone il nome (`CookieAuthenticationDefaults.AuthenticationScheme` per impostazione predefinita, ma è possibile specificare un nome diverso quando `AddCookie`si chiama).
 
-In alcuni casi, `AddAuthentication` la chiamata a viene effettuata automaticamente da altri metodi di estensione. Ad esempio, quando si `AddAuthentication` utilizza ASP.NET Core [Identity](xref:security/authentication/identity), viene chiamato internamente.
+In alcuni casi, la chiamata a `AddAuthentication` viene eseguita automaticamente da altri metodi di estensione. Ad esempio, quando si [Usa IdentityASP.NET Core ](xref:security/authentication/identity), `AddAuthentication` viene chiamato internamente.
 
-Il middleware autenticazione `Startup.Configure` viene <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> aggiunto chiamando il metodo `IApplicationBuilder`di estensione nell'oggetto . La `UseAuthentication` chiamata registra il middleware che utilizza gli schemi di autenticazione registrati in precedenza. Chiama `UseAuthentication` prima di qualsiasi middleware che dipende dagli utenti autenticati. Quando si usa il `UseAuthentication` routing degli endpoint, la chiamata a deve andare:
+Il middleware di autenticazione viene aggiunto `Startup.Configure` in chiamando il <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> metodo di estensione nell'app `IApplicationBuilder`. La `UseAuthentication` chiamata a registra il middleware che utilizza gli schemi di autenticazione registrati in precedenza. Chiamare `UseAuthentication` prima di qualsiasi middleware che dipende da utenti autenticati. Quando si usa il routing degli endpoint, `UseAuthentication` la chiamata a deve essere:
 
-* Dopo `UseRouting`, in modo che le informazioni sull'instradamento siano disponibili per le decisioni di autenticazione.
-* Prima `UseEndpoints`di , in modo che gli utenti vengano autenticati prima di accedere agli endpoint.
+* Dopo `UseRouting`, in modo che le informazioni sulla Route siano disponibili per le decisioni di autenticazione.
+* Prima `UseEndpoints`di, in modo che gli utenti siano autenticati prima di accedere agli endpoint.
 
 ## <a name="authentication-concepts"></a>Concetti relativi all'autenticazione
 
@@ -55,73 +61,73 @@ Il middleware autenticazione `Startup.Configure` viene <xref:Microsoft.AspNetCor
 Uno schema di autenticazione è un nome che corrisponde a:
 
 * Gestore di autenticazione
-* Opzioni per la configurazione dell'istanza specifica del gestore.
+* Opzioni per la configurazione di un'istanza specifica del gestore.
 
-Gli schemi sono utili come meccanismo per fare riferimento all'autenticazione, alla richiesta di verifica e ai comportamenti del gestore associato. Ad esempio, un criterio di autorizzazione può utilizzare i nomi degli schemi per specificare lo schema di autenticazione (o gli schemi) da utilizzare per autenticare l'utente. Quando si configura l'autenticazione, è comune specificare lo schema di autenticazione predefinito. Lo schema predefinito viene utilizzato a meno che una risorsa non richieda uno schema specifico. È anche possibile:
+Gli schemi sono utili come meccanismo per fare riferimento ai comportamenti di autenticazione, verifica e proibizione del gestore associato. Un criterio di autorizzazione, ad esempio, può utilizzare i nomi degli schemi per specificare lo schema di autenticazione (o gli schemi) da utilizzare per autenticare l'utente. Quando si configura l'autenticazione, è normale specificare lo schema di autenticazione predefinito. Viene utilizzato lo schema predefinito, a meno che una risorsa non richieda uno schema specifico. È anche possibile:
 
-* Specificare schemi predefiniti diversi da utilizzare per le azioni di autenticazione, verifica e proibisci.
-* Combinare più schemi in uno utilizzando [gli schemi politici](xref:security/authentication/policyschemes).
+* Specificare diversi schemi predefiniti da usare per l'autenticazione, la verifica e la proibizione delle azioni.
+* Combinare più schemi in uno usando gli [schemi dei criteri](xref:security/authentication/policyschemes).
 
 ### <a name="authentication-handler"></a>Gestore di autenticazione
 
-Un gestore di autenticazione:An authentication handler:
+Un gestore di autenticazione:
 
 * È un tipo che implementa il comportamento di uno schema.
-* Deriva da <xref:Microsoft.AspNetCore.Authentication.IAuthenticationHandler> <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>o .
+* È derivato da <xref:Microsoft.AspNetCore.Authentication.IAuthenticationHandler> o <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.
 * Ha la responsabilità principale di autenticare gli utenti.
 
-In base alla configurazione dello schema di autenticazione e al contesto delle richieste in ingresso, i gestori di autenticazione:Based on the authentication scheme's configuration and the incoming request context, authentication handlers:
+In base alla configurazione dello schema di autenticazione e al contesto della richiesta in ingresso, i gestori di autenticazione:
 
-* Costruire <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> oggetti che rappresentano l'identità dell'utente se l'autenticazione ha esito positivo.
-* Restituisce 'nessun risultato' o 'errore' se l'autenticazione ha esito negativo.
-* Disporre di metodi per la verifica e non consentire azioni per quando gli utenti tentano di accedere alle risorse:Have methods for challenge and bid actions for when users attempt to access resources:
-  * Non sono autorizzati ad accedere (vietano).
-  * Quando non sono autenticati (sfida).
+* Crea <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> oggetti che rappresentano l'identità dell'utente se l'autenticazione ha esito positivo.
+* Se l'autenticazione ha esito negativo, restituire ' nessun risultato ' o ' errore '.
+* Sono disponibili metodi per la verifica e la proibizione delle azioni per gli utenti che tentano di accedere alle risorse:
+  * Non sono autorizzati ad accedere.
+  * Quando non sono autenticati (Challenge).
 
 ### <a name="authenticate"></a>Authenticate
 
-L'azione di autenticazione di uno schema di autenticazione è responsabile della costruzione dell'identità dell'utente in base al contesto della richiesta. Restituisce <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> un che indica se l'autenticazione ha avuto esito positivo e, in caso affermativo, l'identità dell'utente in un ticket di autenticazione. Vedere <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Gli esempi di autenticazione includono:Authenticate examples include:
+Un'azione di autenticazione dello schema di autenticazione è responsabile della costruzione dell'identità dell'utente in base al contesto della richiesta. Restituisce un <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> valore che indica se l'autenticazione ha avuto esito positivo e, in caso affermativo, l'identità dell'utente in un ticket di autenticazione. Vedere <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Gli esempi di autenticazione includono:
 
-* Uno schema di autenticazione dei cookie che costruisce l'identità dell'utente dai cookie.
-* Uno schema di connessione JWT che deserializza e convalida di un token di connessione JWT per costruire l'identità dell'utente.
+* Schema di autenticazione dei cookie che costruisce l'identità dell'utente dai cookie.
+* Uno schema di portatore JWT che deserializza e convalida un JWT bearer token per costruire l'identità dell'utente.
 
 ### <a name="challenge"></a>Esercizio
 
-Una richiesta di autenticazione viene richiamata dall'autorizzazione quando un utente non autenticato richiede un endpoint che richiede l'autenticazione. Viene emessa una richiesta di autenticazione, ad esempio quando un utente anonimo richiede una risorsa con restrizioni o fa clic su un collegamento di accesso. L'autorizzazione richiama una richiesta di verifica utilizzando gli schema di autenticazione specificati o il valore predefinito se non ne è stato specificato alcuno. Vedere <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Esempi di problemi di autenticazione includono:Authentication challenge examples include:
+Una richiesta di autenticazione viene richiamata dall'autorizzazione quando un utente non autenticato richiede un endpoint che richiede l'autenticazione. Viene eseguita una richiesta di autenticazione, ad esempio quando un utente anonimo richiede una risorsa limitata o fa clic su un collegamento di accesso. L'autorizzazione richiama una richiesta di verifica utilizzando gli schemi di autenticazione specificati oppure il valore predefinito se non ne viene specificato alcuno. Vedere <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Gli esempi di richiesta di autenticazione includono:
 
 * Uno schema di autenticazione dei cookie che reindirizza l'utente a una pagina di accesso.
-* Uno schema di connessione JWT che restituisce `www-authenticate: bearer` un risultato 401 con un'intestazione.
+* Uno schema di portatore JWT che restituisce un risultato 401 `www-authenticate: bearer` con un'intestazione.
 
-Un'azione di verifica deve consentire all'utente di sapere quale meccanismo di autenticazione usare per accedere alla risorsa richiesta.
+Un'azione di verifica deve consentire all'utente di conoscere il meccanismo di autenticazione da usare per accedere alla risorsa richiesta.
 
-### <a name="forbid"></a>Proibire
+### <a name="forbid"></a>Impediscono
 
-L'azione proibita di uno schema di autenticazione viene chiamata da Authorization quando un utente autenticato tenta di accedere a una risorsa a cui non è consentito accedere. Vedere <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ForbidAsync%2A>. Gli esempi di autenticazione non possono essere:
+Un'azione di proibisce dello schema di autenticazione viene chiamata dall'autorizzazione quando un utente autenticato tenta di accedere a una risorsa a cui non è consentito l'accesso. Vedere <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ForbidAsync%2A>. Gli esempi di autenticazione proibita includono:
 * Uno schema di autenticazione dei cookie che reindirizza l'utente a una pagina che indica che l'accesso non è consentito.
-* Un regime di derivazione JWT che restituisce un risultato 403.
-* Schema di autenticazione personalizzato reindirizzamento a una pagina in cui l'utente può richiedere l'accesso alla risorsa.
+* Uno schema di porta JWT che restituisce un risultato 403.
+* Uno schema di autenticazione personalizzato che reindirizza a una pagina in cui l'utente può richiedere l'accesso alla risorsa.
 
-Un'azione proibita può informare l'utente:
+Un'azione proibita può comunicare all'utente:
 
 * Sono autenticati.
-* Non è consentito accedere alla risorsa richiesta.
+* Non sono autorizzati ad accedere alla risorsa richiesta.
 
-Vedere i collegamenti seguenti per le differenze tra la sfida e nonché:
+Vedere i collegamenti seguenti per le differenze tra la verifica e la proibizione:
 
-* [Sfidare e proibire con un gestore di risorse operativo](xref:security/authorization/resourcebased#challenge-and-forbid-with-an-operational-resource-handler).
-* [Differenze tra sfida e proibire](xref:security/authorization/secure-data#challenge).
+* [Verifica e Impedisci un gestore di risorse operativo](xref:security/authorization/resourcebased#challenge-and-forbid-with-an-operational-resource-handler).
+* [Differenze tra la sfida e la proibizione](xref:security/authorization/secure-data#challenge).
 
 ## <a name="authentication-providers-per-tenant"></a>Provider di autenticazione per tenant
 
-ASP.NET framework di base non dispone di una soluzione incorporata per l'autenticazione multi-tenant.
-Anche se è certamente possibile per i clienti scriverne uno, utilizzando le funzionalità incorporate, si consiglia ai clienti di esaminare [Orchard Core](https://www.orchardcore.net/) per questo scopo.
+ASP.NET Core Framework non dispone di una soluzione incorporata per l'autenticazione multi-tenant.
+Sebbene sia certamente possibile che i clienti ne scrivano uno, usando le funzionalità predefinite, si consiglia ai clienti di esaminare [Orchard Core](https://www.orchardcore.net/) a questo scopo.
 
-Orchard Core è:
+Orchard core è:
 
-* Un framework di app modulare open source e multi-tenant creato con ASP.NET Core.
-* Un sistema di gestione dei contenuti (CMS) basato su tale framework dell'app.
+* Un Framework di app modulare e multi-tenant open source creato con ASP.NET Core.
+* Un sistema di gestione dei contenuti (CMS) basato su tale framework di app.
 
-Vedere l'origine [Orchard Core](https://github.com/OrchardCMS/OrchardCore) per un esempio di provider di autenticazione per tenant.
+Vedere l'origine [Orchard Core](https://github.com/OrchardCMS/OrchardCore) per un esempio di provider di autenticazione per ogni tenant.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

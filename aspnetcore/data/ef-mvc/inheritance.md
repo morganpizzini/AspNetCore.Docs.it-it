@@ -1,20 +1,26 @@
 ---
-title: "Esercitazione: Implementare l'ereditarietà - ASP.NET MVC con EF CoreTutorial: Implement inheritance - ASP.NET MVC with EF Core"
+title: "Esercitazione: implementare l'ereditarietà-ASP.NET MVC con EF Core"
 description: Questa esercitazione illustra come implementare l'ereditarietà nel modello di dati usando Entity Framework Core in un'applicazione ASP.NET Core.
 author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/inheritance
-ms.openlocfilehash: dab3d2b057162f6d986db10e74e3681acc0ada3b
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 4883c697e950cac298dec961b4cd5a5096d8e946
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657241"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773575"
 ---
-# <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Esercitazione: Implementare l'ereditarietà - ASP.NET MVC con EF CoreTutorial: Implement inheritance - ASP.NET MVC with EF Core
+# <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Esercitazione: implementare l'ereditarietà-ASP.NET MVC con EF Core
 
 Nell'esercitazione precedente sono state presentate le eccezioni di concorrenza. In questa esercitazione viene illustrato come implementare l'ereditarietà nel modello di dati.
 
@@ -171,4 +177,4 @@ In questa esercitazione:
 Passare all'esercitazione successiva per apprendere come gestire diversi scenari di Entity Framework relativamente avanzati.
 
 > [!div class="nextstepaction"]
-> [Successiva: Argomenti avanzati](advanced.md)
+> [Avanti: argomenti avanzati](advanced.md)
