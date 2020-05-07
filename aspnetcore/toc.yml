@@ -665,6 +665,8 @@
       uid: test/razor-pages-tests
     - name: Test controller
       uid: mvc/controllers/testing
+    - name: Middleware di test
+      uid: test/middleware
     - name: Debug remoto
       href: /visualstudio/debugger/remote-debugging-azure
     - name: Debugger di snapshot
