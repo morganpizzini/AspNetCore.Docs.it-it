@@ -5,7 +5,7 @@ description: Informazioni sul middleware di ASP.NET Core e sulla pipeline delle 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/06/2020
+ms.date: 5/6/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/index
-ms.openlocfilehash: f78358907d79ae71e8168cc381dce86b0a869e57
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 745eca9788d95c9a123e51a737b34dccdc65d8d4
+ms.sourcegitcommit: 30fcf69556b6b6ec54a3879e280d5f61f018b48f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776012"
+ms.lasthandoff: 05/07/2020
+ms.locfileid: "82876231"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware di ASP.NET Core
 
@@ -239,7 +239,7 @@ Nell'esempio precedente, risposta "Hello from Main pipeline". viene scritto per 
 
 ASP.NET Core include i componenti middleware seguenti. Nella colonna *Ordinamento* sono disponibili note sul posizionamento del middleware nella pipeline di elaborazione delle richieste e indicazioni sulle condizioni nelle quali il middleware può terminare l'elaborazione delle richieste. Quando un middleware esegue un corto circuito della pipeline di elaborazione delle richieste e impedisce al middleware a valle di elaborare una richiesta, viene denominato *middleware terminale*. Per altre informazioni sul corto circuito, vedere la sezione [Creare una pipeline middleware con IApplicationBuilder](#create-a-middleware-pipeline-with-iapplicationbuilder).
 
-| Middleware | Description | JSON |
+| Middleware | Descrizione | JSON |
 | ---------- | ----------- | ----- |
 | [autenticazione](xref:security/authentication/identity) | Offre il supporto dell'autenticazione. | Prima di `HttpContext.User`. Terminale per i callback OAuth. |
 | [Autorizzazione](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*) | Fornisce supporto per l'autorizzazione. | Subito dopo il middleware di autenticazione. |
@@ -267,6 +267,7 @@ ASP.NET Core include i componenti middleware seguenti. Nella colonna *Ordinament
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:fundamentals/middleware/write>
+* <xref:test/middleware>
 * <xref:migration/http-modules>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
@@ -445,7 +446,7 @@ app.Map("/level1", level1App => {
 
 ASP.NET Core include i componenti middleware seguenti. Nella colonna *Ordinamento* sono disponibili note sul posizionamento del middleware nella pipeline di elaborazione delle richieste e indicazioni sulle condizioni nelle quali il middleware può terminare l'elaborazione delle richieste. Quando un middleware esegue un corto circuito della pipeline di elaborazione delle richieste e impedisce al middleware a valle di elaborare una richiesta, viene denominato *middleware terminale*. Per altre informazioni sul corto circuito, vedere la sezione [Creare una pipeline middleware con IApplicationBuilder](#create-a-middleware-pipeline-with-iapplicationbuilder).
 
-| Middleware | Description | JSON |
+| Middleware | Descrizione | JSON |
 | ---------- | ----------- | ----- |
 | [autenticazione](xref:security/authentication/identity) | Offre il supporto dell'autenticazione. | Prima di `HttpContext.User`. Terminale per i callback OAuth. |
 | [Criteri per i cookie](xref:security/gdpr) | Registra il consenso degli utenti per l'archiviazione delle informazioni personali e applica gli standard minimi per i campi dei cookie, come `secure` e `SameSite`. | Prima del middleware che emette i cookie. Esempi: Autenticazione, Sessione, MVC (TempData). |
@@ -470,6 +471,7 @@ ASP.NET Core include i componenti middleware seguenti. Nella colonna *Ordinament
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:fundamentals/middleware/write>
+* <xref:test/middleware>
 * <xref:migration/http-modules>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
