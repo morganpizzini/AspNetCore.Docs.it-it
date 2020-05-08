@@ -26,7 +26,7 @@ ms.locfileid: "82774691"
 
 i servizi gRPC sono configurati con `AddGrpc` in *Startup.cs*. Nella tabella seguente vengono descritte le opzioni per la configurazione dei servizi gRPC:
 
-| Opzione | Default Value | Descrizione |
+| Opzione | Valore predefinito | Descrizione |
 | ------ | ------------- | ----------- |
 | MaxSendMessageSize | `null` | Dimensione massima in byte del messaggio che può essere inviata dal server. Il tentativo di inviare un messaggio che supera le dimensioni massime configurate per i messaggi comporta un'eccezione. Se impostato su `null`, le dimensioni del messaggio sono illimitate. |
 | MaxReceiveMessageSize | 4 MB | Dimensione massima in byte del messaggio che può essere ricevuto dal server. Se il server riceve un messaggio che supera questo limite, viene generata un'eccezione. L'aumento di questo valore consente al server di ricevere messaggi di dimensioni maggiori, ma può influire negativamente sull'utilizzo della memoria. Se impostato su `null`, le dimensioni del messaggio sono illimitate. |
@@ -34,7 +34,7 @@ i servizi gRPC sono configurati con `AddGrpc` in *Startup.cs*. Nella tabella seg
 | CompressionProviders | gzip | Raccolta di provider di compressione utilizzati per comprimere e decomprimere i messaggi. I provider di compressione personalizzati possono essere creati e aggiunti alla raccolta. I provider configurati predefiniti supportano la compressione **gzip** . |
 | <span style="word-break:normal;word-wrap:normal">ResponseCompressionAlgorithm</span> | `null` | Algoritmo di compressione usato per comprimere i messaggi inviati dal server. L'algoritmo deve corrispondere a un provider di `CompressionProviders`compressione in. Per comprimere una risposta, il client deve indicare che supporta l'algoritmo inviando l'algoritmo nell'intestazione **grpc-Accept-Encoding** . |
 | ResponseCompressionLevel | `null` | Livello di compressione utilizzato per comprimere i messaggi inviati dal server. |
-| Intercettori | nessuno | Raccolta di intercettori eseguiti con ogni chiamata gRPC. Gli intercettori vengono eseguiti nell'ordine in cui sono registrati. Gli intercettori configurati a livello globale vengono eseguiti prima degli intercettori configurati per un singolo servizio. Per ulteriori informazioni sugli intercettori gRPC, vedere [GRPC Interceptors vs. middleware](xref:grpc/migration#grpc-interceptors-vs-middleware). |
+| Intercettori | Nessuno | Raccolta di intercettori eseguiti con ogni chiamata gRPC. Gli intercettori vengono eseguiti nell'ordine in cui sono registrati. Gli intercettori configurati a livello globale vengono eseguiti prima degli intercettori configurati per un singolo servizio. Per ulteriori informazioni sugli intercettori gRPC, vedere [GRPC Interceptors vs. middleware](xref:grpc/migration#grpc-interceptors-vs-middleware). |
 
 È possibile configurare le opzioni per tutti i servizi fornendo le `AddGrpc` opzioni delegate alla chiamata in `Startup.ConfigureServices`:
 
@@ -48,7 +48,7 @@ Le opzioni per un singolo servizio eseguono l'override delle opzioni `AddGrpc` g
 
 la configurazione del client gRPC è `GrpcChannelOptions`impostata su on. Nella tabella seguente vengono descritte le opzioni per la configurazione dei canali gRPC:
 
-| Opzione | Default Value | Descrizione |
+| Opzione | Valore predefinito | Descrizione |
 | ------ | ------------- | ----------- |
 | HttpClient | Nuova istanza | Oggetto `HttpClient` utilizzato per eseguire chiamate gRPC. Un client può essere impostato per configurare un oggetto `HttpClientHandler`personalizzato o aggiungere ulteriori gestori alla pipeline HTTP per le chiamate gRPC. Se non `HttpClient` viene specificato alcun valore, viene `HttpClient` creata una nuova istanza per il canale. Verrà eliminato automaticamente. |
 | DisposeHttpClient | `false` | Se `true`e si specifica `HttpClient` un oggetto, l' `HttpClient` istanza verrà eliminata quando `GrpcChannel` viene eliminato. |

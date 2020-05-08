@@ -5,7 +5,7 @@ description: Informazioni su come ospitare app ASP.NET Core in Windows Server In
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/17/2020
+ms.date: 05/07/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 72f433ffdc7d08e23fb68fc6ed9903a39959363b
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 157cfc4c42d5e057e9b2ebd04c93d80db55419c9
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775986"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967493"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Host ASP.NET Core in Windows con IIS
 
@@ -59,6 +59,8 @@ Sono supportate le app pubblicate per la distribuzione a 32 bit (x86) o a 64 bit
 * Non richieda lo spazio indirizzi di memoria virtuale più grande disponibile per un'app a 64 bit.
 * Non richieda le dimensioni maggiori dello stack IIS.
 * Non abbia dipendenze native a 64 bit.
+
+Per le app pubblicate per 32 bit (x86) è necessario che sia abilitato 32 bit per i pool di applicazioni IIS. Per ulteriori informazioni, vedere la sezione [creare il sito IIS](#create-the-iis-site) .
 
 Usare .NET Core SDK a 64 bit (x64) per pubblicare un'app a 64 bit. Un runtime a 64 bit deve essere presente nel sistema host.
 
@@ -326,11 +328,13 @@ Quando si distribuiscono app ai server con [Distribuzione Web](/iis/install/inst
 
    ![Impostare Nessun codice gestito per la versione .NET CLR.](index/_static/edit-apppool-ws2016.png)
 
-    ASP.NET Core viene eseguito in un processo separato e gestisce il runtime. ASP.NET Core non si basa sul caricamento di Common Language Runtime (CLR di .NET) desktop. Core Common Language Runtime (CoreCLR) for .NET Core viene avviato per ospitare l'app nel processo di lavoro. L'impostazione di **Versione .NET CLR** su **Nessun codice gestito** è facoltativa ma consigliata.
+    ASP.NET Core viene eseguito in un processo separato e gestisce il runtime. ASP.NET Core non si basa sul caricamento del CLR desktop (CLR .NET). Il core Common Language Runtime (CoreCLR) per .NET Core viene avviato per ospitare l'app nel processo di lavoro. L'impostazione di **Versione .NET CLR** su **Nessun codice gestito** è facoltativa ma consigliata.
 
-1. *ASP.NET Core 2.2 o versioni successive*: per una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd) a 64 bit (x64) che usa il [modello di hosting In-Process](#in-process-hosting-model), disabilitare il pool di app per i processi a 32 bit (x86).
+1. *ASP.NET Core 2.2 o versione successiva*:
 
-   Nella barra laterale **Azioni** in Gestione IIS > **Pool di applicazioni** selezionare **Impostazioni predefinite pool di applicazioni** o **Impostazioni avanzate**. Individuare **Attiva applicazioni a 32 bit** e impostare il valore su `False`. Questa impostazione non viene applicata alle app distribuite per l'[hosting out-of-process](xref:host-and-deploy/aspnet-core-module#out-of-process-hosting-model).
+   * Per una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd) a 32 bit (x86) pubblicata con un SDK a 32 bit che usa il [modello di hosting in-process](#in-process-hosting-model), abilitare il Pool di applicazioni per 32 bit. In Gestione IIS passare a **pool di applicazioni** nella barra laterale **connessioni** . Selezionare il pool di applicazioni dell'app. Nella barra laterale **azioni** selezionare **Impostazioni avanzate**. Impostare **Abilita applicazioni a 32 bit** su `True`. 
+
+   * per una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd) a 64 bit (x64) che usa il [modello di hosting in-process](#in-process-hosting-model), disabilitare il pool di app per i processi a 32 bit (x86). In Gestione IIS passare a **pool di applicazioni** nella barra laterale **connessioni** . Selezionare il pool di applicazioni dell'app. Nella barra laterale **azioni** selezionare **Impostazioni avanzate**. Impostare **Abilita applicazioni a 32 bit** su `False`. 
 
 1. Confermare che l'identità del modello del processo disponga delle autorizzazioni appropriate.
 
@@ -388,7 +392,7 @@ I file nella cartella di distribuzione sono bloccati durante l'esecuzione dell'a
 
   ```
 
-## <a name="data-protection"></a>Protezione dati
+## <a name="data-protection"></a>Protezione dei dati
 
 Lo [stack di protezione dei dati di ASP.NET Core](xref:security/data-protection/introduction) viene usato da diversi [middleware](xref:fundamentals/middleware/index) di ASP.NET Core, inclusi quelli usati nell'autenticazione. Anche se le DPAPI (Data Protection API) non vengono chiamate dal codice dell'utente, è consigliabile configurare la protezione dati per la creazione di un [archivio di chiavi](xref:security/data-protection/implementation/key-management) crittografiche permanente con uno script di distribuzione o nel codice dell'utente. Se non si configura la protezione dei dati, le chiavi vengono mantenute in memoria ed eliminate al riavvio dell'app.
 
@@ -462,7 +466,7 @@ Per ulteriori informazioni sul modello di hosting in-process e sulla configurazi
 
 La configurazione di IIS è influenzata dalla sezione `<system.webServer>` di *web.config* per gli scenari IIS funzionali per le app ASP.NET Core con il modulo ASP.NET Core. Ad esempio, la configurazione di IIS è funzionale per la compressione dinamica. Se IIS è configurato a livello di server per l'uso della compressione dinamica, l'elemento `<urlCompression>` nel file *web.config* dell'app può disabilitare questa impostazione per un'app ASP.NET Core.
 
-Per altre informazioni, vedere i seguenti argomenti:
+Per altre informazioni, vedere gli argomenti seguenti:
 
 * [Riferimento alla configurazione \<per System. webserver>](/iis/configuration/system.webServer/)
 * <xref:host-and-deploy/aspnet-core-module>
@@ -984,7 +988,7 @@ I file nella cartella di distribuzione sono bloccati durante l'esecuzione dell'a
 
   ```
 
-## <a name="data-protection"></a>Protezione dati
+## <a name="data-protection"></a>Protezione dei dati
 
 Lo [stack di protezione dei dati di ASP.NET Core](xref:security/data-protection/introduction) viene usato da diversi [middleware](xref:fundamentals/middleware/index) di ASP.NET Core, inclusi quelli usati nell'autenticazione. Anche se le DPAPI (Data Protection API) non vengono chiamate dal codice dell'utente, è consigliabile configurare la protezione dati per la creazione di un [archivio di chiavi](xref:security/data-protection/implementation/key-management) crittografiche permanente con uno script di distribuzione o nel codice dell'utente. Se non si configura la protezione dei dati, le chiavi vengono mantenute in memoria ed eliminate al riavvio dell'app.
 
@@ -1058,7 +1062,7 @@ Per ulteriori informazioni sul modello di hosting in-process e sulla configurazi
 
 La configurazione di IIS è influenzata dalla sezione `<system.webServer>` di *web.config* per gli scenari IIS funzionali per le app ASP.NET Core con il modulo ASP.NET Core. Ad esempio, la configurazione di IIS è funzionale per la compressione dinamica. Se IIS è configurato a livello di server per l'uso della compressione dinamica, l'elemento `<urlCompression>` nel file *web.config* dell'app può disabilitare questa impostazione per un'app ASP.NET Core.
 
-Per altre informazioni, vedere i seguenti argomenti:
+Per altre informazioni, vedere gli argomenti seguenti:
 
 * [Riferimento alla configurazione \<per System. webserver>](/iis/configuration/system.webServer/)
 * <xref:host-and-deploy/aspnet-core-module>
@@ -1552,7 +1556,7 @@ I file nella cartella di distribuzione sono bloccati durante l'esecuzione dell'a
 
   ```
 
-## <a name="data-protection"></a>Protezione dati
+## <a name="data-protection"></a>Protezione dei dati
 
 Lo [stack di protezione dei dati di ASP.NET Core](xref:security/data-protection/introduction) viene usato da diversi [middleware](xref:fundamentals/middleware/index) di ASP.NET Core, inclusi quelli usati nell'autenticazione. Anche se le DPAPI (Data Protection API) non vengono chiamate dal codice dell'utente, è consigliabile configurare la protezione dati per la creazione di un [archivio di chiavi](xref:security/data-protection/implementation/key-management) crittografiche permanente con uno script di distribuzione o nel codice dell'utente. Se non si configura la protezione dei dati, le chiavi vengono mantenute in memoria ed eliminate al riavvio dell'app.
 
@@ -1659,7 +1663,7 @@ Per ulteriori informazioni sul modello di hosting in-process e sulla configurazi
 
 La configurazione di IIS è influenzata dalla sezione `<system.webServer>` di *web.config* per gli scenari IIS funzionali per le app ASP.NET Core con il modulo ASP.NET Core. Ad esempio, la configurazione di IIS è funzionale per la compressione dinamica. Se IIS è configurato a livello di server per l'uso della compressione dinamica, l'elemento `<urlCompression>` nel file *web.config* dell'app può disabilitare questa impostazione per un'app ASP.NET Core.
 
-Per altre informazioni, vedere i seguenti argomenti:
+Per altre informazioni, vedere gli argomenti seguenti:
 
 * [Riferimento alla configurazione \<per System. webserver>](/iis/configuration/system.webServer/)
 * <xref:host-and-deploy/aspnet-core-module>

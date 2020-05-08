@@ -1,6 +1,6 @@
 ## <a name="debug-diagnostics"></a>Diagnostica di debug
 
-Per l'output diagnostico `Logging:LogLevel:Microsoft` `Debug`del routing dettagliato, impostare su . Ad esempio, nell'ambiente di sviluppo, impostare appsettings.For example, in the development environment, set *appsettings. Development.json*:
+Per un output di diagnostica dettagliato del `Logging:LogLevel:Microsoft` routing `Debug`, impostare su. Nell'ambiente di sviluppo, ad esempio, impostare *appSettings. Development. JSON*:
 
 ```JSON
 {
