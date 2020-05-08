@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/event-handling
-ms.openlocfilehash: a9b0d0efd4afd4941bd4d93f33adecdf3288992f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: aa338bbe61eec14bc1e1b3606e11e26bfb0e6a09
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767070"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967467"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>Gestione degli eventi di ASP.NET Core Blazer
 
@@ -77,19 +77,19 @@ Per alcuni eventi, i tipi di argomento dell'evento sono consentiti. La specifica
 
 I `EventArgs` supportati sono riportati nella tabella seguente.
 
-| Event            | Classe                | Eventi e note DOM |
+| event            | Classe                | Eventi e note DOM |
 | ---------------- | -------------------- | -------------------- |
 | Appunti        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
 | Trascinamento             | `DragEventArgs`      | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br>`DataTransfer`e `DataTransferItem` contengono dati di elementi trascinati. |
 | Errore            | `ErrorEventArgs`     | `onerror` |
-| Event            | `EventArgs`          | *Generalee*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Appunti*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Input*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Supporti*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
+| event            | `EventArgs`          | *Generalee*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Appunti*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Input*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Supporti*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
 | Focus            | `FocusEventArgs`     | `onfocus`, `onblur`, `onfocusin`, `onfocusout`<br><br>Non include il supporto `relatedTarget`per. |
 | Input            | `ChangeEventArgs`    | `onchange`, `oninput` |
 | Tastiera         | `KeyboardEventArgs`  | `onkeydown`, `onkeypress`, `onkeyup` |
 | Mouse            | `MouseEventArgs`     | `onclick`, `oncontextmenu`, `ondblclick`, `onmousedown`, `onmouseup`, `onmouseover`, `onmousemove`, `onmouseout` |
 | Puntatore del mouse    | `PointerEventArgs`   | `onpointerdown`, `onpointerup`, `onpointercancel`, `onpointermove`, `onpointerover`, `onpointerout`, `onpointerenter`, `onpointerleave`, `ongotpointercapture`, `onlostpointercapture` |
 | Rotellina del mouse      | `WheelEventArgs`     | `onwheel`, `onmousewheel` |
-| Progress         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
+| Avanzamento         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
 | Tocco            | `TouchEventArgs`     | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br>`TouchPoint`rappresenta un singolo punto di contatto su un dispositivo sensibile al tocco. |
 
 Per altre informazioni, vedere le seguenti risorse:
@@ -108,7 +108,7 @@ Per altre informazioni, vedere le seguenti risorse:
 Spesso è consigliabile chiudere i valori aggiuntivi, ad esempio quando si esegue l'iterazione su un set di elementi. Nell'esempio seguente vengono creati tre pulsanti, ciascuno dei quali `UpdateHeading` chiama il passaggio di un`MouseEventArgs`argomento di evento () e`buttonNumber`il relativo numero di pulsante () quando vengono selezionati nell'interfaccia utente:
 
 ```razor
-<h2>@_message</h2>
+<h2>@message</h2>
 
 @for (var i = 1; i < 4; i++)
 {
@@ -121,11 +121,11 @@ Spesso è consigliabile chiudere i valori aggiuntivi, ad esempio quando si esegu
 }
 
 @code {
-    private string _message = "Select a button to learn its position.";
+    private string message = "Select a button to learn its position.";
 
     private void UpdateHeading(MouseEventArgs e, int buttonNumber)
     {
-        _message = $"You selected Button #{buttonNumber} at " +
+        message = $"You selected Button #{buttonNumber} at " +
             $"mouse position: {e.ClientX} X {e.ClientY}.";
     }
 }
@@ -157,28 +157,28 @@ Uno scenario comune con i componenti annidati è la volontà di eseguire il meto
     by the parent component.
 </ChildComponent>
 
-<p><b>@_messageText</b></p>
+<p><b>@messageText</b></p>
 
 @code {
-    private string _messageText;
+    private string messageText;
 
     private void ShowMessage(MouseEventArgs e)
     {
-        _messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
     }
 }
 ```
 
 Quando il pulsante è selezionato in `ChildComponent`:
 
-* Viene `ParentComponent`chiamato `ShowMessage` il metodo di. `_messageText`viene aggiornato e visualizzato nell'oggetto `ParentComponent`.
+* Viene `ParentComponent`chiamato `ShowMessage` il metodo di. `messageText`viene aggiornato e visualizzato nell'oggetto `ParentComponent`.
 * Una chiamata a [StateHasChanged](xref:blazor/lifecycle#state-changes) non è obbligatoria nel metodo del callback (`ShowMessage`). `StateHasChanged`viene chiamato automaticamente per eseguire il rendering `ParentComponent`di, proprio come gli eventi figlio attivano il rendering dei componenti nei gestori eventi che vengono eseguiti all'interno dell'elemento figlio.
 
 `EventCallback`e `EventCallback<T>` consentono delegati asincroni. `EventCallback<T>`è fortemente tipizzato e richiede un tipo di argomento specifico. `EventCallback`è debolmente tipizzato e consente qualsiasi tipo di argomento.
 
 ```razor
 <ChildComponent 
-    OnClickCallback="@(async () => { await Task.Yield(); _messageText = "Blaze It!"; })" />
+    OnClickCallback="@(async () => { await Task.Yield(); messageText = "Blaze It!"; })" />
 ```
 
 Richiamare `EventCallback` o `EventCallback<T>` con `InvokeAsync` e attendere: <xref:System.Threading.Tasks.Task>
@@ -198,16 +198,16 @@ Utilizzare l' [`@on{EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventd
 Quando si seleziona un tasto in un dispositivo di input e lo stato attivo dell'elemento si trova in una casella di testo, in un browser viene in genere visualizzato il carattere della chiave nella casella di testo. Nell'esempio seguente viene impedito il comportamento predefinito specificando l' `@onkeypress:preventDefault` attributo della direttiva. Il contatore viene incrementato e la **+** chiave non viene acquisita `<input>` nel valore dell'elemento:
 
 ```razor
-<input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
+<input value="@count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
 
 @code {
-    private int _count = 0;
+    private int count = 0;
 
     private void KeyHandler(KeyboardEventArgs e)
     {
         if (e.Key == "+")
         {
-            _count++;
+            count++;
         }
     }
 }
@@ -215,10 +215,10 @@ Quando si seleziona un tasto in un dispositivo di input e lo stato attivo dell'e
 
 La specifica `@on{EVENT}:preventDefault` dell'attributo senza un valore equivale a `@on{EVENT}:preventDefault="true"`.
 
-Il valore dell'attributo può anche essere un'espressione. `_shouldPreventDefault` Nell'esempio seguente è `bool` un campo impostato su `true` o: `false`
+Il valore dell'attributo può anche essere un'espressione. `shouldPreventDefault` Nell'esempio seguente è `bool` un campo impostato su `true` o: `false`
 
 ```razor
-<input @onkeypress:preventDefault="_shouldPreventDefault" />
+<input @onkeypress:preventDefault="shouldPreventDefault" />
 ```
 
 Per impedire l'azione predefinita, non è necessario un gestore eventi. Il gestore eventi e impedire scenari di azione predefiniti possono essere usati in modo indipendente.
@@ -231,7 +231,7 @@ Nell'esempio seguente la selezione della casella di controllo impedisce la propa
 
 ```razor
 <label>
-    <input @bind="_stopPropagation" type="checkbox" />
+    <input @bind="stopPropagation" type="checkbox" />
     Stop Propagation
 </label>
 
@@ -242,13 +242,13 @@ Nell'esempio seguente la selezione della casella di controllo impedisce la propa
         Child div that doesn't stop propagation when selected.
     </div>
 
-    <div @onclick="OnSelectChildDiv" @onclick:stopPropagation="_stopPropagation">
+    <div @onclick="OnSelectChildDiv" @onclick:stopPropagation="stopPropagation">
         Child div that stops propagation when selected.
     </div>
 </div>
 
 @code {
-    private bool _stopPropagation = false;
+    private bool stopPropagation = false;
 
     private void OnSelectParentDiv() => 
         Console.WriteLine($"The parent div was selected. {DateTime.Now}");

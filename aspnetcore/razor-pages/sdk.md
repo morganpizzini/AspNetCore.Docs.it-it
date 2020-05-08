@@ -109,7 +109,7 @@ Le proprietà e gli elementi nella tabella seguente vengono usati per configurar
 
 ::: moniker-end
 
-| Items | Description |
+| Items | Descrizione |
 | ----- | ----------- |
 | `RazorGenerate` | Elementi Item (file con*estensione cshtml* ) che sono input per la generazione di codice. |
 | `RazorComponent` | Elementi elemento (file*Razor* ) che sono input per la generazione di codice del componente Razor. |

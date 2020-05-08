@@ -171,7 +171,7 @@ Metrica è una rappresentazione delle misure dei dati in intervalli di tempo, ad
 
 le metriche del server gRPC sono segnalate nell' `Grpc.AspNetCore.Server` origine evento.
 
-| Nome                      | Description                   |
+| Nome                      | Descrizione                   |
 | --------------------------|-------------------------------|
 | `total-calls`             | Totale chiamate                   |
 | `current-calls`           | Chiamate correnti                 |
@@ -187,7 +187,7 @@ ASP.NET Core fornisce anche le proprie metriche nell' `Microsoft.AspNetCore.Host
 
 le metriche client di gRPC sono segnalate nell' `Grpc.Net.Client` origine evento.
 
-| Nome                      | Description                   |
+| Nome                      | Descrizione                   |
 | --------------------------|-------------------------------|
 | `total-calls`             | Totale chiamate                   |
 | `current-calls`           | Chiamate correnti                 |

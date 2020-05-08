@@ -1,5 +1,5 @@
 ---
-title: Creazione e utilizzo di Razor componenti ASP.NET Core
+title: Creare e usare ASP.NET Core componenti Razor
 author: guardrex
 description: Informazioni su come creare e usare Razor i componenti, tra cui la modalità di associazione ai dati, la gestione degli eventi e la gestione dei cicli di vita dei componenti.
 monikerRange: '>= aspnetcore-3.1'
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: f8b1ffef1b8375337f66c93d9b4652ad3c5dd616
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9e36a3239e703e1279feafc65288a1f9ec82c277
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767747"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967181"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Creazione e utilizzo di Razor componenti ASP.NET Core
 
@@ -40,15 +40,15 @@ I membri della classe del componente vengono definiti in un blocco `@code`. Nel 
 
 I membri dei componenti possono essere usati come parte della logica di rendering del componente usando espressioni C# che `@`iniziano con. Ad esempio, viene eseguito il rendering di un campo C# `@` anteponendo il nome del campo. Nell'esempio seguente viene valutato ed eseguito il rendering:
 
-* `_headingFontStyle`al valore della proprietà CSS per `font-style`.
-* `_headingText`al contenuto dell' `<h1>` elemento.
+* `headingFontStyle`al valore della proprietà CSS per `font-style`.
+* `headingText`al contenuto dell' `<h1>` elemento.
 
 ```razor
-<h1 style="font-style:@_headingFontStyle">@_headingText</h1>
+<h1 style="font-style:@headingFontStyle">@headingText</h1>
 
 @code {
-    private string _headingFontStyle = "italic";
-    private string _headingText = "Put on your new Blazor!";
+    private string headingFontStyle = "italic";
+    private string headingText = "Put on your new Blazor!";
 }
 ```
 
@@ -103,7 +103,7 @@ Il markup seguente in *index. Razor* esegue il rendering `HeadingComponent` di u
 
 Se un componente contiene un elemento HTML con una prima lettera maiuscola che non corrisponde a un nome di componente, viene emesso un avviso che indica che l'elemento ha un nome imprevisto. L'aggiunta `@using` di una direttiva per lo spazio dei nomi del componente rende disponibile il componente, che risolve l'avviso.
 
-## <a name="routing"></a>Routing
+## <a name="routing"></a>Routing.
 
 Il routing Blazor in viene effettuato fornendo un modello di route a ogni componente accessibile nell'app.
 
@@ -291,22 +291,22 @@ I riferimenti ai componenti forniscono un modo per fare riferimento a un'istanza
 * Definire un campo con lo stesso tipo del componente figlio.
 
 ```razor
-<MyLoginDialog @ref="_loginDialog" ... />
+<MyLoginDialog @ref="loginDialog" ... />
 
 @code {
-    private MyLoginDialog _loginDialog;
+    private MyLoginDialog loginDialog;
 
     private void OnSomething()
     {
-        _loginDialog.Show();
+        loginDialog.Show();
     }
 }
 ```
 
-Quando viene eseguito il rendering del componente `_loginDialog` , il campo viene popolato con l'istanza del `MyLoginDialog` componente figlio. È quindi possibile richiamare i metodi .NET nell'istanza del componente.
+Quando viene eseguito il rendering del componente `loginDialog` , il campo viene popolato con l'istanza del `MyLoginDialog` componente figlio. È quindi possibile richiamare i metodi .NET nell'istanza del componente.
 
 > [!IMPORTANT]
-> La `_loginDialog` variabile viene popolata solo dopo il rendering del componente e l'output include `MyLoginDialog` l'elemento. Fino a quel momento, non c'è niente a cui fare riferimento. Per modificare i riferimenti ai componenti dopo che il componente ha terminato il rendering, usare i [Metodi OnAfterRenderAsync o OnAfterRender](xref:blazor/lifecycle#after-component-render).
+> La `loginDialog` variabile viene popolata solo dopo il rendering del componente e l'output include `MyLoginDialog` l'elemento. Fino a quel momento, non c'è niente a cui fare riferimento. Per modificare i riferimenti ai componenti dopo che il componente ha terminato il rendering, usare i [Metodi OnAfterRenderAsync o OnAfterRender](xref:blazor/lifecycle#after-component-render).
 
 Per fare riferimento ai componenti in un ciclo, vedere [Capture References to multiple analogous Child-Components (DotNet/aspnetcore #13358)](https://github.com/dotnet/aspnetcore/issues/13358).
 
@@ -358,10 +358,10 @@ Usare `NotifierService` per aggiornare un componente:
 @inject NotifierService Notifier
 @implements IDisposable
 
-<p>Last update: @_lastNotification.key = @_lastNotification.value</p>
+<p>Last update: @lastNotification.key = @lastNotification.value</p>
 
 @code {
-    private (string key, int value) _lastNotification;
+    private (string key, int value) lastNotification;
 
     protected override void OnInitialized()
     {
@@ -372,7 +372,7 @@ Usare `NotifierService` per aggiornare un componente:
     {
         await InvokeAsync(() =>
         {
-            _lastNotification = (key, value);
+            lastNotification = (key, value);
             StateHasChanged();
         });
     }
@@ -519,14 +519,14 @@ Per mantenere lo stato nello scenario precedente, usare un *campo privato* nel `
 Il componente `Expander` seguente:
 
 * Accetta il `Expanded` valore del parametro component dall'elemento padre.
-* Assegna il valore del parametro component a un *campo privato* (`_expanded`) nell' [evento OnInitialized](xref:blazor/lifecycle#component-initialization-methods).
+* Assegna il valore del parametro component a un *campo privato* (`expanded`) nell' [evento OnInitialized](xref:blazor/lifecycle#component-initialization-methods).
 * Usa il campo privato per mantenere lo stato di attivazione/disattivo interno.
 
 ```razor
 <div @onclick="@Toggle">
-    Toggle (Expanded = @_expanded)
+    Toggle (Expanded = @expanded)
 
-    @if (_expanded)
+    @if (expanded)
     {
         @ChildContent
     }
@@ -539,16 +539,16 @@ Il componente `Expander` seguente:
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    private bool _expanded;
+    private bool expanded;
 
     protected override void OnInitialized()
     {
-        _expanded = Expanded;
+        expanded = Expanded;
     }
 
     private void Toggle()
     {
-        _expanded = !_expanded;
+        expanded = !expanded;
     }
 }
 ```
@@ -569,16 +569,16 @@ Nell'esempio seguente viene illustrato il `Counter` componente predefinito con `
 
 <h1>Counter</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int _currentCount = 0;
+    private int currentCount = 0;
 
     void IncrementCount()
     {
-        _currentCount++;
+        currentCount++;
     }
 }
 ```
@@ -592,7 +592,7 @@ Il `Counter` componente può essere creato anche usando un file code-behind con 
 
 <h1>Counter</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 ```
@@ -604,11 +604,11 @@ namespace BlazorApp.Pages
 {
     public partial class Counter
     {
-        private int _currentCount = 0;
+        private int currentCount = 0;
 
         void IncrementCount()
         {
-            _currentCount++;
+            currentCount++;
         }
     }
 }
@@ -741,10 +741,10 @@ Le stringhe vengono in genere sottoposte a rendering usando i nodi di testo DOM,
 Nell'esempio seguente viene illustrato l' `MarkupString` utilizzo del tipo per aggiungere un blocco di contenuto HTML statico all'output sottoposto a rendering di un componente:
 
 ```html
-@((MarkupString)_myMarkup)
+@((MarkupString)myMarkup)
 
 @code {
-    private string _myMarkup = 
+    private string myMarkup = 
         "<p class='markup'>This is a <em>markup string</em>.</p>";
 }
 ```
@@ -782,7 +782,7 @@ Ad esempio, l'app di esempio specifica le informazioni`ThemeInfo`sul tema () in 
             <NavMenu />
         </div>
         <div class="col-sm-9">
-            <CascadingValue Value="_theme">
+            <CascadingValue Value="theme">
                 <div class="content px-4">
                     @Body
                 </div>
@@ -792,7 +792,7 @@ Ad esempio, l'app di esempio specifica le informazioni`ThemeInfo`sul tema () in 
 </div>
 
 @code {
-    private ThemeInfo _theme = new ThemeInfo { ButtonClass = "btn-success" };
+    private ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
 }
 ```
 
@@ -809,7 +809,7 @@ Nell'app di esempio, il `CascadingValuesParametersTheme` componente associa il `
 
 <h1>Cascading Values & Parameters</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <p>
     <button class="btn" @onclick="IncrementCount">
@@ -824,14 +824,14 @@ Nell'app di esempio, il `CascadingValuesParametersTheme` componente associa il `
 </p>
 
 @code {
-    private int _currentCount = 0;
+    private int currentCount = 0;
 
     [CascadingParameter]
     protected ThemeInfo ThemeInfo { get; set; }
 
     private void IncrementCount()
     {
-        _currentCount++;
+        currentCount++;
     }
 }
 ```
@@ -839,14 +839,14 @@ Nell'app di esempio, il `CascadingValuesParametersTheme` componente associa il `
 Per eseguire il propagazione di più valori dello stesso tipo all'interno dello stesso `Name` sottoalbero, `CascadingValue` fornire una stringa univoca a ogni componente e la corrispondente `CascadingParameter`. Nell'esempio seguente due `CascadingValue` componenti propagano istanze diverse di `MyCascadingType` per nome:
 
 ```razor
-<CascadingValue Value=@_parentCascadeParameter1 Name="CascadeParam1">
+<CascadingValue Value=@parentCascadeParameter1 Name="CascadeParam1">
     <CascadingValue Value=@ParentCascadeParameter2 Name="CascadeParam2">
         ...
     </CascadingValue>
 </CascadingValue>
 
 @code {
-    private MyCascadingType _parentCascadeParameter1;
+    private MyCascadingType parentCascadeParameter1;
 
     [Parameter]
     public MyCascadingType ParentCascadeParameter2 { get; set; }
@@ -926,13 +926,13 @@ I frammenti di rendering possono essere definiti Razor usando la sintassi del mo
 Nell'esempio seguente viene illustrato come specificare `RenderFragment` i valori `RenderFragment<T>` e ed eseguire il rendering dei modelli direttamente in un componente. I frammenti di rendering possono anche essere passati come argomenti ai [componenti basati su modelli](xref:blazor/templated-components).
 
 ```razor
-@_timeTemplate
+@timeTemplate
 
-@_petTemplate(new Pet { Name = "Rex" })
+@petTemplate(new Pet { Name = "Rex" })
 
 @code {
-    private RenderFragment _timeTemplate = @<p>The time is @DateTime.Now.</p>;
-    private RenderFragment<Pet> _petTemplate = (pet) => @<p>Pet: @pet.Name</p>;
+    private RenderFragment timeTemplate = @<p>The time is @DateTime.Now.</p>;
+    private RenderFragment<Pet> petTemplate = (pet) => @<p>Pet: @pet.Name</p>;
 
     private class Pet
     {

@@ -68,7 +68,7 @@ Il riferimento precedente è necessario per l'app per chiamare il codice client 
 | -c|--generatore di codice| Generatore di codice da applicare al riferimento. Le opzioni `NSwagCSharp` sono `NSwagTypeScript`e. Se `--code-generator` non viene specificato `NSwagCSharp`, l'impostazione predefinita degli strumenti è.|DotNet openapi Add file .\OpenApi.json--Code-Generator
 | -H|--help|Mostra le informazioni della Guida|file di aggiunta di DotNet openapi--Help|
 
-#### <a name="arguments"></a>Arguments
+#### <a name="arguments"></a>Argomenti
 
 |  Argomento  | Descrizione | Esempio |
 |-------------|-------------|---------|
@@ -85,13 +85,13 @@ Il riferimento precedente è necessario per l'app per chiamare il codice client 
 | -c|--generatore di codice| Generatore di codice da applicare al riferimento. Le opzioni `NSwagCSharp` sono `NSwagTypeScript`e. |DotNet openapi Add file .\OpenApi.json--Code-Generator
 | -H|--help|Mostra le informazioni della Guida|URL di aggiunta di DotNet openapi--Help|
 
-#### <a name="arguments"></a>Arguments
+#### <a name="arguments"></a>Argomenti
 
 |  Argomento  | Descrizione | Esempio |
 |-------------|-------------|---------|
 | URL origine | Origine da cui creare un riferimento. Deve essere un URL. |URL di aggiunta di DotNet openapi`https://contoso.com/openapi.json` |
 
-## <a name="remove"></a>Remove
+## <a name="remove"></a>Rimuovere
 
 Rimuove il riferimento OpenAPI che corrisponde al nome file specificato dal file con *estensione csproj* . Quando viene rimosso il riferimento OpenAPI, i client non verranno generati. I file local *. JSON* e *. YAML* vengono eliminati.
 
@@ -102,7 +102,7 @@ Rimuove il riferimento OpenAPI che corrisponde al nome file specificato dal file
 | -p|--updateProject | Progetto su cui operare. |DotNet openapi Remove *--updateProject .\Ref.csproj* .\OpenAPI.JSON |
 | -H|--help|Mostra le informazioni della Guida|openapi di DotNet--Guida|
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 |  Argomento  | Descrizione| Esempio |
 | ------------|------------|---------|
@@ -119,7 +119,7 @@ Aggiorna la versione locale di un file scaricato usando il contenuto più recent
 | -p|--updateProject | Progetto su cui operare. | aggiornamento DotNet openapi *--updateProject .\Ref.csproj*`https://contoso.com/openapi.json` |
 | -H|--help|Mostra le informazioni della Guida|aggiornamento di DotNet openapi--Help|
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 |  Argomento  | Descrizione | Esempio |
 | ------------|-------------|---------|

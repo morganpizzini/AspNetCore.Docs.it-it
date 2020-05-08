@@ -5,7 +5,7 @@ description: Informazioni su come ospitare e distribuire un' Blazor app usando A
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2020
+ms.date: 05/07/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: 9bc1e3aaadb7310f6ea338eea2726bdc592aa06a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: e136a401beffe9cc7e29906b3631ab3f068b30fd
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776409"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967597"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Ospitare e distribuire un webassembly ASP.NET Core Blazer
 
@@ -79,6 +79,12 @@ Per informazioni sulla distribuzione in Servizio app di Azure, vedere <xref:tuto
 Una *distribuzione autonoma* serve l'app Webassembly blazer come un set di file statici richiesti direttamente dai client. Qualsiasi file server statico è in grado di servire l'app Blazor.
 
 Le risorse di distribuzione autonome vengono pubblicate nella cartella */bin/Release/{Target Framework}/Publish/wwwroot*
+
+### <a name="azure-app-service"></a>Servizio app di Azure
+
+Le app webassembly Blazer possono essere distribuite in app Azure Services in Windows, che ospita l'app in [IIS](#iis).
+
+Attualmente non è supportata la distribuzione di un'app webassembly autonoma in app Azure servizio per Linux. Un'immagine server Linux per ospitare l'app non è disponibile in questo momento. Il lavoro è in corso per abilitare questo scenario.
 
 ### <a name="iis"></a>IIS
 

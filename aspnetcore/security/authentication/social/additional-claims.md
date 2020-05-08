@@ -51,7 +51,7 @@ L'app di esempio configura il provider di autenticazione Google con un ID client
 
 Specificare l'elenco di autorizzazioni da recuperare dal provider specificando <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope*>. Gli ambiti di autenticazione per i provider esterni comuni sono riportati nella tabella seguente.
 
-| Provider  | Scope                                                            |
+| Provider  | Ambito                                                            |
 | --------- | ---------------------------------------------------------------- |
 | Facebook  | `https://www.facebook.com/dialog/oauth`                          |
 | Google    | `https://www.googleapis.com/auth/userinfo.profile`               |
@@ -191,7 +191,7 @@ L'app di esempio configura il provider di autenticazione Google con un ID client
 
 Specificare l'elenco di autorizzazioni da recuperare dal provider specificando <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Scope*>. Gli ambiti di autenticazione per i provider esterni comuni sono riportati nella tabella seguente.
 
-| Provider  | Scope                                                            |
+| Provider  | Ambito                                                            |
 | --------- | ---------------------------------------------------------------- |
 | Facebook  | `https://www.facebook.com/dialog/oauth`                          |
 | Google    | `https://www.googleapis.com/auth/userinfo.profile`               |

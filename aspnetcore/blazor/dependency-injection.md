@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/dependency-injection
-ms.openlocfilehash: 742f3c5ea26fab5e168f162a0e133da05fd74a74
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: e96698bd0bd8f3f3b290ba24bc8169efb16f1d03
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767116"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967532"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>Inserimento delle dipendenze di ASP.NET Core Blazer
 
@@ -37,7 +37,7 @@ DI è una tecnica per accedere ai servizi configurati in una posizione centrale.
 
 I servizi predefiniti vengono aggiunti automaticamente alla raccolta di servizi dell'app.
 
-| Service | Durata | Description |
+| Service | Durata | Descrizione |
 | ------- | -------- | ----------- |
 | <xref:System.Net.Http.HttpClient> | Temporaneo | Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.<br><br>L'istanza di `HttpClient` in un'app Webassembly Blazer usa il browser per gestire il traffico HTTP in background.<br><br>Per impostazione predefinita, le app del `HttpClient` server Blazer non includono un oggetto configurato come servizio. Fornire `HttpClient` a un'app del server blazer.<br><br>Per altre informazioni, vedere <xref:blazor/call-web-api>. |
 | `IJSRuntime` | Singleton (webassembly Blazer)<br>Con ambito (server Blazer) | Rappresenta un'istanza di un runtime JavaScript in cui vengono inviate le chiamate a JavaScript. Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet>. |
@@ -132,11 +132,11 @@ public void ConfigureServices(IServiceCollection services)
 
 I servizi possono essere configurati con le durate mostrate nella tabella seguente.
 
-| Durata | Description |
+| Durata | Descrizione |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | BlazorLe app webassembly attualmente non dispongono di un concetto di ambiti di. `Scoped`-i servizi registrati si `Singleton` comportano come servizi. Tuttavia, il Blazor modello di hosting del server `Scoped` supporta il ciclo di vita. Nelle Blazor app Server, una registrazione del servizio con ambito ha come ambito la *connessione*. Per questo motivo, è preferibile usare i servizi con ambito per i servizi che devono avere come ambito l'utente corrente, anche se l'obiettivo corrente è eseguire sul lato client nel browser. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | La creazione di una *singola istanza* del servizio. Tutti i componenti che richiedono `Singleton` un servizio ricevono un'istanza dello stesso servizio. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Ogni volta che un componente ottiene un'istanza di `Transient` un servizio dal contenitore del servizio, riceve una *nuova istanza* del servizio. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | BlazorLe app webassembly attualmente non dispongono di un concetto di ambiti di. `Scoped`-i servizi registrati si `Singleton` comportano come servizi. Tuttavia, il Blazor modello di hosting del server `Scoped` supporta il ciclo di vita. Nelle Blazor app Server, una registrazione del servizio con ambito ha come ambito la *connessione*. Per questo motivo, è preferibile usare i servizi con ambito per i servizi che devono avere come ambito l'utente corrente, anche se l'obiettivo corrente è eseguire sul lato client nel browser. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | La creazione di una *singola istanza* del servizio. Tutti i componenti che richiedono `Singleton` un servizio ricevono un'istanza dello stesso servizio. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Ogni volta che un componente ottiene un'istanza di `Transient` un servizio dal contenitore del servizio, riceve una *nuova istanza* del servizio. |
 
 Il sistema DI è basato sul sistema DI ASP.NET Core. Per altre informazioni, vedere <xref:fundamentals/dependency-injection>.
 
@@ -274,7 +274,7 @@ Se un singolo componente può usare `DbContext` simultaneamente, ad esempio ogni
     @inject DbContextOptions<AppDbContext> DbContextOptions
 
     <ul>
-        @foreach (var item in _data)
+        @foreach (var item in data)
         {
             <li>@item</li>
         }
@@ -283,11 +283,11 @@ Se un singolo componente può usare `DbContext` simultaneamente, ad esempio ogni
     <button @onclick="LoadData">Load Data</button>
 
     @code {
-        private List<string> _data = new List<string>();
+        private List<string> data = new List<string>();
 
         private async Task LoadData()
         {
-            _data = await GetAsync();
+            data = await GetAsync();
             StateHasChanged();
         }
 
@@ -318,7 +318,7 @@ Se un singolo componente può usare `DbContext` simultaneamente, ad esempio ogni
     @inject IServiceProvider ServiceProvider
 
     <ul>
-        @foreach (var item in _data)
+        @foreach (var item in data)
         {
             <li>@item</li>
         }
@@ -327,11 +327,11 @@ Se un singolo componente può usare `DbContext` simultaneamente, ad esempio ogni
     <button @onclick="LoadData">Load Data</button>
 
     @code {
-        private List<string> _data = new List<string>();
+        private List<string> data = new List<string>();
 
         private async Task LoadData()
         {
-            _data = await GetAsync();
+            data = await GetAsync();
             StateHasChanged();
         }
 

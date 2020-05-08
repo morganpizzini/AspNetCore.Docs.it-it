@@ -2,7 +2,7 @@
 
 ## <a name="visual-studio-help"></a>Guida di Visual Studio
 
-* [Informazioni su come eseguire il debug del codice C'è con Visual Studio](https://docs.microsoft.com/visualstudio/debugger/getting-started-with-the-debugger?view=vs-2017)
+* [Informazioni su come eseguire il debug di codice C# con Visual Studio](https://docs.microsoft.com/visualstudio/debugger/getting-started-with-the-debugger?view=vs-2017)
 * [Introduzione all'IDE di Visual Studio](https://docs.microsoft.com/visualstudio/ide/visual-studio-ide?view=vs-2017)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)

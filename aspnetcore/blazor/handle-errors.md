@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: 7eefc988da275c0efccd97958d04e76f04e7cad4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7601e448a52be5e1064326929281e72ad28a0e65
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82772113"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967155"
 ---
 # <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Gestione degli errori nelle Blazor app ASP.NET Core
 
@@ -191,7 +191,7 @@ Se il codice utente non intercetta e gestisce l'eccezione, il Framework registra
 
 ### <a name="component-disposal"></a>Eliminazione componenti
 
-Un componente può essere rimosso dall'interfaccia utente, ad esempio perché l'utente ha esplorato un'altra pagina. Quando un componente che implementa <xref:System.IDisposable?displayProperty=fullName> viene rimosso dall'interfaccia utente, il Framework chiama il <xref:System.IDisposable.Dispose*> metodo del componente.
+Un componente può essere rimosso dall'interfaccia utente, ad esempio perché l'utente ha esplorato un'altra pagina. Quando un componente che implementa <xref:System.IDisposable?displayProperty=fullName> viene rimosso dall'interfaccia utente, il Framework chiama il <xref:System.IDisposable.Dispose%2A> metodo del componente.
 
 Se il `Dispose` metodo del componente genera un'eccezione non gestita, l'eccezione è irreversibile per un Blazor circuito server. Se la logica di eliminazione può generare eccezioni, l'app deve intercettare le eccezioni usando un'istruzione [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) con gestione e registrazione degli errori.
 

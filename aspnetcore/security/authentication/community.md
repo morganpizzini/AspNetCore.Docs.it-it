@@ -26,7 +26,7 @@ Questa pagina contiene le opzioni di autenticazione Open Source fornite dalla co
 
 L'elenco seguente è ordinato in ordine alfabetico.
 
-| Nome | Description |
+| Nome | Descrizione |
 | ---- | ----------- |
 | [AspNet. Security. OpenIdConnect. Server (ASOS)](https://github.com/aspnet-contrib/AspNet.Security.OpenIdConnect.Server) | ASOS è un Framework server OpenID Connect di basso livello per ASP.NET Core e OWIN/Katana. |
 | [Server Gluu](https://gluu.org/) | Software open source pronto per l'identità, la gestione degli accessi (IAM) e la Single Sign-On (SSO). Per ulteriori informazioni, vedere la [documentazione del prodotto Gluu](https://gluu.org/docs/). |
