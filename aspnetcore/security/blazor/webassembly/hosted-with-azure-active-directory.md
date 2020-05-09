@@ -5,7 +5,7 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2020
+ms.date: 05/06/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 3a2f3bdd194b9153c5d59af7adfad3a3c8c56b23
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: aaae2b755d6d6e74db0cb7676820d01964c2add4
+ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776038"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82976805"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory"></a>Proteggere un'app Blazor ospitata ASP.NET Core webassembly con Azure Active Directory
 
@@ -156,7 +156,7 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
-### <a name="app-settings"></a>Impostazioni delle app
+### <a name="app-settings"></a>Impostazioni dell'app
 
 Il file *appSettings. JSON* contiene le opzioni per configurare il gestore di connessione JWT usato per convalidare i token di accesso.
 
@@ -354,5 +354,6 @@ Eseguire l'app dal progetto server. Quando si usa Visual Studio, selezionare il 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:security/blazor/webassembly/additional-scenarios>
+* <xref:security/blazor/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Documentazione di Microsoft Identity Platform](/azure/active-directory/develop/)

@@ -5,7 +5,7 @@ description: Informazioni su come usare Razor i metodi del ciclo di Blazor vita 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 05/07/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/lifecycle
-ms.openlocfilehash: 571f14247efe08ac6abbd6d1e2720656f94c213c
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
+ms.openlocfilehash: 81699158a161d0e9c9621235840979ebcd634a7e
+ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967454"
+ms.locfileid: "82976701"
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>Ciclo Blazor di vita ASP.NET Core
 
@@ -277,3 +277,73 @@ Per ulteriori informazioni su `RenderMode`, vedere. <xref:blazor/hosting-model-c
 ## <a name="detect-when-the-app-is-prerendering"></a>Rilevare il momento in cui viene eseguito il prerendering dell'app
 
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
+
+## <a name="cancelable-background-work"></a>Lavoro in background annullabile
+
+I componenti eseguono spesso attività in background con esecuzione prolungata, ad esempio<xref:System.Net.Http.HttpClient>la creazione di chiamate di rete () e l'interazione con i database. È consigliabile arrestare il lavoro in background per conservare le risorse di sistema in diverse situazioni. Ad esempio, le operazioni asincrone in background non vengono arrestate automaticamente quando un utente si sposta da un componente.
+
+Altri motivi per cui gli elementi di lavoro in background potrebbero richiedere l'annullamento includono:
+
+* Un'attività in background in esecuzione è stata avviata con i parametri di elaborazione o i dati di input difettosi.
+* Il set corrente di elementi di lavoro in background in esecuzione deve essere sostituito con un nuovo set di elementi di lavoro.
+* È necessario modificare la priorità delle attività attualmente in esecuzione.
+* L'app deve essere arrestata per poterla ridistribuire nel server.
+* Le risorse del server diventano limitate, rendendo necessaria la ripianificazione degli elementi di lavoro di backgound.
+
+Per implementare un modello di lavoro in background annullabile in un componente:
+
+* Utilizzare <xref:System.Threading.CancellationTokenSource> e <xref:System.Threading.CancellationToken>.
+* In caso di [eliminazione del componente](#component-disposal-with-idisposable) e in qualsiasi momento si desideri annullare l'annullamento del token, chiamare [CancellationTokenSource. Cancel](xref:System.Threading.CancellationTokenSource.Cancel%2A) per segnalare che il lavoro in background deve essere annullato.
+* Dopo che la chiamata asincrona restituisce, <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A> chiamare sul token.
+
+Nell'esempio seguente:
+
+* `await Task.Delay(5000, cts.Token);`rappresenta il lavoro in background asincrono con esecuzione prolungata.
+* `BackgroundResourceMethod`rappresenta un metodo in background con esecuzione prolungata che non `Resource` deve essere avviato se l'oggetto viene eliminato prima della chiamata al metodo.
+
+```razor
+@implements IDisposable
+@using System.Threading
+
+<button @onclick="LongRunningWork">Trigger long running work</button>
+
+@code {
+    private Resource resource = new Resource();
+    private CancellationTokenSource cts = new CancellationTokenSource();
+
+    protected async Task LongRunningWork()
+    {
+        await Task.Delay(5000, cts.Token);
+
+        cts.Token.ThrowIfCancellationRequested();
+        resource.BackgroundResourceMethod();
+    }
+
+    public void Dispose()
+    {
+        cts.Cancel();
+        cts.Dispose();
+        resource.Dispose();
+    }
+
+    private class Resource : IDisposable
+    {
+        private bool disposed;
+
+        public void BackgroundResourceMethod()
+        {
+            if (disposed)
+            {
+                throw new ObjectDisposedException(nameof(Resource));
+            }
+            
+            ...
+        }
+        
+        public void Dispose()
+        {
+            disposed = true;
+        }
+    }
+}
+```
