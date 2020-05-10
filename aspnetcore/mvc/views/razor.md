@@ -1,20 +1,26 @@
 ---
-title: Guida di riferimento della sintassi Razor per ASP.NET Core
+title: informazioni di riferimento sulla sintassi Razor per ASP.NET Core
 author: rick-anderson
-description: Informazioni sulla sintassi di markup Razor per l'incorporamento di codice basato su server in pagine Web.
+description: Informazioni sulla Razor sintassi di markup per l'incorporamento di codice basato su server in pagine Web.
 ms.author: riande
 ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: dd5c73be56ed0dafb759df2f5ff2eac1a3b5b09e
-ms.sourcegitcommit: d03905aadf5ceac39fff17706481af7f6c130411
+ms.openlocfilehash: 3e77b25e2660688d0040d47840e47dab8f260197
+ms.sourcegitcommit: 6c7a149168d2c4d747c36de210bfab3abd60809a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 03/29/2020
-ms.locfileid: "80381761"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "83003195"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Guida di riferimento della sintassi Razor per ASP.NET Core
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT), Taylor [Mullen](https://twitter.com/ntaylormullen), e Dan [Vicarel](https://github.com/Rabadash8820)
+Di [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen)e [Dan Vicarel](https://github.com/Rabadash8820)
 
 Razor è una sintassi di markup per l'incorporamento di codice basato su server in pagine Web. La sintassi Razor è costituita da markup Razor, C# e HTML. I file contenenti Razor in genere presentano l'estensione *cshtml*. Razor è presente anche nei file dei [componenti di Razor](xref:blazor/components) (con estensione *razor*).
 
@@ -227,9 +233,9 @@ Il tag `<text>` è utile per controllare gli spazi vuoti durante il rendering de
 * Solo il contenuto all'interno del tag `<text>` viene sottoposto a rendering.
 * Non vengono visualizzati spazi vuoti prima o dopo il tag `<text>` nell'output HTML.
 
-### <a name="explicit-line-transition"></a>Transizione di linea esplicita
+### <a name="explicit-line-transition"></a>Transizione di riga esplicita
 
-Per eseguire il rendering del resto di un'intera riga come HTML all'interno di un blocco di codice, usa `@:` la sintassi:
+Per eseguire il rendering del resto di un'intera riga come HTML all'interno di un `@:` blocco di codice, usare la sintassi:
 
 ```cshtml
 @for (var i = 0; i < people.Length; i++)
@@ -467,7 +473,7 @@ Il blocco `@code` consente a un [componente di Razor](xref:blazor/components) di
 }
 ```
 
-Per i componenti `@code` Razor, [`@functions`](#functions) è `@functions`un alias di e consigliato su . È consentito più di un blocco `@code`.
+Per i componenti Razor `@code` , è un alias [`@functions`](#functions) di e consigliato `@functions`rispetto a. È consentito più di un blocco `@code`.
 
 ::: moniker-end
 
@@ -633,7 +639,7 @@ Razor espone una proprietà `Model` per l'accesso al modello passato alla visual
 <div>The Login Email: @Model.Email</div>
 ```
 
-La direttiva `@model` specifica il tipo della proprietà `Model`. La direttiva specifica l'elemento `T` in `RazorPage<T>` che ha generato la classe da cui deriva la visualizzazione. Se la direttiva `@model` non è specificata, la proprietà `Model` è di tipo `dynamic`. Per ulteriori informazioni, vedere [Modelli @model fortemente tipizzati e parola chiave](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
+La direttiva `@model` specifica il tipo della proprietà `Model`. La direttiva specifica l'elemento `T` in `RazorPage<T>` che ha generato la classe da cui deriva la visualizzazione. Se la direttiva `@model` non è specificata, la proprietà `Model` è di tipo `dynamic`. Per ulteriori informazioni, vedere [modelli fortemente tipizzati e @model la parola chiave](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
 
 ### <a name="namespace"></a>\@namespace
 
@@ -654,7 +660,7 @@ Per l'esempio di Razor Pages illustrato nella tabella seguente:
 
 | Pagina                                        | Spazio dei nomi                             |
 | ------------------------------------------- | ------------------------------------- |
-| *Pages/Index.cshtml*                        | `Hello.World`                         |
+| *Pages/index. cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
 | *Pages/MorePages/EvenMorePages/Page.cshtml* | `Hello.World.MorePages.EvenMorePages` |
 
@@ -666,7 +672,7 @@ Se la cartella *EvenMorePages* nell'esempio precedente ha un file di importazion
 
 | Pagina                                        | Spazio dei nomi               |
 | ------------------------------------------- | ----------------------- |
-| *Pages/Index.cshtml*                        | `Hello.World`           |
+| *Pages/index. cshtml*                        | `Hello.World`           |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
 | *Pages/MorePages/EvenMorePages/Page.cshtml* | `Another.Planet`        |
 
@@ -676,7 +682,7 @@ Se la cartella *EvenMorePages* nell'esempio precedente ha un file di importazion
 
 La direttiva `@page` ha effetti diversi a seconda del tipo del file in cui viene visualizzata. La direttiva:
 
-* In un file con estensione *cshtml* indica che il file è una pagina Razor. Per ulteriori informazioni, vedere <xref:razor-pages/index>Route [personalizzate](xref:razor-pages/index#custom-routes) e .
+* In un file con estensione *cshtml* indica che il file è una pagina Razor. Per ulteriori informazioni, vedere [route personalizzate](xref:razor-pages/index#custom-routes) e <xref:razor-pages/index>.
 * Specifica che un componente Razor deve gestire direttamente le richieste. Per altre informazioni, vedere <xref:blazor/routing>.
 
 ::: moniker-end
@@ -701,7 +707,7 @@ La direttiva `@using` aggiunge la direttiva C# `using` alla visualizzazione gene
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Nei [componenti Razor](xref:blazor/components), `@using` controlla anche quali componenti rientrano nell'ambito.
+Nei [componenti Razor](xref:blazor/components)controlla `@using` anche quali componenti sono inclusi nell'ambito.
 
 ::: moniker-end
 
@@ -721,7 +727,7 @@ Nei [componenti Razor](xref:blazor/components), `@using` controlla anche quali c
 
 Il data binding nei componenti viene eseguito con l'attributo `@bind`. Per altre informazioni, vedere <xref:blazor/data-binding>.
 
-### <a name="onevent"></a>\@all'indirizzo (EVENT)
+### <a name="onevent"></a>\@in {EVENT}
 
 *Questo scenario si applica solo ai componenti di Razor (con estensione razor).*
 
@@ -731,17 +737,17 @@ Razor fornisce funzionalità di gestione degli eventi per i componenti. Per altr
 
 ::: moniker range=">= aspnetcore-3.1"
 
-### <a name="oneventpreventdefault"></a>\@:preventDefault
+### <a name="oneventpreventdefault"></a>\@in {EVENT}:p reventDefault
 
 *Questo scenario si applica solo ai componenti di Razor (con estensione razor).*
 
 Impedisce l'azione predefinita per l'evento.
 
-### <a name="oneventstoppropagation"></a>\@on:EVENT:stopPropagation
+### <a name="oneventstoppropagation"></a>\@in {EVENT}: stopPropagation
 
 *Questo scenario si applica solo ai componenti di Razor (con estensione razor).*
 
-Interrompe la propagazione dell'evento per l'evento.
+Arresta la propagazione degli eventi per l'evento.
 
 ::: moniker-end
 
@@ -763,7 +769,7 @@ I riferimenti ai componenti (`@ref`) consentono di fare riferimento a un'istanza
 
 *Questo scenario si applica solo ai componenti di Razor (con estensione razor).*
 
-La `@typeparam` direttiva dichiara un parametro di tipo generico per la classe del componente generata. Per altre informazioni, vedere <xref:blazor/templated-components#generic-typed-components>.
+La `@typeparam` direttiva dichiara un parametro di tipo generico per la classe Component generata. Per altre informazioni, vedere <xref:blazor/templated-components#generic-typed-components>.
 
 ::: moniker-end
 
@@ -878,9 +884,9 @@ Esistono tre direttive che riguardano gli [helper tag](xref:mvc/views/tag-helper
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Rimuove gli helper tag aggiunti in precedenza da una visualizzazione. |
 | [`@tagHelperPrefix`](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifica un prefisso del tag per abilitare il supporto dell'helper tag e renderne esplicito l'uso. |
 
-## <a name="razor-reserved-keywords"></a>Parole chiave riservate Razor
+## <a name="razor-reserved-keywords"></a>RazorParole chiave riservate
 
-### <a name="razor-keywords"></a>Parole chiave Razor
+### <a name="razor-keywords"></a>RazorParole
 
 * page (richiede ASP.NET Core 2.1 o versione successiva)
 * namespace
@@ -890,9 +896,9 @@ Esistono tre direttive che riguardano gli [helper tag](xref:mvc/views/tag-helper
 * section
 * helper (attualmente non supportata da ASP.NET Core)
 
-Le parole chiave Razor sono precedute dal carattere di escape `@(Razor Keyword)` (ad esempio, `@(functions)`).
+Razorle parole chiave sono precedute da `@(Razor Keyword)` un `@(functions)`carattere di escape (ad esempio,).
 
-### <a name="c-razor-keywords"></a>Parole chiave Razor C#
+### <a name="c-razor-keywords"></a>Parole Razor chiave di C#
 
 * case
 * do
@@ -909,28 +915,28 @@ Le parole chiave Razor sono precedute dal carattere di escape `@(Razor Keyword)`
 * using
 * while
 
-Le parole chiave Razor C# devono essere precedute dal doppio carattere di escape `@(@C# Razor Keyword)` (ad esempio, `@(@case)`). Il primo `@` è il carattere di escape del parser Razor. Il secondo `@` è il carattere di escape del parser C#.
+Le Razor parole chiave di C# devono essere con doppio `@(@C# Razor Keyword)` carattere di escape ( `@(@case)`ad esempio,). Il primo `@` carattere di escape Razor del parser. Il secondo `@` è il carattere di escape del parser C#.
 
-### <a name="reserved-keywords-not-used-by-razor"></a>Parole chiave riservate non usate da Razor
+### <a name="reserved-keywords-not-used-by-razor"></a>Parole chiave riservate non usate daRazor
 
 * classe
 
-## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Ispezionare la classe C# Razor generata per una visualizzazione
+## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Esaminare la Razor classe C# generata per una visualizzazione
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Con .NET Core SDK 2.1 o versioni successive, il [SDK Razor](xref:razor-pages/sdk) gestisce la compilazione dei file Razor. Quando si compila un progetto, il SDK Razor genera una directory *obj/<build_configuration>/<target_framework_moniker>/Razor* nella radice del progetto. La struttura di directory all'interno della directory *Razor* rispecchia la struttura di directory del progetto.
+Con .NET Core SDK 2,1 o versioni successive, l' [ Razor SDK](xref:razor-pages/sdk) gestisce la Razor compilazione dei file. Quando si compila un progetto, Razor l'SDK genera una directory *obj/<build_configuration>/<target_framework_monikerRazor>/* nella radice del progetto. La struttura di directory all' *Razor* interno della directory rispecchia la struttura di directory del progetto.
 
-Si consideri la seguente struttura di directory in un progetto Razor Pages ASP.NET Core 2.1 destinato a .NET Core 2.1:
+Si consideri la struttura di directory seguente Razor in un progetto ASP.NET Core 2,1 Pages destinato a .net core 2,1:
 
-* **Aree/**
-  * **Amministratore/**
-    * **Pagine/**
+* **Aree**
+  * **Admin**
+    * **Pagine**
       * *Index.cshtml*
       * *Index.cshtml.cs*
-* **Pagine/**
-  * **Condiviso/**
-    * *_Layout.cshtml*
+* **Pagine**
+  * **Condiviso**
+    * *_Layout. cshtml*
   * *_ViewImports.cshtml*
   * *_ViewStart.cshtml*
   * *Index.cshtml*
@@ -938,22 +944,22 @@ Si consideri la seguente struttura di directory in un progetto Razor Pages ASP.N
 
 La compilazione del progetto nella configurazione *Debug* produce la seguente directory *obj*:
 
-* **obj/**
-  * **Debug/**
+* **obj**
+  * **Debug**
     * **netcoreapp2.1/**
-      * **Rasoio/**
-        * **Aree/**
-          * **Amministratore/**
-            * **Pagine/**
+      * **Razor/**
+        * **Aree**
+          * **Admin**
+            * **Pagine**
               * *Index.g.cshtml.cs*
-        * **Pagine/**
-          * **Condiviso/**
+        * **Pagine**
+          * **Condiviso**
             * *_Layout.g.cshtml.cs*
           * *_ViewImports.g.cshtml.cs*
           * *_ViewStart.g.cshtml.cs*
           * *Index.g.cshtml.cs*
 
-Per visualizzare la classe generata per *Pages/Index.cshtml* aprire *obj/Debug/netcoreapp2.1/Razor/Pages/Index.g.cshtml.cs*.
+Per visualizzare la classe generata per *pages/index. cshtml*, aprire *obj/debug/netcoreapp 2.1Razor//pages/index.g.cshtml.cs*.
 
 ::: moniker-end
 
@@ -975,7 +981,7 @@ Impostare un punto di interruzione per l'istruzione `return csharpDocument;` di 
 
 ## <a name="view-lookups-and-case-sensitivity"></a>Visualizzazione di ricerche e distinzione tra maiuscole e minuscole
 
-Il motore di visualizzazione Razor esegue ricerche con distinzione tra maiuscole e minuscole per le visualizzazioni. La ricerca effettiva è tuttavia determinata dal file system sottostante:
+Il Razor motore di visualizzazione esegue ricerche con distinzione tra maiuscole e minuscole per le visualizzazioni. La ricerca effettiva è tuttavia determinata dal file system sottostante:
 
 * Origine basata su file:
   * Nei sistemi operativi con file system che non fanno distinzione tra maiuscole e minuscole (ad esempio, Windows), le ricerche del provider di file fisici non eseguono la distinzione tra maiuscole e minuscole. Ad esempio, `return View("Test")` comporta corrispondenze per */Views/Home/Test.cshtml*, */Views/home/test.cshtml* e qualsiasi altra variante di maiuscole e minuscole.
@@ -985,10 +991,10 @@ Il motore di visualizzazione Razor esegue ricerche con distinzione tra maiuscole
 Gli sviluppatori sono invitati a far corrispondere le maiuscole e minuscole dei nomi di file e directory per quanto riguarda le maiuscole e minuscole di:
 
 * Nomi di area, controller e azione.
-* Pagine Razor.
+* RazorPagine.
 
 La distinzione tra maiuscole e minuscole assicura che le distribuzioni trovino le proprie visualizzazioni indipendentemente dal file system sottostante.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-[Introduzione alla programmazione Web ASP.NET utilizzando la sintassi Razor](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) fornisce molti esempi di programmazione con la sintassi Razor.
+[Introduzione alla programmazione Web ASP.NET con la Razor sintassi](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) fornisce molti esempi di programmazione con Razor la sintassi.
