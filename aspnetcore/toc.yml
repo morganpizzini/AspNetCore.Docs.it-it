@@ -339,14 +339,16 @@
                   uid: security/blazor/webassembly/standalone-with-azure-active-directory
                 - name: App autonoma con AAD B2C
                   uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-                - name: App ospitata con Identity Server
-                  uid: security/blazor/webassembly/hosted-with-identity-server
                 - name: App ospitata con AAD
                   uid: security/blazor/webassembly/hosted-with-azure-active-directory
                 - name: App ospitata con AAD B2C
                   uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+                - name: App ospitata con Identity Server
+                  uid: security/blazor/webassembly/hosted-with-identity-server
                 - name: Scenari aggiuntivi
                   uid: security/blazor/webassembly/additional-scenarios
+                - name: Gruppi e ruoli di AAD
+                  uid: security/blazor/webassembly/aad-groups-roles
             - name: Server Blazor
               items:
                 - name: Panoramica
@@ -1134,14 +1136,16 @@
               uid: security/blazor/webassembly/standalone-with-azure-active-directory
             - name: App autonoma con AAD B2C
               uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-            - name: App ospitata con Identity Server
-              uid: security/blazor/webassembly/hosted-with-identity-server
             - name: App ospitata con AAD
               uid: security/blazor/webassembly/hosted-with-azure-active-directory
             - name: App ospitata con AAD B2C
               uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+            - name: App ospitata con Identity Server
+              uid: security/blazor/webassembly/hosted-with-identity-server
             - name: Scenari aggiuntivi
               uid: security/blazor/webassembly/additional-scenarios
+            - name: Gruppi e ruoli di AAD
+              uid: security/blazor/webassembly/aad-groups-roles
         - name: Server Blazor
           items:
             - name: Panoramica
