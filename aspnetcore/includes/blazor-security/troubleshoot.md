@@ -1,4 +1,4 @@
-## <a name="troubleshoot"></a>Risolvere problemi
+## <a name="troubleshoot"></a>Risolvere i problemi
 
 ### <a name="cookies-and-site-data"></a>Cookie e dati del sito
 
