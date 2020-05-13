@@ -1,5 +1,5 @@
 ---
-title: Crittografia chiave inattiva in ASP.NET Core
+title: Crittografia chiave inattiva in Windows e Azure con ASP.NET Core
 author: rick-anderson
 description: Informazioni sui dettagli di implementazione di ASP.NET Core crittografia della chiave di protezione dati inattivi.
 ms.author: riande
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-encryption-at-rest
-ms.openlocfilehash: e68b8e09dbd876c6f0d37242ebaa415994b3b808
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c927c926212aeb1263d15fd3fdc753c377b2e305
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776929"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153561"
 ---
-# <a name="key-encryption-at-rest-in-aspnet-core"></a>Crittografia chiave inattiva in ASP.NET Core
+# <a name="key-encryption-at-rest-in-windows-and-azure-using-aspnet-core"></a>Crittografia chiave inattiva in Windows e Azure con ASP.NET Core
 
 Per impostazione predefinita, il sistema di protezione dei dati [utilizza un meccanismo di individuazione](xref:security/data-protection/configuration/default-settings) per determinare come crittografare le chiavi di crittografia inattive. Lo sviluppatore può eseguire l'override del meccanismo di individuazione e specificare manualmente come crittografare le chiavi inattive.
 
@@ -106,7 +106,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Esiste anche un overload senza parametri di `ProtectKeysWithDpapiNG`. Utilizzare questo metodo pratico per specificare la regola "SID = {CURRENT_ACCOUNT_SID}", dove *CURRENT_ACCOUNT_SID* è il SID dell'account utente di Windows corrente:
+Esiste anche un overload senza parametri di `ProtectKeysWithDpapiNG` . Utilizzare questo metodo pratico per specificare la regola "SID = {CURRENT_ACCOUNT_SID}", dove *CURRENT_ACCOUNT_SID* è il SID dell'account utente di Windows corrente:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

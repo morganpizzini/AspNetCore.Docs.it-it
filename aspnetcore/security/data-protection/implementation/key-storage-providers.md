@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: a8d38f17b066a0aa9a38b1bdfea3491f733cf1bc
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cdf10cd26f3eb9af386f782475eeabbda50f0df9
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776877"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153342"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Provider di archiviazione chiavi in ASP.NET Core
 
@@ -116,7 +116,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker-end
 
-Per altre informazioni, vedere i seguenti argomenti:
+Per altre informazioni, vedere gli argomenti seguenti:
 
 * [StackExchange. Redis ConnectionMultiplexer](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/Basics.md)
 * [Cache Redis di Azure](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache#connect-to-the-cache)
@@ -147,13 +147,13 @@ Il pacchetto [Microsoft. AspNetCore. dataprotection. EntityFrameworkCore](https:
 
 Con questo pacchetto, le chiavi possono essere condivise tra più istanze di un'app Web.
 
-Per configurare il provider di EF Core, chiamare il metodo [\<PersistKeysToDbContext TContext>](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
+Per configurare il provider di EF Core, chiamare il metodo [PersistKeysToDbContext \< TContext>](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
 
 [!code-csharp[Main](key-storage-providers/sample/Startup.cs?name=snippet&highlight=13-20)]
 
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
-Il parametro generico, `TContext`, deve ereditare da [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) e implementare [IDataProtectionKeyContext](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.idataprotectionkeycontext):
+Il parametro generico, `TContext` , deve ereditare da [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) e implementare [IDataProtectionKeyContext](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.idataprotectionkeycontext):
 
 [!code-csharp[Main](key-storage-providers/sample/MyKeysContext.cs)]
 
@@ -179,13 +179,13 @@ dotnet ef database update --context MyKeysContext
 
 ---
 
-`MyKeysContext`è l' `DbContext` oggetto definito nel codice di esempio precedente. Se si usa un `DbContext` con un nome diverso, sostituire con il `DbContext` nome. `MyKeysContext`
+`MyKeysContext`è l'oggetto `DbContext` definito nel codice di esempio precedente. Se si usa un `DbContext` con un nome diverso, sostituire con il `DbContext` nome `MyKeysContext` .
 
 La `DataProtectionKeys` classe/entità adotta la struttura illustrata nella tabella seguente.
 
 | Proprietà/campo | Tipo CLR | Tipo SQL              |
 | -------------- | -------- | --------------------- |
-| `Id`           | `int`    | `int`, PK, not null   |
+| `Id`           | `int`    | `int`, PK, `IDENTITY(1,1)` , not null   |
 | `FriendlyName` | `string` | `nvarchar(MAX)`, null |
 | `Xml`          | `string` | `nvarchar(MAX)`, null |
 
