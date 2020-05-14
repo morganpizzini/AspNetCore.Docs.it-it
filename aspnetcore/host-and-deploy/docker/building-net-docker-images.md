@@ -4,7 +4,7 @@ author: rick-anderson
 description: Informazioni su come usare le immagini Docker per .NET Core pubblicate dal registro Docker. Eseguire il pull di immagini e compilare immagini personalizzate.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/15/2020
+ms.date: 05/12/2020
 no-loc:
 - Blazor
 - Identity
@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: bce04caf20dcf23ab7160066d55a279b29dca1ae
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7394cba07109fce5a8718998b4e2a3b5bf752b0b
+ms.sourcegitcommit: e87dfa08fec0be1008249b1be678e5f79dcc5acb
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774106"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83382517"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Immagini Docker per ASP.NET Core
 
@@ -209,7 +209,6 @@ COPY aspnetapp/. ./aspnetapp/
 WORKDIR /app/aspnetapp
 RUN dotnet publish -c Release -o out
 
-
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 WORKDIR /app
 COPY --from=build /app/aspnetapp/out ./
@@ -245,21 +244,15 @@ COPY aspnetapp/. ./aspnetapp/
 WORKDIR /app/aspnetapp
 RUN dotnet publish -c Release -o out
 
-
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/aspnetapp/out ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
-::: moniker-end
+Come indicato nel Dockerfile precedente, i `*.csproj` file vengono copiati e ripristinati come *livelli*distinti. Quando il `docker build` comando compila un'immagine, usa una cache predefinita. Se i `*.csproj` file non sono stati modificati dopo l'ultima esecuzione del `docker build` comando, `dotnet restore` non è necessario eseguire di nuovo il comando. Viene invece riutilizzata la cache predefinita per il `dotnet restore` livello corrispondente. Per ulteriori informazioni, vedere [procedure consigliate per la scrittura di dockerfile](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
 
-```dockerfile
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
-WORKDIR /app
-COPY published/aspnetapp.dll ./
-ENTRYPOINT ["dotnet", "aspnetapp.dll"]
-```
+::: moniker-end
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
