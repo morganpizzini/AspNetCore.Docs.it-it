@@ -14,9 +14,9 @@
   uid: getting-started
 - name: Note sulla versione
   items:
-    - name: Novità nella versione 3.1
+    - name: Novità della versione 3.1
       uid: aspnetcore-3.1
-    - name: Novità nella versione 3.0
+    - name: Novità della versione 3.0
       uid: aspnetcore-3.0
     - name: Novità nella versione 2.2
       uid: aspnetcore-2.2
@@ -38,7 +38,7 @@
               uid: tutorials/razor-pages/index
             - name: Introduzione
               uid: tutorials/razor-pages/razor-pages-start
-            - name: Aggiungere un modello
+            - name: Aggiunta di un modello
               uid: tutorials/razor-pages/model
             - name: Scaffolding
               uid: tutorials/razor-pages/page
@@ -59,11 +59,11 @@
               uid: tutorials/first-mvc-app/index
             - name: Introduzione
               uid: tutorials/first-mvc-app/start-mvc
-            - name: Aggiungere un controller
+            - name: Aggiunta di un controller
               uid: tutorials/first-mvc-app/adding-controller
             - name: Aggiungere una vista
               uid: tutorials/first-mvc-app/adding-view
-            - name: Aggiungere un modello
+            - name: Aggiunta di un modello
               uid: tutorials/first-mvc-app/adding-model
             - name: Usare un database
               uid: tutorials/first-mvc-app/working-with-sql
@@ -168,7 +168,7 @@
         - name: Sicurezza delle app Web >>
           displayName: 'tutorial, identity'
           href: /learn/modules/secure-aspnet-core-identity/
-- name: Concetti fondamentali
+- name: Nozioni fondamentali
   items:
     - name: Panoramica
       uid: fundamentals/index
@@ -194,7 +194,7 @@
       uid: fundamentals/environments
     - name: Registrazione
       uid: fundamentals/logging/index
-    - name: Routing
+    - name: Routing.
       uid: fundamentals/routing
     - name: Gestire gli errori
       uid: fundamentals/error-handling
@@ -215,7 +215,7 @@
               uid: tutorials/razor-pages/index
             - name: Introduzione
               uid: tutorials/razor-pages/razor-pages-start
-            - name: Aggiungere un modello
+            - name: Aggiunta di un modello
               uid: tutorials/razor-pages/model
             - name: Scaffolding
               uid: tutorials/razor-pages/page
@@ -243,11 +243,11 @@
               uid: tutorials/first-mvc-app/index
             - name: Introduzione
               uid: tutorials/first-mvc-app/start-mvc
-            - name: Aggiungere un controller
+            - name: Aggiunta di un controller
               uid: tutorials/first-mvc-app/adding-controller
             - name: Aggiungere una vista
               uid: tutorials/first-mvc-app/adding-view
-            - name: Aggiungere un modello
+            - name: Aggiunta di un modello
               uid: tutorials/first-mvc-app/adding-model
             - name: Usare un database
               uid: tutorials/first-mvc-app/working-with-sql
@@ -261,13 +261,13 @@
               uid: tutorials/first-mvc-app/validation
             - name: Esaminare i dettagli e i metodi di eliminazione
               uid: tutorials/first-mvc-app/details
-        - name: Visualizzazioni
+        - name: Viste
           uid: mvc/views/overview
         - name: Visualizzazioni parziali
           uid: mvc/views/partial
-        - name: Controllers
+        - name: Controller
           uid: mvc/controllers/actions
-        - name: Routing
+        - name: Routing.
           uid: mvc/controllers/routing
         - name: Inserimento di dipendenze - Controller
           uid: mvc/controllers/dependency-injection
@@ -297,7 +297,7 @@
           uid: blazor/components
         - name: Associazione dati
           uid: blazor/data-binding
-        - name: Gestione di eventi
+        - name: Gestione degli eventi
           uid: blazor/event-handling
         - name: Ciclo di vita
           uid: blazor/lifecycle
@@ -311,9 +311,9 @@
           uid: blazor/layouts
         - name: Moduli e convalida
           uid: blazor/forms-validation
-        - name: Inserimento di dipendenze
+        - name: Inserimento delle dipendenze
           uid: blazor/dependency-injection
-        - name: Routing
+        - name: Routing.
           uid: blazor/routing
         - name: Chiamare JavaScript da .NET
           uid: blazor/call-javascript-from-dotnet
@@ -367,6 +367,8 @@
           uid: blazor/debug
         - name: Chiamare un'API Web da WebAssembly
           uid: blazor/call-web-api
+        - name: Prestazioni di WebAssembly
+          uid: performance/blazor/webassembly-best-practices
         - name: Applicazioni Web progressive
           uid: blazor/progressive-web-app
         - name: Ospitare e distribuire
@@ -383,7 +385,7 @@
           uid: blazor/advanced-scenarios
     - name: Sviluppo lato client
       items:
-        - name: Applicazioni a pagina singola
+        - name: App a pagina singola
           items:
             - name: Angular
               uid: spa/angular
@@ -428,7 +430,7 @@
           uid: mvc/views/tag-helpers/th-components
         - name: Helper tag predefiniti
           items:
-            - name: Ancoraggio
+            - name: Anchor
               uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
             - name: Cache
               uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
@@ -436,25 +438,25 @@
               uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
             - name: Cache distribuita
               uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
-            - name: Ambiente
+            - name: Environment
               uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
             - name: Form
               href: 'mvc/views/working-with-forms.md#the-form-tag-helper'
             - name: Azione modulo
               href: 'mvc/views/working-with-forms.md#the-form-action-tag-helper'
-            - name: Image
+            - name: Immagine
               uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
             - name: Input
               href: 'mvc/views/working-with-forms.md#the-input-tag-helper'
-            - name: Label
+            - name: Etichetta
               href: 'mvc/views/working-with-forms.md#the-label-tag-helper'
             - name: Collegamento
               uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
-            - name: Partial
+            - name: Parziale
               uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
             - name: Script
               uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
-            - name: Seleziona
+            - name: Select
               href: 'mvc/views/working-with-forms.md#the-select-tag-helper'
             - name: Area di testo
               href: 'mvc/views/working-with-forms.md#the-textarea-tag-helper'
@@ -557,7 +559,7 @@
     - name: Client
       displayName: signalr
       items:
-        - name: Funzionalità del client SignalR
+        - name: Panoramica
           uid: signalr/client-features
           displayName: signalr
         - name: Client .NET
@@ -598,13 +600,13 @@
     - name: Autenticazione e autorizzazione
       uid: signalr/authn-and-authz
       displayName: signalr
-    - name: Considerazioni sulla sicurezza
+    - name: Considerazioni relative alla sicurezza
       uid: signalr/security
       displayName: signalr
     - name: Protocollo hub MessagePack
       uid: signalr/messagepackhubprotocol
       displayName: signalr
-    - name: Flusso
+    - name: Streaming
       uid: signalr/streaming
       displayName: signalr
     - name: Confronto tra SignalR e SignalR Core
@@ -647,7 +649,7 @@
       uid: grpc/authn-and-authz
     - name: Registrazione e diagnostica
       uid: grpc/diagnostics
-    - name: Considerazioni sulla sicurezza
+    - name: Considerazioni relative alla sicurezza
       uid: grpc/security
     - name: Controllo delle versioni dei servizi gRPC
       uid: grpc/versioning
@@ -659,7 +661,7 @@
       uid: grpc/comparison
     - name: Esempi
       href: 'https://github.com/grpc/grpc-dotnet/tree/master/examples'
-    - name: Risolvere i problemi
+    - name: Risolvere problemi
       uid: grpc/troubleshoot
 - name: 'Test, debug e risoluzione dei problemi'
   items:
@@ -743,7 +745,7 @@
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-blobs?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Archiviazione - Code
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-        - name: Archiviazione - Tabelle
+        - name: Archiviazione tabelle
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Ospitare e distribuire
   displayName: publish
@@ -775,7 +777,7 @@
         - name: Modulo ASP.NET Core
           displayName: 'azure, deploy, publish'
           uid: host-and-deploy/aspnet-core-module
-        - name: Risolvere i problemi
+        - name: Risolvere problemi
           displayName: 'azure, deploy, publish'
           uid: test/troubleshoot-azure-iis
         - name: Informazioni di riferimento sugli errori
@@ -818,7 +820,7 @@
         - name: Moduli IIS
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/modules
-        - name: Risolvere i problemi
+        - name: Risolvere problemi
           displayName: 'deploy, publish'
           uid: test/troubleshoot-azure-iis
         - name: Informazioni di riferimento sugli errori
@@ -1088,7 +1090,7 @@
         - name: Provider di configurazione di Azure Key Vault
           displayName: 'password, connection string, API key, secrets'
           uid: security/key-vault-configuration
-    - name: Imporre HTTPS
+    - name: Applicare HTTPS
       uid: security/enforcing-ssl
     - name: Ospitare Docker con HTTPS
       uid: security/docker-https
@@ -1162,7 +1164,7 @@
       uid: performance/performance-best-practices
     - name: Memoria e GC
       uid: performance/memory
-    - name: Memorizzazione nella cache delle risposte
+    - name: Memorizzazione delle risposte nella cache
       items:
         - name: Panoramica
           uid: performance/caching/response
@@ -1180,6 +1182,8 @@
       uid: performance/diagnostic-tools
     - name: Test di carico e di stress
       uid: test/loadtests
+    - name: WebAssembly Blazor
+      uid: performance/blazor/webassembly-best-practices
 - name: Globalizzazione e localizzazione
   items:
     - name: Panoramica
@@ -1189,7 +1193,7 @@
       uid: fundamentals/portable-object-localization
     - name: Estendibilità
       uid: fundamentals/localization-extensibility
-    - name: Risolvere i problemi
+    - name: Risolvere problemi
       uid: fundamentals/troubleshoot-aspnet-core-localization
 - name: Avanzate
   items:
@@ -1206,7 +1210,7 @@
     - name: Operazioni di richieste e risposte
       displayName: middleware
       uid: fundamentals/middleware/request-response
-    - name: Riscrittura dell'URL
+    - name: Riscrittura URL
       uid: fundamentals/url-rewriting
     - name: Provider di file
       uid: fundamentals/file-providers
@@ -1283,7 +1287,7 @@
     - name: Registrazione (non ASP.NET Core)
       displayName: 'migrate, migration'
       uid: migration/logging-nonaspnetcore
-- name: API (riferimento)
+- name: Informazioni di riferimento sulle API
   href: /dotnet/api/?view=aspnetcore-2.2
-- name: Collaborazione
+- name: Contribuire
   href: 'https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md'
