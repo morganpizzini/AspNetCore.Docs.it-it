@@ -1,45 +1,31 @@
 ---
-title: Configurare il linker per ASP.NET CoreBlazor
-author: guardrex
-description: Informazioni su come controllare il linker del linguaggio intermedio (IL) durante Blazor la compilazione di un'app.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/04/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/blazor/configure-linker
-ms.openlocfilehash: b274752b375f68cca0c0a9adf9c146bc525d9eba
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775180"
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
-# <a name="configure-the-linker-for-aspnet-core-blazor"></a>Configurare il linker per ASP.NET Core Blazor
+# <a name="configure-the-linker-for-aspnet-core-blazor"></a>Configurare il linker per ASP.NET CoreBlazor
 
 Di [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-Blazer webassembly esegue il collegamento [Intermediate Language (il)](/dotnet/standard/managed-code#intermediate-language--execution) durante una compilazione per eliminare il linguaggio intermedio non necessario dagli assembly di output dell'app. Il linker è disabilitato durante la compilazione nella configurazione di debug. Per abilitare il linker, le app devono essere compilate in configurazione versione. Quando si distribuiscono le app webassembly blazer, si consiglia di eseguire la compilazione in versione. 
+BlazorWebassembly esegue il collegamento del [linguaggio intermedio (il)](/dotnet/standard/managed-code#intermediate-language--execution) durante una compilazione per eliminare il linguaggio intermedio non necessario dagli assembly di output dell'app. Il linker è disabilitato durante la compilazione nella configurazione di debug. Per abilitare il linker, le app devono essere compilate in configurazione versione. Quando si distribuiscono le app webassembly, è consigliabile compilare in versione Blazor . 
 
 Il collegamento di un'app ottimizza le dimensioni, ma può avere effetti negativi. Le app che usano la reflection o le funzionalità dinamiche correlate potrebbero interrompersi quando vengono tagliate perché il linker non è a conoscenza di questo comportamento dinamico e non può determinare in generale quali tipi sono necessari per la reflection in fase di esecuzione. Per tagliare tali app, il linker deve essere informato sui tipi necessari per la reflection nel codice e nei pacchetti o Framework da cui dipende l'app. 
 
 Per assicurarsi che l'app tagliata funzioni correttamente una volta distribuita, è importante testare le build di rilascio dell'app spesso durante lo sviluppo.
 
-Il collegamento per le app blazer può essere configurato usando le funzionalità di MSBuild seguenti:
+Il collegamento per Blazor le app può essere configurato usando le funzionalità di MSBuild seguenti:
 
 * Configurare il collegamento a livello globale con una [proprietà di MSBuild](#control-linking-with-an-msbuild-property).
 * Controllo del collegamento per ogni assembly con un [file di configurazione](#control-linking-with-a-configuration-file).
 
 ## <a name="control-linking-with-an-msbuild-property"></a>Controllo del collegamento con una proprietà MSBuild
 
-Il collegamento viene abilitato quando si compila un'app nella `Release` configurazione. Per modificare questa configurazione, configurare `BlazorWebAssemblyEnableLinking` la proprietà MSBuild nel file di progetto:
+Il collegamento viene abilitato quando si compila un'app nella `Release` configurazione. Per modificare questa configurazione, configurare la `BlazorWebAssemblyEnableLinking` Proprietà MSBuild nel file di progetto:
 
 ```xml
 <PropertyGroup>
@@ -107,9 +93,9 @@ Nell'esempio seguente il file *LinkerConfig. XML* viene specificato come una ris
 
 ### <a name="configure-the-linker-for-internationalization"></a>Configurare il linker per l'internazionalizzazione
 
-Per impostazione predefinita, la configurazione del linker di blazer per le app webassembly di Blazer rimuove le informazioni di internazionalizzazione ad eccezione delle impostazioni locali richieste in modo esplicito. La rimozione di questi assembly riduce al minimo le dimensioni dell'app.
+Per impostazione predefinita, Blazor la configurazione del linker per le Blazor app webassembly rimuove le informazioni di internazionalizzazione ad eccezione delle impostazioni locali richieste in modo esplicito. La rimozione di questi assembly riduce al minimo le dimensioni dell'app.
 
-Per controllare quali assembly I18N vengono conservati, impostare la `<BlazorWebAssemblyI18NAssemblies>` proprietà MSBuild nel file di progetto:
+Per controllare quali assembly I18N vengono conservati, impostare la `<BlazorWebAssemblyI18NAssemblies>` Proprietà MSBuild nel file di progetto:
 
 ```xml
 <PropertyGroup>
@@ -118,15 +104,146 @@ Per controllare quali assembly I18N vengono conservati, impostare la `<BlazorWeb
 ```
 
 | Valore Region     | Assembly dell'area mono    |
-| ---------------- | ----------------------- |
-| `all`            | Tutti gli assembly inclusi |
-| `cjk`            | *I18N.CJK.dll*          |
-| `mideast`        | *I18N.MidEast.dll*      |
-| `none` (impostazione predefinita) | nessuno                    |
-| `other`          | *I18N.Other.dll*        |
-| `rare`           | *I18N.Rare.dll*         |
-| `west`           | *I18N.West.dll*         |
+| ---
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
 
-Usare una virgola per separare più valori (ad esempio `mideast,west`,).
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-------- | Titolo---: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app."
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "configurare il linker per ASP.NET Core Blazor " autore: Descrizione: "informazioni su come controllare il linker linguaggio intermedio (il) durante la compilazione di un' Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+------------ | | `all`            | Tutti gli assembly inclusi | | `cjk`             |  *I18n. CJK. dll* | | `mideast`         |  *I18n. . Dll* `none`(impostazione predefinita) | Nessuno | | `other`           |  *I18n. Other. dll* | | `rare`            |  *I18n. Rare. dll* | | `west`            |  *I18n. Dll occidentale*         |
+
+Usare una virgola per separare più valori (ad esempio, `mideast,west` ).
 
 Per altre informazioni, vedere [i18n: Pnetlib internationalation Framework Library (repository GitHub mono/mono)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
+
+## <a name="additional-resources"></a>Risorse aggiuntive
+
+* <xref:performance/blazor/webassembly-best-practices#intermediate-language-il-linking>

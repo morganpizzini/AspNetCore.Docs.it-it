@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 5fda458c2418c3570d55d551ce5144730afd7f85
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 0dda4fb55b1e2275d9cdb2af0b55824b12121dee
+ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767226"
+ms.lasthandoff: 05/17/2020
+ms.locfileid: "83444217"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registrazione e diagnostica in ASP.NET Core SignalR
 
@@ -35,14 +35,14 @@ Poiché SignalR fa parte di ASP.NET Core, usa il sistema di registrazione ASP.NE
 
 SignalR usa due categorie di logger:
 
-* `Microsoft.AspNetCore.SignalR`&ndash; per i log relativi ai protocolli Hub, attivazione di hub, richiamo di metodi e altre attività correlate all'hub.
-* `Microsoft.AspNetCore.Http.Connections`&ndash; per i log relativi a trasporti quali WebSocket, polling prolungato ed eventi inviati dal server e l'infrastruttura SignalR di basso livello.
+* `Microsoft.AspNetCore.SignalR`&ndash;per i log relativi ai protocolli Hub, attivazione di hub, richiamo di metodi e altre attività correlate all'hub.
+* `Microsoft.AspNetCore.Http.Connections`&ndash;per i log relativi a trasporti quali WebSocket, polling prolungato ed eventi inviati dal server e l'infrastruttura SignalR di basso livello.
 
-Per abilitare i `Debug` log dettagliati da SignalR, configurare entrambi i prefissi precedenti al livello nel file *appSettings. JSON* aggiungendo gli elementi seguenti alla `LogLevel` sottosezione in: `Logging`
+Per abilitare i log dettagliati da SignalR, configurare entrambi i prefissi precedenti al `Debug` livello nel file *appSettings. JSON* aggiungendo gli elementi seguenti alla sottosezione `LogLevel` in `Logging` :
 
 [!code-json[](diagnostics/logging-config.json?highlight=7-8)]
 
-È anche possibile configurarlo nel codice nel `CreateWebHostBuilder` metodo:
+È anche possibile configurarlo nel codice nel `CreateWebHostBuilder` Metodo:
 
 [!code-csharp[](diagnostics/logging-config-code.cs?highlight=5-6)]
 
@@ -51,7 +51,7 @@ Se non si usa la configurazione basata su JSON, impostare i valori di configuraz
 * `Logging:LogLevel:Microsoft.AspNetCore.SignalR` = `Debug`
 * `Logging:LogLevel:Microsoft.AspNetCore.Http.Connections` = `Debug`
 
-Controllare la documentazione del sistema di configurazione per determinare come specificare i valori di configurazione annidati. Quando si usano le `_` `:` variabili di ambiente, ad esempio, vengono usati due caratteri al posto di ( `Logging__LogLevel__Microsoft.AspNetCore.SignalR`ad esempio,).
+Controllare la documentazione del sistema di configurazione per determinare come specificare i valori di configurazione annidati. Quando si usano le variabili di ambiente, ad esempio, `_` vengono usati due caratteri al posto di `:` (ad esempio, `Logging__LogLevel__Microsoft.AspNetCore.SignalR` ).
 
 È consigliabile usare il `Debug` livello quando si raccolgono dati di diagnostica più dettagliati per l'app. Il `Trace` livello produce diagnostica di basso livello e raramente è necessario per diagnosticare i problemi nell'app.
 
@@ -61,7 +61,7 @@ La modalità di accesso ai log lato server dipende dall'ambiente in cui si esegu
 
 ### <a name="as-a-console-app-outside-iis"></a>Come app console all'esterno di IIS
 
-Se è in esecuzione un'app console, il [logger della console](xref:fundamentals/logging/index#console-provider) deve essere abilitato per impostazione predefinita. I log di SignalR verranno visualizzati nella console di.
+Se è in esecuzione un'app console, il [logger della console](xref:fundamentals/logging/index#console) deve essere abilitato per impostazione predefinita. I log di SignalR verranno visualizzati nella console di.
 
 ### <a name="within-iis-express-from-visual-studio"></a>All'interno IIS Express da Visual Studio
 
@@ -69,7 +69,7 @@ Visual Studio Visualizza l'output del log nella finestra **output** . Selezionar
 
 ### <a name="azure-app-service"></a>Servizio app di Azure
 
-Abilitare l'opzione **registrazione applicazioni (file System)** nella sezione **log di diagnostica** del portale del servizio app Azure e configurare il **livello** su `Verbose`. I log devono essere disponibili dal servizio di **streaming dei log** e nei log nel file System del servizio app. Per altre informazioni, vedere [streaming dei log di Azure](xref:fundamentals/logging/index#azure-log-streaming).
+Abilitare l'opzione **registrazione applicazioni (file System)** nella sezione **log di diagnostica** del portale del servizio app Azure e configurare il **livello** su `Verbose` . I log devono essere disponibili dal servizio di **streaming dei log** e nei log nel file System del servizio app. Per altre informazioni, vedere [streaming dei log di Azure](xref:fundamentals/logging/index#azure-log-streaming).
 
 ### <a name="other-environments"></a>Altri ambienti
 
@@ -80,11 +80,11 @@ Se l'app viene distribuita in un altro ambiente, ad esempio Docker, Kubernetes o
 > [!WARNING]
 > I log lato client possono contenere informazioni riservate dall'app. **Non pubblicare mai log non** elaborati dalle app di produzione nei forum pubblici come github.
 
-Quando si usa il client JavaScript, è possibile configurare le opzioni di `configureLogging` registrazione usando `HubConnectionBuilder`il metodo in:
+Quando si usa il client JavaScript, è possibile configurare le opzioni di registrazione usando il `configureLogging` metodo in `HubConnectionBuilder` :
 
 [!code-javascript[](diagnostics/logging-config-js.js?highlight=3)]
 
-Per disabilitare completamente la `signalR.LogLevel.None` `configureLogging` registrazione, specificare nel metodo.
+Per disabilitare completamente la registrazione, specificare `signalR.LogLevel.None` nel `configureLogging` metodo.
 
 La tabella seguente illustra i livelli di log disponibili per il client JavaScript. Impostando il livello di registrazione su uno di questi valori, viene abilitata la registrazione a tale livello e a tutti i livelli superiori nella tabella.
 
@@ -100,7 +100,7 @@ La tabella seguente illustra i livelli di log disponibili per il client JavaScri
 
 Dopo aver configurato il livello di dettaglio, i log verranno scritti nella console del browser o nell'output standard in un'app NodeJS.
 
-Se si desidera inviare i log a un sistema di registrazione personalizzato, è possibile fornire un oggetto JavaScript che `ILogger` implementa l'interfaccia. L'unico metodo che deve essere implementato è `log`, che accetta il livello dell'evento e il messaggio associato all'evento. Ad esempio:
+Se si desidera inviare i log a un sistema di registrazione personalizzato, è possibile fornire un oggetto JavaScript che implementa l' `ILogger` interfaccia. L'unico metodo che deve essere implementato è `log` , che accetta il livello dell'evento e il messaggio associato all'evento. Ad esempio:
 
 [!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
 
@@ -109,7 +109,7 @@ Se si desidera inviare i log a un sistema di registrazione personalizzato, è po
 > [!WARNING]
 > I log lato client possono contenere informazioni riservate dall'app. **Non pubblicare mai log non** elaborati dalle app di produzione nei forum pubblici come github.
 
-Per ottenere i log dal client .NET, è possibile usare il `ConfigureLogging` metodo su `HubConnectionBuilder`. Funziona allo stesso modo del `ConfigureLogging` metodo in `WebHostBuilder` e. `HostBuilder` È possibile configurare gli stessi provider di registrazione usati in ASP.NET Core. Tuttavia, è necessario installare e abilitare manualmente i pacchetti NuGet per i singoli provider di registrazione.
+Per ottenere i log dal client .NET, è possibile usare il `ConfigureLogging` metodo su `HubConnectionBuilder` . Funziona allo stesso modo del `ConfigureLogging` metodo in `WebHostBuilder` e `HostBuilder` . È possibile configurare gli stessi provider di registrazione usati in ASP.NET Core. Tuttavia, è necessario installare e abilitare manualmente i pacchetti NuGet per i singoli provider di registrazione.
 
 ### <a name="console-logging"></a>Registrazione console
 
@@ -119,19 +119,19 @@ Per abilitare la registrazione della console, aggiungere il pacchetto [Microsoft
 
 ### <a name="debug-output-window-logging"></a>Debug della registrazione della finestra di output
 
-È anche possibile configurare i log per accedere alla finestra di **output** in Visual Studio. Installare il pacchetto [Microsoft. Extensions. Logging. debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) e usare il `AddDebug` metodo:
+È anche possibile configurare i log per accedere alla finestra di **output** in Visual Studio. Installare il pacchetto [Microsoft. Extensions. Logging. debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) e usare il `AddDebug` Metodo:
 
 [!code-csharp[](diagnostics/net-client-debug-log.cs?highlight=6)]
 
 ### <a name="other-logging-providers"></a>Altri provider di registrazione
 
-SignalRsupporta altri provider di registrazione, ad esempio Serilog, seq, NLog o qualsiasi altro sistema di registrazione che si `Microsoft.Extensions.Logging`integra con. Se il sistema di registrazione fornisce `ILoggerProvider`un, è possibile registrarlo `AddProvider`con:
+SignalRsupporta altri provider di registrazione, ad esempio Serilog, seq, NLog o qualsiasi altro sistema di registrazione che si integra con `Microsoft.Extensions.Logging` . Se il sistema di registrazione fornisce un `ILoggerProvider` , è possibile registrarlo con `AddProvider` :
 
 [!code-csharp[](diagnostics/net-client-custom-log.cs?highlight=6)]
 
 ### <a name="control-verbosity"></a>Controllo del livello di dettaglio
 
-Se si esegue la registrazione da altre posizioni nell'app, è possibile che la modifica `Debug` del livello predefinito a sia troppo dettagliata. È possibile usare un filtro per configurare il livello di registrazione SignalR per i log. Questa operazione può essere eseguita nel codice, nello stesso modo in cui si trova nel server:
+Se si esegue la registrazione da altre posizioni nell'app, è possibile che la modifica del livello predefinito a `Debug` sia troppo dettagliata. È possibile usare un filtro per configurare il livello di registrazione per i SignalR log. Questa operazione può essere eseguita nel codice, nello stesso modo in cui si trova nel server:
 
 [!code-csharp[Controlling verbosity in .NET client](diagnostics/logging-config-client-code.cs?highlight=9-10)]
 
@@ -150,7 +150,7 @@ Fiddler è uno strumento molto potente per la raccolta di tracce HTTP. Installar
 
 Se si esegue la connessione tramite HTTPS, sono necessari alcuni passaggi aggiuntivi per assicurarsi che Fiddler possa decrittografare il traffico HTTPS. Per ulteriori informazioni, vedere la [documentazione di Fiddler](https://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS).
 
-Una volta raccolta la traccia, è possibile esportare la traccia scegliendo **file** > **Salva** > **tutte le sessioni** dalla barra dei menu.
+Una volta raccolta la traccia, è possibile esportare la traccia scegliendo **file**  >  **Salva**  >  **tutte le sessioni** dalla barra dei menu.
 
 ![Esportazione di tutte le sessioni da Fiddler](diagnostics/fiddler-export.png)
 
@@ -158,13 +158,13 @@ Una volta raccolta la traccia, è possibile esportare la traccia scegliendo **fi
 
 Questo metodo funziona per tutte le app.
 
-È possibile raccogliere tracce TCP non elaborate tramite tcpdump eseguendo il comando seguente da una shell dei comandi. Se viene ricevuto un errore `root` di autorizzazione, potrebbe essere necessario o precedere il comando: `sudo`
+È possibile raccogliere tracce TCP non elaborate tramite tcpdump eseguendo il comando seguente da una shell dei comandi. `root` `sudo` Se viene ricevuto un errore di autorizzazione, potrebbe essere necessario o precedere il comando:
 
 ```console
 tcpdump -i [interface] -w trace.pcap
 ```
 
-Sostituire `[interface]` con l'interfaccia di rete su cui si vuole eseguire l'acquisizione. In genere, questa operazione è `/dev/eth0` simile a (per l'interfaccia Ethernet standard `/dev/lo0` ) o (per il traffico localhost). Per ulteriori informazioni, vedere la `tcpdump` pagina relativa all'utente nel sistema host.
+Sostituire `[interface]` con l'interfaccia di rete su cui si vuole eseguire l'acquisizione. In genere, questa operazione è simile a `/dev/eth0` (per l'interfaccia Ethernet standard) o `/dev/lo0` (per il traffico localhost). Per ulteriori informazioni, vedere la `tcpdump` pagina relativa all'utente nel sistema host.
 
 ## <a name="collect-a-network-trace-in-the-browser"></a>Raccogliere una traccia di rete nel browser
 
@@ -203,7 +203,7 @@ La maggior parte del browser Strumenti di sviluppo dispone di una scheda di rete
 
 ## <a name="attach-diagnostics-files-to-github-issues"></a>Alleghi i file di diagnostica ai problemi di GitHub
 
-È possibile aggiungere i file di diagnostica ai problemi di GitHub rinominando i file `.txt` in modo che abbiano un'estensione e quindi trascinandoli e rilasciandoli al problema.
+È possibile aggiungere i file di diagnostica ai problemi di GitHub rinominando i file in modo che abbiano un' `.txt` estensione e quindi trascinandoli e rilasciandoli al problema.
 
 > [!NOTE]
 > Non incollare il contenuto dei file di log o delle tracce di rete in un problema di GitHub. Questi log e tracce possono avere dimensioni molto elevate e GitHub li tronca in genere.

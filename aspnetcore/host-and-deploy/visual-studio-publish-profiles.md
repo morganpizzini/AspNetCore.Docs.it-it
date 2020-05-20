@@ -5,7 +5,7 @@ description: Informazioni su come creare profili di pubblicazione in Visual Stud
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 05/14/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/visual-studio-publish-profiles
-ms.openlocfilehash: 0de20b93929162f79d4d15fc4731959e48bb3b6c
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 42d790ad4942ea238fb3bbe56cb92ae4a26ddc2d
+ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776370"
+ms.lasthandoff: 05/16/2020
+ms.locfileid: "83439006"
 ---
 # <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>Profili di pubblicazione di Visual Studio (con estensione pubxml) per la distribuzione di app ASP.NET Core
 
@@ -26,7 +26,7 @@ Di [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) e [Rick Anderson](h
 
 Questo documento descrive come usare Visual Studio 2019 o versioni successive per la creazione e l'uso di profili di pubblicazione. I profili di pubblicazione creati con Visual Studio possono essere usati con MSBuild e Visual Studio. Per istruzioni sulla pubblicazione in Azure, vedere <xref:tutorials/publish-to-azure-webapp-using-vs>.
 
-Il `dotnet new mvc` comando produce un file di progetto contenente l' [ \<elemento> del progetto](/visualstudio/msbuild/project-element-msbuild)a livello di radice seguente:
+Il `dotnet new mvc` comando produce un file di progetto contenente l' [ \< elemento> del progetto](/visualstudio/msbuild/project-element-msbuild)a livello di radice seguente:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -36,7 +36,7 @@ Il `dotnet new mvc` comando produce un file di progetto contenente l' [ \<elemen
 
 L'attributo `Sdk` dell'elemento `<Project>` precedente importa le [proprietà](/visualstudio/msbuild/msbuild-properties) e le [destinazioni](/visualstudio/msbuild/msbuild-targets) di MSBuild rispettivamente da *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.props* e *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets*. Il percorso predefinito per `$(MSBuildSDKsPath)` (con Visual Studio 2019 Enterprise) è la cartella *%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Sdks*.
 
-`Microsoft.NET.Sdk.Web` (Web SDK) dipende da altri SDK, tra cui `Microsoft.NET.Sdk` (.NET Core SDK) e `Microsoft.NET.Sdk.Razor` ([Razor SDK](xref:razor-pages/sdk)). Vengono importate le proprietà e le destinazioni di MSBuild associate a ogni SDK dipendente. Le destinazioni di pubblicazione importano il set appropriato di destinazioni in base al metodo di pubblicazione usato.
+`Microsoft.NET.Sdk.Web`([Web SDK](xref:razor-pages/web-sdk)) dipende da altri SDK, tra cui `Microsoft.NET.Sdk` ([.NET Core SDK](/dotnet/core/project-sdk/msbuild-props)) e `Microsoft.NET.Sdk.Razor` ([Razor SDK](xref:razor-pages/sdk)). Vengono importate le proprietà e le destinazioni di MSBuild associate a ogni SDK dipendente. Le destinazioni di pubblicazione importano il set appropriato di destinazioni in base al metodo di pubblicazione usato.
 
 Quando MSBuild o Visual Studio carica un progetto, vengono eseguite le azioni di alto livello seguenti:
 
@@ -52,13 +52,13 @@ L'elenco di elementi `Content` contiene i file che sono pubblicati in aggiunta a
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Web SDK importa [Razor SDK](xref:razor-pages/sdk). Di conseguenza, anche i file corrispondenti ai criteri `**\*.cshtml` e `**\*.razor` vengono inclusi nell'elenco di elementi `Content`.
+[Web SDK](xref:razor-pages/web-sdk) importa [Razor SDK](xref:razor-pages/sdk). Di conseguenza, anche i file corrispondenti ai criteri `**\*.cshtml` e `**\*.razor` vengono inclusi nell'elenco di elementi `Content`.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-Web SDK importa [Razor SDK](xref:razor-pages/sdk). Di conseguenza, anche i file corrispondenti al criterio `**\*.cshtml` vengono inclusi nell'elenco di elementi `Content`.
+[Web SDK](xref:razor-pages/web-sdk) importa [Razor SDK](xref:razor-pages/sdk). Di conseguenza, anche i file corrispondenti al criterio `**\*.cshtml` vengono inclusi nell'elenco di elementi `Content`.
 
 ::: moniker-end
 
@@ -313,7 +313,7 @@ msbuild {PATH}
 * {PROFILO} &ndash; Nome del profilo di pubblicazione.
 * {NOMEUTENTE} &ndash; Nome utente MSDeploy. {NOMEUTENTE} è disponibile nel profilo di pubblicazione.
 * {PASSWORD} &ndash; Password di MSDeploy. Il valore {PASSWORD} è disponibile nel file *{PROFILO}.PublishSettings*. Scaricare il file *.PublishSettings* da:
-  * **Esplora soluzioni**: selezionare **Visualizza** > **Cloud Explorer**. Connettersi alla sottoscrizione di Azure. Aprire **Servizi app**. Fare clic con il pulsante destro del mouse sull'app. Selezionare **Scarica profilo di pubblicazione**.
+  * **Esplora soluzioni**: selezionare **Visualizza**  >  **Cloud Explorer**. Connettersi alla sottoscrizione di Azure. Aprire **Servizi app**. Fare clic con il pulsante destro del mouse sull'app. Selezionare **Scarica profilo di pubblicazione**.
   * Portale di Azure: selezionare **Ottieni profilo di pubblicazione** nel pannello **Panoramica** dell'app Web.
 
 L'esempio seguente usa un profilo di pubblicazione denominato *AzureWebApp - Web Deploy*:
@@ -371,7 +371,7 @@ MSBuild supporta i [criteri GLOB](https://gruntjs.com/configuring-tasks#globbing
 
 Il markup precedente può essere aggiunto a un profilo di pubblicazione o al file *.csproj*. Quando viene aggiunta al file *.csproj*, la regola viene aggiunta a tutti i profili di pubblicazione del progetto.
 
-L'elemento `<MsDeploySkipRules>` seguente esclude tutti i file dalla cartella *wwwroot\content* :
+L' `<MsDeploySkipRules>` elemento seguente esclude tutti i file dalla cartella *wwwroot\content* :
 
 ```xml
 <ItemGroup>
@@ -440,7 +440,7 @@ Done Building Project "C:\Webs\Web1\Web1.csproj" (default targets).
 
 ## <a name="include-files"></a>File di inclusione
 
-Le sezioni seguenti illustrano approcci diversi per l'inclusione di file in fase di pubblicazione. Nella sezione [Inclusione di file generale](#general-file-inclusion) viene usato l'elemento `DotNetPublishFiles`, fornito da un file di destinazioni di pubblicazione in Web SDK. Nella sezione [Inclusione di file selettiva](#selective-file-inclusion) viene usato l'elemento `ResolvedFileToPublish`, fornito da un file di destinazioni di pubblicazione in .NET Core SDK. Dato che Web SDK dipende da .NET Core SDK, è possibile usare entrambi gli elementi in un progetto ASP.NET Core.
+Le sezioni seguenti illustrano approcci diversi per l'inclusione di file in fase di pubblicazione. La sezione relativa all' [inclusione di file generale](#general-file-inclusion) usa l' `DotNetPublishFiles` elemento, fornito da un file di destinazioni di pubblicazione in [Web SDK](xref:razor-pages/web-sdk). La sezione relativa all' [inclusione di file selettivi](#selective-file-inclusion) usa l' `ResolvedFileToPublish` elemento, fornito da un file di destinazioni di pubblicazione nel [.NET Core SDK](/dotnet/core/project-sdk/msbuild-props). Dato che Web SDK dipende da .NET Core SDK, è possibile usare entrambi gli elementi in un progetto ASP.NET Core.
 
 ### <a name="general-file-inclusion"></a>Inclusione di file generale
 

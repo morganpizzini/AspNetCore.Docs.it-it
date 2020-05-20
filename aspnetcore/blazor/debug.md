@@ -1,30 +1,16 @@
 ---
-title: Debug ASP.NET Core Blazor webassembly
-author: guardrex
-description: Informazioni su come eseguire Blazor il debug delle app.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/16/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/debug
-ms.openlocfilehash: 9acbb8e7b122a8d527d16ce33af01c2e7e7608bf
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767538"
+title: "debug ASP.NET Core Blazor webassembly" Author: Description: "informazioni su come eseguire il debug delle Blazor app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
-# <a name="debug-aspnet-core-blazor-webassembly"></a>Debug ASP.NET Core Blazor webassembly
+# <a name="debug-aspnet-core-blazor-webassembly"></a>Debug ASP.NET Core Blazor Webassembly
 
 [Daniel Roth](https://github.com/danroth27)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 BlazorÈ possibile eseguire il debug delle app webassembly usando gli strumenti di sviluppo del browser nei browser basati su cromo (Edge/Chrome).  In alternativa è possibile eseguire il debug dell'app usando Visual Studio o Visual Studio Code.
 
@@ -58,8 +44,6 @@ Il debug richiede uno dei seguenti browser:
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Abilitare il debug per Visual Studio e Visual Studio Code
 
-Il debug viene abilitato automaticamente per i nuovi progetti creati usando il modello di progetto webassembly ASP.NET Core Blazor 3,2 Preview 3 o versione successiva ([la versione corrente è 3,2 Preview 4](xref:blazor/get-started)).
-
 Per abilitare il debug per un' Blazor app webassembly esistente, aggiornare il file *launchSettings. JSON* nel progetto di avvio per includere la `inspectUri` proprietà seguente in ogni profilo di avvio:
 
 ```json
@@ -70,16 +54,15 @@ Al termine dell'aggiornamento, il file *launchSettings. JSON* dovrebbe avere un 
 
 [!code-json[](debug/launchSettings.json?highlight=14,22)]
 
-`inspectUri` Proprietà:
+`inspectUri`Proprietà:
 
 * Consente all'IDE di rilevare che l'app è un' Blazor app webassembly.
-* Indica all'infrastruttura di debug degli script di connettersi al browser tramite Blazoril proxy di debug.
+* Indica all'infrastruttura di debug degli script di connettersi al browser tramite il Blazor proxy di debug.
 
 ## <a name="visual-studio"></a>Visual Studio
 
-Per eseguire il Blazor debug di un'app webassembly in Visual Studio:
+Per eseguire il debug di un' Blazor app webassembly in Visual Studio:
 
-1. Assicurarsi di aver [installato la versione di anteprima più recente di Visual Studio 2019 16,6](https://visualstudio.com/preview) (Preview 2 o versione successiva).
 1. Creare una nuova app ASP.NET Core Blazor webassembly ospitata.
 1. Premere <kbd>F5</kbd> per eseguire l'app nel debugger.
 1. Impostare un punto di interruzione in *Counter. Razor* nel `IncrementCount` metodo.
@@ -93,15 +76,15 @@ Per eseguire il Blazor debug di un'app webassembly in Visual Studio:
 
 1. Premere <kbd>F5</kbd> per continuare l'esecuzione.
 
-Quando si esegue Blazor il debug dell'app webassembly, è anche possibile eseguire il debug del codice del server:
+Quando si esegue il debug dell' Blazor app webassembly, è anche possibile eseguire il debug del codice del server:
 
-1. Impostare un punto di interruzione nella pagina *fetchData. Razor* in `OnInitializedAsync`.
-1. Impostare un punto di interruzione `WeatherForecastController` in nel `Get` metodo di azione.
+1. Impostare un punto di interruzione nella pagina *fetchData. Razor* in `OnInitializedAsync` .
+1. Impostare un punto di interruzione in `WeatherForecastController` nel `Get` metodo di azione.
 1. Passare alla scheda **Recupera dati** per raggiungere il primo punto di interruzione nel `FetchData` componente appena prima di eseguire una richiesta HTTP al server:
 
    ![Eseguire il debug dei dati di recupero](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-fetch-data.png)
 
-1. Premere <kbd>F5</kbd> per continuare l'esecuzione e quindi raggiungere il punto di interruzione sul server `WeatherForecastController`nell':
+1. Premere <kbd>F5</kbd> per continuare l'esecuzione e quindi raggiungere il punto di interruzione sul server nell' `WeatherForecastController` :
 
    ![Server di debug](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-server.png)
 
@@ -111,19 +94,19 @@ Quando si esegue Blazor il debug dell'app webassembly, è anche possibile esegui
 
 ## <a name="visual-studio-code"></a>Visual Studio Code
 
-Per eseguire il Blazor debug di un'app webassembly in Visual Studio Code:
+Per eseguire il debug di un' Blazor app webassembly in Visual Studio Code:
  
-1. Installare l' [estensione C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e l'estensione del [debugger JavaScript (notturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) con `debug.javascript.usePreview` impostato `true`su.
+1. Installare l' [estensione C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e l'estensione del [debugger JavaScript (notturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) con `debug.javascript.usePreview` impostato su `true` .
 
    ![Estensioni](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-extensions.png)
 
    ![Debugger di anteprima JS](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-js-use-preview.png)
 
-1. Aprire un'app Blazor webassembly esistente con il debug abilitato.
+1. Aprire un' Blazor app webassembly esistente con il debug abilitato.
 
    * Se si riceve la notifica seguente che è necessaria un'installazione aggiuntiva per abilitare il debug, verificare che siano state installate le estensioni corrette e che sia stato abilitato il debug dell'anteprima JavaScript e quindi ricaricare la finestra:
 
-     ![Obbligatorie di installazione aggiuntivi](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
+     ![Installazione aggiuntiva richiesta](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
 
    * Una notifica consente di aggiungere le risorse necessarie all'app per la compilazione e il debug. Selezionare **Sì**:
 
@@ -131,11 +114,11 @@ Per eseguire il Blazor debug di un'app webassembly in Visual Studio Code:
 
 1. L'avvio dell'app nel debugger è un processo in due passaggi:
 
-   1 \. Per **prima cosa**, avviare l'app usando la configurazione di avvio di **.NET CoreBlazor (standalone)** .
+   1 \. Per **prima cosa**, avviare l'app usando la configurazione di avvio di **.NET Core ( Blazor standalone)** .
 
-   2 \. **Dopo che l'app è stata avviata**, avviare il browser usando l' **assembly Web di debug Blazor di .NET Core nella configurazione di avvio di Chrome** (richiede Chrome). `type` Per usare Edge anziché Chrome, modificare la della configurazione di avvio in *. VSCODE/Launch. JSON* da `pwa-chrome` a. `pwa-msedge`
+   2 \. **Dopo che l'app è stata avviata**, avviare il browser usando l' ** Blazor assembly Web di debug di .NET Core nella configurazione di avvio di Chrome** (richiede Chrome). Per usare Edge anziché Chrome, modificare la `type` della configurazione di avvio in *. VSCODE/Launch. JSON* da `pwa-chrome` a `pwa-msedge` .
 
-1. Impostare un punto di interruzione `IncrementCount` nel metodo nel `Counter` componente, quindi selezionare il pulsante per raggiungere il punto di interruzione:
+1. Impostare un punto di interruzione nel `IncrementCount` metodo nel `Counter` componente, quindi selezionare il pulsante per raggiungere il punto di interruzione:
 
    ![Esegui il debug del contatore in VS Code](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-debug-counter.png)
 
@@ -143,19 +126,19 @@ Per eseguire il Blazor debug di un'app webassembly in Visual Studio Code:
 
 1. Eseguire una build di debug dell'app nell'ambiente di sviluppo.
 
-1. Premere <kbd>MAIUSC</kbd>+<kbd>ALT</kbd>+<kbd>D</kbd>.
+1. Premere <kbd>MAIUSC</kbd> + <kbd>ALT</kbd> + <kbd>D</kbd>.
 
-1. Il browser deve essere eseguito con il debug remoto abilitato. Se il debug remoto è disabilitato, viene generata una pagina di errore della **scheda del browser di cui è possibile eseguire il debug** . La pagina di errore contiene le istruzioni per eseguire il browser con la porta di debug aperta Blazor , in modo che il proxy di debug possa connettersi all'app. *Chiudere tutte le istanze del browser* e riavviare il browser come indicato.
+1. Il browser deve essere eseguito con il debug remoto abilitato. Se il debug remoto è disabilitato, viene generata una pagina di errore della **scheda del browser di cui è possibile eseguire il debug** . La pagina di errore contiene le istruzioni per eseguire il browser con la porta di debug aperta, in modo che il Blazor proxy di debug possa connettersi all'app. *Chiudere tutte le istanze del browser* e riavviare il browser come indicato.
 
-Quando il browser è in esecuzione con il debug remoto abilitato, il tasto di scelta rapida di debug apre una nuova scheda del debugger. Dopo qualche istante la scheda **Sources (origini** ) Mostra un elenco degli assembly .NET nell'app. Espandere ogni assembly e trovare i file di origine *. cs*/*. Razor* disponibili per il debug. Impostare i punti di interruzione, tornare alla scheda dell'app e i punti di interruzione vengono raggiunti quando viene eseguito il codice. Quando viene raggiunto un punto di interruzione, l'esecuzione<kbd>F10</kbd>del codice in un singolo passaggio (F10<kbd>) viene</kbd>eseguito normalmente.
+Quando il browser è in esecuzione con il debug remoto abilitato, il tasto di scelta rapida di debug apre una nuova scheda del debugger. Dopo qualche istante la scheda **Sources (origini** ) Mostra un elenco degli assembly .NET nell'app. Espandere ogni assembly e trovare i file di origine *. cs* / *. Razor* disponibili per il debug. Impostare i punti di interruzione, tornare alla scheda dell'app e i punti di interruzione vengono raggiunti quando viene eseguito il codice. Quando viene raggiunto un punto di interruzione, l'esecuzione<kbd>F10</kbd>del codice in un singolo passaggio (F10<kbd>) viene</kbd>eseguito normalmente.
 
-Blazorfornisce un proxy di debug che implementa il [protocollo devtools di Chrome](https://chromedevtools.github.io/devtools-protocol/) e potenzia il protocollo con. Informazioni specifiche del NET. Quando si preme il tasto di scelta Blazor rapida per il debug, punta il devtools di Chrome sul proxy. Il proxy si connette alla finestra del browser che si sta tentando di eseguire il debug, quindi è necessario abilitare il debug remoto.
+Blazorfornisce un proxy di debug che implementa il [protocollo devtools di Chrome](https://chromedevtools.github.io/devtools-protocol/) e potenzia il protocollo con. Informazioni specifiche del NET. Quando si preme il tasto di scelta rapida Blazor per il debug, punta il devtools di Chrome sul proxy. Il proxy si connette alla finestra del browser che si sta tentando di eseguire il debug, quindi è necessario abilitare il debug remoto.
 
 ## <a name="browser-source-maps"></a>Mappe di origine del browser
 
-Le mappe di origine del browser consentono al browser di eseguire il mapping dei file compilati ai file di origine originali e vengono comunemente usati per il debug sul lato client. Tuttavia, Blazor attualmente non esegue il mapping di C# direttamente a JavaScript/WASM. Al contrario Blazor , l'interpretazione il nel browser, quindi le mappe di origine non sono rilevanti.
+Le mappe di origine del browser consentono al browser di eseguire il mapping dei file compilati ai file di origine originali e vengono comunemente usati per il debug sul lato client. Tuttavia, Blazor attualmente non esegue il mapping di C# direttamente a JavaScript/WASM. Al contrario, Blazor l'interpretazione il nel browser, quindi le mappe di origine non sono rilevanti.
 
-## <a name="troubleshoot"></a>Risolvere problemi
+## <a name="troubleshoot"></a>Risoluzione dei problemi
 
 Se si verificano errori, è possibile che venga utile il suggerimento seguente:
 

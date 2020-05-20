@@ -1,45 +1,31 @@
 ---
-title: Gestione Blazor dello stato ASP.NET Core
-author: guardrex
-description: Informazioni su come salvare in modo Blazor permanente lo stato nelle app Server.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/17/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/state-management
-ms.openlocfilehash: 5e14a0697fbc98575970b93dfa12c68e9f561c56
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967415"
+title: "ASP.NET Core Blazor State Management" Author: Description: "informazioni su come salvare lo stato nelle Blazor app Server".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
-# <a name="aspnet-core-blazor-state-management"></a>Gestione Blazor dello stato ASP.NET Core
+# <a name="aspnet-core-blazor-state-management"></a>BlazorGestione dello stato ASP.NET Core
 
 Di [Steve Sanderson](https://github.com/SteveSandersonMS)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 BlazorIl server è un Framework di app con stato. Nella maggior parte dei casi, l'app mantiene una connessione continuativa al server. Lo stato dell'utente viene mantenuto nella memoria del server in un *circuito*. 
 
 Di seguito sono riportati alcuni esempi di stato utilizzati per il circuito di un utente:
 
-* Interfaccia utente&mdash;di cui è stato eseguito il rendering la gerarchia delle istanze dei componenti e l'output di rendering più recente.
+* Interfaccia utente sottoposta a rendering: la gerarchia delle istanze dei componenti e l'output di rendering più recente.
 * Valori dei campi e delle proprietà nelle istanze del componente.
 * Dati contenuti nelle istanze del servizio [di inserimento delle dipendenze](xref:fundamentals/dependency-injection) che hanno come ambito il circuito.
 
 > [!NOTE]
-> Questo articolo risolve la persistenza Blazor dello stato nelle app Server. BlazorLe app webassembly possono sfruttare [la persistenza dello stato sul lato client nel browser](#client-side-in-the-browser) , ma richiedono soluzioni personalizzate o pacchetti di terze parti oltre l'ambito di questo articolo.
+> Questo articolo risolve la persistenza dello stato nelle Blazor app Server. BlazorLe app webassembly possono sfruttare [la persistenza dello stato sul lato client nel browser](#client-side-in-the-browser) , ma richiedono soluzioni personalizzate o pacchetti di terze parti oltre l'ambito di questo articolo.
 
 ## <a name="blazor-circuits"></a>Blazorcircuiti
 
-Se un utente riscontra una perdita di connessione di rete Blazor temporanea, tenta di riconnettere l'utente al circuito originale per poter continuare a usare l'app. Tuttavia, la riconnessione di un utente al circuito originale nella memoria del server non è sempre possibile:
+Se un utente riscontra una perdita di connessione di rete temporanea, Blazor tenta di riconnettere l'utente al circuito originale per poter continuare a usare l'app. Tuttavia, la riconnessione di un utente al circuito originale nella memoria del server non è sempre possibile:
 
 * Il server non è in grado di mantenere sempre un circuito disconnesso. Il server deve rilasciare un circuito disconnesso dopo un timeout o quando il server è sottoposto a un numero eccessivo di richieste di memoria.
 * Negli ambienti di distribuzione con bilanciamento del carico multiserver tutte le richieste di elaborazione del server potrebbero non essere più disponibili in un determinato momento. I singoli server possono avere esito negativo o essere rimossi automaticamente quando non sono più necessari per gestire il volume complessivo delle richieste. Il server originale potrebbe non essere disponibile quando l'utente tenta di riconnettersi.
@@ -56,12 +42,12 @@ In alcuni scenari è consigliabile mantenere lo stato tra i circuiti. Un'app pu�
 
 In generale, la gestione dello stato tra circuiti si applica agli scenari in cui gli utenti stanno creando attivamente dati, non semplicemente leggendo i dati già esistenti.
 
-Per mantenere lo stato oltre un singolo circuito, *non archiviare semplicemente i dati nella memoria del server*. L'app deve salvare i dati in modo permanente in un altro percorso di archiviazione. La persistenza dello&mdash;stato non è automatica è necessario eseguire i passaggi quando si sviluppa l'app per implementare la persistenza dei dati con stato.
+Per mantenere lo stato oltre un singolo circuito, *non archiviare semplicemente i dati nella memoria del server*. L'app deve salvare i dati in modo permanente in un altro percorso di archiviazione. La persistenza dello stato non è automatica. È necessario eseguire i passaggi quando si sviluppa l'app per implementare la persistenza dei dati con stato.
 
 La persistenza dei dati è in genere necessaria solo per uno stato di valore elevato che gli utenti hanno impiegato per creare. Negli esempi seguenti lo stato di salvataggio permanente Risparmia tempo o facilita le attività commerciali:
 
-* Web Form &ndash; a più passaggi è molto dispendioso in termini di tempo per un utente per immettere nuovamente i dati per diversi passaggi completati di un processo a più passaggi se il relativo stato viene perso. Un utente perde lo stato in questo scenario se si allontana dal modulo a più passaggi e torna al modulo in un secondo momento.
-* Carrello &ndash; acquisti è possibile mantenere tutti i componenti commerciali importanti di un'app che rappresenti potenziali ricavi. Un utente che perde il proprio stato e quindi il carrello della spesa può acquistare un minor numero di prodotti o servizi quando ritornano al sito in un secondo momento.
+* Web Form a più passaggi è &ndash; molto dispendioso in termini di tempo per un utente per immettere nuovamente i dati per diversi passaggi completati di un processo a più passaggi se il relativo stato viene perso. Un utente perde lo stato in questo scenario se si allontana dal modulo a più passaggi e torna al modulo in un secondo momento.
+* Carrello acquisti &ndash; è possibile mantenere tutti i componenti commerciali importanti di un'app che rappresenti potenziali ricavi. Un utente che perde il proprio stato e quindi il carrello della spesa può acquistare un minor numero di prodotti o servizi quando ritornano al sito in un secondo momento.
 
 In genere non è necessario mantenere lo stato facilmente ricreato, ad esempio il nome utente immesso in una finestra di dialogo di accesso che non è stata inviata.
 
@@ -99,23 +85,23 @@ Per i dati temporanei che rappresentano lo stato di navigazione, modellare i dat
 Il contenuto della barra degli indirizzi del browser viene mantenuto:
 
 * Se l'utente ricarica manualmente la pagina.
-* Se il server Web non è&mdash;più disponibile, l'utente deve ricaricare la pagina per potersi connettere a un altro server.
+* Se il server Web non è più disponibile e l'utente è costretto a ricaricare la pagina per connettersi a un server diverso.
 
-Per informazioni sulla definizione di modelli URL con `@page` la direttiva, <xref:blazor/routing>vedere.
+Per informazioni sulla definizione di modelli URL con la `@page` direttiva, vedere <xref:blazor/routing> .
 
 ### <a name="client-side-in-the-browser"></a>Lato client nel browser
 
-Per i dati temporanei che l'utente sta creando attivamente, un archivio di `localStorage` backup comune è costituito `sessionStorage` dalle raccolte e del browser. L'app non è necessaria per gestire o cancellare lo stato archiviato se il circuito viene abbandonato, il che rappresenta un vantaggio rispetto all'archiviazione sul lato server.
+Per i dati temporanei che l'utente sta creando attivamente, un archivio di backup comune è costituito dalle `localStorage` raccolte e del browser `sessionStorage` . L'app non è necessaria per gestire o cancellare lo stato archiviato se il circuito viene abbandonato, il che rappresenta un vantaggio rispetto all'archiviazione sul lato server.
 
 > [!NOTE]
 > "Lato client" in questa sezione si riferisce agli scenari lato client nel browser, non al [ Blazor modello di hosting webassembly](xref:blazor/hosting-models#blazor-webassembly). `localStorage`e `sessionStorage` possono essere usati nelle Blazor app webassembly, ma solo scrivendo codice personalizzato o usando un pacchetto di terze parti.
 
-`localStorage`e `sessionStorage` si differenziano nel modo seguente:
+`localStorage`e si `sessionStorage` differenziano nel modo seguente:
 
 * `localStorage`ha come ambito il browser dell'utente. Se l'utente ricarica la pagina o chiude e riapre il browser, lo stato è permanente. Se l'utente apre più schede del browser, lo stato viene condiviso tra le schede. I dati rimangono in `localStorage` fino a quando non vengono cancellati in modo esplicito.
 * `sessionStorage`ha come ambito la scheda del browser dell'utente. Se l'utente ricarica la scheda, lo stato è permanente. Se l'utente chiude la scheda o il browser, lo stato viene perso. Se l'utente apre più schede del browser, ogni scheda ha una propria versione indipendente dei dati.
 
-In genere `sessionStorage` , è più sicuro da usare. `sessionStorage`evita il rischio che un utente apra più schede e riscontri quanto segue:
+In genere, `sessionStorage` è più sicuro da usare. `sessionStorage`evita il rischio che un utente apra più schede e riscontri quanto segue:
 
 * Bug nell'archiviazione dello stato tra le schede.
 * Comportamento confuso quando una scheda sovrascrive lo stato di altre schede.
@@ -126,18 +112,18 @@ Avvertenze per l'uso dell'archiviazione del browser:
 
 * Analogamente all'utilizzo di un database lato server, il caricamento e il salvataggio dei dati sono asincroni.
 * A differenza di un database lato server, l'archiviazione non è disponibile durante il prerendering perché la pagina richiesta non esiste nel browser durante la fase di pre-rendering.
-* L'archiviazione di alcuni kilobyte di dati è ragionevole per la permanenza Blazor per le app Server. Oltre alcuni kilobyte, è necessario considerare le implicazioni relative alle prestazioni perché i dati vengono caricati e salvati in rete.
+* L'archiviazione di alcuni kilobyte di dati è ragionevole per la permanenza per le Blazor app Server. Oltre alcuni kilobyte, è necessario considerare le implicazioni relative alle prestazioni perché i dati vengono caricati e salvati in rete.
 * Gli utenti possono visualizzare o manomettere i dati. ASP.NET Core [protezione dei dati](xref:security/data-protection/introduction) può ridurre il rischio.
 
 ## <a name="third-party-browser-storage-solutions"></a>Soluzioni di archiviazione del browser di terze parti
 
-I pacchetti NuGet di terze parti forniscono le API `localStorage` per `sessionStorage`l'uso di e.
+I pacchetti NuGet di terze parti forniscono le API per l'uso di `localStorage` e `sessionStorage` .
 
 Vale la pena considerare la scelta di un pacchetto che usa in modo trasparente la [protezione dei dati](xref:security/data-protection/introduction)ASP.NET Core. ASP.NET Core protezione dei dati consente di crittografare i dati archiviati e di ridurre il rischio potenziale di manomissioni dei dati archiviati. Se i dati serializzati in JSON vengono archiviati in testo non crittografato, gli utenti possono visualizzare i dati usando gli strumenti di sviluppo del browser e modificare anche i dati archiviati. La protezione dei dati non è sempre un problema perché i dati potrebbero essere di natura banale. Ad esempio, la lettura o la modifica del colore archiviato di un elemento dell'interfaccia utente non costituisce un rischio di sicurezza significativo per l'utente o l'organizzazione. Evitare di consentire agli utenti di ispezionare o manomettere *i dati sensibili*.
 
 ## <a name="protected-browser-storage-experimental-package"></a>Pacchetto sperimentale di archiviazione del browser protetto
 
-Un esempio di pacchetto NuGet che fornisce la [protezione dei dati](xref:security/data-protection/introduction) `localStorage` per `sessionStorage` e è [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
+Un esempio di pacchetto NuGet che fornisce la [protezione dei dati](xref:security/data-protection/introduction) per `localStorage` e `sessionStorage` è [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
 
 > [!WARNING]
 > `Microsoft.AspNetCore.ProtectedBrowserStorage`è un pacchetto sperimentale non supportato non adatto per l'uso in fase di produzione.
@@ -146,7 +132,7 @@ Un esempio di pacchetto NuGet che fornisce la [protezione dei dati](xref:securit
 
 Per installare il `Microsoft.AspNetCore.ProtectedBrowserStorage` pacchetto:
 
-1. Nel progetto Blazor di applicazione server aggiungere un riferimento al pacchetto a [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
+1. Nel Blazor progetto di applicazione server aggiungere un riferimento al pacchetto a [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
 1. Nel codice HTML di primo livello (ad esempio, nel file *pages/_Host. cshtml* nel modello di progetto predefinito) aggiungere il tag seguente `<script>` :
 
    ```html
@@ -161,7 +147,7 @@ Per installare il `Microsoft.AspNetCore.ProtectedBrowserStorage` pacchetto:
 
 ### <a name="save-and-load-data-within-a-component"></a>Salvare e caricare i dati all'interno di un componente
 
-In tutti i componenti che richiedono il caricamento o il salvataggio dei dati nell' [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) archiviazione del browser, usare per inserire un'istanza di uno dei seguenti elementi:
+In tutti i componenti che richiedono il caricamento o il salvataggio dei dati nell'archiviazione del browser, usare [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) per inserire un'istanza di uno dei seguenti elementi:
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
@@ -175,7 +161,7 @@ La scelta dipende dall'archivio di backup che si desidera utilizzare. Nell'esemp
 
 L' `@using` istruzione può essere inserita in un file *_Imports. Razor* anziché nel componente. L'uso del file *_Imports. Razor* rende lo spazio dei nomi disponibile a segmenti più grandi dell'app o dell'intera app.
 
-Per salvare in `currentCount` modo permanente il `Counter` valore nel componente del modello di progetto, `IncrementCount` modificare il metodo `ProtectedSessionStore.SetAsync`in modo da usare:
+Per salvare in modo permanente il `currentCount` valore nel `Counter` componente del modello di progetto, modificare il `IncrementCount` metodo in modo da usare `ProtectedSessionStore.SetAsync` :
 
 ```csharp
 private async Task IncrementCount()
@@ -187,9 +173,9 @@ private async Task IncrementCount()
 
 Nelle app più grandi e più realistiche, l'archiviazione dei singoli campi è uno scenario improbabile. È più probabile che le app memorizzino interi oggetti modello che includono lo stato complesso. `ProtectedSessionStore`serializza e deserializza automaticamente i dati JSON.
 
-Nell'esempio di codice precedente i `currentCount` dati vengono archiviati come `sessionStorage['count']` nel browser dell'utente. I dati non vengono archiviati in testo non crittografato, ma vengono protetti usando la [protezione dei dati](xref:security/data-protection/introduction)di ASP.NET Core. I dati crittografati possono essere visualizzati `sessionStorage['count']` se viene valutato nella console per sviluppatori del browser.
+Nell'esempio di codice precedente i `currentCount` dati vengono archiviati come `sessionStorage['count']` nel browser dell'utente. I dati non vengono archiviati in testo non crittografato, ma vengono protetti usando la [protezione dei dati](xref:security/data-protection/introduction)di ASP.NET Core. I dati crittografati possono essere visualizzati se `sessionStorage['count']` viene valutato nella console per sviluppatori del browser.
 
-Per ripristinare i `currentCount` dati se l'utente torna al `Counter` componente in un secondo momento (anche se si trovano in un circuito completamente nuovo) `ProtectedSessionStore.GetAsync`, usare:
+Per ripristinare i `currentCount` dati se l'utente torna al `Counter` componente in un secondo momento (anche se si trovano in un circuito completamente nuovo), usare `ProtectedSessionStore.GetAsync` :
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -198,7 +184,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Se i parametri del componente includono lo stato di navigazione `ProtectedSessionStore.GetAsync` , chiamare e assegnare il `OnParametersSetAsync`risultato in `OnInitializedAsync`, non. `OnInitializedAsync`viene chiamato una sola volta quando viene creata la prima istanza del componente. `OnInitializedAsync`non viene chiamato di nuovo in un secondo momento se l'utente passa a un URL diverso rimanendo nella stessa pagina. Per altre informazioni, vedere <xref:blazor/lifecycle>.
+Se i parametri del componente includono lo stato di navigazione, chiamare `ProtectedSessionStore.GetAsync` e assegnare il risultato in `OnParametersSetAsync` , non `OnInitializedAsync` . `OnInitializedAsync`viene chiamato una sola volta quando viene creata la prima istanza del componente. `OnInitializedAsync`non viene chiamato di nuovo in un secondo momento se l'utente passa a un URL diverso rimanendo nella stessa pagina. Per altre informazioni, vedere <xref:blazor/lifecycle>.
 
 > [!WARNING]
 > Gli esempi in questa sezione funzionano solo se per il server non è abilitato il prerendering. Con il prerendering abilitato, viene generato un errore simile al seguente:
@@ -211,7 +197,7 @@ Se i parametri del componente includono lo stato di navigazione `ProtectedSessio
 
 Poiché l'archiviazione del browser è asincrona (a cui si accede tramite una connessione di rete), si verifica sempre un periodo di tempo prima che i dati vengano caricati e disponibili per l'uso da parte di un componente. Per ottenere risultati ottimali, è possibile eseguire il rendering di un messaggio di stato di caricamento mentre è in corso il caricamento anziché visualizzare dati vuoti o predefiniti.
 
-Un approccio consiste nel rilevare se i dati sono `null` ancora in corso di caricamento o meno. Nel componente predefinito `Counter` , il conteggio viene mantenuto in un oggetto `int`. Rendere `currentCount` nullable aggiungendo un punto interrogativo (`?`) al tipo (`int`):
+Un approccio consiste nel rilevare se i dati sono ancora in corso di `null` caricamento o meno. Nel componente predefinito `Counter` , il conteggio viene mantenuto in un oggetto `int` . Rendere `currentCount` nullable aggiungendo un punto interrogativo ( `?` ) al tipo ( `int` ):
 
 ```csharp
 private int? currentCount;
@@ -243,11 +229,11 @@ Durante il prerendering:
 
 > Non è possibile eseguire le chiamate di interoperabilità JavaScript in questo momento. Il motivo è che il componente viene preeseguito.
 
-Un modo per risolvere l'errore consiste nel disabilitare il prerendering. Questa è in genere la scelta migliore se l'app usa in modo intensivo l'archiviazione basata su browser. Il prerendering aggiunge complessità e non è vantaggioso per l'app perché l'app non può prerenderizzare contenuti utili fino a quando `localStorage` non sono disponibili o `sessionStorage` .
+Un modo per risolvere l'errore consiste nel disabilitare il prerendering. Questa è in genere la scelta migliore se l'app usa in modo intensivo l'archiviazione basata su browser. Il prerendering aggiunge complessità e non è vantaggioso per l'app perché l'app non può prerenderizzare contenuti utili fino a quando non `localStorage` `sessionStorage` sono disponibili o.
 
-Per disabilitare il prerendering, aprire il file *pages/_Host. cshtml* e `render-mode` modificare l' [Helper tag del componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) in <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.
+Per disabilitare il prerendering, aprire il file *pages/_Host. cshtml* e modificare l' `render-mode` [Helper tag del componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) in <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> .
 
-Il prerendering può essere utile per altre pagine che non `localStorage` utilizzano `sessionStorage`o. Per rendere abilitato il prerendering, rinviare l'operazione di caricamento finché il browser non è connesso al circuito. Di seguito è riportato un esempio per l'archiviazione di un valore del contatore:
+Il prerendering può essere utile per altre pagine che non utilizzano `localStorage` o `sessionStorage` . Per rendere abilitato il prerendering, rinviare l'operazione di caricamento finché il browser non è connesso al circuito. Di seguito è riportato un esempio per l'archiviazione di un valore del contatore:
 
 ```razor
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
@@ -328,7 +314,7 @@ else
 
 Il `CounterStateProvider` componente gestisce la fase di caricamento non eseguendo il rendering del relativo contenuto figlio fino al completamento del caricamento.
 
-Per utilizzare il `CounterStateProvider` componente, eseguire il wrapping di un'istanza del componente intorno a qualsiasi altro componente che richiede l'accesso allo stato del contatore. Per rendere lo stato accessibile a tutti i componenti di un'app, eseguire `CounterStateProvider` il wrapping del `Router` componente intorno `App` all'oggetto nel componente (*app. Razor*):
+Per utilizzare il `CounterStateProvider` componente, eseguire il wrapping di un'istanza del componente intorno a qualsiasi altro componente che richiede l'accesso allo stato del contatore. Per rendere lo stato accessibile a tutti i componenti di un'app, eseguire il wrapping del `CounterStateProvider` componente intorno all'oggetto `Router` nel `App` componente (*app. Razor*):
 
 ```razor
 <CounterStateProvider>
@@ -338,7 +324,7 @@ Per utilizzare il `CounterStateProvider` componente, eseguire il wrapping di un'
 </CounterStateProvider>
 ```
 
-I componenti di cui è stato eseguito il wrapper ricevono e possono modificare lo stato del contatore permanente. Il componente `Counter` seguente implementa il modello:
+I componenti di cui è stato eseguito il wrapper ricevono e possono modificare lo stato del contatore permanente. Il `Counter` componente seguente implementa il modello:
 
 ```razor
 @page "/counter"
@@ -359,9 +345,9 @@ I componenti di cui è stato eseguito il wrapper ricevono e possono modificare l
 }
 ```
 
-Il componente precedente non è necessario per interagire `ProtectedBrowserStorage`con, né gestire una fase di "caricamento".
+Il componente precedente non è necessario per interagire con `ProtectedBrowserStorage` , né gestire una fase di "caricamento".
 
-Per gestire il prerendering come descritto in precedenza `CounterStateProvider` , può essere modificato in modo che tutti i componenti che utilizzano i dati del contatore funzionino automaticamente con il prerendering. Per informazioni dettagliate, vedere la sezione [handle prerendering](#handle-prerendering) .
+Per gestire il prerendering come descritto in precedenza, `CounterStateProvider` può essere modificato in modo che tutti i componenti che utilizzano i dati del contatore funzionino automaticamente con il prerendering. Per informazioni dettagliate, vedere la sezione [handle prerendering](#handle-prerendering) .
 
 In generale, è consigliabile usare il modello di *componente padre del provider di stato* :
 

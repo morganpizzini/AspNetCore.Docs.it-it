@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: 3e77b25e2660688d0040d47840e47dab8f260197
-ms.sourcegitcommit: 6c7a149168d2c4d747c36de210bfab3abd60809a
+ms.openlocfilehash: 2831fd2edd029043e9457cd213e32f1a82c2872e
+ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "83003195"
+ms.lasthandoff: 05/15/2020
+ms.locfileid: "83424415"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Guida di riferimento della sintassi Razor per ASP.NET Core
 
@@ -235,7 +235,7 @@ Il tag `<text>` è utile per controllare gli spazi vuoti durante il rendering de
 
 ### <a name="explicit-line-transition"></a>Transizione di riga esplicita
 
-Per eseguire il rendering del resto di un'intera riga come HTML all'interno di un `@:` blocco di codice, usare la sintassi:
+Per eseguire il rendering del resto di un'intera riga come HTML all'interno di un blocco di codice, usare la `@:` sintassi:
 
 ```cshtml
 @for (var i = 0; i < people.Length; i++)
@@ -473,7 +473,7 @@ Il blocco `@code` consente a un [componente di Razor](xref:blazor/components) di
 }
 ```
 
-Per i componenti Razor `@code` , è un alias [`@functions`](#functions) di e consigliato `@functions`rispetto a. È consentito più di un blocco `@code`.
+Per i componenti Razor, `@code` è un alias di [`@functions`](#functions) e consigliato rispetto a `@functions` . È consentito più di un blocco `@code`.
 
 ::: moniker-end
 
@@ -639,7 +639,7 @@ Razor espone una proprietà `Model` per l'accesso al modello passato alla visual
 <div>The Login Email: @Model.Email</div>
 ```
 
-La direttiva `@model` specifica il tipo della proprietà `Model`. La direttiva specifica l'elemento `T` in `RazorPage<T>` che ha generato la classe da cui deriva la visualizzazione. Se la direttiva `@model` non è specificata, la proprietà `Model` è di tipo `dynamic`. Per ulteriori informazioni, vedere [modelli fortemente tipizzati e @model la parola chiave](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
+La direttiva `@model` specifica il tipo della proprietà `Model`. La direttiva specifica l'elemento `T` in `RazorPage<T>` che ha generato la classe da cui deriva la visualizzazione. Se la direttiva `@model` non è specificata, la proprietà `Model` è di tipo `dynamic`. Per ulteriori informazioni, vedere [modelli fortemente tipizzati e la @model parola chiave](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
 
 ### <a name="namespace"></a>\@namespace
 
@@ -682,7 +682,7 @@ Se la cartella *EvenMorePages* nell'esempio precedente ha un file di importazion
 
 La direttiva `@page` ha effetti diversi a seconda del tipo del file in cui viene visualizzata. La direttiva:
 
-* In un file con estensione *cshtml* indica che il file è una pagina Razor. Per ulteriori informazioni, vedere [route personalizzate](xref:razor-pages/index#custom-routes) e <xref:razor-pages/index>.
+* In un file con estensione *cshtml* indica che il file è una pagina Razor. Per ulteriori informazioni, vedere [route personalizzate](xref:razor-pages/index#custom-routes) e <xref:razor-pages/index> .
 * Specifica che un componente Razor deve gestire direttamente le richieste. Per altre informazioni, vedere <xref:blazor/routing>.
 
 ::: moniker-end
@@ -707,13 +707,15 @@ La direttiva `@using` aggiunge la direttiva C# `using` alla visualizzazione gene
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Nei [componenti Razor](xref:blazor/components)controlla `@using` anche quali componenti sono inclusi nell'ambito.
+Nei [componenti Razor](xref:blazor/components) `@using` Controlla anche quali componenti sono inclusi nell'ambito.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
 
 ## <a name="directive-attributes"></a>Attributi delle direttive
+
+Gli attributi delle direttive Razor sono rappresentati da espressioni implicite con parole chiave riservate che seguono il `@` simbolo. Un attributo di direttiva cambia in genere il modo in cui un elemento viene analizzato o Abilita diverse funzionalità.
 
 ### <a name="attributes"></a>\@attributes
 
@@ -896,14 +898,14 @@ Esistono tre direttive che riguardano gli [helper tag](xref:mvc/views/tag-helper
 * section
 * helper (attualmente non supportata da ASP.NET Core)
 
-Razorle parole chiave sono precedute da `@(Razor Keyword)` un `@(functions)`carattere di escape (ad esempio,).
+Razorle parole chiave sono precedute da un carattere di escape `@(Razor Keyword)` (ad esempio, `@(functions)` ).
 
-### <a name="c-razor-keywords"></a>Parole Razor chiave di C#
+### <a name="c-razor-keywords"></a>RazorParole chiave di C#
 
 * case
 * do
 * default
-* for
+* per
 * foreach
 * if
 * else
@@ -915,7 +917,7 @@ Razorle parole chiave sono precedute da `@(Razor Keyword)` un `@(functions)`cara
 * using
 * while
 
-Le Razor parole chiave di C# devono essere con doppio `@(@C# Razor Keyword)` carattere di escape ( `@(@case)`ad esempio,). Il primo `@` carattere di escape Razor del parser. Il secondo `@` è il carattere di escape del parser C#.
+RazorLe parole chiave di C# devono essere con doppio carattere di escape `@(@C# Razor Keyword)` (ad esempio, `@(@case)` ). Il primo carattere di `@` escape del Razor parser. Il secondo `@` è il carattere di escape del parser C#.
 
 ### <a name="reserved-keywords-not-used-by-razor"></a>Parole chiave riservate non usate daRazor
 
@@ -925,9 +927,9 @@ Le Razor parole chiave di C# devono essere con doppio `@(@C# Razor Keyword)` car
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Con .NET Core SDK 2,1 o versioni successive, l' [ Razor SDK](xref:razor-pages/sdk) gestisce la Razor compilazione dei file. Quando si compila un progetto, Razor l'SDK genera una directory *obj/<build_configuration>/<target_framework_monikerRazor>/* nella radice del progetto. La struttura di directory all' *Razor* interno della directory rispecchia la struttura di directory del progetto.
+Con .NET Core SDK 2,1 o versioni successive, l' [ Razor SDK](xref:razor-pages/sdk) gestisce la compilazione dei Razor file. Quando si compila un progetto, l' Razor SDK genera una directory *obj/<build_configuration>/<target_framework_moniker Razor>/* nella radice del progetto. La struttura di directory all'interno della *Razor* directory rispecchia la struttura di directory del progetto.
 
-Si consideri la struttura di directory seguente Razor in un progetto ASP.NET Core 2,1 Pages destinato a .net core 2,1:
+Si consideri la struttura di directory seguente in un progetto ASP.NET Core 2,1 Razor pages destinato a .NET Core 2,1:
 
 * **Aree**
   * **Admin**
@@ -959,7 +961,7 @@ La compilazione del progetto nella configurazione *Debug* produce la seguente di
           * *_ViewStart.g.cshtml.cs*
           * *Index.g.cshtml.cs*
 
-Per visualizzare la classe generata per *pages/index. cshtml*, aprire *obj/debug/netcoreapp 2.1Razor//pages/index.g.cshtml.cs*.
+Per visualizzare la classe generata per *pages/index. cshtml*, aprire *obj/debug/netcoreapp 2.1/ Razor /pages/index.g.cshtml.cs*.
 
 ::: moniker-end
 
@@ -997,4 +999,4 @@ La distinzione tra maiuscole e minuscole assicura che le distribuzioni trovino l
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-[Introduzione alla programmazione Web ASP.NET con la Razor sintassi](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) fornisce molti esempi di programmazione con Razor la sintassi.
+[Introduzione alla programmazione Web ASP.NET con il Razor La sintassi](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) fornisce molti esempi di programmazione con la Razor sintassi.

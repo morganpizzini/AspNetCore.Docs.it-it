@@ -1,11 +1,11 @@
 ---
-title: Scenari Blazor di sicurezza aggiuntivi di ASP.NET Core Server
+title: BlazorScenari di sicurezza aggiuntivi di ASP.NET Core Server
 author: guardrex
-description: Informazioni su come configurare Blazor il server per altri scenari di sicurezza.
+description: Informazioni su come configurare il Blazor Server per altri scenari di sicurezza.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2020
+ms.date: 05/19/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,22 +13,22 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/server/additional-scenarios
-ms.openlocfilehash: 95e9e57889fdbb5270f895874c9b8148ae4ca48d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9d26cde4d8964a8285241bb0158d8e6f8d5f8dbc
+ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82772804"
+ms.lasthandoff: 05/17/2020
+ms.locfileid: "83444074"
 ---
-# <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>Scenari Blazor di sicurezza aggiuntivi di ASP.NET Core Server
+# <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>BlazorScenari di sicurezza aggiuntivi di ASP.NET Core Server
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn)
 
 ## <a name="pass-tokens-to-a-blazor-server-app"></a>Passare i token a un' Blazor app Server
 
-I token disponibili all'esterno dei Razor componenti di un' Blazor app Server possono essere passati ai componenti di con l'approccio descritto in questa sezione. Per il codice di esempio, incluso `Startup.ConfigureServices` un esempio completo, vedere il [passaggio di token a un'applicazione Blazor lato server](https://github.com/javiercn/blazor-server-aad-sample).
+I token disponibili all'esterno dei Razor componenti di un' Blazor app Server possono essere passati ai componenti di con l'approccio descritto in questa sezione. Per il codice di esempio, incluso un `Startup.ConfigureServices` esempio completo, vedere il [passaggio di token a un' Blazor applicazione lato server](https://github.com/javiercn/blazor-server-aad-sample).
 
-Autenticare l' Blazor app Server come si farebbe con un'applicazione Razor MVC o pagine normali. Eseguire il provisioning e salvare i token nel cookie di autenticazione. Ad esempio:
+Autenticare l' Blazor app Server come si farebbe con un' Razor applicazione MVC o pagine normali. Eseguire il provisioning e salvare i token nel cookie di autenticazione. Ad esempio:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -56,7 +56,7 @@ public class InitialApplicationState
 }
 ```
 
-Definire un servizio del provider di token con **ambito** che può essere usato Blazor nell'app per risolvere i token da [inserimento delle dipendenze](xref:blazor/dependency-injection):
+Definire un servizio del provider di token con **ambito** che può essere usato nell' Blazor app per risolvere i token da [inserimento delle dipendenze](xref:blazor/dependency-injection):
 
 ```csharp
 public class TokenProvider
@@ -66,7 +66,7 @@ public class TokenProvider
 }
 ```
 
-In `Startup.ConfigureServices`aggiungere servizi per:
+In `Startup.ConfigureServices` aggiungere servizi per:
 
 * `IHttpClientFactory`
 * `TokenProvider`
@@ -76,7 +76,7 @@ services.AddHttpClient();
 services.AddScoped<TokenProvider>();
 ```
 
-Nel file *_Host. cshtml* creare un'istanza di `InitialApplicationState` e passarla come parametro all'app:
+Nel file *_Host. cshtml* creare un'istanza di e `InitialApplicationState` passarla come parametro all'app:
 
 ```cshtml
 @using Microsoft.AspNetCore.Authentication
@@ -147,3 +147,64 @@ public class WeatherForecastService
     }
 }
 ```
+
+## <a name="use-open-id-connect-oidc-v20-endpoints"></a>Usa endpoint Open ID Connect (OIDC) v 2.0
+
+I modelli e la libreria di autenticazione Blazor usano gli endpoint Open ID Connect (OIDC) v 1.0. Per usare un endpoint v 2.0, configurare l' <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> opzione in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> :
+
+```csharp
+services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, 
+    options =>
+    {
+        options.Authority += "/v2.0";
+    }
+```
+
+In alternativa, l'impostazione può essere eseguita nel file delle impostazioni dell'app (*appSettings. JSON*):
+
+```json
+{
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/common/oauth2/v2.0/",
+    ...
+  }
+}
+```
+
+Se l'uso di un segmento nell'autorità non è appropriato per il provider OIDC dell'app, ad esempio con i provider non AAD, impostare `Authority` direttamente la proprietà. Impostare la proprietà in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> o nel file di impostazioni dell'app con la `Authority` chiave.
+
+### <a name="code-changes"></a>Modifiche al codice
+
+* L'elenco di attestazioni nel token ID cambia per gli endpoint della versione 2.0. Per ulteriori informazioni, vedere [perché eseguire l'aggiornamento alla piattaforma di identità Microsoft (v 2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison) nella documentazione di Azure.
+* Poiché le risorse vengono specificate negli URI di ambito per gli endpoint v 2.0, rimuovere l' <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Resource?displayProperty=nameWithType> impostazione della proprietà in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> :
+
+  ```csharp
+  services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options => 
+      {
+          ...
+          options.Resource = "...";    // REMOVE THIS LINE
+          ...
+      }
+      ```
+
+  For more information, see [Scopes, not resources](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison#scopes-not-resources) in the Azure documentation.
+
+### App ID URI
+
+* When using v2.0 endpoints, APIs define an *App ID URI*, which is meant to represent a unique identifier for the API.
+* All scopes include the App ID URI as a prefix, and v2.0 endpoints emit access tokens with the App ID URI as the audience.
+* When using V2.0 endpoints, the client ID configured in the Server API changes from the API Application ID (Client ID) to the App ID URI.
+
+*appsettings.json*:
+
+```json
+{
+  "AzureAd": {
+    ...
+    "ClientId": "https://{TENANT}.onmicrosoft.com/{APP NAME}"
+    ...
+  }
+}
+```
+
+È possibile trovare l'URI ID app da usare nella descrizione della registrazione dell'app provider OIDC.

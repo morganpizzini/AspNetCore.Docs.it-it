@@ -1,40 +1,34 @@
 ---
-title: Crea la tua Blazor prima app
-author: guardrex
-description: Creare un' Blazor app dettagliata.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/20/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: tutorials/first-blazor-app
-ms.openlocfilehash: 5a5a56ee646cba21a883df2cf686cb1ccb18d7f9
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776604"
+title:' crea la tua prima Blazor app ' autore: Descrizione:' crea un' Blazor app Step-by-Step '.
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
-# <a name="build-your-first-blazor-app"></a>Crea la tua Blazor prima app
+# <a name="build-your-first-blazor-app"></a>Crea la tua prima Blazor app
 
 Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+Questa esercitazione illustra come creare e modificare un' Blazor app. Si apprenderà come:
 
-Questa esercitazione illustra come creare e modificare un' Blazor app.
+> [!div class="checklist"]
+> * Creare un progetto di Blazor app elenco TODO
+> * Modificare i Razor componenti
+> * Usare la gestione degli eventi e data binding nei componenti
+> * Usare l'inserimento DI dipendenze e il routing in un' Blazor app
+
+Al termine di questa esercitazione, si disporrà di un'app di chat funzionante.
 
 ## <a name="build-components"></a>Compilare i componenti
 
-1. Per creare un Blazor progetto per <xref:blazor/get-started> questa esercitazione, seguire le istruzioni riportate nell'articolo. Denominare il progetto *ToDoList*.
+1. <xref:blazor/get-started>Per creare un Blazor progetto per questa esercitazione, seguire le istruzioni riportate nell'articolo. Denominare il progetto *ToDoList*.
 
 1. Passare a ognuna delle tre pagine dell'app nella cartella *pages* : Home, Counter e fetch data. Queste pagine vengono implementate dai Razor file di componente *index. Razor*, *Counter. Razor*e *fetchData. Razor*.
 
-1. Nella pagina Counter selezionare il pulsante **Click me** per incrementare il contatore senza un aggiornamento della pagina. Per incrementare un contatore in una pagina Web è in genere necessario scrivere JavaScript. Con Blazorè invece possibile scrivere in C#.
+1. Nella pagina Counter selezionare il pulsante **Click me** per incrementare il contatore senza un aggiornamento della pagina. Per incrementare un contatore in una pagina Web è in genere necessario scrivere JavaScript. Con Blazor è invece possibile scrivere in C#.
 
 1. Esaminare l'implementazione del componente `Counter` nel file *Counter.razor*.
 
@@ -42,7 +36,7 @@ Questa esercitazione illustra come creare e modificare un' Blazor app.
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter1.razor)]
 
-   L'interfaccia utente del componente `Counter` viene definita tramite codice HTML. La logica di rendering dinamica (ad esempio, cicli, condizionali, espressioni) viene aggiunta usando una sintassi C# [Razor](xref:mvc/views/razor)incorporata denominata. Il markup HTML e la logica di rendering C# vengono convertiti un una classe del componente in fase di compilazione. Il nome della classe .NET generata corrisponde al nome del file.
+   L'interfaccia utente del componente `Counter` viene definita tramite codice HTML. La logica di rendering dinamica (ad esempio, cicli, condizionali, espressioni) viene aggiunta usando una sintassi C# incorporata denominata [Razor](xref:mvc/views/razor) . Il markup HTML e la logica di rendering C# vengono convertiti un una classe del componente in fase di compilazione. Il nome della classe .NET generata corrisponde al nome del file.
 
    I membri della classe del componente vengono definiti in un blocco `@code`. Nel blocco `@code`, lo stato del componente (proprietà, campi) e i metodi vengono specificati per la gestione degli eventi o per definire la logica di altri componenti. Questi membri vengono quindi usati come parte della logica di rendering del componente e per la gestione degli eventi.
 
@@ -75,12 +69,12 @@ Includere un componente in un altro componente usando una sintassi HTML.
 
 ## <a name="component-parameters"></a>Parametri del componente
 
-I componenti possono avere anche parametri, I parametri del componente vengono definiti usando proprietà pubbliche nella classe Component con `[Parameter]` l'attributo. Usare gli attributi per specificare gli argomenti per un componente nel markup.
+I componenti possono avere anche parametri, I parametri del componente vengono definiti usando proprietà pubbliche nella classe Component con l' `[Parameter]` attributo. Usare gli attributi per specificare gli argomenti per un componente nel markup.
 
-1. Aggiornare il codice `@code` C# del componente come segue:
+1. Aggiornare il `@code` codice C# del componente come segue:
 
-   * Aggiungere una proprietà `IncrementAmount` pubblica con l' `[Parameter]` attributo.
-   * Modificare il `IncrementCount` metodo in modo che `IncrementAmount` usi la proprietà quando si aumenta `currentCount`il valore di.
+   * Aggiungere una `IncrementAmount` proprietà pubblica con l' `[Parameter]` attributo.
+   * Modificare il `IncrementCount` metodo in modo che usi la `IncrementAmount` proprietà quando si aumenta il valore di `currentCount` .
 
    *Pages/Counter.razor*:
 
@@ -103,11 +97,11 @@ I componenti possono avere anche parametri, I parametri del componente vengono d
 
 La direttiva `@page` all'inizio del file *Counter.razor* specifica che il componente `Counter` è un endpoint di routing. Il componente `Counter` gestisce le richieste inviate a `/counter`. Senza la direttiva `@page`, un componente non gestisce le richieste instradate, ma può comunque essere usato da altri componenti.
 
-## <a name="dependency-injection"></a>Inserimento di dipendenze
+## <a name="dependency-injection"></a>Inserimento delle dipendenze
 
 ### <a name="blazor-server-experience"></a>BlazorEsperienza server
 
-Se si utilizza un' Blazor app Server, il `WeatherForecastService` servizio viene registrato come [singleton](xref:fundamentals/dependency-injection#service-lifetimes) in `Startup.ConfigureServices`. Un'istanza del servizio è disponibile in tutte le app tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection):
+Se si utilizza un' Blazor app Server, il `WeatherForecastService` servizio viene registrato come [singleton](xref:fundamentals/dependency-injection#service-lifetimes) in `Startup.ConfigureServices` . Un'istanza del servizio è disponibile in tutte le app tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection):
 
 [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
@@ -127,7 +121,7 @@ Se si usa un' Blazor app webassembly, `HttpClient` viene inserito per ottenere i
 
 *Pages/FetchData.razor*:
 
-[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-8)]
+[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-9)]
 
 Un [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) ciclo viene usato per eseguire il rendering di ogni istanza di previsione come riga nella tabella dei dati meteorologici:
 
@@ -137,7 +131,7 @@ Un [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) ciclo vie
 
 Aggiungere all'app un nuovo componente che implementa un semplice elenco attività.
 
-1. Aggiungere un nuovo `Todo` Razor componente all'app nella cartella *pages* . In Visual Studio fare clic con il pulsante destro del mouse sulla cartella **pagine** e scegliere **Aggiungi** > **nuovo elemento**  >  ** Razor componente**. Denominare il file del componente *todo. Razor*. In altri ambienti di sviluppo aggiungere un file vuoto alla cartella **pages** denominata *todo. Razor*.
+1. Aggiungere un nuovo `Todo` Razor componente all'app nella cartella *pages* . In Visual Studio fare clic con il pulsante destro del mouse sulla cartella **pagine** e scegliere **Aggiungi**  >  **nuovo elemento**  >  ** Razor componente**. Denominare il file del componente *todo. Razor*. In altri ambienti di sviluppo aggiungere un file vuoto alla cartella **pages** denominata *todo. Razor*.
 
 1. Specificare il markup iniziale per il componente:
 
@@ -213,6 +207,18 @@ Aggiungere all'app un nuovo componente che implementa un semplice elenco attivit
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Todo.razor)]
 
 1. Ricompilare ed eseguire l'app. Aggiungere elementi attività per testare il nuovo codice.
+
+## <a name="next-steps"></a>Passaggi successivi
+
+In questa esercitazione sono state illustrate le procedure per:
+
+> [!div class="checklist"]
+> * Creare un progetto di Blazor app elenco TODO
+> * Modificare i Razor componenti
+> * Usare la gestione degli eventi e data binding nei componenti
+> * Usare l'inserimento DI dipendenze e il routing in un' Blazor app
+
+Informazioni su come creare e usare i componenti:
 
 > [!div class="nextstepaction"]
 > <xref:blazor/components>

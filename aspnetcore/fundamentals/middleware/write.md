@@ -1,30 +1,20 @@
 ---
-title: Scrivere middleware di ASP.NET Core personalizzato
-author: rick-anderson
-description: Informazioni su come scrivere middleware di ASP.NET Core personalizzato.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 5/6/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/middleware/write
-ms.openlocfilehash: 6852c1831d1f71af7f4fad3288fd6f897dfaa65f
-ms.sourcegitcommit: 30fcf69556b6b6ec54a3879e280d5f61f018b48f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/07/2020
-ms.locfileid: "82876192"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="write-custom-aspnet-core-middleware"></a>Scrivere middleware di ASP.NET Core personalizzato
 
 Di [Rick Anderson](https://twitter.com/RickAndMSFT) e [Steve Smith](https://ardalis.com/)
 
 Il middleware è un software che viene assemblato in una pipeline dell'app per gestire richieste e risposte. ASP.NET Core offre un ampio set di componenti middleware integrati, ma in alcuni scenari si potrebbe voler scrivere un middleware personalizzato.
+
+> [!NOTE]
+> In questo argomento viene descritto come scrivere un middleware *basato sulle convenzioni* . Per un approccio che usa la tipizzazione forte e l'attivazione per richiesta, vedere <xref:fundamentals/middleware/extensibility> .
 
 ## <a name="middleware-class"></a>Classe middleware
 

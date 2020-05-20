@@ -1,42 +1,28 @@
 ---
-title: Chiamare i metodi .NET da funzioni JavaScript in ASP.NET CoreBlazor
-author: guardrex
-description: Informazioni su come richiamare i metodi .NET dalle funzioni JavaScript Blazor nelle app.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 9eab35f3fd856debf9f0305aedf012d63b9b800a
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967324"
+title:' Call .NET Methods from JavaScript Functions in ASP.NET Core Blazor ' Author: Description:' Learn how to Invoke .NET Methods from JavaScript Functions in Blazor Apps '.
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-blazor"></a>Chiamare i metodi .NET da funzioni JavaScript in ASP.NET CoreBlazor
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Rudrawadi](http://wisne.co)e [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
 Un' Blazor app può richiamare funzioni JavaScript da metodi .NET e metodi .NET da funzioni JavaScript. Questi scenari sono detti *interoperabilità JavaScript (interoperabilità* *JS*).
 
-Questo articolo descrive come richiamare i metodi .NET da JavaScript. Per informazioni su come chiamare funzioni JavaScript da .NET, vedere <xref:blazor/call-javascript-from-dotnet>.
+Questo articolo descrive come richiamare i metodi .NET da JavaScript. Per informazioni su come chiamare funzioni JavaScript da .NET, vedere <xref:blazor/call-javascript-from-dotnet> .
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ## <a name="static-net-method-call"></a>Chiamata al metodo .NET statico
 
-Per richiamare un metodo .NET statico da JavaScript, usare le `DotNet.invokeMethod` funzioni `DotNet.invokeMethodAsync` o. Passare l'identificatore del metodo statico che si desidera chiamare, il nome dell'assembly che contiene la funzione e gli eventuali argomenti. La versione asincrona è preferibile Blazor per supportare scenari server. Il metodo .NET deve essere pubblico, statico e avere l' `[JSInvokable]` attributo. La chiamata ai metodi generici aperti non è attualmente supportata.
+Per richiamare un metodo .NET statico da JavaScript, usare le `DotNet.invokeMethod` `DotNet.invokeMethodAsync` funzioni o. Passare l'identificatore del metodo statico che si desidera chiamare, il nome dell'assembly che contiene la funzione e gli eventuali argomenti. La versione asincrona è preferibile per supportare Blazor scenari server. Il metodo .NET deve essere pubblico, statico e avere l' `[JSInvokable]` attributo. La chiamata ai metodi generici aperti non è attualmente supportata.
 
-L'app di esempio include un metodo C# per restituire `int` una matrice. L' `JSInvokable` attributo viene applicato al metodo.
+L'app di esempio include un metodo C# per restituire una `int` matrice. L' `JSInvokable` attributo viene applicato al metodo.
 
 *Pages/JsInterop. Razor*:
 
@@ -69,9 +55,9 @@ L'output della console è:
 Array(4) [ 1, 2, 3, 4 ]
 ```
 
-Il quarto valore della matrice viene inserito nella matrice (`data.push(4);`) restituito da `ReturnArrayAsync`.
+Il quarto valore della matrice viene inserito nella matrice ( `data.push(4);` ) restituito da `ReturnArrayAsync` .
 
-Per impostazione predefinita, l'identificatore del metodo è il nome del metodo, ma è possibile specificare un identificatore `JSInvokableAttribute` diverso usando il costruttore:
+Per impostazione predefinita, l'identificatore del metodo è il nome del metodo, ma è possibile specificare un identificatore diverso usando il `JSInvokableAttribute` costruttore:
 
 ```csharp
 @code {
@@ -100,14 +86,14 @@ returnArrayAsyncJs: function () {
 È anche possibile chiamare i metodi di istanza .NET da JavaScript. Per richiamare un metodo di istanza .NET da JavaScript:
 
 * Passa l'istanza .NET per riferimento a JavaScript:
-  * Eseguire una chiamata statica a `DotNetObjectReference.Create`.
-  * Eseguire il wrapping dell'istanza `DotNetObjectReference` in un'istanza `Create` di e `DotNetObjectReference` chiamare sull'istanza. Eliminazione di `DotNetObjectReference` oggetti (un esempio viene visualizzato più avanti in questa sezione).
+  * Eseguire una chiamata statica a `DotNetObjectReference.Create` .
+  * Eseguire il wrapping dell'istanza in un' `DotNetObjectReference` istanza di e chiamare `Create` sull' `DotNetObjectReference` istanza. Eliminazione di `DotNetObjectReference` oggetti (un esempio viene visualizzato più avanti in questa sezione).
 * Richiamare i metodi di istanza .NET sull'istanza usando `invokeMethod` le `invokeMethodAsync` funzioni o. L'istanza di .NET può essere passata anche come argomento quando si richiamano altri metodi .NET da JavaScript.
 
 > [!NOTE]
 > L'app di esempio consente di registrare i messaggi nella console lato client. Per gli esempi seguenti illustrati dall'app di esempio, esaminare l'output della console del browser negli strumenti di sviluppo del browser.
 
-Quando il pulsante del **metodo di istanza .NET del trigger HelloHelper. sayHello** è selezionato, `ExampleJsInterop.CallHelloHelperSayHello` viene chiamato e passa `Blazor`un nome al metodo.
+Quando il pulsante del **metodo di istanza .NET del trigger HelloHelper. sayHello** è selezionato, `ExampleJsInterop.CallHelloHelperSayHello` viene chiamato e passa un nome `Blazor` al metodo.
 
 *Pages/JsInterop. Razor*:
 
@@ -125,7 +111,7 @@ Quando il pulsante del **metodo di istanza .NET del trigger HelloHelper. sayHell
 }
 ```
 
-`CallHelloHelperSayHello`richiama la funzione `sayHello` JavaScript con una nuova istanza di `HelloHelper`.
+`CallHelloHelperSayHello`richiama la funzione JavaScript `sayHello` con una nuova istanza di `HelloHelper` .
 
 *JsInteropClasses/ExampleJsInterop. cs*:
 
@@ -135,7 +121,7 @@ Quando il pulsante del **metodo di istanza .NET del trigger HelloHelper. sayHell
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
 
-Il nome viene passato al `HelloHelper`costruttore, che imposta la `HelloHelper.Name` proprietà. Quando viene eseguita la `sayHello` funzione JavaScript, `HelloHelper.SayHello` restituisce il `Hello, {Name}!` messaggio, che viene scritto nella console dalla funzione JavaScript.
+Il nome viene passato al `HelloHelper` costruttore, che imposta la `HelloHelper.Name` Proprietà. Quando viene eseguita la funzione JavaScript `sayHello` , `HelloHelper.SayHello` restituisce il `Hello, {Name}!` messaggio, che viene scritto nella console dalla funzione JavaScript.
 
 *JsInteropClasses/HelloHelper. cs*:
 
@@ -147,7 +133,7 @@ Output della console negli strumenti di sviluppo Web del browser:
 Hello, Blazor!
 ```
 
-Per evitare una perdita di memoria e consentire Garbage Collection su un componente che crea `DotNetObjectReference`un, adottare uno degli approcci seguenti:
+Per evitare una perdita di memoria e consentire Garbage Collection su un componente che crea un `DotNetObjectReference` , adottare uno degli approcci seguenti:
 
 * Eliminare l'oggetto nella classe che ha creato l' `DotNetObjectReference` istanza:
 
@@ -211,7 +197,7 @@ Per evitare una perdita di memoria e consentire Garbage Collection su un compone
   }
   ```
 
-* Quando il componente o la classe non Elimina `DotNetObjectReference`, eliminare l'oggetto nel client chiamando: `.dispose()`
+* Quando il componente o la classe non Elimina `DotNetObjectReference` , eliminare l'oggetto nel client chiamando `.dispose()` :
 
   ```javascript
   window.myFunction = (dotnetHelper) => {
@@ -224,8 +210,8 @@ Per evitare una perdita di memoria e consentire Garbage Collection su un compone
 
 Per richiamare i metodi .NET di un componente:
 
-* Utilizzare la `invokeMethod` funzione `invokeMethodAsync` o per eseguire una chiamata al metodo statico al componente.
-* Il metodo statico del componente esegue il wrapping della chiamata al metodo di istanza come oggetto `Action`richiamato.
+* Utilizzare la `invokeMethod` `invokeMethodAsync` funzione o per eseguire una chiamata al metodo statico al componente.
+* Il metodo statico del componente esegue il wrapping della chiamata al metodo di istanza come oggetto richiamato `Action` .
 
 Nel codice JavaScript lato client:
 
@@ -271,13 +257,13 @@ function updateMessageCallerJS() {
 }
 ```
 
-Quando sono presenti diversi componenti, ognuno con i metodi di istanza da chiamare, usare una classe helper per richiamare i metodi di istanza `Action`(come s) di ogni componente.
+Quando sono presenti diversi componenti, ognuno con i metodi di istanza da chiamare, usare una classe helper per richiamare i metodi di istanza (come `Action` s) di ogni componente.
 
 Nell'esempio seguente:
 
 * Il `JSInterop` componente contiene diversi `ListItem` componenti.
 * Ogni `ListItem` componente è costituito da un messaggio e da un pulsante.
-* Quando viene `ListItem` selezionato un pulsante componente, `ListItem`il `UpdateMessage` metodo modifica il testo dell'elemento dell'elenco e lo nasconde.
+* Quando `ListItem` viene selezionato un pulsante componente, `ListItem` `UpdateMessage` il metodo modifica il testo dell'elemento dell'elenco e lo nasconde.
 
 *MessageUpdateInvokeHelper.cs*:
 
@@ -379,4 +365,4 @@ Per ulteriori informazioni, vedere i seguenti problemi:
 
 * <xref:blazor/call-javascript-from-dotnet>
 * [Esempio di InteropComponent. Razor (repository GitHub DotNet/AspNetCore, Branch versione 3,1)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
-* [Eseguire trasferimenti di dati di Blazor grandi dimensioni nelle app Server](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)
+* [Eseguire trasferimenti di dati di grandi dimensioni nelle Blazor app Server](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)

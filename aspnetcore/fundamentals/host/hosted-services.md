@@ -1,24 +1,11 @@
 ---
-title: Attività in background con servizi ospitati in ASP.NET Core
-author: rick-anderson
-description: Informazioni su come implementare attività in background con servizi ospitati in ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/10/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/host/hosted-services
-ms.openlocfilehash: 9ffb91226368643d1e1526847ed32f5c93e31080
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775570"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Attività in background con servizi ospitati in ASP.NET Core
 
@@ -48,9 +35,9 @@ Per usare il modello come base per un'app di servizi ospitati:
 
 ## <a name="package"></a>Pacchetto
 
-Un'app basata sul modello del servizio Worker USA `Microsoft.NET.Sdk.Worker` l'SDK e contiene un riferimento esplicito al pacchetto per il pacchetto [Microsoft. Extensions. host](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) . Ad esempio, vedere il file di progetto dell'app di esempio (*BackgroundTasksSample. csproj*).
+Un'app basata sul modello del servizio Worker usa l' `Microsoft.NET.Sdk.Worker` SDK e contiene un riferimento esplicito al pacchetto per il pacchetto [Microsoft. Extensions. host](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) . Ad esempio, vedere il file di progetto dell'app di esempio (*BackgroundTasksSample. csproj*).
 
-Per le app Web che usano `Microsoft.NET.Sdk.Web` l'SDK, viene fatto riferimento in modo implicito al pacchetto [Microsoft. Extensions. host](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) dal Framework condiviso. Un riferimento esplicito al pacchetto nel file di progetto dell'app non è obbligatorio.
+Per le app Web che usano l' `Microsoft.NET.Sdk.Web` SDK, viene fatto riferimento in modo implicito al pacchetto [Microsoft. Extensions. host](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) dal Framework condiviso. Un riferimento esplicito al pacchetto nel file di progetto dell'app non è obbligatorio.
 
 ## <a name="ihostedservice-interface"></a>Interfaccia IHostedService
 
@@ -58,10 +45,10 @@ L' <xref:Microsoft.Extensions.Hosting.IHostedService> interfaccia definisce due 
 
 * [StartAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*) &ndash; `StartAsync` contiene la logica per avviare l'attività in background. `StartAsync`viene chiamato *prima*di:
 
-  * La pipeline di elaborazione delle richieste dell'app è`Startup.Configure`configurata ().
+  * La pipeline di elaborazione delle richieste dell'app è configurata ( `Startup.Configure` ).
   * Il server viene avviato e viene attivato [IApplicationLifetime. ApplicationStarted](xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted*) .
 
-  Il comportamento predefinito può essere modificato in modo che il servizio ospitato `StartAsync` venga eseguito dopo che la pipeline dell'app è stata `ApplicationStarted` configurata e chiamata. Per modificare il comportamento predefinito, aggiungere il servizio ospitato (`VideosWatcher` nell'esempio seguente) dopo la chiamata `ConfigureWebHostDefaults`a:
+  Il comportamento predefinito può essere modificato in modo che il servizio ospitato `StartAsync` venga eseguito dopo che la pipeline dell'app è stata configurata e `ApplicationStarted` chiamata. Per modificare il comportamento predefinito, aggiungere il servizio ospitato ( `VideosWatcher` nell'esempio seguente) dopo la chiamata a `ConfigureWebHostDefaults` :
 
   ```csharp
   using Microsoft.AspNetCore.Hosting;
@@ -108,9 +95,9 @@ Il servizio ospitato viene attivato una volta all'avvio dell'app e arrestato nor
 
 ## <a name="backgroundservice-base-class"></a>Classe di base BackgroundService
 
-<xref:Microsoft.Extensions.Hosting.BackgroundService>è una classe di base per l'implementazione di <xref:Microsoft.Extensions.Hosting.IHostedService>un oggetto a esecuzione prolungata.
+<xref:Microsoft.Extensions.Hosting.BackgroundService>è una classe di base per l'implementazione di un oggetto a esecuzione prolungata <xref:Microsoft.Extensions.Hosting.IHostedService> .
 
-[ExecuteAsync (CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.ExecuteAsync*) viene chiamato per eseguire il servizio in background. L'implementazione restituisce un <xref:System.Threading.Tasks.Task> oggetto che rappresenta l'intera durata del servizio in background. Non vengono avviati altri servizi fino a quando [ExecuteAsync non diventa asincrono](https://github.com/dotnet/extensions/issues/2149), `await`ad esempio chiamando. Evitare di eseguire operazioni di inizializzazione lunghe `ExecuteAsync`e bloccate in. Blocchi host in [StopAsync (CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.StopAsync*) in attesa del `ExecuteAsync` completamento di.
+[ExecuteAsync (CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.ExecuteAsync*) viene chiamato per eseguire il servizio in background. L'implementazione restituisce un oggetto <xref:System.Threading.Tasks.Task> che rappresenta l'intera durata del servizio in background. Non vengono avviati altri servizi fino a quando [ExecuteAsync non diventa asincrono](https://github.com/dotnet/extensions/issues/2149), ad esempio chiamando `await` . Evitare di eseguire operazioni di inizializzazione lunghe e bloccate in `ExecuteAsync` . Blocchi host in [StopAsync (CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.StopAsync*) in attesa del `ExecuteAsync` completamento di.
 
 Il token di annullamento viene attivato quando viene chiamato [IHostedService. StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) . L'implementazione di `ExecuteAsync` deve terminare tempestivamente quando viene generato il token di annullamento per arrestare correttamente il servizio. In caso contrario, il servizio si arresta normalmente in corrispondenza del timeout di arresto. Per ulteriori informazioni, vedere la sezione [interfaccia IHostedService](#ihostedservice-interface) .
 
@@ -120,7 +107,7 @@ Un'attività programmata in background utilizza la classe [System.Threading.Time
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/TimedHostedService.cs?name=snippet1&highlight=16-17,34,41)]
 
-Il <xref:System.Threading.Timer> non attende il completamento delle esecuzioni `DoWork` precedenti di, pertanto l'approccio illustrato potrebbe non essere adatto per ogni scenario. [Interlocked. Increment](xref:System.Threading.Interlocked.Increment*) viene usato per incrementare il contatore di esecuzione come operazione atomica, in modo da garantire che più `executionCount` thread non vengano aggiornati contemporaneamente.
+Il <xref:System.Threading.Timer> non attende il completamento delle esecuzioni precedenti di `DoWork` , pertanto l'approccio illustrato potrebbe non essere adatto per ogni scenario. [Interlocked. Increment](xref:System.Threading.Interlocked.Increment*) viene usato per incrementare il contatore di esecuzione come operazione atomica, in modo da garantire che più thread non vengano aggiornati `executionCount` contemporaneamente.
 
 Il servizio è registrato in `IHostBuilder.ConfigureServices` (*Program.cs*) con il `AddHostedService` metodo di estensione:
 
@@ -132,12 +119,12 @@ Per usare i [servizi con ambito](xref:fundamentals/dependency-injection#service-
 
 Il servizio dell'attività in background con ambito contiene la logica dell'attività in background. Nell'esempio seguente:
 
-* Il servizio è asincrono. Il metodo `DoWork` restituisce un elemento `Task`. A scopo dimostrativo, nel `DoWork` metodo è atteso un ritardo di dieci secondi.
-* Un <xref:Microsoft.Extensions.Logging.ILogger> oggetto viene inserito nel servizio.
+* Il servizio è asincrono. Il metodo `DoWork` restituisce un elemento `Task`. A scopo dimostrativo, nel metodo è atteso un ritardo di dieci secondi `DoWork` .
+* Un oggetto <xref:Microsoft.Extensions.Logging.ILogger> viene inserito nel servizio.
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ScopedProcessingService.cs?name=snippet1)]
 
-Il servizio ospitato crea un ambito per risolvere il servizio attività in background con ambito per chiamare `DoWork` il relativo metodo. `DoWork`Restituisce un `Task`oggetto, che è atteso `ExecuteAsync`in:
+Il servizio ospitato crea un ambito per risolvere il servizio attività in background con ambito per chiamare il relativo `DoWork` metodo. `DoWork`Restituisce un oggetto `Task` , che è atteso in `ExecuteAsync` :
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=19,22-35)]
 
@@ -147,25 +134,25 @@ I servizi sono registrati in `IHostBuilder.ConfigureServices` (*Program.cs*). Il
 
 ## <a name="queued-background-tasks"></a>Attività in background in coda
 
-Una coda delle attività in background è basata su .NET 4. <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> x ([programma provvisoriamente per essere incorporato per ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
+Una coda delle attività in background è basata su .NET 4. x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> ([programma provvisoriamente per essere incorporato per ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 
 Nell'esempio seguente `QueueHostedService` :
 
-* Il `BackgroundProcessing` metodo restituisce un `Task`oggetto, che è atteso `ExecuteAsync`in.
-* Le attività in background nella coda vengono rimesse in coda ed `BackgroundProcessing`eseguite in.
-* Gli elementi di lavoro sono in attesa prima che il `StopAsync`servizio si arresti in.
+* Il `BackgroundProcessing` metodo restituisce un oggetto `Task` , che è atteso in `ExecuteAsync` .
+* Le attività in background nella coda vengono rimesse in coda ed eseguite in `BackgroundProcessing` .
+* Gli elementi di lavoro sono in attesa prima che il servizio si arresti in `StopAsync` .
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/QueuedHostedService.cs?name=snippet1&highlight=28-29,33)]
 
-Un `MonitorLoop` servizio gestisce le attività di Accodamento per il servizio ospitato ogni `w` volta che la chiave viene selezionata in un dispositivo di input:
+Un `MonitorLoop` servizio gestisce le attività di Accodamento per il servizio ospitato ogni volta che la `w` chiave viene selezionata in un dispositivo di input:
 
-* `IBackgroundTaskQueue` Viene inserito nel `MonitorLoop` servizio.
+* `IBackgroundTaskQueue`Viene inserito nel `MonitorLoop` servizio.
 * `IBackgroundTaskQueue.QueueBackgroundWorkItem`viene chiamato per accodare un elemento di lavoro.
 * L'elemento di lavoro simula un'attività in background con esecuzione prolungata:
-  * Vengono eseguiti tre ritardi di 5 secondi (`Task.Delay`).
-  * Se l'attività viene annullata, viene intercettata un' `try-catch` istruzione. <xref:System.OperationCanceledException>
+  * Vengono eseguiti tre ritardi di 5 secondi ( `Task.Delay` ).
+  * `try-catch` <xref:System.OperationCanceledException> Se l'attività viene annullata, viene intercettata un'istruzione.
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/MonitorLoop.cs?name=snippet_Monitor&highlight=7,33)]
 
@@ -173,7 +160,7 @@ I servizi sono registrati in `IHostBuilder.ConfigureServices` (*Program.cs*). Il
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
 
-`MontiorLoop`viene avviato in `Program.Main`:
+`MonitorLoop`viene avviato in `Program.Main` :
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet4)]
 
@@ -197,7 +184,7 @@ Fare riferimento al [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/m
 
 I servizi ospitati implementano l'interfaccia <xref:Microsoft.Extensions.Hosting.IHostedService>. L'interfaccia definisce due metodi riservati agli oggetti gestiti dall'host:
 
-* [StartAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*) &ndash; `StartAsync` contiene la logica per avviare l'attività in background. Quando si usa l' [host Web](xref:fundamentals/host/web-host), `StartAsync` viene chiamato dopo che il server è stato avviato e viene attivato [IApplicationLifetime. ApplicationStarted](xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted*) . Quando si usa l' [host generico](xref:fundamentals/host/generic-host), viene chiamato `ApplicationStarted` prima di `StartAsync` viene attivato.
+* [StartAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*) &ndash; `StartAsync` contiene la logica per avviare l'attività in background. Quando si usa l' [host Web](xref:fundamentals/host/web-host), `StartAsync` viene chiamato dopo che il server è stato avviato e viene attivato [IApplicationLifetime. ApplicationStarted](xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted*) . Quando si usa l' [host generico](xref:fundamentals/host/generic-host), `StartAsync` viene chiamato prima di `ApplicationStarted` viene attivato.
 
 * [StopAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) &ndash; Attivato quando l'host sta eseguendo un arresto normale. `StopAsync` contiene la logica per terminare l'attività in background. Implementare <xref:System.IDisposable> e i [finalizzatori (distruttori)](/dotnet/csharp/programming-guide/classes-and-structs/destructors) per eliminare tutte le risorse non gestite.
 
@@ -223,7 +210,7 @@ Un'attività programmata in background utilizza la classe [System.Threading.Time
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Services/TimedHostedService.cs?name=snippet1&highlight=15-16,30,37)]
 
-Il <xref:System.Threading.Timer> non attende il completamento delle esecuzioni `DoWork` precedenti di, pertanto l'approccio illustrato potrebbe non essere adatto per ogni scenario.
+Il <xref:System.Threading.Timer> non attende il completamento delle esecuzioni precedenti di `DoWork` , pertanto l'approccio illustrato potrebbe non essere adatto per ogni scenario.
 
 Il servizio registrato in `Startup.ConfigureServices` con il metodo di estensione `AddHostedService`:
 
@@ -231,7 +218,7 @@ Il servizio registrato in `Startup.ConfigureServices` con il metodo di estension
 
 ## <a name="consuming-a-scoped-service-in-a-background-task"></a>Utilizzo di un servizio con ambito in un'attività in background
 
-Per usare i [servizi con ambito](xref:fundamentals/dependency-injection#service-lifetimes) all' `IHostedService`interno di un, creare un ambito. Non viene creato automaticamente alcun ambito per un servizio ospitato.
+Per usare i [servizi con ambito](xref:fundamentals/dependency-injection#service-lifetimes) all'interno di un `IHostedService` , creare un ambito. Non viene creato automaticamente alcun ambito per un servizio ospitato.
 
 Il servizio dell'attività in background con ambito contiene la logica dell'attività in background. Nell'esempio seguente, <xref:Microsoft.Extensions.Logging.ILogger> viene inserito nel servizio:
 
@@ -247,7 +234,7 @@ I servizi vengono registrati in `Startup.ConfigureServices`. L'implementazione d
 
 ## <a name="queued-background-tasks"></a>Attività in background in coda
 
-Una coda delle attività in background è basata sulla .NET Framework 4. <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> x ([pianificata provvisoriamente per essere incorporata per ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
+Una coda delle attività in background è basata sulla .NET Framework 4. x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> ([pianificata provvisoriamente per essere incorporata per ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 

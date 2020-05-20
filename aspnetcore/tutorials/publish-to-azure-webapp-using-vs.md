@@ -1,23 +1,11 @@
 ---
-title: Pubblicare un'app ASP.NET Core in Azure con Visual Studio
-author: rick-anderson
-description: Informazioni su come pubblicare un'app ASP.NET Core in Servizio app di Azure con Visual Studio.
-ms.author: riande
-ms.custom: mvc
-ms.date: 07/10/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: tutorials/publish-to-azure-webapp-using-vs
-ms.openlocfilehash: 634fb821ef0478dbcf57fdbb991a2e8bbb9402f1
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777085"
+title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a>Pubblicare un'app ASP.NET Core in Azure con Visual Studio
 
@@ -33,7 +21,7 @@ Vedere [pubblicare un'app Web nel servizio app Azure usando Visual Studio per Ma
 
 Per risolvere un problema di distribuzione del Servizio app di Azure, vedere <xref:test/troubleshoot-azure-iis>.
 
-## <a name="set-up"></a>Configurare
+## <a name="set-up"></a>Configurazione
 
 * Aprire un [account Azure gratuito](https://azure.microsoft.com/free/dotnet/) se non è già disponibile un account. 
 
@@ -45,23 +33,22 @@ Nella Pagina iniziale di Visual Studio selezionare **File > Nuovo > Progetto**
 
 Completare la finestra di dialogo **Nuovo progetto**:
 
-* Nel riquadro sinistro selezionare **.NET Core**.
-* Nel riquadro al centro selezionare **Applicazione Web ASP.NET Core**.
-* Selezionare **OK**.
+* Selezionare **Applicazione Web ASP.NET Core**.
+* Selezionare **Avanti**.
 
 ![Finestra di dialogo Nuovo progetto](publish-to-azure-webapp-using-vs/_static/new_prj.png)
 
 Nella finestra di dialogo **Nuova applicazione Web ASP.NET Core**:
 
 * Selezionare **applicazione Web**.
-* Selezionare **Modifica autenticazione**.
+* Selezionare **modifica** in autenticazione.
 
-![Finestra di dialogo Nuovo progetto](publish-to-azure-webapp-using-vs/_static/new_prj_2.png)
+![Finestra di dialogo nuovo ASP.NET Core Web](publish-to-azure-webapp-using-vs/_static/new_prj_2.png)
 
 Viene visualizzata la finestra di dialogo **Modifica autenticazione**. 
 
 * Selezionare **Account utente individuali**.
-* Selezionare **OK** per tornare a **Nuova applicazione Web ASP.NET Core** e selezionare nuovamente **OK**.
+* Selezionare **OK** per tornare alla **nuova applicazione Web ASP.NET Core**, quindi selezionare **Crea**.
 
 ![Finestra per autenticazione Nuova applicazione Web ASP.NET Core](publish-to-azure-webapp-using-vs/_static/new_prj_auth.png) 
 
@@ -70,7 +57,7 @@ Visual Studio crea la soluzione.
 ## <a name="run-the-app"></a>Eseguire l'app
 
 * Premere CTRL+F5 per eseguire il progetto.
-* Eseguire il test dei collegamenti **About** (Informazioni su) e **Contact** (Contatto).
+* Testare il collegamento per la **privacy** .
 
 ![Applicazione Web aperta in Microsoft Edge su localhost](publish-to-azure-webapp-using-vs/_static/show.png)
 
@@ -78,14 +65,14 @@ Visual Studio crea la soluzione.
 
 * Selezionare **Registra** e registrare un nuovo utente. È possibile usare un indirizzo di posta elettronica fittizio. Quando si esegue l'invio, nella pagina viene visualizzato l'errore seguente:
 
-    *"Errore interno del server: un'operazione sul database non è riuscita durante l'elaborazione della richiesta. Eccezione SQL: Impossibile aprire il database. Per risolvere il problema, è possibile applicare le migrazioni esistenti per il contesto di database dell'applicazione. "*
+    *"Un'operazione sul database non è riuscita durante l'elaborazione della richiesta. Per risolvere il problema, è possibile applicare le migrazioni esistenti per il contesto di database dell'applicazione. "*
 * Selezionare **Apply Migrations** (Applica migrazioni) e, quando la pagina è stata caricata, eseguire l'aggiornamento.
 
-![Un errore interno del server indicante che un'operazione di database non è riuscita durante l'elaborazione della richiesta. Per un'eccezione SQL, non è possibile aprire il database. Per risolvere il problema, provare ad applicare le migrazioni esistenti per il contesto di database dell'applicazione.](publish-to-azure-webapp-using-vs/_static/mig.png)
+![A database operation failed while processing the request. Per risolvere il problema, provare ad applicare le migrazioni esistenti per il contesto di database dell'applicazione.](publish-to-azure-webapp-using-vs/_static/mig.png)
 
-L'app visualizza l'indirizzo di posta elettronica usato per registrare il nuovo utente e un collegamento **Disconnessione**.
+L'app Visualizza il messaggio di posta elettronica usato per registrare il nuovo utente e un collegamento di **disconnessione** .
 
-![Applicazione Web aperta in Microsoft Edge Il collegamento Register (Registra) viene sostituito dal testo Hello email@domain.com!](publish-to-azure-webapp-using-vs/_static/hello.png)
+![Applicazione Web aperta in Microsoft Edge Il collegamento Register (Registra) viene sostituito dal testo Hello user1@example.com!](publish-to-azure-webapp-using-vs/_static/hello.png)
 
 ## <a name="deploy-the-app-to-azure"></a>Distribuire l'app in Azure
 
@@ -95,53 +82,76 @@ Fare clic con il pulsante destro del mouse sul progetto in Esplora soluzioni e s
 
 Nella finestra di dialogo **Pubblica**:
 
-* Selezionare **Servizio app di Microsoft Azure**.
-* Selezionare l'icona a forma di ingranaggio e quindi selezionare **Crea profilo**.
-* Selezionare **Crea profilo**.
+* Selezionare **Azure**.
+* Selezionare **Avanti**.
 
 ![Finestra di dialogo Pubblica](publish-to-azure-webapp-using-vs/_static/maas1.png)
 
-### <a name="create-azure-resources"></a>Creare le risorse di Azure
+Nella finestra di dialogo **Pubblica**:
+
+* Selezionare **servizio app Azure (Linux)**.
+* Selezionare **Avanti**.
+
+![Finestra di dialogo pubblica: selezionare il servizio di Azure](publish-to-azure-webapp-using-vs/_static/maas2.png)
+
+Nella finestra di dialogo **pubblica** selezionare **Crea un nuovo servizio app Azure...**
+
+![Finestra di dialogo pubblica: selezionare l'istanza del servizio di Azure](publish-to-azure-webapp-using-vs/_static/maas3.png)
 
 Viene visualizzata la finestra di dialogo **Crea servizio app** :
 
-* Immettere la sottoscrizione.
 * I campi di immissione **Nome dell'app**, **Gruppo di risorse** e **Piano di servizio app** vengono popolati automaticamente. È possibile mantenere questi nomi o modificarli.
+* Selezionare **Crea**.
 
-![Finestra di dialogo Servizio app](publish-to-azure-webapp-using-vs/_static/newrg1.png)
+![Finestra di dialogo Crea servizio app](publish-to-azure-webapp-using-vs/_static/newrg1.png)
 
-* Selezionare la scheda **Servizi** per creare un nuovo database.
+Al termine della creazione, la finestra di dialogo viene chiusa automaticamente e la finestra di dialogo di **pubblicazione** viene nuovamente messa a fuoco:
 
-* Selezionare l'icona **+** verde per creare un nuovo database SQL
+* La nuova istanza appena creata viene selezionata automaticamente.
+* Selezionare **Fine**.
 
-![Nuovo database SQL](publish-to-azure-webapp-using-vs/_static/sql.png)
+![Finestra di dialogo pubblica: selezionare l'istanza del servizio app](publish-to-azure-webapp-using-vs/_static/select_as.png)
 
-* Selezionare **Nuovo** nella finestra di dialogo **Configura database SQL** per creare un nuovo database.
+Verrà visualizzata la pagina di **Riepilogo del profilo di pubblicazione** . Visual Studio ha rilevato che questa applicazione richiede un database di SQL Server e chiede di configurarlo. Selezionare **Configura**.
 
-![Nuovo database SQL e server](publish-to-azure-webapp-using-vs/_static/conf.png)
+![Pagina Riepilogo profilo di pubblicazione: Configura dipendenza SQL Server](publish-to-azure-webapp-using-vs/_static/sql.png)
 
-Viene visualizzata la finestra di dialogo **Configura SQL Server**.
+Verrà visualizzata la finestra di dialogo **Configura dipendenza** :
 
-* Immettere nome utente e password di amministratore e selezionare **OK**. È possibile salvare il **nome del server**predefinito. 
+* Selezionare **database SQL di Azure**.
+* Selezionare **Avanti**.
 
-> [!NOTE]
-> La stringa "admin" non è consentita come nome utente di amministratore.
+![Configurare la finestra di dialogo SQL Server dipendenza](publish-to-azure-webapp-using-vs/_static/sql1.png)
 
-![Finestra di dialogo Configura SQL Server](publish-to-azure-webapp-using-vs/_static/conf_servername.png)
+Nella finestra di dialogo **Configura database SQL di Azure** selezionare **Crea un database SQL**
 
-* Selezionare **OK**.
+![Finestra di dialogo Configura database SQL di Azure](publish-to-azure-webapp-using-vs/_static/sql2.png)
 
-Visual Studio torna alla finestra di dialogo **Crea servizio app**.
+Viene visualizzato il **database SQL di Azure per creare** :
 
-* Selezionare **Crea** nella finestra di dialogo **Crea servizio app**.
+* Il **nome del database**, il **gruppo di risorse**, il **server di database** e i campi di immissione del **piano di servizio app** sono popolati Questi valori possono essere conservati o modificati.
+* Immettere il **nome utente dell'amministratore** di database e la **password di amministratore** del database per il **server di database** selezionato (si noti che l'account usato deve avere le autorizzazioni necessarie per creare il nuovo database SQL di Azure)
+* Selezionare **Crea**.
 
-![Finestra di dialogo Configura database SQL](publish-to-azure-webapp-using-vs/_static/conf_final.png)
+![Finestra di dialogo nuovo database SQL di Azure](publish-to-azure-webapp-using-vs/_static/sql_create.png)
 
-Visual Studio crea l'app Web e SQL Server in Azure. Questo passaggio potrebbe richiedere alcuni minuti. Per informazioni sulle risorse create, vedere [Risorse aggiuntive](#additional-resources).
+Al termine della creazione, la finestra di dialogo viene chiusa automaticamente e la finestra di dialogo **Configura database SQL di Azure** ottiene nuovamente lo stato attivo:
 
-Al termine della distribuzione, selezionare **impostazioni**:
+* La nuova istanza appena creata viene selezionata automaticamente.
+* Selezionare **Avanti**.
 
-![Finestra di dialogo Configura SQL Server](publish-to-azure-webapp-using-vs/_static/set.png)
+![Finestra di dialogo Configura database SQL di Azure](publish-to-azure-webapp-using-vs/_static/sql_select.png)
+
+Nel passaggio successivo della finestra di dialogo **Configura database SQL di Azure** :
+
+* Immettere i campi **nome utente** e **password** connessione database per la connessione al database. Questi sono i dettagli che verranno usati dall'applicazione per connettersi al database in fase di esecuzione. La procedura consigliata consiste nell'evitare di utilizzare gli stessi dettagli del nome utente amministratore & password utilizzata nel passaggio precedente.
+* Selezionare **Fine**.
+
+![Finestra di dialogo Configura database SQL di Azure, dettagli stringa di connessione](publish-to-azure-webapp-using-vs/_static/sql_connection.png)
+
+Nella pagina di **Riepilogo del profilo di pubblicazione** selezionare **Impostazioni**:
+
+![Pagina Riepilogo profilo di pubblicazione: modifica impostazioni](publish-to-azure-webapp-using-vs/_static/pp_configured.png)
 
 Nella pagina **Impostazioni** della finestra di dialogo **Pubblica**:
 
@@ -150,27 +160,21 @@ Nella pagina **Impostazioni** della finestra di dialogo **Pubblica**:
 
 * Selezionare **Salva**. Visual Studio torna alla finestra di dialogo **Pubblica**. 
 
-![Finestra di dialogo Pubblica: pannello Impostazioni](publish-to-azure-webapp-using-vs/_static/pubs.png)
+![Finestra di dialogo Pubblica: pannello Impostazioni](publish-to-azure-webapp-using-vs/_static/pp_settings.png)
 
 Fare clic su **Pubblica**. Visual Studio pubblica l'app in Azure. Al termine della distribuzione, l'app viene aperta in un browser.
 
-### <a name="test-your-app-in-azure"></a>Testare l'app in Azure
-
-* Testare i collegamenti **About** e **Contact**
-
-* Registra un nuovo utente
-
-![Applicazione Web aperta in Microsoft Edge in Servizio app di Azure](publish-to-azure-webapp-using-vs/_static/register.png)
+![Finestra di dialogo Pubblica: pannello Impostazioni](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
 
 ### <a name="update-the-app"></a>Aggiornare l'app
 
-* Modificare la pagina *pages/About. cshtml* Razor e modificarne il contenuto. Ad esempio, è possibile modificare il paragrafo specificando "Hello ASP.NET Core!":
+* Modificare la pagina *pages/index. cshtml* Razor e modificarne il contenuto. Ad esempio, è possibile modificare il paragrafo specificando "Hello ASP.NET Core!":
 
-    [!code-html[About](publish-to-azure-webapp-using-vs/sample/about.cshtml?highlight=9&range=1-9)]
+    [!code-html[Index](publish-to-azure-webapp-using-vs/sample/index.cshtml?highlight=10&range=1-12)]
 
-* Fare clic con il pulsante destro del mouse sul progetto e selezionare **Pubblica**.
+* Selezionare di nuovo **pubblica** nella pagina di **Riepilogo del profilo di pubblicazione** .
 
-![Menu di scelta rapida con il collegamento per la pubblicazione evidenziato](publish-to-azure-webapp-using-vs/_static/pub.png)
+![Pagina Riepilogo profilo di pubblicazione](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
 
 * Dopo la pubblicazione dell'app, verificare che le modifiche apportate siano disponibili in Azure.
 
