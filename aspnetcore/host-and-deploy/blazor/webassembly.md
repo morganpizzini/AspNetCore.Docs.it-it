@@ -339,7 +339,7 @@ Un' Blazor app webassembly può essere inizializzata con la `loadBootResource` f
 
 `loadBootResource`i parametri vengono visualizzati nella tabella seguente.
 
-| Parametro    | Description |
+| Parametro    | Descrizione |
 | ---
 title: "host and deploy ASP.NET Core Blazor webassembly" Author: Description: "informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine GitHub".
 monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:

@@ -1,1 +1,1 @@
-Se si desidera visualizzare i commenti del codice tradotti in lingue diverse dall'inglese, fatecelo sapere in questo problema di [discussione GitHub](https://github.com/MicrosoftDocs/feedback/issues/2515).
+Per visualizzare i commenti del codice tradotti in lingue diverse dall'inglese, segnalare [il problema in questo argomento di discussione su GitHub](https://github.com/MicrosoftDocs/feedback/issues/2515).
