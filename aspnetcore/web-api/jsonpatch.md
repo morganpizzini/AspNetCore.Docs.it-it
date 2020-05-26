@@ -101,7 +101,7 @@ La proprietà [path](https://tools.ietf.org/html/rfc6901) di un oggetto operazio
 
 Vengono usati indici in base zero per specificare gli elementi della matrice. Il primo elemento della matrice `addresses` è in corrispondenza di `/addresses/0`. Fino alla `add` fine di una matrice, usare un trattino ( `-` ) invece di un numero di indice: `/addresses/-` .
 
-### <a name="operations"></a>Operazioni
+### <a name="operations"></a>Gestione operativa
 
 La tabella seguente mostra le operazioni supportate in base a quanto definito nella [specifica JSON Patch](https://tools.ietf.org/html/rfc6902):
 
@@ -443,7 +443,7 @@ La proprietà [path](https://tools.ietf.org/html/rfc6901) di un oggetto operazio
 
 Vengono usati indici in base zero per specificare gli elementi della matrice. Il primo elemento della matrice `addresses` è in corrispondenza di `/addresses/0`. Per aggiungere (`add`) un elemento alla fine della matrice, usare un trattino (-) invece di un numero di indice: `/addresses/-`.
 
-### <a name="operations"></a>Operazioni
+### <a name="operations"></a>Gestione operativa
 
 La tabella seguente mostra le operazioni supportate in base a quanto definito nella [specifica JSON Patch](https://tools.ietf.org/html/rfc6902):
 
