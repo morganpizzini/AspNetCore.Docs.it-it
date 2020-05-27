@@ -1,24 +1,12 @@
 ---
-title: BlazorProcedure consigliate per le prestazioni di ASP.NET Core Webassembly
-author: pranavkm
-description: Suggerimenti per migliorare le prestazioni nelle Blazor app ASP.NET Core webassembly ed evitare problemi di prestazioni comuni.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/13/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: performance/blazor/webassembly-best-practices
-ms.openlocfilehash: 9e9b166cb9ce9870a8ff275b72bb12f04b84751b
-ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/16/2020
-ms.locfileid: "83439437"
+title:' ASP.NET Core Blazor procedure consigliate per le prestazioni dell'assembly Web ' Author: Description:' suggerimenti per migliorare le prestazioni nelle app ASP.NET Core Blazor webassembly ed evitare problemi di prestazioni comuni .'
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>BlazorProcedure consigliate per le prestazioni di ASP.NET Core Webassembly
 
@@ -28,9 +16,9 @@ Questo articolo fornisce linee guida per ASP.NET Core Blazor procedure consiglia
 
 ## <a name="avoid-unnecessary-component-renders"></a>Evitare il rendering di componenti superflui
 
-Blazorl'algoritmo diffing evita di eseguire nuovamente il rendering di un componente quando l'algoritmo rileva che il componente non è stato modificato. Eseguire l'override di [ComponentBase. ShouldRender](xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A) per un controllo con granularità fine sul rendering dei componenti.
+Blazorl'algoritmo diffing evita di eseguire nuovamente il rendering di un componente quando l'algoritmo rileva che il componente non è stato modificato. Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A?displayProperty=nameWithType> per un controllo con granularità fine sul rendering dei componenti.
 
-Se la creazione di un componente di solo interfaccia utente che non cambia mai dopo il rendering iniziale, configurare `ShouldRender` per restituire `false` :
+Se la creazione di un componente di solo interfaccia utente che non cambia mai dopo il rendering iniziale, configurare <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> per restituire `false` :
 
 ```razor
 @code {
@@ -42,9 +30,9 @@ La maggior parte delle app non richiede un controllo con granularità fine, ma <
 
 Nell'esempio seguente:
 
-* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>viene sottoposto a override e impostato sul valore del `shouldRender` campo, che inizialmente si verifica `false` quando il componente viene caricato.
-* Quando il pulsante è selezionato, `shouldRender` viene impostato su `true` , che forza il rendering del componente con l'oggetto aggiornato `currentCount` .
-* Subito dopo il rendering, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> imposta il valore di `shouldRender` nuovo su `false` per impedire un ulteriore rendering fino alla successiva selezione del pulsante.
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>viene sottoposto a override e impostato sul valore del <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> campo, che inizialmente si verifica `false` quando il componente viene caricato.
+* Quando il pulsante è selezionato, <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> viene impostato su `true` , che forza il rendering del componente con l'oggetto aggiornato `currentCount` .
+* Subito dopo il rendering, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> imposta il valore di <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> nuovo su `false` per impedire un ulteriore rendering fino alla successiva selezione del pulsante.
 
 ```razor
 <p>Current count: @currentCount</p>

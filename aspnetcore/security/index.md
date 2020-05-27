@@ -1,23 +1,11 @@
 ---
-title: Panoramica sulla sicurezza di ASP.NET Core
-author: rick-anderson
-description: Informazioni sui concetti di base di autenticazione, autorizzazione e sicurezza in ASP.NET Core.
-ms.author: riande
-ms.custom: mvc
-ms.date: 10/24/2018
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/index
-ms.openlocfilehash: b507832e34ac850d2bd4e80bab3066e73ea2ad95
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776513"
+title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="overview-of-aspnet-core-security"></a>Panoramica sulla sicurezza di ASP.NET Core
 
@@ -25,7 +13,7 @@ ASP.NET Core consente agli sviluppatori di configurare e gestire facilmente la s
 
 ## <a name="aspnet-core-security-features"></a>Funzionalità di sicurezza di ASP.NET Core
 
-ASP.NET Core offre molti strumenti e librerie per proteggere le app, inclusi i Identity provider predefiniti, ma è possibile usare servizi di identità di terze parti, ad esempio Facebook, Twitter o LinkedIn. Con ASP.NET Core, è possibile gestire facilmente i segreti dell'app, che consentono di archiviare e usare informazioni riservate senza la necessità di esporle nel codice.
+ASP.NET Core offre molti strumenti e librerie per proteggere le app, inclusi i provider di identità incorporati, ma è possibile usare servizi di identità di terze parti, ad esempio Facebook, Twitter e LinkedIn. Con ASP.NET Core, è possibile gestire facilmente i segreti dell'app, che consentono di archiviare e usare informazioni riservate senza la necessità di esporle nel codice.
 
 ## <a name="authentication-vs-authorization"></a>Autenticazione e autorizzazione
 

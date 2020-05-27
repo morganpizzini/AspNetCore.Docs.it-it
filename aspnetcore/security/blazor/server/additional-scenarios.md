@@ -1,24 +1,12 @@
 ---
-title: BlazorScenari di sicurezza aggiuntivi di ASP.NET Core Server
-author: guardrex
-description: Informazioni su come configurare il Blazor Server per altri scenari di sicurezza.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/19/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/blazor/server/additional-scenarios
-ms.openlocfilehash: 9d26cde4d8964a8285241bb0158d8e6f8d5f8dbc
-ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/17/2020
-ms.locfileid: "83444074"
+Titolo:' ASP.NET Core Blazor Server scenari di sicurezza aggiuntivi ' autore: Descrizione:' informazioni su come configurare il Blazor Server per altri scenari di sicurezza .'
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>BlazorScenari di sicurezza aggiuntivi di ASP.NET Core Server
 
@@ -171,7 +159,7 @@ In alternativa, l'impostazione può essere eseguita nel file delle impostazioni 
 }
 ```
 
-Se l'uso di un segmento nell'autorità non è appropriato per il provider OIDC dell'app, ad esempio con i provider non AAD, impostare `Authority` direttamente la proprietà. Impostare la proprietà in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> o nel file di impostazioni dell'app con la `Authority` chiave.
+Se l'uso di un segmento nell'autorità non è appropriato per il provider OIDC dell'app, ad esempio con i provider non AAD, impostare <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> direttamente la proprietà. Impostare la proprietà in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> o nel file di impostazioni dell'app con la <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> chiave.
 
 ### <a name="code-changes"></a>Modifiche al codice
 

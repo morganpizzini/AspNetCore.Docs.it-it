@@ -1,32 +1,20 @@
 ---
-title: Scenari Blazor ASP.NET Core avanzati
-author: guardrex
-description: Informazioni sugli scenari avanzati in Blazor, tra cui come incorporare la logica RenderTreeBuilder manuale in un'app.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/18/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/advanced-scenarios
-ms.openlocfilehash: b47e7b1d7ff148bb5a8d299d3d2089999f017863
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967337"
+title: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
-# <a name="aspnet-core-blazor-advanced-scenarios"></a>Scenari avanzati di ASP.NET Core Blazer
+# <a name="aspnet-core-blazor-advanced-scenarios"></a>BlazorScenari ASP.NET Core avanzati
 
 Di [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
 
-## <a name="blazor-server-circuit-handler"></a>Gestore circuito del server Blazer
+## <a name="blazor-server-circuit-handler"></a>BlazorGestore del circuito server
 
-Il server Blazer consente al codice di definire un *gestore di circuito*, che consente l'esecuzione di codice in base alle modifiche apportate allo stato del circuito di un utente. Un gestore di circuito viene implementato tramite la derivazione da `CircuitHandler` e la registrazione della classe nel contenitore del servizio dell'app. L'esempio seguente di un gestore di circuito tiene traccia delle connessioni a SignalR aperte:
+BlazorIl server consente al codice di definire un *gestore di circuito*, che consente l'esecuzione di codice in base alle modifiche apportate allo stato del circuito di un utente. Un gestore di circuito viene implementato tramite la derivazione da `CircuitHandler` e la registrazione della classe nel contenitore del servizio dell'app. L'esempio seguente di un gestore di circuito tiene traccia delle SignalR connessioni aperte:
 
 ```csharp
 using System.Collections.Generic;
@@ -58,7 +46,7 @@ public class TrackingCircuitHandler : CircuitHandler
 }
 ```
 
-I gestori del circuito vengono registrati usando l'inserimento DI dipendenze. Le istanze con ambito vengono create per ogni istanza di un circuito. `TrackingCircuitHandler` Utilizzando nell'esempio precedente, viene creato un servizio singleton perché è necessario tenere traccia dello stato di tutti i circuiti:
+I gestori del circuito vengono registrati usando l'inserimento DI dipendenze. Le istanze con ambito vengono create per ogni istanza di un circuito. Utilizzando nell' `TrackingCircuitHandler` esempio precedente, viene creato un servizio singleton perché è necessario tenere traccia dello stato di tutti i circuiti:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -68,18 +56,18 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Se i metodi di un gestore di circuito personalizzato generano un'eccezione non gestita, l'eccezione è fatale per il circuito del server blazer. Per tollerare le eccezioni nel codice di un gestore o i metodi chiamati, eseguire il wrapping del codice in una o più istruzioni [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) con gestione e registrazione degli errori.
+Se i metodi di un gestore di circuito personalizzato generano un'eccezione non gestita, l'eccezione è fatale per il Blazor circuito server. Per tollerare le eccezioni nel codice di un gestore o i metodi chiamati, eseguire il wrapping del codice in una o più istruzioni [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) con gestione e registrazione degli errori.
 
-Quando un circuito termina perché un utente si è disconnesso e il Framework pulisce lo stato del circuito, il Framework Elimina l'ambito di. Con l'eliminazione dell'ambito vengono eliminati tutti i servizi con ambito DI circuito che <xref:System.IDisposable?displayProperty=fullName>implementano. Se un servizio DI INSERIMENTO DI dipendenze genera un'eccezione non gestita durante l'eliminazione, il Framework registra l'eccezione.
+Quando un circuito termina perché un utente si è disconnesso e il Framework pulisce lo stato del circuito, il Framework Elimina l'ambito di. Con l'eliminazione dell'ambito vengono eliminati tutti i servizi con ambito DI circuito che implementano <xref:System.IDisposable?displayProperty=fullName> . Se un servizio DI INSERIMENTO DI dipendenze genera un'eccezione non gestita durante l'eliminazione, il Framework registra l'eccezione.
 
 ## <a name="manual-rendertreebuilder-logic"></a>Logica RenderTreeBuilder manuale
 
-`Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder`fornisce metodi per la modifica di componenti ed elementi, inclusa la compilazione manuale di componenti nel codice C#.
+<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>fornisce metodi per la modifica di componenti ed elementi, inclusa la compilazione manuale di componenti nel codice C#.
 
 > [!NOTE]
-> L'utilizzo `RenderTreeBuilder` di per la creazione di componenti è uno scenario avanzato. Un componente con formato non valido, ad esempio un tag di markup non chiuso, può causare un comportamento indefinito.
+> L'utilizzo di <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> per la creazione di componenti è uno scenario avanzato. Un componente con formato non valido, ad esempio un tag di markup non chiuso, può causare un comportamento indefinito.
 
-Si consideri il componente seguente `PetDetails` , che può essere incorporato manualmente in un altro componente:
+Si consideri il `PetDetails` componente seguente, che può essere incorporato manualmente in un altro componente:
 
 ```razor
 <h2>Pet Details Component</h2>
@@ -93,7 +81,7 @@ Si consideri il componente seguente `PetDetails` , che può essere incorporato m
 }
 ```
 
-Nell'esempio seguente il ciclo nel `CreateComponent` metodo genera tre `PetDetails` componenti. Quando si `RenderTreeBuilder` chiamano i metodi per creare i`OpenComponent` componenti `AddAttribute`(e), i numeri di sequenza sono numeri di riga del codice sorgente. L'algoritmo di differenza Blaze si basa sui numeri di sequenza corrispondenti a righe di codice distinte, non sulle chiamate di chiamata distinti. Quando si crea un componente `RenderTreeBuilder` con i metodi, impostare come hardcoded gli argomenti per i numeri di sequenza. **L'utilizzo di un calcolo o di un contatore per generare il numero di sequenza può causare un calo delle prestazioni.** Per ulteriori informazioni, vedere la sezione [numeri di sequenza correlati ai numeri di riga del codice e non all'ordine di esecuzione](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order) .
+Nell'esempio seguente il ciclo nel `CreateComponent` metodo genera tre `PetDetails` componenti. Quando <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> si chiamano i metodi per creare i componenti ( `OpenComponent` e `AddAttribute` ), i numeri di sequenza sono numeri di riga del codice sorgente. L' Blazor algoritmo Difference si basa sui numeri di sequenza corrispondenti a righe di codice distinte, non sulle chiamate di chiamata distinti. Quando si crea un componente con <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> i metodi, impostare come hardcoded gli argomenti per i numeri di sequenza. **L'utilizzo di un calcolo o di un contatore per generare il numero di sequenza può causare un calo delle prestazioni.** Per ulteriori informazioni, vedere la sezione [numeri di sequenza correlati ai numeri di riga del codice e non all'ordine di esecuzione](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order) .
 
 `BuiltContent`componente
 
@@ -129,15 +117,15 @@ Nell'esempio seguente il ciclo nel `CreateComponent` metodo genera tre `PetDetai
 ```
 
 > [!WARNING]
-> I tipi in `Microsoft.AspNetCore.Components.RenderTree` consentono l'elaborazione dei *risultati* delle operazioni di rendering. Questi sono i dettagli interni dell'implementazione del Framework blazer. Questi tipi devono essere considerati *instabili* e soggetti a modifiche nelle versioni future.
+> I tipi in <xref:Microsoft.AspNetCore.Components.RenderTree> consentono l'elaborazione dei *risultati* delle operazioni di rendering. Questi sono i dettagli interni dell' Blazor implementazione del Framework. Questi tipi devono essere considerati *instabili* e soggetti a modifiche nelle versioni future.
 
 ### <a name="sequence-numbers-relate-to-code-line-numbers-and-not-execution-order"></a>I numeri di sequenza sono correlati ai numeri di riga del codice e non all'ordine di esecuzione
 
-I file dei componenti Razor (*Razor*) vengono sempre compilati. La compilazione è un potenziale vantaggio rispetto all'interpretazione del codice perché il passaggio di compilazione può essere usato per inserire informazioni che migliorano le prestazioni dell'app in fase di esecuzione.
+Razori file componente (*Razor*) vengono sempre compilati. La compilazione è un potenziale vantaggio rispetto all'interpretazione del codice perché il passaggio di compilazione può essere usato per inserire informazioni che migliorano le prestazioni dell'app in fase di esecuzione.
 
 Un esempio fondamentale di questi miglioramenti riguarda i *numeri di sequenza*. I numeri di sequenza indicano al runtime quali output provengono da righe di codice distinte e ordinate. Il runtime usa queste informazioni per generare differenze di albero efficienti nel tempo lineare, che è molto più veloce rispetto a quanto normalmente è possibile per un algoritmo diff della struttura ad albero generale.
 
-Si consideri il seguente file di componente Razor (*Razor*):
+Si consideri il seguente Razor file di componente (*Razor*):
 
 ```razor
 @if (someFlag)
@@ -159,20 +147,78 @@ if (someFlag)
 builder.AddContent(1, "Second");
 ```
 
-Quando il codice viene eseguito per la prima volta, se `someFlag` è `true`, il generatore riceve:
+Quando il codice viene eseguito per la prima volta, se `someFlag` è `true` , il generatore riceve:
 
 | Sequenza | Tipo      | Data   |
-| :------: | --------- | :----: |
-| 0        | Nodo testo | First (Primo)  |
-| 1        | Nodo testo | Second |
+| :---
+title: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
 
-Si supponga `someFlag` che `false`diventi e che venga eseguito nuovamente il rendering del markup. Questa volta, il generatore riceve:
+---: | Titolo---: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+----- | :----: | | 0 | Nodo di testo | Prima | | 1 | Nodo di testo | Secondo |
+
+Si supponga che `someFlag` diventi `false` e che venga eseguito nuovamente il rendering del markup. Questa volta, il generatore riceve:
 
 | Sequenza | Tipo       | Data   |
-| :------: | ---------- | :----: |
-| 1        | Nodo testo  | Second |
+| :---
+title: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
 
-Quando il runtime esegue una diff, rileva che l'elemento in sequenza `0` è stato rimosso, quindi genera lo script di *modifica*semplice seguente:
+---: | Titolo---: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+----- | :----: | | 1 | Nodo di testo | Secondo |
+
+Quando il runtime esegue una diff, rileva che l'elemento in sequenza `0` è stato rimosso, quindi genera lo *script di modifica*semplice seguente:
 
 * Rimuovere il primo nodo di testo.
 
@@ -194,22 +240,79 @@ builder.AddContent(seq++, "Second");
 A questo punto, il primo output è:
 
 | Sequenza | Tipo      | Data   |
-| :------: | --------- | :----: |
-| 0        | Nodo testo | First (Primo)  |
-| 1        | Nodo testo | Second |
+| :---
+title: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
 
-Questo risultato è identico al caso precedente, pertanto non esistono problemi negativi. `someFlag`si `false` trova nel secondo rendering e l'output è:
+---: | Titolo---: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+----- | :----: | | 0 | Nodo di testo | Prima | | 1 | Nodo di testo | Secondo |
+
+Questo risultato è identico al caso precedente, pertanto non esistono problemi negativi. `someFlag`si trova `false` nel secondo rendering e l'output è:
 
 | Sequenza | Tipo      | Data   |
-| :------: | --------- | ------ |
-| 0        | Nodo testo | Second |
+| :---
+title: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---: | Titolo---: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+----- | Titolo---: "ASP.NET Core Blazor scenari avanzati" autore: Descrizione: "informazioni sugli scenari avanzati in Blazor , tra cui come incorporare la logica RenderTreeBuilder manuale in un'app".
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+--- | | 0 | Nodo di testo | Secondo |
 
 Questa volta, l'algoritmo Diff rileva che si sono verificate *due* modifiche e l'algoritmo genera lo script di modifica seguente:
 
-* Modificare il valore del primo nodo di testo in `Second`.
+* Modificare il valore del primo nodo di testo in `Second` .
 * Rimuovere il secondo nodo di testo.
 
-La generazione dei numeri di sequenza ha perso tutte le informazioni utili sul `if/else` punto in cui i rami e i cicli erano presenti nel codice originale. In questo modo si ottiene una differenza **due volte più a lungo** .
+La generazione dei numeri di sequenza ha perso tutte le informazioni utili sul punto in cui i `if/else` rami e i cicli erano presenti nel codice originale. In questo modo si ottiene una differenza **due volte più a lungo** .
 
 Questo è un esempio semplice. Nei casi più realistici con strutture complesse e profondamente annidate e soprattutto con i cicli, il costo delle prestazioni è in genere più elevato. Invece di identificare immediatamente i blocchi o i rami del ciclo che sono stati inseriti o rimossi, l'algoritmo Diff deve ripresentarsi in modo approfondito negli alberi di rendering. Ciò comporta in genere la necessità di compilare script di modifica più lunghi perché l'algoritmo Diff viene informato in modo non più approfondito sulle relazioni tra le vecchie e le nuove strutture.
 
@@ -217,20 +320,20 @@ Questo è un esempio semplice. Nei casi più realistici con strutture complesse 
 
 * Le prestazioni dell'app soffrono se i numeri di sequenza vengono generati dinamicamente.
 * Il Framework non è in grado di creare automaticamente i propri numeri di sequenza in fase di esecuzione perché le informazioni necessarie non esistono a meno che non vengano acquisite in fase di compilazione.
-* Non scrivere blocchi lunghi di logica implementata `RenderTreeBuilder` manualmente. Preferire i file *Razor* e consentire al compilatore di gestire i numeri di sequenza. Se non si è in grado di `RenderTreeBuilder` evitare la logica manuale, suddividere i blocchi di codice lunghi `OpenRegion` / `CloseRegion` in parti più piccole racchiuse tra le chiamate. Ogni area ha il proprio spazio separato dei numeri di sequenza, quindi è possibile riavviare da zero (o qualsiasi altro numero arbitrario) all'interno di ogni area.
+* Non scrivere blocchi lunghi di logica implementata manualmente <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> . Preferire i file *Razor* e consentire al compilatore di gestire i numeri di sequenza. Se non si è in grado di evitare <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> la logica manuale, suddividere i blocchi di codice lunghi in parti più piccole racchiuse tra le <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenRegion%2A> / <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseRegion%2A> chiamate. Ogni area ha il proprio spazio separato dei numeri di sequenza, quindi è possibile riavviare da zero (o qualsiasi altro numero arbitrario) all'interno di ogni area.
 * Se i numeri di sequenza sono hardcoded, l'algoritmo Diff richiede solo che i numeri di sequenza aumentino nel valore. Il valore iniziale e i gap sono irrilevanti. Una delle opzioni legittime consiste nell'usare il numero di riga del codice come numero di sequenza oppure iniziare da zero e aumentare di uno o di centinaia (o qualsiasi intervallo preferito). 
 * BlazorUSA i numeri di sequenza, mentre altri Framework dell'interfaccia utente con differenze tra gli alberi non li usano. La diffing è molto più veloce quando si usano i numeri Blazor di sequenza e presenta il vantaggio di un passaggio di compilazione che gestisce automaticamente i numeri di sequenza per gli sviluppatori che creano file con *estensione Razor* .
 
-## <a name="perform-large-data-transfers-in-blazor-server-apps"></a>Eseguire trasferimenti di dati di Blazor grandi dimensioni nelle app Server
+## <a name="perform-large-data-transfers-in-blazor-server-apps"></a>Eseguire trasferimenti di dati di grandi dimensioni nelle Blazor app Server
 
-In alcuni scenari, è necessario trasferire grandi quantità di dati tra JavaScript e Blazor. Generalmente, i trasferimenti di dati di grandi dimensioni si verificano quando:
+In alcuni scenari, è necessario trasferire grandi quantità di dati tra JavaScript e Blazor . Generalmente, i trasferimenti di dati di grandi dimensioni si verificano quando:
 
 * Le API del browser file system vengono usate per caricare o scaricare un file.
 * È necessaria l'interoperabilità con una libreria di terze parti.
 
-In Blazor server è prevista una limitazione per impedire il passaggio di messaggi di grandi dimensioni che possono causare problemi di prestazioni.
+In Blazor Server è prevista una limitazione per impedire il passaggio di messaggi di grandi dimensioni che possono causare problemi di prestazioni.
 
-Quando si sviluppa codice che trasferisce i dati tra JavaScript, Blazortenere presenti le linee guida seguenti:
+Quando si sviluppa codice che trasferisce i dati tra JavaScript, tenere presenti le linee guida seguenti Blazor :
 
 * Sezionare i dati in parti più piccole e inviare i segmenti di dati in sequenza fino a quando non vengono ricevuti tutti i dati dal server.
 * Non allocare oggetti di grandi dimensioni in codice JavaScript e C#.
@@ -335,16 +438,16 @@ public class FileUploader : IDisposable
 
 Nell'esempio precedente:
 
-* `maxBase64SegmentSize` È impostato su `8192`, che viene calcolato da `maxBase64SegmentSize = segmentSize * 4 / 3`.
-* Le API di gestione della memoria .NET Core di basso livello vengono usate per archiviare i segmenti di memoria `uploadedSegments`nel server in.
-* Viene `ReceiveFile` usato un metodo per gestire il caricamento tramite l'interoperabilità JS:
-  * Le dimensioni del file vengono determinate in byte tramite l'interoperabilità JS con `jsRuntime.InvokeAsync<FileInfo>('getFileSize', selector)`.
-  * Il numero di segmenti da ricevere viene calcolato e archiviato in `numberOfSegments`.
-  * I segmenti sono richiesti in un `for` ciclo tramite l'interoperabilità js con `jsRuntime.InvokeAsync<string>('receiveSegment', i, selector)`. Tutti i segmenti ma l'ultimo devono essere 8.192 byte prima della decodifica. Il client è forzato a inviare i dati in modo efficiente.
-  * Per ogni segmento ricevuto, i controlli vengono eseguiti prima della decodifica <xref:System.Convert.TryFromBase64String%2A>con.
-  * Un flusso con i dati viene restituito come nuovo <xref:System.IO.Stream> (`SegmentedStream`) dopo il completamento del caricamento.
+* `maxBase64SegmentSize`È impostato su `8192` , che viene calcolato da `maxBase64SegmentSize = segmentSize * 4 / 3` .
+* Le API di gestione della memoria .NET Core di basso livello vengono usate per archiviare i segmenti di memoria nel server in `uploadedSegments` .
+* `ReceiveFile`Viene usato un metodo per gestire il caricamento tramite l'interoperabilità JS:
+  * Le dimensioni del file vengono determinate in byte tramite l'interoperabilità JS con `jsRuntime.InvokeAsync<FileInfo>('getFileSize', selector)` .
+  * Il numero di segmenti da ricevere viene calcolato e archiviato in `numberOfSegments` .
+  * I segmenti sono richiesti in un `for` ciclo tramite l'interoperabilità js con `jsRuntime.InvokeAsync<string>('receiveSegment', i, selector)` . Tutti i segmenti ma l'ultimo devono essere 8.192 byte prima della decodifica. Il client è forzato a inviare i dati in modo efficiente.
+  * Per ogni segmento ricevuto, i controlli vengono eseguiti prima della decodifica con <xref:System.Convert.TryFromBase64String%2A> .
+  * Un flusso con i dati viene restituito come nuovo <xref:System.IO.Stream> ( `SegmentedStream` ) dopo il completamento del caricamento.
 
-La classe Stream segmentata espone l'elenco di segmenti come ReadOnly non ricercabile <xref:System.IO.Stream>:
+La classe Stream segmentata espone l'elenco di segmenti come ReadOnly non ricercabile <xref:System.IO.Stream> :
 
 ```csharp
 using System;

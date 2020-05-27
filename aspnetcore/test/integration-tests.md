@@ -143,7 +143,7 @@ La configurazione dell'host Web può essere creata indipendentemente dalle class
 
    Il contesto di database di SUT viene registrato nel relativo `Startup.ConfigureServices` metodo. Il callback dell'app di test `builder.ConfigureServices` viene eseguito *dopo* l'esecuzione del codice dell'app `Startup.ConfigureServices` . L'ordine di esecuzione è una modifica di rilievo per l' [host generico](xref:fundamentals/host/generic-host) con la versione di ASP.NET Core 3,0. Per usare un database diverso per i test rispetto al database dell'app, è necessario sostituire il contesto di database dell'app in `builder.ConfigureServices` .
 
-   Per SUTs che usano ancora [host Web} (xrif: Fundamentals/host/Web-host), il callback dell'app di test `builder.ConfigureServices` viene eseguito *prima* del codice di Sut `Startup.ConfigureServices` . Il callback dell'app di test `builder.ConfigureTestServices` viene eseguito *dopo*.
+   Per SUTs che ancora usano l' [host Web](xref:fundamentals/host/web-host), il callback dell'app di test `builder.ConfigureServices` viene eseguito *prima* del codice di Sut `Startup.ConfigureServices` . Il callback dell'app di test `builder.ConfigureTestServices` viene eseguito *dopo*.
 
    L'app di esempio trova il descrittore del servizio per il contesto del database e usa il descrittore per rimuovere la registrazione del servizio. Successivamente, la Factory aggiunge un nuovo `ApplicationDbContext` che usa un database in memoria per i test.
 
@@ -573,7 +573,7 @@ L'app di esempio esegue il seeding del database con tre messaggi in *Utilities.c
 
 Il contesto di database di SUT viene registrato nel relativo `Startup.ConfigureServices` metodo. Il callback dell'app di test `builder.ConfigureServices` viene eseguito *dopo* l'esecuzione del codice dell'app `Startup.ConfigureServices` . Per utilizzare un database diverso per i test, è necessario sostituire il contesto di database dell'applicazione in `builder.ConfigureServices` . Per ulteriori informazioni, vedere la sezione [Customize WebApplicationFactory](#customize-webapplicationfactory) .
 
-Per SUTs che usano ancora [host Web} (xrif: Fundamentals/host/Web-host), il callback dell'app di test `builder.ConfigureServices` viene eseguito *prima* del codice di Sut `Startup.ConfigureServices` . Il callback dell'app di test `builder.ConfigureTestServices` viene eseguito *dopo*.
+Per SUTs che ancora usano l' [host Web](xref:fundamentals/host/web-host), il callback dell'app di test `builder.ConfigureServices` viene eseguito *prima* del codice di Sut `Startup.ConfigureServices` . Il callback dell'app di test `builder.ConfigureTestServices` viene eseguito *dopo*.
 
 ::: moniker-end
 

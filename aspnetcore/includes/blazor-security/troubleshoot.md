@@ -1,4 +1,4 @@
-## <a name="troubleshoot"></a>Risolvere i problemi
+## <a name="troubleshoot"></a>Risolvere problemi
 
 ### <a name="cookies-and-site-data"></a>Cookie e dati del sito
 
@@ -15,7 +15,7 @@ Un approccio che impedisce ai cookie e ai dati del sito di interferire con i tes
   * Verificare che il browser sia chiuso manualmente o dall'IDE tra qualsiasi modifica apportata all'app, all'utente di test o alla configurazione del provider.
 * Usare un comando personalizzato per aprire un browser in modalità privata o in incognito in Visual Studio:
   * Aprire la finestra di dialogo **Sfoglia con** dal pulsante di **esecuzione** di Visual Studio.
-  * Selezionare il pulsante **Aggiungi** .
+  * Fare clic sul pulsante **Aggiungi**.
   * Consente di specificare il percorso del browser nel campo del **programma** .
   * Nel campo **arguments (argomenti** ) specificare l'opzione della riga di comando che il browser usa per aprire in modalità privata o in incognito e l'URL dell'app. Ad esempio:
     * Google Chrome &ndash;`--incognito --new-window https://localhost:5001`
@@ -30,5 +30,9 @@ Un approccio che impedisce ai cookie e ai dati del sito di interferire con i tes
 Durante il test e la risoluzione dei problemi di un'app Blazer ospitata, assicurarsi di eseguire l'app dal progetto **Server** . Ad esempio, in Visual Studio verificare che il progetto server sia evidenziato in **Esplora soluzioni** prima di avviare l'app con uno degli approcci seguenti:
 
 * Selezionare il pulsante **Run** (Esegui).
-* Usare **debug** > **Avvia debug** dal menu.
+* Usare **debug**  >  **Avvia debug** dal menu.
 * Premere <kbd>F5</kbd>.
+
+### <a name="inspect-the-content-of-a-json-web-token-jwt"></a>Esaminare il contenuto di un token JSON Web (JWT)
+
+Per decodificare un token JSON Web (JWT), usare lo strumento [JWT.ms](https://jwt.ms/) di Microsoft. I valori nell'interfaccia utente non lasciano mai il browser.

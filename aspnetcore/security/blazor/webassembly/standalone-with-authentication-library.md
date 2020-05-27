@@ -13,7 +13,7 @@ Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https:/
 
 *Per Azure Active Directory (AAD) e Azure Active Directory B2C (AAD B2C), non seguire le istruzioni riportate in questo argomento. Vedere gli argomenti di AAD e AAD B2C in questo nodo Sommario.*
 
-Per creare un' Blazor app webassembly autonoma che usa `Microsoft.AspNetCore.Components.WebAssembly.Authentication` la libreria, eseguire il comando seguente in una shell dei comandi:
+Per creare un' Blazor app webassembly autonoma che usa [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) Library, eseguire il comando seguente in una shell dei comandi:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual
@@ -25,7 +25,7 @@ In Visual Studio [creare un' Blazor app webassembly](xref:blazor/get-started). I
 
 ## <a name="authentication-package"></a>Pacchetto di autenticazione
 
-Quando si crea un'app per usare account utente singoli, l'app riceve automaticamente un riferimento al pacchetto per il `Microsoft.AspNetCore.Components.WebAssembly.Authentication` pacchetto nel file di progetto dell'app. Il pacchetto fornisce un set di primitive che consentono all'app di autenticare gli utenti e ottenere i token per chiamare le API protette.
+Quando si crea un'app per usare account utente singoli, l'app riceve automaticamente un riferimento al pacchetto per il pacchetto [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) nel file di progetto dell'app. Il pacchetto fornisce un set di primitive che consentono all'app di autenticare gli utenti e ottenere i token per chiamare le API protette.
 
 Se si aggiunge l'autenticazione a un'app, aggiungere manualmente il pacchetto al file di progetto dell'app:
 
@@ -37,7 +37,7 @@ Se si aggiunge l'autenticazione a un'app, aggiungere manualmente il pacchetto al
 
 ## <a name="authentication-service-support"></a>Supporto del servizio di autenticazione
 
-Il supporto per l'autenticazione degli utenti viene registrato nel contenitore del servizio con il `AddOidcAuthentication` metodo di estensione fornito dal `Microsoft.AspNetCore.Components.WebAssembly.Authentication` pacchetto. Questo metodo configura i servizi necessari per l'interazione dell'app con il Identity provider (IP).
+Il supporto per l'autenticazione degli utenti viene registrato nel contenitore del servizio con il <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> metodo di estensione fornito dal pacchetto [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) . Questo metodo configura i servizi necessari per l'interazione dell'app con il Identity provider (IP).
 
 *Program.cs*:
 
@@ -59,11 +59,11 @@ La configurazione viene fornita dal file *wwwroot/appSettings. JSON* :
 }
 ```
 
-Il supporto per l'autenticazione per le app autonome è disponibile con Open ID Connect (OIDC). Il `AddOidcAuthentication` metodo accetta un callback per configurare i parametri necessari per autenticare un'app usando OIDC. I valori necessari per la configurazione dell'app possono essere ottenuti dall'IP conforme a OIDC. Ottenere i valori quando si registra l'app, che in genere si verifica nel portale online.
+Il supporto per l'autenticazione per le app autonome è disponibile con Open ID Connect (OIDC). Il <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> metodo accetta un callback per configurare i parametri necessari per autenticare un'app usando OIDC. I valori necessari per la configurazione dell'app possono essere ottenuti dall'IP conforme a OIDC. Ottenere i valori quando si registra l'app, che in genere si verifica nel portale online.
 
 ## <a name="access-token-scopes"></a>Ambiti del token di accesso
 
-Il Blazor modello webassembly non configura automaticamente l'app per richiedere un token di accesso per un'API protetta. Per eseguire il provisioning di un token di accesso come parte del flusso di accesso, aggiungere l'ambito agli ambiti dei token predefiniti di `OidcProviderOptions` :
+Il Blazor modello webassembly non configura automaticamente l'app per richiedere un token di accesso per un'API protetta. Per eseguire il provisioning di un token di accesso come parte del flusso di accesso, aggiungere l'ambito agli ambiti dei token predefiniti di <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions> :
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>

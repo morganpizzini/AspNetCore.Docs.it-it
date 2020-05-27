@@ -25,13 +25,8 @@ Gli scenari disponibili includono:
 
 Per il momento *non è possibile*:
 
-* Controllare le matrici.
-* Passare il mouse per esaminare i membri.
-* Eseguire il debug all'interno o all'esterno del codice gestito.
-* Disporre del supporto completo per il controllo dei tipi di valore.
 * Interrompi in corrispondenza di eccezioni non gestite.
 * Raggiunge i punti di interruzione durante l'avvio dell'app.
-* Eseguire il debug di un'app con un ruolo di lavoro del servizio.
 
 Si continuerà a migliorare l'esperienza di debug nelle prossime versioni.
 
@@ -78,7 +73,7 @@ Per eseguire il debug di un' Blazor app webassembly in Visual Studio:
 
 Quando si esegue il debug dell' Blazor app webassembly, è anche possibile eseguire il debug del codice del server:
 
-1. Impostare un punto di interruzione nella pagina *fetchData. Razor* in `OnInitializedAsync` .
+1. Impostare un punto di interruzione nella pagina *fetchData. Razor* in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> .
 1. Impostare un punto di interruzione in `WeatherForecastController` nel `Get` metodo di azione.
 1. Passare alla scheda **Recupera dati** per raggiungere il primo punto di interruzione nel `FetchData` componente appena prima di eseguire una richiesta HTTP al server:
 
@@ -138,7 +133,7 @@ Blazorfornisce un proxy di debug che implementa il [protocollo devtools di Chrom
 
 Le mappe di origine del browser consentono al browser di eseguire il mapping dei file compilati ai file di origine originali e vengono comunemente usati per il debug sul lato client. Tuttavia, Blazor attualmente non esegue il mapping di C# direttamente a JavaScript/WASM. Al contrario, Blazor l'interpretazione il nel browser, quindi le mappe di origine non sono rilevanti.
 
-## <a name="troubleshoot"></a>Risoluzione dei problemi
+## <a name="troubleshoot"></a>Risolvere problemi
 
 Se si verificano errori, è possibile che venga utile il suggerimento seguente:
 

@@ -16,7 +16,7 @@ BlazorLe app webassembly sono protette in modo analogo alle applicazioni a pagin
 
 ## <a name="authentication-library"></a>Libreria di autenticazione
 
-BlazorWebassembly supporta l'autenticazione e l'autorizzazione delle app usando OIDC tramite la `Microsoft.AspNetCore.Components.WebAssembly.Authentication` libreria. La libreria fornisce un set di primitive per l'autenticazione uniforme rispetto a ASP.NET Core backend. La libreria integra ASP.NET Core Identity con il supporto dell'autorizzazione API basato sul [ Identity server](https://identityserver.io/). La libreria può eseguire l'autenticazione per qualsiasi provider di terze parti Identity (IP) che supporta OIDC, chiamati provider OpenID (op).
+BlazorWebassembly supporta l'autenticazione e l'autorizzazione delle app usando OIDC tramite la libreria [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) . La libreria fornisce un set di primitive per l'autenticazione uniforme rispetto a ASP.NET Core backend. La libreria integra ASP.NET Core Identity con il supporto dell'autorizzazione API basato sul [ Identity server](https://identityserver.io/). La libreria può eseguire l'autenticazione per qualsiasi provider di terze parti Identity (IP) che supporta OIDC, chiamati provider OpenID (op).
 
 Il supporto per l'autenticazione in Blazor webassembly è basato sulla libreria *oidc-client. js* , che consente di gestire i dettagli del protocollo di autenticazione sottostante.
 
@@ -32,7 +32,7 @@ Sono disponibili altre opzioni per l'autenticazione di Spa, ad esempio l'uso di 
 
 ## <a name="authentication-process-with-oidc"></a>Processo di autenticazione con OIDC
 
-La `Microsoft.AspNetCore.Components.WebAssembly.Authentication` libreria offre diverse primitive per implementare l'autenticazione e l'autorizzazione usando OIDC. In termini generali, l'autenticazione funziona nel modo seguente:
+La libreria [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) offre diverse primitive per implementare l'autenticazione e l'autorizzazione usando OIDC. In termini generali, l'autenticazione funziona nel modo seguente:
 
 * Quando un utente anonimo seleziona il pulsante di accesso o richiede una pagina con l' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo applicato, l'utente viene reindirizzato alla pagina di accesso dell'app ( `/authentication/login` ).
 * Nella pagina di accesso, la libreria di autenticazione prepara un reindirizzamento all'endpoint di autorizzazione. L'endpoint di autorizzazione è esterno all' Blazor app webassembly e può essere ospitato a un'origine separata. L'endpoint è responsabile per determinare se l'utente è autenticato e per emettere uno o più token in risposta. La libreria di autenticazione fornisce un callback di accesso per ricevere la risposta di autenticazione.

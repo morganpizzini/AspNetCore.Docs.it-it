@@ -39,7 +39,7 @@ Aggiungere quanto segue:
 * Riferimento al pacchetto per [Microsoft. AspNetCore. Components. Authorization](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization/) per il file di progetto dell'app.
 * `Microsoft.AspNetCore.Components.Authorization`Spazio dei nomi del file *_Imports. Razor* dell'app.
 
-Per gestire l'autenticazione, l'implementazione di un servizio incorporato o personalizzato è illustrata `AuthenticationStateProvider` nelle sezioni seguenti.
+Per gestire l'autenticazione, l'implementazione di un servizio incorporato o personalizzato è illustrata <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> nelle sezioni seguenti.
 
 Per ulteriori informazioni sulla creazione di app e configurazione, vedere <xref:security/blazor/webassembly/index> .
 
@@ -51,13 +51,13 @@ Per ulteriori informazioni sulla creazione di app e configurazione, vedere <xref
 
 ## <a name="authenticationstateprovider-service"></a>Servizio AuthenticationStateProvider
 
-Il `AuthenticationStateProvider` servizio incorporato ottiene i dati sullo stato di autenticazione da ASP.NET Core `HttpContext.User` . Questo è il modo in cui lo stato di autenticazione si integra con i meccanismi di autenticazione ASP.NET Core esistenti.
+Il <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> servizio incorporato ottiene i dati sullo stato di autenticazione da ASP.NET Core `HttpContext.User` . Questo è il modo in cui lo stato di autenticazione si integra con i meccanismi di autenticazione ASP.NET Core esistenti.
 
-`AuthenticationStateProvider` è il servizio sottostante usato dal componente `AuthorizeView` e dal componente `CascadingAuthenticationState` per ottenere lo stato di autenticazione.
+<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> è il servizio sottostante usato dal componente <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> e dal componente <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> per ottenere lo stato di autenticazione.
 
-In genere non si usa `AuthenticationStateProvider` direttamente. Usare il [componente AuthorizeView](#authorizeview-component) o l' [attività \< AuthenticationState>](#expose-the-authentication-state-as-a-cascading-parameter) gli approcci descritti più avanti in questo articolo. Lo svantaggio principale dell'uso diretto di `AuthenticationStateProvider` è che il componente non riceve alcuna notifica automaticamente se i dati relativi allo stato di autenticazione sottostanti cambiano.
+In genere non si usa <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> direttamente. Usare il [componente AuthorizeView](#authorizeview-component) o l' [attività \< AuthenticationState>](#expose-the-authentication-state-as-a-cascading-parameter) gli approcci descritti più avanti in questo articolo. Lo svantaggio principale dell'uso diretto di <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> è che il componente non riceve alcuna notifica automaticamente se i dati relativi allo stato di autenticazione sottostanti cambiano.
 
-Il servizio `AuthenticationStateProvider` può fornire i dati <xref:System.Security.Claims.ClaimsPrincipal> dell'utente corrente, come illustrato nell'esempio seguente:
+Il servizio <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> può fornire i dati <xref:System.Security.Claims.ClaimsPrincipal> dell'utente corrente, come illustrato nell'esempio seguente:
 
 ```razor
 @page "/"
@@ -114,7 +114,7 @@ Per altre informazioni sull'inserimento delle dipendenze e sui servizi, vedere <
 
 ## <a name="implement-a-custom-authenticationstateprovider"></a>Implementare un AuthenticationStateProvider personalizzato
 
-Se l'app richiede un provider personalizzato, implementare `AuthenticationStateProvider` ed eseguire l'override di `GetAuthenticationStateAsync` :
+Se l'app richiede un provider personalizzato, implementare <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> ed eseguire l'override di `GetAuthenticationStateAsync` :
 
 ```csharp
 using System.Security.Claims;
@@ -161,7 +161,7 @@ Utilizzando l'oggetto `CustomAuthStateProvider` nell'esempio precedente, tutti g
 
 ## <a name="expose-the-authentication-state-as-a-cascading-parameter"></a>Esporre lo stato di autenticazione come un parametro a catena
 
-Se i dati dello stato di autenticazione sono necessari per la logica procedurale, ad esempio quando si esegue un'azione attivata dall'utente, ottenere i dati dello stato di autenticazione definendo un parametro a catena di tipo `Task<AuthenticationState>`:
+Se per la logica procedurale sono necessari dati sullo stato di autenticazione, ad esempio quando si esegue un'azione attivata dall'utente, ottenere i dati dello stato di autenticazione definendo un parametro di propagazione di tipo `Task<` <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> `>` :
 
 ```razor
 @page "/"
@@ -195,7 +195,7 @@ Se i dati dello stato di autenticazione sono necessari per la logica procedurale
 
 Se `user.Identity.IsAuthenticated` è `true`, è possibile enumerare le attestazioni e valutare l'appartenenza ai ruoli.
 
-Configurare il parametro di propagazione `Task<AuthenticationState>` usando `AuthorizeRouteView` i `CascadingAuthenticationState` componenti e nel `App` componente (*app. Razor*):
+Configurare il parametro di propagazione `Task<` <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> `>` usando <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> i <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> componenti e nel `App` componente (*app. Razor*):
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly">
@@ -236,9 +236,9 @@ Ognuno di questi concetti è identico a quello di un'app ASP.NET Core MVC o Razo
 
 ## <a name="authorizeview-component"></a>Componente AuthorizeView
 
-Il componente `AuthorizeView` visualizza in modo selettivo l'interfaccia utente a seconda del fatto che l'utente sia autorizzato a visualizzarla. Questo approccio è utile quando è necessario solo *visualizzare* dati per l'utente e non occorre usare l'identità dell'utente nella logica procedurale.
+Il componente <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> visualizza in modo selettivo l'interfaccia utente a seconda del fatto che l'utente sia autorizzato a visualizzarla. Questo approccio è utile quando è necessario solo *visualizzare* dati per l'utente e non occorre usare l'identità dell'utente nella logica procedurale.
 
-Il componente espone una variabile `context` di tipo `AuthenticationState`, che è possibile usare per accedere alle informazioni sull'utente connesso:
+Il componente espone una variabile `context` di tipo <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>, che è possibile usare per accedere alle informazioni sull'utente connesso:
 
 ```razor
 <AuthorizeView>
@@ -262,22 +262,22 @@ Se l'utente non è autenticato, è anche possibile fornire un contenuto diverso 
 </AuthorizeView>
 ```
 
-Il `AuthorizeView` componente può essere usato nel `NavMenu` componente (*Shared/NavMenu. Razor*) per visualizzare un elemento elenco ( `<li>...</li>` ) per un `NavLink` , ma si noti che questo approccio rimuove solo l'elemento dell'elenco dall'output sottoposto a rendering. Non impedisce all'utente di spostarsi nel componente.
+Il <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> componente può essere usato nel `NavMenu` componente (*Shared/NavMenu. Razor*) per visualizzare un elemento elenco ( `<li>...</li>` ) per un [componente NavLink](xref:blazor/routing#navlink-component) ( <xref:Microsoft.AspNetCore.Components.Routing.NavLink> ), ma si noti che questo approccio rimuove solo l'elemento dell'elenco dall'output di cui è stato eseguito il rendering. Non impedisce all'utente di spostarsi nel componente.
 
 Il contenuto dei `<Authorized>` `<NotAuthorized>` tag e può includere elementi arbitrari, ad esempio altri componenti interattivi.
 
 Le condizioni di autorizzazione, ad esempio i ruoli o i criteri che consentono di controllare le opzioni dell'interfaccia utente o l'accesso, sono presentate nella sezione [Autorizzazione](#authorization).
 
-Se non sono specificate condizioni di autorizzazione, `AuthorizeView` usa criteri predefiniti e considera:
+Se non sono specificate condizioni di autorizzazione, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> usa criteri predefiniti e considera:
 
 * Gli utenti autenticati (che hanno eseguito l'accesso) come autorizzati.
 * Gli utenti non autenticati (disconnessi) come non autorizzati.
 
 ### <a name="role-based-and-policy-based-authorization"></a>Autorizzazione basata sui ruoli e basata sui criteri
 
-Il componente `AuthorizeView` supporta l'autorizzazione *basata sui ruoli* oppure *basata sui criteri*.
+Il componente <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> supporta l'autorizzazione *basata sui ruoli* oppure *basata sui criteri*.
 
-Per l'autorizzazione basata sui ruoli, usare il parametro `Roles`:
+Per l'autorizzazione basata sui ruoli, usare il parametro <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles>:
 
 ```razor
 <AuthorizeView Roles="admin, superuser">
@@ -287,7 +287,7 @@ Per l'autorizzazione basata sui ruoli, usare il parametro `Roles`:
 
 Per altre informazioni, vedere <xref:security/authorization/roles>.
 
-Per l'autorizzazione basata sui criteri, usare il parametro `Policy`:
+Per l'autorizzazione basata sui criteri, usare il parametro <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy>:
 
 ```razor
 <AuthorizeView Policy="content-editor">
@@ -299,13 +299,13 @@ L'autorizzazione basata sulle attestazioni è un caso speciale di autorizzazione
 
 Queste API possono essere usate nelle Blazor app Server o Blazor webassembly.
 
-Se non si specifica `Roles` o `Policy`, `AuthorizeView` usa i criteri predefiniti.
+Se non si specifica <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> o <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy>, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> usa i criteri predefiniti.
 
 ### <a name="content-displayed-during-asynchronous-authentication"></a>Contenuto visualizzato durante l'autenticazione asincrona
 
 Blazorconsente di determinare lo stato di autenticazione in *modo asincrono*. Lo scenario principale per questo approccio è nelle Blazor app webassembly che effettuano una richiesta a un endpoint esterno per l'autenticazione.
 
-Mentre è in corso l'autenticazione `AuthorizeView` non visualizza alcun contenuto per impostazione predefinita. Per visualizzare contenuto durante l'autenticazione, usare l'elemento `<Authorizing>`:
+Mentre è in corso l'autenticazione <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> non visualizza alcun contenuto per impostazione predefinita. Per visualizzare contenuto durante l'autenticazione, usare l'elemento `<Authorizing>`:
 
 ```razor
 <AuthorizeView>
@@ -320,11 +320,11 @@ Mentre è in corso l'autenticazione `AuthorizeView` non visualizza alcun contenu
 </AuthorizeView>
 ```
 
-Questo approccio non è in genere applicabile alle Blazor app Server. BlazorLe app server conoscono lo stato di autenticazione non appena viene stabilito lo stato. `Authorizing`il contenuto può essere fornito nel Blazor componente di un'app Server `AuthorizeView` , ma il contenuto non viene mai visualizzato.
+Questo approccio non è in genere applicabile alle Blazor app Server. BlazorLe app server conoscono lo stato di autenticazione non appena viene stabilito lo stato. <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing>il contenuto può essere fornito nel Blazor componente di un'app Server <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> , ma il contenuto non viene mai visualizzato.
 
 ## <a name="authorize-attribute"></a>Attributo [Authorize]
 
-L' `[Authorize]` attributo può essere utilizzato nei Razor componenti di:
+L' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo può essere utilizzato nei Razor componenti di:
 
 ```razor
 @page "/"
@@ -334,9 +334,9 @@ You can only see this if you're signed in.
 ```
 
 > [!IMPORTANT]
-> Usare solo `[Authorize]` sui `@page` componenti raggiunti tramite il Blazor router. L'autorizzazione viene eseguita solo come un aspetto del routing e *non* per i componenti figlio di cui viene eseguito il rendering all'interno di una pagina. Per autorizzare la visualizzazione di parti specifiche all'interno di una pagina, usare invece `AuthorizeView`.
+> Usare solo [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) sui `@page` componenti raggiunti tramite il Blazor router. L'autorizzazione viene eseguita solo come un aspetto del routing e *non* per i componenti figlio di cui viene eseguito il rendering all'interno di una pagina. Per autorizzare la visualizzazione di parti specifiche all'interno di una pagina, usare invece <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>.
 
-L'attributo `[Authorize]` supporta anche l'autorizzazione basata sui ruoli o basata sui criteri. Per l'autorizzazione basata sui ruoli, usare il parametro `Roles`:
+L' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo supporta inoltre l'autorizzazione basata su ruoli o basata su criteri. Per l'autorizzazione basata sui ruoli, usare il parametro <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles>:
 
 ```razor
 @page "/"
@@ -345,7 +345,7 @@ L'attributo `[Authorize]` supporta anche l'autorizzazione basata sui ruoli o bas
 <p>You can only see this if you're in the 'admin' or 'superuser' role.</p>
 ```
 
-Per l'autorizzazione basata sui criteri, usare il parametro `Policy`:
+Per l'autorizzazione basata sui criteri, usare il parametro <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy>:
 
 ```razor
 @page "/"
@@ -354,17 +354,17 @@ Per l'autorizzazione basata sui criteri, usare il parametro `Policy`:
 <p>You can only see this if you satisfy the 'content-editor' policy.</p>
 ```
 
-Se non si specifica `Roles` o `Policy`, `[Authorize]` usa i criteri predefiniti, che per impostazione predefinita considerano:
+Se non <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> si specifica né né, [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) Usa i criteri predefiniti, che per impostazione predefinita devono trattare:
 
 * Gli utenti autenticati (che hanno eseguito l'accesso) come autorizzati.
 * Gli utenti non autenticati (disconnessi) come non autorizzati.
 
 ## <a name="customize-unauthorized-content-with-the-router-component"></a>Personalizzare il contenuto non autorizzato con il componente Router
 
-Il `Router` componente, insieme al `AuthorizeRouteView` componente, consente all'app di specificare contenuto personalizzato se:
+Il <xref:Microsoft.AspNetCore.Components.Routing.Router> componente, insieme al <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> componente, consente all'app di specificare contenuto personalizzato se:
 
 * Non viene trovato contenuto.
-* L'utente non supera una condizione `[Authorize]` applicata al componente. L' `[Authorize]` attributo viene analizzato nella sezione [ `[Authorize]` attribute](#authorize-attribute) .
+* L'utente non riesce [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) a applicare una condizione al componente. L' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo viene analizzato nella sezione [ `[Authorize]` attribute](#authorize-attribute) .
 * L'autenticazione asincrona è in corso.
 
 Nel modello di Blazor progetto server predefinito, il `App` componente (*app. Razor*) illustra come impostare il contenuto personalizzato:
@@ -397,7 +397,7 @@ Nel modello di Blazor progetto server predefinito, il `App` componente (*app. Ra
 
 Il contenuto dei `<NotFound>` `<NotAuthorized>` tag, e `<Authorizing>` può includere elementi arbitrari, ad esempio altri componenti interattivi.
 
-Se l' `<NotAuthorized>` elemento non è specificato, `AuthorizeRouteView` utilizza il seguente messaggio di fallback:
+Se l' `<NotAuthorized>` elemento non è specificato, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> utilizza il seguente messaggio di fallback:
 
 ```html
 Not authorized.
@@ -405,11 +405,11 @@ Not authorized.
 
 ## <a name="notification-about-authentication-state-changes"></a>Notifica per le modifiche dello stato di autenticazione
 
-Se l'app determina che i dati sullo stato di autenticazione sottostanti sono stati modificati, ad esempio perché l'utente disconnesso o un altro utente ha modificato i ruoli, un [AuthenticationStateProvider personalizzato](#implement-a-custom-authenticationstateprovider) può richiamare facoltativamente il metodo `NotifyAuthenticationStateChanged` sulla `AuthenticationStateProvider` classe di base. Viene così inviata notifica ai consumer dei dati di stato di autenticazione (ad esempio, `AuthorizeView`) di eseguire nuovamente il rendering usando i nuovi dati.
+Se l'app determina che i dati sullo stato di autenticazione sottostanti sono stati modificati, ad esempio perché l'utente disconnesso o un altro utente ha modificato i ruoli, un [AuthenticationStateProvider personalizzato](#implement-a-custom-authenticationstateprovider) può richiamare facoltativamente il metodo <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> sulla <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> classe di base. Viene così inviata notifica ai consumer dei dati di stato di autenticazione (ad esempio, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>) di eseguire nuovamente il rendering usando i nuovi dati.
 
 ## <a name="procedural-logic"></a>Logica procedurale
 
-Se l'app deve controllare le regole di autorizzazione come parte della logica procedurale, usare un parametro a catena di tipo `Task<AuthenticationState>` per ottenere il <xref:System.Security.Claims.ClaimsPrincipal> dell'utente. `Task<AuthenticationState>` può essere combinato con altri servizi, ad esempio `IAuthorizationService`, per valutare i criteri.
+Se l'app è necessaria per verificare le regole di autorizzazione come parte della logica procedurale, usare un parametro a cascata di tipo `Task<` <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> `>` per ottenere l'utente <xref:System.Security.Claims.ClaimsPrincipal> . `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>`può essere combinato con altri servizi, ad esempio `IAuthorizationService` , per valutare i criteri.
 
 ```razor
 @using Microsoft.AspNetCore.Authorization
@@ -446,7 +446,7 @@ Se l'app deve controllare le regole di autorizzazione come parte della logica pr
 ```
 
 > [!NOTE]
-> In un Blazor componente dell'app webassembly aggiungere gli `Microsoft.AspNetCore.Authorization` `Microsoft.AspNetCore.Components.Authorization` spazi dei nomi e:
+> In un Blazor componente dell'app webassembly aggiungere gli <xref:Microsoft.AspNetCore.Authorization> <xref:Microsoft.AspNetCore.Components.Authorization> spazi dei nomi e:
 >
 > ```razor
 > @using Microsoft.AspNetCore.Authorization
@@ -481,7 +481,7 @@ Errori comuni:
 </CascadingAuthenticationState>
 ```
 
-`CascadingAuthenticationState` fornisce il parametro a catena `Task<AuthenticationState>`, ricevuto a sua volta dal servizio di inserimento delle dipendenze `AuthenticationStateProvider` sottostante.
+Fornisce il parametro di propagazione <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> `Task<` <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> `>` , che a sua volta riceve dal <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> servizio di.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

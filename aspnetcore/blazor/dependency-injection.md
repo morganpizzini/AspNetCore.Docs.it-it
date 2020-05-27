@@ -23,7 +23,7 @@ DI è una tecnica per accedere ai servizi configurati in una posizione centrale.
 
 I servizi predefiniti vengono aggiunti automaticamente alla raccolta di servizi dell'app.
 
-| Service | Durata | Description |
+| Service | Durata | Descrizione |
 | ---
 title: "ASP.NET Core Blazor Injection Dependency Injection" Author: Description: "vedere come le Blazor app possono inserire i servizi in componenti".
 monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
@@ -76,7 +76,7 @@ monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Razor'
 - SignalRUID '': 
 
------- | | <xref:System.Net.Http.HttpClient> | Temporaneo | Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.<br><br>L'istanza di `HttpClient` in un' Blazor app webassembly usa il browser per gestire il traffico HTTP in background.<br><br>BlazorPer impostazione predefinita, le app Server non includono un `HttpClient` configurato come servizio. Fornire un `HttpClient` a un' Blazor app Server.<br><br>Per altre informazioni, vedere <xref:blazor/call-web-api>. | | `IJSRuntime` | Singleton ( Blazor webassembly)<br>Con ambito ( Blazor Server) | Rappresenta un'istanza di un runtime JavaScript in cui vengono inviate le chiamate a JavaScript. Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet>. | | `NavigationManager` | Singleton ( Blazor webassembly)<br>Con ambito ( Blazor Server) | Contiene gli helper per lavorare con gli URI e lo stato di navigazione. Per ulteriori informazioni, vedere [URI e Helper dello stato di navigazione](xref:blazor/routing#uri-and-navigation-state-helpers). |
+------ | | <xref:System.Net.Http.HttpClient> | Temporaneo | Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.<br><br>L'istanza di <xref:System.Net.Http.HttpClient> in un' Blazor app webassembly usa il browser per gestire il traffico HTTP in background.<br><br>BlazorPer impostazione predefinita, le app Server non includono un <xref:System.Net.Http.HttpClient> configurato come servizio. Fornire un <xref:System.Net.Http.HttpClient> a un' Blazor app Server.<br><br>Per altre informazioni, vedere <xref:blazor/call-web-api>. | | <xref:Microsoft.JSInterop.IJSRuntime> | Singleton ( Blazor webassembly)<br>Con ambito ( Blazor Server) | Rappresenta un'istanza di un runtime JavaScript in cui vengono inviate le chiamate a JavaScript. Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet>. | | <xref:Microsoft.AspNetCore.Components.NavigationManager> | Singleton ( Blazor webassembly)<br>Con ambito ( Blazor Server) | Contiene gli helper per lavorare con gli URI e lo stato di navigazione. Per ulteriori informazioni, vedere [URI e Helper dello stato di navigazione](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
 Un provider di servizi personalizzato non fornisce automaticamente i servizi predefiniti elencati nella tabella. Se si usa un provider di servizi personalizzato e si richiede uno dei servizi indicati nella tabella, aggiungere i servizi necessari al nuovo provider di servizi.
 
@@ -154,7 +154,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Al `ConfigureServices` metodo viene passato un oggetto <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> , che è un elenco di oggetti del descrittore del servizio ( <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor> ). I servizi vengono aggiunti fornendo descrittori del servizio alla raccolta di servizi. Nell'esempio seguente viene illustrato il concetto con l' `IDataAccess` interfaccia e la relativa implementazione concreta `DataAccess` :
+Al <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureServices%2A> metodo viene passato un oggetto <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> , che è un elenco di oggetti del descrittore del servizio ( <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor> ). I servizi vengono aggiunti fornendo descrittori del servizio alla raccolta di servizi. Nell'esempio seguente viene illustrato il concetto con l' `IDataAccess` interfaccia e la relativa implementazione concreta `DataAccess` :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -167,7 +167,7 @@ public void ConfigureServices(IServiceCollection services)
 
 I servizi possono essere configurati con le durate mostrate nella tabella seguente.
 
-| Durata | Description |
+| Durata | Descrizione |
 | ---
 title: "ASP.NET Core Blazor Injection Dependency Injection" Author: Description: "vedere come le Blazor app possono inserire i servizi in componenti".
 monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
@@ -218,20 +218,20 @@ Il sistema DI è basato sul sistema DI ASP.NET Core. Per altre informazioni, ved
 
 ## <a name="request-a-service-in-a-component"></a>Richiedere un servizio in un componente
 
-Una volta aggiunti i servizi alla raccolta di servizi, inserire i servizi nei componenti utilizzando la direttiva [ \@ Inject](xref:mvc/views/razor#inject) Razor . `@inject`dispone di due parametri:
+Una volta aggiunti i servizi alla raccolta di servizi, inserire i servizi nei componenti utilizzando la direttiva [ \@ Inject](xref:mvc/views/razor#inject) Razor . [`@inject`](xref:mvc/views/razor#inject)dispone di due parametri:
 
 * Digitare &ndash; il tipo di servizio da inserire.
 * Proprietà &ndash; nome della proprietà che riceve il servizio app inserito. La proprietà non richiede la creazione manuale. Il compilatore crea la proprietà.
 
 Per altre informazioni, vedere <xref:mvc/views/dependency-injection>.
 
-Usare più `@inject` istruzioni per inserire servizi diversi.
+Usare più [`@inject`](xref:mvc/views/razor#inject) istruzioni per inserire servizi diversi.
 
-Nell'esempio riportato di seguito viene illustrato come usare `@inject`. Il servizio che implementa `Services.IDataAccess` viene inserito nella proprietà del componente `DataRepository` . Si noti come il codice usa solo l' `IDataAccess` astrazione:
+Nell'esempio seguente viene illustrato come utilizzare [`@inject`](xref:mvc/views/razor#inject) . Il servizio che implementa `Services.IDataAccess` viene inserito nella proprietà del componente `DataRepository` . Si noti come il codice usa solo l' `IDataAccess` astrazione:
 
 [!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,20)]
 
-Internamente, la proprietà generata ( `DataRepository` ) utilizza l' `InjectAttribute` attributo. In genere, questo attributo non viene utilizzato direttamente. Se è necessaria una classe base per i componenti e le proprietà inserite sono necessarie anche per la classe base, aggiungere manualmente `InjectAttribute` :
+Internamente, la proprietà generata ( `DataRepository` ) utilizza l' [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attributo. In genere, questo attributo non viene utilizzato direttamente. Se è necessaria una classe base per i componenti e le proprietà inserite sono necessarie anche per la classe base, aggiungere manualmente l' [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attributo:
 
 ```csharp
 public class ComponentBase : IComponent
@@ -243,7 +243,7 @@ public class ComponentBase : IComponent
 }
 ```
 
-Nei componenti derivati dalla classe di base, la `@inject` direttiva non è obbligatoria. La `InjectAttribute` classe della classe base è sufficiente:
+Nei componenti derivati dalla classe di base, la [`@inject`](xref:mvc/views/razor#inject) direttiva non è obbligatoria. La <xref:Microsoft.AspNetCore.Components.InjectAttribute> classe della classe base è sufficiente:
 
 ```razor
 @page "/demo"
@@ -254,7 +254,7 @@ Nei componenti derivati dalla classe di base, la `@inject` direttiva non è obbl
 
 ## <a name="use-di-in-services"></a>Usare l'inserimento DI dipendenze nei servizi
 
-Servizi complessi potrebbe richiedere servizi aggiuntivi. Nell'esempio precedente, `DataAccess` potrebbe richiedere il `HttpClient` servizio predefinito. `@inject`(o `InjectAttribute` ) non è disponibile per l'uso nei servizi. È necessario usare invece l' *inserimento del costruttore* . I servizi necessari vengono aggiunti aggiungendo parametri al costruttore del servizio. Quando si crea il servizio, vengono riconosciuti i servizi richiesti nel costruttore e forniti DI conseguenza.
+Servizi complessi potrebbe richiedere servizi aggiuntivi. Nell'esempio precedente, `DataAccess` potrebbe richiedere il <xref:System.Net.Http.HttpClient> servizio predefinito. [`@inject`](xref:mvc/views/razor#inject)(o l' [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attributo) non è disponibile per l'uso nei servizi. È necessario usare invece l' *inserimento del costruttore* . I servizi necessari vengono aggiunti aggiungendo parametri al costruttore del servizio. Quando si crea il servizio, vengono riconosciuti i servizi richiesti nel costruttore e forniti DI conseguenza.
 
 ```csharp
 public class DataAccess : IDataAccess
@@ -278,16 +278,16 @@ Prerequisiti per l'inserimento del costruttore:
 
 Nelle app ASP.NET Core, i servizi con ambito hanno in genere come ambito la richiesta corrente. Al termine della richiesta, tutti i servizi con ambito o temporaneo vengono eliminati dal sistema DI. Nelle Blazor app Server, l'ambito della richiesta dura per la durata della connessione client, che può comportare un tempo di permanenza dei servizi temporanei e con ambito più lungo del previsto. Nelle Blazor app webassembly i servizi registrati con una durata con ambito vengono considerati come singleton, quindi vivono più a lungo rispetto ai servizi con ambito nelle app ASP.NET Core tipiche.
 
-Un approccio che limita la durata di un servizio nelle Blazor app è l'uso del `OwningComponentBase` tipo. `OwningComponentBase`è un tipo astratto derivato da `ComponentBase` che consente di creare un ambito di che corrisponde alla durata del componente. Con questo ambito, è possibile usare i servizi DI i con una durata con ambito e fare in modo che siano attivi fino a quando il componente. Quando il componente viene eliminato definitivamente, vengono eliminati anche i servizi del provider di servizi con ambito. Questa operazione può essere utile per i servizi che:
+Un approccio che limita la durata di un servizio nelle Blazor app è l'uso del <xref:Microsoft.AspNetCore.Components.OwningComponentBase> tipo. <xref:Microsoft.AspNetCore.Components.OwningComponentBase>è un tipo astratto derivato da <xref:Microsoft.AspNetCore.Components.ComponentBase> che consente di creare un ambito di che corrisponde alla durata del componente. Con questo ambito, è possibile usare i servizi DI i con una durata con ambito e fare in modo che siano attivi fino a quando il componente. Quando il componente viene eliminato definitivamente, vengono eliminati anche i servizi del provider di servizi con ambito. Questa operazione può essere utile per i servizi che:
 
 * È necessario riutilizzarlo all'interno di un componente, perché la durata temporanea non è appropriata.
 * Non devono essere condivise tra i componenti, perché la durata singleton non è appropriata.
 
-Sono disponibili due versioni del `OwningComponentBase` tipo:
+Sono disponibili due versioni del <xref:Microsoft.AspNetCore.Components.OwningComponentBase> tipo:
 
-* `OwningComponentBase`è un elemento figlio astratto e disposable del `ComponentBase` tipo con una `ScopedServices` proprietà protetta di tipo `IServiceProvider` . Questo provider può essere utilizzato per risolvere i servizi che hanno come ambito la durata del componente.
+* <xref:Microsoft.AspNetCore.Components.OwningComponentBase>è un elemento figlio astratto e disposable del <xref:Microsoft.AspNetCore.Components.ComponentBase> tipo con una <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> proprietà protetta di tipo <xref:System.IServiceProvider> . Questo provider può essere utilizzato per risolvere i servizi che hanno come ambito la durata del componente.
 
-  I servizi DI inserimento nel componente tramite `@inject` o `InjectAttribute` ( `[Inject]` ) non vengono creati nell'ambito del componente. Per utilizzare l'ambito del componente, i servizi devono essere risolti utilizzando `ScopedServices.GetRequiredService` o `ScopedServices.GetService` . Tutti i servizi risolti utilizzando il `ScopedServices` provider hanno le dipendenze fornite dallo stesso ambito.
+  I servizi DI inserimento nel componente usando [`@inject`](xref:mvc/views/razor#inject) o l' [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attributo non vengono creati nell'ambito del componente. Per utilizzare l'ambito del componente, i servizi devono essere risolti utilizzando <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> o <xref:System.IServiceProvider.GetService%2A> . Tutti i servizi risolti utilizzando il <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider hanno le dipendenze fornite dallo stesso ambito.
 
   ```razor
   @page "/preferences"
@@ -315,7 +315,7 @@ Sono disponibili due versioni del `OwningComponentBase` tipo:
   }
   ```
 
-* `OwningComponentBase<T>`deriva da `OwningComponentBase` e aggiunge una proprietà `Service` che restituisce un'istanza di `T` dal provider dell'ambito di. Questo tipo è un modo pratico per accedere ai servizi con ambito senza usare un'istanza di `IServiceProvider` quando è presente un servizio primario richiesto dall'app dal contenitore di inserimento delle dipendenze usando l'ambito del componente. La `ScopedServices` proprietà è disponibile, in modo che l'app possa ottenere i servizi di altri tipi, se necessario.
+* <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601>deriva da <xref:Microsoft.AspNetCore.Components.OwningComponentBase> e aggiunge una <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> proprietà che restituisce un'istanza di `T` dal provider dell'ambito di. Questo tipo è un modo pratico per accedere ai servizi con ambito senza usare un'istanza di <xref:System.IServiceProvider> quando è presente un servizio primario richiesto dall'app dal contenitore di inserimento delle dipendenze usando l'ambito del componente. La <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> proprietà è disponibile, in modo che l'app possa ottenere i servizi di altri tipi, se necessario.
 
   ```razor
   @page "/users"
@@ -334,16 +334,16 @@ Sono disponibili due versioni del `OwningComponentBase` tipo:
 
 ## <a name="use-of-entity-framework-dbcontext-from-di"></a>Uso di Entity Framework DbContext da DI
 
-Un tipo di servizio comune da recuperare da un in app Web è Entity Framework oggetti (EF) `DbContext` . `IServiceCollection.AddDbContext`Per impostazione predefinita, la registrazione dei servizi EF tramite aggiunge `DbContext` come servizio con ambito. La registrazione come servizio con ambito può causare problemi nelle Blazor app perché causa `DbContext` la lunga durata delle istanze e la condivisione nell'app. `DbContext`non è thread-safe e non deve essere usato simultaneamente.
+Un tipo di servizio comune da recuperare da un in app Web è Entity Framework oggetti (EF) <xref:Microsoft.EntityFrameworkCore.DbContext> . <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A>Per impostazione predefinita, la registrazione dei servizi EF tramite aggiunge <xref:Microsoft.EntityFrameworkCore.DbContext> come servizio con ambito. La registrazione come servizio con ambito può causare problemi nelle Blazor app perché causa <xref:Microsoft.EntityFrameworkCore.DbContext> la lunga durata delle istanze e la condivisione nell'app. <xref:Microsoft.EntityFrameworkCore.DbContext>non è thread-safe e non deve essere usato simultaneamente.
 
-A seconda dell'app, l'uso `OwningComponentBase` di per limitare l'ambito di un `DbContext` a un singolo componente *può* risolvere il problema. Se un componente non utilizza un oggetto `DbContext` in parallelo, la derivazione del componente da `OwningComponentBase` e il recupero `DbContext` di da `ScopedServices` è sufficiente perché garantisce quanto segue:
+A seconda dell'app, l'uso <xref:Microsoft.AspNetCore.Components.OwningComponentBase> di per limitare l'ambito di un <xref:Microsoft.EntityFrameworkCore.DbContext> a un singolo componente *può* risolvere il problema. Se un componente non utilizza un oggetto <xref:Microsoft.EntityFrameworkCore.DbContext> in parallelo, la derivazione del componente da <xref:Microsoft.AspNetCore.Components.OwningComponentBase> e il recupero <xref:Microsoft.EntityFrameworkCore.DbContext> di da <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> è sufficiente perché garantisce quanto segue:
 
-* I componenti separati non condividono un `DbContext` .
-* Il `DbContext` viene vissuto solo fino a quando il componente dipende da esso.
+* I componenti separati non condividono un <xref:Microsoft.EntityFrameworkCore.DbContext> .
+* Il <xref:Microsoft.EntityFrameworkCore.DbContext> viene vissuto solo fino a quando il componente dipende da esso.
 
-Se un singolo componente può usare `DbContext` simultaneamente, ad esempio ogni volta che un utente seleziona un pulsante, anche l'uso di `OwningComponentBase` non evita problemi con le operazioni EF simultanee. In tal caso, usare un oggetto diverso `DbContext` per ogni operazione EF logica. Usare uno degli approcci seguenti:
+Se un singolo componente può usare <xref:Microsoft.EntityFrameworkCore.DbContext> simultaneamente, ad esempio ogni volta che un utente seleziona un pulsante, anche l'uso di <xref:Microsoft.AspNetCore.Components.OwningComponentBase> non evita problemi con le operazioni EF simultanee. In tal caso, usare un oggetto diverso <xref:Microsoft.EntityFrameworkCore.DbContext> per ogni operazione EF logica. Usare uno degli approcci seguenti:
 
-* Creare `DbContext` direttamente usando `DbContextOptions<TContext>` come argomento, che può essere recuperato da di ed è thread-safe.
+* Creare <xref:Microsoft.EntityFrameworkCore.DbContext> direttamente usando <xref:Microsoft.EntityFrameworkCore.DbContextOptions%601> come argomento, che può essere recuperato da di ed è thread-safe.
 
     ```razor
     @page "/example"
@@ -377,8 +377,8 @@ Se un singolo componente può usare `DbContext` simultaneamente, ad esempio ogni
     }
     ```
 
-* Registrare `DbContext` nel contenitore del servizio con una durata temporanea:
-  * Quando si registra il contesto, usare `ServiceLifetime.Transient` . Il `AddDbContext` metodo di estensione accetta due parametri facoltativi di tipo `ServiceLifetime` . Per usare questo approccio, solo il `contextLifetime` parametro deve essere `ServiceLifetime.Transient` . `optionsLifetime`può contenere il valore predefinito di `ServiceLifetime.Scoped` .
+* Registrare <xref:Microsoft.EntityFrameworkCore.DbContext> nel contenitore del servizio con una durata temporanea:
+  * Quando si registra il contesto, usare <xref:Microsoft.OData.ServiceLifetime.Transient?displayProperty=nameWithType> . Il <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> metodo di estensione accetta due parametri facoltativi di tipo <xref:Microsoft.Extensions.DependencyInjection.ServiceLifetime> . Per usare questo approccio, solo il `contextLifetime` parametro deve essere <xref:Microsoft.OData.ServiceLifetime.Transient?displayProperty=nameWithType> . `optionsLifetime`può contenere il valore predefinito di <xref:Microsoft.OData.ServiceLifetime.Scoped?displayProperty=nameWithType> .
 
     ```csharp
     services.AddDbContext<AppDbContext>(options =>
@@ -386,7 +386,7 @@ Se un singolo componente può usare `DbContext` simultaneamente, ad esempio ogni
          ServiceLifetime.Transient);
     ```  
 
-  * Il temporaneo `DbContext` può essere inserito normalmente (usando `@inject` ) in componenti che non eseguono più operazioni EF in parallelo. Quelli che possono eseguire contemporaneamente più operazioni EF possono richiedere `DbContext` oggetti distinti per ogni operazione parallela usando `IServiceProvider.GetRequiredService` .
+  * Il temporaneo <xref:Microsoft.EntityFrameworkCore.DbContext> può essere inserito normalmente (usando [`@inject`](xref:mvc/views/razor#inject) ) in componenti che non eseguono più operazioni EF in parallelo. Quelli che possono eseguire contemporaneamente più operazioni EF possono richiedere <xref:Microsoft.EntityFrameworkCore.DbContext> oggetti distinti per ogni operazione parallela usando <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> .
 
     ```razor
     @page "/example"
