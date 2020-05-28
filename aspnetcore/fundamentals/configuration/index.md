@@ -1495,7 +1495,7 @@ Per proteggere i dati di configurazione sensibili, adottare le pratiche seguenti
 Per altre informazioni, vedere gli argomenti seguenti:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets>&ndash;Include consigli sull'uso delle variabili di ambiente per archiviare dati riservati. Secret Manager usa il provider di configurazione dei file per archiviare i segreti utente in un file JSON nel sistema locale. Il provider di configurazione dei file è descritto più avanti in questo argomento.
+* <xref:security/app-secrets>: Include consigli sull'uso delle variabili di ambiente per archiviare dati riservati. Secret Manager usa il provider di configurazione dei file per archiviare i segreti utente in un file JSON nel sistema locale. Il provider di configurazione dei file è descritto più avanti in questo argomento.
 
 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) archivia in modo sicuro i segreti delle app ASP.NET Core. Per altre informazioni, vedere <xref:security/key-vault-configuration>.
 
@@ -2167,7 +2167,7 @@ Per le app che usano i mapping di sostituzione, la chiamata a `CreateDefaultBuil
 
 Il dizionario dei mapping di sostituzione creato contiene i dati visualizzati nella tabella seguente.
 
-| Chiave       | valore             |
+| Chiave       | Valore             |
 | ---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'
@@ -2242,7 +2242,7 @@ dotnet run -CLKey1=value1 -CLKey2=value2
 
 Dopo aver eseguito il comando precedente, la configurazione contiene i valori mostrati nella tabella seguente.
 
-| Chiave               | valore    |
+| Chiave               | Valore    |
 | ---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'
@@ -2948,8 +2948,8 @@ title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-l
 
 Nel server viene creata una variabile di ambiente della stringa di connessione personalizzata:
 
-* Nome &ndash;`CUSTOMCONNSTR_ReleaseDB`
-* Valore &ndash; di`Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
+* Nome: `CUSTOMCONNSTR_ReleaseDB`
+* Valore: `Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
 
 Se `IConfiguration` viene inserito e assegnato a un campo denominato `_config` , leggere il valore:
 
@@ -3028,8 +3028,8 @@ Gli overload consentono di specificare:
 
 `AddJsonFile`viene chiamato automaticamente due volte quando viene inizializzato un nuovo generatore host con `CreateDefaultBuilder` . Il metodo viene chiamato per caricare la configurazione da:
 
-* *appsettings.json* &ndash; Questo file viene letto per primo. La versione dell'ambiente del file può sostituire i valori forniti dal file *appsettings.json*.
-* *appSettings. {Environment}. JSON* &ndash; la versione dell'ambiente del file viene caricata in base a [IHostingEnvironment. EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
+* *appSettings. JSON*: questo file viene letto per primo. La versione dell'ambiente del file può sostituire i valori forniti dal file *appsettings.json*.
+* *appSettings. {Environment}. JSON*: la versione dell'ambiente del file è stata caricata in base a [IHostingEnvironment. EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
 
 Per altre informazioni, vedere la sezione [Configurazione predefinita](#default-configuration).
 
@@ -3359,7 +3359,7 @@ Il <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> supporta 
 
 Prendere in considerazione le chiavi di configurazione e i valori indicati nella tabella seguente.
 
-| Chiave             | valore  |
+| Chiave             | Valore  |
 | :---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'
@@ -3616,7 +3616,7 @@ config.AddJsonFile(
 
 La coppia chiave-valore mostrata nella tabella viene caricata nella configurazione.
 
-| Chiave             | valore  |
+| Chiave             | Valore  |
 | :---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'
@@ -3839,7 +3839,7 @@ Se un file JSON contiene una matrice, vengono create chiavi di configurazione pe
 
 Il provider di configurazione JSON legge i dati di configurazione nelle coppie chiave-valore seguenti:
 
-| Chiave                     | valore  |
+| Chiave                     | Valore  |
 | ---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'

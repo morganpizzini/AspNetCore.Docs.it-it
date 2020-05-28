@@ -70,8 +70,8 @@ Per usare l' <xref:Microsoft.JSInterop.IJSRuntime> astrazione, adottare uno degl
 
 Nell'app di esempio lato client che accompagna questo argomento sono disponibili due funzioni JavaScript per l'app che interagiscono con il DOM per ricevere l'input dell'utente e visualizzare un messaggio di benvenuto:
 
-* `showPrompt`&ndash;Genera un messaggio di richiesta per accettare l'input dell'utente (il nome dell'utente) e restituisce il nome al chiamante.
-* `displayWelcome`&ndash;Assegna un messaggio di benvenuto dal chiamante a un oggetto DOM con un valore `id` di `welcome` .
+* `showPrompt`: Genera un messaggio di richiesta per accettare l'input dell'utente (il nome dell'utente) e restituisce il nome al chiamante.
+* `displayWelcome`: Assegna un messaggio di benvenuto dal chiamante a un oggetto DOM con un valore `id` di `welcome` .
 
 *wwwroot/exampleJsInterop. js*:
 

@@ -32,8 +32,8 @@ Per la configurazione della compressione IIS *Web. config* , vedere la sezione r
 
 Il routing delle richieste per i componenti della pagina in un' Blazor app webassembly non è semplice come il routing delle richieste in un Blazor Server, un'app ospitata. Si consideri un' Blazor app webassembly con due componenti:
 
-* *Main.razor* &ndash; Viene caricato nella radice dell'app e contiene un collegamento al componente `About` (`href="About"`).
-* *About.Razor Componente * &ndash; `About`.
+* *Main. Razor*: carica alla radice dell'app e contiene un collegamento al `About` componente ( `href="About"` ).
+* *About. Razor*: `About` Component.
 
 Quando viene richiesto il documento predefinito dell'app usando la barra degli indirizzi del browser (ad esempio, `https://www.contoso.com/`):
 
@@ -83,11 +83,11 @@ Gli asset pubblicati vengono creati nella cartella */bin/Release/{FRAMEWORK DEST
 Quando Blazor viene pubblicato un progetto, viene creato un file *Web. config* con la seguente configurazione di IIS:
 
 * Vengono impostati tipi MIME per le estensioni di file seguenti:
-  * *. dll* &ndash;`application/octet-stream`
-  * *JSON* &ndash;`application/json`
-  * *.wasm* &ndash; `application/wasm`
-  * *.woff* &ndash; `application/font-woff`
-  * *.woff2* &ndash; `application/font-woff`
+  * *. dll*:`application/octet-stream`
+  * *. JSON*:`application/json`
+  * *. WASM*:`application/wasm`
+  * *. WOFF*:`application/font-woff`
+  * *. woff2*:`application/font-woff`
 * Viene abilitata la compressione HTTP per i tipi MIME seguenti:
   * `application/octet-stream`
   * `application/wasm`

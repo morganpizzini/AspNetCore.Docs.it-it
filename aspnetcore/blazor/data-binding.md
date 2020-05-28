@@ -72,7 +72,10 @@ Utilizzare `@bind-{ATTRIBUTE}` con la `@bind-{ATTRIBUTE}:event` sintassi per ass
 }
 ```
 
-L'associazione di attributi distingue tra maiuscole e minuscole. Ad esempio, [`@bind`](xref:mvc/views/razor#bind) è valido e [`@bind`](xref:mvc/views/razor#bind) non è valido.
+L'associazione di attributi distingue tra maiuscole e minuscole:
+
+* `@bind`è valido.
+* `@Bind`e `@BIND` non sono validi.
 
 ## <a name="unparsable-values"></a>Valori non analizzabili
 

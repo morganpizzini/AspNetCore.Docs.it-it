@@ -1,24 +1,11 @@
 ---
-title: Inserimento delle dipendenze in ASP.NET Core
-author: rick-anderson
-description: Informazioni su come ASP.NET Core implementa l'inserimento delle dipendenze e su come usare questa funzionalità.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/26/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/dependency-injection
-ms.openlocfilehash: 3e31be02f21f8c28c1d98d47d9a744b3a8502253
-ms.sourcegitcommit: 6c7a149168d2c4d747c36de210bfab3abd60809a
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "83003187"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserimento delle dipendenze in ASP.NET Core
 
@@ -103,7 +90,7 @@ Nell'app di esempio, il servizio `IMyDependency` viene registrato con il tipo co
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup.cs?name=snippet1&highlight=5)]
 
 > [!NOTE]
-> Ogni metodo di estensione `services.Add{SERVICE_NAME}` aggiunge (e potenzialmente configura) i servizi. Ad esempio, `services.AddMvc()` aggiunge i servizi richiesti da Razor Pages e MVC. È consigliabile che le app seguano questa convenzione. Inserire i metodi di estensione nello spazio dei nomi [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) per incapsulare i gruppi di registrazioni di servizio.
+> Ogni metodo di estensione `services.Add{SERVICE_NAME}` aggiunge (e potenzialmente configura) i servizi. Ad esempio, `services.AddMvc()` aggiunge le pagine dei servizi Razor e MVC require. È consigliabile che le app seguano questa convenzione. Inserire i metodi di estensione nello spazio dei nomi [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) per incapsulare i gruppi di registrazioni di servizio.
 
 Se il costruttore del servizio richiede un [tipo incorporato](/dotnet/csharp/language-reference/keywords/built-in-types-table), ad esempio `string`, è possibile inserirlo usando la [configurazione](xref:fundamentals/configuration/index) o il [modello di opzioni](xref:fundamentals/configuration/options):
 
@@ -129,13 +116,13 @@ Nell'app di esempio, viene richiesta l'istanza `IMyDependency` usata per chiamar
 
 ## <a name="services-injected-into-startup"></a>Servizi inseriti all'avvio
 
-Quando si utilizza l'host generico ( `Startup` <xref:Microsoft.Extensions.Hosting.IHostBuilder>) è possibile inserire nel costruttore solo i tipi di servizio seguenti:
+`Startup`Quando si utilizza l'host generico () è possibile inserire nel costruttore solo i tipi di servizio seguenti <xref:Microsoft.Extensions.Hosting.IHostBuilder> :
 
 * `IWebHostEnvironment`
 * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
 * <xref:Microsoft.Extensions.Configuration.IConfiguration>
 
-I servizi possono essere inseriti in `Startup.Configure`:
+I servizi possono essere inseriti in `Startup.Configure` :
 
 ```csharp
 public void Configure(IApplicationBuilder app, IOptions<MyOptions> options)
@@ -148,28 +135,61 @@ Per altre informazioni, vedere <xref:fundamentals/startup>.
 
 ## <a name="framework-provided-services"></a>Servizi forniti dal framework
 
-Il `Startup.ConfigureServices` metodo è responsabile della definizione dei servizi utilizzati dall'app, incluse le funzionalità della piattaforma, ad esempio Entity Framework Core e ASP.NET Core MVC. Inizialmente, l' `IServiceCollection` oggetto fornito `ConfigureServices` a dispone di servizi definiti dal Framework a seconda della [configurazione dell'host](xref:fundamentals/index#host). Non è insolito che un'app basata su un modello di ASP.NET Core disponga di centinaia di servizi registrati dal Framework. Nella tabella seguente è elencato un piccolo esempio di servizi registrati dal Framework.
+Il `Startup.ConfigureServices` metodo è responsabile della definizione dei servizi utilizzati dall'app, incluse le funzionalità della piattaforma, ad esempio Entity Framework Core e ASP.NET Core MVC. Inizialmente, l'oggetto `IServiceCollection` fornito a `ConfigureServices` dispone di servizi definiti dal Framework a seconda della [configurazione dell'host](xref:fundamentals/index#host). Non è insolito che un'app basata su un modello di ASP.NET Core disponga di centinaia di servizi registrati dal Framework. Nella tabella seguente è elencato un piccolo esempio di servizi registrati dal Framework.
 
 | Tipo di servizio | Durata |
-| ------------ | -------- |
-| <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Temporaneo |
-| `IHostApplicationLifetime` | Singleton |
-| `IWebHostEnvironment` | Singleton |
-| <xref:Microsoft.AspNetCore.Hosting.IStartup?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName> | Temporaneo |
-| <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.AspNetCore.Http.IHttpContextFactory?displayProperty=fullName> | Temporaneo |
-| <xref:Microsoft.Extensions.Logging.ILogger`1?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.Extensions.Logging.ILoggerFactory?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.Extensions.Options.IConfigureOptions`1?displayProperty=fullName> | Temporaneo |
-| <xref:Microsoft.Extensions.Options.IOptions`1?displayProperty=fullName> | Singleton |
-| <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName> | Singleton |
-| <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName> | Singleton |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+------ | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---- | | <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Temporaneo | | `IHostApplicationLifetime` | Singleton | | `IWebHostEnvironment` | Singleton | | <xref:Microsoft.AspNetCore.Hosting.IStartup?displayProperty=fullName> | Singleton | | <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName> | Temporaneo | | <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName> | Singleton | | <xref:Microsoft.AspNetCore.Http.IHttpContextFactory?displayProperty=fullName> | Temporaneo | | <xref:Microsoft.Extensions.Logging.ILogger`1?displayProperty=fullName> | Singleton | | <xref:Microsoft.Extensions.Logging.ILoggerFactory?displayProperty=fullName> | Singleton | | <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider?displayProperty=fullName> | Singleton | | <xref:Microsoft.Extensions.Options.IConfigureOptions`1?displayProperty=fullName> | Temporaneo | | <xref:Microsoft.Extensions.Options.IOptions`1?displayProperty=fullName> | Singleton | | <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName> | Singleton | | <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName> | Singleton |
 
 ## <a name="register-additional-services-with-extension-methods"></a>Registrare servizi aggiuntivi con i metodi di estensione
 
-Quando è disponibile un metodo di estensione della raccolta di servizi per la registrazione di un servizio (e dei servizi dipendenti, se necessario), la convenzione consiste nell'usare un singolo metodo di estensione `Add{SERVICE_NAME}` per registrare tutti i servizi richiesti da tale servizio. Il codice seguente è un esempio di come aggiungere altri servizi al contenitore usando i metodi di estensione [AddDbContext\<TContext>](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) e: <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*>
+Quando è disponibile un metodo di estensione della raccolta di servizi per la registrazione di un servizio (e dei servizi dipendenti, se necessario), la convenzione consiste nell'usare un singolo metodo di estensione `Add{SERVICE_NAME}` per registrare tutti i servizi richiesti da tale servizio. Il codice seguente è un esempio di come aggiungere servizi aggiuntivi al contenitore usando i metodi di estensione [AddDbContext \<TContext> ](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) e <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*> :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -215,13 +235,197 @@ I servizi con durata singleton (<xref:Microsoft.Extensions.DependencyInjection.S
 
 I metodi di estensione per la registrazione del servizio offrono overload che risultano utili in scenari specifici.
 
-| Metodo | Automatico<br>object<br>eliminazione | Più elementi<br>implementazioni | Pass args |
-| ------ | :-----------------------------: | :-------------------------: | :-------: |
-| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Esempio:<br>`services.AddSingleton<IMyDep, MyDep>();` | Sì | Sì | No |
-| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Sì | Sì | Sì |
-| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Esempio:<br>`services.AddSingleton<MyDep>();` | Sì | No | No |
-| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | No | Sì | Sì |
-| `AddSingleton(new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | No | No | Sì |
+| Metodo | Automatico<br>oggetto<br>eliminazione | Multipli<br>implementazioni | Pass args |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+--- | :---title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---------------: | :---title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-------------: | :---title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+----: | | `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Esempio:<br>`services.AddSingleton<IMyDep, MyDep>();`| Sì | Sì | No | |`Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));`| Sì | Sì | Sì | |`Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Esempio:<br>`services.AddSingleton<MyDep>();`| Sì | No | No | |`AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));`| No | Sì | Sì | |`AddSingleton(new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));`| No | No | Sì |
 
 Per ulteriori informazioni sull'eliminazione dei tipi, vedere la sezione [Eliminazione dei servizi](#disposal-of-services). Uno scenario comune per più implementazioni è costituito dai [tipi di simulazioni per i test](xref:test/integration-tests#inject-mock-services).
 
@@ -263,17 +467,17 @@ services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
 I servizi possono essere risolti con due meccanismi:
 
 * <xref:System.IServiceProvider>
-* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>&ndash; Consente la creazione di oggetti senza registrazione del servizio nel contenitore di inserimento delle dipendenze. `ActivatorUtilities` viene usato con astrazioni esposte all'utente, ad esempio helper tag, controller MVC e strumenti di associazione di modelli.
+* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>: Consente la creazione di oggetti senza registrazione del servizio nel contenitore di inserimento delle dipendenze. `ActivatorUtilities` viene usato con astrazioni esposte all'utente, ad esempio helper tag, controller MVC e strumenti di associazione di modelli.
 
 I costruttori possono accettare argomenti non forniti tramite l'inserimento di dipendenze, ma gli argomenti devono assegnare valori predefiniti.
 
-Quando i `IServiceProvider` servizi vengono risolti `ActivatorUtilities`da o, l'inserimento del [Costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) richiede un costruttore *pubblico* .
+Quando i servizi vengono risolti da `IServiceProvider` o `ActivatorUtilities` , l' [inserimento del costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) richiede un costruttore *pubblico* .
 
-Quando i servizi vengono risolti da, l'inserimento del `ActivatorUtilities` [Costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) richiede l'esistenza di un solo costruttore applicabile. Sebbene siano supportati gli overload dei costruttori, può essere presente un solo overload i cui argomenti possono essere tutti specificati tramite l'inserimento delle dipendenze.
+Quando i servizi vengono risolti da `ActivatorUtilities` , l' [inserimento del costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) richiede l'esistenza di un solo costruttore applicabile. Sebbene siano supportati gli overload dei costruttori, può essere presente un solo overload i cui argomenti possono essere tutti specificati tramite l'inserimento delle dipendenze.
 
 ## <a name="entity-framework-contexts"></a>Contesti di Entity Framework
 
-I contesti di Entity Framework vengono in genere aggiunti al contenitore di servizi usando la [durata con ambito](#service-lifetimes) perché le operazioni di database delle app Web hanno di solito come ambito la richiesta client. La durata predefinita è con ambito se non viene specificata una durata con un overload [AddDbContext\<TContext>](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) quando si registra il contesto del database. I servizi con una durata specificata non devono usare un contesto di database con una durata più breve rispetto al servizio.
+I contesti di Entity Framework vengono in genere aggiunti al contenitore di servizi usando la [durata con ambito](#service-lifetimes) perché le operazioni di database delle app Web hanno di solito come ambito la richiesta client. L'ambito della durata predefinita è se una durata non è specificata da un overload [AddDbContext \<TContext> ](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) durante la registrazione del contesto del database. I servizi con una durata specificata non devono usare un contesto di database con una durata più breve rispetto al servizio.
 
 ## <a name="lifetime-and-registration-options"></a>Opzioni di durata e di registrazione
 
@@ -341,7 +545,7 @@ Osservare i valori `OperationId` che variano all'interno della richiesta e da un
 
 * Gli oggetti *temporanei* sono sempre diversi. Il valore `OperationId` temporaneo per la prima e la seconda richiesta client è diverso per entrambe le operazioni `OperationService` e in tutte le richieste client. Viene fornita una nuova istanza per ogni richiesta di servizio e richiesta client.
 * Gli oggetti *con ambito* sono gli stessi all'interno di una richiesta client, ma variano nelle diverse richieste client.
-* Gli oggetti *singleton* sono gli stessi per ogni oggetto e per ogni richiesta, indipendentemente `Operation` dal fatto che un' `Startup.ConfigureServices`istanza venga fornita in.
+* Gli oggetti *singleton* sono gli stessi per ogni oggetto e per ogni richiesta, indipendentemente dal fatto che un' `Operation` istanza venga fornita in `Startup.ConfigureServices` .
 
 ## <a name="call-services-from-main"></a>Chiamare i servizi da main
 
@@ -421,7 +625,7 @@ Le procedure consigliate prevedono di:
 * Evitare la creazione diretta di istanze delle classi dipendenti all'interno di servizi. La creazione diretta di istanze associa il codice a una determinata implementazione.
 * Fare in modo che le classi siano piccole, con factoring corretto e facili da testare.
 
-Se una classe sembra avere troppe dipendenze inserite, ciò significa in genere che la classe ha un numero eccessivo di responsabilità e sta violando il [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility) (principio di responsabilità singola). Tentare di effettuare il refactoring della classe spostando alcune delle responsabilità in una nuova classe. Tenere presente che le classi del modello di pagina Razor Pages e le classi del controller MVC devono essere incentrate sulle problematiche dell'interfaccia utente. Di conseguenza, le regole business e i dettagli di implementazione di accesso ai dati devono essere inseriti in classi appropriate per queste [problematiche separate](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns).
+Se una classe sembra avere troppe dipendenze inserite, ciò significa in genere che la classe ha un numero eccessivo di responsabilità e sta violando il [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility) (principio di responsabilità singola). Tentare di effettuare il refactoring della classe spostando alcune delle responsabilità in una nuova classe. Tenere presente che Razor le classi del modello della pagina delle pagine e le classi controller MVC devono concentrarsi sulle problematiche dell'interfaccia utente. Di conseguenza, le regole business e i dettagli di implementazione di accesso ai dati devono essere inseriti in classi appropriate per queste [problematiche separate](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns).
 
 ### <a name="disposal-of-services"></a>Eliminazione dei servizi
 
@@ -489,9 +693,9 @@ Con ASP.NET Core app è possibile usare i contenitori di terze parti seguenti:
 
 Creare servizi singleton thread-safe. Se un servizio singleton ha una dipendenza in un servizio temporaneo, è necessario che anche il servizio temporaneo sia thread-safe, a seconda di come viene usato dal singleton.
 
-Non è necessario che il metodo factory del singolo servizio, ad esempio il secondo argomento per [AddSingleton\<TService>(IServiceCollection, Func\<IServiceProvider,TService)](xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*), sia thread-safe. Come nel caso di un costruttore di tipo (`static`), è garantito che venga chiamato una sola volta da un singolo thread.
+Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [AddSingleton \<TService> (IServiceCollection, Func \<IServiceProvider,TService> )](xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*), non deve essere thread-safe. Come nel caso di un costruttore di tipo (`static`), è garantito che venga chiamato una sola volta da un singolo thread.
 
-## <a name="recommendations"></a>Consigli
+## <a name="recommendations"></a>Raccomandazioni
 
 * La risoluzione basata sui servizi `async/await` e `Task` non è supportata. Dato che C# non supporta i costruttori asincroni, il modello consigliato consiste nell'usare i metodi asincroni dopo avere risolto in modo sincrono il servizio.
 
@@ -550,7 +754,7 @@ L'inserimento di dipendenze è un'*alternativa* ai modelli di accesso agli ogget
 
 [Orchard Core](https://github.com/OrchardCMS/OrchardCore) fornisce il multi-tenant. Per ulteriori informazioni, vedere la [documentazione di Orchard Core](https://docs.orchardcore.net/en/dev/).
 
-Vedere le app di esempio https://github.com/OrchardCMS/OrchardCore.Samples in per esempi di come creare app modulari e multi-tenant usando solo il Framework Orchard core senza le funzionalità specifiche del CMS.
+Vedere le app di esempio in https://github.com/OrchardCMS/OrchardCore.Samples per esempi di come creare app modulari e multi-tenant usando solo il Framework Orchard core senza le funzionalità specifiche del CMS.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -646,7 +850,7 @@ Nell'app di esempio, il servizio `IMyDependency` viene registrato con il tipo co
 [!code-csharp[](dependency-injection/samples/2.x/DependencyInjectionSample/Startup.cs?name=snippet1&highlight=5)]
 
 > [!NOTE]
-> Ogni metodo di estensione `services.Add{SERVICE_NAME}` aggiunge (e potenzialmente configura) i servizi. Ad esempio, `services.AddMvc()` aggiunge i servizi richiesti da Razor Pages e MVC. È consigliabile che le app seguano questa convenzione. Inserire i metodi di estensione nello spazio dei nomi [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) per incapsulare i gruppi di registrazioni di servizio.
+> Ogni metodo di estensione `services.Add{SERVICE_NAME}` aggiunge (e potenzialmente configura) i servizi. Ad esempio, `services.AddMvc()` aggiunge le pagine dei servizi Razor e MVC require. È consigliabile che le app seguano questa convenzione. Inserire i metodi di estensione nello spazio dei nomi [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) per incapsulare i gruppi di registrazioni di servizio.
 
 Se il costruttore del servizio richiede un [tipo incorporato](/dotnet/csharp/language-reference/keywords/built-in-types-table), ad esempio `string`, è possibile inserirlo usando la [configurazione](xref:fundamentals/configuration/index) o il [modello di opzioni](xref:fundamentals/configuration/options):
 
@@ -672,13 +876,13 @@ Nell'app di esempio, viene richiesta l'istanza `IMyDependency` usata per chiamar
 
 ## <a name="services-injected-into-startup"></a>Servizi inseriti all'avvio
 
-Quando si utilizza l'host generico ( `Startup` <xref:Microsoft.Extensions.Hosting.IHostBuilder>) è possibile inserire nel costruttore solo i tipi di servizio seguenti:
+`Startup`Quando si utilizza l'host generico () è possibile inserire nel costruttore solo i tipi di servizio seguenti <xref:Microsoft.Extensions.Hosting.IHostBuilder> :
 
 * `IWebHostEnvironment`
 * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
 * <xref:Microsoft.Extensions.Configuration.IConfiguration>
 
-I servizi possono essere inseriti in `Startup.Configure`:
+I servizi possono essere inseriti in `Startup.Configure` :
 
 ```csharp
 public void Configure(IApplicationBuilder app, IOptions<MyOptions> options)
@@ -691,28 +895,61 @@ Per altre informazioni, vedere <xref:fundamentals/startup>.
 
 ## <a name="framework-provided-services"></a>Servizi forniti dal framework
 
-Il `Startup.ConfigureServices` metodo è responsabile della definizione dei servizi utilizzati dall'app, incluse le funzionalità della piattaforma, ad esempio Entity Framework Core e ASP.NET Core MVC. Inizialmente, l' `IServiceCollection` oggetto fornito `ConfigureServices` a dispone di servizi definiti dal Framework a seconda della [configurazione dell'host](xref:fundamentals/index#host). Non è insolito che un'app basata su un modello di ASP.NET Core disponga di centinaia di servizi registrati dal Framework. Nella tabella seguente è elencato un piccolo esempio di servizi registrati dal Framework.
+Il `Startup.ConfigureServices` metodo è responsabile della definizione dei servizi utilizzati dall'app, incluse le funzionalità della piattaforma, ad esempio Entity Framework Core e ASP.NET Core MVC. Inizialmente, l'oggetto `IServiceCollection` fornito a `ConfigureServices` dispone di servizi definiti dal Framework a seconda della [configurazione dell'host](xref:fundamentals/index#host). Non è insolito che un'app basata su un modello di ASP.NET Core disponga di centinaia di servizi registrati dal Framework. Nella tabella seguente è elencato un piccolo esempio di servizi registrati dal Framework.
 
 | Tipo di servizio | Durata |
-| ------------ | -------- |
-| <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Temporaneo |
-| <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.AspNetCore.Hosting.IStartup?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName> | Temporaneo |
-| <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.AspNetCore.Http.IHttpContextFactory?displayProperty=fullName> | Temporaneo |
-| <xref:Microsoft.Extensions.Logging.ILogger`1?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.Extensions.Logging.ILoggerFactory?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.Extensions.Options.IConfigureOptions`1?displayProperty=fullName> | Temporaneo |
-| <xref:Microsoft.Extensions.Options.IOptions`1?displayProperty=fullName> | Singleton |
-| <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName> | Singleton |
-| <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName> | Singleton |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+------ | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---- | | <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Temporaneo | | <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime?displayProperty=fullName> | Singleton | | <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment?displayProperty=fullName> | Singleton | | <xref:Microsoft.AspNetCore.Hosting.IStartup?displayProperty=fullName> | Singleton | | <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName> | Temporaneo | | <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName> | Singleton | | <xref:Microsoft.AspNetCore.Http.IHttpContextFactory?displayProperty=fullName> | Temporaneo | | <xref:Microsoft.Extensions.Logging.ILogger`1?displayProperty=fullName> | Singleton | | <xref:Microsoft.Extensions.Logging.ILoggerFactory?displayProperty=fullName> | Singleton | | <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider?displayProperty=fullName> | Singleton | | <xref:Microsoft.Extensions.Options.IConfigureOptions`1?displayProperty=fullName> | Temporaneo | | <xref:Microsoft.Extensions.Options.IOptions`1?displayProperty=fullName> | Singleton | | <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName> | Singleton | | <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName> | Singleton |
 
 ## <a name="register-additional-services-with-extension-methods"></a>Registrare servizi aggiuntivi con i metodi di estensione
 
-Quando è disponibile un metodo di estensione della raccolta di servizi per la registrazione di un servizio (e dei servizi dipendenti, se necessario), la convenzione consiste nell'usare un singolo metodo di estensione `Add{SERVICE_NAME}` per registrare tutti i servizi richiesti da tale servizio. Il codice seguente è un esempio di come aggiungere altri servizi al contenitore usando i metodi di estensione [AddDbContext\<TContext>](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) e: <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*>
+Quando è disponibile un metodo di estensione della raccolta di servizi per la registrazione di un servizio (e dei servizi dipendenti, se necessario), la convenzione consiste nell'usare un singolo metodo di estensione `Add{SERVICE_NAME}` per registrare tutti i servizi richiesti da tale servizio. Il codice seguente è un esempio di come aggiungere servizi aggiuntivi al contenitore usando i metodi di estensione [AddDbContext \<TContext> ](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) e <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*> :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -758,13 +995,197 @@ I servizi con durata singleton (<xref:Microsoft.Extensions.DependencyInjection.S
 
 I metodi di estensione per la registrazione del servizio offrono overload che risultano utili in scenari specifici.
 
-| Metodo | Automatico<br>object<br>eliminazione | Più elementi<br>implementazioni | Pass args |
-| ------ | :-----------------------------: | :-------------------------: | :-------: |
-| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Esempio:<br>`services.AddSingleton<IMyDep, MyDep>();` | Sì | Sì | No |
-| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Sì | Sì | Sì |
-| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Esempio:<br>`services.AddSingleton<MyDep>();` | Sì | No | No |
-| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | No | Sì | Sì |
-| `AddSingleton(new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | No | No | Sì |
+| Metodo | Automatico<br>oggetto<br>eliminazione | Multipli<br>implementazioni | Pass args |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+--- | :---title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---------------: | :---title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-------------: | :---title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+----: | | `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Esempio:<br>`services.AddSingleton<IMyDep, MyDep>();`| Sì | Sì | No | |`Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));`| Sì | Sì | Sì | |`Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Esempio:<br>`services.AddSingleton<MyDep>();`| Sì | No | No | |`AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));`| No | Sì | Sì | |`AddSingleton(new {IMPLEMENTATION})`<br>Esempi:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));`| No | No | Sì |
 
 Per ulteriori informazioni sull'eliminazione dei tipi, vedere la sezione [Eliminazione dei servizi](#disposal-of-services). Uno scenario comune per più implementazioni è costituito dai [tipi di simulazioni per i test](xref:test/integration-tests#inject-mock-services).
 
@@ -806,17 +1227,17 @@ services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
 I servizi possono essere risolti con due meccanismi:
 
 * <xref:System.IServiceProvider>
-* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>&ndash; Consente la creazione di oggetti senza registrazione del servizio nel contenitore di inserimento delle dipendenze. `ActivatorUtilities` viene usato con astrazioni esposte all'utente, ad esempio helper tag, controller MVC e strumenti di associazione di modelli.
+* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>: Consente la creazione di oggetti senza registrazione del servizio nel contenitore di inserimento delle dipendenze. `ActivatorUtilities` viene usato con astrazioni esposte all'utente, ad esempio helper tag, controller MVC e strumenti di associazione di modelli.
 
 I costruttori possono accettare argomenti non forniti tramite l'inserimento di dipendenze, ma gli argomenti devono assegnare valori predefiniti.
 
-Quando i `IServiceProvider` servizi vengono risolti `ActivatorUtilities`da o, l'inserimento del [Costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) richiede un costruttore *pubblico* .
+Quando i servizi vengono risolti da `IServiceProvider` o `ActivatorUtilities` , l' [inserimento del costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) richiede un costruttore *pubblico* .
 
-Quando i servizi vengono risolti da, l'inserimento del `ActivatorUtilities` [Costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) richiede l'esistenza di un solo costruttore applicabile. Sebbene siano supportati gli overload dei costruttori, può essere presente un solo overload i cui argomenti possono essere tutti specificati tramite l'inserimento delle dipendenze.
+Quando i servizi vengono risolti da `ActivatorUtilities` , l' [inserimento del costruttore](xref:mvc/controllers/dependency-injection#constructor-injection) richiede l'esistenza di un solo costruttore applicabile. Sebbene siano supportati gli overload dei costruttori, può essere presente un solo overload i cui argomenti possono essere tutti specificati tramite l'inserimento delle dipendenze.
 
 ## <a name="entity-framework-contexts"></a>Contesti di Entity Framework
 
-I contesti di Entity Framework vengono in genere aggiunti al contenitore di servizi usando la [durata con ambito](#service-lifetimes) perché le operazioni di database delle app Web hanno di solito come ambito la richiesta client. La durata predefinita è con ambito se non viene specificata una durata con un overload [AddDbContext\<TContext>](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) quando si registra il contesto del database. I servizi con una durata specificata non devono usare un contesto di database con una durata più breve rispetto al servizio.
+I contesti di Entity Framework vengono in genere aggiunti al contenitore di servizi usando la [durata con ambito](#service-lifetimes) perché le operazioni di database delle app Web hanno di solito come ambito la richiesta client. L'ambito della durata predefinita è se una durata non è specificata da un overload [AddDbContext \<TContext> ](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) durante la registrazione del contesto del database. I servizi con una durata specificata non devono usare un contesto di database con una durata più breve rispetto al servizio.
 
 ## <a name="lifetime-and-registration-options"></a>Opzioni di durata e di registrazione
 
@@ -884,7 +1305,7 @@ Osservare i valori `OperationId` che variano all'interno della richiesta e da un
 
 * Gli oggetti *temporanei* sono sempre diversi. Il valore `OperationId` temporaneo per la prima e la seconda richiesta client è diverso per entrambe le operazioni `OperationService` e in tutte le richieste client. Viene fornita una nuova istanza per ogni richiesta di servizio e richiesta client.
 * Gli oggetti *con ambito* sono gli stessi all'interno di una richiesta client, ma variano nelle diverse richieste client.
-* Gli oggetti *singleton* sono gli stessi per ogni oggetto e per ogni richiesta, indipendentemente `Operation` dal fatto che un' `Startup.ConfigureServices`istanza venga fornita in.
+* Gli oggetti *singleton* sono gli stessi per ogni oggetto e per ogni richiesta, indipendentemente dal fatto che un' `Operation` istanza venga fornita in `Startup.ConfigureServices` .
 
 ## <a name="call-services-from-main"></a>Chiamare i servizi da main
 
@@ -1028,9 +1449,9 @@ Con ASP.NET Core app è possibile usare i contenitori di terze parti seguenti:
 
 Creare servizi singleton thread-safe. Se un servizio singleton ha una dipendenza in un servizio temporaneo, è necessario che anche il servizio temporaneo sia thread-safe, a seconda di come viene usato dal singleton.
 
-Non è necessario che il metodo factory del singolo servizio, ad esempio il secondo argomento per [AddSingleton\<TService>(IServiceCollection, Func\<IServiceProvider,TService)](xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*), sia thread-safe. Come nel caso di un costruttore di tipo (`static`), è garantito che venga chiamato una sola volta da un singolo thread.
+Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [AddSingleton \<TService> (IServiceCollection, Func \<IServiceProvider,TService> )](xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*), non deve essere thread-safe. Come nel caso di un costruttore di tipo (`static`), è garantito che venga chiamato una sola volta da un singolo thread.
 
-## <a name="recommendations"></a>Consigli
+## <a name="recommendations"></a>Raccomandazioni
 
 * La risoluzione basata sui servizi `async/await` e `Task` non è supportata. Dato che C# non supporta i costruttori asincroni, il modello consigliato consiste nell'usare i metodi asincroni dopo avere risolto in modo sincrono il servizio.
 
@@ -1079,7 +1500,7 @@ Non è necessario che il metodo factory del singolo servizio, ad esempio il seco
     }
     ```
 
-  * Evitare di inserire una factory che risolve le dipendenze in fase di <xref:System.IServiceProvider.GetService*>esecuzione usando.
+  * Evitare di inserire una factory che risolve le dipendenze in fase di esecuzione usando <xref:System.IServiceProvider.GetService*> .
 
 * Evitare l'accesso statico a `HttpContext` (ad esempio [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
 

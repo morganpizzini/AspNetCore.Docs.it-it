@@ -95,7 +95,7 @@ Un' Blazor app è costituita da elementi riutilizzabili di un'interfaccia utente
 * Trasformato in testo HTML (durante il prerendering &dagger; ).
 * Utilizzato per aggiornare in modo efficiente il markup durante il normale rendering.
 
-&dagger;*Prerendering* &ndash; Il Razor componente richiesto viene compilato sul server in HTML statico e inviato al client, dove viene sottoposto a rendering all'utente. Una volta stattiva la connessione tra il client e il server, gli elementi statici di cui è stato eseguito il rendering sono sostituiti da elementi interattivi. Il prerendering rende l'app più rispondente all'utente.
+&dagger;*Prerendering*: il Razor componente richiesto viene compilato nel server in HTML statico e inviato al client, dove viene sottoposto a rendering all'utente. Una volta stattiva la connessione tra il client e il server, gli elementi statici di cui è stato eseguito il rendering sono sostituiti da elementi interattivi. Il prerendering rende l'app più rispondente all'utente.
 
 Un aggiornamento dell'interfaccia utente in Blazor viene attivato da:
 

@@ -92,7 +92,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 > Il routing viene configurato usando <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> il <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> middleware e. Per usare i controller:
 >
 > * Chiamare <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> all'interno per eseguire il mapping tra i `UseEndpoints` controller [indirizzati degli attributi](#ar) .
-> * Chiamare <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> o <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> per eseguire il mapping di controller [indirizzati convenzionalmente](#cr) .
+> * Chiamare <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> o <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> per eseguire il mapping tra controller [indirizzati convenzionalmente](#cr) e controller [indirizzati degli attributi](#ar) .
 
 <a name="routing-conventional-ref-label"></a>
 <a name="crd"></a>
@@ -257,7 +257,7 @@ Le API REST devono usare il routing degli attributi per modellare la funzionalit
 
 Il routing con attributi usa un set di attributi per eseguire il mapping delle azioni direttamente ai modelli di route. Il `StartUp.Configure` codice seguente è tipico per un'API REST e viene usato nell'esempio seguente:
 
-[!code-csharp[](routing/samples/3.x/main/StartupApi.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/main/StartupAPI.cs?name=snippet)]
 
 Nel codice precedente, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> viene chiamato all'interno `UseEndpoints` di per eseguire il mapping dei controller indirizzati degli attributi.
 
@@ -272,10 +272,7 @@ L' `HomeController.Index` azione viene eseguita per uno dei percorsi URL `/` ,, 
 
 In questo esempio viene evidenziata una differenza di programmazione principale tra routing degli attributi e [routing convenzionale](#cr). Il routing degli attributi richiede un maggior numero di input per specificare una route. La route predefinita convenzionale gestisce le route in maniera più concisa. Tuttavia, il routing degli attributi consente e richiede un controllo preciso dei modelli di route applicabili a ciascuna [azione](#action).
 
-Nel codice seguente:
-
-* Il nome del controller e i nomi delle azioni non rivestono **alcun** ruolo in cui viene confrontata l'azione.
-* Corrisponde agli URL dell'esempio precedente:
+Con il routing degli attributi, i nomi del controller e dell'azione non sono parte dell'azione corrispondente, a meno che non venga utilizzata la [sostituzione del token](#routing-token-replacement-templates-ref-label) . L'esempio seguente corrisponde agli stessi URL dell'esempio precedente:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
@@ -655,8 +652,6 @@ Le route con attributi supportano la stessa sintassi inline delle route convenzi
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8&highlight=3)]
 
 Nel codice precedente, `[HttpPost("product/{id:int}")]` applica un vincolo di route. L' `ProductsController.ShowProduct` azione corrisponde solo ai percorsi URL, ad esempio `/product/3` . La parte del modello `{id:int}` di route vincola tale segmento ai soli numeri interi.
-
-[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet24)]
 
 Vedere [Riferimento per i modelli di route](xref:fundamentals/routing#route-template-reference) per una descrizione dettagliata della sintassi del modello di route.
 

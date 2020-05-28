@@ -1,23 +1,11 @@
 ---
-title: Memorizzazione nella cache delle risposte in ASP.NET Core
-author: rick-anderson
-description: Informazioni su come usare la memorizzazione nella cache delle risposte per ridurre i requisiti di larghezza di banda e migliorare le prestazioni delle app ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.date: 11/04/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: performance/caching/response
-ms.openlocfilehash: 3e4bb9980c94f36319cf9b17e65a35ba0f77824e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776077"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="response-caching-in-aspnet-core"></a>Memorizzazione nella cache delle risposte in ASP.NET Core
 
@@ -35,32 +23,493 @@ Per la memorizzazione nella cache sul lato server che segue la specifica di Cach
 
 La [specifica di Caching HTTP 1,1](https://tools.ietf.org/html/rfc7234) descrive il comportamento delle cache Internet. L'intestazione HTTP primaria utilizzata per la memorizzazione nella cache è [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2), che viene utilizzata per specificare le *direttive*della cache. Le direttive controllano il comportamento di memorizzazione nella cache come richieste da client a server e quando le risposte vengono riportate dai server ai client. Le richieste e le risposte passano attraverso i server proxy e i server proxy devono essere conformi anche alla specifica HTTP 1,1 Caching.
 
-Le `Cache-Control` direttive comuni sono illustrate nella tabella seguente.
+`Cache-Control`Le direttive comuni sono illustrate nella tabella seguente.
 
 | Direttiva                                                       | Azione |
-| --------------------------------------------------------------- | ------ |
-| [pubblico](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Una cache può archiviare la risposta. |
-| [private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | La risposta non deve essere archiviata da una cache condivisa. Una cache privata può archiviare e riutilizzare la risposta. |
-| [validità massima](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | Il client non accetta una risposta la cui età è superiore al numero di secondi specificato. Esempi: `max-age=60` (60 secondi), `max-age=2592000` (1 mese) |
-| [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **Sulle richieste**: una cache non deve usare una risposta archiviata per soddisfare la richiesta. Il server di origine rigenera la risposta per il client e il middleware aggiorna la risposta archiviata nella cache.<br><br>**In**risposta: non è necessario usare la risposta per una richiesta successiva senza convalida nel server di origine. |
-| [Nessun archivio](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Sulle richieste**: una cache non deve archiviare la richiesta.<br><br>**Nelle risposte**: una cache non deve archiviare alcuna parte della risposta. |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-------------------------------- | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+--- | | [pubblico](https://tools.ietf.org/html/rfc7234#section-5.2.2.5) | Una cache può archiviare la risposta. | | [privato](https://tools.ietf.org/html/rfc7234#section-5.2.2.6) | La risposta non deve essere archiviata da una cache condivisa. Una cache privata può archiviare e riutilizzare la risposta. | | [Max-Age](https://tools.ietf.org/html/rfc7234#section-5.2.1.1) | Il client non accetta una risposta la cui età è superiore al numero di secondi specificato. Esempi: `max-age=60` (60 secondi), `max-age=2592000` (1 mese) | | [No-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4)  |  **Sulle richieste**: una cache non deve usare una risposta archiviata per soddisfare la richiesta. Il server di origine rigenera la risposta per il client e il middleware aggiorna la risposta archiviata nella cache.<br><br>**In**risposta: non è necessario usare la risposta per una richiesta successiva senza convalida nel server di origine. | | [Nessun archivio](https://tools.ietf.org/html/rfc7234#section-5.2.1.5)  |  **Sulle richieste**: una cache non deve archiviare la richiesta.<br><br>**Nelle risposte**: una cache non deve archiviare alcuna parte della risposta. |
 
 Nella tabella seguente sono illustrate le altre intestazioni della cache che svolgono un ruolo nella memorizzazione nella cache.
 
-| Intestazione                                                     | Funzione |
-| ---------------------------------------------------------- | -------- |
-| [Età](https://tools.ietf.org/html/rfc7234#section-5.1)     | Stima della quantità di tempo in secondi trascorsa dalla generazione della risposta o dalla convalida corretta nel server di origine. |
-| [Scadenza](https://tools.ietf.org/html/rfc7234#section-5.3) | Tempo trascorso il quale la risposta è considerata obsoleta. |
-| [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)  | Esiste per la compatibilità con le versioni precedenti con le cache HTTP/1.0 `no-cache` per l'impostazione del comportamento. Se l' `Cache-Control` intestazione è presente, l' `Pragma` intestazione viene ignorata. |
-| [Variare](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Specifica che una risposta memorizzata nella cache non deve essere inviata a meno `Vary` che tutti i campi di intestazione corrispondano sia nella richiesta originale della risposta memorizzata nella cache che nella nuova richiesta. |
+| Header                                                     | Funzione |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+----------------------------- | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---- | | [Age](https://tools.ietf.org/html/rfc7234#section-5.1) | Stima della quantità di tempo in secondi trascorsa dalla generazione della risposta o dalla convalida corretta nel server di origine. | | [Scadenza](https://tools.ietf.org/html/rfc7234#section-5.3) | Tempo trascorso il quale la risposta è considerata obsoleta. | | [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4) | Esiste per la compatibilità con le versioni precedenti con le cache HTTP/1.0 per l'impostazione del `no-cache` comportamento. Se l' `Cache-Control` intestazione è presente, l' `Pragma` intestazione viene ignorata. | | [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4) | Specifica che una risposta memorizzata nella cache non deve essere inviata a meno che tutti i `Vary` campi di intestazione corrispondano sia nella richiesta originale della risposta memorizzata nella cache che nella nuova richiesta. |
 
 ## <a name="http-based-caching-respects-request-cache-control-directives"></a>La memorizzazione nella cache basata su HTTP rispetta le direttive di controllo della cache delle richieste
 
-La [specifica di Caching HTTP 1,1 per l'intestazione Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) richiede una cache per rispettare un'intestazione `Cache-Control` valida inviata dal client. Un client può effettuare richieste con un `no-cache` valore di intestazione e forzare il server a generare una nuova risposta per ogni richiesta.
+La [specifica di Caching HTTP 1,1 per l'intestazione Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) richiede una cache per rispettare un' `Cache-Control` intestazione valida inviata dal client. Un client può effettuare richieste con un `no-cache` valore di intestazione e forzare il server a generare una nuova risposta per ogni richiesta.
 
-Per rispettare sempre le `Cache-Control` intestazioni delle richieste client, è opportuno considerare l'obiettivo della memorizzazione nella cache HTTP. Nella specifica ufficiale, la memorizzazione nella cache è finalizzata a ridurre la latenza e il sovraccarico di rete per soddisfare le richieste in una rete di client, proxy e server. Non è necessariamente un modo per controllare il carico su un server di origine.
+Per rispettare sempre `Cache-Control` le intestazioni delle richieste client, è opportuno considerare l'obiettivo della memorizzazione nella cache HTTP. Nella specifica ufficiale, la memorizzazione nella cache è finalizzata a ridurre la latenza e il sovraccarico di rete per soddisfare le richieste in una rete di client, proxy e server. Non è necessariamente un modo per controllare il carico su un server di origine.
 
-Il comportamento di memorizzazione nella cache non è disponibile per gli sviluppatori quando si usa il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) , perché il middleware rispetta la specifica di Caching ufficiale. I [miglioramenti pianificati per il middleware](https://github.com/dotnet/AspNetCore/issues/2612) sono un'opportunità per configurare il middleware in modo da ignorare `Cache-Control` l'intestazione di una richiesta quando si decide di gestire una risposta memorizzata nella cache. I miglioramenti pianificati offrono la possibilità di controllare meglio il carico del server.
+Il comportamento di memorizzazione nella cache non è disponibile per gli sviluppatori quando si usa il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) , perché il middleware rispetta la specifica di Caching ufficiale. I [miglioramenti pianificati per il middleware](https://github.com/dotnet/AspNetCore/issues/2612) sono un'opportunità per configurare il middleware in modo da ignorare l'intestazione di una richiesta `Cache-Control` quando si decide di gestire una risposta memorizzata nella cache. I miglioramenti pianificati offrono la possibilità di controllare meglio il carico del server.
 
 ## <a name="other-caching-technology-in-aspnet-core"></a>Altra tecnologia di memorizzazione nella cache in ASP.NET Core
 
@@ -78,44 +527,232 @@ Per altre informazioni, vedere <xref:performance/caching/distributed>.
 
 ### <a name="cache-tag-helper"></a>Helper per tag di cache
 
-Memorizza nella cache il contenuto da una visualizzazione MVC o da una pagina Razor con l'helper tag di cache. L'helper tag di cache usa la memorizzazione nella cache in memoria per archiviare i dati.
+Memorizza nella cache il contenuto di una visualizzazione o Razor di una pagina MVC con l'helper tag di cache. L'helper tag di cache usa la memorizzazione nella cache in memoria per archiviare i dati.
 
 Per altre informazioni, vedere <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>.
 
 ### <a name="distributed-cache-tag-helper"></a>Helper tag di cache distribuita
 
-Memorizzare nella cache il contenuto da una visualizzazione MVC o da una pagina Razor in scenari cloud distribuiti o Web farm con l'helper tag di cache distribuita. L'helper tag di cache distribuita usa SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)o [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) per archiviare i dati.
+Consente di memorizzare nella cache il contenuto di una visualizzazione o Razor di una pagina MVC negli scenari cloud distribuito o Web farm con l'helper tag di cache distribuita. L'helper tag di cache distribuita usa SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)o [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) per archiviare i dati.
 
 Per altre informazioni, vedere <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>.
 
 ## <a name="responsecache-attribute"></a>Attributo ResponseCache
 
-Specifica <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> i parametri necessari per impostare le intestazioni appropriate nella memorizzazione nella cache delle risposte.
+<xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>Specifica i parametri necessari per impostare le intestazioni appropriate nella memorizzazione nella cache delle risposte.
 
 > [!WARNING]
 > Disabilitare la memorizzazione nella cache per il contenuto che contiene informazioni per i client autenticati. La memorizzazione nella cache deve essere abilitata solo per il contenuto che non cambia in base all'identità di un utente o se un utente ha eseguito l'accesso.
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys>varia la risposta memorizzata in base ai valori dell'elenco specificato di chiavi di query. Quando viene specificato un singolo `*` valore, il middleware varia le risposte in base a tutti i parametri della stringa di query della richiesta.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys>varia la risposta memorizzata in base ai valori dell'elenco specificato di chiavi di query. Quando viene specificato un singolo valore `*` , il middleware varia le risposte in base a tutti i parametri della stringa di query della richiesta.
 
-Il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) deve essere <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> abilitato per impostare la proprietà. In caso contrario, viene generata un'eccezione in fase di esecuzione. Non esiste un'intestazione HTTP corrispondente per la <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> proprietà. La proprietà è una funzionalità HTTP gestita dal middleware di memorizzazione nella cache delle risposte. Affinché il middleware possa gestire una risposta memorizzata nella cache, la stringa di query e il valore della stringa di query devono corrispondere a una richiesta precedente. Si consideri, ad esempio, la sequenza di richieste e i risultati mostrati nella tabella seguente.
+Il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) deve essere abilitato per impostare la <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> Proprietà. In caso contrario, viene generata un'eccezione in fase di esecuzione. Non esiste un'intestazione HTTP corrispondente per la <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> Proprietà. La proprietà è una funzionalità HTTP gestita dal middleware di memorizzazione nella cache delle risposte. Affinché il middleware possa gestire una risposta memorizzata nella cache, la stringa di query e il valore della stringa di query devono corrispondere a una richiesta precedente. Si consideri, ad esempio, la sequenza di richieste e i risultati mostrati nella tabella seguente.
 
 | Richiesta                          | Risultato                    |
-| -------------------------------- | ------------------------- |
-| `http://example.com?key1=value1` | Restituito dal server. |
-| `http://example.com?key1=value1` | Restituito dal middleware. |
-| `http://example.com?key1=value2` | Restituito dal server. |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---------------- | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+------------- | | `http://example.com?key1=value1` | Restituito dal server. | | `http://example.com?key1=value1` | Restituito dal middleware. | | `http://example.com?key1=value2` | Restituito dal server. |
 
 La prima richiesta viene restituita dal server e memorizzata nella cache nel middleware. La seconda richiesta viene restituita dal middleware perché la stringa di query corrisponde alla richiesta precedente. La terza richiesta non si trovi nella cache middleware perché il valore della stringa di query non corrisponde a una richiesta precedente.
 
-<xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> Viene usato per configurare e creare (tramite <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>) un oggetto `Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter`. `ResponseCacheFilter` Esegue le operazioni di aggiornamento delle intestazioni HTTP e delle funzionalità appropriate della risposta. Il filtro:
+<xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>Viene usato per configurare e creare (tramite <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> ) un oggetto `Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter` . `ResponseCacheFilter`Esegue le operazioni di aggiornamento delle intestazioni HTTP e delle funzionalità appropriate della risposta. Il filtro:
 
-* Rimuove le intestazioni esistenti per `Vary`, `Cache-Control`e `Pragma`.
-* Scrive le intestazioni appropriate in base alle proprietà impostate in <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>.
-* Aggiorna la funzionalità HTTP di caching delle risposte <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> se è impostato.
+* Rimuove le intestazioni esistenti per `Vary` , `Cache-Control` e `Pragma` .
+* Scrive le intestazioni appropriate in base alle proprietà impostate in <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> .
+* Aggiorna la funzionalità HTTP di caching delle risposte se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> è impostato.
 
 ### <a name="vary"></a>Variare
 
-Questa intestazione viene scritta solo quando la <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader> proprietà è impostata. Proprietà impostata sul valore della `Vary` proprietà. Nell'esempio seguente viene utilizzata <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader> la proprietà:
+Questa intestazione viene scritta solo quando la <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader> proprietà è impostata. Proprietà impostata sul valore della `Vary` Proprietà. Nell'esempio seguente viene utilizzata la <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader> proprietà:
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache1.cshtml.cs?name=snippet)]
 
@@ -128,14 +765,14 @@ Vary: User-Agent
 
 ### <a name="nostore-and-locationnone"></a>NoStore e location. None
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>esegue l'override della maggior parte delle altre proprietà. Quando questa proprietà è impostata su `true`, l' `Cache-Control` intestazione viene impostata su `no-store`. Se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> è impostato su `None`:
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>esegue l'override della maggior parte delle altre proprietà. Quando questa proprietà è impostata su `true` , l' `Cache-Control` intestazione viene impostata su `no-store` . Se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> è impostato su `None` :
 
 * `Cache-Control` è impostato su `no-store,no-cache`.
 * `Pragma` è impostato su `no-cache`.
 
-Se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> è `false` e <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> è `None`, `Cache-Control`e `Pragma` sono impostati su `no-cache`.
+Se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> è `false` e <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> è `None` , `Cache-Control` e `Pragma` sono impostati su `no-cache` .
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>viene in genere impostato `true` su per le pagine di errore. La pagina cache2 nell'app di esempio genera intestazioni di risposta che indicano al client di non archiviare la risposta.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>viene in genere impostato su `true` per le pagine di errore. La pagina cache2 nell'app di esempio genera intestazioni di risposta che indicano al client di non archiviare la risposta.
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache2.cshtml.cs?name=snippet)]
 
@@ -148,17 +785,17 @@ Pragma: no-cache
 
 ### <a name="location-and-duration"></a>Località e durata
 
-Per abilitare la memorizzazione nella <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> cache, deve essere impostato su un valore <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> positivo e deve `Any` essere (valore predefinito) `Client`o. Il Framework imposta l' `Cache-Control` intestazione sul valore `max-age` della posizione seguito dalla della risposta.
+Per abilitare la memorizzazione nella cache, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> deve essere impostato su un valore positivo e <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> deve essere `Any` (valore predefinito) o `Client` . Il Framework imposta l' `Cache-Control` intestazione sul valore della posizione seguito dalla `max-age` della risposta.
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>le opzioni di `Any` e `Client` vengono convertite in `Cache-Control` valori `public` di `private`intestazione rispettivamente di e. Come indicato nella sezione [NoStore e location. None](#nostore-and-locationnone) , l'impostazione <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> di `None` su imposta `Cache-Control` entrambe `Pragma` le intestazioni `no-cache`e su.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>le opzioni di `Any` e vengono `Client` convertite in `Cache-Control` valori di intestazione `public` rispettivamente di e `private` . Come indicato nella sezione [NoStore e location. None](#nostore-and-locationnone) , l'impostazione <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> di su `None` imposta entrambe `Cache-Control` le `Pragma` intestazioni e su `no-cache` .
 
-`Location.Any`(`Cache-Control` impostato su `public`) indica che il *client o qualsiasi proxy intermedio* può memorizzare nella cache il valore, incluso il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware).
+`Location.Any`( `Cache-Control` impostato su `public` ) indica che il *client o qualsiasi proxy intermedio* può memorizzare nella cache il valore, incluso il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware).
 
-`Location.Client`(`Cache-Control` impostato su `private`) indica che *solo il client* può memorizzare nella cache il valore. Nessuna cache intermedia deve memorizzare nella cache il valore, incluso il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware).
+`Location.Client`( `Cache-Control` impostato su `private` ) indica che *solo il client* può memorizzare nella cache il valore. Nessuna cache intermedia deve memorizzare nella cache il valore, incluso il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware).
 
 Le intestazioni di controllo della cache forniscono semplicemente indicazioni ai client e ai proxy intermedi quando e come memorizzare nella cache le risposte. Non vi è alcuna garanzia che i client e i proxy soddisfino la [specifica HTTP 1,1 Caching](https://tools.ietf.org/html/rfc7234). Il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) segue sempre le regole di memorizzazione nella cache definite dalla specifica.
 
-L'esempio seguente mostra il modello di pagina Cache3 dall'app di esempio e le intestazioni prodotte <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> impostando e lasciando <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> il valore predefinito:
+L'esempio seguente mostra il modello di pagina Cache3 dall'app di esempio e le intestazioni prodotte impostando <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> e lasciando il <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> valore predefinito:
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache3.cshtml.cs?name=snippet)]
 
@@ -170,23 +807,23 @@ Cache-Control: public,max-age=10
 
 ### <a name="cache-profiles"></a>Profili cache
 
-Anziché duplicare le impostazioni della cache di risposta su molti attributi dell'azione del controller, è possibile configurare i profili della cache comeRazor opzioni durante `Startup.ConfigureServices`la configurazione di MVC/pagine in. I valori trovati in un profilo della cache a cui viene fatto riferimento vengono usati come <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> valori predefiniti da e vengono sottoposti a override da qualsiasi proprietà specificata nell'attributo.
+Anziché duplicare le impostazioni della cache di risposta su molti attributi dell'azione del controller, è possibile configurare i profili della cache come opzioni durante la configurazione di MVC/ Razor pagine in `Startup.ConfigureServices` . I valori trovati in un profilo della cache a cui viene fatto riferimento vengono usati come valori predefiniti da <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> e vengono sottoposti a override da qualsiasi proprietà specificata nell'attributo.
 
-Configurare un profilo della cache. L'esempio seguente mostra un profilo della cache di 30 secondi nell'app di `Startup.ConfigureServices`esempio:
+Configurare un profilo della cache. L'esempio seguente mostra un profilo della cache di 30 secondi nell'app di esempio `Startup.ConfigureServices` :
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup.cs?name=snippet1)]
 
-Il modello di pagina Cache4 dell'app di esempio `Default30` fa riferimento al profilo della cache:
+Il modello di pagina Cache4 dell'app di esempio fa riferimento al `Default30` profilo della cache:
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache4.cshtml.cs?name=snippet)]
 
 Il <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> può essere applicato a:
 
-* RazorGli attributi di gestori di pagina &ndash; (classi) non possono essere applicati ai metodi del gestore.
+* RazorGestori di pagine (classi): gli attributi non possono essere applicati ai metodi del gestore.
 * Controller MVC (classi).
-* Gli attributi a livello di &ndash; metodo delle azioni MVC (metodi) eseguono l'override delle impostazioni specificate negli attributi a livello di classe.
+* Azioni MVC (metodi): gli attributi a livello di metodo eseguono l'override delle impostazioni specificate negli attributi a livello di classe.
 
-Intestazione risultante applicata alla risposta della pagina Cache4 dal profilo `Default30` della cache:
+Intestazione risultante applicata alla risposta della pagina Cache4 dal `Default30` profilo della cache:
 
 ```
 Cache-Control: public,max-age=30

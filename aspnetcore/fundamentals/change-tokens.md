@@ -1,23 +1,11 @@
 ---
-title: Rilevare le modifiche apportate con i token di modifica in ASP.NET Core
-author: rick-anderson
-description: Informazioni su come usare i token di modifica per rilevare le modifiche.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.date: 10/07/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/change-tokens
-ms.openlocfilehash: 40868c57507989e1d3040df2cbe2feb4871d4394
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774795"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="detect-changes-with-change-tokens-in-aspnet-core"></a>Rilevare le modifiche apportate con i token di modifica in ASP.NET Core
 
@@ -36,18 +24,18 @@ Un *token di modifica* è un blocco predefinito di uso generico e di basso livel
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.ActiveChangeCallbacks> indica se il token genera callback in modo proattivo. Se `ActiveChangedCallbacks` è impostato su `false`, non viene mai chiamato alcun callback e l'app deve eseguire il polling di `HasChanged` per ottenere le modifiche. È anche possibile che un token non venga mai annullato se non vengono apportate modifiche o se il listener di modifica sottostante viene eliminato o disabilitato.
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged> riceve un valore che indica se è stata apportata una modifica.
 
-L'interfaccia `IChangeToken` include il metodo [RegisterChangeCallback(Action\<Object>, Object)](xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*), che registra un callback che viene richiamato in seguito alla modifica del token. Prima che il callback venga richiamato è necessario impostare `HasChanged`.
+L' `IChangeToken` interfaccia include il metodo [RegisterChangeCallback (Action \<Object> , Object)](xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*) , che registra un callback che viene richiamato quando il token viene modificato. Prima che il callback venga richiamato è necessario impostare `HasChanged`.
 
 ## <a name="changetoken-class"></a>Classe ChangeToken
 
 <xref:Microsoft.Extensions.Primitives.ChangeToken> è una classe statica usata per propagare le notifiche relative a una modifica che è stata apportata. `ChangeToken` risiede nello spazio dei nomi <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. Il pacchetto NuGet [Microsoft. Extensions. Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) viene fornito in modo implicito alle app ASP.NET Core.
 
-Il metodo [ChangeToken.OnChange(Func\<IChangeToken>, Action)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) registra un elemento `Action` da chiamare quando il token viene modificato:
+Il metodo [token. OnChange (Func \<IChangeToken> , Action)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) registra un oggetto `Action` da chiamare ogni volta che il token cambia:
 
 * `Func<IChangeToken>` produce il token.
 * `Action` viene chiamato alla modifica del token.
 
-L'overload [ChangeToken.OnChange\<TState>(Func\<IChangeToken>, Action\<TState>, TState)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) accetta un parametro `TState` aggiuntivo che viene passato nell'elemento `Action` consumer del token.
+L'overload di [token. OnChange \<TState> (Func \<IChangeToken> , Action \<TState> , tstate)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) accetta un `TState` parametro aggiuntivo passato al consumer del token `Action` .
 
 `OnChange` restituisce un oggetto <xref:System.IDisposable>. La chiamata a <xref:System.IDisposable.Dispose*> interrompe l'ascolto di altre modifiche da parte del token e rilascia le risorse del token.
 
@@ -119,8 +107,8 @@ Il costruttore della classe implementata, `ConfigurationMonitor`, registra un ca
 
 `config.GetReloadToken()` fornisce il token. `InvokeChanged` è il metodo di callback. Il valore `state` in questa istanza è un riferimento all'istanza `IConfigurationMonitor` usata per accedere allo stato di monitoraggio. Vengono usate due proprietà:
 
-* `MonitoringEnabled`&ndash; Indica se il callback deve eseguire il codice personalizzato.
-* `CurrentState`&ndash; Descrive lo stato di monitoraggio corrente per l'uso nell'interfaccia utente.
+* `MonitoringEnabled`: Indica se il callback deve eseguire il codice personalizzato.
+* `CurrentState`: Descrive lo stato di monitoraggio corrente per l'uso nell'interfaccia utente.
 
 Il metodo `InvokeChanged` è simile all'approccio precedente, ad eccezione del fatto che:
 
@@ -176,7 +164,7 @@ Se non è possibile reperire il contenuto memorizzato nella cache usando la chia
 1. Un token di modifica viene ottenuto dal provider di file con [IFileProviders.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*). Il callback del token viene attivato alla modifica del file.
 1. Il contenuto del file viene memorizzato nella cache con un periodo di [scadenza variabile](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration). Al token di modifica viene associato [MemoryCacheEntryExtensions.AddExpirationToken](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.AddExpirationToken*) per eliminare la voce della cache se il file viene modificato mentre è memorizzato nella cache.
 
-Nell'esempio seguente i file vengono archiviati nella [radice del contenuto](xref:fundamentals/index#content-root)dell'app. `IWebHostEnvironment.ContentRootFileProvider`viene usato per ottenere un <xref:Microsoft.Extensions.FileProviders.IFileProvider> oggetto che punta all'oggetto `IWebHostEnvironment.ContentRootPath`dell'app. `filePath` viene ottenuto con [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
+Nell'esempio seguente i file vengono archiviati nella [radice del contenuto](xref:fundamentals/index#content-root)dell'app. `IWebHostEnvironment.ContentRootFileProvider`viene usato per ottenere un oggetto che <xref:Microsoft.Extensions.FileProviders.IFileProvider> punta all'oggetto dell'app `IWebHostEnvironment.ContentRootPath` . `filePath` viene ottenuto con [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Services/FileService.cs?name=snippet1)]
 
@@ -234,18 +222,18 @@ Un *token di modifica* è un blocco predefinito di uso generico e di basso livel
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.ActiveChangeCallbacks> indica se il token genera callback in modo proattivo. Se `ActiveChangedCallbacks` è impostato su `false`, non viene mai chiamato alcun callback e l'app deve eseguire il polling di `HasChanged` per ottenere le modifiche. È anche possibile che un token non venga mai annullato se non vengono apportate modifiche o se il listener di modifica sottostante viene eliminato o disabilitato.
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged> riceve un valore che indica se è stata apportata una modifica.
 
-L'interfaccia `IChangeToken` include il metodo [RegisterChangeCallback(Action\<Object>, Object)](xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*), che registra un callback che viene richiamato in seguito alla modifica del token. Prima che il callback venga richiamato è necessario impostare `HasChanged`.
+L' `IChangeToken` interfaccia include il metodo [RegisterChangeCallback (Action \<Object> , Object)](xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*) , che registra un callback che viene richiamato quando il token viene modificato. Prima che il callback venga richiamato è necessario impostare `HasChanged`.
 
 ## <a name="changetoken-class"></a>Classe ChangeToken
 
 <xref:Microsoft.Extensions.Primitives.ChangeToken> è una classe statica usata per propagare le notifiche relative a una modifica che è stata apportata. `ChangeToken` risiede nello spazio dei nomi <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. Per le app che non usano il [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app), creare un riferimento al pacchetto per il pacchetto NuGet [Microsoft.Extensions.Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/).
 
-Il metodo [ChangeToken.OnChange(Func\<IChangeToken>, Action)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) registra un elemento `Action` da chiamare quando il token viene modificato:
+Il metodo [token. OnChange (Func \<IChangeToken> , Action)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) registra un oggetto `Action` da chiamare ogni volta che il token cambia:
 
 * `Func<IChangeToken>` produce il token.
 * `Action` viene chiamato alla modifica del token.
 
-L'overload [ChangeToken.OnChange\<TState>(Func\<IChangeToken>, Action\<TState>, TState)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) accetta un parametro `TState` aggiuntivo che viene passato nell'elemento `Action` consumer del token.
+L'overload di [token. OnChange \<TState> (Func \<IChangeToken> , Action \<TState> , tstate)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) accetta un `TState` parametro aggiuntivo passato al consumer del token `Action` .
 
 `OnChange` restituisce un oggetto <xref:System.IDisposable>. La chiamata a <xref:System.IDisposable.Dispose*> interrompe l'ascolto di altre modifiche da parte del token e rilascia le risorse del token.
 
@@ -317,8 +305,8 @@ Il costruttore della classe implementata, `ConfigurationMonitor`, registra un ca
 
 `config.GetReloadToken()` fornisce il token. `InvokeChanged` è il metodo di callback. Il valore `state` in questa istanza è un riferimento all'istanza `IConfigurationMonitor` usata per accedere allo stato di monitoraggio. Vengono usate due proprietà:
 
-* `MonitoringEnabled`&ndash; Indica se il callback deve eseguire il codice personalizzato.
-* `CurrentState`&ndash; Descrive lo stato di monitoraggio corrente per l'uso nell'interfaccia utente.
+* `MonitoringEnabled`: Indica se il callback deve eseguire il codice personalizzato.
+* `CurrentState`: Descrive lo stato di monitoraggio corrente per l'uso nell'interfaccia utente.
 
 Il metodo `InvokeChanged` è simile all'approccio precedente, ad eccezione del fatto che:
 

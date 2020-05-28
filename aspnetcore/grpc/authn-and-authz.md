@@ -1,24 +1,13 @@
 ---
-title: Autenticazione e autorizzazione in gRPC per ASP.NET Core
-author: jamesnk
-description: Informazioni su come usare l'autenticazione e l'autorizzazione in gRPC per ASP.NET Core.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 12/05/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: grpc/authn-and-authz
-ms.openlocfilehash: eecdebe5ea7555df0914adfbff728331e3592093
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776168"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
+
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>Autenticazione e autorizzazione in gRPC per ASP.NET Core
 
 Di [James Newton-King](https://twitter.com/jamesnk)
@@ -29,7 +18,7 @@ Di [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC può essere usato con [l'autenticazione ASP.NET Core](xref:security/authentication/identity) per associare un utente a ogni chiamata.
 
-Di `Startup.Configure` seguito è riportato un esempio che usa gRPC e l'autenticazione ASP.NET Core:
+Di seguito è riportato un esempio `Startup.Configure` che usa gRPC e l'autenticazione ASP.NET Core:
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -47,11 +36,11 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> L'ordine in cui si registra il middleware di autenticazione ASP.NET Core è importante. Chiamare `UseAuthentication` sempre e `UseAuthorization` dopo `UseRouting` e prima `UseEndpoints`di.
+> L'ordine in cui si registra il middleware di autenticazione ASP.NET Core è importante. Chiamare sempre `UseAuthentication` e `UseAuthorization` dopo `UseRouting` e prima di `UseEndpoints` .
 
 Il meccanismo di autenticazione usato dall'app durante una chiamata deve essere configurato. La configurazione dell'autenticazione è `Startup.ConfigureServices` stata aggiunta in e sarà diversa a seconda del meccanismo di autenticazione usato dall'app. Per esempi di come proteggere le app ASP.NET Core, vedere [esempi di autenticazione](xref:security/authentication/samples).
 
-Al termine dell'installazione dell'autenticazione, l'utente può accedere ai metodi del servizio gRPC tramite `ServerCallContext`.
+Al termine dell'installazione dell'autenticazione, l'utente può accedere ai metodi del servizio gRPC tramite `ServerCallContext` .
 
 ```csharp
 public override Task<BuyTicketsResponse> BuyTickets(
@@ -86,7 +75,7 @@ public bool DoAuthenticatedCall(
 }
 ```
 
-La `ChannelCredentials` configurazione di su un canale rappresenta un metodo alternativo per inviare il token al servizio con chiamate gRPC. La credenziale viene eseguita ogni volta che viene effettuata una chiamata gRPC, evitando la necessità di scrivere codice in più posizioni per passare il token.
+La configurazione di `ChannelCredentials` su un canale rappresenta un metodo alternativo per inviare il token al servizio con chiamate gRPC. La credenziale viene eseguita ogni volta che viene effettuata una chiamata gRPC, evitando la necessità di scrivere codice in più posizioni per passare il token.
 
 La credenziale nell'esempio seguente configura il canale per l'invio del token con ogni chiamata a gRPC:
 
@@ -112,9 +101,9 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
 }
 ```
 
-### <a name="client-certificate-authentication"></a>Autenticazione con certificato client
+### <a name="client-certificate-authentication"></a>Autenticazione del certificato client
 
-Un client può in alternativa fornire un certificato client per l'autenticazione. L' [autenticazione del certificato](https://tools.ietf.org/html/rfc5246#section-7.4.4) viene eseguita a livello di TLS, molto prima che venga mai ASP.NET Core. Quando la richiesta entra ASP.NET Core, il [pacchetto di autenticazione del certificato client](xref:security/authentication/certauth) consente di risolvere il certificato in `ClaimsPrincipal`un.
+Un client può in alternativa fornire un certificato client per l'autenticazione. L' [autenticazione del certificato](https://tools.ietf.org/html/rfc5246#section-7.4.4) viene eseguita a livello di TLS, molto prima che venga mai ASP.NET Core. Quando la richiesta entra ASP.NET Core, il [pacchetto di autenticazione del certificato client](xref:security/authentication/certauth) consente di risolvere il certificato in un `ClaimsPrincipal` .
 
 > [!NOTE]
 > L'host deve essere configurato per accettare i certificati client. Vedere [configurare l'host per richiedere i certificati](xref:security/authentication/certauth#configure-your-host-to-require-certificates) per informazioni sull'accettazione dei certificati client in gheppio, IIS e Azure.
@@ -133,7 +122,7 @@ public Ticketer.TicketerClient CreateClientWithCert(
     // Create the gRPC channel
     var channel = GrpcChannel.ForAddress(baseAddress, new GrpcChannelOptions
     {
-        HttpClient = new HttpClient(handler)
+        HttpHandler = handler
     });
 
     return new Ticketer.TicketerClient(channel);
@@ -156,7 +145,7 @@ Per ulteriori informazioni sulla configurazione dell'autenticazione nel server, 
 
 La configurazione del client di gRPC per l'uso dell'autenticazione dipende dal meccanismo di autenticazione usato. Gli esempi di bearer token e del certificato client precedenti illustrano due modi per configurare il client gRPC per l'invio di metadati di autenticazione con chiamate gRPC:
 
-* I client gRPC fortemente tipizzati utilizzano `HttpClient` internamente. L'autenticazione può essere configurata in [HttpClientHandler](/dotnet/api/system.net.http.httpclienthandler)o aggiungendo istanze [HttpMessageHandler](/dotnet/api/system.net.http.httpmessagehandler) personalizzate a `HttpClient`.
+* I client gRPC fortemente tipizzati utilizzano `HttpClient` internamente. L'autenticazione può essere configurata in [HttpClientHandler](/dotnet/api/system.net.http.httpclienthandler)o aggiungendo istanze [HttpMessageHandler](/dotnet/api/system.net.http.httpmessagehandler) personalizzate a `HttpClient` .
 * Ogni chiamata a gRPC ha un `CallOptions` argomento facoltativo. Le intestazioni personalizzate possono essere inviate tramite la raccolta di intestazioni dell'opzione.
 
 > [!NOTE]
@@ -164,7 +153,7 @@ La configurazione del client di gRPC per l'uso dell'autenticazione dipende dal m
 
 ## <a name="authorize-users-to-access-services-and-service-methods"></a>Autorizzare gli utenti ad accedere ai servizi e ai metodi del servizio
 
-Per impostazione predefinita, tutti i metodi di un servizio possono essere chiamati da utenti non autenticati. Per richiedere l'autenticazione, applicare [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) l'attributo al servizio:
+Per impostazione predefinita, tutti i metodi di un servizio possono essere chiamati da utenti non autenticati. Per richiedere l'autenticazione, applicare l' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo al servizio:
 
 ```csharp
 [Authorize]
@@ -173,7 +162,7 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
-È possibile utilizzare gli argomenti del costruttore e le proprietà `[Authorize]` dell'attributo per limitare l'accesso solo agli utenti che corrispondono a [criteri di autorizzazione](xref:security/authorization/policies)specifici. Se, ad esempio, si dispone di un criterio di `MyAuthorizationPolicy`autorizzazione personalizzato denominato, assicurarsi che solo gli utenti che corrispondono a tale criterio possano accedere al servizio usando il codice seguente:
+È possibile utilizzare gli argomenti del costruttore e le proprietà dell' `[Authorize]` attributo per limitare l'accesso solo agli utenti che corrispondono a [criteri di autorizzazione](xref:security/authorization/policies)specifici. Se, ad esempio, si dispone di un criterio di autorizzazione personalizzato denominato `MyAuthorizationPolicy` , assicurarsi che solo gli utenti che corrispondono a tale criterio possano accedere al servizio usando il codice seguente:
 
 ```csharp
 [Authorize("MyAuthorizationPolicy")]
@@ -182,7 +171,7 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
-È possibile applicare anche l'attributo `[Authorize]` a singoli metodi del servizio. Se l'utente corrente non corrisponde ai criteri applicati **sia** al metodo che alla classe, al chiamante viene restituito un errore:
+È possibile applicare anche l'attributo a singoli metodi del servizio `[Authorize]` . Se l'utente corrente non corrisponde ai criteri applicati **sia** al metodo che alla classe, al chiamante viene restituito un errore:
 
 ```csharp
 [Authorize]

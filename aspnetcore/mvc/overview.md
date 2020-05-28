@@ -1,22 +1,11 @@
 ---
-title: Panoramica di ASP.NET MVC
-author: ardalis
-description: Informazioni sul framework avanzato di ASP.NET Core MVC per la creazione di app Web e API tramite lo schema progettuale MVC (Model-View-Controller).
-ms.author: riande
-ms.date: 02/12/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: mvc/overview
-ms.openlocfilehash: c6c7fd1d0cb7a462b3a13d5e31a50c704a00c0ef
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775466"
+title: autore: Descrizione: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Panoramica di ASP.NET MVC
 
@@ -65,10 +54,10 @@ ASP.NET Core MVC offre un sistema basato su schemi per la creazione di siti Web 
 
 ASP.NET Core MVC include:
 
-* [Routing](#routing)
+* [Routing.](#routing)
 * [Associazione di modelli](#model-binding)
 * [Convalida modello](#model-validation)
-* [Inserimento di dipendenze](../fundamentals/dependency-injection.md)
+* [Inserimento delle dipendenze](../fundamentals/dependency-injection.md)
 * [Filtri](#filters)
 * [Aree](#areas)
 * [API Web](#web-apis)
@@ -78,7 +67,7 @@ ASP.NET Core MVC include:
 * [Helper tag](#tag-helpers)
 * [Visualizza componenti](#view-components)
 
-### <a name="routing"></a>Routing
+### <a name="routing"></a>Routing.
 
 ASP.NET Core MVC si basa sul [routing di ASP.NET Core](../fundamentals/routing.md), un potente componente per il mapping di URL che consente di compilare applicazioni con URL comprensibili che supportano la ricerca. Ciò consente di definire criteri di denominazione dell'URL dell'applicazione che funzionano perfettamente per l'ottimizzazione dei motori di ricerca (SEO) e la generazione di collegamenti, indipendentemente da come sono organizzati i file nel server Web. È possibile definire le route usando una pratica sintassi del modello di route che supporta i vincoli di valore delle route, i valori predefiniti e quelli facoltativi.
 
@@ -147,7 +136,7 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
 
 Il framework gestisce la convalida dei dati della richiesta nel client e nel server. La logica di convalida specificata nei tipi di modello viene aggiunta alle visualizzazioni sottoposte a rendering come annotazioni discrete e viene applicata al browser con [jQuery Validation](https://jqueryvalidation.org/).
 
-### <a name="dependency-injection"></a>Inserimento di dipendenze
+### <a name="dependency-injection"></a>Inserimento delle dipendenze
 
 ASP.NET Core include il supporto predefinito per l'[inserimento di dipendenze](../fundamentals/dependency-injection.md). In ASP.NET Core MVC i [controller](controllers/dependency-injection.md) possono richiedere i servizi necessari attraverso i propri costruttori. Ciò consente loro di seguire il [principio delle dipendenze esplicite](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
 
@@ -224,7 +213,7 @@ La visualizzazione seguente, ad esempio, esegue il rendering di un modello di ti
 
 ### <a name="tag-helpers"></a>Helper tag
 
-Gli [Helper Tag](views/tag-helpers/intro.md) consentono al codice lato server di partecipare alla creazione e al rendering di Razor elementi HTML nei file. È possibile usare gli helper tag per definire tag personalizzati, ad esempio `<environment>` o per modificare il comportamento di tag esistenti, ad esempio `<label>`. Gli helper tag vengono associati a elementi specifici in base al nome dell'elemento e ai relativi attributi. Offrono i vantaggi del rendering lato server mantenendo al tempo stesso un'esperienza di modifica HTML.
+Gli [Helper Tag](views/tag-helpers/intro.md) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file. È possibile usare gli helper tag per definire tag personalizzati, ad esempio `<environment>` o per modificare il comportamento di tag esistenti, ad esempio `<label>`. Gli helper tag vengono associati a elementi specifici in base al nome dell'elemento e ai relativi attributi. Offrono i vantaggi del rendering lato server mantenendo al tempo stesso un'esperienza di modifica HTML.
 
 Esistono molti helper tag predefiniti per le attività comuni, ad esempio la creazione di moduli e collegamenti, il caricamento di asset e così via, e altri ancora sono disponibili nei repository GitHub pubblici e come pacchetti NuGet. Gli helper tag vengono creati in C# e hanno come destinazione gli elementi HTML in base al nome di elemento, nome di attributo o tag padre. L'helper tag LinkTagHelper predefinito, ad esempio, può essere usato per creare un collegamento all'azione `Login` di `AccountsController`:
 
@@ -249,7 +238,7 @@ Esistono molti helper tag predefiniti per le attività comuni, ad esempio la cre
 </environment>
 ```
 
-Gli helper tag forniscono un'esperienza di sviluppo intuitiva e un ambiente IntelliSense avanzato per la creazione di Razor HTML e markup. La maggior parte degli helper tag predefiniti hanno come destinazione elementi HTML esistenti e forniscono attributi sul lato server per l'elemento.
+Gli helper tag forniscono un'esperienza di sviluppo intuitiva e un ambiente IntelliSense avanzato per la creazione di HTML e Razor markup. La maggior parte degli helper tag predefiniti hanno come destinazione elementi HTML esistenti e forniscono attributi sul lato server per l'elemento.
 
 ### <a name="view-components"></a>Componenti di visualizzazione
 
@@ -263,5 +252,5 @@ Per altre informazioni, vedere <xref:mvc/compatibility-version>.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Tested. AspNetCore. Mvc-libreria di test Fluent per ASP.NET Core libreria di](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; unit test fortemente tipizzata MVC, che fornisce un'interfaccia Fluent per il test di app per le API Web e MVC. (*Non mantenuto o supportato da Microsoft).*
+* [Tested. AspNetCore. Mvc-libreria di test Fluent per ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): libreria di unit test fortemente tipizzata, che fornisce un'interfaccia Fluent per il test di app per le API Web e MVC. (*Non mantenuto o supportato da Microsoft).*
 * <xref:blazor/integrate-components>

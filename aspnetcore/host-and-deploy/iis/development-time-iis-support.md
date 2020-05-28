@@ -1,24 +1,11 @@
 ---
-title: Supporto di IIS in fase di sviluppo in Visual Studio per ASP.NET Core
-author: rick-anderson
-description: Informazioni sul supporto del debug di app ASP.NET Core durante l'esecuzione con IIS in Windows Server.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/iis/development-time-iis-support
-ms.openlocfilehash: a6719b4f84b1bc60c7c2aea2aa3a97ef79f43e2e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777020"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>Supporto di IIS in fase di sviluppo in Visual Studio per ASP.NET Core
 
@@ -38,7 +25,7 @@ Questo articolo descrive il supporto del debug di app ASP.NET Core in [Visual St
 ## <a name="enable-iis"></a>Abilitare IIS
 
 1. In Windows passare a **Pannello di controllo** > **Programmi** > **Programmi e funzionalità** > **Attiva o disattiva funzionalità di Windows** (sul lato sinistro dello schermo).
-1. Selezionare la casella di controllo **Internet Information Services**. Selezionare **OK**.
+1. Selezionare la casella di controllo **Internet Information Services**. Seleziona **OK**.
 
 L'installazione di IIS potrebbe richiedere un riavvio del sistema.
 
@@ -46,7 +33,7 @@ L'installazione di IIS potrebbe richiedere un riavvio del sistema.
 
 IIS deve disporre di un sito Web configurato con gli elementi seguenti:
 
-* **Nome host** &ndash; In genere viene usato il valore **Sito Web predefinito** come **Nome host** di `localhost`. Tuttavia, è appropriato qualsiasi sito Web IIS valido con un nome host univoco.
+* **Nome host**: in genere, il **sito Web predefinito** viene utilizzato con il **nome host** `localhost` . Tuttavia, è appropriato qualsiasi sito Web IIS valido con un nome host univoco.
 * **Binding del sito**
   * Per le app che richiedono HTTPS, creare un binding alla porta 443 con un certificato. Viene in genere usato il **certificato di sviluppo di IIS Express**, ma può essere usato qualsiasi certificato valido.
   * Per le app che usano HTTP, verificare l'esistenza di un binding alla porta 80 o creare un binding alla porta 80 per un nuovo sito.
@@ -153,7 +140,7 @@ Questo articolo descrive il supporto del debug di app ASP.NET Core in [Visual St
 ## <a name="enable-iis"></a>Abilitare IIS
 
 1. In Windows passare a **Pannello di controllo** > **Programmi** > **Programmi e funzionalità** > **Attiva o disattiva funzionalità di Windows** (sul lato sinistro dello schermo).
-1. Selezionare la casella di controllo **Internet Information Services**. Selezionare **OK**.
+1. Selezionare la casella di controllo **Internet Information Services**. Seleziona **OK**.
 
 L'installazione di IIS potrebbe richiedere un riavvio del sistema.
 
@@ -161,7 +148,7 @@ L'installazione di IIS potrebbe richiedere un riavvio del sistema.
 
 IIS deve disporre di un sito Web configurato con gli elementi seguenti:
 
-* **Nome host** &ndash; In genere viene usato il valore **Sito Web predefinito** come **Nome host** di `localhost`. Tuttavia, è appropriato qualsiasi sito Web IIS valido con un nome host univoco.
+* **Nome host**: in genere, il **sito Web predefinito** viene utilizzato con il **nome host** `localhost` . Tuttavia, è appropriato qualsiasi sito Web IIS valido con un nome host univoco.
 * **Binding del sito**
   * Per le app che richiedono HTTPS, creare un binding alla porta 443 con un certificato. Viene in genere usato il **certificato di sviluppo di IIS Express**, ma può essere usato qualsiasi certificato valido.
   * Per le app che usano HTTP, verificare l'esistenza di un binding alla porta 80 o creare un binding alla porta 80 per un nuovo sito.

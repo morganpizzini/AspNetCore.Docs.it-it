@@ -1,24 +1,11 @@
 ---
-title: Errori comuni di Servizio app di Azure e IIS con ASP.NET Core
-author: rick-anderson
-description: Ottenere suggerimenti per la risoluzione degli errori comuni dell'hosting di app ASP.NET Core in Servizio app di Azure e IIS.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: 7b3454fbd891ca26d44125810a10eb3b3c2c3933
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775206"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Errori comuni di Servizio app di Azure e IIS con ASP.NET Core
 
@@ -26,19 +13,19 @@ ms.locfileid: "82775206"
 
 Questo argomento descrive gli errori comuni e fornisce consigli per la risoluzione di errori specifici quando si ospitano ASP.NET Core app nel servizio app di Azure e in IIS.
 
-Per indicazioni generali sulla risoluzione dei problemi <xref:test/troubleshoot-azure-iis>, vedere.
+Per indicazioni generali sulla risoluzione dei problemi, vedere <xref:test/troubleshoot-azure-iis> .
 
 Raccogliere le seguenti informazioni:
 
 * Comportamento del browser (codice di stato e messaggio di errore)
 * Voci del log eventi dell'applicazione
-  * Servizio app di Azure &ndash; Vedere <xref:test/troubleshoot-azure-iis>.
+  * Servizio app Azure: vedere <xref:test/troubleshoot-azure-iis> .
   * IIS
     1. Selezionare **Start** nel menu di **Windows**, digitare *Visualizzatore eventi* e premere **INVIO**.
     1. Dopo l'apertura di **Visualizzatore eventi**, espandere **Registri di Windows** > **Applicazione** nella barra laterale.
 * Voci del log per debug e stdout di ASP.NET Core
-  * Servizio app di Azure &ndash; Vedere <xref:test/troubleshoot-azure-iis>.
-  * IIS &ndash; Seguire le istruzioni nelle sezioni [Creazione e reindirizzamento dei log](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) e [Log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) dell'argomento Modulo ASP.NET Core.
+  * Servizio app Azure: vedere <xref:test/troubleshoot-azure-iis> .
+  * IIS: seguire le istruzioni riportate nelle sezioni [creazione e Reindirizzamento dei log](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) e [log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) dell'argomento ASP.NET Core Module.
 
 Confrontare le informazioni sugli errori con gli errori comuni seguenti. Se viene trovata una corrispondenza, seguire le indicazioni per la risoluzione dei problemi.
 
@@ -103,7 +90,7 @@ Per una distribuzione dipendente dal framework x86 (`<PlatformTarget>x86</Platfo
 
 * **Browser:** errore HTTP 502.5 - errore del processo
 
-* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C\{: Path\' } non è riuscita ad avviare il processo con la\{riga di comando" "C: Path} {assembly}. {exe | dll} "', ErrorCode =' 0x80004005: FF.
+* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C: \{ path} \' non è riuscita ad avviare il processo con la riga di comando" "C: \{ path} {assembly}. { exe | dll} "', ErrorCode =' 0x80004005: FF.
 
 * **Log stdout del modulo ASP.NET Core:** Eccezione non gestita: System. BadImageFormatException: Impossibile caricare il file o l'assembly ' {ASSEMBLY}. dll '. Tentativo di caricare un programma con un formato non corretto.
 
@@ -171,7 +158,7 @@ Risoluzione dei problemi:
 
   Per altre informazioni, vedere [Installare il bundle di hosting .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
-* Verificare che il **modello** > **Identity** di processo del **pool** > di applicazioni sia impostato su **ApplicationPoolIdentity** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
+* Verificare che il **Application Pool** > **modello di processo** del pool > **Identity** di applicazioni sia impostato su **ApplicationPoolIdentity** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
 
 * Se il bundle di hosting ASP.NET Core è stato disinstallato e quindi è stata installata una versione del bundle di hosting precedente, il file *applicationHost.config* non include una sezione per il modulo ASP.NET Core. Aprire *applicationHost.config* in *%windir%/System32/inetsrv/config* e trovare il gruppo di sezioni `<configuration><configSections><sectionGroup name="system.webServer">`. Se la sezione per il modulo ASP.NET Core non è presente nel gruppo di sezioni, aggiungere l'elemento della sezione:
 
@@ -185,7 +172,7 @@ Risoluzione dei problemi:
 
 * **Browser:** Errore HTTP 500,0-errore di caricamento del gestore in-Process modulo ASP.NET Core
 
-* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C\{: Path\' } non è riuscita ad avviare il processo con la riga di comando" "{...}" ', ErrorCode =' 0x80070002:0. Impossibile avviare l'applicazione '{PATH}'. Eseguibile non trovato in '{PATH}'. Impossibile avviare l'applicazione '/LM/W3SVC/2/ROOT', ErrorCode '0x8007023e'.
+* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C: \{ path} \' non è riuscita ad avviare il processo con la riga di comando" "{...}" ', ErrorCode =' 0x80070002:0. Impossibile avviare l'applicazione '{PATH}'. Eseguibile non trovato in '{PATH}'. Impossibile avviare l'applicazione '/LM/W3SVC/2/ROOT', ErrorCode '0x8007023e'.
 
 * **Log stdout del modulo ASP.NET Core:** Il file di log non viene creato.
 
@@ -211,7 +198,7 @@ Risoluzione dei problemi:
 
   Se è necessario un runtime specifico, scaricare il runtime dagli [archivi di download .NET](https://dotnet.microsoft.com/download/archives) e installarlo nel sistema. Completare l'installazione riavviando il sistema o riavviando IIS eseguendo **net stop was /y** seguito da **net start w3svc** da un prompt dei comandi.
 
-## <a name="incorrect-arguments-of-aspnetcore-element"></a>Argomenti non corretti dell'elemento \<aspNetCore>
+## <a name="incorrect-arguments-of-aspnetcore-element"></a>Argomenti non corretti dell' \<aspNetCore> elemento
 
 * **Browser:** Errore HTTP 500,0-errore di caricamento del gestore in-Process modulo ASP.NET Core
 
@@ -257,7 +244,7 @@ Risoluzione dei problemi:
 
 Confermare che il pool di applicazioni non sia nello stato *Arrestato*.
 
-## <a name="sub-application-includes-a-handlers-section"></a>L'app secondaria include una sezione \<handlers>
+## <a name="sub-application-includes-a-handlers-section"></a>L'applicazione secondaria include una \<handlers> sezione
 
 * **Browser:** errore HTTP 500.19 - errore del server interno
 
@@ -271,7 +258,7 @@ Risoluzione dei problemi:
 
 Verificare che il file *web.config* dell'app secondaria non includa una sezione `<handlers>` o che l'app secondaria non erediti i gestori dell'app padre.
 
-La sezione `<system.webServer>` dell'app padre di *web.config* viene inserita all'interno di un elemento `<location>`. La <xref:System.Configuration.SectionInformation.InheritInChildApplications*> proprietà è impostata su `false` per indicare che le impostazioni specificate all'interno della [ \<posizione>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) elemento non vengono ereditate dalle app che si trovano in una sottodirectory dell'app padre. Per altre informazioni, vedere <xref:host-and-deploy/aspnet-core-module>.
+La sezione `<system.webServer>` dell'app padre di *web.config* viene inserita all'interno di un elemento `<location>`. La <xref:System.Configuration.SectionInformation.InheritInChildApplications*> proprietà è impostata su `false` per indicare che le impostazioni specificate all'interno dell' [\<location>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) elemento non vengono ereditate da app che si trovano in una sottodirectory dell'app padre. Per altre informazioni, vedere <xref:host-and-deploy/aspnet-core-module>.
 
 ## <a name="stdout-log-path-incorrect"></a>percorso errato del log stdout
 
@@ -303,7 +290,7 @@ Risoluzione dei problemi:
 
 non è stato possibile avviare il processo, molto probabilmente a causa di un problema di configurazione dell'app o di programmazione.
 
-Per altre informazioni, vedere i seguenti argomenti:
+Per altre informazioni, vedere gli argomenti seguenti:
 
 * <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>
@@ -314,19 +301,19 @@ Per altre informazioni, vedere i seguenti argomenti:
 
 Questo argomento descrive gli errori comuni e fornisce consigli per la risoluzione di errori specifici quando si ospitano ASP.NET Core app nel servizio app di Azure e in IIS.
 
-Per indicazioni generali sulla risoluzione dei problemi <xref:test/troubleshoot-azure-iis>, vedere.
+Per indicazioni generali sulla risoluzione dei problemi, vedere <xref:test/troubleshoot-azure-iis> .
 
 Raccogliere le seguenti informazioni:
 
 * Comportamento del browser (codice di stato e messaggio di errore)
 * Voci del log eventi dell'applicazione
-  * Servizio app di Azure &ndash; Vedere <xref:test/troubleshoot-azure-iis>.
+  * Servizio app Azure: vedere <xref:test/troubleshoot-azure-iis> .
   * IIS
     1. Selezionare **Start** nel menu di **Windows**, digitare *Visualizzatore eventi* e premere **INVIO**.
     1. Dopo l'apertura di **Visualizzatore eventi**, espandere **Registri di Windows** > **Applicazione** nella barra laterale.
 * Voci del log per debug e stdout di ASP.NET Core
-  * Servizio app di Azure &ndash; Vedere <xref:test/troubleshoot-azure-iis>.
-  * IIS &ndash; Seguire le istruzioni nelle sezioni [Creazione e reindirizzamento dei log](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) e [Log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) dell'argomento Modulo ASP.NET Core.
+  * Servizio app Azure: vedere <xref:test/troubleshoot-azure-iis> .
+  * IIS: seguire le istruzioni riportate nelle sezioni [creazione e Reindirizzamento dei log](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) e [log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) dell'argomento ASP.NET Core Module.
 
 Confrontare le informazioni sugli errori con gli errori comuni seguenti. Se viene trovata una corrispondenza, seguire le indicazioni per la risoluzione dei problemi.
 
@@ -387,7 +374,7 @@ Per una distribuzione dipendente dal framework x86 (`<PlatformTarget>x86</Platfo
 
 * **Browser:** errore HTTP 502.5 - errore del processo
 
-* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C\{: Path\' } non è riuscita ad avviare il processo con la\{riga di comando" "C: Path} {assembly}. {exe | dll} "', ErrorCode =' 0x80004005: FF.
+* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C: \{ path} \' non è riuscita ad avviare il processo con la riga di comando" "C: \{ path} {assembly}. { exe | dll} "', ErrorCode =' 0x80004005: FF.
 
 * **Log stdout del modulo ASP.NET Core:** Eccezione non gestita: System. BadImageFormatException: Impossibile caricare il file o l'assembly ' {ASSEMBLY}. dll '. Tentativo di caricare un programma con un formato non corretto.
 
@@ -449,7 +436,7 @@ Risoluzione dei problemi:
 
   Per altre informazioni, vedere [Installare il bundle di hosting .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
-* Verificare che il **modello** > **Identity** di processo del **pool** > di applicazioni sia impostato su **ApplicationPoolIdentity** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
+* Verificare che il **Application Pool** > **modello di processo** del pool > **Identity** di applicazioni sia impostato su **ApplicationPoolIdentity** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
 
 * Se il bundle di hosting ASP.NET Core è stato disinstallato e quindi è stata installata una versione del bundle di hosting precedente, il file *applicationHost.config* non include una sezione per il modulo ASP.NET Core. Aprire *applicationHost.config* in *%windir%/System32/inetsrv/config* e trovare il gruppo di sezioni `<configuration><configSections><sectionGroup name="system.webServer">`. Se la sezione per il modulo ASP.NET Core non è presente nel gruppo di sezioni, aggiungere l'elemento della sezione:
 
@@ -463,7 +450,7 @@ Risoluzione dei problemi:
 
 * **Browser:** errore HTTP 502.5 - errore del processo
 
-* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C\{: Path\' } non è riuscita ad avviare il processo con la riga di comando" "{...}" ', ErrorCode =' 0x80070002:0.
+* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C: \{ path} \' non è riuscita ad avviare il processo con la riga di comando" "{...}" ', ErrorCode =' 0x80070002:0.
 
 * **Log stdout del modulo ASP.NET Core:** Il file di log viene creato, ma vuoto.
 
@@ -487,13 +474,13 @@ Risoluzione dei problemi:
 
   Se è necessario un runtime specifico, scaricare il runtime dagli [archivi di download .NET](https://dotnet.microsoft.com/download/archives) e installarlo nel sistema. Completare l'installazione riavviando il sistema o riavviando IIS eseguendo **net stop was /y** seguito da **net start w3svc** da un prompt dei comandi.
 
-## <a name="incorrect-arguments-of-aspnetcore-element"></a>Argomenti non corretti dell'elemento \<aspNetCore>
+## <a name="incorrect-arguments-of-aspnetcore-element"></a>Argomenti non corretti dell' \<aspNetCore> elemento
 
 * **Browser:** errore HTTP 502.5 - errore del processo
 
-* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C\{: Path\' } non è riuscita ad avviare il processo con la riga di comando" "DotNet". \{Assembly}. dll ', ErrorCode =' 0x80004005:80008081.
+* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C: \{ path} \' non è riuscita ad avviare il processo con la riga di comando" "DotNet". \{ ASSEMBLY}. dll ', ErrorCode =' 0x80004005:80008081.
 
-* **Log stdout del modulo ASP.NET Core:** L'applicazione da eseguire non esiste:' assembly percorso\{}. dll '
+* **Log stdout del modulo ASP.NET Core:** L'applicazione da eseguire non esiste:' assembly percorso \{ }. dll '
 
 Risoluzione dei problemi:
 
@@ -517,7 +504,7 @@ Risoluzione dei problemi:
 
 Confermare che il pool di applicazioni non sia nello stato *Arrestato*.
 
-## <a name="sub-application-includes-a-handlers-section"></a>L'app secondaria include una sezione \<handlers>
+## <a name="sub-application-includes-a-handlers-section"></a>L'applicazione secondaria include una \<handlers> sezione
 
 * **Browser:** errore HTTP 500.19 - errore del server interno
 
@@ -533,7 +520,7 @@ Verificare che il file *web.config* della sotto-applicazione non includa una sez
 
 * **Browser:** l'app risponde normalmente.
 
-* **Registro applicazioni:** Avviso: non è stato possibile \\creare stdoutLogFile? \{Path} \ path_doesnt_exist \ STDOUT_ {ID processo} _ {timestamp}. log, ErrorCode =-2147024893.
+* **Registro applicazioni:** Avviso: non è stato possibile creare stdoutLogFile \\ ? \{ PATH} \ path_doesnt_exist \ stdout_ {ID processo} _ {TIMESTAMP}. log, ErrorCode =-2147024893.
 
 * **Log stdout del modulo ASP.NET Core:** Il file di log non viene creato.
 
@@ -547,7 +534,7 @@ Risoluzione dei problemi:
 
 * **Browser:** errore HTTP 502.5 - errore del processo
 
-* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C\{: Path\' } ha creato il processo con la riga\{di comando\{" "c: Path} assembly}. {exe | dll} "', ma è stato arrestato in modo anomalo o non ha risposto o non è in ascolto sulla porta specificata ' {PORT}', ErrorCode =' {codice errore}'
+* **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C: \{ path} ha \' creato un processo con CommandLine" "c: \{ path} \{ assembly}. { exe | dll} "', ma è stato arrestato in modo anomalo o non ha risposto o non è in ascolto sulla porta specificata ' {PORT}', ErrorCode =' {codice errore}'
 
 * **Log stdout del modulo ASP.NET Core:** Il file di log viene creato, ma vuoto.
 
@@ -555,7 +542,7 @@ Risoluzione dei problemi:
 
 non è stato possibile avviare il processo, molto probabilmente a causa di un problema di configurazione dell'app o di programmazione.
 
-Per altre informazioni, vedere i seguenti argomenti:
+Per altre informazioni, vedere gli argomenti seguenti:
 
 * <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>

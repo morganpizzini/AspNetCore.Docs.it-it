@@ -1,44 +1,32 @@
 ---
-title: Registrazione e diagnostica in ASP.NET CoreSignalR
-author: anurse
-description: Informazioni su come raccogliere dati diagnostici dall' SignalR app ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: anurse
-ms.custom: signalr
-ms.date: 11/12/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: signalr/diagnostics
-ms.openlocfilehash: 0dda4fb55b1e2275d9cdb2af0b55824b12121dee
-ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/17/2020
-ms.locfileid: "83444217"
+title: "registrazione e diagnostica nell'ASP.NET Core SignalR " autore: Descrizione: "informazioni su come raccogliere dati diagnostici dall' SignalR app ASP.NET Core."
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
-# <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registrazione e diagnostica in ASP.NET Core SignalR
+# <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registrazione e diagnostica in ASP.NET CoreSignalR
 
 Di [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
-Questo articolo fornisce indicazioni per la raccolta di dati diagnostici dall'app SignalR ASP.NET Core per facilitare la risoluzione dei problemi.
+Questo articolo fornisce indicazioni per la raccolta di dati diagnostici dall' SignalR app ASP.NET Core per facilitare la risoluzione dei problemi.
 
 ## <a name="server-side-logging"></a>Registrazione lato server
 
 > [!WARNING]
 > I log lato server possono contenere informazioni riservate dall'app. **Non pubblicare mai log non** elaborati dalle app di produzione nei forum pubblici come github.
 
-Poiché SignalR fa parte di ASP.NET Core, usa il sistema di registrazione ASP.NET Core. Nella configurazione predefinita, SignalR registra pochissime informazioni, ma ciò può essere configurato. Per informazioni dettagliate sulla configurazione della registrazione ASP.NET Core, vedere la documentazione relativa alla [registrazione di ASP.NET Core](xref:fundamentals/logging/index#configuration) .
+Poiché SignalR fa parte di ASP.NET Core, usa il sistema di registrazione ASP.NET Core. Nella configurazione predefinita, SignalR registra informazioni molto piccole, ma ciò può essere configurato. Per informazioni dettagliate sulla configurazione della registrazione ASP.NET Core, vedere la documentazione relativa alla [registrazione di ASP.NET Core](xref:fundamentals/logging/index#configuration) .
 
-SignalR usa due categorie di logger:
+SignalRUSA due categorie di logger:
 
-* `Microsoft.AspNetCore.SignalR`&ndash;per i log relativi ai protocolli Hub, attivazione di hub, richiamo di metodi e altre attività correlate all'hub.
-* `Microsoft.AspNetCore.Http.Connections`&ndash;per i log relativi a trasporti quali WebSocket, polling prolungato ed eventi inviati dal server e l'infrastruttura SignalR di basso livello.
+* `Microsoft.AspNetCore.SignalR`: Per i log relativi ai protocolli Hub, attivazione di hub, richiamo di metodi e altre attività correlate all'hub.
+* `Microsoft.AspNetCore.Http.Connections`: Per i log relativi ai trasporti, ad esempio WebSocket, polling prolungato, eventi inviati dal server e infrastruttura di basso livello SignalR .
 
-Per abilitare i log dettagliati da SignalR, configurare entrambi i prefissi precedenti al `Debug` livello nel file *appSettings. JSON* aggiungendo gli elementi seguenti alla sottosezione `LogLevel` in `Logging` :
+Per abilitare i log dettagliati da SignalR , configurare entrambi i prefissi precedenti al `Debug` livello del file *appSettings. JSON* aggiungendo gli elementi seguenti alla sottosezione `LogLevel` in `Logging` :
 
 [!code-json[](diagnostics/logging-config.json?highlight=7-8)]
 
@@ -61,7 +49,7 @@ La modalità di accesso ai log lato server dipende dall'ambiente in cui si esegu
 
 ### <a name="as-a-console-app-outside-iis"></a>Come app console all'esterno di IIS
 
-Se è in esecuzione un'app console, il [logger della console](xref:fundamentals/logging/index#console) deve essere abilitato per impostazione predefinita. I log di SignalR verranno visualizzati nella console di.
+Se è in esecuzione un'app console, il [logger della console](xref:fundamentals/logging/index#console) deve essere abilitato per impostazione predefinita. SignalRi log verranno visualizzati nella console di.
 
 ### <a name="within-iis-express-from-visual-studio"></a>All'interno IIS Express da Visual Studio
 
@@ -89,14 +77,34 @@ Per disabilitare completamente la registrazione, specificare `signalR.LogLevel.N
 La tabella seguente illustra i livelli di log disponibili per il client JavaScript. Impostando il livello di registrazione su uno di questi valori, viene abilitata la registrazione a tale livello e a tutti i livelli superiori nella tabella.
 
 | Level | Descrizione |
-| ----- | ----------- |
-| `None` | Nessun messaggio registrato. |
-| `Critical` | Messaggi che indicano un errore nell'intera app. |
-| `Error` | Messaggi che indicano un errore nell'operazione corrente. |
-| `Warning` | Messaggi che indicano un problema non irreversibile. |
-| `Information` | Messaggi informativi. |
-| `Debug` | Messaggi di diagnostica utili per il debug. |
-| `Trace` | Messaggi di diagnostica molto dettagliati progettati per la diagnosi di problemi specifici. |
+| ----- | ---
+title: "registrazione e diagnostica nell'ASP.NET Core SignalR " autore: Descrizione: "informazioni su come raccogliere dati diagnostici dall' SignalR app ASP.NET Core."
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "registrazione e diagnostica nell'ASP.NET Core SignalR " autore: Descrizione: "informazioni su come raccogliere dati diagnostici dall' SignalR app ASP.NET Core."
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: "registrazione e diagnostica nell'ASP.NET Core SignalR " autore: Descrizione: "informazioni su come raccogliere dati diagnostici dall' SignalR app ASP.NET Core."
+monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+------ | | `None` | Nessun messaggio registrato. | | `Critical` | Messaggi che indicano un errore nell'intera app. | | `Error` | Messaggi che indicano un errore nell'operazione corrente. | | `Warning` | Messaggi che indicano un problema non irreversibile. | | `Information` | Messaggi informativi. | | `Debug` | Messaggi di diagnostica utili per il debug. | | `Trace` | Messaggi di diagnostica molto dettagliati progettati per la diagnosi di problemi specifici. |
 
 Dopo aver configurato il livello di dettaglio, i log verranno scritti nella console del browser o nell'output standard in un'app NodeJS.
 

@@ -39,7 +39,7 @@ Registrare le seguenti informazioni:
 
 * *App per le API server* ID applicazione (ID client) (ad esempio, `11111111-1111-1111-1111-111111111111` )
 * ID directory (ID tenant) (ad esempio, `222222222-2222-2222-2222-222222222222` )
-* Dominio del tenant AAD (ad esempio, `contoso.onmicrosoft.com` ) &ndash; il dominio è disponibile come **dominio del server di pubblicazione** nel pannello **personalizzazione** del portale di Azure per l'app registrata.
+* Dominio del tenant AAD (ad esempio, `contoso.onmicrosoft.com` ): il dominio è disponibile come **dominio del server di pubblicazione** nel pannello **personalizzazione** del portale di Azure per l'app registrata.
 
 In **esporre un'API**:
 

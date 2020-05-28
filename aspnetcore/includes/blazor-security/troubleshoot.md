@@ -18,8 +18,8 @@ Un approccio che impedisce ai cookie e ai dati del sito di interferire con i tes
   * Fare clic sul pulsante **Aggiungi**.
   * Consente di specificare il percorso del browser nel campo del **programma** .
   * Nel campo **arguments (argomenti** ) specificare l'opzione della riga di comando che il browser usa per aprire in modalità privata o in incognito e l'URL dell'app. Ad esempio:
-    * Google Chrome &ndash;`--incognito --new-window https://localhost:5001`
-    * Mozilla Firefox &ndash;`-private -url https://localhost:5001`
+    * Google Chrome:`--incognito --new-window https://localhost:5001`
+    * Mozilla Firefox:`-private -url https://localhost:5001`
   * Specificare un nome nel campo **nome descrittivo** . Ad esempio: `Firefox Auth Testing`.
   * Selezionare il pulsante **OK** .
   * Per evitare di dover selezionare il profilo del browser per ogni iterazione del test con un'app, impostare il profilo come predefinito con il pulsante **Imposta come predefinito** .

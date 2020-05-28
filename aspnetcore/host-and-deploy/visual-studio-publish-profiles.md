@@ -1,24 +1,11 @@
 ---
-title: Profili di pubblicazione di Visual Studio (con estensione pubxml) per la distribuzione di app ASP.NET Core
-author: rick-anderson
-description: Informazioni su come creare profili di pubblicazione in Visual Studio e usarli per la gestione delle distribuzioni di app ASP.NET Core in varie destinazioni.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/14/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/visual-studio-publish-profiles
-ms.openlocfilehash: 42d790ad4942ea238fb3bbe56cb92ae4a26ddc2d
-ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/16/2020
-ms.locfileid: "83439006"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>Profili di pubblicazione di Visual Studio (con estensione pubxml) per la distribuzione di app ASP.NET Core
 
@@ -26,7 +13,7 @@ Di [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) e [Rick Anderson](h
 
 Questo documento descrive come usare Visual Studio 2019 o versioni successive per la creazione e l'uso di profili di pubblicazione. I profili di pubblicazione creati con Visual Studio possono essere usati con MSBuild e Visual Studio. Per istruzioni sulla pubblicazione in Azure, vedere <xref:tutorials/publish-to-azure-webapp-using-vs>.
 
-Il `dotnet new mvc` comando produce un file di progetto contenente l' [ \< elemento> del progetto](/visualstudio/msbuild/project-element-msbuild)a livello di radice seguente:
+Il `dotnet new mvc` comando produce un file di progetto contenente l' [ \<Project> elemento](/visualstudio/msbuild/project-element-msbuild)di livello radice seguente:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -36,7 +23,7 @@ Il `dotnet new mvc` comando produce un file di progetto contenente l' [ \< eleme
 
 L'attributo `Sdk` dell'elemento `<Project>` precedente importa le [proprietà](/visualstudio/msbuild/msbuild-properties) e le [destinazioni](/visualstudio/msbuild/msbuild-targets) di MSBuild rispettivamente da *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.props* e *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets*. Il percorso predefinito per `$(MSBuildSDKsPath)` (con Visual Studio 2019 Enterprise) è la cartella *%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Sdks*.
 
-`Microsoft.NET.Sdk.Web`([Web SDK](xref:razor-pages/web-sdk)) dipende da altri SDK, tra cui `Microsoft.NET.Sdk` ([.NET Core SDK](/dotnet/core/project-sdk/msbuild-props)) e `Microsoft.NET.Sdk.Razor` ([Razor SDK](xref:razor-pages/sdk)). Vengono importate le proprietà e le destinazioni di MSBuild associate a ogni SDK dipendente. Le destinazioni di pubblicazione importano il set appropriato di destinazioni in base al metodo di pubblicazione usato.
+`Microsoft.NET.Sdk.Web`([Web SDK](xref:razor-pages/web-sdk)) dipende da altri SDK, tra cui `Microsoft.NET.Sdk` ([.NET Core SDK](/dotnet/core/project-sdk/msbuild-props)) e `Microsoft.NET.Sdk.Razor` ([ Razor SDK](xref:razor-pages/sdk)). Vengono importate le proprietà e le destinazioni di MSBuild associate a ogni SDK dipendente. Le destinazioni di pubblicazione importano il set appropriato di destinazioni in base al metodo di pubblicazione usato.
 
 Quando MSBuild o Visual Studio carica un progetto, vengono eseguite le azioni di alto livello seguenti:
 
@@ -52,13 +39,13 @@ L'elenco di elementi `Content` contiene i file che sono pubblicati in aggiunta a
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[Web SDK](xref:razor-pages/web-sdk) importa [Razor SDK](xref:razor-pages/sdk). Di conseguenza, anche i file corrispondenti ai criteri `**\*.cshtml` e `**\*.razor` vengono inclusi nell'elenco di elementi `Content`.
+SDK [Web](xref:razor-pages/web-sdk) importa l' [ Razor SDK](xref:razor-pages/sdk). Di conseguenza, anche i file corrispondenti ai criteri `**\*.cshtml` e `**\*.razor` vengono inclusi nell'elenco di elementi `Content`.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-[Web SDK](xref:razor-pages/web-sdk) importa [Razor SDK](xref:razor-pages/sdk). Di conseguenza, anche i file corrispondenti al criterio `**\*.cshtml` vengono inclusi nell'elenco di elementi `Content`.
+SDK [Web](xref:razor-pages/web-sdk) importa l' [ Razor SDK](xref:razor-pages/sdk). Di conseguenza, anche i file corrispondenti al criterio `**\*.cshtml` vengono inclusi nell'elenco di elementi `Content`.
 
 ::: moniker-end
 
@@ -309,10 +296,10 @@ msbuild {PATH}
     /p:Password={PASSWORD}
 ```
 
-* {PERCORSO} &ndash; Percorso del file di progetto dell'app.
-* {PROFILO} &ndash; Nome del profilo di pubblicazione.
-* {NOMEUTENTE} &ndash; Nome utente MSDeploy. {NOMEUTENTE} è disponibile nel profilo di pubblicazione.
-* {PASSWORD} &ndash; Password di MSDeploy. Il valore {PASSWORD} è disponibile nel file *{PROFILO}.PublishSettings*. Scaricare il file *.PublishSettings* da:
+* {PATH}: percorso del file di progetto dell'app.
+* {PROFILE}: nome del profilo di pubblicazione.
+* {USERNAME}: nome utente MSDeploy. {NOMEUTENTE} è disponibile nel profilo di pubblicazione.
+* {PASSWORD}: MSDeploy password. Il valore {PASSWORD} è disponibile nel file *{PROFILO}.PublishSettings*. Scaricare il file *.PublishSettings* da:
   * **Esplora soluzioni**: selezionare **Visualizza**  >  **Cloud Explorer**. Connettersi alla sottoscrizione di Azure. Aprire **Servizi app**. Fare clic con il pulsante destro del mouse sull'app. Selezionare **Scarica profilo di pubblicazione**.
   * Portale di Azure: selezionare **Ottieni profilo di pubblicazione** nel pannello **Panoramica** dell'app Web.
 
@@ -510,9 +497,174 @@ Aggiungere la proprietà `<AllowUntrustedCertificate>` con un valore `True` al p
 Per visualizzare i file in una distribuzione di app Web di Servizio app di Azure, usare il [servizio Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). Accodare il token `scm` al nome dell'app Web. Ad esempio:
 
 | URL                                    | Risultato       |
-| -------------------------------------- | ------------ |
-| `http://mysite.azurewebsites.net/`     | App Web      |
-| `http://mysite.scm.azurewebsites.net/` | Servizio Kudu |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+------------------- | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+------ | | `http://mysite.azurewebsites.net/`     | App Web | | `http://mysite.scm.azurewebsites.net/` | Servizio Kudu |
 
 Selezionare la voce di menu [Console di debug](https://github.com/projectkudu/kudu/wiki/Kudu-console) per visualizzare, modificare, eliminare o aggiungere file.
 

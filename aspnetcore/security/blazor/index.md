@@ -55,7 +55,7 @@ Il <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvid
 
 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> è il servizio sottostante usato dal componente <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> e dal componente <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> per ottenere lo stato di autenticazione.
 
-In genere non si usa <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> direttamente. Usare il [componente AuthorizeView](#authorizeview-component) o l' [attività \< AuthenticationState>](#expose-the-authentication-state-as-a-cascading-parameter) gli approcci descritti più avanti in questo articolo. Lo svantaggio principale dell'uso diretto di <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> è che il componente non riceve alcuna notifica automaticamente se i dati relativi allo stato di autenticazione sottostanti cambiano.
+In genere non si usa <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> direttamente. Usare gli approcci con il [componente AuthorizeView](#authorizeview-component) oppure [Task\<AuthenticationState>](#expose-the-authentication-state-as-a-cascading-parameter) descritti più avanti in questo articolo. Lo svantaggio principale dell'uso diretto di <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> è che il componente non riceve alcuna notifica automaticamente se i dati relativi allo stato di autenticazione sottostanti cambiano.
 
 Il servizio <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> può fornire i dati <xref:System.Security.Claims.ClaimsPrincipal> dell'utente corrente, come illustrato nell'esempio seguente:
 
@@ -76,7 +76,7 @@ Il servizio <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationSt
     <ul>
         @foreach (var claim in _claims)
         {
-            <li>@claim.Type &ndash; @claim.Value</li>
+            <li>@claim.Type: @claim.Value</li>
         }
     </ul>
 }
@@ -467,7 +467,7 @@ Per ulteriori informazioni, vedere gli articoli in <xref:security/blazor/webasse
 
 Errori comuni:
 
-* **Per l'autorizzazione è necessario un parametro di propagazione di tipo Task \< AuthenticationState>. Per fornire questo, provare a usare CascadingAuthenticationState.**
+* **L'autorizzazione richiede un parametro di propagazione di tipo Task \<AuthenticationState> . Per fornire questo, provare a usare CascadingAuthenticationState.**
 
 * **`null`valore ricevuto per`authenticationStateTask`**
 

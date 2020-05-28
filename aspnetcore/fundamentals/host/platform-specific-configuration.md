@@ -1,24 +1,11 @@
 ---
-title: Usare assembly di avvio dell'hosting in ASP.NET Core
-author: rick-anderson
-description: Informazioni su come migliorare un'app ASP.NET Core da un assembly esterno con un'implementazione IHostingStartup.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc, seodec18
-ms.date: 09/26/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: afbffc752f9c184ef32c9518464a94a615828dab
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776578"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Usare assembly di avvio dell'hosting in ASP.NET Core
 
@@ -89,7 +76,7 @@ Se l'impostazione di configurazione host e la variabile di ambiente sono entramb
 
 La disabilitazione degli assembly di avvio dell'hosting tramite l'impostazione host o la variabile di ambiente ne determina la disabilitazione globale e la possibile disabilitazione di diverse caratteristiche di un'app.
 
-## <a name="project"></a>Progetto
+## <a name="project"></a>Project
 
 Creare l'avvio dell'hosting con uno dei tipi di progetto seguenti:
 
@@ -100,12 +87,12 @@ Creare l'avvio dell'hosting con uno dei tipi di progetto seguenti:
 
 È possibile includere un miglioramento di avvio dell'hosting in una libreria di classi. La libreria contiene un attributo `HostingStartup`.
 
-Il [codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) include Razor un'app Pages, *HostingStartupApp*e una libreria di classi, *HostingStartupLibrary*. La libreria di classi:
+Il [codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) include un' Razor app Pages, *HostingStartupApp*e una libreria di classi, *HostingStartupLibrary*. La libreria di classi:
 
 * Contiene una classe di avvio dell'hosting, `ServiceKeyInjection`, che implementa `IHostingStartup`. `ServiceKeyInjection`aggiunge una coppia di stringhe di servizio alla configurazione dell'app usando il provider di configurazione in memoria ([AddInMemoryCollection](xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*)).
 * Include un attributo `HostingStartup` che identifica lo spazio dei nomi e la classe di avvio dell'hosting.
 
-Il `ServiceKeyInjection` <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodo della classe usa un <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> per aggiungere miglioramenti a un'app.
+Il `ServiceKeyInjection` metodo della classe <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> Usa un <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> per aggiungere miglioramenti a un'app.
 
 *HostingStartupLibrary/ServiceKeyInjection.cs*:
 
@@ -156,11 +143,11 @@ L'app console fa riferimento al pacchetto [Microsoft.AspNetCore.Hosting.Abstract
 
 [!code-xml[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement.csproj)]
 
-Un attributo [HostingStartup](xref:Microsoft.AspNetCore.Hosting.HostingStartupAttribute) identifica una classe come implementazione di `IHostingStartup` per il caricamento e l'esecuzione durante la <xref:Microsoft.AspNetCore.Hosting.IWebHost>compilazione dell'oggetto. Nell'esempio seguente, lo spazio dei nomi è `StartupEnhancement` e la classe è `StartupEnhancementHostingStartup`:
+Un attributo [HostingStartup](xref:Microsoft.AspNetCore.Hosting.HostingStartupAttribute) identifica una classe come implementazione di `IHostingStartup` per il caricamento e l'esecuzione durante la compilazione dell'oggetto <xref:Microsoft.AspNetCore.Hosting.IWebHost> . Nell'esempio seguente, lo spazio dei nomi è `StartupEnhancement` e la classe è `StartupEnhancementHostingStartup`:
 
 [!code-csharp[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement.cs?name=snippet1)]
 
-Una classe implementa `IHostingStartup`. Il <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodo della classe usa un <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> per aggiungere miglioramenti a un'app. Nell'assembly di avvio dell'hosting `IHostingStartup.Configure` viene chiamato dal runtime prima di `Startup.Configure` nel codice utente, il che consente al codice utente di sovrascrivere qualsiasi configurazione fornita dall'assembly di avvio dell'hosting.
+Una classe implementa `IHostingStartup`. Il metodo della classe <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> Usa un <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> per aggiungere miglioramenti a un'app. Nell'assembly di avvio dell'hosting `IHostingStartup.Configure` viene chiamato dal runtime prima di `Startup.Configure` nel codice utente, il che consente al codice utente di sovrascrivere qualsiasi configurazione fornita dall'assembly di avvio dell'hosting.
 
 [!code-csharp[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
 
@@ -236,13 +223,13 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-Quando sono presenti più montaggi di avvio host, i <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> relativi metodi vengono eseguiti nell'ordine in cui sono elencati gli assembly.
+Quando sono presenti più montaggi di avvio host, i relativi <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodi vengono eseguiti nell'ordine in cui sono elencati gli assembly.
 
 ## <a name="activation"></a>Attivazione
 
 Le opzioni di attivazione dell'avvio dell'hosting sono:
 
-* [Archivio di runtime](#runtime-store) &ndash; L'attivazione non richiede un riferimento in fase di compilazione. L'app di esempio inserisce l'assembly di avvio dell'hosting e i file di dipendenze in una cartella *deployment* per facilitare la distribuzione dell'avvio dell'hosting in un ambiente con più computer. La cartella *deployment* include anche uno script PowerShell che crea o modifica le variabili di ambiente nel sistema di distribuzione per abilitare l'avvio dell'hosting.
+* [Archivio di runtime](#runtime-store): l'attivazione non richiede un riferimento in fase di compilazione per l'attivazione. L'app di esempio inserisce l'assembly di avvio dell'hosting e i file di dipendenze in una cartella *deployment* per facilitare la distribuzione dell'avvio dell'hosting in un ambiente con più computer. La cartella *deployment* include anche uno script PowerShell che crea o modifica le variabili di ambiente nel sistema di distribuzione per abilitare l'avvio dell'hosting.
 * Riferimento in fase di compilazione richiesto per l'attivazione
   * [Pacchetto NuGet](#nuget-package)
   * [Cartella bin del progetto](#project-bin-folder)
@@ -275,7 +262,7 @@ Per attivare il miglioramento senza un riferimento al pacchetto per il miglioram
 L'approccio consigliato per la generazione del file delle dipendenze aggiuntive è:
 
  1. Eseguire `dotnet publish` sul file manifesto dell'archivio di runtime indicato nella sezione precedente.
- 1. Rimuovere il riferimento al manifesto dalle librerie e `runtime` la sezione del file *. Deps. JSON* risultante.
+ 1. Rimuovere il riferimento al manifesto dalle librerie e la `runtime` sezione del file *. Deps. JSON* risultante.
 
 Nel progetto di esempio la proprietà `store.manifest/1.0.0` viene rimossa da `targets` e dalla sezione `libraries`:
 
@@ -329,10 +316,10 @@ Posizionare il file *.deps.json* nel percorso seguente:
 {ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
 ```
 
-* `{ADDITIONAL DEPENDENCIES PATH}`&ndash; Percorso aggiunto alla variabile `DOTNET_ADDITIONAL_DEPS` di ambiente.
-* `{SHARED FRAMEWORK NAME}`&ndash; Framework condiviso necessario per questo file di dipendenze aggiuntivo.
-* `{SHARED FRAMEWORK VERSION}`&ndash; Versione minima del Framework condiviso.
-* `{ENHANCEMENT ASSEMBLY NAME}`&ndash; Nome dell'assembly del miglioramento.
+* `{ADDITIONAL DEPENDENCIES PATH}`: Percorso aggiunto alla `DOTNET_ADDITIONAL_DEPS` variabile di ambiente.
+* `{SHARED FRAMEWORK NAME}`: Framework condiviso necessario per questo file di dipendenze aggiuntivo.
+* `{SHARED FRAMEWORK VERSION}`: Versione minima del Framework condiviso.
+* `{ENHANCEMENT ASSEMBLY NAME}`: Nome dell'assembly della funzionalità avanzata.
 
 Nell'app di esempio (progetto *RuntimeStore*), il file di dipendenze aggiuntive viene posizionato nel percorso seguente:
 
@@ -376,8 +363,8 @@ Per altre informazioni su pacchetti NuGet e l'archivio di runtime, vedere gli ar
   * Una posizione accessibile dal progetto che lo utilizza.
 * Il file di dipendenze dell'avvio dell'hosting viene reso disponibile all'app migliorata come descritto nella sezione [Archivio di runtime](#runtime-store) (senza un riferimento in fase di compilazione).
 * Quando la destinazione è .NET Framework, l'assembly può essere caricato nel contesto di caricamento predefinito, che in .NET Framework significa che l'assembly si trova in una delle posizioni seguenti:
-  * Percorso della base dell'applicazione: cartella *bin* in cui si trova il file eseguibile dell'app (*EXE*).
-  * Global Assembly Cache (GAC): gli assembly condivisi da più app .NET Framework vengono archiviati nella Global Assembly Cache. Per ulteriori informazioni, vedere [procedura: installare un assembly nella global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) nella documentazione di .NET Framework.
+  * Percorso di base dell'applicazione: la cartella *bin* in cui si trova l'eseguibile dell'app (con*estensione exe*).
+  * Global assembly cache (GAC): la GAC archivia gli assembly condivisi da diverse app .NET Framework. Per ulteriori informazioni, vedere [procedura: installare un assembly nella global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) nella documentazione di .NET Framework.
 
 ## <a name="sample-code"></a>Codice di esempio
 
@@ -399,7 +386,7 @@ Per eseguire l'esempio:
 
 1. Compilare il pacchetto *HostingStartupPackage* con il comando [dotnet pack](/dotnet/core/tools/dotnet-pack).
 1. Aggiungere il nome dell'assembly del pacchetto *HostingStartupPackage* alla variabile di ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
-1. Compilare ed eseguire l'app. L'app migliorata include un riferimento al pacchetto (riferimento in fase di compilazione). `<PropertyGroup>` nel file di progetto dell'app specifica l'output del progetto del pacchetto (*../HostingStartupPackage/bin/Debug*) come origine del pacchetto. Ciò consente all'app di usare il pacchetto senza caricare il pacchetto in [NuGet.org](https://www.nuget.org/). Per ulteriori informazioni, vedere le note nel file di progetto di HostingStartupApp.
+1. Compila ed esegui l'app. L'app migliorata include un riferimento al pacchetto (riferimento in fase di compilazione). `<PropertyGroup>` nel file di progetto dell'app specifica l'output del progetto del pacchetto (*../HostingStartupPackage/bin/Debug*) come origine del pacchetto. Ciò consente all'app di usare il pacchetto senza caricare il pacchetto in [NuGet.org](https://www.nuget.org/). Per ulteriori informazioni, vedere le note nel file di progetto di HostingStartupApp.
 
    ```xml
    <PropertyGroup>
@@ -420,7 +407,7 @@ dotnet nuget locals all --clear
 1. Compilare la libreria di classi *HostingStartupLibrary* con il comando [dotnet build](/dotnet/core/tools/dotnet-build).
 1. Aggiungere il nome dell'assembly della libreria di classi di *HostingStartupLibrary* alla variabile di ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
 1. Distribuire tramite *bin* l'assembly della libreria di classi all'app copiando il file *HostingStartupLibrary.dll* dall'output compilato della libreria di classi alla cartella *bin/Debug* dell'app.
-1. Compilare ed eseguire l'app. Nel file di progetto dell'app fa riferimento all'assembly della libreria di classi (.\Bin\Debug\netcoreapp3.0\HostingStartupLibrary.dll) (un riferimento in fase di compilazione).*.\bin\Debug\netcoreapp3.0\HostingStartupLibrary.dll* `<ItemGroup>` Per altre informazioni, vedere le note nel file di progetto di HostingStartupApp.
+1. Compila ed esegui l'app. `<ItemGroup>`Nel file di progetto dell'app fa riferimento all'assembly della libreria di classi (*.\bin\Debug\netcoreapp3.0\HostingStartupLibrary.dll*) (un riferimento in fase di compilazione). Per altre informazioni, vedere le note nel file di progetto di HostingStartupApp.
 
    ```xml
    <ItemGroup>
@@ -438,12 +425,12 @@ dotnet nuget locals all --clear
 1. Il progetto *StartupDiagnostics* usa [PowerShell](/powershell/scripting/powershell-scripting) per modificare il relativo file *StartupDiagnostics.deps.json*. PowerShell viene installato per impostazione predefinita in Windows a partire da Windows 7 SP1 e Windows Server 2008 R2 SP1. Per ottenere PowerShell su altre piattaforme, vedere [installazione di diverse versioni di PowerShell](/powershell/scripting/install/installing-powershell).
 1. Eseguire lo script *build.ps1* nella cartella *RuntimeStore*. Lo script:
    * Genera il `StartupDiagnostics` pacchetto nella cartella *obj\packages* .
-   * Genera l'archivio di runtime per `StartupDiagnostics` nella cartella *store*. Il comando `dotnet store` nello script usa l' [identificatore di runtime (RID)](/dotnet/core/rid-catalog)`win7-x64` per un avvio dell'hosting distribuito su Windows. Quando si specifica l'avvio dell'hosting per un runtime diverso, immettere il RID corretto nella riga 37 dello script. L'archivio di runtime `StartupDiagnostics` di verrà spostato in un secondo momento nell'archivio di runtime dell'utente o del sistema nel computer in cui verrà utilizzato l'assembly. Il percorso di installazione dell'archivio di runtime `StartupDiagnostics` utente per l'assembly è *. dotnet/Store/x64/netcoreapp 3.0/startupdiagnostics/1.0.0/lib/Netcoreapp 3.0/startupdiagnostics. dll*.
-   * Genera `additionalDeps` per `StartupDiagnostics` nella cartella *additionalDeps* . Le dipendenze aggiuntive verranno spostate in un secondo momento alle dipendenze aggiuntive del sistema o dell'utente. Il percorso `StartupDiagnostics` di installazione delle dipendenze aggiuntive dell'utente è *. dotnet/x64/additionalDeps/StartupDiagnostics/Shared/Microsoft. NETCore. app/3.0.0/StartupDiagnostics. Deps. JSON*.
+   * Genera l'archivio di runtime per `StartupDiagnostics` nella cartella *store*. Il comando `dotnet store` nello script usa l' [identificatore di runtime (RID)](/dotnet/core/rid-catalog)`win7-x64` per un avvio dell'hosting distribuito su Windows. Quando si specifica l'avvio dell'hosting per un runtime diverso, immettere il RID corretto nella riga 37 dello script. L'archivio di runtime di verrà `StartupDiagnostics` spostato in un secondo momento nell'archivio di runtime dell'utente o del sistema nel computer in cui verrà utilizzato l'assembly. Il percorso di installazione dell'archivio di runtime utente per l' `StartupDiagnostics` assembly è *. dotnet/Store/x64/netcoreapp 3.0/startupdiagnostics/1.0.0/lib/netcoreapp 3.0/startupdiagnostics. dll*.
+   * Genera `additionalDeps` per `StartupDiagnostics` nella cartella *additionalDeps* . Le dipendenze aggiuntive verranno spostate in un secondo momento alle dipendenze aggiuntive del sistema o dell'utente. Il `StartupDiagnostics` percorso di installazione delle dipendenze aggiuntive dell'utente è *. dotnet/x64/AdditionalDeps/StartupDiagnostics/Shared/Microsoft. NETCore. app/3.0.0/StartupDiagnostics. Deps. JSON*.
    * Posiziona il file *deploy.ps1* nella cartella *deployment*.
 1. Eseguire lo script *deploy.ps1* nella cartella *deployment*. Lo script aggiunge:
    * `StartupDiagnostics` alla variabile di ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
-   * Percorso delle dipendenze di avvio dell'hosting (nella cartella di *distribuzione* del progetto RuntimeStore `DOTNET_ADDITIONAL_DEPS` ) alla variabile di ambiente.
+   * Percorso delle dipendenze di avvio dell'hosting (nella cartella di *distribuzione* del progetto RuntimeStore) alla `DOTNET_ADDITIONAL_DEPS` variabile di ambiente.
    * Percorso dell'archivio di runtime (nella cartella di *distribuzione* del progetto RuntimeStore) alla `DOTNET_SHARED_STORE` variabile di ambiente.
 1. Eseguire l'app di esempio.
 1. Richiedere l'endpoint `/services` per visualizzare i servizi registrati dell'app. Richiedere l'endpoint `/diag` per visualizzare le informazioni di diagnostica.
@@ -487,7 +474,7 @@ Se l'impostazione di configurazione host e la variabile di ambiente sono entramb
 
 La disabilitazione degli assembly di avvio dell'hosting tramite l'impostazione host o la variabile di ambiente ne determina la disabilitazione globale e la possibile disabilitazione di diverse caratteristiche di un'app.
 
-## <a name="project"></a>Progetto
+## <a name="project"></a>Project
 
 Creare l'avvio dell'hosting con uno dei tipi di progetto seguenti:
 
@@ -498,12 +485,12 @@ Creare l'avvio dell'hosting con uno dei tipi di progetto seguenti:
 
 È possibile includere un miglioramento di avvio dell'hosting in una libreria di classi. La libreria contiene un attributo `HostingStartup`.
 
-Il [codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) include Razor un'app Pages, *HostingStartupApp*e una libreria di classi, *HostingStartupLibrary*. La libreria di classi:
+Il [codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) include un' Razor app Pages, *HostingStartupApp*e una libreria di classi, *HostingStartupLibrary*. La libreria di classi:
 
 * Contiene una classe di avvio dell'hosting, `ServiceKeyInjection`, che implementa `IHostingStartup`. `ServiceKeyInjection`aggiunge una coppia di stringhe di servizio alla configurazione dell'app usando il provider di configurazione in memoria ([AddInMemoryCollection](xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*)).
 * Include un attributo `HostingStartup` che identifica lo spazio dei nomi e la classe di avvio dell'hosting.
 
-Il `ServiceKeyInjection` <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodo della classe usa un <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> per aggiungere miglioramenti a un'app.
+Il `ServiceKeyInjection` metodo della classe <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> Usa un <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> per aggiungere miglioramenti a un'app.
 
 *HostingStartupLibrary/ServiceKeyInjection.cs*:
 
@@ -554,11 +541,11 @@ L'app console fa riferimento al pacchetto [Microsoft.AspNetCore.Hosting.Abstract
 
 [!code-xml[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.csproj)]
 
-Un attributo [HostingStartup](xref:Microsoft.AspNetCore.Hosting.HostingStartupAttribute) identifica una classe come implementazione di `IHostingStartup` per il caricamento e l'esecuzione durante la <xref:Microsoft.AspNetCore.Hosting.IWebHost>compilazione dell'oggetto. Nell'esempio seguente, lo spazio dei nomi è `StartupEnhancement` e la classe è `StartupEnhancementHostingStartup`:
+Un attributo [HostingStartup](xref:Microsoft.AspNetCore.Hosting.HostingStartupAttribute) identifica una classe come implementazione di `IHostingStartup` per il caricamento e l'esecuzione durante la compilazione dell'oggetto <xref:Microsoft.AspNetCore.Hosting.IWebHost> . Nell'esempio seguente, lo spazio dei nomi è `StartupEnhancement` e la classe è `StartupEnhancementHostingStartup`:
 
 [!code-csharp[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.cs?name=snippet1)]
 
-Una classe implementa `IHostingStartup`. Il <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodo della classe usa un <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> per aggiungere miglioramenti a un'app. Nell'assembly di avvio dell'hosting `IHostingStartup.Configure` viene chiamato dal runtime prima di `Startup.Configure` nel codice utente, il che consente al codice utente di sovrascrivere qualsiasi configurazione fornita dall'assembly di avvio dell'hosting.
+Una classe implementa `IHostingStartup`. Il metodo della classe <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> Usa un <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> per aggiungere miglioramenti a un'app. Nell'assembly di avvio dell'hosting `IHostingStartup.Configure` viene chiamato dal runtime prima di `Startup.Configure` nel codice utente, il che consente al codice utente di sovrascrivere qualsiasi configurazione fornita dall'assembly di avvio dell'hosting.
 
 [!code-csharp[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
 
@@ -622,13 +609,13 @@ HostingStartupLibrary;HostingStartupPackage;StartupDiagnostics
 
 È possibile impostare l'assembly di avvio dell'hosting anche tramite l'impostazione di configurazione host [Assembly di avvio dell'hosting](xref:fundamentals/host/web-host#hosting-startup-assemblies).
 
-Quando sono presenti più montaggi di avvio host, i <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> relativi metodi vengono eseguiti nell'ordine in cui sono elencati gli assembly.
+Quando sono presenti più montaggi di avvio host, i relativi <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodi vengono eseguiti nell'ordine in cui sono elencati gli assembly.
 
 ## <a name="activation"></a>Attivazione
 
 Le opzioni di attivazione dell'avvio dell'hosting sono:
 
-* [Archivio di runtime](#runtime-store) &ndash; L'attivazione non richiede un riferimento in fase di compilazione. L'app di esempio inserisce l'assembly di avvio dell'hosting e i file di dipendenze in una cartella *deployment* per facilitare la distribuzione dell'avvio dell'hosting in un ambiente con più computer. La cartella *deployment* include anche uno script PowerShell che crea o modifica le variabili di ambiente nel sistema di distribuzione per abilitare l'avvio dell'hosting.
+* [Archivio di runtime](#runtime-store): l'attivazione non richiede un riferimento in fase di compilazione per l'attivazione. L'app di esempio inserisce l'assembly di avvio dell'hosting e i file di dipendenze in una cartella *deployment* per facilitare la distribuzione dell'avvio dell'hosting in un ambiente con più computer. La cartella *deployment* include anche uno script PowerShell che crea o modifica le variabili di ambiente nel sistema di distribuzione per abilitare l'avvio dell'hosting.
 * Riferimento in fase di compilazione richiesto per l'attivazione
   * [Pacchetto NuGet](#nuget-package)
   * [Cartella bin del progetto](#project-bin-folder)
@@ -661,7 +648,7 @@ Per attivare il miglioramento senza un riferimento al pacchetto per il miglioram
 L'approccio consigliato per la generazione del file delle dipendenze aggiuntive è:
 
  1. Eseguire `dotnet publish` sul file manifesto dell'archivio di runtime indicato nella sezione precedente.
- 1. Rimuovere il riferimento al manifesto dalle librerie e `runtime` la sezione del file *. Deps. JSON* risultante.
+ 1. Rimuovere il riferimento al manifesto dalle librerie e la `runtime` sezione del file *. Deps. JSON* risultante.
 
 Nel progetto di esempio la proprietà `store.manifest/1.0.0` viene rimossa da `targets` e dalla sezione `libraries`:
 
@@ -715,10 +702,10 @@ Posizionare il file *.deps.json* nel percorso seguente:
 {ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
 ```
 
-* `{ADDITIONAL DEPENDENCIES PATH}`&ndash; Percorso aggiunto alla variabile `DOTNET_ADDITIONAL_DEPS` di ambiente.
-* `{SHARED FRAMEWORK NAME}`&ndash; Framework condiviso necessario per questo file di dipendenze aggiuntivo.
-* `{SHARED FRAMEWORK VERSION}`&ndash; Versione minima del Framework condiviso.
-* `{ENHANCEMENT ASSEMBLY NAME}`&ndash; Nome dell'assembly del miglioramento.
+* `{ADDITIONAL DEPENDENCIES PATH}`: Percorso aggiunto alla `DOTNET_ADDITIONAL_DEPS` variabile di ambiente.
+* `{SHARED FRAMEWORK NAME}`: Framework condiviso necessario per questo file di dipendenze aggiuntivo.
+* `{SHARED FRAMEWORK VERSION}`: Versione minima del Framework condiviso.
+* `{ENHANCEMENT ASSEMBLY NAME}`: Nome dell'assembly della funzionalità avanzata.
 
 Nell'app di esempio (progetto *RuntimeStore*), il file di dipendenze aggiuntive viene posizionato nel percorso seguente:
 
@@ -762,8 +749,8 @@ Per altre informazioni su pacchetti NuGet e l'archivio di runtime, vedere gli ar
   * Una posizione accessibile dal progetto che lo utilizza.
 * Il file di dipendenze dell'avvio dell'hosting viene reso disponibile all'app migliorata come descritto nella sezione [Archivio di runtime](#runtime-store) (senza un riferimento in fase di compilazione).
 * Quando la destinazione è .NET Framework, l'assembly può essere caricato nel contesto di caricamento predefinito, che in .NET Framework significa che l'assembly si trova in una delle posizioni seguenti:
-  * Percorso della base dell'applicazione: cartella *bin* in cui si trova il file eseguibile dell'app (*EXE*).
-  * Global Assembly Cache (GAC): gli assembly condivisi da più app .NET Framework vengono archiviati nella Global Assembly Cache. Per ulteriori informazioni, vedere [procedura: installare un assembly nella global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) nella documentazione di .NET Framework.
+  * Percorso di base dell'applicazione: la cartella *bin* in cui si trova l'eseguibile dell'app (con*estensione exe*).
+  * Global assembly cache (GAC): la GAC archivia gli assembly condivisi da diverse app .NET Framework. Per ulteriori informazioni, vedere [procedura: installare un assembly nella global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) nella documentazione di .NET Framework.
 
 ## <a name="sample-code"></a>Codice di esempio
 
@@ -785,7 +772,7 @@ Per eseguire l'esempio:
 
 1. Compilare il pacchetto *HostingStartupPackage* con il comando [dotnet pack](/dotnet/core/tools/dotnet-pack).
 1. Aggiungere il nome dell'assembly del pacchetto *HostingStartupPackage* alla variabile di ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
-1. Compilare ed eseguire l'app. L'app migliorata include un riferimento al pacchetto (riferimento in fase di compilazione). `<PropertyGroup>` nel file di progetto dell'app specifica l'output del progetto del pacchetto (*../HostingStartupPackage/bin/Debug*) come origine del pacchetto. Ciò consente all'app di usare il pacchetto senza caricare il pacchetto in [NuGet.org](https://www.nuget.org/). Per ulteriori informazioni, vedere le note nel file di progetto di HostingStartupApp.
+1. Compila ed esegui l'app. L'app migliorata include un riferimento al pacchetto (riferimento in fase di compilazione). `<PropertyGroup>` nel file di progetto dell'app specifica l'output del progetto del pacchetto (*../HostingStartupPackage/bin/Debug*) come origine del pacchetto. Ciò consente all'app di usare il pacchetto senza caricare il pacchetto in [NuGet.org](https://www.nuget.org/). Per ulteriori informazioni, vedere le note nel file di progetto di HostingStartupApp.
 
    ```xml
    <PropertyGroup>
@@ -806,7 +793,7 @@ dotnet nuget locals all --clear
 1. Compilare la libreria di classi *HostingStartupLibrary* con il comando [dotnet build](/dotnet/core/tools/dotnet-build).
 1. Aggiungere il nome dell'assembly della libreria di classi di *HostingStartupLibrary* alla variabile di ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
 1. Distribuire tramite *bin* l'assembly della libreria di classi all'app copiando il file *HostingStartupLibrary.dll* dall'output compilato della libreria di classi alla cartella *bin/Debug* dell'app.
-1. Compilare ed eseguire l'app. `<ItemGroup>` nel file di progetto dell'app fa riferimento all'assembly della libreria di classi (*.\bin\Debug\netcoreapp2.1\HostingStartupLibrary.dll*) (riferimento in fase di compilazione). Per altre informazioni, vedere le note nel file di progetto di HostingStartupApp.
+1. Compila ed esegui l'app. `<ItemGroup>` nel file di progetto dell'app fa riferimento all'assembly della libreria di classi (*.\bin\Debug\netcoreapp2.1\HostingStartupLibrary.dll*) (riferimento in fase di compilazione). Per altre informazioni, vedere le note nel file di progetto di HostingStartupApp.
 
    ```xml
    <ItemGroup>
@@ -824,12 +811,12 @@ dotnet nuget locals all --clear
 1. Il progetto *StartupDiagnostics* usa [PowerShell](/powershell/scripting/powershell-scripting) per modificare il relativo file *StartupDiagnostics.deps.json*. PowerShell viene installato per impostazione predefinita in Windows a partire da Windows 7 SP1 e Windows Server 2008 R2 SP1. Per ottenere PowerShell su altre piattaforme, vedere [installazione di diverse versioni di PowerShell](/powershell/scripting/install/installing-powershell).
 1. Eseguire lo script *build.ps1* nella cartella *RuntimeStore*. Lo script:
    * Genera il `StartupDiagnostics` pacchetto nella cartella *obj\packages* .
-   * Genera l'archivio di runtime per `StartupDiagnostics` nella cartella *store*. Il comando `dotnet store` nello script usa l' [identificatore di runtime (RID)](/dotnet/core/rid-catalog)`win7-x64` per un avvio dell'hosting distribuito su Windows. Quando si specifica l'avvio dell'hosting per un runtime diverso, immettere il RID corretto nella riga 37 dello script. L'archivio di runtime `StartupDiagnostics` di verrà spostato in un secondo momento nell'archivio di runtime dell'utente o del sistema nel computer in cui verrà utilizzato l'assembly. Il percorso di installazione dell'archivio del runtime `StartupDiagnostics` utente per l'assembly è *. dotnet/Store/x64/netcoreapp 2.2/startupdiagnostics/1.0.0/lib/Netcoreapp 2.2/startupdiagnostics. dll*.
-   * Genera `additionalDeps` per `StartupDiagnostics` nella cartella *additionalDeps* . Le dipendenze aggiuntive verranno spostate in un secondo momento alle dipendenze aggiuntive del sistema o dell'utente. Il percorso `StartupDiagnostics` di installazione delle dipendenze aggiuntive dell'utente è *. dotnet/x64/additionalDeps/StartupDiagnostics/Shared/Microsoft. NETCore. app/2.2.0/StartupDiagnostics. Deps. JSON*.
+   * Genera l'archivio di runtime per `StartupDiagnostics` nella cartella *store*. Il comando `dotnet store` nello script usa l' [identificatore di runtime (RID)](/dotnet/core/rid-catalog)`win7-x64` per un avvio dell'hosting distribuito su Windows. Quando si specifica l'avvio dell'hosting per un runtime diverso, immettere il RID corretto nella riga 37 dello script. L'archivio di runtime di verrà `StartupDiagnostics` spostato in un secondo momento nell'archivio di runtime dell'utente o del sistema nel computer in cui verrà utilizzato l'assembly. Il percorso di installazione dell'archivio del runtime utente per l' `StartupDiagnostics` assembly è *. dotnet/Store/x64/netcoreapp 2.2/startupdiagnostics/1.0.0/lib/netcoreapp 2.2/startupdiagnostics. dll*.
+   * Genera `additionalDeps` per `StartupDiagnostics` nella cartella *additionalDeps* . Le dipendenze aggiuntive verranno spostate in un secondo momento alle dipendenze aggiuntive del sistema o dell'utente. Il `StartupDiagnostics` percorso di installazione delle dipendenze aggiuntive dell'utente è *. dotnet/x64/AdditionalDeps/StartupDiagnostics/Shared/Microsoft. NETCore. app/2.2.0/StartupDiagnostics. Deps. JSON*.
    * Posiziona il file *deploy.ps1* nella cartella *deployment*.
 1. Eseguire lo script *deploy.ps1* nella cartella *deployment*. Lo script aggiunge:
    * `StartupDiagnostics` alla variabile di ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
-   * Percorso delle dipendenze di avvio dell'hosting (nella cartella di *distribuzione* del progetto RuntimeStore `DOTNET_ADDITIONAL_DEPS` ) alla variabile di ambiente.
+   * Percorso delle dipendenze di avvio dell'hosting (nella cartella di *distribuzione* del progetto RuntimeStore) alla `DOTNET_ADDITIONAL_DEPS` variabile di ambiente.
    * Percorso dell'archivio di runtime (nella cartella di *distribuzione* del progetto RuntimeStore) alla `DOTNET_SHARED_STORE` variabile di ambiente.
 1. Eseguire l'app di esempio.
 1. Richiedere l'endpoint `/services` per visualizzare i servizi registrati dell'app. Richiedere l'endpoint `/diag` per visualizzare le informazioni di diagnostica.

@@ -46,8 +46,8 @@ Per mantenere lo stato oltre un singolo circuito, *non archiviare semplicemente 
 
 La persistenza dei dati è in genere necessaria solo per uno stato di valore elevato che gli utenti hanno impiegato per creare. Negli esempi seguenti lo stato di salvataggio permanente Risparmia tempo o facilita le attività commerciali:
 
-* Web Form a più passaggi è &ndash; molto dispendioso in termini di tempo per un utente per immettere nuovamente i dati per diversi passaggi completati di un processo a più passaggi se il relativo stato viene perso. Un utente perde lo stato in questo scenario se si allontana dal modulo a più passaggi e torna al modulo in un secondo momento.
-* Carrello acquisti &ndash; è possibile mantenere tutti i componenti commerciali importanti di un'app che rappresenti potenziali ricavi. Un utente che perde il proprio stato e quindi il carrello della spesa può acquistare un minor numero di prodotti o servizi quando ritornano al sito in un secondo momento.
+* WebForm in più passaggi: è necessario che un utente immetta nuovamente i dati per diversi passaggi completati di un processo a più passaggi se il relativo stato viene perso. Un utente perde lo stato in questo scenario se si allontana dal modulo a più passaggi e torna al modulo in un secondo momento.
+* Carrello acquisti: è possibile mantenere qualsiasi componente commerciale importante di un'app che rappresenti potenziali ricavi. Un utente che perde il proprio stato e quindi il carrello della spesa può acquistare un minor numero di prodotti o servizi quando ritornano al sito in un secondo momento.
 
 In genere non è necessario mantenere lo stato facilmente ricreato, ad esempio il nome utente immesso in una finestra di dialogo di accesso che non è stata inviata.
 

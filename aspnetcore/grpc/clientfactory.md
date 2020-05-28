@@ -1,27 +1,15 @@
 ---
-title: integrazione delle factory client gRPC in .NET Core
-author: jamesnk
-description: Informazioni su come creare client gRPC usando la factory client.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 11/12/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: grpc/clientfactory
-ms.openlocfilehash: 42b786b9a4d9b422ccf92d7a329979894a35b275
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774717"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="grpc-client-factory-integration-in-net-core"></a>integrazione delle factory client gRPC in .NET Core
 
-l'integrazione di `HttpClientFactory` gRPC con offre un modo centralizzato per creare client gRPC. Può essere usato come alternativa alla configurazione di [istanze client gRPC](xref:grpc/client)autonome. L'integrazione di Factory è disponibile nel pacchetto NuGet [.NET. ClientFactory di Grpc](https://www.nuget.org/packages/Grpc.Net.ClientFactory) .
+l'integrazione di gRPC con `HttpClientFactory` offre un modo centralizzato per creare client gRPC. Può essere usato come alternativa alla configurazione di [istanze client gRPC](xref:grpc/client)autonome. L'integrazione di Factory è disponibile nel pacchetto NuGet [.NET. ClientFactory di Grpc](https://www.nuget.org/packages/Grpc.Net.ClientFactory) .
 
 La Factory offre i vantaggi seguenti:
 
@@ -31,7 +19,7 @@ La Factory offre i vantaggi seguenti:
 
 ## <a name="register-grpc-clients"></a>Registrare i client di gRPC
 
-Per registrare un client gRPC, è possibile `AddGrpcClient` usare il metodo di estensione generico `Startup.ConfigureServices`in, specificando la classe client tipizzata gRPC e l'indirizzo del servizio:
+Per registrare un client gRPC, `AddGrpcClient` è possibile usare il metodo di estensione generico in `Startup.ConfigureServices` , specificando la classe client tipizzata gRPC e l'indirizzo del servizio:
 
 ```csharp
 services.AddGrpcClient<Greeter.GreeterClient>(o =>
@@ -40,7 +28,7 @@ services.AddGrpcClient<Greeter.GreeterClient>(o =>
 });
 ```
 
-Il tipo DI client gRPC è registrato come temporaneo con l'inserimento DI dipendenze. Il client può ora essere inserito e utilizzato direttamente nei tipi creati da DI. ASP.NET Core i controller MVC SignalR , gli hub e i servizi gRPC sono posti in cui è possibile inserire automaticamente i client gRPC:
+Il tipo DI client gRPC è registrato come temporaneo con l'inserimento DI dipendenze. Il client può ora essere inserito e utilizzato direttamente nei tipi creati da DI. ASP.NET Core i controller MVC, gli SignalR Hub e i servizi gRPC sono posti in cui è possibile inserire automaticamente i client gRPC:
 
 ```csharp
 public class AggregatorService : Aggregator.AggregatorBase
@@ -69,7 +57,7 @@ public class AggregatorService : Aggregator.AggregatorBase
 
 ## <a name="configure-httpclient"></a>Configurare HttpClient
 
-`HttpClientFactory`Crea l' `HttpClient` oggetto utilizzato dal client gRPC. I `HttpClientFactory` metodi standard possono essere usati per aggiungere il middleware della richiesta in uscita o per `HttpClientHandler` configurare il `HttpClient`sottostante di:
+`HttpClientFactory`Crea l'oggetto `HttpClient` utilizzato dal client gRPC. I `HttpClientFactory` metodi standard possono essere usati per aggiungere il middleware della richiesta in uscita o per configurare il sottostante `HttpClientHandler` di `HttpClient` :
 
 ```csharp
 services
@@ -120,6 +108,17 @@ services
         o.Address = new Uri("https://localhost:5001");
     })
     .EnableCallContextPropagation();
+```
+
+Per impostazione predefinita, `EnableCallContextPropagation` genera un errore se il client viene usato al di fuori del contesto di una chiamata gRPC. L'errore è stato progettato per segnalare che non è presente un contesto di chiamata da propagare. Se si desidera utilizzare il client all'esterno di un contesto di chiamata, non visualizzare l'errore quando il client è configurato con `SuppressContextNotFoundErrors` :
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .EnableCallContextPropagation(o => o.SuppressContextNotFoundErrors = true);
 ```
 
 Per ulteriori informazioni sulle scadenze e sull'annullamento RPC, vedere [ciclo di vita RPC](https://www.grpc.io/docs/guides/concepts/#rpc-life-cycle).

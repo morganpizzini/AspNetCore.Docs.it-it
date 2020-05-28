@@ -69,8 +69,8 @@ Razori componenti nelle Blazor app utilizzano ampiamente la Razor sintassi. Se n
 
 Quando si accede al contenuto sulla Razor sintassi, prestare particolare attenzione alle sezioni seguenti:
 
-* [Direttive](xref:mvc/views/razor#directives) &ndash; `@`-parole chiave riservate con prefisso che in genere modificano il modo in cui il markup del componente viene analizzato o funzione.
-* [Attributi](xref:mvc/views/razor#directive-attributes) &ndash; di direttiva `@`-parole chiave riservate con prefisso che in genere modificano il modo in cui gli elementi del componente vengono analizzati o funzionano.
+* [Direttive](xref:mvc/views/razor#directives): `@` -parole chiave riservate con prefisso che in genere modificano il modo in cui il markup del componente viene analizzato o funzione.
+* [Attributi di direttiva](xref:mvc/views/razor#directive-attributes): `@` parole chiave riservate con prefisso che in genere modificano il modo in cui gli elementi componente vengono analizzati o funzionano.
 
 ## <a name="static-assets"></a>Asset statici
 
@@ -136,7 +136,7 @@ La sintassi dei parametri *catch-all* ( `*` / `**` ), che acquisisce il percorso
 
 ### <a name="component-parameters"></a>Parametri del componente
 
-I componenti possono avere *parametri del componente*, che vengono definiti usando proprietà pubbliche nella classe Component con l' [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attributo] (xrif: Microsoft. AspNetCore. Components. ParameterAttribute). Usare gli attributi per specificare gli argomenti per un componente nel markup.
+I componenti possono avere *parametri del componente*, che vengono definiti usando proprietà pubbliche nella classe Component con l' [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attributo. Usare gli attributi per specificare gli argomenti per un componente nel markup.
 
 *Components/ChildComponent. Razor*:
 
@@ -974,7 +974,7 @@ Tuttavia, il markup SVG inline non è supportato in tutti gli scenari. Se si ins
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* <xref:security/blazor/server/threat-mitigation>&ndash;Include informazioni aggiuntive sulla compilazione Blazor App server che devono essere confrontate con l'esaurimento delle risorse.
+* <xref:security/blazor/server/threat-mitigation>: Include informazioni aggiuntive sulla creazione di Blazor app server che devono essere confrontate con l'esaurimento delle risorse.
 
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>

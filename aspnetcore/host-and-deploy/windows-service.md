@@ -1,24 +1,11 @@
 ---
-title: Ospitare ASP.NET Core in un servizio Windows
-author: rick-anderson
-description: Informazioni su come ospitare un'app ASP.NET Core in un servizio Windows.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/windows-service
-ms.openlocfilehash: 4ad9086c60e58f89bdde4962d7487036df251cc1
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776344"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Ospitare ASP.NET Core in un servizio Windows
 
@@ -52,8 +39,8 @@ L'app richiede un riferimento al pacchetto per [Microsoft. Extensions. Hosting. 
 * Imposta la [radice del contenuto](xref:fundamentals/index#content-root) su [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory). Per altre informazioni, vedere la sezione [Directory corrente e radice del contenuto](#current-directory-and-content-root).
 * Abilita la registrazione nel registro eventi:
   * Il nome dell'applicazione viene usato come nome di origine predefinito.
-  * Il livello di registrazione predefinito è *avviso* o superiore per un'app basata su un modello di ASP.NET Core `CreateDefaultBuilder` che chiama per compilare l'host.
-  * Eseguire l'override del livello di registrazione `Logging:EventLog:LogLevel:Default` predefinito con la chiave in *appSettings. JSON*/*appSettings. { Environment}. JSON* o un altro provider di configurazione.
+  * Il livello di registrazione predefinito è *avviso* o superiore per un'app basata su un modello di ASP.NET Core che chiama `CreateDefaultBuilder` per compilare l'host.
+  * Eseguire l'override del livello di registrazione predefinito con la `Logging:EventLog:LogLevel:Default` chiave in *appSettings. JSON* / *appSettings. { Environment}. JSON* o un altro provider di configurazione.
   * Solo gli amministratori possono creare nuove origini eventi. Quando non è possibile creare un'origine evento usando il nome dell'applicazione, viene registrato un avviso nell'origine *Applicazione* e i log eventi vengono disabilitati.
 
 In `CreateHostBuilder` di *Program.cs*:
@@ -66,10 +53,10 @@ Host.CreateDefaultBuilder(args)
 
 Questo argomento è accompagnato dalle app di esempio seguenti:
 
-* Il servizio Worker &ndash; in background è un esempio di app non Web basato sul [modello di servizio](#worker-service-template) del ruolo di lavoro che usa i [servizi ospitati](xref:fundamentals/host/hosted-services) per le attività in background.
-* Esempio di servizio &ndash; Razor app Web esempio di app Web di esempio che viene eseguito come servizio Windows con [servizi ospitati](xref:fundamentals/host/hosted-services) per le attività in background.
+* Esempio di servizio di lavoro in background: un esempio di app non Web basato sul [modello di servizio](#worker-service-template) del ruolo di lavoro che usa i [servizi ospitati](xref:fundamentals/host/hosted-services) per le attività in background.
+* Esempio di servizio app Web: un Razor esempio di app Web di pagine che viene eseguito come servizio Windows con [servizi ospitati](xref:fundamentals/host/hosted-services) per le attività in background.
 
-Per informazioni aggiuntive su MVC, vedere gli <xref:mvc/overview> articoli <xref:migration/22-to-30>in e.
+Per informazioni aggiuntive su MVC, vedere gli articoli in <xref:mvc/overview> e <xref:migration/22-to-30> .
 
 ## <a name="deployment-type"></a>Tipo di distribuzione
 
@@ -115,7 +102,7 @@ Un [identificatore di runtime (RID)](/dotnet/core/rid-catalog) di Windows viene 
 Per eseguire la pubblicazione per più identificatori di runtime:
 
 * Specificare gli identificatori di runtime in un elenco delimitato da punto e virgola.
-* Usare il nome [ \<della proprietà RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plurale).
+* Usare il nome della proprietà [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plurale).
 
 Per altre informazioni, vedere il [Catalogo RID di .NET Core](/dotnet/core/rid-catalog).
 
@@ -153,7 +140,7 @@ Per stabilire i diritti *Accesso come servizio* per un account utente di servizi
 1. Selezionare **Aggiungi utente o gruppo**.
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Seleziona **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows
@@ -172,12 +159,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}`&ndash; Percorso della cartella dell'app nell'host (ad esempio, `d:\myservice`). Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
-* `{DOMAIN OR COMPUTER NAME\USER}`&ndash; Account utente del servizio (ad esempio `Contoso\ServiceUser`,).
-* `{SERVICE NAME}`&ndash; Nome del servizio (ad esempio `MyService`,).
-* `{EXE FILE PATH}`&ndash; Percorso eseguibile dell'app (ad esempio, `d:\myservice\myservice.exe`). Includere il nome del file eseguibile con l'estensione.
-* `{DESCRIPTION}`&ndash; Descrizione del servizio (ad esempio `My sample service`,).
-* `{DISPLAY NAME}`&ndash; Nome visualizzato del servizio (ad esempio `My Service`,).
+* `{EXE PATH}`: Percorso della cartella dell'app nell'host (ad esempio, `d:\myservice` ). Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
+* `{DOMAIN OR COMPUTER NAME\USER}`: Account utente del servizio (ad esempio, `Contoso\ServiceUser` ).
+* `{SERVICE NAME}`: Nome del servizio (ad esempio, `MyService` ).
+* `{EXE FILE PATH}`: Percorso eseguibile dell'app (ad esempio, `d:\myservice\myservice.exe` ). Includere il nome del file eseguibile con l'estensione.
+* `{DESCRIPTION}`: Descrizione del servizio (ad esempio, `My sample service` ).
+* `{DISPLAY NAME}`: Nome visualizzato del servizio (ad esempio, `My Service` ).
 
 ### <a name="start-a-service"></a>Avviare un servizio
 
@@ -226,7 +213,7 @@ I servizi che interagiscono con le richieste da Internet o da una rete aziendale
 
 ## <a name="configure-endpoints"></a>Configurare gli endpoint
 
-Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e la porta impostando `ASPNETCORE_URLS` la variabile di ambiente.
+Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e la porta impostando la `ASPNETCORE_URLS` variabile di ambiente.
 
 Per ulteriori approcci alla configurazione di porte e URL, vedere l'articolo relativo al server pertinente:
 
@@ -250,11 +237,11 @@ Quando l'app viene eseguita come servizio, <xref:Microsoft.Extensions.Hosting.Wi
 
 File di impostazioni predefinite dell'app, *appSettings. JSON* e *appSettings. { Environment}. JSON*, viene caricato dalla radice del contenuto dell'app chiamando [CreateDefaultBuilder durante la costruzione dell'host](xref:fundamentals/host/generic-host#set-up-a-host).
 
-Per gli altri file di impostazioni caricati dal codice <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>Developer in, non è necessario chiamare <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. Nell'esempio seguente il file *custom_settings. JSON* esiste nella radice del contenuto dell'app e viene caricato senza impostare esplicitamente un percorso di base:
+Per gli altri file di impostazioni caricati dal codice Developer in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> , non è necessario chiamare <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> . Nell'esempio seguente il file *custom_settings. JSON* esiste nella radice del contenuto dell'app e viene caricato senza impostare esplicitamente un percorso di base:
 
 [!code-csharp[](windows-service/samples_snapshot/CustomSettingsExample.cs?highlight=13)]
 
-Non tentare di usare <xref:System.IO.Directory.GetCurrentDirectory*> per ottenere un percorso di risorsa perché un'app di servizio Windows restituisce la cartella *C:\\Windows\\system32* come directory corrente.
+Non tentare di usare <xref:System.IO.Directory.GetCurrentDirectory*> per ottenere un percorso di risorsa perché un'app di servizio Windows restituisce la cartella *C: \\ Windows \\ system32* come directory corrente.
 
 ### <a name="store-a-services-files-in-a-suitable-location-on-disk"></a>Archiviare i file di un servizio in un percorso appropriato nel disco
 
@@ -262,7 +249,7 @@ Specificare un percorso assoluto con <xref:Microsoft.Extensions.Configuration.Fi
 
 ## <a name="troubleshoot"></a>Risolvere problemi
 
-Per risolvere i problemi relativi a un'app <xref:test/troubleshoot>di servizio Windows, vedere.
+Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:test/troubleshoot> .
 
 ### <a name="common-errors"></a>Errori comuni
 
@@ -271,9 +258,9 @@ Per risolvere i problemi relativi a un'app <xref:test/troubleshoot>di servizio W
   * *bin/Release/{Target Framework}/Publish* (FDD)
   * *bin/Release/{Target Framework}/{Runtime Identifier}/Publish* (SCD)
 * Il servizio non è nello stato in esecuzione.
-* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c\\:\\Windows system32*.
+* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c: \\ Windows \\ system32*.
 * L'utente non dispone *di diritti di accesso come servizio* .
-* La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione `New-Service` del comando di PowerShell.
+* La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione del `New-Service` comando di PowerShell.
 * L'app richiede l'autenticazione ASP.NET Core ma non è configurata per le connessioni protette (HTTPS).
 * La porta dell'URL della richiesta non è corretta o non è configurata correttamente nell'app.
 
@@ -297,7 +284,7 @@ Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del
 1. Eliminare le cartelle *bin* e *obj*.
 1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
-   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il `nuget locals all -clear`comando. *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
+   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il comando `nuget locals all -clear` . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
 
 1. Ripristinare e ricompilare il progetto.
 1. Eliminare tutti i file nella cartella di distribuzione nel server prima di ridistribuire l'app.
@@ -395,7 +382,7 @@ Se il servizio esegue solo attività in background, ad esempio [servizi ospitati
 
 La distribuzione dipendente dal framework si basa sulla presenza di una versione condivisa a livello di sistema di .NET Core nel sistema di destinazione. Quando lo scenario di distribuzione dipendente dal framework viene implementato in base alle indicazioni di questo articolo, l'SDK genera un file eseguibile (con estensione *exe*) detto *eseguibile dipendente dal framework*.
 
-L'identificatore di Windows [Runtime (RID)](/dotnet/core/rid-catalog) ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contiene il Framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe*) per Windows e un'app che dipende dal framework .NET Core condiviso.
+L'identificatore di Windows [Runtime (RID)](/dotnet/core/rid-catalog) ( [\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier) ) contiene il Framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe*) per Windows e un'app che dipende dal framework .NET Core condiviso.
 
 Un file *web.config*, che viene normalmente generato quando si pubblica un'app ASP.NET Core, non è necessario per un'app di servizi Windows. Per disabilitare la creazione del file *web.config*, aggiungere la proprietà `<IsTransformWebConfigDisabled>` impostata su `true`.
 
@@ -421,7 +408,7 @@ Un [identificatore di runtime (RID)](/dotnet/core/rid-catalog) di Windows viene 
 Per eseguire la pubblicazione per più identificatori di runtime:
 
 * Specificare gli identificatori di runtime in un elenco delimitato da punto e virgola.
-* Usare il nome [ \<della proprietà RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plurale).
+* Usare il nome della proprietà [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plurale).
 
 Per altre informazioni, vedere il [Catalogo RID di .NET Core](/dotnet/core/rid-catalog).
 
@@ -465,7 +452,7 @@ Per stabilire i diritti *Accesso come servizio* per un account utente di servizi
 1. Selezionare **Aggiungi utente o gruppo**.
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Seleziona **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows
@@ -484,12 +471,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}`&ndash; Percorso della cartella dell'app nell'host (ad esempio, `d:\myservice`). Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
-* `{DOMAIN OR COMPUTER NAME\USER}`&ndash; Account utente del servizio (ad esempio `Contoso\ServiceUser`,).
-* `{SERVICE NAME}`&ndash; Nome del servizio (ad esempio `MyService`,).
-* `{EXE FILE PATH}`&ndash; Percorso eseguibile dell'app (ad esempio, `d:\myservice\myservice.exe`). Includere il nome del file eseguibile con l'estensione.
-* `{DESCRIPTION}`&ndash; Descrizione del servizio (ad esempio `My sample service`,).
-* `{DISPLAY NAME}`&ndash; Nome visualizzato del servizio (ad esempio `My Service`,).
+* `{EXE PATH}`: Percorso della cartella dell'app nell'host (ad esempio, `d:\myservice` ). Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
+* `{DOMAIN OR COMPUTER NAME\USER}`: Account utente del servizio (ad esempio, `Contoso\ServiceUser` ).
+* `{SERVICE NAME}`: Nome del servizio (ad esempio, `MyService` ).
+* `{EXE FILE PATH}`: Percorso eseguibile dell'app (ad esempio, `d:\myservice\myservice.exe` ). Includere il nome del file eseguibile con l'estensione.
+* `{DESCRIPTION}`: Descrizione del servizio (ad esempio, `My sample service` ).
+* `{DISPLAY NAME}`: Nome visualizzato del servizio (ad esempio, `My Service` ).
 
 ### <a name="start-a-service"></a>Avviare un servizio
 
@@ -558,7 +545,7 @@ I servizi che interagiscono con le richieste da Internet o da una rete aziendale
 
 ## <a name="configure-endpoints"></a>Configurare gli endpoint
 
-Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e la porta impostando `ASPNETCORE_URLS` la variabile di ambiente.
+Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e la porta impostando la `ASPNETCORE_URLS` variabile di ambiente.
 
 Per ulteriori approcci alla configurazione di porte e URL, vedere l'articolo relativo al server pertinente:
 
@@ -576,7 +563,7 @@ La directory di lavoro corrente restituita chiamando <xref:System.IO.Directory.G
 
 ### <a name="set-the-content-root-path-to-the-apps-folder"></a>Impostare il percorso radice del contenuto sulla cartella dell'app
 
-<xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> è lo stesso percorso fornito all'argomento `binPath` durante la creazione di un servizio. Anziché chiamare `GetCurrentDirectory` per creare percorsi per i file di impostazioni, <xref:System.IO.Directory.SetCurrentDirectory*> chiamare con il percorso della radice del [contenuto](xref:fundamentals/index#content-root)dell'app.
+<xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> è lo stesso percorso fornito all'argomento `binPath` durante la creazione di un servizio. Anziché chiamare `GetCurrentDirectory` per creare percorsi per i file di impostazioni, chiamare <xref:System.IO.Directory.SetCurrentDirectory*> con il percorso della radice del [contenuto](xref:fundamentals/index#content-root)dell'app.
 
 In `Program.Main`, determinare il percorso della cartella dell'eseguibile del servizio e usare il percorso per stabilire la radice del contenuto dell'app:
 
@@ -596,7 +583,7 @@ Specificare un percorso assoluto con <xref:Microsoft.Extensions.Configuration.Fi
 
 ## <a name="troubleshoot"></a>Risolvere problemi
 
-Per risolvere i problemi relativi a un'app <xref:test/troubleshoot>di servizio Windows, vedere.
+Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:test/troubleshoot> .
 
 ### <a name="common-errors"></a>Errori comuni
 
@@ -605,9 +592,9 @@ Per risolvere i problemi relativi a un'app <xref:test/troubleshoot>di servizio W
   * *bin/Release/{Target Framework}/Publish* (FDD)
   * *bin/Release/{Target Framework}/{Runtime Identifier}/Publish* (SCD)
 * Il servizio non è nello stato in esecuzione.
-* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c\\:\\Windows system32*.
+* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c: \\ Windows \\ system32*.
 * L'utente non dispone *di diritti di accesso come servizio* .
-* La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione `New-Service` del comando di PowerShell.
+* La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione del `New-Service` comando di PowerShell.
 * L'app richiede l'autenticazione ASP.NET Core ma non è configurata per le connessioni protette (HTTPS).
 * La porta dell'URL della richiesta non è corretta o non è configurata correttamente nell'app.
 
@@ -631,7 +618,7 @@ Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del
 1. Eliminare le cartelle *bin* e *obj*.
 1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
-   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il `nuget locals all -clear`comando. *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
+   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il comando `nuget locals all -clear` . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
 
 1. Ripristinare e ricompilare il progetto.
 1. Eliminare tutti i file nella cartella di distribuzione nel server prima di ridistribuire l'app.
@@ -729,7 +716,7 @@ Se il servizio esegue solo attività in background, ad esempio [servizi ospitati
 
 La distribuzione dipendente dal framework si basa sulla presenza di una versione condivisa a livello di sistema di .NET Core nel sistema di destinazione. Quando lo scenario di distribuzione dipendente dal framework viene implementato in base alle indicazioni di questo articolo, l'SDK genera un file eseguibile (con estensione *exe*) detto *eseguibile dipendente dal framework*.
 
-L'identificatore di Windows [Runtime (RID)](/dotnet/core/rid-catalog) ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contiene il Framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe*) per Windows e un'app che dipende dal framework .NET Core condiviso.
+L'identificatore di Windows [Runtime (RID)](/dotnet/core/rid-catalog) ( [\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier) ) contiene il Framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe*) per Windows e un'app che dipende dal framework .NET Core condiviso.
 
 La proprietà `<UseAppHost>` è impostata su `true`. Questa proprietà fornisce il servizio con un percorso di attivazione (un file eseguibile, *.exe*) per una distribuzione dipendente dal framework.
 
@@ -758,7 +745,7 @@ Un [identificatore di runtime (RID)](/dotnet/core/rid-catalog) di Windows viene 
 Per eseguire la pubblicazione per più identificatori di runtime:
 
 * Specificare gli identificatori di runtime in un elenco delimitato da punto e virgola.
-* Usare il nome [ \<della proprietà RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plurale).
+* Usare il nome della proprietà [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plurale).
 
 Per altre informazioni, vedere il [Catalogo RID di .NET Core](/dotnet/core/rid-catalog).
 
@@ -802,7 +789,7 @@ Per stabilire i diritti *Accesso come servizio* per un account utente di servizi
 1. Selezionare **Aggiungi utente o gruppo**.
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Seleziona **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows
@@ -821,12 +808,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}`&ndash; Percorso della cartella dell'app nell'host (ad esempio, `d:\myservice`). Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
-* `{DOMAIN OR COMPUTER NAME\USER}`&ndash; Account utente del servizio (ad esempio `Contoso\ServiceUser`,).
-* `{SERVICE NAME}`&ndash; Nome del servizio (ad esempio `MyService`,).
-* `{EXE FILE PATH}`&ndash; Percorso eseguibile dell'app (ad esempio, `d:\myservice\myservice.exe`). Includere il nome del file eseguibile con l'estensione.
-* `{DESCRIPTION}`&ndash; Descrizione del servizio (ad esempio `My sample service`,).
-* `{DISPLAY NAME}`&ndash; Nome visualizzato del servizio (ad esempio `My Service`,).
+* `{EXE PATH}`: Percorso della cartella dell'app nell'host (ad esempio, `d:\myservice` ). Non includere l'eseguibile dell'app nel percorso. Non è necessario aggiungere una barra finale.
+* `{DOMAIN OR COMPUTER NAME\USER}`: Account utente del servizio (ad esempio, `Contoso\ServiceUser` ).
+* `{SERVICE NAME}`: Nome del servizio (ad esempio, `MyService` ).
+* `{EXE FILE PATH}`: Percorso eseguibile dell'app (ad esempio, `d:\myservice\myservice.exe` ). Includere il nome del file eseguibile con l'estensione.
+* `{DESCRIPTION}`: Descrizione del servizio (ad esempio, `My sample service` ).
+* `{DISPLAY NAME}`: Nome visualizzato del servizio (ad esempio, `My Service` ).
 
 ### <a name="start-a-service"></a>Avviare un servizio
 
@@ -895,7 +882,7 @@ I servizi che interagiscono con le richieste da Internet o da una rete aziendale
 
 ## <a name="configure-endpoints"></a>Configurare gli endpoint
 
-Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e la porta impostando `ASPNETCORE_URLS` la variabile di ambiente.
+Per impostazione predefinita, ASP.NET Core è associato a `http://localhost:5000`. Configurare l'URL e la porta impostando la `ASPNETCORE_URLS` variabile di ambiente.
 
 Per ulteriori approcci alla configurazione di porte e URL, vedere l'articolo relativo al server pertinente:
 
@@ -913,7 +900,7 @@ La directory di lavoro corrente restituita chiamando <xref:System.IO.Directory.G
 
 ### <a name="set-the-content-root-path-to-the-apps-folder"></a>Impostare il percorso radice del contenuto sulla cartella dell'app
 
-<xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> è lo stesso percorso fornito all'argomento `binPath` durante la creazione di un servizio. Anziché chiamare `GetCurrentDirectory` per creare percorsi per i file di impostazioni, <xref:System.IO.Directory.SetCurrentDirectory*> chiamare con il percorso della radice del [contenuto](xref:fundamentals/index#content-root)dell'app.
+<xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> è lo stesso percorso fornito all'argomento `binPath` durante la creazione di un servizio. Anziché chiamare `GetCurrentDirectory` per creare percorsi per i file di impostazioni, chiamare <xref:System.IO.Directory.SetCurrentDirectory*> con il percorso della radice del [contenuto](xref:fundamentals/index#content-root)dell'app.
 
 In `Program.Main`, determinare il percorso della cartella dell'eseguibile del servizio e usare il percorso per stabilire la radice del contenuto dell'app:
 
@@ -933,7 +920,7 @@ Specificare un percorso assoluto con <xref:Microsoft.Extensions.Configuration.Fi
 
 ## <a name="troubleshoot"></a>Risolvere problemi
 
-Per risolvere i problemi relativi a un'app <xref:test/troubleshoot>di servizio Windows, vedere.
+Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:test/troubleshoot> .
 
 ### <a name="common-errors"></a>Errori comuni
 
@@ -942,9 +929,9 @@ Per risolvere i problemi relativi a un'app <xref:test/troubleshoot>di servizio W
   * *bin/Release/{Target Framework}/Publish* (FDD)
   * *bin/Release/{Target Framework}/{Runtime Identifier}/Publish* (SCD)
 * Il servizio non è nello stato in esecuzione.
-* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c\\:\\Windows system32*.
+* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c: \\ Windows \\ system32*.
 * L'utente non dispone *di diritti di accesso come servizio* .
-* La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione `New-Service` del comando di PowerShell.
+* La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione del `New-Service` comando di PowerShell.
 * L'app richiede l'autenticazione ASP.NET Core ma non è configurata per le connessioni protette (HTTPS).
 * La porta dell'URL della richiesta non è corretta o non è configurata correttamente nell'app.
 
@@ -968,7 +955,7 @@ Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del
 1. Eliminare le cartelle *bin* e *obj*.
 1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
-   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il `nuget locals all -clear`comando. *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
+   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il comando `nuget locals all -clear` . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
 
 1. Ripristinare e ricompilare il progetto.
 1. Eliminare tutti i file nella cartella di distribuzione nel server prima di ridistribuire l'app.

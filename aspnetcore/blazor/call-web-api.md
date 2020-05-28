@@ -56,9 +56,9 @@ L'indirizzo di base del client viene impostato sull'indirizzo del server di orig
 
 Negli esempi seguenti, un'API Web todo elabora le operazioni di creazione, lettura, aggiornamento ed eliminazione (CRUD). Gli esempi sono basati su una `TodoItem` classe che archivia:
 
-* ID ( `Id` , `long` ) &ndash; ID univoco dell'elemento.
-* Nome ( `Name` , `string` ) &ndash; nome dell'elemento.
-* Status ( `IsComplete` , `bool` ) &ndash; indica se l'elemento todo è terminato.
+* ID ( `Id` , `long` ): ID univoco dell'elemento.
+* Nome ( `Name` , `string` ): nome dell'elemento.
+* Status ( `IsComplete` , `bool` ): indica se l'elemento todo è terminato.
 
 ```csharp
 private class TodoItem
@@ -71,7 +71,7 @@ private class TodoItem
 
 I metodi helper JSON inviano richieste a un URI (un'API Web negli esempi seguenti) ed elaborano la risposta:
 
-* <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>&ndash;Invia una richiesta HTTP GET e analizza il corpo della risposta JSON per creare un oggetto.
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>: Invia una richiesta HTTP GET e analizza il corpo della risposta JSON per creare un oggetto.
 
   Nel codice seguente, l'oggetto `todoItems` viene visualizzato dal componente. Il `GetTodoItems` metodo viene attivato al termine del rendering del componente ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). Per un esempio completo, vedere l'app di esempio.
 
@@ -87,7 +87,7 @@ I metodi helper JSON inviano richieste a un URI (un'API Web negli esempi seguent
   }
   ```
 
-* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>&ndash;Invia una richiesta HTTP post, incluso il contenuto con codifica JSON, e analizza il corpo della risposta JSON per creare un oggetto.
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>: Invia una richiesta HTTP POST, incluso il contenuto con codifica JSON, e analizza il corpo della risposta JSON per creare un oggetto.
 
   Nel codice seguente, `newItemName` viene fornito da un elemento associato del componente. Il `AddItem` metodo viene attivato selezionando un `<button>` elemento. Per un esempio completo, vedere l'app di esempio.
 
@@ -115,7 +115,7 @@ I metodi helper JSON inviano richieste a un URI (un'API Web negli esempi seguent
   var content = response.Content.ReadFromJsonAsync<WeatherForecast>();
   ```
 
-* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>&ndash;Invia una richiesta HTTP PUT, incluso il contenuto con codifica JSON.
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>: Invia una richiesta HTTP PUT, incluso il contenuto con codifica JSON.
 
   Nel codice seguente, `editItem` i valori per `Name` e `IsCompleted` vengono forniti dagli elementi associati del componente. L'elemento `Id` viene impostato quando l'elemento viene selezionato in un'altra parte dell'interfaccia utente e `EditItem` viene chiamato. Il `SaveItem` metodo viene attivato selezionando l'elemento Save `<button>` . Per un esempio completo, vedere l'app di esempio.
 
@@ -301,7 +301,7 @@ Per consentire ad altri siti di effettuare richieste di condivisione di risorse 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* <xref:security/blazor/webassembly/additional-scenarios>&ndash;Include la copertura sull'uso <xref:System.Net.Http.HttpClient> di per creare richieste API Web sicure.
+* <xref:security/blazor/webassembly/additional-scenarios>: Include la copertura sull'uso <xref:System.Net.Http.HttpClient> di per creare richieste API Web sicure.
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
 * [Configurazione dell'endpoint HTTPS di gheppio](xref:fundamentals/servers/kestrel#endpoint-configuration)

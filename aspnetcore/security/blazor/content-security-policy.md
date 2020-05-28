@@ -28,14 +28,14 @@ CSP è supportato nella maggior parte dei browser moderni per desktop e per disp
 
 Specificare almeno le direttive e le origini seguenti per le Blazor app. Aggiungere altre direttive e origini in base alle esigenze. Le direttive seguenti vengono usate nella sezione [applicare i criteri](#apply-the-policy) di questo articolo, in cui sono disponibili i criteri di sicurezza di esempio per Blazor webassembly e Blazor Server:
 
-* [URI](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri) &ndash; di base Limita gli URL per il tag di una pagina `<base>` . Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.
-* [Block-All-Mixed-Content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content) &ndash; Impedisce il caricamento di contenuto misto HTTP e HTTPS.
-* [predefinito-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src) &ndash; Indica un fallback per le direttive di origine non specificate in modo esplicito dai criteri. Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.
-* [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src) &ndash; Indica le origini valide per le immagini.
+* [URI di base](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): limita gli URL per il tag di una pagina `<base>` . Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.
+* [Block-All-Mixed-Content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): impedisce il caricamento di contenuto misto http e HTTPS.
+* [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): indica un fallback per le direttive di origine non specificate in modo esplicito dal criterio. Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.
+* [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): indica le origini valide per le immagini.
   * `data:`Consente di specificare di consentire il caricamento di immagini dagli `data:` URL.
   * `https:`Consente di specificare di consentire il caricamento di immagini dagli endpoint HTTPS.
-* [oggetto-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src) &ndash; Indica le origini valide per `<object>` i `<embed>` tag, e `<applet>` . Specificare `none` per impedire tutte le origini URL.
-* [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src) &ndash; Indica le origini valide per gli script.
+* [Object-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): indica le origini valide per `<object>` i `<embed>` tag, e `<applet>` . Specificare `none` per impedire tutte le origini URL.
+* [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): indica le origini valide per gli script.
   * Specificare l' `https://stackpath.bootstrapcdn.com/` origine host per gli script bootstrap.
   * Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.
   * In un' Blazor app webassembly:
@@ -45,11 +45,11 @@ Specificare almeno le direttive e le origini seguenti per le Blazor app. Aggiung
       * `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=`
     * Specificare `unsafe-eval` per usare `eval()` i metodi e per la creazione di codice da stringhe.
   * In un' Blazor app Server specificare l' `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` hash per lo script inline che esegue il rilevamento del fallback per i fogli di stile.
-* [stile-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src) &ndash; Indica le origini valide per i fogli di stile.
+* [Style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): indica le origini valide per i fogli di stile.
   * Specificare l' `https://stackpath.bootstrapcdn.com/` origine host per i fogli di stile bootstrap.
   * Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.
   * Specificare `unsafe-inline` per consentire l'utilizzo di stili inline. La dichiarazione inline è necessaria per l'interfaccia utente nelle Blazor app Server per la riconnessione del client e del server dopo la richiesta iniziale. In una versione futura, lo stile inline potrebbe essere rimosso in modo che `unsafe-inline` non sia più necessario.
-* [aggiornamento-non sicuro-richieste](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests) &ndash; Indica che gli URL di contenuto provenienti da origini non sicure (HTTP) devono essere acquisiti in modo sicuro tramite HTTPS.
+* [upgrade-unsecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): indica che gli URL del contenuto da origini non sicure (http) devono essere acquisiti in modo sicuro su HTTPS.
 
 Le direttive precedenti sono supportate da tutti i browser ad eccezione di Microsoft Internet Explorer.
 
@@ -140,7 +140,7 @@ Sebbene `report-uri` non sia più consigliato per l'uso, è necessario usare ent
 
 Testare e aggiornare i criteri di un'app ogni versione.
 
-## <a name="troubleshoot"></a>Risoluzione dei problemi
+## <a name="troubleshoot"></a>Risolvere problemi
 
 * Gli errori vengono visualizzati nella console degli strumenti di sviluppo del browser. I browser forniscono informazioni su:
   * Elementi che non sono conformi ai criteri.

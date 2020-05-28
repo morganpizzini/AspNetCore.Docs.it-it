@@ -1,24 +1,11 @@
 ---
-title: Registrazione a prestazioni elevate con LoggerMessage in ASP.NET Core
-author: rick-anderson
-description: Informazioni su come usare LoggerMessage per creare delegati inseribili nella cache che richiedono un numero minore di allocazioni di oggetti per scenari di registrazione a prestazioni elevate.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 08/26/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/logging/loggermessage
-ms.openlocfilehash: 67281b99f1ed8955ee29eb68b446d71a0c5c7838
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768364"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="high-performance-logging-with-loggermessage-in-aspnet-core"></a>Registrazione a prestazioni elevate con LoggerMessage in ASP.NET Core
 
@@ -102,7 +89,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-L'app di esempio implementa un modello [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) per l'eliminazione dell'offerta. Per un'operazione di eliminazione con esito positivo, viene registrato un messaggio informativo. Per un'operazione di eliminazione con la generazione di un'eccezione, viene registrato un messaggio di errore. Il messaggio di log per un'operazione di eliminazione con esito negativo include l'analisi dello stack dell'eccezione (*Internal/LoggerExtensions.cs*):
+L'app di esempio implementa un modello [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) per l'eliminazione delle virgolette. Per un'operazione di eliminazione con esito positivo, viene registrato un messaggio informativo. Per un'operazione di eliminazione con la generazione di un'eccezione, viene registrato un messaggio di errore. Il messaggio di log per un'operazione di eliminazione con esito negativo include l'analisi dello stack dell'eccezione (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -112,7 +99,7 @@ Si noti come l'eccezione viene passata al delegato in `QuoteDeleteFailed`:
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-Nel modello di pagina per la pagina di indice l'eliminazione di un'offerta con esito positivo chiama il metodo `QuoteDeleted` nel logger. Quando non viene trovata un'offerta per l'eliminazione, viene generata un'eccezione <xref:System.ArgumentNullException>. L'eccezione viene intercettata dall'istruzione [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrata chiamando il metodo `QuoteDeleteFailed` nel logger nel blocco [catch](/dotnet/csharp/language-reference/keywords/try-catch) (*Pages/Index.cshtml.cs*):
+Nel modello di pagina per la pagina di indice l'eliminazione di un'offerta con esito positivo chiama il metodo `QuoteDeleted` nel logger. Quando non viene trovata un'offerta per l'eliminazione, viene generata un'eccezione <xref:System.ArgumentNullException>. L'eccezione viene intercettata dall'istruzione [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrata chiamando il `QuoteDeleteFailed` metodo sul logger nel blocco [catch](/dotnet/csharp/language-reference/keywords/try-catch) (*pages/index. cshtml. cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=9,13)]
 
@@ -268,7 +255,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-L'app di esempio implementa un modello [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) per l'eliminazione dell'offerta. Per un'operazione di eliminazione con esito positivo, viene registrato un messaggio informativo. Per un'operazione di eliminazione con la generazione di un'eccezione, viene registrato un messaggio di errore. Il messaggio di log per un'operazione di eliminazione con esito negativo include l'analisi dello stack dell'eccezione (*Internal/LoggerExtensions.cs*):
+L'app di esempio implementa un modello [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) per l'eliminazione delle virgolette. Per un'operazione di eliminazione con esito positivo, viene registrato un messaggio informativo. Per un'operazione di eliminazione con la generazione di un'eccezione, viene registrato un messaggio di errore. Il messaggio di log per un'operazione di eliminazione con esito negativo include l'analisi dello stack dell'eccezione (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -278,7 +265,7 @@ Si noti come l'eccezione viene passata al delegato in `QuoteDeleteFailed`:
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-Nel modello di pagina per la pagina di indice l'eliminazione di un'offerta con esito positivo chiama il metodo `QuoteDeleted` nel logger. Quando non viene trovata un'offerta per l'eliminazione, viene generata un'eccezione <xref:System.ArgumentNullException>. L'eccezione viene intercettata dall'istruzione [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrata chiamando il metodo `QuoteDeleteFailed` nel logger nel blocco [catch](/dotnet/csharp/language-reference/keywords/try-catch) (*Pages/Index.cshtml.cs*):
+Nel modello di pagina per la pagina di indice l'eliminazione di un'offerta con esito positivo chiama il metodo `QuoteDeleted` nel logger. Quando non viene trovata un'offerta per l'eliminazione, viene generata un'eccezione <xref:System.ArgumentNullException>. L'eccezione viene intercettata dall'istruzione [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrata chiamando il `QuoteDeleteFailed` metodo sul logger nel blocco [catch](/dotnet/csharp/language-reference/keywords/try-catch) (*pages/index. cshtml. cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=14,18)]
 

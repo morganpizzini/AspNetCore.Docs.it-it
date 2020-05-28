@@ -65,7 +65,7 @@ Per alcuni eventi, i tipi di argomento dell'evento sono consentiti. La specifica
 
 <xref:System.EventArgs>I supportati sono riportati nella tabella seguente.
 
-| Event            | Classe                | Eventi e note DOM |
+| Evento            | Classe                | Eventi e note DOM |
 | ---
 title:' ASP.NET Core Blazor gestione eventi ' Author: Description:' informazioni sulle Blazor funzionalità di gestione degli eventi, inclusi i tipi di argomenti dell'evento, i callback degli eventi e la gestione degli eventi predefiniti del browser.
 monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
@@ -267,7 +267,7 @@ monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 Per altre informazioni, vedere le seguenti risorse:
 
 * [Classi EventArgs nell'origine riferimento ASP.NET Core (ramo DotNet/aspnetcore Release/3.1)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/Components/Web/src/Web).
-* [Documentazione Web MDN: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers) &ndash; Include informazioni su quali elementi HTML supportano ogni evento DOM.
+* [MDN Web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers): include informazioni su quali elementi HTML supportano ogni evento DOM.
 
 ## <a name="lambda-expressions"></a>Espressioni lambda
 

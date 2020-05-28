@@ -1,24 +1,11 @@
 ---
-title: Host ASP.NET Core in Windows con IIS
-author: rick-anderson
-description: Informazioni su come ospitare app ASP.NET Core in Windows Server Internet Information Services (IIS).
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 5/7/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/iis/index
-ms.openlocfilehash: c3841babe213a9a3f303b8f9b83a947fd33ad647
-ms.sourcegitcommit: 6c7a149168d2c4d747c36de210bfab3abd60809a
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "83003124"
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Host ASP.NET Core in Windows con IIS
 
@@ -83,7 +70,7 @@ Il diagramma seguente illustra la relazione tra IIS, il modulo ASP.NET Core e un
 
 1. Una richiesta arriva dal Web al driver HTTP.sys in modalità kernel.
 1. Il driver instrada la richiesta nativa IIS sulla porta configurata per il sito Web, in genere 80 (HTTP) o 443 (HTTPS).
-1. Il modulo ASP.NET Core riceve la richiesta nativa e la passa al server HTTP IIS (`IISHttpServer`). Il server HTTP di IIS è un'implementazione di server in-process per IIS che converte la richiesta da nativa a gestita.
+1. Il modulo ASP.NET Core riceve la richiesta nativa e la passa al server HTTP IIS ( `IISHttpServer` ). Il server HTTP di IIS è un'implementazione di server in-process per IIS che converte la richiesta da nativa a gestita.
 
 Dopo l'elaborazione della richiesta da parte del server HTTP IIS:
 
@@ -111,7 +98,7 @@ Il diagramma seguente illustra la relazione tra IIS, il modulo ASP.NET Core e un
 1. Il modulo Invia le richieste a gheppio su una porta casuale per l'app. La porta casuale non è 80 o 443.
 
 <!-- make this a bullet list -->
-Il modulo ASP.NET Core specifica la porta tramite una variabile di ambiente all'avvio. L' <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> estensione configura il server per l'ascolto `http://localhost:{PORT}`. Vengono eseguiti controlli aggiuntivi e le richieste che non provengono dal modulo vengono rifiutate. Il modulo non supporta l'invio HTTPS. Le richieste vengono inviate tramite HTTP anche se ricevute da IIS su HTTPS.
+Il modulo ASP.NET Core specifica la porta tramite una variabile di ambiente all'avvio. L' <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> estensione configura il server per l'ascolto `http://localhost:{PORT}` . Vengono eseguiti controlli aggiuntivi e le richieste che non provengono dal modulo vengono rifiutate. Il modulo non supporta l'invio HTTPS. Le richieste vengono inviate tramite HTTP anche se ricevute da IIS su HTTPS.
 
 Quando il gheppio preleva la richiesta dal modulo, la richiesta viene trasmessa alla pipeline del middleware ASP.NET Core. La pipeline middleware gestisce la richiesta e la passa come istanza di `HttpContext` alla logica dell'app. Il middleware aggiunto dall'integrazione di IIS aggiorna lo schema, l'IP remoto e il percorso di base all'account per l'inoltro della richiesta a Kestrel. La risposta dell'app viene passata di nuovo a IIS, che la inoltra al client HTTP che ha avviato la richiesta.
 
@@ -123,7 +110,7 @@ Per altre informazioni sull'hosting, vedere [Hosting in ASP.NET Core](xref:funda
 
 ### <a name="enable-the-iisintegration-components"></a>Abilitare i componenti IISIntegration
 
-Quando si compila un host `CreateHostBuilder` in (*Program.cs*), <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> chiamare per abilitare l'integrazione con IIS:
+Quando si compila un host in `CreateHostBuilder` (*Program.cs*), chiamare <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> per abilitare l'integrazione con IIS:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -147,11 +134,118 @@ services.Configure<IISServerOptions>(options =>
 ```
 
 | Opzione                         | Predefinito | Impostazione |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Se `true`, IIS Server imposta l'utente `HttpContext.User` autenticato tramite l'[autenticazione di Windows](xref:security/authentication/windowsauth). Se `false`, il server fornisce solo un'identità per `HttpContext.User` e risponde alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere [Autenticazione di Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato dagli utenti nelle pagine di accesso. |
-| `AllowSynchronousIO`           | `false` | Indica se l'i/O sincrono è `HttpContext.Request` consentito per `HttpContext.Response`e. |
-| `MaxRequestBodySize`           | `30000000`  | Ottiene o imposta la dimensione massima del corpo della richiesta per `HttpRequest`. Notare che IIS stesso include il limite `maxAllowedContentLength`, che verrà elaborato prima del set `MaxRequestBodySize` in `IISServerOptions`. La modifica di `MaxRequestBodySize` non influisce su `maxAllowedContentLength`. Per aumentare `maxAllowedContentLength`, aggiungere una voce in *web.config* per impostare `maxAllowedContentLength` su un valore superiore. Per ulteriori informazioni, vedere [Configurazione](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+--------------- | :-----: | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---- | | `AutomaticAuthentication`      | `true`  | Se `true` , il server IIS imposta l' `HttpContext.User` autenticazione di [Windows](xref:security/authentication/windowsauth)autenticata. Se `false`, il server fornisce solo un'identità per `HttpContext.User` e risponde alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere [Autenticazione di Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato degli utenti nelle pagine di accesso. | | `AllowSynchronousIO`           | `false` | Indica se l'i/O sincrono è consentito per `HttpContext.Request` e `HttpContext.Response` . | | `MaxRequestBodySize`           | `30000000`  | Ottiene o imposta le dimensioni massime del corpo della richiesta per l'oggetto `HttpRequest` . Notare che IIS stesso include il limite `maxAllowedContentLength`, che verrà elaborato prima del set `MaxRequestBodySize` in `IISServerOptions`. La modifica di `MaxRequestBodySize` non influisce su `maxAllowedContentLength`. Per aumentare `maxAllowedContentLength`, aggiungere una voce in *web.config* per impostare `maxAllowedContentLength` su un valore superiore. Per ulteriori informazioni, vedere [Configurazione](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
 
 **Modello di hosting out-of-process**
 
@@ -165,10 +259,118 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Opzione                         | Predefinito | Impostazione |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Se `true`, il [middleware di integrazione IIS](#enable-the-iisintegration-components) imposta `HttpContext.User` autenticato tramite l'[autenticazione di Windows](xref:security/authentication/windowsauth). Se `false`, il middleware fornisce solo un'identità per `HttpContext.User` e risponde solo alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere l'argomento [Autenticazione di Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato dagli utenti nelle pagine di accesso. |
-| `ForwardClientCertificate`     | `true`  | Se è `true` ed è presente l’intestazione della richiesta `MS-ASPNETCORE-CLIENTCERT`, `HttpContext.Connection.ClientCertificate` viene popolato. |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+--------------- | :-----: | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---- | | `AutomaticAuthentication`      | `true`  | Se `true` , il [middleware di integrazione di IIS](#enable-the-iisintegration-components) imposta l' `HttpContext.User` autenticazione di [Windows](xref:security/authentication/windowsauth)autenticata. Se `false`, il middleware fornisce solo un'identità per `HttpContext.User` e risponde solo alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere l'argomento [Autenticazione di Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato degli utenti nelle pagine di accesso. | | `ForwardClientCertificate`     | `true`  | Se `true` e l' `MS-ASPNETCORE-CLIENTCERT` intestazione della richiesta è presente, `HttpContext.Connection.ClientCertificate` viene popolato. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Scenari con server proxy e servizi di bilanciamento del carico
 
@@ -195,7 +397,7 @@ Se nel progetto è presente un file *web.config*, il file viene trasformato con 
 
 Il file *web.config* può fornire ulteriori impostazioni di configurazione di IIS che controllano i moduli IIS attivi. Per informazioni sui moduli IIS in grado di elaborare le richieste con le app di ASP.NET Core, vedere l'argomento [Moduli IIS](xref:host-and-deploy/iis/modules).
 
-Per impedire che Web SDK trasformi il file *web.config*, usare la proprietà **\<IsTransformWebConfigDisabled >** nel file di progetto:
+Per impedire a Web SDK di trasformare il file *Web. config* , utilizzare la **\<IsTransformWebConfigDisabled>** proprietà nel file di progetto:
 
 ```xml
 <PropertyGroup>
@@ -209,13 +411,13 @@ Quando si disabilita la trasformazione del file in Web SDK, il valore di *proces
 
 Per configurare correttamente il [modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) , il file *Web. config* deve essere presente nel percorso [radice del contenuto](xref:fundamentals/index#content-root) (in genere il percorso di base dell'app) dell'app distribuita. Corrisponde al percorso fisico del sito Web fornito a IIS. Il file *web.config* deve essere presente nella radice dell'app per abilitare la pubblicazione di più app mediante Distribuzione Web.
 
-Nel percorso fisico dell'app sono presenti file riservati, ad esempio * \<assembly>. runtimeconfig. JSON*, * \<assembly>. XML* (commenti in formato documentazione XML) e * \<assembly>. Deps. JSON*. Quando il file *web.config* è presente e il sito viene avviato normalmente, IIS non rende disponibili questi file riservati se vengono richiesti. Se il file *web.config* non è presente, ha un nome non corretto o non è in grado di configurare il sito per l'avvio normale, IIS potrebbe rendere disponibili pubblicamente i file riservati.
+I file sensibili sono presenti nel percorso fisico dell'app, ad esempio * \<assembly> . runtimeconfig. JSON*, * \<assembly> . XML* (commenti in formato documentazione XML) e * \<assembly> . Deps. JSON*. Quando il file *web.config* è presente e il sito viene avviato normalmente, IIS non rende disponibili questi file riservati se vengono richiesti. Se il file *web.config* non è presente, ha un nome non corretto o non è in grado di configurare il sito per l'avvio normale, IIS potrebbe rendere disponibili pubblicamente i file riservati.
 
 **Il file *Web. config* deve essere sempre presente nella distribuzione, denominato correttamente e in grado di configurare il sito per l'avvio normale. Non rimuovere mai il file *Web. config* da una distribuzione di produzione.**
 
 ### <a name="transform-webconfig"></a>Trasformare web.config
 
-Se è necessario trasformare *Web. config* durante la pubblicazione, vedere <xref:host-and-deploy/iis/transform-webconfig>. Potrebbe essere necessario trasformare *Web. config* in Publish per impostare le variabili di ambiente in base alla configurazione, al profilo o all'ambiente.
+Se è necessario trasformare *Web. config* durante la pubblicazione, vedere <xref:host-and-deploy/iis/transform-webconfig> . Potrebbe essere necessario trasformare *Web. config* in Publish per impostare le variabili di ambiente in base alla configurazione, al profilo o all'ambiente.
 
 ## <a name="iis-configuration"></a>Configurazione di IIS
 
@@ -232,10 +434,10 @@ Abilitare il ruolo del server **Server Web (IIS)** e stabilire i servizi di ruol
    ![I servizi ruolo predefiniti vengono selezionati nel passaggio Selezionare i servizi ruolo.](index/_static/role-services-ws2016.png)
 
    **Autenticazione di Windows (facoltativa)**  
-   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: > **sicurezza**del **server Web**. Selezionare la funzionalità **Autenticazione di Windows**. Per altre informazioni, vedere [Autenticazione di Windows\<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
+   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: sicurezza del **server Web**  >  **Security**. Selezionare la funzionalità **Autenticazione di Windows**. Per ulteriori informazioni, vedere [ \<windowsAuthentication> autenticazione di Windows](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [configurare l'autenticazione di Windows](xref:security/authentication/windowsauth).
 
    **WebSockets (facoltativo)**  
-   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: > **sviluppo di applicazioni** **server Web**. Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
+   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: sviluppo di applicazioni **server Web**  >  **Application Development**. Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
 
 1. Procedere con il passaggio **Conferma** per installare il ruolo del server web e i servizi. Dopo l'installazione del ruolo **server Web (IIS)** non è necessario riavviare il server o IIS.
 
@@ -254,10 +456,10 @@ Abilitare **Console di gestione IIS** e **Servizi Web**.
 1. Accettare le funzionalità predefinite per **Servizi World Wide Web** o personalizzare le funzionalità IIS.
 
    **Autenticazione di Windows (facoltativa)**  
-   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: World Wide Web**sicurezza** **dei servizi** > . Selezionare la funzionalità **Autenticazione di Windows**. Per altre informazioni, vedere [Autenticazione di Windows\<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
+   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: **World Wide Web sicurezza dei servizi**  >  **Security**. Selezionare la funzionalità **Autenticazione di Windows**. Per ulteriori informazioni, vedere [ \<windowsAuthentication> autenticazione di Windows](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [configurare l'autenticazione di Windows](xref:security/authentication/windowsauth).
 
    **WebSockets (facoltativo)**  
-   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti:**funzionalità di sviluppo di applicazioni**di **World Wide Web Services** > . Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
+   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: funzionalità di sviluppo di applicazioni di **World Wide Web Services**  >  **Application Development Features**. Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
 
 1. Se l'installazione di IIS richiede un riavvio, riavviare il sistema.
 
@@ -294,11 +496,11 @@ Per ottenere una versione precedente del programma di installazione:
 
 1. Eseguire il programma di installazione nel server. Quando si esegue il programma di installazione da una shell dei comandi di amministratore sono disponibili i parametri seguenti:
 
-   * `OPT_NO_ANCM=1`&ndash; Ignorare l'installazione del modulo ASP.NET Core.
-   * `OPT_NO_RUNTIME=1`&ndash; Ignorare l'installazione del runtime di .NET Core. Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_SHAREDFX=1`&ndash; Ignorare l'installazione del Framework condiviso ASP.NET (runtime ASP.NET). Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_X86=1`&ndash; Ignorare l'installazione di Runtime x86. Usare questo parametro se si è certi che non verrà eseguito l'hosting di app a 32 bit. Se non esiste alcuna possibilità che in futuro venga eseguito l'hosting di app sia a 32 che a 64 bit, non usare questo parametro e installare entrambi i runtime.
-   * `OPT_NO_SHARED_CONFIG_CHECK=1` &ndash; Disabilitare il controllo dell'uso di una configurazione condivisa di IIS quando la configurazione condivisa (*applicationHost.config*) è nello stesso computer dell'installazione di IIS. *Disponibile solo per i programmi di installazione di bundler di hosting ASP.NET Core 2.2 o versioni successive.* Per altre informazioni, vedere <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
+   * `OPT_NO_ANCM=1`: Ignorare l'installazione del modulo ASP.NET Core.
+   * `OPT_NO_RUNTIME=1`: Ignorare l'installazione del runtime di .NET Core. Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_SHAREDFX=1`: Ignora l'installazione del Framework condiviso ASP.NET (runtime ASP.NET). Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_X86=1`: Ignora l'installazione di Runtime x86. Usare questo parametro se si è certi che non verrà eseguito l'hosting di app a 32 bit. Se non esiste alcuna possibilità che in futuro venga eseguito l'hosting di app sia a 32 che a 64 bit, non usare questo parametro e installare entrambi i runtime.
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`: Disabilitare il controllo per l'utilizzo di una configurazione condivisa di IIS quando la configurazione condivisa (*ApplicationHost. config*) si trova nello stesso computer dell'installazione di IIS. *Disponibile solo per i programmi di installazione di bundler di hosting ASP.NET Core 2.2 o versioni successive.* Per altre informazioni, vedere <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
 1. Riavviare il sistema o eseguire i comandi seguenti in una shell dei comandi:
 
    ```console
@@ -346,13 +548,13 @@ Quando si distribuiscono app ai server con [Distribuzione Web](/iis/install/inst
 
 1. *ASP.NET Core 2.2 o versione successiva*:
 
-   * Per una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd) a 32 bit (x86) pubblicata con un SDK a 32 bit che usa il [modello di hosting in-process](#in-process-hosting-model), abilitare il Pool di applicazioni per 32 bit. In Gestione IIS passare a **pool di applicazioni** nella barra laterale **connessioni** . Selezionare il pool di applicazioni dell'app. Nella barra laterale **azioni** selezionare **Impostazioni avanzate**. Impostare **Abilita applicazioni a 32 bit** su `True`. 
+   * Per una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd) a 32 bit (x86) pubblicata con un SDK a 32 bit che usa il [modello di hosting in-process](#in-process-hosting-model), abilitare il Pool di applicazioni per 32 bit. In Gestione IIS passare a **pool di applicazioni** nella barra laterale **connessioni** . Selezionare il pool di applicazioni dell'app. Nella barra laterale **azioni** selezionare **Impostazioni avanzate**. Impostare **Abilita applicazioni a 32 bit** su `True` . 
 
-   * per una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd) a 64 bit (x64) che usa il [modello di hosting in-process](#in-process-hosting-model), disabilitare il pool di app per i processi a 32 bit (x86). In Gestione IIS passare a **pool di applicazioni** nella barra laterale **connessioni** . Selezionare il pool di applicazioni dell'app. Nella barra laterale **azioni** selezionare **Impostazioni avanzate**. Impostare **Abilita applicazioni a 32 bit** su `False`. 
+   * per una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd) a 64 bit (x64) che usa il [modello di hosting in-process](#in-process-hosting-model), disabilitare il pool di app per i processi a 32 bit (x86). In Gestione IIS passare a **pool di applicazioni** nella barra laterale **connessioni** . Selezionare il pool di applicazioni dell'app. Nella barra laterale **azioni** selezionare **Impostazioni avanzate**. Impostare **Abilita applicazioni a 32 bit** su `False` . 
 
 1. Confermare che l'identità del modello del processo disponga delle autorizzazioni appropriate.
 
-   Se l'identità predefinita del pool di applicazioni (**Process Model** > **identità**del modello di processo) viene modificata da **ApplicationPoolIdentity** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e alle altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
+   Se l'identità predefinita del pool di app (**modello**  >  **Identity** di processo) viene modificata da **ApplicationPoolIdentity** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
 
 **Configurazione dell'autenticazione di Windows (facoltativa)**  
 Per altre informazioni, vedere [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
@@ -470,11 +672,11 @@ Per ospitare un'app ASP.NET Core come app secondaria in un'altra app ASP.NET Cor
 
 1. Fare clic con il pulsante destro del mouse sulla cartella dell'applicazione secondaria in Gestione IIS e scegliere **Converti in applicazione**.
 
-1. Nella finestra di dialogo **Aggiungi applicazione** usare il pulsante **Seleziona** per **Pool di applicazioni** per assegnare il pool di app creato per l'app secondaria. Selezionare **OK**.
+1. Nella finestra di dialogo **Aggiungi applicazione** usare il pulsante **Seleziona** per **Pool di applicazioni** per assegnare il pool di app creato per l'app secondaria. Seleziona **OK**.
 
 L'assegnazione di un pool di app separato all'app secondaria è un requisito quando si usa il modello di hosting in-process.
 
-Per ulteriori informazioni sul modello di hosting in-process e sulla configurazione del modulo ASP.NET Core, <xref:host-and-deploy/aspnet-core-module>vedere.
+Per ulteriori informazioni sul modello di hosting in-process e sulla configurazione del modulo ASP.NET Core, vedere <xref:host-and-deploy/aspnet-core-module> .
 
 ## <a name="configuration-of-iis-with-webconfig"></a>Configurazione di IIS con web.config
 
@@ -482,11 +684,11 @@ La configurazione di IIS è influenzata dalla sezione `<system.webServer>` di *w
 
 Per altre informazioni, vedere gli argomenti seguenti:
 
-* [Riferimento alla configurazione \<per System. webserver>](/iis/configuration/system.webServer/)
+* [Riferimento alla configurazione per\<system.webServer>](/iis/configuration/system.webServer/)
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/iis/modules>
 
-Per impostare variabili di ambiente per singole app in esecuzione in pool di applicazioni isolate (supportati per IIS 10.0 o versioni successive), vedere la sezione *Comando AppCmd.exe* dell'argomento [Variabili di ambiente \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) nella documentazione di riferimento di IIS.
+Per impostare le variabili di ambiente per singole app in esecuzione in pool di applicazioni isolate (supportate per IIS 10,0 o versioni successive), vedere la sezione *comando appcmd. exe* dell'argomento [ \<environmentVariables> variabili di ambiente](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) nella documentazione di riferimento di IIS.
 
 ## <a name="configuration-sections-of-webconfig"></a>Sezioni di configurazione di web.config
 
@@ -503,14 +705,14 @@ Le applicazioni ASP.NET Core vengono configurate tramite altri provider di confi
 
 L'isolamento dei pool di app è determinato dal modello di hosting:
 
-* Hosting in-process &ndash; Le app devono essere eseguite in pool di app separati.
-* Hosting out-of-process &ndash; È consigliabile isolare le app le une dalle altre eseguendo ogni app nel relativo pool di applicazioni.
+* Hosting in-process: le app sono necessarie per l'esecuzione in pool di applicazioni separati.
+* Hosting out-of-process: è consigliabile isolare le app le une dalle altre eseguendo ogni app nel proprio pool di applicazioni.
 
 Nella finestra di dialogo **Aggiungi sito Web** è selezionato per impostazione predefinita un singolo pool di app per ogni app. Quando si specifica un valore in **Nome del sito**, il testo viene automaticamente trasferito alla casella di testo **Pool di applicazioni**. Quando si aggiunge il sito viene creato un nuovo pool di applicazioni con il nome del sito.
 
-## <a name="application-pool-identity"></a>Identità del pool di applicazione
+## <a name="application-pool-identity"></a>Pool di applicazioniIdentity
 
-Un account di identità del pool di app consente di eseguire un'app in un account univoco, senza dover creare e gestire domini o account locali. In IIS 8.0 o versioni successive il processo di lavoro amministrazione IIS (WAS) crea un account virtuale con il nome del nuovo pool di applicazioni ed esegue i processi di lavoro del pool di applicazioni inclusi nell'account per impostazione predefinita. Nella Console di gestione IIS in **Impostazioni avanzate** per il pool di app verificare che **Identità** sia impostata su **ApplicationPoolIdentity**:
+Un account di identità del pool di app consente di eseguire un'app in un account univoco, senza dover creare e gestire domini o account locali. In IIS 8.0 o versioni successive il processo di lavoro amministrazione IIS (WAS) crea un account virtuale con il nome del nuovo pool di applicazioni ed esegue i processi di lavoro del pool di applicazioni inclusi nell'account per impostazione predefinita. Nella console di gestione IIS in **Impostazioni avanzate** per il pool di applicazioni, verificare che **Identity** sia impostato per utilizzare **ApplicationPoolIdentity**:
 
 ![Finestra di dialogo Impostazioni avanzate del pool di applicazione](index/_static/apppool-identity.png)
 
@@ -530,7 +732,7 @@ Se il processo di lavoro IIS richiede l'accesso con privilegi elevati all'app, m
 
    ![Finestra di dialogo Seleziona utenti o gruppi per la cartella dell'app: il nome del pool di applicazioni "DefaultAppPool" viene aggiunto in coda a "IIS AppPool\" nell'area dei nomi degli oggetti prima di selezionare "Controlla nomi".](index/_static/select-users-or-groups-1.png)
 
-1. Selezionare **OK**.
+1. Seleziona **OK**.
 
    ![Finestra di dialogo Seleziona utenti o gruppi per la cartella dell'app: dopo aver selezionato "Controlla nomi", il nome dell'oggetto "DefaultAppPool" viene visualizzato nell'area dei nomi degli oggetti.](index/_static/select-users-or-groups-2.png)
 
@@ -572,8 +774,8 @@ Per un'app ASP.NET Core destinata a .NET Framework, le richieste OPTIONS non ven
 
 Per l'hosting in IIS dal modulo ASP.NET Core versione 2:
 
-* L'app del &ndash; [modulo di inizializzazione dell'applicazione](#application-initialization-module) ospitata [in-process](#in-process-hosting-model) o [out-of-process](#out-of-process-hosting-model) può essere configurata per l'avvio automatico in un processo di lavoro o il riavvio del server.
-* [Timeout di inattività](#idle-timeout) &ndash; L'app ospitata [in-process](#in-process-hosting-model) può essere configurata per non attivare il timeout durante periodi di inattività.
+* [Modulo di inizializzazione dell'applicazione](#application-initialization-module): l'app è ospitata [in-process](#in-process-hosting-model) o [out-of-process](#out-of-process-hosting-model) può essere configurata per l'avvio automatico in un processo di lavoro o il riavvio del server.
+* [Timeout di inattività](#idle-timeout): le app ospitate [in-process](#in-process-hosting-model) possono essere configurate in modo da non eseguire il timeout durante i periodi di inattività.
 
 ### <a name="application-initialization-module"></a>Modulo Inizializzazione applicazione
 
@@ -601,10 +803,10 @@ Per abilitare il modulo Inizializzazione applicazione per il sito, usare uno deg
 
   1. Selezionare **Pool di applicazioni** nel pannello **Connessioni**.
   1. Fare clic con il pulsante destro del mouse sul pool di app dell'app nell'elenco e scegliere **Impostazioni avanzate**.
-  1. L'impostazione predefinita per **Modalità avvio** è **OnDemand**. Impostare **Modalità avvio** su **AlwaysRunning**. Selezionare **OK**.
+  1. L'impostazione predefinita per **Modalità avvio** è **OnDemand**. Impostare **Modalità avvio** su **AlwaysRunning**. Seleziona **OK**.
   1. Aprire il nodo **Siti** nel pannello **Connessioni**.
   1. Fare clic con il pulsante destro del mouse sull'app e scegliere **Gestisci sito Web** > **Impostazioni avanzate**.
-  1. L'impostazione predefinita di **Precaricamento abilitato** è **False**. Impostare **Precaricamento abilitato** su **True**. Selezionare **OK**.
+  1. L'impostazione predefinita di **Precaricamento abilitato** è **False**. Impostare **Precaricamento abilitato** su **True**. Seleziona **OK**.
 
 * Usando *web.config* aggiungere l'elemento `<applicationInitialization>` con `doAppInitAfterRestart` impostato su `true` per gli elementi `<system.webServer>` nel file *web.config* dell'app:
 
@@ -627,7 +829,7 @@ Per evitare l'inattività dell'app, impostare il timeout di inattività del pool
 
 1. Selezionare **Pool di applicazioni** nel pannello **Connessioni**.
 1. Fare clic con il pulsante destro del mouse sul pool di app dell'app nell'elenco e scegliere **Impostazioni avanzate**.
-1. L'impostazione predefinita di **Timeout di inattività (minuti)** è **20** minuti. Impostare **Timeout di inattività (minuti)** su **0** (zero). Selezionare **OK**.
+1. L'impostazione predefinita di **Timeout di inattività (minuti)** è **20** minuti. Impostare **Timeout di inattività (minuti)** su **0** (zero). Seleziona **OK**.
 1. Riciclare il processo di lavoro.
 
 Per evitare il timeout delle app ospitate [out-of-process](#out-of-process-hosting-model), usare uno degli approcci seguenti:
@@ -638,8 +840,8 @@ Per evitare il timeout delle app ospitate [out-of-process](#out-of-process-hosti
 ### <a name="application-initialization-module-and-idle-timeout-additional-resources"></a>Risorse aggiuntive per il modulo Inizializzazione applicazione e il timeout di inattività
 
 * [IIS 8.0 Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization) (Inizializzazione delle applicazioni in IIS 8.0)
-* [Application Initialization \<applicationInitialization>](/iis/configuration/system.webserver/applicationinitialization/) (Inizializzazione delle applicazioni <applicationInitialization>).
-* [Process Model Settings for an Application Pool \<processModel>](/iis/configuration/system.applicationhost/applicationpools/add/processmodel) (Impostazioni del modello di processo per un pool di applicazioni <processModel>).
+* [Inizializzazione \<applicationInitialization> dell'applicazione ](/iis/configuration/system.webserver/applicationinitialization/).
+* [Impostazioni del modello di processo per un \<processModel> pool di applicazioni ](/iis/configuration/system.applicationhost/applicationpools/add/processmodel).
 
 ## <a name="deployment-resources-for-iis-administrators"></a>Risorse di distribuzione per amministratori IIS
 
@@ -715,7 +917,7 @@ Il diagramma seguente illustra la relazione tra IIS, il modulo ASP.NET Core e un
 
 ![Modulo ASP.NET Core nello scenario di hosting in-process](index/_static/ancm-inprocess.png)
 
-Una richiesta arriva dal Web al driver HTTP.sys in modalità kernel. Il driver instrada la richiesta nativa IIS sulla porta configurata per il sito Web, in genere 80 (HTTP) o 443 (HTTPS). Il modulo ASP.NET Core riceve la richiesta nativa e la passa al server HTTP IIS (`IISHttpServer`). Il server HTTP di IIS è un'implementazione di server in-process per IIS che converte la richiesta da nativa a gestita.
+Una richiesta arriva dal Web al driver HTTP.sys in modalità kernel. Il driver instrada la richiesta nativa IIS sulla porta configurata per il sito Web, in genere 80 (HTTP) o 443 (HTTPS). Il modulo ASP.NET Core riceve la richiesta nativa e la passa al server HTTP IIS ( `IISHttpServer` ). Il server HTTP di IIS è un'implementazione di server in-process per IIS che converte la richiesta da nativa a gestita.
 
 Dopo che la richiesta è stata elaborata dal server HTTP di IIS, viene eseguito il push della richiesta nella pipeline middleware ASP.NET Core. La pipeline middleware gestisce la richiesta e la passa come istanza di `HttpContext` alla logica dell'app. La risposta dell'app viene restituita a IIS tramite il server HTTP di IIS. IIS invia la risposta al client che ha avviato la richiesta.
 
@@ -745,7 +947,7 @@ Per altre informazioni sull'hosting, vedere [Hosting in ASP.NET Core](xref:funda
 
 ### <a name="enable-the-iisintegration-components"></a>Abilitare i componenti IISIntegration
 
-Quando si compila un host `CreateWebHostBuilder` in (*Program.cs*), <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> chiamare per abilitare l'integrazione con IIS:
+Quando si compila un host in `CreateWebHostBuilder` (*Program.cs*), chiamare <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> per abilitare l'integrazione con IIS:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -769,9 +971,118 @@ services.Configure<IISServerOptions>(options =>
 ```
 
 | Opzione                         | Predefinito | Impostazione |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Se `true`, IIS Server imposta l'utente `HttpContext.User` autenticato tramite l'[autenticazione di Windows](xref:security/authentication/windowsauth). Se `false`, il server fornisce solo un'identità per `HttpContext.User` e risponde alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere [Autenticazione di Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato dagli utenti nelle pagine di accesso. |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+--------------- | :-----: | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---- | | `AutomaticAuthentication`      | `true`  | Se `true` , il server IIS imposta l' `HttpContext.User` autenticazione di [Windows](xref:security/authentication/windowsauth)autenticata. Se `false`, il server fornisce solo un'identità per `HttpContext.User` e risponde alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere [Autenticazione di Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato degli utenti nelle pagine di accesso. |
 
 **Modello di hosting out-of-process**
 
@@ -785,10 +1096,118 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Opzione                         | Predefinito | Impostazione |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Se `true`, il [middleware di integrazione IIS](#enable-the-iisintegration-components) imposta `HttpContext.User` autenticato tramite l'[autenticazione di Windows](xref:security/authentication/windowsauth). Se `false`, il middleware fornisce solo un'identità per `HttpContext.User` e risponde solo alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere l'argomento [Autenticazione di Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato dagli utenti nelle pagine di accesso. |
-| `ForwardClientCertificate`     | `true`  | Se è `true` ed è presente l’intestazione della richiesta `MS-ASPNETCORE-CLIENTCERT`, `HttpContext.Connection.ClientCertificate` viene popolato. |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+--------------- | :-----: | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---- | | `AutomaticAuthentication`      | `true`  | Se `true` , il [middleware di integrazione di IIS](#enable-the-iisintegration-components) imposta l' `HttpContext.User` autenticazione di [Windows](xref:security/authentication/windowsauth)autenticata. Se `false`, il middleware fornisce solo un'identità per `HttpContext.User` e risponde solo alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere l'argomento [Autenticazione di Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato degli utenti nelle pagine di accesso. | | `ForwardClientCertificate`     | `true`  | Se `true` e l' `MS-ASPNETCORE-CLIENTCERT` intestazione della richiesta è presente, `HttpContext.Connection.ClientCertificate` viene popolato. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Scenari con server proxy e servizi di bilanciamento del carico
 
@@ -808,7 +1227,7 @@ Se nel progetto è presente un file *web.config*, il file viene trasformato con 
 
 Il file *web.config* può fornire ulteriori impostazioni di configurazione di IIS che controllano i moduli IIS attivi. Per informazioni sui moduli IIS in grado di elaborare le richieste con le app di ASP.NET Core, vedere l'argomento [Moduli IIS](xref:host-and-deploy/iis/modules).
 
-Per impedire che Web SDK trasformi il file *web.config*, usare la proprietà **\<IsTransformWebConfigDisabled >** nel file di progetto:
+Per impedire a Web SDK di trasformare il file *Web. config* , utilizzare la **\<IsTransformWebConfigDisabled>** proprietà nel file di progetto:
 
 ```xml
 <PropertyGroup>
@@ -822,7 +1241,7 @@ Quando si disabilita la trasformazione del file in Web SDK, il valore di *proces
 
 Per configurare correttamente il [modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) , il file *Web. config* deve essere presente nel percorso [radice del contenuto](xref:fundamentals/index#content-root) (in genere il percorso di base dell'app) dell'app distribuita. Corrisponde al percorso fisico del sito Web fornito a IIS. Il file *web.config* deve essere presente nella radice dell'app per abilitare la pubblicazione di più app mediante Distribuzione Web.
 
-Nel percorso fisico dell'app sono presenti file riservati, ad esempio * \<assembly>. runtimeconfig. JSON*, * \<assembly>. XML* (commenti in formato documentazione XML) e * \<assembly>. Deps. JSON*. Quando il file *web.config* è presente e il sito viene avviato normalmente, IIS non rende disponibili questi file riservati se vengono richiesti. Se il file *web.config* non è presente, ha un nome non corretto o non è in grado di configurare il sito per l'avvio normale, IIS potrebbe rendere disponibili pubblicamente i file riservati.
+I file sensibili sono presenti nel percorso fisico dell'app, ad esempio * \<assembly> . runtimeconfig. JSON*, * \<assembly> . XML* (commenti in formato documentazione XML) e * \<assembly> . Deps. JSON*. Quando il file *web.config* è presente e il sito viene avviato normalmente, IIS non rende disponibili questi file riservati se vengono richiesti. Se il file *web.config* non è presente, ha un nome non corretto o non è in grado di configurare il sito per l'avvio normale, IIS potrebbe rendere disponibili pubblicamente i file riservati.
 
 **Il file *Web. config* deve essere sempre presente nella distribuzione, denominato correttamente e in grado di configurare il sito per l'avvio normale. Non rimuovere mai il file *Web. config* da una distribuzione di produzione.**
 
@@ -845,10 +1264,10 @@ Abilitare il ruolo del server **Server Web (IIS)** e stabilire i servizi di ruol
    ![I servizi ruolo predefiniti vengono selezionati nel passaggio Selezionare i servizi ruolo.](index/_static/role-services-ws2016.png)
 
    **Autenticazione di Windows (facoltativa)**  
-   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: > **sicurezza**del **server Web**. Selezionare la funzionalità **Autenticazione di Windows**. Per altre informazioni, vedere [Autenticazione di Windows\<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
+   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: sicurezza del **server Web**  >  **Security**. Selezionare la funzionalità **Autenticazione di Windows**. Per ulteriori informazioni, vedere [ \<windowsAuthentication> autenticazione di Windows](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [configurare l'autenticazione di Windows](xref:security/authentication/windowsauth).
 
    **WebSockets (facoltativo)**  
-   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: > **sviluppo di applicazioni** **server Web**. Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
+   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: sviluppo di applicazioni **server Web**  >  **Application Development**. Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
 
 1. Procedere con il passaggio **Conferma** per installare il ruolo del server web e i servizi. Dopo l'installazione del ruolo **server Web (IIS)** non è necessario riavviare il server o IIS.
 
@@ -867,10 +1286,10 @@ Abilitare **Console di gestione IIS** e **Servizi Web**.
 1. Accettare le funzionalità predefinite per **Servizi World Wide Web** o personalizzare le funzionalità IIS.
 
    **Autenticazione di Windows (facoltativa)**  
-   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: World Wide Web**sicurezza** **dei servizi** > . Selezionare la funzionalità **Autenticazione di Windows**. Per altre informazioni, vedere [Autenticazione di Windows\<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
+   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: **World Wide Web sicurezza dei servizi**  >  **Security**. Selezionare la funzionalità **Autenticazione di Windows**. Per ulteriori informazioni, vedere [ \<windowsAuthentication> autenticazione di Windows](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [configurare l'autenticazione di Windows](xref:security/authentication/windowsauth).
 
    **WebSockets (facoltativo)**  
-   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti:**funzionalità di sviluppo di applicazioni**di **World Wide Web Services** > . Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
+   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: funzionalità di sviluppo di applicazioni di **World Wide Web Services**  >  **Application Development Features**. Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
 
 1. Se l'installazione di IIS richiede un riavvio, riavviare il sistema.
 
@@ -899,11 +1318,11 @@ Installare il *bundle di hosting .NET Core* nel sistema di hosting. Il bundle in
 
 1. Eseguire il programma di installazione nel server. Quando si esegue il programma di installazione da una shell dei comandi di amministratore sono disponibili i parametri seguenti:
 
-   * `OPT_NO_ANCM=1`&ndash; Ignorare l'installazione del modulo ASP.NET Core.
-   * `OPT_NO_RUNTIME=1`&ndash; Ignorare l'installazione del runtime di .NET Core. Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_SHAREDFX=1`&ndash; Ignorare l'installazione del Framework condiviso ASP.NET (runtime ASP.NET). Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_X86=1`&ndash; Ignorare l'installazione di Runtime x86. Usare questo parametro se si è certi che non verrà eseguito l'hosting di app a 32 bit. Se non esiste alcuna possibilità che in futuro venga eseguito l'hosting di app sia a 32 che a 64 bit, non usare questo parametro e installare entrambi i runtime.
-   * `OPT_NO_SHARED_CONFIG_CHECK=1` &ndash; Disabilitare il controllo dell'uso di una configurazione condivisa di IIS quando la configurazione condivisa (*applicationHost.config*) è nello stesso computer dell'installazione di IIS. *Disponibile solo per i programmi di installazione di bundler di hosting ASP.NET Core 2.2 o versioni successive.* Per altre informazioni, vedere <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
+   * `OPT_NO_ANCM=1`: Ignorare l'installazione del modulo ASP.NET Core.
+   * `OPT_NO_RUNTIME=1`: Ignorare l'installazione del runtime di .NET Core. Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_SHAREDFX=1`: Ignora l'installazione del Framework condiviso ASP.NET (runtime ASP.NET). Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_X86=1`: Ignora l'installazione di Runtime x86. Usare questo parametro se si è certi che non verrà eseguito l'hosting di app a 32 bit. Se non esiste alcuna possibilità che in futuro venga eseguito l'hosting di app sia a 32 che a 64 bit, non usare questo parametro e installare entrambi i runtime.
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`: Disabilitare il controllo per l'utilizzo di una configurazione condivisa di IIS quando la configurazione condivisa (*ApplicationHost. config*) si trova nello stesso computer dell'installazione di IIS. *Disponibile solo per i programmi di installazione di bundler di hosting ASP.NET Core 2.2 o versioni successive.* Per altre informazioni, vedere <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
 1. Riavviare il sistema o eseguire i comandi seguenti in una shell dei comandi:
 
    ```console
@@ -952,7 +1371,7 @@ Quando si distribuiscono app ai server con [Distribuzione Web](/iis/install/inst
 
 1. Confermare che l'identità del modello del processo disponga delle autorizzazioni appropriate.
 
-   Se l'identità predefinita del pool di applicazioni (**Process Model** > **identità**del modello di processo) viene modificata da **ApplicationPoolIdentity** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e alle altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
+   Se l'identità predefinita del pool di app (**modello**  >  **Identity** di processo) viene modificata da **ApplicationPoolIdentity** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
 
 **Configurazione dell'autenticazione di Windows (facoltativa)**  
 Per altre informazioni, vedere [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
@@ -1070,11 +1489,11 @@ Per ospitare un'app ASP.NET Core come app secondaria in un'altra app ASP.NET Cor
 
 1. Fare clic con il pulsante destro del mouse sulla cartella dell'applicazione secondaria in Gestione IIS e scegliere **Converti in applicazione**.
 
-1. Nella finestra di dialogo **Aggiungi applicazione** usare il pulsante **Seleziona** per **Pool di applicazioni** per assegnare il pool di app creato per l'app secondaria. Selezionare **OK**.
+1. Nella finestra di dialogo **Aggiungi applicazione** usare il pulsante **Seleziona** per **Pool di applicazioni** per assegnare il pool di app creato per l'app secondaria. Seleziona **OK**.
 
 L'assegnazione di un pool di app separato all'app secondaria è un requisito quando si usa il modello di hosting in-process.
 
-Per ulteriori informazioni sul modello di hosting in-process e sulla configurazione del modulo ASP.NET Core, <xref:host-and-deploy/aspnet-core-module>vedere.
+Per ulteriori informazioni sul modello di hosting in-process e sulla configurazione del modulo ASP.NET Core, vedere <xref:host-and-deploy/aspnet-core-module> .
 
 ## <a name="configuration-of-iis-with-webconfig"></a>Configurazione di IIS con web.config
 
@@ -1082,11 +1501,11 @@ La configurazione di IIS è influenzata dalla sezione `<system.webServer>` di *w
 
 Per altre informazioni, vedere gli argomenti seguenti:
 
-* [Riferimento alla configurazione \<per System. webserver>](/iis/configuration/system.webServer/)
+* [Riferimento alla configurazione per\<system.webServer>](/iis/configuration/system.webServer/)
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/iis/modules>
 
-Per impostare variabili di ambiente per singole app in esecuzione in pool di applicazioni isolate (supportati per IIS 10.0 o versioni successive), vedere la sezione *Comando AppCmd.exe* dell'argomento [Variabili di ambiente \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) nella documentazione di riferimento di IIS.
+Per impostare le variabili di ambiente per singole app in esecuzione in pool di applicazioni isolate (supportate per IIS 10,0 o versioni successive), vedere la sezione *comando appcmd. exe* dell'argomento [ \<environmentVariables> variabili di ambiente](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) nella documentazione di riferimento di IIS.
 
 ## <a name="configuration-sections-of-webconfig"></a>Sezioni di configurazione di web.config
 
@@ -1103,14 +1522,14 @@ Le applicazioni ASP.NET Core vengono configurate tramite altri provider di confi
 
 L'isolamento dei pool di app è determinato dal modello di hosting:
 
-* Hosting in-process &ndash; Le app devono essere eseguite in pool di app separati.
-* Hosting out-of-process &ndash; È consigliabile isolare le app le une dalle altre eseguendo ogni app nel relativo pool di applicazioni.
+* Hosting in-process: le app sono necessarie per l'esecuzione in pool di applicazioni separati.
+* Hosting out-of-process: è consigliabile isolare le app le une dalle altre eseguendo ogni app nel proprio pool di applicazioni.
 
 Nella finestra di dialogo **Aggiungi sito Web** è selezionato per impostazione predefinita un singolo pool di app per ogni app. Quando si specifica un valore in **Nome del sito**, il testo viene automaticamente trasferito alla casella di testo **Pool di applicazioni**. Quando si aggiunge il sito viene creato un nuovo pool di applicazioni con il nome del sito.
 
-## <a name="application-pool-identity"></a>Identità del pool di applicazione
+## <a name="application-pool-identity"></a>Pool di applicazioniIdentity
 
-Un account di identità del pool di app consente di eseguire un'app in un account univoco, senza dover creare e gestire domini o account locali. In IIS 8.0 o versioni successive il processo di lavoro amministrazione IIS (WAS) crea un account virtuale con il nome del nuovo pool di applicazioni ed esegue i processi di lavoro del pool di applicazioni inclusi nell'account per impostazione predefinita. Nella Console di gestione IIS in **Impostazioni avanzate** per il pool di app verificare che **Identità** sia impostata su **ApplicationPoolIdentity**:
+Un account di identità del pool di app consente di eseguire un'app in un account univoco, senza dover creare e gestire domini o account locali. In IIS 8.0 o versioni successive il processo di lavoro amministrazione IIS (WAS) crea un account virtuale con il nome del nuovo pool di applicazioni ed esegue i processi di lavoro del pool di applicazioni inclusi nell'account per impostazione predefinita. Nella console di gestione IIS in **Impostazioni avanzate** per il pool di applicazioni, verificare che **Identity** sia impostato per utilizzare **ApplicationPoolIdentity**:
 
 ![Finestra di dialogo Impostazioni avanzate del pool di applicazione](index/_static/apppool-identity.png)
 
@@ -1130,7 +1549,7 @@ Se il processo di lavoro IIS richiede l'accesso con privilegi elevati all'app, m
 
    ![Finestra di dialogo Seleziona utenti o gruppi per la cartella dell'app: il nome del pool di applicazioni "DefaultAppPool" viene aggiunto in coda a "IIS AppPool\" nell'area dei nomi degli oggetti prima di selezionare "Controlla nomi".](index/_static/select-users-or-groups-1.png)
 
-1. Selezionare **OK**.
+1. Seleziona **OK**.
 
    ![Finestra di dialogo Seleziona utenti o gruppi per la cartella dell'app: dopo aver selezionato "Controlla nomi", il nome dell'oggetto "DefaultAppPool" viene visualizzato nell'area dei nomi degli oggetti.](index/_static/select-users-or-groups-2.png)
 
@@ -1172,8 +1591,8 @@ Per un'app ASP.NET Core destinata a .NET Framework, le richieste OPTIONS non ven
 
 Per l'hosting in IIS dal modulo ASP.NET Core versione 2:
 
-* L'app del &ndash; [modulo di inizializzazione dell'applicazione](#application-initialization-module) ospitata [in-process](#in-process-hosting-model) o [out-of-process](#out-of-process-hosting-model) può essere configurata per l'avvio automatico in un processo di lavoro o il riavvio del server.
-* [Timeout di inattività](#idle-timeout) &ndash; L'app ospitata [in-process](#in-process-hosting-model) può essere configurata per non attivare il timeout durante periodi di inattività.
+* [Modulo di inizializzazione dell'applicazione](#application-initialization-module): l'app è ospitata [in-process](#in-process-hosting-model) o [out-of-process](#out-of-process-hosting-model) può essere configurata per l'avvio automatico in un processo di lavoro o il riavvio del server.
+* [Timeout di inattività](#idle-timeout): le app ospitate [in-process](#in-process-hosting-model) possono essere configurate in modo da non eseguire il timeout durante i periodi di inattività.
 
 ### <a name="application-initialization-module"></a>Modulo Inizializzazione applicazione
 
@@ -1201,10 +1620,10 @@ Per abilitare il modulo Inizializzazione applicazione per il sito, usare uno deg
 
   1. Selezionare **Pool di applicazioni** nel pannello **Connessioni**.
   1. Fare clic con il pulsante destro del mouse sul pool di app dell'app nell'elenco e scegliere **Impostazioni avanzate**.
-  1. L'impostazione predefinita per **Modalità avvio** è **OnDemand**. Impostare **Modalità avvio** su **AlwaysRunning**. Selezionare **OK**.
+  1. L'impostazione predefinita per **Modalità avvio** è **OnDemand**. Impostare **Modalità avvio** su **AlwaysRunning**. Seleziona **OK**.
   1. Aprire il nodo **Siti** nel pannello **Connessioni**.
   1. Fare clic con il pulsante destro del mouse sull'app e scegliere **Gestisci sito Web** > **Impostazioni avanzate**.
-  1. L'impostazione predefinita di **Precaricamento abilitato** è **False**. Impostare **Precaricamento abilitato** su **True**. Selezionare **OK**.
+  1. L'impostazione predefinita di **Precaricamento abilitato** è **False**. Impostare **Precaricamento abilitato** su **True**. Seleziona **OK**.
 
 * Usando *web.config* aggiungere l'elemento `<applicationInitialization>` con `doAppInitAfterRestart` impostato su `true` per gli elementi `<system.webServer>` nel file *web.config* dell'app:
 
@@ -1227,7 +1646,7 @@ Per evitare l'inattività dell'app, impostare il timeout di inattività del pool
 
 1. Selezionare **Pool di applicazioni** nel pannello **Connessioni**.
 1. Fare clic con il pulsante destro del mouse sul pool di app dell'app nell'elenco e scegliere **Impostazioni avanzate**.
-1. L'impostazione predefinita di **Timeout di inattività (minuti)** è **20** minuti. Impostare **Timeout di inattività (minuti)** su **0** (zero). Selezionare **OK**.
+1. L'impostazione predefinita di **Timeout di inattività (minuti)** è **20** minuti. Impostare **Timeout di inattività (minuti)** su **0** (zero). Seleziona **OK**.
 1. Riciclare il processo di lavoro.
 
 Per evitare il timeout delle app ospitate [out-of-process](#out-of-process-hosting-model), usare uno degli approcci seguenti:
@@ -1238,8 +1657,8 @@ Per evitare il timeout delle app ospitate [out-of-process](#out-of-process-hosti
 ### <a name="application-initialization-module-and-idle-timeout-additional-resources"></a>Risorse aggiuntive per il modulo Inizializzazione applicazione e il timeout di inattività
 
 * [IIS 8.0 Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization) (Inizializzazione delle applicazioni in IIS 8.0)
-* [Application Initialization \<applicationInitialization>](/iis/configuration/system.webserver/applicationinitialization/) (Inizializzazione delle applicazioni <applicationInitialization>).
-* [Process Model Settings for an Application Pool \<processModel>](/iis/configuration/system.applicationhost/applicationpools/add/processmodel) (Impostazioni del modello di processo per un pool di applicazioni <processModel>).
+* [Inizializzazione \<applicationInitialization> dell'applicazione ](/iis/configuration/system.webserver/applicationinitialization/).
+* [Impostazioni del modello di processo per un \<processModel> pool di applicazioni ](/iis/configuration/system.applicationhost/applicationpools/add/processmodel).
 
 ## <a name="deployment-resources-for-iis-administrators"></a>Risorse di distribuzione per amministratori IIS
 
@@ -1304,7 +1723,7 @@ Il diagramma seguente illustra la relazione tra IIS, il modulo ASP.NET Core e un
 
 Le richieste arrivano dal Web al driver HTTP.sys in modalità kernel. Il driver instrada le richieste a IIS sulla porta configurata per il sito Web, in genere 80 (HTTP) o 443 (HTTPS). Il modulo inoltra le richieste a Kestrel su una porta casuale per l'app non corrispondente alla porta 80 o 443.
 
-Il modulo specifica la porta tramite una variabile di ambiente all'avvio e il [middleware di integrazione di IIS](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configura il server per l' `http://localhost:{port}`ascolto. Vengono eseguiti controlli aggiuntivi e le richieste che non provengono dal modulo vengono rifiutate. Il modulo non supporta l'inoltro HTTPS, pertanto le richieste vengono inoltrate tramite HTTP anche se sono state ricevute da IIS tramite HTTPS.
+Il modulo specifica la porta tramite una variabile di ambiente all'avvio e il [middleware di integrazione di IIS](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configura il server per l'ascolto `http://localhost:{port}` . Vengono eseguiti controlli aggiuntivi e le richieste che non provengono dal modulo vengono rifiutate. Il modulo non supporta l'inoltro HTTPS, pertanto le richieste vengono inoltrate tramite HTTP anche se sono state ricevute da IIS tramite HTTPS.
 
 Dopo che Kestrel ha prelevato la richiesta dal modulo, viene eseguito il push della richiesta nella pipeline middleware ASP.NET Core. La pipeline middleware gestisce la richiesta e la passa come istanza di `HttpContext` alla logica dell'app. Il middleware aggiunto dall'integrazione di IIS aggiorna lo schema, l'IP remoto e il percorso di base all'account per l'inoltro della richiesta a Kestrel. La risposta dell'app viene quindi passata a IIS, che ne esegue di nuovo il push al client HTTP che ha avviato la richiesta.
 
@@ -1326,7 +1745,7 @@ Per altre informazioni sull'hosting, vedere [Hosting in ASP.NET Core](xref:funda
 
 ### <a name="enable-the-iisintegration-components"></a>Abilitare i componenti IISIntegration
 
-Quando si compila un host `CreateWebHostBuilder` in (*Program.cs*), <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> chiamare per abilitare l'integrazione con IIS:
+Quando si compila un host in `CreateWebHostBuilder` (*Program.cs*), chiamare <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> per abilitare l'integrazione con IIS:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -1339,9 +1758,118 @@ Per altre informazioni su `CreateDefaultBuilder`, vedere <xref:fundamentals/host
 ### <a name="iis-options"></a>Opzioni IIS
 
 | Opzione                         | Predefinito | Impostazione |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Se `true`, IIS Server imposta l'utente `HttpContext.User` autenticato tramite l'[autenticazione di Windows](xref:security/authentication/windowsauth). Se `false`, il server fornisce solo un'identità per `HttpContext.User` e risponde alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere [Autenticazione di Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato dagli utenti nelle pagine di accesso. |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+--------------- | :-----: | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---- | | `AutomaticAuthentication`      | `true`  | Se `true` , il server IIS imposta l' `HttpContext.User` autenticazione di [Windows](xref:security/authentication/windowsauth)autenticata. Se `false`, il server fornisce solo un'identità per `HttpContext.User` e risponde alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere [Autenticazione di Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato degli utenti nelle pagine di accesso. |
 
 Per configurare le opzioni di IIS includere una configurazione del servizio per <xref:Microsoft.AspNetCore.Builder.IISOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*>. Nell'esempio seguente si impedisce all'app di popolare `HttpContext.Connection.ClientCertificate`:
 
@@ -1353,10 +1881,118 @@ services.Configure<IISOptions>(options =>
 ```
 
 | Opzione                         | Predefinito | Impostazione |
-| ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | Se `true`, il [middleware di integrazione IIS](#enable-the-iisintegration-components) imposta `HttpContext.User` autenticato tramite l'[autenticazione di Windows](xref:security/authentication/windowsauth). Se `false`, il middleware fornisce solo un'identità per `HttpContext.User` e risponde solo alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere l'argomento [Autenticazione di Windows](xref:security/authentication/windowsauth). |
-| `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato dagli utenti nelle pagine di accesso. |
-| `ForwardClientCertificate`     | `true`  | Se è `true` ed è presente l’intestazione della richiesta `MS-ASPNETCORE-CLIENTCERT`, `HttpContext.Connection.ClientCertificate` viene popolato. |
+| ---
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+-
+title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+--------------- | :-----: | Titolo---: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': 
+
+---- | | `AutomaticAuthentication`      | `true`  | Se `true` , il [middleware di integrazione di IIS](#enable-the-iisintegration-components) imposta l' `HttpContext.User` autenticazione di [Windows](xref:security/authentication/windowsauth)autenticata. Se `false`, il middleware fornisce solo un'identità per `HttpContext.User` e risponde solo alle richieste esplicite di `AuthenticationScheme`. Per il funzionamento di `AutomaticAuthentication` l’autenticazione di Windows deve essere abilitata in IIS. Per altre informazioni, vedere l'argomento [Autenticazione di Windows](xref:security/authentication/windowsauth). | | `AuthenticationDisplayName`    | `null`  | Imposta il nome visualizzato degli utenti nelle pagine di accesso. | | `ForwardClientCertificate`     | `true`  | Se `true` e l' `MS-ASPNETCORE-CLIENTCERT` intestazione della richiesta è presente, `HttpContext.Connection.ClientCertificate` viene popolato. |
 
 ### <a name="proxy-server-and-load-balancer-scenarios"></a>Scenari con server proxy e servizi di bilanciamento del carico
 
@@ -1376,7 +2012,7 @@ Se nel progetto è presente un file *web.config*, il file viene trasformato con 
 
 Il file *web.config* può fornire ulteriori impostazioni di configurazione di IIS che controllano i moduli IIS attivi. Per informazioni sui moduli IIS in grado di elaborare le richieste con le app di ASP.NET Core, vedere l'argomento [Moduli IIS](xref:host-and-deploy/iis/modules).
 
-Per impedire che Web SDK trasformi il file *web.config*, usare la proprietà **\<IsTransformWebConfigDisabled >** nel file di progetto:
+Per impedire a Web SDK di trasformare il file *Web. config* , utilizzare la **\<IsTransformWebConfigDisabled>** proprietà nel file di progetto:
 
 ```xml
 <PropertyGroup>
@@ -1390,7 +2026,7 @@ Quando si disabilita la trasformazione del file in Web SDK, il valore di *proces
 
 Per configurare correttamente il [modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) , il file *Web. config* deve essere presente nel percorso [radice del contenuto](xref:fundamentals/index#content-root) (in genere il percorso di base dell'app) dell'app distribuita. Corrisponde al percorso fisico del sito Web fornito a IIS. Il file *web.config* deve essere presente nella radice dell'app per abilitare la pubblicazione di più app mediante Distribuzione Web.
 
-Nel percorso fisico dell'app sono presenti file riservati, ad esempio * \<assembly>. runtimeconfig. JSON*, * \<assembly>. XML* (commenti in formato documentazione XML) e * \<assembly>. Deps. JSON*. Quando il file *web.config* è presente e il sito viene avviato normalmente, IIS non rende disponibili questi file riservati se vengono richiesti. Se il file *web.config* non è presente, ha un nome non corretto o non è in grado di configurare il sito per l'avvio normale, IIS potrebbe rendere disponibili pubblicamente i file riservati.
+I file sensibili sono presenti nel percorso fisico dell'app, ad esempio * \<assembly> . runtimeconfig. JSON*, * \<assembly> . XML* (commenti in formato documentazione XML) e * \<assembly> . Deps. JSON*. Quando il file *web.config* è presente e il sito viene avviato normalmente, IIS non rende disponibili questi file riservati se vengono richiesti. Se il file *web.config* non è presente, ha un nome non corretto o non è in grado di configurare il sito per l'avvio normale, IIS potrebbe rendere disponibili pubblicamente i file riservati.
 
 **Il file *Web. config* deve essere sempre presente nella distribuzione, denominato correttamente e in grado di configurare il sito per l'avvio normale. Non rimuovere mai il file *Web. config* da una distribuzione di produzione.**
 
@@ -1413,10 +2049,10 @@ Abilitare il ruolo del server **Server Web (IIS)** e stabilire i servizi di ruol
    ![I servizi ruolo predefiniti vengono selezionati nel passaggio Selezionare i servizi ruolo.](index/_static/role-services-ws2016.png)
 
    **Autenticazione di Windows (facoltativa)**  
-   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: > **sicurezza**del **server Web**. Selezionare la funzionalità **Autenticazione di Windows**. Per altre informazioni, vedere [Autenticazione di Windows\<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
+   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: sicurezza del **server Web**  >  **Security**. Selezionare la funzionalità **Autenticazione di Windows**. Per ulteriori informazioni, vedere [ \<windowsAuthentication> autenticazione di Windows](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [configurare l'autenticazione di Windows](xref:security/authentication/windowsauth).
 
    **WebSockets (facoltativo)**  
-   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: > **sviluppo di applicazioni** **server Web**. Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
+   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: sviluppo di applicazioni **server Web**  >  **Application Development**. Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
 
 1. Procedere con il passaggio **Conferma** per installare il ruolo del server web e i servizi. Dopo l'installazione del ruolo **server Web (IIS)** non è necessario riavviare il server o IIS.
 
@@ -1435,10 +2071,10 @@ Abilitare **Console di gestione IIS** e **Servizi Web**.
 1. Accettare le funzionalità predefinite per **Servizi World Wide Web** o personalizzare le funzionalità IIS.
 
    **Autenticazione di Windows (facoltativa)**  
-   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: World Wide Web**sicurezza** **dei servizi** > . Selezionare la funzionalità **Autenticazione di Windows**. Per altre informazioni, vedere [Autenticazione di Windows\<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
+   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: **World Wide Web sicurezza dei servizi**  >  **Security**. Selezionare la funzionalità **Autenticazione di Windows**. Per ulteriori informazioni, vedere [ \<windowsAuthentication> autenticazione di Windows](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [configurare l'autenticazione di Windows](xref:security/authentication/windowsauth).
 
    **WebSockets (facoltativo)**  
-   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti:**funzionalità di sviluppo di applicazioni**di **World Wide Web Services** > . Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
+   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: funzionalità di sviluppo di applicazioni di **World Wide Web Services**  >  **Application Development Features**. Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
 
 1. Se l'installazione di IIS richiede un riavvio, riavviare il sistema.
 
@@ -1467,11 +2103,11 @@ Installare il *bundle di hosting .NET Core* nel sistema di hosting. Il bundle in
 
 1. Eseguire il programma di installazione nel server. Quando si esegue il programma di installazione da una shell dei comandi di amministratore sono disponibili i parametri seguenti:
 
-   * `OPT_NO_ANCM=1`&ndash; Ignorare l'installazione del modulo ASP.NET Core.
-   * `OPT_NO_RUNTIME=1`&ndash; Ignorare l'installazione del runtime di .NET Core. Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_SHAREDFX=1`&ndash; Ignorare l'installazione del Framework condiviso ASP.NET (runtime ASP.NET). Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_X86=1`&ndash; Ignorare l'installazione di Runtime x86. Usare questo parametro se si è certi che non verrà eseguito l'hosting di app a 32 bit. Se non esiste alcuna possibilità che in futuro venga eseguito l'hosting di app sia a 32 che a 64 bit, non usare questo parametro e installare entrambi i runtime.
-   * `OPT_NO_SHARED_CONFIG_CHECK=1` &ndash; Disabilitare il controllo dell'uso di una configurazione condivisa di IIS quando la configurazione condivisa (*applicationHost.config*) è nello stesso computer dell'installazione di IIS. *Disponibile solo per i programmi di installazione di bundler di hosting ASP.NET Core 2.2 o versioni successive.* Per altre informazioni, vedere <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
+   * `OPT_NO_ANCM=1`: Ignorare l'installazione del modulo ASP.NET Core.
+   * `OPT_NO_RUNTIME=1`: Ignorare l'installazione del runtime di .NET Core. Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_SHAREDFX=1`: Ignora l'installazione del Framework condiviso ASP.NET (runtime ASP.NET). Utilizzato quando il server ospita solo le [distribuzioni autosufficienti (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_X86=1`: Ignora l'installazione di Runtime x86. Usare questo parametro se si è certi che non verrà eseguito l'hosting di app a 32 bit. Se non esiste alcuna possibilità che in futuro venga eseguito l'hosting di app sia a 32 che a 64 bit, non usare questo parametro e installare entrambi i runtime.
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`: Disabilitare il controllo per l'utilizzo di una configurazione condivisa di IIS quando la configurazione condivisa (*ApplicationHost. config*) si trova nello stesso computer dell'installazione di IIS. *Disponibile solo per i programmi di installazione di bundler di hosting ASP.NET Core 2.2 o versioni successive.* Per altre informazioni, vedere <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
 1. Riavviare il sistema o eseguire i comandi seguenti in una shell dei comandi:
 
    ```console
@@ -1520,7 +2156,7 @@ Quando si distribuiscono app ai server con [Distribuzione Web](/iis/install/inst
 
 1. Confermare che l'identità del modello del processo disponga delle autorizzazioni appropriate.
 
-   Se l'identità predefinita del pool di app (**modello** > **Identity** di processo) viene modificata da **ApplicationPoolIdentity** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
+   Se l'identità predefinita del pool di app (**modello**  >  **Identity** di processo) viene modificata da **ApplicationPoolIdentity** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
 
 **Configurazione dell'autenticazione di Windows (facoltativa)**  
 Per altre informazioni, vedere [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
@@ -1671,11 +2307,11 @@ Per ospitare un'app ASP.NET Core come app secondaria in un'altra app ASP.NET Cor
 
 1. Fare clic con il pulsante destro del mouse sulla cartella dell'applicazione secondaria in Gestione IIS e scegliere **Converti in applicazione**.
 
-1. Nella finestra di dialogo **Aggiungi applicazione** usare il pulsante **Seleziona** per **Pool di applicazioni** per assegnare il pool di app creato per l'app secondaria. Selezionare **OK**.
+1. Nella finestra di dialogo **Aggiungi applicazione** usare il pulsante **Seleziona** per **Pool di applicazioni** per assegnare il pool di app creato per l'app secondaria. Seleziona **OK**.
 
 L'assegnazione di un pool di app separato all'app secondaria è un requisito quando si usa il modello di hosting in-process.
 
-Per ulteriori informazioni sul modello di hosting in-process e sulla configurazione del modulo ASP.NET Core, <xref:host-and-deploy/aspnet-core-module>vedere.
+Per ulteriori informazioni sul modello di hosting in-process e sulla configurazione del modulo ASP.NET Core, vedere <xref:host-and-deploy/aspnet-core-module> .
 
 ## <a name="configuration-of-iis-with-webconfig"></a>Configurazione di IIS con web.config
 
@@ -1683,11 +2319,11 @@ La configurazione di IIS è influenzata dalla sezione `<system.webServer>` di *w
 
 Per altre informazioni, vedere gli argomenti seguenti:
 
-* [Riferimento alla configurazione \<per System. webserver>](/iis/configuration/system.webServer/)
+* [Riferimento alla configurazione per\<system.webServer>](/iis/configuration/system.webServer/)
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/iis/modules>
 
-Per impostare variabili di ambiente per singole app in esecuzione in pool di applicazioni isolate (supportati per IIS 10.0 o versioni successive), vedere la sezione *Comando AppCmd.exe* dell'argomento [Variabili di ambiente \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) nella documentazione di riferimento di IIS.
+Per impostare le variabili di ambiente per singole app in esecuzione in pool di applicazioni isolate (supportate per IIS 10,0 o versioni successive), vedere la sezione *comando appcmd. exe* dell'argomento [ \<environmentVariables> variabili di ambiente](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) nella documentazione di riferimento di IIS.
 
 ## <a name="configuration-sections-of-webconfig"></a>Sezioni di configurazione di web.config
 
@@ -1726,7 +2362,7 @@ Se il processo di lavoro IIS richiede l'accesso con privilegi elevati all'app, m
 
    ![Finestra di dialogo Seleziona utenti o gruppi per la cartella dell'app: il nome del pool di applicazioni "DefaultAppPool" viene aggiunto in coda a "IIS AppPool\" nell'area dei nomi degli oggetti prima di selezionare "Controlla nomi".](index/_static/select-users-or-groups-1.png)
 
-1. Selezionare **OK**.
+1. Seleziona **OK**.
 
    ![Finestra di dialogo Seleziona utenti o gruppi per la cartella dell'app: dopo aver selezionato "Controlla nomi", il nome dell'oggetto "DefaultAppPool" viene visualizzato nell'area dei nomi degli oggetti.](index/_static/select-users-or-groups-2.png)
 
