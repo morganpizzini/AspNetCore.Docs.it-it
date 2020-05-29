@@ -164,6 +164,16 @@ Quando il servizio BLOB è abilitato per l'hosting di siti Web statici in un acc
 * Impostare **Nome del documento di indice** su `index.html`.
 * Impostare **Percorso del documento di errore** su `index.html`. Razori componenti e altri endpoint non di file non si trovano in percorsi fisici nel contenuto statico archiviato dal servizio BLOB. Quando viene ricevuta una richiesta per una di queste risorse che il Blazor router deve gestire, l'errore *404 non trovato* generato dal servizio BLOB instrada la richiesta al **percorso del documento di errore**. Viene restituito il BLOB *index. html* e il Blazor router carica ed elabora il percorso.
 
+Se i file non vengono caricati in fase di esecuzione a causa di tipi MIME non appropriati nelle intestazioni dei file `Content-Type` , eseguire una delle azioni seguenti:
+
+* Configurare gli strumenti per impostare i tipi MIME corretti ( `Content-Type` intestazioni) quando vengono distribuiti i file.
+* Modificare i tipi MIME ( `Content-Type` intestazioni) per i file dopo la distribuzione dell'app.
+
+  In Storage Explorer (portale di Azure) per ogni file:
+  
+  1. Fare clic con il pulsante destro del mouse sul file e scegliere **Proprietà**.
+  1. Impostare **ContentType** e selezionare il pulsante **Salva** .
+
 Per altre informazioni, vedere [Hosting di siti Web statici in Archiviazione di Azure](/azure/storage/blobs/storage-blob-static-website).
 
 ### <a name="nginx"></a>Nginx
