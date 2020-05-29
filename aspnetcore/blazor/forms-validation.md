@@ -621,3 +621,15 @@ Un effetto collaterale dell'approccio precedente è che un <xref:Microsoft.AspNe
     }
 }
 ```
+
+## <a name="troubleshoot"></a>Risolvere problemi
+
+> InvalidOperationException: EditForm richiede un parametro di modello o un parametro EditContext, ma non entrambi.
+
+Verificare che <xref:Microsoft.AspNetCore.Components.Forms.EditForm> disponga di un oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> o <xref:Microsoft.AspNetCore.Components.Forms.EditContext> .
+
+Quando si assegna un <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> al form, verificare che venga creata un'istanza del tipo di modello, come illustrato nell'esempio seguente:
+
+```csharp
+private ExampleModel exampleModel = new ExampleModel();
+```
