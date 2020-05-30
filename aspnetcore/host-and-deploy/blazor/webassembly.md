@@ -1,11 +1,11 @@
 ---
-title: "host and deploy ASP.NET Core Blazor webassembly" Author: Description: "informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine GitHub".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+title: "host and deploy ASP.NET Core Blazor webassembly" Author: guardrex Description: "informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine di GitHub".
+monikerRange:' >= aspnetcore-3,1' ms. Author: Riande ms. Custom: MVC ms. Date: 05/28/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID '': 
+- ' SignalR ' UID: host-and-deploy/Blazer/webassembly
 
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor Webassembly
@@ -22,9 +22,20 @@ Sono supportate le strategie di distribuzione seguenti:
 * L' Blazor app viene gestita da un'app ASP.NET Core. Questa strategia viene trattata nella sezione [Distribuzione ospitata con ASP.NET Core](#hosted-deployment-with-aspnet-core).
 * L' Blazor app si trova in un server Web o in un servizio di hosting statico, in cui .NET non viene usato per gestire l' Blazor app. Questa strategia è illustrata nella sezione relativa alla [distribuzione autonoma](#standalone-deployment) , che include informazioni sull'hosting di un' Blazor app webassembly come una sub-app IIS.
 
-## <a name="brotli-precompression"></a>Precompressione Brotli
+## <a name="precompression"></a>Precompressione
 
-Quando Blazor viene pubblicata un'app webassembly, l'output viene precompresso usando l' [algoritmo di compressione Brotli](https://tools.ietf.org/html/rfc7932) al livello più alto per ridurre le dimensioni dell'app e rimuovere la necessità di compressione del runtime.
+Quando Blazor viene pubblicata un'app webassembly, l'output viene precompresso per ridurre le dimensioni dell'app e rimuovere la necessità di compressione del runtime. Vengono utilizzati gli algoritmi di compressione seguenti:
+
+* [Brotli](https://tools.ietf.org/html/rfc7932) (livello massimo)
+* [Gzip](https://tools.ietf.org/html/rfc1952))
+
+Per disabilitare la compressione, aggiungere la `BlazorEnableCompression` Proprietà MSBuild al file di progetto dell'app e impostare il valore su `false` :
+
+```xml
+<PropertyGroup>
+  <BlazorEnableCompression>false</BlazorEnableCompression>
+</PropertyGroup>
+```
 
 Per la configurazione della compressione IIS *Web. config* , vedere la sezione relativa alla [compressione IIS: Brotli e gzip](#brotli-and-gzip-compression) .
 
@@ -349,70 +360,12 @@ Un' Blazor app webassembly può essere inizializzata con la `loadBootResource` f
 
 `loadBootResource`i parametri vengono visualizzati nella tabella seguente.
 
-| Parametro    | Descrizione |
-| ---
-title: "host and deploy ASP.NET Core Blazor webassembly" Author: Description: "informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine GitHub".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "host and deploy ASP.NET Core Blazor webassembly" Author: Description: "informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine GitHub".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "host and deploy ASP.NET Core Blazor webassembly" Author: Description: "informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine GitHub".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "host and deploy ASP.NET Core Blazor webassembly" Author: Description: "informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine GitHub".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
------- | Titolo---: "host and deploy ASP.NET Core Blazor webassembly" Author: Description: "informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine GitHub".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "host and deploy ASP.NET Core Blazor webassembly" Author: Description: "informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine GitHub".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "host and deploy ASP.NET Core Blazor webassembly" Author: Description: "informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine GitHub".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
------- | | `type`       | Tipo di risorsa. Tipi di consentiti: `assembly` , `pdb` , `dotnetjs` , `dotnetwasm` , `timezonedata` | | `name`       | Nome della risorsa. | | `defaultUri` | URI relativo o assoluto della risorsa. | | `integrity`  | Stringa di integrità che rappresenta il contenuto previsto nella risposta. |
+| Parametro    | Description |
+| ------------ | ----------- |
+| `type`       | Tipo di risorsa. Tipi di consentiti: `assembly` , `pdb` , `dotnetjs` , `dotnetwasm` ,`timezonedata` |
+| `name`       | Nome della risorsa. |
+| `defaultUri` | URI relativo o assoluto della risorsa. |
+| `integrity`  | Stringa di integrità che rappresenta il contenuto previsto nella risposta. |
 
 `loadBootResource`restituisce uno dei seguenti elementi per eseguire l'override del processo di caricamento:
 

@@ -1,18 +1,18 @@
 ---
-title: "debug ASP.NET Core Blazor webassembly" Author: Description: "informazioni su come eseguire il debug delle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+title: "debug ASP.NET Core Blazor webassembly" Author: guardrex Description: "informazioni su come eseguire il debug delle Blazor app".
+monikerRange:' >= aspnetcore-3,1' ms. Author: Riande ms. Custom: MVC ms. Date: 05/29/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID '': 
+- ' SignalR ' UID: blazer/debug
 
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>Debug ASP.NET Core Blazor Webassembly
 
 [Daniel Roth](https://github.com/danroth27)
 
-BlazorÈ possibile eseguire il debug delle app webassembly usando gli strumenti di sviluppo del browser nei browser basati su cromo (Edge/Chrome).  In alternativa è possibile eseguire il debug dell'app usando Visual Studio o Visual Studio Code.
+BlazorÈ possibile eseguire il debug delle app webassembly usando gli strumenti di sviluppo del browser nei browser basati su cromo (Edge/Chrome). In alternativa, è possibile eseguire il debug dell'app usando Visual Studio o Visual Studio Code.
 
 Gli scenari disponibili includono:
 
@@ -53,6 +53,8 @@ Al termine dell'aggiornamento, il file *launchSettings. JSON* dovrebbe avere un 
 
 * Consente all'IDE di rilevare che l'app è un' Blazor app webassembly.
 * Indica all'infrastruttura di debug degli script di connettersi al browser tramite il Blazor proxy di debug.
+
+I valori segnaposto per i protocolli WebSockets ( `wsProtocol` ), host ( `url.hostname` ), Port ( `url.port` ) e Inspector URI nel browser avviato ( `browserInspectUri` ) sono forniti dal Framework.
 
 ## <a name="visual-studio"></a>Visual Studio
 
@@ -135,6 +137,7 @@ Le mappe di origine del browser consentono al browser di eseguire il mapping dei
 
 ## <a name="troubleshoot"></a>Risolvere problemi
 
-Se si verificano errori, è possibile che venga utile il suggerimento seguente:
+Se si verificano errori, è possibile che vengano visualizzati i suggerimenti seguenti:
 
-Nella scheda **debugger** aprire gli strumenti di sviluppo nel browser. Nella console eseguire `localStorage.clear()` per rimuovere tutti i punti di interruzione.
+* Nella scheda **debugger** aprire gli strumenti di sviluppo nel browser. Nella console eseguire `localStorage.clear()` per rimuovere tutti i punti di interruzione.
+* Verificare di aver installato e considerato attendibile il certificato di sviluppo ASP.NET Core HTTPS. Per altre informazioni, vedere <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.
