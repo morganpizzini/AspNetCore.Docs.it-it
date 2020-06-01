@@ -1,6 +1,6 @@
 ---
 title: "debug ASP.NET Core Blazor webassembly" Author: guardrex Description: "informazioni su come eseguire il debug delle Blazor app".
-monikerRange:' >= aspnetcore-3,1' ms. Author: Riande ms. Custom: MVC ms. Date: 05/29/2020 no-loc:
+monikerRange:' >= aspnetcore-3,1' ms. Author: Riande ms. Custom: MVC ms. Date: 05/31/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
@@ -93,31 +93,114 @@ Quando si esegue il debug dell' Blazor app webassembly, è anche possibile esegu
 
 Per eseguire il debug di un' Blazor app webassembly in Visual Studio Code:
  
-1. Installare l' [estensione C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e l'estensione del [debugger JavaScript (notturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) con `debug.javascript.usePreview` impostato su `true` .
+Installare l' [estensione C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e l'estensione del [debugger JavaScript (notturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) con `debug.javascript.usePreview` impostato su `true` .
 
-   ![Estensioni](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-extensions.png)
+![Estensioni](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-extensions.png)
 
-   ![Debugger di anteprima JS](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-js-use-preview.png)
+![Debugger di anteprima JS](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-js-use-preview.png)
 
-1. Aprire un' Blazor app webassembly esistente con il debug abilitato.
+### <a name="debug-standalone-blazor-webassembly"></a>Debug del Blazor webassembly autonomo
 
-   * Se si riceve la notifica seguente che è necessaria un'installazione aggiuntiva per abilitare il debug, verificare che siano state installate le estensioni corrette e che sia stato abilitato il debug dell'anteprima JavaScript e quindi ricaricare la finestra:
+1. Aprire l' Blazor app webassembly autonoma in vs code.
 
-     ![Installazione aggiuntiva richiesta](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
+   Se viene visualizzata la notifica seguente, è necessaria un'installazione aggiuntiva per abilitare il debug:
+   
+   * Verificare che siano installate le estensioni corrette.
+   * Verificare che l'anteprima JavaScript sia abilitata.
+   * Ricaricare la finestra.
 
-   * Una notifica consente di aggiungere le risorse necessarie all'app per la compilazione e il debug. Selezionare **Sì**:
+   ![Installazione aggiuntiva richiesta](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
 
-     ![Aggiungi asset necessari](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
+1. Avviare il debug usando il tasto di scelta rapida <kbd>F5</kbd> o la voce di menu.
 
-1. L'avvio dell'app nel debugger è un processo in due passaggi:
+1. Quando richiesto, selezionare l'opzione di ** Blazor debug webassembly** per avviare il debug.
 
-   1 \. Per **prima cosa**, avviare l'app usando la configurazione di avvio di **.NET Core ( Blazor standalone)** .
+   ![Elenco delle opzioni di debug disponibili](index/_static/blazor-vscode-debugtypes.png)
 
-   2 \. **Dopo che l'app è stata avviata**, avviare il browser usando l' ** Blazor assembly Web di debug di .NET Core nella configurazione di avvio di Chrome** (richiede Chrome). Per usare Edge anziché Chrome, modificare la `type` della configurazione di avvio in *. VSCODE/Launch. JSON* da `pwa-chrome` a `pwa-msedge` .
+1. Viene avviata l'app autonoma e viene aperto un browser di debug.
 
 1. Impostare un punto di interruzione nel `IncrementCount` metodo nel `Counter` componente, quindi selezionare il pulsante per raggiungere il punto di interruzione:
 
    ![Esegui il debug del contatore in VS Code](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-debug-counter.png)
+
+### <a name="debug-hosted-blazor-webassembly"></a>Debug Blazor webassembly ospitato
+
+1. Aprire l' Blazor app webassembly ospitata in vs code.
+
+1. Se non è impostata alcuna configurazione di avvio per il progetto, viene visualizzata la notifica seguente. Selezionare **Sì**.
+
+   ![Aggiungi asset necessari](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
+
+1. Nella finestra di selezione selezionare il progetto *Server* all'interno della soluzione ospitata.
+
+Viene generato un file *Launch. JSON* con la configurazione di avvio per l'avvio del debugger.
+
+### <a name="attach-to-an-existing-debugging-session"></a>Connetti a una sessione di debug esistente
+
+Per connettersi a un'app in esecuzione Blazor , creare un file *Launch. JSON* con la configurazione seguente:
+
+```json
+{
+  "type": "blazorwasm",
+  "request": "attach",
+  "name": "Attach to Existing Blazor WebAssembly Application"
+}
+```
+
+> [!NOTE]
+> Il fissaggio a una sessione di debug è supportato solo per le app autonome. Per usare il debug dello stack completo, è necessario avviare l'app da VS Code.
+
+### <a name="launch-configuration-options"></a>Opzioni di configurazione di avvio
+
+Per il tipo di debug sono supportate le seguenti opzioni di configurazione di avvio `blazorwasm` .
+
+| Opzione    | Descrizione |
+| --------- | ----------- |
+| `request` | Usare `launch` per avviare e alleghi una sessione di debug a un' Blazor app webassembly o `attach` per alleghi una sessione di debug a un'app già in esecuzione. |
+| `url`     | URL da aprire nel browser durante il debug. Il valore predefinito è `https://localhost:5001`. |
+| `browser` | Browser da avviare per la sessione di debug. Impostare su `edge` o `chrome`. Il valore predefinito è `chrome`. |
+| `trace`   | Usato per generare log dal debugger JS. Impostare su `true` per generare i log. |
+| `hosted`  | Deve essere impostato su `true` se si avvia e si esegue il debug di un' Blazor app webassembly ospitata. |
+| `webRoot` | Specifica il percorso assoluto del server Web. Deve essere impostato se un'app viene gestita da una route secondaria. |
+| `timeout` | Numero di millisecondi di attesa per il fissaggio della sessione di debug. Il valore predefinito è 30.000 millisecondi (30 secondi). |
+| `program` | Riferimento al file eseguibile per eseguire il server dell'app ospitata. Deve essere impostato se `hosted` è `true` . |
+| `cwd`     | Directory di lavoro in cui avviare l'app. Deve essere impostato se `hosted` è `true` . |
+| `env`     | Variabili di ambiente da fornire al processo avviato. Applicabile solo se `hosted` è impostato su `true` . |
+
+### <a name="example-launch-configurations"></a>Configurazioni di avvio di esempio
+
+#### <a name="launch-and-debug-a-standalone-blazor-webassembly-app"></a>Avviare ed eseguire il debug di un' Blazor app webassembly autonoma
+
+```json
+{
+  "type": "blazorwasm",
+  "request": "launch",
+  "name": "Launch and Debug"
+}
+```
+
+#### <a name="attach-to-a-running-app-at-a-specified-url"></a>Connettersi a un'app in esecuzione in un URL specificato
+
+```json
+{
+  "type": "blazorwasm",
+  "request": "attach",
+  "name": "Attach and Debug",
+  "url": "http://localhost:5000"
+}
+```
+
+#### <a name="launch-and-debug-a-hosted-blazor-webassembly-app"></a>Avviare ed eseguire il debug di un' Blazor app webassembly ospitata
+
+```json
+{
+  "type": "blazorwasm",
+  "request": "launch",
+  "name": "Launch and Debug Hosted App",
+  "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/MyHostedApp.Server.dll",
+  "cwd": "${workspaceFolder}"
+}
+```
 
 ## <a name="debug-in-the-browser"></a>Debug nel browser
 

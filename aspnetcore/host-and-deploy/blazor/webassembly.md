@@ -27,7 +27,7 @@ Sono supportate le strategie di distribuzione seguenti:
 Quando Blazor viene pubblicata un'app webassembly, l'output viene precompresso per ridurre le dimensioni dell'app e rimuovere la necessità di compressione del runtime. Vengono utilizzati gli algoritmi di compressione seguenti:
 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (livello massimo)
-* [Gzip](https://tools.ietf.org/html/rfc1952))
+* [Gzip](https://tools.ietf.org/html/rfc1952)
 
 Per disabilitare la compressione, aggiungere la `BlazorEnableCompression` Proprietà MSBuild al file di progetto dell'app e impostare il valore su `false` :
 
@@ -360,7 +360,7 @@ Un' Blazor app webassembly può essere inizializzata con la `loadBootResource` f
 
 `loadBootResource`i parametri vengono visualizzati nella tabella seguente.
 
-| Parametro    | Description |
+| Parametro    | Descrizione |
 | ------------ | ----------- |
 | `type`       | Tipo di risorsa. Tipi di consentiti: `assembly` , `pdb` , `dotnetjs` , `dotnetwasm` ,`timezonedata` |
 | `name`       | Nome della risorsa. |
