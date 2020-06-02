@@ -45,11 +45,11 @@ Quando si crea un nuovo progetto, usare il modello **Applicazione Web di ASP.NET
 
 ## <a name="handle-connection-strings"></a>Gestire le stringhe di connessione
 
-Gli strumenti da riga di comando EF6 che vengono usati nel progetto della libreria di classi EF6 richiedono un costruttore predefinito, così da poter creare un'istanza del contesto. Tuttavia è opportuno specificare la stringa di connessione da usare nel progetto ASP.NET Core. In questo caso il costruttore di contesto deve avere un parametro che consente di passare alla stringa di connessione. Di seguito è riportato un esempio.
+Gli strumenti da riga di comando EF6 che vengono usati nel progetto della libreria di classi EF6 richiedono un costruttore predefinito, così da poter creare un'istanza del contesto. Tuttavia è opportuno specificare la stringa di connessione da usare nel progetto ASP.NET Core. In questo caso il costruttore di contesto deve avere un parametro che consente di passare alla stringa di connessione. Ecco un esempio.
 
 [!code-csharp[](entity-framework-6/sample/EF6/SchoolContext.cs?name=snippet_Constructor)]
 
-Poiché per il contesto EF6 non è presente un costruttore senza parametri, il progetto EF6 deve specificare un'implementazione di [IDbContextFactory](https://msdn.microsoft.com/library/hh506876). Gli strumenti da riga di comando EF6 trovano e usano detta implementazione, così da poter creare un'istanza del contesto. Di seguito è riportato un esempio.
+Poiché per il contesto EF6 non è presente un costruttore senza parametri, il progetto EF6 deve specificare un'implementazione di [IDbContextFactory](https://msdn.microsoft.com/library/hh506876). Gli strumenti da riga di comando EF6 trovano e usano detta implementazione, così da poter creare un'istanza del contesto. Ecco un esempio.
 
 [!code-csharp[](entity-framework-6/sample/EF6/SchoolContextFactory.cs?name=snippet_IDbContextFactory)]
 
@@ -73,10 +73,10 @@ Questo esempio può essere creato da zero tramite i passaggi seguenti in Visual 
 
 * Creare una soluzione.
 
-* **Aggiungi** > **nuova** > **Web** > **applicazione Web ASP.NET Core** Web di progetto
+* **Aggiungi**  >  **Nuovo progetto**  >  **Web**  >  **Applicazione Web ASP.NET Core**
   * Nella finestra di dialogo di selezione del modello di progetto selezionare API e .NET Framework nell'elenco a discesa
 
-* **Aggiungi** > **nuovo progetto** > libreria di classi**Desktop** > di Windows **(.NET Framework)**
+* **Aggiungi**  >  **Nuovo progetto**  >  **Desktop**  >  di Windows **Libreria di classi (.NET Framework)**
 
 * Nella **Console di Gestione pacchetti** eseguire il comando per entrambi i progetti`Install-Package Entityframework`.
 

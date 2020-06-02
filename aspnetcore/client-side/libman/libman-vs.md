@@ -28,7 +28,7 @@ Visual Studio include il supporto incorporato per [LibMan](xref:client-side/libm
 * Supporto per la configurazione e l'esecuzione di operazioni di ripristino di LibMan durante la compilazione.
 * Voci di menu per l'attivazione delle operazioni di ripristino e pulizia del LibMan.
 * Finestra di dialogo Cerca per la ricerca di librerie e l'aggiunta di file a un progetto.
-* Modifica del supporto per il file manifesto Libman in *libman. JSON*&mdash;.
+* Modifica del supporto per il file manifesto LibMan in *libman. JSON* &mdash; .
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/client-side/libman/samples/) [(procedura per il download)](xref:index#how-to-download-a-sample)
 
@@ -47,7 +47,7 @@ I file di libreria possono essere aggiunti a un progetto ASP.NET Core in due mod
 
 Per installare una libreria sul lato client, attenersi alla procedura seguente:
 
-* In **Esplora soluzioni**fare clic con il pulsante destro del mouse sulla cartella del progetto in cui devono essere aggiunti i file. Scegliere **Aggiungi** > **libreria sul lato client**. Viene visualizzata la finestra di dialogo **Aggiungi libreria sul lato client** :
+* In **Esplora soluzioni**fare clic con il pulsante destro del mouse sulla cartella del progetto in cui devono essere aggiunti i file. Scegliere **Aggiungi**  >  **libreria sul lato client**. Viene visualizzata la finestra di dialogo **Aggiungi libreria sul lato client** :
 
   ![Finestra di dialogo Aggiungi libreria sul lato client](_static/add-library-dialog.png)
 
@@ -98,15 +98,15 @@ Per aprire *libman. JSON* per la modifica, sono disponibili le opzioni seguenti:
 * Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Gestisci librerie lato client**. **&#8224;**
 * Selezionare **Gestisci librerie lato client** dal menu **progetto** di Visual Studio. **&#8224;**
 
-**&#8224;** Se il file *libman. JSON* non esiste già nella radice del progetto, verrà creato con il contenuto del modello di elemento predefinito.
+**& #8224;** Se il file *libman. JSON* non esiste già nella radice del progetto, verrà creato con il contenuto del modello di elemento predefinito.
 
-Visual Studio offre supporto avanzato per la modifica di JSON, ad esempio la colorazione, la formattazione, IntelliSense e la convalida dello schema. Lo schema JSON del manifesto LibMan si trova in [https://json.schemastore.org/libman](https://json.schemastore.org/libman).
+Visual Studio offre supporto avanzato per la modifica di JSON, ad esempio la colorazione, la formattazione, IntelliSense e la convalida dello schema. Lo schema JSON del manifesto LibMan si trova in [https://json.schemastore.org/libman](https://json.schemastore.org/libman) .
 
-Con il file manifesto seguente, LibMan recupera i file in base alla configurazione definita `libraries` nella proprietà. Una spiegazione dei valori letterali dell'oggetto definiti `libraries` nei seguenti modi:
+Con il file manifesto seguente, LibMan recupera i file in base alla configurazione definita nella `libraries` Proprietà. Una spiegazione dei valori letterali dell'oggetto definiti nei `libraries` seguenti modi:
 
-* Un subset di [jQuery](https://jquery.com/) versione 3.3.1 viene recuperato dal provider CDNJS. Il subset `files` è definito nella proprietà&mdash;*jQuery. min. js*, *jQuery. js*e *jQuery. min. map*. I file vengono inseriti nella cartella *wwwroot/lib/jQuery* del progetto.
-* L'intera versione di [bootstrap](https://getbootstrap.com/) 4.1.3 viene recuperata e inserita in una cartella *wwwroot/lib/bootstrap* . La `provider` proprietà del valore letterale dell' `defaultProvider` oggetto esegue l'override del valore della proprietà. LibMan recupera i file bootstrap dal provider unpkg.
-* Un subset di [Lodash](https://lodash.com/) è stato approvato da un corpo di governance all'interno dell'organizzazione. I file *lodash. js* e *lodash. min. js* vengono recuperati dal file system locale in *C:\\temp\\lodash\\*. I file vengono copiati nella cartella *wwwroot/lib/lodash* del progetto.
+* Un subset di [jQuery](https://jquery.com/) versione 3.3.1 viene recuperato dal provider CDNJS. Il subset è definito nella `files` proprietà &mdash; *jQuery. min. js*, *jQuery. js*e *jQuery. min. map*. I file vengono inseriti nella cartella *wwwroot/lib/jQuery* del progetto.
+* L'intera versione di [bootstrap](https://getbootstrap.com/) 4.1.3 viene recuperata e inserita in una cartella *wwwroot/lib/bootstrap* . La proprietà del valore letterale dell'oggetto `provider` esegue l'override del `defaultProvider` valore della proprietà. LibMan recupera i file bootstrap dal provider unpkg.
+* Un subset di [Lodash](https://lodash.com/) è stato approvato da un corpo di governance all'interno dell'organizzazione. I file *lodash. js* e *lodash. min. js* vengono recuperati dal file system locale in *C: \\ temp \\ lodash \\ *. I file vengono copiati nella cartella *wwwroot/lib/lodash* del progetto.
 
 [!code-json[](samples/LibManSample/libman.json)]
 
@@ -206,8 +206,8 @@ L'operazione di pulizia elimina solo i file dal progetto. I file di libreria ven
 Per disinstallare i file di libreria:
 
 * Aprire *libman. JSON*.
-* Posizionare il punto di inserimento all'interno `libraries` del valore letterale dell'oggetto corrispondente.
-* Fare clic sull'icona a bulbo chiaro visualizzata nel margine sinistro e selezionare **disinstalla \<library_name> @\<library_version>**:
+* Posizionare il punto di inserimento all'interno del `libraries` valore letterale dell'oggetto corrispondente.
+* Fare clic sull'icona a bulbo chiaro visualizzata nel margine sinistro e selezionare **disinstalla \< LIBRARY_NAME> @ \< library_version>**:
 
   ![Opzione del menu di scelta rapida Disinstalla libreria](_static/uninstall-menu-option.png)
 
@@ -218,7 +218,7 @@ In alternativa, è possibile modificare e salvare manualmente il manifesto LibMa
 Per verificare la presenza di una versione aggiornata della libreria:
 
 * Aprire *libman. JSON*.
-* Posizionare il punto di inserimento all'interno `libraries` del valore letterale dell'oggetto corrispondente.
+* Posizionare il punto di inserimento all'interno del `libraries` valore letterale dell'oggetto corrispondente.
 * Fare clic sull'icona a bulbo chiaro visualizzata nel margine sinistro. Passare il mouse su **Verifica disponibilità aggiornamenti**.
 
 LibMan verifica la presenza di una versione della libreria più recente della versione installata. Possono verificarsi i risultati seguenti:

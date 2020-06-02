@@ -1,10 +1,11 @@
 ---
-title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+title: attività in background con servizi ospitati in ASP.NET Core autore: Rick-Anderson Description: informazioni su come implementare attività in background con servizi ospitati in ASP.NET Core.
+monikerRange:' >= aspnetcore-2,1' ms. Author: Riande ms. Custom: MVC ms. Date: 02/10/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID '': 
+- ' SignalR ' UID: Nozioni fondamentali/host/Hosted-Services
 
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Attività in background con servizi ospitati in ASP.NET Core
@@ -134,7 +135,7 @@ I servizi sono registrati in `IHostBuilder.ConfigureServices` (*Program.cs*). Il
 
 ## <a name="queued-background-tasks"></a>Attività in background in coda
 
-Una coda delle attività in background è basata su .NET 4. x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> ([programma provvisoriamente per essere incorporato per ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
+Una coda delle attività in background è basata su .NET 4. x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> :
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 

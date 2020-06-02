@@ -128,8 +128,8 @@ L'app mostra i dati inizializzati.
 ![App per i film MVC aperta in Microsoft Edge con i dati sui film](working-with-sql/_static/m55.png)
 
 > [!div class="step-by-step"]
-> [Precedente](adding-model.md)
-> [successivo](controller-methods-views.md)
+> [Precedente](adding-model.md) 
+>  [Avanti](controller-methods-views.md)
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -240,7 +240,7 @@ L'app mostra i dati inizializzati.
 ![App per i film MVC aperta in Microsoft Edge con i dati sui film](working-with-sql/_static/m55_mac.png)
 
 > [!div class="step-by-step"]
-> [Precedente](adding-model.md)
-> [successivo](controller-methods-views.md)
+> [Precedente](adding-model.md) 
+>  [Avanti](controller-methods-views.md)
 
 ::: moniker-end

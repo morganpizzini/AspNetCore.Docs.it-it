@@ -26,9 +26,9 @@ Di [Vijay](https://github.com/vijayrkn) ,
 
 Le trasformazioni per il file *web.config* possono essere applicate automaticamente quando viene pubblicata un'app in base a:
 
-* [Configurare la compilazione](#build-configuration)
+* [Configurazione della build](#build-configuration)
 * [Profilo](#profile)
-* [Ambiente](#environment)
+* [Environment](#environment)
 * [Impostazione personalizzata](#custom)
 
 Queste trasformazioni si verificano per uno degli scenari di generazione di *web.config* seguenti:
@@ -106,7 +106,7 @@ La proprietà di MSBuild per il nome del profilo è `$(PublishProfile)`.
 
 Se non viene passato alcun profilo, il nome del profilo predefinito è **FileSystem** e viene applicato *web.FileSystem.config* se il file è presente nella radice del contenuto dell'app.
 
-## <a name="environment"></a>Ambiente
+## <a name="environment"></a>Environment
 
 Le trasformazioni di ambiente vengono eseguite per terze, dopo le trasformazioni di [configurazione della build](#build-configuration) e di [profilo](#profile).
 

@@ -1,10 +1,11 @@
 ---
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
+title: globalizzazione e localizzazione in ASP.NET Core autore: Rick-Anderson Description: informazioni su come ASP.NET Core fornisce servizi e middleware per la localizzazione di contenuto in linguaggi e impostazioni cultura diverse.
+ms. Author: Riande ms. Date: 11/30/2019 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID '': 
+- SignalRUID '': Nozioni fondamentali/localizzazione
 
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalizzazione e localizzazione in ASP.NET Core
@@ -29,7 +30,7 @@ La localizzazione dell'app comporta quanto segue:
 
 ## <a name="make-the-apps-content-localizable"></a>Rendere localizzabile il contenuto dell'app
 
-<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer ` uses the [ResourceManager](/dotnet/api/system.resources.resourcemanager) and [ResourceReader](/dotnet/api/system.resources.resourcereader) to provide culture-specific resources at run time. The interface has an indexer and an ` IEnumerable ` for returning localized strings. ` IStringLocalizer ' non richiede l'archiviazione delle stringhe di lingua predefinite in un file di risorse. È possibile sviluppare un'app per la localizzazione senza creare file di risorse nelle prime fasi di sviluppo. Il codice seguente illustra come eseguire il wrapping della stringa "About Title" per la localizzazione.
+<xref:Microsoft.Extensions.Localization.IStringLocalizer>e <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> sono stati progettati per migliorare la produttività durante lo sviluppo di app localizzate. `IStringLocalizer`USA <xref:System.Resources.ResourceManager> e <xref:System.Resources.ResourceReader> per fornire risorse specifiche delle impostazioni cultura in fase di esecuzione. L'interfaccia ha un indicizzatore e un oggetto `IEnumerable` per la restituzione di stringhe localizzate. `IStringLocalizer`non richiede l'archiviazione delle stringhe di lingua predefinite in un file di risorse. È possibile sviluppare un'app per la localizzazione senza creare file di risorse nelle prime fasi di sviluppo. Il codice seguente illustra come eseguire il wrapping della stringa "About Title" per la localizzazione.
 
 [!code-csharp[](localization/sample/Localization/Controllers/AboutController.cs)]
 
@@ -70,15 +71,8 @@ L'implementazione predefinita di `IViewLocalizer` individua il file di risorse i
 Un file di risorse francese può contenere quanto segue:
 
 | Chiave | valore |
-| ----- | ---
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
---- | | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
+| ----- | ------ |
+| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 La visualizzazione di cui è stato eseguito il rendering conterrà il markup HTML del file di risorse.
 
@@ -151,70 +145,10 @@ Le risorse sono denominate con il nome completo del tipo della relativa classe m
 Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `ResourcesPath` su "Resources", il percorso relativo del progetto per il file di risorse francese del controller principale è *Resources/Controllers.HomeController.fr.resx*. In alternativa, è possibile usare le cartelle per organizzare i file di risorse. Per il controller principale, il percorso sarà *Resources/Controllers/HomeController.fr.resx*. Se non si usa l'opzione `ResourcesPath`, il file con estensione *resx* viene memorizzato nella directory di base del progetto. Il file di risorse per `HomeController` sarà denominato *Controllers.HomeController.fr.resx*. La scelta di usare la convenzione di denominazione con il punto o il percorso dipende da come si vuole organizzare i file di risorse.
 
 | Nome risorsa | Denominazione con il punto o il percorso |
-| ---
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-------   | Titolo---: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-------- | | Risorse/Controllers. HomeController. fr. resx | Punto | | Risorse/controller/HomeController. fr. resx | Percorso | |    |     |
+| ------------   | ------------- |
+| Resources/Controllers.HomeController.fr.resx | Punto  |
+| Resources/Controllers/HomeController.fr.resx  | Percorso |
+|    |     |
 
 I file di risorse che usano `@inject IViewLocalizer` nelle Razor viste seguono un modello simile. Il file di risorse per una visualizzazione può essere denominato usando la denominazione con il punto o con il percorso. RazorVisualizza file di risorse riproduce il percorso del file di visualizzazione associato. Se `ResourcesPath` viene impostato su "Resources", il file di risorse francese associato alla visualizzazione *Views/Home/About.cshtml* sarà uno dei seguenti:
 
@@ -444,7 +378,7 @@ La localizzazione dell'app comporta quanto segue:
 
 ## <a name="make-the-apps-content-localizable"></a>Rendere localizzabile il contenuto dell'app
 
-<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer ` uses the [ResourceManager](/dotnet/api/system.resources.resourcemanager) and [ResourceReader](/dotnet/api/system.resources.resourcereader) to provide culture-specific resources at run time. The interface has an indexer and an ` IEnumerable ` for returning localized strings. ` IStringLocalizer ' non richiede l'archiviazione delle stringhe di lingua predefinite in un file di risorse. È possibile sviluppare un'app per la localizzazione senza creare file di risorse nelle prime fasi di sviluppo. Il codice seguente illustra come eseguire il wrapping della stringa "About Title" per la localizzazione.
+<xref:Microsoft.Extensions.Localization.IStringLocalizer>e <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> sono stati progettati per migliorare la produttività durante lo sviluppo di app localizzate. `IStringLocalizer`USA <xref:System.Resources.ResourceManager> e <xref:System.Resources.ResourceReader> per fornire risorse specifiche delle impostazioni cultura in fase di esecuzione. L'interfaccia ha un indicizzatore e un oggetto `IEnumerable` per la restituzione di stringhe localizzate. `IStringLocalizer`non richiede l'archiviazione delle stringhe di lingua predefinite in un file di risorse. È possibile sviluppare un'app per la localizzazione senza creare file di risorse nelle prime fasi di sviluppo. Il codice seguente illustra come eseguire il wrapping della stringa "About Title" per la localizzazione.
 
 [!code-csharp[](localization/sample/Localization/Controllers/AboutController.cs)]
 
@@ -485,15 +419,8 @@ L'implementazione predefinita di `IViewLocalizer` individua il file di risorse i
 Un file di risorse francese può contenere quanto segue:
 
 | Chiave | valore |
-| ----- | ---
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
---- | | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
+| ----- | ------ |
+| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 La visualizzazione di cui è stato eseguito il rendering conterrà il markup HTML del file di risorse.
 
@@ -566,70 +493,10 @@ Le risorse sono denominate con il nome completo del tipo della relativa classe m
 Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `ResourcesPath` su "Resources", il percorso relativo del progetto per il file di risorse francese del controller principale è *Resources/Controllers.HomeController.fr.resx*. In alternativa, è possibile usare le cartelle per organizzare i file di risorse. Per il controller principale, il percorso sarà *Resources/Controllers/HomeController.fr.resx*. Se non si usa l'opzione `ResourcesPath`, il file con estensione *resx* viene memorizzato nella directory di base del progetto. Il file di risorse per `HomeController` sarà denominato *Controllers.HomeController.fr.resx*. La scelta di usare la convenzione di denominazione con il punto o il percorso dipende da come si vuole organizzare i file di risorse.
 
 | Nome risorsa | Denominazione con il punto o il percorso |
-| ---
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-------   | Titolo---: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-------- | | Risorse/Controllers. HomeController. fr. resx | Punto | | Risorse/controller/HomeController. fr. resx | Percorso | |    |     |
+| ------------   | ------------- |
+| Resources/Controllers.HomeController.fr.resx | Punto  |
+| Resources/Controllers/HomeController.fr.resx  | Percorso |
+|    |     |
 
 I file di risorse che usano `@inject IViewLocalizer` nelle Razor viste seguono un modello simile. Il file di risorse per una visualizzazione può essere denominato usando la denominazione con il punto o con il percorso. RazorVisualizza file di risorse riproduce il percorso del file di visualizzazione associato. Se `ResourcesPath` viene impostato su "Resources", il file di risorse francese associato alla visualizzazione *Views/Home/About.cshtml* sarà uno dei seguenti:
 
@@ -858,7 +725,7 @@ La localizzazione dell'app comporta quanto segue:
 
 ## <a name="make-the-apps-content-localizable"></a>Rendere localizzabile il contenuto dell'app
 
-<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer ` uses the [ResourceManager](/dotnet/api/system.resources.resourcemanager) and [ResourceReader](/dotnet/api/system.resources.resourcereader) to provide culture-specific resources at run time. The interface has an indexer and an ` IEnumerable ` for returning localized strings. ` IStringLocalizer ' non richiede l'archiviazione delle stringhe di lingua predefinite in un file di risorse. È possibile sviluppare un'app per la localizzazione senza creare file di risorse nelle prime fasi di sviluppo. Il codice seguente illustra come eseguire il wrapping della stringa "About Title" per la localizzazione.
+<xref:Microsoft.Extensions.Localization.IStringLocalizer>e <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> sono stati progettati per migliorare la produttività durante lo sviluppo di app localizzate. `IStringLocalizer`USA <xref:System.Resources.ResourceManager> e <xref:System.Resources.ResourceReader> per fornire risorse specifiche delle impostazioni cultura in fase di esecuzione. L'interfaccia ha un indicizzatore e un oggetto `IEnumerable` per la restituzione di stringhe localizzate. `IStringLocalizer`non richiede l'archiviazione delle stringhe di lingua predefinite in un file di risorse. È possibile sviluppare un'app per la localizzazione senza creare file di risorse nelle prime fasi di sviluppo. Il codice seguente illustra come eseguire il wrapping della stringa "About Title" per la localizzazione.
 
 [!code-csharp[](localization/sample/Localization/Controllers/AboutController.cs)]
 
@@ -899,15 +766,8 @@ L'implementazione predefinita di `IViewLocalizer` individua il file di risorse i
 Un file di risorse francese può contenere quanto segue:
 
 | Chiave | valore |
-| ----- | ---
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
---- | | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
+| ----- | ------ |
+| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 La visualizzazione di cui è stato eseguito il rendering conterrà il markup HTML del file di risorse.
 
@@ -980,70 +840,10 @@ Le risorse sono denominate con il nome completo del tipo della relativa classe m
 Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `ResourcesPath` su "Resources", il percorso relativo del progetto per il file di risorse francese del controller principale è *Resources/Controllers.HomeController.fr.resx*. In alternativa, è possibile usare le cartelle per organizzare i file di risorse. Per il controller principale, il percorso sarà *Resources/Controllers/HomeController.fr.resx*. Se non si usa l'opzione `ResourcesPath`, il file con estensione *resx* viene memorizzato nella directory di base del progetto. Il file di risorse per `HomeController` sarà denominato *Controllers.HomeController.fr.resx*. La scelta di usare la convenzione di denominazione con il punto o il percorso dipende da come si vuole organizzare i file di risorse.
 
 | Nome risorsa | Denominazione con il punto o il percorso |
-| ---
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-------   | Titolo---: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-------- | | Risorse/Controllers. HomeController. fr. resx | Punto | | Risorse/controller/HomeController. fr. resx | Percorso | |    |     |
+| ------------   | ------------- |
+| Resources/Controllers.HomeController.fr.resx | Punto  |
+| Resources/Controllers/HomeController.fr.resx  | Percorso |
+|    |     |
 
 I file di risorse che usano `@inject IViewLocalizer` nelle Razor viste seguono un modello simile. Il file di risorse per una visualizzazione può essere denominato usando la denominazione con il punto o con il percorso. RazorVisualizza file di risorse riproduce il percorso del file di visualizzazione associato. Se `ResourcesPath` viene impostato su "Resources", il file di risorse francese associato alla visualizzazione *Views/Home/About.cshtml* sarà uno dei seguenti:
 

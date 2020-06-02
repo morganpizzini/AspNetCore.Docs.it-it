@@ -1,11 +1,11 @@
 ---
-title: "ASP.NET Core Blazor Injection Dependency Injection" Author: Description: "vedere come le Blazor app possono inserire i servizi in componenti".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+title: "ASP.NET Core Blazor Injection Dependency Injection" Author: guardrex Description: "vedere come le Blazor app possono inserire i servizi in componenti".
+monikerRange:' >= aspnetcore-3,1' ms. Author: Riande ms. Custom: MVC ms. Date: 05/19/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID '': 
+- ' SignalR ' UID: blazer/Dependency-Injection
 
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>BlazorInserimento di dipendenze ASP.NET Core
@@ -23,60 +23,11 @@ DI è una tecnica per accedere ai servizi configurati in una posizione centrale.
 
 I servizi predefiniti vengono aggiunti automaticamente alla raccolta di servizi dell'app.
 
-| Service | Durata | Descrizione |
-| ---
-title: "ASP.NET Core Blazor Injection Dependency Injection" Author: Description: "vedere come le Blazor app possono inserire i servizi in componenti".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
----- | Titolo---:' ASP.NET Core Blazor injection dipendenza ' Author: Description:' vedere come le Blazor app possono inserire i servizi nei componenti .'
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Blazor Injection Dependency Injection" Author: Description: "vedere come le Blazor app possono inserire i servizi in componenti".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
----- | Titolo---:' ASP.NET Core Blazor injection dipendenza ' Author: Description:' vedere come le Blazor app possono inserire i servizi nei componenti .'
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Blazor Injection Dependency Injection" Author: Description: "vedere come le Blazor app possono inserire i servizi in componenti".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Blazor Injection Dependency Injection" Author: Description: "vedere come le Blazor app possono inserire i servizi in componenti".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
------- | | <xref:System.Net.Http.HttpClient> | Temporaneo | Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.<br><br>L'istanza di <xref:System.Net.Http.HttpClient> in un' Blazor app webassembly usa il browser per gestire il traffico HTTP in background.<br><br>BlazorPer impostazione predefinita, le app Server non includono un <xref:System.Net.Http.HttpClient> configurato come servizio. Fornire un <xref:System.Net.Http.HttpClient> a un' Blazor app Server.<br><br>Per altre informazioni, vedere <xref:blazor/call-web-api>. | | <xref:Microsoft.JSInterop.IJSRuntime> | Singleton ( Blazor webassembly)<br>Con ambito ( Blazor Server) | Rappresenta un'istanza di un runtime JavaScript in cui vengono inviate le chiamate a JavaScript. Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet>. | | <xref:Microsoft.AspNetCore.Components.NavigationManager> | Singleton ( Blazor webassembly)<br>Con ambito ( Blazor Server) | Contiene gli helper per lavorare con gli URI e lo stato di navigazione. Per ulteriori informazioni, vedere [URI e Helper dello stato di navigazione](xref:blazor/routing#uri-and-navigation-state-helpers). |
+| Servizio | Durata | Description |
+| ------- | -------- | ----------- |
+| <xref:System.Net.Http.HttpClient> | Temporaneo | Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.<br><br>L'istanza di <xref:System.Net.Http.HttpClient> in un' Blazor app webassembly usa il browser per gestire il traffico HTTP in background.<br><br>BlazorPer impostazione predefinita, le app Server non includono un <xref:System.Net.Http.HttpClient> configurato come servizio. Fornire un <xref:System.Net.Http.HttpClient> a un' Blazor app Server.<br><br>Per altre informazioni, vedere <xref:blazor/call-web-api>. |
+| <xref:Microsoft.JSInterop.IJSRuntime> | Singleton ( Blazor webassembly)<br>Con ambito ( Blazor Server) | Rappresenta un'istanza di un runtime JavaScript in cui vengono inviate le chiamate a JavaScript. Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet>. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager> | Singleton ( Blazor webassembly)<br>Con ambito ( Blazor Server) | Contiene gli helper per lavorare con gli URI e lo stato di navigazione. Per ulteriori informazioni, vedere [URI e Helper dello stato di navigazione](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
 Un provider di servizi personalizzato non fornisce automaticamente i servizi predefiniti elencati nella tabella. Se si usa un provider di servizi personalizzato e si richiede uno dei servizi indicati nella tabella, aggiungere i servizi necessari al nuovo provider di servizi.
 
@@ -167,52 +118,11 @@ public void ConfigureServices(IServiceCollection services)
 
 I servizi possono essere configurati con le durate mostrate nella tabella seguente.
 
-| Durata | Descrizione |
-| ---
-title: "ASP.NET Core Blazor Injection Dependency Injection" Author: Description: "vedere come le Blazor app possono inserire i servizi in componenti".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Blazor Injection Dependency Injection" Author: Description: "vedere come le Blazor app possono inserire i servizi in componenti".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
----- | Titolo---:' ASP.NET Core Blazor injection dipendenza ' Author: Description:' vedere come le Blazor app possono inserire i servizi nei componenti .'
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Blazor Injection Dependency Injection" Author: Description: "vedere come le Blazor app possono inserire i servizi in componenti".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Blazor Injection Dependency Injection" Author: Description: "vedere come le Blazor app possono inserire i servizi in componenti".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
------- | | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Blazor Le app webassembly attualmente non dispongono di un concetto di ambiti di. `Scoped`-i servizi registrati si comportano come `Singleton` servizi. Tuttavia, il Blazor modello di hosting del server supporta il `Scoped` ciclo di vita. Nelle Blazor app Server, una registrazione del servizio con ambito ha come ambito la *connessione*. Per questo motivo, è preferibile usare i servizi con ambito per i servizi che devono avere come ambito l'utente corrente, anche se l'obiettivo corrente è eseguire sul lato client nel browser. | | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | La creazione di una *singola istanza* del servizio. Tutti i componenti che richiedono un `Singleton` servizio ricevono un'istanza dello stesso servizio. | | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Ogni volta che un componente ottiene un'istanza di un `Transient` servizio dal contenitore del servizio, riceve una *nuova istanza* del servizio. |
+| Durata | Description |
+| -------- | ----------- |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | BlazorLe app webassembly attualmente non dispongono di un concetto di ambiti di. `Scoped`-i servizi registrati si comportano come `Singleton` servizi. Tuttavia, il Blazor modello di hosting del server supporta il `Scoped` ciclo di vita. Nelle Blazor app Server, una registrazione del servizio con ambito ha come ambito la *connessione*. Per questo motivo, è preferibile usare i servizi con ambito per i servizi che devono avere come ambito l'utente corrente, anche se l'obiettivo corrente è eseguire sul lato client nel browser. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | La creazione di una *singola istanza* del servizio. Tutti i componenti che richiedono un `Singleton` servizio ricevono un'istanza dello stesso servizio. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Ogni volta che un componente ottiene un'istanza di un `Transient` servizio dal contenitore del servizio, riceve una *nuova istanza* del servizio. |
 
 Il sistema DI è basato sul sistema DI ASP.NET Core. Per altre informazioni, vedere <xref:fundamentals/dependency-injection>.
 
@@ -424,4 +334,5 @@ Se un singolo componente può usare <xref:Microsoft.EntityFrameworkCore.DbContex
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:fundamentals/dependency-injection>
+* [Linee guida IDisposable per istanze temporanee e condivise](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>

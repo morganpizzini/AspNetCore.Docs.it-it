@@ -25,7 +25,7 @@ Questo articolo descrive il supporto del debug di app ASP.NET Core in [Visual St
 ## <a name="enable-iis"></a>Abilitare IIS
 
 1. In Windows passare a **Pannello di controllo** > **Programmi** > **Programmi e funzionalità** > **Attiva o disattiva funzionalità di Windows** (sul lato sinistro dello schermo).
-1. Selezionare la casella di controllo **Internet Information Services**. Seleziona **OK**.
+1. Selezionare la casella di controllo **Internet Information Services**. Selezionare **OK**.
 
 L'installazione di IIS potrebbe richiedere un riavvio del sistema.
 
@@ -140,7 +140,7 @@ Questo articolo descrive il supporto del debug di app ASP.NET Core in [Visual St
 ## <a name="enable-iis"></a>Abilitare IIS
 
 1. In Windows passare a **Pannello di controllo** > **Programmi** > **Programmi e funzionalità** > **Attiva o disattiva funzionalità di Windows** (sul lato sinistro dello schermo).
-1. Selezionare la casella di controllo **Internet Information Services**. Seleziona **OK**.
+1. Selezionare la casella di controllo **Internet Information Services**. Selezionare **OK**.
 
 L'installazione di IIS potrebbe richiedere un riavvio del sistema.
 

@@ -179,7 +179,7 @@ L'accento circonflesso (`^`) all'inizio dell'espressione indica che la corrispon
 
 Nell'esempio precedente della regola di reindirizzamento `redirect-rule/(.*)`, non è presente l'accento circonflesso (`^`) all'inizio dell'espressione regolare. È quindi possibile ottenere una corrispondenza anteponendo qualsiasi carattere a `redirect-rule/`.
 
-| Percorso                               | Corrispondenza |
+| Percorso                               | Corrispondente |
 | ---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'
@@ -304,7 +304,7 @@ title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-l
 
 La regola di riscrittura, `^rewrite-rule/(\d+)/(\d+)`, rileva la corrispondenza dei percorsi solo se iniziano con `rewrite-rule/`. Nella tabella seguente, si noti la differenza nella corrispondenza.
 
-| Percorso                              | Corrispondenza |
+| Percorso                              | Corrispondente |
 | ---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'
@@ -1356,7 +1356,7 @@ L'accento circonflesso (`^`) all'inizio dell'espressione indica che la corrispon
 
 Nell'esempio precedente della regola di reindirizzamento `redirect-rule/(.*)`, non è presente l'accento circonflesso (`^`) all'inizio dell'espressione regolare. È quindi possibile ottenere una corrispondenza anteponendo qualsiasi carattere a `redirect-rule/`.
 
-| Percorso                               | Corrispondenza |
+| Percorso                               | Corrispondente |
 | ---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'
@@ -1481,7 +1481,7 @@ title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-l
 
 La regola di riscrittura, `^rewrite-rule/(\d+)/(\d+)`, rileva la corrispondenza dei percorsi solo se iniziano con `rewrite-rule/`. Nella tabella seguente, si noti la differenza nella corrispondenza.
 
-| Percorso                              | Corrispondenza |
+| Percorso                              | Corrispondente |
 | ---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'

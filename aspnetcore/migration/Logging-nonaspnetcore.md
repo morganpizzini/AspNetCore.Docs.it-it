@@ -1,31 +1,21 @@
 ---
-title: Eseguire la migrazione da Microsoft. Extensions. Logging 2,1 a 2,2 o 3,0
-author: pakrym
-description: Informazioni su come eseguire la migrazione di un'applicazione non-ASP.NET Core che usa Microsoft. Extensions. Logging da 2,1 a 2,2 o 3,0.
-ms.author: pakrym
-ms.custom: mvc
-ms.date: 01/04/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: migration/logging-nonaspnetcore
-ms.openlocfilehash: 3a84d53cb925a518f6c3e244dd342a3228a1fe17
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777059"
+title: migrare da Microsoft. Extensions. Logging 2,1 a 2,2 o 3,0 Author: pakrym Descrizione: informazioni su come eseguire la migrazione di un'applicazione non-ASP.NET Core che usa Microsoft. Extensions. Logging da 2,1 a 2,2 o 3,0.
+ms. Author: pakrym ms. Custom: MVC ms. Date: 01/04/2019 no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID '': migrazione/registrazione-nonaspnetcore
+
 ---
+
 # <a name="migrate-from-microsoftextensionslogging-21-to-22-or-30"></a>Eseguire la migrazione da Microsoft. Extensions. Logging 2,1 a 2,2 o 3,0
 
 Questo articolo illustra i passaggi comuni per la migrazione di un'applicazione non-ASP.NET Core che usa `Microsoft.Extensions.Logging` da 2,1 a 2,2 o 3,0.
 
 ## <a name="21-to-22"></a>Da 2.1 a 2.2
 
-Creare `ServiceCollection` e chiamare `AddLogging`manualmente.
+Creare `ServiceCollection` e chiamare manualmente `AddLogging` .
 
 2,1 esempio:
 
@@ -53,7 +43,7 @@ using (var loggerFactory = serviceProvider.GetService<ILoggerFactory>())
 
 ## <a name="21-to-30"></a>da 2,1 a 3,0
 
-In 3,0 usare `LoggingFactory.Create`.
+In 3,0 usare `LoggingFactory.Create` .
 
 2,1 esempio:
 
@@ -77,4 +67,5 @@ using (var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole())
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-<xref:fundamentals/logging/index>
+* [Pacchetto NuGet Microsoft. Extensions. Logging. console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/).
+* <xref:fundamentals/logging/index>

@@ -24,7 +24,7 @@ Queste informazioni potrebbero essere importanti per l'elaborazione delle richie
 
 Per convenzione, i proxy inoltrano le informazioni nelle intestazioni HTTP.
 
-| Header | Descrizione |
+| Header | Description |
 | ---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'
@@ -144,7 +144,7 @@ services.Configure<ForwardedHeadersOptions>(options =>
 });
 ```
 
-| Opzione | Descrizione |
+| Opzione | Description |
 | ---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'
@@ -449,7 +449,7 @@ Queste informazioni potrebbero essere importanti per l'elaborazione delle richie
 
 Per convenzione, i proxy inoltrano le informazioni nelle intestazioni HTTP.
 
-| Header | Descrizione |
+| Header | Description |
 | ---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'
@@ -569,7 +569,7 @@ services.Configure<ForwardedHeadersOptions>(options =>
 });
 ```
 
-| Opzione | Descrizione |
+| Opzione | Description |
 | ---
 title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
 - 'Blazor'

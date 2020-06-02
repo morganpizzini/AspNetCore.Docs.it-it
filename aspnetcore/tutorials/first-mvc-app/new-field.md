@@ -139,9 +139,9 @@ dotnet ef database update
 
 Eseguire l'app e verificare che sia possibile creare, modificare e visualizzare filmati con un `Rating` campo. Aggiornare l'app:
 
-* Aggiungere il `Rating` campo ai modelli `Edit`di `Details`visualizzazione, `Delete` e.
-* Aggiornare l'associazione nel metodo di azione di modifica di `MoviesController`.
+* Aggiungere il `Rating` campo ai `Edit` modelli di `Details` visualizzazione, e `Delete` .
+* Aggiornare l'associazione nel metodo di azione di modifica di `MoviesController` .
 
 > [!div class="step-by-step"]
-> [Precedente](search.md)
-> [successivo](validation.md)
+> [Precedente](search.md) 
+>  [Avanti](validation.md)
