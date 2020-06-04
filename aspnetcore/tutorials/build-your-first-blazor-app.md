@@ -1,11 +1,11 @@
 ---
-title:' crea la tua prima Blazor app ' autore: Descrizione:' crea un' Blazor app Step-by-Step '.
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+title:' crea la tua prima Blazor app ' autore: guardrex Descrizione:' crea un' Blazor app Step-by-Step '.
+monikerRange:' >= aspnetcore-3,0' ms. Author: Riande ms. Custom: MVC ms. Date: 05/19/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID '': 
+- ' SignalR ' UID: esercitazioni/First-Blazer-app
 
 ---
 # <a name="build-your-first-blazor-app"></a>Crea la tua prima Blazor app
@@ -97,7 +97,7 @@ I componenti possono avere anche parametri, I parametri del componente vengono d
 
 La direttiva `@page` all'inizio del file *Counter.razor* specifica che il componente `Counter` è un endpoint di routing. Il componente `Counter` gestisce le richieste inviate a `/counter`. Senza la direttiva `@page`, un componente non gestisce le richieste instradate, ma può comunque essere usato da altri componenti.
 
-## <a name="dependency-injection"></a>Inserimento delle dipendenze
+## <a name="dependency-injection"></a>Inserimento di dipendenze
 
 ### <a name="blazor-server-experience"></a>BlazorEsperienza server
 
@@ -131,7 +131,7 @@ Un [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) ciclo vie
 
 Aggiungere all'app un nuovo componente che implementa un semplice elenco attività.
 
-1. Aggiungere un nuovo `Todo` Razor componente all'app nella cartella *pages* . In Visual Studio fare clic con il pulsante destro del mouse sulla cartella **pagine** e scegliere **Aggiungi**  >  **nuovo elemento**  >  ** Razor componente**. Denominare il file del componente *todo. Razor*. In altri ambienti di sviluppo aggiungere un file vuoto alla cartella **pages** denominata *todo. Razor*.
+1. Aggiungere un nuovo `Todo` Razor componente all'app nella cartella *pages* . Se si usa Visual Studio, fare clic con il pulsante destro del mouse sulla cartella **pagine** e scegliere **Aggiungi**  >  **nuovo elemento**  >  ** Razor componente**. Denominare il file del componente *todo. Razor*. In altri ambienti di sviluppo aggiungere un file vuoto alla cartella **pages** denominata *todo. Razor*.
 
 1. Specificare il markup iniziale per il componente:
 

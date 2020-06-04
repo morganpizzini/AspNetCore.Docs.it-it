@@ -1,10 +1,11 @@
 ---
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
+title: formattare i dati di risposta in ASP.NET Core API Web Author: ardalis Description: informazioni su come formattare i dati di risposta in ASP.NET Core API Web.
+ms. Author: Riande ms. Custom: H1Hack27Feb2017 ms. Date: 04/17/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID '': 
+- ' SignalR ' UID: Web-API/Advanced/Formatting
 
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Formattare i dati di risposta nell'API Web ASP.NET Core
@@ -136,7 +137,7 @@ public IActionResult Get()
 {
     return Json(model, new JsonSerializerOptions
     {
-        options.WriteIndented = true,
+        WriteIndented = true,
     });
 }
 ```
@@ -175,7 +176,7 @@ public IActionResult Get()
 {
     return Json(model, new JsonSerializerSettings
     {
-        options.Formatting = Formatting.Indented,
+        Formatting = Formatting.Indented,
     });
 }
 ```
@@ -243,211 +244,7 @@ Il mapping dal percorso della richiesta deve essere specificato nella route usat
 La route precedente consente di specificare il formato richiesto come estensione di file facoltativa. L' [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) attributo controlla l'esistenza del valore di formato in `RouteData` ed esegue il mapping del formato della risposta al formattatore appropriato al momento della creazione della risposta.
 
 |           Route        |             Formattatore              |
-|---
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-------------|---title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-------------------| |   `/api/products/5`    |    Formattatore di output predefinito | | `/api/products/5.json` | Formattatore JSON (se configurato) | | `/api/products/5.xml`  | Formattatore XML (se configurato) |
+|------------------------|------------------------------------|
+|   `/api/products/5`    |    Formattatore di output predefinito    |
+| `/api/products/5.json` | Formattatore JSON (se configurato) |
+| `/api/products/5.xml`  | Formattatore XML (se configurato)  |

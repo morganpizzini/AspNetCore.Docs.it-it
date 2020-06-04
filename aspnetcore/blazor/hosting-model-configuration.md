@@ -223,7 +223,7 @@ builder.Configuration.AddJsonStream(stream);
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
-    builder.Configuration.Bind("Local", options.ProviderOptions);
+    builder.Configuration.Bind("Local", options.ProviderOptions));
 ```
 
 #### <a name="logging-configuration"></a>Configurazione della registrazione
@@ -322,7 +322,7 @@ BlazorPer impostazione predefinita, le app Server sono impostate per eseguire il
 * Viene preeseguito nella pagina.
 * Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' Blazor app dall'agente utente.
 
-| <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> | Description |
+| <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> | Descrizione |
 | --- | --- |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering del componente in HTML statico e include un marcatore per un' Blazor app Server. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un' Blazor app Server. L'output del componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. |
