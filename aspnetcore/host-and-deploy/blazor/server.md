@@ -1,44 +1,32 @@
 ---
-title: Ospitare e distribuire ASP.NET Core Blazor server
-author: guardrex
-description: Informazioni su come ospitare e distribuire un' Blazor app Server usando ASP.NET Core.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/03/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/blazor/server
-ms.openlocfilehash: e69b91035c65739dde724330e83793c0b8b5481a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775154"
+title: "host and deploy ASP.NET Core Blazor Server" Author: guardrex Description: "informazioni su come ospitare e distribuire un' Blazor app Server usando ASP.NET Core".
+monikerRange:' >= aspnetcore-3,1' ms. Author: Riande ms. Custom: MVC ms. Date: 06/04/2020 no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: host-and-deploy/Blazer/server
+
 ---
-# <a name="host-and-deploy-blazor-server"></a>Ospitare e distribuire Blazor il server
+# <a name="host-and-deploy-blazor-server"></a>Ospitare e distribuire il Blazor Server
 
 Di [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com) e [Daniel Roth](https://github.com/danroth27)
 
 ## <a name="host-configuration-values"></a>Valori di configurazione dell'host
 
-Le app Server possono accettare [valori di configurazione host generici](xref:fundamentals/host/generic-host#host-configuration). [ Blazor ](xref:blazor/hosting-models#blazor-server)
+Le [ Blazor app Server](xref:blazor/hosting-models#blazor-server) possono accettare [valori di configurazione host generici](xref:fundamentals/host/generic-host#host-configuration).
 
 ## <a name="deployment"></a>Distribuzione
 
-L'uso del modello di hosting Blazor del [ Blazor server](xref:blazor/hosting-models#blazor-server)viene eseguito sul server dall'interno di un'app ASP.NET Core. Gli aggiornamenti dell'interfaccia utente, la gestione degli eventi e le chiamate [SignalR](xref:signalr/introduction) JavaScript vengono gestiti tramite una connessione.
+L'uso del [ Blazor modello di hosting del server](xref:blazor/hosting-models#blazor-server) Blazor viene eseguito sul server dall'interno di un'app ASP.NET Core. Gli aggiornamenti dell'interfaccia utente, la gestione degli eventi e le chiamate JavaScript vengono gestiti tramite una [SignalR](xref:signalr/introduction) connessione.
 
-È necessario un server Web in grado di ospitare un'app ASP.NET Core. Visual Studio include il modello di progetto di ** Blazor app Server** (`blazorserverside` modello quando si usa il comando [DotNet New](/dotnet/core/tools/dotnet-new) ).
+È necessario un server Web in grado di ospitare un'app ASP.NET Core. Visual Studio include il modello di progetto di ** Blazor app Server** ( `blazorserverside` modello quando si usa il comando [DotNet New](/dotnet/core/tools/dotnet-new) ).
 
 ## <a name="scalability"></a>Scalabilità
 
-Pianificare una distribuzione per sfruttare al meglio l'infrastruttura disponibile per un' Blazor app Server. Vedere le risorse seguenti per gestire Blazor la scalabilità delle app Server:
+Pianificare una distribuzione per sfruttare al meglio l'infrastruttura disponibile per un' Blazor app Server. Vedere le risorse seguenti per gestire la Blazor scalabilità delle app Server:
 
-* [Nozioni fondamentali Blazor sulle app Server](xref:blazor/hosting-models#blazor-server)
+* [Nozioni fondamentali sulle Blazor app Server](xref:blazor/hosting-models#blazor-server)
 * <xref:security/blazor/server/threat-mitigation>
 
 ### <a name="deployment-server"></a>Server di distribuzione
@@ -48,21 +36,21 @@ Quando si considera la scalabilità di un singolo server (scalabilità verticale
 * Numero di circuiti attivi che un server è in grado di supportare.
 * Latenza dell'interfaccia utente nel client.
 
-Per istruzioni sulla creazione di app Server Blazor sicure e scalabili <xref:security/blazor/server/threat-mitigation>, vedere.
+Per istruzioni sulla creazione di app Server sicure e scalabili Blazor , vedere <xref:security/blazor/server/threat-mitigation> .
 
 Ogni circuito utilizza circa 250 KB di memoria per un'app di tipo *Hello World*minima. La dimensione di un circuito dipende dal codice dell'app e dai requisiti di manutenzione dello stato associati a ogni componente. Si consiglia di misurare le richieste di risorse durante lo sviluppo dell'applicazione e dell'infrastruttura, ma la linea di base seguente può essere un punto di partenza per la pianificazione della destinazione di distribuzione: se si prevede che l'app supporti 5.000 utenti simultanei, valutare la possibilità di prevedere almeno 1,3 GB di memoria del server per l'app (o ~ 273 KB per utente).
 
 ### <a name="signalr-configuration"></a>SignalRconfigurazione
 
-BlazorLe app server usano SignalR ASP.NET Core per comunicare con il browser. [le condizioni di hosting e scalabilità sono valide per le app Server. SignalR](xref:signalr/publish-to-azure-web-app) Blazor
+BlazorLe app server usano ASP.NET Core SignalR per comunicare con il browser. [ SignalR le condizioni di hosting e scalabilità sono](xref:signalr/publish-to-azure-web-app) valide per Blazor App Server.
 
-Blazorfunziona meglio quando si usano WebSocket come il trasporto SignalR a causa di una latenza, affidabilità e [sicurezza](xref:signalr/security)più bassa. Il polling prolungato SignalR viene usato da quando i WebSocket non sono disponibili o quando l'app è configurata in modo esplicito per l'uso del polling prolungato. Quando si esegue la distribuzione nel servizio app Azure, configurare l'app per l'uso di WebSocket nelle impostazioni portale di Azure per il servizio. Per informazioni dettagliate sulla configurazione dell'app per il servizio app Azure, vedere le [ SignalR linee guida](xref:signalr/publish-to-azure-web-app)per la pubblicazione.
+Blazorfunziona meglio quando si usano WebSocket come il SignalR trasporto a causa di una latenza, affidabilità e [sicurezza](xref:signalr/security)più bassa. Il polling prolungato viene usato da SignalR quando i WebSocket non sono disponibili o quando l'app è configurata in modo esplicito per l'uso del polling prolungato. Quando si esegue la distribuzione nel servizio app Azure, configurare l'app per l'uso di WebSocket nelle impostazioni portale di Azure per il servizio. Per informazioni dettagliate sulla configurazione dell'app per il servizio app Azure, vedere le [ SignalR linee guida](xref:signalr/publish-to-azure-web-app)per la pubblicazione.
 
-#### <a name="azure-signalr-service"></a>Servizio SignalR di Azure
+#### <a name="azure-signalr-service"></a>Servizio di Azure SignalR
 
-È consigliabile usare il [servizio SignalR ](/azure/azure-signalr) di Azure Blazor per le app Server. Il servizio consente di ridimensionare un' Blazor app Server a un numero elevato di connessioni SignalR simultanee. Inoltre, la portata SignalR globale del servizio e i Data Center a prestazioni elevate facilitano significativamente la riduzione della latenza dovuta all'area geografica. Per configurare un'app e, facoltativamente, effettuare il provisioning del servizio di Azure SignalR :
+È consigliabile usare il [ SignalR servizio di Azure](/azure/azure-signalr) per le Blazor app Server. Il servizio consente di ridimensionare un' Blazor app Server a un numero elevato di connessioni simultanee SignalR . Inoltre, la SignalR portata globale del servizio e i Data Center a prestazioni elevate facilitano significativamente la riduzione della latenza dovuta all'area geografica. Per configurare un'app e, facoltativamente, effettuare il provisioning del servizio di Azure SignalR :
 
-1. Consentire al servizio di supportare le *sessioni permanenti*, in cui i client vengono [reindirizzati allo stesso server durante il prerendering](xref:blazor/hosting-models#connection-to-the-server). Impostare l' `ServerStickyMode` opzione o il valore di `Required`configurazione su. In genere, un'app crea la configurazione usando **uno** degli approcci seguenti:
+1. Consentire al servizio di supportare le *sessioni permanenti*, in cui i client vengono [reindirizzati allo stesso server durante il prerendering](xref:blazor/hosting-models#connection-to-the-server). Impostare l' `ServerStickyMode` opzione o il valore di configurazione su `Required` . In genere, un'app crea la configurazione usando **uno** degli approcci seguenti:
 
    * `Startup.ConfigureServices`:
   
@@ -82,10 +70,10 @@ Blazorfunziona meglio quando si usano WebSocket come il trasporto SignalR a caus
        "Azure:SignalR:ServerStickyMode": "Required"
        ```
 
-     * **Impostazioni dell'applicazione** di **configurazione** > del servizio app nel portale di Azure (**nome**: `Azure:SignalR:ServerStickyMode`, **valore**: `Required`).
+     * Impostazioni dell'applicazione di **configurazione**del servizio app  >  **Application settings** nel portale di Azure (**nome**: `Azure:SignalR:ServerStickyMode` , **valore**: `Required` ).
 
-1. Creare un profilo di pubblicazione per le app di Azure in Blazor Visual Studio per l'app Server.
-1. Aggiungere la dipendenza del **servizio di Azure SignalR ** al profilo. Se la sottoscrizione di Azure non dispone di un'istanza del SignalR servizio di Azure preesistente da assegnare all'app, selezionare **Crea SignalR una nuova istanza del servizio di Azure** per eseguire il provisioning di una nuova istanza del servizio.
+1. Creare un profilo di pubblicazione per le app di Azure in Visual Studio per l' Blazor app Server.
+1. Aggiungere la dipendenza del ** SignalR servizio di Azure** al profilo. Se la sottoscrizione di Azure non dispone di un'istanza del servizio di Azure preesistente SignalR da assegnare all'app, selezionare **Crea una nuova SignalR istanza del servizio di Azure** per eseguire il provisioning di una nuova istanza del servizio.
 1. Pubblicare l'app in Azure.
 
 #### <a name="iis"></a>IIS
@@ -113,7 +101,7 @@ metadata:
 
 #### <a name="linux-with-nginx"></a>Linux con Nginx
 
-Per SignalR il corretto funzionamento di WebSocket, verificare che le intestazioni `Upgrade` e `Connection` del proxy siano impostate sui valori seguenti e che `$connection_upgrade` sia mappato a uno dei seguenti valori:
+Per SignalR il corretto funzionamento di WebSocket, verificare che le `Upgrade` intestazioni e del proxy `Connection` siano impostate sui valori seguenti e che `$connection_upgrade` sia mappato a uno dei seguenti valori:
 
 * Valore dell'intestazione di aggiornamento per impostazione predefinita.
 * `close`Quando l'intestazione di aggiornamento è mancante o vuota.
@@ -147,6 +135,41 @@ Per altre informazioni, vedere gli articoli seguenti:
 * [NGINX come proxy WebSocket](https://www.nginx.com/blog/websocket-nginx/)
 * [Proxy WebSocket](http://nginx.org/docs/http/websocket.html)
 * <xref:host-and-deploy/linux-nginx>
+
+## <a name="linux-with-apache"></a>Linux con Apache
+
+Per ospitare un' Blazor app dietro Apache in Linux, configurare `ProxyPass` per il traffico HTTP e WebSocket.
+
+Nell'esempio seguente:
+
+* Il server gheppio è in esecuzione nel computer host.
+* L'app è in ascolto del traffico sulla porta 5000.
+
+```
+ProxyRequests       On
+ProxyPreserveHost   On
+ProxyPassMatch      ^/_blazor/(.*) http://localhost:5000/_blazor/$1
+ProxyPass           /_blazor ws://localhost:5000/_blazor
+ProxyPass           / http://localhost:5000/
+ProxyPassReverse    / http://localhost:5000/
+```
+
+Abilitare i moduli seguenti:
+
+```
+a2enmod   proxy
+a2enmod   proxy_wstunnel
+```
+
+Controllare gli errori di WebSocket nella console del browser. Errori di esempio:
+
+* Firefox non è in grado di stabilire una connessione al server in ws://the-domain-name.tld/_blazor?id=XXX.
+* Errore: non è stato possibile avviare il trasporto ' WebSocket ': errore: si è verificato un errore con il trasporto.
+* Errore: non è stato possibile avviare il trasporto ' LongPolling ': TypeError: il trasporto non è definito
+* Errore: Impossibile connettersi al server con i trasporti disponibili. WebSocket non riusciti
+* Errore: Impossibile inviare dati se la connessione non è nello stato "connesso".
+
+Per ulteriori informazioni, vedere la [documentazione di Apache](https://httpd.apache.org/docs/current/mod/mod_proxy.html).
 
 ### <a name="measure-network-latency"></a>Misurare la latenza di rete
 

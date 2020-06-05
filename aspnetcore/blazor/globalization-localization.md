@@ -1,11 +1,11 @@
 ---
-title: "ASP.NET Core Blazor globalizzazione e localizzazione" Author: Description: "informazioni su come rendere i Razor componenti accessibili agli utenti in più impostazioni cultura e linguaggi".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
+title: "ASP.NET Core Blazor globalizzazione e localizzazione" Author: guardrex Description: "informazioni su come rendere i Razor componenti accessibili agli utenti in più impostazioni cultura e linguaggi".
+monikerRange:' >= aspnetcore-3,1' ms. Author: Riande ms. Custom: MVC ms. Date: 06/04/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRUID '': 
+- ' SignalR ' UID: blazer/Globalization-localizzazione
 
 ---
 # <a name="aspnet-core-blazor-globalization-and-localization"></a>BlazorGlobalizzazione e localizzazione ASP.NET Core
@@ -74,34 +74,39 @@ Per altre informazioni ed esempi, vedere <xref:fundamentals/localization>.
 
 #### <a name="cookies"></a>Cookie
 
-Un cookie di impostazioni cultura di localizzazione può salvare in maniera permanente le impostazioni cultura dell'utente. Il cookie viene creato tramite il `OnGet` metodo della pagina host dell'app (*pages/host. cshtml. cs*). Il middleware di localizzazione legge il cookie nelle richieste successive per impostare le impostazioni cultura dell'utente. 
+Un cookie di impostazioni cultura di localizzazione può salvare in maniera permanente le impostazioni cultura dell'utente. Il middleware di localizzazione legge il cookie nelle richieste successive per impostare le impostazioni cultura dell'utente. 
 
 L'uso di un cookie garantisce che la connessione WebSocket possa propagare correttamente le impostazioni cultura. Se gli schemi di localizzazione sono basati sul percorso dell'URL o sulla stringa di query, lo schema potrebbe non essere in grado di funzionare con WebSocket, quindi non è possibile salvare in modo permanente le impostazioni cultura. Pertanto, l'utilizzo di un cookie di impostazioni cultura di localizzazione è l'approccio consigliato.
 
 Qualsiasi tecnica può essere utilizzata per assegnare impostazioni cultura se le impostazioni cultura vengono rese permanente in un cookie di localizzazione. Se l'app dispone già di uno schema di localizzazione stabilito per ASP.NET Core lato server, continuare a usare l'infrastruttura di localizzazione esistente dell'app e impostare il cookie delle impostazioni cultura di localizzazione nello schema dell'app.
 
-Nell'esempio seguente viene illustrato come impostare le impostazioni cultura correnti in un cookie che può essere letto dal middleware di localizzazione. Creare un file *pages/_Host. cshtml. cs* con il contenuto seguente nell' Blazor app Server:
+Nell'esempio seguente viene illustrato come impostare le impostazioni cultura correnti in un cookie che può essere letto dal middleware di localizzazione. Creare un' Razor espressione nel file *pages/_Host. cshtml* immediatamente all'interno del `<body>` tag di apertura:
 
-```csharp
-public class HostModel : PageModel
-{
-    public void OnGet()
-    {
-        HttpContext.Response.Cookies.Append(
+```cshtml
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+
+...
+
+<body>
+    @{
+        this.HttpContext.Response.Cookies.Append(
             CookieRequestCultureProvider.DefaultCookieName,
             CookieRequestCultureProvider.MakeCookieValue(
                 new RequestCulture(
                     CultureInfo.CurrentCulture,
                     CultureInfo.CurrentUICulture)));
     }
-}
+
+    ...
+</body>
 ```
 
 La localizzazione viene gestita dall'app nella sequenza di eventi seguente:
 
 1. Il browser invia una richiesta HTTP iniziale all'app.
 1. Le impostazioni cultura vengono assegnate dal middleware di localizzazione.
-1. Il `OnGet` metodo in *_Host. cshtml. cs* rende permanente le impostazioni cultura di un cookie come parte della risposta.
+1. L' Razor espressione nella `_Host` pagina (*_Host. cshtml*) rende permanente le impostazioni cultura di un cookie come parte della risposta.
 1. Il browser apre una connessione WebSocket per creare una Blazor sessione del server interattiva.
 1. Il middleware di localizzazione legge il cookie e assegna le impostazioni cultura.
 1. La Blazor sessione del server inizia con le impostazioni cultura corrette.
@@ -135,6 +140,25 @@ public class CultureController : Controller
 
 > [!WARNING]
 > Usare il <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> risultato dell'azione per impedire gli attacchi di reindirizzamento aperti. Per altre informazioni, vedere <xref:security/preventing-open-redirects>.
+
+Se l'app non è configurata per l'elaborazione delle azioni del controller:
+
+* Aggiungere i servizi MVC alla raccolta di servizi in `Startup.ConfigureServices` :
+
+  ```csharp
+  services.AddControllers();
+  ```
+
+* Aggiungi routing endpoint controller in `Startup.Configure` :
+
+  ```csharp
+  app.UseEndpoints(endpoints =>
+  {
+      endpoints.MapControllers();
+      endpoints.MapBlazorHub();
+      endpoints.MapFallbackToPage("/_Host");
+  });
+  ```
 
 Il componente seguente mostra un esempio di come eseguire il reindirizzamento iniziale quando l'utente seleziona le impostazioni cultura:
 

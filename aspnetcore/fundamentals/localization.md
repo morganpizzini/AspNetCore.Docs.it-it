@@ -26,7 +26,7 @@ La localizzazione dell'app comporta quanto segue:
 1. Fornire le risorse localizzate per le lingue e le impostazioni cultura supportate
 1. Implementare una strategia per la selezione della lingua o delle impostazioni cultura per ogni richiesta
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/3.x/Localization) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ## <a name="make-the-apps-content-localizable"></a>Rendere localizzabile il contenuto dell'app
 
@@ -721,7 +721,7 @@ La localizzazione dell'app comporta quanto segue:
 1. Fornire le risorse localizzate per le lingue e le impostazioni cultura supportate
 1. Implementare una strategia per la selezione della lingua o delle impostazioni cultura per ogni richiesta
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([procedura per il download](xref:index#how-to-download-a-sample))
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/2.x/) ([procedura per il download](xref:index#how-to-download-a-sample))
 
 ## <a name="make-the-apps-content-localizable"></a>Rendere localizzabile il contenuto dell'app
 
