@@ -12,16 +12,18 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: c14ae1fb3c2e046ae577c63824eebb4411a6e804
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: fa38ec9f9cf882b1a62f74879b7d49706ee150ce
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776220"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452382"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>Servizi gRPC con ASP.NET Core
 
 Questo documento illustra come iniziare a usare i servizi di gRPC con ASP.NET Core.
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="prerequisites"></a>Prerequisiti
 
@@ -78,13 +80,13 @@ Endpoint gRPC di Gheppio:
 
 #### <a name="http2"></a>HTTP/2
 
-gRPC richiede HTTP/2. gRPC per ASP.NET Core convalida [HttpRequest. Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) è `HTTP/2`.
+gRPC richiede HTTP/2. gRPC per ASP.NET Core convalida [HttpRequest. Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) è `HTTP/2` .
 
 Gheppio [supporta http/2](xref:fundamentals/servers/kestrel#http2-support) nei sistemi operativi più recenti. Per impostazione predefinita, gli endpoint gheppio sono configurati per supportare connessioni HTTP/1.1 e HTTP/2.
 
 #### <a name="tls"></a>TLS
 
-Gli endpoint gheppio usati per gRPC devono essere protetti con TLS. In fase di sviluppo, un endpoint protetto con TLS viene creato `https://localhost:5001` automaticamente in corrispondenza del momento in cui è presente il certificato di sviluppo ASP.NET Core. Non è richiesta alcuna configurazione. Un `https` prefisso verifica che l'endpoint gheppio stia usando TLS.
+Gli endpoint gheppio usati per gRPC devono essere protetti con TLS. In fase di sviluppo, un endpoint protetto con TLS viene creato automaticamente in corrispondenza del momento in `https://localhost:5001` cui è presente il certificato di sviluppo ASP.NET Core. Non è richiesta alcuna configurazione. Un `https` prefisso verifica che l'endpoint gheppio stia usando TLS.
 
 In produzione, è necessario configurare in modo esplicito TLS. Nell'esempio *appSettings. JSON* seguente viene fornito un endpoint HTTP/2 protetto con TLS:
 
@@ -98,7 +100,7 @@ In alternativa, è possibile configurare gli endpoint gheppio in *Program.cs*:
 
 TLS viene usato per una maggiore sicurezza della comunicazione. L'handshake TLS [(ALPN)](https://tools.ietf.org/html/rfc7301#section-3) viene utilizzato per negoziare il protocollo di connessione tra il client e il server quando un endpoint supporta più protocolli. Questa negoziazione determina se la connessione utilizza HTTP/1.1 o HTTP/2.
 
-Se un endpoint HTTP/2 viene configurato senza TLS, l'endpoint [ListenOptions. Protocols](xref:fundamentals/servers/kestrel#listenoptionsprotocols) deve essere impostato su `HttpProtocols.Http2`. Un endpoint con più protocolli (ad esempio, `HttpProtocols.Http1AndHttp2`) non può essere usato senza TLS perché non esiste alcuna negoziazione. Per impostazione predefinita, tutte le connessioni all'endpoint non protetto sono HTTP/1.1 e le chiamate a gRPC hanno esito negativo.
+Se un endpoint HTTP/2 viene configurato senza TLS, l'endpoint [ListenOptions. Protocols](xref:fundamentals/servers/kestrel#listenoptionsprotocols) deve essere impostato su `HttpProtocols.Http2` . Un endpoint con più protocolli (ad esempio, `HttpProtocols.Http1AndHttp2` ) non può essere usato senza TLS perché non esiste alcuna negoziazione. Per impostazione predefinita, tutte le connessioni all'endpoint non protetto sono HTTP/1.1 e le chiamate a gRPC hanno esito negativo.
 
 Per ulteriori informazioni sull'abilitazione di HTTP/2 e TLS con gheppio, vedere la pagina relativa alla [configurazione dell'endpoint gheppio](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
@@ -122,15 +124,14 @@ Per impostazione predefinita, l'implementazione del servizio gRPC è in grado di
 
 ### <a name="resolve-httpcontext-in-grpc-methods"></a>Risolvere HttpContext nei metodi gRPC
 
-L'API gRPC consente di accedere ad alcuni dati del messaggio HTTP/2, ad esempio il metodo, l'host, l'intestazione e i trailer. L'accesso avviene tramite `ServerCallContext` l'argomento passato a ogni metodo gRPC:
+L'API gRPC consente di accedere ad alcuni dati del messaggio HTTP/2, ad esempio il metodo, l'host, l'intestazione e i trailer. L'accesso avviene tramite l' `ServerCallContext` argomento passato a ogni metodo gRPC:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService.cs?highlight=3-4&name=snippet)]
 
-`ServerCallContext`non fornisce l'accesso completo a `HttpContext` in tutte le API ASP.NET. Il `GetHttpContext` metodo di estensione fornisce accesso completo a `HttpContext` che rappresenta il messaggio http/2 sottostante nelle API ASP.NET:
+`ServerCallContext`non fornisce l'accesso completo a `HttpContext` in tutte le api ASP.NET. Il `GetHttpContext` metodo di estensione fornisce accesso completo a `HttpContext` che rappresenta il messaggio http/2 sottostante nelle API ASP.NET:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService2.cs?highlight=6-7&name=snippet)]
 
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

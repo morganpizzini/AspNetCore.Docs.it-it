@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: 74affbb7d18d80e2e55714df100d820aed2ce427
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9d57fcd5883a869c5421b88321d4a279f3f938c9
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776181"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452148"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Implementazioni di server Web in ASP.NET Core
 
@@ -40,7 +40,7 @@ Usare Kestrel:
 
   ![Kestrel comunica indirettamente con Internet attraverso un server proxy inverso, ad esempio IIS, Nginx o Apache](kestrel/_static/kestrel-to-internet.png)
 
-È supportata una&mdash;configurazione host con o senza un server&mdash;proxy inverso.
+È supportata una configurazione host &mdash; con o senza un server proxy inverso &mdash; .
 
 Per indicazioni per la configurazione di Kestrel e per informazioni su quando usare Kestrel in una configurazione con proxy inverso, vedere <xref:fundamentals/servers/kestrel>.
 
@@ -103,7 +103,7 @@ Il diagramma seguente illustra la relazione tra IIS, il modulo ASP.NET Core e un
 
 Le richieste arrivano dal Web al driver HTTP.sys in modalità kernel. Il driver instrada le richieste a IIS sulla porta configurata per il sito Web, in genere 80 (HTTP) o 443 (HTTPS). Il modulo inoltra le richieste a Kestrel su una porta casuale per l'app non corrispondente alla porta 80 o 443.
 
-Il modulo specifica la porta tramite una variabile di ambiente all'avvio e il [middleware di integrazione di IIS](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configura il server per l' `http://localhost:{port}`ascolto. Vengono eseguiti controlli aggiuntivi e le richieste che non provengono dal modulo vengono rifiutate. Il modulo non supporta l'inoltro HTTPS, pertanto le richieste vengono inoltrate tramite HTTP anche se sono state ricevute da IIS tramite HTTPS.
+Il modulo specifica la porta tramite una variabile di ambiente all'avvio e il [middleware di integrazione di IIS](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configura il server per l'ascolto `http://localhost:{port}` . Vengono eseguiti controlli aggiuntivi e le richieste che non provengono dal modulo vengono rifiutate. Il modulo non supporta l'inoltro HTTPS, pertanto le richieste vengono inoltrate tramite HTTP anche se sono state ricevute da IIS tramite HTTPS.
 
 Dopo che Kestrel ha prelevato la richiesta dal modulo, viene eseguito il push della richiesta nella pipeline middleware ASP.NET Core. La pipeline middleware gestisce la richiesta e la passa come istanza di `HttpContext` alla logica dell'app. Il middleware aggiunto dall'integrazione di IIS aggiorna lo schema, l'IP remoto e il percorso di base all'account per l'inoltro della richiesta a Kestrel. La risposta dell'app viene quindi passata a IIS, che ne esegue di nuovo il push al client HTTP che ha avviato la richiesta.
 
@@ -158,13 +158,13 @@ Se i server predefiniti non soddisfano i requisiti dell'app, è possibile creare
 
 Il server viene avviato quando l'editor o l'ambiente di sviluppo integrato (IDE) avvia l'app:
 
-* [Visual Studio](https://visualstudio.microsoft.com) &ndash; È possibile usare i profili di avvio per avviare l'app e il server con [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)/[Modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) o la console.
-* [Visual Studio Code](https://code.visualstudio.com/) &ndash; L'app e il server vengono avviati da [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode), che attiva il debugger CoreCLR.
-* [Visual Studio per Mac](https://visualstudio.microsoft.com/vs/mac/) &ndash; L'app e il server vengono avviati dal [debugger in modalità Mono Soft](https://www.mono-project.com/docs/advanced/runtime/docs/soft-debugger/).
+* [Visual Studio](https://visualstudio.microsoft.com): i profili di avvio possono essere usati per avviare l'app e il server con [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) / [ASP.NET Core modulo](xref:host-and-deploy/aspnet-core-module) o la console.
+* [Visual Studio Code](https://code.visualstudio.com/): l'app e il server vengono avviati da [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode), che attiva il debugger di CoreCLR.
+* [Visual Studio per Mac](https://visualstudio.microsoft.com/vs/mac/): l'app e il server vengono avviati dal [debugger in modalità Soft mono](https://www.mono-project.com/docs/advanced/runtime/docs/soft-debugger/).
 
 All'avvio dell'app dal prompt dei comandi nella cartella del progetto, [dotnet run](/dotnet/core/tools/dotnet-run) avvia l'app e il server (solo Kestrel e HTTP.sys). La configurazione viene specificata dall'opzione `-c|--configuration`, impostata su `Debug` (valore predefinito) o su `Release`.
 
-Un file *launchSettings. JSON* fornisce la configurazione quando si avvia un' `dotnet run` app con o con un debugger incorporato in strumenti, ad esempio Visual Studio. Se i profili di avvio sono presenti in un file *launchSettings. JSON* , `--launch-profile {PROFILE NAME}` usare l'opzione `dotnet run` con il comando oppure selezionare il profilo in Visual Studio. Per altre informazioni, vedere [dotnet run](/dotnet/core/tools/dotnet-run) e [Creazione di pacchetti di distribuzione di .NET Core](/dotnet/core/build/distribution-packaging).
+Un file *launchSettings. JSON* fornisce la configurazione quando si avvia un'app con `dotnet run` o con un debugger incorporato in strumenti, ad esempio Visual Studio. Se i profili di avvio sono presenti in un file *launchSettings. JSON* , usare l' `--launch-profile {PROFILE NAME}` opzione con il `dotnet run` comando oppure selezionare il profilo in Visual Studio. Per altre informazioni, vedere [dotnet run](/dotnet/core/tools/dotnet-run) e [Creazione di pacchetti di distribuzione di .NET Core](/dotnet/core/build/distribution-packaging).
 
 ## <a name="http2-support"></a>Supporto HTTP/2
 

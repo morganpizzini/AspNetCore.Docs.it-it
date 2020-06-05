@@ -1,12 +1,24 @@
 ---
-Titolo: inserimento delle dipendenze in ASP.NET Core autore: Rick-Anderson Description: informazioni su come ASP.NET Core implementa l'inserimento delle dipendenze e su come usarlo.
-monikerRange:' >= aspnetcore-2,1' ms. Author: Riande ms. Custom: MVC ms. Date: 05/14/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Nozioni fondamentali/dipendenza-inserimento
-
+title: Inserimento delle dipendenze in ASP.NET Core
+author: rick-anderson
+description: Informazioni su come ASP.NET Core implementa l'inserimento delle dipendenze e su come usare questa funzionalità.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/14/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: fundamentals/dependency-injection
+ms.openlocfilehash: db0a23e2db34de60308ea9be021a190278dee4aa
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84271904"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserimento delle dipendenze in ASP.NET Core
 

@@ -1,17 +1,29 @@
 ---
-title: autore: Descrizione: monikerRange: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Configurare l'autenticazione del certificato in ASP.NET Core
+author: blowdart
+description: Informazioni su come configurare l'autenticazione del certificato in ASP.NET Core per IIS e HTTP. sys.
+monikerRange: '>= aspnetcore-3.0'
+ms.author: bdorrans
+ms.date: 01/02/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/authentication/certauth
+ms.openlocfilehash: 4511e253ea9487c5739162b9b0180e39eb3a1b9c
+ms.sourcegitcommit: 67eadd7bf28eae0b8786d85e90a7df811ffe5904
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84454610"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurare l'autenticazione del certificato in ASP.NET Core
 
 `Microsoft.AspNetCore.Authentication.Certificate`contiene un'implementazione simile all' [autenticazione del certificato](https://tools.ietf.org/html/rfc5246#section-7.4.4) per ASP.NET Core. L'autenticazione del certificato viene eseguita a livello di TLS, molto prima che venga mai ASP.NET Core. Più precisamente, si tratta di un gestore di autenticazione che convalida il certificato e quindi fornisce un evento in cui è possibile risolvere il certificato in un `ClaimsPrincipal` . 
 
-[Configurare l'host](#configure-your-host-to-require-certificates) per l'autenticazione del certificato, essere IIS, gheppio, app Web di Azure o qualsiasi altro elemento in uso.
+[Configurare il server](#configure-your-server-to-require-certificates) per l'autenticazione del certificato, essere IIS, gheppio, app Web di Azure o qualsiasi altro elemento in uso.
 
 ## <a name="proxy-and-load-balancer-scenarios"></a>Scenari di proxy e bilanciamento del carico
 
@@ -24,7 +36,7 @@ Un'alternativa all'autenticazione del certificato negli ambienti in cui vengono 
 
 ## <a name="get-started"></a>Introduzione
 
-Acquisire un certificato HTTPS, applicarlo e [configurare l'host](#configure-your-host-to-require-certificates) per richiedere i certificati.
+Acquisire un certificato HTTPS, applicarlo e [configurare il server](#configure-your-server-to-require-certificates) per richiedere i certificati.
 
 Nell'app Web aggiungere un riferimento al `Microsoft.AspNetCore.Authentication.Certificate` pacchetto. Quindi, nel `Startup.ConfigureServices` metodo chiamare `services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);` con le opzioni, fornendo un delegato per `OnCertificateValidated` per eseguire qualsiasi convalida supplementare sul certificato client inviato con le richieste. Trasformare le informazioni in un oggetto `ClaimsPrincipal` e impostarle sulla `context.Principal` Proprietà.
 
@@ -183,7 +195,7 @@ services.AddAuthentication(
 
 Concettualmente, la convalida del certificato è un problema di autorizzazione. L'aggiunta di un controllo, ad esempio, di un'autorità emittente o di un'identificazione personale in un criterio di autorizzazione, anziché all'interno di `OnCertificateValidated` , è perfettamente accettabile.
 
-## <a name="configure-your-host-to-require-certificates"></a>Configurare l'host per richiedere i certificati
+## <a name="configure-your-server-to-require-certificates"></a>Configurare il server per richiedere i certificati
 
 ### <a name="kestrel"></a>Kestrel
 

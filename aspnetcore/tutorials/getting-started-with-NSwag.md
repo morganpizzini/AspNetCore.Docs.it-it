@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/get-started-with-nswag
-ms.openlocfilehash: 50096ae6a77d5f8b07e6be795d9401fcbfd421e3
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cd4cc6778de7d2156243dc91fba64b2bdb79cf08
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776708"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452122"
 ---
 # <a name="get-started-with-nswag-and-aspnet-core"></a>Introduzione a NSwag e ad ASP.NET Core
 
@@ -56,7 +56,7 @@ Usare uno degli approcci seguenti per installare il pacchetto NuGet NSwag:
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Dalla finestra **Console di Gestione pacchetti**:
-  * Passare a **Visualizza** > **altre** > **console di gestione pacchetti** di Windows
+  * Passare a **Visualizza**  >  **altre**  >  **console di gestione pacchetti** di Windows
   * Passare alla directory che contiene il file *TodoApi.csproj*
   * Eseguire il comando seguente:
 
@@ -65,7 +65,7 @@ Usare uno degli approcci seguenti per installare il pacchetto NuGet NSwag:
     ```
 
 * Dalla finestra di dialogo **Gestisci pacchetti NuGet**:
-  * Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** > **Gestisci pacchetti NuGet**
+  * Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**  >  **Gestisci pacchetti NuGet**
   * Impostare **Origine pacchetto** su "nuget.org"
   * Immettere "NSwag.AspNetCore" nella casella di ricerca
   * Selezionare il pacchetto "NSwag.AspNetCore" dalla scheda **Sfoglia** e fare clic su **Installa**
@@ -107,11 +107,11 @@ Aggiungere e configurare Swagger nell'app ASP.NET Core eseguendo i passaggi segu
 
 È possibile sfruttare i vantaggi delle funzionalità di generazione del codice di NSwag scegliendo una delle opzioni seguenti:
 
-* [NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio) &ndash; Un'app desktop di Windows per generare il codice client in C# o TypeScript per l'API.
+* [NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio): un'app desktop di Windows per la generazione di codice client API in C# o typescript.
 * I pacchetti NuGet [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) o [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) per generare il codice all'interno del progetto.
 * NSwag dalla [riga di comando](https://github.com/RicoSuter/NSwag/wiki/CommandLine).
 * Il pacchetto NuGet [NSwag.MSBuild](https://github.com/RicoSuter/NSwag/wiki/NSwag.MSBuild).
-* Il [servizio connesso Unchase OpenAPI (Swagger)](https://marketplace.visualstudio.com/items?itemName=Unchase.unchaseopenapiconnectedservice) &ndash; è un servizio connesso di Visual Studio per la generazione di codice client API in C# o TypeScript, nonché per la generazione di controller C# per i servizi OpenAPI con NSwag.
+* Il [servizio connesso unchase openapi (spavalderia)](https://marketplace.visualstudio.com/items?itemName=Unchase.unchaseopenapiconnectedservice): un servizio connesso di Visual Studio per la generazione di codice client API in C# o typescript. nonché per la generazione di controller C# per i servizi OpenAPI con NSwag.
 
 ### <a name="generate-code-with-nswagstudio"></a>Generare il codice con NSwagStudio
 
@@ -221,7 +221,7 @@ Per abilitare i commenti XML, seguire questa procedura:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-* Dal *riquadro della soluzione* premere **controllo** e fare clic sul nome del progetto. Passare a **strumenti** > **modifica file**.
+* Dal *riquadro della soluzione* premere **controllo** e fare clic sul nome del progetto. Passare a **strumenti**  >  **modifica file**.
 * Aggiungere manualmente le righe evidenziate al file con estensione *csproj*:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
@@ -271,7 +271,7 @@ L'azione precedente restituisce `IActionResult`, ma all'interno dell'azione vien
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Dato che NSwag usa la [reflection](/dotnet/csharp/programming-guide/concepts/reflection) e il tipo restituito consigliato per le azioni API Web è [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601), può solo dedurre il tipo restituito definito da `T`. Non è possibile dedurre automaticamente altri tipi restituiti possibili.
+Poiché NSwag usa la [Reflection](/dotnet/csharp/programming-guide/concepts/reflection)e il tipo restituito consigliato per le azioni dell'API Web è [ActionResult \<T> ](xref:Microsoft.AspNetCore.Mvc.ActionResult%601), può solo dedurre il tipo restituito definito da `T` . Non è possibile dedurre automaticamente altri tipi restituiti possibili.
 
 Prendere in considerazione gli esempi seguenti:
 

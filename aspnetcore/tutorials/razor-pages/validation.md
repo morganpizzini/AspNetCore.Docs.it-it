@@ -12,14 +12,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 91f0ac5fcd607f2423f9fc4647413b2bbb2336fc
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7aeb77e836ce0546766d88f2c52f37aaf75c12c4
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773775"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452044"
 ---
-# <a name="add-validation-to-an-aspnet-core-razor-page"></a>Aggiungere la convalida a una pagina Razor ASP.NET Core
+# <a name="add-validation-to-an-aspnet-core-razor-page"></a>Aggiungere la convalida a una Razor pagina ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -27,12 +27,12 @@ In questa sezione la logica di convalida viene aggiunta al modello `Movie`. Le r
 
 ## <a name="validation"></a>Convalida
 
-Un concetto di base dello sviluppo del software si chiama [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("**D**on't **R**epeat **Y**ourself", Non ripeterti). Le pagine Razor promuovono lo sviluppo in cui la funzionalità è stata specificata una volta e questa modifica è riflessa sull'intera app. DRY contribuisce a:
+Un concetto di base dello sviluppo del software si chiama [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("**D**on't **R**epeat **Y**ourself", Non ripeterti). RazorLe pagine favoriscono lo sviluppo in cui la funzionalità è specificata una sola volta e viene riflessa nell'intera app. DRY contribuisce a:
 
 * Ridurre la quantità di codice in un'app.
 * Rendere il codice meno soggetto ad errori e più facile da testare e gestire.
 
-Il supporto della convalida fornito dalle pagine di Razor e da Entity Framework è un buon esempio del principio di DRY. Le regole di convalida vengono specificate in modo dichiarativo in un'unica posizione (nella classe del modello) e le regole vengono applicate ovunque nell'app.
+Il supporto della convalida fornito da Razor pagine e Entity Framework è un valido esempio di principio secco. Le regole di convalida vengono specificate in modo dichiarativo in un'unica posizione (nella classe del modello) e le regole vengono applicate ovunque nell'app.
 
 ## <a name="add-validation-rules-to-the-movie-model"></a>Aggiungere regole di convalida al modello movie
 
@@ -61,7 +61,7 @@ Gli attributi di convalida specificano il comportamento da implementare nelle pr
 
 L'applicazione automatica di regole di convalida da ASP.NET Core è utile per rendere un'app più solida. In questo modo inoltre non è possibile omettere la convalida di un elemento e quindi inserire involontariamente dati errati nel database.
 
-### <a name="validation-error-ui-in-razor-pages"></a>Errore di convalida dell'interfaccia utente nelle pagine Razor
+### <a name="validation-error-ui-in-razor-pages"></a>Interfaccia utente degli errori di convalida nelle Razor pagine
 
 Eseguire l'app e passare a Pages/Movies.
 
@@ -73,7 +73,7 @@ Selezionare il collegamento **Crea nuovo**. Completare il modulo con alcuni valo
 
 Si noti come il modulo ha eseguito automaticamente il rendering di un messaggio di errore di convalida in ogni campo che contiene un valore non valido. Gli errori vengono applicati sia sul lato client (uso di JavaScript e jQuery) sia sul lato server (quando un utente ha JavaScript disabilitato).
 
-Un vantaggio significativo è che non c'era **nessuna** modifica del codice necessaria nelle pagine Create o Edit. Una volta che le DataAnnotations sono state applicate al modello, è stata abilitata la convalida dell'interfaccia utente. Le pagine Razor create in questa esercitazione hanno selezionato automaticamente le regole di convalida (usando gli attributi di convalida delle proprietà della classe `Movie` del modello). Convalida del test tramite la pagina Modifica, viene applicata la stessa convalida.
+Un vantaggio significativo è che non c'era **nessuna** modifica del codice necessaria nelle pagine Create o Edit. Una volta che le DataAnnotations sono state applicate al modello, è stata abilitata la convalida dell'interfaccia utente. Le Razor pagine create in questa esercitazione hanno selezionato automaticamente le regole di convalida (usando gli attributi di convalida delle proprietà della `Movie` classe del modello). Convalida del test tramite la pagina Modifica, viene applicata la stessa convalida.
 
 I dati del modulo non vengono registrati nel server fino a quando non sono presenti errori di convalida nel lato client. Verificare che i dati del modulo non siano stati registrati da uno o più degli approcci seguenti:
 
@@ -107,7 +107,7 @@ Il codice seguente mostra una parte della pagina *Create.cshtml* di cui è stato
 
 L'[helper tag di input](xref:mvc/views/working-with-forms) usa gli attributi [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) e produce gli attributi HTML necessari per la convalida jQuery sul lato client. L'[helper tag di convalida](xref:mvc/views/working-with-forms#the-validation-tag-helpers) visualizza gli errori di convalida. Per altre informazioni, vedere [Convalida](xref:mvc/models/validation).
 
-Le pagine Create e Edit non dispongono di nessuna regola di convalida. Le regole di convalida e le stringhe di errore vengono specificate solo nella classe `Movie`. Queste regole di convalida vengono applicate automaticamente alle pagine Razor che modificano il modello `Movie`.
+Le pagine Create e Edit non dispongono di nessuna regola di convalida. Le regole di convalida e le stringhe di errore vengono specificate solo nella classe `Movie`. Queste regole di convalida vengono applicate automaticamente alle Razor pagine che modificano il `Movie` modello.
 
 Quando la logica di convalida deve cambiare, avviene solo nel modello. La convalida viene applicata in modo coerente in tutta l'applicazione (la logica di convalida è definita in un'unica posizione). La convalida in un'unica posizione consente di mantenere il codice pulito e rende più semplice la gestione e l'aggiornamento.
 
@@ -152,11 +152,11 @@ Il codice seguente illustra la combinazione di attributi in una sola riga:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
-[Introduzione a Razor Pages ed Entity Framework Core](xref:data/ef-rp/intro) include operazioni avanzate di Entity Framework Core con Razor Pages.
+[Introduzione a Razor Pagine e EF Core](xref:data/ef-rp/intro) Mostra le operazioni di EF core avanzate con le Razor pagine.
 
 ### <a name="apply-migrations"></a>Applicare le migrazioni
 
-Le annotazioni DataAnnotations applicate alla classe modificano lo schema. Ad esempio, le annotazioni DataAnnotations applicate al campo `Title`:
+L'oggetto DataAnnotations applicato alla classe modifica lo schema. Ad esempio, le annotazioni DataAnnotations applicate al campo `Title`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
 
@@ -217,7 +217,7 @@ Non sono necessarie migrazioni per SQLite.
 
 Per informazioni sulla distribuzione in Azure, vedere [esercitazione: compilare un'app ASP.NET Core in Azure con il database SQL](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
 
-Grazie per aver completato questa introduzione Razor alle pagine. Iniziare a [usare Razor le pagine e EF Core](xref:data/ef-rp/intro) è un'ottima procedura per completare questa esercitazione.
+Grazie per aver completato questa introduzione alle Razor pagine. [Introduzione a Razor Pagine e EF Core](xref:data/ef-rp/intro) è un'ottima procedura per completare questa esercitazione.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

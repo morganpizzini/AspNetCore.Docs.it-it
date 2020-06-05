@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 0b28e99d9c56d92e157e9010880e58ec5165196a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c2b76b59ae775b9268fa77019bf8420e5e4108b6
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774985"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452286"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introduzione ad ASP.NET Core MVC
 
@@ -98,17 +98,24 @@ Nell'esercitazione si presuppone una familarità con Visual Studio Code. Vedere 
 
 * Selezionare **File** > **Nuova soluzione**.
 
-  ![Nuova soluzione macOS](./start-mvc/_static/new_project_vsmac.png)
+  ![Nuova soluzione macOS](start-mvc/_static/new_project_vsmac.png)
 
-* Selezionare **.NET Core** > **App** > **Applicazione Web (Model-View-Controller)** > **Avanti**.
+* In Visual Studio per Mac precedente alla versione 8,6, selezionare applicazione Web **.NET Core**  >  **app**  >  **(Model-View-Controller)**  >  **Avanti**. Nella versione 8,6 o successive selezionare **Web e applicazione console**  >  **app**  >  **Web (Model-View-Controller)**  >  **Avanti**.
 
-  ![Finestra di dialogo Nuovo progetto di macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
+  ![selezione del modello di app Web macOS](start-mvc/_static/web_app_template_vsmac.png)
 
-* Nella finestra di dialogo **configurare la nuova ASP.NET Core API Web** impostare il **Framework di destinazione** di **.NET Core 3,1**.
+* Verificare le configurazioni seguenti:
 
-  ![selezione di macOS .NET Core 3,1](./start-mvc/_static/new_project_31_vsmac.png)
+  * Il **Framework di destinazione** è impostato su **.NET Core 3,1**.
+  * **L'autenticazione** è impostata su **Nessuna autenticazione**.
+   
+  Selezionare **Avanti**.
+
+  ![selezione di macOS .NET Core 3,1](start-mvc/_static/new_project_31_vsmac.png)
 
 * Denominare il progetto **MvcMovie**, quindi selezionare **Crea**.
+
+  ![macOS nome del progetto](start-mvc/_static/MvcMovie.png)
 
 ---
 
@@ -148,7 +155,7 @@ Premere CTRL+F5 per l'esecuzione senza il debugger.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-Selezionare **Esegui** > **Avvia senza eseguire debug** per avviare l'app. Visual Studio per Mac avvia il server [Kestrel](xref:fundamentals/servers/index#kestrel), apre un browser e naviga all'indirizzo `http://localhost:port`, dove *port* è un numero di porta selezionato a caso.
+Selezionare **Esegui**  >  **Avvia senza eseguire debug** per avviare l'app. Visual Studio per Mac avvia il server [Kestrel](xref:fundamentals/servers/index#kestrel), apre un browser e naviga all'indirizzo `http://localhost:port`, dove *port* è un numero di porta selezionato a caso.
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
@@ -248,9 +255,7 @@ Nell'esercitazione si presuppone una familarità con Visual Studio Code. Vedere 
 
   ![Nuova soluzione macOS](./start-mvc/_static/new_project_vsmac.png)
 
-* Selezionare **.NET Core** > **App** > **Applicazione Web (Model-View-Controller)** > **Avanti**.
-
-  ![Finestra di dialogo Nuovo progetto di macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
+* In Visual Studio per Mac precedente alla versione 8,6, selezionare applicazione Web **.NET Core**  >  **app**  >  **(Model-View-Controller)**  >  **Avanti**. Nella versione 8,6 o successive selezionare **Web e applicazione console**  >  **app**  >  **Web (Model-View-Controller)**  >  **Avanti**.
 
 * Nella finestra di dialogo **configurare la nuova ASP.NET Core API Web** accettare il **Framework di destinazione** predefinito di **.NET Core 2,2**.
 
@@ -306,7 +311,7 @@ Premere CTRL+F5 per l'esecuzione senza il debugger.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-Selezionare **Esegui** > **Avvia senza eseguire debug** per avviare l'app. Visual Studio per Mac avvia il server [Kestrel](xref:fundamentals/servers/index#kestrel), apre un browser e naviga all'indirizzo `http://localhost:port`, dove *port* è un numero di porta selezionato a caso.
+Selezionare **Esegui**  >  **Avvia senza eseguire debug** per avviare l'app. Visual Studio per Mac avvia il server [Kestrel](xref:fundamentals/servers/index#kestrel), apre un browser e naviga all'indirizzo `http://localhost:port`, dove *port* è un numero di porta selezionato a caso.
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 

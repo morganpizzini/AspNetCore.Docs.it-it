@@ -1,12 +1,24 @@
 ---
-title: "ASP.NET Core Blazor Injection Dependency Injection" Author: guardrex Description: "vedere come le Blazor app possono inserire i servizi in componenti".
-monikerRange:' >= aspnetcore-3,1' ms. Author: Riande ms. Custom: MVC ms. Date: 05/19/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: blazer/Dependency-Injection
-
+title: BlazorInserimento di dipendenze ASP.NET Core
+author: guardrex
+description: Scopri in che modo le Blazor app possono inserire i servizi nei componenti.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/dependency-injection
+ms.openlocfilehash: d5b0747fb0505499197d1751511600bd91fed41d
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84271783"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>BlazorInserimento di dipendenze ASP.NET Core
 
@@ -23,7 +35,7 @@ DI è una tecnica per accedere ai servizi configurati in una posizione centrale.
 
 I servizi predefiniti vengono aggiunti automaticamente alla raccolta di servizi dell'app.
 
-| Servizio | Durata | Description |
+| Servizio | Durata | Descrizione |
 | ------- | -------- | ----------- |
 | <xref:System.Net.Http.HttpClient> | Temporaneo | Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.<br><br>L'istanza di <xref:System.Net.Http.HttpClient> in un' Blazor app webassembly usa il browser per gestire il traffico HTTP in background.<br><br>BlazorPer impostazione predefinita, le app Server non includono un <xref:System.Net.Http.HttpClient> configurato come servizio. Fornire un <xref:System.Net.Http.HttpClient> a un' Blazor app Server.<br><br>Per altre informazioni, vedere <xref:blazor/call-web-api>. |
 | <xref:Microsoft.JSInterop.IJSRuntime> | Singleton ( Blazor webassembly)<br>Con ambito ( Blazor Server) | Rappresenta un'istanza di un runtime JavaScript in cui vengono inviate le chiamate a JavaScript. Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet>. |
@@ -118,7 +130,7 @@ public void ConfigureServices(IServiceCollection services)
 
 I servizi possono essere configurati con le durate mostrate nella tabella seguente.
 
-| Durata | Description |
+| Durata | Descrizione |
 | -------- | ----------- |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | BlazorLe app webassembly attualmente non dispongono di un concetto di ambiti di. `Scoped`-i servizi registrati si comportano come `Singleton` servizi. Tuttavia, il Blazor modello di hosting del server supporta il `Scoped` ciclo di vita. Nelle Blazor app Server, una registrazione del servizio con ambito ha come ambito la *connessione*. Per questo motivo, è preferibile usare i servizi con ambito per i servizi che devono avere come ambito l'utente corrente, anche se l'obiettivo corrente è eseguire sul lato client nel browser. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | La creazione di una *singola istanza* del servizio. Tutti i componenti che richiedono un `Singleton` servizio ricevono un'istanza dello stesso servizio. |

@@ -5,7 +5,7 @@ description: Informazioni su come usare lo strumento globale REPL HTTP .NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/11/2019
+ms.date: 05/20/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: 4d0200cd412cce6eda473a64d132d74d8641db34
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4c42ad56bbdb7b66824b290cd118903cbe4311e8
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777098"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452213"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testare le API Web con il ciclo Read-Eval-Print (REPL) HTTP
 
@@ -32,7 +32,7 @@ Il ciclo Read-Eval-Print (REPL) HTTP:
 
 Sono supportati i [verbi HTTP](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods) seguenti:
 
-* [ELIMINARE](#test-http-delete-requests)
+* [DELETE](#test-http-delete-requests)
 * [GET](#test-http-get-requests)
 * [HEAD](#test-http-head-requests)
 * [Opzioni](#test-http-options-requests)
@@ -390,7 +390,7 @@ pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json"
 get <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 `PARAMETER`
 
@@ -474,7 +474,7 @@ Per inviare una richiesta HTTP GET:
 post <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 `PARAMETER`
 
@@ -544,7 +544,7 @@ Per inviare una richiesta HTTP POST:
 put <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 `PARAMETER`
 
@@ -659,7 +659,7 @@ Per inviare una richiesta HTTP PUT:
 delete <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 `PARAMETER`
 
@@ -746,7 +746,7 @@ Per inviare una richiesta HTTP DELETE:
 patch <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 `PARAMETER`
 
@@ -766,7 +766,7 @@ Parametro di route, se presente, previsto dal metodo di azione del controller as
 head <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 `PARAMETER`
 
@@ -784,7 +784,7 @@ Parametro di route, se presente, previsto dal metodo di azione del controller as
 options <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 `PARAMETER`
 
@@ -820,7 +820,23 @@ Per impostare l'intestazione di una richiesta HTTP, usare uno degli approcci seg
 
 ## <a name="test-secured-endpoints"></a>Testare endpoint protetti
 
-Il REPL HTTP supporta il test degli endpoint protetti tramite l'uso di intestazioni di richiesta HTTP. Esempi di schemi di autenticazione e autorizzazione supportati includono l'autenticazione di base, i token di porta JWT e l'autenticazione del digest. Ad esempio, è possibile inviare un bearer token a un endpoint con il comando seguente:
+Il REPL HTTP supporta il test degli endpoint protetti in due modi: tramite le credenziali predefinite dell'utente connesso o tramite l'utilizzo di intestazioni di richiesta HTTP. 
+
+### <a name="default-credentials"></a>Credenziali predefinite
+
+Si consideri uno scenario in cui l'API Web che si sta testando è ospitata in IIS ed è protetta con l'autenticazione di Windows. Si desidera che le credenziali dell'utente che esegue lo strumento scorrano tra gli endpoint HTTP sottoposti a test. Per passare le credenziali predefinite dell'utente connesso:
+
+1. Impostare la `httpClient.useDefaultCredentials` preferenza su `true` :
+
+    ```console
+    pref set httpClient.useDefaultCredentials true
+    ```
+
+1. Chiudere e riavviare lo strumento prima di inviare un'altra richiesta all'API Web.
+
+### <a name="http-request-headers"></a>Intestazioni di richiesta HTTP
+
+Esempi di schemi di autenticazione e autorizzazione supportati includono l'autenticazione di base, i token di porta JWT e l'autenticazione del digest. Ad esempio, è possibile inviare un bearer token a un endpoint con il comando seguente:
 
 ```console
 set header Authorization "bearer <TOKEN VALUE>"
@@ -830,25 +846,25 @@ Per accedere a un endpoint ospitato da Azure o per usare l' [API REST di Azure](
 
 1. Accedere ad Azure:
 
-    ```azcli
+    ```azurecli
     az login
     ```
 
 1. Ottenere l'ID sottoscrizione con il comando seguente:
 
-    ```azcli
+    ```azurecli
     az account show --query id
     ```
 
 1. Copiare l'ID sottoscrizione ed eseguire il comando seguente:
 
-    ```azcli
+    ```azurecli
     az account set --subscription "<SUBSCRIPTION ID>"
     ```
 
 1. Ottenere il bearer token con il comando seguente:
 
-    ```azcli
+    ```azurecli
     az account get-access-token --query accessToken
     ```
 
