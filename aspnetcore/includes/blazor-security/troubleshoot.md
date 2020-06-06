@@ -16,8 +16,12 @@ Un approccio che impedisce ai cookie e ai dati del sito di interferire con i tes
 * Usare un comando personalizzato per aprire un browser in modalità privata o in incognito in Visual Studio:
   * Aprire la finestra di dialogo **Sfoglia con** dal pulsante di **esecuzione** di Visual Studio.
   * Fare clic sul pulsante **Aggiungi**.
-  * Consente di specificare il percorso del browser nel campo del **programma** .
-  * Nel campo **arguments (argomenti** ) specificare l'opzione della riga di comando che il browser usa per aprire in modalità privata o in incognito e l'URL dell'app. Ad esempio:
+  * Consente di specificare il percorso del browser nel campo del **programma** . I percorsi eseguibili seguenti sono i percorsi di installazione tipici di Windows 10. Se il browser è installato in un percorso diverso o non si usa Windows 10, specificare il percorso del file eseguibile del browser.
+    * Microsoft Edge:`C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`
+    * Google Chrome:`C:\Program Files (x86)\Google\Chrome\Application\chrome.exe`
+    * Mozilla Firefox:`C:\Program Files\Mozilla Firefox\firefox.exe`
+  * Nel campo **arguments (argomenti** ) specificare l'opzione della riga di comando utilizzata dal browser per aprire in modalità privata o in incognito. Alcuni browser richiedono l'URL dell'app.
+    * Microsoft Edge:`-inprivate`
     * Google Chrome:`--incognito --new-window https://localhost:5001`
     * Mozilla Firefox:`-private -url https://localhost:5001`
   * Specificare un nome nel campo **nome descrittivo** . Ad esempio: `Firefox Auth Testing`.
