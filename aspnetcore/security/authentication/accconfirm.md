@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: b7856a3004cfc76acfb485ff8f1fadf87f5aa904
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d5e0e3865702fe4e5cbe49e7f452f367a8a53de9
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777111"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84451745"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Account confirmation and password recovery in ASP.NET Core (Conferma dell'account e recupero della password in ASP.NET Core)
 
@@ -52,16 +52,18 @@ cd WebPWrecover
 dotnet run
 ```
 
-Eseguire l'app, selezionare il collegamento **Register** e registrare un utente. Una volta effettuata la registrazione, si verrà reindirizzati alla pagina a `/Identity/Account/RegisterConfirmation` contenente un collegamento per simulare la conferma della posta elettronica:
+Eseguire l'app, selezionare il collegamento **Register** e registrare un utente. Una volta effettuata la registrazione, si verrà reindirizzati alla `/Identity/Account/RegisterConfirmation` pagina a contenente un collegamento per simulare la conferma della posta elettronica:
 
 * Selezionare il `Click here to confirm your account` collegamento.
 * Selezionare il collegamento di **accesso** e accedere con le stesse credenziali.
-* Selezionare il `Hello YourEmail@provider.com!` collegamento per reindirizzare l' `/Identity/Account/Manage/PersonalData` utente alla pagina.
+* Selezionare il `Hello YourEmail@provider.com!` collegamento per reindirizzare l'utente alla `/Identity/Account/Manage/PersonalData` pagina.
 * Selezionare la scheda **Personal Data (dati personali** ) a sinistra e quindi fare clic su **Delete (Elimina**).
 
 ### <a name="configure-an-email-provider"></a>Configurare un provider di posta elettronica
 
 In questa esercitazione viene usato [SendGrid](https://sendgrid.com) per inviare messaggi di posta elettronica. Per inviare messaggi di posta elettronica sono necessari un account e una chiave di SendGrid. È possibile usare altri provider di posta elettronica. È consigliabile usare SendGrid o un altro servizio di posta elettronica per inviare messaggi di posta elettronica. SMTP è difficile da proteggere e configurare correttamente.
+
+Per l'account SendGrid, è necessario [aggiungere un mittente](https://sendgrid.com/docs/ui/sending-email/senders/).
 
 Creare una classe per recuperare la chiave di posta elettronica sicura. Per questo esempio, creare *Servizi/AuthMessageSenderOptions. cs*:
 
@@ -78,7 +80,7 @@ dotnet user-secrets set SendGridKey <key>
 Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-In Windows, gestione Secret archivia le `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` coppie chiave/valore in un file *Secrets. JSON* nella directory.
+In Windows, gestione Secret archivia le coppie chiave/valore in un file *Secrets. JSON* nella `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` Directory.
 
 Il contenuto del file *Secrets. JSON* non è crittografato. Il markup seguente mostra il file *Secrets. JSON* . Il `SendGridKey` valore è stato rimosso.
 
@@ -119,7 +121,7 @@ Per una registrazione gratuita per un account SendGrid gratuito, vedere [Introdu
 
 ### <a name="implement-iemailsender"></a>Implementare IEmailSender
 
-Per implementare `IEmailSender`, creare *Services/EmailSender. cs* con codice simile al seguente:
+Per implementare `IEmailSender` , creare *Services/EmailSender. cs* con codice simile al seguente:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Services/EmailSender.cs)]
 
@@ -161,13 +163,13 @@ Il codice seguente modifica il periodo di timeout di tutti i token di protezione
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/StartupAllTokens.cs?name=snippet1&highlight=11-12)]
 
-I token utente predefiniti Identity (vedere [AspNetCore/src/Identity/Extensions. core/src/TokenOptions. cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) hanno un timeout di un [giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+I Identity token utente predefiniti (vedere [AspNetCore/src/ Identity /Extensions.core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) hanno un timeout di un [giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
 ### <a name="change-the-email-token-lifespan"></a>Modificare la durata del token di posta elettronica
 
-La durata del token predefinita dei [token utente di identità](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) è [un giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). Questa sezione illustra come modificare la durata del token di posta elettronica.
+La durata del token predefinita [dei Identity token utente](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) è [un giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). Questa sezione illustra come modificare la durata del token di posta elettronica.
 
-Aggiungere un [>DataProtectorTokenProvider\<TUser](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) personalizzato e <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
+Aggiungere un [DataProtectorTokenProvider \<TUser> ](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) personalizzato e <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> :
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
@@ -185,8 +187,8 @@ Vedere [il problema in GitHub](https://github.com/dotnet/AspNetCore/issues/5410)
 
 Se non è possibile ottenere la posta elettronica:
 
-* Impostare un punto di `EmailSender.Execute` interruzione in `SendGridClient.SendEmailAsync` per verificare che venga chiamato.
-* Creare un' [app console per inviare messaggi di posta elettronica](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) usando `EmailSender.Execute`codice simile a.
+* Impostare un punto di interruzione in `EmailSender.Execute` per verificare che `SendGridClient.SendEmailAsync` venga chiamato.
+* Creare un' [app console per inviare messaggi di posta elettronica](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) usando codice simile a `EmailSender.Execute` .
 * Esaminare la pagina [attività posta elettronica](https://sendgrid.com/docs/User_Guide/email_activity.html) .
 * Controllare la cartella della posta indesiderata.
 * Prova un altro alias di posta elettronica in un provider di posta elettronica diverso (Microsoft, Yahoo, Gmail e così via)
@@ -198,7 +200,7 @@ Se non è possibile ottenere la posta elettronica:
 
 Per completare questa sezione, è necessario innanzitutto abilitare un provider di autenticazione esterno. Vedere [l'autenticazione di Facebook, Google e del provider esterno](xref:security/authentication/social/index).
 
-È possibile combinare account locali e di social networking facendo clic sul collegamento di posta elettronica. Nella sequenza seguente "RickAndMSFT@gmail.com" viene creato per la prima volta come account di accesso locale; Tuttavia, è possibile creare prima l'account come account di accesso di social networking, quindi aggiungere un account di accesso locale.
+È possibile combinare account locali e di social networking facendo clic sul collegamento di posta elettronica. Nella sequenza seguente " RickAndMSFT@gmail.com " viene creato per la prima volta come account di accesso locale; tuttavia, è possibile creare prima l'account come account di accesso di social networking, quindi aggiungere un account di accesso locale.
 
 ![Applicazione Web: RickAndMSFT@gmail.com utente autenticato](accconfirm/_static/rick.png)
 
@@ -227,7 +229,7 @@ L'abilitazione della conferma dell'account in un sito con utenti blocca tutti gl
 
 [.NET Core 2,2 SDK o versione successiva](https://dotnet.microsoft.com/download/dotnet-core)
 
-## <a name="create-a-web--app-and-scaffold-identity"></a>Creare un'app Web e un'identità di impalcatura
+## <a name="create-a-web--app-and-scaffold-identity"></a>Creare un'app Web e un patiboloIdentity
 
 Eseguire i comandi seguenti per creare un'app Web con l'autenticazione di.
 
@@ -245,11 +247,11 @@ dotnet run
 
 ## <a name="test-new-user-registration"></a>Testare la registrazione di un nuovo utente
 
-Eseguire l'app, selezionare il collegamento **Register** e registrare un utente. A questo punto, l'unica convalida sul messaggio di posta elettronica è [`[EmailAddress]`](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) con l'attributo. Dopo aver inviato la registrazione, si è connessi all'app. Più avanti nell'esercitazione, il codice viene aggiornato in modo che i nuovi utenti non possano accedere fino a quando non vengono convalidati i messaggi di posta elettronica.
+Eseguire l'app, selezionare il collegamento **Register** e registrare un utente. A questo punto, l'unica convalida sul messaggio di posta elettronica è con l' [`[EmailAddress]`](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attributo. Dopo aver inviato la registrazione, si è connessi all'app. Più avanti nell'esercitazione, il codice viene aggiornato in modo che i nuovi utenti non possano accedere fino a quando non vengono convalidati i messaggi di posta elettronica.
 
 [!INCLUDE[](~/includes/view-identity-db.md)]
 
-Si noti che il `EmailConfirmed` campo della `False`tabella è.
+Si noti che il `EmailConfirmed` campo della tabella è `False` .
 
 Potrebbe essere necessario usare nuovamente questo messaggio di posta elettronica nel passaggio successivo quando l'app invia un messaggio di posta elettronica di conferma. Fare clic con il pulsante destro del mouse sulla riga e scegliere **Elimina**. L'eliminazione dell'alias di posta elettronica rende più semplice nei passaggi seguenti.
 
@@ -257,7 +259,7 @@ Potrebbe essere necessario usare nuovamente questo messaggio di posta elettronic
 
 ## <a name="require-email-confirmation"></a>Richiedi conferma posta elettronica
 
-È consigliabile confermare il messaggio di posta elettronica di una nuova registrazione utente. La conferma tramite posta elettronica consente di verificare che non stiano eseguendo la rappresentazione di un altro utente, ovvero che non sono stati registrati con il messaggio di posta elettronica di un altro utente. Si supponga di avere un forum di discussione e di voler impedire cheyli@example.com"" si registri come "nolivetto@contoso.com". Senza la conferma della postanolivetto@contoso.comelettronica, "" potrebbe ricevere un messaggio di posta elettronica indesiderato dall'app. Si supponga che l'utente sia statoylo@example.comaccidentalmente registrato come "" e non abbia notato l'errore di ortografia di "Yli". Non saranno in grado di usare il ripristino della password perché l'app non ha la posta elettronica corretta. La conferma tramite posta elettronica garantisce una protezione limitata dai bot. La conferma tramite posta elettronica non fornisce protezione da utenti malintenzionati con molti account di posta elettronica.
+È consigliabile confermare il messaggio di posta elettronica di una nuova registrazione utente. La conferma tramite posta elettronica consente di verificare che non stiano eseguendo la rappresentazione di un altro utente, ovvero che non sono stati registrati con il messaggio di posta elettronica di un altro utente. Si supponga di avere un forum di discussione e di voler impedire che " yli@example.com " si registri come " nolivetto@contoso.com ". Senza la conferma della posta elettronica, " nolivetto@contoso.com " potrebbe ricevere un messaggio di posta elettronica indesiderato dall'app. Si supponga che l'utente sia stato accidentalmente registrato come " ylo@example.com " e non abbia notato l'errore di ortografia di "Yli". Non saranno in grado di usare il ripristino della password perché l'app non ha la posta elettronica corretta. La conferma tramite posta elettronica garantisce una protezione limitata dai bot. La conferma tramite posta elettronica non fornisce protezione da utenti malintenzionati con molti account di posta elettronica.
 
 In genere si vuole impedire ai nuovi utenti di inviare dati al sito Web prima di avere un messaggio di posta elettronica confermato.
 
@@ -269,7 +271,7 @@ Aggiornamento `Startup.ConfigureServices` per richiedere un messaggio di posta e
 
 ### <a name="configure-email-provider"></a>Configurare il provider di posta elettronica
 
-In questa esercitazione viene usato [SendGrid](https://sendgrid.com) per inviare messaggi di posta elettronica. Per inviare messaggi di posta elettronica sono necessari un account e una chiave di SendGrid. È possibile usare altri provider di posta elettronica. ASP.NET Core 2. x include `System.Net.Mail`, che consente di inviare messaggi di posta elettronica dall'app. È consigliabile usare SendGrid o un altro servizio di posta elettronica per inviare messaggi di posta elettronica. SMTP è difficile da proteggere e configurare correttamente.
+In questa esercitazione viene usato [SendGrid](https://sendgrid.com) per inviare messaggi di posta elettronica. Per inviare messaggi di posta elettronica sono necessari un account e una chiave di SendGrid. È possibile usare altri provider di posta elettronica. ASP.NET Core 2. x include `System.Net.Mail` , che consente di inviare messaggi di posta elettronica dall'app. È consigliabile usare SendGrid o un altro servizio di posta elettronica per inviare messaggi di posta elettronica. SMTP è difficile da proteggere e configurare correttamente.
 
 Creare una classe per recuperare la chiave di posta elettronica sicura. Per questo esempio, creare *Servizi/AuthMessageSenderOptions. cs*:
 
@@ -284,7 +286,7 @@ C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT
 info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-In Windows, gestione Secret archivia le `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` coppie chiave/valore in un file *Secrets. JSON* nella directory.
+In Windows, gestione Secret archivia le coppie chiave/valore in un file *Secrets. JSON* nella `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` Directory.
 
 Il contenuto del file *Secrets. JSON* non è crittografato. Il markup seguente mostra il file *Secrets. JSON* . Il `SendGridKey` valore è stato rimosso.
 
@@ -325,7 +327,7 @@ Per una registrazione gratuita per un account SendGrid gratuito, vedere [Introdu
 
 ### <a name="implement-iemailsender"></a>Implementare IEmailSender
 
-Per implementare `IEmailSender`, creare *Services/EmailSender. cs* con codice simile al seguente:
+Per implementare `IEmailSender` , creare *Services/EmailSender. cs* con codice simile al seguente:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Services/EmailSender.cs)]
 
@@ -340,7 +342,7 @@ Aggiungere il codice seguente al `ConfigureServices` metodo nel file *Startup.cs
 
 ## <a name="enable-account-confirmation-and-password-recovery"></a>Abilitare la conferma dell'account e il recupero della password
 
-Il modello include il codice per la conferma dell'account e il recupero della password. Trovare il `OnPostAsync` metodo in *aree/Identity/Pages/account/Register.cshtml.cs*.
+Il modello include il codice per la conferma dell'account e il recupero della password. Trovare il `OnPostAsync` metodo in *aree/ Identity /pages/account/Register.cshtml.cs*.
 
 Impedire l'accesso automatico degli utenti appena registrati impostando come commento la riga seguente:
 
@@ -364,7 +366,7 @@ Eseguire l'app Web e testare la conferma dell'account e il flusso di recupero de
 
 ### <a name="view-the-manage-page"></a>Visualizzare la pagina Gestisci
 
-Selezionare il nome utente nel browser: ![finestra del browser con nome utente](accconfirm/_static/un.png)
+Selezionare il nome utente nel browser: ![ finestra del browser con nome utente](accconfirm/_static/un.png)
 
 La pagina Gestisci viene visualizzata con la scheda **profilo** selezionata. Viene visualizzata una casella di controllo che indica che il messaggio di **posta elettronica è** stato confermato.
 
@@ -387,13 +389,13 @@ Il codice seguente modifica il periodo di timeout di tutti i token di protezione
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAllTokens.cs?name=snippet1&highlight=15-16)]
 
-I token Identity utente predefiniti (vedere [AspNetCore/srcIdentity//Extensions.core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) hanno un timeout di un [giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+I Identity token utente predefiniti (vedere [AspNetCore/src/ Identity /Extensions.core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) hanno un timeout di un [giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
 ### <a name="change-the-email-token-lifespan"></a>Modificare la durata del token di posta elettronica
 
 La durata del token predefinita [dei Identity token utente](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) è [un giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). Questa sezione illustra come modificare la durata del token di posta elettronica.
 
-Aggiungere un [>DataProtectorTokenProvider\<TUser](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) personalizzato e <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
+Aggiungere un [DataProtectorTokenProvider \<TUser> ](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) personalizzato e <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> :
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
@@ -411,8 +413,8 @@ Vedere [il problema in GitHub](https://github.com/dotnet/AspNetCore/issues/5410)
 
 Se non è possibile ottenere la posta elettronica:
 
-* Impostare un punto di `EmailSender.Execute` interruzione in `SendGridClient.SendEmailAsync` per verificare che venga chiamato.
-* Creare un' [app console per inviare messaggi di posta elettronica](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) usando `EmailSender.Execute`codice simile a.
+* Impostare un punto di interruzione in `EmailSender.Execute` per verificare che `SendGridClient.SendEmailAsync` venga chiamato.
+* Creare un' [app console per inviare messaggi di posta elettronica](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) usando codice simile a `EmailSender.Execute` .
 * Esaminare la pagina [attività posta elettronica](https://sendgrid.com/docs/User_Guide/email_activity.html) .
 * Controllare la cartella della posta indesiderata.
 * Prova un altro alias di posta elettronica in un provider di posta elettronica diverso (Microsoft, Yahoo, Gmail e così via)
@@ -424,7 +426,7 @@ Se non è possibile ottenere la posta elettronica:
 
 Per completare questa sezione, è necessario innanzitutto abilitare un provider di autenticazione esterno. Vedere [l'autenticazione di Facebook, Google e del provider esterno](xref:security/authentication/social/index).
 
-È possibile combinare account locali e di social networking facendo clic sul collegamento di posta elettronica. Nella sequenza seguente "RickAndMSFT@gmail.com" viene creato per la prima volta come account di accesso locale; Tuttavia, è possibile creare prima l'account come account di accesso di social networking, quindi aggiungere un account di accesso locale.
+È possibile combinare account locali e di social networking facendo clic sul collegamento di posta elettronica. Nella sequenza seguente " RickAndMSFT@gmail.com " viene creato per la prima volta come account di accesso locale; tuttavia, è possibile creare prima l'account come account di accesso di social networking, quindi aggiungere un account di accesso locale.
 
 ![Applicazione Web: RickAndMSFT@gmail.com utente autenticato](accconfirm/_static/rick.png)
 

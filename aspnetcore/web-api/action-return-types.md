@@ -1,12 +1,23 @@
 ---
-title: tipi restituiti dall'azione del controller in ASP.NET Core API Web Author: scottaddie Description: informazioni sull'uso dei diversi tipi restituiti del metodo di azione del controller in un'API Web di ASP.NET Core.
-ms. Author: scaddie ms. Custom: MVC ms. Date: 02/03/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Web-API/Action-tipi restituiti
-
+title: Tipi restituiti dall'azione del controller nell'API Web ASP.NET Core
+author: scottaddie
+description: Informazioni sull'uso dei diversi tipi restituiti del metodo di azione del controller in un'API Web ASP.NET Core.
+ms.author: scaddie
+ms.custom: mvc
+ms.date: 02/03/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: web-api/action-return-types
+ms.openlocfilehash: 57bc91feb9c4242dbea120ee00db1cba46784c61
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84253786"
 ---
 # <a name="controller-action-return-types-in-aspnet-core-web-api"></a>Tipi restituiti dall'azione del controller nell'API Web ASP.NET Core
 

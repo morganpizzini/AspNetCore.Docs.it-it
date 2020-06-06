@@ -1,12 +1,24 @@
 ---
-title:' ASP.NET Core gli Blazor scenari di sicurezza aggiuntiva di webassembly ' Author: guardrex Description:' informazioni su come configurare Blazor webassembly per altri scenari di sicurezza .'
-monikerRange:' >= aspnetcore-3,1' ms. Author: Riande ms. Custom: MVC ms. Date: 06/01/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Security/Blazer/webassembly/scenari aggiuntivi
-
+title: BlazorScenari di sicurezza aggiuntivi ASP.NET Core Webassembly
+author: guardrex
+description: Informazioni su come configurare Blazor webassembly per altri scenari di sicurezza.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 06/01/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/additional-scenarios
+ms.openlocfilehash: de752eb180767bbb269107ebc478a4422448f968
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84272034"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>BlazorScenari di sicurezza aggiuntivi ASP.NET Core Webassembly
 

@@ -1,12 +1,24 @@
 ---
-title: "ASP.NET Core Blazor globalizzazione e localizzazione" Author: guardrex Description: "informazioni su come rendere i Razor componenti accessibili agli utenti in più impostazioni cultura e linguaggi".
-monikerRange:' >= aspnetcore-3,1' ms. Author: Riande ms. Custom: MVC ms. Date: 06/04/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: blazer/Globalization-localizzazione
-
+title: BlazorGlobalizzazione e localizzazione ASP.NET Core
+author: guardrex
+description: Informazioni su come rendere i Razor componenti accessibili agli utenti in più impostazioni cultura e lingue.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 06/04/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/globalization-localization
+ms.openlocfilehash: 94faaa57cc6dd3df9e4a7c3c090fe01527399658
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84419736"
 ---
 # <a name="aspnet-core-blazor-globalization-and-localization"></a>BlazorGlobalizzazione e localizzazione ASP.NET Core
 

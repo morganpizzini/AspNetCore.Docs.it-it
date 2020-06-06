@@ -2,22 +2,25 @@ Eseguire l'impalcatura delle identità:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Da **Esplora soluzioni**, fare clic con il pulsante destro del mouse sul progetto > **Aggiungi** > **nuovo elemento con impalcatura**.
-* Dal riquadro sinistro della finestra di dialogo **Aggiungi impalcatura** selezionare **Identity** > **Aggiungi**.
+* Da **Esplora soluzioni**, fare clic con il pulsante destro del mouse sul progetto > **Aggiungi**  >  **nuovo elemento con impalcatura**.
+* Dal riquadro sinistro della finestra di dialogo **Aggiungi nuovo elemento con impalcatura** selezionare **Identity**  >  **Aggiungi**.
 * Nella finestra di dialogo **Aggiungi identità** selezionare le opzioni desiderate.
-  * Selezionare la pagina layout esistente. in alternativa, il file di layout verrà sovrascritto con un markup errato. Ad esempio `~/Pages/Shared/_Layout.cshtml` per Razor Pages `~/Views/Shared/_Layout.cshtml` per i progetti MVC
-  * Selezionare il pulsante **+** per creare una nuova **classe del contesto dati**.
+  * Selezionare la pagina layout esistente. in alternativa, il file di layout verrà sovrascritto con un markup errato:
+    * `~/Pages/Shared/_Layout.cshtml`per Razor Pages
+    * `~/Views/Shared/_Layout.cshtml`per i progetti MVC
+    * Per impostazione predefinita, le app del server Blazer create dal modello del server Blaze ( `blazorserver` ) non sono configurate per Razor Pages o MVC. Lasciare vuota la voce di pagina layout.
+  * Selezionare il **+** pulsante per creare una nuova **classe del contesto dati**. Accettare il valore predefinito o specificare una classe (ad esempio, `MyApplication.Data.ApplicationDbContext` ).
 * Selezionare **Aggiungi**.
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-Se l'utilità di scaffolding di ASP.NET Core non è stato precedentemente installato, installarlo ora:
+Se in precedenza non è stato installato il ASP.NET Core impalcatura, installarlo ora:
 
 ```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
-Aggiungere i riferimenti ai pacchetti NuGet necessari al file del progetto (\*. csproj). Eseguire il comando seguente nella directory del progetto:
+Aggiungere i riferimenti ai pacchetti NuGet necessari al file di progetto (con*estensione csproj*). Eseguire i comandi seguenti nella directory del progetto:
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -28,7 +31,7 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
 ```
 
-Eseguire il comando seguente per elencare le opzioni di utilità di scaffolding di identità:
+Eseguire il comando seguente per elencare le opzioni dell'impalcatura di identità:
 
 ```dotnetcli
 dotnet aspnet-codegenerator identity -h

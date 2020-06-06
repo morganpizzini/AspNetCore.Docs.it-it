@@ -1,11 +1,23 @@
 ---
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Eseguire la migrazione da API Web ASP.NET a ASP.NET Core
+author: ardalis
+description: Informazioni su come eseguire la migrazione di un'implementazione di API Web dall'API Web ASP.NET 4. x a ASP.NET Core MVC.
+ms.author: scaddie
+ms.custom: mvc
+ms.date: 05/26/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: migration/webapi
+ms.openlocfilehash: 3c8bf27a97de92a42817d4af625976a4920001aa
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84145551"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Eseguire la migrazione da API Web ASP.NET a ASP.NET Core
 
@@ -47,7 +59,7 @@ Creare una nuova soluzione vuota in Visual Studio e aggiungere il progetto API W
 
 1. Scegliere **Nuovo** > **Progetto** dal menu **File**.
 1. Selezionare il modello di **soluzione vuota** e selezionare **Avanti**.
-1. Assegnare alla soluzione il nome *WebAPIMigration*. Selezionare **Crea**.
+1. Assegnare alla soluzione il nome *WebAPIMigration*. Selezionare **Create** (Crea).
 1. Aggiungere il progetto *ProductsApp* esistente alla soluzione.
 
 Aggiungere un nuovo progetto API per la migrazione a:

@@ -1,12 +1,22 @@
 ---
-title: globalizzazione e localizzazione in ASP.NET Core autore: Rick-Anderson Description: informazioni su come ASP.NET Core fornisce servizi e middleware per la localizzazione di contenuto in linguaggi e impostazioni cultura diverse.
-ms. Author: Riande ms. Date: 11/30/2019 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': Nozioni fondamentali/localizzazione
-
+title: Globalizzazione e localizzazione in ASP.NET Core
+author: rick-anderson
+description: Informazioni su come ASP.NET Core offre servizi e middleware per la localizzazione di contenuti in diverse lingue e culture.
+ms.author: riande
+ms.date: 11/30/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: fundamentals/localization
+ms.openlocfilehash: e3b73a7a559d2f4a0803dc26dd42257c60fab884
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84356960"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalizzazione e localizzazione in ASP.NET Core
 
@@ -70,7 +80,7 @@ L'implementazione predefinita di `IViewLocalizer` individua il file di risorse i
 
 Un file di risorse francese può contenere quanto segue:
 
-| Chiave | valore |
+| Chiave | Valore |
 | ----- | ------ |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
@@ -418,7 +428,7 @@ L'implementazione predefinita di `IViewLocalizer` individua il file di risorse i
 
 Un file di risorse francese può contenere quanto segue:
 
-| Chiave | valore |
+| Chiave | Valore |
 | ----- | ------ |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
@@ -765,7 +775,7 @@ L'implementazione predefinita di `IViewLocalizer` individua il file di risorse i
 
 Un file di risorse francese può contenere quanto segue:
 
-| Chiave | valore |
+| Chiave | Valore |
 | ----- | ------ |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 

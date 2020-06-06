@@ -1,12 +1,22 @@
 ---
-title: configurare la localizzazione di oggetti portabili in ASP.NET Core Author: sebastienros Description: questo articolo introduce i file oggetto portabili e descrive i passaggi per usarli in un'applicazione ASP.NET Core con il Framework Orchard core.
-ms. Author: scaddie ms. Date: 09/26/2017 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Nozioni fondamentali/portabile-oggetto-localizzazione
-
+title: Configurare la localizzazione degli oggetti portabili in ASP.NET Core
+author: sebastienros
+description: Questo articolo presenta i file degli oggetti portabili e descrive i passaggi per l'uso dei file in un'applicazione ASP.NET Core con il framework Orchard Core.
+ms.author: scaddie
+ms.date: 09/26/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: fundamentals/portable-object-localization
+ms.openlocfilehash: 57498cc2a773e5147b6eda653cc89d303f238b78
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84355084"
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>Configurare la localizzazione degli oggetti portabili in ASP.NET Core
 

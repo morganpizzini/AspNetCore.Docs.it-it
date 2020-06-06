@@ -1,12 +1,24 @@
 ---
-title:' crea la tua prima Blazor app ' autore: guardrex Descrizione:' crea un' Blazor app Step-by-Step '.
-monikerRange:' >= aspnetcore-3,0' ms. Author: Riande ms. Custom: MVC ms. Date: 05/19/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: esercitazioni/First-Blazer-app
-
+title: Crea la tua prima Blazor app
+author: guardrex
+description: Creare un' Blazor app dettagliata.
+monikerRange: '>= aspnetcore-3.0'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: tutorials/first-blazor-app
+ms.openlocfilehash: 8cf356b5c9876a4114942af27a22df6bd324d0e2
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84355214"
 ---
 # <a name="build-your-first-blazor-app"></a>Crea la tua prima Blazor app
 

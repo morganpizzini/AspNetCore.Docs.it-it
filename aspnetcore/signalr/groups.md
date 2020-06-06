@@ -1,14 +1,25 @@
 ---
-title:' Manage Users and groups in SignalR ' Author: bradygaster Description:' Overview of ASP.NET Core SignalR User and Group Management .'
-monikerRange:' >= aspnetcore-2,1' ms. Author: bradyg ms. Custom: MVC ms. Date: 05/17/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: SignalR/groups
-
+title: Gestire utenti e gruppi inSignalR
+author: bradygaster
+description: Panoramica di ASP.NET Core SignalR gestione di utenti e gruppi.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: bradyg
+ms.custom: mvc
+ms.date: 05/17/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: signalr/groups
+ms.openlocfilehash: dfa989654069bc85f0a936751dbabe384c63e917
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "83549998"
 ---
-
 # <a name="manage-users-and-groups-in-signalr"></a>Gestire utenti e gruppi inSignalR
 
 Di [Brennan Conroy](https://github.com/BrennanConroy)

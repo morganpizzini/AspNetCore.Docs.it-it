@@ -1,12 +1,24 @@
 ---
-title: "host and deploy ASP.NET Core Blazor Server" Author: guardrex Description: "informazioni su come ospitare e distribuire un' Blazor app Server usando ASP.NET Core".
-monikerRange:' >= aspnetcore-3,1' ms. Author: Riande ms. Custom: MVC ms. Date: 06/04/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: host-and-deploy/Blazer/server
-
+title: Ospitare e distribuire ASP.NET Core Blazor Server
+author: guardrex
+description: Informazioni su come ospitare e distribuire un' Blazor app server usando ASP.NET Core.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 06/04/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: host-and-deploy/blazor/server
+ms.openlocfilehash: 8c06d3a4d0d75a3e2fd9f699af38a23833fa8bce
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84419944"
 ---
 # <a name="host-and-deploy-blazor-server"></a>Ospitare e distribuire il Blazor Server
 

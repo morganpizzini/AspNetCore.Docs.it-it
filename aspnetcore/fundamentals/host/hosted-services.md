@@ -1,12 +1,24 @@
 ---
-title: attività in background con servizi ospitati in ASP.NET Core autore: Rick-Anderson Description: informazioni su come implementare attività in background con servizi ospitati in ASP.NET Core.
-monikerRange:' >= aspnetcore-2,1' ms. Author: Riande ms. Custom: MVC ms. Date: 02/10/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: Nozioni fondamentali/host/Hosted-Services
-
+title: Attività in background con servizi ospitati in ASP.NET Core
+author: rick-anderson
+description: Informazioni su come implementare attività in background con servizi ospitati in ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/10/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: fundamentals/host/hosted-services
+ms.openlocfilehash: 47d0bdda7249232af22ec1c97e7baa710310caed
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84253682"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Attività in background con servizi ospitati in ASP.NET Core
 
