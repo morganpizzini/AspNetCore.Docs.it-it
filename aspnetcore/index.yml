@@ -1,21 +1,21 @@
 ### YamlMime:Hub
-title: Documentazione di ASP.NET Core
+title: Documentazione di ASP.NET
 summary: Informazioni su come usare ASP.NET Core per creare app e servizi Web veloci, sicuri, multipiattaforma e basati sul cloud. Esercitazioni, codice di esempio, concetti fondamentali, informazioni di riferimento sulle API e altro ancora.
 brand: aspnet
 metadata:
-  title: Documentazione di ASP.NET Core
+  title: Documentazione di ASP.NET
   description: Informazioni su come usare ASP.NET Core per creare app e servizi Web veloci, sicuri, multipiattaforma e basati sul cloud. Esercitazioni, codice di esempio, concetti fondamentali, informazioni di riferimento sulle API e altro ancora.
   ms.product: aspnet
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 06/03/2020
-  ms.openlocfilehash: fb4b31258683c5928708e7a2a479f353972c010b
-  ms.sourcegitcommit: 829dca1d5a7dcccbfe90644101c6be1d1c94ac62
+  ms.date: 06/05/2020
+  ms.openlocfilehash: 25b5387c8956ea7931751525ea954f6f702c0cde
+  ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
   ms.translationtype: HT
   ms.contentlocale: it-IT
-  ms.lasthandoff: 06/04/2020
-  ms.locfileid: "84355407"
+  ms.lasthandoff: 06/08/2020
+  ms.locfileid: "84507281"
 highlightedContent:
   items:
   - title: Creare un'app ASP.NET Core su qualsiasi piattaforma in 5 minuti
@@ -44,7 +44,7 @@ highlightedContent:
     url: https://docs.microsoft.com/aspnet/overview
 conceptualContent:
   title: Sviluppare app ASP.NET Core
-  summary: Scegliere app Web interattive, API Web, app con modelli MVC, app in tempo reale e altro ancora. Per la documentazione di ASP.NET 4.x, vedere [ASP.NET](https://docs.microsoft.com/aspnet/overview).
+  summary: Scegliere app Web interattive, API Web, app con modelli MVC, app in tempo reale e altro ancora
   items:
   - title: App di Blazor sul lato client interattive
     summary: Sviluppare con componenti dell'interfaccia utente riutilizzabili che possono sfruttare WebAssembly per prestazioni quasi native
