@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: c89e0f0428fa7556fcd6b75cdfc1dd19109ec1c8
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 233d6cc060481c7b2efc9a1babc12f60f457a075
+ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774600"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84507335"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Aggiungere una vista a un'app ASP.NET Core MVC
 
@@ -24,9 +24,9 @@ Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In questa sezione si modifica la classe `HelloWorldController` in modo da usare i file della vista [Razor](xref:mvc/views/razor) per incapsulare correttamente il processo di generazione di risposte HTML a un client.
+In questa sezione viene modificata la `HelloWorldController` classe per l'utilizzo [Razor](xref:mvc/views/razor) dei file di visualizzazione per incapsulare in modo semplice il processo di generazione di risposte HTML a un client.
 
-Si crea un file di modello di vista usando Razor. I modelli di vista basati su Razor hanno l'estensione di file *.cshtml*. Consentono di creare l'output HTML in modo accurato con C#.
+Si crea un file di modello di visualizzazione utilizzando Razor . Razori modelli di vista basati su hanno un'estensione di file *. cshtml* . Consentono di creare l'output HTML in modo accurato con C#.
 
 Attualmente il metodo `Index` restituisce una stringa con un messaggio hardcoded nella classe controller. Nella classe `HelloWorldController` sostituire il metodo `Index` con il codice seguente:
 
@@ -46,7 +46,7 @@ Il codice precedente chiama il metodo <xref:Microsoft.AspNetCore.Mvc.Controller.
 
   * Nella casella di ricerca in alto a destra immettere *view* (vista)
 
-  * Selezionare **Visualizzazione Razor**
+  * Selezione ** Razor visualizzazione**
 
   * Mantenere il valore della casella **Nome**, *Index.cshtml*.
 
@@ -76,11 +76,11 @@ Aggiungere una vista `Index` per `HelloWorldController`.
 
 ---
 
-Sostituire il contenuto del file di vista Razor *Views/HelloWorld/Index.cshtml* con quanto segue:
+Sostituire il contenuto del file di visualizzazione *views/HelloWorld/index. cshtml* Razor con il codice seguente:
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Accedere a `https://localhost:{PORT}/HelloWorld`. Il metodo `Index` in `HelloWorldController` non ha eseguito molte operazioni; ha eseguito l'istruzione `return View();` che ha specificato che il metodo deve usare un file di modello della vista per eseguire il rendering di una risposta al browser. Poiché non è stato specificato un nome di file di modello di visualizzazione, per impostazione predefinita MVC usa il file di visualizzazione predefinito. Il file di visualizzazione predefinito ha lo stesso nome del metodo (`Index`), quindi viene usato */Views/HelloWorld/Index.cshtml*. L'immagine seguente mostra la stringa "Hello from our View Template!" hardcoded nella vista.
+Passare a `https://localhost:{PORT}/HelloWorld`. Il metodo `Index` in `HelloWorldController` non ha eseguito molte operazioni; ha eseguito l'istruzione `return View();` che ha specificato che il metodo deve usare un file di modello della vista per eseguire il rendering di una risposta al browser. Poiché non è stato specificato un nome di file di modello di visualizzazione, per impostazione predefinita MVC usa il file di visualizzazione predefinito. Il file di visualizzazione predefinito ha lo stesso nome del metodo ( `Index` ), quindi viene usato il modello di visualizzazione in */views/HelloWorld/index.cshtml* . L'immagine seguente mostra la stringa "Hello from our View Template!" hardcoded nella vista.
 
 ![Finestra del browser](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -133,7 +133,7 @@ Il titolo e l'elemento `<h2>`sono leggermente diversi in modo da poter esaminare
 <title>@ViewData["Title"] - Movie App</title>
 ```
 
-Salvare la modifica e passare a `https://localhost:{PORT}/HelloWorld`. Si noti che il titolo del browser, l'intestazione primaria e le intestazioni secondarie sono cambiati. Se le modifiche non sono visibili nel browser, è possibile che si stia visualizzando il contenuto memorizzato nella cache. Premere CTRL + F5 nel browser per forzare il caricamento della risposta dal server. Il titolo del browser viene creato `ViewData["Title"]` con l'impostazione nel modello di vista *index. cshtml* e l'aggiunta di "-Movie app" nel file di layout.
+Salvare la modifica e passare a `https://localhost:{PORT}/HelloWorld`. Si noti che il titolo del browser, l'intestazione primaria e le intestazioni secondarie sono cambiati. Se le modifiche non sono visibili nel browser, è possibile che si stia visualizzando il contenuto memorizzato nella cache. Premere CTRL + F5 nel browser per forzare il caricamento della risposta dal server. Il titolo del browser viene creato con l' `ViewData["Title"]` impostazione nel modello di vista *index. cshtml* e l'aggiunta di "-Movie app" nel file di layout.
 
 Il contenuto del modello di vista *Index.cshtml* viene unito al modello di vista *Views/Shared/_Layout.cshtml*. Viene inviata una singola risposta HTML al browser. I modelli di layout rendono semplice apportare modifiche che si applicano a tutte le pagine di un'app. Per altre informazioni, vedere [layout](xref:mvc/views/layout).
 
@@ -174,16 +174,16 @@ Nell'esempio precedente è stato usato il dizionario `ViewData` per passare i da
 Nella prossima esercitazione, viene creato un database di film.
 
 > [!div class="step-by-step"]
-> [Precedente](adding-controller.md)
-> [successivo](adding-model.md)
+> [Precedente](adding-controller.md) 
+>  [Avanti](adding-model.md)
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-In questa sezione si modifica la classe `HelloWorldController` in modo da usare i file della vista [Razor](xref:mvc/views/razor) per incapsulare correttamente il processo di generazione di risposte HTML a un client.
+In questa sezione viene modificata la `HelloWorldController` classe per l'utilizzo [Razor](xref:mvc/views/razor) dei file di visualizzazione per incapsulare in modo semplice il processo di generazione di risposte HTML a un client.
 
-Si crea un file di modello di vista usando Razor. I modelli di vista basati su Razor hanno l'estensione di file *.cshtml*. Consentono di creare l'output HTML in modo accurato con C#.
+Si crea un file di modello di visualizzazione utilizzando Razor . Razori modelli di vista basati su hanno un'estensione di file *. cshtml* . Consentono di creare l'output HTML in modo accurato con C#.
 
 Attualmente il metodo `Index` restituisce una stringa con un messaggio hardcoded nella classe controller. Nella classe `HelloWorldController` sostituire il metodo `Index` con il codice seguente:
 
@@ -203,7 +203,7 @@ Il codice precedente chiama il metodo <xref:Microsoft.AspNetCore.Mvc.Controller.
 
   * Nella casella di ricerca in alto a destra immettere *view* (vista)
 
-  * Selezionare **Visualizzazione Razor**
+  * Selezione ** Razor visualizzazione**
 
   * Mantenere il valore della casella **Nome**, *Index.cshtml*.
 
@@ -237,7 +237,7 @@ Sostituire il contenuto del file di visualizzazione *views/HelloWorld/index. csh
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Accedere a `https://localhost:{PORT}/HelloWorld`. Il metodo `Index` in `HelloWorldController` non ha eseguito molte operazioni; ha eseguito l'istruzione `return View();` che ha specificato che il metodo deve usare un file di modello della vista per eseguire il rendering di una risposta al browser. Poiché non è stato specificato un nome di file di modello di visualizzazione, per impostazione predefinita MVC usa il file di visualizzazione predefinito. Il file di visualizzazione predefinito ha lo stesso nome del metodo (`Index`), quindi viene usato */Views/HelloWorld/Index.cshtml*. L'immagine seguente mostra la stringa "Hello from our View Template!" hardcoded nella vista.
+Passare a `https://localhost:{PORT}/HelloWorld`. Il metodo `Index` in `HelloWorldController` non ha eseguito molte operazioni; ha eseguito l'istruzione `return View();` che ha specificato che il metodo deve usare un file di modello della vista per eseguire il rendering di una risposta al browser. Poiché non è stato specificato un nome di file di modello di visualizzazione, per impostazione predefinita MVC usa il file di visualizzazione predefinito. Il file di visualizzazione predefinito ha lo stesso nome del metodo (`Index`), quindi viene usato */Views/HelloWorld/Index.cshtml*. L'immagine seguente mostra la stringa "Hello from our View Template!" hardcoded nella vista.
 
 ![Finestra del browser](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -293,7 +293,7 @@ Il titolo e l'elemento `<h2>`sono leggermente diversi in modo da poter esaminare
 <title>@ViewData["Title"] - Movie App</title>
 ```
 
-Salvare la modifica e passare a `https://localhost:{PORT}/HelloWorld`. Si noti che il titolo del browser, l'intestazione primaria e le intestazioni secondarie sono cambiati. Se le modifiche non sono visibili nel browser, è possibile che si stia visualizzando il contenuto memorizzato nella cache. Premere CTRL + F5 nel browser per forzare il caricamento della risposta dal server. Il titolo del browser viene creato `ViewData["Title"]` con l'impostazione nel modello di vista *index. cshtml* e l'aggiunta di "-Movie app" nel file di layout.
+Salvare la modifica e passare a `https://localhost:{PORT}/HelloWorld`. Si noti che il titolo del browser, l'intestazione primaria e le intestazioni secondarie sono cambiati. Se le modifiche non sono visibili nel browser, è possibile che si stia visualizzando il contenuto memorizzato nella cache. Premere CTRL + F5 nel browser per forzare il caricamento della risposta dal server. Il titolo del browser viene creato con l' `ViewData["Title"]` impostazione nel modello di vista *index. cshtml* e l'aggiunta di "-Movie app" nel file di layout.
 
 Si noti anche come il contenuto del modello di vista *Index.cshtml* sia stato unito con il modello di vista *Views/Shared/_Layout.cshtml* e sia stata inviata una singola risposta HTML al browser. I modelli di layout rendono molto semplice apportare modifiche che si applicano a tutte le pagine dell'applicazione. Per altre informazioni, vedere [Layout](xref:mvc/views/layout).
 
@@ -334,7 +334,7 @@ Nell'esempio precedente è stato usato il dizionario `ViewData` per passare i da
 Nella prossima esercitazione, viene creato un database di film.
 
 > [!div class="step-by-step"]
-> [Precedente](adding-controller.md)
-> [successivo](adding-model.md)
+> [Precedente](adding-controller.md) 
+>  [Avanti](adding-model.md)
 
 ::: moniker-end

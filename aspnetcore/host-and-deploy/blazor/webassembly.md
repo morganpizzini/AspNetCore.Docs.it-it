@@ -5,7 +5,7 @@ description: Informazioni su come ospitare e distribuire un' Blazor app usando A
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2020
+ms.date: 06/07/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: 09f74edaa3d1cb0d51e0ce8d0209383885b81f5f
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 005ec9af9a93bfc4be06d06588fd61a6367b1e47
+ms.sourcegitcommit: 74d80a36103fdbd54baba0118535a4647f511913
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84239385"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84529545"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor Webassembly
 
@@ -34,13 +34,47 @@ Sono supportate le strategie di distribuzione seguenti:
 * L' Blazor app viene gestita da un'app ASP.NET Core. Questa strategia viene trattata nella sezione [Distribuzione ospitata con ASP.NET Core](#hosted-deployment-with-aspnet-core).
 * L' Blazor app si trova in un server Web o in un servizio di hosting statico, in cui .NET non viene usato per gestire l' Blazor app. Questa strategia è illustrata nella sezione relativa alla [distribuzione autonoma](#standalone-deployment) , che include informazioni sull'hosting di un' Blazor app webassembly come una sub-app IIS.
 
-## <a name="precompression"></a>Precompressione
+## <a name="compression"></a>Compressione
 
-Quando Blazor viene pubblicata un'app webassembly, l'output viene precompresso per ridurre le dimensioni dell'app e rimuovere la necessità di compressione del runtime. Vengono utilizzati gli algoritmi di compressione seguenti:
+Quando Blazor viene pubblicata un'app webassembly, l'output viene compresso in modo statico durante la pubblicazione per ridurre le dimensioni dell'app e rimuovere l'overhead per la compressione in fase di esecuzione. Vengono utilizzati gli algoritmi di compressione seguenti:
 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (livello massimo)
 * [Gzip](https://tools.ietf.org/html/rfc1952)
 
+Blazorsi basa sull'host per gestire i file compressi appropriati. Quando si usa un ASP.NET Core progetto ospitato, il progetto host è in grado di eseguire la negoziazione del contenuto e di servire i file compressi in modo statico. Quando si ospita un' Blazor app webassembly autonoma, potrebbe essere necessario lavoro aggiuntivo per garantire che vengano serviti file compressi in modo statico:
+
+* Per la configurazione della compressione IIS *Web. config* , vedere la sezione relativa alla [compressione IIS: Brotli e gzip](#brotli-and-gzip-compression) . 
+* Quando si ospitano soluzioni di hosting statiche che non supportano la negoziazione del contenuto di file compressi in modo statico, ad esempio pagine di GitHub, è consigliabile configurare l'app per recuperare e decodificare i file compressi Brotli:
+
+  * Fare riferimento al decodificatore Brotli dal [repository GitHub Google/Brotli](https://github.com/google/brotli/) nell'app.
+  * Aggiornare l'app per l'uso del decodificatore. Modificare il markup all'interno del `<body>` tag di chiusura in *wwwroot/index.html* come segue:
+  
+    ```html
+    <script src="brotli.decode.min.js"></script>
+    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+    <script>
+    Blazor.start({
+      loadBootResource: function (type, name, defaultUri, integrity) {
+        if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
+          return (async function () {
+            const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
+            if (!response.ok) {
+              throw new Error(response.statusText);
+            }
+            const originalResponseBuffer = await response.arrayBuffer();
+            const originalResponseArray = new Int8Array(originalResponseBuffer);
+            const decompressedResponseArray = BrotliDecode(originalResponseArray);
+            const contentType = type === 
+          'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
+            return new Response(decompressedResponseArray, 
+          { headers: { 'content-type': contentType } });
+          })();
+        }
+      }
+    });
+  </script>
+  ```
+   
 Per disabilitare la compressione, aggiungere la `BlazorEnableCompression` Proprietà MSBuild al file di progetto dell'app e impostare il valore su `false` :
 
 ```xml
@@ -48,8 +82,6 @@ Per disabilitare la compressione, aggiungere la `BlazorEnableCompression` Propri
   <BlazorEnableCompression>false</BlazorEnableCompression>
 </PropertyGroup>
 ```
-
-Per la configurazione della compressione IIS *Web. config* , vedere la sezione relativa alla [compressione IIS: Brotli e gzip](#brotli-and-gzip-compression) .
 
 ## <a name="rewrite-urls-for-correct-routing"></a>Riscrivere gli URL per il routing corretto
 

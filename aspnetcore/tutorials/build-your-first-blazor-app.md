@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: 8cf356b5c9876a4114942af27a22df6bd324d0e2
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: ce3f20f7ee4ccfa73afc5f80a4429d9f4fe05591
+ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84355214"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84507257"
 ---
 # <a name="build-your-first-blazor-app"></a>Crea la tua prima Blazor app
 
@@ -32,7 +32,7 @@ Questa esercitazione illustra come creare e modificare un' Blazor app. Si appren
 > * Usare la gestione degli eventi e data binding nei componenti
 > * Usare l'inserimento DI dipendenze e il routing in un' Blazor app
 
-Al termine di questa esercitazione, si disporrà di un'app di chat funzionante.
+Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
 ## <a name="build-components"></a>Compilare i componenti
 
@@ -109,7 +109,7 @@ I componenti possono avere anche parametri, I parametri del componente vengono d
 
 La direttiva `@page` all'inizio del file *Counter.razor* specifica che il componente `Counter` è un endpoint di routing. Il componente `Counter` gestisce le richieste inviate a `/counter`. Senza la direttiva `@page`, un componente non gestisce le richieste instradate, ma può comunque essere usato da altri componenti.
 
-## <a name="dependency-injection"></a>Inserimento di dipendenze
+## <a name="dependency-injection"></a>Inserimento delle dipendenze
 
 ### <a name="blazor-server-experience"></a>BlazorEsperienza server
 
