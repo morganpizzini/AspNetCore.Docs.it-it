@@ -1,7 +1,7 @@
 ---
-title: Aggiungere la ricerca a Razor pagine ASP.NET Core
+title: Parte 6, aggiungere la ricerca a Razor pagine ASP.NET Core
 author: rick-anderson
-description: Mostra come aggiungere la ricerca a pagine Razor ASP.NET Core
+description: Parte 6 della serie di esercitazioni sulle Razor pagine.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: baa5e1cb2098a60155a4196f0e602feeff04f102
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 8c5fba8596f401f1232e8dcb4659041c2a413151
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774998"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652566"
 ---
-# <a name="add-search-to-aspnet-core-razor-pages"></a>Aggiungere la ricerca a Razor pagine ASP.NET Core
+# <a name="part-6-add-search-to-aspnet-core-razor-pages"></a>Parte 6, aggiungere la ricerca a Razor pagine ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -107,7 +107,7 @@ L'elenco `SelectList` di generi viene creato selezionando generi distinti.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-razor-page"></a>Aggiungi la Razor ricerca per genere alla pagina
+### <a name="add-search-by-genre-to-the-razor-page"></a>Aggiungi la ricerca per genere alla Razor pagina
 
 Aggiornare *Index.cshtml* come indicato di seguito:
 
@@ -120,8 +120,8 @@ Eseguire il test dell'app effettuando una ricerca per genere, titolo del film e 
 * [Versione YouTube dell'esercitazione](https://youtu.be/4B6pHtdyo08)
 
 > [!div class="step-by-step"]
-> [Precedente: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
-> [successivo: aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
+> [Precedente: aggiornamento delle pagine](xref:tutorials/razor-pages/da1) 
+>  Passaggio [successivo: aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end
 
@@ -209,7 +209,7 @@ L'elenco `SelectList` di generi viene creato selezionando generi distinti.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-razor-page"></a>Aggiungi la Razor ricerca per genere alla pagina
+### <a name="add-search-by-genre-to-the-razor-page"></a>Aggiungi la ricerca per genere alla Razor pagina
 
 Aggiornare *Index.cshtml* come indicato di seguito:
 
@@ -223,7 +223,7 @@ Il codice precedente usa l'helper [tag SELECT](xref:mvc/views/working-with-forms
 * [Versione YouTube dell'esercitazione](https://youtu.be/4B6pHtdyo08)
 
 > [!div class="step-by-step"]
-> [Precedente: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
-> [successivo: aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
+> [Precedente: aggiornamento delle pagine](xref:tutorials/razor-pages/da1) 
+>  Passaggio [successivo: aggiunta di un nuovo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end

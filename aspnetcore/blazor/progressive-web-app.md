@@ -5,7 +5,7 @@ description: Informazioni su come creare un' Blazor applicazione Web progressiva
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 06/09/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 274516014c027972166402abc70d22fa801898de
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: ef73cbb928fb442c73acce6f5facac33236abd67
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451849"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652411"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Creazione di applicazioni Web progressive con ASP.NET Core Blazor Webassembly
 
@@ -272,8 +272,23 @@ Implementare una logica arbitraria per controllare quale subset del contenuto de
 
 ### <a name="interaction-with-authentication"></a>Interazione con l'autenticazione
 
-È possibile utilizzare l'opzione del modello PWA insieme alle opzioni di autenticazione. Un PWA con supporto offline può inoltre supportare l'autenticazione quando l'utente dispone di connettività di rete.
+Il modello PWA può essere usato in combinazione con l'autenticazione di. Un PWA con supporto offline può anche supportare l'autenticazione quando l'utente ha la connettività di rete iniziale.
 
-Quando un utente non dispone di connettività di rete, non è in grado di autenticare o ottenere i token di accesso. Per impostazione predefinita, il tentativo di visitare la pagina di accesso senza accesso alla rete genera un messaggio di errore di rete.
+Quando un utente non dispone di connettività di rete, non è in grado di autenticare o ottenere i token di accesso. Per impostazione predefinita, il tentativo di visitare la pagina di accesso senza accesso alla rete genera un messaggio di errore di rete. È necessario progettare un flusso dell'interfaccia utente che consenta all'utente di eseguire attività utili in modalità offline senza tentare di autenticare l'utente o ottenere i token di accesso. In alternativa, è possibile progettare l'applicazione in modo che non riesca correttamente quando la rete non è disponibile. Se l'app non può essere progettata per gestire questi scenari, è possibile che non si desideri abilitare il supporto offline.
 
-È necessario progettare un flusso dell'interfaccia utente che consenta all'utente di eseguire operazioni utili in modalità offline senza provare ad autenticare o ottenere i token di accesso. In alternativa, è possibile progettare l'applicazione in modo che non venga eseguita correttamente quando la rete non è disponibile. Se questa opzione non è possibile nell'app, potrebbe non essere necessario abilitare il supporto offline.
+Quando un'app progettata per l'uso online e offline è di nuovo online:
+
+* L'app potrebbe dover effettuare il provisioning di un nuovo token di accesso.
+* L'app deve rilevare se un altro utente è connesso al servizio, in modo da poter applicare le operazioni all'account dell'utente che sono state effettuate mentre erano offline.
+
+Per creare un'app PWA offline che interagisce con l'autenticazione:
+
+* Sostituire <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory%601> con una factory che archivia l'ultimo utente connesso e usa l'utente archiviato quando l'app è offline.
+* Accodare le operazioni mentre l'app è offline e applicarle quando l'app torna online.
+* Durante la disconnessione, cancellare l'utente archiviato.
+
+L'app di esempio [CarChecker](https://github.com/SteveSandersonMS/CarChecker) illustra gli approcci precedenti. Vedere le parti seguenti dell'app:
+
+* `OfflineAccountClaimsPrincipalFactory`(*Client/Data/OfflineAccountClaimsPrincipalFactory. cs*)
+* `LocalVehiclesStore`(*Client/Data/LocalVehiclesStore. cs*)
+* `LoginStatus`componente (*client/Shared/LoginStatus. Razor*)

@@ -1,19 +1,25 @@
 ---
-title: Razor Pages con EF Core in ASP.NET Core - Leggere dati correlati - 6 di 8
+title: Parte 6, Razor pagine con EF core nei dati correlati alla lettura ASP.NET Core
 author: rick-anderson
-description: In questa esercitazione verranno letti e visualizzati dati correlati, ovvero dati che Entity Framework carica all'interno delle proprietà di navigazione.
+description: Parte 6 di Razor pagine e Entity Framework serie di esercitazioni.
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: 0835dbf6b5434e4224d9f56ea3335df4b5d9e119
-ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
+ms.openlocfilehash: e67738015f64ca7077c2f87a8f7eabe722aac9d8
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81277327"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652619"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---read-related-data---6-of-8"></a>Razor Pages con EF Core in ASP.NET Core - Leggere dati correlati - 6 di 8
+# <a name="part-6-razor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Parte 6, Razor pagine con EF core nei dati correlati alla lettura ASP.NET Core
 
 [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -89,7 +95,7 @@ Per visualizzare il nome del dipartimento assegnato per un corso:
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
   ```
 
-  **Su Linux o macOS:**
+  **In Linux o macOS:**
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages/Courses --referenceScriptLibraries
@@ -137,7 +143,7 @@ Il codice seguente carica dati correlati con il metodo `Select`:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=6)]
 
-Il codice precedente non restituisce alcun tipo di entità, pertanto non viene eseguito alcun rilevamento. Per ulteriori informazioni sul rilevamento di Entity Framework, vedere [rilevamento e query senza rilevamento](/ef/core/querying/tracking).
+Il codice precedente non restituisce tipi di entità, pertanto non viene eseguita alcuna verifica. Per altre informazioni sul rilevamento di EF, vedere [rilevamento e query senza rilevamento](/ef/core/querying/tracking).
 
 `CourseViewModel`:
 
@@ -150,7 +156,7 @@ Per un esempio completo, vedere [IndexSelect.cshtml](https://github.com/dotnet/A
 Questa sezione descrive come eseguire lo scaffolding delle pagine Instructor e come aggiungere corsi e iscrizioni correlati alla pagina di indice degli insegnanti.
 
 <a name="IP"></a>
-![Pagina Indice Istruttori](read-related-data/_static/instructors-index30.png)
+![Pagina di indice degli insegnanti](read-related-data/_static/instructors-index30.png)
 
 Questa pagina legge e visualizza dati correlati nei modi seguenti:
 
@@ -188,7 +194,7 @@ Creare *SchoolViewModels/InstructorIndexData.cs* con il codice seguente:
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
   ```
 
-  **Su Linux o macOS:**
+  **In Linux o macOS:**
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages/Instructors --referenceScriptLibraries
@@ -198,7 +204,7 @@ Creare *SchoolViewModels/InstructorIndexData.cs* con il codice seguente:
 
 Per visualizzare l'aspetto della pagina con scaffolding prima di aggiornarla, eseguire l'app e passare alla pagina Instructors.
 
-Aggiornare *Pages/Instructors/Index.cshtml.cs* con il codice seguente:
+Aggiornare *pages/Instructors/index. cshtml. cs* con il codice seguente:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-53)]
 
@@ -260,7 +266,7 @@ Il codice precedente apporta le modifiche seguenti:
   }
   ```
 
-* Aggiunge una colonna **Courses** che visualizza i corsi tenuti da ogni insegnante. Per altre informazioni su questa sintassi del rasoio, vedere [Transizione di linea esplicita.](xref:mvc/views/razor#explicit-line-transition)
+* Aggiunge una colonna **Courses** che visualizza i corsi tenuti da ogni insegnante. Per ulteriori informazioni su questa sintassi Razor, vedere [transizione di riga esplicita](xref:mvc/views/razor#explicit-line-transition) .
 
 * Aggiunge codice che aggiunge `class="success"` in modo dinamico all'elemento `tr` dell'insegnante e del corso selezionati. In questo modo viene impostato un colore di sfondo per la riga selezionata tramite una classe Bootstrap.
 
@@ -283,7 +289,7 @@ Il codice precedente apporta le modifiche seguenti:
 
 * Aggiunge una tabella di iscrizioni degli studenti per il corso selezionato.
 
-Eseguire l'app e selezionare la scheda **Istruttori.** Nella pagina `Location` viene visualizzato l'ufficio dell'entità correlata. `OfficeAssignment` Se `OfficeAssignment` è null, viene visualizzata una cella di tabella vuota.
+Eseguire l'app e selezionare la scheda **Instructors (insegnanti** ). La pagina Visualizza `Location` (Office) dall'entità correlata `OfficeAssignment` . Se `OfficeAssignment` è null, viene visualizzata una cella di tabella vuota.
 
 Fare clic sul collegamento **Select** per un insegnante. Verranno visualizzate le modifiche dello stile delle righe e i corsi assegnati a tale insegnante.
 
@@ -325,8 +331,8 @@ Testare l'app. Dal punto di vista dell'utente, l'app si comporta in modo identic
 La prossima esercitazione illustra come aggiornare i dati correlati.
 
 >[!div class="step-by-step"]
->[Esercitazione](xref:data/ef-rp/complex-data-model)
->precedente[Esercitazione successiva](xref:data/ef-rp/update-related-data)
+>[Esercitazione precedente](xref:data/ef-rp/complex-data-model) 
+> [Esercitazione successiva](xref:data/ef-rp/update-related-data)
 
 ::: moniker-end
 
@@ -453,7 +459,7 @@ Per un esempio completo, vedere [IndexSelect.cshtml](https://github.com/dotnet/A
 In questa sezione viene creata la pagina Instructors (Insegnanti).
 
 <a name="IP"></a>
-![Pagina Indice Istruttori](read-related-data/_static/instructors-index.png)
+![Pagina di indice degli insegnanti](read-related-data/_static/instructors-index.png)
 
 Questa pagina legge e visualizza dati correlati nei modi seguenti:
 
@@ -529,7 +535,7 @@ Il markup precedente apporta le modifiche seguenti:
   }
   ```
 
-* È stata aggiunta la colonna **Courses** (Corsi) che visualizza i corsi tenuti da ogni insegnante. Per altre informazioni su questa sintassi del rasoio, vedere [Transizione di linea esplicita.](xref:mvc/views/razor#explicit-line-transition)
+* È stata aggiunta la colonna **Courses** (Corsi) che visualizza i corsi tenuti da ogni insegnante. Per ulteriori informazioni su questa sintassi Razor, vedere [transizione di riga esplicita](xref:mvc/views/razor#explicit-line-transition) .
 
 * È stato aggiunto codice che aggiunge `class="success"` in modo dinamico all'elemento `tr` dell'insegnante selezionato. In questo modo viene impostato un colore di sfondo per la riga selezionata tramite una classe Bootstrap.
 
@@ -548,7 +554,7 @@ Il markup precedente apporta le modifiche seguenti:
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 
-Eseguire l'app e selezionare la scheda **Istruttori.** Nella pagina `Location` viene visualizzato l'ufficio dell'entità correlata. `OfficeAssignment` Se OfficeAssignment è Null, nella tabella viene visualizzata una cella vuota.
+Eseguire l'app e selezionare la scheda **Instructors (insegnanti** ). La pagina Visualizza `Location` (Office) dall'entità correlata `OfficeAssignment` . Se OfficeAssignment è Null, nella tabella viene visualizzata una cella vuota.
 
 Fare clic sul collegamento **Select** (Seleziona). Lo stile delle righe cambia.
 
@@ -585,7 +591,7 @@ Il codice seguente popola la proprietà `Enrollments` del modello di visualizzaz
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_courseID)]
 
-Aggiungere il markup seguente alla fine della pagina Razor *Pages/Instructors/Index.cshtml*:
+Aggiungere il markup seguente alla fine della pagina *pages/Instructors/index. cshtml* Razor :
 
 [!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
 
@@ -648,7 +654,7 @@ La prossima esercitazione illustra come aggiornare i dati correlati.
 * [Versione YouTube dell'esercitazione (parte 2)](https://www.youtube.com/watch?v=xvDDrIHv5ko)
 
 >[!div class="step-by-step"]
->[Successivo](xref:data/ef-rp/complex-data-model)
->[precedente](xref:data/ef-rp/update-related-data)
+>[Precedente](xref:data/ef-rp/complex-data-model) 
+> [Avanti](xref:data/ef-rp/update-related-data)
 
 ::: moniker-end

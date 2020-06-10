@@ -1,18 +1,24 @@
 ---
-title: Razor Pages con EF Core in ASP.NET Core - Aggiornare dati correlati - 7 di 8
+title: Parte 7, Razor pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core
 author: rick-anderson
-description: In questa esercitazione vengono aggiornati i dati correlati tramite l'aggiornamento dei campi di chiave esterna e delle proprietà di navigazione.
+description: Parte 7 di Razor pagine e Entity Framework serie di esercitazioni.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: fdfdb14ff8414b8bf30f9b95be7ba0a6bcbd2995
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: d86e57d50c414e4baabd00ca9675aa66266342ca
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78656422"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652608"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---update-related-data---7-of-8"></a>Razor Pages con EF Core in ASP.NET Core - Aggiornare dati correlati - 7 di 8
+# <a name="part-7-razor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Parte 7, Razor pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core
 
 Di [Tom Dykstra](https://github.com/tdykstra), e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -55,9 +61,9 @@ Il codice precedente:
 
 * Classe derivata da `DepartmentNamePageModel`.
 * Usa `TryUpdateModelAsync` per evitare l'[overposting](xref:data/ef-rp/crud#overposting).
-* Rimuove `ViewData["DepartmentID"]`. `DepartmentNameSL` dalla classe di base è un modello fortemente tipizzato e verrà usato dalla pagina Razor. I modelli fortemente tipizzati sono preferibili a quelli scarsamente tipizzati. Per altre informazioni, vedere [Dati con tipizzazione debole (ViewData e ViewBag)](xref:mvc/views/overview#VD_VB).
+* Rimuove `ViewData["DepartmentID"]`. `DepartmentNameSL`dalla classe base è un modello fortemente tipizzato e verrà usato dalla Razor pagina. I modelli fortemente tipizzati sono preferibili a quelli scarsamente tipizzati. Per altre informazioni, vedere [Dati con tipizzazione debole (ViewData e ViewBag)](xref:mvc/views/overview#VD_VB).
 
-### <a name="update-the-course-create-razor-page"></a>Aggiornare la pagina Razor Create per i corsi
+### <a name="update-the-course-create-razor-page"></a>Aggiornare la pagina di creazione del corso Razor
 
 Aggiornare *Pages/Courses/Create.cshtml* con il codice seguente:
 
@@ -70,7 +76,7 @@ Il codice precedente apporta le modifiche seguenti:
 * Aggiunge l'opzione "Select Department" (Selezionare il dipartimento). Questa modifica esegue il rendering di "Select Department" nell'elenco a discesa quando non è ancora stato selezionato alcun dipartimento, anziché visualizzare il primo dipartimento.
 * Aggiunge un messaggio di convalida quando il dipartimento non è selezionato.
 
-La pagina Razor usa l'[helper tag di selezione](xref:mvc/views/working-with-forms#the-select-tag-helper):
+La Razor pagina usa l' [Helper tag SELECT](xref:mvc/views/working-with-forms#the-select-tag-helper):
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -84,7 +90,7 @@ Aggiornare *Pages/Courses/Edit.cshtml.cs* con il codice seguente:
 
 Le modifiche sono simili a quelle apportate nel modello della pagina Create (Crea). Nel codice precedente, `PopulateDepartmentsDropDownList` passa l'ID del dipartimento, che seleziona il dipartimento nell'elenco a discesa.
 
-### <a name="update-the-course-edit-razor-page"></a>Aggiornare la pagina Razor Edit per i corsi
+### <a name="update-the-course-edit-razor-page"></a>Aggiornare la pagina di modifica del corso Razor
 
 Aggiornare *Pages/Courses/Edit.cshtml* con il codice seguente:
 
@@ -112,7 +118,7 @@ Apportare la stessa modifica nel file *Pages/Courses/Details.cshtml.cs*:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=28)]
 
-### <a name="update-the-course-razor-pages"></a>Aggiornare le pagine Razor per i corsi
+### <a name="update-the-course-razor-pages"></a>Aggiornare le pagine del corso Razor
 
 Aggiornare *Pages/Courses/Delete.cshtml* con il codice seguente:
 
@@ -150,7 +156,7 @@ Creare la classe di base *Pages/Instructors/InstructorCoursesPageModel.cs*:
 
 `InstructorCoursesPageModel` è la classe di base che verrà usata per i modelli delle pagine Edit (Modifica) e Create (Crea). `PopulateAssignedCourseData` legge tutte le entità `Course` per popolare `AssignedCourseDataList`. Per ogni corso, il codice imposta `CourseID` e titolo, e stabilisce se l'insegnante è assegnato al corso. Viene usato un [HashSet](/dotnet/api/system.collections.generic.hashset-1) per ricerche efficienti.
 
-Dato che la pagina Razor non ha una raccolta di entità Course, lo strumento di associazione di modelli non può aggiornare automaticamente la proprietà di navigazione `CourseAssignments`. Anziché usare lo strumento di associazione di modelli per aggiornare la proprietà di navigazione `CourseAssignments`, questa operazione viene eseguita nel nuovo metodo `UpdateInstructorCourses`. È pertanto necessario escludere la proprietà `CourseAssignments` dall'associazione di modelli. Ciò non richiede modifiche al codice che chiama `TryUpdateModel`, poiché si sta usando l'overload dell'elenco elementi consentiti e `CourseAssignments` non è presente nell'elenco di inclusione.
+Poiché la Razor pagina non include una raccolta di entità Course, lo strumento di associazione di modelli non può aggiornare automaticamente la `CourseAssignments` proprietà di navigazione. Anziché usare lo strumento di associazione di modelli per aggiornare la proprietà di navigazione `CourseAssignments`, questa operazione viene eseguita nel nuovo metodo `UpdateInstructorCourses`. È pertanto necessario escludere la proprietà `CourseAssignments` dall'associazione di modelli. Ciò non richiede modifiche al codice che chiama `TryUpdateModel`, poiché si sta usando l'overload dell'elenco elementi consentiti e `CourseAssignments` non è presente nell'elenco di inclusione.
 
 Se nessuna casella di controllo è selezionata, il codice in `UpdateInstructorCourses` inizializza la proprietà di navigazione `CourseAssignments` con una raccolta vuota e torna:
 
@@ -189,7 +195,7 @@ Il codice precedente:
 * Chiama `UpdateInstructorCourses` in `OnPostAsync` per applicare le informazioni dalle caselle di controllo all'entità Instructor in corso di modifica.
 * Chiama `PopulateAssignedCourseData` e `UpdateInstructorCourses` in `OnPostAsync` se `TryUpdateModel` ha esito negativo. Queste chiamate di metodo ripristinano i dati dei corsi assegnati immessi nella pagina quando viene rivisualizzata con un messaggio di errore.
 
-### <a name="update-the-instructor-edit-razor-page"></a>Aggiornare la pagina Razor Edit per gli insegnanti
+### <a name="update-the-instructor-edit-razor-page"></a>Aggiornare la pagina di modifica dell'insegnante Razor
 
 Aggiornare *Pages/Instructors/Edit.cshtml* con il codice seguente:
 
@@ -205,7 +211,7 @@ Eseguire l'app e testare la pagina Edit per gli insegnanti aggiornata. Modificar
 
 ### <a name="update-the-instructor-create-page"></a>Aggiornare la pagina Create per gli insegnanti
 
-Aggiornare il modello della pagina e la pagina Razor Create per gli insegnanti con codice simile a quello della pagina Edit:
+Aggiornare la pagina e il modello di creazione pagina dell'insegnante Razor con codice simile a quello della pagina Edit (modifica):
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Create.cshtml.cs)]
 
@@ -230,8 +236,8 @@ Eseguire l'app e testare la pagina Delete.
 ## <a name="next-steps"></a>Passaggi successivi
 
 > [!div class="step-by-step"]
-> [Esercitazione](xref:data/ef-rp/read-related-data)
-> precedente[Esercitazione successiva](xref:data/ef-rp/concurrency)
+> [Esercitazione precedente](xref:data/ef-rp/read-related-data) 
+>  [Esercitazione successiva](xref:data/ef-rp/concurrency)
 
 ::: moniker-end
 
@@ -287,7 +293,7 @@ Il markup precedente apporta le modifiche seguenti:
 * Aggiunge l'opzione "Select Department" (Selezionare il dipartimento). Questa modifica esegue il rendering di "Select Department" (Selezionare il dipartimento) anziché del primo dipartimento.
 * Aggiunge un messaggio di convalida quando il dipartimento non è selezionato.
 
-La pagina Razor usa l'[helper tag di selezione](xref:mvc/views/working-with-forms#the-select-tag-helper):
+La Razor pagina usa l' [Helper tag SELECT](xref:mvc/views/working-with-forms#the-select-tag-helper):
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -327,7 +333,7 @@ Aggiornare il metodo `OnGetAsync` nel file *Pages/Courses/Details.cshtml.cs*:
 
 ### <a name="modify-the-delete-and-details-pages"></a>Modificare le pagine Delete (Elimina) e Details (Dettagli)
 
-Aggiornare la pagina Razor Delete (Elimina) con il markup seguente:
+Aggiornare la Razor pagina Delete con il markup seguente:
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Delete.cshtml?highlight=15-20)]
 
@@ -402,7 +408,7 @@ Aggiornare il modello della pagina Edit (Modifica) dell'insegnante con il codice
 
 Il codice precedente gestisce le modifiche alle assegnazioni di ufficio.
 
-Aggiornare la visualizzazione Razor degli insegnanti:
+Aggiornare la Razor visualizzazione Instructor:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Edit.cshtml?highlight=34-59)]
 
@@ -426,7 +432,7 @@ Aggiornare il modello della pagina Create (Crea) dell'insegnante con il codice s
 
 Il codice precedente è simile al codice *Pages/Instructors/Edit.cshtml.cs*.
 
-Aggiornare la pagina Razor Create (Crea) dell'insegnante con il markup seguente:
+Aggiornare la pagina di creazione dell'insegnante Razor con il markup seguente:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Create.cshtml?highlight=32-62)]
 
@@ -450,7 +456,7 @@ Il codice precedente apporta le modifiche seguenti:
 * [Versione YouTube dell'esercitazione (parte 2)](https://www.youtube.com/watch?v=mOAankB_Zgc)
 
 > [!div class="step-by-step"]
-> [Successivo](xref:data/ef-rp/read-related-data)
-> [precedente](xref:data/ef-rp/concurrency)
+> [Precedente](xref:data/ef-rp/read-related-data) 
+>  [Avanti](xref:data/ef-rp/concurrency)
 
 ::: moniker-end

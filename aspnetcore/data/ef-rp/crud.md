@@ -1,18 +1,24 @@
 ---
-title: Razor Pages con EF Core in ASP.NET Core - CRUD - 2 di 8
+title: Parte 2, Razor pagine con EF core in ASP.NET Core-CRUD
 author: rick-anderson
-description: Illustra come eseguire operazioni CRUD (creazione, lettura, aggiornamento ed eliminazione) con EF Core.
+description: Parte 2 delle Razor pagine e della serie di esercitazioni Entity Framework.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 05519852fab22bd3ad5b77e3494b49191448286f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 62e35639d5e3d43bd20c9f92b75fa101d7914f82
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78665648"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652351"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---crud---2-of-8"></a>Razor Pages con EF Core in ASP.NET Core - CRUD - 2 di 8
+# <a name="part-2-razor-pages-with-ef-core-in-aspnet-core---crud"></a>Parte 2, Razor pagine con EF core in ASP.NET Core-CRUD
 
 [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -24,7 +30,7 @@ In questa esercitazione viene esaminato e personalizzato il codice CRUD (Create,
 
 ## <a name="no-repository"></a>Nessun repository
 
-Alcuni sviluppatori usano un livello di servizio o uno schema di repository per creare un livello di astrazione tra l'interfaccia utente (Razor Pages) e il livello di accesso ai dati. Questa esercitazione non segue questo approccio. Per ridurre la complessità e mantenere questa esercitazione incentrata su EF Core, il codice EF Core viene aggiunto direttamente alle classi dei modelli di pagina. 
+Alcuni sviluppatori usano un livello di servizio o un modello di repository per creare un livello di astrazione tra l'interfaccia utente ( Razor pagine) e il livello di accesso ai dati. Questa esercitazione non segue questo approccio. Per ridurre la complessità e mantenere questa esercitazione incentrata su EF Core, il codice EF Core viene aggiunto direttamente alle classi dei modelli di pagina. 
 
 ## <a name="update-the-details-page"></a>Aggiornare la pagina Details
 
@@ -90,7 +96,7 @@ L'uso di `TryUpdateModel` per l'aggiornamento dei campi con i valori inviati è 
 
 [!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
 
-Anche se l'app non include un campo `Secret` nella pagina Razor Create o Update, un hacker potrebbe impostare il valore `Secret` tramite overposting. Un hacker potrebbe usare uno strumento come Fiddler oppure scrivere codice JavaScript per inviare un valore di modulo `Secret`. Il codice originale non limita i campi usati dallo strumento di associazione di modelli durante la creazione di un'istanza di Student.
+Anche se l'app non ha un `Secret` campo nella pagina Crea o aggiorna Razor , un hacker può impostare il `Secret` valore tramite l'overposting. Un hacker potrebbe usare uno strumento come Fiddler oppure scrivere codice JavaScript per inviare un valore di modulo `Secret`. Il codice originale non limita i campi usati dallo strumento di associazione di modelli durante la creazione di un'istanza di Student.
 
 Qualsiasi valore specificato dall'hacker per il campo di modulo `Secret` viene aggiornato nel database. L'immagine seguente illustra lo strumento Fiddler che aggiunge il campo `Secret` (con il valore "OverPost") ai valori di modulo inviati.
 
@@ -98,13 +104,13 @@ Qualsiasi valore specificato dall'hacker per il campo di modulo `Secret` viene a
 
 Il valore "OverPost" è stato aggiunto alla proprietà `Secret` della riga inserita. Ciò accade anche se il progettista dell'app non ha mai previsto che la proprietà `Secret` venisse impostata con la pagina Create.
 
-### <a name="view-model"></a>Modello di visualizzazione
+### <a name="view-model"></a>Visualizzare il modello
 
 I modelli di visualizzazione rappresentano un altro metodo per impedire l'overposting.
 
 Il modello di applicazione è spesso chiamato modello di dominio. Il modello di dominio contiene in genere tutte le proprietà richieste dall'entità corrispondente nel database. Il modello di visualizzazione contiene solo le proprietà necessarie per l'interfaccia utente per cui viene usato, ad esempio la pagina Create.
 
-Oltre al modello di visualizzazione, alcune app usano un modello di associazione o un modello di input per passare i dati dalla classe del modello di pagina di Razor Pages al browser e viceversa. 
+Oltre al modello di visualizzazione, alcune app usano un modello di associazione o un modello di input per passare i dati tra la Razor classe del modello di pagina delle pagine e il browser. 
 
 Si consideri il modello di visualizzazione `Student` seguente:
 
@@ -136,9 +142,9 @@ Eseguire l'app e testarla creando e modificando uno studente.
 
 Il contesto del database tiene traccia della sincronizzazione delle entità in memoria con le righe corrispondenti nel database. Queste informazioni di traccia determinano le operazioni eseguite quando viene chiamato [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_). Ad esempio, quando una nuova entità viene passata al metodo [AddAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.addasync), lo stato dell'entità viene impostato su [Added](/dotnet/api/microsoft.entityframeworkcore.entitystate#Microsoft_EntityFrameworkCore_EntityState_Added). Quando viene chiamato `SaveChangesAsync`, il contesto del database genera un comando SQL INSERT.
 
-Un'entità può trovarsi in uno dei [seguenti stati:](/dotnet/api/microsoft.entityframeworkcore.entitystate)
+Un'entità può essere in uno degli [stati seguenti](/dotnet/api/microsoft.entityframeworkcore.entitystate):
 
-* `Added`: l'entità non esiste ancora nel database. Il metodo `SaveChanges` genera un'istruzione INSERT.
+* `Added`: L'entità non esiste ancora nel database. Il metodo `SaveChanges` genera un'istruzione INSERT.
 
 * `Unchanged`: non è necessario salvare alcuna modifica con questa entità. Un'entità ha questo stato quando viene letta dal database.
 
@@ -146,7 +152,7 @@ Un'entità può trovarsi in uno dei [seguenti stati:](/dotnet/api/microsoft.enti
 
 * `Deleted`: l'entità è stata contrassegnata per l'eliminazione. Il metodo `SaveChanges` genera un'istruzione DELETE.
 
-* `Detached`: l'entità non viene rilevata dal contesto del database.
+* `Detached`: L'entità non viene rilevata dal contesto del database.
 
 In un'applicazione desktop le modifiche dello stato vengono in genere impostate automaticamente. Viene letta un'entità, vengono apportate le modifiche e lo stato dell'entità viene modificato automaticamente in `Modified`. La chiamata di `SaveChanges` genera un'istruzione SQL UPDATE che aggiorna solo le proprietà modificate.
 
@@ -167,7 +173,7 @@ Il metodo `OnPostAsync` recupera l'entità selezionata, quindi chiama il metodo 
 * Viene rilevata l'eccezione del database.
 * Il metodo `OnGetAsync` delle pagine Delete viene chiamato con `saveChangesError=true`.
 
-Aggiungere un messaggio di errore alla pagina Razor Delete (*Pages/Students/Delete.cshtml*):
+Aggiungere un messaggio di errore alla Razor pagina Delete (*pages/students/Delete. cshtml*):
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -176,8 +182,8 @@ Eseguire l'app ed eliminare uno studente per testare la pagina Delete.
 ## <a name="next-steps"></a>Passaggi successivi
 
 > [!div class="step-by-step"]
-> [Esercitazione](xref:data/ef-rp/intro)
-> precedente[Esercitazione successiva](xref:data/ef-rp/sort-filter-page)
+> [Esercitazione precedente](xref:data/ef-rp/intro) 
+>  [Esercitazione successiva](xref:data/ef-rp/sort-filter-page)
 
 ::: moniker-end
 
@@ -185,9 +191,9 @@ Eseguire l'app ed eliminare uno studente per testare la pagina Delete.
 
 In questa esercitazione viene esaminato e personalizzato il codice CRUD (Create, Read, Update, Delete) con scaffolding.
 
-Per ridurre la complessità e mantenere queste esercitazioni incentrate su EF Core, viene usato il codice EF Core nei modelli di pagina. Alcuni sviluppatori usano un modello di servizio o di repository per creare un livello di astrazione tra l'interfaccia utente (Razor Pages) e il livello di accesso ai dati.
+Per ridurre la complessità e mantenere queste esercitazioni incentrate su EF Core, viene usato il codice EF Core nei modelli di pagina. Alcuni sviluppatori usano un livello di servizio o un modello di repository in per creare un livello di astrazione tra l'interfaccia utente ( Razor pagine) e il livello di accesso ai dati.
 
-In questa esercitazione vengono esaminate le pagine Razor Create (Crea), Edit (Modifica), Delete (Elimina) e Details (Dettagli) nella cartella *Students*.
+In questa esercitazione vengono esaminate le pagine create, Edit, DELETE e Details Razor nella cartella *students* .
 
 Il codice con scaffolding usa il modello seguente per le pagine Create, Edit e Delete:
 
@@ -196,7 +202,7 @@ Il codice con scaffolding usa il modello seguente per le pagine Create, Edit e D
 
 Le pagine Index e Details ottengono e visualizzano i dati richiesti con il metodo HTTP GET `OnGetAsync`
 
-## <a name="singleordefaultasync-vs-firstordefaultasync"></a>SingleOrDefaultAsync e FirstOrDefaultAsync
+## <a name="singleordefaultasync-vs-firstordefaultasync"></a>Confronto tra SingleOrDefaultAsync e FirstOrDefaultAsync
 
 Il codice generato usa [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_), che in genere è preferibile rispetto a [SingleOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_).
 
@@ -231,7 +237,7 @@ Passare alla pagina `Pages/Students`. I collegamenti **Edit**, **Details** e **D
 
 Eseguire l'app e selezionare un collegamento **Details**. L'URL è nel formato `http://localhost:5000/Students/Details?id=2`. L'ID studente viene passato tramite una stringa di query (`?id=2`).
 
-Aggiornare le pagine Razor Edit, Details e Delete in modo da usare il modello di route `"{id:int}"`. Modificare la direttiva page per ognuna di queste pagine da `@page` a `@page "{id:int}"`.
+Aggiornare le pagine modifica, dettagli ed Elimina Razor per usare il `"{id:int}"` modello di route. Modificare la direttiva page per ognuna di queste pagine da `@page` a `@page "{id:int}"`.
 
 Una richiesta alla pagina con il modello di route "{id: int}" che **non** include il valore di route intero restituisce un errore HTTP 404 (Non trovato). Ad esempio, `http://localhost:5000/Students/Details` restituisce un errore 404. Per rendere l'ID facoltativo, aggiungere `?` al vincolo di route:
 
@@ -298,7 +304,7 @@ L'uso di `TryUpdateModel` per l'aggiornamento dei campi con i valori inviati è 
 
 [!code-csharp[](intro/samples/cu21/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
 
-Anche se l'app non include un campo `Secret` nella pagina Razor Create o Update, un hacker potrebbe impostare il valore `Secret` tramite overposting. Un hacker potrebbe usare uno strumento come Fiddler oppure scrivere codice JavaScript per inviare un valore di modulo `Secret`. Il codice originale non limita i campi usati dallo strumento di associazione di modelli durante la creazione di un'istanza di Student.
+Anche se l'app non ha un `Secret` campo nella pagina di creazione/aggiornamento Razor , un hacker può impostare il `Secret` valore tramite l'overposting. Un hacker potrebbe usare uno strumento come Fiddler oppure scrivere codice JavaScript per inviare un valore di modulo `Secret`. Il codice originale non limita i campi usati dallo strumento di associazione di modelli durante la creazione di un'istanza di Student.
 
 Qualsiasi valore specificato dall'hacker per il campo di modulo `Secret` viene aggiornato nel database. L'immagine seguente illustra lo strumento Fiddler che aggiunge il campo `Secret` (con il valore "OverPost") ai valori di modulo inviati.
 
@@ -308,9 +314,9 @@ Il valore "OverPost" è stato aggiunto alla proprietà `Secret` della riga inser
 
 <a name="vm"></a>
 
-### <a name="view-model"></a>Modello di visualizzazione
+### <a name="view-model"></a>Visualizzare il modello
 
-Un modello di visualizzazione contiene in genere un subset delle proprietà incluse nel modello usato dall'applicazione. Il modello di applicazione è spesso chiamato modello di dominio. Il modello di dominio contiene in genere tutte le proprietà richieste dall'entità corrispondente nel database. Il modello di visualizzazione contiene solo le proprietà necessarie per il livello di interfaccia utente, ad esempio la pagina Create. Oltre al modello di visualizzazione, alcune app usano un modello di associazione o un modello di input per passare i dati dalla classe del modello di pagina di Razor Pages al browser e viceversa. Si consideri il modello di visualizzazione `Student` seguente:
+Un modello di visualizzazione contiene in genere un subset delle proprietà incluse nel modello usato dall'applicazione. Il modello di applicazione è spesso chiamato modello di dominio. Il modello di dominio contiene in genere tutte le proprietà richieste dall'entità corrispondente nel database. Il modello di visualizzazione contiene solo le proprietà necessarie per il livello di interfaccia utente, ad esempio la pagina Create. Oltre al modello di visualizzazione, alcune app usano un modello di associazione o un modello di input per passare i dati tra la Razor classe del modello di pagina delle pagine e il browser. Si consideri il modello di visualizzazione `Student` seguente:
 
 [!code-csharp[](intro/samples/cu21/Models/StudentVM.cs)]
 
@@ -324,7 +330,7 @@ Il metodo [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.p
 
 Se si usa `StudentVM` è necessario che [CreateVM.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21/Pages/Students/CreateVM.cshtml) venga aggiornato per l'uso di `StudentVM` anziché `Student`.
 
-In Razor Pages la classe derivata `PageModel` è il modello di visualizzazione.
+Nelle Razor pagine la `PageModel` classe derivata è il modello di visualizzazione.
 
 ## <a name="update-the-edit-page"></a>Aggiornare la pagina Edit (Modifica)
 
@@ -346,7 +352,7 @@ Creare e modificare alcune entità studente.
 
 Il contesto del database tiene traccia della sincronizzazione delle entità in memoria con le righe corrispondenti nel database. Le informazioni di sincronizzazione del contesto del database determinano le operazioni eseguite quando viene chiamato [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_). Ad esempio, quando una nuova entità viene passata al metodo [AddAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.addasync), lo stato dell'entità viene impostato su [Added](/dotnet/api/microsoft.entityframeworkcore.entitystate#Microsoft_EntityFrameworkCore_EntityState_Added). Quando viene chiamato `SaveChangesAsync`, il contesto del database genera un comando SQL INSERT.
 
-Un'entità può trovarsi in uno dei [seguenti stati:](/dotnet/api/microsoft.entityframeworkcore.entitystate)
+Un'entità può essere in uno degli [stati seguenti](/dotnet/api/microsoft.entityframeworkcore.entitystate):
 
 * `Added`: l'entità non esiste ancora nel database. Il metodo `SaveChanges` genera un'istruzione INSERT.
 
@@ -385,9 +391,9 @@ Il codice precedente recupera l'entità selezionata, quindi chiama il metodo [Re
 * Viene rilevata l'eccezione di database.
 * Il metodo `OnGetAsync` delle pagine Delete viene chiamato con `saveChangesError=true`.
 
-### <a name="update-the-delete-razor-page"></a>Aggiornare la pagina Razor Delete
+### <a name="update-the-delete-razor-page"></a>Aggiornare la Razor pagina Elimina
 
-Aggiungere il messaggio di errore evidenziato seguente alla pagina Razor Delete.
+Aggiungere il messaggio di errore evidenziato seguente alla Razor pagina Elimina.
 <!--
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Delete.cshtml?name=snippet&highlight=11)]
 -->
@@ -399,13 +405,13 @@ Eseguire il test di Delete.
 
 Students/Index o altri collegamenti non funzionano:
 
-Verificare che la pagina Razor contenga la direttiva `@page` corretta. Ad esempio, la pagina Razor Students/Index **non** deve contenere un modello di route:
+Verificare che la Razor pagina contenga la `@page` direttiva corretta. La pagina students/index, ad esempio, Razor **non** deve contenere un modello di route:
 
 ```cshtml
 @page "{id:int}"
 ```
 
-Ogni pagina Razor deve includere la direttiva `@page`.
+Ogni Razor pagina deve includere la `@page` direttiva.
 
 
 
@@ -414,7 +420,7 @@ Ogni pagina Razor deve includere la direttiva `@page`.
 * [Versione YouTube dell'esercitazione](https://www.youtube.com/watch?v=K4X1MT2jt6o)
 
 > [!div class="step-by-step"]
-> [Successivo](xref:data/ef-rp/intro)
-> [precedente](xref:data/ef-rp/sort-filter-page)
+> [Precedente](xref:data/ef-rp/intro) 
+>  [Avanti](xref:data/ef-rp/sort-filter-page)
 
 ::: moniker-end

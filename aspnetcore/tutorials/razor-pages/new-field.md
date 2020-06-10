@@ -1,7 +1,7 @@
 ---
-title: Aggiungere un nuovo campo a una Razor pagina in ASP.NET Core
+title: Parte 7, aggiungere un nuovo campo a una Razor pagina in ASP.NET Core
 author: rick-anderson
-description: Mostra come aggiungere un nuovo campo a una Razor pagina con Entity Framework Core
+description: Parte 7 della serie di esercitazioni sulle Razor pagine.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
@@ -12,14 +12,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: 683d6718f4dcdb73c45cbcf94f6ac4f477b71bcd
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 15d4ccbe88c2147210918a3db1416983fb30132b
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82769734"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652804"
 ---
-# <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Aggiungere un nuovo campo a una pagina Razor in ASP.NET Core
+# <a name="part-7-add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Parte 7, aggiungere un nuovo campo a una Razor pagina in ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -59,7 +59,7 @@ Aggiornare le pagine seguenti:
 * Aggiornare [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) con un campo `Rating`.
 * Aggiungere il campo `Rating` alla pagina Edit (Modifica).
 
-L'app non funzionerà finché non si aggiorna il database in modo da includere il nuovo campo. L'esecuzione dell'app senza aggiornare il database genera `SqlException`un'eccezione:
+L'app non funzionerà finché non si aggiorna il database in modo da includere il nuovo campo. L'esecuzione dell'app senza aggiornare il database genera un'eccezione `SqlException` :
 
 `SqlException: Invalid column name 'Rating'.`
 
@@ -145,8 +145,8 @@ Eseguire l'app e verificare che sia possibile creare/modificare/visualizzare i f
 * [Versione YouTube dell'esercitazione](https://youtu.be/3i7uMxiGGR8)
 
 > [!div class="step-by-step"]
-> [Precedente: aggiunta della ricerca](xref:tutorials/razor-pages/search)
-> [successiva: aggiunta della convalida](xref:tutorials/razor-pages/validation)
+> [Precedente: aggiunta della ricerca](xref:tutorials/razor-pages/search) 
+>  Passaggio [successivo: aggiunta della convalida](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end
 
@@ -268,7 +268,7 @@ Eseguire l'app e verificare che sia possibile creare/modificare/visualizzare i f
 * [Versione YouTube dell'esercitazione](https://youtu.be/3i7uMxiGGR8)
 
 > [!div class="step-by-step"]
-> [Precedente: aggiunta della ricerca](xref:tutorials/razor-pages/search)
-> [successiva: aggiunta della convalida](xref:tutorials/razor-pages/validation)
+> [Precedente: aggiunta della ricerca](xref:tutorials/razor-pages/search) 
+>  Passaggio [successivo: aggiunta della convalida](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end

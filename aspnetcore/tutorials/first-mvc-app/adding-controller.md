@@ -1,7 +1,7 @@
 ---
-title: Aggiungere un controller a un'app ASP.NET Core MVC
+title: Parte 2, aggiungere un controller a un'app MVC ASP.NET Core
 author: rick-anderson
-description: Informazioni su come aggiungere un controller a una semplice app ASP.NET Core MVC.
+description: Parte 2 della serie di esercitazioni su ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2017
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: ce6248854c738733f75c40ed8ec6100f35ab4971
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 1bb2d96d7b58bdd88ce9c2266c33f6e7de9e9209
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776311"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84653037"
 ---
-# <a name="add-a-controller-to-an-aspnet-core-mvc-app"></a>Aggiungere un controller a un'app ASP.NET Core MVC
+# <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Parte 2, aggiungere un controller a un'app MVC ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -40,8 +40,8 @@ Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* In **Esplora soluzioni**fare clic con il pulsante destro del mouse su **controller > Aggiungi >**
-  ![menu contestuale](adding-controller/_static/add_controller.png)
+* In **Esplora soluzioni**fare clic con il pulsante destro del mouse su **controller > Aggiungi >** 
+   ![ menu contestuale](adding-controller/_static/add_controller.png)
 
 * Nella finestra di dialogo **Aggiungi scaffolding**, selezionare **Controller MVC - vuoto**
 
@@ -114,9 +114,9 @@ Eseguire l'app e passare a:
 
 Sostituire `{PORT}` con il numero di porta. È possibile provare valori diversi per `name` e `numtimes` nell'URL. Il sistema di [associazione di modelli](xref:mvc/models/model-binding) MVC esegue il mapping dei parametri denominati dalla stringa di query nella barra degli indirizzi ai parametri nel metodo. Per altre informazioni, vedere [Associazione di modelli](xref:mvc/models/model-binding).
 
-![Finestra del browser che mostra la risposta dell'applicazione Hello Rick\: , NumTimes è 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Finestra del browser che mostra la risposta dell'applicazione Hello Rick, NumTimes è \: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
-Nell'immagine precedente non viene usato il segmento di`Parameters`URL (), i `name` parametri `numTimes` e vengono passati nella [stringa di query](https://wikipedia.org/wiki/Query_string). `?` (Punto interrogativo) nell'URL precedente è un separatore e la stringa di query seguente. Il `&` carattere separa le coppie campo-valore.
+Nell'immagine precedente non viene usato il segmento di URL ( `Parameters` ), i `name` `numTimes` parametri e vengono passati nella [stringa di query](https://wikipedia.org/wiki/Query_string). `?`(Punto interrogativo) nell'URL precedente è un separatore e la stringa di query seguente. Il `&` carattere separa le coppie campo-valore.
 
 Sostituire il metodo `Welcome` con il codice seguente:
 
@@ -128,11 +128,11 @@ Questa volta il terzo segmento di URL corrisponde al parametro di route `id`. Il
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
-In questi esempi il controller rappresenta la parte "VC" di MVC, ovvero il ruolo di **v**ista e **c**ontroller. Il controller restituisce direttamente l'HTML. In genere è preferibile che i controller non restituiscano direttamente l'HTML, dal momento che la codifica e la gestione sono molto complesse. In genere usare invece un file del modello di vista Razor separato per generare la risposta HTML. Questa operazione viene eseguita nell'esercitazione successiva.
+In questi esempi il controller rappresenta la parte "VC" di MVC, ovvero il ruolo di **v**ista e **c**ontroller. Il controller restituisce direttamente l'HTML. In genere è preferibile che i controller non restituiscano direttamente l'HTML, dal momento che la codifica e la gestione sono molto complesse. Viene invece usato in genere un Razor file modello di vista separato per generare la risposta HTML. Questa operazione viene eseguita nell'esercitazione successiva.
 
 > [!div class="step-by-step"]
-> [Precedente](start-mvc.md)
-> [successivo](adding-view.md)
+> [Precedente](start-mvc.md) 
+>  [Avanti](adding-view.md)
 
 ::: moniker-end
 
@@ -154,8 +154,8 @@ Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* In **Esplora soluzioni**fare clic con il pulsante destro del mouse su **controller > Aggiungi >**
-  ![menu contestuale](adding-controller/_static/add_controller.png)
+* In **Esplora soluzioni**fare clic con il pulsante destro del mouse su **controller > Aggiungi >** 
+   ![ menu contestuale](adding-controller/_static/add_controller.png)
 
 * Nella finestra di dialogo **Aggiungi scaffolding**, selezionare **Controller MVC - vuoto**
 
@@ -233,9 +233,9 @@ Eseguire l'app e passare a:
 
 Sostituire `{PORT}` con il numero di porta. È possibile provare valori diversi per `name` e `numtimes` nell'URL. Il sistema di [associazione di modelli](xref:mvc/models/model-binding) MVC esegue il mapping dei parametri denominati dalla stringa di query nella barra degli indirizzi ai parametri nel metodo. Per altre informazioni, vedere [Associazione di modelli](xref:mvc/models/model-binding).
 
-![Finestra del browser che mostra la risposta dell'applicazione Hello Rick\: , NumTimes è 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Finestra del browser che mostra la risposta dell'applicazione Hello Rick, NumTimes è \: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
-Nell'immagine precedente non viene usato il segmento di`Parameters`URL (), i `name` parametri `numTimes` e vengono passati nella [stringa di query](https://wikipedia.org/wiki/Query_string). `?` (Punto interrogativo) nell'URL precedente è un separatore e la stringa di query seguente. Il `&` carattere separa le coppie campo-valore.
+Nell'immagine precedente non viene usato il segmento di URL ( `Parameters` ), i `name` `numTimes` parametri e vengono passati nella [stringa di query](https://wikipedia.org/wiki/Query_string). `?`(Punto interrogativo) nell'URL precedente è un separatore e la stringa di query seguente. Il `&` carattere separa le coppie campo-valore.
 
 Sostituire il metodo `Welcome` con il codice seguente:
 
@@ -250,7 +250,7 @@ Questa volta il terzo segmento di URL corrisponde al parametro di route `id`. Il
 In questi esempi il controller rappresenta la parte "VC" di MVC, ovvero il ruolo di vista e controller. Il controller restituisce direttamente l'HTML. In genere è preferibile che i controller non restituiscano direttamente l'HTML, dal momento che la codifica e la gestione sono molto complesse. Viene invece usato in genere un Razor file modello di vista separato per generare la risposta HTML. Questa operazione viene eseguita nell'esercitazione successiva.
 
 > [!div class="step-by-step"]
-> [Precedente](start-mvc.md)
-> [successivo](adding-view.md)
+> [Precedente](start-mvc.md) 
+>  [Avanti](adding-view.md)
 
 ::: moniker-end

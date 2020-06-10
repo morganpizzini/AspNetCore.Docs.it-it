@@ -1,19 +1,25 @@
 ---
-title: Razor Pages con EF Core in ASP.NET Core - Ordinamento, filtro, suddivisione in pagine - 3 di 8
+title: Parte 3, Razor pagine con EF core in ASP.NET Core ordinamento, filtro, paging
 author: rick-anderson
-description: In questa esercitazione viene spiegato come aggiungere a una pagina Razor le funzionalità di ordinamento, filtro e suddivisione in pagine tramite ASP.NET Core ed Entity Framework Core.
+description: Parte 3 di Razor pagine e Entity Framework serie di esercitazioni.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 9563f3ef52ce429eb0a58b468acb8e9cd7b276e2
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 99b14c99cb99d106604f1a4edacf1da0a2d6125c
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78656464"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652585"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging---3-of-8"></a>Razor Pages con EF Core in ASP.NET Core - Ordinamento, filtro, suddivisione in pagine - 3 di 8
+# <a name="part-3-razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Parte 3, Razor pagine con EF core in ASP.NET Core ordinamento, filtro, paging
 
 Di [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT) e [Jon P Smith](https://twitter.com/thereformedprog)
 
@@ -39,13 +45,13 @@ Il codice precedente:
 * Modifica il nome della proprietà `Student` in `Students`.
 * Sostituisce il codice nel metodo `OnGetAsync`.
 
-Il metodo `OnGetAsync` riceve un parametro `sortOrder` dalla stringa di query nell'URL. L'URL (inclusa la stringa di query) viene generato [dall'helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper).
+Il metodo `OnGetAsync` riceve un parametro `sortOrder` dalla stringa di query nell'URL. L'URL, inclusa la stringa di query, viene generato dall' [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper).
 
 Il parametro `sortOrder` è "Name" o "Data". Il parametro `sortOrder` è facoltativamente seguito da "_desc" per specificare l'ordine decrescente. Per impostazione predefinita, l'ordinamento è crescente.
 
 Quando la pagina Index (Indice) viene richiesta dal collegamento **Students** (Studenti), non è presente alcuna stringa di query. Gli studenti vengono visualizzati in ordine crescente in base al cognome. L'ordine crescente in base al cognome è l'impostazione predefinita (caso di fallthrough) nell'istruzione `switch`. Quando l'utente fa clic sul collegamento di un'intestazione di colonna, nel valore della stringa di query viene specificato il valore `sortOrder` appropriato.
 
-Gli elementi `NameSort` e `DateSort` vengono usati dalla pagina Razor per configurare i collegamenti ipertestuali sull'intestazione di colonna con i valori della stringa di query appropriata:
+`NameSort`e `DateSort` vengono usati dalla Razor pagina per configurare i collegamenti ipertestuali dell'intestazione di colonna con i valori della stringa di query appropriati:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_Ternary)]
 
@@ -92,7 +98,7 @@ Per verificare il corretto funzionamento dell'ordinamento:
 
 Per aggiungere un filtro alla pagina Students Index (Indice degli studenti):
 
-* Alla pagina Razor vengono aggiunti una casella di testo e un pulsante di invio. La casella di testo specifica una stringa di ricerca sul nome o cognome.
+* Alla pagina vengono aggiunti una casella di testo e un pulsante Submit Razor . La casella di testo specifica una stringa di ricerca sul nome o cognome.
 * Il modello di pagina viene aggiornato in modo da usare il valore della casella di testo.
 
 ### <a name="update-the-ongetasync-method"></a>Aggiornare il metodo OnGetAsync
@@ -106,7 +112,7 @@ Il codice precedente:
 * Aggiunge il parametro `searchString` al metodo `OnGetAsync` e salva il valore del parametro nella proprietà `CurrentFilter`. Il valore della stringa di ricerca viene ricevuto da una casella di testo che verrà aggiunta nella sezione seguente.
 * Aggiunge una clausola `Where` all'istruzione LINQ. La clausola `Where` seleziona solo gli studenti il cui nome o cognome contiene la stringa di ricerca. L'istruzione LINQ viene eseguita solo se è presente un valore per la ricerca.
 
-### <a name="iqueryable-vs-ienumerable"></a>Confronto tra IQueryable e IEnumerableIQueryable vs.
+### <a name="iqueryable-vs-ienumerable"></a>IQueryable rispetto a IEnumerable
 
 Il codice chiama il metodo `Where` su un oggetto `IQueryable` e il filtro viene elaborato nel server. In alcuni scenari l'app potrebbe chiamare il metodo `Where` come metodo di estensione per una raccolta in memoria. Si supponga ad esempio che `_context.Students` cambi da `DbSet`Entity Framework Core a un metodo di repository che restituisce una raccolta `IEnumerable`. Il risultato sarebbe in genere lo stesso, ma in alcuni casi potrebbe essere diverso.
 
@@ -126,7 +132,7 @@ Si verifica una riduzione delle prestazioni per la chiamata di `ToUpper`. Il cod
 
 Per altre informazioni, vedere [How to use case-insensitive query with Sqlite provider](https://github.com/aspnet/EntityFrameworkCore/issues/11414) (Come usare una query senza distinzione tra maiuscole e minuscole con il provider SQLite).
 
-### <a name="update-the-razor-page"></a>Aggiornare la pagina Razor
+### <a name="update-the-razor-page"></a>Aggiornare la Razor pagina
 
 Sostituire il codice in *Pages/Students/Index.cshtml* per creare un pulsante **Cerca** e riquadri diversi.
 
@@ -187,9 +193,9 @@ Tutti i parametri ricevuti `OnGetAsync` da sono Null quando:
 
 Se si seleziona un collegamento di suddivisione in pagine, la variabile dell'indice di pagina contiene il numero di pagina da visualizzare.
 
-La proprietà `CurrentSort` indica la pagina Razor con il criterio di ordinamento corrente. L'ordinamento corrente deve essere incluso nei collegamenti di suddivisione in pagine per mantenere l'ordinamento nella suddivisione in pagine.
+La `CurrentSort` proprietà fornisce la Razor pagina con l'ordinamento corrente. L'ordinamento corrente deve essere incluso nei collegamenti di suddivisione in pagine per mantenere l'ordinamento nella suddivisione in pagine.
 
-La proprietà `CurrentFilter` indica la pagina Razor con la stringa di filtro corrente. Il valore `CurrentFilter`:
+La `CurrentFilter` proprietà fornisce la Razor pagina con la stringa di filtro corrente. Il valore `CurrentFilter`:
 
 * Deve essere incluso nei collegamenti di suddivisione in pagine per mantenere le impostazioni di filtro nella suddivisione in pagine.
 * Deve essere ripristinato nella casella di testo quando viene nuovamente visualizzata la pagina.
@@ -199,13 +205,13 @@ Se la stringa di ricerca viene modificata durante la suddivisione in pagine, la 
   * La stringa di ricerca viene modificata.
   * Il parametro `searchString` non è Null.
 
-  Il metodo `PaginatedList.CreateAsync` converte la query degli studenti in una pagina singola di studenti in un tipo di raccolta che supporta la suddivisione in pagine. La pagina singola di studenti viene quindi passata alla pagina Razor.
+  Il metodo `PaginatedList.CreateAsync` converte la query degli studenti in una pagina singola di studenti in un tipo di raccolta che supporta la suddivisione in pagine. Questa singola pagina di studenti viene passata alla Razor pagina.
 
   I due punti interrogativi dopo `pageIndex` nella chiamata di `PaginatedList.CreateAsync` rappresentano l'[operatore null-coalescing](/dotnet/csharp/language-reference/operators/null-conditional-operator). L'operatore null-coalescing definisce un valore predefinito per un tipo nullable. L'espressione `(pageIndex ?? 1)` restituisce il valore di `pageIndex` se ha un valore. Se `pageIndex` non ha un valore, restituisce 1.
 
-### <a name="add-paging-links-to-the-razor-page"></a>Aggiungere collegamenti di suddivisione in pagine alla pagina Razor
+### <a name="add-paging-links-to-the-razor-page"></a>Aggiungere collegamenti di paging alla Razor pagina
 
-Sostituire il codice in *Students/Index.cshtml* con il codice seguente. Le modifiche sono evidenziate:
+Sostituire il codice in *students/index. cshtml* con il codice seguente. Le modifiche sono evidenziate:
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=29-32,38-41,69-87)]
 
@@ -228,7 +234,7 @@ Eseguire l'app e passare alla pagina degli studenti.
 
 Questa sezione crea una pagina About (Informazioni) che visualizza il numero di studenti iscritti per ogni data di iscrizione. L'aggiornamento usa il raggruppamento e include i passaggi seguenti:
 
-* Creare un modello di visualizzazione per i dati utilizzati dalla pagina **Informazioni su.**
+* Creare un modello di visualizzazione per i dati utilizzati dalla pagina **informazioni su** .
 * Aggiornare la pagina About in modo che usi il modello di visualizzazione.
 
 ### <a name="create-the-view-model"></a>Creare il modello di visualizzazione
@@ -239,7 +245,7 @@ Creare *SchoolViewModels/EnrollmentDateGroup.cs* con il codice seguente:
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### <a name="create-the-razor-page"></a>Creare la pagina Razor
+### <a name="create-the-razor-page"></a>Creazione della Razor pagina
 
 Aggiungere un file *Pages/About.cshtml* con il codice seguente:
 
@@ -262,8 +268,8 @@ Eseguire l'app e passare alla pagina About (Informazioni). Il numero di studenti
 Nella prossima esercitazione, l'app usa le migrazioni per aggiornare il modello di dati.
 
 > [!div class="step-by-step"]
-> [Esercitazione](xref:data/ef-rp/crud)
-> precedente[Esercitazione successiva](xref:data/ef-rp/migrations)
+> [Esercitazione precedente](xref:data/ef-rp/crud) 
+>  [Esercitazione successiva](xref:data/ef-rp/migrations)
 
 ::: moniker-end
 
@@ -279,7 +285,7 @@ Se si verificano problemi che non si è in grado di risolvere, scaricare l'[app 
 
 ## <a name="add-sorting-to-the-index-page"></a>Aggiungere l'ordinamento alla pagina Index (Indice)
 
-Aggiungere stringhe a *Students/Index.cshtml.cs* `PageModel` per contenere i parametri di ordinamento:
+Aggiungere stringhe a *students/index. cshtml. cs* `PageModel` per contenere i parametri di ordinamento:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet1&highlight=10-13)]
 
@@ -294,7 +300,7 @@ Il parametro `sortOrder` è "Name" o "Data". Il parametro `sortOrder` è facolta
 
 Quando la pagina Index (Indice) viene richiesta dal collegamento **Students** (Studenti), non è presente alcuna stringa di query. Gli studenti vengono visualizzati in ordine crescente in base al cognome. L'ordine crescente in base al cognome è l'impostazione predefinita (caso di fallthrough) nell'istruzione `switch`. Quando l'utente fa clic sul collegamento di un'intestazione di colonna, nel valore della stringa di query viene specificato il valore `sortOrder` appropriato.
 
-Gli elementi `NameSort` e `DateSort` vengono usati dalla pagina Razor per configurare i collegamenti ipertestuali sull'intestazione di colonna con i valori della stringa di query appropriata:
+`NameSort`e `DateSort` vengono usati dalla Razor pagina per configurare i collegamenti ipertestuali dell'intestazione di colonna con i valori della stringa di query appropriati:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=3-4)]
 
@@ -354,7 +360,7 @@ Eseguire il debugger.
 
 Per aggiungere un filtro alla pagina Students Index (Indice degli studenti):
 
-* Alla pagina Razor vengono aggiunti una casella di testo e un pulsante di invio. La casella di testo specifica una stringa di ricerca sul nome o cognome.
+* Alla pagina vengono aggiunti una casella di testo e un pulsante Submit Razor . La casella di testo specifica una stringa di ricerca sul nome o cognome.
 * Il modello di pagina viene aggiornato in modo da usare il valore della casella di testo.
 
 ### <a name="add-filtering-functionality-to-the-index-method"></a>Aggiungere la funzionalità di filtro al metodo Index
@@ -439,9 +445,9 @@ Tutti i parametri sono Null quando:
 
 Se si seleziona un collegamento di suddivisione in pagine, la variabile dell'indice di pagina contiene il numero di pagina da visualizzare.
 
-`CurrentSort` indica la pagina Razor con il criterio di ordinamento corrente. L'ordinamento corrente deve essere incluso nei collegamenti di suddivisione in pagine per mantenere l'ordinamento nella suddivisione in pagine.
+`CurrentSort`fornisce la Razor pagina con l'ordinamento corrente. L'ordinamento corrente deve essere incluso nei collegamenti di suddivisione in pagine per mantenere l'ordinamento nella suddivisione in pagine.
 
-`CurrentFilter` indica la pagina Razor con la stringa di filtro corrente. Il valore `CurrentFilter`:
+`CurrentFilter`fornisce la Razor pagina con la stringa di filtro corrente. Il valore `CurrentFilter`:
 
 * Deve essere incluso nei collegamenti di suddivisione in pagine per mantenere le impostazioni di filtro nella suddivisione in pagine.
 * Deve essere ripristinato nella casella di testo quando viene nuovamente visualizzata la pagina.
@@ -453,13 +459,13 @@ Se la stringa di ricerca viene modificata durante la suddivisione in pagine, la 
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage3)]
 
-Il metodo `PaginatedList.CreateAsync` converte la query degli studenti in una pagina singola di studenti in un tipo di raccolta che supporta la suddivisione in pagine. La pagina singola di studenti viene quindi passata alla pagina Razor.
+Il metodo `PaginatedList.CreateAsync` converte la query degli studenti in una pagina singola di studenti in un tipo di raccolta che supporta la suddivisione in pagine. Questa singola pagina di studenti viene passata alla Razor pagina.
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage4)]
 
 I due punti interrogativi in `PaginatedList.CreateAsync` rappresentano l'[operatore null-coalescing](/dotnet/csharp/language-reference/operators/null-conditional-operator). L'operatore null-coalescing definisce un valore predefinito per un tipo nullable. L'espressione `(pageIndex ?? 1)` restituisce il valore di `pageIndex` se ha un valore. Se `pageIndex` non ha un valore, restituisce 1.
 
-## <a name="add-paging-links-to-the-student-razor-page"></a>Aggiungere collegamenti di suddivisione in pagine alla pagina Razor degli studenti
+## <a name="add-paging-links-to-the-student-razor-page"></a>Aggiungere collegamenti di paging alla Razor pagina Student
 
 Aggiornare il markup in *Students/Index.cshtml*. Le modifiche sono evidenziate:
 
@@ -505,7 +511,7 @@ Nella cartella *SchoolViewModels* aggiungere un elemento *EnrollmentDateGroup.cs
 
 ### <a name="update-the-about-page-model"></a>Aggiornare il modello di pagina About (Informazioni)
 
-I modelli Web in ASP.NET Core 2.2 non includono la pagina About (Informazioni). Se si usa ASP.NET Core 2.2, creare la pagina Razor About (Informazioni).
+I modelli Web in ASP.NET Core 2.2 non includono la pagina About (Informazioni). Se si usa ASP.NET Core 2,2, creare la pagina informazioni su Razor .
 
 Aggiornare il file *Pages/About.cshtml.cs* file con il codice seguente:
 
@@ -513,7 +519,7 @@ Aggiornare il file *Pages/About.cshtml.cs* file con il codice seguente:
 
 L'istruzione LINQ raggruppa le entità di studenti per data di registrazione, calcola il numero di entità in ogni gruppo e archivia i risultati in una raccolta di oggetti di modello della visualizzazione `EnrollmentDateGroup`.
 
-### <a name="modify-the-about-razor-page"></a>Modificare la pagina Razor About (Informazioni)
+### <a name="modify-the-about-razor-page"></a>Modificare la pagina informazioni su Razor
 
 Sostituire il codice nel file *Pages/About.cshtml* con il codice seguente:
 
@@ -533,8 +539,8 @@ Se si verificano problemi che non si è in grado di risolvere, scaricare l'[app 
 Nella prossima esercitazione, l'app usa le migrazioni per aggiornare il modello di dati.
 
 > [!div class="step-by-step"]
-> [Successivo](xref:data/ef-rp/crud)
-> [precedente](xref:data/ef-rp/migrations)
+> [Precedente](xref:data/ef-rp/crud) 
+>  [Avanti](xref:data/ef-rp/migrations)
 
 ::: moniker-end
 

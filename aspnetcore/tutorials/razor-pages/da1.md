@@ -1,7 +1,7 @@
 ---
-title: Aggiornare le pagine generate in un'app ASP.NET Core
+title: "Parte 5: aggiornare le pagine generate in un'app ASP.NET Core"
 author: rick-anderson
-description: Informazioni su come aggiornare le pagine generate in un'app ASP.NET Core.
+description: Parte 5 della serie di esercitazioni sulle Razor pagine.
 ms.author: riande
 ms.date: 12/20/2018
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: d9ab20b7ed4b394c154141efe3a94481efaf063c
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 144c4e7f07986c0a10089d74991fe3b44c013894
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774548"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652866"
 ---
-# <a name="update-the-generated-pages-in-an-aspnet-core-app"></a>Aggiornare le pagine generate in un'app ASP.NET Core
+# <a name="part-5-update-the-generated-pages-in-an-aspnet-core-app"></a>Parte 5: aggiornare le pagine generate in un'app ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -46,7 +46,7 @@ I collegamenti **Edit** (Modifica), **Details** (Dettagli) e **Delete** (Elimina
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
-Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi Razor HTML nei file. Nel codice precedente, genera in `AnchorTagHelper` modo dinamico il valore dell' `href` attributo HTML dalla Razor pagina (la route è relativa), `asp-page`, e l'ID di route (`asp-route-id`). Per altre informazioni, vedere [Generazione di URL per le pagine](xref:razor-pages/index#url-generation-for-pages).
+Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file. Nel codice precedente, genera in `AnchorTagHelper` modo dinamico il valore dell' `href` attributo HTML dalla Razor pagina (la route è relativa), `asp-page` , e l'ID di route ( `asp-route-id` ). Per altre informazioni, vedere [Generazione di URL per le pagine](xref:razor-pages/index#url-generation-for-pages).
 
 Usare **Visualizza origine** dal browser preferito per esaminare il codice generato. Di seguito è riportata una parte del codice HTML generato:
 
@@ -82,7 +82,7 @@ Per testare il comportamento di `@page "{id:int?}"`:
 
 * Impostare la direttiva page in *Pages/Movies/Details.cshtml* su `@page "{id:int?}"`.
 * Impostare un punto di interruzione in `public async Task<IActionResult> OnGetAsync(int? id)` (in *Pages/Movies/Details.cshtml.cs*).
-* Accedere a `https://localhost:5001/Movies/Details/`.
+* Passare a `https://localhost:5001/Movies/Details/`.
 
 Con l'istruzione `@page "{id:int}"`, il punto di interruzione non viene mai raggiunto. Il motore di routing restituisce HTTP 404. Se si utilizza `@page "{id:int?}"`, il metodo `OnGetAsync` restituisce `NotFound` (HTTP 404).
 
@@ -127,13 +127,13 @@ Quando viene inviata la pagina Movies/Edit (Film/Modifica):
 * Se sono presenti errori nello stato del modello, ad esempio non è possibile convertire `ReleaseDate` in una data, il modulo viene rivisualizzato con i valori inviati.
 * Se non sono presenti errori del modello, il film viene salvato.
 
-I metodi HTTP GET nelle pagine di indice, creazione ed eliminazione Razor seguono un modello simile. Il metodo HTTP `OnPostAsync` post nella pagina Create Razor segue un modello simile al `OnPostAsync` metodo nella pagina Edit (modifica Razor ).
+I metodi HTTP GET nelle pagine di indice, creazione ed eliminazione Razor seguono un modello simile. Il metodo HTTP POST `OnPostAsync` nella pagina Create Razor segue un modello simile al `OnPostAsync` metodo nella pagina Edit (modifica) Razor .
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 > [!div class="step-by-step"]
-> [Precedente: utilizzo di un database](xref:tutorials/razor-pages/sql)
-> [successivo: aggiunta della ricerca](xref:tutorials/razor-pages/search)
+> [Precedente: utilizzo di un database](xref:tutorials/razor-pages/sql) 
+>  Passaggio [successivo: aggiungere la ricerca](xref:tutorials/razor-pages/search)
 
 ::: moniker-end
 
@@ -161,7 +161,7 @@ I collegamenti **Edit** (Modifica), **Details** (Dettagli) e **Delete** (Elimina
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
-Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi Razor HTML nei file. Nel codice precedente, genera in `AnchorTagHelper` modo dinamico il valore dell' `href` attributo HTML dalla Razor pagina (la route è relativa), `asp-page`, e l'ID di route (`asp-route-id`). Per altre informazioni, vedere [Generazione di URL per le pagine](xref:razor-pages/index#url-generation-for-pages).
+Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file. Nel codice precedente, genera in `AnchorTagHelper` modo dinamico il valore dell' `href` attributo HTML dalla Razor pagina (la route è relativa), `asp-page` , e l'ID di route ( `asp-route-id` ). Per altre informazioni, vedere [Generazione di URL per le pagine](xref:razor-pages/index#url-generation-for-pages).
 
 Usare **Visualizza origine** dal browser preferito per esaminare il codice generato. Di seguito è riportata una parte del codice HTML generato:
 
@@ -195,7 +195,7 @@ Per testare il comportamento di `@page "{id:int?}"`:
 
 * Impostare la direttiva page in *Pages/Movies/Details.cshtml* su `@page "{id:int?}"`.
 * Impostare un punto di interruzione in `public async Task<IActionResult> OnGetAsync(int? id)` (in *Pages/Movies/Details.cshtml.cs*).
-* Accedere a `https://localhost:5001/Movies/Details/`.
+* Passare a `https://localhost:5001/Movies/Details/`.
 
 Con l'istruzione `@page "{id:int}"`, il punto di interruzione non viene mai raggiunto. Il motore di routing restituisce HTTP 404. Se si utilizza `@page "{id:int?}"`, il metodo `OnGetAsync` restituisce `NotFound` (HTTP 404).
 
@@ -240,7 +240,7 @@ Quando viene inviata la pagina Movies/Edit (Film/Modifica):
 * Se sono presenti errori nello stato del modello, ad esempio non è possibile convertire `ReleaseDate` in una data, il modulo viene visualizzato con i valori inviati.
 * Se non sono presenti errori del modello, il film viene salvato.
 
-I metodi HTTP GET nelle pagine di indice, creazione ed eliminazione Razor seguono un modello simile. Il metodo HTTP `OnPostAsync` post nella pagina Create Razor segue un modello simile al `OnPostAsync` metodo nella pagina Edit (modifica Razor ).
+I metodi HTTP GET nelle pagine di indice, creazione ed eliminazione Razor seguono un modello simile. Il metodo HTTP POST `OnPostAsync` nella pagina Create Razor segue un modello simile al `OnPostAsync` metodo nella pagina Edit (modifica) Razor .
 
 La funzionalità di ricerca viene aggiunta nell'esercitazione successiva.
 
@@ -249,7 +249,7 @@ La funzionalità di ricerca viene aggiunta nell'esercitazione successiva.
 * [Versione YouTube dell'esercitazione](https://youtu.be/yLnnleREMtQ)
 
 > [!div class="step-by-step"]
-> [Precedente: utilizzo di un database](xref:tutorials/razor-pages/sql)
-> [successivo: aggiunta della ricerca](xref:tutorials/razor-pages/search)
+> [Precedente: utilizzo di un database](xref:tutorials/razor-pages/sql) 
+>  Passaggio [successivo: aggiungere la ricerca](xref:tutorials/razor-pages/search)
 
 ::: moniker-end

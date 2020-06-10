@@ -1,7 +1,7 @@
 ---
-title: Usare un database e ASP.NET Core
+title: Parte 4 con un database e ASP.NET Core
 author: rick-anderson
-description: Questa sezione illustra l'utilizzo di un database e di ASP.NET Core.
+description: Parte 4 della serie di esercitazioni sulle Razor pagine.
 ms.author: riande
 ms.date: 7/22/2019
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: 159588ec750f0ede534522aa9397fc2aefb58cd6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 21ae2ed4e91a0b3e52b1cdad1f4f4686c50614ba
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775609"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652980"
 ---
-# <a name="work-with-a-database-and-aspnet-core"></a>Usare un database e ASP.NET Core
+# <a name="part-4-with-a-database-and-aspnet-core"></a>Parte 4 con un database e ASP.NET Core
 
 Di [Rick Anderson](https://twitter.com/RickAndMSFT) e [Joe Audette](https://twitter.com/joeaudette)
 
@@ -147,8 +147,8 @@ L'esercitazione successiva consentirà di migliorare la presentazione dei dati.
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 > [!div class="step-by-step"]
-> [Precedente: impalcatura Razor Pages](xref:tutorials/razor-pages/page)
-> [successiva: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
+> [Precedente: con ponteggi Razor Pagine](xref:tutorials/razor-pages/page) 
+>  [successive: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
 
@@ -303,7 +303,7 @@ L'esercitazione successiva consentirà di pulire la presentazione dei dati.
 * [Versione YouTube dell'esercitazione](https://youtu.be/A_5ff11sDHY)
 
 > [!div class="step-by-step"]
-> [Precedente: Razor pagine](xref:tutorials/razor-pages/page)
-> con impalcature[successive: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
+> [Precedente: con ponteggi Razor Pagine](xref:tutorials/razor-pages/page) 
+>  [successive: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end

@@ -1,7 +1,7 @@
 ---
-title: Aggiungere la funzionalità di ricerca a un'app ASP.NET Core MVC
+title: Parte 7, aggiungere la ricerca a un'app MVC ASP.NET Core
 author: rick-anderson
-description: Illustra come aggiungere la funzionalità di ricerca a un'app ASP.NET Core MVC di base
+description: Parte 7 della serie di esercitazioni su ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/search
-ms.openlocfilehash: 00213f9ffab13f23099e60240fa236bd1b41427f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 83bd904f90190456d42453653d3420c4c572fe8c
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775336"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652753"
 ---
-# <a name="add-search-to-an-aspnet-core-mvc-app"></a>Aggiungere la funzionalità di ricerca a un'app ASP.NET Core MVC
+# <a name="part-7-add-search-to-an-aspnet-core-mvc-app"></a>Parte 7, aggiungere la ricerca a un'app MVC ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -45,7 +45,7 @@ Il codice `s => s.Title.Contains()` precedente è un'[espressione lambda](/dotne
 
 Nota: il metodo [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) viene eseguito sul database, non nel codice C# indicato in precedenza. La distinzione tra maiuscole/minuscole nella query dipende dal database e dalle regole di confronto. In SQL Server, [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) esegue il mapping a [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), che fa distinzione tra maiuscole e minuscole. In SQLite, con le regole di confronto predefinite si fa distinzione tra maiuscole e minuscole.
 
-Accedere a `/Movies/Index`. Accodare una stringa di query, ad esempio `?searchString=Ghost`, all'URL. Vengono visualizzati i film filtrati.
+Passare a `/Movies/Index`. Accodare una stringa di query, ad esempio `?searchString=Ghost`, all'URL. Vengono visualizzati i film filtrati.
 
 ![Vista Index](~/tutorials/first-mvc-app/search/_static/ghost.png)
 
@@ -153,5 +153,5 @@ Eseguire il test dell'app effettuando una ricerca per genere, titolo del film ed
 ![Finestra del browser con i risultati di https://localhost:5001/Movies?MovieGenre=Comedy&SearchString=2](~/tutorials/first-mvc-app/search/_static/s2.png)
 
 > [!div class="step-by-step"]
-> [Precedente](controller-methods-views.md)
-> [successivo](new-field.md)
+> [Precedente](controller-methods-views.md) 
+>  [Avanti](new-field.md)
