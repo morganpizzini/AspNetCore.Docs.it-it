@@ -1,12 +1,23 @@
 ---
-title: "provider di archiviazione personalizzati per ASP.NET Core Identity " autore: Descrizione: "informazioni su come configurare i provider di archiviazione personalizzati per ASP.NET Core Identity ".
-ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Provider di archiviazione personalizzati per ASP.NET CoreIdentity
+author: ardalis
+description: Informazioni su come configurare i provider di archiviazione personalizzati per ASP.NET Core Identity .
+ms.author: riande
+ms.custom: mvc
+ms.date: 07/23/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/authentication/identity-custom-storage-providers
+ms.openlocfilehash: 792a9e5f776e345fbee5726b676fe148ecaf1657
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106585"
 ---
 # <a name="custom-storage-providers-for-aspnet-core-identity"></a>Provider di archiviazione personalizzati per ASP.NET CoreIdentity
 

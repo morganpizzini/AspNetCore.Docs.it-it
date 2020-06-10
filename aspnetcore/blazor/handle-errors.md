@@ -1,12 +1,24 @@
 ---
-title:' handle errors in ASP.NET Core Blazor Apps ' Author: Description:' scoprire come Blazor ASP.NET Core Blazor gestisce le eccezioni non gestite e come sviluppare app che rilevano e gestiscono gli errori '.
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Gestione degli errori nelle Blazor app ASP.NET Core
+author: guardrex
+description: Scopri in che modo ASP.NET Core Blazor come Blazor gestisce le eccezioni non gestite e come sviluppare app che rilevano e gestiscono gli errori.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 04/23/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/handle-errors
+ms.openlocfilehash: a66075b4c45f2d7767d2ed1950a44a0ba88c7d17
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83864553"
 ---
 # <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Gestione degli errori nelle Blazor app ASP.NET Core
 

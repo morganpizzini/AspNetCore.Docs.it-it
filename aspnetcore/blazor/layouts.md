@@ -1,12 +1,24 @@
 ---
-title: "ASP.NET Core Blazor Layouts" Author: Description: "informazioni su come creare componenti di layout riutilizzabili per le Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: BlazorLayout ASP.NET Core
+author: guardrex
+description: Informazioni su come creare componenti di layout riutilizzabili per le Blazor app.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/layouts
+ms.openlocfilehash: ba172282d0cd6371ebc94b4fda1c13aee14d6fbd
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83851992"
 ---
 # <a name="aspnet-core-blazor-layouts"></a>BlazorLayout ASP.NET Core
 

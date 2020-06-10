@@ -1,12 +1,24 @@
 ---
-title:' Call .NET Methods from JavaScript Functions in ASP.NET Core Blazor ' Author: Description:' Learn how to Invoke .NET Methods from JavaScript Functions in Blazor Apps '.
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Chiamare i metodi .NET da funzioni JavaScript in ASP.NET CoreBlazor
+author: guardrex
+description: Informazioni su come richiamare i metodi .NET dalle funzioni JavaScript nelle Blazor app.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/call-dotnet-from-javascript
+ms.openlocfilehash: ec55c5834093cc8c2095f25e91374d97902dd964
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83851146"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-blazor"></a>Chiamare i metodi .NET da funzioni JavaScript in ASP.NET CoreBlazor
 

@@ -1,12 +1,24 @@
 ---
-title: "Guida alla mitigazione delle minacce per ASP.NET Core Blazor Server" autore: Descrizione: "informazioni su come attenuare le minacce per la sicurezza per le Blazor app Server."
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Linee guida per la mitigazione delle minacce per ASP.NET Core Blazor Server
+author: guardrex
+description: Informazioni su come attenuare le minacce alla sicurezza per le Blazor app Server.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/05/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/server/threat-mitigation
+ms.openlocfilehash: 06f9cc2d70367ea90a519ddd508a156e88adcb61
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83864631"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Linee guida per la mitigazione delle minacce per ASP.NET Core Blazor Server
 
@@ -47,7 +59,7 @@ Si consideri, ad esempio, un' Blazor app server che calcola un *numero Fibonnacc
 
 L'esaurimento della CPU è un problema per tutte le app pubbliche. Nelle normali app Web, le richieste e le connessioni sono in timeout come misure di sicurezza, ma Blazor le app Server non forniscono le stesse misure di sicurezza. BlazorLe app Server devono includere i controlli e i limiti appropriati prima di eseguire operazioni potenzialmente complesse per la CPU.
 
-### <a name="memory"></a>Memory
+### <a name="memory"></a>Memoria
 
 L'esaurimento della memoria può verificarsi quando uno o più client forzano l'utilizzo di una grande quantità di memoria da parte del server.
 

@@ -1,11 +1,24 @@
 ---
-title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Ospitare ASP.NET Core in un servizio Windows
+author: rick-anderson
+description: Informazioni su come ospitare un'app ASP.NET Core in un servizio Windows.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: host-and-deploy/windows-service
+ms.openlocfilehash: af0c3836362233e41a79e72bd28b4a331e9763bc
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106481"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Ospitare ASP.NET Core in un servizio Windows
 
@@ -18,7 +31,7 @@ title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-l
 ## <a name="prerequisites"></a>Prerequisiti
 
 * [ASP.NET Core SDK 2.1 o versione successiva](https://dotnet.microsoft.com/download)
-* [PowerShell 6.2 o versione successiva](https://github.com/PowerShell/PowerShell)
+* [PowerShell 6,2 o versione successiva](https://github.com/PowerShell/PowerShell)
 
 ## <a name="worker-service-template"></a>Modello di servizio di ruolo di lavoro
 
@@ -140,7 +153,7 @@ Per stabilire i diritti *Accesso come servizio* per un account utente di servizi
 1. Selezionare **Aggiungi utente o gruppo**.
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Seleziona **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows
@@ -341,7 +354,7 @@ Quando un'app si *blocca* (smette di rispondere ma non si arresta in modo anomal
 ## <a name="prerequisites"></a>Prerequisiti
 
 * [ASP.NET Core SDK 2.1 o versione successiva](https://dotnet.microsoft.com/download)
-* [PowerShell 6.2 o versione successiva](https://github.com/PowerShell/PowerShell)
+* [PowerShell 6,2 o versione successiva](https://github.com/PowerShell/PowerShell)
 
 ## <a name="app-configuration"></a>Configurazione delle app
 
@@ -452,7 +465,7 @@ Per stabilire i diritti *Accesso come servizio* per un account utente di servizi
 1. Selezionare **Aggiungi utente o gruppo**.
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Seleziona **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows
@@ -675,7 +688,7 @@ Quando un'app si *blocca* (smette di rispondere ma non si arresta in modo anomal
 ## <a name="prerequisites"></a>Prerequisiti
 
 * [ASP.NET Core SDK 2.1 o versione successiva](https://dotnet.microsoft.com/download)
-* [PowerShell 6.2 o versione successiva](https://github.com/PowerShell/PowerShell)
+* [PowerShell 6,2 o versione successiva](https://github.com/PowerShell/PowerShell)
 
 ## <a name="app-configuration"></a>Configurazione delle app
 
@@ -789,7 +802,7 @@ Per stabilire i diritti *Accesso come servizio* per un account utente di servizi
 1. Selezionare **Aggiungi utente o gruppo**.
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Seleziona **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows

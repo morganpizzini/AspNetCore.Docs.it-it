@@ -1,11 +1,22 @@
 ---
-title: autore: Descrizione: ms. Author: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Panoramica di ASP.NET MVC
+author: ardalis
+description: Informazioni sul framework avanzato di ASP.NET Core MVC per la creazione di app Web e API tramite lo schema progettuale MVC (Model-View-Controller).
+ms.author: riande
+ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: mvc/overview
+ms.openlocfilehash: ae382feb152f490e46df969887401060965d8c4e
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106533"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Panoramica di ASP.NET MVC
 
@@ -54,7 +65,7 @@ ASP.NET Core MVC offre un sistema basato su schemi per la creazione di siti Web 
 
 ASP.NET Core MVC include:
 
-* [Routing.](#routing)
+* [Routing](#routing)
 * [Associazione di modelli](#model-binding)
 * [Convalida modello](#model-validation)
 * [Inserimento delle dipendenze](../fundamentals/dependency-injection.md)
@@ -67,7 +78,7 @@ ASP.NET Core MVC include:
 * [Helper tag](#tag-helpers)
 * [Visualizza componenti](#view-components)
 
-### <a name="routing"></a>Routing.
+### <a name="routing"></a>Routing
 
 ASP.NET Core MVC si basa sul [routing di ASP.NET Core](../fundamentals/routing.md), un potente componente per il mapping di URL che consente di compilare applicazioni con URL comprensibili che supportano la ricerca. Ciò consente di definire criteri di denominazione dell'URL dell'applicazione che funzionano perfettamente per l'ottimizzazione dei motori di ricerca (SEO) e la generazione di collegamenti, indipendentemente da come sono organizzati i file nel server Web. È possibile definire le route usando una pratica sintassi del modello di route che supporta i vincoli di valore delle route, i valori predefiniti e quelli facoltativi.
 

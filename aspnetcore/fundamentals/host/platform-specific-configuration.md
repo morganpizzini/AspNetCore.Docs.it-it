@@ -1,11 +1,24 @@
 ---
-title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Usare assembly di avvio dell'hosting in ASP.NET Core
+author: rick-anderson
+description: Informazioni su come migliorare un'app ASP.NET Core da un assembly esterno con un'implementazione IHostingStartup.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc, seodec18
+ms.date: 09/26/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: fundamentals/configuration/platform-specific-configuration
+ms.openlocfilehash: 8cf6a4467f041fa71b75ee8d1e7a08d8f572acf3
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106351"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Usare assembly di avvio dell'hosting in ASP.NET Core
 
@@ -76,7 +89,7 @@ Se l'impostazione di configurazione host e la variabile di ambiente sono entramb
 
 La disabilitazione degli assembly di avvio dell'hosting tramite l'impostazione host o la variabile di ambiente ne determina la disabilitazione globale e la possibile disabilitazione di diverse caratteristiche di un'app.
 
-## <a name="project"></a>Project
+## <a name="project"></a>Progetto
 
 Creare l'avvio dell'hosting con uno dei tipi di progetto seguenti:
 
@@ -225,7 +238,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 Quando sono presenti più montaggi di avvio host, i relativi <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodi vengono eseguiti nell'ordine in cui sono elencati gli assembly.
 
-## <a name="activation"></a>Attivazione
+## <a name="activation"></a>Activation
 
 Le opzioni di attivazione dell'avvio dell'hosting sono:
 
@@ -474,7 +487,7 @@ Se l'impostazione di configurazione host e la variabile di ambiente sono entramb
 
 La disabilitazione degli assembly di avvio dell'hosting tramite l'impostazione host o la variabile di ambiente ne determina la disabilitazione globale e la possibile disabilitazione di diverse caratteristiche di un'app.
 
-## <a name="project"></a>Project
+## <a name="project"></a>Progetto
 
 Creare l'avvio dell'hosting con uno dei tipi di progetto seguenti:
 
@@ -611,7 +624,7 @@ HostingStartupLibrary;HostingStartupPackage;StartupDiagnostics
 
 Quando sono presenti più montaggi di avvio host, i relativi <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodi vengono eseguiti nell'ordine in cui sono elencati gli assembly.
 
-## <a name="activation"></a>Attivazione
+## <a name="activation"></a>Activation
 
 Le opzioni di attivazione dell'avvio dell'hosting sono:
 

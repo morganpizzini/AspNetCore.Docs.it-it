@@ -1,12 +1,24 @@
 ---
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: SDK di ASP.NET Core Razor
+author: Rick-Anderson
+description: Informazioni Razor sul modo in cui le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina della codifica rispetto all'utilizzo di MVC
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc, seodec18
+ms.date: 03/26/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: razor-pages/sdk
+ms.openlocfilehash: 555965b96b0d4d541c70f8a137d4f098dc06a4d6
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106624"
 ---
 # <a name="aspnet-core-razor-sdk"></a>SDK di ASP.NET Core Razor
 
@@ -98,134 +110,58 @@ Le proprietà e gli elementi nella tabella seguente vengono usati per configurar
 ::: moniker-end
 
 | Items | Descrizione |
-| ----- | ---
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
------- | | `RazorGenerate` | Elementi Item (file con*estensione cshtml* ) che sono input per la generazione di codice. | | `RazorComponent` | Elementi elemento (file*Razor* ) che sono input per la Razor generazione di codice componente. | | `RazorCompile` | Elementi Item (file con*estensione cs* ) che sono input per le Razor destinazioni di compilazione. Usare questa `ItemGroup` impostazione per specificare i file aggiuntivi da compilare nell' Razor assembly. | | `RazorTargetAssemblyAttribute` | Elementi Item utilizzati per generare gli attributi per l' Razor assembly. Ad esempio:  <br>`RazorAssemblyAttribute`<br>`Include="System.Reflection.AssemblyMetadataAttribute"`<br>`_Parameter1="BuildSource" _Parameter2="https://docs.microsoft.com/">`| | `RazorEmbeddedResource` | Elementi elemento aggiunti come risorse incorporate all' Razor assembly generato. |
+| ----- | ----------- |
+| `RazorGenerate` | Elementi Item (file con*estensione cshtml* ) che sono input per la generazione di codice. |
+| `RazorComponent` | Elementi elemento (file*Razor* ) che sono input per la Razor generazione di codice componente. |
+| `RazorCompile` | Elementi Item (file con*estensione cs* ) che sono input per le Razor destinazioni di compilazione. Usare questa `ItemGroup` impostazione per specificare i file aggiuntivi da compilare nell' Razor assembly. |
+| `RazorTargetAssemblyAttribute` | Elementi Item utilizzati per generare gli attributi per l' Razor assembly. Ad esempio:  <br>`RazorAssemblyAttribute`<br>`Include="System.Reflection.AssemblyMetadataAttribute"`<br>`_Parameter1="BuildSource" _Parameter2="https://docs.microsoft.com/">` |
+| `RazorEmbeddedResource` | Elementi elemento aggiunti come risorse incorporate all' Razor assembly generato. |
 
 ::: moniker range=">= aspnetcore-3.0"
 
 | Proprietà | Descrizione |
-| ---
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
----- | Titolo---:' ASP.NET Core Razor SDK ' Author: Description:' informazioni Razor sul modo in cui le pagine in ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulle pagine di codifica rispetto all'uso di MVC '.
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
------- | | `RazorTargetName` | Nome file (senza estensione) dell'assembly prodotto da Razor . | | `RazorOutputPath` | RazorDirectory di output. | | `RazorCompileToolset` | Utilizzato per determinare il set di strumenti utilizzato per compilare l' Razor assembly. I valori validi sono `Implicit`, `RazorSDK` e `PrecompilationTool`. | | [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Il valore predefinito è `true` . Quando `true` , include i file *Web. config*, *. JSON*e *. cshtml* come contenuto nel progetto. Quando viene fatto riferimento tramite `Microsoft.NET.Sdk.Web` , vengono inclusi anche i file in *wwwroot* e i file di configurazione. | | `EnableDefaultRazorGenerateItems` | Se `true` , include i file con *estensione cshtml* da `Content` elementi negli `RazorGenerate` elementi. | | `GenerateRazorTargetAssemblyInfo` | Quando `true` , genera un file con *estensione cs* contenente gli attributi specificati da `RazorAssemblyAttribute` e include il file nell'output di compilazione. | | `EnableDefaultRazorTargetAssemblyInfoAttributes` | Quando `true` , aggiunge un set predefinito di attributi dell'assembly a `RazorAssemblyAttribute` . | | `CopyRazorGenerateFilesToPublishDirectory` | Quando `true` , copia `RazorGenerate` gli elementi (file con*estensione cshtml*) nella directory di pubblicazione. In genere, Razor i file non sono necessari per un'app pubblicata se partecipano alla compilazione in fase di compilazione o di pubblicazione. Il valore predefinito è `false`. | | `PreserveCompilationReferences` | Quando `true` , copia gli elementi di assembly di riferimento nella directory di pubblicazione. Gli assembly di riferimento non sono in genere necessari per un'app pubblicata se la Razor compilazione avviene in fase di compilazione o di pubblicazione. Impostare su `true` se l'app pubblicata richiede la compilazione in fase di esecuzione. Ad esempio, impostare il valore su `true` se l'app modifica i file *cshtml* in fase di esecuzione o usa le visualizzazioni incorporate. Il valore predefinito è `false`. | | `IncludeRazorContentInPack` | Se `true` , tutti Razor gli elementi di contenuto (file con*estensione cshtml* ) sono contrassegnati per l'inclusione nel pacchetto NuGet generato. Il valore predefinito è `false`. | | `EmbedRazorGenerateSources` | Quando `true` , aggiunge gli elementi RazorGenerate (*. cshtml*) come file incorporati all' Razor assembly generato. Il valore predefinito è `false`. | | `UseRazorBuildServer` | Quando `true` , usa un processo del server di compilazione permanente per l'offload del lavoro di generazione del codice. Valore predefinito è il valore di `UseSharedCompilation`. | | `GenerateMvcApplicationPartsAssemblyAttributes` | Quando `true` , l'SDK genera attributi aggiuntivi usati da MVC in fase di esecuzione per eseguire l'individuazione delle parti dell'applicazione. | | `DefaultWebContentItemExcludes` | Modello glob per gli elementi elemento che devono essere esclusi dal `Content` gruppo di elementi nei progetti destinati a Web o Razor SDK | | `ExcludeConfigFilesFromBuildOutput` | Quando `true` , i file *. config* e *. JSON* non vengono copiati nella directory dell'output di compilazione. | | `AddRazorSupportForMvc` | Quando `true` , configura l' Razor SDK per aggiungere il supporto per la configurazione MVC richiesta quando si compilano applicazioni contenenti visualizzazioni o Razor pagine MVC. Questa proprietà viene impostata in modo implicito per i progetti .NET Core 3,0 o versioni successive destinate a Web SDK | | `RazorLangVersion` | Versione della lingua di Razor destinazione. |
+| -------- | ----------- |
+| `RazorTargetName` | Nome file (senza estensione) dell'assembly prodotto da Razor . |
+| `RazorOutputPath` | RazorDirectory di output. |
+| `RazorCompileToolset` | Utilizzato per determinare il set di strumenti utilizzato per compilare l' Razor assembly. I valori validi sono `Implicit`, `RazorSDK` e `PrecompilationTool`. |
+| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Il valore predefinito è `true`. Quando `true` , include i file *Web. config*, *. JSON*e *. cshtml* come contenuto nel progetto. Quando viene fatto riferimento tramite `Microsoft.NET.Sdk.Web` , vengono inclusi anche i file in *wwwroot* e i file di configurazione. |
+| `EnableDefaultRazorGenerateItems` | Quando è `true`, include i file *cshtml* degli elementi di `Content` negli elementi di `RazorGenerate`. |
+| `GenerateRazorTargetAssemblyInfo` | Quando `true` , genera un file con *estensione cs* contenente gli attributi specificati da `RazorAssemblyAttribute` e include il file nell'output di compilazione. |
+| `EnableDefaultRazorTargetAssemblyInfoAttributes` | Quando è `true`, aggiunge un set predefinito di attributi degli assembly a `RazorAssemblyAttribute`. |
+| `CopyRazorGenerateFilesToPublishDirectory` | Quando `true` , copia `RazorGenerate` gli elementi (file con*estensione cshtml*) nella directory di pubblicazione. In genere, Razor i file non sono necessari per un'app pubblicata se partecipano alla compilazione in fase di compilazione o di pubblicazione. Il valore predefinito è `false`. |
+| `PreserveCompilationReferences` | Quando è `true`, copiare gli elementi dell'assembly di riferimento nella directory di pubblicazione. Gli assembly di riferimento non sono in genere necessari per un'app pubblicata se la Razor compilazione avviene in fase di compilazione o di pubblicazione. Impostare su `true` se l'app pubblicata richiede la compilazione in fase di esecuzione. Ad esempio, impostare il valore su `true` se l'app modifica i file *cshtml* in fase di esecuzione o usa le visualizzazioni incorporate. Il valore predefinito è `false`. |
+| `IncludeRazorContentInPack` | Se `true` , tutti Razor gli elementi di contenuto (file con*estensione cshtml* ) sono contrassegnati per l'inclusione nel pacchetto NuGet generato. Il valore predefinito è `false`. |
+| `EmbedRazorGenerateSources` | Quando `true` , aggiunge gli elementi RazorGenerate (*. cshtml*) come file incorporati all' Razor assembly generato. Il valore predefinito è `false`. |
+| `UseRazorBuildServer` | Quando è `true`, usa un processo del server di compilazione permanente per ripartire il lavoro di generazione del codice. Valore predefinito è il valore di `UseSharedCompilation`. |
+| `GenerateMvcApplicationPartsAssemblyAttributes` | Quando `true` , l'SDK genera attributi aggiuntivi usati da MVC in fase di esecuzione per eseguire l'individuazione delle parti dell'applicazione. |
+| `DefaultWebContentItemExcludes` | Modello glob per gli elementi elemento che devono essere esclusi dal `Content` gruppo di elementi nei progetti destinati a Web o Razor SDK |
+| `ExcludeConfigFilesFromBuildOutput` | Quando `true` , i file *. config* e *. JSON* non vengono copiati nella directory dell'output di compilazione. |
+| `AddRazorSupportForMvc` | Quando `true` , configura l' Razor SDK per aggiungere il supporto per la configurazione MVC richiesta quando si compilano applicazioni contenenti visualizzazioni o Razor pagine MVC. Questa proprietà viene impostata in modo implicito per i progetti .NET Core 3,0 o versioni successive destinate a Web SDK |
+| `RazorLangVersion` | Versione della lingua di Razor destinazione. |
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
 | Proprietà | Descrizione |
-| ---
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
----- | Titolo---:' ASP.NET Core Razor SDK ' Author: Description:' informazioni Razor sul modo in cui le pagine in ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulle pagine di codifica rispetto all'uso di MVC '.
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "ASP.NET Core Razor SDK" Author: Description: "informazioni Razor su come le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina di codifica rispetto all'uso di MVC".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
------- | | `RazorTargetName` | Nome file (senza estensione) dell'assembly prodotto da Razor . | | `RazorOutputPath` | RazorDirectory di output. | | `RazorCompileToolset` | Utilizzato per determinare il set di strumenti utilizzato per compilare l' Razor assembly. I valori validi sono `Implicit`, `RazorSDK` e `PrecompilationTool`. | | [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Il valore predefinito è `true` . Quando `true` , include i file *Web. config*, *. JSON*e *. cshtml* come contenuto nel progetto. Quando viene fatto riferimento tramite `Microsoft.NET.Sdk.Web` , vengono inclusi anche i file in *wwwroot* e i file di configurazione. | | `EnableDefaultRazorGenerateItems` | Se `true` , include i file con *estensione cshtml* da `Content` elementi negli `RazorGenerate` elementi. | | `GenerateRazorTargetAssemblyInfo` | Quando `true` , genera un file con *estensione cs* contenente gli attributi specificati da `RazorAssemblyAttribute` e include il file nell'output di compilazione. | | `EnableDefaultRazorTargetAssemblyInfoAttributes` | Quando `true` , aggiunge un set predefinito di attributi dell'assembly a `RazorAssemblyAttribute` . | | `CopyRazorGenerateFilesToPublishDirectory` | Quando `true` , copia `RazorGenerate` gli elementi (file con*estensione cshtml*) nella directory di pubblicazione. In genere, Razor i file non sono necessari per un'app pubblicata se partecipano alla compilazione in fase di compilazione o di pubblicazione. Il valore predefinito è `false`. | | `CopyRefAssembliesToPublishDirectory` | Quando `true` , copia gli elementi di assembly di riferimento nella directory di pubblicazione. Gli assembly di riferimento non sono in genere necessari per un'app pubblicata se la Razor compilazione avviene in fase di compilazione o di pubblicazione. Impostare su `true` se l'app pubblicata richiede la compilazione in fase di esecuzione. Ad esempio, impostare il valore su `true` se l'app modifica i file *cshtml* in fase di esecuzione o usa le visualizzazioni incorporate. Il valore predefinito è `false`. | | `IncludeRazorContentInPack` | Se `true` , tutti Razor gli elementi di contenuto (file con*estensione cshtml* ) sono contrassegnati per l'inclusione nel pacchetto NuGet generato. Il valore predefinito è `false`. | | `EmbedRazorGenerateSources` | Quando `true` , aggiunge gli elementi RazorGenerate (*. cshtml*) come file incorporati all' Razor assembly generato. Il valore predefinito è `false`. | | `UseRazorBuildServer` | Quando `true` , usa un processo del server di compilazione permanente per l'offload del lavoro di generazione del codice. Valore predefinito è il valore di `UseSharedCompilation`. | | `GenerateMvcApplicationPartsAssemblyAttributes` | Quando `true` , l'SDK genera attributi aggiuntivi usati da MVC in fase di esecuzione per eseguire l'individuazione delle parti dell'applicazione. | | `DefaultWebContentItemExcludes` | Modello glob per gli elementi elemento che devono essere esclusi dal `Content` gruppo di elementi nei progetti destinati a Web o Razor SDK | | `ExcludeConfigFilesFromBuildOutput` | Quando `true` , i file *. config* e *. JSON* non vengono copiati nella directory dell'output di compilazione. | | `AddRazorSupportForMvc` | Quando `true` , configura l' Razor SDK per aggiungere il supporto per la configurazione MVC richiesta quando si compilano applicazioni contenenti visualizzazioni o Razor pagine MVC. Questa proprietà viene impostata in modo implicito per i progetti .NET Core 3,0 o versioni successive destinate a Web SDK | | `RazorLangVersion` | Versione della lingua di Razor destinazione. |
+| -------- | ----------- |
+| `RazorTargetName` | Nome file (senza estensione) dell'assembly prodotto da Razor . |
+| `RazorOutputPath` | RazorDirectory di output. |
+| `RazorCompileToolset` | Utilizzato per determinare il set di strumenti utilizzato per compilare l' Razor assembly. I valori validi sono `Implicit`, `RazorSDK` e `PrecompilationTool`. |
+| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Il valore predefinito è `true`. Quando `true` , include i file *Web. config*, *. JSON*e *. cshtml* come contenuto nel progetto. Quando viene fatto riferimento tramite `Microsoft.NET.Sdk.Web` , vengono inclusi anche i file in *wwwroot* e i file di configurazione. |
+| `EnableDefaultRazorGenerateItems` | Quando è `true`, include i file *cshtml* degli elementi di `Content` negli elementi di `RazorGenerate`. |
+| `GenerateRazorTargetAssemblyInfo` | Quando `true` , genera un file con *estensione cs* contenente gli attributi specificati da `RazorAssemblyAttribute` e include il file nell'output di compilazione. |
+| `EnableDefaultRazorTargetAssemblyInfoAttributes` | Quando è `true`, aggiunge un set predefinito di attributi degli assembly a `RazorAssemblyAttribute`. |
+| `CopyRazorGenerateFilesToPublishDirectory` | Quando `true` , copia `RazorGenerate` gli elementi (file con*estensione cshtml*) nella directory di pubblicazione. In genere, Razor i file non sono necessari per un'app pubblicata se partecipano alla compilazione in fase di compilazione o di pubblicazione. Il valore predefinito è `false`. |
+| `CopyRefAssembliesToPublishDirectory` | Quando è `true`, copiare gli elementi dell'assembly di riferimento nella directory di pubblicazione. Gli assembly di riferimento non sono in genere necessari per un'app pubblicata se la Razor compilazione avviene in fase di compilazione o di pubblicazione. Impostare su `true` se l'app pubblicata richiede la compilazione in fase di esecuzione. Ad esempio, impostare il valore su `true` se l'app modifica i file *cshtml* in fase di esecuzione o usa le visualizzazioni incorporate. Il valore predefinito è `false`. |
+| `IncludeRazorContentInPack` | Se `true` , tutti Razor gli elementi di contenuto (file con*estensione cshtml* ) sono contrassegnati per l'inclusione nel pacchetto NuGet generato. Il valore predefinito è `false`. |
+| `EmbedRazorGenerateSources` | Quando `true` , aggiunge gli elementi RazorGenerate (*. cshtml*) come file incorporati all' Razor assembly generato. Il valore predefinito è `false`. |
+| `UseRazorBuildServer` | Quando è `true`, usa un processo del server di compilazione permanente per ripartire il lavoro di generazione del codice. Valore predefinito è il valore di `UseSharedCompilation`. |
+| `GenerateMvcApplicationPartsAssemblyAttributes` | Quando `true` , l'SDK genera attributi aggiuntivi usati da MVC in fase di esecuzione per eseguire l'individuazione delle parti dell'applicazione. |
+| `DefaultWebContentItemExcludes` | Modello glob per gli elementi elemento che devono essere esclusi dal `Content` gruppo di elementi nei progetti destinati a Web o Razor SDK |
+| `ExcludeConfigFilesFromBuildOutput` | Quando `true` , i file *. config* e *. JSON* non vengono copiati nella directory dell'output di compilazione. |
+| `AddRazorSupportForMvc` | Quando `true` , configura l' Razor SDK per aggiungere il supporto per la configurazione MVC richiesta quando si compilano applicazioni contenenti visualizzazioni o Razor pagine MVC. Questa proprietà viene impostata in modo implicito per i progetti .NET Core 3,0 o versioni successive destinate a Web SDK |
+| `RazorLangVersion` | Versione della lingua di Razor destinazione. |
 
 ::: moniker-end
 

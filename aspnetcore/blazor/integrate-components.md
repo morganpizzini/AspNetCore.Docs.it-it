@@ -1,12 +1,24 @@
 ---
-title: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Integrare ASP.NET Core Razor componenti in Razor pagine e app MVC
+author: guardrex
+description: Informazioni sugli scenari di data binding per i componenti e gli elementi DOM nelle Blazor app.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 04/25/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/integrate-components
+ms.openlocfilehash: 97515ec519c4bedb0478f510ec9ed739b5d76e4f
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105246"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integrare ASP.NET Core Razor componenti in Razor pagine e app MVC
 
@@ -117,60 +129,10 @@ Per supportare componenti instradabili Razor nelle Razor app di pagine:
    * Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' Blazor app dall'agente utente.
 
    | Modalità di rendering | Descrizione |
-   | ---
-title: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
------- | Titolo---: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
------- | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering del `App` componente in HTML statico e include un marcatore per un' Blazor app Server. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un' Blazor app Server. L'output del `App` componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Esegue il rendering del `App` componente in HTML statico. |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering del `App` componente in HTML statico e include un marcatore per un' Blazor app Server. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un' Blazor app Server. L'output del `App` componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Esegue il rendering del `App` componente in HTML statico. |
 
    Per ulteriori informazioni sull'helper tag dei componenti, vedere <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> .
 
@@ -241,60 +203,10 @@ Per supportare componenti instradabili Razor nelle app MVC:
    * Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' Blazor app dall'agente utente.
 
    | Modalità di rendering | Descrizione |
-   | ---
-title: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
------- | Titolo---: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: "integra ASP.NET Core Razor componenti in Razor pagine e app MVC" autore: Descrizione: "informazioni sugli scenari data binding per i componenti e gli elementi DOM nelle Blazor app".
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
------- | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering del `App` componente in HTML statico e include un marcatore per un' Blazor app Server. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un' Blazor app Server. L'output del `App` componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Esegue il rendering del `App` componente in HTML statico. |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering del `App` componente in HTML statico e include un marcatore per un' Blazor app Server. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un' Blazor app Server. L'output del `App` componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Esegue il rendering del `App` componente in HTML statico. |
 
    Per ulteriori informazioni sull'helper tag dei componenti, vedere <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> .
 
