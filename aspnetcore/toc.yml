@@ -75,7 +75,7 @@
               uid: tutorials/first-mvc-app/new-field
             - name: Aggiungere la convalida
               uid: tutorials/first-mvc-app/validation
-            - name: Esaminare i dettagli e i metodi di eliminazione
+            - name: Esaminare i dettagli ed eliminare
               uid: tutorials/first-mvc-app/details
         - name: Blazor
           displayName: tutorial
