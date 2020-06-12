@@ -5,7 +5,7 @@ description: Creare un'app di chat che usa ASP.NET Core SignalR con Blazor webas
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 06/10/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: d3ce11606b4193d5c2938b5996d8dcd1cb99a731
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 720f534426cc0e2b32778e49050c7f7d75ecd60d
+ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451888"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84679592"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Usare ASP.NET Core SignalR con Blazor webassembly
 
@@ -72,13 +72,13 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Selezionare ** Blazor app** e fare clic su **Next (avanti**).
 
-1. Digitare "BlazorSignalRApp" nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
+1. Digitare "BlazorSignalRApp" nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
 
 1. Scegliere il modello ** Blazor app webassembly** .
 
 1. In **Avanzate**selezionare la casella di controllo **ASP.NET Core Hosted** .
 
-1. Selezionare **Create** (Crea).
+1. Selezionare **Crea**.
 
 > [!NOTE]
 > Se è stato eseguito l'aggiornamento o l'installazione di una nuova versione di Visual Studio e il Blazor modello webassembly non viene visualizzato nell'interfaccia utente di Visual Studio, reinstallare il modello usando il `dotnet new` comando illustrato in precedenza.
@@ -93,7 +93,7 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. In Visual Studio Code aprire la cartella del progetto dell'app.
 
-1. Quando viene visualizzata la finestra di dialogo per aggiungere asset per compilare ed eseguire il debug dell'app, selezionare **Sì**. Visual Studio Code aggiunge automaticamente la cartella *. VSCODE* con i file *Launch. JSON* e *Tasks. JSON* generati.
+1. Quando viene visualizzata la finestra di dialogo per aggiungere asset per compilare ed eseguire il debug dell'app, selezionare **Sì**. Visual Studio Code aggiunge automaticamente la cartella *. VSCODE* con i *launch.jsgenerati su* e *tasks.jsnei* file.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
@@ -114,7 +114,7 @@ Seguire le istruzioni per la scelta degli strumenti:
 
    Selezionare **Avanti**.
 
-1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Create** (Crea).
+1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Crea**.
 
    Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare. Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain.
 
@@ -230,7 +230,7 @@ Nel progetto **BlazorSignalRApp. Server** creare una cartella *Hub* (plurale) e 
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-1. Quando VS Code offre la creazione di un profilo di avvio per l'app Server (*. VSCODE/Launch. JSON*), la `program` voce appare simile alla seguente per puntare all'assembly dell'app ( `{APPLICATION NAME}.Server.dll` ):
+1. Quando VS Code offre la creazione di un profilo di avvio per l'app Server (*con estensione VSCODE/launch.js*), la `program` voce appare simile alla seguente per puntare all'assembly dell'app ( `{APPLICATION NAME}.Server.dll` ):
 
    ```json
    "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"
@@ -296,3 +296,4 @@ Per altre informazioni sulla creazione di Blazor app, vedere la Blazor documenta
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:signalr/introduction>
+* [SignalRnegoziazione tra le origini per l'autenticazione](xref:blazor/hosting-model-configuration#signalr-cross-origin-negotiation-for-authentication)
