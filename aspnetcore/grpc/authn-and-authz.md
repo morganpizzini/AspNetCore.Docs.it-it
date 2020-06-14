@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/authn-and-authz
-ms.openlocfilehash: f9d2e73f57d69e1eb5039019dc9e64193cf67820
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 61ddcdc75a627fe777fab88b41bdbc4c7f9be9f3
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105792"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84723990"
 ---
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>Autenticazione e autorizzazione in gRPC per ASP.NET Core
 
@@ -117,7 +117,7 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
 Un client può in alternativa fornire un certificato client per l'autenticazione. L' [autenticazione del certificato](https://tools.ietf.org/html/rfc5246#section-7.4.4) viene eseguita a livello di TLS, molto prima che venga mai ASP.NET Core. Quando la richiesta entra ASP.NET Core, il [pacchetto di autenticazione del certificato client](xref:security/authentication/certauth) consente di risolvere il certificato in un `ClaimsPrincipal` .
 
 > [!NOTE]
-> L'host deve essere configurato per accettare i certificati client. Vedere [configurare l'host per richiedere i certificati](xref:security/authentication/certauth#configure-your-host-to-require-certificates) per informazioni sull'accettazione dei certificati client in gheppio, IIS e Azure.
+> Configurare il server in modo che accetti i certificati client. Per informazioni sull'accettazione dei certificati client in gheppio, IIS e Azure, vedere <xref:security/authentication/certauth#configure-your-server-to-require-certificates> .
 
 Nel client .NET gRPC, il certificato client viene aggiunto a `HttpClientHandler` che viene quindi usato per creare il client di gRPC:
 

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
-ms.openlocfilehash: b369bf0e9b20bcb87345e3e10c314ae6227464d1
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 9a63d6ca0ab6b71875212d54035dfb5cf94a8cad
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84215081"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724302"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Proteggere un' Blazor app ospitata ASP.NET Core webassembly con Azure Active Directory B2C
 
@@ -45,7 +45,7 @@ Seguire le istruzioni riportate in [esercitazione: registrare un'applicazione in
 1. Specificare un **nome** per l'app, ad esempio ** Blazor Server AAD B2C**.
 1. Per i **tipi di account supportati**, selezionare l'opzione multi-tenant: **account in qualsiasi directory organizzativa o provider di identità. Per l'autenticazione degli utenti con Azure AD B2C.**
 1. L' *app* per le API del server non richiede un **URI di reindirizzamento** in questo scenario, quindi lasciare l'elenco a discesa impostato su **Web** e non immettere un URI di reindirizzamento.
-1. Verificare che **Permissions**  >  **le autorizzazioni concessino l'amministratore concent a OpenID e offline_access autorizzazioni** siano abilitate.
+1. Verificare che **Permissions**  >  **le autorizzazioni concedano il consenso dell'amministratore a OpenID e offline_access autorizzazioni** siano abilitate.
 1. Selezionare **Registra**.
 
 Registrare le seguenti informazioni:
@@ -77,7 +77,7 @@ Seguire le istruzioni riportate in [esercitazione: registrare un'applicazione in
 1. Specificare un **nome** per l'app, ad esempio ** Blazor AAD B2C client**.
 1. Per i **tipi di account supportati**, selezionare l'opzione multi-tenant: **account in qualsiasi directory organizzativa o provider di identità. Per l'autenticazione degli utenti con Azure AD B2C.**
 1. Lasciare l'elenco a discesa **URI di reindirizzamento** impostato su **Web** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione su gheppio è 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle proprietà dell'app Server nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un contrassegno viene visualizzato nella sezione [creare l'app](#create-the-app) per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
-1. Verificare che **Permissions**  >  **le autorizzazioni concessino l'amministratore concent a OpenID e offline_access autorizzazioni** siano abilitate.
+1. Verificare che **Permissions**  >  **le autorizzazioni concedano il consenso dell'amministratore a OpenID e offline_access autorizzazioni** siano abilitate.
 1. Selezionare **Registra**.
 
 Registrare l'ID applicazione (ID client) (ad esempio, `11111111-1111-1111-1111-111111111111` ).
@@ -178,9 +178,9 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
-### <a name="app-settings"></a>Impostazioni dell'app
+### <a name="app-settings"></a>Impostazioni app
 
-Il file *appSettings. JSON* contiene le opzioni per configurare il gestore di connessione JWT usato per convalidare i token di accesso.
+Il *appsettings.jsnel* file contiene le opzioni per configurare il gestore di connessione JWT usato per convalidare i token di accesso.
 
 ```json
 {
@@ -273,7 +273,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 Il <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> metodo accetta un callback per configurare i parametri necessari per autenticare un'app. Quando si registra l'app, è possibile ottenere i valori necessari per la configurazione dell'app dalla configurazione di AAD del portale di Azure.
 
-La configurazione viene fornita dal file *wwwroot/appSettings. JSON* :
+La configurazione viene fornita dal file *wwwroot/appsettings.js* :
 
 ```json
 {

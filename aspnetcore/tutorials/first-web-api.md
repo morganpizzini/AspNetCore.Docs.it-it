@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: 2fcfd46057935cadac76c558a78729a1c096ffc0
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 71ab0fc0a679acf540fa53fa2a9c8ba893b34edf
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451824"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724354"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Esercitazione: creare un'API Web con ASP.NET Core
 
@@ -42,7 +42,7 @@ Al termine si avrà un'API Web che può gestire gli elementi di tipo "attività"
 
 Questa esercitazione consente di creare l'API seguente:
 
-|API | Description | Testo della richiesta | Corpo della risposta |
+|API | Description | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
 |`GET /api/TodoItems` | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
 |`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
@@ -358,7 +358,7 @@ Questa esercitazione usa Postman per testare l'API Web.
     }
     ```
 
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
   ![Postman con richiesta di creazione](first-web-api/_static/3/create.png)
 
@@ -371,7 +371,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Impostare il metodo su GET.
 * Incollare l'URI (ad esempio, `https://localhost:5001/api/TodoItems/1` ).
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 ## <a name="examine-the-get-methods"></a>Esaminare i metodi GET
 
@@ -403,7 +403,7 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 * Impostare il metodo HTTP su **GET**.
 * Impostare l'URL della richiesta su `https://localhost:<port>/api/TodoItems`. Ad esempio: `https://localhost:5001/api/TodoItems`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 Questa app usa un database in memoria. Se l'app viene arrestata e avviata, la richiesta GET precedente non restituirà alcun dato. Se non vengono restituiti dati, eseguire [POST](#post) per pubblicare i dati nell'app.
 
@@ -471,13 +471,13 @@ Usare Postman per eliminare un elemento attività:
 
 * Impostare il metodo su `DELETE`.
 * Impostare l'URI dell'oggetto da eliminare (ad esempio `https://localhost:5001/api/TodoItems/1` ).
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 <a name="over-post"></a>
 
 ## <a name="prevent-over-posting"></a>Impedisci overposting
 
-Attualmente l'app di esempio espone l'intero `TodoItem` oggetto. Le app Productions limitano in genere i dati di input e restituiti usando un subset del modello. Esistono diversi motivi alla base di questo e la sicurezza è una delle principali. Il subset di un modello è in genere indicato come oggetto Trasferimento dati (DTO), modello di input o modello di visualizzazione. **Dto** viene usato in questo articolo.
+Attualmente l'app di esempio espone l'intero `TodoItem` oggetto. Le app di produzione limitano in genere i dati di input e restituiti usando un subset del modello. Esistono diversi motivi alla base di questo e la sicurezza è una delle principali. Il subset di un modello è in genere indicato come oggetto Trasferimento dati (DTO), modello di input o modello di visualizzazione. **Dto** viene usato in questo articolo.
 
 Un DTO può essere usato per:
 
@@ -530,7 +530,7 @@ Al termine si dispone di un'API web che può gestire gli elementi di tipo "attiv
 
 Questa esercitazione consente di creare l'API seguente:
 
-|API | Description | Testo della richiesta | Corpo della risposta |
+|API | Description | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
 |GET /api/TodoItems | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
 |GET /api/TodoItems/{id} | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
@@ -804,7 +804,7 @@ Questa esercitazione usa Postman per testare l'API Web.
   * Impostare il metodo HTTP su **GET**.
   * Impostare l'URL della richiesta su `https://localhost:<port>/api/todo`. Ad esempio: `https://localhost:5001/api/todo`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 ![Postman con richiesta GET](first-web-api/_static/2pv.png)
 
@@ -840,7 +840,7 @@ Il metodo `CreatedAtAction`:
     }
     ```
 
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
   ![Postman con richiesta di creazione](first-web-api/_static/create.png)
 
@@ -855,7 +855,7 @@ Il metodo `CreatedAtAction`:
 
 * Impostare il metodo su GET.
 * Incollare l'URI (ad esempio, `https://localhost:5001/api/Todo/2` ).
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 ## <a name="add-a-puttodoitem-method"></a>Aggiungere un metodo PutTodoItem
 
@@ -899,7 +899,7 @@ Usare Postman per eliminare un elemento attività:
 
 * Impostare il metodo su `DELETE`.
 * Impostare l'URI dell'oggetto da eliminare (ad esempio, `https://localhost:5001/api/todo/1` ).
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 L'app di esempio consente di eliminare tutti gli elementi. Quando viene eliminato l'ultimo elemento, tuttavia, ne viene creato uno nuovo dal costruttore della classe modello alla successiva chiamata dell'API.
 
@@ -924,7 +924,7 @@ Aggiungere un file JavaScript con nome *site.js* alla directory *wwwroot*. Sosti
 Può essere necessario modificare le impostazioni di avvio del progetto ASP.NET Core per il test della pagina HTML in locale:
 
 * Aprire *Properties\launchSettings.json*.
-* Rimuovere la `launchUrl` proprietà per forzare l'apertura dell'app nel file *index. html* &mdash; del file predefinito del progetto.
+* Rimuovere la `launchUrl` proprietà per forzare l'apertura dell'app a *index.html* &mdash; file predefinito del progetto.
 
 In questo esempio vengono chiamati tutti i metodi CRUD dell'API Web. Di seguito sono incluse le spiegazioni delle chiamate all'API.
 

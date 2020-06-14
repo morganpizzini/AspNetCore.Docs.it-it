@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: b85129d8b56f2106636b47534630f8139e100ae9
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 6d8db8f546e21ccce27cca06b4112ebc52653782
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83851211"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724380"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory"></a>Proteggere un' Blazor app ASP.NET Core webassembly autonoma con Azure Active Directory
 
@@ -33,7 +33,7 @@ Registrare un'app AAD nell'area **Azure Active Directory**  >  **registrazioni a
 1. Specificare un **nome** per l'app, ad esempio ** Blazor AAD autonomo**.
 1. Scegliere i **tipi di conto supportati**. È possibile selezionare gli **account in questa directory organizzativa solo** per questa esperienza.
 1. Lasciare l'elenco a discesa **URI di reindirizzamento** impostato su **Web** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione su gheppio è 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle proprietà dell'app nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un commento viene visualizzato più avanti in questo argomento per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
-1. Disabilitare la **Permissions**  >  casella di controllo autorizzazioni**concessi da amministratore a OpenID e autorizzazioni offline_access** .
+1. Disabilitare la **Permissions**  >  casella di controllo autorizzazioni**Concedi amministratore per OpenID e autorizzazioni offline_access** .
 1. Selezionare **Registra**.
 
 Registrare le seguenti informazioni:
@@ -98,7 +98,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 Il <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> metodo accetta un callback per configurare i parametri necessari per autenticare un'app. Quando si registra l'app, è possibile ottenere i valori necessari per la configurazione dell'app dalla configurazione di AAD.
 
-La configurazione viene fornita dal file *wwwroot/appSettings. JSON* :
+La configurazione viene fornita dal file *wwwroot/appsettings.js* :
 
 ```json
 {

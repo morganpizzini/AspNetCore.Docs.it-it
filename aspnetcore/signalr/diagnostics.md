@@ -5,7 +5,7 @@ description: Informazioni su come raccogliere dati diagnostici dall' SignalR app
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: signalr
-ms.date: 06/08/2020
+ms.date: 06/12/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 22e1d24bc9fed5fd8588c852e07f5ca935946596
-ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
+ms.openlocfilehash: d26bb71a8ae06764b58a094b28d5e6f9eb581ecd
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84507316"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84755963"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registrazione e diagnostica in ASP.NET CoreSignalR
 
@@ -38,7 +38,7 @@ SignalRUSA due categorie di logger:
 * `Microsoft.AspNetCore.SignalR`: Per i log relativi ai protocolli Hub, attivazione di hub, richiamo di metodi e altre attività correlate all'hub.
 * `Microsoft.AspNetCore.Http.Connections`: Per i log relativi ai trasporti, ad esempio WebSocket, polling prolungato, eventi inviati dal server e infrastruttura di basso livello SignalR .
 
-Per abilitare i log dettagliati da SignalR , configurare entrambi i prefissi precedenti al `Debug` livello del file *appSettings. JSON* aggiungendo gli elementi seguenti alla sottosezione `LogLevel` in `Logging` :
+Per abilitare i log dettagliati da SignalR , configurare entrambi i prefissi precedenti al `Debug` livello del *appsettings.js* nel file aggiungendo gli elementi seguenti alla sottosezione `LogLevel` in `Logging` :
 
 [!code-json[](diagnostics/logging-config.json?highlight=7-8)]
 
@@ -110,6 +110,8 @@ Se si desidera inviare i log a un sistema di registrazione personalizzato, è po
 > I log lato client possono contenere informazioni riservate dall'app. **Non pubblicare mai log non** elaborati dalle app di produzione nei forum pubblici come github.
 
 Per ottenere i log dal client .NET, è possibile usare il `ConfigureLogging` metodo su `HubConnectionBuilder` . Funziona allo stesso modo del `ConfigureLogging` metodo in `WebHostBuilder` e `HostBuilder` . È possibile configurare gli stessi provider di registrazione usati in ASP.NET Core. Tuttavia, è necessario installare e abilitare manualmente i pacchetti NuGet per i singoli provider di registrazione.
+
+Per aggiungere la registrazione del client .NET a un' Blazor app webassembly, vedere <xref:fundamentals/logging/index#blazor-webassembly-signalr-net-client-logging> .
 
 ### <a name="console-logging"></a>Registrazione console
 

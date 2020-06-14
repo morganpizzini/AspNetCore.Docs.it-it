@@ -7,12 +7,13 @@
 >
 > Vedere i bug di GitHub [18677](https://github.com/dotnet/aspnetcore/issues/18677) e [16579](https://github.com/dotnet/aspnetcore/issues/16579) per i casi di esempio che hanno raggiunto questo bug.
 >
-> È prevista una correzione del consenso esplicito per questo bug. Questo documento verrà aggiornato al rilascio della patch. Quando la patch viene rilasciata, il codice seguente imposta un commutatore interno che corregge il bug:
+> Una correzione del consenso esplicito per questo bug è inclusa in [.NET Core 3.1.301 SDK e versioni successive](https://dotnet.microsoft.com/download/dotnet-core/3.1). Il codice seguente imposta un'opzione interna che corregge questo bug:
 >
 >```
 >public static void Main(string[] args)
 >{
->    AppContext.SetSwitch("Microsoft.AspNetCore.Routing.UseCorrectCatchAllBehavior", true);
+>    AppContext.SetSwitch("Microsoft.AspNetCore.Routing.UseCorrectCatchAllBehavior", 
+>                          true);
 >    CreateHostBuilder(args).Build().Run();
 >}
 >// Remaining code removed for brevity.

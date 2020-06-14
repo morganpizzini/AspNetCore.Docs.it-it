@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 9e76b300c159a2a1432aa4b1c6e47b3d91084a85
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 5c73b5e5416956e2f6996e5692100e8c02a25cbf
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84215095"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724341"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory"></a>Proteggere un' Blazor app ospitata ASP.NET Core webassembly con Azure Active Directory
 
@@ -40,7 +40,7 @@ Seguire le istruzioni disponibili in [Guida introduttiva: registrare un'applicaz
 1. Specificare un **nome** per l'app (ad esempio, ** Blazor Server AAD**).
 1. Scegliere i **tipi di conto supportati**. Per questa esperienza è possibile selezionare **solo gli account in questa directory aziendale** (tenant singolo).
 1. L' *app* per le API del server non richiede un **URI di reindirizzamento** in questo scenario, quindi lasciare l'elenco a discesa impostato su **Web** e non immettere un URI di reindirizzamento.
-1. Disabilitare la **Permissions**  >  casella di controllo autorizzazioni**concessi da amministratore a OpenID e autorizzazioni offline_access** .
+1. Disabilitare la **Permissions**  >  casella di controllo autorizzazioni**Concedi amministratore per OpenID e autorizzazioni offline_access** .
 1. Selezionare **Registra**.
 
 Registrare le seguenti informazioni:
@@ -74,7 +74,7 @@ Seguire le istruzioni disponibili in [Guida introduttiva: registrare un'applicaz
 1. Specificare un **nome** per l'app (ad esempio, ** Blazor client AAD**).
 1. Scegliere i **tipi di conto supportati**. Per questa esperienza è possibile selezionare **solo gli account in questa directory aziendale** (tenant singolo).
 1. Lasciare l'elenco a discesa **URI di reindirizzamento** impostato su **Web** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione su gheppio è 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle proprietà dell'app Server nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un contrassegno viene visualizzato nella sezione [creare l'app](#create-the-app) per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
-1. Disabilitare la **Permissions**  >  casella di controllo autorizzazioni**concessi da amministratore a OpenID e autorizzazioni offline_access** .
+1. Disabilitare la **Permissions**  >  casella di controllo autorizzazioni**Concedi amministratore per OpenID e autorizzazioni offline_access** .
 1. Selezionare **Registra**.
 
 Registrare l'ID applicazione dell' *app client* (ID client) (ad esempio, `33333333-3333-3333-3333-333333333333` ).
@@ -166,9 +166,9 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
-### <a name="app-settings"></a>Impostazioni dell'app
+### <a name="app-settings"></a>Impostazioni app
 
-Il file *appSettings. JSON* contiene le opzioni per configurare il gestore di connessione JWT usato per convalidare i token di accesso:
+Il *appsettings.jsnel* file contiene le opzioni per configurare il gestore di connessione JWT usato per convalidare i token di accesso:
 
 ```json
 {
@@ -261,7 +261,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 Il <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> metodo accetta un callback per configurare i parametri necessari per autenticare un'app. Quando si registra l'app, è possibile ottenere i valori necessari per la configurazione dell'app dalla configurazione di AAD del portale di Azure.
 
-La configurazione viene fornita dal file *wwwroot/appSettings. JSON* :
+La configurazione viene fornita dal file *wwwroot/appsettings.js* :
 
 ```json
 {

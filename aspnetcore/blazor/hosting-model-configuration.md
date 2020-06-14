@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: 3cef67806ce0e2e045122bdc962e93795be68572
-ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
+ms.openlocfilehash: 74501c70df5ad33d5a2478b2ec359713e29292d8
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84679579"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84755781"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>BlazorConfigurazione del modello di hosting ASP.NET Core
 
@@ -28,7 +28,7 @@ Questo articolo illustra la configurazione del modello di hosting.
 
 ## <a name="blazor-webassembly"></a>BlazorWebassembly
 
-### <a name="environment"></a>Ambiente
+### <a name="environment"></a>Environment
 
 Quando si esegue un'app localmente, per impostazione predefinita viene impostato lo sviluppo per l'ambiente. Quando l'app viene pubblicata, per impostazione predefinita viene impostato l'ambiente di produzione.
 
@@ -313,7 +313,7 @@ Per configurare SignalR il client sottostante per l'invio di credenziali, ad ese
 * Assegnare <xref:System.Net.Http.HttpMessageHandler> a l' <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> opzione:
 
   ```csharp
-  var client = new HubConnectionBuilder()
+  var connection = new HubConnectionBuilder()
       .WithUrl(new Uri("http://signalr.example.com"), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 

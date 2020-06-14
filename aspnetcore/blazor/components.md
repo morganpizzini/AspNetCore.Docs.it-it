@@ -5,7 +5,7 @@ description: Informazioni su come creare e usare Razor i componenti, tra cui la 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2020
+ms.date: 06/11/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: 59b0c51e0006db0eb748b14b82a114a8bad986e8
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 2a6de1a39737f98cb151a0556f36c223d86f9752
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105148"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84723951"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Creazione e utilizzo di Razor componenti ASP.NET Core
 
@@ -88,7 +88,7 @@ Quando si accede al contenuto sulla Razor sintassi, prestare particolare attenzi
 
 Blazorsegue la convenzione di ASP.NET Core app che collocano asset statici nella [cartella radice Web del progetto (wwwroot)](xref:fundamentals/index#web-root).
 
-Usare un percorso relativo di base ( `/` ) per fare riferimento alla radice Web per un asset statico. Nell'esempio seguente *logo. png* si trova fisicamente nella cartella *{Project root}/wwwroot/images* :
+Usare un percorso relativo di base ( `/` ) per fare riferimento alla radice Web per un asset statico. Nell'esempio seguente *logo.png* si trova fisicamente nella cartella *{Project root}/wwwroot/images* :
 
 ```razor
 <img alt="Company logo" src="/images/logo.png" />
@@ -118,7 +118,7 @@ Il markup seguente in *index. Razor* esegue il rendering di un' `HeadingComponen
 
 Se un componente contiene un elemento HTML con una prima lettera maiuscola che non corrisponde a un nome di componente, viene emesso un avviso che indica che l'elemento ha un nome imprevisto. L'aggiunta di una [`@using`][2] direttiva per lo spazio dei nomi del componente rende disponibile il componente, che risolve l'avviso.
 
-## <a name="routing"></a>Routing
+## <a name="routing"></a>Routing.
 
 Il routing in Blazor viene effettuato fornendo un modello di route a ogni componente accessibile nell'app.
 
@@ -365,7 +365,7 @@ Registrare il `NotifierService` come singletion:
 * In Blazor server registrare il servizio in `Startup.ConfigureServices` :
 
   ```csharp
-  services.AddSingleton<NotifierService>();
+  services.AddScoped<NotifierService>();
   ```
 
 Usare `NotifierService` per aggiornare un componente:

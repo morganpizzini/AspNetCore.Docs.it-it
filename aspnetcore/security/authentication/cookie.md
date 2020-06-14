@@ -1,7 +1,7 @@
 ---
 title: Usa autenticazione cookie senza ASP.NET CoreIdentity
 author: rick-anderson
-description: Informazioni su come usare l'autenticazione tramite cookie Identitysenza ASP.NET Core.
+description: Informazioni su come usare l'autenticazione tramite cookie senza ASP.NET Core Identity .
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 02/11/2020
@@ -12,46 +12,46 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: c179b3657ad4cbda960c2afe685a63f3266a7402
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7d2f338f8ece6bd3cc99d5f2ab8153b5c465c7a4
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773844"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724237"
 ---
-# <a name="use-cookie-authentication-without-aspnet-core-identity"></a>Usa autenticazione cookie senza ASP.NET Core identità
+# <a name="use-cookie-authentication-without-aspnet-core-identity"></a>Usa autenticazione cookie senza ASP.NET CoreIdentity
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core identità è un provider di autenticazione completo e completo per la creazione e la gestione degli account di accesso. Tuttavia, è possibile usare un provider di autenticazione basato su cookie senza ASP.NET Core identità. Per altre informazioni, vedere <xref:security/authentication/identity>.
+ASP.NET Core Identity è un provider di autenticazione completo con funzionalità complete per la creazione e la gestione degli account di accesso. Tuttavia, è possibile usare un provider di autenticazione basato su cookie senza ASP.NET Core Identity . Per altre informazioni, vedere <xref:security/authentication/identity>.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-A scopo dimostrativo nell'app di esempio, l'account utente per l'utente ipotetico, Maria Rodriguez, è hardcoded nell'app. Usare l'indirizzo `maria.rodriguez@contoso.com` di **posta elettronica** e qualsiasi password per accedere all'utente. L'utente viene autenticato nel `AuthenticateUser` metodo nel file *pages/account/login. cshtml. cs* . In un esempio reale, l'utente viene autenticato a fronte di un database.
+A scopo dimostrativo nell'app di esempio, l'account utente per l'utente ipotetico, Maria Rodriguez, è hardcoded nell'app. Usare l'indirizzo di **posta elettronica** `maria.rodriguez@contoso.com` e qualsiasi password per accedere all'utente. L'utente viene autenticato nel `AuthenticateUser` metodo nel file *pages/account/login. cshtml. cs* . In un esempio reale, l'utente viene autenticato a fronte di un database.
 
 ## <a name="configuration"></a>Configurazione
 
 Se l'app non usa il [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app), creare un riferimento al pacchetto nel file di progetto per il pacchetto [Microsoft. AspNetCore. Authentication. cookies](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Cookies/) .
 
-Nel `Startup.ConfigureServices` metodo creare i servizi del middleware di autenticazione con i <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> metodi <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> e:
+Nel `Startup.ConfigureServices` metodo creare i servizi del middleware di autenticazione con i <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> metodi e:
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Startup.cs?name=snippet1)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>passato a `AddAuthentication` imposta lo schema di autenticazione predefinito per l'app. `AuthenticationScheme`è utile quando sono presenti più istanze dell'autenticazione dei cookie e si desidera [autorizzare con uno schema specifico](xref:security/authorization/limitingidentitybyscheme). L' `AuthenticationScheme` impostazione di su [CookieAuthenticationDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) fornisce il valore "cookie" per lo schema. È possibile specificare qualsiasi valore stringa che distingua lo schema.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>passato a `AddAuthentication` imposta lo schema di autenticazione predefinito per l'app. `AuthenticationScheme`è utile quando sono presenti più istanze dell'autenticazione dei cookie e si desidera [autorizzare con uno schema specifico](xref:security/authorization/limitingidentitybyscheme). L'impostazione `AuthenticationScheme` di su [CookieAuthenticationDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) fornisce il valore "cookie" per lo schema. È possibile specificare qualsiasi valore stringa che distingua lo schema.
 
-Lo schema di autenticazione dell'app è diverso dallo schema di autenticazione dei cookie dell'app. Quando non viene fornito uno schema di autenticazione <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>dei cookie a `CookieAuthenticationDefaults.AuthenticationScheme` , viene usato ("cookie").
+Lo schema di autenticazione dell'app è diverso dallo schema di autenticazione dei cookie dell'app. Quando non viene fornito uno schema di autenticazione dei cookie a <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> , viene usato `CookieAuthenticationDefaults.AuthenticationScheme` ("cookie").
 
-La <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> proprietà del cookie di autenticazione è impostata `true` su per impostazione predefinita. I cookie di autenticazione sono consentiti quando un visitatore del sito non ha acconsentito alla raccolta dei dati. Per altre informazioni, vedere <xref:security/gdpr#essential-cookies>.
+La proprietà del cookie di autenticazione <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> è impostata su per `true` impostazione predefinita. I cookie di autenticazione sono consentiti quando un visitatore del sito non ha acconsentito alla raccolta dei dati. Per altre informazioni, vedere <xref:security/gdpr#essential-cookies>.
 
-In `Startup.Configure`, chiamare `UseAuthentication` e `UseAuthorization` per impostare la `HttpContext.User` proprietà ed eseguire il middleware di autorizzazione per le richieste. Chiamare i `UseAuthentication` metodi `UseAuthorization` e prima di `UseEndpoints`chiamare:
+In `Startup.Configure` , chiamare `UseAuthentication` e `UseAuthorization` per impostare la `HttpContext.User` proprietà ed eseguire il middleware di autorizzazione per le richieste. Chiamare i `UseAuthentication` `UseAuthorization` metodi e prima di chiamare `UseEndpoints` :
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Startup.cs?name=snippet2)]
 
 La <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> classe viene utilizzata per configurare le opzioni del provider di autenticazione.
 
-Impostare `CookieAuthenticationOptions` nella configurazione del servizio per l'autenticazione nel `Startup.ConfigureServices` metodo:
+Impostare `CookieAuthenticationOptions` nella configurazione del servizio per l'autenticazione nel `Startup.ConfigureServices` Metodo:
 
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -63,7 +63,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 
 ## <a name="cookie-policy-middleware"></a>Middleware dei criteri dei cookie
 
-Il [middleware dei criteri](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) dei cookie Abilita le funzionalità dei criteri dei cookie. L'aggiunta del middleware alla pipeline di elaborazione delle app è&mdash;sensibile agli ordini, ma interessa solo i componenti downstream registrati nella pipeline.
+Il [middleware dei criteri](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) dei cookie Abilita le funzionalità dei criteri dei cookie. L'aggiunta del middleware alla pipeline di elaborazione delle app è sensibile agli ordini &mdash; , ma interessa solo i componenti downstream registrati nella pipeline.
 
 ```csharp
 app.UseCookiePolicy(cookiePolicyOptions);
@@ -71,7 +71,7 @@ app.UseCookiePolicy(cookiePolicyOptions);
 
 Usare <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> fornito al middleware dei criteri dei cookie per controllare le caratteristiche globali dell'elaborazione dei cookie e l'hook nei gestori di elaborazione dei cookie quando i cookie vengono aggiunti o eliminati.
 
-Il valore <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy> predefinito è `SameSiteMode.Lax` consentire l'autenticazione OAuth2. Per applicare rigorosamente un criterio dello stesso sito `SameSiteMode.Strict`di, impostare `MinimumSameSitePolicy`il. Sebbene questa impostazione interrompa OAuth2 e altri schemi di autenticazione tra le origini, eleva il livello di sicurezza dei cookie per altri tipi di app che non si basano sull'elaborazione di richieste tra origini.
+Il <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy> valore predefinito è `SameSiteMode.Lax` consentire l'autenticazione OAuth2. Per applicare rigorosamente un criterio dello stesso sito di `SameSiteMode.Strict` , impostare il `MinimumSameSitePolicy` . Sebbene questa impostazione interrompa OAuth2 e altri schemi di autenticazione tra le origini, eleva il livello di sicurezza dei cookie per altri tipi di app che non si basano sull'elaborazione di richieste tra origini.
 
 ```csharp
 var cookiePolicyOptions = new CookiePolicyOptions
@@ -80,7 +80,7 @@ var cookiePolicyOptions = new CookiePolicyOptions
 };
 ```
 
-L'impostazione del middleware per i `MinimumSameSitePolicy` criteri dei cookie per può `Cookie.SameSite` influire sull'impostazione di in impostazioni in `CookieAuthenticationOptions` base alla matrice riportata di seguito.
+L'impostazione del middleware per i criteri dei cookie per `MinimumSameSitePolicy` può influire sull'impostazione di `Cookie.SameSite` in `CookieAuthenticationOptions` impostazioni in base alla matrice riportata di seguito.
 
 | MinimumSameSitePolicy | Cookie. navigava sullostesso sito | Impostazione cookie. navigava sullostesso sito risultante |
 | --------------------- | --------------- | --------------------------------- |
@@ -90,9 +90,9 @@ L'impostazione del middleware per i `MinimumSameSitePolicy` criteri dei cookie p
 
 ## <a name="create-an-authentication-cookie"></a>Creare un cookie di autenticazione
 
-Per creare un cookie che contiene informazioni sull'utente, <xref:System.Security.Claims.ClaimsPrincipal>costruire un oggetto. Le informazioni utente vengono serializzate e archiviate nel cookie. 
+Per creare un cookie che contiene informazioni sull'utente, costruire un oggetto <xref:System.Security.Claims.ClaimsPrincipal> . Le informazioni utente vengono serializzate e archiviate nel cookie. 
 
-Creare una <xref:System.Security.Claims.ClaimsIdentity> con qualsiasi richiesta <xref:System.Security.Claims.Claim>e chiamare <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> per accedere all'utente:
+Creare una <xref:System.Security.Claims.ClaimsIdentity> con qualsiasi richiesta <xref:System.Security.Claims.Claim> e chiamare <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> per accedere all'utente:
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1)]
 
@@ -100,11 +100,13 @@ Creare una <xref:System.Security.Claims.ClaimsIdentity> con qualsiasi richiesta 
 
 `SignInAsync`Crea un cookie crittografato e lo aggiunge alla risposta corrente. Se `AuthenticationScheme` non è specificato, viene usato lo schema predefinito.
 
+<xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri>viene utilizzato solo in alcuni percorsi specifici per impostazione predefinita, ad esempio il percorso di accesso e i percorsi di disconnessione. Per altre informazioni, vedere l' [origine CookieAuthenticationHandler](https://github.com/dotnet/aspnetcore/blob/f2e6e6ff334176540ef0b3291122e359c2106d1a/src/Security/Authentication/Cookies/src/CookieAuthenticationHandler.cs#L334).
+
 Per la crittografia viene usato il sistema di [protezione dei dati](xref:security/data-protection/using-data-protection) di ASP.NET Core. Per un'app ospitata in più computer, bilanciamento del carico tra app o uso di un Web farm, [configurare la protezione dei dati](xref:security/data-protection/configuration/overview) in modo da usare lo stesso anello chiave e l'identificatore dell'app.
 
-## <a name="sign-out"></a>Disconnessione
+## <a name="sign-out"></a>Disconnetti
 
-Per disconnettersi dall'utente corrente ed eliminare il cookie, chiamare <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*>:
+Per disconnettersi dall'utente corrente ed eliminare il cookie, chiamare <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*> :
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet2)]
 
@@ -121,7 +123,7 @@ L' <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.
 
 Un approccio alla convalida dei cookie si basa sul tenere traccia del momento in cui il database utente viene modificato. Se il database non è stato modificato dopo l'emissione del cookie dell'utente, non è necessario autenticare di nuovo l'utente se il cookie è ancora valido. Nell'app di esempio, il database viene implementato in `IUserRepository` e archivia un `LastChanged` valore. Quando un utente viene aggiornato nel database, il `LastChanged` valore viene impostato sull'ora corrente.
 
-Per invalidare un cookie quando il database viene modificato in base al `LastChanged` valore, creare il cookie con un' `LastChanged` attestazione contenente il valore `LastChanged` corrente dal database:
+Per invalidare un cookie quando il database viene modificato in base al `LastChanged` valore, creare il cookie con un' `LastChanged` attestazione contenente il `LastChanged` valore corrente dal database:
 
 ```csharp
 var claims = new List<Claim>
@@ -139,13 +141,13 @@ await HttpContext.SignInAsync(
     new ClaimsPrincipal(claimsIdentity));
 ```
 
-Per implementare una sostituzione per l' `ValidatePrincipal` evento, scrivere un metodo con la firma seguente in una classe che deriva da <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents>:
+Per implementare una sostituzione per l' `ValidatePrincipal` evento, scrivere un metodo con la firma seguente in una classe che deriva da <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents> :
 
 ```csharp
 ValidatePrincipal(CookieValidatePrincipalContext)
 ```
 
-Di seguito è riportato un esempio di `CookieAuthenticationEvents`implementazione di:
+Di seguito è riportato un esempio di implementazione di `CookieAuthenticationEvents` :
 
 ```csharp
 using System.Linq;
@@ -184,7 +186,7 @@ public class CustomCookieAuthenticationEvents : CookieAuthenticationEvents
 }
 ```
 
-Registrare l'istanza degli eventi durante la `Startup.ConfigureServices` registrazione del servizio cookie nel metodo. Fornire una [registrazione del servizio con ambito](xref:fundamentals/dependency-injection#service-lifetimes) per `CustomCookieAuthenticationEvents` la classe:
+Registrare l'istanza degli eventi durante la registrazione del servizio cookie nel `Startup.ConfigureServices` metodo. Fornire una [registrazione del servizio con ambito](xref:fundamentals/dependency-injection#service-lifetimes) per la `CustomCookieAuthenticationEvents` classe:
 
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -196,7 +198,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 services.AddScoped<CustomCookieAuthenticationEvents>();
 ```
 
-Si consideri una situazione in cui il nome dell'&mdash;utente viene aggiornato una decisione che non influisce sulla sicurezza in alcun modo. Se si desidera aggiornare l'entità utente in modo non distruttivo, chiamare `context.ReplacePrincipal` e impostare la `context.ShouldRenew` proprietà su `true`.
+Si consideri una situazione in cui il nome dell'utente viene aggiornato &mdash; una decisione che non influisce sulla sicurezza in alcun modo. Se si desidera aggiornare l'entità utente in modo non distruttivo, chiamare `context.ReplacePrincipal` e impostare la `context.ShouldRenew` proprietà su `true` .
 
 > [!WARNING]
 > L'approccio descritto qui viene attivato a ogni richiesta. La convalida dei cookie di autenticazione per tutti gli utenti in ogni richiesta può comportare un notevole calo delle prestazioni per l'app.
@@ -207,7 +209,7 @@ Si consideri una situazione in cui il nome dell'&mdash;utente viene aggiornato u
 
 Il frammento di codice seguente crea un'identità e un cookie corrispondente che sopravvivono attraverso le chiusure del browser. Vengono rispettate tutte le impostazioni di scadenza scorrevoli configurate in precedenza. Se il cookie scade quando il browser viene chiuso, il cookie viene cancellato dopo il riavvio.
 
-Imposta <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.IsPersistent> su `true` in <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties>:
+Imposta <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.IsPersistent> su `true` in <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> :
 
 ```csharp
 // using Microsoft.AspNetCore.Authentication;
@@ -223,7 +225,7 @@ await HttpContext.SignInAsync(
 
 ## <a name="absolute-cookie-expiration"></a>Scadenza assoluta del cookie
 
-È possibile impostare un'ora di scadenza assoluta <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc>con. Per creare un cookie persistente `IsPersistent` , è necessario impostare anche. In caso contrario, il cookie viene creato con una durata basata sulla sessione e potrebbe scadere prima o dopo il ticket di autenticazione che possiede. Quando `ExpiresUtc` è impostato, esegue l'override del valore dell' <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.ExpireTimeSpan> opzione di <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>, se impostata.
+È possibile impostare un'ora di scadenza assoluta con <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc> . Per creare un cookie persistente, `IsPersistent` è necessario impostare anche. In caso contrario, il cookie viene creato con una durata basata sulla sessione e potrebbe scadere prima o dopo il ticket di autenticazione che possiede. Quando `ExpiresUtc` è impostato, esegue l'override del valore dell' <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.ExpireTimeSpan> opzione di <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> , se impostata.
 
 Il frammento di codice seguente crea un'identità e un cookie corrispondente che dura 20 minuti. Questa operazione ignora le impostazioni di scadenza scorrevoli configurate in precedenza.
 
@@ -244,11 +246,11 @@ await HttpContext.SignInAsync(
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.NET Core identità è un provider di autenticazione completo e completo per la creazione e la gestione degli account di accesso. Tuttavia, è possibile usare un provider di autenticazione basata su cookie senza ASP.NET Core identità. Per altre informazioni, vedere <xref:security/authentication/identity>.
+ASP.NET Core Identity è un provider di autenticazione completo con funzionalità complete per la creazione e la gestione degli account di accesso. Tuttavia, è possibile usare un provider di autenticazione basata su cookie senza ASP.NET Core Identity . Per altre informazioni, vedere <xref:security/authentication/identity>.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-A scopo dimostrativo nell'app di esempio, l'account utente per l'utente ipotetico, Maria Rodriguez, è hardcoded nell'app. Usare l'indirizzo `maria.rodriguez@contoso.com` di **posta elettronica** e qualsiasi password per accedere all'utente. L'utente viene autenticato nel `AuthenticateUser` metodo nel file *pages/account/login. cshtml. cs* . In un esempio reale, l'utente viene autenticato a fronte di un database.
+A scopo dimostrativo nell'app di esempio, l'account utente per l'utente ipotetico, Maria Rodriguez, è hardcoded nell'app. Usare l'indirizzo di **posta elettronica** `maria.rodriguez@contoso.com` e qualsiasi password per accedere all'utente. L'utente viene autenticato nel `AuthenticateUser` metodo nel file *pages/account/login. cshtml. cs* . In un esempio reale, l'utente viene autenticato a fronte di un database.
 
 ## <a name="configuration"></a>Configurazione
 
@@ -258,19 +260,19 @@ Nel `Startup.ConfigureServices` metodo creare il servizio middleware di autentic
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Startup.cs?name=snippet1)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>passato a `AddAuthentication` imposta lo schema di autenticazione predefinito per l'app. `AuthenticationScheme`è utile quando sono presenti più istanze dell'autenticazione dei cookie e si desidera [autorizzare con uno schema specifico](xref:security/authorization/limitingidentitybyscheme). L' `AuthenticationScheme` impostazione di su [CookieAuthenticationDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) fornisce il valore "cookie" per lo schema. È possibile specificare qualsiasi valore stringa che distingua lo schema.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>passato a `AddAuthentication` imposta lo schema di autenticazione predefinito per l'app. `AuthenticationScheme`è utile quando sono presenti più istanze dell'autenticazione dei cookie e si desidera [autorizzare con uno schema specifico](xref:security/authorization/limitingidentitybyscheme). L'impostazione `AuthenticationScheme` di su [CookieAuthenticationDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) fornisce il valore "cookie" per lo schema. È possibile specificare qualsiasi valore stringa che distingua lo schema.
 
-Lo schema di autenticazione dell'app è diverso dallo schema di autenticazione dei cookie dell'app. Quando non viene fornito uno schema di autenticazione <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>dei cookie a `CookieAuthenticationDefaults.AuthenticationScheme` , viene usato ("cookie").
+Lo schema di autenticazione dell'app è diverso dallo schema di autenticazione dei cookie dell'app. Quando non viene fornito uno schema di autenticazione dei cookie a <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> , viene usato `CookieAuthenticationDefaults.AuthenticationScheme` ("cookie").
 
-La <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> proprietà del cookie di autenticazione è impostata `true` su per impostazione predefinita. I cookie di autenticazione sono consentiti quando un visitatore del sito non ha acconsentito alla raccolta dei dati. Per altre informazioni, vedere <xref:security/gdpr#essential-cookies>.
+La proprietà del cookie di autenticazione <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> è impostata su per `true` impostazione predefinita. I cookie di autenticazione sono consentiti quando un visitatore del sito non ha acconsentito alla raccolta dei dati. Per altre informazioni, vedere <xref:security/gdpr#essential-cookies>.
 
-Nel `Startup.Configure` metodo chiamare il `UseAuthentication` metodo per richiamare il middleware di autenticazione che imposta la `HttpContext.User` proprietà. Chiamare il `UseAuthentication` metodo prima di `UseMvcWithDefaultRoute` chiamare `UseMvc`o:
+Nel `Startup.Configure` metodo chiamare il `UseAuthentication` metodo per richiamare il middleware di autenticazione che imposta la `HttpContext.User` Proprietà. Chiamare il `UseAuthentication` metodo prima di chiamare `UseMvcWithDefaultRoute` o `UseMvc` :
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Startup.cs?name=snippet2)]
 
 La <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> classe viene utilizzata per configurare le opzioni del provider di autenticazione.
 
-Impostare `CookieAuthenticationOptions` nella configurazione del servizio per l'autenticazione nel `Startup.ConfigureServices` metodo:
+Impostare `CookieAuthenticationOptions` nella configurazione del servizio per l'autenticazione nel `Startup.ConfigureServices` Metodo:
 
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -282,7 +284,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 
 ## <a name="cookie-policy-middleware"></a>Middleware dei criteri dei cookie
 
-Il [middleware dei criteri](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) dei cookie Abilita le funzionalità dei criteri dei cookie. L'aggiunta del middleware alla pipeline di elaborazione delle app è&mdash;sensibile agli ordini, ma interessa solo i componenti downstream registrati nella pipeline.
+Il [middleware dei criteri](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) dei cookie Abilita le funzionalità dei criteri dei cookie. L'aggiunta del middleware alla pipeline di elaborazione delle app è sensibile agli ordini &mdash; , ma interessa solo i componenti downstream registrati nella pipeline.
 
 ```csharp
 app.UseCookiePolicy(cookiePolicyOptions);
@@ -290,7 +292,7 @@ app.UseCookiePolicy(cookiePolicyOptions);
 
 Usare <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> fornito al middleware dei criteri dei cookie per controllare le caratteristiche globali dell'elaborazione dei cookie e l'hook nei gestori di elaborazione dei cookie quando i cookie vengono aggiunti o eliminati.
 
-Il valore <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy> predefinito è `SameSiteMode.Lax` consentire l'autenticazione OAuth2. Per applicare rigorosamente un criterio dello stesso sito `SameSiteMode.Strict`di, impostare `MinimumSameSitePolicy`il. Sebbene questa impostazione interrompa OAuth2 e altri schemi di autenticazione tra le origini, eleva il livello di sicurezza dei cookie per altri tipi di app che non si basano sull'elaborazione di richieste tra origini.
+Il <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy> valore predefinito è `SameSiteMode.Lax` consentire l'autenticazione OAuth2. Per applicare rigorosamente un criterio dello stesso sito di `SameSiteMode.Strict` , impostare il `MinimumSameSitePolicy` . Sebbene questa impostazione interrompa OAuth2 e altri schemi di autenticazione tra le origini, eleva il livello di sicurezza dei cookie per altri tipi di app che non si basano sull'elaborazione di richieste tra origini.
 
 ```csharp
 var cookiePolicyOptions = new CookiePolicyOptions
@@ -299,7 +301,7 @@ var cookiePolicyOptions = new CookiePolicyOptions
 };
 ```
 
-L'impostazione del middleware per i `MinimumSameSitePolicy` criteri dei cookie per può `Cookie.SameSite` influire sull'impostazione di in impostazioni in `CookieAuthenticationOptions` base alla matrice riportata di seguito.
+L'impostazione del middleware per i criteri dei cookie per `MinimumSameSitePolicy` può influire sull'impostazione di `Cookie.SameSite` in `CookieAuthenticationOptions` impostazioni in base alla matrice riportata di seguito.
 
 | MinimumSameSitePolicy | Cookie. navigava sullostesso sito | Impostazione cookie. navigava sullostesso sito risultante |
 | --------------------- | --------------- | --------------------------------- |
@@ -309,9 +311,9 @@ L'impostazione del middleware per i `MinimumSameSitePolicy` criteri dei cookie p
 
 ## <a name="create-an-authentication-cookie"></a>Creare un cookie di autenticazione
 
-Per creare un cookie che contiene informazioni sull'utente, <xref:System.Security.Claims.ClaimsPrincipal>costruire un oggetto. Le informazioni utente vengono serializzate e archiviate nel cookie. 
+Per creare un cookie che contiene informazioni sull'utente, costruire un oggetto <xref:System.Security.Claims.ClaimsPrincipal> . Le informazioni utente vengono serializzate e archiviate nel cookie. 
 
-Creare una <xref:System.Security.Claims.ClaimsIdentity> con qualsiasi richiesta <xref:System.Security.Claims.Claim>e chiamare <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> per accedere all'utente:
+Creare una <xref:System.Security.Claims.ClaimsIdentity> con qualsiasi richiesta <xref:System.Security.Claims.Claim> e chiamare <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> per accedere all'utente:
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1)]
 
@@ -319,9 +321,9 @@ Creare una <xref:System.Security.Claims.ClaimsIdentity> con qualsiasi richiesta 
 
 Per la crittografia viene usato il sistema di [protezione dei dati](xref:security/data-protection/using-data-protection) di ASP.NET Core. Per un'app ospitata in più computer, bilanciamento del carico tra app o uso di un Web farm, [configurare la protezione dei dati](xref:security/data-protection/configuration/overview) in modo da usare lo stesso anello chiave e l'identificatore dell'app.
 
-## <a name="sign-out"></a>Disconnessione
+## <a name="sign-out"></a>Disconnetti
 
-Per disconnettersi dall'utente corrente ed eliminare il cookie, chiamare <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*>:
+Per disconnettersi dall'utente corrente ed eliminare il cookie, chiamare <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*> :
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet2)]
 
@@ -338,7 +340,7 @@ L' <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.
 
 Un approccio alla convalida dei cookie si basa sul tenere traccia del momento in cui il database utente viene modificato. Se il database non è stato modificato dopo l'emissione del cookie dell'utente, non è necessario autenticare di nuovo l'utente se il cookie è ancora valido. Nell'app di esempio, il database viene implementato in `IUserRepository` e archivia un `LastChanged` valore. Quando un utente viene aggiornato nel database, il `LastChanged` valore viene impostato sull'ora corrente.
 
-Per invalidare un cookie quando il database viene modificato in base al `LastChanged` valore, creare il cookie con un' `LastChanged` attestazione contenente il valore `LastChanged` corrente dal database:
+Per invalidare un cookie quando il database viene modificato in base al `LastChanged` valore, creare il cookie con un' `LastChanged` attestazione contenente il `LastChanged` valore corrente dal database:
 
 ```csharp
 var claims = new List<Claim>
@@ -356,13 +358,13 @@ await HttpContext.SignInAsync(
     new ClaimsPrincipal(claimsIdentity));
 ```
 
-Per implementare una sostituzione per l' `ValidatePrincipal` evento, scrivere un metodo con la firma seguente in una classe che deriva da <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents>:
+Per implementare una sostituzione per l' `ValidatePrincipal` evento, scrivere un metodo con la firma seguente in una classe che deriva da <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents> :
 
 ```csharp
 ValidatePrincipal(CookieValidatePrincipalContext)
 ```
 
-Di seguito è riportato un esempio di `CookieAuthenticationEvents`implementazione di:
+Di seguito è riportato un esempio di implementazione di `CookieAuthenticationEvents` :
 
 ```csharp
 using System.Linq;
@@ -401,7 +403,7 @@ public class CustomCookieAuthenticationEvents : CookieAuthenticationEvents
 }
 ```
 
-Registrare l'istanza degli eventi durante la `Startup.ConfigureServices` registrazione del servizio cookie nel metodo. Fornire una [registrazione del servizio con ambito](xref:fundamentals/dependency-injection#service-lifetimes) per `CustomCookieAuthenticationEvents` la classe:
+Registrare l'istanza degli eventi durante la registrazione del servizio cookie nel `Startup.ConfigureServices` metodo. Fornire una [registrazione del servizio con ambito](xref:fundamentals/dependency-injection#service-lifetimes) per la `CustomCookieAuthenticationEvents` classe:
 
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -413,7 +415,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 services.AddScoped<CustomCookieAuthenticationEvents>();
 ```
 
-Si consideri una situazione in cui il nome dell'&mdash;utente viene aggiornato una decisione che non influisce sulla sicurezza in alcun modo. Se si desidera aggiornare l'entità utente in modo non distruttivo, chiamare `context.ReplacePrincipal` e impostare la `context.ShouldRenew` proprietà su `true`.
+Si consideri una situazione in cui il nome dell'utente viene aggiornato &mdash; una decisione che non influisce sulla sicurezza in alcun modo. Se si desidera aggiornare l'entità utente in modo non distruttivo, chiamare `context.ReplacePrincipal` e impostare la `context.ShouldRenew` proprietà su `true` .
 
 > [!WARNING]
 > L'approccio descritto qui viene attivato a ogni richiesta. La convalida dei cookie di autenticazione per tutti gli utenti in ogni richiesta può comportare un notevole calo delle prestazioni per l'app.
@@ -424,7 +426,7 @@ Si consideri una situazione in cui il nome dell'&mdash;utente viene aggiornato u
 
 Il frammento di codice seguente crea un'identità e un cookie corrispondente che sopravvivono attraverso le chiusure del browser. Vengono rispettate tutte le impostazioni di scadenza scorrevoli configurate in precedenza. Se il cookie scade quando il browser viene chiuso, il cookie viene cancellato dopo il riavvio.
 
-Imposta <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.IsPersistent> su `true` in <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties>:
+Imposta <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.IsPersistent> su `true` in <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> :
 
 ```csharp
 // using Microsoft.AspNetCore.Authentication;
@@ -440,7 +442,7 @@ await HttpContext.SignInAsync(
 
 ## <a name="absolute-cookie-expiration"></a>Scadenza assoluta del cookie
 
-È possibile impostare un'ora di scadenza assoluta <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc>con. Per creare un cookie persistente `IsPersistent` , è necessario impostare anche. In caso contrario, il cookie viene creato con una durata basata sulla sessione e potrebbe scadere prima o dopo il ticket di autenticazione che possiede. Quando `ExpiresUtc` è impostato, esegue l'override del valore dell' <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.ExpireTimeSpan> opzione di <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions>, se impostata.
+È possibile impostare un'ora di scadenza assoluta con <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc> . Per creare un cookie persistente, `IsPersistent` è necessario impostare anche. In caso contrario, il cookie viene creato con una durata basata sulla sessione e potrebbe scadere prima o dopo il ticket di autenticazione che possiede. Quando `ExpiresUtc` è impostato, esegue l'override del valore dell' <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.ExpireTimeSpan> opzione di <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions> , se impostata.
 
 Il frammento di codice seguente crea un'identità e un cookie corrispondente che dura 20 minuti. Questa operazione ignora le impostazioni di scadenza scorrevoli configurate in precedenza.
 

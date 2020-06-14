@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/http-requests
-ms.openlocfilehash: ae33218d6944c62a08e677592ac0c66f9026b15f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a54861945d97728336149d5ffb39952c3d61b7bd
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766550"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724263"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Effettuare richieste HTTP usando IHttpClientFactory in ASP.NET Core
 
@@ -41,14 +41,14 @@ Il codice di esempio in questo argomento version USA <xref:System.Text.Json> per
 
 `IHttpClientFactory` può essere usato in un'app in diversi modi:
 
-* [Utilizzo di base](#basic-usage)
+* [Uso di base](#basic-usage)
 * [Client denominati](#named-clients)
 * [Client tipizzati](#typed-clients)
 * [Client generati](#generated-clients)
 
 L'approccio migliore dipende dai requisiti dell'app.
 
-### <a name="basic-usage"></a>Utilizzo di base
+### <a name="basic-usage"></a>Uso di base
 
 `IHttpClientFactory`può essere registrato chiamando `AddHttpClient` :
 
@@ -189,6 +189,44 @@ public class ValuesController : ControllerBase
     }
 }
 ```
+
+## <a name="make-post-put-and-delete-requests"></a>Creare richieste POST, PUT e DELETE
+
+Negli esempi precedenti, tutte le richieste HTTP usano il verbo GET HTTP. `HttpClient`supporta anche altri verbi HTTP, tra cui:
+
+* POST
+* PUT
+* DELETE
+* PATCH
+
+Per un elenco completo dei verbi HTTP supportati, vedere <xref:System.Net.Http.HttpMethod> .
+
+Nell'esempio seguente viene illustrato come effettuare una richiesta HTTP POST:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_POST)]
+
+Nel codice precedente, il `CreateItemAsync` Metodo:
+
+* Serializza il `TodoItem` parametro in JSON usando `System.Text.Json` . Viene utilizzata un'istanza di <xref:System.Text.Json.JsonSerializerOptions> per configurare il processo di serializzazione.
+* Crea un'istanza di <xref:System.Net.Http.StringContent> per comprimere il JSON serializzato per l'invio nel corpo della richiesta HTTP.
+* Chiama <xref:System.Net.Http.HttpClient.PostAsync%2A> per inviare il contenuto JSON all'URL specificato. Si tratta di un URL relativo che viene aggiunto a [HttpClient. BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress).
+* Chiama <xref:System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode%2A> per generare un'eccezione se il codice di stato della risposta non indica esito positivo.
+
+`HttpClient`supporta anche altri tipi di contenuto. Ad esempio, <xref:System.Net.Http.MultipartContent> e <xref:System.Net.Http.StreamContent>. Per un elenco completo dei contenuti supportati, vedere <xref:System.Net.Http.HttpContent> .
+
+Nell'esempio seguente viene illustrata una richiesta HTTP PUT:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_PUT)]
+
+Il codice precedente è molto simile all'esempio di POST. Il `SaveItemAsync` metodo chiama <xref:System.Net.Http.HttpClient.PutAsync%2A> anziché `PostAsync` .
+
+Nell'esempio seguente viene illustrata una richiesta HTTP DELETE:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_DELETE)]
+
+Nel codice precedente, il `DeleteItemAsync` metodo chiama <xref:System.Net.Http.HttpClient.DeleteAsync%2A> . Poiché le richieste DELETE HTTP non contengono in genere alcun corpo, il `DeleteAsync` metodo non fornisce un overload che accetta un'istanza di `HttpContent` .
+
+Per ulteriori informazioni sull'utilizzo di verbi HTTP diversi con `HttpClient` , vedere <xref:System.Net.Http.HttpClient> .
 
 ## <a name="outgoing-request-middleware"></a>Middleware per richieste in uscita
 
@@ -407,14 +445,14 @@ Di [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/r
 
 `IHttpClientFactory` può essere usato in un'app in diversi modi:
 
-* [Utilizzo di base](#basic-usage)
+* [Uso di base](#basic-usage)
 * [Client denominati](#named-clients)
 * [Client tipizzati](#typed-clients)
 * [Client generati](#generated-clients)
 
 Nessuno di questi modi può essere considerato superiore a un altro. L'approccio migliore dipende dai vincoli dell'app.
 
-### <a name="basic-usage"></a>Utilizzo di base
+### <a name="basic-usage"></a>Uso di base
 
 È possibile registrare `IHttpClientFactory` chiamando il metodo di estensione `AddHttpClient` in `IServiceCollection`, all'interno del metodo `Startup.ConfigureServices`.
 
@@ -712,14 +750,14 @@ I progetti destinati a .NET Framework richiedono l'installazione del pacchetto N
 
 `IHttpClientFactory` può essere usato in un'app in diversi modi:
 
-* [Utilizzo di base](#basic-usage)
+* [Uso di base](#basic-usage)
 * [Client denominati](#named-clients)
 * [Client tipizzati](#typed-clients)
 * [Client generati](#generated-clients)
 
 Nessuno di questi modi può essere considerato superiore a un altro. L'approccio migliore dipende dai vincoli dell'app.
 
-### <a name="basic-usage"></a>Utilizzo di base
+### <a name="basic-usage"></a>Uso di base
 
 È possibile registrare `IHttpClientFactory` chiamando il metodo di estensione `AddHttpClient` in `IServiceCollection`, all'interno del metodo `Startup.ConfigureServices`.
 

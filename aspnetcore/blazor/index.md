@@ -1,12 +1,24 @@
 ---
-title:' Introduction to ASP.NET Core Blazor ' Author: Description:' Explore ASP.NET Core Blazor , un modo per creare un'interfaccia utente Web interattiva sul lato client con .NET in un'app ASP.NET Core '.
-monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Introduzione a ASP.NET CoreBlazor
+author: guardrex
+description: Esplora ASP.NET Core Blazor , un modo per creare un'interfaccia utente Web interattiva sul lato client con .NET in un'app ASP.NET Core.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc, seoapril2019
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/index
+ms.openlocfilehash: eb8a6d2ddbd3e8f61626566878a7af5f5a2525d8
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "83608187"
 ---
 # <a name="introduction-to-aspnet-core-blazor"></a>Introduzione a ASP.NET CoreBlazor
 

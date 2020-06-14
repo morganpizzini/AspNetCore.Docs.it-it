@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 4b3a4b2323b7f221d9cd1aab1c56d1d9828eb916
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: cb2b3ddc3eba2d6e1ea91c1e7f6715ffa9ad1b08
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106455"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84756015"
 ---
 # <a name="aspnet-core-signalr-javascript-client"></a>ASP.NET Core SignalR client JavaScript
 
@@ -43,7 +43,7 @@ npm init -y
 npm install @microsoft/signalr
 ```
 
-NPM installa il contenuto del pacchetto nella *cartella \\ @microsoft\signalr\dist\browser node_modules* . Creare una nuova cartella denominata *SignalR* nella cartella *wwwroot \\ lib* . Copiare il file *SignalR. js* nella cartella *wwwroot\lib\signalr* .
+NPM installa il contenuto del pacchetto nella *cartella \\ @microsoft\signalr\dist\browser node_modules* . Creare una nuova cartella denominata *SignalR* nella cartella *wwwroot \\ lib* . Copiare il file *signalr.js* nella cartella *wwwroot\lib\signalr* .
 
 ::: moniker-end
 
@@ -54,7 +54,7 @@ npm init -y
 npm install @aspnet/signalr
 ```
 
-NPM installa il contenuto del pacchetto nella *cartella \\ @aspnet\signalr\dist\browser node_modules* . Creare una nuova cartella denominata *SignalR* nella cartella *wwwroot \\ lib* . Copiare il file *SignalR. js* nella cartella *wwwroot\lib\signalr* .
+NPM installa il contenuto del pacchetto nella *cartella \\ @aspnet\signalr\dist\browser node_modules* . Creare una nuova cartella denominata *SignalR* nella cartella *wwwroot \\ lib* . Copiare il file *signalr.js* nella cartella *wwwroot\lib\signalr* .
 
 ::: moniker-end
 
@@ -172,7 +172,7 @@ Il client JavaScript per SignalR può essere configurato in modo da riconnetters
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withAutomaticReconnect()
     .build();
 ```
@@ -246,7 +246,7 @@ Per configurare un numero personalizzato di tentativi di riconnessione prima di 
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withAutomaticReconnect([0, 0, 10000])
     .build();
 
@@ -269,7 +269,7 @@ Se si desidera un maggiore controllo sull'intervallo e sul numero di tentativi d
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withAutomaticReconnect({
         nextRetryDelayInMilliseconds: retryContext => {
             if (retryContext.elapsedMilliseconds < 60000) {

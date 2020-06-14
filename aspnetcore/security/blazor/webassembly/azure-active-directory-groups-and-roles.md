@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/aad-groups-roles
-ms.openlocfilehash: 3ed06cca7e20da381b870e642a6c616b2578cd0a
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 87cdf02a6f6babc869d90658e6a7cd54db73bb68
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451875"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84756028"
 ---
 # <a name="azure-ad-groups-administrative-roles-and-user-defined-roles"></a>Gruppi di Azure AD, ruoli amministrativi e ruoli definiti dall'utente
 
@@ -45,7 +45,7 @@ Le indicazioni fornite in questo articolo sono valide per gli Blazor scenari di 
 Per configurare l'app nella portale di Azure per fornire un' `groups` attestazione di appartenenza, vedere gli articoli seguenti su Azure. Assegnare gli utenti ai gruppi AAD definiti dall'utente e ai ruoli amministrativi predefiniti.
 
 * [Definizione dei ruoli con i gruppi di sicurezza di Azure AD](/azure/architecture/multitenant-identity/app-roles#roles-using-azure-ad-security-groups)
-* [attributo groupMembershipClaims](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
+* [Attributo groupMembershipClaims](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
 
 Gli esempi seguenti presuppongono che un utente sia assegnato al ruolo di *amministratore fatturazione* incorporato di AAD.
 
@@ -164,7 +164,7 @@ Il [componente AuthorizeView](xref:security/blazor/index#authorizeview-component
 </AuthorizeView>
 ```
 
-L'accesso a un intero componente può essere basato sui criteri che usano la `[Authorize]` direttiva Attribute []] (xrif: Security/Blazer/index # Autorizzo-Attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ):
+L'accesso a un intero componente può essere basato sui criteri che usano la [ `[Authorize]` direttiva attribute](xref:security/blazor/index#authorize-attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ):
 
 ```razor
 @page "/"
@@ -246,7 +246,7 @@ builder.Services.AddMsalAuthentication(options =>
 A questo punto sono funzionali gli approcci di autorizzazione per i componenti. Qualsiasi meccanismo di autorizzazione nei componenti può utilizzare il `admin` ruolo per autorizzare l'utente:
 
 * [Componente AuthorizeView](xref:security/blazor/index#authorizeview-component) (esempio: `<AuthorizeView Roles="admin">` )
-* [ `[Authorize]` ] (direttiva per attributi)] (xrif: Security/Blazer/index # Autorizzo-Attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ) (Esempio: `@attribute [Authorize(Roles = "admin")]` )
+* [ `[Authorize]` direttiva attribute](xref:security/blazor/index#authorize-attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ) (esempio: `@attribute [Authorize(Roles = "admin")]` )
 * [Logica procedurale](xref:security/blazor/index#procedural-logic) (esempio: `if (user.IsInRole("admin")) { ... }` )
 
   Sono supportati più test di ruolo:
@@ -266,7 +266,7 @@ Ruolo amministrativo AAD | ID dell'oggetto.
 --- | ---
 Amministratore di applicazioni | fa11557b-4f15-4ddd-85d5-313c7cd74047
 Sviluppatore di applicazioni | 68adcbb8-9504-44f6-89f2-5cd48dc74a2c
-Amministratore autenticazione | 02d110a1-96b1-419e-af87-746461b60ed7
+Amministratore dell'autenticazione | 02d110a1-96b1-419e-af87-746461b60ed7
 Amministratore di Azure DevOps | a5311ace-ca41-44cd-b833-8d22caa0b34f
 Amministratore Azure Information Protection | 18632dce-f9b5-4f01-abb5-37051f06860e
 Amministratore keyset Framework dell'esperienza B2C | 0c2e87e5-94f9-4adb-ae8c-bcafe11bd368
@@ -283,7 +283,7 @@ Responsabile approvazione per l'accesso a Customer Lockbox | c18d54a8-B13E-4954-
 Amministratore di analisi desktop | c62c4ac5-e4c6-4096-8a2f-1ee3cbaaae15
 Ruoli con autorizzazioni di lettura nella directory | e1fc84a6-7762-4b9b-8e29-518b4adbc23b
 Amministratore di Dynamics 365 | f20a9cfa-9fdf-49a8-a977-1afe446a1d6e
-Amministratori di Exchange | b2ec2cc0-d5c9-4864-ad9b-38dd9dba2652
+Amministratore di Exchange | b2ec2cc0-d5c9-4864-ad9b-38dd9dba2652
 IdentityAmministratore provider esterno | febfaeb4-e478-407a-b4b3-f4d9716618a2
 Amministratore globale | a45ba61b-44db-462c-924b-3b2719152588
 Lettore globale | f6903b21-6aba-4124-b44c-76671796b9d5

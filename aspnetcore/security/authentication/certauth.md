@@ -1,7 +1,7 @@
 ---
 title: Configurare l'autenticazione del certificato in ASP.NET Core
 author: blowdart
-description: Informazioni su come configurare l'autenticazione del certificato in ASP.NET Core per IIS e HTTP. sys.
+description: Informazioni su come configurare l'autenticazione del certificato in ASP.NET Core per IIS e HTTP.sys.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
 ms.date: 01/02/2020
@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 4511e253ea9487c5739162b9b0180e39eb3a1b9c
-ms.sourcegitcommit: 67eadd7bf28eae0b8786d85e90a7df811ffe5904
+ms.openlocfilehash: cf80f7009334f49d877d2bd296b512e23f7fded8
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84454610"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724250"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurare l'autenticazione del certificato in ASP.NET Core
 
@@ -557,3 +557,36 @@ namespace AspNetCoreCertificateAuthApi
     }
 }
 ```
+
+<a name="occ"></a>
+
+## <a name="optional-client-certificates"></a>Certificati client facoltativi
+
+Questa sezione fornisce informazioni per le app che devono proteggere un subset dell'app con un certificato. Ad esempio, una Razor pagina o un controller nell'app potrebbe richiedere certificati client. Questa operazione presenta i problemi come certificati client:
+  
+* Sono una funzionalità TLS, non una funzionalità HTTP.
+* Sono negoziati per connessione e devono essere negoziati all'inizio della connessione prima che i dati HTTP siano disponibili. All'inizio della connessione, è noto solo il Indicazione nome server (SNI) &dagger; . I certificati client e server vengono negoziati prima della prima richiesta su una connessione e le richieste in genere non saranno in grado di rinegoziare. Il rinegozio non è consentito in HTTP/2.
+
+ASP.NET Core 5 Preview 4 e versioni successive aggiunge un supporto più pratico per i certificati client facoltativi. Per ulteriori informazioni, vedere l' [esempio relativo ai certificati facoltativi](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+
+L'approccio seguente supporta i certificati client facoltativi:
+
+* Configurare l'associazione per il dominio e il sottodominio:
+  * Ad esempio, impostare Binding in `contoso.com` e `myClient.contoso.com` . L' `contoso.com` host non richiede un certificato client ma lo `myClient.contoso.com` fa.
+  * Per altre informazioni, vedere:
+    * [Gheppio](/fundamentals/servers/kestrel):
+      * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
+      * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
+      * Si noti che il gheppio non supporta attualmente più configurazioni TLS in un'associazione. sono necessarie due associazioni con indirizzi IP o porte univoci. Vedere https://github.com/dotnet/runtime/issues/31097
+    * IIS
+      * [Hosting di IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
+      * [Configurare la sicurezza in IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
+    * Http.Sys: [configurare Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
+* Per le richieste all'app Web che richiedono un certificato client e non dispongono di un certificato:
+  * Reindirizza alla stessa pagina usando il sottodominio protetto del certificato client.
+  * Ad esempio, reindirizza a `myClient.contoso.com/requestedPage` . Poiché la richiesta a `myClient.contoso.com/requestedPage` è un nome host diverso da `contoso.com/requestedPage` , il client stabilisce una connessione diversa e viene fornito il certificato client.
+  * Per altre informazioni, vedere <xref:security/authorization/introduction>.
+
+Lascia domande, commenti e altri commenti sui certificati client facoltativi in [questo](https://github.com/dotnet/AspNetCore.Docs/issues/18720) problema di discussione su GitHub.
+
+&dagger;Indicazione nome server (SNI) è un'estensione TLS per includere un dominio virtuale come parte della negoziazione SSL. Ciò significa che il nome di dominio virtuale, o un nome host, può essere usato per identificare l'endpoint di rete.

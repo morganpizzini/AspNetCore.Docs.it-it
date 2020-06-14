@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: 2dfaba166617c5d0a224f4b47028c141e59ce47f
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: d56be93c4dd46b4712fe793ccd453807517a2022
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652919"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724334"
 ---
 # <a name="part-8-add-a-new-field-to-an-aspnet-core-mvc-app"></a>Parte 8: aggiungere un nuovo campo a un'app MVC ASP.NET Core
 
@@ -137,10 +137,7 @@ dotnet ef database update
 ---
 <!-- End of VS tabs -->
 
-Eseguire l'app e verificare che sia possibile creare, modificare e visualizzare filmati con un `Rating` campo. Aggiornare l'app:
-
-* Aggiungere il `Rating` campo ai `Edit` modelli di `Details` visualizzazione, e `Delete` .
-* Aggiornare l'associazione nel metodo di azione di modifica di `MoviesController` .
+Eseguire l'app e verificare che sia possibile creare, modificare e visualizzare filmati con un `Rating` campo.
 
 > [!div class="step-by-step"]
 > [Precedente](search.md) 
