@@ -14,10 +14,10 @@ no-loc:
 - SignalR
 uid: blazor/debug
 ms.openlocfilehash: 193dc656c2ee0154f0ae534bc00f8dc29bab3258
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
+ms.lasthandoff: 06/16/2020
 ms.locfileid: "84239214"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>Debug ASP.NET Core Blazor Webassembly
@@ -51,13 +51,13 @@ Il debug richiede uno dei seguenti browser:
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Abilitare il debug per Visual Studio e Visual Studio Code
 
-Per abilitare il debug per un' Blazor app webassembly esistente, aggiornare il file *launchSettings. JSON* nel progetto di avvio per includere la `inspectUri` proprietà seguente in ogni profilo di avvio:
+Per abilitare il debug per un' Blazor app webassembly esistente, aggiornare il *launchSettings.js* nel file nel progetto di avvio per includere la `inspectUri` proprietà seguente in ogni profilo di avvio:
 
 ```json
 "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
 ```
 
-Al termine dell'aggiornamento, il file *launchSettings. JSON* dovrebbe avere un aspetto simile all'esempio seguente:
+Una volta aggiornato, il *launchSettings.jsnel* file dovrebbe essere simile all'esempio seguente:
 
 [!code-json[](debug/launchSettings.json?highlight=14,22)]
 
@@ -145,11 +145,11 @@ Installare l' [estensione C#](https://marketplace.visualstudio.com/items?itemNam
 
 1. Nella finestra di selezione selezionare il progetto *Server* all'interno della soluzione ospitata.
 
-Viene generato un file *Launch. JSON* con la configurazione di avvio per l'avvio del debugger.
+Viene generata un' *launch.jsnel* file con la configurazione di avvio per l'avvio del debugger.
 
 ### <a name="attach-to-an-existing-debugging-session"></a>Connetti a una sessione di debug esistente
 
-Per connettersi a un'app in esecuzione Blazor , creare un file *Launch. JSON* con la configurazione seguente:
+Per connettersi a un'app in esecuzione Blazor , creare un *launch.jsnel* file con la seguente configurazione:
 
 ```json
 {

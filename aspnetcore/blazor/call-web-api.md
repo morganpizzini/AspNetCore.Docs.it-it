@@ -14,10 +14,10 @@ no-loc:
 - SignalR
 uid: blazor/call-web-api
 ms.openlocfilehash: 4f3fd1fca075098a94756757474b2cad3cc99775
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
+ms.lasthandoff: 06/16/2020
 ms.locfileid: "84214770"
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>Chiamare un'API Web da ASP.NET CoreBlazor
@@ -37,7 +37,7 @@ Vedere i componenti seguenti nell'app di esempio *BlazorWebAssemblySample* :
 
 ## <a name="packages"></a>Pacchetti
 
-Fare riferimento al pacchetto NuGet [System .NET. http. JSON](https://www.nuget.org/packages/System.Net.Http.Json/) nel file di progetto.
+Fare riferimento al [System.Net.Http.Js](https://www.nuget.org/packages/System.Net.Http.Json/) nel pacchetto NuGet nel file di progetto.
 
 ## <a name="add-the-httpclient-service"></a>Aggiungere il servizio HttpClient
 
