@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 9556fea5319956ce4ae4f4faf90cb405784c733c
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: a5323534cd76cfb60008636066ca5dcb7308d134
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105493"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102274"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>BlazorModelli di hosting ASP.NET Core
 
@@ -28,7 +28,7 @@ Blazorè un framework web progettato per l'esecuzione sul lato client nel browse
 
 Per creare un progetto per i modelli di hosting descritti in questo articolo, vedere <xref:blazor/get-started> .
 
-Per la configurazione avanzata, vedere <xref:blazor/hosting-model-configuration> .
+Per la configurazione avanzata, vedere <xref:blazor/fundamentals/configuration> .
 
 ## <a name="blazor-webassembly"></a>BlazorWebassembly
 
@@ -116,7 +116,7 @@ Un aggiornamento dell'interfaccia utente in Blazor viene attivato da:
 
 Viene eseguito il rendering del grafico e viene calcolata *una differenza dell'interfaccia utente* (differenza). Questa differenza è il set più piccolo di modifiche DOM necessarie per aggiornare l'interfaccia utente nel client. Il diff viene inviato al client in un formato binario e applicato dal browser.
 
-Un componente viene eliminato dopo che l'utente si è spostato dal client. Mentre un utente interagisce con un componente, lo stato del componente (servizi, risorse) deve essere mantenuto nella memoria del server. Poiché lo stato di molti componenti può essere gestito simultaneamente dal server, l'esaurimento della memoria è un problema che deve essere risolto. Per istruzioni su come creare un' Blazor app Server per garantire l'utilizzo ottimale della memoria del server, vedere <xref:security/blazor/server/threat-mitigation> .
+Un componente viene eliminato dopo che l'utente si è spostato dal client. Mentre un utente interagisce con un componente, lo stato del componente (servizi, risorse) deve essere mantenuto nella memoria del server. Poiché lo stato di molti componenti può essere gestito simultaneamente dal server, l'esaurimento della memoria è un problema che deve essere risolto. Per istruzioni su come creare un' Blazor app Server per garantire l'utilizzo ottimale della memoria del server, vedere <xref:blazor/security/server/threat-mitigation> .
 
 ### <a name="circuits"></a>Circuiti
 
@@ -136,10 +136,10 @@ Per un'app line-of-business limitata a una rete aziendale privata, l'effetto sul
 
 L'utilizzo della memoria può anche contribuire alla latenza dell'app. Un aumento dell'utilizzo della memoria comporta un frequente Garbage Collection o il paging della memoria su disco, che comportano una riduzione delle prestazioni dell'app e quindi aumentano la latenza dell'interfaccia
 
-BlazorLe app Server dovrebbero essere ottimizzate per ridurre la latenza dell'interfaccia utente riducendo la latenza di rete e l'utilizzo della memoria Per un approccio alla misurazione della latenza di rete, vedere <xref:host-and-deploy/blazor/server#measure-network-latency> . Per ulteriori informazioni su SignalR e Blazor , vedere:
+BlazorLe app Server dovrebbero essere ottimizzate per ridurre la latenza dell'interfaccia utente riducendo la latenza di rete e l'utilizzo della memoria Per un approccio alla misurazione della latenza di rete, vedere <xref:blazor/host-and-deploy/server#measure-network-latency> . Per ulteriori informazioni su SignalR e Blazor , vedere:
 
-* <xref:host-and-deploy/blazor/server>
-* <xref:security/blazor/server/threat-mitigation>
+* <xref:blazor/host-and-deploy/server>
+* <xref:blazor/security/server/threat-mitigation>
 
 ### <a name="connection-to-the-server"></a>Connessione al server
 
@@ -147,7 +147,7 @@ BlazorPer le app Server è necessaria una SignalR connessione attiva al server. 
 
 Viene Blazor eseguito il rendering di un'app Server in risposta alla prima richiesta client, che imposta lo stato dell'interfaccia utente sul server. Quando il client tenta di creare una SignalR connessione, il client deve riconnettersi allo stesso server. BlazorLe app server che usano più di un server back-end devono implementare *sessioni permanenti* per le SignalR connessioni.
 
-È consigliabile usare il [ SignalR servizio di Azure](/azure/azure-signalr) per le Blazor app Server. Il servizio consente di ridimensionare un' Blazor app Server a un numero elevato di connessioni simultanee SignalR . Le sessioni permanenti sono abilitate per il SignalR servizio Azure impostando l' `ServerStickyMode` opzione o il valore di configurazione del servizio su `Required` . Per altre informazioni, vedere <xref:host-and-deploy/blazor/server#signalr-configuration>.
+È consigliabile usare il [ SignalR servizio di Azure](/azure/azure-signalr) per le Blazor app Server. Il servizio consente di ridimensionare un' Blazor app Server a un numero elevato di connessioni simultanee SignalR . Le sessioni permanenti sono abilitate per il SignalR servizio Azure impostando l' `ServerStickyMode` opzione o il valore di configurazione del servizio su `Required` . Per altre informazioni, vedere <xref:blazor/host-and-deploy/server#signalr-configuration>.
 
 Quando si usa IIS, le sessioni permanenti sono abilitate con il routing delle richieste di applicazioni. Per altre informazioni, vedere [bilanciamento del carico http usando il routing delle richieste di applicazioni](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
@@ -155,5 +155,5 @@ Quando si usa IIS, le sessioni permanenti sono abilitate con il routing delle ri
 
 * <xref:blazor/get-started>
 * <xref:signalr/introduction>
-* <xref:blazor/hosting-model-configuration>
+* <xref:blazor/fundamentals/additional-scenarios>
 * <xref:tutorials/signalr-blazor-webassembly>

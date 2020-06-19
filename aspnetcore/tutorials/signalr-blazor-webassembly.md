@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 720f534426cc0e2b32778e49050c7f7d75ecd60d
-ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
+ms.openlocfilehash: 8ef029af10f767ae505fddc636bb15f7e7c5e538
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84679592"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102693"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Usare ASP.NET Core SignalR con Blazor webassembly
 
@@ -72,13 +72,13 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Selezionare ** Blazor app** e fare clic su **Next (avanti**).
 
-1. Digitare "BlazorSignalRApp" nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
+1. Digitare "BlazorSignalRApp" nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
 
 1. Scegliere il modello ** Blazor app webassembly** .
 
 1. In **Avanzate**selezionare la casella di controllo **ASP.NET Core Hosted** .
 
-1. Selezionare **Crea**.
+1. Selezionare **Create** (Crea).
 
 > [!NOTE]
 > Se è stato eseguito l'aggiornamento o l'installazione di una nuova versione di Visual Studio e il Blazor modello webassembly non viene visualizzato nell'interfaccia utente di Visual Studio, reinstallare il modello usando il `dotnet new` comando illustrato in precedenza.
@@ -114,7 +114,7 @@ Seguire le istruzioni per la scelta degli strumenti:
 
    Selezionare **Avanti**.
 
-1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Crea**.
+1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Create** (Crea).
 
    Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare. Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain.
 
@@ -296,4 +296,4 @@ Per altre informazioni sulla creazione di Blazor app, vedere la Blazor documenta
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:signalr/introduction>
-* [SignalRnegoziazione tra le origini per l'autenticazione](xref:blazor/hosting-model-configuration#signalr-cross-origin-negotiation-for-authentication)
+* [SignalRnegoziazione tra le origini per l'autenticazione](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)

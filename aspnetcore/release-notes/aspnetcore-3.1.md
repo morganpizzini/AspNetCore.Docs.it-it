@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 5b6ae8173ca3d968e220faa4a060e1b42b14f8bb
-ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
+ms.openlocfilehash: 6a03e35495e2ae545dc0a3cdd38578b433d8df6b
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84507244"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102577"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>Novità di ASP.NET Core 3,1
 
@@ -25,7 +25,7 @@ In questo articolo vengono evidenziate le modifiche più significative in ASP.NE
 
 ## <a name="partial-class-support-for-razor-components"></a>Supporto delle classi parziali per i Razor componenti
 
-Razori componenti vengono ora generati come classi parziali. Il codice per un Razor componente può essere scritto utilizzando un file code-behind definito come classe parziale anziché definire tutto il codice per il componente in un unico file. Per ulteriori informazioni, vedere [supporto di classi parziali](xref:blazor/components#partial-class-support).
+Razori componenti vengono ora generati come classi parziali. Il codice per un Razor componente può essere scritto utilizzando un file code-behind definito come classe parziale anziché definire tutto il codice per il componente in un unico file. Per ulteriori informazioni, vedere [supporto di classi parziali](xref:blazor/components/index#partial-class-support).
 
 ## <a name="blazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>BlazorHelper Tag Component e passare i parametri ai componenti di primo livello
 
@@ -46,11 +46,11 @@ Ad esempio, prerenderizzare un `Counter` componente con un valore di incremento 
     param-IncrementAmount="10" />
 ```
 
-Per altre informazioni, vedere [integrare i componenti in Razor pagine e app MVC](xref:blazor/integrate-components).
+Per altre informazioni, vedere [integrare i componenti in Razor pagine e app MVC](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).
 
-## <a name="support-for-shared-queues-in-httpsys"></a>Supporto per le code condivise in HTTP. sys
+## <a name="support-for-shared-queues-in-httpsys"></a>Supporto per le code condivise in HTTP.sys
 
-[Http. sys](xref:fundamentals/servers/httpsys) supporta la creazione di code di richieste anonime. In ASP.NET Core 3,1 è stata aggiunta la possibilità di creare o connettersi a una coda di richieste HTTP. sys denominata esistente. La creazione o la connessione a una coda di richieste HTTP. sys denominata esistente Abilita scenari in cui il processo del controller HTTP. sys proprietario della coda è indipendente dal processo del listener. Questa indipendenza rende possibile la conservazione delle connessioni esistenti e delle richieste accodate tra i riavvii del processo del listener:
+[HTTP.sys](xref:fundamentals/servers/httpsys) supporta la creazione di code di richieste anonime. In ASP.NET Core 3,1 è stata aggiunta la possibilità di creare o connettersi a una coda di richieste HTTP.sys denominata esistente. La creazione o la connessione a una coda di richieste HTTP.sys denominata esistente Abilita scenari in cui il processo del controller HTTP.sys proprietario della coda è indipendente dal processo del listener. Questa indipendenza rende possibile la conservazione delle connessioni esistenti e delle richieste accodate tra i riavvii del processo del listener:
 
 [!code-csharp[](sample/Program.cs?name=snippet)]
 
@@ -66,7 +66,7 @@ Utilizzare l' `@on{EVENT}:preventDefault` attributo Directive per impedire l'azi
 <input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
 ```
 
-Per ulteriori informazioni, vedere [Impedisci azioni predefinite](xref:blazor/event-handling#prevent-default-actions).
+Per ulteriori informazioni, vedere [Impedisci azioni predefinite](xref:blazor/components/event-handling#prevent-default-actions).
 
 ## <a name="stop-event-propagation-in-blazor-apps"></a>Arresta propagazione eventi nelle Blazor app
 
@@ -86,7 +86,7 @@ Utilizzare l' `@on{EVENT}:stopPropagation` attributo Directive per arrestare la 
 }
 ```
 
-Per altre informazioni, vedere [arrestare la propagazione degli eventi](xref:blazor/event-handling#stop-event-propagation).
+Per altre informazioni, vedere [arrestare la propagazione degli eventi](xref:blazor/components/event-handling#stop-event-propagation).
 
 ## <a name="detailed-errors-during-blazor-app-development"></a>Errori dettagliati durante Blazor lo sviluppo di app
 
@@ -95,4 +95,4 @@ Quando un' Blazor app non funziona correttamente durante lo sviluppo, la ricezio
 * Durante lo sviluppo, la barra dorata indirizza l'utente alla console del browser, in cui è possibile visualizzare l'eccezione.
 * In produzione, la barra dorata informa l'utente che si è verificato un errore e consiglia di aggiornare il browser.
 
-Per ulteriori informazioni, vedere [errori dettagliati durante lo sviluppo](xref:blazor/handle-errors#detailed-errors-during-development).
+Per ulteriori informazioni, vedere [errori dettagliati durante lo sviluppo](xref:blazor/fundamentals/handle-errors#detailed-errors-during-development).

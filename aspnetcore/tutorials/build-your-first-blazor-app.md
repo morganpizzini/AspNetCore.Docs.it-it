@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: ce3f20f7ee4ccfa73afc5f80a4429d9f4fe05591
-ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
+ms.openlocfilehash: 0b9854b3848a204b28d0427bef08364be0139069
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84507257"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102855"
 ---
 # <a name="build-your-first-blazor-app"></a>Crea la tua prima Blazor app
 
@@ -129,7 +129,7 @@ Il componente `FetchData` usa il servizio inserito, come `ForecastService`, per 
 
 ### <a name="blazor-webassembly-experience"></a>BlazorEsperienza webassembly
 
-Se si usa un' Blazor app webassembly, <xref:System.Net.Http.HttpClient> viene inserito per ottenere i dati delle previsioni meteo dal file *Weather. JSON* nella cartella *wwwroot/Sample-Data* .
+Se si usa un' Blazor app webassembly, <xref:System.Net.Http.HttpClient> viene inserito per ottenere i dati delle previsioni meteo dal *weather.js* file nella cartella *wwwroot/Sample-Data* .
 
 *Pages/FetchData.razor*:
 
@@ -233,4 +233,4 @@ In questa esercitazione sono state illustrate le procedure per:
 Informazioni su come creare e usare i componenti:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/components>
+> <xref:blazor/components/index>

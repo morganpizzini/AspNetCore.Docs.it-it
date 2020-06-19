@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: 36afa8ece58843b434ebfba6305bffdb9eb9bca0
-ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
+ms.openlocfilehash: f3314458a504af7f44dcdc276de890fa9485a2b3
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84724289"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103032"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Impalcatura Identity nei progetti ASP.NET Core
 
@@ -195,7 +195,7 @@ I token possono essere passati ai componenti:
 * Quando i token di autenticazione vengono sottoposti a provisioning e salvati nel cookie di autenticazione, possono essere passati ai componenti di.
 * Razori componenti non possono usare `HttpContext` direttamente, quindi non è possibile ottenere un [token anti-request falsificazione (XSRF)](xref:security/anti-request-forgery) per pubblicare l' Identity endpoint di disconnessione in `/Identity/Account/Logout` . Un token XSRF può essere passato ai componenti.
 
-Per altre informazioni, vedere <xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+Per altre informazioni, vedere <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
 Nel file *pages/_Host. cshtml* , stabilire il token dopo averlo aggiunto alle `InitialApplicationState` classi e `TokenProvider` :
 
@@ -229,7 +229,7 @@ Il `TokenProvider` servizio illustrato nell'argomento viene usato nel `LoginDisp
 Nella `Startup` classe:
 
 * Verificare che Razor i servizi Pages siano stati aggiunti in `Startup.ConfigureServices` .
-* Se si usa [TokenProvider](xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), registrare il servizio.
+* Se si usa [TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), registrare il servizio.
 * Chiamare il `UseDatabaseErrorPage` Generatore di applicazioni in `Startup.Configure` per l'ambiente di sviluppo.
 * Chiamare `UseAuthentication` e `UseAuthorization` dopo `UseRouting` .
 * Aggiungere un endpoint per le Razor pagine.
@@ -253,7 +253,7 @@ Aggiungere un `RedirectToLogin` componente (*RedirectToLogin. Razor*) alla carte
 }
 ```
 
-Aggiungere un `LoginDisplay` componente (*LoginDisplay. Razor*) alla cartella *condivisa* dell'app. Il [servizio TokenProvider](xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) fornisce il token XSRF per il form HTML che invia un messaggio all' Identity endpoint di disconnessione:
+Aggiungere un `LoginDisplay` componente (*LoginDisplay. Razor*) alla cartella *condivisa* dell'app. Il [servizio TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) fornisce il token XSRF per il form HTML che invia un messaggio all' Identity endpoint di disconnessione:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization

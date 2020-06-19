@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: 8195702a3de93bafc76dff61939dfc70d4e896b6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cc12dc2bc6720652866227dc2bbcbcf4e8af793d
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775245"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074240"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Distribuire le app ASP.NET Core in Servizio app di Azure
 
@@ -87,19 +87,22 @@ I pacchetti precedenti non sono disponibili dal [metapacchetto Microsoft.AspNetC
 
 ## <a name="override-app-configuration-using-the-azure-portal"></a>Eseguire l'override della configurazione delle app usando il portale di Azure
 
+::: moniker range=">= aspnetcore-3.0"
+
+Le impostazioni dell'app nel portale di Azure consentono di impostare le variabili di ambiente per l'app. Le variabili di ambiente possono essere utilizzate dal [provider di configurazione delle variabili di ambiente](xref:fundamentals/configuration/index#environment-variables).
+
+Quando nel portale di Azure viene creata o modificata un'impostazione dell'app e viene selezionato il pulsante **Salva**, l'app Azure viene riavviata. La variabile di ambiente risulterà disponibile per l'app dopo il riavvio del servizio.
+
+Quando un'app usa l' [host generico](xref:fundamentals/host/generic-host), le variabili di ambiente vengono caricate nella configurazione dell'app quando <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> viene chiamato per compilare l'host. Per altre informazioni, vedere <xref:fundamentals/host/generic-host> e il [provider di configurazione delle variabili di ambiente](xref:fundamentals/configuration/index#environment-variables).
+
+::: moniker-end
+::: moniker range="< aspnetcore-3.0"
+
 Le impostazioni dell'app nel portale di Azure consentono di impostare le variabili di ambiente per l'app. Le variabili di ambiente possono essere utilizzate dal [provider di configurazione delle variabili di ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
 Quando nel portale di Azure viene creata o modificata un'impostazione dell'app e viene selezionato il pulsante **Salva**, l'app Azure viene riavviata. La variabile di ambiente risulterà disponibile per l'app dopo il riavvio del servizio.
 
-::: moniker range=">= aspnetcore-3.0"
-
-Quando un'app usa l' [host generico](xref:fundamentals/host/generic-host), le variabili di ambiente vengono caricate nella configurazione dell' <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> app quando viene chiamato per compilare l'host. Per altre informazioni, vedere <xref:fundamentals/host/generic-host> e il [provider di configurazione delle variabili di ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-Quando un'app usa l' [host Web](xref:fundamentals/host/web-host), le variabili di ambiente vengono caricate nella configurazione dell' <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> app quando viene chiamato per compilare l'host. Per altre informazioni, vedere <xref:fundamentals/host/web-host> e il [provider di configurazione delle variabili di ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+Quando un'app usa l' [host Web](xref:fundamentals/host/web-host), le variabili di ambiente vengono caricate nella configurazione dell'app quando <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> viene chiamato per compilare l'host. Per altre informazioni, vedere <xref:fundamentals/host/web-host> e il [provider di configurazione delle variabili di ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
 ::: moniker-end
 
@@ -123,7 +126,7 @@ Le app ASP.NET Core distribuite in Servizio app ricevono automaticamente un'este
 
 Per informazioni sul monitoraggio, la registrazione e la risoluzione dei problemi, vedere gli articoli seguenti:
 
-[Monitorare le app nel servizio app Azure](/azure/app-service/web-sites-monitor)  
+[Monitorare le app in Servizio app di Azure](/azure/app-service/web-sites-monitor)  
 Informazioni su come esaminare le quote e le metriche per le app e i piani del servizio app.
 
 [Abilitare la registrazione diagnostica per le app nel servizio app Azure](/azure/app-service/web-sites-enable-diagnostic-log)  
@@ -169,11 +172,11 @@ Usare [app Azure scenari](/azure/app-service/deploy-continuous-deployment) di in
 
 #### <a name="specify-the-net-core-sdk-version"></a>Specificare la versione di .NET Core SDK
 
-Quando si usa il centro distribuzione servizio app per creare una compilazione di Azure DevOps, la pipeline di compilazione predefinita `Restore`include `Build`i `Test`passaggi per `Publish`,, e. Per specificare la versione dell'SDK, selezionare il pulsante **Aggiungi (+)** nell'elenco processo agente per aggiungere un nuovo passaggio. Cercare **.NET Core SDK** nella barra di ricerca. 
+Quando si usa il centro distribuzione servizio app per creare una compilazione di Azure DevOps, la pipeline di compilazione predefinita include i passaggi per `Restore` ,, `Build` `Test` e `Publish` . Per specificare la versione dell'SDK, selezionare il pulsante **Aggiungi (+)** nell'elenco processo agente per aggiungere un nuovo passaggio. Cercare **.NET Core SDK** nella barra di ricerca. 
 
 ![Aggiungere il passaggio .NET Core SDK](index/add-sdk-step.png)
 
-Spostare il passaggio nella prima posizione della compilazione in modo che i passaggi successivi usino la versione specificata del .NET Core SDK. Specificare la versione del .NET Core SDK. In questo esempio, l'SDK è impostato su `3.0.100`.
+Spostare il passaggio nella prima posizione della compilazione in modo che i passaggi successivi usino la versione specificata del .NET Core SDK. Specificare la versione del .NET Core SDK. In questo esempio, l'SDK è impostato su `3.0.100` .
 
 ![Passaggio SDK completato](index/sdk-step-first-place.png)
 
@@ -213,7 +216,7 @@ Al termine dell'operazione, viene installata l'anteprima più recente di .NET Co
 
 1. Selezionare **Strumenti avanzati**.
 1. Selezionare **Vai** in **Strumenti avanzati**.
-1. Selezionare la voce di menu**PowerShell** per **console** > di debug.
+1. Selezionare la **Debug console**  >  voce di menu**PowerShell** per console di debug.
 1. Eseguire il comando seguente dal prompt di PowerShell. Sostituire la versione di runtime di ASP.NET Core in `{X.Y}` e la piattaforma in `{PLATFORM}` nel comando:
 
    ```powershell
@@ -259,7 +262,7 @@ Per una distribuzione a 64 bit:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Selezionare **Compila** > **pubblicazione {nome applicazione}** dalla barra degli strumenti di Visual Studio oppure fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **pubblica**.
+1. Selezionare **Compila**  >  **pubblicazione {nome applicazione}** dalla barra degli strumenti di Visual Studio oppure fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **pubblica**.
 1. Nella finestra di dialogo **Selezionare una destinazione di pubblicazione.** verificare che sia selezionata la voce **Servizio app**.
 1. Fare clic su **Advanced** (Avanzate). Viene visualizzata la finestra di dialogo **Pubblica**.
 1. Nella finestra di dialogo **Pubblica**:
@@ -290,7 +293,7 @@ Usare Visual Studio o il interfaccia della riga di comando di .NET Core per una 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Selezionare **Compila** > **pubblicazione {nome applicazione}** dalla barra degli strumenti di Visual Studio oppure fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **pubblica**.
+1. Selezionare **Compila**  >  **pubblicazione {nome applicazione}** dalla barra degli strumenti di Visual Studio oppure fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **pubblica**.
 1. Nella finestra di dialogo **Selezionare una destinazione di pubblicazione.** verificare che sia selezionata la voce **Servizio app**.
 1. Fare clic su **Advanced** (Avanzate). Viene visualizzata la finestra di dialogo **Pubblica**.
 1. Nella finestra di dialogo **Pubblica**:
@@ -332,7 +335,7 @@ Se è necessario trasformare *web.config* in fase di pubblicazione (ad esempio, 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Panoramica del Servizio app di Azure](/azure/app-service/app-service-web-overview)
+* [Panoramica del Servizio app](/azure/app-service/app-service-web-overview)
 * [Azure App Service: The Best Place to Host your .NET Apps ](https://channel9.msdn.com/events/dotnetConf/2017/T222) (Servizio app di Azure: la soluzione migliore per l'hosting delle app .NET) (video di 55 minuti)
 * [Azure Friday: Azure App Service Diagnostic and Troubleshooting Experience](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience) (Azure Friday: diagnostica e risoluzione dei problemi del servizio app di Azure) (video di 12 minuti)
 * [Panoramica della diagnostica del servizio app di Azure](/azure/app-service/app-service-diagnostics)

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: 09866f1fd56a4d0747ef3814c85ab5070cfb8d59
-ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
+ms.openlocfilehash: 809bdc777b6307314a7bcde82ab5e0c6888db99b
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/13/2020
-ms.locfileid: "84756119"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074471"
 ---
 # <a name="aspnet-core-signalr-configuration"></a>Configurazione di ASP.NET Core SignalR
 
@@ -196,8 +196,8 @@ Nella tabella seguente sono elencati i livelli di log disponibili. Il valore for
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **oppure** `information` | `LogLevel.Information` |
-| `warn` **oppure** `warning`     | `LogLevel.Warning`     |
+| `info` **o** `information` | `LogLevel.Information` |
+| `warn` **o** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -352,6 +352,8 @@ Opzioni aggiuntive possono essere configurate `WithUrl` nel `withUrl` Metodo (in
 | Opzione JavaScript | Valore predefinito | Descrizione |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
+| `headers` | `null` | Dizionario di intestazioni inviate con tutte le richieste HTTP. L'invio di intestazioni nel browser non funziona per WebSocket o per il <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType.ServerSentEvents> flusso. |
+| `logMessageContent` | `null` | Impostare su `true` per registrare i byte/caratteri dei messaggi inviati e ricevuti dal client. |
 | `skipNegotiation` | `false` | Impostare questa impostazione su `true` per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio di Azure SignalR . |
 | `withCredentials` | `true` | Specifica se le credenziali verranno inviate con la richiesta CORS. App Azure servizio usa i cookie per le sessioni permanenti ed è necessario che questa opzione sia abilitata per funzionare correttamente. Per ulteriori informazioni su CORS con SignalR , vedere <xref:signalr/security#cross-origin-resource-sharing> . |
 
@@ -582,8 +584,8 @@ Nella tabella seguente sono elencati i livelli di log disponibili. Il valore for
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **oppure** `information` | `LogLevel.Information` |
-| `warn` **oppure** `warning`     | `LogLevel.Warning`     |
+| `info` **o** `information` | `LogLevel.Information` |
+| `warn` **o** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -738,6 +740,7 @@ Opzioni aggiuntive possono essere configurate `WithUrl` nel `withUrl` Metodo (in
 | Opzione JavaScript | Valore predefinito | Descrizione |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
+| `logMessageContent` | `null` | Impostare su `true` per registrare i byte/caratteri dei messaggi inviati e ricevuti dal client. |
 | `skipNegotiation` | `false` | Impostare questa impostazione su `true` per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio di Azure SignalR . |
 
 # <a name="java"></a>[Java](#tab/java)
@@ -966,8 +969,8 @@ Nella tabella seguente sono elencati i livelli di log disponibili. Il valore for
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **oppure** `information` | `LogLevel.Information` |
-| `warn` **oppure** `warning`     | `LogLevel.Warning`     |
+| `info` **o** `information` | `LogLevel.Information` |
+| `warn` **o** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -1122,6 +1125,7 @@ Opzioni aggiuntive possono essere configurate `WithUrl` nel `withUrl` Metodo (in
 | Opzione JavaScript | Valore predefinito | Descrizione |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
+| `logMessageContent` | `null` | Impostare su `true` per registrare i byte/caratteri dei messaggi inviati e ricevuti dal client. |
 | `skipNegotiation` | `false` | Impostare questa impostazione su `true` per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio di Azure SignalR . |
 
 # <a name="java"></a>[Java](#tab/java)
@@ -1470,6 +1474,7 @@ Opzioni aggiuntive possono essere configurate `WithUrl` nel `withUrl` Metodo (in
 | Opzione JavaScript | Valore predefinito | Descrizione |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
+| `logMessageContent` | `null` | Impostare su `true` per registrare i byte/caratteri dei messaggi inviati e ricevuti dal client. |
 | `skipNegotiation` | `false` | Impostare questa impostazione su `true` per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio di Azure SignalR . |
 
 # <a name="java"></a>[Java](#tab/java)
@@ -1812,6 +1817,7 @@ Opzioni aggiuntive possono essere configurate `WithUrl` nel `withUrl` Metodo (in
 | Opzione JavaScript | Valore predefinito | Descrizione |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
+| `logMessageContent` | `null` | Impostare su `true` per registrare i byte/caratteri dei messaggi inviati e ricevuti dal client. |
 | `skipNegotiation` | `false` | Impostare questa impostazione su `true` per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio di Azure SignalR . |
 
 # <a name="java"></a>[Java](#tab/java)

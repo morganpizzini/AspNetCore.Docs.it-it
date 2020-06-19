@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-components
-ms.openlocfilehash: 28696d246c5e1e6874e0d9058813750ed1955003
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 8e97dc69ef167b5c08522c91691e0aded9f56908
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774652"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102932"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componenti di visualizzazione in ASP.NET Core
 
@@ -27,7 +27,7 @@ Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## <a name="view-components"></a>Componenti di visualizzazione
 
-I componenti di visualizzazione hanno aspetti comuni con le visualizzazioni parziali, ma sono molto più efficienti. I componenti di visualizzazione non usano l'associazione di modelli. Dipendono soltanto dai dati specificati in fase di chiamata. Questo articolo è stato scritto usando i controller e le visualizzazioni, ma i componenti Razor di visualizzazione funzionano anche con le pagine.
+I componenti di visualizzazione hanno aspetti comuni con le visualizzazioni parziali, ma sono molto più efficienti. I componenti di visualizzazione non usano l'associazione di modelli. Dipendono soltanto dai dati specificati in fase di chiamata. Questo articolo è stato scritto usando i controller e le visualizzazioni, ma i componenti di visualizzazione funzionano anche con le Razor pagine.
 
 Un componente di visualizzazione:
 
@@ -48,7 +48,7 @@ I componenti di visualizzazione possono essere impiegati in un punto qualsiasi d
 
 Un componente di visualizzazione è costituito da due parti: la classe (in genere derivata da [ViewComponent](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponent)) e il risultato restituito (in genere una visualizzazione). Come per i controller, un componente di visualizzazione può essere un oggetto POCO. Molti sviluppatori preferiscono tuttavia sfruttare i metodi e le proprietà disponibili derivando da `ViewComponent`.
 
-Quando si considera che i componenti di visualizzazione soddisfino le specifiche di Razor un'app, è consigliabile usare i componenti. RazorI componenti combinano anche il markup con il codice C# per produrre unità di interfaccia utente riutilizzabili. RazorI componenti sono progettati per la produttività degli sviluppatori quando forniscono la logica e la composizione dell'interfaccia utente lato client. Per altre informazioni, vedere <xref:blazor/components>.
+Quando si considera che i componenti di visualizzazione soddisfino le specifiche di un'app, è consigliabile usare i Razor componenti. RazorI componenti combinano anche il markup con il codice C# per produrre unità di interfaccia utente riutilizzabili. RazorI componenti sono progettati per la produttività degli sviluppatori quando forniscono la logica e la composizione dell'interfaccia utente lato client. Per altre informazioni, vedere <xref:blazor/components/index>.
 
 ## <a name="creating-a-view-component"></a>Creazione di un componente di visualizzazione
 
@@ -75,7 +75,7 @@ Una classe del componente di visualizzazione:
 Un componente di visualizzazione definisce la propria logica in un metodo `InvokeAsync` che restituisce `Task<IViewComponentResult>` o in un metodo asincrono `Invoke` che restituisce `IViewComponentResult`. I parametri vengono rilevati direttamente dalla chiamata del componente di visualizzazione e non dall'associazione di modelli. Un componente di visualizzazione non gestisce mai direttamente una richiesta. In genere, inizializza un modello e lo passa a una visualizzazione chiamando il metodo `View`. Riepilogando, i metodi del componente di visualizzazione:
 
 * Definiscono un metodo `InvokeAsync` che restituisce `Task<IViewComponentResult>` o un metodo sincrono `Invoke` che restituisce `IViewComponentResult`.
-* In genere, Inizializza un modello e lo passa a una visualizzazione chiamando `ViewComponent` `View` il metodo.
+* In genere, Inizializza un modello e lo passa a una visualizzazione chiamando il `ViewComponent` `View` metodo.
 * I parametri vengono rilevati dal metodo di chiamata, non da HTTP, e non vi è alcuna associazione di modelli.
 * Non sono raggiungibili direttamente come un endpoint HTTP. Vengono richiamati dal codice (in genere in una vista). Un componente di visualizzazione non gestisce mai una richiesta.
 * Sono sottoposti a overload sulla firma e non sui dettagli dalla richiesta HHTP corrente.
@@ -88,7 +88,7 @@ Il runtime esegue la ricerca della visualizzazione nei percorsi seguenti:
 * /Views/Shared/Components/{Nome componente visualizzazione}/{Nome visualizzazione}
 * /Pages/Shared/Components/{Nome componente visualizzazione}/{Nome visualizzazione}
 
-Il percorso di ricerca si applica ai progetti che usano i Razor controller e le visualizzazioni e le pagine.
+Il percorso di ricerca si applica ai progetti che usano i controller e le visualizzazioni e le Razor pagine.
 
 Il nome di visualizzazione predefinito per un componente di visualizzazione è *Default*, quindi il file della visualizzazione viene solitamente denominato *Default.cshtml*. È possibile specificare un nome di visualizzazione diverso quando si crea il risultato del componente di visualizzazione o quando si chiama il metodo `View`.
 
@@ -96,11 +96,11 @@ Si consiglia di denominare il file della visualizzazione *Default.cshtml* e usar
 
 ### <a name="customize-the-view-search-path"></a>Personalizzare il percorso di ricerca della visualizzazione
 
-Per personalizzare il percorso di Razor <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> ricerca della visualizzazione, modificare la raccolta. Per cercare, ad esempio, le visualizzazioni all'interno del percorso "/Components/{View Component Name}/{View Name}", aggiungere un nuovo elemento alla raccolta:
+Per personalizzare il percorso di ricerca della visualizzazione, modificare la Razor <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> raccolta. Per cercare, ad esempio, le visualizzazioni all'interno del percorso "/Components/{View Component Name}/{View Name}", aggiungere un nuovo elemento alla raccolta:
 
 [!code-cs[](view-components/samples_snapshot/2.x/Startup.cs?name=snippet_ViewLocationFormats&highlight=4)]
 
-Nel codice precedente, il segnaposto "{0}" rappresenta il percorso "Components/{View Component Name}/{View Name}".
+Nel codice precedente, il segnaposto " {0} " rappresenta il percorso "Components/{View Component Name}/{View Name}".
 
 ## <a name="invoking-a-view-component"></a>Chiamata di un componente di visualizzazione
 
@@ -187,7 +187,7 @@ Note riguardanti il codice:
 * `InvokeAsync` espone un metodo che può essere chiamato da una visualizzazione e può accettare un numero arbitrario di argomenti.
 * Il metodo `InvokeAsync` restituisce il set di elementi `ToDo` che soddisfano i parametri `isDone` e `maxPriority`.
 
-### <a name="create-the-view-component-razor-view"></a>Creare la visualizzazione del Razor componente di visualizzazione
+### <a name="create-the-view-component-razor-view"></a>Creare la visualizzazione del componente di visualizzazione Razor
 
 * Creare la cartella *Views/Shared/Components*. Il nome di questa cartella **deve** essere *Components*.
 
@@ -266,7 +266,7 @@ Per garantire la sicurezza in fase di compilazione, è possibile sostituire il n
 
 [!code-csharp[](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityList.cs?highlight=10&range=5-35)]
 
-Aggiungere un' `using` istruzione al file Razor di visualizzazione e usare l' `nameof` operatore:
+Aggiungere un' `using` istruzione al Razor file di visualizzazione e usare l' `nameof` operatore:
 
 [!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexNameof.cshtml?range=1-6,35-)]
 
@@ -285,7 +285,7 @@ public class PriorityList : ViewComponent
 }
 ```
 
-Il file del componente Razor di visualizzazione elenca le stringhe passate al `Invoke` metodo (*views/Home/Components/PriorityName/default. cshtml*):
+Il file del componente di visualizzazione Razor elenca le stringhe passate al `Invoke` Metodo (*views/Home/Components/PriorityName/default. cshtml*):
 
 ```cshtml
 @model List<string>
@@ -301,7 +301,7 @@ Il file del componente Razor di visualizzazione elenca le stringhe passate al `I
 
 ::: moniker range=">= aspnetcore-1.1"
 
-Il componente di visualizzazione viene richiamato Razor in un file, ad esempio *views/Home/index. cshtml*, usando uno degli approcci seguenti:
+Il componente di visualizzazione viene richiamato in un Razor file, ad esempio *views/Home/index. cshtml*, usando uno degli approcci seguenti:
 
 * <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
 * [Helper tag](xref:mvc/views/tag-helpers/intro)
@@ -312,7 +312,7 @@ Per usare l'approccio <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>, chia
 
 ::: moniker range="< aspnetcore-1.1"
 
-Il componente di visualizzazione viene richiamato Razor in un file, ad esempio *views/Home/index. cshtml*, <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>con.
+Il componente di visualizzazione viene richiamato in un Razor file, ad esempio *views/Home/index. cshtml*, con <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> .
 
 Chiamare `Component.InvokeAsync`:
 
@@ -339,7 +339,7 @@ Usare l'helper tag dei componenti di visualizzazione nel Razor file di markup:
 
 ::: moniker-end
 
-La firma del metodo `PriorityList.Invoke` di è sincrona Razor , ma trova e chiama il `Component.InvokeAsync` metodo con nel file di markup.
+La firma del metodo di `PriorityList.Invoke` è sincrona, ma Razor trova e chiama il metodo con `Component.InvokeAsync` nel file di markup.
 
 ## <a name="all-view-component-parameters-are-required"></a>Tutti i parametri del componente di visualizzazione sono obbligatori
 

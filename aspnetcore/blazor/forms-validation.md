@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 707686cdc4ceb6605d6214eeeee0f6dd2e121c90
-ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
+ms.openlocfilehash: 8244dfa4dfed8e44e9e149891d2071c48bebd5ab
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84679527"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102373"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET Core Blazor moduli e convalida
 
@@ -65,7 +65,7 @@ Nell'esempio precedente:
 
 * Il modulo convalida l'input dell'utente nel `name` campo usando la convalida definita nel `ExampleModel` tipo. Il modello viene creato nel blocco del componente `@code` e viene mantenuto in un campo privato ( `exampleModel` ). Il campo viene assegnato all' `Model` attributo dell' `<EditForm>` elemento.
 * Le <xref:Microsoft.AspNetCore.Components.Forms.InputText> associazioni del componente `@bind-Value` :
-  * Proprietà del modello ( `exampleModel.Name` ) della <xref:Microsoft.AspNetCore.Components.Forms.InputText> proprietà del componente `Value` . Per ulteriori informazioni sull'associazione di proprietà, vedere <xref:blazor/data-binding#parent-to-child-binding-with-component-parameters> .
+  * Proprietà del modello ( `exampleModel.Name` ) della <xref:Microsoft.AspNetCore.Components.Forms.InputText> proprietà del componente `Value` . Per ulteriori informazioni sull'associazione di proprietà, vedere <xref:blazor/components/data-binding#parent-to-child-binding-with-component-parameters> .
   * Delegato dell'evento di modifica alla <xref:Microsoft.AspNetCore.Components.Forms.InputText> proprietà del componente `ValueChanged` .
 * Il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente connette il supporto di convalida usando le annotazioni dei dati.
 * Il <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> componente riepiloga i messaggi di convalida.
@@ -192,7 +192,7 @@ Il form seguente convalida l'input dell'utente utilizzando la convalida definita
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.Forms.EditForm>Crea un oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditContext> come [valore](xref:blazor/components#cascading-values-and-parameters) di propagazione che tiene traccia dei metadati relativi al processo di modifica, inclusi i campi modificati e i messaggi di convalida correnti. <xref:Microsoft.AspNetCore.Components.Forms.EditForm>Fornisce inoltre eventi pratici per invii validi e non validi ( <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> , <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> ). In alternativa, usare <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> per attivare la convalida e verificare i valori dei campi con il codice di convalida personalizzato.
+<xref:Microsoft.AspNetCore.Components.Forms.EditForm>Crea un oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditContext> come [valore](xref:blazor/components/cascading-values-and-parameters) di propagazione che tiene traccia dei metadati relativi al processo di modifica, inclusi i campi modificati e i messaggi di convalida correnti. <xref:Microsoft.AspNetCore.Components.Forms.EditForm>Fornisce inoltre eventi pratici per invii validi e non validi ( <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> , <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> ). In alternativa, usare <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> per attivare la convalida e verificare i valori dei campi con il codice di convalida personalizzato.
 
 Nell'esempio seguente:
 
@@ -504,7 +504,7 @@ Per abilitare e disabilitare il pulsante Invia in base alla convalida del modulo
 
 * Utilizzare il modulo <xref:Microsoft.AspNetCore.Components.Forms.EditContext> per assegnare il modello quando il componente viene inizializzato.
 * Convalidare il form nel callback del contesto <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> per abilitare e disabilitare il pulsante Submit.
-* Sganciare il gestore eventi nel `Dispose` metodo. Per altre informazioni, vedere <xref:blazor/lifecycle#component-disposal-with-idisposable>.
+* Sganciare il gestore eventi nel `Dispose` metodo. Per altre informazioni, vedere <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
 
 ```razor
 @implements IDisposable
@@ -574,7 +574,7 @@ Un effetto collaterale dell'approccio precedente è che un <xref:Microsoft.AspNe
 }
 ```
 
-## <a name="troubleshoot"></a>Risolvere problemi
+## <a name="troubleshoot"></a>Risoluzione dei problemi
 
 > InvalidOperationException: EditForm richiede un parametro di modello o un parametro EditContext, ma non entrambi.
 

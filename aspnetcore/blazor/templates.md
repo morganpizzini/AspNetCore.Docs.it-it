@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: f582e8201a3393b848cf3f2c21ce3a7df5554100
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 3a491e43aec8291fcf03696b53240bd33e0deda1
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105532"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102489"
 ---
 # <a name="aspnet-core-blazor-templates"></a>Modelli di ASP.NET Core Blazor
 
@@ -80,7 +80,7 @@ I file e le cartelle seguenti costituiscono un' Blazor app generata da un Blazor
 
 * Cartella *condivisa* : contiene altri componenti dell'interfaccia utente (*Razor*) usati dall'app:
   * `MainLayout`(*MainLayout. Razor*): componente del layout dell'app.
-  * `NavMenu`(*NavMenu. Razor*): implementa la navigazione nell'intestazione laterale. Include il [componente NavLink](xref:blazor/routing#navlink-component) ( <xref:Microsoft.AspNetCore.Components.Routing.NavLink> ), che esegue il rendering dei collegamenti di navigazione ad altri Razor componenti. Il <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componente indica automaticamente uno stato selezionato quando viene caricato il componente, che consente all'utente di comprendere il componente attualmente visualizzato.
+  * `NavMenu`(*NavMenu. Razor*): implementa la navigazione nell'intestazione laterale. Include il [componente NavLink](xref:blazor/fundamentals/routing#navlink-component) ( <xref:Microsoft.AspNetCore.Components.Routing.NavLink> ), che esegue il rendering dei collegamenti di navigazione ad altri Razor componenti. Il <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componente indica automaticamente uno stato selezionato quando viene caricato il componente, che consente all'utente di comprendere il componente attualmente visualizzato.
 
 * *_Imports. Razor*: include Razor direttive comuni da includere nei componenti dell'app (*Razor*), ad esempio le [`@using`](xref:mvc/views/razor#using) direttive per gli spazi dei nomi.
 
@@ -88,4 +88,4 @@ I file e le cartelle seguenti costituiscono un' Blazor app generata da un Blazor
 
 * *wwwroot*: la cartella [radice Web](xref:fundamentals/index#web-root) per l'app contenente le risorse statiche pubbliche dell'app.
 
-* *appSettings. JSON* ( Blazor Server): impostazioni di configurazione per l'app.
+* *appsettings.json* ( Blazor Server): impostazioni di configurazione per l'app.

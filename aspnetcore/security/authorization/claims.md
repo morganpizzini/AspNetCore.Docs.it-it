@@ -11,18 +11,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/claims
-ms.openlocfilehash: de8ab915e6a8529c7401f89fad067ec33d5d0713
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 41e19896e9c43ca67aa8b1af1c6c88c9c9c20373
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774418"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074478"
 ---
 # <a name="claims-based-authorization-in-aspnet-core"></a>Autorizzazione basata sulle attestazioni in ASP.NET Core
 
 <a name="security-authorization-claims-based"></a>
 
-Quando viene creata un'identità, è possibile che venga assegnata una o più attestazioni rilasciate da un'entità attendibile. Un'attestazione è una coppia nome-valore che rappresenta il tipo di oggetto, non ciò che può fare l'oggetto. È possibile, ad esempio, che si disponga di una licenza di un driver, emessa da un'autorità di licenza di guida locale. La licenza del driver ha la data di nascita. In questo caso il nome dell'attestazione `DateOfBirth`è, il valore dell'attestazione è la data di nascita, `8th June 1970` ad esempio, e l'emittente è l'autorità di licenza di guida. L'autorizzazione basata sulle attestazioni, alla sua più semplice, controlla il valore di un'attestazione e consente l'accesso a una risorsa in base a tale valore. Se ad esempio si vuole accedere a un night club, il processo di autorizzazione potrebbe essere:
+Quando viene creata un'identità, è possibile che venga assegnata una o più attestazioni rilasciate da un'entità attendibile. Un'attestazione è una coppia nome-valore che rappresenta il tipo di oggetto, non ciò che può fare l'oggetto. È possibile, ad esempio, che si disponga di una licenza di un driver, emessa da un'autorità di licenza di guida locale. La licenza del driver ha la data di nascita. In questo caso il nome dell'attestazione è `DateOfBirth` , il valore dell'attestazione è la data di nascita, ad esempio, `8th June 1970` e l'emittente è l'autorità di licenza di guida. L'autorizzazione basata sulle attestazioni, alla sua più semplice, controlla il valore di un'attestazione e consente l'accesso a una risorsa in base a tale valore. Se ad esempio si vuole accedere a un night club, il processo di autorizzazione potrebbe essere:
 
 Il responsabile della sicurezza di sportello valuterebbe il valore della data di attestazione di nascita e se considera attendibile l'autorità emittente (l'autorità di certificazione di guida) prima di concedere l'accesso.
 
@@ -34,7 +34,7 @@ I controlli delle autorizzazioni basati sulle attestazioni sono dichiarativi. lo
 
 Il tipo più semplice di criteri di attestazione cerca la presenza di un'attestazione e non verifica il valore.
 
-Prima di tutto è necessario compilare e registrare i criteri. Questo avviene come parte della configurazione del servizio di autorizzazione, che in genere fa parte `ConfigureServices()` del file *Startup.cs* .
+Prima di tutto è necessario compilare e registrare i criteri. Questo avviene come parte della configurazione del servizio di autorizzazione, che in genere fa parte del `ConfigureServices()` file *Startup.cs* .
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -148,7 +148,7 @@ public void ConfigureServices(IServiceCollection services)
 ::: moniker-end
 ### <a name="add-a-generic-claim-check"></a>Aggiungere un controllo di attestazione generico
 
-Se il valore dell'attestazione non è un singolo valore o se è richiesta una trasformazione, utilizzare [RequireAssertion](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicybuilder.requireassertion). Per ulteriori informazioni, vedere [utilizzo di una funzione Func per soddisfare i criteri](xref:security/authorization/policies#using-a-func-to-fulfill-a-policy).
+Se il valore dell'attestazione non è un singolo valore o se è richiesta una trasformazione, utilizzare [RequireAssertion](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicybuilder.requireassertion). Per ulteriori informazioni, vedere [utilizzare una funzione Func per soddisfare i criteri](xref:security/authorization/policies#use-a-func-to-fulfill-a-policy).
 
 ## <a name="multiple-policy-evaluation"></a>Valutazione di più criteri
 
@@ -169,6 +169,6 @@ public class SalaryController : Controller
 }
 ```
 
-Nell'esempio precedente qualsiasi identità che soddisfa il `EmployeeOnly` criterio può accedere all' `Payslip` azione perché i criteri vengono applicati nel controller. Tuttavia, per chiamare l' `UpdateSalary` azione è necessario che l'identità soddisfi `EmployeeOnly` *sia* i criteri `HumanResources` che i criteri.
+Nell'esempio precedente qualsiasi identità che soddisfa il `EmployeeOnly` criterio può accedere all' `Payslip` azione perché i criteri vengono applicati nel controller. Tuttavia, per chiamare l' `UpdateSalary` azione è necessario che l'identità soddisfi *sia* i `EmployeeOnly` criteri che i `HumanResources` criteri.
 
 Se si desiderano criteri più complessi, ad esempio l'acquisizione di una data di attestazione di nascita, il calcolo di un periodo di tempo da esso, il controllo dell'età è 21 o precedente, è necessario scrivere [gestori di criteri personalizzati](xref:security/authorization/policies).

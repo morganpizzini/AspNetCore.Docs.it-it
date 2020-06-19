@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: b6e3890e13ef5ad20098d3907b6895046087aeca
-ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
+ms.openlocfilehash: df978d49201ba1010ddf13b1b9a63ae27116616e
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84776501"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103093"
 ---
 # <a name="component-tag-helper-in-aspnet-core"></a>Helper tag di componente in ASP.NET Core
 
@@ -27,7 +27,7 @@ Per eseguire il rendering di un componente da una pagina o da una vista, usare l
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Seguire le istruzioni riportate nella sezione *preparare l'app per l'uso dei componenti in pagine e viste* dell' <xref:blazor/integrate-components#prepare-the-app> articolo.
+Seguire le istruzioni riportate nella sezione *preparare l'app per l'uso dei componenti in pagine e viste* dell' <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps#prepare-the-app> articolo.
 
 ## <a name="component-tag-helper"></a>Helper Tag componente
 
@@ -72,7 +72,7 @@ L'helper Tag Component può anche passare parametri ai componenti. Si consideri 
 }
 ```
 
-I `Size` `int` parametri del componente () e `Color` ( `string` ) possono essere impostati dall'helper tag dei componenti: [component parameters](xref:blazor/components#component-parameters)
+I `Size` `int` parametri del componente () e `Color` ( `string` ) possono essere impostati dall'helper tag dei componenti: [component parameters](xref:blazor/components/index#component-parameters)
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -172,4 +172,4 @@ Il rendering dei componenti server da una pagina HTML statica non è supportato.
 
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
-* <xref:blazor/components>
+* <xref:blazor/components/index>

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: ba172282d0cd6371ebc94b4fda1c13aee14d6fbd
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: fe35645aafe29838818dcaaf7c2b42ed428ac6cc
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83851992"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102254"
 ---
 # <a name="aspnet-core-blazor-layouts"></a>BlazorLayout ASP.NET Core
 
@@ -26,7 +26,7 @@ Di [Rainer Stropek](https://www.timecockpit.com) e [Luke Latham](https://github.
 
 Alcuni elementi dell'app, ad esempio i menu, i messaggi di copyright e i logo aziendali, fanno in genere parte del layout generale dell'app e vengono usati da ogni componente nell'app. La copia del codice di questi elementi in tutti i componenti di un'app non è un approccio efficace. Ogni volta che uno degli elementi richiede un aggiornamento, è necessario aggiornare ogni componente. Tale duplicazione è difficile da gestire e può causare contenuti incoerenti nel tempo. I *layout* risolvono questo problema.
 
-Tecnicamente, un layout è semplicemente un altro componente. Un layout è definito in un Razor modello o nel codice C# e può usare [Data Binding](xref:blazor/data-binding), l' [inserimento delle dipendenze](xref:blazor/dependency-injection)e altri scenari di componenti.
+Tecnicamente, un layout è semplicemente un altro componente. Un layout è definito in un Razor modello o nel codice C# e può usare [Data Binding](xref:blazor/components/data-binding), l' [inserimento delle dipendenze](xref:blazor/fundamentals/dependency-injection)e altri scenari di componenti.
 
 Per trasformare un *componente* in un *layout*, il componente:
 
@@ -49,7 +49,7 @@ Per fornire un layout predefinito per il <xref:Microsoft.AspNetCore.Components.R
 
 [!code-razor[](layouts/sample_snapshot/3.x/App2.razor?highlight=6-9)]
 
-Per ulteriori informazioni sul <xref:Microsoft.AspNetCore.Components.Routing.Router> componente, vedere <xref:blazor/routing> .
+Per ulteriori informazioni sul <xref:Microsoft.AspNetCore.Components.Routing.Router> componente, vedere <xref:blazor/fundamentals/routing> .
 
 La specifica del layout come layout predefinito nel router è una procedura utile perché può essere sottoposta a override in base al singolo componente o alla cartella. Preferisci usare il router per impostare il layout predefinito dell'app perché è la tecnica più generale.
 
@@ -97,7 +97,7 @@ Infine, `MasterLayout` in *MasterLayout. Razor* contiene gli elementi di layout 
 
 ## <a name="share-a-razor-pages-layout-with-integrated-components"></a>Condividere un Razor layout di pagine con componenti integrati
 
-Quando i componenti instradabili sono integrati in un' Razor app pagine, il layout condiviso dell'app può essere usato con i componenti. Per altre informazioni, vedere <xref:blazor/integrate-components>.
+Quando i componenti instradabili sono integrati in un' Razor app pagine, il layout condiviso dell'app può essere usato con i componenti. Per altre informazioni, vedere <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
