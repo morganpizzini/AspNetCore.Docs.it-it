@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: 32f7595cffc2c31116c8d876c9f9526b84c52f14
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: d15d8355b321c2938d68a109c5115db78280f6b6
+ms.sourcegitcommit: 77729ba225d5143c0e3954db005906f4a5c7da95
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103886"
+ms.lasthandoff: 06/20/2020
+ms.locfileid: "85122087"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>BlazorGestione degli eventi ASP.NET Core
 
@@ -73,7 +73,14 @@ Nell'esempio seguente, `UpdateHeading` viene chiamato in modo asincrono quando s
 
 ## <a name="event-argument-types"></a>Tipi di argomenti dell'evento
 
-Per alcuni eventi, i tipi di argomento dell'evento sono consentiti. La specifica di un tipo di evento nella chiamata al metodo è necessaria solo se il tipo di evento viene usato nel metodo.
+Per alcuni eventi, i tipi di argomento dell'evento sono consentiti. La specifica di un parametro di evento nella definizione di un metodo di evento è facoltativa ed è necessaria solo se il tipo di evento viene usato nel metodo. Nell'esempio seguente, l' `MouseEventArgs` argomento dell'evento viene usato nel `ShowMessage` metodo per impostare il testo del messaggio:
+
+```csharp
+private void ShowMessage(MouseEventArgs e)
+{
+    messageText = $"The mouse is at coordinates: {e.ScreenX}:{e.ScreenY}";
+}
+```
 
 <xref:System.EventArgs>I supportati sono riportati nella tabella seguente.
 
