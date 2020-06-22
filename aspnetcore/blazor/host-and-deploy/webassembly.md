@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 4f672c5117beeb09914e802012f0970389fea47f
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 4755674a4e73b245923c2c0f1f3d8ed114be8c81
+ms.sourcegitcommit: 726b8c5cf92e6f6a4d0205787b19307e889d6240
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103813"
+ms.lasthandoff: 06/21/2020
+ms.locfileid: "85127760"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor Webassembly
 
@@ -202,7 +202,7 @@ La rimozione del gestore o la disabilitazione dell'ereditarietà viene eseguita 
 
 #### <a name="brotli-and-gzip-compression"></a>Compressione Brotli e gzip
 
-IIS può essere configurato tramite *web.config* per gestire le risorse compresse Brotli o gzip Blazor . Per una configurazione di esempio, vedere [web.config](webassembly/_samples/web.config?raw=true).
+IIS può essere configurato tramite *web.config* per gestire le risorse compresse Brotli o gzip Blazor . Per una configurazione di esempio, vedere [web.config](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true).
 
 #### <a name="troubleshooting"></a>Risoluzione dei problemi
 
