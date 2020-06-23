@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/environments
-ms.openlocfilehash: 203f29ce606a313463e416b068177ce02acd6231
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: a527e04cf97dd2d2b88dcc6e866475835498545d
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103843"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243616"
 ---
 # <a name="aspnet-core-blazor-environments"></a>Ambienti di ASP.NET Core Blazor
 
@@ -31,7 +31,7 @@ Un' Blazor app webassembly ospitata preleva l'ambiente dal server tramite un mid
 
 Per un'app autonoma in esecuzione in locale, il server di sviluppo aggiunge l' `blazor-environment` intestazione per specificare l'ambiente di sviluppo. Per specificare l'ambiente per altri ambienti host, aggiungere l' `blazor-environment` intestazione.
 
-Nell'esempio seguente per IIS aggiungere l'intestazione personalizzata al file del *web.config* pubblicato. Il file di *web.config* si trova nella cartella *bin/Release/{Target Framework}/Publish* :
+Nell'esempio seguente per IIS aggiungere l'intestazione personalizzata al `web.config` file pubblicato. Il `web.config` file si trova nella `bin/Release/{TARGET FRAMEWORK}/publish` cartella:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -50,7 +50,7 @@ Nell'esempio seguente per IIS aggiungere l'intestazione personalizzata al file d
 ```
 
 > [!NOTE]
-> Per usare un file di *web.config* personalizzato per IIS che non viene sovrascritto quando l'app viene pubblicata nella cartella di *pubblicazione* , vedere <xref:blazor/host-and-deploy/webassembly#use-a-custom-webconfig> .
+> Per usare un `web.config` file personalizzato per IIS che non viene sovrascritto quando l'app viene pubblicata nella `publish` cartella, vedere <xref:blazor/host-and-deploy/webassembly#use-a-custom-webconfig> .
 
 Ottenere l'ambiente dell'app in un componente inserendo <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> e leggendo la <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> proprietà:
 

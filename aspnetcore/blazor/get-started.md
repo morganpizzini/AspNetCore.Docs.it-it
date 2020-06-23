@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: c90c3bf7ccef420101c66fe04d579920209b066c
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 63fee0b6a3152640a5483c2a682eec7d04742145
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102341"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243603"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Inizia a usare ASP.NET CoreBlazor
 
@@ -34,9 +34,9 @@ Per iniziare Blazor , seguire le istruzioni per la scelta degli strumenti:
 
 1. Selezionare ** Blazor app**. Selezionare **Avanti**.
 
-1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
+1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
 
-1. Per un' Blazor esperienza di webassembly, scegliere il modello ** Blazor app webassembly** . Per un' Blazor esperienza server, scegliere il modello ** Blazor applicazione server** . Selezionare **Create** (Crea).
+1. Per un' Blazor esperienza di webassembly, scegliere il modello ** Blazor app webassembly** . Per un' Blazor esperienza server, scegliere il modello ** Blazor applicazione server** . Selezionare **Crea**.
 
    Per informazioni sui due Blazor modelli di hosting, * Blazor webassembly* e * Blazor Server*, vedere <xref:blazor/hosting-models> .
 
@@ -70,7 +70,7 @@ Per iniziare Blazor , seguire le istruzioni per la scelta degli strumenti:
 
    Per informazioni sui due Blazor modelli di hosting, * Blazor webassembly* e * Blazor Server*, vedere <xref:blazor/hosting-models> .
 
-1. Aprire la cartella *WebApplication1* in Visual Studio Code.
+1. Aprire la cartella `WebApplication1` in Visual Studio Code.
 
 1. Le richieste dell'IDE aggiungono risorse per compilare ed eseguire il debug del progetto. Selezionare **Sì**.
 
@@ -95,7 +95,7 @@ Per iniziare Blazor , seguire le istruzioni per la scelta degli strumenti:
    
    Selezionare **Avanti**.
 
-1. Nel campo **nome progetto** assegnare un nome all'app `WebApplication1` . Selezionare **Create** (Crea).
+1. Nel campo **nome progetto** assegnare un nome all'app `WebApplication1` . Selezionare **Crea**.
 
 1. Selezionare **Esegui**  >  **Avvia senza eseguire debug** per eseguire l'app *senza il debugger*. Eseguire l'app con **Esegui**  >  **debug Avvia debug** o il pulsante Esegui (&#9654;) per eseguire l'app *con il debugger*.
 
@@ -137,15 +137,15 @@ Nelle schede della barra laterale sono disponibili più pagine:
 * Contatore
 * Recuperare i dati
 
-Nella pagina Counter selezionare il pulsante **Click me** per incrementare il contatore senza un aggiornamento della pagina. Per incrementare un contatore in una pagina Web è in genere necessario scrivere JavaScript, ma con Blazor è possibile usare C#.
+Nella pagina contatore selezionare il pulsante per incrementare il contatore senza un aggiornamento della pagina. Per incrementare un contatore in una pagina Web è in genere necessario scrivere JavaScript, ma con Blazor è possibile usare C#.
 
-*Pages/Counter.razor*:
+`Pages/Counter.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Counter1.razor?highlight=7,12-15)]
 
 Una richiesta di `/counter` nel browser, come specificato dalla direttiva nella `@page` parte superiore, determina il rendering del contenuto da parte del `Counter` componente. I componenti eseguono il rendering in una rappresentazione in memoria della struttura di rendering che può quindi essere utilizzata per aggiornare l'interfaccia utente in modo flessibile ed efficiente.
 
-Ogni volta che viene selezionato il pulsante **Click me** :
+Ogni volta che si seleziona il pulsante:
 
 * L' `onclick` evento viene generato.
 * Viene chiamato il metodo `IncrementCount` .
@@ -156,7 +156,7 @@ Il runtime confronta il nuovo contenuto con il contenuto precedente e applica so
 
 Aggiungere un componente a un altro componente usando la sintassi HTML. Ad esempio, aggiungere il `Counter` componente alla Home page dell'app aggiungendo un `<Counter />` elemento al `Index` componente.
 
-*Pages/Index.razor*:
+`Pages/Index.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Index1.razor?highlight=7)]
 
@@ -167,17 +167,17 @@ I parametri del componente vengono specificati utilizzando attributi o [contenut
 * Aggiungere una proprietà pubblica per `IncrementAmount` con un [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attributo.
 * Modificare il metodo `IncrementCount` per usare `IncrementAmount` quando si aumenta il valore di `currentCount`.
 
-*Pages/Counter.razor*:
+`Pages/Counter.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=12-13,17)]
 
 Specificare `IncrementAmount` nell'elemento del `Index` componente `<Counter>` usando un attributo.
 
-*Pages/Index.razor*:
+`Pages/Index.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Index2.razor?highlight=7)]
 
-Eseguire l'app. Il `Index` componente dispone di un contatore specifico che aumenta di dieci ogni volta che viene selezionato il pulsante **Click me** . Il `Counter` componente (*Counter. Razor*) a `/counter` continua a incrementare di uno.
+Eseguire l'app. Il `Index` componente ha il proprio contatore che aumenta di dieci ogni volta che viene selezionato il pulsante. Il `Counter` componente ( `Pages/Counter.razor` ) in `/counter` continua a incrementare di uno.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

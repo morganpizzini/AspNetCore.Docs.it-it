@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/configure-linker
-ms.openlocfilehash: efac62c325b03b5ee19cae58abb5227f3d300b69
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 76af450df70fe666ea1b951cb4b41696057c5e67
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103820"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243577"
 ---
 # <a name="configure-the-linker-for-aspnet-core-blazor"></a>Configurare il linker per ASP.NET CoreBlazor
 
@@ -55,7 +55,7 @@ Controllare il collegamento per ogni singolo assembly usando un file di configur
 </ItemGroup>
 ```
 
-*LinkerConfig.xml*:
+`LinkerConfig.xml`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -93,7 +93,7 @@ Per altre informazioni ed esempi, vedere [formati di dati (repository GitHub mon
 
 Per configurare il linker per una libreria specifica, aggiungere un file di configurazione del linker XML nella libreria come risorsa incorporata. La risorsa incorporata deve avere lo stesso nome dell'assembly.
 
-Nell'esempio seguente il file di *LinkerConfig.xml* viene specificato come una risorsa incorporata con lo stesso nome dell'assembly della libreria:
+Nell'esempio seguente il `LinkerConfig.xml` file viene specificato come una risorsa incorporata con lo stesso nome dell'assembly della libreria:
 
 ```xml
 <ItemGroup>
@@ -118,12 +118,12 @@ Per controllare quali assembly I18N vengono conservati, impostare la `<BlazorWeb
 | Valore Region     | Assembly dell'area mono    |
 | ---------------- | ----------------------- |
 | `all`            | Tutti gli assembly inclusi |
-| `cjk`            | *I18N.CJK.dll*          |
-| `mideast`        | *I18N.MidEast.dll*      |
+| `cjk`            | `I18N.CJK.dll`          |
+| `mideast`        | `I18N.MidEast.dll`      |
 | `none` (impostazione predefinita) | nessuno                    |
-| `other`          | *I18N.Other.dll*        |
-| `rare`           | *I18N.Rare.dll*         |
-| `west`           | *I18N.West.dll*         |
+| `other`          | `I18N.Other.dll`        |
+| `rare`           | `I18N.Rare.dll`         |
+| `west`           | `I18N.West.dll`         |
 
 Usare una virgola per separare più valori (ad esempio, `mideast,west` ).
 

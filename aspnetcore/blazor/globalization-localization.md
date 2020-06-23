@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: 42b61c9af0c1809ecb7d9a45ec8edfa815e2df22
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 5050d99e5304c7edaf6faa43f05298b69882521d
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102316"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243590"
 ---
 # <a name="aspnet-core-blazor-globalization-and-localization"></a>BlazorGlobalizzazione e localizzazione ASP.NET Core
 
@@ -71,7 +71,7 @@ Per configurare in modo esplicito le impostazioni cultura, impostare <xref:Syste
 
 Per impostazione predefinita, Blazor la configurazione del linker per le Blazor app webassembly rimuove le informazioni di internazionalizzazione ad eccezione delle impostazioni locali richieste in modo esplicito. Per ulteriori informazioni e istruzioni sul controllo del comportamento del linker, vedere <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization> .
 
-Mentre le impostazioni cultura che Blazor selezionano per impostazione predefinita potrebbero essere sufficienti per la maggior parte degli utenti, è consigliabile offrire agli utenti un modo per specificare le impostazioni locali preferite. Per un' Blazor app di esempio webassembly con selezione impostazioni cultura, vedere l'app di esempio [LocSample](https://github.com/pranavkm/LocSample) Localization.
+Mentre le impostazioni cultura che Blazor selezionano per impostazione predefinita potrebbero essere sufficienti per la maggior parte degli utenti, è consigliabile offrire agli utenti un modo per specificare le impostazioni locali preferite. Per un' Blazor app di esempio webassembly con selezione impostazioni cultura, vedere l' [`LocSample`](https://github.com/pranavkm/LocSample) app di esempio localizzazione.
 
 ### <a name="blazor-server"></a>BlazorServer
 
@@ -92,7 +92,7 @@ L'uso di un cookie garantisce che la connessione WebSocket possa propagare corre
 
 Qualsiasi tecnica può essere utilizzata per assegnare impostazioni cultura se le impostazioni cultura vengono rese permanente in un cookie di localizzazione. Se l'app dispone già di uno schema di localizzazione stabilito per ASP.NET Core lato server, continuare a usare l'infrastruttura di localizzazione esistente dell'app e impostare il cookie delle impostazioni cultura di localizzazione nello schema dell'app.
 
-Nell'esempio seguente viene illustrato come impostare le impostazioni cultura correnti in un cookie che può essere letto dal middleware di localizzazione. Creare un' Razor espressione nel file *pages/_Host. cshtml* immediatamente all'interno del `<body>` tag di apertura:
+Nell'esempio seguente viene illustrato come impostare le impostazioni cultura correnti in un cookie che può essere letto dal middleware di localizzazione. Creare un' Razor espressione nel `Pages/_Host.cshtml` file immediatamente all'interno del tag di apertura `<body>` :
 
 ```cshtml
 @using System.Globalization
@@ -118,7 +118,7 @@ La localizzazione viene gestita dall'app nella sequenza di eventi seguente:
 
 1. Il browser invia una richiesta HTTP iniziale all'app.
 1. Le impostazioni cultura vengono assegnate dal middleware di localizzazione.
-1. L' Razor espressione nella `_Host` pagina (*_Host. cshtml*) rende permanente le impostazioni cultura di un cookie come parte della risposta.
+1. L' Razor espressione nella `_Host` pagina ( `_Host.cshtml` ) rende permanente le impostazioni cultura di un cookie come parte della risposta.
 1. Il browser apre una connessione WebSocket per creare una Blazor sessione del server interattiva.
 1. Il middleware di localizzazione legge il cookie e assegna le impostazioni cultura.
 1. La Blazor sessione del server inizia con le impostazioni cultura corrette.
