@@ -24,7 +24,7 @@ Per ritardare le chiamate di interoperabilità JavaScript finché non viene stab
 }
 ```
 
-Per il codice di esempio precedente, fornire una `setElementText` funzione JavaScript all'interno dell' `<head>` elemento di *wwwroot/index.html* (Blazer Webassembly) o *pages/_Host. cshtml* (server fiammeggiar). La funzione viene chiamata con <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> e non restituisce un valore:
+Per il codice di esempio precedente, fornire una `setElementText` funzione JavaScript all'interno dell' `<head>` elemento di `wwwroot/index.html` (webassembly Blazer) o `Pages/_Host.cshtml` (server Blazer). La funzione viene chiamata con <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> e non restituisce un valore:
 
 ```html
 <script>
@@ -72,7 +72,7 @@ Set value via JS interop call:
 }
 ```
 
-Per il codice di esempio precedente, fornire una `setElementText` funzione JavaScript all'interno dell' `<head>` elemento di *wwwroot/index.html* (Blazer Webassembly) o *pages/_Host. cshtml* (server fiammeggiar). La funzione viene chiamata con <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> e restituisce un valore:
+Per il codice di esempio precedente, fornire una `setElementText` funzione JavaScript all'interno dell' `<head>` elemento di `wwwroot/index.html` (webassembly Blazer) o `Pages/_Host.cshtml` (server Blazer). La funzione viene chiamata con <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> e restituisce un valore:
 
 ```html
 <script>

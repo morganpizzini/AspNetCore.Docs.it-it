@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: b55619889c294a0cd6ab98ffdf228d86ee60cd7c
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: f56fb0f09845ded6ef6907221a27f71621a155d1
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102303"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242810"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Creazione di applicazioni Web progressive con ASP.NET Core Blazor Webassembly
 
@@ -75,7 +75,7 @@ Una volta installato, l'app viene visualizzata nella propria finestra senza una 
 
 ![L'app ' MyBlazorPwa ' viene eseguita in Google Chrome senza una barra degli indirizzi.](progressive-web-app/_static/image3.png)
 
-Per personalizzare il titolo, la combinazione di colori, l'icona o altri dettagli della finestra, vedere il *manifest.js* nel file nella directory *wwwroot* del progetto. Lo schema di questo file è definito dagli standard Web. Per altre informazioni, vedere la pagina relativa ai [documenti MDN Web: manifesto dell'app Web](https://developer.mozilla.org/docs/Web/Manifest).
+Per personalizzare il titolo, la combinazione di colori, l'icona o altri dettagli della finestra, vedere il `manifest.json` file nella directory del progetto `wwwroot` . Lo schema di questo file è definito dagli standard Web. Per altre informazioni, vedere la pagina relativa ai [documenti MDN Web: manifesto dell'app Web](https://developer.mozilla.org/docs/Web/Manifest).
 
 ## <a name="offline-support"></a>Supporto offline
 
@@ -110,17 +110,17 @@ Il supporto offline tramite un worker del servizio è uno standard Web, non spec
 
 Blazoril modello di PWA produce due file del ruolo di lavoro del servizio:
 
-* *wwwroot/service-worker.js*, che viene usato durante lo sviluppo.
-* *wwwroot/service-worker.published.js*, che viene usato dopo la pubblicazione dell'app.
+* `wwwroot/service-worker.js`, che viene usato durante lo sviluppo.
+* `wwwroot/service-worker.published.js`, che viene usato dopo la pubblicazione dell'app.
 
 Per condividere la logica tra i due file del ruolo di lavoro del servizio, prendere in considerazione l'approccio seguente:
 
 * Aggiungere un terzo file JavaScript per conservare la logica comune.
-* Usare [self. importScripts](https://developer.mozilla.org/docs/Web/API/WorkerGlobalScope/importScripts) per caricare la logica comune in entrambi i file del ruolo di lavoro del servizio.
+* Usare [`self.importScripts`](https://developer.mozilla.org/docs/Web/API/WorkerGlobalScope/importScripts) per caricare la logica comune in entrambi i file del ruolo di lavoro del servizio.
 
 ### <a name="cache-first-fetch-strategy"></a>Strategia di recupero cache-First
 
-Il ruolo di lavoro del servizio *service-worker.published.js* incorporato risolve le richieste utilizzando una strategia di *cache-First* . Questo significa che il ruolo di lavoro del servizio preferisce restituire contenuto memorizzato nella cache, indipendentemente dal fatto che l'utente abbia accesso alla rete o che nel server sia disponibile contenuto più recente.
+Il ruolo di `service-worker.published.js` lavoro del servizio incorporato risolve le richieste utilizzando una strategia di *cache-First* . Questo significa che il ruolo di lavoro del servizio preferisce restituire contenuto memorizzato nella cache, indipendentemente dal fatto che l'utente abbia accesso alla rete o che nel server sia disponibile contenuto più recente.
 
 La strategia di cache-First è utile perché:
 
@@ -139,9 +139,9 @@ Come modello mentale, è possibile pensare a un PWA offline-First come si compor
 
 Il Blazor modello di PWA genera app che tentano automaticamente di aggiornarsi in background ogni volta che l'utente visita e ha una connessione di rete funzionante. Il funzionamento di questo approccio è il seguente:
 
-* Durante la compilazione, il progetto genera un manifesto delle risorse del ruolo di *lavoro del servizio*. Per impostazione predefinita, questo metodo è denominato *service-worker-assets.js*. Il manifesto elenca tutte le risorse statiche richieste dall'app per funzionare offline, ad esempio assembly .NET, file JavaScript e CSS, inclusi gli hash del contenuto. L'elenco di risorse viene caricato dal ruolo di lavoro del servizio in modo da sapere quali risorse memorizzare nella cache.
-* Ogni volta che l'utente visita l'app, il browser richiede nuovamente *service-worker.js* e *service-worker-assets.js* in background. I file vengono confrontati byte per byte con il ruolo di lavoro del servizio installato esistente. Se il server restituisce contenuto modificato per uno di questi file, il ruolo di lavoro del servizio tenta di installare una nuova versione di se stessa.
-* Quando si installa una nuova versione di se stessa, il ruolo di lavoro del servizio crea una nuova cache separata per le risorse offline e inizia a popolare la cache con le risorse elencate in *service-worker-assets.js*. Questa logica viene implementata nella `onInstall` funzione all'interno *service-worker.published.js*.
+* Durante la compilazione, il progetto genera un manifesto delle risorse del ruolo di *lavoro del servizio*. Per impostazione predefinita, viene chiamato il metodo `service-worker-assets.js` . Il manifesto elenca tutte le risorse statiche richieste dall'app per funzionare offline, ad esempio assembly .NET, file JavaScript e CSS, inclusi gli hash del contenuto. L'elenco di risorse viene caricato dal ruolo di lavoro del servizio in modo da sapere quali risorse memorizzare nella cache.
+* Ogni volta che l'utente visita l'app, il browser richiede nuovamente `service-worker.js` e `service-worker-assets.js` in background. I file vengono confrontati byte per byte con il ruolo di lavoro del servizio installato esistente. Se il server restituisce contenuto modificato per uno di questi file, il ruolo di lavoro del servizio tenta di installare una nuova versione di se stessa.
+* Quando si installa una nuova versione di se stessa, il ruolo di lavoro del servizio crea una nuova cache separata per le risorse offline e inizia a popolare la cache con le risorse elencate in `service-worker-assets.js` . Questa logica viene implementata nella `onInstall` funzione all'interno di `service-worker.published.js` .
 * Il processo viene completato correttamente quando tutte le risorse vengono caricate senza errori e tutti gli hash di contenuto corrispondono. In caso di esito positivo, il nuovo ruolo di lavoro del servizio entra *in attesa dello stato di attivazione* . Non appena l'utente chiude l'app (nessuna scheda o Windows dell'app rimanente), il nuovo Worker del servizio diventa *attivo* e viene usato per le visite successive all'app. Il servizio di lavoro precedente e la relativa cache vengono eliminati.
 * Se il processo non viene completato correttamente, la nuova istanza del ruolo di lavoro del servizio viene eliminata. Il processo di aggiornamento viene nuovamente ritentato alla visita successiva dell'utente, quando si spera che il client disponga di una connessione di rete migliore in grado di completare le richieste.
 
@@ -149,7 +149,7 @@ Personalizzare questo processo modificando la logica del ruolo di lavoro del ser
 
 ### <a name="how-requests-are-resolved"></a>Modalità di risoluzione delle richieste
 
-Come descritto nella sezione relativa alla [strategia di recupero cache-First](#cache-first-fetch-strategy) , il ruolo di lavoro predefinito del servizio utilizza una strategia di *cache-First* , ovvero tenta di gestire il contenuto memorizzato nella cache, se disponibile. Se non sono presenti contenuti memorizzati nella cache per un determinato URL, ad esempio quando si richiedono dati da un'API back-end, il ruolo di lavoro del servizio esegue il fallback su una normale richiesta di rete. La richiesta di rete ha esito positivo se il server è raggiungibile. Questa logica viene implementata all'interno di una `onFetch` funzione all'interno *service-worker.published.js*.
+Come descritto nella sezione relativa alla [strategia di recupero cache-First](#cache-first-fetch-strategy) , il ruolo di lavoro predefinito del servizio utilizza una strategia di *cache-First* , ovvero tenta di gestire il contenuto memorizzato nella cache, se disponibile. Se non sono presenti contenuti memorizzati nella cache per un determinato URL, ad esempio quando si richiedono dati da un'API back-end, il ruolo di lavoro del servizio esegue il fallback su una normale richiesta di rete. La richiesta di rete ha esito positivo se il server è raggiungibile. Questa logica viene implementata all'interno di una `onFetch` funzione all'interno di `service-worker.published.js` .
 
 Se i componenti dell'app Razor si basano sulla richiesta di dati dalle API back-end e si vuole fornire un'esperienza utente intuitiva per le richieste non riuscite a causa della mancata disponibilità della rete, implementare la logica all'interno dei componenti dell'app. Usare, ad esempio `try/catch` , <xref:System.Net.Http.HttpClient> le richieste di circa.
 
@@ -157,12 +157,12 @@ Se i componenti dell'app Razor si basano sulla richiesta di dati dalle API back-
 
 Si consideri cosa accade quando l'utente accede per la prima volta a un URL, ad esempio `/counter` o qualsiasi altro collegamento profondo nell'app. In questi casi, non si vuole restituire contenuto memorizzato nella cache come `/counter` , ma è necessario il browser per caricare il contenuto memorizzato nella cache come `/index.html` per avviare l' Blazor app webassembly. Queste richieste iniziali sono note come richieste di *navigazione* , anziché:
 
-* richieste di *risorse* per le immagini, i fogli di stile o altri file.
-* richieste di *recupero/XHR* per i dati dell'API.
+* `subresource`richieste per immagini, fogli di stile o altri file.
+* `fetch/XHR`richieste di dati dell'API.
 
-Il ruolo di lavoro del servizio predefinito contiene la logica speciale per le richieste di navigazione. Il ruolo di lavoro del servizio risolve le richieste restituendo il contenuto memorizzato nella cache per `/index.html` , indipendentemente dall'URL richiesto. Questa logica viene implementata nella `onFetch` funzione all'interno *service-worker.published.js*.
+Il ruolo di lavoro del servizio predefinito contiene la logica speciale per le richieste di navigazione. Il ruolo di lavoro del servizio risolve le richieste restituendo il contenuto memorizzato nella cache per `/index.html` , indipendentemente dall'URL richiesto. Questa logica viene implementata nella `onFetch` funzione all'interno di `service-worker.published.js` .
 
-Se l'app dispone di determinati URL che devono restituire codice HTML sottoposto a rendering del server e non `/index.html` vengono usati dalla cache, è necessario modificare la logica nel ruolo di lavoro del servizio. Se tutti gli URL che contengono `/Identity/` devono essere gestiti come richieste normali solo in linea al server, modificare *service-worker.published.js* `onFetch` logica. Individuare il codice seguente:
+Se l'app dispone di determinati URL che devono restituire codice HTML sottoposto a rendering del server e non `/index.html` vengono usati dalla cache, è necessario modificare la logica nel ruolo di lavoro del servizio. Se tutti gli URL che contengono `/Identity/` devono essere gestiti come richieste normali solo in linea al server, modificare la `service-worker.published.js` `onFetch` logica. Individuare il codice seguente:
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate';
@@ -185,16 +185,16 @@ Se il progetto definisce la `ServiceWorkerAssetsManifest` Proprietà MSBuild, Bl
 <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
 ```
 
-Il file si trova nella directory di output *wwwroot* , quindi il browser può recuperare il file richiedendo `/service-worker-assets.js` . Per visualizzare il contenuto di questo file, aprire */bin/debug/{Target Framework}/wwwroot/service-worker-assets.js* in un editor di testo. Tuttavia, non modificare il file perché viene rigenerato in ogni compilazione.
+Il file viene inserito nella `wwwroot` directory di output, quindi il browser può recuperare il file richiedendo `/service-worker-assets.js` . Per visualizzare il contenuto di questo file, aprire `/bin/Debug/{TARGET FRAMEWORK}/wwwroot/service-worker-assets.js` in un editor di testo. Tuttavia, non modificare il file perché viene rigenerato in ogni compilazione.
 
 Per impostazione predefinita, questo manifesto elenca:
 
 * Tutte le Blazor risorse gestite, ad esempio gli assembly .NET e i file di runtime di .NET webassembly, necessari per il funzionamento offline.
-* Tutte le risorse per la pubblicazione nella directory *wwwroot* dell'app, ad esempio immagini, fogli di stile e file JavaScript, inclusi asset Web statici forniti da progetti esterni e pacchetti NuGet.
+* Tutte le risorse per la pubblicazione nella directory dell'app `wwwroot` , ad esempio immagini, fogli di stile e file JavaScript, inclusi gli asset Web statici forniti da progetti esterni e pacchetti NuGet.
 
-È possibile controllare quali di queste risorse vengono recuperate e memorizzate nella cache dal ruolo di lavoro del servizio modificando la logica in `onInstall` in *service-worker.published.js*. Per impostazione predefinita, il ruolo di lavoro del servizio recupera e memorizza nella cache i file corrispondenti a estensioni di file Web tipiche, ad esempio *HTML*, *CSS*, *JS*e *WASM*, oltre ai tipi di file specifici di Blazor webassembly (con estensione*dll*, *PDB*).
+È possibile controllare quali di queste risorse vengono recuperate e memorizzate nella cache dal ruolo di lavoro del servizio modificando la logica in `onInstall` in `service-worker.published.js` . Per impostazione predefinita, il ruolo di lavoro del servizio recupera e memorizza nella cache i file corrispondenti a estensioni di file Web tipiche, ad esempio `.html` ,, `.css` `.js` e `.wasm` , oltre ai tipi di file specifici di Blazor webassembly ( `.dll` , `.pdb` ).
 
-Per includere risorse aggiuntive che non sono presenti nella directory *wwwroot* dell'app, definire voci MSBuild aggiuntive `ItemGroup` , come illustrato nell'esempio seguente:
+Per includere risorse aggiuntive che non sono presenti nella directory dell'app `wwwroot` , definire voci MSBuild aggiuntive `ItemGroup` , come illustrato nell'esempio seguente:
 
 ```xml
 <ItemGroup>
@@ -206,7 +206,7 @@ Per includere risorse aggiuntive che non sono presenti nella directory *wwwroot*
 I `AssetUrl` metadati specificano l'URL relativo di base che il browser deve usare durante il recupero della risorsa nella cache. Questo può essere indipendente dal nome del file di origine originale sul disco.
 
 > [!IMPORTANT]
-> L'aggiunta di un `ServiceWorkerAssetsManifestItem` non comporta la pubblicazione del file nella directory *wwwroot* dell'app. L'output di pubblicazione deve essere controllato separatamente. Il `ServiceWorkerAssetsManifestItem` solo determina la visualizzazione di una voce aggiuntiva nel manifesto delle risorse del ruolo di lavoro del servizio.
+> L'aggiunta di un `ServiceWorkerAssetsManifestItem` non comporta la pubblicazione del file nella directory dell'app `wwwroot` . L'output di pubblicazione deve essere controllato separatamente. Il `ServiceWorkerAssetsManifestItem` solo determina la visualizzazione di una voce aggiuntiva nel manifesto delle risorse del ruolo di lavoro del servizio.
 
 ## <a name="push-notifications"></a>Notifiche push
 
@@ -264,11 +264,11 @@ Come descritto nella sezione [pagine del server di supporto](#support-server-ren
 
 ### <a name="all-service-worker-asset-manifest-contents-are-cached-by-default"></a>Tutti i contenuti del manifesto dell'asset del servizio di lavoro vengono memorizzati nella cache
 
-Come descritto nella sezione [controllare la memorizzazione nella cache degli asset](#control-asset-caching) , il file *service-worker-assets.js* viene generato durante la compilazione ed elenca tutti gli asset che devono essere recuperati e memorizzati nella cache dal ruolo di lavoro del servizio.
+Come descritto nella sezione [controllare la memorizzazione nella cache degli asset](#control-asset-caching) , il file `service-worker-assets.js` viene generato durante la compilazione ed elenca tutti gli asset che devono essere recuperati e memorizzati nella cache dal ruolo di lavoro del servizio.
 
-Poiché per impostazione predefinita questo elenco include tutti gli elementi emessi per *wwwroot*, incluso il contenuto fornito da pacchetti e progetti esterni, è necessario prestare attenzione a non inserire troppi contenuti. Se la directory *wwwroot* contiene milioni di immagini, il ruolo di lavoro del servizio tenterà di recuperarli e memorizzarli nella cache, consumando una larghezza di banda eccessiva e probabilmente non viene completata correttamente.
+Poiché per impostazione predefinita questo elenco include tutto ciò che `wwwroot` è stato emesso, incluso il contenuto fornito da pacchetti e progetti esterni, è necessario prestare attenzione a non inserire troppi contenuti. Se la `wwwroot` directory contiene milioni di immagini, il ruolo di lavoro del servizio tenterà di recuperarli e memorizzarli nella cache, consumando una larghezza di banda eccessiva e probabilmente non viene completata correttamente.
 
-Implementare una logica arbitraria per controllare quale subset del contenuto del manifesto deve essere recuperato e memorizzato nella cache modificando la `onInstall` funzione in *service-worker.published.js*.
+Implementare una logica arbitraria per controllare quale subset del contenuto del manifesto deve essere recuperato e memorizzato nella cache modificando la `onInstall` funzione in `service-worker.published.js` .
 
 ### <a name="interaction-with-authentication"></a>Interazione con l'autenticazione
 
@@ -287,11 +287,11 @@ Per creare un'app PWA offline che interagisce con l'autenticazione:
 * Accodare le operazioni mentre l'app è offline e applicarle quando l'app torna online.
 * Durante la disconnessione, cancellare l'utente archiviato.
 
-L'app di esempio [CarChecker](https://github.com/SteveSandersonMS/CarChecker) illustra gli approcci precedenti. Vedere le parti seguenti dell'app:
+L' [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) app di esempio illustra gli approcci precedenti. Vedere le parti seguenti dell'app:
 
-* `OfflineAccountClaimsPrincipalFactory`(*Client/Data/OfflineAccountClaimsPrincipalFactory. cs*)
-* `LocalVehiclesStore`(*Client/Data/LocalVehiclesStore. cs*)
-* `LoginStatus`componente (*client/Shared/LoginStatus. Razor*)
+* `OfflineAccountClaimsPrincipalFactory` (`Client/Data/OfflineAccountClaimsPrincipalFactory.cs`)
+* `LocalVehiclesStore` (`Client/Data/LocalVehiclesStore.cs`)
+* `LoginStatus`componente ( `Client/Shared/LoginStatus.razor` )
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

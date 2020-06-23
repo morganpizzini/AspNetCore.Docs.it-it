@@ -1,4 +1,4 @@
-Il `App` componente (*app. Razor*) è simile al `App` componente presente nelle app del server Blazer:
+Il `App` componente ( `App.razor` ) è simile al `App` componente presente nelle app del server Blazer:
 
 * Il <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> componente gestisce l'esposizione al <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> resto dell'app.
 * Il <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> componente verifica che l'utente corrente sia autorizzato ad accedere a una pagina specificata o altrimenti esegua il rendering del `RedirectToLogin` componente.

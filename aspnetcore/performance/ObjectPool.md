@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/ObjectPool
-ms.openlocfilehash: f29d15fc1e2d2ad84526598be14638110f08614e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 004ca5724517bf3fbf6512c0b9653793f4e0f702
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774782"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85241004"
 ---
 # <a name="object-reuse-with-objectpool-in-aspnet-core"></a>Riutilizzo di oggetti con ObjectPool in ASP.NET Core
 
@@ -31,7 +31,7 @@ Potrebbe essere necessario utilizzare il pool di oggetti se gli oggetti gestiti 
 - Rappresentare una risorsa limitata.
 - Utilizzato in modo prevedibile e frequente.
 
-Ad esempio, il Framework di ASP.NET Core utilizza il pool di oggetti in alcune posizioni <xref:System.Text.StringBuilder> per riutilizzare le istanze. `StringBuilder`Alloca e gestisce i propri buffer per conservare i dati di tipo carattere. ASP.NET Core usa `StringBuilder` regolarmente per implementare le funzionalità e riutilizzarle offre un vantaggio in merito alle prestazioni.
+Ad esempio, il Framework di ASP.NET Core utilizza il pool di oggetti in alcune posizioni per riutilizzare le <xref:System.Text.StringBuilder> istanze. `StringBuilder`Alloca e gestisce i propri buffer per conservare i dati di tipo carattere. ASP.NET Core usa regolarmente `StringBuilder` per implementare le funzionalità e riutilizzarle offre un vantaggio in merito alle prestazioni.
 
 Il pool di oggetti non migliora sempre le prestazioni:
 
@@ -40,7 +40,7 @@ Il pool di oggetti non migliora sempre le prestazioni:
 
 Usare il pool di oggetti solo dopo aver raccolto i dati sulle prestazioni usando scenari realistici per l'app o la libreria.
 
-**AVVISO: `ObjectPool` non implementa `IDisposable`. Non è consigliabile usarlo con i tipi che richiedono l'eliminazione.**
+**AVVISO: `ObjectPool` non implementa `IDisposable` . Non è consigliabile usarlo con i tipi che richiedono l'eliminazione.**
 
 **Nota: il ObjectPool non impone un limite al numero di oggetti che verrà allocato, quindi viene inserito un limite al numero di oggetti che verrà mantenuto.**
 
@@ -69,10 +69,12 @@ Il codice seguente:
 
 * Aggiunge `ObjectPoolProvider` al contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) .
 * Aggiunge e configura `ObjectPool<StringBuilder>` al contenitore di.
-* Aggiunge `BirthdayMiddleware`.
+* Aggiunge `BirthdayMiddleware` .
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/Startup.cs?name=snippet)]
 
 Il codice seguente implementa`BirthdayMiddleware`
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet)]
+
+[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]

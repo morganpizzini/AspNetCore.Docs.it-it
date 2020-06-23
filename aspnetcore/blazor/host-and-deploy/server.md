@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/server
-ms.openlocfilehash: 891714250bc4e8b0b241e589efb268b8f8e9f0d5
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: c02d005aa5e37bc359e1c104a19c387f1c16fa34
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103814"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243551"
 ---
 # <a name="host-and-deploy-blazor-server"></a>Ospitare e distribuire il Blazor Server
 
@@ -32,7 +32,7 @@ Le [ Blazor app Server](xref:blazor/hosting-models#blazor-server) possono accett
 
 L'uso del [ Blazor modello di hosting del server](xref:blazor/hosting-models#blazor-server) Blazor viene eseguito sul server dall'interno di un'app ASP.NET Core. Gli aggiornamenti dell'interfaccia utente, la gestione degli eventi e le chiamate JavaScript vengono gestiti tramite una [SignalR](xref:signalr/introduction) connessione.
 
-È necessario un server Web in grado di ospitare un'app ASP.NET Core. Visual Studio include il modello di progetto di ** Blazor app Server** ( `blazorserverside` modello quando si usa il comando [DotNet New](/dotnet/core/tools/dotnet-new) ).
+È necessario un server Web in grado di ospitare un'app ASP.NET Core. Visual Studio include il modello di progetto di ** Blazor app Server** ( `blazorserverside` modello quando si usa il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando).
 
 ## <a name="scalability"></a>Scalabilità
 
@@ -76,7 +76,7 @@ Blazorfunziona meglio quando si usano WebSocket come il SignalR trasporto a caus
 
    * Configurazione (usare **uno** degli approcci seguenti):
   
-     * *appsettings.js*:
+     * `appsettings.json`:
 
        ```json
        "Azure:SignalR:ServerStickyMode": "Required"

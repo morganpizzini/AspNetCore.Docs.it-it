@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-https
-ms.openlocfilehash: 74d4a215b81259674fa6c14bdc8f306a3508f71a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 096e679846899fd742fa2a353f1313976c0e11fb
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775128"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240968"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-over-https"></a>Hosting di immagini ASP.NET Core con Docker su HTTPS
 
@@ -40,14 +40,14 @@ Per alcune istruzioni di questo documento è necessario [.NET Core 2,2 SDK](http
 
 Un certificato di un' [autorità di certificazione](https://wikipedia.org/wiki/Certificate_authority) è necessario per l' [hosting di produzione](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) per un dominio. [Let's Encrypt](https://letsencrypt.org/)è un'autorità di certificazione che offre certificati gratuiti.
 
-Questo documento usa [certificati di sviluppo autofirmati](https://en.wikipedia.org/wiki/Self-signed_certificate) per l'hosting di immagini predefinite `localhost`rispetto a. Le istruzioni sono simili all'uso dei certificati di produzione.
+Questo documento usa [certificati di sviluppo autofirmati](https://en.wikipedia.org/wiki/Self-signed_certificate) per l'hosting di immagini predefinite rispetto a `localhost` . Le istruzioni sono simili all'uso dei certificati di produzione.
 
 Per i certificati di produzione:
 
 * Lo `dotnet dev-certs` strumento non è obbligatorio.
 * Non è necessario archiviare i certificati nel percorso utilizzato nelle istruzioni. Qualsiasi località dovrebbe funzionare, anche se non è consigliabile archiviare i certificati nella directory del sito.
 
-Le istruzioni contenute nella sezione seguente comportano i certificati di montaggio nei contenitori con `-v` l'opzione della riga di comando di Docker. È possibile aggiungere certificati alle immagini del contenitore con `COPY` un comando in un *Dockerfile*, ma non è consigliabile. La copia di certificati in un'immagine non è consigliata per i motivi seguenti:
+Le istruzioni contenute nella sezione seguente comportano i certificati di montaggio nei contenitori con l'opzione della riga di comando di Docker `-v` . È possibile aggiungere certificati alle immagini del contenitore con un `COPY` comando in un *Dockerfile*, ma non è consigliabile. La copia di certificati in un'immagine non è consigliata per i motivi seguenti:
 
 * Risulta difficile usare la stessa immagine per i test con certificati per sviluppatori.
 * Risulta difficile utilizzare la stessa immagine per l'hosting con certificati di produzione.
@@ -68,12 +68,14 @@ dotnet dev-certs https --trust
 
 Nei comandi precedenti sostituire `{ password here }` con una password.
 
-Eseguire l'immagine del contenitore con ASP.NET Core configurato per HTTPS:
+Eseguire l'immagine del contenitore con ASP.NET Core configurato per HTTPS in una shell dei comandi:
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
 docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v %USERPROFILE%\.aspnet\https:/https/ mcr.microsoft.com/dotnet/core/samples:aspnetapp
 ```
+
+Quando si usa [PowerShell](/powershell/scripting/overview), sostituire `%USERPROFILE%` con `$env:USERPROFILE` .
 
 La password deve corrispondere alla password utilizzata per il certificato.
 
@@ -108,7 +110,7 @@ dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { passwo
 dotnet dev-certs https --trust
 ```
 
-Nei comandi precedenti sostituire `{ password here }` con una password.
+Nei comandi precedenti sostituire `{ password here }` con una password. Quando si usa [PowerShell](/powershell/scripting/overview), sostituire `%USERPROFILE%` con `$env:USERPROFILE` .
 
 Eseguire l'immagine del contenitore con ASP.NET Core configurato per HTTPS:
 
@@ -117,4 +119,4 @@ docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
 docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=\https\aspnetapp.pfx -v %USERPROFILE%\.aspnet\https:C:\https\ mcr.microsoft.com/dotnet/core/samples:aspnetapp
 ```
 
-La password deve corrispondere alla password utilizzata per il certificato.
+La password deve corrispondere alla password utilizzata per il certificato. Quando si usa [PowerShell](/powershell/scripting/overview), sostituire `%USERPROFILE%` con `$env:USERPROFILE` .

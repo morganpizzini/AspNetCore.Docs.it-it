@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: c901ba0cbcd79bb14cb32a6a56a2595d159f8678
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 1654c0ce40d44ad4cc679c151ef99f155e31b514
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103891"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242498"
 ---
 # <a name="aspnet-core-blazor-data-binding"></a>ASP.NET Core Blazor Data Binding
 
@@ -240,10 +240,10 @@ Uno scenario comune consiste nel concatenare un parametro associato a dati a un 
 
 Un binding concatenato non può essere implementato con [`@bind`](xref:mvc/views/razor#bind) la sintassi nell'elemento della pagina. Il gestore eventi e il valore devono essere specificati separatamente. Un componente padre, tuttavia, può utilizzare [`@bind`](xref:mvc/views/razor#bind) la sintassi con il parametro del componente.
 
-Il `PasswordField` componente seguente (*PasswordField. Razor*):
+Il `PasswordField` componente seguente ( `PasswordField.razor` ):
 
 * Imposta `<input>` il valore di un elemento su una `Password` Proprietà.
-* Espone le modifiche della `Password` proprietà a un componente padre con un [EventCallback](xref:blazor/components/event-handling#eventcallback).
+* Espone le modifiche della `Password` proprietà a un componente padre con un oggetto [`EventCallback`](xref:blazor/components/event-handling#eventcallback) .
 * Usa l' `onclick` evento viene usato per attivare il `ToggleShowPassword` metodo. Per altre informazioni, vedere <xref:blazor/components/event-handling>.
 
 ```razor

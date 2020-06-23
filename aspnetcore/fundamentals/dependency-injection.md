@@ -5,7 +5,7 @@ description: Informazioni su come ASP.NET Core implementa l'inserimento delle di
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2020
+ms.date: 06/21/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: ddb583f69758055500ff63960f469c1cea44c77e
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 34ed08a5b49b56fd37628032ac73fe03a34448e6
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102597"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240854"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserimento delle dipendenze in ASP.NET Core
 
@@ -197,9 +197,13 @@ Scegliere una durata appropriata per ogni servizio registrato. I servizi ASP.NET
 
 I servizi con durata temporanea (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient*>) vengono creati ogni volta che vengono richiesti dal contenitore dei servizi. Questa impostazione di durata è consigliata per i servizi semplici senza stati.
 
+Nelle app che elaborano le richieste, i servizi temporanei vengono eliminati alla fine della richiesta.
+
 ### <a name="scoped"></a>Con ambito
 
 I servizi con durata con ambito (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) vengono creati una volta per ogni richiesta client (connessione).
+
+Nelle app che elaborano le richieste, i servizi con ambito vengono eliminati alla fine della richiesta.
 
 > [!WARNING]
 > Quando si usa un servizio con ambito in un middleware, inserire il servizio nel metodo `Invoke` o `InvokeAsync`. Non inserire tramite il [Costruttore Injection](xref:mvc/controllers/dependency-injection#constructor-injection) perché impone al servizio di comportarsi come un singleton. Per altre informazioni, vedere <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
@@ -207,6 +211,8 @@ I servizi con durata con ambito (<xref:Microsoft.Extensions.DependencyInjection.
 ### <a name="singleton"></a>Singleton
 
 I servizi con durata singleton (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) vengono creati la prima volta che vengono richiesti (o quando si esegue `Startup.ConfigureServices` e viene specificata un'istanza con la registrazione del servizio). Tutte le richieste successive usano la stessa istanza. Se l'app richiede un comportamento singleton, è consigliabile consentire al contenitore del servizio di gestire la durata del servizio. Non implementare lo schema progettuale singleton e fornire codice utente per gestire la durata dell'oggetto nella classe.
+
+Nelle app che elaborano le richieste, i servizi Singleton vengono eliminati quando il <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> viene eliminato alla chiusura dell'app.
 
 > [!WARNING]
 > Può essere pericoloso risolvere un servizio con ambito da un singleton. Ciò potrebbe causare uno stato non corretto per il servizio durante l'elaborazione delle richieste successive.
@@ -774,9 +780,13 @@ Scegliere una durata appropriata per ogni servizio registrato. I servizi ASP.NET
 
 I servizi con durata temporanea (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient*>) vengono creati ogni volta che vengono richiesti dal contenitore dei servizi. Questa impostazione di durata è consigliata per i servizi semplici senza stati.
 
+Nelle app che elaborano le richieste, i servizi temporanei vengono eliminati alla fine della richiesta.
+
 ### <a name="scoped"></a>Con ambito
 
 I servizi con durata con ambito (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) vengono creati una volta per ogni richiesta client (connessione).
+
+Nelle app che elaborano le richieste, i servizi con ambito vengono eliminati alla fine della richiesta.
 
 > [!WARNING]
 > Quando si usa un servizio con ambito in un middleware, inserire il servizio nel metodo `Invoke` o `InvokeAsync`. Non inserire tramite il [Costruttore Injection](xref:mvc/controllers/dependency-injection#constructor-injection) perché impone al servizio di comportarsi come un singleton. Per altre informazioni, vedere <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
@@ -784,6 +794,8 @@ I servizi con durata con ambito (<xref:Microsoft.Extensions.DependencyInjection.
 ### <a name="singleton"></a>Singleton
 
 I servizi con durata singleton (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) vengono creati la prima volta che vengono richiesti (o quando si esegue `Startup.ConfigureServices` e viene specificata un'istanza con la registrazione del servizio). Tutte le richieste successive usano la stessa istanza. Se l'app richiede un comportamento singleton, è consigliabile consentire al contenitore del servizio di gestire la durata del servizio. Non implementare lo schema progettuale singleton e fornire codice utente per gestire la durata dell'oggetto nella classe.
+
+Nelle app che elaborano le richieste, i servizi Singleton vengono eliminati quando il <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> viene eliminato alla chiusura dell'app.
 
 > [!WARNING]
 > Può essere pericoloso risolvere un servizio con ambito da un singleton. Ciò potrebbe causare uno stato non corretto per il servizio durante l'elaborazione delle richieste successive.

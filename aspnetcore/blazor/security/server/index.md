@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: a8604ca6ea60386bb3c54c950205ee695d37c689
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 2bdd2f256f456cbf474181021fafc6830bfd68f4
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103790"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242927"
 ---
 # <a name="secure-aspnet-core-blazor-server-apps"></a>Proteggere le Blazor app Server ASP.NET Core
 
@@ -67,7 +67,7 @@ Usando l' `-o|--output` opzione, il comando usa il valore fornito per il `{APP N
 * Creare una cartella per il progetto.
 * Assegnare un nome al progetto.
 
-Per altre informazioni, vedere il comando [dotnet new](/dotnet/core/tools/dotnet-new) nella guida per .NET Core.
+Per ulteriori informazioni, vedere il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando nella Guida di .NET Core.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
@@ -101,7 +101,7 @@ Usando l' `-o|--output` opzione, il comando usa il valore fornito per il `{APP N
 * Creare una cartella per il progetto.
 * Assegnare un nome al progetto.
 
-Per altre informazioni, vedere il comando [dotnet new](/dotnet/core/tools/dotnet-new) nella guida per .NET Core.
+Per ulteriori informazioni, vedere il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando nella Guida di .NET Core.
 
 ---
 

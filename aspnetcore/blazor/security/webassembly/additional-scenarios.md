@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 2020b422ad48a9c4c52f2670fd3b5054aa4d60c5
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 13007df4ddddd31dd0508e9526775a6d33e0fd97
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103988"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242914"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>BlazorScenari di sicurezza aggiuntivi ASP.NET Core Webassembly
 
@@ -30,8 +30,8 @@ Il <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.Authorizatio
 
 Usare uno degli approcci seguenti per configurare un gestore di messaggi per le richieste in uscita:
 
-* [Classe AuthorizationMessageHandler personalizzata](#custom-authorizationmessagehandler-class) (*scelta consigliata*)
-* [Configurare AuthorizationMessageHandler](#configure-authorizationmessagehandler)
+* [ `AuthorizationMessageHandler` Classe personalizzata](#custom-authorizationmessagehandler-class) (*scelta consigliata*)
+* [Configurare`AuthorizationMessageHandler`](#configure-authorizationmessagehandler)
 
 ### <a name="custom-authorizationmessagehandler-class"></a>Classe AuthorizationMessageHandler personalizzata
 
@@ -54,7 +54,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 }
 ```
 
-In `Program.Main` (*Program.cs*), un oggetto <xref:System.Net.Http.HttpClient> viene configurato con il gestore dei messaggi di autorizzazione personalizzati:
+In `Program.Main` ( `Program.cs` ), un oggetto <xref:System.Net.Http.HttpClient> viene configurato con il gestore dei messaggi di autorizzazione personalizzati:
 
 ```csharp
 builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
@@ -64,7 +64,7 @@ builder.Services.AddHttpClient("ServerAPI",
         .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 ```
 
-L'oggetto configurato <xref:System.Net.Http.HttpClient> viene usato per effettuare richieste autorizzate usando il modello [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) . Se il client viene creato con <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> (pacchetto[Microsoft. Extensions. http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) ), <xref:System.Net.Http.HttpClient> vengono fornite istanze che includono token di accesso quando si effettuano richieste all'API del server:
+L'oggetto configurato <xref:System.Net.Http.HttpClient> viene usato per effettuare richieste autorizzate usando il [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) modello. Se il client viene creato con <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> ( [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/) pacchetto), <xref:System.Net.Http.HttpClient> vengono fornite le istanze di che includono i token di accesso quando si effettuano richieste all'API del server:
 
 ```razor
 @inject IHttpClientFactory ClientFactory
@@ -96,7 +96,7 @@ L'oggetto configurato <xref:System.Net.Http.HttpClient> viene usato per effettua
 
 ### <a name="configure-authorizationmessagehandler"></a>Configurare AuthorizationMessageHandler
 
-Nell'esempio seguente <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> configura un <xref:System.Net.Http.HttpClient> in `Program.Main` (*Program.cs*):
+Nell'esempio seguente <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> configura un <xref:System.Net.Http.HttpClient> in `Program.Main` ( `Program.cs` ):
 
 ```csharp
 using System.Net.Http;
@@ -116,7 +116,7 @@ builder.Services.AddTransient(sp =>
 });
 ```
 
-Per praticità, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> è incluso un è preconfigurato con l'indirizzo di base dell'app come URL autorizzato. I Blazor modelli webassembly abilitati per l'autenticazione usano ora <xref:System.Net.Http.IHttpClientFactory> (pacchetto[Microsoft. Extensions. http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) ) nel progetto API server per configurare un <xref:System.Net.Http.HttpClient> con <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> :
+Per praticità, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> è incluso un è preconfigurato con l'indirizzo di base dell'app come URL autorizzato. I Blazor modelli webassembly abilitati per l'autenticazione usano ora <xref:System.Net.Http.IHttpClientFactory> ( [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/) pacchetto) nel progetto API server per configurare un <xref:System.Net.Http.HttpClient> con <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> :
 
 ```csharp
 using System.Net.Http;
@@ -134,7 +134,7 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
 
 Se il client viene creato con <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> nell'esempio precedente, <xref:System.Net.Http.HttpClient> vengono fornite le istanze di che includono i token di accesso quando si effettuano richieste al progetto server.
 
-L'oggetto configurato <xref:System.Net.Http.HttpClient> viene usato per effettuare richieste autorizzate usando il modello [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) :
+L'oggetto configurato <xref:System.Net.Http.HttpClient> viene usato per effettuare richieste autorizzate usando il [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) modello:
 
 ```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -164,7 +164,7 @@ protected override async Task OnInitializedAsync()
 
 È possibile definire un client tipizzato che gestisce tutti i problemi di acquisizione di token e HTTP all'interno di una singola classe.
 
-*WeatherForecastClient.cs*:
+`WeatherForecastClient.cs`:
 
 ```csharp
 using System.Net.Http;
@@ -203,7 +203,7 @@ public class WeatherForecastClient
 
 Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `using static BlazorSample.Data;` ).
 
-`Program.Main`(*Program.cs*):
+`Program.Main` (`Program.cs`):
 
 ```csharp
 using System.Net.Http;
@@ -216,7 +216,7 @@ builder.Services.AddHttpClient<WeatherForecastClient>(
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 ```
 
-`FetchData`componente (*pages/fetchData. Razor*):
+`FetchData`componente ( `Pages/FetchData.razor` ):
 
 ```razor
 @inject WeatherForecastClient Client
@@ -233,7 +233,7 @@ protected override async Task OnInitializedAsync()
 
 Il gestore può essere configurato ulteriormente con <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> per le richieste HTTP in uscita.
 
-`Program.Main`(*Program.cs*):
+`Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastClient>(client => client.BaseAddress = new Uri("https://www.example.com/base"))
@@ -246,7 +246,7 @@ builder.Services.AddHttpClient<WeatherForecastClient>(client => client.BaseAddre
 
 Se l' Blazor app webassembly USA in genere un valore predefinito sicuro <xref:System.Net.Http.HttpClient> , l'app può anche creare richieste API Web non autenticate o non autorizzate configurando un oggetto denominato <xref:System.Net.Http.HttpClient> :
 
-`Program.Main`(*Program.cs*):
+`Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient", 
@@ -255,7 +255,7 @@ builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient",
 
 La registrazione precedente è aggiunta alla registrazione predefinita protetta esistente <xref:System.Net.Http.HttpClient> .
 
-Un componente crea <xref:System.Net.Http.HttpClient> dal <xref:System.Net.Http.IHttpClientFactory> (pacchetto[Microsoft. Extensions. http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) ) per eseguire richieste non autenticate o non autorizzate:
+Un componente crea <xref:System.Net.Http.HttpClient> dalla <xref:System.Net.Http.IHttpClientFactory> ( [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/) pacchetto) per eseguire richieste non autenticate o non autorizzate:
 
 ```razor
 @inject IHttpClientFactory ClientFactory
@@ -284,7 +284,7 @@ I token di accesso possono essere ottenuti manualmente chiamando `IAccessTokenPr
 
 Nell'esempio seguente sono necessari ulteriori Azure Active Directory (AAD) Microsoft Graph ambito dell'API da parte di un'app per leggere i dati utente e inviare messaggi di posta elettronica. Dopo aver aggiunto le autorizzazioni Microsoft Graph API nel portale di Azure AAD, gli ambiti aggiuntivi sono configurati nell'app client.
 
-`Program.Main`(*Program.cs*):
+`Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -328,7 +328,7 @@ if (tokenResult.TryGetToken(out var token))
 
 ## <a name="httpclient-and-httprequestmessage-with-fetch-api-request-options"></a>HttpClient e HttpRequestMessage con le opzioni di richiesta dell'API fetch
 
-Quando è in esecuzione su webassembly in un' Blazor app webassembly, [HttpClient](xref:fundamentals/http-requests) e <xref:System.Net.Http.HttpRequestMessage> può essere usato per personalizzare le richieste. Ad esempio, è possibile specificare il metodo HTTP e le intestazioni di richiesta. Il componente seguente effettua una `POST` richiesta a un endpoint API to do list nel server e Mostra il corpo della risposta:
+Quando è in esecuzione su webassembly in un' Blazor app webassembly, [`HttpClient`](xref:fundamentals/http-requests) e <xref:System.Net.Http.HttpRequestMessage> può essere usato per personalizzare le richieste. Ad esempio, è possibile specificare il metodo HTTP e le intestazioni di richiesta. Il componente seguente effettua una `POST` richiesta a un endpoint API to do list nel server e Mostra il corpo della risposta:
 
 ```razor
 @page "/todorequest"
@@ -396,10 +396,10 @@ Le opzioni di richiesta di recupero HTTP possono essere configurate con <xref:Sy
 
 | Metodo di estensione | Recupera la proprietà della richiesta |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> | [credentials](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCache%2A> | [cache](https://developer.mozilla.org/docs/Web/API/Request/cache) |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> | [mode](https://developer.mozilla.org/docs/Web/API/Request/mode) |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestIntegrity%2A> | [integrità](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> | [`credentials`](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCache%2A> | [`cache`](https://developer.mozilla.org/docs/Web/API/Request/cache) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> | [`mode`](https://developer.mozilla.org/docs/Web/API/Request/mode) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestIntegrity%2A> | [`integrity`](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
 
 È possibile impostare opzioni aggiuntive usando il metodo di <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestOption%2A> estensione più generico.
  
@@ -430,7 +430,7 @@ app.UseCors(policy =>
     .AllowCredentials());
 ```
 
-Per ulteriori informazioni, vedere <xref:security/cors> e il componente tester richiesta HTTP dell'app di esempio (*Components/HTTPRequestTester. Razor*).
+Per ulteriori informazioni, vedere <xref:security/cors> e il componente tester richieste HTTP dell'app di esempio ( `Components/HTTPRequestTester.razor` ).
 
 ## <a name="handle-token-request-errors"></a>Gestione degli errori di richiesta di token
 
@@ -454,7 +454,7 @@ Quando l'app richiede un token, esistono due possibili risultati:
 
 Quando una richiesta di token ha esito negativo, è necessario decidere se si desidera salvare lo stato corrente prima di eseguire un reindirizzamento. Esistono diversi approcci con livelli di complessità crescenti:
 
-* Archiviare lo stato della pagina corrente nell'archiviazione della sessione. Durante l' [evento del ciclo](xref:blazor/components/lifecycle#component-initialization-methods) di vita OnInitializedAsync ( <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> ), verificare se è possibile ripristinare lo stato prima di continuare.
+* Archiviare lo stato della pagina corrente nell'archiviazione della sessione. Durante l' [ `OnInitializedAsync` evento del ciclo](xref:blazor/components/lifecycle#component-initialization-methods) di vita ( <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> ), verificare se è possibile ripristinare lo stato prima di continuare.
 * Aggiungere un parametro della stringa di query e usarlo come metodo per segnalare all'app che è necessario riattivare lo stato salvato in precedenza.
 * Aggiungere un parametro della stringa di query con un identificatore univoco per archiviare i dati nell'archiviazione della sessione senza rischiare conflitti con altri elementi.
 
@@ -526,7 +526,7 @@ L'esempio seguente illustra come:
 
 Durante un'operazione di autenticazione, esistono casi in cui si vuole salvare lo stato dell'app prima che il browser venga reindirizzato all'indirizzo IP. Questo può avvenire quando si usa un contenitore di stato e si vuole ripristinare lo stato dopo che l'autenticazione ha avuto esito positivo. È possibile usare un oggetto stato di autenticazione personalizzato per mantenere lo stato specifico dell'app o un riferimento a esso e ripristinare lo stato dopo che l'operazione di autenticazione è stata completata correttamente. Nell'esempio seguente viene illustrato l'approccio.
 
-Viene creata una classe contenitore di stato nell'app con proprietà che contengono i valori di stato dell'app. Nell'esempio seguente il contenitore viene usato per gestire il valore del contatore del componente del modello predefinito `Counter` (*pages/Counter. Razor*). I metodi per la serializzazione e la deserializzazione del contenitore sono basati su <xref:System.Text.Json> .
+Viene creata una classe contenitore di stato nell'app con proprietà che contengono i valori di stato dell'app. Nell'esempio seguente il contenitore viene usato per gestire il valore del contatore del componente del modello predefinito `Counter` ( `Pages/Counter.razor` ). I metodi per la serializzazione e la deserializzazione del contenitore sono basati su <xref:System.Text.Json> .
 
 ```csharp
 using System.Text.Json;
@@ -583,7 +583,7 @@ Il `Counter` componente usa il contenitore di stato per mantenere il `currentCou
 
 Creare un `ApplicationAuthenticationState` da <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationState> . Fornire una `Id` proprietà, che funge da identificatore per lo stato archiviato localmente.
 
-*ApplicationAuthenticationState.cs*:
+`ApplicationAuthenticationState.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -594,7 +594,7 @@ public class ApplicationAuthenticationState : RemoteAuthenticationState
 }
 ```
 
-Il `Authentication` componente (*pages/Authentication. Razor*) Salva e ripristina lo stato dell'app usando l'archiviazione della sessione locale con i `StateContainer` metodi di serializzazione e deserializzazione `GetStateForLocalStorage` e `SetStateFromLocalStorage` :
+Il `Authentication` componente ( `Pages/Authentication.razor` ) Salva e ripristina lo stato dell'app usando l'archiviazione di sessione locale con i `StateContainer` metodi di serializzazione e deserializzazione `GetStateForLocalStorage` e `SetStateFromLocalStorage` :
 
 ```razor
 @page "/authentication/{action}"
@@ -646,7 +646,7 @@ Il `Authentication` componente (*pages/Authentication. Razor*) Salva e ripristin
 }
 ```
 
-Questo esempio USA Azure Active Directory (AAD) per l'autenticazione. In `Program.Main` (*Program.cs*):
+Questo esempio USA Azure Active Directory (AAD) per l'autenticazione. In `Program.Main` ( `Program.cs` ):
 
 * `ApplicationAuthenticationState`Viene configurato come tipo di libreria Microsoft autenticazione (MSAL) `RemoteAuthenticationState` .
 * Il contenitore di stato è registrato nel contenitore dei servizi.
@@ -662,7 +662,7 @@ builder.Services.AddSingleton<StateContainer>();
 
 ## <a name="customize-app-routes"></a>Personalizzare le route delle app
 
-Per impostazione predefinita, la libreria [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) usa le route mostrate nella tabella seguente per la rappresentazione di Stati di autenticazione diversi.
+Per impostazione predefinita, la [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) libreria usa le route mostrate nella tabella seguente per la rappresentazione di Stati di autenticazione diversi.
 
 | Route                            | Scopo |
 | -------------------------------- | ------- |
@@ -680,7 +680,7 @@ Le route visualizzate nella tabella precedente sono configurabili tramite <xref:
 
 Nell'esempio seguente, tutti i percorsi hanno il prefisso `/security` .
 
-`Authentication`componente (*pages/Authentication. Razor*):
+`Authentication`componente ( `Pages/Authentication.razor` ):
 
 ```razor
 @page "/security/{action}"
@@ -694,7 +694,7 @@ Nell'esempio seguente, tutti i percorsi hanno il prefisso `/security` .
 }
 ```
 
-`Program.Main`(*Program.cs*):
+`Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddApiAuthorization(options => { 
@@ -724,7 +724,7 @@ Se si sceglie di eseguire questa operazione, è possibile suddividere l'interfac
 
 <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView>include un set predefinito di elementi dell'interfaccia utente per ogni stato di autenticazione. Ogni stato può essere personalizzato passando un oggetto personalizzato <xref:Microsoft.AspNetCore.Components.RenderFragment> . Per personalizzare il testo visualizzato durante il processo di accesso iniziale, può modificare il <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> come indicato di seguito.
 
-`Authentication`componente (*pages/Authentication. Razor*):
+`Authentication`componente ( `Pages/Authentication.razor` ):
 
 ```razor
 @page "/security/{action}"
@@ -866,7 +866,7 @@ Dopo aver seguito le linee guida in uno degli Blazor argomenti dell'app webassem
 * Esegue il prerendering dei percorsi per i quali non è necessaria l'autorizzazione.
 * Non esegue il prerendering dei percorsi per cui è richiesta l'autorizzazione.
 
-Nella classe dell'app client `Program` (*Program.cs*), fattorizza le registrazioni del servizio comuni in un metodo separato, ad esempio `ConfigureCommonServices` :
+Nella `Program` classe () dell'app client `Program.cs` , fattorizzare le registrazioni del servizio comuni in un metodo separato, ad esempio `ConfigureCommonServices` :
 
 ```csharp
 public class Program
@@ -915,7 +915,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Nel metodo dell'app Server `Startup.Configure` sostituire gli [endpoint. MapFallbackToFile ("index.html")](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) con [endpoint. MapFallbackToPage ("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
+Nel metodo dell'app Server `Startup.Configure` sostituire [`endpoints.MapFallbackToFile("index.html")`](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) con [`endpoints.MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A) :
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -925,7 +925,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-Nell'app Server creare una cartella *pages* se non esiste. Creare una pagina *_Host. cshtml* all'interno della cartella *pagine* dell'app Server. Incollare il contenuto del file *wwwroot/index.html* dell'app client nel file *pages/_Host. cshtml* . Aggiornare il contenuto del file:
+Nell'app Server creare una `Pages` cartella se non esiste. Creare una `_Host.cshtml` pagina all'interno della cartella dell'app Server `Pages` . Incollare il contenuto del file dell'app client `wwwroot/index.html` nel `Pages/_Host.cshtml` file. Aggiornare il contenuto del file:
 
 * Aggiungere `@page "_Host"` all'inizio del file.
 * Sostituire il `<app>Loading...</app>` tag con il codice seguente:
@@ -1001,7 +1001,7 @@ builder.Services.Configure<JwtBearerOptions>(
     });
 ```
 
-In alternativa, l'impostazione può essere eseguita nel file delle impostazioni dell'app (*appsettings.js*):
+In alternativa, l'impostazione può essere eseguita nel file delle impostazioni dell'app ( `appsettings.json` ):
 
 ```json
 {
@@ -1012,6 +1012,6 @@ In alternativa, l'impostazione può essere eseguita nel file delle impostazioni 
 }
 ```
 
-Se l'uso di un segmento nell'autorità non è appropriato per il provider OIDC dell'app, ad esempio con i provider non AAD, impostare <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> direttamente la proprietà. Impostare la proprietà in <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> o nel file di impostazioni dell'app (*appsettings.json*) con la `Authority` chiave.
+Se l'uso di un segmento nell'autorità non è appropriato per il provider OIDC dell'app, ad esempio con i provider non AAD, impostare <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> direttamente la proprietà. Impostare la proprietà in <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> o nel file di impostazioni dell'app ( `appsettings.json` ) con la `Authority` chiave.
 
 L'elenco di attestazioni nel token ID cambia per gli endpoint della versione 2.0. Per ulteriori informazioni, vedere la pagina relativa [all'aggiornamento alla piattaforma di identità Microsoft (v 2.0)](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison).

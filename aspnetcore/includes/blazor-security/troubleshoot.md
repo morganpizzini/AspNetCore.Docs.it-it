@@ -31,7 +31,7 @@ Un approccio che impedisce ai cookie e ai dati del sito di interferire con i tes
 
 ### <a name="run-the-server-app"></a>Eseguire l'app Server
 
-Durante il test e la risoluzione dei problemi di un'app Blazer ospitata, assicurarsi di eseguire l'app dal progetto **Server** . Ad esempio, in Visual Studio verificare che il progetto server sia evidenziato in **Esplora soluzioni** prima di avviare l'app con uno degli approcci seguenti:
+Durante il test e la risoluzione dei problemi di un'app Blazer ospitata, assicurarsi di eseguire l'app dal **`Server`** progetto. Ad esempio, in Visual Studio verificare che il progetto server sia evidenziato in **Esplora soluzioni** prima di avviare l'app con uno degli approcci seguenti:
 
 * Selezionare il pulsante **Run** (Esegui).
 * Usare **debug**  >  **Avvia debug** dal menu.

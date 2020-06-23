@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 193dc656c2ee0154f0ae534bc00f8dc29bab3258
-ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
+ms.openlocfilehash: 75db5d5e69cb200ebf3bd1dc1e0afed0300214cc
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/16/2020
-ms.locfileid: "84239214"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242771"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>Debug ASP.NET Core Blazor Webassembly
 
@@ -51,13 +51,13 @@ Il debug richiede uno dei seguenti browser:
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Abilitare il debug per Visual Studio e Visual Studio Code
 
-Per abilitare il debug per un' Blazor app webassembly esistente, aggiornare il *launchSettings.js* nel file nel progetto di avvio per includere la `inspectUri` proprietà seguente in ogni profilo di avvio:
+Per abilitare il debug per un' Blazor app webassembly esistente, aggiornare il `launchSettings.json` file nel progetto di avvio per includere la `inspectUri` proprietà seguente in ogni profilo di avvio:
 
 ```json
 "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
 ```
 
-Una volta aggiornato, il *launchSettings.jsnel* file dovrebbe essere simile all'esempio seguente:
+Al termine dell'aggiornamento, il `launchSettings.json` file dovrebbe essere simile all'esempio seguente:
 
 [!code-json[](debug/launchSettings.json?highlight=14,22)]
 
@@ -74,8 +74,8 @@ Per eseguire il debug di un' Blazor app webassembly in Visual Studio:
 
 1. Creare una nuova app ASP.NET Core Blazor webassembly ospitata.
 1. Premere <kbd>F5</kbd> per eseguire l'app nel debugger.
-1. Impostare un punto di interruzione in *Counter. Razor* nel `IncrementCount` metodo.
-1. Passare alla scheda **contatore** e selezionare il pulsante per raggiungere il punto di interruzione:
+1. Impostare un punto di interruzione in `Pages/Counter.razor` nel `IncrementCount` metodo.
+1. Passare alla **`Counter`** scheda e selezionare il pulsante per raggiungere il punto di interruzione:
 
    ![Contatore debug](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-counter.png)
 
@@ -87,9 +87,9 @@ Per eseguire il debug di un' Blazor app webassembly in Visual Studio:
 
 Quando si esegue il debug dell' Blazor app webassembly, è anche possibile eseguire il debug del codice del server:
 
-1. Impostare un punto di interruzione nella pagina *fetchData. Razor* in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> .
+1. Impostare un punto di interruzione nella `Pages/FetchData.razor` pagina in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> .
 1. Impostare un punto di interruzione in `WeatherForecastController` nel `Get` metodo di azione.
-1. Passare alla scheda **Recupera dati** per raggiungere il primo punto di interruzione nel `FetchData` componente appena prima di eseguire una richiesta HTTP al server:
+1. Passare alla **`Fetch Data`** scheda per raggiungere il primo punto di interruzione nel `FetchData` componente immediatamente prima di eseguire una richiesta HTTP al server:
 
    ![Eseguire il debug dei dati di recupero](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-fetch-data.png)
 
@@ -145,11 +145,11 @@ Installare l' [estensione C#](https://marketplace.visualstudio.com/items?itemNam
 
 1. Nella finestra di selezione selezionare il progetto *Server* all'interno della soluzione ospitata.
 
-Viene generata un' *launch.jsnel* file con la configurazione di avvio per l'avvio del debugger.
+`launch.json`Viene generato un file con la configurazione di avvio per l'avvio del debugger.
 
 ### <a name="attach-to-an-existing-debugging-session"></a>Connetti a una sessione di debug esistente
 
-Per connettersi a un'app in esecuzione Blazor , creare un *launch.jsnel* file con la seguente configurazione:
+Per connettersi a un'app in esecuzione Blazor , creare un `launch.json` file con la configurazione seguente:
 
 ```json
 {
@@ -222,7 +222,7 @@ Per il tipo di debug sono supportate le seguenti opzioni di configurazione di av
 
 1. Il browser deve essere eseguito con il debug remoto abilitato. Se il debug remoto è disabilitato, viene generata una pagina di errore della **scheda del browser di cui è possibile eseguire il debug** . La pagina di errore contiene le istruzioni per eseguire il browser con la porta di debug aperta, in modo che il Blazor proxy di debug possa connettersi all'app. *Chiudere tutte le istanze del browser* e riavviare il browser come indicato.
 
-Quando il browser è in esecuzione con il debug remoto abilitato, il tasto di scelta rapida di debug apre una nuova scheda del debugger. Dopo qualche istante la scheda **Sources (origini** ) Mostra un elenco degli assembly .NET nell'app. Espandere ogni assembly e trovare i file di origine *. cs* / *. Razor* disponibili per il debug. Impostare i punti di interruzione, tornare alla scheda dell'app e i punti di interruzione vengono raggiunti quando viene eseguito il codice. Quando viene raggiunto un punto di interruzione, l'esecuzione<kbd>F10</kbd>del codice in un singolo passaggio (F10<kbd>) viene</kbd>eseguito normalmente.
+Quando il browser è in esecuzione con il debug remoto abilitato, il tasto di scelta rapida di debug apre una nuova scheda del debugger. Dopo qualche istante la scheda **Sources (origini** ) Mostra un elenco degli assembly .NET nell'app. Espandere ogni assembly e trovare i `.cs` / `.razor` file di origine disponibili per il debug. Impostare i punti di interruzione, tornare alla scheda dell'app e i punti di interruzione vengono raggiunti quando viene eseguito il codice. Quando viene raggiunto un punto di interruzione, l'esecuzione<kbd>F10</kbd>del codice in un singolo passaggio (F10<kbd>) viene</kbd>eseguito normalmente.
 
 Blazorfornisce un proxy di debug che implementa il [protocollo devtools di Chrome](https://chromedevtools.github.io/devtools-protocol/) e potenzia il protocollo con. Informazioni specifiche del NET. Quando si preme il tasto di scelta rapida Blazor per il debug, punta il devtools di Chrome sul proxy. Il proxy si connette alla finestra del browser che si sta tentando di eseguire il debug, quindi è necessario abilitare il debug remoto.
 

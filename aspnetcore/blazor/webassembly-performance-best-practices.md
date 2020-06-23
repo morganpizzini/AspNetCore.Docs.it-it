@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: c5169231eec67a43830f761bff7585deff774613
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 2b6d4e706856cb28f26c2502feca4f959ca4abac
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103932"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243031"
 ---
 # <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>BlazorProcedure consigliate per le prestazioni di ASP.NET Core Webassembly
 
@@ -76,10 +76,10 @@ Per altre informazioni, vedere <xref:blazor/components/lifecycle#after-component
 
 I componenti offrono un approccio pratico per produrre frammenti riutilizzabili di codice e markup. In generale, si consiglia di creare singoli componenti che meglio si allineano ai requisiti dell'app. Un avvertimento è che ogni componente figlio aggiuntivo contribuisce al tempo totale necessario per eseguire il rendering di un componente padre. Per la maggior parte delle app, l'overhead aggiuntivo è trascurabile. Le app che producono un numero elevato di componenti devono considerare l'uso di strategie per ridurre l'overhead di elaborazione, ad esempio limitando il numero di componenti sottoposti a rendering.
 
-Ad esempio, una griglia o un elenco che esegue il rendering di centinaia di righe contenenti componenti comporta un utilizzo intensivo del processore per il rendering. Si consiglia di virtualizzare un layout di griglia o elenco in modo da eseguire il rendering solo di un subset dei componenti in un determinato momento. Per un esempio di rendering del subset di componenti, vedere i componenti seguenti nell' [app di esempio di virtualizzazione (archivio di GitHub ASPNET/Samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
+Ad esempio, una griglia o un elenco che esegue il rendering di centinaia di righe contenenti componenti comporta un utilizzo intensivo del processore per il rendering. Si consiglia di virtualizzare un layout di griglia o elenco in modo da eseguire il rendering solo di un subset dei componenti in un determinato momento. Per un esempio di rendering del subset di componenti, vedere i componenti seguenti nell' [ `Virtualization` app di esempio (archivio GitHub ASPNET/Samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
 
-* `Virtualize`Component ([Shared/virtualizzate. Razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)): componente scritto in C# che implementa <xref:Microsoft.AspNetCore.Components.ComponentBase> per eseguire il rendering di un set di righe di dati meteo in base allo scorrimento dell'utente.
-* `FetchData`Component ([pages/fetchData. Razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)): usa il `Virtualize` componente per visualizzare 25 righe di dati meteorologici alla volta.
+* `Virtualize`Component ( [`Shared/Virtualize.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs) ): componente scritto in C# che implementa <xref:Microsoft.AspNetCore.Components.ComponentBase> per eseguire il rendering di un set di righe di dati meteo in base allo scorrimento dell'utente.
+* `FetchData`Component ( [`Pages/FetchData.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor) ): usa il `Virtualize` componente per visualizzare 25 righe di dati meteorologici alla volta.
 
 ## <a name="avoid-javascript-interop-to-marshal-data"></a>Evitare l'interoperabilità JavaScript per il marshalling dei dati
 
@@ -89,7 +89,7 @@ In Blazor webassembly una chiamata di interoperabilità JavaScript (js) deve att
 
 Blazorl'implementazione dell'interoperabilità JS di è basata su <xref:System.Text.Json> , ovvero una libreria di serializzazione JSON a prestazioni elevate con allocazione di memoria insufficiente. L'uso <xref:System.Text.Json> di non comporta dimensioni aggiuntive del payload dell'app rispetto all'aggiunta di una o più librerie JSON alternative.
 
-Per informazioni aggiuntive sulla migrazione, vedere [How to migrate from Newtonsoft.Json to System.Text.Json](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
+Per informazioni aggiuntive sulla migrazione, vedere [come eseguire la migrazione da `Newtonsoft.Json` a `System.Text.Json` ](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
 ## <a name="use-synchronous-and-unmarshalled-js-interop-apis-where-appropriate"></a>Usare API di interoperabilità JS sincrone e non Marshall laddove appropriato
 
@@ -138,7 +138,7 @@ BlazorWebassembly offre due versioni aggiuntive di <xref:Microsoft.JSInterop.IJS
 
 ### <a name="intermediate-language-il-linking"></a>Collegamento del linguaggio intermedio (IL)
 
-[Collegamento di un Blazor L'app webassembly](xref:blazor/host-and-deploy/configure-linker) riduce le dimensioni dell'app eliminando il codice inutilizzato nei file binari dell'app. Per impostazione predefinita, il linker viene abilitato solo quando si compila nella `Release` configurazione. Per trarre vantaggio da questo problema, pubblicare l'app per la distribuzione usando il comando [DotNet Publish](/dotnet/core/tools/dotnet-publish) con l'opzione [-c |--Configuration](/dotnet/core/tools/dotnet-publish#options) impostata su `Release` :
+[Collegamento di un Blazor L'app webassembly](xref:blazor/host-and-deploy/configure-linker) riduce le dimensioni dell'app eliminando il codice inutilizzato nei file binari dell'app. Per impostazione predefinita, il linker viene abilitato solo quando si compila nella `Release` configurazione. Per trarre vantaggio da questo problema, pubblicare l'app per la distribuzione usando il [`dotnet publish`](/dotnet/core/tools/dotnet-publish) comando con l'opzione [-c |--Configuration](/dotnet/core/tools/dotnet-publish#options) impostata su `Release` :
 
 ```dotnetcli
 dotnet publish -c Release

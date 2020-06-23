@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 0fdc88e8e50856fcc4da0beb74f03925ae24401e
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 8251658a2bb99ec17424ec26b8a44171082fab05
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103971"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243474"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Proteggere un' Blazor app ospitata ASP.NET Core webassembly con Identity Server
 
@@ -118,21 +118,21 @@ Il <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.Add
 
 ### <a name="weatherforecastcontroller"></a>WeatherForecastController
 
-In `WeatherForecastController` (*Controllers/WeatherForecastController. cs*) l' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo viene applicato alla classe. L'attributo indica che l'utente deve essere autorizzato in base ai criteri predefiniti per accedere alla risorsa. I criteri di autorizzazione predefiniti sono configurati per l'utilizzo dello schema di autenticazione predefinito, impostato da <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> . Il metodo helper viene configurato <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> come gestore predefinito per le richieste all'app.
+In `WeatherForecastController` ( `Controllers/WeatherForecastController.cs` ), l' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo viene applicato alla classe. L'attributo indica che l'utente deve essere autorizzato in base ai criteri predefiniti per accedere alla risorsa. I criteri di autorizzazione predefiniti sono configurati per l'utilizzo dello schema di autenticazione predefinito, impostato da <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> . Il metodo helper viene configurato <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> come gestore predefinito per le richieste all'app.
 
 ### <a name="applicationdbcontext"></a>ApplicationDbContext
 
-In `ApplicationDbContext` (*Data/ApplicationDbContext. cs*) <xref:Microsoft.EntityFrameworkCore.DbContext> estende <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> per includere lo schema per IdentityServer. L'oggetto <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> è derivato da <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
+In `ApplicationDbContext` ( `Data/ApplicationDbContext.cs` ), <xref:Microsoft.EntityFrameworkCore.DbContext> estende <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> per includere lo schema per IdentityServer. L'oggetto <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> è derivato da <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
 
 Per ottenere il controllo completo dello schema del database, ereditare da una delle Identity <xref:Microsoft.EntityFrameworkCore.DbContext> classi disponibili e configurare il contesto per includere lo Identity schema chiamando `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` nel <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A> metodo.
 
 ### <a name="oidcconfigurationcontroller"></a>OidcConfigurationController
 
-In `OidcConfigurationController` (*Controllers/OidcConfigurationController. cs*), viene eseguito il provisioning dell'endpoint client per gestire i parametri di OIDC.
+In `OidcConfigurationController` ( `Controllers/OidcConfigurationController.cs` ), viene eseguito il provisioning dell'endpoint client per gestire i parametri OIDC.
 
 ### <a name="app-settings-files"></a>File di impostazioni dell'app
 
-Nel file di impostazioni dell'app (*appsettings.json*) nella radice del progetto, la `IdentityServer` sezione descrive l'elenco dei client configurati. Nell'esempio seguente è presente un singolo client. Il nome del client corrisponde al nome dell'app e viene mappato per convenzione al `ClientId` parametro OAuth. Il profilo indica il tipo di app da configurare. Il profilo viene utilizzato internamente per guidare le convenzioni che semplificano il processo di configurazione per il server. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
+Nel file di impostazioni dell'app ( `appsettings.json` ) nella radice del progetto, la `IdentityServer` sezione descrive l'elenco dei client configurati. Nell'esempio seguente è presente un singolo client. Il nome del client corrisponde al nome dell'app e viene mappato per convenzione al `ClientId` parametro OAuth. Il profilo indica il tipo di app da configurare. Il profilo viene utilizzato internamente per guidare le convenzioni che semplificano il processo di configurazione per il server. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
 ```json
 "IdentityServer": {
@@ -150,7 +150,7 @@ Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `B
 
 ### <a name="authentication-package"></a>Pacchetto di autenticazione
 
-Quando viene creata un'app per l'uso di singoli account utente ( `Individual` ), l'app riceve automaticamente un riferimento al pacchetto per il pacchetto [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) nel file di progetto dell'app. Il pacchetto fornisce un set di primitive che consentono all'app di autenticare gli utenti e ottenere i token per chiamare le API protette.
+Quando viene creata un'app per l'uso di singoli account utente ( `Individual` ), l'app riceve automaticamente un riferimento al pacchetto [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) nel file di progetto dell'app. Il pacchetto fornisce un set di primitive che consentono all'app di autenticare gli utenti e ottenere i token per chiamare le API protette.
 
 Se si aggiunge l'autenticazione a un'app, aggiungere manualmente il pacchetto al file di progetto dell'app:
 
@@ -162,7 +162,7 @@ Se si aggiunge l'autenticazione a un'app, aggiungere manualmente il pacchetto al
 
 ### <a name="api-authorization-support"></a>Supporto dell'autorizzazione API
 
-Il supporto per l'autenticazione degli utenti è collegato al contenitore del servizio mediante il metodo di estensione fornito nel pacchetto [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) . Questo metodo configura i servizi richiesti dall'app per interagire con il sistema di autorizzazione esistente.
+Il supporto per l'autenticazione degli utenti è collegato al contenitore del servizio mediante il metodo di estensione fornito nel [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) pacchetto. Questo metodo configura i servizi richiesti dall'app per interagire con il sistema di autorizzazione esistente.
 
 ```csharp
 builder.Services.AddApiAuthorization();
@@ -188,7 +188,7 @@ Per impostazione predefinita, la configurazione per l'app viene caricata per con
 
 ### <a name="logindisplay-component"></a>Componente LoginDisplay
 
-Il `LoginDisplay` componente (*Shared/LoginDisplay. Razor*) viene sottoposto a rendering nel `MainLayout` componente (*Shared/MainLayout. Razor*) e gestisce i comportamenti seguenti:
+Il `LoginDisplay` componente ( `Shared/LoginDisplay.razor` ) viene sottoposto a rendering nel `MainLayout` componente ( `Shared/MainLayout.razor` ) e gestisce i comportamenti seguenti:
 
 * Per utenti autenticati:
   * Visualizza il nome utente corrente.
@@ -247,7 +247,7 @@ Eseguire l'app dal progetto server. Quando si usa Visual Studio, eseguire una de
 
 Nell'app client creare una factory utente personalizzata. IdentityIl server invia più ruoli come matrice JSON in un'unica `role` attestazione. Un singolo ruolo viene inviato come valore stringa nell'attestazione. La factory crea una singola `role` attestazione per ogni ruolo dell'utente.
 
-*CustomUserFactory.cs*:
+`CustomUserFactory.cs`:
 
 ```csharp
 using System.Linq;
@@ -307,7 +307,7 @@ public class CustomUserFactory
 }
 ```
 
-Nell'app client registrare la factory in `Program.Main` (*Program.cs*):
+Nell'app client registrare la factory in `Program.Main` ( `Program.cs` ):
 
 ```csharp
 builder.Services.AddApiAuthorization()
@@ -362,7 +362,7 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 
 Nell'app Server creare un' `ProfileService` implementazione.
 
-*ProfileService.cs*:
+`ProfileService.cs`:
 
 ```csharp
 using IdentityModel;
@@ -408,7 +408,7 @@ services.AddTransient<IProfileService, ProfileService>();
 
 Nell'app client gli approcci di autorizzazione componenti sono funzionali a questo punto. Qualsiasi meccanismo di autorizzazione nei componenti può utilizzare un ruolo per autorizzare l'utente:
 
-* [Componente AuthorizeView](xref:blazor/security/index#authorizeview-component) (esempio: `<AuthorizeView Roles="admin">` )
+* [ `AuthorizeView` Component](xref:blazor/security/index#authorizeview-component) (esempio: `<AuthorizeView Roles="admin">` )
 * [ `[Authorize]` direttiva attribute](xref:blazor/security/index#authorize-attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ) (esempio: `@attribute [Authorize(Roles = "admin")]` )
 * [Logica procedurale](xref:blazor/security/index#procedural-logic) (esempio: `if (user.IsInRole("admin")) { ... }` )
 

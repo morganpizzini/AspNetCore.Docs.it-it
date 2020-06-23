@@ -13,16 +13,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/cascading-values-and-parameters
-ms.openlocfilehash: 70f379b3b0e48dbb340f319f3346bbbf44588740
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 43fbaa6284fa45dee46a693ed858ed06130600b6
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103904"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242381"
 ---
 # <a name="aspnet-core-blazor-cascading-values-and-parameters"></a>BlazorParametri e valori di propagazione ASP.NET Core
 
-## <a name="cascading-values-and-parameters"></a>Parametri e valori di propagazione
+## <a name="cascading-values-and-parameters"></a>Valori e parametri a cascata
 
 In alcuni scenari, non è pratico eseguire il flusso dei dati da un componente predecessore a un componente discendente usando i [parametri del componente](xref:blazor/components/index#component-parameters), soprattutto quando sono presenti diversi livelli di componenti. I valori e i parametri di propagazione consentono di risolvere questo problema fornendo un modo pratico per un componente predecessore per fornire un valore a tutti i relativi componenti discendenti. I parametri e i valori di propagazione forniscono anche un approccio per la coordinazione dei componenti.
 
@@ -30,7 +30,7 @@ In alcuni scenari, non è pratico eseguire il flusso dei dati da un componente p
 
 Nell'esempio seguente dall'app di esempio, la `ThemeInfo` classe specifica le informazioni sul tema per scorrere la gerarchia dei componenti in modo che tutti i pulsanti all'interno di una determinata parte dell'app condividono lo stesso stile.
 
-*UIThemeClasses/themeinfo. cs*:
+`UIThemeClasses/ThemeInfo.cs`:
 
 ```csharp
 public class ThemeInfo
@@ -144,7 +144,7 @@ In un componente discendente i parametri a cascata ricevono i rispettivi valori 
 
 ### <a name="tabset-example"></a>Esempio di tabulazione
 
-I parametri di propagazione consentono inoltre ai componenti di collaborare attraverso la gerarchia dei componenti. Si consideri, ad esempio, l'esempio di *tabulazione* seguente nell'app di esempio.
+I parametri di propagazione consentono inoltre ai componenti di collaborare attraverso la gerarchia dei componenti. Si consideri, ad esempio, l' `TabSet` esempio seguente nell'app di esempio.
 
 L'app di esempio ha un' `ITab` interfaccia implementata dalle schede:
 

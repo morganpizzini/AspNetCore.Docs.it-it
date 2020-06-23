@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: 086629f88ad04faed812bd16683e7d073f3e8ede
-ms.sourcegitcommit: 77729ba225d5143c0e3954db005906f4a5c7da95
+ms.openlocfilehash: 694be6317aaac211f5099dfca749ff8a69d146d1
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/20/2020
-ms.locfileid: "85122074"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243512"
 ---
 # <a name="introduction-to-aspnet-core-blazor"></a>Introduzione a ASP.NET CoreBlazor
 
@@ -53,9 +53,9 @@ I componenti sono classi .NET compilati in assembly .NET che:
 * Possono essere annidati e riutilizzati.
 * Può essere condiviso e distribuito come [ Razor librerie di classi](xref:razor-pages/ui-class) o [pacchetti NuGet](/nuget/what-is-nuget).
 
-La classe Component viene in genere scritta sotto forma di [Razor](xref:mvc/views/razor) pagina di markup con estensione *Razor* . I componenti di Blazor sono definiti formalmente come * Razor componenti*di. Razorè una sintassi per combinare il markup HTML con il codice C# progettato per la produttività degli sviluppatori. Razorconsente di passare dal markup HTML al linguaggio C# e viceversa nello stesso file con supporto [IntelliSense](/visualstudio/ide/using-intellisense) . RazorAnche le pagine e MVC usano Razor . Diversamente dalle Razor pagine e da MVC, che sono basate su un modello di richiesta/risposta, i componenti vengono usati in modo specifico per la composizione e la logica dell'interfaccia utente lato client.
+La classe Component viene in genere scritta sotto forma di [Razor](xref:mvc/views/razor) pagina di markup con `.razor` estensione di file. I componenti di Blazor sono definiti formalmente come * Razor componenti*di. Razorè una sintassi per combinare il markup HTML con il codice C# progettato per la produttività degli sviluppatori. Razorconsente di passare dal markup HTML al linguaggio C# e viceversa nello stesso file con supporto [IntelliSense](/visualstudio/ide/using-intellisense) . RazorAnche le pagine e MVC usano Razor . Diversamente dalle Razor pagine e da MVC, che sono basate su un modello di richiesta/risposta, i componenti vengono usati in modo specifico per la composizione e la logica dell'interfaccia utente lato client.
 
-Il Razor markup seguente illustra un componente (*Dialog. Razor*), che può essere annidato all'interno di un altro componente:
+Il Razor markup seguente illustra un componente ( `Dialog.razor` ) che può essere annidato all'interno di un altro componente:
 
 ```razor
 <div>
@@ -86,7 +86,7 @@ BlazorUsa tag HTML naturali per la composizione dell'interfaccia utente. Gli ele
 
 Nell'esempio seguente il componente `Index` usa il componente `Dialog`. `ChildContent` e `Title` vengono impostati dagli attributi e dal contenuto dell'elemento `<Dialog>`.
 
-*Index.razor*:
+`Pages/Index.razor`:
 
 ```razor
 @page "/"
@@ -100,7 +100,7 @@ Welcome to your new app.
 </Dialog>
 ```
 
-Il rendering della finestra di dialogo viene eseguito quando viene effettuato l'accesso all'elemento padre (*Index.razor*) in un browser:
+Il rendering della finestra di dialogo viene eseguito quando si accede all'elemento padre ( `Pages/Index.razor` ) in un browser:
 
 ![Rendering del componente Dialog nel browser](index/_static/dialog.png)
 
@@ -112,7 +112,7 @@ Il rendering dei componenti viene eseguito in una rappresentazione in memoria de
 
 BlazorWebassembly è un Framework di app a singola pagina per la creazione di app Web interattive sul lato client con .NET. BlazorWebassembly usa gli standard Web aperti senza plug-in o transpilazione di codice e funziona in tutti i Web browser moderni, inclusi i browser per dispositivi mobili.
 
-L'esecuzione di codice .NET all'interno di Web browser è resa possibile da [WebAssembly](https://webassembly.org) (tecnologia nota anche con l'abbreviazione *wasm*). WebAssembly è un formato bytecode compatto ottimizzato per il download veloce e la velocità massima di esecuzione. WebAssembly è un standard Web aperto ed è supportato nei Web browser senza plug-in.
+Il codice .NET in esecuzione all'interno di Web browser è reso possibile dal [webassembly](https://webassembly.org) (abbreviato `wasm` ). WebAssembly è un formato bytecode compatto ottimizzato per il download veloce e la velocità massima di esecuzione. WebAssembly è un standard Web aperto ed è supportato nei Web browser senza plug-in.
 
 Il codice WebAssembly può accedere a tutte le funzionalità del browser tramite l'*interoperabilità JavaScript* (*JavaScript interop*). Il codice .NET eseguito tramite WebAssembly nel browser viene eseguito nella sandbox JavaScript del browser con le misure di sicurezza offerte dalla sandbox per la protezione da azioni dannose nel computer client.
 

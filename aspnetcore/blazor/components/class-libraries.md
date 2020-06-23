@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: ecc9873d7f652f27767df98196786d12789518c9
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 0c6f1330a5bac8ab37c957c5ed4e81678fe1f27d
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103898"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242511"
 ---
 # <a name="aspnet-core-razor-components-class-libraries"></a>RazorLibrerie di classi dei componenti ASP.NET Core
 
@@ -41,17 +41,17 @@ Per <xref:blazor/get-started> configurare l'ambiente per, seguire le istruzioni 
 1. Creare un nuovo progetto.
 1. Selezionare ** Razor libreria di classi**. Selezionare **Avanti**.
 1. Nella finestra di dialogo **Crea una nuova Razor libreria di classi** Selezionare **Crea**.
-1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `MyComponentLib1` . Selezionare **Create** (Crea).
+1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `MyComponentLib1` . Selezionare **Crea**.
 1. Aggiungere RCL a una soluzione:
    1. Fare clic con il pulsante destro del mouse sulla soluzione. Selezionare **Aggiungi**  >  **progetto esistente**.
    1. Passare al file di progetto di RCL.
-   1. Selezionare il file di progetto di RCL (con*estensione csproj*).
+   1. Selezionare il file di progetto di RCL ( `.csproj` ).
 1. Aggiungere un riferimento a RCL dall'app:
    1. Fare clic con il pulsante destro del mouse sul progetto app. Selezionare **Aggiungi**  >  **riferimento**.
    1. Selezionare il progetto RCL. Selezionare **OK**.
 
 > [!NOTE]
-> Se la casella di controllo **pagine e visualizzazioni di supporto** è selezionata durante la generazione del RCL dal modello, aggiungere anche un file *_Imports. Razor* alla radice del progetto generato con il contenuto seguente per abilitare la Razor creazione dei componenti:
+> Se la casella di controllo **pagine e visualizzazioni di supporto** è selezionata durante la generazione del RCL dal modello, aggiungere anche un `_Imports.razor` file alla radice del progetto generato con il contenuto seguente per abilitare la Razor creazione dei componenti:
 >
 > ```razor
 > @using Microsoft.AspNetCore.Components.Web
@@ -61,14 +61,14 @@ Per <xref:blazor/get-started> configurare l'ambiente per, seguire le istruzioni 
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-1. Usare il modello ** Razor libreria di classi** ( `razorclasslib` ) con il comando [DotNet New](/dotnet/core/tools/dotnet-new) in una shell dei comandi. Nell'esempio seguente viene creato un RCL denominato `MyComponentLib1` . La cartella che include `MyComponentLib1` viene creata automaticamente quando si esegue il comando:
+1. Usare il modello ** Razor libreria di classi** ( `razorclasslib` ) con il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando in una shell dei comandi. Nell'esempio seguente viene creato un RCL denominato `MyComponentLib1` . La cartella che include `MyComponentLib1` viene creata automaticamente quando si esegue il comando:
 
    ```dotnetcli
    dotnet new razorclasslib -o MyComponentLib1
    ```
 
    > [!NOTE]
-   > Se l' `-s|--support-pages-and-views` opzione viene usata quando si genera RCL dal modello, aggiungere anche un file *_Imports. Razor* alla radice del progetto generato con il contenuto seguente per abilitare la creazione dei Razor componenti:
+   > Se l' `-s|--support-pages-and-views` opzione viene utilizzata durante la generazione del RCL dal modello, aggiungere anche un `_Imports.razor` file alla radice del progetto generato con il contenuto seguente per abilitare la Razor creazione dei componenti:
    >
    > ```razor
    > @using Microsoft.AspNetCore.Components.Web
@@ -76,7 +76,7 @@ Per <xref:blazor/get-started> configurare l'ambiente per, seguire le istruzioni 
    >
    > Aggiungere manualmente il file alla radice del progetto generato.
 
-1. Per aggiungere la libreria a un progetto esistente, usare il comando [DotNet Add Reference](/dotnet/core/tools/dotnet-add-reference) in una shell dei comandi. Nell'esempio seguente viene aggiunto RCL all'app. Eseguire il comando seguente dalla cartella del progetto dell'app con il percorso della libreria:
+1. Per aggiungere la libreria a un progetto esistente, usare il [`dotnet add reference`](/dotnet/core/tools/dotnet-add-reference) comando in una shell dei comandi. Nell'esempio seguente viene aggiunto RCL all'app. Eseguire il comando seguente dalla cartella del progetto dell'app con il percorso della libreria:
 
    ```dotnetcli
    dotnet add reference {PATH TO LIBRARY}
@@ -115,7 +115,7 @@ Welcome to your new app.
 <SalesReport />
 ```
 
-Includere la `@using MyComponentLib1` direttiva nel file *_Import. Razor* di primo livello per rendere disponibili i componenti della libreria a un intero progetto. Aggiungere la direttiva a un file *_Import. Razor* a qualsiasi livello per applicare lo spazio dei nomi a una singola pagina o a un set di pagine all'interno di una cartella.
+Includere la `@using MyComponentLib1` direttiva nel file di primo livello `_Import.razor` per rendere disponibili i componenti della libreria a un intero progetto. Aggiungere la direttiva a un `_Import.razor` file a qualsiasi livello per applicare lo spazio dei nomi a una singola pagina o a un set di pagine all'interno di una cartella.
 
 ## <a name="create-a-razor-components-class-library-with-static-assets"></a>Creare una Razor libreria di classi di componenti con asset statici
 
@@ -123,13 +123,13 @@ Un RCL può includere asset statici. Gli asset statici sono disponibili per qual
 
 ## <a name="build-pack-and-ship-to-nuget"></a>Compilare, comprimere e spedire a NuGet
 
-Poiché le librerie dei componenti sono librerie .NET standard, la creazione di pacchetti e la spedizione a NuGet non è diversa dalla creazione di pacchetti e dalla distribuzione di qualsiasi libreria a NuGet. La creazione di pacchetti viene eseguita usando il comando [DotNet Pack](/dotnet/core/tools/dotnet-pack) in una shell dei comandi:
+Poiché le librerie dei componenti sono librerie .NET standard, la creazione di pacchetti e la spedizione a NuGet non è diversa dalla creazione di pacchetti e dalla distribuzione di qualsiasi libreria a NuGet. La creazione di pacchetti viene eseguita usando il [`dotnet pack`](/dotnet/core/tools/dotnet-pack) comando in una shell dei comandi:
 
 ```dotnetcli
 dotnet pack
 ```
 
-Caricare il pacchetto in NuGet usando il comando [DotNet NuGet push](/dotnet/core/tools/dotnet-nuget-push) in una shell dei comandi.
+Caricare il pacchetto in NuGet usando il [`dotnet nuget push`](/dotnet/core/tools/dotnet-nuget-push) comando in una shell dei comandi.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

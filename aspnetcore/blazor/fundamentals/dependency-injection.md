@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/dependency-injection
-ms.openlocfilehash: b4ac0dbc6dabdeff4689544f2e11278b8302c553
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 24cd5ae837eeb4c89a15bab2948dde2eface0c0d
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103855"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242797"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>BlazorInserimento di dipendenze ASP.NET Core
 
@@ -47,7 +47,7 @@ Un provider di servizi personalizzato non fornisce automaticamente i servizi pre
 
 ### <a name="blazor-webassembly"></a>BlazorWebassembly
 
-Configurare i servizi per la raccolta di servizi dell'app nel `Main` metodo di *Program.cs*. Nell'esempio seguente l' `MyDependency` implementazione è registrata per `IMyDependency` :
+Configurare i servizi per la raccolta di servizi dell'app nel `Main` metodo di `Program.cs` . Nell'esempio seguente l' `MyDependency` implementazione è registrata per `IMyDependency` :
 
 ```csharp
 public class Program
@@ -84,7 +84,7 @@ public class Program
 }
 ```
 
-L'host fornisce anche un'istanza di configurazione centrale per l'app. Basandosi sull'esempio precedente, l'URL del servizio meteo viene passato da un'origine di configurazione predefinita (ad esempio, *appsettings.js*) a `InitializeWeatherAsync` :
+L'host fornisce anche un'istanza di configurazione centrale per l'app. Basandosi sull'esempio precedente, l'URL del servizio meteo viene passato da un'origine di configurazione predefinita (ad esempio, `appsettings.json` ) a `InitializeWeatherAsync` :
 
 ```csharp
 public class Program
@@ -193,7 +193,7 @@ public class DataAccess : IDataAccess
 Prerequisiti per l'inserimento del costruttore:
 
 * È necessario che esista un costruttore i cui argomenti possono essere tutti soddisfatti da DI. Sono consentiti parametri aggiuntivi non analizzati da DI se specificano i valori predefiniti.
-* Il costruttore applicabile deve essere *pubblico*.
+* Il costruttore applicabile deve essere `public` .
 * È necessario che esista un costruttore applicabile. In caso di ambiguità, viene generata un'eccezione.
 
 ## <a name="utility-base-component-classes-to-manage-a-di-scope"></a>Classi di componenti di base dell'utilità per gestire un ambito DI
@@ -346,5 +346,5 @@ Se un singolo componente può usare <xref:Microsoft.EntityFrameworkCore.DbContex
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:fundamentals/dependency-injection>
-* [Linee guida IDisposable per istanze temporanee e condivise](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
+* [`IDisposable`linee guida per le istanze temporanee e condivise](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>

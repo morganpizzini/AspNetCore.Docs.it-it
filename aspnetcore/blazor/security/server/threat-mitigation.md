@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: 073a2a85369a100352a163693c5cba907203059e
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: a94dcd818c3f4e19ace57fad6390a84e704192bd
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103796"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242966"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Linee guida per la mitigazione delle minacce per ASP.NET Core Blazor Server
 
@@ -134,7 +134,7 @@ Per le chiamate da metodi .NET a JavaScript:
 
 Adottare le seguenti precauzioni per evitare gli scenari precedenti:
 
-* Eseguire il wrapping delle chiamate di interoperabilità JS all'interno delle istruzioni [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) per tenere conto degli errori che potrebbero verificarsi durante la chiamata. Per altre informazioni, vedere <xref:blazor/fundamentals/handle-errors#javascript-interop>.
+* Eseguire il wrapping delle chiamate di interoperabilità JS all'interno [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) delle istruzioni per tenere conto degli errori che potrebbero verificarsi durante la chiamata. Per altre informazioni, vedere <xref:blazor/fundamentals/handle-errors#javascript-interop>.
 * Convalidare i dati restituiti dalle chiamate di interoperabilità JS, inclusi i messaggi di errore, prima di intraprendere qualsiasi azione.
 
 ### <a name="net-methods-invoked-from-the-browser"></a>Metodi .NET richiamati dal browser
@@ -302,7 +302,7 @@ L'errore sul lato client non include il stack e non fornisce dettagli sulla ragi
 Abilitare errori dettagliati in JavaScript con:
 
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType>.
-* `DetailedErrors`Chiave di configurazione impostata su `true` , che può essere impostata nel file di impostazioni dell'app (*appsettings.json*). La chiave può essere impostata anche usando la `ASPNETCORE_DETAILEDERRORS` variabile di ambiente con un valore `true` .
+* `DetailedErrors`Chiave di configurazione impostata su `true` , che può essere impostata nel file di impostazioni dell'app ( `appsettings.json` ). La chiave può essere impostata anche usando la `ASPNETCORE_DETAILEDERRORS` variabile di ambiente con un valore `true` .
 
 > [!WARNING]
 > L'esposizione delle informazioni sugli errori ai client su Internet costituisce un rischio per la sicurezza che deve essere sempre evitata.
@@ -348,7 +348,7 @@ Oltre alle misure di sicurezza implementate dal Framework, l'app deve essere cod
 * Non considerare attendibile l'input sulle chiamate di interoperabilità JS in entrambe le direzioni tra i metodi JavaScript e .NET.
 * L'app è responsabile della convalida della validità del contenuto di argomenti e risultati, anche se gli argomenti o i risultati vengono deserializzati correttamente.
 
-Per poter esistere una vulnerabilità XSS, l'app deve incorporare l'input dell'utente nella pagina di cui è stato eseguito il rendering. BlazorI componenti server eseguono un passaggio in fase di compilazione, in cui il markup in un file *Razor* viene trasformato in logica C# procedurale. In fase di esecuzione, la logica C# compila un *albero di rendering* che descrive gli elementi, il testo e i componenti figlio. Viene applicato al DOM del browser tramite una sequenza di istruzioni JavaScript (o viene serializzato in HTML in caso di prerendering):
+Per poter esistere una vulnerabilità XSS, l'app deve incorporare l'input dell'utente nella pagina di cui è stato eseguito il rendering. BlazorI componenti server eseguono un passaggio in fase di compilazione, in cui il markup in un `.razor` file viene trasformato in logica C# procedurale. In fase di esecuzione, la logica C# compila un *albero di rendering* che descrive gli elementi, il testo e i componenti figlio. Viene applicato al DOM del browser tramite una sequenza di istruzioni JavaScript (o viene serializzato in HTML in caso di prerendering):
 
 * L'input dell'utente di cui è stato eseguito il rendering tramite Razor la sintassi normale (ad esempio, `@someStringValue` ) non espone una vulnerabilità XSS perché la Razor sintassi viene aggiunta al Dom tramite comandi che possono scrivere solo testo. Anche se il valore include il markup HTML, il valore viene visualizzato come testo statico. Quando si esegue il prerendering, l'output è codificato in formato HTML, che visualizza anche il contenuto come testo statico.
 * I tag di script non sono consentiti e non devono essere inclusi nell'albero di rendering del componente dell'app. Se un tag di script è incluso nel markup di un componente, viene generato un errore in fase di compilazione.

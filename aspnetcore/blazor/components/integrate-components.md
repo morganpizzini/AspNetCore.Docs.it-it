@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
-ms.openlocfilehash: 78d524bc0271fd2640302bb0de78571ab688bef5
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 1c71067528fb34ab141bb1ee846716834204ee40
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103909"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242459"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integrare ASP.NET Core Razor componenti in Razor pagine e app MVC
 
@@ -37,7 +37,7 @@ Dopo aver [preparato l'app](#prepare-the-app), usare le istruzioni riportate nel
 
 Un' Razor app MVC o pagine esistente può integrare i Razor componenti in pagine e visualizzazioni:
 
-1. Nel file di layout dell'app (*_Layout. cshtml*):
+1. Nel file di layout dell'app ( `_Layout.cshtml` ):
 
    * Aggiungere il `<base>` tag seguente all' `<head>` elemento:
 
@@ -47,7 +47,7 @@ Un' Razor app MVC o pagine esistente può integrare i Razor componenti in pagine
 
      Il `href` valore (il *percorso di base dell'app*) nell'esempio precedente presuppone che l'app si trovi nel percorso URL radice ( `/` ). Se l'app è un'applicazione secondaria, seguire le istruzioni nella sezione *percorso di base* dell'applicazione dell' <xref:blazor/host-and-deploy/index#app-base-path> articolo.
 
-     Il file *_Layout. cshtml* si trova nella cartella *pages/Shared* in un' Razor app Pages o in una cartella *condivisa* o in un'app MVC.
+     Il `_Layout.cshtml` file si trova nella cartella *pages/Shared* in un' Razor app Pages o in una cartella *condivisa* o in un'app MVC.
 
    * Aggiungere un `<script>` tag per lo script *blazor.server.js* immediatamente prima del tag di chiusura `</body>` :
 
@@ -57,7 +57,7 @@ Un' Razor app MVC o pagine esistente può integrare i Razor componenti in pagine
 
      Il Framework aggiunge lo script *blazor.server.js* all'app. Non è necessario aggiungere manualmente lo script all'app.
 
-1. Aggiungere un file *_Imports. Razor* alla cartella radice del progetto con il contenuto seguente (modificare l'ultimo spazio dei nomi, `MyAppNamespace` , nello spazio dei nomi dell'app):
+1. Aggiungere un `_Imports.razor` file alla cartella radice del progetto con il contenuto seguente (modificare l'ultimo spazio dei nomi, `MyAppNamespace` , nello spazio dei nomi dell'app):
 
    ```razor
    @using System.Net.Http
@@ -92,7 +92,7 @@ Per supportare componenti instradabili Razor nelle Razor app di pagine:
 
 1. Seguire le istruzioni nella sezione [preparare l'app](#prepare-the-app) .
 
-1. Aggiungere un file *app. Razor* alla radice del progetto con il contenuto seguente:
+1. Aggiungere un `App.razor` file alla radice del progetto con il contenuto seguente:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -108,7 +108,7 @@ Per supportare componenti instradabili Razor nelle Razor app di pagine:
    </Router>
    ```
 
-1. Aggiungere un file *_Host. cshtml* alla cartella *pages* con il contenuto seguente:
+1. Aggiungere un `_Host.cshtml` file alla `Pages` cartella con il contenuto seguente:
 
    ```cshtml
    @page "/blazor"
@@ -121,7 +121,7 @@ Per supportare componenti instradabili Razor nelle Razor app di pagine:
    </app>
    ```
 
-   I componenti usano il file Shared *_Layout. cshtml* per il layout.
+   I componenti utilizzano il `_Layout.cshtml` file condiviso per il layout.
 
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>Configura se il `App` componente:
 
@@ -136,7 +136,7 @@ Per supportare componenti instradabili Razor nelle Razor app di pagine:
 
    Per ulteriori informazioni sull'helper tag dei componenti, vedere <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> .
 
-1. Aggiungere una route con priorità bassa per la pagina *_Host. cshtml* alla configurazione dell'endpoint in `Startup.Configure` :
+1. Aggiungere una route con priorità bassa per la `_Host.cshtml` pagina alla configurazione dell'endpoint in `Startup.Configure` :
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -167,7 +167,7 @@ Per supportare componenti instradabili Razor nelle app MVC:
 
 1. Seguire le istruzioni nella sezione [preparare l'app](#prepare-the-app) .
 
-1. Aggiungere un file *app. Razor* alla radice del progetto con il contenuto seguente:
+1. Aggiungere un `App.razor` file alla radice del progetto con il contenuto seguente:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -183,7 +183,7 @@ Per supportare componenti instradabili Razor nelle app MVC:
    </Router>
    ```
 
-1. Aggiungere un file *_Host. cshtml* alla cartella *views/Home* con il contenuto seguente:
+1. Aggiungere un `_Host.cshtml` file alla `Views/Home` cartella con il contenuto seguente:
 
    ```cshtml
    @{
@@ -195,7 +195,7 @@ Per supportare componenti instradabili Razor nelle app MVC:
    </app>
    ```
 
-   I componenti usano il file Shared *_Layout. cshtml* per il layout.
+   I componenti utilizzano il `_Layout.cshtml` file condiviso per il layout.
    
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>Configura se il `App` componente:
 
@@ -219,7 +219,7 @@ Per supportare componenti instradabili Razor nelle app MVC:
    }
    ```
 
-1. Aggiungere una route con priorità bassa per l'azione del controller che restituisce la vista *_Host. cshtml* alla configurazione dell'endpoint in `Startup.Configure` :
+1. Aggiungere una route con priorità bassa per l'azione del controller che restituisce la `_Host.cshtml` visualizzazione alla configurazione dell'endpoint in `Startup.Configure` :
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -230,7 +230,7 @@ Per supportare componenti instradabili Razor nelle app MVC:
    });
    ```
 
-1. Creare una cartella *pages* e aggiungere componenti instradabili all'app. Ad esempio:
+1. Creare una `Pages` cartella e aggiungere componenti instradabili all'app. Ad esempio:
 
    ```razor
    @page "/counter"
@@ -299,7 +299,7 @@ Per altre informazioni, vedere <xref:mvc/views/tag-helpers/builtin-th/component-
 
 ## <a name="component-namespaces"></a>Spazi dei nomi dei componenti
 
-Quando si usa una cartella personalizzata per archiviare i componenti dell'app, aggiungere lo spazio dei nomi che rappresenta la cartella alla pagina/visualizzazione o al file *_ViewImports. cshtml* . Nell'esempio seguente:
+Quando si usa una cartella personalizzata per conservare i componenti dell'app, aggiungere lo spazio dei nomi che rappresenta la cartella alla pagina/visualizzazione o al `_ViewImports.cshtml` file. Nell'esempio seguente:
 
 * Passare `MyAppNamespace` allo spazio dei nomi dell'app.
 * Se una cartella denominata *Components* non viene utilizzata per conservare i componenti, passare `Components` alla cartella in cui si trovano i componenti.
@@ -308,6 +308,6 @@ Quando si usa una cartella personalizzata per archiviare i componenti dell'app, 
 @using MyAppNamespace.Components
 ```
 
-Il file *_ViewImports. cshtml* si trova nella cartella *pagine* di un' Razor app pagine o nella cartella *views* di un'app MVC.
+Il `_ViewImports.cshtml` file si trova nella `Pages` cartella dell' Razor app pagine o nella `Views` cartella di un'app MVC.
 
 Per altre informazioni, vedere <xref:blazor/components/index#namespaces>.

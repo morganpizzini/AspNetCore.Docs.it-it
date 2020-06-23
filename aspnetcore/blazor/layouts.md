@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: fe35645aafe29838818dcaaf7c2b42ed428ac6cc
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 6103a2e8173ccbb78372e01bd799d1bb47da4fa2
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102254"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243057"
 ---
 # <a name="aspnet-core-blazor-layouts"></a>BlazorLayout ASP.NET Core
 
@@ -33,15 +33,15 @@ Per trasformare un *componente* in un *layout*, il componente:
 * Eredita da <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> , che definisce una <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> proprietà per il contenuto di cui è stato eseguito il rendering all'interno del layout.
 * Usa la Razor sintassi `@Body` per specificare il percorso nel markup di layout in cui viene eseguito il rendering del contenuto.
 
-Nell'esempio di codice seguente viene illustrato il Razor modello di un componente di layout, *MainLayout. Razor*. Il layout eredita <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> e imposta l'oggetto `@Body` tra la barra di spostamento e il piè di pagina:
+Nell'esempio di codice riportato di seguito viene illustrato il Razor modello di un componente di layout `MainLayout.razor` . Il layout eredita <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> e imposta l'oggetto `@Body` tra la barra di spostamento e il piè di pagina:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
 
-In un'app basata su uno dei Blazor modelli di app, il `MainLayout` componente (*MainLayout. Razor*) si trova nella cartella *condivisa* dell'app.
+In un'app basata su uno dei Blazor modelli di app, il `MainLayout` componente ( `MainLayout.razor` ) si trova nella cartella dell'app `Shared` .
 
 ## <a name="default-layout"></a>Layout predefinito
 
-Specificare il layout predefinito dell'app nel <xref:Microsoft.AspNetCore.Components.Routing.Router> componente nel file *app. Razor* dell'app. Il <xref:Microsoft.AspNetCore.Components.Routing.Router> componente seguente, fornito dai Blazor modelli predefiniti, imposta il layout predefinito sul `MainLayout` componente:
+Specificare il layout dell'app predefinito nel <xref:Microsoft.AspNetCore.Components.Routing.Router> componente nel file dell'app `App.razor` . Il <xref:Microsoft.AspNetCore.Components.Routing.Router> componente seguente, fornito dai Blazor modelli predefiniti, imposta il layout predefinito sul `MainLayout` componente:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App1.razor?highlight=3)]
 
@@ -61,13 +61,13 @@ Il contenuto del componente seguente `MasterList` viene inserito nella `MasterLa
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterList.razor?highlight=1)]
 
-La specifica del layout direttamente in un componente sostituisce un set di *layout predefinito* nel router o una `@layout` direttiva importata da *_Imports. Razor*.
+La specifica del layout direttamente in un componente sostituisce un set di *layout predefinito* nel router o una `@layout` direttiva importata da `_Imports.razor` .
 
 ## <a name="centralized-layout-selection"></a>Selezione layout centralizzata
 
-Ogni cartella di un'app può contenere facoltativamente un file modello denominato *_Imports. Razor*. Il compilatore include le direttive specificate nel file Imports in tutti i Razor modelli nella stessa cartella e in modo ricorsivo in tutte le relative sottocartelle. Pertanto, un file *_Imports. Razor* contenente `@layout MyCoolLayout` garantisce che tutti i componenti di una cartella usino `MyCoolLayout` . Non è necessario aggiungere ripetutamente `@layout MyCoolLayout` a tutti i file con *estensione Razor* nella cartella e nelle sottocartelle. `@using`le direttive vengono applicate anche ai componenti nello stesso modo.
+Ogni cartella di un'app può contenere facoltativamente un file modello denominato `_Imports.razor` . Il compilatore include le direttive specificate nel file Imports in tutti i Razor modelli nella stessa cartella e in modo ricorsivo in tutte le relative sottocartelle. Pertanto, un `_Imports.razor` file contenente `@layout MyCoolLayout` garantisce che tutti i componenti di una cartella usino `MyCoolLayout` . Non è necessario aggiungere ripetutamente `@layout MyCoolLayout` a tutti i file nella `.razor` cartella e nelle sottocartelle. `@using`le direttive vengono applicate anche ai componenti nello stesso modo.
 
-Il seguente file di *_Imports. Razor* Imports:
+Le `_Imports.razor` importazioni di file seguenti:
 
 * `MyCoolLayout`.
 * Tutti i Razor componenti nella stessa cartella e in tutte le sottocartelle.
@@ -75,23 +75,23 @@ Il seguente file di *_Imports. Razor* Imports:
  
 [!code-razor[](layouts/sample_snapshot/3.x/_Imports.razor)]
 
-Il file *_Imports. Razor* è simile al [file _ViewImports. cshtml per le Razor visualizzazioni e le pagine,](xref:mvc/views/layout#importing-shared-directives) ma viene applicato in modo specifico ai Razor file del componente.
+Il `_Imports.razor` file è simile al [file _ViewImports. cshtml per le Razor visualizzazioni e le pagine,](xref:mvc/views/layout#importing-shared-directives) ma viene applicato in modo specifico ai Razor file del componente.
 
-Specifica di un layout in *_Imports. Razor* sostituisce un layout specificato come *layout predefinito*del router.
+La specifica di un layout in `_Imports.razor` sostituisce un layout specificato come *layout predefinito*del router.
 
 ## <a name="nested-layouts"></a>Layout annidati
 
 Le app possono essere costituite da layout annidati. Un componente può fare riferimento a un layout che a sua volta fa riferimento a un altro layout. Ad esempio, i layout di annidamento vengono usati per creare una struttura di menu a più livelli.
 
-Nell'esempio seguente viene illustrato come utilizzare layout annidati. Il file *EpisodesComponent. Razor* è il componente da visualizzare. Il componente fa riferimento a `MasterListLayout` :
+Nell'esempio seguente viene illustrato come utilizzare layout annidati. Il `EpisodesComponent.razor` file è il componente da visualizzare. Il componente fa riferimento a `MasterListLayout` :
 
 [!code-razor[](layouts/sample_snapshot/3.x/EpisodesComponent.razor?highlight=1)]
 
-Il file *MasterListLayout. Razor* fornisce `MasterListLayout` . Il layout fa riferimento a un altro layout, `MasterLayout` , in cui viene eseguito il rendering. `EpisodesComponent`viene sottoposto a rendering quando `@Body` viene visualizzato:
+Il `MasterListLayout.razor` file fornisce il `MasterListLayout` . Il layout fa riferimento a un altro layout, `MasterLayout` , in cui viene eseguito il rendering. `EpisodesComponent`viene sottoposto a rendering quando `@Body` viene visualizzato:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterListLayout.razor?highlight=1,9)]
 
-Infine, `MasterLayout` in *MasterLayout. Razor* contiene gli elementi di layout di primo livello, ad esempio l'intestazione, il menu principale e il piè di pagina. `MasterListLayout`con `EpisodesComponent` viene eseguito il rendering di quando viene `@Body` visualizzato:
+Infine, `MasterLayout` in `MasterLayout.razor` contiene gli elementi di layout di primo livello, ad esempio l'intestazione, il menu principale e il piè di pagina. `MasterListLayout`con `EpisodesComponent` viene eseguito il rendering di quando viene `@Body` visualizzato:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
 

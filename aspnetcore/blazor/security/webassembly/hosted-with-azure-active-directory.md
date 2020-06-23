@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 9332eddd3d428e8a25910d387f95b870926d5ae5
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 3a541df51a040291f390559842ecd05ba09cee8c
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85104003"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243629"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory"></a>Proteggere un' Blazor app ospitata ASP.NET Core webassembly con Azure Active Directory
 
@@ -118,11 +118,11 @@ Per specificare il percorso di output, che crea una cartella di progetto, se non
 
 ## <a name="server-app-configuration"></a>Configurazione dell'app Server
 
-*Questa sezione è relativa all'app **Server** della soluzione.*
+*Questa sezione è relativa all'app della soluzione **`Server`** .*
 
 ### <a name="authentication-package"></a>Pacchetto di autenticazione
 
-Il supporto per l'autenticazione e l'autorizzazione delle chiamate a ASP.NET Core API Web viene fornito dal pacchetto [Microsoft. AspNetCore. Authentication. AzureAD. UI](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.AzureAD.UI/) :
+Il pacchetto fornisce il supporto per l'autenticazione e l'autorizzazione delle chiamate a ASP.NET Core API Web [`Microsoft.AspNetCore.Authentication.AzureAD.UI`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.AzureAD.UI/) :
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" 
@@ -152,7 +152,7 @@ app.UseAuthorization();
 
 Per impostazione predefinita, l'API dell'app Server viene popolata `User.Identity.Name` con il valore del `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` tipo di attestazione (ad esempio, `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com` ).
 
-Per configurare l'app per la ricezione del valore dal `name` tipo di attestazione, configurare [TokenValidationParameters. NameClaimType](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) di <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices` :
+Per configurare l'app per la ricezione del valore dal `name` tipo di attestazione, configurare il <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> di <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices` :
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -168,7 +168,7 @@ services.Configure<JwtBearerOptions>(
 
 ### <a name="app-settings"></a>Impostazioni app
 
-Il *appsettings.jsnel* file contiene le opzioni per configurare il gestore di connessione JWT usato per convalidare i token di accesso:
+Il `appsettings.json` file contiene le opzioni per configurare il gestore di connessione JWT usato per convalidare i token di accesso:
 
 ```json
 {
@@ -217,11 +217,11 @@ public class WeatherForecastController : ControllerBase
 
 ## <a name="client-app-configuration"></a>Configurazione dell'app client
 
-*Questa sezione riguarda l'app **client** della soluzione.*
+*Questa sezione è relativa all'app della soluzione **`Client`** .*
 
 ### <a name="authentication-package"></a>Pacchetto di autenticazione
 
-Quando viene creata un'app per usare gli account aziendali o dell'Istituto di istruzione ( `SingleOrg` ), l'app riceve automaticamente un riferimento al pacchetto per [Microsoft Authentication Library](/azure/active-directory/develop/msal-overview) ([Microsoft. Authentication. webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/)). Il pacchetto fornisce un set di primitive che consentono all'app di autenticare gli utenti e ottenere i token per chiamare le API protette.
+Quando viene creata un'app per usare gli account aziendali o dell'Istituto di istruzione ( `SingleOrg` ), l'app riceve automaticamente un riferimento al pacchetto per [Microsoft Authentication Library](/azure/active-directory/develop/msal-overview) ( [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) ). Il pacchetto fornisce un set di primitive che consentono all'app di autenticare gli utenti e ottenere i token per chiamare le API protette.
 
 Se si aggiunge l'autenticazione a un'app, aggiungere manualmente il pacchetto al file di progetto dell'app:
 
@@ -230,13 +230,13 @@ Se si aggiunge l'autenticazione a un'app, aggiungere manualmente il pacchetto al
   Version="3.2.0" />
 ```
 
-Il pacchetto [Microsoft. Authentication. webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) aggiunge in modo transitivo il pacchetto [Microsoft. AspNetCore. Components. webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) all'app.
+Il [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) pacchetto aggiunge il [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) pacchetto all'app in modo transitivo.
 
 ### <a name="authentication-service-support"></a>Supporto del servizio di autenticazione
 
 <xref:System.Net.Http.HttpClient>Viene aggiunto il supporto per le istanze di che includono token di accesso quando si effettuano richieste al progetto server.
 
-*Program.cs*:
+`Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
@@ -249,9 +249,9 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
 
 Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `BlazorSample.ServerAPI` ).
 
-Il supporto per l'autenticazione degli utenti viene registrato nel contenitore del servizio con il <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> metodo di estensione fornito dal pacchetto [Microsoft. Authentication. webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) . Questo metodo configura i servizi necessari per l'interazione dell'app con il Identity provider (IP).
+Il supporto per l'autenticazione degli utenti viene registrato nel contenitore del servizio con il <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> metodo di estensione fornito dal [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) pacchetto. Questo metodo configura i servizi necessari per l'interazione dell'app con il Identity provider (IP).
 
-*Program.cs*:
+`Program.cs`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -263,7 +263,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 Il <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> metodo accetta un callback per configurare i parametri necessari per autenticare un'app. Quando si registra l'app, è possibile ottenere i valori necessari per la configurazione dell'app dalla configurazione di AAD del portale di Azure.
 
-La configurazione viene fornita dal file *wwwroot/appsettings.js* :
+La configurazione viene fornita dal `wwwroot/appsettings.json` file:
 
 ```json
 {

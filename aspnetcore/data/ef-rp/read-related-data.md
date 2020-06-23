@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: e67738015f64ca7077c2f87a8f7eabe722aac9d8
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 5ffb57f21c89e21fcbb14b933cb0d0cb29d9c71b
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652619"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240939"
 ---
 # <a name="part-6-razor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Parte 6, Razor pagine con EF core nei dati correlati alla lettura ASP.NET Core
 
@@ -52,7 +52,7 @@ Esistono diversi modi con cui EF Core può caricare i dati correlati nelle propr
 
   ![Esempio di query separate](read-related-data/_static/separate-queries.png)
 
-  Nota: EF Core corregge automaticamente le proprietà di navigazione per qualsiasi altra entità caricata in precedenza nell'istanza contesto. Anche se i dati per una proprietà di navigazione *non* sono inclusi in modo esplicito, la proprietà può comunque essere popolata se alcune o tutte le entità correlate sono state caricate in precedenza.
+  **Nota:** EF Core corregge automaticamente le proprietà di navigazione per qualsiasi altra entità caricata in precedenza nell'istanza del contesto. Anche se i dati per una proprietà di navigazione *non* sono inclusi in modo esplicito, la proprietà può comunque essere popolata se alcune o tutte le entità correlate sono state caricate in precedenza.
 
 * [Caricamento esplicito](/ef/core/querying/related-data#explicit-loading). Quando un'entità viene letta per la prima volta, i dati correlati non vengono recuperati. Per recuperare i dati correlati quando necessario, è necessario scrivere codice. Il caricamento esplicito con query separate ha come risultato l'invio di più query al database. Con il caricamento esplicito, il codice specifica le proprietà di navigazione da caricare. Per eseguire il caricamento esplicito, usare il metodo `Load`. Ad esempio:
 
@@ -231,7 +231,7 @@ Il codice seguente viene eseguito quando viene selezionato un insegnante (`id !=
 
 L'insegnante selezionato viene recuperato dall'elenco di insegnanti nel modello di visualizzazione. La proprietà `Courses` del modello di visualizzazione viene caricata con le entità `Course` dalla proprietà di navigazione `CourseAssignments` di tale insegnante.
 
-Il metodo `Where` restituisce una raccolta. Tuttavia, in questo caso, il filtro selezionerà una singola entità. Il metodo `Single` viene quindi chiamato per convertire la raccolta in una singola entità `Instructor`. L'entità `Instructor` consente l'accesso alla proprietà `CourseAssignments`. `CourseAssignments` consente l'accesso alle entità `Course` correlate.
+Il metodo `Where` restituisce una raccolta. Tuttavia, in questo caso, il filtro selezionerà una singola entità, pertanto `Single` viene chiamato il metodo per convertire la raccolta in una singola `Instructor` entità. L'entità `Instructor` consente l'accesso alla proprietà `CourseAssignments`. `CourseAssignments` consente l'accesso alle entità `Course` correlate.
 
 ![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
 

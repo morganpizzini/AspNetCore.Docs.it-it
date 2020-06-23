@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 8244dfa4dfed8e44e9e149891d2071c48bebd5ab
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 588a24f7850c35bcbadc1c86edc61b23cc7a913e
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102373"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242667"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET Core Blazor moduli e convalida
 
@@ -196,7 +196,7 @@ Il form seguente convalida l'input dell'utente utilizzando la convalida definita
 
 Nell'esempio seguente:
 
-* Il `HandleSubmit` metodo viene eseguito quando viene selezionato il pulsante **Invia** .
+* Il `HandleSubmit` metodo viene eseguito quando **`Submit`** si seleziona il pulsante.
 * Il modulo viene convalidato usando il modulo <xref:Microsoft.AspNetCore.Components.Forms.EditContext> .
 * Il form viene ulteriormente convalidato passando al <xref:Microsoft.AspNetCore.Components.Forms.EditContext> `ServerValidate` metodo che chiama un endpoint dell'API Web nel server (*non illustrato*).
 * Il codice aggiuntivo viene eseguito a seconda del risultato della convalida lato client e lato server verificando `isValid` .
@@ -248,7 +248,7 @@ Utilizzare il <xref:Microsoft.AspNetCore.Components.Forms.InputText> componente 
 
 Nell'esempio seguente il `CustomInputText` componente eredita il componente del Framework `InputText` e imposta l'associazione di eventi ( <xref:Microsoft.AspNetCore.Components.EventCallbackFactoryBinderExtensions.CreateBinder%2A> ) sull' `oninput` evento.
 
-*Shared/CustomInputText. Razor*:
+`Shared/CustomInputText.razor`:
 
 ```razor
 @inherits InputText
@@ -264,7 +264,7 @@ Nell'esempio seguente il `CustomInputText` componente eredita il componente del 
 
 Il `CustomInputText` componente può essere usato ovunque <xref:Microsoft.AspNetCore.Components.Forms.InputText> :
 
-*Pages/TestForm. Razor*:
+`Pages/TestForm.razor`:
 
 ```razor
 @page  "/testform"
@@ -390,7 +390,7 @@ Nell'esempio seguente <xref:Microsoft.AspNetCore.Components.Forms.EditForm> vien
 
 ## <a name="validation-support"></a>Supporto della convalida
 
-Il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente connette il supporto di convalida usando le annotazioni dei dati a a cascata <xref:Microsoft.AspNetCore.Components.Forms.EditContext> . L'abilitazione del supporto per la convalida usando le annotazioni dei dati richiede questo movimento esplicito. Per usare un sistema di convalida diverso rispetto alle annotazioni dei dati, sostituire <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> con un'implementazione personalizzata. L'implementazione del ASP.NET Core è disponibile per l'ispezione nell'origine riferimento: [DataAnnotationsValidator](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs) / [AddDataAnnotationsValidation](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
+Il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente connette il supporto di convalida usando le annotazioni dei dati a a cascata <xref:Microsoft.AspNetCore.Components.Forms.EditContext> . L'abilitazione del supporto per la convalida usando le annotazioni dei dati richiede questo movimento esplicito. Per usare un sistema di convalida diverso rispetto alle annotazioni dei dati, sostituire <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> con un'implementazione personalizzata. L'implementazione del ASP.NET Core è disponibile per l'ispezione nell'origine riferimento: [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs) / [`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs) . I collegamenti precedenti a origine riferimento forniscono il codice dal ramo del repository `master` , che rappresenta lo sviluppo corrente dell'unità di prodotto per la prossima versione di ASP.NET Core. Per selezionare il ramo per una versione diversa, usare il selettore di ramo GitHub (ad esempio `release/3.1` ).
 
 Blazoresegue due tipi di convalida:
 
@@ -442,17 +442,17 @@ private class MyCustomValidator : ValidationAttribute
 
 ### <a name="blazor-data-annotations-validation-package"></a>Blazorpacchetto di convalida delle annotazioni dei dati
 
-[Microsoft. AspNetCore. Components. DataAnnotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) è un pacchetto che colma i gap dell'esperienza di convalida usando il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente. Il pacchetto è attualmente *sperimentale*.
+[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation)È un pacchetto che colma i gap dell'esperienza di convalida usando il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente. Il pacchetto è attualmente *sperimentale*.
 
 ### <a name="compareproperty-attribute"></a>Attributo [CompareProperty]
 
-<xref:System.ComponentModel.DataAnnotations.CompareAttribute>Non funziona bene con il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente perché non associa il risultato della convalida a un membro specifico. Ciò può comportare un comportamento incoerente tra la convalida a livello di campo e quando l'intero modello viene convalidato in un invio. Il pacchetto *sperimentale* [Microsoft. AspNetCore. Components. DataAnnotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) introduce un attributo di convalida aggiuntivo, `ComparePropertyAttribute` , che aggira queste limitazioni. In un' Blazor applicazione, `[CompareProperty]` è una sostituzione diretta per l' [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute) attributo.
+<xref:System.ComponentModel.DataAnnotations.CompareAttribute>Non funziona bene con il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente perché non associa il risultato della convalida a un membro specifico. Ciò può comportare un comportamento incoerente tra la convalida a livello di campo e quando l'intero modello viene convalidato in un invio. Il [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) pacchetto *sperimentale* introduce un attributo di convalida aggiuntivo, `ComparePropertyAttribute` , che aggira queste limitazioni. In un' Blazor applicazione, `[CompareProperty]` è una sostituzione diretta per l' [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute) attributo.
 
 ### <a name="nested-models-collection-types-and-complex-types"></a>Modelli annidati, tipi di raccolta e tipi complessi
 
 Blazorfornisce supporto per la convalida dell'input del form utilizzando le annotazioni dei dati con l'oggetto incorporato <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> . Tuttavia, l'oggetto <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> convalida solo le proprietà di primo livello del modello associate al form che non sono proprietà di tipo raccolta o complesso.
 
-Per convalidare l'intero grafico di oggetti del modello associato, incluse le proprietà della raccolta e del tipo complesso, usare l'oggetto `ObjectGraphDataAnnotationsValidator` fornito dal pacchetto *sperimentale* [Microsoft. AspNetCore. Components. DataAnnotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) :
+Per convalidare l'intero grafico di oggetti del modello associato, incluse le proprietà della raccolta e del tipo complesso, usare l'oggetto `ObjectGraphDataAnnotationsValidator` fornito dal pacchetto *sperimentale* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) :
 
 ```razor
 <EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
@@ -463,7 +463,7 @@ Per convalidare l'intero grafico di oggetti del modello associato, incluse le pr
 
 Annotare le proprietà del modello con `[ValidateComplexType]` . Nelle classi di modelli seguenti la `ShipDescription` classe contiene annotazioni di dati aggiuntive da convalidare quando il modello è associato al form:
 
-*Starship.cs*:
+`Starship.cs`:
 
 ```csharp
 using System;
@@ -480,7 +480,7 @@ public class Starship
 }
 ```
 
-*ShipDescription.cs*:
+`ShipDescription.cs`:
 
 ```csharp
 using System;
@@ -574,7 +574,7 @@ Un effetto collaterale dell'approccio precedente è che un <xref:Microsoft.AspNe
 }
 ```
 
-## <a name="troubleshoot"></a>Risoluzione dei problemi
+## <a name="troubleshoot"></a>Risolvere problemi
 
 > InvalidOperationException: EditForm richiede un parametro di modello o un parametro EditContext, ma non entrambi.
 
