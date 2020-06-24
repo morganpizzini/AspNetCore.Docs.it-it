@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/ws-federation
-ms.openlocfilehash: fede3887ad7dacd40cf3bb5d1b785392a9bc1480
-ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.openlocfilehash: 62b8e33d8b7eb17a65a7a54df2a9aa298acdfe36
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82850461"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292814"
 ---
 # <a name="authenticate-users-with-ws-federation-in-aspnet-core"></a>Autenticare gli utenti con WS-Federation in ASP.NET Core
 
@@ -28,7 +28,7 @@ Per le app ASP.NET Core, il supporto di WS-Federation viene fornito da [Microsof
 Per impostazione predefinita, il nuovo middleware:
 
 * Non consente accessi non richiesti. Questa funzionalità del protocollo WS-Federation è vulnerabile agli attacchi XSRF. Tuttavia, può essere abilitata con l' `AllowUnsolicitedLogins` opzione.
-* Non controlla ogni post di form per i messaggi di accesso. Vengono verificate solo `CallbackPath` le richieste per gli accessi. `CallbackPath` il valore predefinito `/signin-wsfed` è, ma può essere modificato tramite la proprietà [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) ereditata della classe [WsFederationOptions](/dotnet/api/microsoft.aspnetcore.authentication.wsfederation.wsfederationoptions) . Questo percorso può essere condiviso con altri provider di autenticazione abilitando l'opzione [SkipUnrecognizedRequests](/dotnet/api/microsoft.aspnetcore.authentication.wsfederation.wsfederationoptions.skipunrecognizedrequests) .
+* Non controlla ogni post di form per i messaggi di accesso. Vengono verificate solo le richieste per gli `CallbackPath` accessi. il `CallbackPath` valore predefinito è, `/signin-wsfed` ma può essere modificato tramite la proprietà [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) ereditata della classe [WsFederationOptions](/dotnet/api/microsoft.aspnetcore.authentication.wsfederation.wsfederationoptions) . Questo percorso può essere condiviso con altri provider di autenticazione abilitando l'opzione [SkipUnrecognizedRequests](/dotnet/api/microsoft.aspnetcore.authentication.wsfederation.wsfederationoptions.skipunrecognizedrequests) .
 
 ## <a name="register-the-app-with-active-directory"></a>Registrare l'app con Active Directory
 
@@ -65,7 +65,7 @@ Per impostazione predefinita, il nuovo middleware:
 
 ![Aggiunta guidata regola attestazione di trasformazione: Configura regola attestazione](ws-federation/_static/AddTransformClaimRule.png)
 
-* Fare clic su **fine** > **OK** nella finestra **modifica regole attestazione** .
+* Fare clic su **fine**  >  **OK** nella finestra **modifica regole attestazione** .
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
 
@@ -78,17 +78,17 @@ Per impostazione predefinita, il nuovo middleware:
 
 ![Azure Active Directory: creare la registrazione dell'app](ws-federation/_static/AadCreateAppRegistration.png)
 
-* Fare clic su **endpoint** e prendere nota dell'URL del **documento dei metadati di Federazione** . Si tratta del middleware WS-Federation `MetadataAddress`:
+* Fare clic su **endpoint** e prendere nota dell'URL del **documento dei metadati di Federazione** . Si tratta del middleware WS-Federation `MetadataAddress` :
 
 ![Azure Active Directory: endpoint](ws-federation/_static/AadFederationMetadataDocument.png)
 
-* Passare alla registrazione della nuova app. Fare clic su **Impostazioni** > **proprietà** e prendere nota dell' **URI ID app**. Si tratta del middleware WS-Federation `Wtrealm`:
+* Passare alla registrazione della nuova app. Fare clic su **esporre un'API**. Fare clic su ID applicazione URI **set**  >  **Save**. Prendere nota dell' **URI dell'ID applicazione**. Si tratta del middleware WS-Federation `Wtrealm` :
 
 ![Azure Active Directory: Proprietà registrazione app](ws-federation/_static/AadAppIdUri.png)
 
 ## <a name="use-ws-federation-without-aspnet-core-identity"></a>Usare WS-Federation senza ASP.NET CoreIdentity
 
-Il middleware WS-Federation può essere utilizzato senza Identity. Ad esempio:
+Il middleware WS-Federation può essere utilizzato senza Identity . Ad esempio:
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
 ::: moniker-end
@@ -100,7 +100,7 @@ Il middleware WS-Federation può essere utilizzato senza Identity. Ad esempio:
 ## <a name="add-ws-federation-as-an-external-login-provider-for-aspnet-core-identity"></a>Aggiungere WS-Federation come provider di accesso esterno per ASP.NET CoreIdentity
 
 * Aggiungere una dipendenza da [Microsoft. AspNetCore. Authentication. WSFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) al progetto.
-* Aggiungi WS-Federation a `Startup.ConfigureServices`:
+* Aggiungi WS-Federation a `Startup.ConfigureServices` :
 
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/Startup31.cs?name=snippet)]
@@ -114,10 +114,10 @@ Il middleware WS-Federation può essere utilizzato senza Identity. Ad esempio:
 
 ### <a name="log-in-with-ws-federation"></a>Accedere con WS-Federation
 
-Passare all'app e fare clic sul collegamento **Accedi** nell'intestazione NAV. È disponibile un'opzione per l'accesso con WsFederation: ![pagina di accesso](ws-federation/_static/WsFederationButton.png)
+Passare all'app e fare clic sul collegamento **Accedi** nell'intestazione NAV. È disponibile un'opzione per l'accesso con WsFederation: ![ pagina di accesso](ws-federation/_static/WsFederationButton.png)
 
-Con ADFS come provider, il pulsante reindirizza a una pagina di accesso ad ADFS: ![pagina di accesso ad ADFS](ws-federation/_static/AdfsLoginPage.png)
+Con ADFS come provider, il pulsante reindirizza a una pagina di accesso ad ADFS: pagina di accesso ad ADFS ![](ws-federation/_static/AdfsLoginPage.png)
 
-Con Azure Active Directory come provider, il pulsante reindirizza a una pagina di accesso di AAD: ![pagina di accesso ad AAD](ws-federation/_static/AadSignIn.png)
+Con Azure Active Directory come provider, il pulsante reindirizza a una pagina di accesso di AAD: pagina di accesso ad Aad ![](ws-federation/_static/AadSignIn.png)
 
-Un accesso riuscito per un nuovo utente viene reindirizzato alla pagina di registrazione dell'utente dell'app: ![pagina Register](ws-federation/_static/Register.png)
+Un accesso riuscito per un nuovo utente viene reindirizzato alla pagina di registrazione dell'utente dell'app: ![ pagina Register](ws-federation/_static/Register.png)

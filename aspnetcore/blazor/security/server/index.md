@@ -13,16 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 2bdd2f256f456cbf474181021fafc6830bfd68f4
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 2811e08fd2f6c66112ffa0bb40f474158f4c7a59
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242927"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292685"
 ---
 # <a name="secure-aspnet-core-blazor-server-apps"></a>Proteggere le Blazor app Server ASP.NET Core
 
 Di [Luke Latham](https://github.com/guardrex)
+
+BlazorLe app Server sono configurate per la sicurezza in modo analogo alle app ASP.NET Core. Per ulteriori informazioni, vedere gli articoli in <xref:security/index> . Gli argomenti di questa panoramica si applicano in modo specifico al Blazor Server. 
 
 ## <a name="blazor-server-project-template"></a>BlazorModello di progetto server
 
@@ -104,10 +106,6 @@ Usando l' `-o|--output` opzione, il comando usa il valore fornito per il `{APP N
 Per ulteriori informazioni, vedere il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando nella Guida di .NET Core.
 
 ---
-
-## <a name="secure-an-existing-app"></a>Proteggere un'app esistente
-
-BlazorLe app Server sono configurate per la sicurezza in modo analogo alle app ASP.NET Core. Per ulteriori informazioni, vedere gli articoli in <xref:security/index> .
 
 ## <a name="scaffold-identity"></a>ScaffoldIdentity
 

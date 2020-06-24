@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: 2de33deccbb86bd810c4337f5aa105118de4d9b4
-ms.sourcegitcommit: 77729ba225d5143c0e3954db005906f4a5c7da95
+ms.openlocfilehash: 892663a533a207df84b0fce9af259a7dc212bc9b
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/20/2020
-ms.locfileid: "85122152"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292776"
 ---
 # <a name="build-your-first-blazor-app"></a>Crea la tua prima Blazor app
 
@@ -109,7 +109,7 @@ I componenti possono avere anche parametri, I parametri del componente vengono d
 
 La `@page` direttiva all'inizio del `Counter.razor` file specifica che il `Counter` componente è un endpoint di routing. Il componente `Counter` gestisce le richieste inviate a `/counter`. Senza la direttiva `@page`, un componente non gestisce le richieste instradate, ma può comunque essere usato da altri componenti.
 
-## <a name="dependency-injection"></a>Inserimento delle dipendenze
+## <a name="dependency-injection"></a>Inserimento di dipendenze
 
 ### <a name="blazor-server-experience"></a>BlazorEsperienza server
 
@@ -143,7 +143,7 @@ Un [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) ciclo vie
 
 Aggiungere all'app un nuovo componente che implementa un semplice elenco attività.
 
-1. Aggiungere un nuovo `Todo` Razor componente all'app nella `Pages` cartella. Se si usa Visual Studio, fare clic con il pulsante destro del mouse sulla `Pages` cartella e scegliere **Aggiungi**  >  **nuovo elemento**  >  ** Razor componente**. Assegnare un nome al file del componente `Todo.razor` . In altri ambienti di sviluppo, aggiungere un file vuoto alla `Pages` cartella denominata `Todo.razor` .
+1. Aggiungere un nuovo `Todo` Razor componente all'app nella `Pages` cartella. Se si usa Visual Studio, fare clic con il pulsante destro del mouse sulla `Pages` cartella e scegliere **Aggiungi**  >  **nuovo elemento**  >  ** Razor componente**. Assegnare un nome al file del componente `Todo.razor` . In altri ambienti di sviluppo, aggiungere un file vuoto alla `Pages` cartella denominata `Todo.razor` . Razori nomi dei file di componente richiedono una prima lettera maiuscola, quindi verificare che il `Todo` nome del file del componente inizi con una lettera maiuscola `T` .
 
 1. Specificare il markup iniziale per il componente:
 

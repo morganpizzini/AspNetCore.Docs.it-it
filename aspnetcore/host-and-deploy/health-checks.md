@@ -5,7 +5,7 @@ description: Informazioni su come configurare i controlli di integrità per l'in
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/15/2019
+ms.date: 06/22/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/health-checks
-ms.openlocfilehash: 00b2697a6b916718d9d0e01d1ea9f922eb2b5706
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: ca5540b4920bc92e968dcbc22a9407453041b01c
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074432"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292698"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Controlli di integrità in ASP.NET Core
 
@@ -442,10 +442,10 @@ Unhealthy
 
 In alcuni scenari di hosting vengono usati due controlli di integrità che distinguono due stati dell'app:
 
-* L'app è funzionante, ma non ancora pronta a ricevere le richieste. Questo stato è l'*idoneità* dell'app.
-* L'app è funzionante e risponde alle richieste. Questo stato è l'*attività* dell'app.
+* *Conformità* indica se l'app è in esecuzione normalmente ma non è pronta a ricevere le richieste.
+* *Liveity* indica se un'app si è arrestata in modo anomalo e deve essere riavviata.
 
-Il controllo di idoneità in genere esegue un set di controlli più completo e dispendioso in termini di tempo per determinare se tutti i sottosistemi e le risorse dell'app sono disponibili. Un controllo di attività esegue semplicemente un rapido controllo per determinare se l'app è disponibile per elaborare le richieste. Dopo che l'app ha superato il controllo di idoneità, non è necessario caricare ulteriormente l'app con il dispendioso set di controlli di idoneità. Sarà sufficiente controllare solo l'attività.
+Si consideri l'esempio seguente: un'app deve scaricare un file di configurazione di grandi dimensioni prima che sia pronto per elaborare le richieste. Non si vuole riavviare l'app se il download iniziale non riesce perché l'app può riprovare a scaricare il file più volte. Viene usato un *Probe di liveity* per descrivere la durata del processo e non vengono eseguiti controlli aggiuntivi. Si vuole anche impedire che le richieste vengano inviate all'app prima che il download del file di configurazione abbia esito positivo. Viene usato un *Probe di conformità* per indicare uno stato "non pronto" fino a quando il download non riesce e l'app è pronta a ricevere le richieste.
 
 L'app di esempio contiene un controllo di integrità per segnalare il completamento dell'attività di avvio con esecuzione prolungata in un [servizio ospitato](xref:fundamentals/host/hosted-services). `StartupHostedServiceHealthCheck` espone una proprietà, `StartupTaskCompleted`, che il servizio ospitato può impostare su `true` al termine dell'attività con esecuzione prolungata (*StartupHostedServiceHealthCheck.cs*):
 
@@ -1155,10 +1155,10 @@ Unhealthy
 
 In alcuni scenari di hosting vengono usati due controlli di integrità che distinguono due stati dell'app:
 
-* L'app è funzionante, ma non ancora pronta a ricevere le richieste. Questo stato è l'*idoneità* dell'app.
-* L'app è funzionante e risponde alle richieste. Questo stato è l'*attività* dell'app.
+* *Conformità* indica se l'app è in esecuzione normalmente ma non è pronta a ricevere le richieste.
+* *Liveity* indica se un'app si è arrestata in modo anomalo e deve essere riavviata.
 
-Il controllo di idoneità in genere esegue un set di controlli più completo e dispendioso in termini di tempo per determinare se tutti i sottosistemi e le risorse dell'app sono disponibili. Un controllo di attività esegue semplicemente un rapido controllo per determinare se l'app è disponibile per elaborare le richieste. Dopo che l'app ha superato il controllo di idoneità, non è necessario caricare ulteriormente l'app con il dispendioso set di controlli di idoneità. Sarà sufficiente controllare solo l'attività.
+Si consideri l'esempio seguente: un'app deve scaricare un file di configurazione di grandi dimensioni prima che sia pronto per elaborare le richieste. Non si vuole riavviare l'app se il download iniziale non riesce perché l'app può riprovare a scaricare il file più volte. Viene usato un *Probe di liveity* per descrivere la durata del processo e non vengono eseguiti controlli aggiuntivi. Si vuole anche impedire che le richieste vengano inviate all'app prima che il download del file di configurazione abbia esito positivo. Viene usato un *Probe di conformità* per indicare uno stato "non pronto" fino a quando il download non riesce e l'app è pronta a ricevere le richieste.
 
 L'app di esempio contiene un controllo di integrità per segnalare il completamento dell'attività di avvio con esecuzione prolungata in un [servizio ospitato](xref:fundamentals/host/hosted-services). `StartupHostedServiceHealthCheck` espone una proprietà, `StartupTaskCompleted`, che il servizio ospitato può impostare su `true` al termine dell'attività con esecuzione prolungata (*StartupHostedServiceHealthCheck.cs*):
 
