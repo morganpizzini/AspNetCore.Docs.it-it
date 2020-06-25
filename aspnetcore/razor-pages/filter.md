@@ -1,7 +1,7 @@
 ---
-title: Metodi di filtro Razor per le pagine in ASP.NET Core
+title: Metodi di filtro per le Razor pagine in ASP.NET Core
 author: Rick-Anderson
-description: Informazioni su come creare metodi di filtro Razor per le pagine in ASP.NET Core.
+description: Informazioni su come creare metodi di filtro per le Razor pagine in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 2/18/2020
@@ -12,20 +12,20 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/filter
-ms.openlocfilehash: 68962d5a3a49e52510d72899e7dead2c1983d8b6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: ea6b897a008d1be1953928e5d90555d9a9a408ec
+ms.sourcegitcommit: 1833870ad0845326fb764fef1b530a07b9b5b099
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775518"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85347138"
 ---
-# <a name="filter-methods-for-razor-pages-in-aspnet-core"></a>Metodi di filtro Razor per le pagine in ASP.NET Core
+# <a name="filter-methods-for-razor-pages-in-aspnet-core"></a>Metodi di filtro per le Razor pagine in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-RazorI filtri di pagina [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) e Razor [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) consentono alle pagine di eseguire codice prima Razor e dopo l'esecuzione di un gestore di pagina. RazorI filtri di pagina sono simili a [ASP.NET Core filtri azione MVC](xref:mvc/controllers/filters#action-filters), ma non possono essere applicati ai singoli metodi del gestore di pagina.
+RazorI filtri di pagina [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) e [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) consentono Razor alle pagine di eseguire codice prima e dopo l'esecuzione di un Razor gestore di pagina. RazorI filtri di pagina sono simili a [ASP.NET Core filtri azione MVC](xref:mvc/controllers/filters#action-filters), ma non possono essere applicati ai singoli metodi del gestore di pagina.
 
 RazorFiltri di pagina:
 
@@ -36,7 +36,7 @@ RazorFiltri di pagina:
 * Non possono essere applicati a metodi del gestore pagina specifici.
 * Le dipendenze del costruttore possono essere popolate dall' [inserimento di dipendenze](xref:fundamentals/dependency-injection) . Per ulteriori informazioni, vedere [ServiceFilterAttribute](/aspnet/core/mvc/controllers/filters#servicefilterattribute) e [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute).
 
-Mentre i costruttori di pagina e il middleware abilitano l'esecuzione di codice personalizzato prima dell'esecuzione di Razor un metodo del gestore, <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext> solo i filtri di pagina consentono l'accesso a e alla pagina. Il middleware ha accesso a `HttpContext`, ma non al "contesto di pagina". I filtri hanno <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> un parametro derivato, che fornisce l' `HttpContext`accesso a. Ad esempio, nell'esempio [Implementare un attributo di filtro](#ifa) viene aggiunta un'intestazione alla risposta, operazione impossibile con costruttori o middleware.
+Mentre i costruttori di pagina e il middleware abilitano l'esecuzione di codice personalizzato prima dell'esecuzione di un metodo del gestore, solo Razor i filtri di pagina consentono l'accesso a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext> e alla pagina. Il middleware ha accesso a `HttpContext` , ma non al "contesto di pagina". I filtri hanno un <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> parametro derivato, che fornisce l'accesso a `HttpContext` . Di seguito è riportato un esempio per un filtro di pagina: [implementare un attributo di filtro](#ifa) che aggiunge un'intestazione alla risposta, operazione che non può essere eseguita con i costruttori o il middleware. L'accesso al contesto della pagina, che include l'accesso alle istanze della pagina e del relativo modello, è disponibile solo quando si eseguono filtri, gestori o il corpo di una Razor pagina.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/3.1sample) ([procedura per il download](xref:index#how-to-download-a-sample))
 
@@ -55,7 +55,7 @@ RazorI filtri di pagina forniscono i metodi seguenti, che possono essere applica
 
 Implementare la versione sincrona **oppure** la versione asincrona di un'interfaccia di filtro, **non** entrambe. Il framework controlla per prima cosa se il filtro implementa l'interfaccia asincrona e, in tal caso, la chiama. In caso contrario, chiama i metodi dell'interfaccia sincrona. Se entrambe le interfacce sono implementate, verranno chiamati solo i metodi asincroni. La stessa regola vale per gli override nelle pagine. Implementare la versione sincrona o la versione asincrona dell'override, non entrambe.
 
-## <a name="implement-razor-page-filters-globally"></a>Implementare Razor i filtri di pagina a livello globale
+## <a name="implement-razor-page-filters-globally"></a>Implementare i Razor filtri di pagina a livello globale
 
 Il codice seguente implementa `IAsyncPageFilter`:
 
@@ -67,7 +67,7 @@ Il codice seguente abilita `SampleAsyncPageFilter` nella classe `Startup`:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Startup.cs?name=snippet2)]
 
-Il codice seguente chiama <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention*> per applicare l' `SampleAsyncPageFilter` oggetto solo alle pagine in */Movies*:
+Il codice seguente chiama <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention*> per applicare l'oggetto `SampleAsyncPageFilter` solo alle pagine in */Movies*:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Startup2.cs?name=snippet2)]
 
@@ -79,9 +79,9 @@ Il codice seguente abilita `SamplePageFilter`:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/StartupSync.cs?name=snippet2)]
 
-## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Implementare Razor i filtri di pagina eseguendo l'override dei metodi di filtro
+## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Implementare i Razor filtri di pagina eseguendo l'override dei metodi di filtro
 
-Il codice seguente esegue l'override Razor dei filtri di pagina asincroni:
+Il codice seguente esegue l'override dei Razor filtri di pagina asincroni:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Index.cshtml.cs?name=snippet)]
 
@@ -89,7 +89,7 @@ Il codice seguente esegue l'override Razor dei filtri di pagina asincroni:
 
 ## <a name="implement-a-filter-attribute"></a>Implementare un attributo di filtro
 
-Il filtro di filtro <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync*> basato su attributi predefinito può essere sottoclassato. Il filtro seguente aggiunge un'intestazione alla risposta:
+Il filtro di filtro basato su attributi predefinito <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync*> può essere sottoclassato. Il filtro seguente aggiunge un'intestazione alla risposta:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Filters/AddHeaderAttribute.cs)]
 
@@ -117,7 +117,7 @@ L'attributo [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorize
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-RazorI filtri di pagina [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) e Razor [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) consentono alle pagine di eseguire codice prima Razor e dopo l'esecuzione di un gestore di pagina. RazorI filtri di pagina sono simili a [ASP.NET Core filtri azione MVC](xref:mvc/controllers/filters#action-filters), ma non possono essere applicati ai singoli metodi del gestore di pagina.
+RazorI filtri di pagina [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) e [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) consentono Razor alle pagine di eseguire codice prima e dopo l'esecuzione di un Razor gestore di pagina. RazorI filtri di pagina sono simili a [ASP.NET Core filtri azione MVC](xref:mvc/controllers/filters#action-filters), ma non possono essere applicati ai singoli metodi del gestore di pagina.
 
 RazorFiltri di pagina:
 
@@ -127,7 +127,7 @@ RazorFiltri di pagina:
 * Possono essere implementati in una pagina o a livello globale.
 * Non possono essere applicati a metodi del gestore pagina specifici.
 
-Il codice può essere eseguito prima dell'esecuzione di un metodo del gestore usando il costruttore o il middleware Razor della pagina, ma solo i filtri di pagina hanno accesso a [HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_HttpContext). I filtri contengono un parametro derivato da [FilterContext](/dotnet/api/microsoft.aspnetcore.mvc.filters.filtercontext?view=aspnetcore-2.0), che fornisce accesso a `HttpContext`. Ad esempio, nell'esempio [Implementare un attributo di filtro](#ifa) viene aggiunta un'intestazione alla risposta, operazione impossibile con costruttori o middleware.
+Il codice può essere eseguito prima dell'esecuzione di un metodo del gestore usando il costruttore o il middleware della pagina, ma solo i Razor filtri di pagina hanno accesso a [HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_HttpContext). I filtri contengono un parametro derivato da [FilterContext](/dotnet/api/microsoft.aspnetcore.mvc.filters.filtercontext?view=aspnetcore-2.0), che fornisce accesso a `HttpContext`. Ad esempio, nell'esempio [Implementare un attributo di filtro](#ifa) viene aggiunta un'intestazione alla risposta, operazione impossibile con costruttori o middleware.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/sample/PageFilter) ([procedura per il download](xref:index#how-to-download-a-sample))
 
@@ -147,7 +147,7 @@ RazorI filtri di pagina forniscono i metodi seguenti, che possono essere applica
 > [!NOTE]
 > Implementare la versione sincrona **oppure** la versione asincrona di un'interfaccia di filtro, non entrambe. Il framework controlla per prima cosa se il filtro implementa l'interfaccia asincrona e, in tal caso, la chiama. In caso contrario, chiama i metodi dell'interfaccia sincrona. Se entrambe le interfacce sono implementate, verranno chiamati solo i metodi asincroni. La stessa regola vale per gli override nelle pagine. Implementare la versione sincrona o la versione asincrona dell'override, non entrambe.
 
-## <a name="implement-razor-page-filters-globally"></a>Implementare Razor i filtri di pagina a livello globale
+## <a name="implement-razor-page-filters-globally"></a>Implementare i Razor filtri di pagina a livello globale
 
 Il codice seguente implementa `IAsyncPageFilter`:
 
@@ -175,9 +175,9 @@ Il codice seguente abilita `SamplePageFilter`:
 
 [!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
-## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Implementare Razor i filtri di pagina eseguendo l'override dei metodi di filtro
+## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Implementare i Razor filtri di pagina eseguendo l'override dei metodi di filtro
 
-Il codice seguente esegue l'override Razor dei filtri di pagina sincroni:
+Il codice seguente esegue l'override dei Razor filtri di pagina sincroni:
 
 [!code-csharp[Main](filter/sample/PageFilter/Pages/Index.cshtml.cs)]
 
