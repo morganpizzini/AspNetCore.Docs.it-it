@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: host-and-deploy/index
-ms.openlocfilehash: 796d7da76da6723ea996b57510da9c45ab21b3e7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 79022af0e6ee1294e12c21492bc81bc40482a3fb
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775921"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403963"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hosting e distribuzione di ASP.NET Core
 
@@ -34,7 +36,7 @@ In generale, per distribuire un'app ASP.NET Core in un ambiente host:
 
 Il comando [dotnet publish](/dotnet/core/tools/dotnet-publish) compila il codice dell'app e copia il file necessario per eseguire l'app in una cartella *publish*. Quando si esegue la distribuzione da Visual Studio, il passaggio `dotnet publish` viene eseguito automaticamente prima della copia dei file nella destinazione di distribuzione.
 
-### <a name="folder-contents"></a>Contenuto della cartella
+### <a name="folder-contents"></a>Contenuto cartelle
 
 La cartella *publish* contiene uno o più file di assembly di app, le dipendenze e facoltativamente il runtime di .NET.
 
@@ -79,7 +81,7 @@ Vedere <xref:host-and-deploy/visual-studio-publish-profiles> per istruzioni su c
 
 ## <a name="internet-information-services-iis"></a>Internet Information Services (IIS)
 
-Per le distribuzioni in Internet Information Services (IIS) con la configurazione fornita dal file *Web. config* , vedere gli articoli <xref:host-and-deploy/iis/index>in.
+Per le distribuzioni in Internet Information Services (IIS) con la configurazione fornita dal file *web.config* , vedere gli articoli in <xref:host-and-deploy/iis/index> .
 
 ## <a name="host-in-a-web-farm"></a>Hosting in una Web farm
 
@@ -112,7 +114,7 @@ In generale, per distribuire un'app ASP.NET Core in un ambiente host:
 
 Il comando [dotnet publish](/dotnet/core/tools/dotnet-publish) compila il codice dell'app e copia il file necessario per eseguire l'app in una cartella *publish*. Quando si esegue la distribuzione da Visual Studio, il passaggio `dotnet publish` viene eseguito automaticamente prima della copia dei file nella destinazione di distribuzione.
 
-### <a name="folder-contents"></a>Contenuto della cartella
+### <a name="folder-contents"></a>Contenuto cartelle
 
 La cartella *publish* contiene uno o più file di assembly di app, le dipendenze e facoltativamente il runtime di .NET.
 
@@ -157,7 +159,7 @@ Vedere <xref:host-and-deploy/visual-studio-publish-profiles> per istruzioni su c
 
 ## <a name="internet-information-services-iis"></a>Internet Information Services (IIS)
 
-Per le distribuzioni in Internet Information Services (IIS) con la configurazione fornita dal file *Web. config* , vedere gli articoli <xref:host-and-deploy/iis/index>in.
+Per le distribuzioni in Internet Information Services (IIS) con la configurazione fornita dal file *web.config* , vedere gli articoli in <xref:host-and-deploy/iis/index> .
 
 ## <a name="host-in-a-web-farm"></a>Hosting in una Web farm
 

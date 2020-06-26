@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/20/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: 4c42ad56bbdb7b66824b290cd118903cbe4311e8
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: ead745ae8843173bb25b94672005cc6ce295db2e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452213"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403378"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testare le API Web con il ciclo Read-Eval-Print (REPL) HTTP
 
@@ -56,7 +58,7 @@ dotnet tool install -g Microsoft.dotnet-httprepl
 
 Viene installato uno [strumento globale .NET Core](/dotnet/core/tools/global-tools#install-a-global-tool) dal pacchetto NuGet [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl).
 
-## <a name="usage"></a>Utilizzo
+## <a name="usage"></a>Uso
 
 Dopo aver completato l'installazione dello strumento, eseguire il comando seguente per avviare il ciclo Read-Eval-Print HTTP:
 
@@ -371,9 +373,9 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 
 Per impostazione predefinita, HTTP REPL ha un set di percorsi relativi che usa per trovare il documento di Swagger quando si esegue il comando `connect` senza l'opzione `--swagger`. Questi percorsi relativi vengono combinati con i percorsi radice e di base specificati nel comando `connect`. I percorsi relativi predefiniti sono i seguenti:
 
-- *spavalderia. JSON*
-- *spavalderia/V1/spavalderia. JSON*
-- */Swagger.JSON*
+- *swagger.js*
+- *spavalderia/V1/swagger.js*
+- */swagger.js*
 - */swagger/v1/swagger.json*
 
 Per usare un set di percorsi di ricerca diverso nell'ambiente in uso, impostare la preferenza `swagger.searchPaths`. Il valore deve essere un elenco di percorsi relativi delimitati da pipe. Ad esempio:

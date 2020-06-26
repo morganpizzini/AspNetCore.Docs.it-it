@@ -7,17 +7,19 @@ ms.author: johluo
 ms.date: 10/17/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: grpc/dotnet-grpc
-ms.openlocfilehash: 0990013947be2cee5045deac92efc3c6bcf12e03
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 1e4e5cd6a4a687ecacf0c4803784e68aee228498
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768835"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404210"
 ---
 # <a name="manage-protobuf-references-with-dotnet-grpc"></a>Gestire i riferimenti Protobuf con dotnet-grpc
 
@@ -66,13 +68,13 @@ dotnet grpc add-file [options] <files>...
 
 #### <a name="arguments"></a>Arguments
 
-| Argomento | Description |
+| Argomento | Descrizione |
 |-|-|
 | files | Il file protobuf fa riferimento a. Può trattarsi di un percorso di glob per i file protobuf locali. |
 
 #### <a name="options"></a>Opzioni
 
-| Short-opzione | Opzione Long | Description |
+| Short-opzione | Opzione Long | Descrizione |
 |-|-|-|
 | -p | --progetto | Percorso del file di progetto su cui operare. Se non si specifica un file, il comando Cerca una directory corrente.
 | -S | --Servizi | Tipo di servizi gRPC da generare. Se `Default` si specifica, `Both` viene utilizzato per i progetti Web e `Client` viene utilizzato per i progetti non Web. I valori accettati sono `Both` ,, `Client` `Default` , `None` , `Server` .
@@ -91,13 +93,13 @@ dotnet-grpc add-url [options] <url>
 
 #### <a name="arguments"></a>Arguments
 
-| Argomento | Description |
+| Argomento | Descrizione |
 |-|-|
 | url | URL di un file protobuf remoto. |
 
 #### <a name="options"></a>Opzioni
 
-| Short-opzione | Opzione Long | Description |
+| Short-opzione | Opzione Long | Descrizione |
 |-|-|-|
 | -o | --output | Specifica il percorso di download per il file protobuf remoto. Si tratta di un'opzione obbligatoria.
 | -p | --progetto | Percorso del file di progetto su cui operare. Se non si specifica un file, il comando Cerca una directory corrente.
@@ -120,13 +122,13 @@ dotnet-grpc remove [options] <references>...
 
 ### <a name="arguments"></a>Arguments
 
-| Argomento | Description |
+| Argomento | Descrizione |
 |-|-|
 | references | URL o percorsi di file dei riferimenti protobuf da rimuovere. |
 
 ### <a name="options"></a>Opzioni
 
-| Short-opzione | Opzione Long | Description |
+| Short-opzione | Opzione Long | Descrizione |
 |-|-|-|
 | -p | --progetto | Percorso del file di progetto su cui operare. Se non si specifica un file, il comando Cerca una directory corrente.
 
@@ -147,13 +149,13 @@ dotnet-grpc refresh [options] [<references>...]
 
 ### <a name="arguments"></a>Arguments
 
-| Argomento | Description |
+| Argomento | Descrizione |
 |-|-|
 | references | Gli URL o i percorsi di file per i riferimenti protobuf remoti che devono essere aggiornati. Lasciare vuoto questo argomento per aggiornare tutti i riferimenti remoti. |
 
 ### <a name="options"></a>Opzioni
 
-| Short-opzione | Opzione Long | Description |
+| Short-opzione | Opzione Long | Descrizione |
 |-|-|-|
 | -p | --progetto | Percorso del file di progetto su cui operare. Se non si specifica un file, il comando Cerca una directory corrente.
 | | --esecuzione a secco | Restituisce un elenco di file che verrebbero aggiornati senza scaricare alcun nuovo contenuto.
@@ -170,7 +172,7 @@ dotnet-grpc list [options]
 
 ### <a name="options"></a>Opzioni
 
-| Short-opzione | Opzione Long | Description |
+| Short-opzione | Opzione Long | Descrizione |
 |-|-|-|
 | -p | --progetto | Percorso del file di progetto su cui operare. Se non si specifica un file, il comando Cerca una directory corrente.
 

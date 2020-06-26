@@ -8,17 +8,19 @@ ms.date: 02/06/2019
 ms.topic: tutorial
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 7f17352d2e7e3f4239b338ec961120ab3088c77a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 3a42ce1773bef74fab35884025765d147c534dd2
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773549"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403222"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Esercitazione: Introduzione a EF Core in un'app Web MVC ASP.NET
 
@@ -92,7 +94,7 @@ Gli utenti possono visualizzare e aggiornare le informazioni che riguardano stud
 
 * Assicurarsi che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
 
-* Seleziona **OK**.
+* Selezionare **OK**.
 
   ![Finestra di dialogo Nuovo progetto ASP.NET Core](intro/_static/new-aspnet2.png)
 
@@ -318,7 +320,7 @@ Fare clic con il pulsante destro del mouse sulla tabella **Student** (Studente) 
 
 ![Tabella Student (Studente) in Esplora oggetti di SQL Server](intro/_static/ssox-student-table.png)
 
-I file di database con *estensione MDF* e *ldf* si trovano nella cartella *\\\<C:\Users nomeutente>* .
+I file di database con estensione *mdf* e *ldf* sono contenuti nella cartella *C:\Utenti\\\<yourusername>*.
 
 Poiché si sta chiamando `EnsureCreated` nel metodo di inizializzatore che viene eseguito all'avvio dell'app, è ora possibile modificare la classe `Student`, eliminare il database ed eseguire nuovamente l'applicazione. Il database sarà automaticamente ricreato e rispecchierà la modifica. Ad esempio, se si aggiunge una proprietà `EmailAddress` alla classe `Student`, una nuova colonna `EmailAddress` sarà visualizzata nella tabella ricreata.
 
@@ -332,7 +334,7 @@ Grazie all'uso di convenzioni o di ipotesi di Entity Framework, la quantità di 
 
 * Le proprietà dell'entità vengono denominate ID o classnameID e vengono riconosciute come proprietà della chiave primaria.
 
-* Una proprietà viene interpretata come una proprietà di chiave esterna se è `StudentID` denominata `Student` `Student` `ID` * \<nome della proprietà \<di navigazione>nome della proprietà della chiave primaria>* , ad esempio per la proprietà di navigazione poiché la chiave primaria dell'entità è. Le proprietà di chiave esterna possono anche essere denominate semplicemente * \<nome della proprietà della chiave primaria>* (ad esempio, `EnrollmentID` poiché la chiave primaria dell' `Enrollment` entità è `EnrollmentID`).
+* Una proprietà viene interpretata come una proprietà di chiave esterna se è denominata *\<navigation property name>\<primary key property name>* , ad esempio `StudentID` per la `Student` proprietà di navigazione poiché la `Student` chiave primaria dell'entità è `ID` . Le proprietà di chiave esterna possono anche essere denominate semplicemente *\<primary key property name>* , ad esempio `EnrollmentID` poiché la `Enrollment` chiave primaria dell'entità è `EnrollmentID` .
 
 È possibile eseguire l'override del comportamento convenzionale. Ad esempio, è possibile specificare in modo esplicito i nomi di tabella, come illustrato in precedenza in questa esercitazione. È anche possibile impostare i nomi delle colonne e impostare qualsiasi proprietà come chiave primaria o chiave esterna, come sarà spiegato in un'[esercitazione successiva](complex-data-model.md) di questa serie.
 

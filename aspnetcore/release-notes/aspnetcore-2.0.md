@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: aspnetcore-2.0
-ms.openlocfilehash: b1fc486633ab7c7d7bee4f8981a978747b2890da
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 97d8606ba6bef0bb8bf23d1553c7cb5681fbdbd8
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775817"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404366"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Novità di ASP.NET Core 2.0
 
@@ -72,13 +74,13 @@ Per informazioni sullo stato della documentazione prevista, vedere l'[argomento 
 
 ## <a name="identity-update"></a>Aggiornamento di Identity
 
-È stata semplificata la creazione di API Web sicure Identity con in ASP.NET Core 2,0. È possibile acquisire i token di accesso per accedere alle API Web usando la libreria di autenticazione [MSAL](https://www.nuget.org/packages/Microsoft.Identity.Client).
+È stata semplificata la creazione di API Web sicure con Identity in ASP.NET Core 2,0. È possibile acquisire i token di accesso per accedere alle API Web usando la libreria di autenticazione [MSAL](https://www.nuget.org/packages/Microsoft.Identity.Client).
 
 Per altre informazioni sulle modifiche apportate all'autenticazione nella versione 2.0, vedere le risorse seguenti:
 
 * [Account confirmation and password recovery in ASP.NET Core](xref:security/authentication/accconfirm) (Conferma dell'account e recupero della password in ASP.NET Core)
 * [Abilitare la generazione di codice a matrice per le app di autenticazione in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
-* [Eseguire la migrazione Identity dell'autenticazione e al ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x)
+* [Eseguire la migrazione dell'autenticazione e Identity al ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x)
 
 ## <a name="spa-templates"></a>Modelli SPA
 
@@ -132,7 +134,7 @@ Per altre informazioni, vedere [Prevenire attacchi tramite richieste intersito f
 
 Razorper impostazione predefinita, la pre-compilazione viene abilitata durante la pubblicazione, riducendo le dimensioni dell'output di pubblicazione e l'ora di avvio dell'applicazione.
 
-Per ulteriori informazioni, vedere [ Razor la pagina relativa alla visualizzazione della compilazione e della precompilazione in ASP.NET Core](xref:mvc/views/view-compilation).
+Per ulteriori informazioni, vedere la pagina relativa [ Razor alla visualizzazione della compilazione e della precompilazione in ASP.NET Core](xref:mvc/views/view-compilation).
 
 ## <a name="razor-support-for-c-71"></a>Razorsupporto per C# 7,1
 
@@ -158,7 +160,7 @@ Per informazioni sullo stato delle funzionalità di C# 7.1, vedere il [repositor
 Per indicazioni su come eseguire la migrazione delle applicazioni ASP.NET Core 1.x ad ASP.NET Core 2.0, vedere le risorse seguenti:
 
 * [Eseguire la migrazione da ASP.NET Core 1.x alla versione 2.0](xref:migration/1x-to-2x/index)
-* [Eseguire la migrazione Identity dell'autenticazione e al ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x)
+* [Eseguire la migrazione dell'autenticazione e Identity al ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x)
 
 ## <a name="additional-information"></a>Informazioni aggiuntive
 

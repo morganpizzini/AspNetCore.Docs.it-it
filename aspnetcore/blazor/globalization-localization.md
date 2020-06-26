@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: 5050d99e5304c7edaf6faa43f05298b69882521d
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 1d24ebe900dfcdeb8b7bcc97f1d212deea9cecae
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243590"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402728"
 ---
 # <a name="aspnet-core-blazor-globalization-and-localization"></a>BlazorGlobalizzazione e localizzazione ASP.NET Core
 
@@ -63,19 +65,19 @@ I tipi di campo seguenti hanno requisiti di formattazione specifici e non sono a
 
 ## <a name="localization"></a>Localizzazione
 
-### <a name="blazor-webassembly"></a>BlazorWebassembly
+### Blazor WebAssembly
 
-BlazorLe app webassembly impostano le impostazioni cultura usando le [Preferenze della lingua](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages)dell'utente.
+Blazor WebAssemblyle app impostano le impostazioni cultura usando le [Preferenze della lingua](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages)dell'utente.
 
 Per configurare in modo esplicito le impostazioni cultura, impostare <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> e <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.Main` .
 
-Per impostazione predefinita, Blazor la configurazione del linker per le Blazor app webassembly rimuove le informazioni di internazionalizzazione ad eccezione delle impostazioni locali richieste in modo esplicito. Per ulteriori informazioni e istruzioni sul controllo del comportamento del linker, vedere <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization> .
+Per impostazione predefinita, Blazor la configurazione del linker per le Blazor WebAssembly app rimuove le informazioni di internazionalizzazione ad eccezione delle impostazioni locali richieste in modo esplicito. Per ulteriori informazioni e istruzioni sul controllo del comportamento del linker, vedere <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization> .
 
-Mentre le impostazioni cultura che Blazor selezionano per impostazione predefinita potrebbero essere sufficienti per la maggior parte degli utenti, è consigliabile offrire agli utenti un modo per specificare le impostazioni locali preferite. Per un' Blazor app di esempio webassembly con selezione impostazioni cultura, vedere l' [`LocSample`](https://github.com/pranavkm/LocSample) app di esempio localizzazione.
+Mentre le impostazioni cultura che Blazor selezionano per impostazione predefinita potrebbero essere sufficienti per la maggior parte degli utenti, è consigliabile offrire agli utenti un modo per specificare le impostazioni locali preferite. Per un' Blazor WebAssembly app di esempio con selezione impostazioni cultura, vedere l' [`LocSample`](https://github.com/pranavkm/LocSample) app di esempio localizzazione.
 
-### <a name="blazor-server"></a>BlazorServer
+### Blazor Server
 
-BlazorLe app Server sono localizzate usando il [middleware di localizzazione](xref:fundamentals/localization#localization-middleware). Il middleware seleziona le impostazioni cultura appropriate per gli utenti che richiedono risorse dall'app.
+Blazor Serverle app vengono localizzate usando il [middleware di localizzazione](xref:fundamentals/localization#localization-middleware). Il middleware seleziona le impostazioni cultura appropriate per gli utenti che richiedono risorse dall'app.
 
 Le impostazioni cultura possono essere impostate utilizzando uno degli approcci seguenti:
 
@@ -119,9 +121,9 @@ La localizzazione viene gestita dall'app nella sequenza di eventi seguente:
 1. Il browser invia una richiesta HTTP iniziale all'app.
 1. Le impostazioni cultura vengono assegnate dal middleware di localizzazione.
 1. L' Razor espressione nella `_Host` pagina ( `_Host.cshtml` ) rende permanente le impostazioni cultura di un cookie come parte della risposta.
-1. Il browser apre una connessione WebSocket per creare una Blazor sessione del server interattiva.
+1. Il browser apre una connessione WebSocket per creare una Blazor Server sessione interattiva.
 1. Il middleware di localizzazione legge il cookie e assegna le impostazioni cultura.
-1. La Blazor sessione del server inizia con le impostazioni cultura corrette.
+1. La Blazor Server sessione inizia con le impostazioni cultura corrette.
 
 #### <a name="provide-ui-to-choose-the-culture"></a>Fornire l'interfaccia utente per scegliere le impostazioni cultura
 

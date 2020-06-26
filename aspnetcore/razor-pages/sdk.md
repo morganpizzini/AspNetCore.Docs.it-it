@@ -8,17 +8,19 @@ ms.custom: mvc, seodec18
 ms.date: 03/26/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: razor-pages/sdk
-ms.openlocfilehash: 555965b96b0d4d541c70f8a137d4f098dc06a4d6
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 56b4d4c13023918a4ac25c8c5d8ad1ee2c346ac6
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106624"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403040"
 ---
 # <a name="aspnet-core-razor-sdk"></a>SDK di ASP.NET Core Razor
 
@@ -124,7 +126,7 @@ Le proprietà e gli elementi nella tabella seguente vengono usati per configurar
 | `RazorTargetName` | Nome file (senza estensione) dell'assembly prodotto da Razor . |
 | `RazorOutputPath` | RazorDirectory di output. |
 | `RazorCompileToolset` | Utilizzato per determinare il set di strumenti utilizzato per compilare l' Razor assembly. I valori validi sono `Implicit`, `RazorSDK` e `PrecompilationTool`. |
-| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Il valore predefinito è `true`. Quando `true` , include i file *Web. config*, *. JSON*e *. cshtml* come contenuto nel progetto. Quando viene fatto riferimento tramite `Microsoft.NET.Sdk.Web` , vengono inclusi anche i file in *wwwroot* e i file di configurazione. |
+| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Il valore predefinito è `true`. Quando `true` , include i file *web.config*, *. JSON*e *. cshtml* come contenuto nel progetto. Quando viene fatto riferimento tramite `Microsoft.NET.Sdk.Web` , vengono inclusi anche i file in *wwwroot* e i file di configurazione. |
 | `EnableDefaultRazorGenerateItems` | Quando è `true`, include i file *cshtml* degli elementi di `Content` negli elementi di `RazorGenerate`. |
 | `GenerateRazorTargetAssemblyInfo` | Quando `true` , genera un file con *estensione cs* contenente gli attributi specificati da `RazorAssemblyAttribute` e include il file nell'output di compilazione. |
 | `EnableDefaultRazorTargetAssemblyInfoAttributes` | Quando è `true`, aggiunge un set predefinito di attributi degli assembly a `RazorAssemblyAttribute`. |
@@ -148,7 +150,7 @@ Le proprietà e gli elementi nella tabella seguente vengono usati per configurar
 | `RazorTargetName` | Nome file (senza estensione) dell'assembly prodotto da Razor . |
 | `RazorOutputPath` | RazorDirectory di output. |
 | `RazorCompileToolset` | Utilizzato per determinare il set di strumenti utilizzato per compilare l' Razor assembly. I valori validi sono `Implicit`, `RazorSDK` e `PrecompilationTool`. |
-| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Il valore predefinito è `true`. Quando `true` , include i file *Web. config*, *. JSON*e *. cshtml* come contenuto nel progetto. Quando viene fatto riferimento tramite `Microsoft.NET.Sdk.Web` , vengono inclusi anche i file in *wwwroot* e i file di configurazione. |
+| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Il valore predefinito è `true`. Quando `true` , include i file *web.config*, *. JSON*e *. cshtml* come contenuto nel progetto. Quando viene fatto riferimento tramite `Microsoft.NET.Sdk.Web` , vengono inclusi anche i file in *wwwroot* e i file di configurazione. |
 | `EnableDefaultRazorGenerateItems` | Quando è `true`, include i file *cshtml* degli elementi di `Content` negli elementi di `RazorGenerate`. |
 | `GenerateRazorTargetAssemblyInfo` | Quando `true` , genera un file con *estensione cs* contenente gli attributi specificati da `RazorAssemblyAttribute` e include il file nell'output di compilazione. |
 | `EnableDefaultRazorTargetAssemblyInfoAttributes` | Quando è `true`, aggiunge un set predefinito di attributi degli assembly a `RazorAssemblyAttribute`. |
@@ -167,7 +169,7 @@ Le proprietà e gli elementi nella tabella seguente vengono usati per configurar
 
 Per altre informazioni sulle proprietà, vedere [proprietà di MSBuild](/visualstudio/msbuild/msbuild-properties).
 
-### <a name="targets"></a>Server di destinazione
+### <a name="targets"></a>Destinazioni
 
 L' Razor SDK definisce due destinazioni primarie:
 

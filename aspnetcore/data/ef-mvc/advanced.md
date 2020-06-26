@@ -8,17 +8,19 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: 74153b9a185d382a3418dd9470ce6ca4c3c70041
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7233d6baf139d2ef362f4e3d1a56cf7f0e2514d2
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773614"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403118"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Esercitazione: informazioni sugli scenari avanzati-MVC ASP.NET con EF Core
 
@@ -148,7 +150,7 @@ INNER JOIN (
 ORDER BY [t].[ID]
 ```
 
-Si noti che il codice SQL seleziona un massimo di 2 righe (`TOP(2)`) dalla tabella Person. Il metodo `SingleOrDefaultAsync` non viene risolto in 1 riga nel server. La ragione di questo comportamento è la seguente:
+Si noti che il codice SQL seleziona un massimo di 2 righe (`TOP(2)`) dalla tabella Person. Il metodo `SingleOrDefaultAsync` non viene risolto in 1 riga nel server. Ecco perché:
 
 * Se la query restituisse più righe, il metodo restituirebbe un valore Null.
 * Per determinare se la query restituirà più righe, EF deve controllare se restituisce almeno 2 righe.
@@ -187,7 +189,7 @@ _context.ChangeTracker.AutoDetectChangesEnabled = false;
 
 ## <a name="ef-core-source-code-and-development-plans"></a>Codice sorgente e piani di sviluppo di EF Core
 
-Il Entity Framework Core origine si trova [https://github.com/dotnet/efcore](https://github.com/dotnet/efcore)in. Il repository di EF Core contiene le compilazioni notturne, la gestione dei problemi, le specifiche delle funzionalità, le note delle riunioni di progettazione e [la roadmap per lo sviluppo futuro](https://github.com/dotnet/efcore/wiki/Roadmap). È possibile archiviare o individuare i bug e contribuire.
+Il Entity Framework Core origine si trova in [https://github.com/dotnet/efcore](https://github.com/dotnet/efcore) . Il repository di EF Core contiene le compilazioni notturne, la gestione dei problemi, le specifiche delle funzionalità, le note delle riunioni di progettazione e [la roadmap per lo sviluppo futuro](https://github.com/dotnet/efcore/wiki/Roadmap). È possibile archiviare o individuare i bug e contribuire.
 
 Sebbene il codice sorgente sia disponibile, Entity Framework Core è completamente supportato come prodotto Microsoft. Il team di Microsoft Entity Framework controlla i contributi accettati ed esegue il test di tutte le modifiche al codice per garantire la qualità di ogni rilascio.
 

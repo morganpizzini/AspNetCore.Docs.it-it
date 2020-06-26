@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: host-and-deploy/iis/transform-webconfig
-ms.openlocfilehash: f7e1fb0adc669b4bffa02e6688231c8f1447bd98
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: bebba7a72012b8be6257b14642bf130613627778
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775934"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404002"
 ---
 # <a name="transform-webconfig"></a>Trasformare web.config
 
@@ -28,7 +30,7 @@ Le trasformazioni per il file *web.config* possono essere applicate automaticame
 
 * [Configurazione della build](#build-configuration)
 * [Profilo](#profile)
-* [Environment](#environment)
+* [Ambiente](#environment)
 * [Impostazione personalizzata](#custom)
 
 Queste trasformazioni si verificano per uno degli scenari di generazione di *web.config* seguenti:
@@ -106,7 +108,7 @@ La proprietà di MSBuild per il nome del profilo è `$(PublishProfile)`.
 
 Se non viene passato alcun profilo, il nome del profilo predefinito è **FileSystem** e viene applicato *web.FileSystem.config* se il file è presente nella radice del contenuto dell'app.
 
-## <a name="environment"></a>Environment
+## <a name="environment"></a>Ambiente
 
 Le trasformazioni di ambiente vengono eseguite per terze, dopo le trasformazioni di [configurazione della build](#build-configuration) e di [profilo](#profile).
 

@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 03/30/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/index
-ms.openlocfilehash: 0f0e97246b6e1381b85866bd831ee9b4b150650d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c797ce8bcb22aec2b56df2f3b108da4cbfde263d
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774327"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403300"
 ---
 # <a name="aspnet-core-fundamentals"></a>Nozioni fondamentali su ASP.NET Core
 
@@ -49,7 +51,7 @@ Il codice per configurare o *registrare* i servizi viene aggiunto al metodo `Sta
 
 I servizi vengono in genere risolti da DI usando l'inserimento del costruttore. Con l'inserimento del costruttore, una classe dichiara un parametro del costruttore del tipo richiesto o di un'interfaccia. Il framework DI fornisce un'istanza di questo servizio in fase di esecuzione.
 
-Nell'esempio seguente viene usato il costruttore Injection per `RazorPagesMovieContext` risolvere un da di:
+Nell'esempio seguente viene usato il costruttore Injection per risolvere un `RazorPagesMovieContext` da di:
 
 [!code-csharp[](index/samples_snapshot/3.x/Index.cshtml.cs?highlight=5)]
 
@@ -59,7 +61,7 @@ Per altre informazioni, vedere <xref:fundamentals/dependency-injection>.
 
 ## <a name="middleware"></a>Middleware
 
-La pipeline di gestione delle richieste è strutturata come una serie di componenti middleware. Ogni componente esegue operazioni su un `HttpContext` oggetto e richiama il middleware successivo nella pipeline o termina la richiesta.
+La pipeline di gestione delle richieste è strutturata come una serie di componenti middleware. Ogni componente esegue operazioni su un oggetto `HttpContext` e richiama il middleware successivo nella pipeline o termina la richiesta.
 
 Per convenzione, un componente middleware viene aggiunto alla pipeline richiamando un `Use...` metodo di estensione nel `Startup.Configure` metodo. Per abilitare il rendering dei file statici, ad esempio, chiamare `UseStaticFiles`.
 
@@ -92,7 +94,7 @@ Nell'esempio seguente viene creato un host generico .NET:
 
 [!code-csharp[](index/samples_snapshot/3.x/Program.cs)]
 
-I `CreateDefaultBuilder` metodi `ConfigureWebHostDefaults` e configurano un host con un set di opzioni predefinite, ad esempio:
+I `CreateDefaultBuilder` `ConfigureWebHostDefaults` metodi e configurano un host con un set di opzioni predefinite, ad esempio:
 
 * Usare [Kestrel](#servers) come server Web e abilitare l'integrazione IIS.
 * Caricare la configurazione da *appsettings.json*, *appsettings.[EnvironmentName].json*, variabili di ambiente, argomenti della riga di comando e altri origini di configurazione.
@@ -132,7 +134,7 @@ Per altre informazioni, vedere <xref:fundamentals/servers/index>.
 
 ASP.NET Core offre un framework di configurazione che ottiene le impostazioni, ad esempio coppie nome-valore, da un set ordinato di provider di configurazione. I provider di configurazione incorporati sono disponibili per un'ampia gamma di origini, ad esempio file *JSON* , file *XML* , variabili di ambiente e argomenti della riga di comando. Scrivere provider di configurazione personalizzati per supportare altre origini.
 
-Per [impostazione predefinita](xref:fundamentals/configuration/index#default), le app ASP.NET Core sono configurate per la lettura da *appSettings. JSON*, variabili di ambiente, riga di comando e altro ancora. Quando viene caricata la configurazione dell'app, i valori delle variabili di ambiente eseguono l'override dei valori di *appSettings. JSON*.
+Per [impostazione predefinita](xref:fundamentals/configuration/index#default), le app ASP.NET Core sono configurate per la lettura da *appsettings.js*, le variabili di ambiente, la riga di comando e altro ancora. Quando viene caricata la configurazione dell'app, i valori delle variabili di ambiente eseguono l'override dei valori di *appsettings.js*.
 
 Il modo migliore per leggere i valori di configurazione correlati consiste nell'usare il [modello di opzioni](xref:fundamentals/configuration/options). Per altre informazioni, vedere [associare dati di configurazione gerarchici usando il modello di opzioni](xref:fundamentals/configuration/index#optpat).
 
@@ -142,9 +144,9 @@ Per altre informazioni, vedere <xref:fundamentals/configuration/index>.
 
 ## <a name="environments"></a>Ambienti
 
-Gli ambienti di esecuzione, `Development`ad `Staging`esempio, `Production`e, sono una nozione di primo livello in ASP.NET Core. Specificare l'ambiente in cui è in esecuzione un'app impostando la `ASPNETCORE_ENVIRONMENT` variabile di ambiente. ASP.NET Core legge tale variabile di ambiente all'avvio dell'app e ne archivia il valore in un'implementazione `IWebHostEnvironment`. Questa implementazione è disponibile ovunque in un'app tramite l'inserimento DI dipendenze (DI).
+Gli ambienti di esecuzione, ad esempio `Development` , `Staging` e `Production` , sono una nozione di primo livello in ASP.NET Core. Specificare l'ambiente in cui è in esecuzione un'app impostando la `ASPNETCORE_ENVIRONMENT` variabile di ambiente. ASP.NET Core legge tale variabile di ambiente all'avvio dell'app e ne archivia il valore in un'implementazione `IWebHostEnvironment`. Questa implementazione è disponibile ovunque in un'app tramite l'inserimento DI dipendenze (DI).
 
-Nell'esempio seguente l'app viene configurata in modo da fornire informazioni dettagliate sull' `Development` errore durante l'esecuzione nell'ambiente:
+Nell'esempio seguente l'app viene configurata in modo da fornire informazioni dettagliate sull'errore durante l'esecuzione nell' `Development` ambiente:
 
 [!code-csharp[](index/samples_snapshot/3.x/StartupConfigure.cs?highlight=3-6)]
 
@@ -162,17 +164,17 @@ ASP.NET Core supporta un'API di registrazione che funziona con un'ampia gamma di
 * Servizio app di Azure
 * Azure Application Insights
 
-Per creare i log, risolvere <xref:Microsoft.Extensions.Logging.ILogger%601> un servizio da inserimento delle dipendenze (di) e metodi di <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>registrazione delle chiamate, ad esempio. Ad esempio:
+Per creare i log, risolvere un <xref:Microsoft.Extensions.Logging.ILogger%601> servizio da inserimento delle dipendenze (di) e metodi di registrazione delle chiamate, ad esempio <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> . Ad esempio:
 
 [!code-csharp[](index/samples_snapshot/3.x/TodoController.cs?highlight=5,13,19)]
 
-I metodi di registrazione `LogInformation` , ad esempio, supportano un numero qualsiasi di campi. Questi campi vengono in genere usati per creare un `string`messaggio, ma alcuni provider di registrazione li inviano a un archivio dati come campi separati. Questa funzionalità consente ai provider di registrazione di implementare la [registrazione semantica, nota anche come registrazione strutturata](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
+I metodi di registrazione, ad esempio, `LogInformation` supportano un numero qualsiasi di campi. Questi campi vengono in genere usati per creare un messaggio `string` , ma alcuni provider di registrazione li inviano a un archivio dati come campi separati. Questa funzionalità consente ai provider di registrazione di implementare la [registrazione semantica, nota anche come registrazione strutturata](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
 
 Per altre informazioni, vedere <xref:fundamentals/logging/index>.
 
-## <a name="routing"></a>Routing
+## <a name="routing"></a>Routing.
 
-Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore. Il gestore è in genere una pagina Razor, un metodo di azione in un controller MVC o un tipo di middleware. Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.
+Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore. Il gestore è in genere una Razor pagina, un metodo di azione in un controller MVC o un middleware. Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.
 
 Per altre informazioni, vedere <xref:fundamentals/routing>.
 
@@ -194,7 +196,7 @@ Un'implementazione di `IHttpClientFactory` è disponibile per la creazione di is
 * Offre una posizione centrale per la denominazione e la configurazione di istanze di `HttpClient` logiche. Ad esempio, registrare e configurare un client *GitHub* per l'accesso a github. Registrare e configurare un client predefinito per altri scopi.
 * Supporta la registrazione e il concatenamento di più gestori di delega per creare una pipeline di middleware per le richieste in uscita. Questo modello è simile alla pipeline middleware in ingresso ASP.NET Core. Il modello fornisce un meccanismo per gestire le problematiche trasversali per le richieste HTTP, ad esempio la memorizzazione nella cache, la gestione degli errori, la serializzazione e la registrazione.
 * Si integra con *Polly*, una famosa libreria di terze parti per la gestione degli errori temporanei.
-* Gestisce il pool e la durata delle istanze `HttpClientHandler` sottostanti per evitare problemi DNS comuni che si verificano quando si gestiscono `HttpClient` le durate manualmente.
+* Gestisce il pool e la durata delle istanze sottostanti `HttpClientHandler` per evitare problemi DNS comuni che si verificano quando si gestiscono le `HttpClient` durate manualmente.
 * Aggiunge un'esperienza di registrazione configurabile tramite <xref:Microsoft.Extensions.Logging.ILogger> per tutte le richieste inviate tramite client creati dalla factory.
 
 Per altre informazioni, vedere <xref:fundamentals/http-requests>.
@@ -206,7 +208,7 @@ La radice del contenuto è il percorso di base per:
 * Eseguibile che ospita l'app (*exe*).
 * Assembly compilati che costituiscono l'app (*. dll*).
 * File di contenuto usati dall'app, ad esempio:
-  * File Razor (*. cshtml*, *. Razor*)
+  * Razorfile (*. cshtml*, *. Razor*)
   * File di configurazione (con*estensione JSON*, *XML*)
   * File di dati (*. DB*)
 * La [radice Web](#web-root), in genere la cartella *wwwroot* .
@@ -223,7 +225,7 @@ La radice Web è il percorso di base per i file di risorse statici pubblici, ad 
 
 Per impostazione predefinita, i file statici vengono serviti solo dalla directory radice Web e dalle relative sottodirectory. Per impostazione predefinita, il percorso radice Web è *{Content root}/wwwroot*. Specificare un'altra radice Web impostando il relativo percorso durante [la compilazione dell'host](#host). Per altre informazioni, vedere [Web root](xref:fundamentals/host/generic-host#webroot) (Radice Web).
 
-Impedire la pubblicazione di file in *wwwroot* con il [ \<contenuto> elemento del progetto](/visualstudio/msbuild/common-msbuild-project-items#content) nel file di progetto. Nell'esempio seguente viene impedita la pubblicazione di contenuto in *wwwroot/local* e nelle relative sottodirectory:
+Impedire la pubblicazione di file in *wwwroot* con l' [ \<Content> elemento del progetto](/visualstudio/msbuild/common-msbuild-project-items#content) nel file di progetto. Nell'esempio seguente viene impedita la pubblicazione di contenuto in *wwwroot/local* e nelle relative sottodirectory:
 
 ```xml
 <ItemGroup>
@@ -231,7 +233,7 @@ Impedire la pubblicazione di file in *wwwroot* con il [ \<contenuto> elemento de
 </ItemGroup>
 ```
 
-Nei file Razor *. cshtml* , tilde-Slash (`~/`) punta alla radice Web. Un percorso che inizia `~/` con viene definito *percorso virtuale*.
+Nei Razor file con *estensione cshtml* , tilde-Slash ( `~/` ) punta alla radice Web. Un percorso che inizia con `~/` viene definito *percorso virtuale*.
 
 Per altre informazioni, vedere <xref:fundamentals/static-files>.
 
@@ -419,9 +421,9 @@ L'interfaccia `ILogger` consente di passare qualsiasi numero di campi al provide
 
 Per altre informazioni, vedere <xref:fundamentals/logging/index>.
 
-## <a name="routing"></a>Routing
+## <a name="routing"></a>Routing.
 
-Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore. Il gestore è in genere Razor una pagina, un metodo di azione in un controller MVC o un middleware. Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.
+Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore. Il gestore è in genere una Razor pagina, un metodo di azione in un controller MVC o un middleware. Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.
 
 Per altre informazioni, vedere <xref:fundamentals/routing>.
 
@@ -481,7 +483,7 @@ I file statici vengono serviti per impostazione predefinita solo dalla directory
 
 Per impostazione predefinita, il percorso radice Web è *{Content root}/wwwroot*, ma è possibile specificare una radice Web diversa durante [la compilazione dell'host](#host). Per altre informazioni, vedere [Web root](xref:fundamentals/host/web-host#web-root) (Radice Web).
 
-Impedire la pubblicazione di file in *wwwroot* con il [ \<contenuto> elemento del progetto](/visualstudio/msbuild/common-msbuild-project-items#content) nel file di progetto. Nell'esempio seguente viene impedita la pubblicazione di contenuto nella directory *wwwroot/locale* e nelle sottodirectory:
+Impedire la pubblicazione di file in *wwwroot* con l' [ \<Content> elemento del progetto](/visualstudio/msbuild/common-msbuild-project-items#content) nel file di progetto. Nell'esempio seguente viene impedita la pubblicazione di contenuto nella directory *wwwroot/locale* e nelle sottodirectory:
 
 ```xml
 <ItemGroup>
@@ -489,7 +491,7 @@ Impedire la pubblicazione di file in *wwwroot* con il [ \<contenuto> elemento de
 </ItemGroup>
 ```
 
-Nei Razor file (con*estensione cshtml*), la barra tilde (`~/`) punta alla radice Web. Un percorso che inizia `~/` con viene definito *percorso virtuale*.
+Nei Razor file (con*estensione cshtml*), la barra tilde ( `~/` ) punta alla radice Web. Un percorso che inizia con `~/` viene definito *percorso virtuale*.
 
 Per altre informazioni, vedere <xref:fundamentals/static-files>.
 

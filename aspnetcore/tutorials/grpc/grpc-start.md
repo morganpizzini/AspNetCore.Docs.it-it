@@ -6,17 +6,19 @@ ms.author: johluo
 ms.date: 04/08/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: a4676803361d71a3199b2cd1232d0ced8c93db5f
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: c2ec543bd73c0c15c65358c95def0109c295a0f8
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451940"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403469"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Esercitazione: creare un client e un server gRPC in ASP.NET Core
 
@@ -61,10 +63,10 @@ In questa esercitazione:
   ![Finestra di dialogo Crea nuovo progetto](~/tutorials/grpc/grpc-start/static/cnp.png)
 
 * Denominare il progetto **GrpcGreeter**. È importante denominare il progetto *GrpcGreeter* in modo che gli spazi dei nomi corrispondano nell'operazione copia/incolla del codice.
-* Selezionare **Create** (Crea).
+* Selezionare **Crea**.
 * Nella finestra di dialogo **Crea un nuovo servizio gRPC**:
   * È selezionato il modello **Servizio gRPC**.
-  * Selezionare **Create** (Crea).
+  * Selezionare **Crea**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -126,7 +128,7 @@ File di progetto *GrpcGreeter*:
 
 * *greet. proto*: il file *Protos/greet. proto* definisce il `Greeter` gRPC e viene usato per generare gli asset del server gRPC. Per altre informazioni, vedere [Introduzione a gRPC](xref:grpc/index).
 * Cartella dei *Servizi* : contiene l'implementazione del `Greeter` servizio.
-* *appSettings. JSON*: contiene i dati di configurazione, ad esempio il protocollo usato da gheppio. Per altre informazioni, vedere <xref:fundamentals/configuration/index>.
+* *appSettings.json*: contiene i dati di configurazione, ad esempio il protocollo usato da gheppio. Per altre informazioni, vedere <xref:fundamentals/configuration/index>.
 * *Program.cs*: contiene il punto di ingresso per il servizio gRPC. Per altre informazioni, vedere <xref:fundamentals/host/generic-host>.
 * *Startup.cs*: contiene il codice che configura il comportamento dell'app. Per altre informazioni, vedere [Avvio dell'app](xref:fundamentals/startup).
 

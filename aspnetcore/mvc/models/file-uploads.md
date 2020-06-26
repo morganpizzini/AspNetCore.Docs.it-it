@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/03/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 632cc9fafc5daf2923997f0113adee52491acdcc
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 055dc7295aad67f92fe5f4e8271a1543262257b5
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83838318"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404600"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Caricare file in ASP.NET Core
 
@@ -235,7 +237,7 @@ Affinché un `files` elemento input supporti il caricamento di più file, fornir
 > Gli esempi forniti finora non prendono in considerazione le considerazioni sulla sicurezza. Le informazioni aggiuntive sono fornite nelle sezioni seguenti e nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Considerazioni relative alla sicurezza](#security-considerations)
-> * [Validation](#validation)
+> * [Convalida](#validation)
 
 Quando si caricano file usando l'associazione di modelli e <xref:Microsoft.AspNetCore.Http.IFormFile> , il metodo di azione può accettare:
 
@@ -406,7 +408,7 @@ L'esempio precedente è simile a uno scenario illustrato nell'app di esempio:
 > Gli esempi forniti non prendono in considerazione le considerazioni sulla sicurezza. Le informazioni aggiuntive sono fornite nelle sezioni seguenti e nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Considerazioni relative alla sicurezza](#security-considerations)
-> * [Validation](#validation)
+> * [Convalida](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Caricare file di grandi dimensioni con flusso
 
@@ -528,7 +530,7 @@ Molte implementazioni devono includere un controllo per verificare che il file e
 
 Limitare le dimensioni dei file caricati.
 
-Nell'app di esempio, le dimensioni del file sono limitate a 2 MB (indicate in byte). Il limite viene fornito tramite la [configurazione](xref:fundamentals/configuration/index) dal file *appSettings. JSON* :
+Nell'app di esempio, le dimensioni del file sono limitate a 2 MB (indicate in byte). Il limite viene fornito tramite la [configurazione](xref:fundamentals/configuration/index) dal *appsettings.jsnel* file:
 
 ```json
 {
@@ -707,7 +709,7 @@ Per le app ospitate da gheppio possono essere applicati altri limiti di Gheppio:
 
 ### <a name="iis-content-length-limit"></a>Limite lunghezza contenuto IIS
 
-Il limite di richieste predefinito ( `maxAllowedContentLength` ) è 30 milioni byte, che corrisponde a circa 28,6 MB. Personalizzare il limite nel file *Web. config* :
+Il limite di richieste predefinito ( `maxAllowedContentLength` ) è 30 milioni byte, che corrisponde a circa 28,6 MB. Personalizzare il limite nel file di *web.config* :
 
 ```xml
 <system.webServer>
@@ -964,7 +966,7 @@ Affinché un `files` elemento input supporti il caricamento di più file, fornir
 > Gli esempi forniti finora non prendono in considerazione le considerazioni sulla sicurezza. Le informazioni aggiuntive sono fornite nelle sezioni seguenti e nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Considerazioni relative alla sicurezza](#security-considerations)
-> * [Validation](#validation)
+> * [Convalida](#validation)
 
 Quando si caricano file usando l'associazione di modelli e <xref:Microsoft.AspNetCore.Http.IFormFile> , il metodo di azione può accettare:
 
@@ -1135,7 +1137,7 @@ L'esempio precedente è simile a uno scenario illustrato nell'app di esempio:
 > Gli esempi forniti non prendono in considerazione le considerazioni sulla sicurezza. Le informazioni aggiuntive sono fornite nelle sezioni seguenti e nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Considerazioni relative alla sicurezza](#security-considerations)
-> * [Validation](#validation)
+> * [Convalida](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Caricare file di grandi dimensioni con flusso
 
@@ -1257,7 +1259,7 @@ Molte implementazioni devono includere un controllo per verificare che il file e
 
 Limitare le dimensioni dei file caricati.
 
-Nell'app di esempio, le dimensioni del file sono limitate a 2 MB (indicate in byte). Il limite viene fornito tramite la [configurazione](xref:fundamentals/configuration/index) dal file *appSettings. JSON* :
+Nell'app di esempio, le dimensioni del file sono limitate a 2 MB (indicate in byte). Il limite viene fornito tramite la [configurazione](xref:fundamentals/configuration/index) dal *appsettings.jsnel* file:
 
 ```json
 {
@@ -1429,7 +1431,7 @@ Per le app ospitate da gheppio possono essere applicati altri limiti di Gheppio:
 
 ### <a name="iis-content-length-limit"></a>Limite lunghezza contenuto IIS
 
-Il limite di richieste predefinito ( `maxAllowedContentLength` ) è 30 milioni byte, che corrisponde a circa 28,6 MB. Personalizzare il limite nel file *Web. config* :
+Il limite di richieste predefinito ( `maxAllowedContentLength` ) è 30 milioni byte, che corrisponde a circa 28,6 MB. Personalizzare il limite nel file di *web.config* :
 
 ```xml
 <system.webServer>

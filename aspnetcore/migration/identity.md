@@ -1,24 +1,26 @@
 ---
-title: Eseguire la migrazione Identity dell'autenticazione e a ASP.NET Core
+title: Eseguire la migrazione dell'autenticazione e Identity a ASP.NET Core
 author: ardalis
 description: Informazioni su come eseguire la migrazione dell'autenticazione e dell'identità da un progetto MVC ASP.NET a un progetto MVC ASP.NET Core.
 ms.author: riande
 ms.date: 3/22/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: migration/identity
-ms.openlocfilehash: 0474d0d4f430d587acac5fdd8f391220f825ccee
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 995de894bc77c4db5e5683b36e691b0c5a3463d3
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775531"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403755"
 ---
-# <a name="migrate-authentication-and-identity-to-aspnet-core"></a>Eseguire la migrazione Identity dell'autenticazione e a ASP.NET Core
+# <a name="migrate-authentication-and-identity-to-aspnet-core"></a>Eseguire la migrazione dell'autenticazione e Identity a ASP.NET Core
 
 Di [Steve Smith](https://ardalis.com/)
 
@@ -26,7 +28,7 @@ Nell'articolo precedente è stata [eseguita la migrazione della configurazione d
 
 ## <a name="configure-identity-and-membership"></a>Configurare Identity e appartenere
 
-In ASP.NET MVC le funzionalità di autenticazione e identità vengono configurate usando Identity ASP.NET in *Startup.auth.cs* e *IdentityConfig.cs*, che si trova nella cartella *app_start* . In ASP.NET Core MVC queste funzionalità sono configurate in *Startup.cs*.
+In ASP.NET MVC le funzionalità di autenticazione e identità vengono configurate usando ASP.NET Identity in *Startup.Auth.cs* e *IdentityConfig.cs*, che si trova nella cartella *app_start* . In ASP.NET Core MVC queste funzionalità sono configurate in *Startup.cs*.
 
 Installare i pacchetti NuGet seguenti:
 
@@ -34,7 +36,7 @@ Installare i pacchetti NuGet seguenti:
 * `Microsoft.AspNetCore.Authentication.Cookies`
 * `Microsoft.EntityFrameworkCore.SqlServer`
 
-In *Startup.cs*aggiornare il metodo `Startup.ConfigureServices` per usare Entity Framework e Identity i servizi:
+In *Startup.cs*aggiornare il `Startup.ConfigureServices` metodo per usare Entity Framework e i Identity Servizi:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -51,7 +53,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-A questo punto, esistono due tipi a cui si fa riferimento nel codice precedente, di cui non è ancora stata eseguita la migrazione dal `ApplicationDbContext` progetto `ApplicationUser`MVC ASP.NET: e. Creare una nuova cartella *Models* nel progetto ASP.NET Core e aggiungere due classi alla classe corrispondente a questi tipi. Le versioni di queste classi di ASP.NET MVC sono disponibili in */Models/IdentityModels.cs*, ma si userà un file per classe nel progetto migrato, perché questo è più chiaro.
+A questo punto, esistono due tipi a cui si fa riferimento nel codice precedente, di cui non è ancora stata eseguita la migrazione dal progetto MVC ASP.NET: `ApplicationDbContext` e `ApplicationUser` . Creare una nuova cartella *Models* nel progetto ASP.NET Core e aggiungere due classi alla classe corrispondente a questi tipi. Le versioni di queste classi di ASP.NET MVC sono disponibili in */Models/IdentityModels.cs*, ma si userà un file per classe nel progetto migrato, perché questo è più chiaro.
 
 *ApplicationUser.cs*:
 
@@ -92,7 +94,7 @@ namespace NewMvcProject.Models
 }
 ```
 
-Il progetto Web di avvio ASP.NET Core MVC non include molte personalizzazioni degli utenti o `ApplicationDbContext`. Quando si esegue la migrazione di un'app reale, è anche necessario eseguire la migrazione di tutti i metodi e le proprietà personalizzate `DbContext` dell'utente e delle classi dell'app, oltre alle altre classi di modelli usate dall'app. Se, ad esempio, `DbContext` è presente `DbSet<Album>`un oggetto, è necessario eseguire `Album` la migrazione della classe.
+Il progetto Web di avvio ASP.NET Core MVC non include molte personalizzazioni degli utenti o `ApplicationDbContext` . Quando si esegue la migrazione di un'app reale, è anche necessario eseguire la migrazione di tutti i metodi e le proprietà personalizzate dell'utente e delle classi dell'app, oltre alle `DbContext` altre classi di modelli usate dall'app. Se, ad esempio, `DbContext` è presente un oggetto `DbSet<Album>` , è necessario eseguire la migrazione della `Album` classe.
 
 Con questi file, è possibile compilare il file *Startup.cs* aggiornando le relative `using` istruzioni:
 
@@ -105,13 +107,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 ```
 
-L'app è ora pronta per supportare l'autenticazione Identity e i servizi. È sufficiente che queste funzionalità siano esposte agli utenti.
+L'app è ora pronta per supportare l'autenticazione e i Identity servizi. È sufficiente che queste funzionalità siano esposte agli utenti.
 
 ## <a name="migrate-registration-and-login-logic"></a>Eseguire la migrazione della logica di registrazione e accesso
 
 Con Identity i servizi configurati per l'app e l'accesso ai dati configurati con Entity Framework e SQL Server, è possibile aggiungere il supporto per la registrazione e l'accesso all'app. Si ricordi che [in precedenza nel processo di migrazione](xref:migration/mvc#migrate-the-layout-file) è stato impostato come commento un riferimento a *_LoginPartial* in *_Layout. cshtml*. A questo punto è possibile tornare a tale codice, rimuovere il commento e aggiungere i controller e le visualizzazioni necessari per supportare la funzionalità di accesso.
 
-Rimuovere il commento `@Html.Partial` dalla riga in *_Layout. cshtml*:
+Rimuovere il commento dalla `@Html.Partial` riga in *_Layout. cshtml*:
 
 ```cshtml
       <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -121,7 +123,7 @@ Rimuovere il commento `@Html.Partial` dalla riga in *_Layout. cshtml*:
 </div>
 ```
 
-A questo punto, aggiungere Razor una nuova vista denominata *_LoginPartial* alla cartella *Views/Shared* :
+A questo punto, aggiungere una nuova Razor vista denominata *_LoginPartial* alla cartella *Views/Shared* :
 
 Aggiornare *_LoginPartial. cshtml* con il codice seguente (sostituire tutto il contenuto):
 
@@ -155,4 +157,4 @@ A questo punto, dovrebbe essere possibile aggiornare il sito nel browser.
 
 ## <a name="summary"></a>Summary
 
-ASP.NET Core introduce le modifiche apportate alle funzionalità ASP.NET Identity . In questo articolo è stato illustrato come eseguire la migrazione delle funzionalità di autenticazione e gestione utenti di Identity ASP.NET in ASP.NET Core.
+ASP.NET Core introduce le modifiche apportate alle Identity funzionalità ASP.NET. In questo articolo è stato illustrato come eseguire la migrazione delle funzionalità di autenticazione e gestione utenti di ASP.NET Identity in ASP.NET Core.

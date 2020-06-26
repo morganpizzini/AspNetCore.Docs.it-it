@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: client-side/libman/libman-cli
-ms.openlocfilehash: 1a42d162e28d4bb4cce284b8b5e37f1be6ff64c6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: ed5dffb83a2f1a40f3d6596d23135c0fa5b6791f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82770552"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403183"
 ---
 # <a name="use-the-libman-cli-with-aspnet-core"></a>Usare l'interfaccia della riga di comando di LibMan con ASP.NET Core
 
@@ -98,7 +100,7 @@ Le sezioni seguenti descrivono i comandi dell'interfaccia della riga di comando 
 
 ## <a name="initialize-libman-in-the-project"></a>Inizializzare LibMan nel progetto
 
-Il `libman init` comando crea un file *libman. JSON* , se non ne esiste uno. Il file viene creato con il contenuto del modello di elemento predefinito.
+Il `libman init` comando crea un *libman.jsnel* file, se non ne esiste uno. Il file viene creato con il contenuto del modello di elemento predefinito.
 
 ### <a name="synopsis"></a>Riepilogo
 
@@ -113,11 +115,11 @@ Per il comando `libman init` sono disponibili le opzioni seguenti:
 
 * `-d|--default-destination <PATH>`
 
-  Percorso relativo alla cartella corrente. I file di libreria vengono installati in questo percorso se non `destination` è stata definita alcuna proprietà per una libreria in *libman. JSON*. Il `<PATH>` valore viene scritto nella `defaultDestination` proprietà di *libman. JSON*.
+  Percorso relativo alla cartella corrente. Se non `destination` è stata definita alcuna proprietà per una libreria in *libman.json*, i file di libreria vengono installati in questo percorso. Il `<PATH>` valore viene scritto nella `defaultDestination` proprietà di *libman.jssu*.
 
 * `-p|--default-provider <PROVIDER>`
 
-  Provider da utilizzare se non è definito alcun provider per una determinata libreria. Il `<PROVIDER>` valore viene scritto nella `defaultProvider` proprietà di *libman. JSON*. Sostituire `<PROVIDER>` con uno dei valori seguenti:
+  Provider da utilizzare se non è definito alcun provider per una determinata libreria. Il `<PROVIDER>` valore viene scritto nella `defaultProvider` proprietà di *libman.jssu*. Sostituire `<PROVIDER>` con uno dei valori seguenti:
 
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
@@ -125,7 +127,7 @@ Per il comando `libman init` sono disponibili le opzioni seguenti:
 
 ### <a name="examples"></a>Esempio
 
-Per creare un file *libman. JSON* in un progetto ASP.NET Core:
+Per creare un *libman.jssu* file in un progetto ASP.NET Core:
 
 * Passare alla radice del progetto.
 * Eseguire il comando seguente:
@@ -140,7 +142,7 @@ Per creare un file *libman. JSON* in un progetto ASP.NET Core:
 
   ![comando Libman init-provider predefinito](_static/libman-init-provider.png)
 
-Viene aggiunto un file *libman. JSON* alla radice del progetto con il contenuto seguente:
+Alla radice del progetto viene aggiunto un *libman.jsnel* file con il contenuto seguente:
 
 ```json
 {
@@ -152,7 +154,7 @@ Viene aggiunto un file *libman. JSON* alla radice del progetto con il contenuto 
 
 ## <a name="add-library-files"></a>Aggiungi file di libreria
 
-Il `libman install` comando Scarica e installa i file di libreria nel progetto. Se non ne esiste uno, viene aggiunto un file *libman. JSON* . Il file *libman. JSON* è stato modificato per archiviare i dettagli di configurazione per i file di libreria.
+Il `libman install` comando Scarica e installa i file di libreria nel progetto. Se non ne esiste uno, viene aggiunto un *libman.jssul* file. Il *libman.jsnel* file viene modificato in modo da archiviare i dettagli di configurazione per i file di libreria.
 
 ### <a name="synopsis"></a>Riepilogo
 
@@ -173,7 +175,7 @@ Per il comando `libman install` sono disponibili le opzioni seguenti:
 
 * `-d|--destination <PATH>`
 
-  Percorso in cui installare la libreria. Se non specificato, viene utilizzato il percorso predefinito. Se non `defaultDestination` è specificata alcuna proprietà in *libman. JSON*, questa opzione è obbligatoria.
+  Percorso in cui installare la libreria. Se non specificato, viene utilizzato il percorso predefinito. Se non `defaultDestination` è specificata alcuna proprietà in *libman.json*, questa opzione è obbligatoria.
 
 * `--files <FILE>`
 
@@ -185,13 +187,13 @@ Per il comando `libman install` sono disponibili le opzioni seguenti:
   
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
-  Se non specificato, `defaultProvider` viene usata la proprietà in *libman. JSON* . Se non `defaultProvider` è specificata alcuna proprietà in *libman. JSON*, questa opzione è obbligatoria.
+  Se non è specificato, `defaultProvider` viene utilizzata la proprietà in *libman.js* . Se non `defaultProvider` è specificata alcuna proprietà in *libman.json*, questa opzione è obbligatoria.
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
 ### <a name="examples"></a>Esempio
 
-Si consideri il seguente file *libman. JSON* :
+Si considerino i *libman.jsseguenti nel* file:
 
 ```json
 {
@@ -201,13 +203,13 @@ Si consideri il seguente file *libman. JSON* :
 }
 ```
 
-Per installare la versione 3.2.1 di jQuery *. min. js* nella cartella *wwwroot/scripts/jQuery* usando il provider CDNJS:
+Per installare il file di *jquery.min.js* jQuery versione 3.2.1 nella cartella *wwwroot/scripts/jQuery* usando il provider CDNJS:
 
 ```console
 libman install jquery@3.2.1 --provider cdnjs --destination wwwroot/scripts/jquery --files jquery.min.js
 ```
 
-Il file *libman. JSON* è simile al seguente:
+Il *libman.jsnel* file è simile al seguente:
 
 ```json
 {
@@ -225,7 +227,7 @@ Il file *libman. JSON* è simile al seguente:
 }
 ```
 
-Per installare i file *Calendar. js* e *Calendar. CSS* da *C: \\ temp \\ contosoCalendar \\ * usando il provider di file System:
+Per installare i file *calendar.js* e *Calendar. CSS* da *C: \\ temp \\ contosoCalendar \\ * usando il provider file System:
 
   ```console
   libman install C:\temp\contosoCalendar\ --provider filesystem --files calendar.js --files calendar.css
@@ -233,12 +235,12 @@ Per installare i file *Calendar. js* e *Calendar. CSS* da *C: \\ temp \\ contoso
 
 La richiesta seguente viene visualizzata per due motivi:
 
-* Il file *libman. JSON* non contiene una `defaultDestination` Proprietà.
+* Il *libman.jsnel* file non contiene una `defaultDestination` Proprietà.
 * Il `libman install` comando non contiene l' `-d|--destination` opzione.
 
 ![comando di installazione di Libman-destinazione](_static/libman-install-destination.png)
 
-Dopo aver accettato la destinazione predefinita, il file *libman. JSON* è simile al seguente:
+Dopo aver accettato la destinazione predefinita, il *libman.jsnel* file è simile al seguente:
 
 ```json
 {
@@ -267,11 +269,11 @@ Dopo aver accettato la destinazione predefinita, il file *libman. JSON* è simil
 
 ## <a name="restore-library-files"></a>Ripristinare i file di libreria
 
-Il `libman restore` comando installa i file di libreria definiti in *libman. JSON*. Sono applicabili le regole seguenti:
+Il `libman restore` comando installa i file di libreria definiti in *libman.json*. Sono applicabili le regole seguenti:
 
-* Se nella radice del progetto non è presente alcun file *libman. JSON* , viene restituito un errore.
-* Se una libreria specifica un provider, la `defaultProvider` Proprietà in *libman. JSON* verrà ignorata.
-* Se una libreria specifica una destinazione, la `defaultDestination` Proprietà in *libman. JSON* verrà ignorata.
+* Se nella radice del progetto non è presente alcun *libman.js* nel file, viene restituito un errore.
+* Se una libreria specifica un provider, la `defaultProvider` Proprietà in *libman.js* in viene ignorata.
+* Se una libreria specifica una destinazione, la `defaultDestination` Proprietà in *libman.js* in viene ignorata.
 
 ### <a name="synopsis"></a>Riepilogo
 
@@ -288,7 +290,7 @@ Per il comando `libman restore` sono disponibili le opzioni seguenti:
 
 ### <a name="examples"></a>Esempio
 
-Per ripristinare i file di libreria definiti in *libman. JSON*:
+Per ripristinare i file di libreria definiti in *libman.jsin*:
 
 ```console
 libman restore
@@ -296,7 +298,7 @@ libman restore
 
 ## <a name="delete-library-files"></a>Elimina file di libreria
 
-Il `libman clean` comando Elimina i file di libreria ripristinati in precedenza tramite LibMan. Cartelle che diventano vuote dopo l'eliminazione di questa operazione. Le configurazioni associate dei file di libreria nella `libraries` proprietà di *libman. JSON* non vengono rimosse.
+Il `libman clean` comando Elimina i file di libreria ripristinati in precedenza tramite LibMan. Cartelle che diventano vuote dopo l'eliminazione di questa operazione. Le configurazioni associate dei file di libreria nella `libraries` proprietà di *libman.js* non vengono rimosse.
 
 ### <a name="synopsis"></a>Riepilogo
 
@@ -323,12 +325,12 @@ libman clean
 
 Il `libman uninstall` comando:
 
-* Elimina tutti i file associati alla libreria specificata dalla destinazione in *libman. JSON*.
-* Rimuove la configurazione della libreria associata da *libman. JSON*.
+* Elimina tutti i file associati alla libreria specificata dalla destinazione nel *libman.js*.
+* Rimuove la configurazione della libreria associata dal *libman.js*.
 
 Si verifica un errore quando:
 
-* Nessun file *libman. JSON* presente nella radice del progetto.
+* Non esiste alcun *libman.js* nel file nella radice del progetto.
 * La libreria specificata non esiste.
 
 Se è installata più di una libreria con lo stesso nome, viene richiesto di sceglierne una.
@@ -354,7 +356,7 @@ Per il comando `libman uninstall` sono disponibili le opzioni seguenti:
 
 ### <a name="examples"></a>Esempio
 
-Si consideri il seguente file *libman. JSON* :
+Si considerino i *libman.jsseguenti nel* file:
 
 [!code-json[](samples/LibManSample/libman.json)]
 
@@ -380,7 +382,7 @@ Il `libman update` comando aggiorna una libreria installata tramite LibMan alla 
 
 Si verifica un errore quando:
 
-* Nessun file *libman. JSON* presente nella radice del progetto.
+* Non esiste alcun *libman.js* nel file nella radice del progetto.
 * La libreria specificata non esiste.
 
 Se è installata più di una libreria con lo stesso nome, viene richiesto di sceglierne una.

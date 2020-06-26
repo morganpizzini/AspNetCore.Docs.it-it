@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/content-security-policy
-ms.openlocfilehash: 360fff9383e25a6b5b9308cfebd397f7f4ee31a6
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 5c53ac64d3ae1b365b40c519eb119f913d58cad1
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242979"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402442"
 ---
 # <a name="enforce-a-content-security-policy-for-aspnet-core-blazor"></a>Applicare un criterio di sicurezza del contenuto per ASP.NET CoreBlazor
 
@@ -38,7 +40,7 @@ CSP è supportato nella maggior parte dei browser moderni per desktop e per disp
 
 ## <a name="policy-directives"></a>Direttive dei criteri
 
-Specificare almeno le direttive e le origini seguenti per le Blazor app. Aggiungere altre direttive e origini in base alle esigenze. Le direttive seguenti vengono usate nella sezione [applicare i criteri](#apply-the-policy) di questo articolo, in cui sono disponibili i criteri di sicurezza di esempio per Blazor webassembly e Blazor Server:
+Specificare almeno le direttive e le origini seguenti per le Blazor app. Aggiungere altre direttive e origini in base alle esigenze. Le direttive seguenti vengono usate nella sezione [applicare i criteri](#apply-the-policy) di questo articolo, in cui sono disponibili i criteri di sicurezza di esempio per Blazor WebAssembly e Blazor Server :
 
 * [URI di base](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): limita gli URL per il tag di una pagina `<base>` . Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.
 * [Block-All-Mixed-Content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): impedisce il caricamento di contenuto misto http e HTTPS.
@@ -50,17 +52,17 @@ Specificare almeno le direttive e le origini seguenti per le Blazor app. Aggiung
 * [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): indica le origini valide per gli script.
   * Specificare l' `https://stackpath.bootstrapcdn.com/` origine host per gli script bootstrap.
   * Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.
-  * In un' Blazor app webassembly:
-    * Specificare gli hash seguenti per consentire il caricamento degli Blazor script inline di webassembly richiesti:
+  * In un' Blazor WebAssembly app:
+    * Specificare gli hash seguenti per consentire il caricamento degli Blazor WebAssembly script inline necessari:
       * `sha256-v8ZC9OgMhcnEQ/Me77/R9TlJfzOBqrMTW8e1KuqLaqc=`
       * `sha256-If//FtbPc03afjLezvWHnC3Nbu4fDM04IIzkPaf3pH0=`
       * `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=`
     * Specificare `unsafe-eval` per usare `eval()` i metodi e per la creazione di codice da stringhe.
-  * In un' Blazor app Server specificare l' `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` hash per lo script inline che esegue il rilevamento del fallback per i fogli di stile.
+  * In un' Blazor Server app specificare l' `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` hash per lo script inline che esegue il rilevamento del fallback per i fogli di stile.
 * [Style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): indica le origini valide per i fogli di stile.
   * Specificare l' `https://stackpath.bootstrapcdn.com/` origine host per i fogli di stile bootstrap.
   * Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.
-  * Specificare `unsafe-inline` per consentire l'utilizzo di stili inline. La dichiarazione inline è necessaria per l'interfaccia utente nelle Blazor app Server per la riconnessione del client e del server dopo la richiesta iniziale. In una versione futura, lo stile inline potrebbe essere rimosso in modo che `unsafe-inline` non sia più necessario.
+  * Specificare `unsafe-inline` per consentire l'utilizzo di stili inline. La dichiarazione inline è necessaria per l'interfaccia utente nelle Blazor Server app per la riconnessione del client e del server dopo la richiesta iniziale. In una versione futura, lo stile inline potrebbe essere rimosso in modo che `unsafe-inline` non sia più necessario.
 * [upgrade-unsecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): indica che gli URL del contenuto da origini non sicure (http) devono essere acquisiti in modo sicuro su HTTPS.
 
 Le direttive precedenti sono supportate da tutti i browser ad eccezione di Microsoft Internet Explorer.
@@ -81,9 +83,9 @@ Usare un `<meta>` tag per applicare i criteri:
 * Inserire le direttive nel `content` valore dell'attributo. Separare le direttive con un punto e virgola ( `;` ).
 * Posizionare sempre il `meta` tag nel `<head>` contenuto.
 
-Le sezioni seguenti illustrano i criteri di esempio per Blazor webassembly e Blazor Server. Questi esempi sono disponibili in questo articolo per ogni versione di Blazor . Per usare una versione appropriata per il rilascio, selezionare la versione del documento con il selettore a discesa **versione** in questa pagina Web.
+Nelle sezioni seguenti vengono illustrati i criteri di esempio per Blazor WebAssembly e Blazor Server . Questi esempi sono disponibili in questo articolo per ogni versione di Blazor . Per usare una versione appropriata per il rilascio, selezionare la versione del documento con il selettore a discesa **versione** in questa pagina Web.
 
-### <a name="blazor-webassembly"></a>BlazorWebassembly
+### Blazor WebAssembly
 
 Nel `<head>` contenuto della `wwwroot/index.html` pagina host applicare le direttive descritte nella sezione [direttive dei criteri](#policy-directives) :
 
@@ -106,7 +108,7 @@ Nel `<head>` contenuto della `wwwroot/index.html` pagina host applicare le diret
                upgrade-insecure-requests;">
 ```
 
-### <a name="blazor-server"></a>BlazorServer
+### Blazor Server
 
 Nel `<head>` contenuto della `Pages/_Host.cshtml` pagina host applicare le direttive descritte nella sezione [direttive dei criteri](#policy-directives) :
 

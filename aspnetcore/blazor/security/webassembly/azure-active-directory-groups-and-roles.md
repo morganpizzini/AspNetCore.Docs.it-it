@@ -1,24 +1,26 @@
 ---
-title: ASP.NET Core Blazor webassembly con gruppi e ruoli di Azure Active Directory
+title: ASP.NET Core Blazor WebAssembly con gruppi e ruoli di Azure Active Directory
 author: guardrex
-description: Informazioni su come configurare Blazor webassembly per l'uso di Azure Active Directory gruppi e ruoli.
+description: Informazioni su come configurare Blazor WebAssembly per l'uso di gruppi e ruoli di Azure Active Directory.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: ed49ba13842f2b5805250d8c12535397c542cfd4
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 6e27b062d7b5a1b72804fe5d4ea31ec65358ce45
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242875"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402156"
 ---
 # <a name="azure-ad-groups-administrative-roles-and-user-defined-roles"></a>Gruppi di Azure AD, ruoli amministrativi e ruoli definiti dall'utente
 
@@ -34,7 +36,7 @@ Azure Active Directory (AAD) fornisce diversi approcci di autorizzazione che pos
   * Ruoli amministrativi predefiniti
   * Ruoli definiti dall'utente
 
-Le indicazioni fornite in questo articolo sono valide per gli Blazor scenari di distribuzione di AAD di webassembly descritti negli argomenti seguenti:
+Le indicazioni fornite in questo articolo sono valide per gli Blazor WebAssembly scenari di distribuzione di AAD descritti negli argomenti seguenti:
 
 * [App autonoma con account Microsoft](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
 * [App autonoma con AAD](xref:blazor/security/webassembly/standalone-with-azure-active-directory)

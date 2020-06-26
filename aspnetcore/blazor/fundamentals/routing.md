@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: fde30109395065014433bebde52a9eb22458c451
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: ba85cc901127725d674b699638fef5fe363081a8
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242745"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402793"
 ---
 # <a name="aspnet-core-blazor-routing"></a>BlazorRouting ASP.NET Core
 
@@ -28,11 +30,11 @@ Informazioni su come instradare le richieste e su come usare il <xref:Microsoft.
 
 ## <a name="aspnet-core-endpoint-routing-integration"></a>Integrazione di routing endpoint ASP.NET Core
 
-BlazorIl server è integrato in [ASP.net core routing dell'endpoint](xref:fundamentals/routing). Un'app ASP.NET Core è configurata in modo da accettare le connessioni in ingresso per i componenti interattivi con <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Startup.Configure` :
+Blazor Serverè integrato in [ASP.net core routing dell'endpoint](xref:fundamentals/routing). Un'app ASP.NET Core è configurata in modo da accettare le connessioni in ingresso per i componenti interattivi con <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Startup.Configure` :
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-La configurazione più tipica consiste nel routing di tutte le richieste a una Razor pagina, che funge da host per la parte lato server dell' Blazor app Server. Per convenzione, la pagina *host* è in genere denominata `_Host.cshtml` . La route specificata nel file host viene chiamata route di *fallback* perché funziona con una priorità bassa nella corrispondenza della route. La route di fallback viene considerata quando altre route non corrispondono. Ciò consente all'app di usare altri controller e pagine senza interferire con l' Blazor app Server.
+La configurazione più tipica consiste nel routing di tutte le richieste a una Razor pagina, che funge da host per la parte lato server dell' Blazor Server app. Per convenzione, la pagina *host* è in genere denominata `_Host.cshtml` . La route specificata nel file host viene chiamata route di *fallback* perché funziona con una priorità bassa nella corrispondenza della route. La route di fallback viene considerata quando altre route non corrispondono. Ciò consente all'app di usare altri controller e pagine senza interferire con l' Blazor Server app.
 
 ## <a name="route-templates"></a>Modelli di route
 
@@ -68,7 +70,7 @@ Facoltativamente, è possibile specificare un <xref:Microsoft.AspNetCore.Compone
 ```
 
 > [!IMPORTANT]
-> Per la corretta risoluzione degli URL, l'app deve includere un `<base>` tag nel file `wwwroot/index.html` ( Blazor webassembly) o nel `Pages/_Host.cshtml` file ( Blazor Server) con il percorso di base dell'app specificato nell' `href` attributo ( `<base href="/">` ). Per altre informazioni, vedere <xref:blazor/host-and-deploy/index#app-base-path>.
+> Per la corretta risoluzione degli URL, l'app deve includere un `<base>` tag nel `wwwroot/index.html` file ( Blazor WebAssembly ) o nel `Pages/_Host.cshtml` file ( Blazor Server ) con il percorso di base dell'applicazione specificato nell' `href` attributo ( `<base href="/">` ). Per altre informazioni, vedere <xref:blazor/host-and-deploy/index#app-base-path>.
 
 ## <a name="provide-custom-content-when-content-isnt-found"></a>Fornire contenuto personalizzato quando il contenuto non è stato trovato
 
@@ -154,7 +156,7 @@ Sono disponibili i vincoli di route indicati nella tabella seguente. Per ulterio
 
 ### <a name="routing-with-urls-that-contain-dots"></a>Routing con URL contenenti punti
 
-Nelle Blazor app Server la route predefinita in `_Host.cshtml` è `/` ( `@page "/"` ). Un URL di richiesta che contiene un punto ( `.` ) non corrisponde alla route predefinita perché l'URL viene visualizzato per richiedere un file. Un' Blazor app restituisce una risposta *404 non trovata* per un file statico che non esiste. Per usare le route che contengono un punto, configurare `_Host.cshtml` con il modello di route seguente:
+Nelle Blazor Server app la route predefinita in `_Host.cshtml` è `/` ( `@page "/"` ). Un URL di richiesta che contiene un punto ( `.` ) non corrisponde alla route predefinita perché l'URL viene visualizzato per richiedere un file. Un' Blazor app restituisce una risposta *404 non trovata* per un file statico che non esiste. Per usare le route che contengono un punto, configurare `_Host.cshtml` con il modello di route seguente:
 
 ```cshtml
 @page "/{**path}"
@@ -204,7 +206,7 @@ Usare <xref:Microsoft.AspNetCore.Components.NavigationManager> per lavorare con 
 | Membro | Descrizione |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Ottiene l'URI assoluto corrente. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Ottiene l'URI di base (con una barra finale) che può essere anteposto ai percorsi URI relativi per produrre un URI assoluto. In genere, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corrisponde all' `href` attributo sull'elemento del documento `<base>` in `wwwroot/index.html` ( Blazor webassembly) o `Pages/_Host.cshtml` ( Blazor Server). |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Ottiene l'URI di base (con una barra finale) che può essere anteposto ai percorsi URI relativi per produrre un URI assoluto. In genere, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corrisponde all' `href` attributo sull'elemento del documento `<base>` in `wwwroot/index.html` ( Blazor WebAssembly ) o `Pages/_Host.cshtml` ( Blazor Server ). |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Passa all'URI specificato. Se `forceLoad` è `true` :<ul><li>Il routing lato client viene ignorato.</li><li>Il browser è forzato a caricare la nuova pagina dal server, indipendentemente dal fatto che l'URI venga normalmente gestito dal router lato client.</li></ul> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | Un evento che viene attivato quando il percorso di navigazione viene modificato. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converte un URI relativo in un URI assoluto. |

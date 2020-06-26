@@ -8,17 +8,19 @@ ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/facebook-logins
-ms.openlocfilehash: 11ddc7314a694446d488da6ef1b2e3423bf7241a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: df91b6f324de70b8492ccf0aef74c9264c3e9711
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777033"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403950"
 ---
 # <a name="facebook-external-login-setup-in-aspnet-core"></a>Configurazione dell'accesso esterno a Facebook in ASP.NET Core
 
@@ -55,16 +57,16 @@ Questa esercitazione con esempi di codice Mostra come consentire agli utenti di 
 
   ![Pagina impostazioni OAuth client](index/_static/FBOAuthSetup.png)
 
-* Immettere l'URI di sviluppo con */SignIn-Facebook* aggiunto nel campo **Valid URI di reindirizzamento OAuth** (ad esempio: `https://localhost:44320/signin-facebook`). L'autenticazione di Facebook configurata più avanti in questa esercitazione gestirà automaticamente le richieste in */SignIn-Facebook* route per implementare il flusso OAuth.
+* Immettere l'URI di sviluppo con */SignIn-Facebook* aggiunto nel campo **Valid URI di reindirizzamento OAuth** (ad esempio: `https://localhost:44320/signin-facebook` ). L'autenticazione di Facebook configurata più avanti in questa esercitazione gestirà automaticamente le richieste in */SignIn-Facebook* route per implementare il flusso OAuth.
 
 > [!NOTE]
 > L'URI */SignIn-Facebook* viene impostato come callback predefinito del provider di autenticazione di Facebook. È possibile modificare l'URI di callback predefinito durante la configurazione del middleware di autenticazione di Facebook tramite la proprietà [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) ereditata della classe [FacebookOptions](/dotnet/api/microsoft.aspnetcore.authentication.facebook.facebookoptions) .
 
 * Fare clic su **Salva modifiche**.
 
-* Fare clic sul collegamento **Impostazioni** > di**base** nella finestra di spostamento a sinistra.
+* Fare clic sul collegamento **Impostazioni**  >  di**base** nella finestra di spostamento a sinistra.
 
-  In questa pagina prendere nota del `App ID` e del. `App Secret` Si aggiungeranno entrambi nell'applicazione ASP.NET Core nella sezione successiva:
+  In questa pagina prendere nota del `App ID` e del `App Secret` . Si aggiungeranno entrambi nell'applicazione ASP.NET Core nella sezione successiva:
 
 * Quando si distribuisce il sito, è necessario rivedere la pagina di configurazione dell' **account di accesso di Facebook** e registrare un nuovo URI pubblico.
 
@@ -73,7 +75,7 @@ Questa esercitazione con esempi di codice Mostra come consentire agli utenti di 
 Archiviare le impostazioni riservate, ad esempio l'ID app Facebook e i valori segreti con [gestione Secret](xref:security/app-secrets). Per questo esempio, attenersi alla procedura seguente:
 
 1. Inizializzare il progetto per l'archiviazione segreta in base alle istruzioni riportate in [abilitare l'archiviazione segreta](xref:security/app-secrets#enable-secret-storage).
-1. Archiviare le impostazioni sensibili nell'archivio dei segreti locali con le chiavi `Authentication:Facebook:AppId` segrete `Authentication:Facebook:AppSecret`e:
+1. Archiviare le impostazioni sensibili nell'archivio dei segreti locali con le chiavi segrete `Authentication:Facebook:AppId` e `Authentication:Facebook:AppSecret` :
 
     ```dotnetcli
     dotnet user-secrets set "Authentication:Facebook:AppId" "<app-id>"
@@ -112,11 +114,11 @@ A questo punto è stato effettuato l'accesso con le credenziali di Facebook:
 
 <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.AccessDeniedPath>può fornire un percorso di reindirizzamento all'agente utente quando l'utente non approva la richiesta di autorizzazione richiesta.
 
-Il codice seguente imposta `AccessDeniedPath` su: `"/AccessDeniedPathInfo"`
+Il codice seguente imposta `AccessDeniedPath` su `"/AccessDeniedPathInfo"` :
 
 [!code-csharp[](~/security/authentication/social/social-code/StartupAccessDeniedPath.cs?name=snippetFB)]
 
-È consigliabile che `AccessDeniedPath` la pagina contenga le informazioni seguenti:
+È consigliabile che la `AccessDeniedPath` pagina contenga le informazioni seguenti:
 
 *  L'autenticazione remota è stata annullata.
 * Questa app richiede l'autenticazione.
@@ -141,7 +143,7 @@ Vedere le informazioni di riferimento sull'API [FacebookOptions](/dotnet/api/mic
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
-* **Solo ASP.NET Core 2. x:** Se Identity non è configurato chiamando `services.AddIdentity` in `ConfigureServices`, il tentativo di eseguire l'autenticazione comporterà *l'eccezione ArgumentException: è necessario specificare l'opzione ' SignInScheme '*. Il modello di progetto usato in questa esercitazione garantisce che questa operazione venga eseguita.
+* **Solo ASP.NET Core 2. x:** Se Identity non è configurato chiamando `services.AddIdentity` in `ConfigureServices` , il tentativo di eseguire l'autenticazione comporterà *l'eccezione ArgumentException: è necessario specificare l'opzione ' SignInScheme '*. Il modello di progetto usato in questa esercitazione garantisce che questa operazione venga eseguita.
 * Se il database del sito non è stato creato applicando la migrazione iniziale, si ottiene *un'operazione di database non riuscita durante l'elaborazione dell'* errore di richiesta. Toccare **applica migrazioni** per creare il database e aggiornare per continuare a superare l'errore.
 
 ## <a name="next-steps"></a>Passaggi successivi

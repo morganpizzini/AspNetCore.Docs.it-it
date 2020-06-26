@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 01/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: getting-started
-ms.openlocfilehash: 565cde233d6fc5f085ae1709e167e73980d5c3c2
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b88460cdff5d8c30c6a28afdb4f67e8e0b6b819c
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776233"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403365"
 ---
 # <a name="tutorial-get-started-with-aspnet-core"></a>Esercitazione: Introduzione ad ASP.NET Core
 
@@ -29,7 +31,7 @@ Si apprenderà come:
 > * Creare un progetto di app Web.
 > * Considerare attendibile il certificato di sviluppo.
 > * Eseguire l'app.
-> * Modificare una pagina Razor.
+> * Modificare una Razor pagina.
 
 Al termine, si avrà un'app Web funzionante che viene eseguita nel computer locale.
 
@@ -105,7 +107,7 @@ Aprire *pages/index. cshtml* e modificare e salvare la pagina con il markup evid
 
 [!code-cshtml[](sample/index.cshtml?highlight=9)]
 
-Individuare `https://localhost:5001`, aggiornare la pagina e verificare che le modifiche vengano visualizzate.
+Individuare `https://localhost:5001` , aggiornare la pagina e verificare che le modifiche vengano visualizzate.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

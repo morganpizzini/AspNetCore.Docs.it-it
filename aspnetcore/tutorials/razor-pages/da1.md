@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/20/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: 144c4e7f07986c0a10089d74991fe3b44c013894
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 9ab97ca9a79e055b9013801ccc65bd6707e2b312
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652866"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404509"
 ---
 # <a name="part-5-update-the-generated-pages-in-an-aspnet-core-app"></a>Parte 5: aggiornare le pagine generate in un'app ASP.NET Core
 
@@ -82,7 +84,7 @@ Per testare il comportamento di `@page "{id:int?}"`:
 
 * Impostare la direttiva page in *Pages/Movies/Details.cshtml* su `@page "{id:int?}"`.
 * Impostare un punto di interruzione in `public async Task<IActionResult> OnGetAsync(int? id)` (in *Pages/Movies/Details.cshtml.cs*).
-* Passare a `https://localhost:5001/Movies/Details/`.
+* Accedere a `https://localhost:5001/Movies/Details/`.
 
 Con l'istruzione `@page "{id:int}"`, il punto di interruzione non viene mai raggiunto. Il motore di routing restituisce HTTP 404. Se si utilizza `@page "{id:int?}"`, il metodo `OnGetAsync` restituisce `NotFound` (HTTP 404).
 
@@ -195,7 +197,7 @@ Per testare il comportamento di `@page "{id:int?}"`:
 
 * Impostare la direttiva page in *Pages/Movies/Details.cshtml* su `@page "{id:int?}"`.
 * Impostare un punto di interruzione in `public async Task<IActionResult> OnGetAsync(int? id)` (in *Pages/Movies/Details.cshtml.cs*).
-* Passare a `https://localhost:5001/Movies/Details/`.
+* Accedere a `https://localhost:5001/Movies/Details/`.
 
 Con l'istruzione `@page "{id:int}"`, il punto di interruzione non viene mai raggiunto. Il motore di routing restituisce HTTP 404. Se si utilizza `@page "{id:int?}"`, il metodo `OnGetAsync` restituisce `NotFound` (HTTP 404).
 

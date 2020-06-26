@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 8/04/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: 3976ecba1a6bbf30c3147bf1cef78c5ced5bec62
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 841751ffb834f77184365c3022293dbadc9f6f2c
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652819"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403534"
 ---
 # <a name="part-3-add-a-view-to-an-aspnet-core-mvc-app"></a>Parte 3: aggiungere una visualizzazione a un'app MVC ASP.NET Core
 
@@ -80,7 +82,7 @@ Sostituire il contenuto del file di visualizzazione *views/HelloWorld/index. csh
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Passare a `https://localhost:{PORT}/HelloWorld`. Il metodo `Index` in `HelloWorldController` non ha eseguito molte operazioni; ha eseguito l'istruzione `return View();` che ha specificato che il metodo deve usare un file di modello della vista per eseguire il rendering di una risposta al browser. Poiché non è stato specificato un nome di file di modello di visualizzazione, per impostazione predefinita MVC usa il file di visualizzazione predefinito. Il file di visualizzazione predefinito ha lo stesso nome del metodo ( `Index` ), quindi viene usato il modello di visualizzazione in */views/HelloWorld/index.cshtml* . L'immagine seguente mostra la stringa "Hello from our View Template!" hardcoded nella vista.
+Accedere a `https://localhost:{PORT}/HelloWorld`. Il metodo `Index` in `HelloWorldController` non ha eseguito molte operazioni; ha eseguito l'istruzione `return View();` che ha specificato che il metodo deve usare un file di modello della vista per eseguire il rendering di una risposta al browser. Poiché non è stato specificato un nome di file di modello di visualizzazione, per impostazione predefinita MVC usa il file di visualizzazione predefinito. Il file di visualizzazione predefinito ha lo stesso nome del metodo ( `Index` ), quindi viene usato il modello di visualizzazione in */views/HelloWorld/index.cshtml* . L'immagine seguente mostra la stringa "Hello from our View Template!" hardcoded nella vista.
 
 ![Finestra del browser](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -237,7 +239,7 @@ Sostituire il contenuto del file di visualizzazione *views/HelloWorld/index. csh
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Passare a `https://localhost:{PORT}/HelloWorld`. Il metodo `Index` in `HelloWorldController` non ha eseguito molte operazioni; ha eseguito l'istruzione `return View();` che ha specificato che il metodo deve usare un file di modello della vista per eseguire il rendering di una risposta al browser. Poiché non è stato specificato un nome di file di modello di visualizzazione, per impostazione predefinita MVC usa il file di visualizzazione predefinito. Il file di visualizzazione predefinito ha lo stesso nome del metodo (`Index`), quindi viene usato */Views/HelloWorld/Index.cshtml*. L'immagine seguente mostra la stringa "Hello from our View Template!" hardcoded nella vista.
+Accedere a `https://localhost:{PORT}/HelloWorld`. Il metodo `Index` in `HelloWorldController` non ha eseguito molte operazioni; ha eseguito l'istruzione `return View();` che ha specificato che il metodo deve usare un file di modello della vista per eseguire il rendering di una risposta al browser. Poiché non è stato specificato un nome di file di modello di visualizzazione, per impostazione predefinita MVC usa il file di visualizzazione predefinito. Il file di visualizzazione predefinito ha lo stesso nome del metodo (`Index`), quindi viene usato */Views/HelloWorld/Index.cshtml*. L'immagine seguente mostra la stringa "Hello from our View Template!" hardcoded nella vista.
 
 ![Finestra del browser](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 

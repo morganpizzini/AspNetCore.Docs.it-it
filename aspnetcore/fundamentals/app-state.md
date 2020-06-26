@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 03/06/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/app-state
-ms.openlocfilehash: c29b58eb14a7962f53f2c8c48067de2f5872fded
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4ecbf6920980e293e8c274996c6a4f25e74a5cb7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774808"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403625"
 ---
 # <a name="session-and-state-management-in-aspnet-core"></a>Gestione delle sessioni e dello stato in ASP.NET Core
 
@@ -57,7 +59,7 @@ Vedere le [normative generali sulla protezione dei dati (GDPR) dell'Unione europ
 
 Lo stato della sessione è uno scenario di ASP.NET Core per l'archiviazione dei dati utente mentre l'utente visualizza un'app Web. Lo stato della sessione usa un archivio gestito dall'app per rendere persistenti i dati tra le richieste provenienti da un client. I dati della sessione sono supportati da una cache e considerati dati temporanei. Il sito deve continuare a funzionare senza i dati della sessione. I dati critici dell'applicazione devono essere archiviati nel database utente e memorizzati nella cache della sessione solo al fine di ottimizzare le prestazioni.
 
-La sessione non è supportata nelle app [SignalR](xref:signalr/index) poiché un [hub SignalR](xref:signalr/hubs) può essere eseguito indipendentemente da un contesto HTTP. Ad esempio, ciò può verificarsi quando una lunga richiesta di polling viene mantenuta aperta da un hub oltre la durata del contesto HTTP della richiesta.
+La sessione non è supportata nelle [SignalR](xref:signalr/index) app perché un [ SignalR Hub](xref:signalr/hubs) può essere eseguito indipendentemente da un contesto http. Ad esempio, ciò può verificarsi quando una lunga richiesta di polling viene mantenuta aperta da un hub oltre la durata del contesto HTTP della richiesta.
 
 ASP.NET Core gestisce lo stato della sessione fornendo un cookie al client che contiene un ID di sessione. ID sessione cookie:
 
@@ -104,7 +106,7 @@ Il codice seguente indica come configurare il provider della sessione in memoria
 
 Il codice precedente imposta un breve timeout per semplificare i test.
 
-L'ordine del middleware è importante.  Chiamare `UseSession` after `UseRouting` e before `UseEndpoints`. Vedere l' [ordine del middleware](xref:fundamentals/middleware/index#order).
+L'ordine del middleware è importante.  Chiamare `UseSession` after `UseRouting` e before `UseEndpoints` . Vedere l' [ordine del middleware](xref:fundamentals/middleware/index#order).
 
 [HttpContext. Session](xref:Microsoft.AspNetCore.Http.HttpContext.Session) è disponibile dopo che è stato configurato lo stato della sessione.
 
@@ -140,7 +142,7 @@ Lo stato della sessione è *non di blocco*. Se due richieste tentano simultaneam
 
 ### <a name="set-and-get-session-values"></a>Impostare e ottenere i valori della sessione
 
-Lo stato della sessione è accessibile da una classe [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) di Razor Pages o una classe [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) di MVC con [HttpContext.Session](/dotnet/api/microsoft.aspnetcore.http.httpcontext.session). Questa proprietà è un'implementazione di [ISession](/dotnet/api/microsoft.aspnetcore.http.isession).
+È possibile accedere allo stato della sessione da una classe Razor pages [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) o da una classe [controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) MVC con [HttpContext. Session](/dotnet/api/microsoft.aspnetcore.http.httpcontext.session). Questa proprietà è un'implementazione di [ISession](/dotnet/api/microsoft.aspnetcore.http.isession).
 
 L'implementazione `ISession` offre diversi metodi di estensione per impostare e recuperare i valori interi e stringa. I metodi di estensione si trovano nello spazio dei nomi [Microsoft. AspNetCore. http](/dotnet/api/microsoft.aspnetcore.http) .
 
@@ -152,7 +154,7 @@ Metodi di estensione `ISession`:
 * [SetInt32(ISession, String, Int32)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setint32)
 * [SetString(ISession, String, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setstring)
 
-Nell'esempio seguente viene recuperato il valore di sessione per la chiave `IndexModel.SessionKeyName` (`_Name` nell'app di esempio) in una pagina di Razor Pages:
+L'esempio seguente recupera il valore della sessione per la `IndexModel.SessionKeyName` chiave ( `_Name` nell'app di esempio) in una Razor pagina di pagine:
 
 ```csharp
 @page
@@ -174,16 +176,16 @@ Usare il codice di esempio seguente per serializzare gli oggetti:
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
 
-Nell'esempio seguente viene illustrato come impostare e ottenere un oggetto serializzabile con `SessionExtensions` la classe:
+Nell'esempio seguente viene illustrato come impostare e ottenere un oggetto serializzabile con la `SessionExtensions` classe:
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet2)]
 
 ## <a name="tempdata"></a>TempData
 
-ASP.NET Core espone l'Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) o il <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>controller. Questa proprietà archivia i dati finché non viene letta in un'altra richiesta. È possibile usare i metodi [Keep (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) e [Peek (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) per esaminare i dati senza eliminare alla fine della richiesta. [Mantenere](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) i contrassegni per la conservazione di tutti gli elementi nel dizionario. `TempData` è:
+ASP.NET Core espone le Razor pagine [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) o controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData> . Questa proprietà archivia i dati finché non viene letta in un'altra richiesta. È possibile usare i metodi [Keep (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) e [Peek (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) per esaminare i dati senza eliminare alla fine della richiesta. [Mantenere](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) i contrassegni per la conservazione di tutti gli elementi nel dizionario. `TempData` è:
 
 * Utile per il reindirizzamento quando i dati sono necessari per più di una singola richiesta.
-* Implementata `TempData` dai provider utilizzando cookie o lo stato della sessione.
+* Implementata dai `TempData` provider utilizzando cookie o lo stato della sessione.
 
 ## <a name="tempdata-samples"></a>Esempi di TempData
 
@@ -191,19 +193,19 @@ Si consideri la seguente pagina che consente di creare un cliente:
 
 [!code-csharp[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-16,30)]
 
-Viene visualizzata `TempData["Message"]`la pagina seguente:
+Viene visualizzata la pagina seguente `TempData["Message"]` :
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexPeek.cshtml?range=1-14)]
 
-Nel markup precedente, alla fine della richiesta, `TempData["Message"]` **non** viene eliminato perché `Peek` viene usato. Con l'aggiornamento della pagina viene visualizzato `TempData["Message"]`il contenuto di.
+Nel markup precedente, alla fine della richiesta, `TempData["Message"]` **non** viene eliminato perché `Peek` viene usato. Con l'aggiornamento della pagina viene visualizzato il contenuto di `TempData["Message"]` .
 
 Il markup seguente è simile al codice precedente, ma usa `Keep` per conservare i dati alla fine della richiesta:
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
 
-L'esplorazione tra le pagine *IndexPeek* e *IndexKeep* non verrà `TempData["Message"]`eliminata.
+L'esplorazione tra le pagine *IndexPeek* e *IndexKeep* non verrà eliminata `TempData["Message"]` .
 
-Il codice seguente visualizza `TempData["Message"]`, ma alla fine della richiesta, `TempData["Message"]` viene eliminato:
+Il codice seguente visualizza `TempData["Message"]` , ma alla fine della richiesta, `TempData["Message"]` viene eliminato:
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
 
@@ -227,7 +229,7 @@ La maggior parte dei client Web, ad esempio i Web browser, applica limiti alla d
 
 Il provider TempData basato su cookie è abilitato per impostazione predefinita.
 
-Per abilitare il provider TempData basato sulla sessione, usare il metodo di estensione [AddSessionStateTempDataProvider](/dotnet/api/microsoft.extensions.dependencyinjection.mvcviewfeaturesmvcbuilderextensions.addsessionstatetempdataprovider) . È necessaria una sola `AddSessionStateTempDataProvider` chiamata a:
+Per abilitare il provider TempData basato sulla sessione, usare il metodo di estensione [AddSessionStateTempDataProvider](/dotnet/api/microsoft.extensions.dependencyinjection.mvcviewfeaturesmvcbuilderextensions.addsessionstatetempdataprovider) . È necessaria una sola chiamata a `AddSessionStateTempDataProvider` :
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Startup3.cs?name=snippet1&highlight=4,6,30)]
 
@@ -245,11 +247,11 @@ I dati possono essere salvati in campi modulo nascosti e pubblicati di nuovo nel
 
 La raccolta [HttpContext.Items](/dotnet/api/microsoft.aspnetcore.http.httpcontext.items) viene usata per archiviare i dati durante l'elaborazione di una singola richiesta. Il contenuto della raccolta viene rimosso al termine dell'elaborazione della richiesta. La raccolta `Items` spesso viene usata per consentire ai componenti o al middleware di comunicare quando operano in momenti diversi durante una richiesta e non è disponibile un metodo diretto per passare i parametri.
 
-Nell'esempio seguente il `Items` [middleware](xref:fundamentals/middleware/index) aggiunge `isVerified` alla raccolta:
+Nell'esempio seguente il [middleware](xref:fundamentals/middleware/index) aggiunge `isVerified` alla `Items` raccolta:
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Startup.cs?name=snippet1)]
 
-Per il middleware usato solo in una singola app, le chiavi `string` fisse sono accettabili. Il middleware condiviso tra le app deve usare chiavi di oggetti univoche per evitare conflitti di chiave. L'esempio seguente illustra come usare una chiave oggetto univoca definita in una classe middleware:
+Per il middleware usato solo in una singola app, le `string` chiavi fisse sono accettabili. Il middleware condiviso tra le app deve usare chiavi di oggetti univoche per evitare conflitti di chiave. L'esempio seguente illustra come usare una chiave oggetto univoca definita in una classe middleware:
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
 
@@ -265,13 +267,13 @@ La memorizzazione nella cache è un modo efficiente per archiviare e recuperare 
 
 I dati memorizzati nella cache non sono associati a una richiesta, un utente o una sessione specifici. **Non memorizzare nella cache i dati specifici dell'utente che possono essere recuperati da altre richieste utente.**
 
-Per memorizzare nella cache i dati a <xref:performance/caching/memory>livello di applicazione, vedere.
+Per memorizzare nella cache i dati a livello di applicazione, vedere <xref:performance/caching/memory> .
 
 ## <a name="common-errors"></a>Errori comuni
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'." (Risoluzione servizio non riuscita per il tipo 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' durante il tentativo di attivazione di 'Microsoft.AspNetCore.Session.DistributedSessionStore').
 
-  Questo problema si verifica in genere quando si verifica un errore `IDistributedCache` durante la configurazione di almeno un'implementazione. Per altre informazioni, vedere <xref:performance/caching/distributed> e <xref:performance/caching/memory>.
+  Questo problema si verifica in genere quando si verifica un errore durante la configurazione di almeno un' `IDistributedCache` implementazione. Per altre informazioni, vedere <xref:performance/caching/distributed> e <xref:performance/caching/memory>.
 
 Se il middleware della sessione non è in grado di salvare in modo permanente una sessione:
 
@@ -280,11 +282,11 @@ Se il middleware della sessione non è in grado di salvare in modo permanente un
 
 Il middleware della sessione può non riuscire a salvare in modo permanente una sessione se l'archivio di backup non è disponibile. Ad esempio, un utente archivia un carrello acquisti nella sessione. L'utente aggiunge un articolo al carrello ma il commit ha esito negativo. L'app non riconosce l'errore e segnala all'utente che l'articolo è stato aggiunto al carrello anche se non è vero.
 
-L'approccio consigliato per verificare la presenza di errori consiste `await feature.Session.CommitAsync` nel chiamare quando l'app esegue la scrittura nella sessione. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> genera un'eccezione se l'archivio di backup non è disponibile. Se `CommitAsync` ha esito negativo, l'app è in grado di elaborare l'eccezione. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*>genera un'eccezione quando l'archivio dati non è disponibile.
+L'approccio consigliato per verificare la presenza di errori consiste nel chiamare `await feature.Session.CommitAsync` quando l'app esegue la scrittura nella sessione. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> genera un'eccezione se l'archivio di backup non è disponibile. Se `CommitAsync` ha esito negativo, l'app è in grado di elaborare l'eccezione. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*>genera un'eccezione quando l'archivio dati non è disponibile.
   
-## <a name="signalr-and-session-state"></a>SignalR e stato della sessione
+## <a name="signalr-and-session-state"></a>SignalRe stato sessione
 
-Le app SignalR non devono usare lo stato della sessione per archiviare le informazioni. Le app SignalR possono archiviare lo stato per `Context.Items` connessione in nell'hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
+SignalRle app non devono usare lo stato della sessione per archiviare le informazioni. SignalRle app possono archiviare lo stato per connessione in `Context.Items` nell'hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -329,7 +331,7 @@ Tenere presente il [Regolamento generale sulla protezione dei dati dell'Unione E
 Lo stato della sessione è uno scenario di ASP.NET Core per l'archiviazione dei dati utente mentre l'utente visualizza un'app Web. Lo stato della sessione usa un archivio gestito dall'app per rendere persistenti i dati tra le richieste provenienti da un client. I dati della sessione sono supportati da una cache e considerati dati temporanei: il sito deve continuare a funzionare senza i dati della sessione. I dati critici dell'applicazione devono essere archiviati nel database utente e memorizzati nella cache della sessione solo al fine di ottimizzare le prestazioni.
 
 > [!NOTE]
-> La sessione non è supportata nelle app [SignalR](xref:signalr/index) poiché un [hub SignalR](xref:signalr/hubs) può essere eseguito indipendentemente da un contesto HTTP. Ad esempio, ciò può verificarsi quando una lunga richiesta di polling viene mantenuta aperta da un hub oltre la durata del contesto HTTP della richiesta.
+> La sessione non è supportata nelle [SignalR](xref:signalr/index) app perché un [ SignalR Hub](xref:signalr/hubs) può essere eseguito indipendentemente da un contesto http. Ad esempio, ciò può verificarsi quando una lunga richiesta di polling viene mantenuta aperta da un hub oltre la durata del contesto HTTP della richiesta.
 
 ASP.NET Core mantiene lo stato della sessione assegnando un cookie al client che contiene un ID sessione. Tale ID viene inviato all'app con ogni richiesta. L'app usa l'ID sessione per recuperare i dati della sessione.
 
@@ -342,7 +344,7 @@ Lo stato della sessione presenta i comportamenti seguenti:
 * L'app conserva una sessione per un periodo di tempo limitato dopo l'ultima richiesta. L'app imposta il timeout della sessione o usa il valore predefinito, pari a 20 minuti. Lo stato sessione è ideale per archiviare i dati utente specifici per una determinata sessione, ma nel caso in cui i dati non richiedano un'archiviazione permanente tra le sessioni.
 * I dati della sessione vengono eliminati quando viene chiamata l'implementazione [ISession.Clear](/dotnet/api/microsoft.aspnetcore.http.isession.clear) o alla scadenza della sessione.
 * Non esiste un meccanismo predefinito per indicare al codice app che un browser client è stato chiuso o che il cookie di sessione viene eliminato o è scaduto nel client.
-* I modelli di pagina ASP.NET Core MVC e Razor includono il supporto del Regolamento generale sulla protezione dei dati (GDPR). I cookie di stato della sessione non sono contrassegnati come fondamentali per impostazione predefinita, pertanto lo stato della sessione non è funzionale, a meno che il rilevamento non sia consentito dal visitatore del sito. Per altre informazioni, vedere <xref:security/gdpr#tempdata-provider-and-session-state-cookies-arent-essential>.
+* I modelli ASP.NET Core MVC e Razor pages includono il supporto per regolamento generale sulla protezione dei dati (GDPR). I cookie di stato della sessione non sono contrassegnati come fondamentali per impostazione predefinita, pertanto lo stato della sessione non è funzionale, a meno che il rilevamento non sia consentito dal visitatore del sito. Per altre informazioni, vedere <xref:security/gdpr#tempdata-provider-and-session-state-cookies-arent-essential>.
 
 > [!WARNING]
 > Evitare di archiviare dati sensibili nello stato della sessione. L'utente potrebbe non chiudere il browser e cancellare il cookie di sessione. Alcuni browser mantengono i cookie di sessione validi tra diverse finestre del browser. Una sessione può non essere limitata a un solo utente: in tal caso l'utente successivo potrebbe continuare a sfogliare l'app usando lo stesso cookie di sessione.
@@ -400,7 +402,7 @@ Lo stato della sessione è *non di blocco*. Se due richieste tentano simultaneam
 
 ### <a name="set-and-get-session-values"></a>Impostare e ottenere i valori della sessione
 
-È possibile accedere allo stato della Razor sessione da una classe pages [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) o da una classe [controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) MVC con [HttpContext. Session](/dotnet/api/microsoft.aspnetcore.http.httpcontext.session). Questa proprietà è un'implementazione di [ISession](/dotnet/api/microsoft.aspnetcore.http.isession).
+È possibile accedere allo stato della sessione da una classe Razor pages [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) o da una classe [controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) MVC con [HttpContext. Session](/dotnet/api/microsoft.aspnetcore.http.httpcontext.session). Questa proprietà è un'implementazione di [ISession](/dotnet/api/microsoft.aspnetcore.http.isession).
 
 L'implementazione `ISession` offre diversi metodi di estensione per impostare e recuperare i valori interi e stringa. I metodi di estensione si trovano nello spazio dei nomi [Microsoft.AspNetCore.Http](/dotnet/api/microsoft.aspnetcore.http) (aggiungere un'istruzione `using Microsoft.AspNetCore.Http;` per ottenere l'accesso ai metodi di estensione) quando al pacchetto [Microsoft.AspNetCore.Http.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Extensions/) fa riferimento il progetto. Entrambi i pacchetti sono inclusi nel [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).
 
@@ -412,7 +414,7 @@ Metodi di estensione `ISession`:
 * [SetInt32(ISession, String, Int32)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setint32)
 * [SetString(ISession, String, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setstring)
 
-L'esempio seguente recupera il valore della sessione per `IndexModel.SessionKeyName` la chiave`_Name` (nell'app di esempio) in Razor una pagina di pagine:
+L'esempio seguente recupera il valore della sessione per la `IndexModel.SessionKeyName` chiave ( `_Name` nell'app di esempio) in una Razor pagina di pagine:
 
 ```csharp
 @page
@@ -440,7 +442,7 @@ L'esempio seguente illustra come impostare e ottenere un oggetto serializzabile 
 
 ## <a name="tempdata"></a>TempData
 
-ASP.NET Core espone le Razor pagine [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) o controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. Questa proprietà archivia i dati finché non viene letta in un'altra richiesta. È possibile utilizzare i metodi [Keep (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) e [Peek (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) per esaminare i dati senza eliminarli alla fine della richiesta. [Keep ()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) contrassegna tutti gli elementi nel dizionario per la memorizzazione. `TempData`è particolarmente utile per il reindirizzamento quando i dati sono necessari per più di una singola richiesta. `TempData`viene implementato dai `TempData` provider utilizzando cookie o lo stato della sessione.
+ASP.NET Core espone le Razor pagine [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) o controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData> . Questa proprietà archivia i dati finché non viene letta in un'altra richiesta. È possibile utilizzare i metodi [Keep (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) e [Peek (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) per esaminare i dati senza eliminarli alla fine della richiesta. [Keep ()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) contrassegna tutti gli elementi nel dizionario per la memorizzazione. `TempData`è particolarmente utile per il reindirizzamento quando i dati sono necessari per più di una singola richiesta. `TempData`viene implementato dai `TempData` provider utilizzando cookie o lo stato della sessione.
 
 ## <a name="tempdata-samples"></a>Esempi di TempData
 
@@ -448,19 +450,19 @@ Si consideri la seguente pagina che consente di creare un cliente:
 
 [!code-csharp[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-16,30)]
 
-Viene visualizzata `TempData["Message"]`la pagina seguente:
+Viene visualizzata la pagina seguente `TempData["Message"]` :
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexPeek.cshtml?range=1-14)]
 
-Nel markup precedente, alla fine della richiesta, `TempData["Message"]` **non** viene eliminato perché `Peek` viene usato. Verrà visualizzato `TempData["Message"]`l'aggiornamento della pagina.
+Nel markup precedente, alla fine della richiesta, `TempData["Message"]` **non** viene eliminato perché `Peek` viene usato. Verrà visualizzato l'aggiornamento della pagina `TempData["Message"]` .
 
 Il markup seguente è simile al codice precedente, ma usa `Keep` per conservare i dati alla fine della richiesta:
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
 
-L'esplorazione tra le pagine *IndexPeek* e *IndexKeep* non verrà `TempData["Message"]`eliminata.
+L'esplorazione tra le pagine *IndexPeek* e *IndexKeep* non verrà eliminata `TempData["Message"]` .
 
-Il codice seguente visualizza `TempData["Message"]`, ma alla fine della richiesta, `TempData["Message"]` viene eliminato:
+Il codice seguente visualizza `TempData["Message"]` , ma alla fine della richiesta, `TempData["Message"]` viene eliminato:
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
 
@@ -595,7 +597,7 @@ Usare [Dependency Injection](xref:fundamentals/dependency-injection) (Inseriment
   
 ## <a name="signalr-and-session-state"></a>SignalRe stato sessione
 
-SignalRle app non devono usare lo stato della sessione per archiviare le informazioni. SignalRle app possono archiviare lo stato per `Context.Items` connessione in nell'hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
+SignalRle app non devono usare lo stato della sessione per archiviare le informazioni. SignalRle app possono archiviare lo stato per connessione in `Context.Items` nell'hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

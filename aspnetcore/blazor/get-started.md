@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/31/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: 63fee0b6a3152640a5483c2a682eec7d04742145
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 1eabc35175d1b696de99488981b1382d231f5544
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243603"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402780"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Inizia a usare ASP.NET CoreBlazor
 
@@ -36,9 +38,9 @@ Per iniziare Blazor , seguire le istruzioni per la scelta degli strumenti:
 
 1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
 
-1. Per un' Blazor esperienza di webassembly, scegliere il modello ** Blazor app webassembly** . Per un' Blazor esperienza server, scegliere il modello ** Blazor applicazione server** . Selezionare **Crea**.
+1. Per un' Blazor WebAssembly esperienza, scegliere il modello ** Blazor WebAssembly app** . Per un' Blazor Server esperienza, scegliere il modello ** Blazor Server app** . Selezionare **Crea**.
 
-   Per informazioni sui due Blazor modelli di hosting, * Blazor webassembly* e * Blazor Server*, vedere <xref:blazor/hosting-models> .
+   Per informazioni sui due Blazor modelli di hosting *Blazor WebAssembly* e *Blazor Server* , vedere <xref:blazor/hosting-models> .
 
 1. Premere <kbd>CTRL</kbd> + <kbd>F5</kbd> per eseguire l'app.
 
@@ -56,19 +58,19 @@ Per iniziare Blazor , seguire le istruzioni per la scelta degli strumenti:
 
   Per impostare `debug.javascript.usePreview` `true` l'utilizzo dell'interfaccia utente di vs Code **File**, aprire  >  **Preferences**  >  **Impostazioni** preferenze file e cercare `debug javascript use preview` . Selezionare la casella di controllo **Usa il nuovo debugger JavaScript in anteprima per Node.js e Chrome**.
 
-1. Per un' Blazor esperienza di webassembly, eseguire il comando seguente in una shell dei comandi:
+1. Per un' Blazor WebAssembly esperienza, eseguire il comando seguente in una shell dei comandi:
 
    ```dotnetcli
    dotnet new blazorwasm -o WebApplication1
    ```
 
-   Per un' Blazor esperienza server, eseguire il comando seguente in una shell dei comandi:
+   Per un' Blazor Server esperienza, eseguire il comando seguente in una shell dei comandi:
 
    ```dotnetcli
    dotnet new blazorserver -o WebApplication1
    ```
 
-   Per informazioni sui due Blazor modelli di hosting, * Blazor webassembly* e * Blazor Server*, vedere <xref:blazor/hosting-models> .
+   Per informazioni sui due Blazor modelli di hosting *Blazor WebAssembly* e *Blazor Server* , vedere <xref:blazor/hosting-models> .
 
 1. Aprire la cartella `WebApplication1` in Visual Studio Code.
 
@@ -84,9 +86,9 @@ Per iniziare Blazor , seguire le istruzioni per la scelta degli strumenti:
 
 1. Nella barra laterale selezionare app **Web e console**  >  **App**.
 
-   Per un' Blazor esperienza di webassembly, scegliere il modello ** Blazor app webassembly** . Per un' Blazor esperienza server, scegliere il modello ** Blazor applicazione server** . Selezionare **Avanti**.
+   Per un' Blazor WebAssembly esperienza, scegliere il modello ** Blazor WebAssembly app** . Per un' Blazor Server esperienza, scegliere il modello ** Blazor Server app** . Selezionare **Avanti**.
 
-   Per informazioni sui due Blazor modelli di hosting, * Blazor webassembly* e * Blazor Server*, vedere <xref:blazor/hosting-models> .
+   Per informazioni sui due Blazor modelli di hosting *Blazor WebAssembly* e *Blazor Server* , vedere <xref:blazor/hosting-models> .
 
 1. Verificare le configurazioni seguenti:
 
@@ -109,7 +111,7 @@ Se viene visualizzato un messaggio per considerare attendibile il certificato di
    dotnet --version
    ```
 
-1. Per un' Blazor esperienza di webassembly, eseguire i comandi seguenti in una shell dei comandi:
+1. Per un' Blazor WebAssembly esperienza, eseguire i comandi seguenti in una shell dei comandi:
 
    ```dotnetcli
    dotnet new blazorwasm -o WebApplication1
@@ -117,7 +119,7 @@ Se viene visualizzato un messaggio per considerare attendibile il certificato di
    dotnet run
    ```
 
-   Per un' Blazor esperienza server, eseguire i comandi seguenti in una shell dei comandi:
+   Per un' Blazor Server esperienza, eseguire i comandi seguenti in una shell dei comandi:
 
    ```dotnetcli
    dotnet new blazorserver -o WebApplication1
@@ -125,7 +127,7 @@ Se viene visualizzato un messaggio per considerare attendibile il certificato di
    dotnet run
    ```
 
-   Per informazioni sui due Blazor modelli di hosting, * Blazor webassembly* e * Blazor Server*, vedere <xref:blazor/hosting-models> .
+   Per informazioni sui due Blazor modelli di hosting *Blazor WebAssembly* e *Blazor Server* , vedere <xref:blazor/hosting-models> .
 
 1. In un browser passare a `https://localhost:5001`.
 
@@ -134,7 +136,7 @@ Se viene visualizzato un messaggio per considerare attendibile il certificato di
 Nelle schede della barra laterale sono disponibili più pagine:
 
 * Home page
-* Contatore
+* Counter
 * Recuperare i dati
 
 Nella pagina contatore selezionare il pulsante per incrementare il contatore senza un aggiornamento della pagina. Per incrementare un contatore in una pagina Web è in genere necessario scrivere JavaScript, ma con Blazor è possibile usare C#.

@@ -1,34 +1,36 @@
 ---
-title: Linee guida per la mitigazione delle minacce per ASP.NET Core Blazor Server
+title: Linee guida per la mitigazione delle minacce per ASP.NET CoreBlazor Server
 author: guardrex
-description: Informazioni su come attenuare le minacce alla sicurezza per le Blazor app Server.
+description: Informazioni su come ridurre le minacce per la sicurezza alle Blazor Server app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/05/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: a94dcd818c3f4e19ace57fad6390a84e704192bd
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 4477b16d0d35fb90c35d17852f4639676d76aa02
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242966"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402286"
 ---
-# <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Linee guida per la mitigazione delle minacce per ASP.NET Core Blazor Server
+# <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Linee guida per la mitigazione delle minacce per ASP.NET CoreBlazor Server
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn)
 
-BlazorLe app Server adottano un modello di elaborazione dati con *stato* , in cui il server e il client gestiscono una relazione di lunga durata. Lo stato persistente è gestito da un [circuito](xref:blazor/state-management), che può estendersi anche a una durata potenzialmente prolungata.
+Blazor Serverle app adottano un modello di elaborazione dati con *stato* , in cui il server e il client gestiscono una relazione di lunga durata. Lo stato persistente è gestito da un [circuito](xref:blazor/state-management), che può estendersi anche a una durata potenzialmente prolungata.
 
-Quando un utente visita un Blazor sito del server, il server crea un circuito nella memoria del server. Il circuito indica al browser il contenuto di cui eseguire il rendering e risponde agli eventi, ad esempio quando l'utente seleziona un pulsante nell'interfaccia utente. Per eseguire queste azioni, un circuito richiama le funzioni JavaScript nel browser dell'utente e nei metodi .NET sul server. Questa interazione basata su JavaScript bidirezionale è detta interoperabilità [JavaScript (interoperabilità js)](xref:blazor/call-javascript-from-dotnet).
+Quando un utente visita un Blazor Server sito, il server crea un circuito nella memoria del server. Il circuito indica al browser il contenuto di cui eseguire il rendering e risponde agli eventi, ad esempio quando l'utente seleziona un pulsante nell'interfaccia utente. Per eseguire queste azioni, un circuito richiama le funzioni JavaScript nel browser dell'utente e nei metodi .NET sul server. Questa interazione basata su JavaScript bidirezionale è detta interoperabilità [JavaScript (interoperabilità js)](xref:blazor/call-javascript-from-dotnet).
 
-Poiché l'interoperabilità JS viene eseguita su Internet e il client usa un browser remoto, le Blazor app Server condividono la maggior parte dei problemi di sicurezza delle app Web. Questo argomento descrive le minacce più comuni per Blazor le app Server e fornisce indicazioni per la mitigazione delle minacce focalizzate sulle app con connessione Internet.
+Poiché l'interoperabilità JS viene eseguita su Internet e il client usa un browser remoto, le Blazor Server app condividono la maggior parte dei problemi di sicurezza delle app Web. Questo argomento descrive le minacce più comuni per Blazor Server le app e fornisce indicazioni per la mitigazione delle minacce incentrate sulle app con connessione Internet.
 
 Negli ambienti vincolati, ad esempio all'interno di reti aziendali o Intranet, alcune delle linee guida per la mitigazione:
 
@@ -55,9 +57,9 @@ Le risorse esterne al Blazor Framework, ad esempio i database e gli handle di fi
 
 L'esaurimento della CPU può verificarsi quando uno o più client forzano il server a eseguire un lavoro intensivo della CPU.
 
-Si consideri, ad esempio, un' Blazor app server che calcola un *numero Fibonnacci*. Un numero Fibonnacci viene generato da una sequenza Fibonnacci, dove ogni numero nella sequenza corrisponde alla somma dei due numeri precedenti. La quantità di lavoro necessaria per raggiungere la risposta dipende dalla lunghezza della sequenza e dalle dimensioni del valore iniziale. Se l'app non inserisce limiti per la richiesta di un client, i calcoli con utilizzo intensivo della CPU possono dominare il tempo della CPU e diminuire le prestazioni di altre attività. Un utilizzo eccessivo delle risorse è un problema di sicurezza che influisca sulla disponibilità.
+Si consideri, ad esempio, un' Blazor Server app che calcola un *numero Fibonnacci*. Un numero Fibonnacci viene generato da una sequenza Fibonnacci, dove ogni numero nella sequenza corrisponde alla somma dei due numeri precedenti. La quantità di lavoro necessaria per raggiungere la risposta dipende dalla lunghezza della sequenza e dalle dimensioni del valore iniziale. Se l'app non inserisce limiti per la richiesta di un client, i calcoli con utilizzo intensivo della CPU possono dominare il tempo della CPU e diminuire le prestazioni di altre attività. Un utilizzo eccessivo delle risorse è un problema di sicurezza che influisca sulla disponibilità.
 
-L'esaurimento della CPU è un problema per tutte le app pubbliche. Nelle normali app Web, le richieste e le connessioni sono in timeout come misure di sicurezza, ma Blazor le app Server non forniscono le stesse misure di sicurezza. BlazorLe app Server devono includere i controlli e i limiti appropriati prima di eseguire operazioni potenzialmente complesse per la CPU.
+L'esaurimento della CPU è un problema per tutte le app pubbliche. Nelle normali app Web, le richieste e le connessioni si assicurano come misure di sicurezza, ma Blazor Server le app non forniscono le stesse misure di sicurezza. Blazor Serverle app devono includere i controlli e i limiti appropriati prima di eseguire potenzialmente un lavoro con utilizzo intensivo della CPU.
 
 ### <a name="memory"></a>Memoria
 
@@ -73,9 +75,9 @@ Si consideri lo scenario seguente per la gestione e la visualizzazione di un ele
   * Visualizza solo i primi 100 e 1.000 elementi e richiede all'utente di immettere i criteri di ricerca per trovare gli elementi oltre gli elementi visualizzati.
   * Per uno scenario di rendering più avanzato, implementare elenchi o griglie che supportano la *virtualizzazione*. Con la virtualizzazione, gli elenchi eseguono solo il rendering di un subset di elementi attualmente visibili all'utente. Quando l'utente interagisce con la barra di scorrimento nell'interfaccia utente, il componente esegue il rendering solo degli elementi necessari per la visualizzazione. Gli elementi che non sono attualmente necessari per la visualizzazione possono essere conservati nell'archiviazione secondaria, che è l'approccio ideale. Gli elementi non visualizzati possono anche essere mantenuti in memoria, il che è meno ideale.
 
-BlazorLe app Server offrono un modello di programmazione simile ad altri Framework dell'interfaccia utente per le app con stato, ad esempio WPF, Windows Forms o Blazor webassembly. La differenza principale consiste nel fatto che in diversi framework dell'interfaccia utente la memoria utilizzata dall'app appartiene al client e ha effetto solo su tale client. Ad esempio, un' Blazor app webassembly viene eseguita interamente nel client e usa solo le risorse di memoria del client. Nello Blazor scenario server la memoria utilizzata dall'app appartiene al server e viene condivisa tra i client nell'istanza del server.
+Blazor Serverle app offrono un modello di programmazione simile ad altri Framework dell'interfaccia utente per le app con stato, ad esempio WPF, Windows Forms o Blazor WebAssembly . La differenza principale consiste nel fatto che in diversi framework dell'interfaccia utente la memoria utilizzata dall'app appartiene al client e ha effetto solo su tale client. Ad esempio, un' Blazor WebAssembly app viene eseguita interamente nel client e usa solo le risorse di memoria del client. Nello Blazor Server scenario, la memoria usata dall'app appartiene al server e viene condivisa tra i client nell'istanza del server.
 
-Le richieste di memoria sul lato server sono una considerazione per tutte le Blazor app Server. Tuttavia, la maggior parte delle app Web sono senza stato e la memoria usata durante l'elaborazione di una richiesta viene rilasciata quando viene restituita la risposta. Come raccomandazione generale, non consentire ai client di allocare una quantità di memoria non associata come in qualsiasi altra app sul lato server che rende permanente le connessioni client. La memoria usata da un' Blazor app Server viene mantenute per un periodo di tempo più lungo rispetto a una singola richiesta.
+Le richieste di memoria sul lato server sono una considerazione per tutte le Blazor Server app. Tuttavia, la maggior parte delle app Web sono senza stato e la memoria usata durante l'elaborazione di una richiesta viene rilasciata quando viene restituita la risposta. Come raccomandazione generale, non consentire ai client di allocare una quantità di memoria non associata come in qualsiasi altra app sul lato server che rende permanente le connessioni client. La memoria utilizzata da un' Blazor Server applicazione viene mantenute per un periodo di tempo più lungo rispetto a una singola richiesta.
 
 > [!NOTE]
 > Durante lo sviluppo, è possibile utilizzare un profiler o una traccia acquisita per valutare le richieste di memoria dei client. Un profiler o una traccia non acquisisce la memoria allocata a un client specifico. Per acquisire l'utilizzo della memoria di un client specifico durante lo sviluppo, acquisire un dump ed esaminare la richiesta di memoria di tutti gli oggetti radice nel circuito di un utente.
@@ -84,9 +86,9 @@ Le richieste di memoria sul lato server sono una considerazione per tutte le Bla
 
 L'esaurimento della connessione può verificarsi quando uno o più client aprono troppe connessioni simultanee al server, impedendo ad altri client di stabilire nuove connessioni.
 
-Blazori client stabiliscono una singola connessione per sessione e mantengono aperta la connessione fino a quando la finestra del browser è aperta. Le richieste sul server di gestione di tutte le connessioni non sono specifiche delle Blazor app. Data la natura persistente delle connessioni e la natura con stato delle Blazor app Server, l'esaurimento della connessione costituisce un rischio maggiore per la disponibilità dell'app.
+Blazori client stabiliscono una singola connessione per sessione e mantengono aperta la connessione fino a quando la finestra del browser è aperta. Le richieste sul server di gestione di tutte le connessioni non sono specifiche delle Blazor app. Data la natura persistente delle connessioni e la natura con stato delle Blazor Server app, l'esaurimento della connessione costituisce un rischio maggiore per la disponibilità dell'app.
 
-Per impostazione predefinita, non esiste alcun limite al numero di connessioni per utente per un' Blazor app Server. Se l'app richiede un limite di connessione, adottare uno o più degli approcci seguenti:
+Per impostazione predefinita, non esiste alcun limite al numero di connessioni per utente per un' Blazor Server app. Se l'app richiede un limite di connessione, adottare uno o più degli approcci seguenti:
 
 * Richiedere l'autenticazione, che limita naturalmente la capacità degli utenti non autorizzati di connettersi all'app. Affinché questo scenario sia efficace, è necessario impedire agli utenti di effettuare il provisioning di nuovi utenti in base a.
 * Limitare il numero di connessioni per utente. La limitazione delle connessioni può essere eseguita tramite gli approcci seguenti. Prestare attenzione a consentire agli utenti autorizzati di accedere all'app, ad esempio quando viene stabilito un limite di connessione in base all'indirizzo IP del client.
@@ -99,9 +101,9 @@ Per impostazione predefinita, non esiste alcun limite al numero di connessioni p
 
 ## <a name="denial-of-service-dos-attacks"></a>Attacchi Denial of Service (DoS)
 
-Gli attacchi di tipo Denial of Service (DoS) coinvolgono un client che induce il server a esaurire una o più risorse rendendo l'app non disponibile. BlazorLe app Server includono alcuni limiti predefiniti e si basano su altri ASP.NET Core e SignalR limiti per la protezione da attacchi DOS impostati su <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> .
+Gli attacchi di tipo Denial of Service (DoS) coinvolgono un client che induce il server a esaurire una o più risorse rendendo l'app non disponibile. Blazor Serverle app includono alcuni limiti predefiniti e si basano su altri ASP.NET Core e SignalR limiti per la protezione da attacchi DOS impostati su <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> .
 
-| BlazorLimite app Server | Descrizione | Predefinito |
+| Blazor Serverlimite app | Descrizione | Predefinito |
 | --- | --- | --- |
 | <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained> | Numero massimo di circuiti disconnessi che un determinato server utilizza in memoria per volta. | 100 |
 | <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod> | Quantità massima di tempo durante il quale un circuito disconnesso viene mantenuto in memoria prima di essere eliminato. | 3 minuti |
@@ -147,14 +149,14 @@ Non considerare attendibili le chiamate da JavaScript ai metodi .NET. Quando un 
     * Verificare che l'utente disponga delle autorizzazioni necessarie per eseguire l'azione richiesta.
   * Non allocare una quantità eccessiva di risorse come parte della chiamata al metodo .NET. Eseguire ad esempio i controlli e i limiti di utilizzo della CPU e della memoria.
   * Tenere presente che i metodi statici e di istanza possono essere esposti ai client JavaScript. Evitare di condividere lo stato tra le sessioni a meno che la progettazione non chiami per lo stato di condivisione con vincoli appropriati.
-    * Per i metodi di istanza esposti tramite `DotNetReference` oggetti creati in origine tramite l'inserimento di dipendenze, gli oggetti devono essere registrati come oggetti con ambito. Si applica a qualsiasi servizio DI DI cui l' Blazor app server USA.
+    * Per i metodi di istanza esposti tramite `DotNetReference` oggetti creati in origine tramite l'inserimento di dipendenze, gli oggetti devono essere registrati come oggetti con ambito. Si applica a qualsiasi servizio DI DI cui l' Blazor Server app usa.
     * Per i metodi statici, evitare di stabilire uno stato che non può essere definito come ambito del client a meno che l'app non condivida in modo esplicito lo stato in base alla progettazione per tutti gli utenti in un'istanza del server.
   * Evitare di passare i dati forniti dall'utente nei parametri alle chiamate JavaScript. Se il passaggio dei dati nei parametri è assolutamente necessario, assicurarsi che il codice JavaScript gestisca il passaggio dei dati senza introdurre vulnerabilità di [Scripting (XSS) tra siti](#cross-site-scripting-xss) . Ad esempio, non scrivere dati specificati dall'utente nel Document Object Model (DOM) impostando la `innerHTML` proprietà di un elemento. Provare a usare i [criteri di sicurezza del contenuto (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) per disabilitare `eval` e altre primitive JavaScript non sicure.
 * Evitare di implementare l'invio personalizzato delle chiamate .NET all'implementazione dell'invio del Framework. L'esposizione di metodi .NET al browser è uno scenario avanzato, non consigliato per Blazor lo sviluppo generale.
 
 ### <a name="events"></a>Eventi
 
-Gli eventi forniscono un punto di ingresso a un' Blazor app Server. Le stesse regole per la salvaguardia degli endpoint nelle app Web si applicano alla gestione degli eventi nelle Blazor app Server. Un client dannoso può inviare tutti i dati che desidera inviare come payload per un evento.
+Gli eventi forniscono un punto di ingresso a un' Blazor Server app. Le stesse regole per la salvaguardia degli endpoint nelle app Web si applicano alla gestione degli eventi nelle Blazor Server app. Un client dannoso può inviare tutti i dati che desidera inviare come payload per un evento.
 
 Ad esempio:
 
@@ -163,7 +165,7 @@ Ad esempio:
 
 L'app deve convalidare i dati per qualsiasi evento gestito dall'app. I Blazor [componenti dei moduli](xref:blazor/forms-validation) del Framework eseguono convalide di base. Se l'app usa componenti dei moduli personalizzati, è necessario scrivere codice personalizzato per convalidare i dati degli eventi in base alle esigenze.
 
-BlazorGli eventi del server sono asincroni, quindi è possibile inviare più eventi al server prima che l'app abbia tempo per rispondere producendo un nuovo rendering. Questo ha alcune implicazioni sulla sicurezza da prendere in considerazione. La limitazione delle azioni client nell'app deve essere eseguita all'interno di gestori eventi e non dipende dallo stato di visualizzazione di cui è stato eseguito il rendering corrente.
+Blazor Servergli eventi sono asincroni, quindi è possibile inviare più eventi al server prima che l'app abbia tempo per rispondere producendo un nuovo rendering. Questo ha alcune implicazioni sulla sicurezza da prendere in considerazione. La limitazione delle azioni client nell'app deve essere eseguita all'interno di gestori eventi e non dipende dallo stato di visualizzazione di cui è stato eseguito il rendering corrente.
 
 Si consideri un componente contatore che deve consentire a un utente di incrementare un contatore un massimo di tre volte. Il pulsante per incrementare il contatore è in modo condizionale in base al valore di `count` :
 
@@ -282,7 +284,7 @@ Alcuni eventi DOM, ad esempio `oninput` o `onscroll` , possono produrre una gran
 
 ## <a name="additional-security-guidance"></a>Ulteriori indicazioni sulla sicurezza
 
-Le linee guida per la protezione delle app ASP.NET Core si applicano alle Blazor app Server e vengono descritte nelle sezioni seguenti:
+Le linee guida per la protezione delle app ASP.NET Core si applicano alle Blazor Server app e vengono descritte nelle sezioni seguenti:
 
 * [Registrazione e dati sensibili](#logging-and-sensitive-data)
 * [Proteggere le informazioni in transito con HTTPS](#protect-information-in-transit-with-https)
@@ -309,9 +311,9 @@ Abilitare errori dettagliati in JavaScript con:
 
 ### <a name="protect-information-in-transit-with-https"></a>Proteggere le informazioni in transito con HTTPS
 
-BlazorIl server utilizza SignalR per la comunicazione tra il client e il server. BlazorIl server utilizza normalmente il trasporto che SignalR negozia, che in genere è WebSocket.
+Blazor ServerUSA SignalR per la comunicazione tra il client e il server. Blazor Serverin genere usa il trasporto che SignalR negozia, che in genere è WebSocket.
 
-BlazorIl server non garantisce l'integrità e la riservatezza dei dati inviati tra il server e il client. Usare sempre HTTPS.
+Blazor Servernon garantisce l'integrità e la riservatezza dei dati inviati tra il server e il client. Usare sempre HTTPS.
 
 ### <a name="cross-site-scripting-xss"></a>Scripting tra siti (XSS)
 
@@ -324,7 +326,7 @@ Il cross-site scripting (XSS) consente a un'entità non autorizzata di eseguire 
 * Modificare la risposta delle chiamate di interoperabilità da .NET a JavaScript.
 * Evitare di inviare i risultati di interoperabilità da .NET a JS.
 
-Il Blazor Framework Server esegue le operazioni per la protezione da alcune delle minacce precedenti:
+Il Blazor Server Framework esegue misure per la protezione da alcune delle minacce precedenti:
 
 * Interrompe la produzione di nuovi aggiornamenti dell'interfaccia utente se il client non riconosce i batch di rendering. Configurato con <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.MaxBufferedUnacknowledgedRenderBatches?displayProperty=nameWithType> .
 * Timeout di qualsiasi chiamata da .NET a JavaScript dopo un minuto senza ricevere una risposta dal client. Configurato con <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType> .
@@ -348,7 +350,7 @@ Oltre alle misure di sicurezza implementate dal Framework, l'app deve essere cod
 * Non considerare attendibile l'input sulle chiamate di interoperabilità JS in entrambe le direzioni tra i metodi JavaScript e .NET.
 * L'app è responsabile della convalida della validità del contenuto di argomenti e risultati, anche se gli argomenti o i risultati vengono deserializzati correttamente.
 
-Per poter esistere una vulnerabilità XSS, l'app deve incorporare l'input dell'utente nella pagina di cui è stato eseguito il rendering. BlazorI componenti server eseguono un passaggio in fase di compilazione, in cui il markup in un `.razor` file viene trasformato in logica C# procedurale. In fase di esecuzione, la logica C# compila un *albero di rendering* che descrive gli elementi, il testo e i componenti figlio. Viene applicato al DOM del browser tramite una sequenza di istruzioni JavaScript (o viene serializzato in HTML in caso di prerendering):
+Per poter esistere una vulnerabilità XSS, l'app deve incorporare l'input dell'utente nella pagina di cui è stato eseguito il rendering. Blazor Serveri componenti eseguono un passaggio della fase di compilazione in cui il markup in un `.razor` file viene trasformato in logica C# procedurale. In fase di esecuzione, la logica C# compila un *albero di rendering* che descrive gli elementi, il testo e i componenti figlio. Viene applicato al DOM del browser tramite una sequenza di istruzioni JavaScript (o viene serializzato in HTML in caso di prerendering):
 
 * L'input dell'utente di cui è stato eseguito il rendering tramite Razor la sintassi normale (ad esempio, `@someStringValue` ) non espone una vulnerabilità XSS perché la Razor sintassi viene aggiunta al Dom tramite comandi che possono scrivere solo testo. Anche se il valore include il markup HTML, il valore viene visualizzato come testo statico. Quando si esegue il prerendering, l'output è codificato in formato HTML, che visualizza anche il contenuto come testo statico.
 * I tag di script non sono consentiti e non devono essere inclusi nell'albero di rendering del componente dell'app. Se un tag di script è incluso nel markup di un componente, viene generato un errore in fase di compilazione.
@@ -360,10 +362,10 @@ Per altre informazioni, vedere <xref:security/cross-site-scripting>.
 
 ### <a name="cross-origin-protection"></a>Protezione tra le origini
 
-Gli attacchi tra le origini coinvolgono un client di un'origine diversa che esegue un'azione sul server. L'azione dannosa è in genere una richiesta GET o un modulo POST (richiesta tra siti falsa, CSRF), ma è anche possibile aprire un WebSocket dannoso. BlazorLe app Server offrono [le stesse garanzie che qualsiasi altra SignalR app che usa l'offerta del protocollo Hub](xref:signalr/security):
+Gli attacchi tra le origini coinvolgono un client di un'origine diversa che esegue un'azione sul server. L'azione dannosa è in genere una richiesta GET o un modulo POST (richiesta tra siti falsa, CSRF), ma è anche possibile aprire un WebSocket dannoso. Blazor Serverle app offrono [le stesse garanzie che qualsiasi altra SignalR app che usa l'offerta del protocollo Hub](xref:signalr/security):
 
-* BlazorÈ possibile accedere alle app Server tra le origini, a meno che non vengano adottate misure aggiuntive per impedirlo. Per disabilitare l'accesso tra le origini, disabilitare CORS nell'endpoint aggiungendo il middleware CORS alla pipeline e aggiungendo ai <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> Blazor metadati dell'endpoint o limitare il set di origini consentite [configurando SignalR per la condivisione di risorse tra](xref:signalr/security#cross-origin-resource-sharing)le origini.
-* Se CORS è abilitato, potrebbero essere necessari passaggi aggiuntivi per proteggere l'app a seconda della configurazione di CORS. Se la CORS è abilitata a livello globale, è possibile disabilitare CORS per l' Blazor Hub server aggiungendo i <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> metadati ai metadati dell'endpoint dopo aver chiamato il <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> Generatore di route dell'endpoint.
+* Blazor Serverè possibile accedere alle app tra le origini, a meno che non vengano adottate misure aggiuntive per impedirlo. Per disabilitare l'accesso tra le origini, disabilitare CORS nell'endpoint aggiungendo il middleware CORS alla pipeline e aggiungendo ai <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> Blazor metadati dell'endpoint o limitare il set di origini consentite [configurando SignalR per la condivisione di risorse tra](xref:signalr/security#cross-origin-resource-sharing)le origini.
+* Se CORS è abilitato, potrebbero essere necessari passaggi aggiuntivi per proteggere l'app a seconda della configurazione di CORS. Se la CORS è abilitata a livello globale, è possibile disabilitare CORS per l' Blazor Server Hub aggiungendo i <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> metadati ai metadati dell'endpoint dopo aver chiamato il <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> Generatore di route dell'endpoint.
 
 Per altre informazioni, vedere <xref:security/anti-request-forgery>.
 
@@ -375,7 +377,7 @@ Per proteggere un'app dal rendering all'interno di un `<iframe>` , usare i [crit
 
 ### <a name="open-redirects"></a>Reindirizzamenti aperti
 
-Quando Blazor viene avviata una sessione dell'applicazione server, il server esegue la convalida di base degli URL inviati come parte dell'avvio della sessione. Il Framework verifica che l'URL di base sia un elemento padre dell'URL corrente prima di stabilire il circuito. Il Framework non esegue alcun controllo aggiuntivo.
+Quando Blazor Server viene avviata una sessione dell'app, il server esegue la convalida di base degli URL inviati come parte dell'avvio della sessione. Il Framework verifica che l'URL di base sia un elemento padre dell'URL corrente prima di stabilire il circuito. Il Framework non esegue alcun controllo aggiuntivo.
 
 Quando un utente seleziona un collegamento sul client, l'URL del collegamento viene inviato al server, che determina l'azione da eseguire. Ad esempio, l'app può eseguire una navigazione sul lato client o indicare al browser di passare alla nuova posizione.
 

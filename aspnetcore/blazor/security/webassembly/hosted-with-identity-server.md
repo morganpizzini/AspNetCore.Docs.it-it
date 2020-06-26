@@ -1,5 +1,5 @@
 ---
-title: Proteggere un' Blazor app ospitata ASP.NET Core webassembly con Identity Server
+title: Proteggere un' Blazor WebAssembly app ospitata ASP.NET Core Identity con server
 author: guardrex
 description: Per creare una nuova Blazor app ospitata con autenticazione da Visual Studio che usa un back-end [IdentityServer](https://identityserver.io/)
 monikerRange: '>= aspnetcore-3.1'
@@ -8,19 +8,21 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 8251658a2bb99ec17424ec26b8a44171082fab05
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: cce6b6b1ec144e362415fe34645aef567269c873
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243474"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402208"
 ---
-# <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Proteggere un' Blazor app ospitata ASP.NET Core webassembly con Identity Server
+# <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Proteggere un' Blazor WebAssembly app ospitata ASP.NET Core Identity con server
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
 
@@ -30,7 +32,7 @@ Questo articolo illustra come creare una nuova Blazor app ospitata che usa [Iden
 
 In Visual Studio:
 
-1. Creare una nuova app ** Blazor webassembly** . Per altre informazioni, vedere <xref:blazor/get-started>.
+1. Creare una nuova **Blazor WebAssembly** app. Per altre informazioni, vedere <xref:blazor/get-started>.
 1. Nella finestra di dialogo **Crea una nuova Blazor app** Selezionare **modifica** nella sezione **autenticazione** .
 1. Selezionare **account utente singoli** e quindi **OK**.
 1. Nella sezione **Avanzate** Selezionare la casella di controllo **ASP.NET Core Hosted** .

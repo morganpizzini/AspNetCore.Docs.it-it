@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 08/11/2017
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/extensibility/core-crypto
-ms.openlocfilehash: c63cc124e1893f23c18581841194fa66848a2a1e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: de34968f21eec28cf375ee9f75d3cb8b212c7e70
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776422"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404275"
 ---
 # <a name="core-cryptography-extensibility-in-aspnet-core"></a>Estendibilità della crittografia di base in ASP.NET Core
 
@@ -126,10 +128,10 @@ La differenza principale tra IAuthenticatedEncryptor e IAuthenticatedEncryptorDe
 
 Il descrittore può essere serializzato tramite la routine ExportToXml. Questa routine restituisce un XmlSerializedDescriptorInfo che contiene due proprietà: la rappresentazione XElement del descrittore e il tipo che rappresenta un [IAuthenticatedEncryptorDescriptorDeserializer](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptordeserializer) che può essere utilizzato per riportare questo descrittore in base all'oggetto XElement corrispondente.
 
-Il descrittore serializzato può contenere informazioni riservate, ad esempio il materiale della chiave crittografica. Il sistema di protezione dei dati offre supporto incorporato per la crittografia delle informazioni prima che questo venga salvato in modo permanente nell'archiviazione. Per trarre vantaggio da questo, il descrittore deve contrassegnare l'elemento che contiene informazioni riservate con il nome di attributo "<http://schemas.asp.net/2015/03/dataProtection>requiresEncryption" (xmlns ""), il valore "true".
+Il descrittore serializzato può contenere informazioni riservate, ad esempio il materiale della chiave crittografica. Il sistema di protezione dei dati offre supporto incorporato per la crittografia delle informazioni prima che questo venga salvato in modo permanente nell'archiviazione. Per trarre vantaggio da questo, il descrittore deve contrassegnare l'elemento che contiene informazioni riservate con il nome di attributo "requiresEncryption" (xmlns " <http://schemas.asp.net/2015/03/dataProtection> "), il valore "true".
 
 >[!TIP]
-> È disponibile un'API helper per l'impostazione di questo attributo. Chiamare il metodo di estensione XElement. MarkAsRequiresEncryption () che si trova nello spazio dei nomi Microsoft. AspNetCore. dataprotection. AuthenticatedEncryption. distribuita.
+> È disponibile un'API helper per l'impostazione di questo attributo. Chiamare il metodo di estensione XElement. MarkAsRequiresEncryption () che si trova nello spazio dei nomi Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.
 
 Possono inoltre essere presenti casi in cui il descrittore serializzato non contiene informazioni riservate. Considerare di nuovo il caso di una chiave crittografica archiviata in un modulo di protezione hardware. Il descrittore non può scrivere il materiale della chiave durante la serializzazione, perché il modulo di protezione hardware non espone il materiale in formato testo normale. Al contrario, il descrittore potrebbe scrivere la versione della chiave di cui è stato eseguito il wrapper (se il modulo HSM consente l'esportazione in questo modo) o l'identificatore univoco per la chiave del modulo di protezione hardware.
 

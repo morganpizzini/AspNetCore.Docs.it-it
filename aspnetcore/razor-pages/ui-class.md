@@ -7,17 +7,19 @@ ms.date: 01/25/2020
 ms.custom: mvc, seodec18
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: adfcc281f285892583ab8a21c014d6fcb120af9c
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 1d37ebaa913a2815b79b16875049bbf91f9fb941
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102830"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404392"
 ---
 # <a name="create-reusable-ui-using-the-razor-class-library-project-in-aspnet-core"></a>Creare un'interfaccia utente riutilizzabile usando il Razor progetto libreria di classi in ASP.NET Core
 
@@ -36,7 +38,7 @@ Razorle visualizzazioni, le pagine, i controller, i modelli di pagina, i [ Razor
 * In Visual Studio selezionare **Crea nuovo nuovo progetto**.
 * Selezionare ** Razor libreria di classi** > **Avanti**.
 * Assegnare un nome alla libreria (ad esempio, "RazorClassLib") > **creare**. Per evitare un conflitto di nomi di file con la libreria di visualizzazione generata, verificare che il nome della libreria non finisca per `.Views`.
-* Se è necessario supportare le visualizzazioni, selezionare **pagine e visualizzazioni di supporto** . Per impostazione predefinita, Razor sono supportate solo le pagine. Selezionare **Create** (Crea).
+* Se è necessario supportare le visualizzazioni, selezionare **pagine e visualizzazioni di supporto** . Per impostazione predefinita, Razor sono supportate solo le pagine. Selezionare **Crea**.
 
 Per impostazione predefinita, il Razor modello libreria di classi (RCL) prevede Razor lo sviluppo di componenti. L'opzione **pagine e visualizzazioni di supporto** supporta pagine e viste.
 

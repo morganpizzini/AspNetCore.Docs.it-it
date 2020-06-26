@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 26e6fb38cf31b5a2d5c88c19347c867641eb55df
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 8247d66900a0c15b3b386dca021c5c5922d26e71
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451732"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404562"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Applicare HTTPS in ASP.NET Core
 
@@ -108,7 +110,7 @@ Specificare la porta HTTPS usando uno degli approcci seguenti:
 
   * Nella configurazione host.
   * Impostando la `ASPNETCORE_HTTPS_PORT` variabile di ambiente.
-  * Aggiungendo una voce di primo livello in *appSettings. JSON*:
+  * Aggiungendo una voce di livello principale in *appsettings.js*in:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
@@ -122,7 +124,7 @@ Specificare la porta HTTPS usando uno degli approcci seguenti:
 
   * Nella configurazione host.
   * Impostando la `ASPNETCORE_HTTPS_PORT` variabile di ambiente.
-  * Aggiungendo una voce di primo livello in *appSettings. JSON*:
+  * Aggiungendo una voce di livello principale in *appsettings.js*in:
 
     [!code-json[](enforcing-ssl/sample-snapshot/2.x/appsettings.json?highlight=2)]
 
@@ -130,16 +132,16 @@ Specificare la porta HTTPS usando uno degli approcci seguenti:
 
 ::: moniker-end
 
-* In sviluppo impostare un URL HTTPS in *launchsettings. JSON*. Abilitare HTTPS quando viene usato IIS Express.
+* In sviluppo impostare un URL HTTPS in *launchsettings.json*. Abilitare HTTPS quando viene usato IIS Express.
 
-* Configurare un endpoint URL HTTPS per una distribuzione perimetrale pubblica del server [gheppio](xref:fundamentals/servers/kestrel) o del server [http. sys](xref:fundamentals/servers/httpsys) . L'app usa solo **una porta HTTPS** . Il middleware individua la porta tramite <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
+* Configurare un endpoint URL HTTPS per una distribuzione perimetrale pubblica del server [gheppio](xref:fundamentals/servers/kestrel) o del server [HTTP.sys](xref:fundamentals/servers/httpsys) . L'app usa solo **una porta HTTPS** . Il middleware individua la porta tramite <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
 
 > [!NOTE]
 > Quando un'app viene eseguita in una configurazione del proxy inverso, <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> non è disponibile. Impostare la porta usando uno degli altri approcci descritti in questa sezione.
 
 ### <a name="edge-deployments"></a>Distribuzioni Edge 
 
-Quando gheppio o HTTP. sys viene usato come server perimetrale pubblico, gheppio o HTTP. sys deve essere configurato in modo da essere in ascolto su entrambi:
+Quando gheppio o HTTP.sys viene usato come server perimetrale pubblico, gheppio o HTTP.sys deve essere configurato in modo da restare in ascolto su entrambi:
 
 * La porta protetta in cui viene reindirizzato il client, in genere 443 in produzione e 5001 in fase di sviluppo.
 * Porta non sicura, in genere 80 in produzione e 5000 in fase di sviluppo.

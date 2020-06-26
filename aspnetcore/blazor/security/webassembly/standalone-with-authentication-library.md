@@ -1,5 +1,5 @@
 ---
-title: Proteggere un' Blazor app ASP.NET Core webassembly autonoma con la libreria di autenticazione
+title: Proteggere un' Blazor WebAssembly app ASP.NET Core autonoma con la libreria di autenticazione
 author: guardrex
 description: ''
 monikerRange: '>= aspnetcore-3.1'
@@ -8,25 +8,27 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: 5a05543c77f1ebaebadc27236aa8f7634e84f1fd
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: be87257c5f901e9b3d1ba6a8d7c6b811419c433f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243414"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402195"
 ---
-# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Proteggere un' Blazor app ASP.NET Core webassembly autonoma con la libreria di autenticazione
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Proteggere un' Blazor WebAssembly app ASP.NET Core autonoma con la libreria di autenticazione
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
 
 *Per Azure Active Directory (AAD) e Azure Active Directory B2C (AAD B2C), non seguire le istruzioni riportate in questo argomento. Vedere gli argomenti di AAD e AAD B2C in questo nodo Sommario.*
 
-Per creare un' Blazor app webassembly autonoma che usa [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) la libreria, eseguire il comando seguente in una shell dei comandi:
+Per creare un' Blazor WebAssembly app autonoma che usa [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) la libreria, eseguire il comando seguente in una shell dei comandi:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual
@@ -34,7 +36,7 @@ dotnet new blazorwasm -au Individual
 
 Per specificare il percorso di output, che crea una cartella di progetto, se non esiste, includere l'opzione di output nel comando con un percorso (ad esempio, `-o BlazorSample` ). Il nome della cartella diventa anche parte del nome del progetto.
 
-In Visual Studio [creare un' Blazor app webassembly](xref:blazor/get-started). Impostare l' **autenticazione** per **singoli account utente** con l'opzione **Archivia account utente in-app** .
+In Visual Studio [creare un' Blazor WebAssembly app](xref:blazor/get-started). Impostare l' **autenticazione** per **singoli account utente** con l'opzione **Archivia account utente in-app** .
 
 ## <a name="authentication-package"></a>Pacchetto di autenticazione
 
@@ -76,7 +78,7 @@ Il supporto per l'autenticazione per le app autonome è disponibile con Open ID 
 
 ## <a name="access-token-scopes"></a>Ambiti del token di accesso
 
-Il Blazor modello webassembly non configura automaticamente l'app per richiedere un token di accesso per un'API protetta. Per eseguire il provisioning di un token di accesso come parte del flusso di accesso, aggiungere l'ambito agli ambiti dei token predefiniti di <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions> :
+Il Blazor WebAssembly modello non configura automaticamente l'app per richiedere un token di accesso per un'API protetta. Per eseguire il provisioning di un token di accesso come parte del flusso di accesso, aggiungere l'ambito agli ambiti dei token predefiniti di <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions> :
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>

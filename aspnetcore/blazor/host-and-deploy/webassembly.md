@@ -1,5 +1,5 @@
 ---
-title: Ospitare e distribuire ASP.NET Core Blazor Webassembly
+title: Ospitare e distribuire ASP.NET CoreBlazor WebAssembly
 author: guardrex
 description: Informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine github.
 monikerRange: '>= aspnetcore-3.1'
@@ -8,23 +8,25 @@ ms.custom: mvc
 ms.date: 06/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 7e0263200ebb9ce60f7234af3cbb18c5aeaa3e09
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 47ba6f54c68158b3f6dcbbdda06ec8747cf88241
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243525"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402546"
 ---
-# <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor Webassembly
+# <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Ospitare e distribuire ASP.NET CoreBlazor WebAssembly
 
 Di [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), [ben Adams](https://twitter.com/ben_a_adams)e [Safia Amodio](https://safia.rocks)
 
-Con il [ Blazor modello di hosting webassembly](xref:blazor/hosting-models#blazor-webassembly):
+Con il [ Blazor WebAssembly modello di hosting](xref:blazor/hosting-models#blazor-webassembly):
 
 * L' Blazor app, le relative dipendenze e il Runtime .NET vengono scaricati nel browser in parallelo.
 * L'app viene eseguita direttamente nel thread dell'interfaccia utente del browser.
@@ -32,16 +34,16 @@ Con il [ Blazor modello di hosting webassembly](xref:blazor/hosting-models#blazo
 Sono supportate le strategie di distribuzione seguenti:
 
 * L' Blazor app viene gestita da un'app ASP.NET Core. Questa strategia viene trattata nella sezione [Distribuzione ospitata con ASP.NET Core](#hosted-deployment-with-aspnet-core).
-* L' Blazor app si trova in un server Web o in un servizio di hosting statico, in cui .NET non viene usato per gestire l' Blazor app. Questa strategia è illustrata nella sezione relativa alla [distribuzione autonoma](#standalone-deployment) , che include informazioni sull'hosting di un' Blazor app webassembly come una sub-app IIS.
+* L' Blazor app si trova in un server Web o in un servizio di hosting statico, in cui .NET non viene usato per gestire l' Blazor app. Questa strategia è illustrata nella sezione relativa alla [distribuzione autonoma](#standalone-deployment) , che include informazioni sull'hosting di un' Blazor WebAssembly app come app secondaria IIS.
 
 ## <a name="compression"></a>Compressione
 
-Quando Blazor viene pubblicata un'app webassembly, l'output viene compresso in modo statico durante la pubblicazione per ridurre le dimensioni dell'app e rimuovere l'overhead per la compressione in fase di esecuzione. Vengono utilizzati gli algoritmi di compressione seguenti:
+Quando Blazor WebAssembly viene pubblicata un'app, l'output viene compresso in modo statico durante la pubblicazione per ridurre le dimensioni dell'app e rimuovere l'overhead per la compressione in fase di esecuzione. Vengono utilizzati gli algoritmi di compressione seguenti:
 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (livello massimo)
 * [Gzip](https://tools.ietf.org/html/rfc1952)
 
-Blazorsi basa sull'host per gestire i file compressi appropriati. Quando si usa un ASP.NET Core progetto ospitato, il progetto host è in grado di eseguire la negoziazione del contenuto e di servire i file compressi in modo statico. Quando si ospita un' Blazor app webassembly autonoma, potrebbe essere necessario lavoro aggiuntivo per garantire che vengano serviti file compressi in modo statico:
+Blazorsi basa sull'host per gestire i file compressi appropriati. Quando si usa un ASP.NET Core progetto ospitato, il progetto host è in grado di eseguire la negoziazione del contenuto e di servire i file compressi in modo statico. Quando si ospita un' Blazor WebAssembly app autonoma, potrebbe essere necessario lavoro aggiuntivo per garantire che vengano serviti file compressi in modo statico:
 
 * Per `web.config` la configurazione della compressione IIS, vedere la sezione [IIS: Brotli e la compressione gzip](#brotli-and-gzip-compression) . 
 * Quando si ospitano soluzioni di hosting statiche che non supportano la negoziazione del contenuto di file compressi in modo statico, ad esempio pagine di GitHub, è consigliabile configurare l'app per recuperare e decodificare i file compressi Brotli:
@@ -85,7 +87,7 @@ Per disabilitare la compressione, aggiungere la `BlazorEnableCompression` Propri
 
 ## <a name="rewrite-urls-for-correct-routing"></a>Riscrivere gli URL per il routing corretto
 
-Il routing delle richieste per i componenti della pagina in un' Blazor app webassembly non è semplice come il routing delle richieste in un Blazor Server, un'app ospitata. Si consideri un' Blazor app webassembly con due componenti:
+Il routing delle richieste per i componenti della pagina in un' Blazor WebAssembly app non è semplice come il routing delle richieste in un' Blazor Server app ospitata. Si consideri un' Blazor WebAssembly app con due componenti:
 
 * `Main.razor`: Carica alla radice dell'app e contiene un collegamento al `About` componente ( `href="About"` ).
 * `About.razor`: `About` componente.
@@ -97,7 +99,7 @@ Quando viene richiesto il documento predefinito dell'app usando la barra degli i
 1. `index.html`avvia l'app.
 1. Blazoril router viene caricato e il componente viene sottoposto a Razor `Main` rendering.
 
-Nella pagina principale, selezionando il collegamento al `About` componente funziona sul client perché il Blazor router interrompe il browser per effettuare una richiesta su Internet per `www.contoso.com` e serve il componente di cui è stato `About` eseguito il rendering `About` . Tutte le richieste per gli endpoint interni *nell' Blazor app webassembly* funzionano allo stesso modo: le richieste non attivano richieste basate su browser a risorse ospitate su server su Internet. Le richieste vengono gestite internamente dal router.
+Nella pagina principale, selezionando il collegamento al `About` componente funziona sul client perché il Blazor router interrompe il browser per effettuare una richiesta su Internet per `www.contoso.com` e serve il componente di cui è stato `About` eseguito il rendering `About` . Tutte le richieste per gli endpoint interni *all'interno dell' Blazor WebAssembly app* funzionano allo stesso modo: le richieste non attivano richieste basate su browser a risorse ospitate su server su Internet. Le richieste vengono gestite internamente dal router.
 
 Se una richiesta viene effettuata usando la barra degli indirizzi del browser per `www.contoso.com/About`, la richiesta ha esito negativo. La risorsa non esiste nell'host Internet dell'app, quindi viene restituita la risposta *404 non trovato*.
 
@@ -107,9 +109,9 @@ Quando si esegue la distribuzione in un server IIS, è possibile usare il modulo
 
 ## <a name="hosted-deployment-with-aspnet-core"></a>Distribuzione ospitata con ASP.NET Core
 
-Una *distribuzione ospitata* serve l' Blazor app webassembly nei browser da un' [app ASP.NET Core](xref:index) eseguita in un server Web.
+Una *distribuzione ospitata* serve all' Blazor WebAssembly app per i browser da un' [app ASP.NET Core](xref:index) eseguita in un server Web.
 
-L' Blazor app webassembly client viene pubblicata nella `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` cartella dell'app Server, insieme a qualsiasi altra risorsa Web statica dell'app Server. Le due app vengono distribuite insieme. È necessario un server Web in grado di ospitare un'app ASP.NET Core. Per una distribuzione ospitata, Visual Studio include il modello di progetto di ** Blazor app webassembly** ( `blazorwasm` modello quando si usa il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando) con l' **`Hosted`** opzione selezionata ( `-ho|--hosted` quando si usa il `dotnet new` comando).
+L' Blazor WebAssembly app client viene pubblicata nella `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` cartella dell'app Server, insieme a qualsiasi altra risorsa Web statica dell'app Server. Le due app vengono distribuite insieme. È necessario un server Web in grado di ospitare un'app ASP.NET Core. Per una distribuzione ospitata, Visual Studio include il modello di progetto ** Blazor WebAssembly app** ( `blazorwasm` modello quando si usa il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando) con l' **`Hosted`** opzione selezionata ( `-ho|--hosted` quando si usa il `dotnet new` comando).
 
 Per altre informazioni su hosting e distribuzione di app ASP.NET Core, vedere <xref:host-and-deploy/index>.
 
@@ -117,15 +119,15 @@ Per informazioni sulla distribuzione in Servizio app di Azure, vedere <xref:tuto
 
 ## <a name="standalone-deployment"></a>Distribuzione autonoma
 
-Una *distribuzione autonoma* serve l' Blazor app webassembly come un set di file statici richiesti direttamente dai client. Qualsiasi file server statico è in grado di gestire l' Blazor app.
+Una *distribuzione autonoma* serve l' Blazor WebAssembly app come un set di file statici richiesti direttamente dai client. Qualsiasi file server statico è in grado di gestire l' Blazor app.
 
 Le risorse di distribuzione autonome vengono pubblicate nella `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` cartella.
 
 ### <a name="azure-app-service"></a>Servizio app di Azure
 
-BlazorLe app webassembly possono essere distribuite in app Azure Services in Windows, che ospita l'app in [IIS](#iis).
+Blazor WebAssemblyle app possono essere distribuite in app Azure Services in Windows, che ospita l'app in [IIS](#iis).
 
-La distribuzione Blazor di un'app webassembly autonoma nel servizio app Azure per Linux non è attualmente supportata. Un'immagine server Linux per ospitare l'app non è disponibile in questo momento. Il lavoro è in corso per abilitare questo scenario.
+La distribuzione di un'app autonoma Blazor WebAssembly nel servizio app Azure per Linux non è attualmente supportata. Un'immagine server Linux per ospitare l'app non è disponibile in questo momento. Il lavoro è in corso per abilitare questo scenario.
 
 ### <a name="iis"></a>IIS
 
@@ -265,7 +267,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 ### <a name="apache"></a>Apache
 
-Per distribuire un' Blazor app webassembly in CentOS 7 o versione successiva:
+Per distribuire un' Blazor WebAssembly app in CentOS 7 o versione successiva:
 
 1. Creare il file di configurazione Apache. L'esempio seguente è un file di configurazione semplificato ( `blazorapp.config` ):
 
@@ -319,7 +321,7 @@ Quando si usa un sito del progetto anziché un sito dell'organizzazione, aggiung
 
 ## <a name="host-configuration-values"></a>Valori di configurazione dell'host
 
-Le [ Blazor app webassembly](xref:blazor/hosting-models#blazor-webassembly) possono accettare i valori di configurazione host seguenti come argomenti della riga di comando in fase di esecuzione nell'ambiente di sviluppo.
+le [ Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) possono accettare i valori di configurazione host seguenti come argomenti della riga di comando in fase di esecuzione nell'ambiente di sviluppo.
 
 ### <a name="content-root"></a>Radice del contenuto
 
@@ -396,7 +398,7 @@ Blazoresegue il collegamento Intermediate Language (IL) a ogni build di rilascio
 
 ## <a name="custom-boot-resource-loading"></a>Caricamento di risorse di avvio personalizzate
 
-Un' Blazor app webassembly può essere inizializzata con la `loadBootResource` funzione per eseguire l'override del meccanismo di caricamento delle risorse di avvio predefinito. Utilizzare `loadBootResource` per gli scenari seguenti:
+Un' Blazor WebAssembly app può essere inizializzata con la `loadBootResource` funzione per eseguire l'override del meccanismo di caricamento delle risorse di avvio predefinito. Utilizzare `loadBootResource` per gli scenari seguenti:
 
 * Consente agli utenti di caricare risorse statiche, ad esempio dati del fuso orario o `dotnet.wasm` da una rete CDN.
 * Caricare gli assembly compressi usando una richiesta HTTP e decomprimerli sul client per gli host che non supportano il recupero di contenuti compressi dal server.

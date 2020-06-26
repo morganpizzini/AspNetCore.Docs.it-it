@@ -1,30 +1,32 @@
 ---
 title: BlazorGestione dello stato ASP.NET Core
 author: guardrex
-description: Informazioni su come salvare in modo permanente lo stato nelle Blazor app Server.
+description: Informazioni su come salvare in modo permanente lo stato nelle Blazor Server app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/state-management
-ms.openlocfilehash: 59adcce972b503a6aa6e596bc9bff63225961f84
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: a6c646425145855538f408ec6cafdb151cd24b86
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243200"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401948"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>BlazorGestione dello stato ASP.NET Core
 
 Di [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-BlazorIl server è un Framework di app con stato. Nella maggior parte dei casi, l'app mantiene una connessione continuativa al server. Lo stato dell'utente viene mantenuto nella memoria del server in un *circuito*. 
+Blazor Serverè un Framework di app con stato. Nella maggior parte dei casi, l'app mantiene una connessione continuativa al server. Lo stato dell'utente viene mantenuto nella memoria del server in un *circuito*. 
 
 Di seguito sono riportati alcuni esempi di stato utilizzati per il circuito di un utente:
 
@@ -33,7 +35,7 @@ Di seguito sono riportati alcuni esempi di stato utilizzati per il circuito di u
 * Dati contenuti nelle istanze del servizio [di inserimento delle dipendenze](xref:fundamentals/dependency-injection) che hanno come ambito il circuito.
 
 > [!NOTE]
-> Questo articolo risolve la persistenza dello stato nelle Blazor app Server. BlazorLe app webassembly possono sfruttare [la persistenza dello stato sul lato client nel browser](#client-side-in-the-browser) , ma richiedono soluzioni personalizzate o pacchetti di terze parti oltre l'ambito di questo articolo.
+> Questo articolo risolve la persistenza dello stato nelle Blazor Server app. Blazor WebAssemblyle app possono sfruttare [la persistenza dello stato sul lato client nel browser](#client-side-in-the-browser) , ma richiedono soluzioni personalizzate o pacchetti di terze parti oltre l'ambito di questo articolo.
 
 ## <a name="blazor-circuits"></a>Blazorcircuiti
 
@@ -68,7 +70,7 @@ In genere non è necessario mantenere lo stato facilmente ricreato, ad esempio i
 
 ## <a name="where-to-persist-state"></a>Posizione in cui salvare lo stato
 
-Esistono tre percorsi comuni per lo stato permanente in un' Blazor app Server. Ogni approccio è più adatto a scenari diversi e presenta diverse avvertenze:
+Sono disponibili tre percorsi comuni per lo stato permanente in un' Blazor Server app. Ogni approccio è più adatto a scenari diversi e presenta diverse avvertenze:
 
 * [Lato server in un database](#server-side-in-a-database)
 * [URL](#url)
@@ -106,7 +108,7 @@ Per informazioni sulla definizione di modelli URL con la `@page` direttiva, vede
 Per i dati temporanei che l'utente sta creando attivamente, un archivio di backup comune è costituito dalle `localStorage` raccolte e del browser `sessionStorage` . L'app non è necessaria per gestire o cancellare lo stato archiviato se il circuito viene abbandonato, il che rappresenta un vantaggio rispetto all'archiviazione sul lato server.
 
 > [!NOTE]
-> "Lato client" in questa sezione si riferisce agli scenari lato client nel browser, non al [ Blazor modello di hosting webassembly](xref:blazor/hosting-models#blazor-webassembly). `localStorage`e `sessionStorage` possono essere usati nelle Blazor app webassembly, ma solo scrivendo codice personalizzato o usando un pacchetto di terze parti.
+> "Lato client" in questa sezione si riferisce agli scenari lato client nel browser, non al [ Blazor WebAssembly modello di hosting](xref:blazor/hosting-models#blazor-webassembly). `localStorage`e `sessionStorage` possono essere usati nelle Blazor WebAssembly app, ma solo scrivendo codice personalizzato o usando un pacchetto di terze parti.
 
 `localStorage`e si `sessionStorage` differenziano nel modo seguente:
 
@@ -124,7 +126,7 @@ Avvertenze per l'uso dell'archiviazione del browser:
 
 * Analogamente all'utilizzo di un database lato server, il caricamento e il salvataggio dei dati sono asincroni.
 * A differenza di un database lato server, l'archiviazione non è disponibile durante il prerendering perché la pagina richiesta non esiste nel browser durante la fase di pre-rendering.
-* L'archiviazione di alcuni kilobyte di dati è ragionevole per la permanenza per le Blazor app Server. Oltre alcuni kilobyte, è necessario considerare le implicazioni relative alle prestazioni perché i dati vengono caricati e salvati in rete.
+* L'archiviazione di alcuni kilobyte di dati è ragionevole per la permanenza per le Blazor Server app. Oltre alcuni kilobyte, è necessario considerare le implicazioni relative alle prestazioni perché i dati vengono caricati e salvati in rete.
 * Gli utenti possono visualizzare o manomettere i dati. ASP.NET Core [protezione dei dati](xref:security/data-protection/introduction) può ridurre il rischio.
 
 ## <a name="third-party-browser-storage-solutions"></a>Soluzioni di archiviazione del browser di terze parti
@@ -144,7 +146,7 @@ Un esempio di pacchetto NuGet che fornisce la [protezione dei dati](xref:securit
 
 Per installare il `Microsoft.AspNetCore.ProtectedBrowserStorage` pacchetto:
 
-1. Nel Blazor progetto di applicazione server aggiungere un riferimento al pacchetto a [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage) .
+1. Nel Blazor Server progetto dell'app aggiungere un riferimento al pacchetto [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage) .
 1. Nel codice HTML di primo livello (ad esempio, nel `Pages/_Host.cshtml` file nel modello di progetto predefinito) aggiungere il `<script>` tag seguente:
 
    ```html
