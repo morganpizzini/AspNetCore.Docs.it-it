@@ -8,36 +8,38 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/configure-linker
-ms.openlocfilehash: 76af450df70fe666ea1b951cb4b41696057c5e67
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 568efe9971aefc11841c42789ac7f2af3004003f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243577"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402702"
 ---
-# <a name="configure-the-linker-for-aspnet-core-blazor"></a><span data-ttu-id="dcdb5-103">Configurare il linker per ASP.NET CoreBlazor</span><span class="sxs-lookup"><span data-stu-id="dcdb5-103">Configure the Linker for ASP.NET Core Blazor</span></span>
+# <a name="configure-the-linker-for-aspnet-core-blazor"></a><span data-ttu-id="65a97-103">Configurare il linker per ASP.NET CoreBlazor</span><span class="sxs-lookup"><span data-stu-id="65a97-103">Configure the Linker for ASP.NET Core Blazor</span></span>
 
-<span data-ttu-id="dcdb5-104">Di [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="dcdb5-104">By [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="65a97-104">Di [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="65a97-104">By [Luke Latham](https://github.com/guardrex)</span></span>
 
-Blazor<span data-ttu-id="dcdb5-105">Webassembly esegue il collegamento del [linguaggio intermedio (il)](/dotnet/standard/managed-code#intermediate-language--execution) durante una compilazione per eliminare il linguaggio intermedio non necessario dagli assembly di output dell'app.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-105"> WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to trim unnecessary IL from the app's output assemblies.</span></span> <span data-ttu-id="dcdb5-106">Il linker è disabilitato durante la compilazione nella configurazione di debug.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-106">The linker is disabled when building in Debug configuration.</span></span> <span data-ttu-id="dcdb5-107">Per abilitare il linker, le app devono essere compilate in configurazione versione.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-107">Apps must build in Release configuration to enable the linker.</span></span> <span data-ttu-id="dcdb5-108">Quando si distribuiscono le app webassembly, è consigliabile compilare in versione Blazor .</span><span class="sxs-lookup"><span data-stu-id="dcdb5-108">We recommend building in Release when deploying your Blazor WebAssembly apps.</span></span> 
+Blazor WebAssembly<span data-ttu-id="65a97-105">esegue il collegamento del [linguaggio intermedio (il)](/dotnet/standard/managed-code#intermediate-language--execution) durante una compilazione per eliminare il il non necessario dagli assembly di output dell'app.</span><span class="sxs-lookup"><span data-stu-id="65a97-105"> performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to trim unnecessary IL from the app's output assemblies.</span></span> <span data-ttu-id="65a97-106">Il linker è disabilitato durante la compilazione nella configurazione di debug.</span><span class="sxs-lookup"><span data-stu-id="65a97-106">The linker is disabled when building in Debug configuration.</span></span> <span data-ttu-id="65a97-107">Per abilitare il linker, le app devono essere compilate in configurazione versione.</span><span class="sxs-lookup"><span data-stu-id="65a97-107">Apps must build in Release configuration to enable the linker.</span></span> <span data-ttu-id="65a97-108">Quando si distribuiscono le app, è consigliabile creare in versione Blazor WebAssembly .</span><span class="sxs-lookup"><span data-stu-id="65a97-108">We recommend building in Release when deploying your Blazor WebAssembly apps.</span></span> 
 
-<span data-ttu-id="dcdb5-109">Il collegamento di un'app ottimizza le dimensioni, ma può avere effetti negativi.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-109">Linking an app optimizes for size but may have detrimental effects.</span></span> <span data-ttu-id="dcdb5-110">Le app che usano la reflection o le funzionalità dinamiche correlate potrebbero interrompersi quando vengono tagliate perché il linker non è a conoscenza di questo comportamento dinamico e non può determinare in generale quali tipi sono necessari per la reflection in fase di esecuzione.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-110">Apps that use reflection or related dynamic features may break when trimmed because the linker doesn't know about this dynamic behavior and can't determine in general which types are required for reflection at runtime.</span></span> <span data-ttu-id="dcdb5-111">Per tagliare tali app, il linker deve essere informato sui tipi necessari per la reflection nel codice e nei pacchetti o Framework da cui dipende l'app.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-111">To trim such apps, the linker must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on.</span></span> 
+<span data-ttu-id="65a97-109">Il collegamento di un'app ottimizza le dimensioni, ma può avere effetti negativi.</span><span class="sxs-lookup"><span data-stu-id="65a97-109">Linking an app optimizes for size but may have detrimental effects.</span></span> <span data-ttu-id="65a97-110">Le app che usano la reflection o le funzionalità dinamiche correlate potrebbero interrompersi quando vengono tagliate perché il linker non è a conoscenza di questo comportamento dinamico e non può determinare in generale quali tipi sono necessari per la reflection in fase di esecuzione.</span><span class="sxs-lookup"><span data-stu-id="65a97-110">Apps that use reflection or related dynamic features may break when trimmed because the linker doesn't know about this dynamic behavior and can't determine in general which types are required for reflection at runtime.</span></span> <span data-ttu-id="65a97-111">Per tagliare tali app, il linker deve essere informato sui tipi necessari per la reflection nel codice e nei pacchetti o Framework da cui dipende l'app.</span><span class="sxs-lookup"><span data-stu-id="65a97-111">To trim such apps, the linker must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on.</span></span> 
 
-<span data-ttu-id="dcdb5-112">Per assicurarsi che l'app tagliata funzioni correttamente una volta distribuita, è importante testare le build di rilascio dell'app spesso durante lo sviluppo.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-112">To ensure the trimmed app works correctly once deployed, it's important to test Release builds of the app frequently while developing.</span></span>
+<span data-ttu-id="65a97-112">Per assicurarsi che l'app tagliata funzioni correttamente una volta distribuita, è importante testare le build di rilascio dell'app spesso durante lo sviluppo.</span><span class="sxs-lookup"><span data-stu-id="65a97-112">To ensure the trimmed app works correctly once deployed, it's important to test Release builds of the app frequently while developing.</span></span>
 
-<span data-ttu-id="dcdb5-113">Il collegamento per Blazor le app può essere configurato usando le funzionalità di MSBuild seguenti:</span><span class="sxs-lookup"><span data-stu-id="dcdb5-113">Linking for Blazor apps can be configured using these MSBuild features:</span></span>
+<span data-ttu-id="65a97-113">Il collegamento per Blazor le app può essere configurato usando le funzionalità di MSBuild seguenti:</span><span class="sxs-lookup"><span data-stu-id="65a97-113">Linking for Blazor apps can be configured using these MSBuild features:</span></span>
 
-* <span data-ttu-id="dcdb5-114">Configurare il collegamento a livello globale con una [proprietà di MSBuild](#control-linking-with-an-msbuild-property).</span><span class="sxs-lookup"><span data-stu-id="dcdb5-114">Configure linking globally with a [MSBuild property](#control-linking-with-an-msbuild-property).</span></span>
-* <span data-ttu-id="dcdb5-115">Controllo del collegamento per ogni assembly con un [file di configurazione](#control-linking-with-a-configuration-file).</span><span class="sxs-lookup"><span data-stu-id="dcdb5-115">Control linking on a per-assembly basis with a [configuration file](#control-linking-with-a-configuration-file).</span></span>
+* <span data-ttu-id="65a97-114">Configurare il collegamento a livello globale con una [proprietà di MSBuild](#control-linking-with-an-msbuild-property).</span><span class="sxs-lookup"><span data-stu-id="65a97-114">Configure linking globally with a [MSBuild property](#control-linking-with-an-msbuild-property).</span></span>
+* <span data-ttu-id="65a97-115">Controllo del collegamento per ogni assembly con un [file di configurazione](#control-linking-with-a-configuration-file).</span><span class="sxs-lookup"><span data-stu-id="65a97-115">Control linking on a per-assembly basis with a [configuration file](#control-linking-with-a-configuration-file).</span></span>
 
-## <a name="control-linking-with-an-msbuild-property"></a><span data-ttu-id="dcdb5-116">Controllo del collegamento con una proprietà MSBuild</span><span class="sxs-lookup"><span data-stu-id="dcdb5-116">Control linking with an MSBuild property</span></span>
+## <a name="control-linking-with-an-msbuild-property"></a><span data-ttu-id="65a97-116">Controllo del collegamento con una proprietà MSBuild</span><span class="sxs-lookup"><span data-stu-id="65a97-116">Control linking with an MSBuild property</span></span>
 
-<span data-ttu-id="dcdb5-117">Il collegamento viene abilitato quando si compila un'app nella `Release` configurazione.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-117">Linking is enabled when an app is built in `Release` configuration.</span></span> <span data-ttu-id="dcdb5-118">Per modificare questa configurazione, configurare la `BlazorWebAssemblyEnableLinking` Proprietà MSBuild nel file di progetto:</span><span class="sxs-lookup"><span data-stu-id="dcdb5-118">To change this, configure the `BlazorWebAssemblyEnableLinking` MSBuild property in the project file:</span></span>
+<span data-ttu-id="65a97-117">Il collegamento viene abilitato quando si compila un'app nella `Release` configurazione.</span><span class="sxs-lookup"><span data-stu-id="65a97-117">Linking is enabled when an app is built in `Release` configuration.</span></span> <span data-ttu-id="65a97-118">Per modificare questa configurazione, configurare la `BlazorWebAssemblyEnableLinking` Proprietà MSBuild nel file di progetto:</span><span class="sxs-lookup"><span data-stu-id="65a97-118">To change this, configure the `BlazorWebAssemblyEnableLinking` MSBuild property in the project file:</span></span>
 
 ```xml
 <PropertyGroup>
@@ -45,9 +47,9 @@ Blazor<span data-ttu-id="dcdb5-105">Webassembly esegue il collegamento del [ling
 </PropertyGroup>
 ```
 
-## <a name="control-linking-with-a-configuration-file"></a><span data-ttu-id="dcdb5-119">Controllare il collegamento con un file di configurazione</span><span class="sxs-lookup"><span data-stu-id="dcdb5-119">Control linking with a configuration file</span></span>
+## <a name="control-linking-with-a-configuration-file"></a><span data-ttu-id="65a97-119">Controllare il collegamento con un file di configurazione</span><span class="sxs-lookup"><span data-stu-id="65a97-119">Control linking with a configuration file</span></span>
 
-<span data-ttu-id="dcdb5-120">Controllare il collegamento per ogni singolo assembly usando un file di configurazione XML e specificando il file come un elemento MSBuild nel file di progetto:</span><span class="sxs-lookup"><span data-stu-id="dcdb5-120">Control linking on a per-assembly basis by providing an XML configuration file and specifying the file as a MSBuild item in the project file:</span></span>
+<span data-ttu-id="65a97-120">Controllare il collegamento per ogni singolo assembly usando un file di configurazione XML e specificando il file come un elemento MSBuild nel file di progetto:</span><span class="sxs-lookup"><span data-stu-id="65a97-120">Control linking on a per-assembly basis by providing an XML configuration file and specifying the file as a MSBuild item in the project file:</span></span>
 
 ```xml
 <ItemGroup>
@@ -55,7 +57,7 @@ Blazor<span data-ttu-id="dcdb5-105">Webassembly esegue il collegamento del [ling
 </ItemGroup>
 ```
 
-<span data-ttu-id="dcdb5-121">`LinkerConfig.xml`:</span><span class="sxs-lookup"><span data-stu-id="dcdb5-121">`LinkerConfig.xml`:</span></span>
+<span data-ttu-id="65a97-121">`LinkerConfig.xml`:</span><span class="sxs-lookup"><span data-stu-id="65a97-121">`LinkerConfig.xml`:</span></span>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -87,13 +89,13 @@ Blazor<span data-ttu-id="dcdb5-105">Webassembly esegue il collegamento del [ling
 </linker>
 ```
 
-<span data-ttu-id="dcdb5-122">Per altre informazioni ed esempi, vedere [formati di dati (repository GitHub mono/linker)](https://github.com/mono/linker/blob/master/docs/data-formats.md).</span><span class="sxs-lookup"><span data-stu-id="dcdb5-122">For more information and examples, see [Data Formats (mono/linker GitHub repository)](https://github.com/mono/linker/blob/master/docs/data-formats.md).</span></span>
+<span data-ttu-id="65a97-122">Per altre informazioni ed esempi, vedere [formati di dati (repository GitHub mono/linker)](https://github.com/mono/linker/blob/master/docs/data-formats.md).</span><span class="sxs-lookup"><span data-stu-id="65a97-122">For more information and examples, see [Data Formats (mono/linker GitHub repository)](https://github.com/mono/linker/blob/master/docs/data-formats.md).</span></span>
 
-## <a name="add-an-xml-linker-configuration-file-to-a-library"></a><span data-ttu-id="dcdb5-123">Aggiungere un file di configurazione del linker XML a una raccolta</span><span class="sxs-lookup"><span data-stu-id="dcdb5-123">Add an XML linker configuration file to a library</span></span>
+## <a name="add-an-xml-linker-configuration-file-to-a-library"></a><span data-ttu-id="65a97-123">Aggiungere un file di configurazione del linker XML a una raccolta</span><span class="sxs-lookup"><span data-stu-id="65a97-123">Add an XML linker configuration file to a library</span></span>
 
-<span data-ttu-id="dcdb5-124">Per configurare il linker per una libreria specifica, aggiungere un file di configurazione del linker XML nella libreria come risorsa incorporata.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-124">To configure the linker for a specific library, add an XML linker configuration file into the library as an embedded resource.</span></span> <span data-ttu-id="dcdb5-125">La risorsa incorporata deve avere lo stesso nome dell'assembly.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-125">The embedded resource must have the same name as the assembly.</span></span>
+<span data-ttu-id="65a97-124">Per configurare il linker per una libreria specifica, aggiungere un file di configurazione del linker XML nella libreria come risorsa incorporata.</span><span class="sxs-lookup"><span data-stu-id="65a97-124">To configure the linker for a specific library, add an XML linker configuration file into the library as an embedded resource.</span></span> <span data-ttu-id="65a97-125">La risorsa incorporata deve avere lo stesso nome dell'assembly.</span><span class="sxs-lookup"><span data-stu-id="65a97-125">The embedded resource must have the same name as the assembly.</span></span>
 
-<span data-ttu-id="dcdb5-126">Nell'esempio seguente il `LinkerConfig.xml` file viene specificato come una risorsa incorporata con lo stesso nome dell'assembly della libreria:</span><span class="sxs-lookup"><span data-stu-id="dcdb5-126">In the following example, the `LinkerConfig.xml` file is specified as an embedded resource that has the same name as the library's assembly:</span></span>
+<span data-ttu-id="65a97-126">Nell'esempio seguente il `LinkerConfig.xml` file viene specificato come una risorsa incorporata con lo stesso nome dell'assembly della libreria:</span><span class="sxs-lookup"><span data-stu-id="65a97-126">In the following example, the `LinkerConfig.xml` file is specified as an embedded resource that has the same name as the library's assembly:</span></span>
 
 ```xml
 <ItemGroup>
@@ -103,11 +105,11 @@ Blazor<span data-ttu-id="dcdb5-105">Webassembly esegue il collegamento del [ling
 </ItemGroup>
 ```
 
-### <a name="configure-the-linker-for-internationalization"></a><span data-ttu-id="dcdb5-127">Configurare il linker per l'internazionalizzazione</span><span class="sxs-lookup"><span data-stu-id="dcdb5-127">Configure the linker for internationalization</span></span>
+### <a name="configure-the-linker-for-internationalization"></a><span data-ttu-id="65a97-127">Configurare il linker per l'internazionalizzazione</span><span class="sxs-lookup"><span data-stu-id="65a97-127">Configure the linker for internationalization</span></span>
 
-<span data-ttu-id="dcdb5-128">Per impostazione predefinita, Blazor la configurazione del linker per le Blazor app webassembly rimuove le informazioni di internazionalizzazione ad eccezione delle impostazioni locali richieste in modo esplicito.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-128">By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested.</span></span> <span data-ttu-id="dcdb5-129">La rimozione di questi assembly riduce al minimo le dimensioni dell'app.</span><span class="sxs-lookup"><span data-stu-id="dcdb5-129">Removing these assemblies minimizes the app's size.</span></span>
+<span data-ttu-id="65a97-128">Per impostazione predefinita, Blazor la configurazione del linker per le Blazor WebAssembly app rimuove le informazioni di internazionalizzazione ad eccezione delle impostazioni locali richieste in modo esplicito.</span><span class="sxs-lookup"><span data-stu-id="65a97-128">By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested.</span></span> <span data-ttu-id="65a97-129">La rimozione di questi assembly riduce al minimo le dimensioni dell'app.</span><span class="sxs-lookup"><span data-stu-id="65a97-129">Removing these assemblies minimizes the app's size.</span></span>
 
-<span data-ttu-id="dcdb5-130">Per controllare quali assembly I18N vengono conservati, impostare la `<BlazorWebAssemblyI18NAssemblies>` Proprietà MSBuild nel file di progetto:</span><span class="sxs-lookup"><span data-stu-id="dcdb5-130">To control which I18N assemblies are retained, set the `<BlazorWebAssemblyI18NAssemblies>` MSBuild property in the project file:</span></span>
+<span data-ttu-id="65a97-130">Per controllare quali assembly I18N vengono conservati, impostare la `<BlazorWebAssemblyI18NAssemblies>` Proprietà MSBuild nel file di progetto:</span><span class="sxs-lookup"><span data-stu-id="65a97-130">To control which I18N assemblies are retained, set the `<BlazorWebAssemblyI18NAssemblies>` MSBuild property in the project file:</span></span>
 
 ```xml
 <PropertyGroup>
@@ -115,20 +117,20 @@ Blazor<span data-ttu-id="dcdb5-105">Webassembly esegue il collegamento del [ling
 </PropertyGroup>
 ```
 
-| <span data-ttu-id="dcdb5-131">Valore Region</span><span class="sxs-lookup"><span data-stu-id="dcdb5-131">Region Value</span></span>     | <span data-ttu-id="dcdb5-132">Assembly dell'area mono</span><span class="sxs-lookup"><span data-stu-id="dcdb5-132">Mono region assembly</span></span>    |
+| <span data-ttu-id="65a97-131">Valore Region</span><span class="sxs-lookup"><span data-stu-id="65a97-131">Region Value</span></span>     | <span data-ttu-id="65a97-132">Assembly dell'area mono</span><span class="sxs-lookup"><span data-stu-id="65a97-132">Mono region assembly</span></span>    |
 | ---------------- | ----------------------- |
-| `all`            | <span data-ttu-id="dcdb5-133">Tutti gli assembly inclusi</span><span class="sxs-lookup"><span data-stu-id="dcdb5-133">All assemblies included</span></span> |
+| `all`            | <span data-ttu-id="65a97-133">Tutti gli assembly inclusi</span><span class="sxs-lookup"><span data-stu-id="65a97-133">All assemblies included</span></span> |
 | `cjk`            | `I18N.CJK.dll`          |
 | `mideast`        | `I18N.MidEast.dll`      |
-| <span data-ttu-id="dcdb5-134">`none` (impostazione predefinita)</span><span class="sxs-lookup"><span data-stu-id="dcdb5-134">`none` (default)</span></span> | <span data-ttu-id="dcdb5-135">nessuno</span><span class="sxs-lookup"><span data-stu-id="dcdb5-135">None</span></span>                    |
+| <span data-ttu-id="65a97-134">`none` (impostazione predefinita)</span><span class="sxs-lookup"><span data-stu-id="65a97-134">`none` (default)</span></span> | <span data-ttu-id="65a97-135">nessuno</span><span class="sxs-lookup"><span data-stu-id="65a97-135">None</span></span>                    |
 | `other`          | `I18N.Other.dll`        |
 | `rare`           | `I18N.Rare.dll`         |
 | `west`           | `I18N.West.dll`         |
 
-<span data-ttu-id="dcdb5-136">Usare una virgola per separare più valori (ad esempio, `mideast,west` ).</span><span class="sxs-lookup"><span data-stu-id="dcdb5-136">Use a comma to separate multiple values (for example, `mideast,west`).</span></span>
+<span data-ttu-id="65a97-136">Usare una virgola per separare più valori (ad esempio, `mideast,west` ).</span><span class="sxs-lookup"><span data-stu-id="65a97-136">Use a comma to separate multiple values (for example, `mideast,west`).</span></span>
 
-<span data-ttu-id="dcdb5-137">Per altre informazioni, vedere [i18n: Pnetlib internationalation Framework Library (repository GitHub mono/mono)](https://github.com/mono/mono/tree/master/mcs/class/I18N).</span><span class="sxs-lookup"><span data-stu-id="dcdb5-137">For more information, see [I18N: Pnetlib Internationalization Framework Library (mono/mono GitHub repository)](https://github.com/mono/mono/tree/master/mcs/class/I18N).</span></span>
+<span data-ttu-id="65a97-137">Per altre informazioni, vedere [i18n: Pnetlib internationalation Framework Library (repository GitHub mono/mono)](https://github.com/mono/mono/tree/master/mcs/class/I18N).</span><span class="sxs-lookup"><span data-stu-id="65a97-137">For more information, see [I18N: Pnetlib Internationalization Framework Library (mono/mono GitHub repository)](https://github.com/mono/mono/tree/master/mcs/class/I18N).</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="dcdb5-138">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="dcdb5-138">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="65a97-138">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="65a97-138">Additional resources</span></span>
 
 * <xref:blazor/webassembly-performance-best-practices#intermediate-language-il-linking>
