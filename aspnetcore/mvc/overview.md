@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 02/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/overview
-ms.openlocfilehash: fcd81544385702ce72ff5fc8ae2de34d0f7afb37
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 68a0b14eb0897f6ff6e24e74b1fe5536bee1adfe
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102996"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405848"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Panoramica di ASP.NET MVC
 
@@ -65,10 +67,10 @@ ASP.NET Core MVC offre un sistema basato su schemi per la creazione di siti Web 
 
 ASP.NET Core MVC include:
 
-* [Routing](#routing)
+* [Routing.](#routing)
 * [Associazione di modelli](#model-binding)
 * [Convalida modello](#model-validation)
-* [Inserimento delle dipendenze](../fundamentals/dependency-injection.md)
+* [Inserimento di dipendenze](../fundamentals/dependency-injection.md)
 * [Filtri](#filters)
 * [Aree](#areas)
 * [API Web](#web-apis)
@@ -147,7 +149,7 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
 
 Il framework gestisce la convalida dei dati della richiesta nel client e nel server. La logica di convalida specificata nei tipi di modello viene aggiunta alle visualizzazioni sottoposte a rendering come annotazioni discrete e viene applicata al browser con [jQuery Validation](https://jqueryvalidation.org/).
 
-### <a name="dependency-injection"></a>Inserimento delle dipendenze
+### <a name="dependency-injection"></a>Inserimento di dipendenze
 
 ASP.NET Core include il supporto predefinito per l'[inserimento di dipendenze](../fundamentals/dependency-injection.md). In ASP.NET Core MVC i [controller](controllers/dependency-injection.md) possono richiedere i servizi necessari attraverso i propri costruttori. Ciò consente loro di seguire il [principio delle dipendenze esplicite](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
 

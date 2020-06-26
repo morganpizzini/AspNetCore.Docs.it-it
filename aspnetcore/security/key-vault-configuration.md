@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 4a5689af9ffea175838a869e92752de889cbb227
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 47172339f1c82a572a8a2c5d4ba49e4906e30b29
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106676"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406875"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Provider di configurazione di Azure Key Vault in ASP.NET Core
 
@@ -35,7 +37,7 @@ Questo documento illustra come usare il provider di configurazione [Microsoft Az
 
 ## <a name="packages"></a>Pacchetti
 
-Aggiungere un riferimento al pacchetto [Microsoft. Extensions. Configuration. AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) .
+Aggiungere un riferimento al pacchetto [Microsoft.Extensions.Configuration. ](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/)Pacchetto di AzureKeyVault.
 
 ## <a name="sample-app"></a>App di esempio
 
@@ -129,11 +131,11 @@ L'app di esempio usa un ID applicazione e un certificato X. 509 quando l' `#defi
    1. Selezionare l'app in Azure AD.
    1. Passare a **certificati & segreti**.
    1. Selezionare **Carica certificato** per caricare il certificato, che contiene la chiave pubblica. Un certificato con *estensione cer*, *PEM*o *CRT* è accettabile.
-1. Archiviare il nome dell'insieme di credenziali delle chiavi, l'ID applicazione e l'identificazione personale del certificato nel file *appSettings. JSON* dell'app.
+1. Archiviare il nome dell'insieme di credenziali delle chiavi, l'ID applicazione e l'identificazione personale del certificato nel file *appsettings.js* dell'app.
 1. Passare a insiemi di credenziali delle **chiavi** nella portale di Azure.
 1. Selezionare l'insieme di credenziali delle chiavi creato nell' [Archivio Secret nell'ambiente di produzione con Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) sezione.
-1. Selezionare **criteri di accesso**.
-1. Selezionare **Aggiungi criteri di accesso**.
+1. Selezionare **Criteri di accesso**.
+1. Selezionare **Aggiungi criterio di accesso**.
 1. Aprire **autorizzazioni segrete** e fornire all'app le autorizzazioni **Get** ed **List** .
 1. Selezionare **Seleziona entità** e selezionare l'app registrata in base al nome. Fare clic sul pulsante **Seleziona**.
 1. Selezionare **OK**.
@@ -147,7 +149,7 @@ L' `Certificate` app di esempio ottiene i valori di configurazione da `IConfigur
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-Il certificato X. 509 è gestito dal sistema operativo. L'app chiama <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> con i valori forniti dal file *appSettings. JSON* :
+Il certificato X. 509 è gestito dal sistema operativo. L'app chiama <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> con i valori forniti dal *appsettings.jssul* file:
 
 [!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=20-23)]
 
@@ -157,7 +159,7 @@ Valori di esempio
 * ID applicazione:`627e911e-43cc-61d4-992e-12db9c81b413`
 * Identificazione personale del certificato:`fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
-*appSettings. JSON*:
+*appsettings.js*:
 
 [!code-json[](key-vault-configuration/samples/3.x/SampleApp/appsettings.json?highlight=10-12)]
 
@@ -169,7 +171,7 @@ Quando si esegue l'app, in una pagina Web vengono visualizzati i valori dei segr
 
 L'app di esempio usa le identità gestite per le risorse di Azure quando l' `#define` istruzione all'inizio del file *Program.cs* è impostata su `Managed` .
 
-Immettere il nome dell'insieme di credenziali nel file *appSettings. JSON* dell'app. L'app di esempio non richiede un ID applicazione e una password (segreto client) quando è impostata sulla `Managed` versione, in modo che sia possibile ignorare tali voci di configurazione. L'app viene distribuita in Azure e Azure autentica l'app per accedere Azure Key Vault solo usando il nome dell'insieme di credenziali archiviato nel file *appSettings. JSON* .
+Immettere il nome dell'insieme di credenziali nel *appsettings.js* del file dell'app. L'app di esempio non richiede un ID applicazione e una password (segreto client) quando è impostata sulla `Managed` versione, in modo che sia possibile ignorare tali voci di configurazione. L'app viene distribuita in Azure e Azure autentica l'app per accedere Azure Key Vault solo usando il nome dell'insieme di credenziali archiviato nel *appsettings.jssu* file.
 
 Distribuire l'app di esempio nel servizio app Azure.
 
@@ -193,7 +195,7 @@ App di esempio:
 
 Valore di esempio del nome dell'insieme di credenziali delle chiavi:`contosovault`
     
-*appSettings. JSON*:
+*appsettings.js*:
 
 ```json
 {
@@ -381,7 +383,7 @@ Questo documento illustra come usare il provider di configurazione [Microsoft Az
 
 ## <a name="packages"></a>Pacchetti
 
-Aggiungere un riferimento al pacchetto [Microsoft. Extensions. Configuration. AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) .
+Aggiungere un riferimento al pacchetto [Microsoft.Extensions.Configuration. ](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/)Pacchetto di AzureKeyVault.
 
 ## <a name="sample-app"></a>App di esempio
 
@@ -475,11 +477,11 @@ L'app di esempio usa un ID applicazione e un certificato X. 509 quando l' `#defi
    1. Selezionare l'app in Azure AD.
    1. Passare a **certificati & segreti**.
    1. Selezionare **Carica certificato** per caricare il certificato, che contiene la chiave pubblica. Un certificato con *estensione cer*, *PEM*o *CRT* è accettabile.
-1. Archiviare il nome dell'insieme di credenziali delle chiavi, l'ID applicazione e l'identificazione personale del certificato nel file *appSettings. JSON* dell'app.
+1. Archiviare il nome dell'insieme di credenziali delle chiavi, l'ID applicazione e l'identificazione personale del certificato nel file *appsettings.js* dell'app.
 1. Passare a insiemi di credenziali delle **chiavi** nella portale di Azure.
 1. Selezionare l'insieme di credenziali delle chiavi creato nell' [Archivio Secret nell'ambiente di produzione con Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) sezione.
-1. Selezionare **criteri di accesso**.
-1. Selezionare **Aggiungi criteri di accesso**.
+1. Selezionare **Criteri di accesso**.
+1. Selezionare **Aggiungi criterio di accesso**.
 1. Aprire **autorizzazioni segrete** e fornire all'app le autorizzazioni **Get** ed **List** .
 1. Selezionare **Seleziona entità** e selezionare l'app registrata in base al nome. Fare clic sul pulsante **Seleziona**.
 1. Selezionare **OK**.
@@ -493,7 +495,7 @@ L' `Certificate` app di esempio ottiene i valori di configurazione da `IConfigur
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-Il certificato X. 509 è gestito dal sistema operativo. L'app chiama <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> con i valori forniti dal file *appSettings. JSON* :
+Il certificato X. 509 è gestito dal sistema operativo. L'app chiama <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> con i valori forniti dal *appsettings.jssul* file:
 
 [!code-csharp[](key-vault-configuration/samples/2.x/SampleApp/Program.cs?name=snippet1&highlight=20-23)]
 
@@ -503,7 +505,7 @@ Valori di esempio
 * ID applicazione:`627e911e-43cc-61d4-992e-12db9c81b413`
 * Identificazione personale del certificato:`fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
-*appSettings. JSON*:
+*appsettings.js*:
 
 [!code-json[](key-vault-configuration/samples/2.x/SampleApp/appsettings.json?highlight=10-12)]
 
@@ -515,7 +517,7 @@ Quando si esegue l'app, in una pagina Web vengono visualizzati i valori dei segr
 
 L'app di esempio usa le identità gestite per le risorse di Azure quando l' `#define` istruzione all'inizio del file *Program.cs* è impostata su `Managed` .
 
-Immettere il nome dell'insieme di credenziali nel file *appSettings. JSON* dell'app. L'app di esempio non richiede un ID applicazione e una password (segreto client) quando è impostata sulla `Managed` versione, in modo che sia possibile ignorare tali voci di configurazione. L'app viene distribuita in Azure e Azure autentica l'app per accedere Azure Key Vault solo usando il nome dell'insieme di credenziali archiviato nel file *appSettings. JSON* .
+Immettere il nome dell'insieme di credenziali nel *appsettings.js* del file dell'app. L'app di esempio non richiede un ID applicazione e una password (segreto client) quando è impostata sulla `Managed` versione, in modo che sia possibile ignorare tali voci di configurazione. L'app viene distribuita in Azure e Azure autentica l'app per accedere Azure Key Vault solo usando il nome dell'insieme di credenziali archiviato nel *appsettings.jssu* file.
 
 Distribuire l'app di esempio nel servizio app Azure.
 
@@ -539,7 +541,7 @@ App di esempio:
 
 Valore di esempio del nome dell'insieme di credenziali delle chiavi:`contosovault`
     
-*appSettings. JSON*:
+*appsettings.js*:
 
 ```json
 {

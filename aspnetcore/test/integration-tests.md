@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/20/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: test/integration-tests
-ms.openlocfilehash: ee57843dc79805aed48dbb4d3a6ac97469052f5c
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 6e4a0065486f6d9d6744dcd21de10ec76782f210
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105181"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405874"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Test di integrazione in ASP.NET Core
 
@@ -341,9 +343,9 @@ Il `WebApplicationFactory` Costruttore deduce il percorso [radice del contenuto]
 
 ## <a name="disable-shadow-copying"></a>Disabilitare la copia shadow
 
-La copia shadow comporta l'esecuzione dei test in una directory diversa rispetto alla directory di output. Per il corretto funzionamento dei test, è necessario disabilitare la copia shadow. L' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) USA xUnit e Disabilita la copia shadow per xUnit includendo un file *xUnit. Runner. JSON* con l'impostazione di configurazione corretta. Per altre informazioni, vedere [configurazione di xUnit con JSON](https://xunit.github.io/docs/configuring-with-json.html).
+La copia shadow comporta l'esecuzione dei test in una directory diversa rispetto alla directory di output. Per il corretto funzionamento dei test, è necessario disabilitare la copia shadow. L' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) USA xUnit e Disabilita la copia shadow per xUnit includendo un *xunit.runner.jsnel* file con l'impostazione di configurazione corretta. Per altre informazioni, vedere [configurazione di xUnit con JSON](https://xunit.github.io/docs/configuring-with-json.html).
 
-Aggiungere il file *xUnit. Runner. JSON* alla radice del progetto di test con il contenuto seguente:
+Aggiungere il *xunit.runner.jsnel* file alla radice del progetto di test con il contenuto seguente:
 
 ```json
 {
@@ -722,9 +724,9 @@ Il `WebApplicationFactory` Costruttore deduce il percorso [radice del contenuto]
 
 ## <a name="disable-shadow-copying"></a>Disabilitare la copia shadow
 
-La copia shadow comporta l'esecuzione dei test in una directory diversa rispetto alla directory di output. Per il corretto funzionamento dei test, è necessario disabilitare la copia shadow. L' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) USA xUnit e Disabilita la copia shadow per xUnit includendo un file *xUnit. Runner. JSON* con l'impostazione di configurazione corretta. Per altre informazioni, vedere [configurazione di xUnit con JSON](https://xunit.github.io/docs/configuring-with-json.html).
+La copia shadow comporta l'esecuzione dei test in una directory diversa rispetto alla directory di output. Per il corretto funzionamento dei test, è necessario disabilitare la copia shadow. L' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) USA xUnit e Disabilita la copia shadow per xUnit includendo un *xunit.runner.jsnel* file con l'impostazione di configurazione corretta. Per altre informazioni, vedere [configurazione di xUnit con JSON](https://xunit.github.io/docs/configuring-with-json.html).
 
-Aggiungere il file *xUnit. Runner. JSON* alla radice del progetto di test con il contenuto seguente:
+Aggiungere il *xunit.runner.jsnel* file alla radice del progetto di test con il contenuto seguente:
 
 ```json
 {

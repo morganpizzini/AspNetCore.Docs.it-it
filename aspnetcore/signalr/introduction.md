@@ -1,32 +1,34 @@
 ---
 title: Introduzione a ASP.NET CoreSignalR
 author: bradygaster
-description: Scopri come la libreria SignalR ASP.NET Core semplifica l'aggiunta di funzionalità in tempo reale alle app.
+description: Scopri come la SignalR libreria ASP.NET Core semplifica l'aggiunta di funzionalità in tempo reale alle app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/27/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/introduction
-ms.openlocfilehash: 4e968659d23330c4b1403ab998dda9c9e6ebe080
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 816ecfc5d23e8e1d2901a8c35c657cc968fa95df
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775778"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404951"
 ---
 # <a name="introduction-to-aspnet-core-signalr"></a>Introduzione a ASP.NET CoreSignalR
 
-## <a name="what-is-signalr"></a>Che cos' SignalRè?
+## <a name="what-is-signalr"></a>Che cos'è SignalR ?
 
 ASP.NET Core SignalR è una libreria open source che semplifica l'aggiunta di funzionalità Web in tempo reale alle app. La funzionalità Web in tempo reale consente di eseguire il push del contenuto ai client immediatamente dal codice lato server.
 
-Candidati validi per SignalR:
+Candidati validi per SignalR :
 
 * App che richiedono aggiornamenti con frequenza elevata dal server, ad esempio giochi, social network, mappe, aste e app GPS e di voto.
 * Dashboard e app di monitoraggio, ad esempio dashboard aziendali, aggiornamenti di vendite istantanee o avvisi di viaggio.
@@ -48,7 +50,7 @@ L'origine è ospitata in un [ SignalR repository in GitHub](https://github.com/d
 
 SignalRsupporta le tecniche seguenti per la gestione della comunicazione in tempo reale (in ordine di fallback normale):
 
-* [Websocket](https://tools.ietf.org/html/rfc7118)
+* [WebSocket](https://tools.ietf.org/html/rfc7118)
 * Eventi inviati dal server
 * Polling prolungato
 

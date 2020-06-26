@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 07/30/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: fbae94f315c1bb49f1b04be7e71c841f46826216
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 08e6284a6c5fc8e8926651f6fe873a71df449acb
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766485"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406654"
 ---
 # <a name="layout-in-aspnet-core"></a>Layout in ASP.NET Core
 
@@ -59,7 +61,7 @@ Il codice seguente mostra il file di layout per un progetto creato da modello co
 
 ## <a name="specifying-a-layout"></a>Definizione di un layout
 
-Razorle visualizzazioni hanno `Layout` una proprietà. Le visualizzazioni singole specificano un layout impostando la seguente proprietà:
+Razorle visualizzazioni hanno una `Layout` Proprietà. Le visualizzazioni singole specificano un layout impostando la seguente proprietà:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/_ViewStart.cshtml?highlight=2)]
 
@@ -79,9 +81,9 @@ Un layout può facoltativamente fare riferimento a una o più *sezioni*, chiaman
 @RenderSection("Scripts", required: false)
 ```
 
-Se una sezione richiesta non viene trovata, viene generata un'eccezione. Le singole visualizzazioni specificano il contenuto di cui eseguire il rendering all' `@section` Razor interno di una sezione usando la sintassi. Se una pagina o una visualizzazione definisce una sezione, è necessario eseguirne il rendering (o si verifica un errore).
+Se una sezione richiesta non viene trovata, viene generata un'eccezione. Le singole visualizzazioni specificano il contenuto di cui eseguire il rendering all'interno di una sezione usando la `@section` Razor sintassi. Se una pagina o una visualizzazione definisce una sezione, è necessario eseguirne il rendering (o si verifica un errore).
 
-Una definizione `@section` di esempio Razor nella visualizzazione pagine:
+Una `@section` definizione di esempio nella Razor visualizzazione pagine:
 
 ```html
 @section Scripts {
@@ -115,7 +117,7 @@ Il corpo e ogni sezione di una Razor pagina devono essere sottoposti a rendering
 
 ## <a name="importing-shared-directives"></a>Importazione delle direttive condivise
 
-Le viste e le pagine Razor possono utilizzare le direttive per importare gli spazi dei nomi e utilizzare l' [inserimento delle dipendenze](dependency-injection.md). Le direttive condivise da numerose visualizzazioni possono essere specificate in un file *_ViewImports.cshtml* comune. Il file `_ViewImports` supporta le direttive seguenti:
+Le viste e le pagine possono utilizzare Razor le direttive per importare gli spazi dei nomi e utilizzare l' [inserimento delle dipendenze](dependency-injection.md). Le direttive condivise da numerose visualizzazioni possono essere specificate in un file *_ViewImports.cshtml* comune. Il file `_ViewImports` supporta le direttive seguenti:
 
 * `@addTagHelper`
 * `@removeTagHelper`

@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 04/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: 809bdc777b6307314a7bcde82ab5e0c6888db99b
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: c711c2163908e3fdd20e3bb497f333ebd495d921
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074471"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406836"
 ---
 # <a name="aspnet-core-signalr-configuration"></a>Configurazione di ASP.NET Core SignalR
 
@@ -192,12 +194,12 @@ let connection = new signalR.HubConnectionBuilder()
 
 Nella tabella seguente sono elencati i livelli di log disponibili. Il valore fornito per `configureLogging` impostare il livello di registrazione **minimo** che verrà registrato. Verranno registrati i messaggi registrati a questo livello **o i livelli elencati dopo tale operazione nella tabella**.
 
-| string                      | LogLevel               |
+| String                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **o** `information` | `LogLevel.Information` |
-| `warn` **o** `warning`     | `LogLevel.Warning`     |
+| `info` **Oppure** `information` | `LogLevel.Information` |
+| `warn` **Oppure** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -580,12 +582,12 @@ let connection = new signalR.HubConnectionBuilder()
 
 Nella tabella seguente sono elencati i livelli di log disponibili. Il valore fornito per `configureLogging` impostare il livello di registrazione **minimo** che verrà registrato. Verranno registrati i messaggi registrati a questo livello **o i livelli elencati dopo tale operazione nella tabella**.
 
-| string                      | LogLevel               |
+| String                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **o** `information` | `LogLevel.Information` |
-| `warn` **o** `warning`     | `LogLevel.Warning`     |
+| `info` **Oppure** `information` | `LogLevel.Information` |
+| `warn` **Oppure** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -965,12 +967,12 @@ let connection = new signalR.HubConnectionBuilder()
 
 Nella tabella seguente sono elencati i livelli di log disponibili. Il valore fornito per `configureLogging` impostare il livello di registrazione **minimo** che verrà registrato. Verranno registrati i messaggi registrati a questo livello **o i livelli elencati dopo tale operazione nella tabella**.
 
-| string                      | LogLevel               |
+| String                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info` **o** `information` | `LogLevel.Information` |
-| `warn` **o** `warning`     | `LogLevel.Warning`     |
+| `info` **Oppure** `information` | `LogLevel.Information` |
+| `warn` **Oppure** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |

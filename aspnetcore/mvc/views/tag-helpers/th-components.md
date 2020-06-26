@@ -7,17 +7,19 @@ ms.author: scaddie
 ms.date: 06/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/th-components
-ms.openlocfilehash: df118cdc8346b99e4e5c60c9f0441c963543f4b4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 58781880764b26a67d71e70c225ab4ed4e5da109
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767512"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406706"
 ---
 # <a name="tag-helper-components-in-aspnet-core"></a>Componenti helper tag in ASP.NET Core
 
@@ -25,7 +27,7 @@ Di [Scott Addie](https://twitter.com/Scott_Addie) e [Fiyaz Bin Hasan](https://gi
 
 Un componente helper tag è un helper tag che consente di modificare o aggiungere elementi HTML da codice lato server in modo condizionale. Questa funzionalità è disponibile in ASP.NET Core 2.0 o versioni successive.
 
-ASP.NET Core include due componenti helper tag predefiniti: `head` e `body`. Si trovano nello <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> spazio dei nomi e possono essere usati sia in MVC che Razor in pagine. I componenti helper tag non richiedono la registrazione con l'app in *_ViewImports.cshtml*.
+ASP.NET Core include due componenti helper tag predefiniti: `head` e `body`. Si trovano nello <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> spazio dei nomi e possono essere usati sia in MVC che in Razor pagine. I componenti helper tag non richiedono la registrazione con l'app in *_ViewImports.cshtml*.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 
@@ -80,7 +82,7 @@ Se la classe di componenti helper tag non è gestita con <xref:Microsoft.AspNetC
 
 ### <a name="registration-via-razor-file"></a>Registrazione tramite Razor file
 
-Se il componente helper tag non è registrato con DI, può essere registrato da una Razor pagina di pagine o da una visualizzazione MVC. Questa tecnica viene usata per controllare il markup inserito e l'ordine di esecuzione dei componenti da Razor un file.
+Se il componente helper tag non è registrato con DI, può essere registrato da una Razor pagina di pagine o da una visualizzazione MVC. Questa tecnica viene usata per controllare il markup inserito e l'ordine di esecuzione dei componenti da un Razor file.
 
 `ITagHelperComponentManager` viene usato per aggiungere componenti helper tag o per rimuoverli dall'app. Il codice seguente illustra questa tecnica con `AddressTagHelperComponent`:
 
@@ -88,7 +90,7 @@ Se il componente helper tag non è registrato con DI, può essere registrato da 
 
 Nel codice precedente:
 
-* La direttiva `@inject` fornisce un'istanza di `ITagHelperComponentManager`. L'istanza viene assegnata a una variabile `manager` denominata per accedere a downstream Razor nel file.
+* La direttiva `@inject` fornisce un'istanza di `ITagHelperComponentManager`. L'istanza viene assegnata a una variabile denominata `manager` per accedere a downstream nel Razor file.
 * Un'istanza di `AddressTagHelperComponent` viene aggiunta alla raccolta di componenti helper tag dell'app.
 
 `AddressTagHelperComponent` viene modificato per contenere un costruttore che accetta i parametri `markup` e `order`:
@@ -103,7 +105,7 @@ Il parametro `markup` specificato viene usato in `ProcessAsync` nel modo seguent
 
 Se il componente helper tag non è registrato con DI, può essere registrato da un Razor modello di pagina delle pagine o da un controller MVC. Questa tecnica è utile per separare la logica C# dai Razor file.
 
-Per accedere a un'istanza di `ITagHelperComponentManager` viene usato l'inserimento del costruttore. Il componente helper tag deve viene aggiunto alla raccolta di componenti helper tag dell'istanza. Il modello Razor di pagina delle pagine seguente illustra questa `AddressTagHelperComponent`tecnica con:
+Per accedere a un'istanza di `ITagHelperComponentManager` viene usato l'inserimento del costruttore. Il componente helper tag deve viene aggiunto alla raccolta di componenti helper tag dell'istanza. Il Razor modello di pagina delle pagine seguente illustra questa tecnica con `AddressTagHelperComponent` :
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Pages/Index.cshtml.cs?name=snippet_IndexModelClass)]
 

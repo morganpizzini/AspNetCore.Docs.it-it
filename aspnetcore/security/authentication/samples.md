@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 01/31/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/samples
-ms.openlocfilehash: 7cd0fe60d7917abda7d8ac0e071deca13a4136ce
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 95915c28b132a1a48fb772b2663794754006627f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776552"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405354"
 ---
 # <a name="authentication-samples-for-aspnet-core"></a>Esempi di autenticazione per ASP.NET Core
 
@@ -39,7 +41,7 @@ Il [repository ASP.NET Core](https://github.com/dotnet/AspNetCore) contiene gli 
 * Selezionare un [ramo](https://github.com/dotnet/AspNetCore). Ad esempio, usare `release/3.1`
 * Clonare o scaricare il [repository ASP.NET Core](https://github.com/dotnet/AspNetCore).
 * Verificare di aver installato la versione di [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core) corrispondente al clone del repository di ASP.NET Core.
-* Passare a un esempio in *AspNetCore/SRC/Security/Samples* ed eseguire l'esempio `dotnet run`con.
+* Passare a un esempio in *AspNetCore/SRC/Security/Samples* ed eseguire l'esempio con `dotnet run` .
 
 ::: moniker-end
 
@@ -60,6 +62,6 @@ Il [repository ASP.NET Core](https://github.com/dotnet/AspNetCore) contiene gli 
 * Selezionare un [ramo](https://github.com/dotnet/AspNetCore). Ad esempio, usare `release/2.2`
 * Clonare o scaricare il [repository ASP.NET Core](https://github.com/dotnet/AspNetCore).
 * Verificare di aver installato la versione di [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core) corrispondente al clone del repository di ASP.NET Core.
-* Passare a un esempio in *AspNetCore/SRC/Security/Samples* ed eseguire l'esempio `dotnet run`con.
+* Passare a un esempio in *AspNetCore/SRC/Security/Samples* ed eseguire l'esempio con `dotnet run` .
 
 ::: moniker-end

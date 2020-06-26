@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 09b004abd423abc9cc8e83d3bb3fea1dddf09e14
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 65095f3990c72224d95f1f5fe46d320ab8f12040
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776630"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404834"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Risolvere i problemi relativi a ASP.NET Core in app Azure servizio e IIS
 
@@ -59,18 +61,18 @@ L'errore è in genere causato da una distribuzione interruppe sul sistema host, 
 
 * L'app viene distribuita nella cartella errata del sistema di hosting.
 * Il processo di distribuzione non è riuscito a spostare tutti i file e le cartelle dell'app nella cartella di distribuzione nel sistema di hosting.
-* Il file *Web. config* non è presente nella distribuzione oppure il contenuto del file *Web. config* non è valido.
+* Il file di *web.config* non è presente nella distribuzione oppure il contenuto del file di *web.config* non è valido.
 
 Eseguire la procedura seguente:
 
 1. Eliminare tutti i file e le cartelle dalla cartella di distribuzione nel sistema di hosting.
 1. Ridistribuire il contenuto della cartella di *pubblicazione* dell'app nel sistema host usando il normale metodo di distribuzione, ad esempio Visual Studio, PowerShell o la distribuzione manuale:
-   * Verificare che il file *Web. config* sia presente nella distribuzione e che il contenuto sia corretto.
-   * Quando si esegue l'hosting in app Azure servizio, verificare che l'app venga `D:\home\site\wwwroot` distribuita nella cartella.
+   * Verificare che il file *web.config* sia presente nella distribuzione e che il relativo contenuto sia corretto.
+   * Quando si esegue l'hosting in app Azure servizio, verificare che l'app venga distribuita nella `D:\home\site\wwwroot` cartella.
    * Quando l'app è ospitata da IIS, verificare che l'app venga distribuita nel **percorso fisico** IIS visualizzato nelle impostazioni di **base**di **Gestione IIS**.
 1. Verificare che tutti i file e le cartelle dell'app vengano distribuiti confrontando la distribuzione nel sistema di hosting con il contenuto della cartella di *pubblicazione* del progetto.
 
-Per ulteriori informazioni sul layout di un'app ASP.NET Core pubblicata, vedere <xref:host-and-deploy/directory-structure>. Per ulteriori informazioni sul file *Web. config* , vedere <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
+Per ulteriori informazioni sul layout di un'app ASP.NET Core pubblicata, vedere <xref:host-and-deploy/directory-structure> . Per ulteriori informazioni sul file di *web.config* , vedere <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig> .
 
 ### <a name="500-internal-server-error"></a>500 - Errore interno del server
 
@@ -138,7 +140,7 @@ Per correggere l'errore, eseguire una delle operazioni seguenti:
 
 Il processo di lavoro ha esito negativo. L'app non viene avviata.
 
-L'app non fa riferimento al framework `Microsoft.AspNetCore.App`. Solo le app destinate `Microsoft.AspNetCore.App` al Framework possono essere ospitate dal [modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module).
+L'app non fa riferimento al framework `Microsoft.AspNetCore.App`. Solo le app destinate al `Microsoft.AspNetCore.App` Framework possono essere ospitate dal [modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module).
 
 Per correggere questo errore, verificare che l'app sia destinata al framework `Microsoft.AspNetCore.App`. Controllare il framework di destinazione dell'app nel file `.runtimeconfig.json`.
 
@@ -172,8 +174,8 @@ MODULO ASP.NET Core non è riuscito a individuare la DLL dell'applicazione, che 
 
 Questo errore si verifica quando si ospita un'app in pacchetto come file [eseguibile di un singolo file](/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables) usando il modello di hosting in-process. Il modello in-process richiede che modulo ASP.NET Core carichi l'app .NET Core nel processo IIS esistente. Questo scenario non è supportato dal modello di distribuzione a file singolo. Per correggere l'errore, usare **uno** degli approcci seguenti nel file di progetto dell'app:
 
-1. Disabilitare la pubblicazione su file singolo impostando `PublishSingleFile` la proprietà MSBuild `false`su.
-1. Passare al modello di hosting out-of-process impostando la `AspNetCoreHostingModel` proprietà MSBuild su `OutOfProcess`.
+1. Disabilitare la pubblicazione su file singolo impostando la `PublishSingleFile` Proprietà MSBuild su `false` .
+1. Passare al modello di hosting out-of-process impostando la `AspNetCoreHostingModel` Proprietà MSBuild su `OutOfProcess` .
 
 ### <a name="5025-process-failure"></a>502.5 Errore del processo
 
@@ -335,10 +337,10 @@ Il log di debug del modulo ASP.NET Core fornisce dati di registrazione aggiuntiv
    * Aggiungere le impostazioni `<handlerSettings>` indicate in [Log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) al file *web.config* dell'app distribuita, usando la console Kudu:
      1. Aprire **Strumenti avanzati** nell'area **Strumenti di sviluppo**. Selezionare il pulsante **Vai&rarr;**. Verrà aperta la console Kudu in una nuova scheda o finestra del browser.
      1. Usando la barra di spostamento nella parte superiore della pagina, aprire **Console di debug** e selezionare **CMD**.
-     1. Aprire le cartelle nel **sito** > del percorso**wwwroot**. Modificare il file *web.config* selezionando il pulsante a forma di matita. Aggiungere la sezione `<handlerSettings>` come illustrato in [Log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Fare clic sul pulsante **Salva**.
+     1. Aprire le cartelle nel **sito**del percorso  >  **wwwroot**. Modificare il file *web.config* selezionando il pulsante a forma di matita. Aggiungere la sezione `<handlerSettings>` come illustrato in [Log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Fare clic sul pulsante **Salva**.
 1. Aprire **Strumenti avanzati** nell'area **Strumenti di sviluppo**. Selezionare il pulsante **Vai&rarr;**. Verrà aperta la console Kudu in una nuova scheda o finestra del browser.
 1. Usando la barra di spostamento nella parte superiore della pagina, aprire **Console di debug** e selezionare **CMD**.
-1. Aprire le cartelle nel **sito** > del percorso**wwwroot**. Se non è stato specificato un percorso per il file *aspnetcore-debug.log*, il file viene visualizzato nell'elenco. Se è stato specificato un percorso, passare al percorso del file di log.
+1. Aprire le cartelle nel **sito**del percorso  >  **wwwroot**. Se non è stato specificato un percorso per il file *aspnetcore-debug.log*, il file viene visualizzato nell'elenco. Se è stato specificato un percorso, passare al percorso del file di log.
 1. Aprire il file di log con il pulsante a forma di matita accanto al nome del file.
 
 Al termine della risoluzione dei problemi, disabilitare la registrazione di debug:
@@ -429,7 +431,7 @@ Molti errori di avvio non producono informazioni utili nel log eventi dell'appli
 
 Se l'app è una [distribuzione dipendente dal framework](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
-1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare l'app eseguendo l'assembly dell'app con *dotnet.exe*. Nel comando seguente sostituire \<assembly_name> con il nome dell'assembly dell'app: `dotnet .\<assembly_name>.dll`.
+1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare l'app eseguendo l'assembly dell'app con *dotnet.exe*. Nel comando seguente sostituire il nome dell'assembly dell'app per \<assembly_name> : `dotnet .\<assembly_name>.dll` .
 1. L'output della console per l'app, in cui sono indicati gli eventuali errori, verrà scritto nella finestra della console.
 1. Se gli errori si verificano quando si effettua una richiesta all'app, effettuare una richiesta all'host e alla porta su cui è in ascolto Kestrel. Usando l'host e la porta predefiniti, effettuare una richiesta a `http://localhost:5000/`. Se l'app risponde normalmente nell'indirizzo endpoint di Kestrel, è più probabile che il problema sia associato alla configurazione dell'host e che non sia interno all'app.
 
@@ -437,7 +439,7 @@ Se l'app è una [distribuzione dipendente dal framework](/dotnet/core/deploying/
 
 Se l'app è una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd):
 
-1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare il file eseguibile dell'app. Nel comando seguente sostituire \<assembly_name> con il nome dell'assembly dell'app: `<assembly_name>.exe`.
+1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare il file eseguibile dell'app. Nel comando seguente sostituire il nome dell'assembly dell'app per \<assembly_name> : `<assembly_name>.exe` .
 1. L'output della console per l'app, in cui sono indicati gli eventuali errori, verrà scritto nella finestra della console.
 1. Se gli errori si verificano quando si effettua una richiesta all'app, effettuare una richiesta all'host e alla porta su cui è in ascolto Kestrel. Usando l'host e la porta predefiniti, effettuare una richiesta a `http://localhost:5000/`. Se l'app risponde normalmente nell'indirizzo endpoint di Kestrel, è più probabile che il problema sia associato alla configurazione dell'host e che non sia interno all'app.
 
@@ -469,7 +471,7 @@ Per altre informazioni, vedere <xref:host-and-deploy/aspnet-core-module#log-crea
 
 ### <a name="aspnet-core-module-debug-log-iis"></a>Log di debug del modulo ASP.NET Core (IIS)
 
-Aggiungere le impostazioni del gestore seguenti al file *Web. config* dell'app per abilitare il log di debug del modulo ASP.NET Core:
+Aggiungere le impostazioni del gestore seguenti al file di *web.config* dell'app per abilitare ASP.NET Core log di debug del modulo:
 
 ```xml
 <aspNetCore ...>
@@ -562,7 +564,7 @@ Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del
 1. Eliminare le cartelle *bin* e *obj*.
 1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
-   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il `nuget locals all -clear`comando. *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
+   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [nuget.exe](https://www.nuget.org/downloads) e l'esecuzione del comando `nuget locals all -clear` . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
 
 1. Ripristinare e ricompilare il progetto.
 1. Eliminare tutti i file nella cartella di distribuzione nel server prima di ridistribuire l'app.
@@ -634,18 +636,18 @@ L'errore è in genere causato da una distribuzione interruppe sul sistema host, 
 
 * L'app viene distribuita nella cartella errata del sistema di hosting.
 * Il processo di distribuzione non è riuscito a spostare tutti i file e le cartelle dell'app nella cartella di distribuzione nel sistema di hosting.
-* Il file *Web. config* non è presente nella distribuzione oppure il contenuto del file *Web. config* non è valido.
+* Il file di *web.config* non è presente nella distribuzione oppure il contenuto del file di *web.config* non è valido.
 
 Eseguire la procedura seguente:
 
 1. Eliminare tutti i file e le cartelle dalla cartella di distribuzione nel sistema di hosting.
 1. Ridistribuire il contenuto della cartella di *pubblicazione* dell'app nel sistema host usando il normale metodo di distribuzione, ad esempio Visual Studio, PowerShell o la distribuzione manuale:
-   * Verificare che il file *Web. config* sia presente nella distribuzione e che il contenuto sia corretto.
-   * Quando si esegue l'hosting in app Azure servizio, verificare che l'app venga `D:\home\site\wwwroot` distribuita nella cartella.
+   * Verificare che il file *web.config* sia presente nella distribuzione e che il relativo contenuto sia corretto.
+   * Quando si esegue l'hosting in app Azure servizio, verificare che l'app venga distribuita nella `D:\home\site\wwwroot` cartella.
    * Quando l'app è ospitata da IIS, verificare che l'app venga distribuita nel **percorso fisico** IIS visualizzato nelle impostazioni di **base**di **Gestione IIS**.
 1. Verificare che tutti i file e le cartelle dell'app vengano distribuiti confrontando la distribuzione nel sistema di hosting con il contenuto della cartella di *pubblicazione* del progetto.
 
-Per ulteriori informazioni sul layout di un'app ASP.NET Core pubblicata, vedere <xref:host-and-deploy/directory-structure>. Per ulteriori informazioni sul file *Web. config* , vedere <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
+Per ulteriori informazioni sul layout di un'app ASP.NET Core pubblicata, vedere <xref:host-and-deploy/directory-structure> . Per ulteriori informazioni sul file di *web.config* , vedere <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig> .
 
 ### <a name="500-internal-server-error"></a>500 - Errore interno del server
 
@@ -657,7 +659,7 @@ Questo errore si verifica all'interno del codice dell'app durante l'avvio o dura
 
 Il processo di lavoro ha esito negativo. L'app non viene avviata.
 
-Il [modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) non riesce a trovare il CLR .NET Core e a trovare il gestore della richiesta in-process (*aspnetcorev2_inprocess. dll*). Controllare che:
+Il [modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) non riesce a trovare il CLR .NET Core e a trovare il gestore di richieste in-process (*aspnetcorev2_inprocess.dll*). Controllare che:
 
 * L'app specifichi come destinazione il pacchetto NuGet [Microsoft.AspNetCore.Server.IIS](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IIS) o il [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).
 * Le versione del framework condiviso ASP.NET Core specificata come destinazione dall'app sia installata nel computer di destinazione.
@@ -828,10 +830,10 @@ Il log di debug del modulo ASP.NET Core fornisce dati di registrazione aggiuntiv
    * Aggiungere le impostazioni `<handlerSettings>` indicate in [Log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) al file *web.config* dell'app distribuita, usando la console Kudu:
      1. Aprire **Strumenti avanzati** nell'area **Strumenti di sviluppo**. Selezionare il pulsante **Vai&rarr;**. Verrà aperta la console Kudu in una nuova scheda o finestra del browser.
      1. Usando la barra di spostamento nella parte superiore della pagina, aprire **Console di debug** e selezionare **CMD**.
-     1. Aprire le cartelle nel **sito** > del percorso**wwwroot**. Modificare il file *web.config* selezionando il pulsante a forma di matita. Aggiungere la sezione `<handlerSettings>` come illustrato in [Log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Fare clic sul pulsante **Salva**.
+     1. Aprire le cartelle nel **sito**del percorso  >  **wwwroot**. Modificare il file *web.config* selezionando il pulsante a forma di matita. Aggiungere la sezione `<handlerSettings>` come illustrato in [Log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Fare clic sul pulsante **Salva**.
 1. Aprire **Strumenti avanzati** nell'area **Strumenti di sviluppo**. Selezionare il pulsante **Vai&rarr;**. Verrà aperta la console Kudu in una nuova scheda o finestra del browser.
 1. Usando la barra di spostamento nella parte superiore della pagina, aprire **Console di debug** e selezionare **CMD**.
-1. Aprire le cartelle nel **sito** > del percorso**wwwroot**. Se non è stato specificato un percorso per il file *aspnetcore-debug.log*, il file viene visualizzato nell'elenco. Se è stato specificato un percorso, passare al percorso del file di log.
+1. Aprire le cartelle nel **sito**del percorso  >  **wwwroot**. Se non è stato specificato un percorso per il file *aspnetcore-debug.log*, il file viene visualizzato nell'elenco. Se è stato specificato un percorso, passare al percorso del file di log.
 1. Aprire il file di log con il pulsante a forma di matita accanto al nome del file.
 
 Al termine della risoluzione dei problemi, disabilitare la registrazione di debug:
@@ -922,7 +924,7 @@ Molti errori di avvio non producono informazioni utili nel log eventi dell'appli
 
 Se l'app è una [distribuzione dipendente dal framework](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
-1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare l'app eseguendo l'assembly dell'app con *dotnet.exe*. Nel comando seguente sostituire \<assembly_name> con il nome dell'assembly dell'app: `dotnet .\<assembly_name>.dll`.
+1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare l'app eseguendo l'assembly dell'app con *dotnet.exe*. Nel comando seguente sostituire il nome dell'assembly dell'app per \<assembly_name> : `dotnet .\<assembly_name>.dll` .
 1. L'output della console per l'app, in cui sono indicati gli eventuali errori, verrà scritto nella finestra della console.
 1. Se gli errori si verificano quando si effettua una richiesta all'app, effettuare una richiesta all'host e alla porta su cui è in ascolto Kestrel. Usando l'host e la porta predefiniti, effettuare una richiesta a `http://localhost:5000/`. Se l'app risponde normalmente nell'indirizzo endpoint di Kestrel, è più probabile che il problema sia associato alla configurazione dell'host e che non sia interno all'app.
 
@@ -930,7 +932,7 @@ Se l'app è una [distribuzione dipendente dal framework](/dotnet/core/deploying/
 
 Se l'app è una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd):
 
-1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare il file eseguibile dell'app. Nel comando seguente sostituire \<assembly_name> con il nome dell'assembly dell'app: `<assembly_name>.exe`.
+1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare il file eseguibile dell'app. Nel comando seguente sostituire il nome dell'assembly dell'app per \<assembly_name> : `<assembly_name>.exe` .
 1. L'output della console per l'app, in cui sono indicati gli eventuali errori, verrà scritto nella finestra della console.
 1. Se gli errori si verificano quando si effettua una richiesta all'app, effettuare una richiesta all'host e alla porta su cui è in ascolto Kestrel. Usando l'host e la porta predefiniti, effettuare una richiesta a `http://localhost:5000/`. Se l'app risponde normalmente nell'indirizzo endpoint di Kestrel, è più probabile che il problema sia associato alla configurazione dell'host e che non sia interno all'app.
 
@@ -962,7 +964,7 @@ Per altre informazioni, vedere <xref:host-and-deploy/aspnet-core-module#log-crea
 
 ### <a name="aspnet-core-module-debug-log-iis"></a>Log di debug del modulo ASP.NET Core (IIS)
 
-Aggiungere le impostazioni del gestore seguenti al file *Web. config* dell'app per abilitare il log di debug del modulo ASP.NET Core:
+Aggiungere le impostazioni del gestore seguenti al file di *web.config* dell'app per abilitare ASP.NET Core log di debug del modulo:
 
 ```xml
 <aspNetCore ...>
@@ -1055,7 +1057,7 @@ Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del
 1. Eliminare le cartelle *bin* e *obj*.
 1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
-   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il `nuget locals all -clear`comando. *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
+   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [nuget.exe](https://www.nuget.org/downloads) e l'esecuzione del comando `nuget locals all -clear` . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
 
 1. Ripristinare e ricompilare il progetto.
 1. Eliminare tutti i file nella cartella di distribuzione nel server prima di ridistribuire l'app.
@@ -1127,18 +1129,18 @@ L'errore è in genere causato da una distribuzione interruppe sul sistema host, 
 
 * L'app viene distribuita nella cartella errata del sistema di hosting.
 * Il processo di distribuzione non è riuscito a spostare tutti i file e le cartelle dell'app nella cartella di distribuzione nel sistema di hosting.
-* Il file *Web. config* non è presente nella distribuzione oppure il contenuto del file *Web. config* non è valido.
+* Il file di *web.config* non è presente nella distribuzione oppure il contenuto del file di *web.config* non è valido.
 
 Eseguire la procedura seguente:
 
 1. Eliminare tutti i file e le cartelle dalla cartella di distribuzione nel sistema di hosting.
 1. Ridistribuire il contenuto della cartella di *pubblicazione* dell'app nel sistema host usando il normale metodo di distribuzione, ad esempio Visual Studio, PowerShell o la distribuzione manuale:
-   * Verificare che il file *Web. config* sia presente nella distribuzione e che il contenuto sia corretto.
-   * Quando si esegue l'hosting in app Azure servizio, verificare che l'app venga `D:\home\site\wwwroot` distribuita nella cartella.
+   * Verificare che il file *web.config* sia presente nella distribuzione e che il relativo contenuto sia corretto.
+   * Quando si esegue l'hosting in app Azure servizio, verificare che l'app venga distribuita nella `D:\home\site\wwwroot` cartella.
    * Quando l'app è ospitata da IIS, verificare che l'app venga distribuita nel **percorso fisico** IIS visualizzato nelle impostazioni di **base**di **Gestione IIS**.
 1. Verificare che tutti i file e le cartelle dell'app vengano distribuiti confrontando la distribuzione nel sistema di hosting con il contenuto della cartella di *pubblicazione* del progetto.
 
-Per ulteriori informazioni sul layout di un'app ASP.NET Core pubblicata, vedere <xref:host-and-deploy/directory-structure>. Per ulteriori informazioni sul file *Web. config* , vedere <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
+Per ulteriori informazioni sul layout di un'app ASP.NET Core pubblicata, vedere <xref:host-and-deploy/directory-structure> . Per ulteriori informazioni sul file di *web.config* , vedere <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig> .
 
 ### <a name="500-internal-server-error"></a>500 - Errore interno del server
 
@@ -1371,7 +1373,7 @@ Molti errori di avvio non producono informazioni utili nel log eventi dell'appli
 
 Se l'app è una [distribuzione dipendente dal framework](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
-1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare l'app eseguendo l'assembly dell'app con *dotnet.exe*. Nel comando seguente sostituire \<assembly_name> con il nome dell'assembly dell'app: `dotnet .\<assembly_name>.dll`.
+1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare l'app eseguendo l'assembly dell'app con *dotnet.exe*. Nel comando seguente sostituire il nome dell'assembly dell'app per \<assembly_name> : `dotnet .\<assembly_name>.dll` .
 1. L'output della console per l'app, in cui sono indicati gli eventuali errori, verrà scritto nella finestra della console.
 1. Se gli errori si verificano quando si effettua una richiesta all'app, effettuare una richiesta all'host e alla porta su cui è in ascolto Kestrel. Usando l'host e la porta predefiniti, effettuare una richiesta a `http://localhost:5000/`. Se l'app risponde normalmente nell'indirizzo endpoint di Kestrel, è più probabile che il problema sia associato alla configurazione dell'host e che non sia interno all'app.
 
@@ -1379,7 +1381,7 @@ Se l'app è una [distribuzione dipendente dal framework](/dotnet/core/deploying/
 
 Se l'app è una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd):
 
-1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare il file eseguibile dell'app. Nel comando seguente sostituire \<assembly_name> con il nome dell'assembly dell'app: `<assembly_name>.exe`.
+1. Da un prompt dei comandi passare alla cartella di distribuzione e avviare il file eseguibile dell'app. Nel comando seguente sostituire il nome dell'assembly dell'app per \<assembly_name> : `<assembly_name>.exe` .
 1. L'output della console per l'app, in cui sono indicati gli eventuali errori, verrà scritto nella finestra della console.
 1. Se gli errori si verificano quando si effettua una richiesta all'app, effettuare una richiesta all'host e alla porta su cui è in ascolto Kestrel. Usando l'host e la porta predefiniti, effettuare una richiesta a `http://localhost:5000/`. Se l'app risponde normalmente nell'indirizzo endpoint di Kestrel, è più probabile che il problema sia associato alla configurazione dell'host e che non sia interno all'app.
 
@@ -1486,7 +1488,7 @@ Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del
 1. Eliminare le cartelle *bin* e *obj*.
 1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
-   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [NuGet. exe](https://www.nuget.org/downloads) ed eseguendo il `nuget locals all -clear`comando. *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
+   La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [nuget.exe](https://www.nuget.org/downloads) e l'esecuzione del comando `nuget locals all -clear` . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
 
 1. Ripristinare e ricompilare il progetto.
 1. Eliminare tutti i file nella cartella di distribuzione nel server prima di ridistribuire l'app.

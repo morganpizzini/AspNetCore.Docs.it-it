@@ -1,30 +1,32 @@
 ---
-title: Piattaforme SignalR supportate ASP.NET Core
+title: SignalRPiattaforme supportate ASP.NET Core
 author: bradygaster
-description: Informazioni sulle piattaforme supportate per ASP.NET Core SignalR.
+description: Informazioni sulle piattaforme supportate per ASP.NET Core SignalR .
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/supported-platforms
-ms.openlocfilehash: 70a05dabb95aaf561aa78d5c8b24b430c51bd973
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9d7dd946ae5cf83b76a83ba1faeed0bb3fc31cef
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82772605"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405822"
 ---
-# <a name="aspnet-core-signalr-supported-platforms"></a>Piattaforme supportate da ASP.NET Core SignalR
+# <a name="aspnet-core-signalr-supported-platforms"></a>SignalRPiattaforme supportate ASP.NET Core
 
 ## <a name="server-system-requirements"></a>Requisiti di sistema del server di
 
-SignalR per ASP.NET Core supporta qualsiasi piattaforma server supportata da ASP.NET Core.
+SignalRper ASP.NET Core supporta qualsiasi piattaforma server supportata da ASP.NET Core.
 
 ## <a name="javascript-client"></a>Client JavaScript
 

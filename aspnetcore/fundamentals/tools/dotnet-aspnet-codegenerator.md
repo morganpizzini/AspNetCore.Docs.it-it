@@ -7,17 +7,19 @@ ms.author: riande
 ms.date: 07/04/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: 58f7aa30d3e916307437d56c61e80765ac0c21cf
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a106654c8a37e84e9186a2f06d90605df753e8a7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766472"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405601"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -48,22 +50,22 @@ dotnet aspnet-codegenerator [arguments] [-p|--project] [-n|--nuget-package-dir] 
 dotnet aspnet-codegenerator [-h|--help]
 ```
 
-## <a name="description"></a>Description
+## <a name="description"></a>Descrizione
 
 Il comando globale `dotnet aspnet-codegenerator` esegue il generatore di codice e il motore di scaffolding di ASP.NET Core.
 
-## <a name="arguments"></a>Arguments
+## <a name="arguments"></a>Argomenti
 
 `generator`
 
 Il generatore di codice da eseguire. Sono disponibili i generatori seguenti:
 
-| Generator | Operazione |
+| Generatore | Operazione |
 | ----------------- | ------------ | 
 | area      | [Esegue lo scaffolding di un'area](/aspnet/core/mvc/controllers/areas) |
   controller| [Esegue lo scaffolding di un controller](/aspnet/core/tutorials/first-mvc-app/adding-model) |
-  identity  | [Esegue lo scaffolding dell'identità](/aspnet/core/security/authentication/scaffold-identity) |
-  razorpage | [Esegue lo scaffolding di Razor Pages](/aspnet/core/tutorials/razor-pages/model) |
+  identity  | [Esegue lo scaffoldingIdentity](/aspnet/core/security/authentication/scaffold-identity) |
+  razorpage | [Pagine di ponteggi Razor](/aspnet/core/tutorials/razor-pages/model) |
   vista      | [Esegue lo scaffolding di una visualizzazione](/aspnet/core/mvc/views/overview) |
 
 ## <a name="options"></a>Opzioni
@@ -102,15 +104,15 @@ Nelle sezioni seguenti vengono descritte in dettaglio le opzioni disponibili per
 
 * Area
 * Controller
-* Identità  
+* Identity  
 * Razorpage
-* Visualizzazione
+* Visualizza
 
 <a name="area"></a>
 
 ### <a name="area-options"></a>Opzioni per area
 
-Questo strumento è progettato per i progetti Web ASP.NET Core con controller e visualizzazioni. Non è destinato alle app Razor Pages.
+Questo strumento è progettato per i progetti Web ASP.NET Core con controller e visualizzazioni. Non è destinato alle Razor app di pagine.
 
 Sintassi: `dotnet aspnet-codegenerator area AreaNameToGenerate`
 
@@ -127,7 +129,7 @@ Il comando precedente genera le cartelle seguenti:
 
 ### <a name="controller-options"></a>Opzioni per controller
 
-Nella tabella seguente sono elencate le `aspnet-codegenerator` `controller` opzioni `razorpage`per e:
+Nella tabella seguente sono elencate le opzioni per `aspnet-codegenerator` `controller` e `razorpage` :
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 
@@ -153,7 +155,7 @@ Vedere [Eseguire lo scaffolding del modello di filmato](/aspnet/core/tutorials/r
 
 <a name="rp"></a>
 
-È possibile eseguire lo scaffolding di singole pagine Razor specificando il nome della nuova pagina e il modello da usare. I modelli supportati sono:
+RazorLe pagine possono essere personalizzate individualmente specificando il nome della nuova pagina e il modello da usare. I modelli supportati sono:
 
 * `Empty`
 * `Create`
@@ -176,7 +178,7 @@ In genere, il modello e il nome di file generato non vengono specificati e vengo
 * `Details`
 * `List`
 
-Nella tabella seguente sono elencate le `aspnet-codegenerator` `razorpage` opzioni `controller`per e:
+Nella tabella seguente sono elencate le opzioni per `aspnet-codegenerator` `razorpage` e `controller` :
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 

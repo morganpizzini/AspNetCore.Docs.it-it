@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 03/21/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/controllers/areas
-ms.openlocfilehash: 00071b91f2ef374668b74a41190d49b0be83e817
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: f4471f54e92b940ecb0eabab82f03e0c77a0509f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774301"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406407"
 ---
 # <a name="areas-in-aspnet-core"></a>Aree in ASP.NET Core
 
@@ -27,11 +29,11 @@ Di [e](https://twitter.com/debug_mode) [Rick Anderson](https://twitter.com/RickA
 Le aree sono una funzionalità di ASP.NET usata per organizzare le funzionalità correlate in un gruppo come separato:
 
 * Spazio dei nomi per il routing.
-* Struttura di cartelle per le Razor visualizzazioni e le pagine.
+* Struttura di cartelle per le visualizzazioni e le Razor pagine.
 
-L'uso delle aree crea una gerarchia ai fini del routing aggiungendo un altro parametro di `area`Route, `controller` , `action` a e Razor o `page`a una pagina.
+L'uso delle aree crea una gerarchia ai fini del routing aggiungendo un altro parametro di route, `area` , a `controller` e `action` o a una Razor pagina `page` .
 
-Le aree consentono di partizionare un ASP.NET Core app Web in gruppi funzionali più piccoli, ognuno con un proprio set Razor di pagine, controller, visualizzazioni e modelli. Un'area è in effetti una struttura all'interno di un'app. In un progetto Web ASP.NET Core i componenti logici come pagine, modello, controller e visualizzazione si trovano in cartelle diverse. Il runtime di ASP.NET Core crea una relazione tra questi componenti usando convenzioni di denominazione. Per un'app di grandi dimensioni può risultare utile suddividere l'app in aree di funzionalità di alto livello distinte. È il caso, ad esempio, di un'app di e-commerce con più business unit, ad esempio per il completamento della transazione, la fatturazione e la ricerca. Ognuna di queste unità dispone di una propria area per contenere viste, controller Razor , pagine e modelli.
+Le aree consentono di partizionare un ASP.NET Core app Web in gruppi funzionali più piccoli, ognuno con un proprio set di Razor pagine, controller, visualizzazioni e modelli. Un'area è in effetti una struttura all'interno di un'app. In un progetto Web ASP.NET Core i componenti logici come pagine, modello, controller e visualizzazione si trovano in cartelle diverse. Il runtime di ASP.NET Core crea una relazione tra questi componenti usando convenzioni di denominazione. Per un'app di grandi dimensioni può risultare utile suddividere l'app in aree di funzionalità di alto livello distinte. È il caso, ad esempio, di un'app di e-commerce con più business unit, ad esempio per il completamento della transazione, la fatturazione e la ricerca. Ognuna di queste unità dispone di una propria area per contenere viste, controller, Razor pagine e modelli.
 
 In un progetto è consigliabile usare le aree quando:
 
@@ -61,12 +63,12 @@ Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi*. U
 
 * Project name (Nome progetto)
   * Aree
-    * Products
+    * Prodotti
       * Controllers
         * HomeController.cs
         * ManageController.cs
       * Visualizzazioni
-        * Home
+        * Home page
           * Index.cshtml
         * Gestione
           * Index.cshtml
@@ -75,7 +77,7 @@ Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi*. U
       * Controllers
         * HomeController.cs
       * Visualizzazioni
-        * Home
+        * Home page
           * Index.cshtml
 
 Anche se il layout precedente è tipico quando si usano le aree, per usare questa struttura di cartelle sono necessari solo i file delle visualizzazioni. L'individuazione delle visualizzazioni cercherà un file di visualizzazione area corrispondente in quest'ordine:
@@ -91,7 +93,7 @@ Anche se il layout precedente è tipico quando si usano le aree, per usare quest
 
 ### <a name="associate-the-controller-with-an-area"></a>Associare il controller a un'area
 
-I controller di area sono designati con l' [ &lbrack;attributo area&rbrack; ](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) :
+I controller di area sono designati con l'attributo [ &lbrack; area &rbrack; ](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) :
 
 [!code-csharp[](areas/31samples/MVCareas/Areas/Products/Controllers/ManageController.cs?highlight=5&name=snippet)]
 
@@ -103,10 +105,10 @@ Le route di area usano in genere il [routing convenzionale](xref:mvc/controllers
 
 [!code-csharp[](areas/31samples/MVCareas/Startup.cs?name=snippet&highlight=21-23)]
 
-Nel codice precedente, `exists` applica il vincolo che la route deve corrispondere a un'area. Utilizzo `{area:...}` di `MapControllerRoute`con:
+Nel codice precedente, `exists` applica il vincolo che la route deve corrispondere a un'area. Utilizzo `{area:...}` di con `MapControllerRoute` :
 
 * È il meccanismo meno complicato per aggiungere il routing alle aree.
-* Corrisponde a tutti i controller `[Area("Area name")]` con l'attributo.
+* Corrisponde a tutti i controller con l' `[Area("Area name")]` attributo.
 
 Il codice seguente usa <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> per creare due route di area denominate:
 
@@ -143,12 +145,12 @@ La cartella radice dell'applicazione è la cartella che contiene *Startup.cs* ne
 
 ### <a name="_viewimportscshtml"></a>_ViewImports.cshtml
 
- */Views/_ViewImports. cshtml*, per MVC e */pages/_ViewImports. cshtml* per Razor le pagine, non viene importato nelle viste nelle aree. Usare uno degli approcci seguenti per fornire le importazioni di visualizzazione a tutte le visualizzazioni:
+ */Views/_ViewImports. cshtml*, per MVC e */pages/_ViewImports. cshtml* per le Razor pagine, non viene importato nelle viste nelle aree. Usare uno degli approcci seguenti per fornire le importazioni di visualizzazione a tutte le visualizzazioni:
 
 * Aggiungere *_ViewImports. cshtml* alla [cartella radice dell'applicazione](#arf). Un *_ViewImports. cshtml* nella cartella radice dell'applicazione si applica a tutte le visualizzazioni nell'app.
 * Copiare il file *_ViewImports. cshtml* nella cartella della visualizzazione appropriata in aree.
 
-Il file *_ViewImports. cshtml* contiene in genere gli [Helper Tag](xref:mvc/views/tag-helpers/intro) che `@using`importano istruzioni, e `@inject` . Per altre informazioni, vedere [importazione di direttive condivise](xref:mvc/views/layout#importing-shared-directives).
+Il file *_ViewImports. cshtml* contiene in genere gli [Helper Tag](xref:mvc/views/tag-helpers/intro) che importano `@using` istruzioni, e `@inject` . Per altre informazioni, vedere [importazione di direttive condivise](xref:mvc/views/layout#importing-shared-directives).
 
 <a name="rename"></a>
 
@@ -162,22 +164,22 @@ Il codice seguente modifica la cartella dell'area predefinita da `"Areas"` a `"M
 
 ## <a name="areas-with-razor-pages"></a>Aree con Razor pagine
 
-Le aree Razor con pagine richiedono `Areas/<area name>/Pages` una cartella nella radice dell'app. La struttura di cartelle seguente viene usata con l'[app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples):
+Le aree con Razor pagine richiedono una `Areas/<area name>/Pages` cartella nella radice dell'app. La struttura di cartelle seguente viene usata con l'[app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples):
 
 * Project name (Nome progetto)
   * Aree
-    * Products
-      * .NET
+    * Prodotti
+      * Pages
         * _ViewImports
         * Informazioni
         * Indice
     * Servizi
-      * .NET
+      * Pages
         * Gestione
           * Informazioni
           * Indice
 
-### <a name="link-generation-with-razor-pages-and-areas"></a>Generazione di collegamenti Razor con pagine e aree
+### <a name="link-generation-with-razor-pages-and-areas"></a>Generazione di collegamenti con Razor pagine e aree
 
 Il codice seguente dal [download di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) mostra la generazione di collegamenti con l'area specificata (ad esempio, `asp-area="Products"`):
 
@@ -197,7 +199,7 @@ Per il codice precedente:
 
 ### <a name="import-namespace-and-tag-helpers-with-_viewimports-file"></a>Importare lo spazio dei nomi e gli helper tag con il file _ViewImports
 
-È possibile aggiungere un file *_ViewImports. cshtml* a ogni cartella di *pagine* dell'area per importare lo spazio dei nomi e gli Razor Helper tag in ogni pagina della cartella.
+È possibile aggiungere un file *_ViewImports. cshtml* a ogni cartella di *pagine* dell'area per importare lo spazio dei nomi e gli helper tag in ogni Razor pagina della cartella.
 
 Prendere in considerazione l'area *Services* del codice di esempio, che non contiene un file *_ViewImports.cshtml*. Il markup seguente mostra la pagina */Services/Manage/about* Razor :
 
@@ -220,7 +222,7 @@ Nel file precedente lo spazio dei nomi e la direttiva `@addTagHelper` vengono im
 
 Per altre informazioni, vedere [Gestione dell'ambito dell'helper tag](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) e [Importazione delle direttive condivise](xref:mvc/views/layout#importing-shared-directives).
 
-### <a name="shared-layout-for-razor-pages-areas"></a>Layout condiviso per Razor le aree delle pagine
+### <a name="shared-layout-for-razor-pages-areas"></a>Layout condiviso per le Razor aree delle pagine
 
 Per condividere un layout comune per l'intera app, spostare *_ViewStart.cshtml* nella cartella radice dell'applicazione.
 
@@ -231,9 +233,9 @@ Tutti i file *.cshtml e i file all'interno della directory *wwwroot* vengono pub
 
 ::: moniker range="< aspnetcore-3.0"
 
-Le aree sono una funzionalità di ASP.NET che consente di organizzare le funzioni correlate in un gruppo come spazio dei nomi separato (per il routing) e struttura di cartelle (per le visualizzazioni). L'uso delle aree crea una gerarchia ai fini del routing aggiungendo un altro parametro di `area`Route, `controller` , `action` a e Razor o `page`a una pagina.
+Le aree sono una funzionalità di ASP.NET che consente di organizzare le funzioni correlate in un gruppo come spazio dei nomi separato (per il routing) e struttura di cartelle (per le visualizzazioni). L'uso delle aree crea una gerarchia ai fini del routing aggiungendo un altro parametro di route, `area` , a `controller` e `action` o a una Razor pagina `page` .
 
-Le aree consentono di partizionare un ASP.NET Core app Web in gruppi funzionali più piccoli, ognuno con un proprio set Razor di pagine, controller, visualizzazioni e modelli. Un'area è in effetti una struttura all'interno di un'app. In un progetto Web ASP.NET Core i componenti logici come pagine, modello, controller e visualizzazione si trovano in cartelle diverse. Il runtime di ASP.NET Core crea una relazione tra questi componenti usando convenzioni di denominazione. Per un'app di grandi dimensioni può risultare utile suddividere l'app in aree di funzionalità di alto livello distinte. È il caso, ad esempio, di un'app di e-commerce con più business unit, ad esempio per il completamento della transazione, la fatturazione e la ricerca. Ognuna di queste unità dispone di una propria area per contenere viste, controller Razor , pagine e modelli.
+Le aree consentono di partizionare un ASP.NET Core app Web in gruppi funzionali più piccoli, ognuno con un proprio set di Razor pagine, controller, visualizzazioni e modelli. Un'area è in effetti una struttura all'interno di un'app. In un progetto Web ASP.NET Core i componenti logici come pagine, modello, controller e visualizzazione si trovano in cartelle diverse. Il runtime di ASP.NET Core crea una relazione tra questi componenti usando convenzioni di denominazione. Per un'app di grandi dimensioni può risultare utile suddividere l'app in aree di funzionalità di alto livello distinte. È il caso, ad esempio, di un'app di e-commerce con più business unit, ad esempio per il completamento della transazione, la fatturazione e la ricerca. Ognuna di queste unità dispone di una propria area per contenere viste, controller, Razor pagine e modelli.
 
 In un progetto è consigliabile usare le aree quando:
 
@@ -263,12 +265,12 @@ Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi*. U
 
 * Project name (Nome progetto)
   * Aree
-    * Products
+    * Prodotti
       * Controllers
         * HomeController.cs
         * ManageController.cs
       * Visualizzazioni
-        * Home
+        * Home page
           * Index.cshtml
         * Gestione
           * Index.cshtml
@@ -277,7 +279,7 @@ Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi*. U
       * Controllers
         * HomeController.cs
       * Visualizzazioni
-        * Home
+        * Home page
           * Index.cshtml
 
 Anche se il layout precedente è tipico quando si usano le aree, per usare questa struttura di cartelle sono necessari solo i file delle visualizzazioni. L'individuazione delle visualizzazioni cercherà un file di visualizzazione area corrispondente in quest'ordine:
@@ -293,7 +295,7 @@ Anche se il layout precedente è tipico quando si usano le aree, per usare quest
 
 ### <a name="associate-the-controller-with-an-area"></a>Associare il controller a un'area
 
-I controller di area sono designati con l' [ &lbrack;attributo area&rbrack; ](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) :
+I controller di area sono designati con l'attributo [ &lbrack; area &rbrack; ](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) :
 
 [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?highlight=5&name=snippet)]
 
@@ -335,7 +337,7 @@ Per condividere un layout comune per l'intera app, spostare *_ViewStart.cshtml* 
 
 ### <a name="_viewimportscshtml"></a>_ViewImports.cshtml
 
-Nella posizione standard */Views/_ViewImports.cshtml* non si applica alle aree. Per usare gli [Helper Tag](xref:mvc/views/tag-helpers/intro)comuni, `@using`o nella `@inject` propria area, assicurarsi che sia presente un file *_ViewImports. cshtml* appropriato [per le visualizzazioni area](xref:mvc/views/layout#importing-shared-directives). Se si vuole lo stesso comportamento in tutte le visualizzazioni, spostare */Views/_ViewImports.cshtml* nella radice dell'applicazione.
+Nella posizione standard */Views/_ViewImports.cshtml* non si applica alle aree. Per usare gli [Helper Tag](xref:mvc/views/tag-helpers/intro)comuni, `@using` o `@inject` nella propria area, assicurarsi che sia presente un file *_ViewImports. cshtml* appropriato [per le visualizzazioni area](xref:mvc/views/layout#importing-shared-directives). Se si vuole lo stesso comportamento in tutte le visualizzazioni, spostare */Views/_ViewImports.cshtml* nella radice dell'applicazione.
 
 <a name="rename"></a>
 
@@ -349,22 +351,22 @@ Il codice seguente modifica la cartella dell'area predefinita da `"Areas"` a `"M
 
 ## <a name="areas-with-razor-pages"></a>Aree con Razor pagine
 
-Le aree Razor con pagine richiedono `Areas/<area name>/Pages` una cartella nella radice dell'app. La struttura di cartelle seguente viene usata con l'[app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples):
+Le aree con Razor pagine richiedono una `Areas/<area name>/Pages` cartella nella radice dell'app. La struttura di cartelle seguente viene usata con l'[app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples):
 
 * Project name (Nome progetto)
   * Aree
-    * Products
-      * .NET
+    * Prodotti
+      * Pages
         * _ViewImports
         * Informazioni
         * Indice
     * Servizi
-      * .NET
+      * Pages
         * Gestione
           * Informazioni
           * Indice
 
-### <a name="link-generation-with-razor-pages-and-areas"></a>Generazione di collegamenti Razor con pagine e aree
+### <a name="link-generation-with-razor-pages-and-areas"></a>Generazione di collegamenti con Razor pagine e aree
 
 Il codice seguente dal [download di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) mostra la generazione di collegamenti con l'area specificata (ad esempio, `asp-area="Products"`):
 
@@ -386,7 +388,7 @@ Per il codice precedente:
 
 ### <a name="import-namespace-and-tag-helpers-with-_viewimports-file"></a>Importare lo spazio dei nomi e gli helper tag con il file _ViewImports
 
-È possibile aggiungere un file *_ViewImports. cshtml* a ogni cartella di *pagine* dell'area per importare lo spazio dei nomi e gli Razor Helper tag in ogni pagina della cartella.
+È possibile aggiungere un file *_ViewImports. cshtml* a ogni cartella di *pagine* dell'area per importare lo spazio dei nomi e gli helper tag in ogni Razor pagina della cartella.
 
 Prendere in considerazione l'area *Services* del codice di esempio, che non contiene un file *_ViewImports.cshtml*. Il markup seguente mostra la pagina */Services/Manage/about* Razor :
 
@@ -409,7 +411,7 @@ Nel file precedente lo spazio dei nomi e la direttiva `@addTagHelper` vengono im
 
 Per altre informazioni, vedere [Gestione dell'ambito dell'helper tag](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) e [Importazione delle direttive condivise](xref:mvc/views/layout#importing-shared-directives).
 
-### <a name="shared-layout-for-razor-pages-areas"></a>Layout condiviso per Razor le aree delle pagine
+### <a name="shared-layout-for-razor-pages-areas"></a>Layout condiviso per le Razor aree delle pagine
 
 Per condividere un layout comune per l'intera app, spostare *_ViewStart.cshtml* nella cartella radice dell'applicazione.
 

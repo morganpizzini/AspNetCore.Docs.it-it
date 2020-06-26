@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/configuration/machine-wide-policy
-ms.openlocfilehash: 84f54b37dfff3112ea5ca84f931103624cfde90a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 1bde6d90a52ab8873777b5320540251170eaade6
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776838"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404886"
 ---
 # <a name="data-protection-machine-wide-policy-support-in-aspnet-core"></a>Supporto dei criteri a livello di computer per la protezione dati in ASP.NET Core
 
@@ -37,39 +39,39 @@ Se ci si trova in un sistema operativo a 64 bit e si vuole influenzare il compor
 
 Di seguito sono riportati i valori supportati.
 
-| valore              | Type   | Description |
+| valore              | Tipo   | Descrizione |
 | ------------------ | :----: | ----------- |
-| EncryptionType     | stringa | Specifica gli algoritmi da utilizzare per la protezione dei dati. Il valore deve essere CNG-CBC, CNG-GCM o gestito ed è descritto in dettaglio di seguito. |
+| EncryptionType     | string | Specifica gli algoritmi da utilizzare per la protezione dei dati. Il valore deve essere CNG-CBC, CNG-GCM o gestito ed è descritto in dettaglio di seguito. |
 | DefaultKeyLifetime | DWORD  | Specifica la durata delle chiavi appena generate. Il valore viene specificato in giorni e deve essere >= 7. |
-| KeyEscrowSinks     | stringa | Specifica i tipi utilizzati per il deposito della chiave. Il valore è un elenco delimitato da punti e virgola di sink di deposito chiave, dove ogni elemento dell'elenco è il nome qualificato dall'assembly di un tipo che implementa [IKeyEscrowSink](/dotnet/api/microsoft.aspnetcore.dataprotection.keymanagement.ikeyescrowsink). |
+| KeyEscrowSinks     | string | Specifica i tipi utilizzati per il deposito della chiave. Il valore è un elenco delimitato da punti e virgola di sink di deposito chiave, dove ogni elemento dell'elenco è il nome qualificato dall'assembly di un tipo che implementa [IKeyEscrowSink](/dotnet/api/microsoft.aspnetcore.dataprotection.keymanagement.ikeyescrowsink). |
 
 ## <a name="encryption-types"></a>Tipi di crittografia
 
 Se EncryptionType è CNG-CBC, il sistema è configurato per l'utilizzo di una crittografia a blocchi simmetrica in modalità CBC per la riservatezza e HMAC per l'autenticità con i servizi forniti da Windows CNG. per ulteriori informazioni, vedere [specifica di algoritmi CNG personalizzati di Windows](xref:security/data-protection/configuration/overview#specifying-custom-windows-cng-algorithms) . Sono supportati i valori aggiuntivi seguenti, ognuno dei quali corrisponde a una proprietà nel tipo CngCbcAuthenticatedEncryptionSettings.
 
-| valore                       | Type   | Description |
+| valore                       | Tipo   | Descrizione |
 | --------------------------- | :----: | ----------- |
-| EncryptionAlgorithm         | stringa | Nome di un algoritmo di crittografia a blocchi simmetrico riconosciuto da CNG. Questo algoritmo viene aperto in modalità CBC. |
-| EncryptionAlgorithmProvider | stringa | Nome dell'implementazione del provider CNG che può produrre l'algoritmo EncryptionAlgorithm. |
+| EncryptionAlgorithm         | string | Nome di un algoritmo di crittografia a blocchi simmetrico riconosciuto da CNG. Questo algoritmo viene aperto in modalità CBC. |
+| EncryptionAlgorithmProvider | string | Nome dell'implementazione del provider CNG che può produrre l'algoritmo EncryptionAlgorithm. |
 | EncryptionAlgorithmKeySize  | DWORD  | Lunghezza in bit della chiave da derivare per l'algoritmo di crittografia a blocchi simmetrico. |
-| HashAlgorithm               | stringa | Nome di un algoritmo hash riconosciuto da CNG. Questo algoritmo viene aperto in modalità HMAC. |
-| HashAlgorithmProvider       | stringa | Nome dell'implementazione del provider CNG che può produrre l'algoritmo HashAlgorithm. |
+| HashAlgorithm               | string | Nome di un algoritmo hash riconosciuto da CNG. Questo algoritmo viene aperto in modalità HMAC. |
+| HashAlgorithmProvider       | string | Nome dell'implementazione del provider CNG che può produrre l'algoritmo HashAlgorithm. |
 
 Se EncryptionType è CNG-GCM, il sistema è configurato per l'uso di una crittografia a blocchi simmetrico/in modalità contatore simmetrica per la riservatezza e l'autenticità con i servizi forniti da CNG di Windows. per ulteriori informazioni, vedere [specifica di algoritmi CNG personalizzati di Windows](xref:security/data-protection/configuration/overview#specifying-custom-windows-cng-algorithms) . Sono supportati i valori aggiuntivi seguenti, ognuno dei quali corrisponde a una proprietà nel tipo CngGcmAuthenticatedEncryptionSettings.
 
-| valore                       | Type   | Description |
+| valore                       | Tipo   | Descrizione |
 | --------------------------- | :----: | ----------- |
-| EncryptionAlgorithm         | stringa | Nome di un algoritmo di crittografia a blocchi simmetrico riconosciuto da CNG. Questo algoritmo viene aperto in modalità Galois/Counter. |
-| EncryptionAlgorithmProvider | stringa | Nome dell'implementazione del provider CNG che può produrre l'algoritmo EncryptionAlgorithm. |
+| EncryptionAlgorithm         | string | Nome di un algoritmo di crittografia a blocchi simmetrico riconosciuto da CNG. Questo algoritmo viene aperto in modalità Galois/Counter. |
+| EncryptionAlgorithmProvider | string | Nome dell'implementazione del provider CNG che può produrre l'algoritmo EncryptionAlgorithm. |
 | EncryptionAlgorithmKeySize  | DWORD  | Lunghezza in bit della chiave da derivare per l'algoritmo di crittografia a blocchi simmetrico. |
 
 Se EncryptionType è gestito, il sistema è configurato per l'uso di un oggetto SymmetricAlgorithm gestito per la riservatezza e KeyedHashAlgorithm per l'autenticità (vedere [specifica di algoritmi gestiti personalizzati](xref:security/data-protection/configuration/overview#specifying-custom-managed-algorithms) per altri dettagli). Sono supportati i valori aggiuntivi seguenti, ognuno dei quali corrisponde a una proprietà nel tipo ManagedAuthenticatedEncryptionSettings.
 
-| valore                      | Type   | Description |
+| valore                      | Tipo   | Descrizione |
 | -------------------------- | :----: | ----------- |
-| EncryptionAlgorithmType    | stringa | Nome qualificato dall'assembly di un tipo che implementa SymmetricAlgorithm. |
+| EncryptionAlgorithmType    | string | Nome qualificato dall'assembly di un tipo che implementa SymmetricAlgorithm. |
 | EncryptionAlgorithmKeySize | DWORD  | Lunghezza in bit della chiave da derivare per l'algoritmo di crittografia simmetrica. |
-| ValidationAlgorithmType    | stringa | Nome qualificato dall'assembly di un tipo che implementa KeyedHashAlgorithm. |
+| ValidationAlgorithmType    | string | Nome qualificato dall'assembly di un tipo che implementa KeyedHashAlgorithm. |
 
 Se EncryptionType ha un valore diverso da null o vuoto, il sistema di protezione dei dati genera un'eccezione all'avvio.
 

@@ -7,17 +7,19 @@ ms.author: riande
 ms.date: 11/08/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/limitingidentitybyscheme
-ms.openlocfilehash: 69b6412f249355573faa785743b124a67ecb8b9e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 042b22a220d961773437e9d85d5f0c5782e29bea
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777514"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406017"
 ---
 # <a name="authorize-with-a-specific-scheme-in-aspnet-core"></a>Autorizzare con uno schema specifico in ASP.NET Core
 
@@ -44,11 +46,11 @@ public void ConfigureServices(IServiceCollection services)
 Nel codice precedente sono stati aggiunti due gestori di autenticazione: uno per i cookie e uno per il titolare.
 
 >[!NOTE]
->Se si specifica lo schema predefinito, `HttpContext.User` la proprietà viene impostata su tale identità. Se questo comportamento non è necessario, disabilitarlo richiamando il formato senza parametri `AddAuthentication`di.
+>Se si specifica lo schema predefinito `HttpContext.User` , la proprietà viene impostata su tale identità. Se questo comportamento non è necessario, disabilitarlo richiamando il formato senza parametri di `AddAuthentication` .
 
 ## <a name="selecting-the-scheme-with-the-authorize-attribute"></a>Selezione dello schema con l'attributo autorizzi
 
-Al momento dell'autorizzazione, l'app indica il gestore da usare. Selezionare il gestore con cui l'app autorizzerà il passaggio di un elenco delimitato da virgole di schemi `[Authorize]`di autenticazione a. L' `[Authorize]` attributo specifica lo schema o gli schemi di autenticazione da utilizzare, indipendentemente dal fatto che sia configurato un valore predefinito. Ad esempio:
+Al momento dell'autorizzazione, l'app indica il gestore da usare. Selezionare il gestore con cui l'app autorizzerà il passaggio di un elenco delimitato da virgole di schemi di autenticazione a `[Authorize]` . L' `[Authorize]` attributo specifica lo schema o gli schemi di autenticazione da utilizzare, indipendentemente dal fatto che sia configurato un valore predefinito. Ad esempio:
 
 ```csharp
 [Authorize(AuthenticationSchemes = AuthSchemes)]
@@ -87,7 +89,7 @@ services.AddAuthorization(options =>
 });
 ```
 
-Nell'esempio precedente, il criterio "Over18" viene eseguito solo con l'identità creata dal gestore "Bearer". Usare il criterio impostando la `[Authorize]` `Policy` proprietà dell'attributo:
+Nell'esempio precedente, il criterio "Over18" viene eseguito solo con l'identità creata dal gestore "Bearer". Usare il criterio impostando la `[Authorize]` proprietà dell'attributo `Policy` :
 
 ```csharp
 [Authorize(Policy = "Over18")]
@@ -122,7 +124,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 > [!NOTE]
-> Con lo schema `JwtBearerDefaults.AuthenticationScheme`di autenticazione predefinito viene registrata una sola autenticazione JWT Bearer. È necessario registrare un'autenticazione aggiuntiva con uno schema di autenticazione univoco.
+> Con lo schema di autenticazione predefinito viene registrata una sola autenticazione JWT Bearer `JwtBearerDefaults.AuthenticationScheme` . È necessario registrare un'autenticazione aggiuntiva con uno schema di autenticazione univoco.
 
 Il passaggio successivo consiste nell'aggiornare i criteri di autorizzazione predefiniti affinché accettino entrambi gli schemi di autenticazione. Ad esempio:
 

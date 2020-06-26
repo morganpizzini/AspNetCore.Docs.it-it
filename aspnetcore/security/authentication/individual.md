@@ -6,23 +6,25 @@ ms.author: riande
 ms.date: 12/11/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/individual
-ms.openlocfilehash: 26f53b6452e307bbd0816c1a3604f38b04c6af15
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 6d3743fc31c29bed5075ac29381aea51a64a908c
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768650"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406251"
 ---
 # <a name="articles-based-on-aspnet-core-projects-created-with-individual-user-accounts"></a>Articoli basati su progetti ASP.NET Core creati con account utente singoli
 
-ASP.NET Core identità è inclusa nei modelli di progetto di Visual Studio con l'opzione "singoli account utente".
+ASP.NET Core Identity è incluso nei modelli di progetto di Visual Studio con l'opzione "singoli account utente".
 
-I modelli di autenticazione sono disponibili in interfaccia della riga di comando di .NET Core `-au Individual`con:
+I modelli di autenticazione sono disponibili in interfaccia della riga di comando di .NET Core con `-au Individual` :
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -59,7 +61,7 @@ Progetti creati senza autenticazione:
 
 ## <a name="windows-authentication"></a>Autenticazione di Windows
 
-L'autenticazione di Windows viene specificata per le nuove app Web nella interfaccia della riga di comando di .NET Core `-au Windows` con l'opzione. In Visual Studio la finestra di dialogo **Cambia autenticazione** fornisce le opzioni di **autenticazione di Windows** .
+L'autenticazione di Windows viene specificata per le nuove app Web nella interfaccia della riga di comando di .NET Core con l' `-au Windows` opzione. In Visual Studio la finestra di dialogo **Cambia autenticazione** fornisce le opzioni di **autenticazione di Windows** .
 
 Se è selezionata l'autenticazione di Windows, l'app viene configurata per l'uso del [modulo IIS](xref:host-and-deploy/iis/modules)per l'autenticazione di Windows. L'autenticazione di Windows è destinata ai siti Web Intranet.
 

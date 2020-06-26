@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 4/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: db6f8e867fc83a211170aa59f5bad604d9c2730d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d261a26de7b9ba77e5f9787ae2eb37293257a0fc
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776116"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406394"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Gestione della memoria e Garbage Collection (GC) in ASP.NET Core
 
@@ -135,7 +137,7 @@ Il Garbage Collector di .NET prevede due modalità diverse:
 * **GC workstation**: ottimizzato per il desktop.
 * **GC server**. GC predefinito per le app ASP.NET Core. Ottimizzato per il server.
 
-La modalità GC può essere impostata in modo esplicito nel file di progetto o nel file *runtimeconfig. JSON* dell'app pubblicata. Il markup seguente mostra l' `ServerGarbageCollection` impostazione nel file di progetto:
+La modalità GC può essere impostata in modo esplicito nel file di progetto o nel *runtimeconfig.js* file dell'app pubblicata. Il markup seguente mostra l'impostazione `ServerGarbageCollection` nel file di progetto:
 
 ```xml
 <PropertyGroup>
@@ -143,7 +145,7 @@ La modalità GC può essere impostata in modo esplicito nel file di progetto o n
 </PropertyGroup>
 ```
 
-Per `ServerGarbageCollection` modificare il file di progetto, è necessario ricompilare l'app.
+`ServerGarbageCollection`Per modificare il file di progetto, è necessario ricompilare l'app.
 
 **Nota:** Il Garbage Collection server **non** è disponibile nei computer con un singolo core. Per altre informazioni, vedere <xref:System.Runtime.GCSettings.IsServerGC>.
 
@@ -186,23 +188,23 @@ public ActionResult<string> GetStaticString()
 Il codice precedente:
 
 * È un esempio di una perdita di memoria tipica.
-* Con chiamate frequenti, causa l'aumento della memoria dell'app finché il processo non `OutOfMemory` si arresta in modo anomalo con un'eccezione.
+* Con chiamate frequenti, causa l'aumento della memoria dell'app finché il processo non si arresta in modo anomalo con un' `OutOfMemory` eccezione.
 
 ![grafico precedente](memory/_static/eternal.png)
 
 Nell'immagine precedente:
 
-* Il test di `/api/staticstring` carico l'endpoint causa un aumento lineare della memoria.
+* Il test di carico l' `/api/staticstring` endpoint causa un aumento lineare della memoria.
 * Il GC tenta di liberare memoria man mano che aumenta la quantità di memoria, chiamando una raccolta di generazione 2.
 * Il Garbage Collector non può liberare la memoria persa. Allocato e working set aumentare con il tempo.
 
-Per alcuni scenari, ad esempio la memorizzazione nella cache, è necessario che i riferimenti agli oggetti vengano mantenuti fino a quando non viene forzato il rilascio della memoria. La <xref:System.WeakReference> classe può essere utilizzata per questo tipo di codice di memorizzazione nella cache. Un `WeakReference` oggetto viene raccolto sotto pressione di memoria. L'implementazione predefinita di <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> utilizza `WeakReference`.
+Per alcuni scenari, ad esempio la memorizzazione nella cache, è necessario che i riferimenti agli oggetti vengano mantenuti fino a quando non viene forzato il rilascio della memoria. La <xref:System.WeakReference> classe può essere utilizzata per questo tipo di codice di memorizzazione nella cache. Un `WeakReference` oggetto viene raccolto sotto pressione di memoria. L'implementazione predefinita di <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> utilizza `WeakReference` .
 
 ### <a name="native-memory"></a>Memoria nativa
 
 Alcuni oggetti .NET Core si basano sulla memoria nativa. La memoria nativa **non** può essere raccolta dal GC. L'oggetto .NET che utilizza la memoria nativa deve liberarlo utilizzando codice nativo.
 
-.NET fornisce l' <xref:System.IDisposable> interfaccia per consentire agli sviluppatori di rilasciare la memoria nativa. Anche se <xref:System.IDisposable.Dispose*> non viene chiamato, le classi implementate `Dispose` correttamente chiamano quando viene eseguito il [finalizzatore](/dotnet/csharp/programming-guide/classes-and-structs/destructors) .
+.NET fornisce l' <xref:System.IDisposable> interfaccia per consentire agli sviluppatori di rilasciare la memoria nativa. Anche se <xref:System.IDisposable.Dispose*> non viene chiamato, le classi implementate correttamente chiamano `Dispose` quando viene eseguito il [finalizzatore](/dotnet/csharp/programming-guide/classes-and-structs/destructors) .
 
 Esaminare il codice seguente:
 
@@ -226,7 +228,7 @@ Il grafico precedente mostra un problema evidente con l'implementazione di quest
 La stessa perdita può verificarsi nel codice utente, in uno dei seguenti:
 
 * Non è stata rilasciata correttamente la classe.
-* Si dimentica di richiamare il `Dispose`metodo degli oggetti dipendenti che devono essere eliminati.
+* Si dimentica di richiamare il `Dispose` metodo degli oggetti dipendenti che devono essere eliminati.
 
 ### <a name="large-objects-heap"></a>Heap oggetti grandi
 
@@ -248,7 +250,7 @@ GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.Compa
 GC.Collect();
 ```
 
-Per <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode> informazioni sulla compattazione dell'heap oggetti grandi, vedere.
+<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode>Per informazioni sulla compattazione dell'heap oggetti grandi, vedere.
 
 Nei contenitori che usano .NET Core 3,0 e versioni successive, l'heap oggetti grandi viene compattato automaticamente.
 
@@ -262,11 +264,11 @@ public int GetLOH1(int size)
 }
 ```
 
-Il grafico seguente mostra il profilo di memoria della chiamata `/api/loh/84975` all'endpoint, in carico massimo:
+Il grafico seguente mostra il profilo di memoria della chiamata all' `/api/loh/84975` endpoint, in carico massimo:
 
 ![grafico precedente](memory/_static/loh1.png)
 
-Il grafico seguente mostra il profilo di memoria della chiamata `/api/loh/84976` all'endpoint, allocando *solo un byte*:
+Il grafico seguente mostra il profilo di memoria della chiamata all' `/api/loh/84976` endpoint, allocando *solo un byte*:
 
 ![grafico precedente](memory/_static/loh2.png)
 
@@ -294,14 +296,14 @@ Per altre informazioni, vedere:
 
 ### <a name="httpclient"></a>HttpClient
 
-L'uso <xref:System.Net.Http.HttpClient> errato di può causare una perdita di risorse. Risorse di sistema, ad esempio connessioni di database, socket, handle di file e così via:
+L'uso errato <xref:System.Net.Http.HttpClient> di può causare una perdita di risorse. Risorse di sistema, ad esempio connessioni di database, socket, handle di file e così via:
 
 * Sono più limitate della memoria.
 * Sono più problematiche quando si verifica una perdita di memoria.
 
-Gli sviluppatori .NET esperti sanno di <xref:System.IDisposable.Dispose*> chiamare sugli oggetti che <xref:System.IDisposable>implementano. La mancata eliminazione degli `IDisposable` oggetti che implementano in genere comporta la perdita di memoria o di risorse di sistema perse.
+Gli sviluppatori .NET esperti sanno di chiamare <xref:System.IDisposable.Dispose*> sugli oggetti che implementano <xref:System.IDisposable> . La mancata eliminazione degli oggetti che implementano in `IDisposable` genere comporta la perdita di memoria o di risorse di sistema perse.
 
-`HttpClient`implementa `IDisposable`, ma **non** deve essere eliminato a ogni chiamata. È invece `HttpClient` consigliabile riutilizzare.
+`HttpClient`implementa `IDisposable` , ma **non** deve essere eliminato a ogni chiamata. È invece `HttpClient` consigliabile riutilizzare.
 
 L'endpoint seguente crea e Elimina una nuova `HttpClient` istanza per ogni richiesta:
 
@@ -348,14 +350,14 @@ public async Task<int> GetHttpClient2(string url)
 
 L' `HttpClient` istanza viene rilasciata quando l'app viene arrestata. Questo esempio mostra che non tutte le risorse eliminabili devono essere eliminate dopo ogni uso.
 
-Per un modo migliore per gestire la durata di un' `HttpClient` istanza, vedere quanto segue:
+Per un modo migliore per gestire la durata di un'istanza, vedere quanto segue `HttpClient` :
 
 * [Gestione di HttpClient e durata](/aspnet/core/fundamentals/http-requests#httpclient-and-lifetime-management)
 * [Blog di HTTPClient Factory](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
  
 ### <a name="object-pooling"></a>Pool di oggetti
 
-Nell'esempio precedente è stato illustrato `HttpClient` come l'istanza può essere resa statica e riutilizzata da tutte le richieste. Il riutilizzo impedisce l'esaurimento delle risorse.
+Nell'esempio precedente è stato illustrato come l' `HttpClient` istanza può essere resa statica e riutilizzata da tutte le richieste. Il riutilizzo impedisce l'esaurimento delle risorse.
 
 Pool di oggetti:
 
@@ -366,7 +368,7 @@ Un pool è una raccolta di oggetti pre-inizializzati che possono essere riservat
 
 Il pacchetto NuGet [Microsoft. Extensions. Objectpool](https://www.nuget.org/packages/Microsoft.Extensions.ObjectPool/) contiene classi che consentono di gestire tali pool.
 
-L'endpoint API seguente crea un'istanza `byte` di un buffer che viene compilato con numeri casuali per ogni richiesta:
+L'endpoint API seguente crea un'istanza di un `byte` buffer che viene compilato con numeri casuali per ogni richiesta:
 
 ```csharp
         [HttpGet("array/{size}")]
@@ -386,7 +388,7 @@ Il grafico seguente mostra la chiamata all'API precedente con carico moderato:
 
 Nel grafico precedente, le raccolte di generazione 0 avvengono approssimativamente una volta al secondo.
 
-Il codice precedente può essere ottimizzato raggruppando il `byte` buffer usando [\<ArrayPool T>](xref:System.Buffers.ArrayPool`1). Un'istanza statica viene riutilizzata tra le richieste.
+Il codice precedente può essere ottimizzato raggruppando il `byte` buffer usando [ \<T> ArrayPool](xref:System.Buffers.ArrayPool`1). Un'istanza statica viene riutilizzata tra le richieste.
 
 Ciò che è diverso con questo approccio è che un oggetto in pool viene restituito dall'API. Ciò significa che:
 
@@ -398,7 +400,7 @@ Per configurare l'eliminazione dell'oggetto:
 * Incapsula la matrice in pool in un oggetto eliminabile.
 * Registrare l'oggetto in pool con [HttpContext. Response. RegisterForDispose](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose*).
 
-`RegisterForDispose`si occuperà di chiamare `Dispose`sull'oggetto di destinazione in modo che venga rilasciato solo quando la richiesta HTTP è stata completata.
+`RegisterForDispose`si occuperà di chiamare `Dispose` sull'oggetto di destinazione in modo che venga rilasciato solo quando la richiesta HTTP è stata completata.
 
 ```csharp
 private static ArrayPool<byte> _arrayPool = ArrayPool<byte>.Create();

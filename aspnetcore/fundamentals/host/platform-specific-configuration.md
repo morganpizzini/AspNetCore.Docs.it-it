@@ -8,17 +8,19 @@ ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: 8cf6a4467f041fa71b75ee8d1e7a08d8f572acf3
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 0636c62c4373533234ab252d64052b476b123bbf
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106351"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405094"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Usare assembly di avvio dell'hosting in ASP.NET Core
 
@@ -89,7 +91,7 @@ Se l'impostazione di configurazione host e la variabile di ambiente sono entramb
 
 La disabilitazione degli assembly di avvio dell'hosting tramite l'impostazione host o la variabile di ambiente ne determina la disabilitazione globale e la possibile disabilitazione di diverse caratteristiche di un'app.
 
-## <a name="project"></a>Progetto
+## <a name="project"></a>Project
 
 Creare l'avvio dell'hosting con uno dei tipi di progetto seguenti:
 
@@ -238,7 +240,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 Quando sono presenti più montaggi di avvio host, i relativi <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodi vengono eseguiti nell'ordine in cui sono elencati gli assembly.
 
-## <a name="activation"></a>Activation
+## <a name="activation"></a>Attivazione
 
 Le opzioni di attivazione dell'avvio dell'hosting sono:
 
@@ -275,7 +277,7 @@ Per attivare il miglioramento senza un riferimento al pacchetto per il miglioram
 L'approccio consigliato per la generazione del file delle dipendenze aggiuntive è:
 
  1. Eseguire `dotnet publish` sul file manifesto dell'archivio di runtime indicato nella sezione precedente.
- 1. Rimuovere il riferimento al manifesto dalle librerie e la `runtime` sezione del file *. Deps. JSON* risultante.
+ 1. Rimuovere il riferimento al manifesto dalle librerie e la `runtime` sezione del *.deps.jsrisultante sul* file.
 
 Nel progetto di esempio la proprietà `store.manifest/1.0.0` viene rimossa da `targets` e dalla sezione `libraries`:
 
@@ -420,7 +422,7 @@ dotnet nuget locals all --clear
 1. Compilare la libreria di classi *HostingStartupLibrary* con il comando [dotnet build](/dotnet/core/tools/dotnet-build).
 1. Aggiungere il nome dell'assembly della libreria di classi di *HostingStartupLibrary* alla variabile di ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
 1. Distribuire tramite *bin* l'assembly della libreria di classi all'app copiando il file *HostingStartupLibrary.dll* dall'output compilato della libreria di classi alla cartella *bin/Debug* dell'app.
-1. Compila ed esegui l'app. `<ItemGroup>`Nel file di progetto dell'app fa riferimento all'assembly della libreria di classi (*.\bin\Debug\netcoreapp3.0\HostingStartupLibrary.dll*) (un riferimento in fase di compilazione). Per altre informazioni, vedere le note nel file di progetto di HostingStartupApp.
+1. Compila ed esegui l'app. `<ItemGroup>`Nel file di progetto dell'app fa riferimento all'assembly della libreria di classi (*.\bin\Debug\netcoreapp3.0\HostingStartupLibrary.dll*) (riferimento in fase di compilazione). Per altre informazioni, vedere le note nel file di progetto di HostingStartupApp.
 
    ```xml
    <ItemGroup>
@@ -438,8 +440,8 @@ dotnet nuget locals all --clear
 1. Il progetto *StartupDiagnostics* usa [PowerShell](/powershell/scripting/powershell-scripting) per modificare il relativo file *StartupDiagnostics.deps.json*. PowerShell viene installato per impostazione predefinita in Windows a partire da Windows 7 SP1 e Windows Server 2008 R2 SP1. Per ottenere PowerShell su altre piattaforme, vedere [installazione di diverse versioni di PowerShell](/powershell/scripting/install/installing-powershell).
 1. Eseguire lo script *build.ps1* nella cartella *RuntimeStore*. Lo script:
    * Genera il `StartupDiagnostics` pacchetto nella cartella *obj\packages* .
-   * Genera l'archivio di runtime per `StartupDiagnostics` nella cartella *store*. Il comando `dotnet store` nello script usa l' [identificatore di runtime (RID)](/dotnet/core/rid-catalog)`win7-x64` per un avvio dell'hosting distribuito su Windows. Quando si specifica l'avvio dell'hosting per un runtime diverso, immettere il RID corretto nella riga 37 dello script. L'archivio di runtime di verrà `StartupDiagnostics` spostato in un secondo momento nell'archivio di runtime dell'utente o del sistema nel computer in cui verrà utilizzato l'assembly. Il percorso di installazione dell'archivio di runtime utente per l' `StartupDiagnostics` assembly è *. dotnet/Store/x64/netcoreapp 3.0/startupdiagnostics/1.0.0/lib/netcoreapp 3.0/startupdiagnostics. dll*.
-   * Genera `additionalDeps` per `StartupDiagnostics` nella cartella *additionalDeps* . Le dipendenze aggiuntive verranno spostate in un secondo momento alle dipendenze aggiuntive del sistema o dell'utente. Il `StartupDiagnostics` percorso di installazione delle dipendenze aggiuntive dell'utente è *. dotnet/x64/AdditionalDeps/StartupDiagnostics/Shared/Microsoft. NETCore. app/3.0.0/StartupDiagnostics. Deps. JSON*.
+   * Genera l'archivio di runtime per `StartupDiagnostics` nella cartella *store*. Il comando `dotnet store` nello script usa l' [identificatore di runtime (RID)](/dotnet/core/rid-catalog)`win7-x64` per un avvio dell'hosting distribuito su Windows. Quando si specifica l'avvio dell'hosting per un runtime diverso, immettere il RID corretto nella riga 37 dello script. L'archivio di runtime di verrà `StartupDiagnostics` spostato in un secondo momento nell'archivio di runtime dell'utente o del sistema nel computer in cui verrà utilizzato l'assembly. Il percorso di installazione dell'archivio di runtime utente per l' `StartupDiagnostics` assembly è *. dotnet/Store/x64/netcoreapp 3.0/startupdiagnostics/1.0.0/lib/netcoreapp 3.0/StartupDiagnostics.dll*.
+   * Genera `additionalDeps` per `StartupDiagnostics` nella cartella *additionalDeps* . Le dipendenze aggiuntive verranno spostate in un secondo momento alle dipendenze aggiuntive del sistema o dell'utente. Il `StartupDiagnostics` percorso di installazione delle dipendenze aggiuntive dell'utente è *. dotnet/x64/AdditionalDeps/StartupDiagnostics/Shared/Microsoft. NETCore. app/3.0.0/StartupDiagnostics.deps.json*.
    * Posiziona il file *deploy.ps1* nella cartella *deployment*.
 1. Eseguire lo script *deploy.ps1* nella cartella *deployment*. Lo script aggiunge:
    * `StartupDiagnostics` alla variabile di ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
@@ -487,7 +489,7 @@ Se l'impostazione di configurazione host e la variabile di ambiente sono entramb
 
 La disabilitazione degli assembly di avvio dell'hosting tramite l'impostazione host o la variabile di ambiente ne determina la disabilitazione globale e la possibile disabilitazione di diverse caratteristiche di un'app.
 
-## <a name="project"></a>Progetto
+## <a name="project"></a>Project
 
 Creare l'avvio dell'hosting con uno dei tipi di progetto seguenti:
 
@@ -624,7 +626,7 @@ HostingStartupLibrary;HostingStartupPackage;StartupDiagnostics
 
 Quando sono presenti più montaggi di avvio host, i relativi <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodi vengono eseguiti nell'ordine in cui sono elencati gli assembly.
 
-## <a name="activation"></a>Activation
+## <a name="activation"></a>Attivazione
 
 Le opzioni di attivazione dell'avvio dell'hosting sono:
 
@@ -661,7 +663,7 @@ Per attivare il miglioramento senza un riferimento al pacchetto per il miglioram
 L'approccio consigliato per la generazione del file delle dipendenze aggiuntive è:
 
  1. Eseguire `dotnet publish` sul file manifesto dell'archivio di runtime indicato nella sezione precedente.
- 1. Rimuovere il riferimento al manifesto dalle librerie e la `runtime` sezione del file *. Deps. JSON* risultante.
+ 1. Rimuovere il riferimento al manifesto dalle librerie e la `runtime` sezione del *.deps.jsrisultante sul* file.
 
 Nel progetto di esempio la proprietà `store.manifest/1.0.0` viene rimossa da `targets` e dalla sezione `libraries`:
 
@@ -824,8 +826,8 @@ dotnet nuget locals all --clear
 1. Il progetto *StartupDiagnostics* usa [PowerShell](/powershell/scripting/powershell-scripting) per modificare il relativo file *StartupDiagnostics.deps.json*. PowerShell viene installato per impostazione predefinita in Windows a partire da Windows 7 SP1 e Windows Server 2008 R2 SP1. Per ottenere PowerShell su altre piattaforme, vedere [installazione di diverse versioni di PowerShell](/powershell/scripting/install/installing-powershell).
 1. Eseguire lo script *build.ps1* nella cartella *RuntimeStore*. Lo script:
    * Genera il `StartupDiagnostics` pacchetto nella cartella *obj\packages* .
-   * Genera l'archivio di runtime per `StartupDiagnostics` nella cartella *store*. Il comando `dotnet store` nello script usa l' [identificatore di runtime (RID)](/dotnet/core/rid-catalog)`win7-x64` per un avvio dell'hosting distribuito su Windows. Quando si specifica l'avvio dell'hosting per un runtime diverso, immettere il RID corretto nella riga 37 dello script. L'archivio di runtime di verrà `StartupDiagnostics` spostato in un secondo momento nell'archivio di runtime dell'utente o del sistema nel computer in cui verrà utilizzato l'assembly. Il percorso di installazione dell'archivio del runtime utente per l' `StartupDiagnostics` assembly è *. dotnet/Store/x64/netcoreapp 2.2/startupdiagnostics/1.0.0/lib/netcoreapp 2.2/startupdiagnostics. dll*.
-   * Genera `additionalDeps` per `StartupDiagnostics` nella cartella *additionalDeps* . Le dipendenze aggiuntive verranno spostate in un secondo momento alle dipendenze aggiuntive del sistema o dell'utente. Il `StartupDiagnostics` percorso di installazione delle dipendenze aggiuntive dell'utente è *. dotnet/x64/AdditionalDeps/StartupDiagnostics/Shared/Microsoft. NETCore. app/2.2.0/StartupDiagnostics. Deps. JSON*.
+   * Genera l'archivio di runtime per `StartupDiagnostics` nella cartella *store*. Il comando `dotnet store` nello script usa l' [identificatore di runtime (RID)](/dotnet/core/rid-catalog)`win7-x64` per un avvio dell'hosting distribuito su Windows. Quando si specifica l'avvio dell'hosting per un runtime diverso, immettere il RID corretto nella riga 37 dello script. L'archivio di runtime di verrà `StartupDiagnostics` spostato in un secondo momento nell'archivio di runtime dell'utente o del sistema nel computer in cui verrà utilizzato l'assembly. Il percorso di installazione dell'archivio di runtime utente per l' `StartupDiagnostics` assembly è *. dotnet/Store/x64/netcoreapp 2.2/startupdiagnostics/1.0.0/lib/netcoreapp 2.2/StartupDiagnostics.dll*.
+   * Genera `additionalDeps` per `StartupDiagnostics` nella cartella *additionalDeps* . Le dipendenze aggiuntive verranno spostate in un secondo momento alle dipendenze aggiuntive del sistema o dell'utente. Il `StartupDiagnostics` percorso di installazione delle dipendenze aggiuntive dell'utente è *. dotnet/x64/AdditionalDeps/StartupDiagnostics/Shared/Microsoft. NETCore. app/2.2.0/StartupDiagnostics.deps.json*.
    * Posiziona il file *deploy.ps1* nella cartella *deployment*.
 1. Eseguire lo script *deploy.ps1* nella cartella *deployment*. Lo script aggiunge:
    * `StartupDiagnostics` alla variabile di ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.

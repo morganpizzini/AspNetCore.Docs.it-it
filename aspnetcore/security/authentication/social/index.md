@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 01/23/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/social/index
-ms.openlocfilehash: 880aeea4dce5f5ae6533a3293067d89f98587e72
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a2c068df85290a59d45432cb168b2c882b59405b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777150"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405367"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticazione dei provider Facebook, Google ed esterni in ASP.NET Core
 
@@ -63,7 +65,7 @@ Per degli esempi di come gli account di accesso ai social possano risultare util
   dotnet new webapp -o WebApp1 -au Individual
   ```
 
-  * Il comando `dotnet new` crea un nuovo progetto Razor Pages nella cartella *WebApp1*.
+  * Il `dotnet new` comando crea un nuovo Razor progetto di pagine nella cartella *app Web 1* .
   * `-au Individual` crea il codice per l'autenticazione individuale.
   * `-uld`Usa il database locale, una versione leggera di SQL Server Express per Windows. Omettere `-uld` per usare SQLite.
   * Il comando `code` apre la cartella *WebApp1* in una nuova istanza di Visual Studio Code.

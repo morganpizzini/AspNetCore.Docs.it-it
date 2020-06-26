@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/controllers/actions
-ms.openlocfilehash: b7c4d61c4a71939e84bdea180a2f77b6438b15d5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 0c91edc947b1a17f2dd36b281afe348aa8611bd7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774197"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406914"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Gestire le richieste con controller in ASP.NET Core MVC
 
@@ -35,8 +37,8 @@ Per convenzione, le classi controller:
 
 Un controller è una classe istanziabile per cui almeno una delle condizioni seguenti è vera:
 
-* Il nome della classe è con `Controller`suffisso.
-* La classe eredita da una classe il cui nome è con `Controller`suffisso.
+* Il nome della classe è con suffisso `Controller` .
+* La classe eredita da una classe il cui nome è con suffisso `Controller` .
 * L' `[Controller]` attributo viene applicato alla classe.
 
 A una classe controller non deve essere associato un attributo `[NonController]`.
@@ -51,7 +53,7 @@ Il controller è un'astrazione *a livello di interfaccia utente*. Il suo compito
 
 ## <a name="defining-actions"></a>Definizione di azioni
 
-I metodi pubblici in un controller, ad eccezione di `[NonAction]` quelli con l'attributo, sono azioni. I parametri delle azioni sono associati a dati di richiesta e vengono convalidati tramite [associazione di modelli](xref:mvc/models/model-binding). La convalida del modello viene eseguita per tutto ciò che è associato a un modello. Il valore della proprietà `ModelState.IsValid` indica se l'associazione e la convalida dei modelli hanno avuto esito positivo.
+I metodi pubblici in un controller, ad eccezione di quelli con l' `[NonAction]` attributo, sono azioni. I parametri delle azioni sono associati a dati di richiesta e vengono convalidati tramite [associazione di modelli](xref:mvc/models/model-binding). La convalida del modello viene eseguita per tutto ciò che è associato a un modello. Il valore della proprietà `ModelState.IsValid` indica se l'associazione e la convalida dei modelli hanno avuto esito positivo.
 
 I metodi di azione devono contenere la logica per il mapping di una richiesta a un problema di business. È di solito consigliabile rappresentare i problemi di business come servizi a cui il controller accede tramite [inserimento di dipendenze](xref:mvc/controllers/dependency-injection). Le azioni eseguono quindi il mapping del risultato dell'azione di business a uno stato dell'applicazione.
 
@@ -71,7 +73,7 @@ All'interno di questa categoria sono presenti due tipi di risultati: reindirizza
 
     Questo tipo restituisce un codice di stato HTTP. Alcuni metodi helper di questo tipo sono `BadRequest`, `NotFound` e `Ok`. Il metodo `return BadRequest();`, ad esempio, quando viene eseguito genera un codice di stato 400. Quando metodi come `BadRequest`, `NotFound` e `Ok` vengono sottoposti a overload, non sono più risponditori del codice di stato HTTP, poiché è in corso la negoziazione del contenuto.
 
-* **Reindirizzare**
+* **reindirizzamento**
 
     Questo tipo restituisce un reindirizzamento a un'azione o a una destinazione (tramite `Redirect`, `LocalRedirect`, `RedirectToAction` o `RedirectToRoute`). `return RedirectToAction("Complete", new {id = 123});`, ad esempio, reindirizza a `Complete`, passando un oggetto anonimo.
 

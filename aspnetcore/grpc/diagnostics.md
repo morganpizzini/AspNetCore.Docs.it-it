@@ -7,17 +7,19 @@ ms.author: jamesnk
 ms.date: 09/23/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: 33b2ee29830cd3012ff791c949c3a7c23a2e98c7
-ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
+ms.openlocfilehash: ca87ba5b03e7657132e5ebaba72370bde85c85d4
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/17/2020
-ms.locfileid: "83444347"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406771"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>Registrazione e diagnostica in gRPC in .NET
 
@@ -40,7 +42,7 @@ i servizi gRPC e il client gRPC scrivono log con la [registrazione di .NET Core]
 
 Poiché i servizi gRPC sono ospitati in ASP.NET Core, viene usato il sistema di registrazione ASP.NET Core. Nella configurazione predefinita, gRPC registra pochissime informazioni, ma ciò può essere configurato. Per informazioni dettagliate sulla configurazione della registrazione ASP.NET Core, vedere la documentazione relativa alla [registrazione di ASP.NET Core](xref:fundamentals/logging/index#configuration) .
 
-gRPC aggiunge i log nella `Grpc` categoria. Per abilitare i log dettagliati da gRPC, configurare i `Grpc` prefissi per il `Debug` livello nel file *appSettings. JSON* aggiungendo gli elementi seguenti alla sottosezione `LogLevel` in `Logging` :
+gRPC aggiunge i log nella `Grpc` categoria. Per abilitare i log dettagliati da gRPC, configurare i `Grpc` prefissi per il `Debug` livello nel *appsettings.js* nel file aggiungendo gli elementi seguenti alla sottosezione `LogLevel` in `Logging` :
 
 [!code-json[](diagnostics/sample/logging-config.json?highlight=7)]
 
@@ -171,7 +173,7 @@ Metrica è una rappresentazione delle misure dei dati in intervalli di tempo, ad
 
 le metriche del server gRPC sono segnalate nell' `Grpc.AspNetCore.Server` origine evento.
 
-| Nome                      | Description                   |
+| Nome                      | Descrizione                   |
 | --------------------------|-------------------------------|
 | `total-calls`             | Totale chiamate                   |
 | `current-calls`           | Chiamate correnti                 |
@@ -187,7 +189,7 @@ ASP.NET Core fornisce anche le proprie metriche nell' `Microsoft.AspNetCore.Host
 
 le metriche client di gRPC sono segnalate nell' `Grpc.Net.Client` origine evento.
 
-| Nome                      | Description                   |
+| Nome                      | Descrizione                   |
 | --------------------------|-------------------------------|
 | `total-calls`             | Totale chiamate                   |
 | `current-calls`           | Chiamate correnti                 |

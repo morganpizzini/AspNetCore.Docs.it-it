@@ -1,13 +1,26 @@
 ---
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: JSON Patch nell'API Web ASP.NET Core
+author: rick-anderson
+description: Informazioni su come gestire le richieste JSON Patch in un'API Web ASP.NET Core.
+ms.author: riande
+ms.custom: mvc
+ms.date: 04/02/2020
+no-loc:
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: web-api/jsonpatch
+ms.openlocfilehash: 08ae366859c4466e6957592f78dda813d6670bb4
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405029"
 ---
-
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JSON Patch nell'API Web ASP.NET Core
 
 Di [Tom Dykstra](https://github.com/tdykstra) e [Kirk Larkin](https://github.com/serpent5)
@@ -35,7 +48,7 @@ Per abilitare il supporto della patch JSON nell'app, seguire questa procedura:
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*>
 
-## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a>Patch JSON, AddNewtonsoftJson e System. Text. JSON
+## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a>Patch JSON, AddNewtonsoftJson e System.Text.Js
 
 `AddNewtonsoftJson`sostituisce i `System.Text.Json` formattatori di input e output basati su usati per formattare **tutto** il contenuto JSON. Per aggiungere il supporto per la patch JSON usando `Newtonsoft.Json` , lasciando invariati gli altri formattatori, aggiornare il metodo del progetto `Startup.ConfigureServices` come indicato di seguito:
 
@@ -106,143 +119,13 @@ Vengono usati indici in base zero per specificare gli elementi della matrice. Il
 La tabella seguente mostra le operazioni supportate in base a quanto definito nella [specifica JSON Patch](https://tools.ietf.org/html/rfc6902):
 
 |Operazione  | Note |
-|---
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-------|---
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-----------------| | `add`     | Aggiungere una proprietà o un elemento di matrice. Per la proprietà esistente: impostare Value. | | `remove`  | Rimuovere una proprietà o un elemento di matrice. | | `replace` | Uguale `remove` a seguito dallo `add` stesso percorso. | | `move`    | Uguale a `remove` dall'origine seguito da `add` alla destinazione usando il valore dell'origine. | | `copy`    | Uguale `add` a per la destinazione usando il valore dell'origine. | | `test`    | Restituisce il codice di stato di esito positivo se value at `path` = fornito `value` . |
+|-----------|--------------------------------|
+| `add`     | Aggiunge una proprietà o un elemento della matrice. Per la proprietà esistente: impostare il valore.|
+| `remove`  | Rimuove una proprietà o un elemento della matrice. |
+| `replace` | Uguale a `remove` seguita da `add` nella stessa posizione. |
+| `move`    | Uguale a `remove` dall'origine seguita da `add` alla destinazione usando il valore dell'origine. |
+| `copy`    | Uguale a `add` alla destinazione usando il valore dell'origine. |
+| `test`    | Restituisce il codice di stato di richiesta riuscita se il valore in `path` = `value` fornito.|
 
 ## <a name="json-patch-in-aspnet-core"></a>Patch JSON in ASP.NET Core
 
@@ -256,7 +139,7 @@ In un controller API un metodo di azione per JSON Patch:
 * Accetta un oggetto `JsonPatchDocument<T>` , in genere con `[FromBody]` .
 * Chiama `ApplyTo` nel documento di patch per applicare le modifiche.
 
-Ecco un esempio:
+Ad esempio:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -448,143 +331,13 @@ Vengono usati indici in base zero per specificare gli elementi della matrice. Il
 La tabella seguente mostra le operazioni supportate in base a quanto definito nella [specifica JSON Patch](https://tools.ietf.org/html/rfc6902):
 
 |Operazione  | Note |
-|---
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-------|---
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
--
-title: autore: Descrizione: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
-----------------| | `add`     | Aggiungere una proprietà o un elemento di matrice. Per la proprietà esistente: impostare Value. | | `remove`  | Rimuovere una proprietà o un elemento di matrice. | | `replace` | Uguale `remove` a seguito dallo `add` stesso percorso. | | `move`    | Uguale a `remove` dall'origine seguito da `add` alla destinazione usando il valore dell'origine. | | `copy`    | Uguale `add` a per la destinazione usando il valore dell'origine. | | `test`    | Restituisce il codice di stato di esito positivo se value at `path` = fornito `value` . |
+|-----------|--------------------------------|
+| `add`     | Aggiunge una proprietà o un elemento della matrice. Per la proprietà esistente: impostare il valore.|
+| `remove`  | Rimuove una proprietà o un elemento della matrice. |
+| `replace` | Uguale a `remove` seguita da `add` nella stessa posizione. |
+| `move`    | Uguale a `remove` dall'origine seguita da `add` alla destinazione usando il valore dell'origine. |
+| `copy`    | Uguale a `add` alla destinazione usando il valore dell'origine. |
+| `test`    | Restituisce il codice di stato di richiesta riuscita se il valore in `path` = `value` fornito.|
 
 ## <a name="jsonpatch-in-aspnet-core"></a>JSON Patch in ASP.NET Core
 
@@ -598,7 +351,7 @@ In un controller API un metodo di azione per JSON Patch:
 * Accetta un oggetto `JsonPatchDocument<T>` , in genere con `[FromBody]` .
 * Chiama `ApplyTo` nel documento di patch per applicare le modifiche.
 
-Ecco un esempio:
+Ad esempio:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 

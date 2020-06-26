@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/introduction
-ms.openlocfilehash: 241ef8b00e9dcbd1983d32edcd9c1db2eaa5c687
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b0d6c91adfb5dc273aeb662cb2c249626ef1d3c6
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777527"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405432"
 ---
 # <a name="introduction-to-authorization-in-aspnet-core"></a>Introduzione all'autorizzazione in ASP.NET Core
 
@@ -26,7 +28,7 @@ L'autorizzazione si riferisce al processo che determina ciò che un utente è in
 
 L'autorizzazione è ortogonale e indipendente dall'autenticazione. Tuttavia, l'autorizzazione richiede un meccanismo di autenticazione. L'autenticazione è il processo che consente di verificare l'identità di un utente. L'autenticazione, inoltre, può creare una o più identità per l'utente corrente.
 
-Per ulteriori informazioni sull'autenticazione in ASP.NET Core, vedere <xref:security/authentication/index>.
+Per ulteriori informazioni sull'autenticazione in ASP.NET Core, vedere <xref:security/authentication/index> .
 
 ## <a name="authorization-types"></a>Tipi di autorizzazione
 
@@ -34,6 +36,6 @@ ASP.NET Core autorizzazione fornisce un [ruolo](xref:security/authorization/role
 
 ## <a name="namespaces"></a>Spazi dei nomi
 
-I componenti di autorizzazione, `AuthorizeAttribute` inclusi `AllowAnonymousAttribute` gli attributi e, si trovano `Microsoft.AspNetCore.Authorization` nello spazio dei nomi.
+I componenti di autorizzazione, inclusi gli `AuthorizeAttribute` `AllowAnonymousAttribute` attributi e, si trovano nello `Microsoft.AspNetCore.Authorization` spazio dei nomi.
 
 Consultare la documentazione relativa all' [autorizzazione semplice](xref:security/authorization/simple).

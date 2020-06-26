@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 01/21/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: d62889ba6dba6748ce3d047f0d37b3a904199496
-ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.openlocfilehash: 4933203b8bdd8f653268c1df7ff83b8e9423341f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82850435"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405068"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticazione cloud con Azure Active Directory B2C in ASP.NET Core
 
@@ -40,7 +42,7 @@ In questa esercitazione si apprenderà come:
 
 Per questa procedura dettagliata sono necessari gli elementi seguenti:
 
-* [Sottoscrizione di Microsoft Azure](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
+* [iscriversi a Microsoft Azure](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
 ## <a name="create-the-azure-active-directory-b2c-tenant"></a>Creare il tenant di Azure Active Directory B2C
@@ -58,7 +60,7 @@ Usare i valori seguenti:
 | **Nome**                      | *&lt;nome dell'app&gt;*        | Immettere un **nome** per l'app che descriva l'app agli utenti.                                                                                                                                 |
 | **Includi app Web/API Web** | Sì                       |                                                                                                                                                                                                    |
 | **Consenti il flusso implicito**       | Sì                       |                                                                                                                                                                                                    |
-| **URL di risposta**                 | `https://localhost:44300/signin-oidc` | Gli URL di risposta sono gli endpoint a cui Azure AD B2C restituisce eventuali token richiesti dall'app. Visual Studio fornisce l'URL di risposta da usare. Per il momento, `https://localhost:44300/signin-oidc` immettere per completare il modulo. |
+| **URL di risposta**                 | `https://localhost:44300/signin-oidc` | Gli URL di risposta sono gli endpoint a cui Azure AD B2C restituisce eventuali token richiesti dall'app. Visual Studio fornisce l'URL di risposta da usare. Per il momento, immettere `https://localhost:44300/signin-oidc` per completare il modulo. |
 | **URI ID app**                | Lasciare vuoto               | Non richiesto per questa esercitazione.                                                                                                                                                                    |
 | **Includi client nativo**     | No                        |                                                                                                                                                                                                    |
 
@@ -103,18 +105,18 @@ In Visual Studio:
 Tornare alla finestra del browser con le proprietà dell'app B2C ancora aperte. Modificare l' **URL di risposta** temporaneo specificato in precedenza per il valore copiato da Visual Studio. Selezionare **Save (Salva** ) nella parte superiore della finestra.
 
 > [!TIP]
-> Se l'URL di risposta non è stato copiato, usare l'indirizzo HTTPS dalla scheda debug delle proprietà del progetto Web e aggiungere il valore **CallbackPath** da *appSettings. JSON*.
+> Se l'URL di risposta non è stato copiato, usare l'indirizzo HTTPS dalla scheda debug delle proprietà del progetto Web e aggiungere il valore **CallbackPath** da *appsettings.json*.
 
 ## <a name="configure-policies"></a>Configurare i criteri
 
-Usare la procedura descritta nella documentazione di Azure AD B2C per [creare un criterio di iscrizione o di accesso](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), quindi [creare un criterio di reimpostazione della password](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Usare i valori di esempio forniti nella documentazione per ** Identity i provider**, **gli attributi di iscrizione**e le **attestazioni dell'applicazione**. Usare il pulsante **Esegui adesso** per testare i criteri come descritto nella documentazione è facoltativo.
+Usare la procedura descritta nella documentazione di Azure AD B2C per [creare un criterio di iscrizione o di accesso](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), quindi [creare un criterio di reimpostazione della password](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Usare i valori di esempio forniti nella documentazione per i ** Identity provider**, **gli attributi di iscrizione**e le **attestazioni dell'applicazione**. Usare il pulsante **Esegui adesso** per testare i criteri come descritto nella documentazione è facoltativo.
 
 > [!WARNING]
-> Verificare che i nomi dei criteri siano esattamente come descritto nella documentazione, perché tali criteri sono stati usati nella finestra di dialogo **Cambia autenticazione** in Visual Studio. I nomi dei criteri possono essere verificati in *appSettings. JSON*.
+> Verificare che i nomi dei criteri siano esattamente come descritto nella documentazione, perché tali criteri sono stati usati nella finestra di dialogo **Cambia autenticazione** in Visual Studio. I nomi dei criteri possono essere verificati in *appsettings.js*.
 
 ## <a name="configure-the-underlying-openidconnectoptionsjwtbearercookie-options"></a>Configurare le opzioni di OpenIdConnectOptions/JwtBearer/cookie sottostanti
 
-Per configurare direttamente le opzioni sottostanti, utilizzare la costante dello schema `Startup.ConfigureServices`appropriata in:
+Per configurare direttamente le opzioni sottostanti, utilizzare la costante dello schema appropriata in `Startup.ConfigureServices` :
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(
