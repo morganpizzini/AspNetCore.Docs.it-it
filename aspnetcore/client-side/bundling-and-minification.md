@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: 4523ba299d5c5e50a442f84acadf06bf57c69c5d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: de7c155189008e1f78bfb1eba062fcc86f9e4839
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82770953"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401909"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Aggregare e minimizzare asset statici in ASP.NET Core
 
@@ -69,29 +71,29 @@ I browser sono piuttosto dettagliati rispetto alle intestazioni delle richieste 
 
 ## <a name="choose-a-bundling-and-minification-strategy"></a>Scegliere una strategia di raggruppamento e minification
 
-I modelli di progetto MVC e Razor Pages forniscono una soluzione per la creazione di bundle e minification costituita da un file di configurazione JSON. Gli strumenti di terze parti, ad [esempio l'attività](xref:client-side/using-grunt) Runner, eseguono le stesse attività con una maggiore complessità. Uno strumento di terze parti è un'ottima soluzione quando il flusso di lavoro di sviluppo richiede l'&mdash;elaborazione oltre la creazione di bundle e minification, ad esempio l'ottimizzazione delle immagini e dei pelucchi. Con la creazione di bundle e minification in fase di progettazione, i file minimizzati vengono creati prima della distribuzione dell'app. La creazione di bundle e minimizzazione prima della distribuzione offre il vantaggio di ridurre il carico del server. Tuttavia, è importante riconoscere che la creazione di bundle in fase di progettazione e minification aumenta la complessità della compilazione e funziona solo con i file statici.
+I modelli di Razor progetto MVC e Pages forniscono una soluzione per la creazione di bundle e minification costituiti da un file di configurazione JSON. Gli strumenti di terze parti, ad [esempio l'attività](xref:client-side/using-grunt) Runner, eseguono le stesse attività con una maggiore complessità. Uno strumento di terze parti è un'ottima soluzione quando il flusso di lavoro di sviluppo richiede l'elaborazione oltre la creazione di bundle e minification &mdash; , ad esempio l'ottimizzazione delle immagini e dei pelucchi. Con la creazione di bundle e minification in fase di progettazione, i file minimizzati vengono creati prima della distribuzione dell'app. La creazione di bundle e minimizzazione prima della distribuzione offre il vantaggio di ridurre il carico del server. Tuttavia, è importante riconoscere che la creazione di bundle in fase di progettazione e minification aumenta la complessità della compilazione e funziona solo con i file statici.
 
 ## <a name="configure-bundling-and-minification"></a>Configurare la creazione di bundle e minification
 
 ::: moniker range="<= aspnetcore-2.0"
 
-In ASP.NET Core 2,0 o versioni precedenti, i modelli di progetto MVC e Razor Pages forniscono un file di configurazione *bundleconfig. JSON* che definisce le opzioni per ogni bundle:
+In ASP.NET Core 2,0 o versioni precedenti, i modelli di progetto MVC e Razor pages forniscono una *bundleconfig.jsnel* file di configurazione che definisce le opzioni per ogni bundle:
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
-In ASP.NET Core 2,1 o versioni successive aggiungere un nuovo file JSON, denominato *bundleconfig. JSON*, alla radice del progetto MVC o Razor Pages. Includere nel file il codice JSON seguente come punto di partenza:
+In ASP.NET Core 2,1 o versioni successive aggiungere un nuovo file JSON, denominato *bundleconfig.json*, alla radice del progetto MVC o Razor pages. Includere nel file il codice JSON seguente come punto di partenza:
 
 ::: moniker-end
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig.json)]
 
-Il file *bundleconfig. JSON* definisce le opzioni per ogni bundle. Nell'esempio precedente, viene definita una singola configurazione di bundle per i file personalizzati JavaScript (*wwwroot/JS/site. js*) e StyleSheet (*wwwroot/CSS/site. CSS*).
+Il *bundleconfig.jsnel* file definisce le opzioni per ogni bundle. Nell'esempio precedente viene definita una singola configurazione di bundle per i file JavaScript (*wwwroot/JS/site.js*) e StyleSheet (*wwwroot/CSS/site. CSS*) personalizzati.
 
 Le opzioni di configurazione possibili sono:
 
-* `outputFileName`: Nome del file di bundle da restituire. Può contenere un percorso relativo dal file *bundleconfig. JSON* . **Obbligatorio**
+* `outputFileName`: Nome del file di bundle da restituire. Può contenere un percorso relativo dal *bundleconfig.jssul* file. **Obbligatorio**
 * `inputFiles`: Matrice di file da raggruppare. Si tratta di percorsi relativi del file di configurazione. **facoltativo**, * un valore vuoto restituisce un file di output vuoto. sono supportati i modelli [glob](https://www.tldp.org/LDP/abs/html/globbingref.html) .
 * `minify`: Opzioni minification per il tipo di output. **facoltativo**, *valore predefinito `minify: { enabled: true }` -*
   * Le opzioni di configurazione sono disponibili per ogni tipo di file di output.
@@ -108,7 +110,7 @@ Si consideri un esempio in cui viene aggiunto un file *CSS personalizzato* aggiu
 
 [!code-css[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/css/custom.css)]
 
-Per minimizzare *Custom. CSS* e aggregarlo con *site. CSS* in un file *site. min. CSS* , aggiungere il percorso relativo di *bundleconfig. JSON*:
+Per minimizzare *Custom. CSS* e aggregarlo con *site. CSS* in un file *site. min. CSS* , aggiungere il percorso relativo *bundleconfig.jsin*:
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig2.json?highlight=6)]
 
@@ -129,7 +131,7 @@ Come procedura consigliata, i file in bundle e minimizzati dell'app devono esser
 
 Specificare i file da includere nelle pagine usando l' [Helper tag di ambiente](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) nelle visualizzazioni. L'helper tag di ambiente esegue il rendering del relativo contenuto solo quando è in esecuzione in [ambienti](xref:fundamentals/environments)specifici.
 
-Il tag `environment` seguente esegue il rendering dei file CSS non elaborati durante l' `Development` esecuzione nell'ambiente:
+Il `environment` tag seguente esegue il rendering dei file CSS non elaborati durante l'esecuzione nell' `Development` ambiente:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -143,7 +145,7 @@ Il tag `environment` seguente esegue il rendering dei file CSS non elaborati dur
 
 ::: moniker-end
 
-Il tag `environment` seguente esegue il rendering dei file CSS in bundle e minimizzati quando è in esecuzione in un `Development`ambiente diverso da. Ad esempio, in esecuzione `Production` in `Staging` o viene attivato il rendering di questi fogli di stile:
+Il `environment` tag seguente esegue il rendering dei file CSS in bundle e minimizzati quando è in esecuzione in un ambiente diverso da `Development` . Ad esempio, in esecuzione in `Production` o viene `Staging` attivato il rendering di questi fogli di stile:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -157,20 +159,20 @@ Il tag `environment` seguente esegue il rendering dei file CSS in bundle e minim
 
 ::: moniker-end
 
-## <a name="consume-bundleconfigjson-from-gulp"></a>Utilizzare bundleconfig. JSON da Gulp
+## <a name="consume-bundleconfigjson-from-gulp"></a>Utilizzare bundleconfig.jsda Gulp
 
 Ci sono casi in cui il flusso di lavoro di aggregazione e minification di un'app richiede un'elaborazione aggiuntiva. Gli esempi includono l'ottimizzazione delle immagini, la memorizzazione nella cache e l'elaborazione delle risorse della rete CDN. Per soddisfare questi requisiti, è possibile convertire il flusso di lavoro di aggregazione e minification per usare Gulp.
 
 ### <a name="manually-convert-the-bundling-and-minification-workflow-to-use-gulp"></a>Convertire manualmente il flusso di lavoro di aggregazione e minification per usare Gulp
 
-Aggiungere un file *Package. JSON* , con il codice `devDependencies`seguente, alla radice del progetto:
+Aggiungere un *package.jsnel* file, con il codice seguente `devDependencies` , alla radice del progetto:
 
 > [!WARNING]
-> Il `gulp-uglify` modulo non supporta ECMAScript (ES) 2015/ES6 e versioni successive. Installare [Gulp-Terser](https://www.npmjs.com/package/gulp-terser) invece di `gulp-uglify` per usare ES2015/ES6 o versione successiva.
+> Il `gulp-uglify` modulo non supporta ECMAScript (es) 2015/ES6 e versioni successive. Installare [Gulp-Terser](https://www.npmjs.com/package/gulp-terser) invece di `gulp-uglify` per usare ES2015/ES6 o versione successiva.
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/package.json?range=5-13)]
 
-Installare le dipendenze eseguendo il comando seguente allo stesso livello di *Package. JSON*:
+Installare le dipendenze eseguendo il comando seguente allo stesso livello di *package.jsin*:
 
 ```console
 npm i
@@ -182,7 +184,7 @@ Installare l'interfaccia della riga di comando di Gulp come dipendenza globale:
 npm i -g gulp-cli
 ```
 
-Copiare il file *gulpfile. js* riportato di seguito nella radice del progetto:
+Copiare il file di *gulpfile.js* seguente nella radice del progetto:
 
 [!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-11,14-)]
 

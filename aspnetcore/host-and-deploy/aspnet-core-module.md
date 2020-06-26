@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: 84612ccfdf00497b11cd93cef2837c5a897cc905
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: b60fa81b3bf180cd2ba15f285df9474be42f95f8
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105350"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400089"
 ---
 # <a name="aspnet-core-module"></a>Modulo ASP.NET Core
 
@@ -38,7 +40,7 @@ Versioni supportate di Windows:
 
 In caso di hosting in-process, il modulo usa un'implementazione di server in-process per IIS detta server HTTP di IIS (`IISHttpServer`).
 
-In caso di hosting out-of-process, il modulo funziona solo con Kestrel. Il modulo non funziona con [http. sys](xref:fundamentals/servers/httpsys).
+In caso di hosting out-of-process, il modulo funziona solo con Kestrel. Il modulo non funziona con [HTTP.sys](xref:fundamentals/servers/httpsys).
 
 ## <a name="hosting-models"></a>Modelli di hosting
 
@@ -198,7 +200,7 @@ Per informazioni sulla configurazione delle applicazioni secondarie IIS, vedere 
 
 È possibile specificare le variabili di ambiente per il processo nell'attributo `processPath`. Specificare una variabile di ambiente con l'elemento figlio `<environmentVariable>` di un elemento della raccolta `<environmentVariables>`. Le variabili di ambiente impostate in questa sezione hanno la precedenza sulle variabili di ambiente di sistema.
 
-Nell'esempio seguente vengono impostate due variabili di ambiente in *Web. config*. `ASPNETCORE_ENVIRONMENT`Configura l'ambiente dell'app in `Development` . Uno sviluppatore può impostare temporaneamente questo valore nel file *web.config* per forzare il caricamento della [pagina delle eccezioni per gli sviluppatori](xref:fundamentals/error-handling) durante il debug di un'eccezione dell'app. `CONFIG_DIR` è un esempio di variabile di ambiente definita dall'utente, in cui lo sviluppatore ha scritto il codice che legge il valore all'avvio in modo da formare un percorso per il caricamento del file di configurazione dell'app.
+Nell'esempio seguente vengono impostate due variabili di ambiente in *web.config*. `ASPNETCORE_ENVIRONMENT`Configura l'ambiente dell'app in `Development` . Uno sviluppatore può impostare temporaneamente questo valore nel file *web.config* per forzare il caricamento della [pagina delle eccezioni per gli sviluppatori](xref:fundamentals/error-handling) durante il debug di un'eccezione dell'app. `CONFIG_DIR` è un esempio di variabile di ambiente definita dall'utente, in cui lo sviluppatore ha scritto il codice che legge il valore all'avvio in modo da formare un percorso per il caricamento del file di configurazione dell'app.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -214,7 +216,7 @@ Nell'esempio seguente vengono impostate due variabili di ambiente in *Web. confi
 ```
 
 > [!NOTE]
-> Un'alternativa all'impostazione dell'ambiente direttamente in *Web. config* consiste nell'includere la `<EnvironmentName>` proprietà nel [profilo di pubblicazione (con estensione pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) o nel file di progetto. Questo approccio imposta l'ambiente in *web.config* quando viene pubblicato il progetto:
+> Un'alternativa all'impostazione dell'ambiente direttamente in *web.config* consiste nell'includere la `<EnvironmentName>` proprietà nel [profilo di pubblicazione (con estensione pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) o nel file di progetto. Questo approccio imposta l'ambiente in *web.config* quando viene pubblicato il progetto:
 >
 > ```xml
 > <PropertyGroup>
@@ -278,7 +280,7 @@ Per ulteriori informazioni sui formati di percorso, vedere [formati di percorso 
 
 ## <a name="enhanced-diagnostic-logs"></a>Log di diagnostica avanzati
 
-Il modulo ASP.NET Core può essere configurato per restituire log di diagnostica avanzata. Aggiungere l' `<handlerSettings>` elemento all' `<aspNetCore>` elemento in *Web. config*. L'impostazione `debugLevel` di su `TRACE` espone una maggiore fedeltà delle informazioni di diagnostica:
+Il modulo ASP.NET Core può essere configurato per restituire log di diagnostica avanzata. Aggiungere l' `<handlerSettings>` elemento all' `<aspNetCore>` elemento in *web.config*. L'impostazione `debugLevel` di su `TRACE` espone una maggiore fedeltà delle informazioni di diagnostica:
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -324,7 +326,7 @@ Vedere [Configurazione con web.config](#configuration-with-webconfig) per un ese
 
 *Si applica solo quando si usa il modello di hosting in-process.*
 
-Configurare la dimensione dello stack gestito usando l' `stackSize` impostazione in byte in *Web. config*. La dimensione predefinita è `1048576` byte (1 MB).
+Configurare la dimensione dello stack gestito usando l' `stackSize` impostazione in byte in *web.config*. La dimensione predefinita è `1048576` byte (1 MB).
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -442,7 +444,7 @@ Versioni supportate di Windows:
 
 In caso di hosting in-process, il modulo usa un'implementazione di server in-process per IIS detta server HTTP di IIS (`IISHttpServer`).
 
-In caso di hosting out-of-process, il modulo funziona solo con Kestrel. Il modulo non funziona con [http. sys](xref:fundamentals/servers/httpsys).
+In caso di hosting out-of-process, il modulo funziona solo con Kestrel. Il modulo non funziona con [HTTP.sys](xref:fundamentals/servers/httpsys).
 
 ## <a name="hosting-models"></a>Modelli di hosting
 
@@ -629,7 +631,7 @@ Nell'esempio seguente vengono impostate due variabili di ambiente. `ASPNETCORE_E
 ```
 
 > [!NOTE]
-> Un'alternativa all'impostazione dell'ambiente direttamente in *Web. config* consiste nell'includere la `<EnvironmentName>` proprietà nel [profilo di pubblicazione (con estensione pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) o nel file di progetto. Questo approccio imposta l'ambiente in *web.config* quando viene pubblicato il progetto:
+> Un'alternativa all'impostazione dell'ambiente direttamente in *web.config* consiste nell'includere la `<EnvironmentName>` proprietà nel [profilo di pubblicazione (con estensione pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) o nel file di progetto. Questo approccio imposta l'ambiente in *web.config* quando viene pubblicato il progetto:
 >
 > ```xml
 > <PropertyGroup>
@@ -691,7 +693,7 @@ Per ulteriori informazioni sui formati di percorso, vedere [formati di percorso 
 
 ## <a name="enhanced-diagnostic-logs"></a>Log di diagnostica avanzati
 
-Il modulo ASP.NET Core può essere configurato per restituire log di diagnostica avanzata. Aggiungere l' `<handlerSettings>` elemento all' `<aspNetCore>` elemento in *Web. config*. L'impostazione `debugLevel` di su `TRACE` espone una maggiore fedeltà delle informazioni di diagnostica:
+Il modulo ASP.NET Core può essere configurato per restituire log di diagnostica avanzata. Aggiungere l' `<handlerSettings>` elemento all' `<aspNetCore>` elemento in *web.config*. L'impostazione `debugLevel` di su `TRACE` espone una maggiore fedeltà delle informazioni di diagnostica:
 
 ```xml
 <aspNetCore processPath="dotnet"

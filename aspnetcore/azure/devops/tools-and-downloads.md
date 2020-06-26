@@ -7,17 +7,19 @@ ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: azure/devops/tools-and-downloads
-ms.openlocfilehash: 1917a329a5dcbe60542541cfcdc746799307e3d5
-ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.openlocfilehash: ed8aee214ff9b9e941aeea01887882c3bdfc56a7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82850409"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400297"
 ---
 # <a name="tools-and-downloads"></a>Strumenti e download
 
@@ -33,8 +35,8 @@ Sono necessarie le sottoscrizioni seguenti:
 
 Sono necessari gli strumenti seguenti:
 
-* Per questa guida è consigliata &mdash; una conoscenza di base di git. [Git](https://git-scm.com/downloads) Esaminare la [documentazione di git](https://git-scm.com/doc), in particolare [git Remote](https://git-scm.com/docs/git-remote) e [git push](https://git-scm.com/docs/git-push).
-* Per compilare ed eseguire l'app di esempio, è necessario [.NET Core SDK](https://dotnet.microsoft.com/download/) &mdash; versione 2.1.300 o successiva. Se Visual Studio viene installato con il carico di lavoro **sviluppo multipiattaforma .NET Core** , il .NET Core SDK è già installato.
+* [Git](https://git-scm.com/downloads) &mdash; Per questa guida è consigliata una conoscenza di base di git. Esaminare la [documentazione di git](https://git-scm.com/doc), in particolare [git Remote](https://git-scm.com/docs/git-remote) e [git push](https://git-scm.com/docs/git-push).
+* [.NET Core SDK](https://dotnet.microsoft.com/download/) &mdash; Per compilare ed eseguire l'app di esempio, è necessaria la versione 2.1.300 o successiva. Se Visual Studio viene installato con il carico di lavoro **sviluppo multipiattaforma .NET Core** , il .NET Core SDK è già installato.
 
     Verificare l'installazione del .NET Core SDK. Aprire una shell dei comandi ed eseguire il comando seguente:
 

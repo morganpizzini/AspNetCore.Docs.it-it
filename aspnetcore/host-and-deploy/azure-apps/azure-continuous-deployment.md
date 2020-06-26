@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/06/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
-ms.openlocfilehash: 0b9f5f15403c7d18d68a41baa2a59582cf039f44
-ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.openlocfilehash: 97da88b6fb79944d99b69c92eb611dd0e4e39454
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82850565"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400167"
 ---
 # <a name="continuous-deployment-to-azure-with-visual-studio-and-git-with-aspnet-core"></a>Distribuzione continua in Azure con Visual Studio e Git con ASP.NET Core
 
@@ -88,7 +90,7 @@ Eseguire i passaggi seguenti per creare un'app Web nel portale di Azure:
 
    Anche nel pannello **App Web**, selezionare una **Posizione/piano di servizio App** o crearne uno nuovo. Se si crea un nuovo piano, selezionare il piano tariffario, la posizione e altre opzioni. Per altre informazioni sui piani di Servizio app, vedere [Panoramica di approfondimento dei piani del Servizio App di Azure](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview).
 
-1. Selezionare **Create** (Crea). Azure eseguirà il provisioning e avvierà l'app Web.
+1. Selezionare **Crea**. Azure eseguirà il provisioning e avvierà l'app Web.
 
    ![Portale di Azure: campione di pannello di Essentials Demo 01 di App Web](azure-continuous-deployment/_static/07-azure-webappblade.png)
 
@@ -112,7 +114,7 @@ Git è un sistema di controllo della versione distribuito che è possibile usare
 
    * Selezionare **Impostazioni**  >  **credenziali**per la distribuzione. Verrà visualizzato il pannello **Imposta credenziali di distribuzione**.
    * Creare un nome utente e una password. Salvare la password per un uso successivo durante la configurazione di Git.
-   * Selezionare **Save** (Salva).
+   * Selezionare **Salva**.
 
 1. Nel pannello **App Web** selezionare **Impostazioni** > **Proprietà**. L'URL del repository Git remoto che verrà distribuito è visualizzato in **URL GIT**.
 

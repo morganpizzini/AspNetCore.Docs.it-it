@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 10/07/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/host/web-host
-ms.openlocfilehash: 71bca4c0987059efa0e4ff35f25fe7cdb75641d5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 630191948a9013e88853ee1a31d15f2964b4a7f4
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773991"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399413"
 ---
 # <a name="aspnet-core-web-host"></a>Host Web ASP.NET Core
 
@@ -66,7 +68,7 @@ Il codice che chiama `CreateDefaultBuilder` è incluso in un metodo denominato `
   * Le variabili di ambiente con prefisso `ASPNETCORE_` (ad esempio, `ASPNETCORE_ENVIRONMENT`).
   * Argomenti della riga di comando.
 * Carica la configurazione dell'app nell'ordine seguente da:
-  * *appSettings. JSON*.
+  * *appsettings.js*.
   * *appsettings.{Environment}.json*.
   * [Strumento di gestione dei segreti](xref:security/app-secrets) quando l'app viene eseguita nell'ambiente `Development` usando l'assembly di ingresso.
   * Variabili di ambiente.
@@ -88,7 +90,7 @@ La configurazione definita da `CreateDefaultBuilder` può essere sottoposta a ov
         ...
     ```
 
-* La chiamata a `ConfigureLogging` seguente consente di aggiungere un delegato per configurare il livello di registrazione minimo ([SetMinimumLevel](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.setminimumlevel)) [LogLevel.Warning](/dotnet/api/microsoft.extensions.logging.loglevel). Questa impostazione sostituisce le impostazioni in *appSettings. Development. JSON* (`LogLevel.Debug`) e *appSettings. Production. JSON* (`LogLevel.Error`) configurato `CreateDefaultBuilder`da. `ConfigureLogging` può essere chiamato più volte.
+* La chiamata a `ConfigureLogging` seguente consente di aggiungere un delegato per configurare il livello di registrazione minimo ([SetMinimumLevel](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.setminimumlevel)) [LogLevel.Warning](/dotnet/api/microsoft.extensions.logging.loglevel). Questa impostazione sostituisce le impostazioni *appsettings.Development.json* ( `LogLevel.Debug` ) e *appsettings.Production.json* ( `LogLevel.Error` ) configurate da `CreateDefaultBuilder` . `ConfigureLogging` può essere chiamato più volte.
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -393,7 +395,7 @@ Imposta il percorso relativo degli asset statici dell'app.
 
 **Chiave**: webroot  
 **Tipo**: *stringa*  
-**Impostazione predefinita**: il valore `wwwroot`predefinito è. Il percorso di *{radice del contenuto}/wwwroot* deve esistere. Se il percorso non esiste, viene usato un provider di file no-op.  
+**Impostazione predefinita**: il valore predefinito è `wwwroot` . Il percorso di *{radice del contenuto}/wwwroot* deve esistere. Se il percorso non esiste, viene usato un provider di file no-op.  
 **Imposta utilizzando**:`UseWebRoot`  
 **Variabile di ambiente**:`ASPNETCORE_WEBROOT`
 
@@ -450,7 +452,7 @@ public class Program
 ```
 
 > [!NOTE]
-> [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration) copia solo le chiavi dall'oggetto `IConfiguration` fornito alla configurazione del generatore host. Pertanto, l'impostazione di `reloadOnChange: true` per i file JSON, INI e XML non ha alcun effetto.
+> [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration) copia solo le chiavi dall'oggetto fornito `IConfiguration` alla configurazione del generatore host. Pertanto, l'impostazione di `reloadOnChange: true` per i file JSON, INI e XML non ha alcun effetto.
 
 Per specificare l'host eseguito in un URL specifico, il valore desiderato può essere passato da un prompt dei comandi durante l'esecuzione di [dotnet run](/dotnet/core/tools/dotnet-run). L'argomento della riga di comando esegue l'override del valore `urls` dal file *hostsettings.json*, mentre il server esegue l'ascolto sulla porta 8080:
 
@@ -460,7 +462,7 @@ dotnet run --urls "http://*:8080"
 
 ## <a name="manage-the-host"></a>Gestire l'host
 
-**Correre**
+**Esegui**
 
 Il metodo `Run` avvia l'app Web e blocca il thread di chiamata fino all'arresto dell'host:
 
@@ -530,7 +532,7 @@ using (var host = WebHost.Start("http://localhost:8080", app => app.Response.Wri
 
 Produce lo stesso risultato di **Start(app RequestDelegate)**, ad eccezione del fatto che l'app risponde su `http://localhost:8080`.
 
-**Start (Action\<IRouteBuilder> routeBuilder)**
+**Start(Action\<IRouteBuilder> routeBuilder)**
 
 Usare un'istanza di `IRouteBuilder` ([Microsoft.AspNetCore.Routing](https://www.nuget.org/packages/Microsoft.AspNetCore.Routing/)) per usare il middleware di routing:
 
@@ -564,7 +566,7 @@ Usare le richieste del browser seguenti con l'esempio:
 
 `WaitForShutdown` rimane bloccato fino a quando non viene eseguita un'interruzione (Ctrl-C/SIGINT o SIGTERM). L'app visualizza il messaggio `Console.WriteLine` e attende la pressione di un tasto per chiudersi.
 
-**Start (URL stringa, azione\<IRouteBuilder> routeBuilder)**
+**Start(string url, Action\<IRouteBuilder> routeBuilder)**
 
 Usare un URL e un'istanza di `IRouteBuilder`:
 
@@ -585,9 +587,9 @@ using (var host = WebHost.Start("http://localhost:8080", router => router
 }
 ```
 
-Produce lo stesso risultato di **Start (Action\<IRouteBuilder> routeBuilder)**, ad eccezione del fatto che l' `http://localhost:8080`app risponde all'indirizzo.
+Produce lo stesso risultato di **Start(Action\<IRouteBuilder> routeBuilder)**, ad eccezione del fatto che l'app risponde in `http://localhost:8080`.
 
-**Cominciamo (azione\<IApplicationBuilder> app)**
+**StartWith(Action\<IApplicationBuilder> app)**
 
 Specificare un delegato per configurare `IApplicationBuilder`:
 
@@ -608,7 +610,7 @@ using (var host = WebHost.StartWith(app =>
 
 Creare una richiesta nel browser a `http://localhost:5000` per ricevere la risposta "Hello World!" `WaitForShutdown` rimane bloccato fino a quando non viene eseguita un'interruzione (Ctrl-C/SIGINT o SIGTERM). L'app visualizza il messaggio `Console.WriteLine` e attende la pressione di un tasto per chiudersi.
 
-**Cominciamo (URL stringa, azione\<IApplicationBuilder> app)**
+**StartWith(string url, Action\<IApplicationBuilder> app)**
 
 Specificare un URL e un delegato per configurare `IApplicationBuilder`:
 
@@ -627,7 +629,7 @@ using (var host = WebHost.StartWith("http://localhost:8080", app =>
 }
 ```
 
-Produce lo stesso risultato di **cominciamo (azione\<IApplicationBuilder> app)**, ad eccezione del fatto che l' `http://localhost:8080`app risponde.
+Produce lo stesso risultato di **StartWith(Action\<IApplicationBuilder> app)**, ad eccezione del fatto che l'app risponde su `http://localhost:8080`.
 
 ::: moniker range=">= aspnetcore-3.0"
 

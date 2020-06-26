@@ -8,21 +8,23 @@ ms.custom: mvc
 ms.date: 09/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: web-api/advanced/analyzers
-ms.openlocfilehash: 530ce2d2a7f67f549f6d188a0c571a5d58518377
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 1f44fd65836cc42ffb2303890eefb053b61c4c30
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776246"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399465"
 ---
 # <a name="use-web-api-analyzers"></a>Usare gli analizzatori dell'API Web
 
-ASP.NET Core 2,2 e versioni successive fornisce un pacchetto di analizzatori MVC progettato per l'uso con i progetti API Web. Gli analizzatori funzionano con i controller annotati con <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, durante la compilazione in [convenzioni API Web](xref:web-api/advanced/conventions).
+ASP.NET Core 2,2 e versioni successive fornisce un pacchetto di analizzatori MVC progettato per l'uso con i progetti API Web. Gli analizzatori funzionano con i controller annotati con <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> , durante la compilazione in [convenzioni API Web](xref:web-api/advanced/conventions).
 
 Il pacchetto degli analizzatori informa l'utente di qualsiasi azione del controller che:
 

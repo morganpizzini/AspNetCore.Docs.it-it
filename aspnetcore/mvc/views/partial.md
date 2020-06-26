@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 06/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 1bce6b9cdc876062b050eae6eb3c4acf0127ce92
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 47bd91f4d2bf166a4d0c9a0829e24cbe26a81a10
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777124"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399712"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Visualizzazioni parziali in ASP.NET Core
 
@@ -27,7 +29,7 @@ Una visualizzazione parziale è un [Razor](xref:mvc/views/razor) file di markup 
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Il termine *visualizzazione parziale* viene usato per lo sviluppo di un'app MVC, in cui i file di markup sono denominati *visualizzazioni*o un'app pagine, in cui i file di Razor markup vengono chiamati *pagine*. Questo argomento si riferisce in modo generico Razor alle pagine di visualizzazioni e pagine MVC come *file di markup*.
+Il termine *visualizzazione parziale* viene usato per lo sviluppo di un'app MVC, in cui i file di markup sono denominati *visualizzazioni*o un' Razor app pagine, in cui i file di markup vengono chiamati *pagine*. Questo argomento si riferisce in modo generico alle pagine di visualizzazioni e pagine MVC Razor come *file di markup*.
 
 ::: moniker-end
 
@@ -52,9 +54,9 @@ Non usare una visualizzazione parziale in cui per il rendering del markup è nec
 
 ::: moniker range=">= aspnetcore-2.0"
 
-Una visualizzazione parziale è un file di markup con *estensione cshtml* gestito nella cartella *views* (MVC) o nella cartellaRazor *pages* (pagine).
+Una visualizzazione parziale è un file di markup con *estensione cshtml* gestito nella cartella *views* (MVC) o nella cartella *pages* ( Razor pagine).
 
-In ASP.NET Core MVC, l'elemento <xref:Microsoft.AspNetCore.Mvc.ViewResult> di un controller è in grado di restituire una visualizzazione o una visualizzazione parziale. Nelle Razor pagine, un <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> può restituire una visualizzazione parziale rappresentata come <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> un oggetto. Il riferimento e il rendering delle visualizzazioni parziali sono descritti nella sezione [Riferimento a una visualizzazione parziale](#reference-a-partial-view).
+In ASP.NET Core MVC, l'elemento <xref:Microsoft.AspNetCore.Mvc.ViewResult> di un controller è in grado di restituire una visualizzazione o una visualizzazione parziale. Nelle Razor pagine, un <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> può restituire una visualizzazione parziale rappresentata come un <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> oggetto. Il riferimento e il rendering delle visualizzazioni parziali sono descritti nella sezione [Riferimento a una visualizzazione parziale](#reference-a-partial-view).
 
 A differenza del rendering di pagine o visualizzazioni MVC, una visualizzazione parziale non esegue *_ViewStart.cshtml*. Per altre informazioni su *_ViewStart.cshtml*, vedere <xref:mvc/views/layout>.
 
@@ -80,7 +82,7 @@ I nomi dei file di visualizzazione parziale iniziano spesso con un carattere di 
 
 ### <a name="use-a-partial-view-in-a-razor-pages-pagemodel"></a>Usare una visualizzazione parziale in una Razor pagina PageModel
 
-In ASP.NET Core 2,0 o 2,1, il metodo del gestore seguente esegue il rendering della * \_visualizzazione parziale AuthorPartialRP. cshtml* nella risposta:
+In ASP.NET Core 2,0 o 2,1, il metodo del gestore seguente esegue il rendering della visualizzazione parziale * \_ AuthorPartialRP. cshtml* nella risposta:
 
 ```csharp
 public IActionResult OnGetPartial() =>
@@ -207,7 +209,7 @@ L'esempio seguente fa riferimento a una visualizzazione parziale con un percorso
 @await Html.PartialAsync("../Account/_LoginPartial.cshtml")
 ```
 
-In alternativa è possibile eseguire il rendering di una visualizzazione parziale con <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync*>. Questo metodo non restituisce un <xref:Microsoft.AspNetCore.Html.IHtmlContent>. Trasmette l'output sottoposto a rendering direttamente alla risposta. Poiché il metodo non restituisce un risultato, deve essere chiamato all'interno di Razor un blocco di codice:
+In alternativa è possibile eseguire il rendering di una visualizzazione parziale con <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync*>. Questo metodo non restituisce un <xref:Microsoft.AspNetCore.Html.IHtmlContent>. Trasmette l'output sottoposto a rendering direttamente alla risposta. Poiché il metodo non restituisce un risultato, deve essere chiamato all'interno di un Razor blocco di codice:
 
 [!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/Discovery.cshtml?name=snippet_RenderPartialAsync)]
 
@@ -226,7 +228,7 @@ La chiamata di `Partial` o `RenderPartial` genera un avviso di Visual Studio Ana
 
 > L'uso di IHtmlHelper.Partial potrebbe determinare deadlock dell'applicazione. È consigliabile usare l'helper tag &lt;Partial&gt; o IHtmlHelper.PartialAsync.
 
-Sostituire le chiamate `@Html.Partial` a `@await Html.PartialAsync` con o l' [Helper Tag parziale](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). Per altre informazioni sulla migrazione dell'helper tag Partial, vedere [Eseguire la migrazione da un helper HTML](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper#migrate-from-an-html-helper).
+Sostituire le chiamate a `@Html.Partial` con `@await Html.PartialAsync` o l' [Helper Tag parziale](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). Per altre informazioni sulla migrazione dell'helper tag Partial, vedere [Eseguire la migrazione da un helper HTML](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper#migrate-from-an-html-helper).
 
 ::: moniker-end
 
@@ -269,10 +271,10 @@ Le convenzioni seguenti si applicano all'individuazione delle visualizzazioni pa
 
 * Sono consentite visualizzazioni parziali diverse con lo stesso nome purché si trovino in cartelle diverse.
 * Quando si fa riferimento a una visualizzazione parziale per nome senza un'estensione di file e la visualizzazione parziale è presente sia nella cartella del chiamante sia nella cartella *Shared*, viene usata la visualizzazione parziale nella cartella del chiamante. Se la visualizzazione parziale non è presente nella cartella del chiamante, viene usata la visualizzazione parziale nella cartella *Shared*. Le visualizzazioni parziali nella cartella *Shared* sono dette *visualizzazioni parziali condivise* o *visualizzazioni parziali predefinite*.
-* Le visualizzazioni parziali possono essere *concatenate*&mdash;una visualizzazione parziale può chiamare un'altra visualizzazione parziale se un riferimento circolare non è formato dalle chiamate. I percorsi relativi sono sempre relativi al file corrente, non alla radice o al padre del file.
+* Le visualizzazioni parziali possono essere *concatenate* &mdash; una visualizzazione parziale può chiamare un'altra visualizzazione parziale se un riferimento circolare non è formato dalle chiamate. I percorsi relativi sono sempre relativi al file corrente, non alla radice o al padre del file.
 
 > [!NOTE]
-> Un [Razor](xref:mvc/views/razor) `section` oggetto definito in una visualizzazione parziale è invisibile ai file di markup padre. L'oggetto `section` è visibile solo per la visualizzazione parziale in cui è definito.
+> Un oggetto [Razor](xref:mvc/views/razor) `section` definito in una visualizzazione parziale è invisibile ai file di markup padre. L'oggetto `section` è visibile solo per la visualizzazione parziale in cui è definito.
 
 ## <a name="access-data-from-partial-views"></a>Accesso ai dati da visualizzazioni parziali
 

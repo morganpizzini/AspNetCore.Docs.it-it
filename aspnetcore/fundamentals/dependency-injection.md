@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 06/21/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 34ed08a5b49b56fd37628032ac73fe03a34448e6
-ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
+ms.openlocfilehash: 665f9f761f729fad59af298cacd0d48ab3a3f71f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85240854"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400725"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserimento delle dipendenze in ASP.NET Core
 
@@ -540,7 +542,7 @@ Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [Ad
 
 * Evitare di usare il *modello di localizzatore del servizio*. Ad esempio, non richiamare <xref:System.IServiceProvider.GetService*> per ottenere un'istanza del servizio quando è invece possibile usare l'inserimento delle dipendenze:
 
-  **Errata**
+  **Non corretto:**
 
   ```csharp
   public class MyClass()
@@ -1123,7 +1125,7 @@ Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [Ad
 
   * Non richiamare <xref:System.IServiceProvider.GetService*> per ottenere un'istanza del servizio quando si può usare invece di:
 
-    **Errata**
+    **Non corretto:**
 
     ```csharp
     public class MyClass()

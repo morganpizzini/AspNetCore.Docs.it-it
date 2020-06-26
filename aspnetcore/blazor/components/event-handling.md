@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: 4ac7b82d734f078cf50901d02e7d0c4eb8bb45bb
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 2fce394202be5df9af67e8afca27a0914f410402
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242419"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399036"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>BlazorGestione degli eventi ASP.NET Core
 
@@ -139,7 +141,7 @@ Spesso è consigliabile chiudere i valori aggiuntivi, ad esempio quando si esegu
 ```
 
 > [!NOTE]
-> **Non** usare direttamente una variabile di ciclo in un'espressione lambda, ad `i` esempio nell'esempio di `for` ciclo precedente o in una variabile di riferimento in un `foreach` ciclo. In caso contrario, la stessa variabile viene utilizzata da tutte le espressioni lambda, che comporta l'utilizzo dello stesso valore in tutte le espressioni lambda. Acquisire sempre il valore della variabile in una variabile locale e quindi usarlo. Nell'esempio precedente, la variabile di ciclo `i` viene assegnata a `buttonNumber` .
+> **Non** usare direttamente una variabile di ciclo in un'espressione lambda, come `i` nell' `for` esempio di ciclo precedente. In caso contrario, la stessa variabile viene utilizzata da tutte le espressioni lambda, che comporta l'utilizzo dello stesso valore in tutte le espressioni lambda. Acquisire sempre il valore della variabile in una variabile locale e quindi usarlo. Nell'esempio precedente, la variabile di ciclo `i` viene assegnata a `buttonNumber` .
 
 ## <a name="eventcallback"></a>EventCallback
 

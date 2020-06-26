@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: ced10a7b7b221188fdac2a4e3c54f66292110ece
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 65d8bbcdaed76a308b924ba024219e8f520bb585
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773942"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399283"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Helper tag di cache in ASP.NET Core MVC
 
@@ -27,7 +29,7 @@ L'helper tag di cache consente di migliorare le prestazioni dell'app ASP.NET Cor
 
 Per una panoramica degli helper per tag, vedere <xref:mvc/views/tag-helpers/intro>.
 
-Il seguente markup Razor memorizza nella cache la data corrente:
+Il Razor markup seguente memorizza nella cache la data corrente:
 
 ```cshtml
 <cache>@DateTime.Now</cache>
@@ -39,7 +41,7 @@ La prima richiesta alla pagina contenente l'helper tag consente di visualizzare 
 
 ### <a name="enabled"></a>Enabled
 
-| Tipo di attributo  | Esempi        | Predefinito |
+| Tipo di attributo  | Esempio        | Predefinito |
 | --------------- | --------------- | ------- |
 | Boolean         | `true`, `false` | `true`  |
 
@@ -85,7 +87,7 @@ Esempio:
 </cache>
 ```
 
-Il motore di visualizzazione Razor imposta il valore predefinito di `expires-after` su venti minuti.
+Il Razor motore di visualizzazione imposta il `expires-after` valore predefinito su venti minuti.
 
 ### <a name="expires-sliding"></a>expires-sliding
 
@@ -105,9 +107,9 @@ Esempio:
 
 ### <a name="vary-by-header"></a>vary-by-header
 
-| Tipo di attributo | Esempi                                    |
+| Tipo di attributo | Esempio                                    |
 | -------------- | ------------------------------------------- |
-| Stringa         | `User-Agent`, `User-Agent,content-encoding` |
+| String         | `User-Agent`, `User-Agent,content-encoding` |
 
 `vary-by-header` accetta un elenco delimitato da virgole di valori di intestazione che attivano un aggiornamento della cache quando vengono modificati.
 
@@ -121,9 +123,9 @@ L'esempio seguente esegue il monitoraggio del valore dell'intestazione `User-Age
 
 ### <a name="vary-by-query"></a>vary-by-query
 
-| Tipo di attributo | Esempi             |
+| Tipo di attributo | Esempio             |
 | -------------- | -------------------- |
-| Stringa         | `Make`, `Make,Model` |
+| String         | `Make`, `Make,Model` |
 
 `vary-by-query` accetta un elenco delimitato da virgole di <xref:Microsoft.AspNetCore.Http.IQueryCollection.Keys*> in una stringa di query (<xref:Microsoft.AspNetCore.Http.HttpRequest.Query*>) che attiva un aggiornamento della cache quando cambia il valore di qualsiasi chiave inclusa nell'elenco.
 
@@ -137,9 +139,9 @@ L'esempio seguente esegue il monitoraggio dei valori di `Make` e `Model`. L'esem
 
 ### <a name="vary-by-route"></a>vary-by-route
 
-| Tipo di attributo | Esempi             |
+| Tipo di attributo | Esempio             |
 | -------------- | -------------------- |
-| Stringa         | `Make`, `Make,Model` |
+| String         | `Make`, `Make,Model` |
 
 `vary-by-route` accetta un elenco delimitato da virgole di nomi di parametri di route che attivano un aggiornamento della cache quando cambia il valore del parametro dei dati di route.
 
@@ -163,13 +165,13 @@ routes.MapRoute(
 
 ### <a name="vary-by-cookie"></a>vary-by-cookie
 
-| Tipo di attributo | Esempi                                                                         |
+| Tipo di attributo | Esempio                                                                         |
 | -------------- | -------------------------------------------------------------------------------- |
-| Stringa         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
+| String         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
 `vary-by-cookie` accetta un elenco delimitato da virgole di nomi di cookie che attivano un aggiornamento della cache quando cambiano i valori dei cookie.
 
-L'esempio seguente gestisce il monitoraggio dei cookie associati ad ASP.NET Core Identity. Quando un utente viene autenticato, una modifica del cookie di Identity attiva un aggiornamento della cache:
+Nell'esempio seguente viene monitorato il cookie associato a ASP.NET Core Identity . Quando un utente viene autenticato, una modifica nel Identity cookie attiva un aggiornamento della cache:
 
 ```cshtml
 <cache vary-by-cookie=".AspNetCore.Identity.Application">
@@ -179,11 +181,11 @@ L'esempio seguente gestisce il monitoraggio dei cookie associati ad ASP.NET Core
 
 ### <a name="vary-by-user"></a>vary-by-user
 
-| Tipo di attributo  | Esempi        | Predefinito |
+| Tipo di attributo  | Esempio        | Predefinito |
 | --------------- | --------------- | ------- |
 | Boolean         | `true`, `false` | `true`  |
 
-`vary-by-user` specifica se la cache deve essere o meno reimpostata quando cambia l'utente connesso (o l'entità di contesto connessa). L'utente corrente è detto anche entità di sicurezza del contesto della richiesta e può essere visualizzato in una visualizzazione Razor mediante riferimento a `@User.Identity.Name`.
+`vary-by-user` specifica se la cache deve essere o meno reimpostata quando cambia l'utente connesso (o l'entità di contesto connessa). L'utente corrente è noto anche come entità del contesto della richiesta e può essere visualizzato in una Razor vista facendo riferimento a `@User.Identity.Name` .
 
 L'esempio seguente esegue il monitoraggio dell'utente connesso corrente per attivare un aggiornamento della cache:
 
@@ -199,7 +201,7 @@ Questo attributo consente di mantenere il contenuto nella cache durante un ciclo
 
 | Tipo di attributo | Esempio  |
 | -------------- | -------- |
-| Stringa         | `@Model` |
+| String         | `@Model` |
 
 `vary-by` consente di personalizzare quali dati vengono memorizzati nella cache. Quando l'oggetto al quale fa riferimento il valore stringa dell'attributo cambia, il contenuto dell'helper tag di cache viene aggiornato. Spesso a questo attributo viene assegnata una concatenazione stringa di valori del modello. In effetti, da ciò risulta uno scenario in cui un aggiornamento di uno qualsiasi dei valori concatenati invalida la cache.
 
@@ -228,7 +230,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 
 ### <a name="priority"></a>priority
 
-| Tipo di attributo      | Esempi                               | Predefinito  |
+| Tipo di attributo      | Esempio                               | Predefinito  |
 | ------------------- | -------------------------------------- | -------- |
 | `CacheItemPriority` | `High`, `Low`, `NeverRemove`, `Normal` | `Normal` |
 

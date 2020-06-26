@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/07/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: f7697260e6ab29d0e9ba955dfdf0c8c81e4e1130
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 33b4d43471932ed5e9e328163672028b00e6b5b8
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775492"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399478"
 ---
 # <a name="static-files-in-aspnet-core"></a>File statici in ASP.NET Core
 
@@ -52,11 +54,11 @@ Impostare la radice del contenuto nella directory corrente richiamando [UseConte
 I file statici sono accessibili tramite un percorso relativo alla [radice Web](xref:fundamentals/index#web-root). Ad esempio, il modello di progetto **Applicazione Web** contiene varie cartelle all'interno della cartella *wwwroot*:
 
 * **wwwroot**
-  * **css**
+  * **CSS**
   * **images**
   * **JS**
 
-Il formato dell'URI per accedere a un file nella sottocartella *images* (immagini) è *http://\<indirizzo_server > /images/\<nome_file_immagine >*. Ad esempio, *http://localhost:9189/images/banner3.svg* .
+Il formato URI per accedere a un file nella sottocartella *images* è *http:// \<server_address> \<image_file_name> /images/*. Ad esempio, *http://localhost:9189/images/banner3.svg* .
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -88,14 +90,14 @@ L'overload del `UseStaticFiles` metodo senza parametri contrassegna i file nella
 
 [!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
-Nel codice precedente, il carattere `~/` tilde punta alla [radice Web](xref:fundamentals/index#web-root).
+Nel codice precedente, il carattere tilde `~/` punta alla [radice Web](xref:fundamentals/index#web-root).
 
 ### <a name="serve-files-outside-of-web-root"></a>Usare i file all'esterno della radice Web
 
 Si consideri una gerarchia di directory in cui i file statici da servire si trovano all'esterno della [radice Web](xref:fundamentals/index#web-root):
 
 * **wwwroot**
-  * **css**
+  * **CSS**
   * **images**
   * **JS**
 * **MyStaticFiles**
@@ -106,7 +108,7 @@ Una richiesta può accedere al file *banner1.svg* configurando il middleware dei
 
 [!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?name=snippet_ConfigureMethod&highlight=5-10)]
 
-Nel codice precedente la gerarchia di directory *MyStaticFiles* viene esposta pubblicamente tramite il segmento dell'URI *StaticFiles*. Una richiesta a *http://\<indirizzo_server > /StaticFiles/images/banner1.svg* usa il file *banner1.svg*.
+Nel codice precedente la gerarchia di directory *MyStaticFiles* viene esposta pubblicamente tramite il segmento dell'URI *StaticFiles*. Una richiesta a *http:// \<server_address> /staticfiles/images/banner1.svg* serve il file *banner1. svg* .
 
 Il markup seguente si riferisce a *MyStaticFiles/images/banner1.svg*:
 
@@ -144,13 +146,13 @@ Aggiungere i servizi necessari richiamando il metodo [AddDirectoryBrowser](/dotn
 
 [!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureServicesMethod&highlight=3)]
 
-Il codice precedente consente l'esplorazione directory della cartella *wwwroot/images* tramite l'URL *http://\<indirizzo_server >/MyImages*, con collegamenti ai singoli file e cartelle:
+Il codice precedente consente l'esplorazione directory della cartella *wwwroot/images* utilizzando l'URL *http:// \<server_address> /myImages*, con collegamenti a ogni file e cartella:
 
 ![esplorazione directory](static-files/_static/dir-browse.png)
 
 Vedere la sezione [Considerazioni](#considerations) per conoscere i rischi per la sicurezza quando l'esplorazione viene abilitata.
 
-Si notino le due chiamate `UseStaticFiles` nell'esempio seguente. La prima chiamata consente l'uso di file statici nella cartella *wwwroot*. La seconda chiamata consente l'esplorazione directory nella cartella *wwwroot/images* tramite l'URL *http://\<indirizzo_server >/MyImages*:
+Si notino le due chiamate `UseStaticFiles` nell'esempio seguente. La prima chiamata consente l'uso di file statici nella cartella *wwwroot*. La seconda chiamata Abilita l'esplorazione directory della cartella *wwwroot/images* utilizzando l'URL *http:// \<server_address> /myImages*:
 
 [!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=3,5)]
 
@@ -168,7 +170,7 @@ Con `UseDefaultFiles`, si richiede la ricerca nella cartella degli elementi segu
 * *default.htm*
 * *default.html*
 * *index.htm*
-* *index. html*
+* *index.html*
 
 Il primo file trovato nell'elenco viene usato come se la richiesta fosse l'URI completo. L'URL del browser continua a riflettere l'URI richiesto.
 
@@ -178,7 +180,7 @@ Il codice seguente modifica il nome file predefinito in *mydefault.html*:
 
 ## <a name="usefileserver"></a>UseFileServer
 
-<xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*>combina la funzionalità di `UseStaticFiles`, `UseDefaultFiles`e facoltativamente `UseDirectoryBrowser`.
+<xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*>combina la funzionalità di `UseStaticFiles` , `UseDefaultFiles` e facoltativamente `UseDirectoryBrowser` .
 
 Il codice seguente consente di usare i file statici e il file predefinito. L'esplorazione directory non è abilitata.
 
@@ -195,7 +197,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 Considerare la gerarchia di directory seguente:
 
 * **wwwroot**
-  * **css**
+  * **CSS**
   * **images**
   * **JS**
 * **MyStaticFiles**
@@ -215,10 +217,10 @@ Dall'uso della gerarchia di file e del codice precedente ne deriva quanto segue:
 
 | URI            |                             Risposta  |
 | ------- | ------|
-| *http://\<server_address>/staticfiles/images/banner1.svg*    |      MyStaticFiles/images/banner1.svg |
-| *http://\<server_address>/staticfiles*             |     MyStaticFiles/default.html |
+| *\<server_address>/StaticFiles/images/banner1.svg http://*    |      MyStaticFiles/images/banner1.svg |
+| *\<server_address>/StaticFiles http://*             |     MyStaticFiles/default.html |
 
-Se non esiste un file predefinito nella directory *MyStaticFiles*, *http://\<indirizzo_server > / StaticFiles* restituisce l'elenco di directory con i collegamenti su cui è possibile fare clic:
+Se nella directory *MyStaticFiles* non è presente alcun file con nome predefinito, *http:// \<server_address> /staticfiles* restituisce l'elenco di directory con i collegamenti che è possibile selezionare:
 
 ![Elenco di file statici](static-files/_static/db2.png)
 
@@ -248,12 +250,12 @@ Con il codice precedente, una richiesta per un file con un tipo di contenuto sco
 
 ## <a name="serve-files-from-multiple-locations"></a>Gestire i file da più posizioni
 
-`UseStaticFiles`per `UseFileServer` impostazione predefinita, il provider di file punta a *wwwroot*. È possibile fornire istanze aggiuntive di `UseStaticFiles` e `UseFileServer` con altri provider di file per gestire i file da altri percorsi. Per altre informazioni, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/15578).
+`UseStaticFiles``UseFileServer`per impostazione predefinita, il provider di file punta a *wwwroot*. È possibile fornire istanze aggiuntive di `UseStaticFiles` e `UseFileServer` con altri provider di file per gestire i file da altri percorsi. Per altre informazioni, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/15578).
 
 ### <a name="considerations"></a>Considerazioni
 
 > [!WARNING]
-> L'uso di `UseDirectoryBrowser` e `UseStaticFiles` può comportare la perdita di informazioni riservate. È consigliabile disabilitare l'esplorazione directory nell'ambiente di produzione. Controllare attentamente quali sono le directory abilitate tramite `UseStaticFiles` o `UseDirectoryBrowser`. L'intera directory e le relative sottodirectory diventano pubblicamente accessibili. Archiviare i file adatti al servizio pubblico in una directory dedicata, ad esempio * \<content_root>/wwwroot*. Separare i file da visualizzazioni MVC, Razor pagine (solo 2. x), file di configurazione e così via.
+> L'uso di `UseDirectoryBrowser` e `UseStaticFiles` può comportare la perdita di informazioni riservate. È consigliabile disabilitare l'esplorazione directory nell'ambiente di produzione. Controllare attentamente quali sono le directory abilitate tramite `UseStaticFiles` o `UseDirectoryBrowser`. L'intera directory e le relative sottodirectory diventano pubblicamente accessibili. Archiviare i file adatti al servizio pubblico in una directory dedicata, ad esempio * \<content_root> /wwwroot*. Separare i file da visualizzazioni MVC, Razor pagine (solo 2. x), file di configurazione e così via.
 
 * Gli URL per il contenuto esposto con `UseDirectoryBrowser` e `UseStaticFiles` sono soggetti a distinzione tra maiuscole e minuscole e a limitazione di caratteri del file system sottostante. Ad esempio, in Windows viene fatta distinzione tra maiuscole e minuscole, al contrario di quanto avviene in macOS e Linux.
 

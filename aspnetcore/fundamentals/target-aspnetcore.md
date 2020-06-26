@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/16/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/target-aspnetcore
-ms.openlocfilehash: 70a445d109a1a9553178e94d79df87cd373e6b06
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 1c794092b856a916a318956d7cfb357d46a22d1d
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103028"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399647"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>Usare API di ASP.NET Core in una libreria di classi
 
@@ -52,7 +54,7 @@ Blazorsupporta i [modelli di hosting](xref:blazor/hosting-models)webassembly (WA
 
 ### <a name="support-both-hosting-models"></a>Supportare entrambi i modelli di hosting
 
-Per supportare Razor l'utilizzo dei componenti da progetti [ Blazor server](xref:blazor/hosting-models#blazor-server) e [ Blazor WASM](xref:blazor/hosting-models#blazor-webassembly) , usare le istruzioni seguenti per l'editor.
+Per supportare Razor l'utilizzo dei componenti da [Blazor Server](xref:blazor/hosting-models#blazor-server) e nei progetti [ Blazor WASM](xref:blazor/hosting-models#blazor-webassembly) , usare le istruzioni seguenti per l'editor.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -86,7 +88,7 @@ Ad esempio:
 
 ### <a name="support-a-specific-hosting-model"></a>Supporto di un modello di hosting specifico
 
-È molto meno comune supportare un singolo modello di Blazor hosting. Ad esempio, per supportare l' Razor utilizzo dei componenti solo da progetti [ Blazor server](xref:blazor/hosting-models#blazor-server) :
+È molto meno comune supportare un singolo modello di Blazor hosting. Ad esempio, per supportare l' Razor utilizzo dei componenti [Blazor Server](xref:blazor/hosting-models#blazor-server) solo da progetti:
 
 * Destinazione .NET Core 3. x.
 * Aggiungere un `<FrameworkReference>` elemento per il Framework condiviso.

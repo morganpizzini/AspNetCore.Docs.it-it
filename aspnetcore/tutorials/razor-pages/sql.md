@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 7/22/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: 21ae2ed4e91a0b3e52b1cdad1f4f4686c50614ba
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 68764a5b8c908012cc0053aa4e3ea071f2ce423d
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652980"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400908"
 ---
 # <a name="part-4-with-a-database-and-aspnet-core"></a>Parte 4 con un database e ASP.NET Core
 
@@ -38,7 +40,7 @@ L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al databa
 
 ---
 
-Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal file *appSettings. JSON* .
+Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal *appsettings.jssul* file.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -173,7 +175,7 @@ Per altre informazioni sui metodi usati in `ConfigureServices`, vedere:
 * [Supporto per il Regolamento generale sulla protezione dei dati (GDPR) dell'Unione Europea in ASP.NET Core](xref:security/gdpr) per `CookiePolicyOptions`.
 * [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
-Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal file *appSettings. JSON* .
+Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal *appsettings.jssul* file.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

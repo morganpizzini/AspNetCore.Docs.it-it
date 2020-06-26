@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: client-side/using-grunt
-ms.openlocfilehash: b51973e82bb1bd382be68a501c40ba613217fb03
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: fc871e22f9bd5a9c137008f1d87019542c45b5d2
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773640"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401766"
 ---
 # <a name="use-grunt-in-aspnet-core"></a>USA Grugnio in ASP.NET Core
 
@@ -42,27 +44,27 @@ L'esempio completato pulisce la directory di distribuzione di destinazione, comb
 
 Per iniziare, impostare una nuova applicazione Web vuota e aggiungere i file di esempio TypeScript. I file TypeScript vengono compilati automaticamente in JavaScript usando le impostazioni predefinite di Visual Studio e saranno il materiale grezzo per l'elaborazione con grugni.
 
-1. In Visual Studio creare un nuovo `ASP.NET Web Application`.
+1. In Visual Studio creare un nuovo `ASP.NET Web Application` .
 
 2. Nella finestra di dialogo **nuovo progetto ASP.NET** selezionare il modello ASP.NET Core **vuoto** e fare clic sul pulsante OK.
 
-3. Nella Esplora soluzioni esaminare la struttura del progetto. La `\src` cartella include nodi `wwwroot` vuoti `Dependencies` e.
+3. Nella Esplora soluzioni esaminare la struttura del progetto. La `\src` cartella include `wwwroot` nodi vuoti e `Dependencies` .
 
     ![soluzione Web vuota](using-grunt/_static/grunt-solution-explorer.png)
 
 4. Aggiungere una nuova cartella denominata `TypeScript` alla directory del progetto.
 
-5. Prima di aggiungere i file, assicurarsi che in Visual Studio sia selezionata l'opzione ' compila al salvataggio ' per i file TypeScript. Passare a **strumenti** > **Opzioni** > **Editor** > di testo**typescript** > **progetto**:
+5. Prima di aggiungere i file, assicurarsi che in Visual Studio sia selezionata l'opzione ' compila al salvataggio ' per i file TypeScript. Passare a **strumenti**  >  **Opzioni**  >  **editor di testo**  >  **typescript**  >  **progetto**:
 
     ![opzioni di impostazione della compilazione automatica dei file TypeScript](using-grunt/_static/typescript-options.png)
 
-6. Fare clic con il `TypeScript` pulsante destro del mouse sulla directory e scegliere **Aggiungi > nuovo elemento** dal menu di scelta rapida. Selezionare l'elemento di **file JavaScript** e denominare il file *gusti. TS* (si noti l' \*estensione TS). Copiare la riga di codice TypeScript seguente nel file. quando si salva, viene visualizzato un nuovo file *tastes. js* con l'origine JavaScript.
+6. Fare clic con il pulsante destro del mouse sulla `TypeScript` Directory e scegliere **Aggiungi > nuovo elemento** dal menu di scelta rapida. Selezionare l'elemento di **file JavaScript** e denominare il file *gusti. TS* (si noti l' \* estensione TS). Copiare la riga di codice TypeScript seguente nel file (quando si salva, viene visualizzato un nuovo file di *Tastes.js* con l'origine JavaScript).
 
     ```typescript
     enum Tastes { Sweet, Sour, Salty, Bitter }
     ```
 
-7. Aggiungere un secondo file alla directory **typescript** e denominarlo `Food.ts`. Copiare il codice seguente nel file.
+7. Aggiungere un secondo file alla directory **typescript** e denominarlo `Food.ts` . Copiare il codice seguente nel file.
 
     ```typescript
     class Food {
@@ -93,16 +95,16 @@ Per iniziare, impostare una nuova applicazione Web vuota e aggiungere i file di 
 
 Successivamente, configurare NPM per scaricare le attività grugnite e grugnito.
 
-1. Nel Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto e scegliere **aggiungi > nuovo elemento** dal menu di scelta rapida. Selezionare l'elemento del **file di configurazione NPM** , lasciare il nome predefinito, *Package. JSON*, quindi fare clic sul pulsante **Aggiungi** .
+1. Nel Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto e scegliere **aggiungi > nuovo elemento** dal menu di scelta rapida. Selezionare l'elemento del **file di configurazione NPM** , lasciare il nome predefinito *package.jsin*e fare clic sul pulsante **Aggiungi** .
 
-2. Nel file *Package. JSON* , all'interno delle `devDependencies` parentesi graffe dell'oggetto, immettere "grugnito". Selezionare `grunt` dall'elenco IntelliSense e premere il tasto INVIO. In Visual Studio viene citato il nome del pacchetto grugnito e vengono aggiunti i due punti. A destra dei due punti, selezionare la versione stabile più recente del pacchetto dalla parte superiore dell'elenco IntelliSense (premere `Ctrl-Space` se IntelliSense non viene visualizzato).
+2. Nella *package.jssu* file, all'interno delle `devDependencies` parentesi graffe dell'oggetto, immettere "grugnito". Selezionare `grunt` dall'elenco IntelliSense e premere il tasto INVIO. In Visual Studio viene citato il nome del pacchetto grugnito e vengono aggiunti i due punti. A destra dei due punti, selezionare la versione stabile più recente del pacchetto dalla parte superiore dell'elenco IntelliSense (premere `Ctrl-Space` Se IntelliSense non viene visualizzato).
 
     ![IntelliSense grugnito](using-grunt/_static/devdependencies-grunt.png)
 
     > [!NOTE]
-    > NPM usa il [controllo delle versioni semantico](https://semver.org/) per organizzare le dipendenze. Il controllo delle versioni semantico, noto anche come SemVer, identifica i pacchetti con \<lo schema di numerazione principale>. \<> secondaria. \<> patch. IntelliSense semplifica la versione semantica visualizzando solo alcune opzioni comuni. Il primo elemento dell'elenco IntelliSense (0.4.5 nell'esempio precedente) viene considerato la versione stabile più recente del pacchetto. Il simbolo del cursore (^) corrisponde alla versione principale più recente e la tilde (~) corrisponde alla versione secondaria più recente. Vedere la Guida di [riferimento al parser della versione NPM semver](https://www.npmjs.com/package/semver) come guida alla completa espressività fornita da semver.
+    > NPM usa il [controllo delle versioni semantico](https://semver.org/) per organizzare le dipendenze. Il controllo delle versioni semantico, noto anche come SemVer, identifica i pacchetti con lo schema di numerazione \<major> . \<minor> . \<patch> . IntelliSense semplifica la versione semantica visualizzando solo alcune opzioni comuni. Il primo elemento dell'elenco IntelliSense (0.4.5 nell'esempio precedente) viene considerato la versione stabile più recente del pacchetto. Il simbolo del cursore (^) corrisponde alla versione principale più recente e la tilde (~) corrisponde alla versione secondaria più recente. Vedere la Guida di [riferimento al parser della versione NPM semver](https://www.npmjs.com/package/semver) come guida alla completa espressività fornita da semver.
 
-3. Aggiungere altre dipendenze per\* caricare i pacchetti grugnito-contrib per *Clean*, *jshint*, *Concat*, *uglify*e *Watch* come illustrato nell'esempio riportato di seguito. Non è necessario che le versioni corrispondano all'esempio.
+3. Aggiungere altre dipendenze per caricare i pacchetti grugnito-contrib \* per *Clean*, *jshint*, *Concat*, *uglify*e *Watch* come illustrato nell'esempio riportato di seguito. Non è necessario che le versioni corrispondano all'esempio.
 
     ```json
     "devDependencies": {
@@ -115,24 +117,24 @@ Successivamente, configurare NPM per scaricare le attività grugnite e grugnito.
     }
     ```
 
-4. Salvare il file *Package. JSON* .
+4. Salvare il file *package.json*.
 
 I pacchetti per ogni `devDependencies` elemento vengono scaricati insieme a tutti i file necessari per ogni pacchetto. È possibile trovare i file del pacchetto nella directory *node_modules* abilitando il pulsante **Mostra tutti i file** in **Esplora soluzioni**.
 
 ![node_modules grugnito](using-grunt/_static/node-modules.png)
 
 > [!NOTE]
-> Se necessario, è possibile ripristinare manualmente le dipendenze in **Esplora soluzioni** facendo clic con il pulsante `Dependencies\NPM` destro del mouse su e selezionando l'opzione di menu **Ripristina pacchetti** .
+> Se necessario, è possibile ripristinare manualmente le dipendenze in **Esplora soluzioni** facendo clic con il pulsante destro del mouse su `Dependencies\NPM` e selezionando l'opzione di menu **Ripristina pacchetti** .
 
 ![ripristinare i pacchetti](using-grunt/_static/restore-packages.png)
 
 ## <a name="configuring-grunt"></a>Configurazione di grugnito
 
-Il grugnito viene configurato usando un manifesto denominato *Gruntfile. js* che definisce, carica e registra le attività che possono essere eseguite manualmente o configurate per essere eseguite automaticamente in base agli eventi in Visual Studio.
+Il grugnito viene configurato usando un manifesto denominato *Gruntfile.js* che definisce, carica e registra le attività che possono essere eseguite manualmente o configurate per essere eseguite automaticamente in base agli eventi in Visual Studio.
 
-1. Fare clic con il pulsante destro del mouse sul progetto e scegliere **Aggiungi** > **nuovo elemento**. Selezionare il modello di elemento **file JavaScript** , modificare il nome in *Gruntfile. js*, quindi fare clic sul pulsante **Aggiungi** .
+1. Fare clic con il pulsante destro del mouse sul progetto e scegliere **Aggiungi**  >  **nuovo elemento**. Selezionare il modello di elemento **file JavaScript** , modificare il nome in *Gruntfile.js*, quindi fare clic sul pulsante **Aggiungi** .
 
-1. Aggiungere il codice seguente a *Gruntfile. js*. La `initConfig` funzione imposta le opzioni per ogni pacchetto e il resto del modulo carica e registra le attività.
+1. Aggiungere il codice seguente per *Gruntfile.js*. La `initConfig` funzione imposta le opzioni per ogni pacchetto e il resto del modulo carica e registra le attività.
 
    ```javascript
    module.exports = function (grunt) {
@@ -141,7 +143,7 @@ Il grugnito viene configurato usando un manifesto denominato *Gruntfile. js* che
    };
    ```
 
-1. All'interno `initConfig` della funzione aggiungere le opzioni per `clean` l'attività, come illustrato nell'esempio *Gruntfile. js* . L' `clean` attività accetta una matrice di stringhe di directory. Questa attività rimuove i file da *wwwroot/lib* e rimuove l'intera directory */Temp* .
+1. All'interno della `initConfig` funzione aggiungere le opzioni per l' `clean` attività, come illustrato nell'esempio *Gruntfile.js* riportato di seguito. L' `clean` attività accetta una matrice di stringhe di directory. Questa attività rimuove i file da *wwwroot/lib* e rimuove l'intera directory */Temp* .
 
     ```javascript
     module.exports = function (grunt) {
@@ -151,21 +153,21 @@ Il grugnito viene configurato usando un manifesto denominato *Gruntfile. js* che
     };
     ```
 
-1. Sotto la `initConfig` funzione, aggiungere una chiamata a `grunt.loadNpmTasks`. Questo renderà l'attività eseguibile da Visual Studio.
+1. Sotto la `initConfig` funzione, aggiungere una chiamata a `grunt.loadNpmTasks` . Questo renderà l'attività eseguibile da Visual Studio.
 
     ```javascript
     grunt.loadNpmTasks("grunt-contrib-clean");
     ```
 
-1. Salvare *Gruntfile. js*. Il file dovrebbe avere un aspetto simile a quello riportato nella schermata seguente.
+1. Salva *Gruntfile.js*. Il file dovrebbe avere un aspetto simile a quello riportato nella schermata seguente.
 
     ![gruntfile iniziale](using-grunt/_static/gruntfile-js-initial.png)
 
-1. Fare clic con il pulsante destro del mouse su *Gruntfile. js* e selezionare **Task Runner Explorer** dal menu di scelta rapida. Si aprirà la finestra di **esplorazione di Task Runner** .
+1. Fare clic con il pulsante destro del mouse su *Gruntfile.js* e scegliere **Esplora esecuzioni attività** dal menu di scelta rapida. Si aprirà la finestra di **esplorazione di Task Runner** .
 
     ![menu Esplora attività](using-grunt/_static/task-runner-explorer-menu.png)
 
-1. Verificare che `clean` venga visualizzato sotto **attività** in **Esplora attività**.
+1. Verificare che venga `clean` visualizzato sotto **attività** in **Esplora attività**.
 
     ![Elenco attività di Esplora attività](using-grunt/_static/task-runner-explorer-tasks.png)
 
@@ -194,7 +196,7 @@ Il grugnito viene configurato usando un manifesto denominato *Gruntfile. js* che
 
 1. Aggiungere l' `jshint` attività usando il codice seguente.
 
-    L'utilità `code-quality` jshint viene eseguita su tutti i file JavaScript trovati nella directory *Temp* .
+    L' `code-quality` utilità jshint viene eseguita su tutti i file JavaScript trovati nella directory *Temp* .
 
     ```javascript
     jshint: {
@@ -206,11 +208,11 @@ Il grugnito viene configurato usando un manifesto denominato *Gruntfile. js* che
     ```
 
     > [!NOTE]
-    > L'opzione "-W069" è un errore prodotto da jshint quando JavaScript usa la sintassi di parentesi quadre per assegnare una proprietà anziché la notazione `Tastes["Sweet"]` del punto `Tastes.Sweet`, ovvero anziché. L'opzione disattiva l'avviso per consentire al resto del processo di continuare.
+    > L'opzione "-W069" è un errore prodotto da jshint quando JavaScript usa la sintassi di parentesi quadre per assegnare una proprietà anziché la notazione del punto, ovvero `Tastes["Sweet"]` anziché `Tastes.Sweet` . L'opzione disattiva l'avviso per consentire al resto del processo di continuare.
 
 1. Aggiungere l' `uglify` attività usando il codice seguente.
 
-    L'attività minimizza il file con *estensione js combinato* presente nella directory Temp e crea il file dei risultati in wwwroot/lib seguendo il nome * \<\>del file*della convenzione di denominazione standard. min. js.
+    L'attività minimizza il file di *combined.js* trovato nella directory Temp e crea il file dei risultati in wwwroot/lib seguendo la convenzione di denominazione standard * \<file name\>.min.js*.
 
     ```javascript
     uglify: {
@@ -221,7 +223,7 @@ Il grugnito viene configurato usando un manifesto denominato *Gruntfile. js* che
     },
     ```
 
-1. Sotto la chiamata a `grunt.loadNpmTasks` che carica `grunt-contrib-clean`, includere la stessa chiamata per jshint, Concat e uglify usando il codice riportato di seguito.
+1. Sotto la chiamata a `grunt.loadNpmTasks` che carica `grunt-contrib-clean` , includere la stessa chiamata per jshint, Concat e uglify usando il codice riportato di seguito.
 
     ```javascript
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -229,15 +231,15 @@ Il grugnito viene configurato usando un manifesto denominato *Gruntfile. js* che
     grunt.loadNpmTasks('grunt-contrib-uglify');
     ```
 
-1. Salvare *Gruntfile. js*. Il file dovrebbe avere un aspetto simile all'esempio seguente.
+1. Salva *Gruntfile.js*. Il file dovrebbe avere un aspetto simile all'esempio seguente.
 
     ![esempio di file grugnito completo](using-grunt/_static/gruntfile-js-complete.png)
 
-1. Si noti che nell'elenco attività di **Esplora attività** sono `clean`incluse le attività, `concat` `jshint` e `uglify` . Eseguire ogni attività nell'ordine e osservare i risultati in **Esplora soluzioni**. Ogni attività deve essere eseguita senza errori.
+1. Si noti che nell'elenco attività di **Esplora attività** sono incluse le `clean` `concat` attività, `jshint` e `uglify` . Eseguire ogni attività nell'ordine e osservare i risultati in **Esplora soluzioni**. Ogni attività deve essere eseguita senza errori.
 
     ![esecuzione di ogni attività in Esplora esecuzioni](using-grunt/_static/task-runner-explorer-run-each-task.png)
 
-    L'attività Concat crea un nuovo file con *estensione js combinato* e lo inserisce nella directory Temp. L' `jshint` attività viene semplicemente eseguita e non produce output. L' `uglify` attività crea un nuovo file combinato con estensione *min. js* e lo inserisce in *wwwroot/lib*. Al termine, la soluzione dovrebbe avere un aspetto simile alla schermata seguente:
+    L'attività Concat crea un nuovo file di *combined.js* e lo inserisce nella directory Temp. L' `jshint` attività viene semplicemente eseguita e non produce output. L' `uglify` attività crea un nuovo file di *combined.min.js* e lo inserisce in *wwwroot/lib*. Al termine, la soluzione dovrebbe avere un aspetto simile alla schermata seguente:
 
     ![Esplora soluzioni dopo tutte le attività](using-grunt/_static/solution-explorer-after-all-tasks.png)
 
@@ -246,19 +248,19 @@ Il grugnito viene configurato usando un manifesto denominato *Gruntfile. js* che
 
 ### <a name="all-together-now"></a>Riepilogo
 
-Usare il metodo `registerTask()` grugnito per eseguire una serie di attività in una sequenza specifica. Ad esempio, per eseguire i passaggi di esempio precedenti nell'ordine Pulisci-> Concat-> jshint-> uglify, aggiungere il codice seguente al modulo. Il codice deve essere aggiunto allo stesso livello delle chiamate a loadNpmTasks (), all'esterno di initConfig.
+Usare il metodo grugnito `registerTask()` per eseguire una serie di attività in una sequenza specifica. Ad esempio, per eseguire i passaggi di esempio precedenti nell'ordine Pulisci-> Concat-> jshint-> uglify, aggiungere il codice seguente al modulo. Il codice deve essere aggiunto allo stesso livello delle chiamate a loadNpmTasks (), all'esterno di initConfig.
 
 ```javascript
 grunt.registerTask("all", ['clean', 'concat', 'jshint', 'uglify']);
 ```
 
-La nuova attività viene visualizzata in Esplora attività in attività alias. È possibile fare clic con il pulsante destro del mouse ed eseguirlo esattamente come per le altre attività. L' `all` attività eseguirà `clean`, `concat` `jshint` e `uglify`, nell'ordine.
+La nuova attività viene visualizzata in Esplora attività in attività alias. È possibile fare clic con il pulsante destro del mouse ed eseguirlo esattamente come per le altre attività. L' `all` attività eseguirà `clean` , `concat` `jshint` e `uglify` , nell'ordine.
 
 ![attività con alias](using-grunt/_static/alias-tasks.png)
 
 ## <a name="watching-for-changes"></a>Controllo per la ricerca di modifiche
 
-Un' `watch` attività consente di tenere sotto controllo i file e le directory. Il controllo attiva automaticamente le attività in caso di rilevamento delle modifiche. Aggiungere il codice seguente a initConfig per controllare le modifiche apportate ai \*file con estensione js nella directory typescript. Se viene modificato un file JavaScript, `watch` eseguirà l' `all` attività.
+Un' `watch` attività consente di tenere sotto controllo i file e le directory. Il controllo attiva automaticamente le attività in caso di rilevamento delle modifiche. Aggiungere il codice seguente a initConfig per controllare le modifiche apportate ai \* file con estensione js nella directory typescript. Se viene modificato un file JavaScript, `watch` eseguirà l' `all` attività.
 
 ```javascript
 watch: {
@@ -281,7 +283,7 @@ Fare clic con il pulsante destro del mouse sull'attività Watch in Esplora attiv
 
 A meno che non si desideri avviare manualmente le attività ogni volta che si lavora in Visual Studio, associare le attività a **prima della compilazione**, **dopo la compilazione**, la **pulizia**e il progetto degli eventi **aperti** .
 
-Eseguire `watch` l'associazione in modo che venga eseguita ogni volta che si apre Visual Studio. In Task Runner Explorer fare clic con il pulsante destro del mouse sull'attività Watch e scegliere **bindings** > **progetto Open** dal menu di scelta rapida.
+`watch`Eseguire l'associazione in modo che venga eseguita ogni volta che si apre Visual Studio. In Task Runner Explorer fare clic con il pulsante destro del mouse sull'attività Watch e scegliere **bindings**  >  **progetto Open** dal menu di scelta rapida.
 
 ![associa un'attività all'apertura del progetto](using-grunt/_static/bindings-project-open.png)
 

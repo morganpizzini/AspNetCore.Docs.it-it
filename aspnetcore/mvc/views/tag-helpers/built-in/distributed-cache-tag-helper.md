@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 01/24/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
-ms.openlocfilehash: df1daa68a3e18f7aad4507ce9526d76ff6a2114d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4b8e393542c56502a825000773bbf714d91e4128
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773916"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399231"
 ---
 # <a name="distributed-cache-tag-helper-in-aspnet-core"></a>Helper tag di cache distribuita in ASP.NET Core
 
@@ -52,9 +54,9 @@ L'helper tag di cache distribuita eredita dalla stessa classe dell'helper tag di
 
 | Tipo di attributo | Esempio                               |
 | -------------- | ------------------------------------- |
-| Stringa         | `my-distributed-cache-unique-key-101` |
+| String         | `my-distributed-cache-unique-key-101` |
 
-`name` è obbligatorio. L'attributo `name` viene usato come chiave per ogni istanza di cache archiviata. Diversamente dall'helper tag di cache che assegna una chiave di cache a ogni istanza in base al nome Razor e alla posizione della pagina, Razor l'helper tag di cache distribuita basa solo la relativa chiave sull'attributo `name`.
+`name` è obbligatorio. L'attributo `name` viene usato come chiave per ogni istanza di cache archiviata. Diversamente dall'helper tag di cache che assegna una chiave di cache a ogni istanza in base al Razor nome e alla posizione della pagina Razor , l'helper tag di cache distribuita basa solo la relativa chiave sull'attributo `name` .
 
 Esempio:
 

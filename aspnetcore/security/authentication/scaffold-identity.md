@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 5/1/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: f3314458a504af7f44dcdc276de890fa9485a2b3
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 155bdfbeea06022d35bbb551d5b2d0ee5a51a093
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103032"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400817"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Impalcatura Identity nei progetti ASP.NET Core
 
@@ -178,7 +180,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-## <a name="scaffold-identity-into-a-blazor-server-project-without-existing-authorization"></a>Impalcatura Identity in un Blazor progetto server senza autorizzazione esistente
+## <a name="scaffold-identity-into-a-blazor-server-project-without-existing-authorization"></a>Impalcatura Identity in un Blazor Server progetto senza autorizzazione esistente
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
@@ -289,11 +291,11 @@ Nel `MainLayout` componente (*Shared/MainLayout. Razor*) aggiungere il `LoginDis
 
 ### <a name="style-authentication-endpoints"></a>Endpoint di autenticazione dello stile
 
-Poiché Blazor il server utilizza pagine Razor Identity di pagine, lo stile dell'interfaccia utente cambia quando un visitatore si sposta tra le Identity pagine e i componenti. Sono disponibili due opzioni per risolvere gli stili incongruenti:
+Poiché Blazor Server utilizza Razor pagine Identity di pagine, lo stile dell'interfaccia utente cambia quando un visitatore si sposta tra le Identity pagine e i componenti. Sono disponibili due opzioni per risolvere gli stili incongruenti:
 
 #### <a name="build-identity-components"></a>Componenti di compilazione Identity
 
-Un approccio all'utilizzo di componenti per Identity invece di pagine consiste nel creare Identity componenti. Poiché `SignInManager` e `UserManager` non sono supportati nei Razor componenti, usare gli endpoint API nell' Blazor app Server per elaborare le azioni dell'account utente.
+Un approccio all'utilizzo di componenti per Identity invece di pagine consiste nel creare Identity componenti. Poiché `SignInManager` e `UserManager` non sono supportati nei Razor componenti, usare gli endpoint API nell' Blazor Server app per elaborare le azioni dell'account utente.
 
 #### <a name="use-a-custom-layout-with-blazor-app-styles"></a>Usare un layout personalizzato con Blazor stili di app
 
@@ -360,7 +362,7 @@ Nel file *pages/Shared/layout. cshtml* apportare le modifiche seguenti:
   <script src="_framework/blazor.server.js"></script>
   ```
 
-## <a name="scaffold-identity-into-a-blazor-server-project-with-authorization"></a>Impalcatura Identity in un Blazor progetto server con autorizzazione
+## <a name="scaffold-identity-into-a-blazor-server-project-with-authorization"></a>Impalcatura Identity in un Blazor Server progetto con autorizzazione
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 

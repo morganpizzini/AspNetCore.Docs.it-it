@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/13/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: spa/react-with-redux
-ms.openlocfilehash: eab71349464255c9e333976caeba0e05a52909f0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d44e1afabd909b7d46d3355a5d66848458416873
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773709"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401740"
 ---
 # <a name="use-the-react-with-redux-project-template-with-aspnet-core"></a>Usare il modello di progetto per React con Redux con ASP.NET Core
 
@@ -26,4 +28,4 @@ Il modello di progetto aggiornato per React con Redux fornisce un ottimo punto d
 
 Fatta eccezione per il comando di creazione del progetto, tutte le informazioni relative al modello per React con Redux sono uguali a quelle relative al modello per React. Per creare questo tipo di progetto, eseguire `dotnet new reactredux` anziché `dotnet new react`. Per altre informazioni sulle funzionalità comuni a entrambi i modelli basati su React, vedere la [documentazione del modello per React](xref:spa/react).
 
-Per informazioni sulla configurazione di un'applicazione secondaria React-with-Redux in IIS, vedere il [modello ReactRedux 2,1: Impossibile utilizzare Spa in IIS (ASPNET/template &num;555)](https://github.com/aspnet/Templating/issues/555).
+Per informazioni sulla configurazione di un'applicazione secondaria React-with-Redux in IIS, vedere il [modello ReactRedux 2,1: Impossibile utilizzare Spa in IIS (ASPNET/template &num; 555)](https://github.com/aspnet/Templating/issues/555).

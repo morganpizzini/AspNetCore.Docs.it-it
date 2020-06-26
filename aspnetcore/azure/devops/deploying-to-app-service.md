@@ -7,17 +7,19 @@ ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: 811b6d047e344fa98ce14f436d3cd8f03c786aff
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7cf6395b6f57413d85532ed15e5a875af10f905b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767031"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400388"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Distribuire un'app nel servizio app
 
@@ -35,13 +37,13 @@ In questa sezione verranno eseguite le attività seguenti:
 
 ## <a name="download-and-test-the-app"></a>Scaricare e testare l'app
 
-L'app usata in questa guida è un'app ASP.NET Core predefinita, un [lettore di feed semplice](https://github.com/Azure-Samples/simple-feed-reader/). Si tratta di Razor un'app di pagine che `Microsoft.SyndicationFeed.ReaderWriter` usa l'API per recuperare un feed RSS/Atom e visualizzare le voci di notizie in un elenco.
+L'app usata in questa guida è un'app ASP.NET Core predefinita, un [lettore di feed semplice](https://github.com/Azure-Samples/simple-feed-reader/). Si tratta di un' Razor app di pagine che usa l' `Microsoft.SyndicationFeed.ReaderWriter` API per recuperare un feed RSS/Atom e visualizzare le voci di notizie in un elenco.
 
 È possibile esaminare il codice, ma è importante comprendere che non c'è niente di speciale sull'app. Si tratta semplicemente di una semplice app ASP.NET Core a scopo illustrativo.
 
 Da una shell dei comandi scaricare il codice, compilare il progetto ed eseguirlo come indicato di seguito.
 
-> *Nota: gli utenti Linux/macOS devono apportare le modifiche appropriate per i percorsi, ad esempio usando la`/`barra () anziché la barra`\`rovesciata ().*
+> *Nota: gli utenti Linux/macOS devono apportare le modifiche appropriate per i percorsi, ad esempio usando la barra ( `/` ) anziché la barra rovesciata ( `\` ).*
 
 1. Clonare il codice in una cartella nel computer locale.
 
@@ -73,7 +75,7 @@ Da una shell dei comandi scaricare il codice, compilare il progetto ed eseguirlo
 
      ![L'app che Visualizza il contenuto di un feed RSS](./media/deploying-to-app-service/app-in-browser.png)
 
-6. Una volta soddisfatta la corretta esecuzione dell'app, chiuderla premendo **CTRL**+**C** nella shell dei comandi.
+6. Una volta soddisfatta la corretta esecuzione dell'app, chiuderla premendo **CTRL** + **C** nella shell dei comandi.
 
 ## <a name="create-the-azure-app-service-web-app"></a>Creare l'app Web del servizio app Azure
 
@@ -83,7 +85,7 @@ Per distribuire l'app, è necessario creare un' [app Web](/azure/app-service/app
 
 2. Usare il Cloud Shell per i passaggi seguenti.
 
-    a. Dichiarare una variabile per archiviare il nome dell'app Web. Il nome deve essere univoco per essere usato nell'URL predefinito. L'uso `$RANDOM` della funzione bash per costruire il nome garantisce l'univocità e restituisce `webappname99999`il formato.
+    a. Dichiarare una variabile per archiviare il nome dell'app Web. Il nome deve essere univoco per essere usato nell'URL predefinito. L'uso della `$RANDOM` funzione bash per costruire il nome garantisce l'univocità e restituisce il formato `webappname99999` .
 
     ```console
     webappname=mywebapp$RANDOM
@@ -127,7 +129,7 @@ Per distribuire l'app, è necessario creare un' [app Web](/azure/app-service/app
     echo Web app URL: http://$webappname.azurewebsites.net
     ```
 
-3. Utilizzando una shell dei comandi nel computer locale, passare alla cartella del progetto dell'app Web (ad esempio, `.\simple-feed-reader\SimpleFeedReader`). Eseguire i comandi seguenti per impostare git per eseguire il push all'URL di distribuzione:
+3. Utilizzando una shell dei comandi nel computer locale, passare alla cartella del progetto dell'app Web (ad esempio, `.\simple-feed-reader\SimpleFeedReader` ). Eseguire i comandi seguenti per impostare git per eseguire il push all'URL di distribuzione:
 
     a. Aggiungere l'URL remoto al repository locale.
 
@@ -143,17 +145,17 @@ Per distribuire l'app, è necessario creare un' [app Web](/azure/app-service/app
 
     Verranno richieste le credenziali di distribuzione create in precedenza. Osservare l'output nella shell dei comandi. Azure compila l'app ASP.NET Core in modalità remota.
 
-4. In un browser passare all'URL dell' *app Web* e notare che l'app è stata compilata e distribuita. È possibile eseguire il commit di altre modifiche nel repository git `git commit`locale con. Queste modifiche vengono inserite in Azure con il comando `git push` precedente.
+4. In un browser passare all'URL dell' *app Web* e notare che l'app è stata compilata e distribuita. È possibile eseguire il commit di altre modifiche nel repository git locale con `git commit` . Queste modifiche vengono inserite in Azure con il `git push` comando precedente.
 
 ## <a name="deployment-with-visual-studio"></a>Distribuzione con Visual Studio
 
-> *Nota: questa sezione si applica solo a Windows. Gli utenti di Linux e macOS devono apportare le modifiche descritte nel passaggio 2 seguente. Salvare il file ed eseguire il commit della modifica nel repository locale con `git commit`. Infine, eseguire il push della `git push`modifica con, come nella prima sezione.*
+> *Nota: questa sezione si applica solo a Windows. Gli utenti di Linux e macOS devono apportare le modifiche descritte nel passaggio 2 seguente. Salvare il file ed eseguire il commit della modifica nel repository locale con `git commit` . Infine, eseguire il push della modifica con `git push` , come nella prima sezione.*
 
 L'app è già stata distribuita dalla shell dei comandi. Usare gli strumenti integrati di Visual Studio per distribuire un aggiornamento nell'app. In background, Visual Studio esegue la stessa operazione degli strumenti da riga di comando, ma all'interno dell'interfaccia utente familiare di Visual Studio.
 
 1. Aprire *SimpleFeedReader. sln* in Visual Studio.
 2. In Esplora soluzioni aprire *Pages\Index.cshtml*. Cambiare `<h2>Simple Feed Reader</h2>` in `<h2>Simple Feed Reader - V2</h2>`.
-3. Premere **CTRL**+**MAIUSC**+**B** per compilare l'app.
+3. Premere **CTRL** + **MAIUSC** + **B** per compilare l'app.
 4. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto e scegliere **pubblica**.
 
     ![Screenshot che mostra il pulsante destro del mouse, pubblica](./media/deploying-to-app-service/publish.png)

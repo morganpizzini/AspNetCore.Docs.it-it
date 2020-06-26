@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/09/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/http-requests
-ms.openlocfilehash: a54861945d97728336149d5ffb39952c3d61b7bd
-ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
+ms.openlocfilehash: 578263978959100e266626aeccccc0830d9462b7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84724263"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399114"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Effettuare richieste HTTP usando IHttpClientFactory in ASP.NET Core
 
@@ -238,7 +240,7 @@ Per ulteriori informazioni sull'utilizzo di verbi HTTP diversi con `HttpClient` 
   * È simile alla pipeline del middleware in ingresso in ASP.NET Core.
   * Fornisce un meccanismo per gestire le problematiche trasversali relative alle richieste HTTP, ad esempio:
 
-    * memorizzazione nella cache
+    * caching
     * gestione degli errori
     * serializzazione
     * registrazione

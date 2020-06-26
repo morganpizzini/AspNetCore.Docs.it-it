@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 31e72eeac415f10d573de455f19aa8ff34743356
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 91f2aa893c06728b4b71d010241a2cb5a307ae0b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242401"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400193"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-blazor"></a>Chiamare i metodi .NET da funzioni JavaScript in ASP.NET CoreBlazor
 
@@ -32,7 +34,7 @@ Questo articolo descrive come richiamare i metodi .NET da JavaScript. Per inform
 
 ## <a name="static-net-method-call"></a>Chiamata al metodo .NET statico
 
-Per richiamare un metodo .NET statico da JavaScript, usare le `DotNet.invokeMethod` `DotNet.invokeMethodAsync` funzioni o. Passare l'identificatore del metodo statico che si desidera chiamare, il nome dell'assembly che contiene la funzione e gli eventuali argomenti. La versione asincrona è preferibile per supportare Blazor scenari server. Il metodo .NET deve essere pubblico, statico e avere l' [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) attributo. La chiamata ai metodi generici aperti non è attualmente supportata.
+Per richiamare un metodo .NET statico da JavaScript, usare le `DotNet.invokeMethod` `DotNet.invokeMethodAsync` funzioni o. Passare l'identificatore del metodo statico che si desidera chiamare, il nome dell'assembly che contiene la funzione e gli eventuali argomenti. Per supportare gli scenari è preferibile la versione asincrona Blazor Server . Il metodo .NET deve essere pubblico, statico e avere l' [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) attributo. La chiamata ai metodi generici aperti non è attualmente supportata.
 
 L'app di esempio include un metodo C# per restituire una `int` matrice. L' [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) attributo viene applicato al metodo.
 
@@ -377,4 +379,4 @@ Per ulteriori informazioni, vedere i seguenti problemi:
 
 * <xref:blazor/call-javascript-from-dotnet>
 * [`InteropComponent.razor`esempio (repository GitHub DotNet/AspNetCore, ramo di versione 3,1)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
-* [Eseguire trasferimenti di dati di grandi dimensioni nelle Blazor app Server](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)
+* [Eseguire trasferimenti di dati di grandi dimensioni nelle Blazor Server app](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)

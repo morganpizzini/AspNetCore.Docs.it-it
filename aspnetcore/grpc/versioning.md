@@ -7,17 +7,19 @@ ms.author: jamesnk
 ms.date: 01/09/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: grpc/versioning
-ms.openlocfilehash: dcf089f1e5f27639d048e91ee3aa42c7da6d8398
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: af8c6cac621ed073fc34e2afe0402e640c2c5727
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775362"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400011"
 ---
 # <a name="versioning-grpc-services"></a>Controllo delle versioni dei servizi gRPC
 
@@ -54,7 +56,7 @@ Le modifiche seguenti non sono in fase di suddivisione a livello di protocollo g
 
 * La **rimozione di un** valore di campo da un campo rimosso viene deserializzata [nei campi sconosciuti](https://developers.google.com/protocol-buffers/docs/proto3#unknowns)di un messaggio. Non si tratta di una modifica di rilievo del protocollo gRPC, ma il client deve essere aggiornato in caso di aggiornamento al contratto più recente. È importante che un numero di campo rimosso non venga accidentalmente riutilizzato in futuro. Per assicurarsi che non si verifichi questo problema, specificare i nomi e i numeri di campo eliminati nel messaggio usando la parola chiave [riservata](https://developers.google.com/protocol-buffers/docs/proto3#reserved) di protobuf.
 * **Ridenominazione di un messaggio** : i nomi dei messaggi non vengono in genere inviati in rete, quindi non si tratta di una modifica di rilievo del protocollo gRPC. Il client dovrà essere aggiornato in caso di aggiornamento al contratto più recente. Una situazione in cui i nomi dei messaggi **vengono** inviati sulla rete è con [qualsiasi](https://developers.google.com/protocol-buffers/docs/proto3#any) campo, quando il nome del messaggio viene utilizzato per identificare il tipo di messaggio.
-* Se `csharp_namespace` si **modifica csharp_namespace** , viene modificato lo spazio dei nomi dei tipi .NET generati. Non si tratta di una modifica di rilievo del protocollo gRPC, ma il client deve essere aggiornato in caso di aggiornamento al contratto più recente.
+* Se si **modifica csharp_namespace** , `csharp_namespace` viene modificato lo spazio dei nomi dei tipi .NET generati. Non si tratta di una modifica di rilievo del protocollo gRPC, ma il client deve essere aggiornato in caso di aggiornamento al contratto più recente.
 
 ### <a name="protocol-breaking-changes"></a>Modifiche di rilievo del protocollo
 
