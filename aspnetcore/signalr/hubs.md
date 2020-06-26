@@ -1,24 +1,26 @@
 ---
 title: Usare gli hub in ASP.NET CoreSignalR
 author: bradygaster
-description: Informazioni su come usare gli hub in SignalRASP.NET Core.
+description: Informazioni su come usare gli hub in ASP.NET Core SignalR .
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/hubs
-ms.openlocfilehash: 6ea8a8e9ffb6549a285f320eb0a4a2e5d218483a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 1757d205b583c8b3f3bbf845594d7228f8d45175
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775219"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408552"
 ---
 # <a name="use-hubs-in-signalr-for-aspnet-core"></a>Usare gli hub in SignalR per ASP.NET Core
 
@@ -26,19 +28,19 @@ Di [Rachel Appel](https://twitter.com/rachelappel) e [Kevin Griffin](https://twi
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) [(procedura per il download)](xref:index#how-to-download-a-sample)
 
-## <a name="what-is-a-signalr-hub"></a>Che cos'è un hub SignalR
+## <a name="what-is-a-signalr-hub"></a>Che cos'è un SignalR Hub
 
-L'API degli hub SignalR consente di chiamare i metodi sui client connessi dal server. Nel codice del server si definiscono i metodi che vengono chiamati dal client. Nel codice client è possibile definire metodi che vengono chiamati dal server. SignalR si occupa di tutto ciò che rende possibile le comunicazioni tra client e server in tempo reale e da server a client.
+L' SignalR API Hub consente di chiamare i metodi sui client connessi dal server. Nel codice del server si definiscono i metodi che vengono chiamati dal client. Nel codice client è possibile definire metodi che vengono chiamati dal server. SignalRgestisce tutti gli elementi dietro le quinte che rendono possibili le comunicazioni da client a server e da server a client in tempo reale.
 
-## <a name="configure-signalr-hubs"></a>Configurare gli hub SignalR
+## <a name="configure-signalr-hubs"></a>Configurare gli SignalR Hub
 
-Il middleware SignalR richiede alcuni servizi, che vengono configurati `services.AddSignalR`chiamando.
+Il SignalR middleware richiede alcuni servizi, che vengono configurati chiamando `services.AddSignalR` .
 
 [!code-csharp[Configure service](hubs/sample/startup.cs?range=38)]
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Quando si aggiungono funzionalità SignalR a un'app ASP.NET Core, configurare le `endpoint.MapHub` `Startup.Configure` Route SignalR chiamando nel `app.UseEndpoints` callback del metodo.
+Quando si aggiungono SignalR funzionalità a un'app ASP.NET Core, SignalR le route vengono impostate chiamando `endpoint.MapHub` nel callback del `Startup.Configure` metodo `app.UseEndpoints` .
 
 ```csharp
 app.UseRouting();
@@ -52,7 +54,7 @@ app.UseEndpoints(endpoints =>
 
 ::: moniker range="<= aspnetcore-2.2"
 
-Quando si aggiungono funzionalità SignalR a un'app ASP.NET Core, configurare le `app.UseSignalR` `Startup.Configure` Route SignalR chiamando nel metodo.
+Quando si aggiungono SignalR funzionalità a un'app ASP.NET Core, SignalR le route vengono impostate chiamando `app.UseSignalR` nel `Startup.Configure` metodo.
 
 [!code-csharp[Configure routes to hubs](hubs/sample/startup.cs?range=57-60)]
 
@@ -60,7 +62,7 @@ Quando si aggiungono funzionalità SignalR a un'app ASP.NET Core, configurare le
 
 ## <a name="create-and-use-hubs"></a>Creare e usare gli hub
 
-Creare un hub dichiarando una classe che eredita da `Hub`e aggiungervi metodi pubblici. I client possono chiamare metodi definiti come `public`.
+Creare un hub dichiarando una classe che eredita da `Hub` e aggiungervi metodi pubblici. I client possono chiamare metodi definiti come `public` .
 
 ```csharp
 public class ChatHub : Hub
@@ -72,39 +74,39 @@ public class ChatHub : Hub
 }
 ```
 
-È possibile specificare un tipo restituito e i parametri, inclusi i tipi e le matrici complessi, come si farebbe con qualsiasi metodo C#. SignalR gestisce la serializzazione e la deserializzazione di oggetti e matrici complessi nei parametri e valori restituiti.
+È possibile specificare un tipo restituito e i parametri, inclusi i tipi e le matrici complessi, come si farebbe con qualsiasi metodo C#. SignalRgestisce la serializzazione e la deserializzazione di oggetti e matrici complessi nei parametri e valori restituiti.
 
 > [!NOTE]
 > Gli hub sono temporanei:
 >
 > * Non archiviare lo stato in una proprietà nella classe Hub. Ogni chiamata al metodo dell'hub viene eseguita su una nuova istanza dell'hub.
-> * Usare `await` quando si chiamano metodi asincroni che dipendono dall'hub rimanendo attivo. Ad esempio, un metodo come `Clients.All.SendAsync(...)` può avere esito negativo se viene chiamato `await` senza e il metodo Hub viene completato `SendAsync` prima del completamento.
+> * Usare `await` quando si chiamano metodi asincroni che dipendono dall'hub rimanendo attivo. Ad esempio, un metodo come `Clients.All.SendAsync(...)` può avere esito negativo se viene chiamato senza `await` e il metodo Hub viene completato prima del completamento `SendAsync` .
 
 ## <a name="the-context-object"></a>Oggetto context
 
-La `Hub` classe dispone di `Context` una proprietà che contiene le proprietà seguenti con le informazioni sulla connessione:
+La `Hub` classe dispone di una `Context` proprietà che contiene le proprietà seguenti con le informazioni sulla connessione:
 
-| Proprietà | Description |
+| Proprietà | Descrizione |
 | ------ | ----------- |
-| `ConnectionId` | Ottiene l'ID univoco per la connessione, assegnato da SignalR. È presente un ID di connessione per ogni connessione.|
-| `UserIdentifier` | Ottiene l' [identificatore utente](xref:signalr/groups). Per impostazione predefinita, SignalR USA `ClaimTypes.NameIdentifier` la classe `ClaimsPrincipal` dalla classe associata alla connessione come identificatore utente. |
-| `User` | Ottiene l' `ClaimsPrincipal` oggetto associato all'utente corrente. |
+| `ConnectionId` | Ottiene l'ID univoco per la connessione, assegnato da SignalR . È presente un ID di connessione per ogni connessione.|
+| `UserIdentifier` | Ottiene l' [identificatore utente](xref:signalr/groups). Per impostazione predefinita, SignalR utilizza l'oggetto `ClaimTypes.NameIdentifier` dall'oggetto associato alla `ClaimsPrincipal` connessione come identificatore utente. |
+| `User` | Ottiene l'oggetto `ClaimsPrincipal` associato all'utente corrente. |
 | `Items` | Ottiene una raccolta chiave/valore che può essere utilizzata per condividere i dati nell'ambito di questa connessione. I dati possono essere archiviati in questa raccolta e verranno mantenuti per la connessione tra diverse chiamate al metodo dell'hub. |
 | `Features` | Ottiene la raccolta di funzionalità disponibili nella connessione. Per il momento, questa raccolta non è necessaria nella maggior parte degli scenari, quindi non è ancora documentata in dettaglio. |
-| `ConnectionAborted` | Ottiene un `CancellationToken` oggetto che invia una notifica quando la connessione viene interrotta. |
+| `ConnectionAborted` | Ottiene un oggetto che invia una `CancellationToken` notifica quando la connessione viene interrotta. |
 
 `Hub.Context`contiene inoltre i metodi seguenti:
 
 | Metodo | Descrizione |
 | ------ | ----------- |
-| `GetHttpContext` | Restituisce l' `HttpContext` oggetto per la connessione o `null` se la connessione non è associata a una richiesta HTTP. Per le connessioni HTTP, è possibile usare questo metodo per ottenere informazioni come le intestazioni HTTP e le stringhe di query. |
+| `GetHttpContext` | Restituisce l'oggetto `HttpContext` per la connessione o `null` se la connessione non è associata a una richiesta HTTP. Per le connessioni HTTP, è possibile usare questo metodo per ottenere informazioni come le intestazioni HTTP e le stringhe di query. |
 | `Abort` | Interrompe la connessione. |
 
 ## <a name="the-clients-object"></a>Oggetto clients
 
-La `Hub` classe dispone di `Clients` una proprietà che contiene le proprietà seguenti per la comunicazione tra server e client:
+La `Hub` classe dispone di una `Clients` proprietà che contiene le proprietà seguenti per la comunicazione tra server e client:
 
-| Proprietà | Description |
+| Proprietà | Descrizione |
 | ------ | ----------- |
 | `All` | Chiama un metodo su tutti i client connessi |
 | `Caller` | Chiama un metodo sul client che ha richiamato il metodo Hub |
@@ -130,27 +132,27 @@ Ogni proprietà o metodo nelle tabelle precedenti restituisce un oggetto con un 
 
 Per effettuare chiamate a client specifici, utilizzare le proprietà dell' `Clients` oggetto. Nell'esempio seguente sono disponibili tre metodi dell'hub:
 
-* `SendMessage`Invia un messaggio a tutti i client connessi tramite `Clients.All`.
-* `SendMessageToCaller`Invia un messaggio di nuovo al chiamante utilizzando `Clients.Caller`.
+* `SendMessage`Invia un messaggio a tutti i client connessi tramite `Clients.All` .
+* `SendMessageToCaller`Invia un messaggio di nuovo al chiamante utilizzando `Clients.Caller` .
 * `SendMessageToGroups`Invia un messaggio a tutti i client del `SignalR Users` gruppo.
 
 [!code-csharp[Send messages](hubs/sample/hubs/chathub.cs?name=HubMethods)]
 
 ## <a name="strongly-typed-hubs"></a>Hub fortemente tipizzati
 
-Uno svantaggio dell'uso `SendAsync` di è che si basa su una stringa magica per specificare il metodo client da chiamare. In questo modo si lascia il codice aperto agli errori di runtime se il nome del metodo non è stato digitato correttamente o non è presente nel client.
+Uno svantaggio dell'uso di `SendAsync` è che si basa su una stringa magica per specificare il metodo client da chiamare. In questo modo si lascia il codice aperto agli errori di runtime se il nome del metodo non è stato digitato correttamente o non è presente nel client.
 
-Un'alternativa all'utilizzo `SendAsync` di consiste nel digitare fortemente `Hub` con <xref:Microsoft.AspNetCore.SignalR.Hub%601>. Nell'esempio seguente, i `ChatHub` metodi client sono stati estratti in un'interfaccia denominata. `IChatClient`
+Un'alternativa all'utilizzo di `SendAsync` consiste nel digitare fortemente `Hub` con <xref:Microsoft.AspNetCore.SignalR.Hub%601> . Nell'esempio seguente, i `ChatHub` metodi client sono stati estratti in un'interfaccia denominata `IChatClient` .
 
 [!code-csharp[Interface for IChatClient](hubs/sample/hubs/ichatclient.cs?name=snippet_IChatClient)]
 
-Questa interfaccia può essere utilizzata per effettuare il refactoring `ChatHub` dell'esempio precedente.
+Questa interfaccia può essere utilizzata per effettuare il refactoring dell' `ChatHub` esempio precedente.
 
 [!code-csharp[Strongly typed ChatHub](hubs/sample/hubs/StronglyTypedChatHub.cs?range=8-18,36)]
 
-Tramite `Hub<IChatClient>` viene abilitato il controllo in fase di compilazione dei metodi client. In questo modo si evitano i problemi causati dall' `Hub<T>` uso di stringhe magiche, poiché può fornire solo l'accesso ai metodi definiti nell'interfaccia.
+Tramite viene `Hub<IChatClient>` abilitato il controllo in fase di compilazione dei metodi client. In questo modo si evitano i problemi causati dall'uso di stringhe magiche, poiché `Hub<T>` può fornire solo l'accesso ai metodi definiti nell'interfaccia.
 
-L'uso di un `Hub<T>` oggetto fortemente tipizzato Disabilita la possibilità `SendAsync`di usare. Tutti i metodi definiti nell'interfaccia possono comunque essere definiti come asincroni. Ognuno di questi metodi deve infatti restituire `Task`. Poiché si tratta di un'interfaccia, non usare `async` la parola chiave. Ad esempio:
+L'uso di un oggetto fortemente tipizzato `Hub<T>` Disabilita la possibilità di usare `SendAsync` . Tutti i metodi definiti nell'interfaccia possono comunque essere definiti come asincroni. Ognuno di questi metodi deve infatti restituire `Task` . Poiché si tratta di un'interfaccia, non usare la `async` parola chiave. Ad esempio:
 
 ```csharp
 public interface IClient
@@ -160,7 +162,7 @@ public interface IClient
 ```
 
 > [!NOTE]
-> Il `Async` suffisso non viene rimosso dal nome del metodo. A meno che il metodo client non sia `.on('MyMethodAsync')`definito con, non `MyMethodAsync` è consigliabile utilizzare come nome.
+> Il `Async` suffisso non viene rimosso dal nome del metodo. A meno che il metodo client non sia definito con, non è consigliabile `.on('MyMethodAsync')` utilizzare `MyMethodAsync` come nome.
 
 ## <a name="change-the-name-of-a-hub-method"></a>Modificare il nome di un metodo Hub
 
@@ -170,11 +172,11 @@ Per impostazione predefinita, un nome di metodo dell'Hub server è il nome del m
 
 ## <a name="handle-events-for-a-connection"></a>Gestire gli eventi per una connessione
 
-L' SignalR API Hub fornisce i `OnConnectedAsync` metodi `OnDisconnectedAsync` virtuali e per gestire e tenere traccia delle connessioni. Eseguire l' `OnConnectedAsync` override del metodo virtuale per eseguire azioni quando un client si connette all'hub, ad esempio aggiungendolo a un gruppo.
+L' SignalR API Hub fornisce i `OnConnectedAsync` `OnDisconnectedAsync` metodi virtuali e per gestire e tenere traccia delle connessioni. Eseguire l'override del `OnConnectedAsync` metodo virtuale per eseguire azioni quando un client si connette all'hub, ad esempio aggiungendolo a un gruppo.
 
 [!code-csharp[Handle connection](hubs/sample/hubs/chathub.cs?name=OnConnectedAsync)]
 
-Eseguire l' `OnDisconnectedAsync` override del metodo virtuale per eseguire azioni quando un client si disconnette. Se il client si disconnette intenzionalmente (chiamando `connection.stop()`, ad esempio), il `exception` parametro sarà. `null` Tuttavia, se il client è disconnesso a causa di un errore, ad esempio un errore di rete `exception` , il parametro conterrà un'eccezione che descrive l'errore.
+Eseguire l'override del `OnDisconnectedAsync` metodo virtuale per eseguire azioni quando un client si disconnette. Se il client si disconnette intenzionalmente (chiamando `connection.stop()` , ad esempio), il `exception` parametro sarà `null` . Tuttavia, se il client è disconnesso a causa di un errore, ad esempio un errore di rete, il parametro conterrà `exception` un'eccezione che descrive l'errore.
 
 [!code-csharp[Handle disconnection](hubs/sample/hubs/chathub.cs?name=OnDisconnectedAsync)]
 
@@ -182,11 +184,11 @@ Eseguire l' `OnDisconnectedAsync` override del metodo virtuale per eseguire azio
 
 ## <a name="handle-errors"></a>Gestire gli errori
 
-Le eccezioni generate nei metodi dell'hub vengono inviate al client che ha richiamato il metodo. Nel client JavaScript il `invoke` metodo restituisce una [promessa JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). Quando il client riceve un errore con un gestore associato alla promessa usando `catch`, viene richiamato e passato come oggetto JavaScript. `Error`
+Le eccezioni generate nei metodi dell'hub vengono inviate al client che ha richiamato il metodo. Nel client JavaScript il `invoke` metodo restituisce una [promessa JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). Quando il client riceve un errore con un gestore associato alla promessa usando `catch` , viene richiamato e passato come `Error` oggetto JavaScript.
 
 [!code-javascript[Error](hubs/sample/wwwroot/js/chat.js?range=23)]
 
-Se l'Hub genera un'eccezione, le connessioni non vengono chiuse. Per impostazione predefinita SignalR , nel client viene restituito un messaggio di errore generico. Ad esempio:
+Se l'Hub genera un'eccezione, le connessioni non vengono chiuse. Per impostazione predefinita, nel SignalR client viene restituito un messaggio di errore generico. Ad esempio:
 
 ```
 Microsoft.AspNetCore.SignalR.HubException: An unexpected error occurred invoking 'MethodName' on the server.
@@ -194,7 +196,7 @@ Microsoft.AspNetCore.SignalR.HubException: An unexpected error occurred invoking
 
 Le eccezioni impreviste spesso contengono informazioni riservate, ad esempio il nome di un server di database in un'eccezione attivata quando la connessione al database non riesce. SignalRnon espone questi messaggi di errore dettagliati per impostazione predefinita come misura di sicurezza. Vedere l' [articolo Considerazioni sulla sicurezza](xref:signalr/security#exceptions) per ulteriori informazioni sul motivo per cui i dettagli dell'eccezione vengono eliminati.
 
-Se si ha una condizione *eccezionale da* propagare al client, è possibile usare la `HubException` classe. Se si genera un' `HubException` operazione dal metodo Hub, SignalR invierà l'intero messaggio al **client, senza** modifiche.
+Se si ha una condizione *eccezionale da* propagare al client, è possibile usare la `HubException` classe. Se si genera un'operazione `HubException` dal metodo Hub, SignalR **will** invierà l'intero messaggio al client, senza modifiche.
 
 [!code-csharp[ThrowHubException](hubs/sample/hubs/chathub.cs?name=ThrowHubException&highlight=3)]
 

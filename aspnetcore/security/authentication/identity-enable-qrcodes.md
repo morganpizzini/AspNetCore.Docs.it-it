@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 08/14/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/identity-enable-qrcodes
-ms.openlocfilehash: 42ddddeaa329ac5ff5b2b40cbf9ebffa68f6d4cf
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4ed5a550b5d3ca00179ae0492bf61e7fe91e324c
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774431"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408773"
 ---
 # <a name="enable-qr-code-generation-for-totp-authenticator-apps-in-aspnet-core"></a>Abilitare la generazione di codice a matrice per le app TOTP Authenticator in ASP.NET Core
 
@@ -36,22 +38,22 @@ L'autenticazione a due fattori non viene eseguita con un provider di autenticazi
 
 ## <a name="adding-qr-codes-to-the-2fa-configuration-page"></a>Aggiunta di codici QR alla pagina di configurazione di 2FA
 
-Queste istruzioni usano *QRCode. js* dal https://davidshimjs.github.io/qrcodejs/ repository.
+Queste istruzioni usano *qrcode.js* dal https://davidshimjs.github.io/qrcodejs/ repository.
 
-* Scaricare la [libreria JavaScript QRCode. js](https://davidshimjs.github.io/qrcodejs/) nella `wwwroot\lib` cartella del progetto.
+* Scaricare la [libreria javascriptqrcode.js](https://davidshimjs.github.io/qrcodejs/) `wwwroot\lib` nella cartella del progetto.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* Seguire le istruzioni riportate in [impalcatura Identity ](xref:security/authentication/scaffold-identity) per generare */areas/Identity/Pages/account/Manage/EnableAuthenticator.cshtml*.
-* In */areas/Identity/Pages/account/Manage/EnableAuthenticator.cshtml*individuare la `Scripts` sezione alla fine del file:
+* Seguire le istruzioni riportate in [impalcatura Identity ](xref:security/authentication/scaffold-identity) per generare */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml*.
+* In */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml*individuare la `Scripts` sezione alla fine del file:
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-* In *pages/account/Manage/EnableAuthenticator. cshtml* (Razor Pages) o *views/Manage/EnableAuthenticator. cshtml* (MVC `Scripts` ) individuare la sezione alla fine del file:
+* In *pages/account/Manage/EnableAuthenticator. cshtml* ( Razor pages) o *views/Manage/EnableAuthenticator. cshtml* (MVC) individuare la `Scripts` sezione alla fine del file:
 
 ::: moniker-end
 
@@ -91,13 +93,13 @@ Eseguire l'app e verificare che sia possibile eseguire la scansione del codice a
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Il nome del sito nel codice a matrice viene ricavato dal nome del progetto scelto durante la creazione iniziale del progetto. È possibile modificarlo cercando il `GenerateQrCodeUri(string email, string unformattedKey)` metodo in */areas/Identity/Pages/account/Manage/EnableAuthenticator.cshtml.cs*.
+Il nome del sito nel codice a matrice viene ricavato dal nome del progetto scelto durante la creazione iniziale del progetto. È possibile modificarlo cercando il `GenerateQrCodeUri(string email, string unformattedKey)` metodo in */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml.cs*.
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-Il nome del sito nel codice a matrice viene ricavato dal nome del progetto scelto durante la creazione iniziale del progetto. È possibile `GenerateQrCodeUri(string email, string unformattedKey)` modificarlo cercando il metodo nel file *pages/account/Manage/EnableAuthenticator. cshtml. cs* (Razor Pages) o nel file *Controllers/ManageController. cs* (MVC).
+Il nome del sito nel codice a matrice viene ricavato dal nome del progetto scelto durante la creazione iniziale del progetto. È possibile modificarlo cercando il `GenerateQrCodeUri(string email, string unformattedKey)` metodo nel file *pages/account/Manage/EnableAuthenticator. cshtml. cs* ( Razor pages) o nel file *Controllers/ManageController. cs* (MVC).
 
 ::: moniker-end
 
@@ -120,7 +122,7 @@ Il secondo parametro nella chiamata a `string.Format` è il nome del sito, tratt
 
 ## <a name="using-a-different-qr-code-library"></a>Uso di una libreria di codice QR diversa
 
-È possibile sostituire la libreria di codici QR con la libreria preferita. Il codice HTML contiene `qrCode` un elemento in cui è possibile inserire un codice a matrice in base a qualsiasi meccanismo fornito dalla libreria.
+È possibile sostituire la libreria di codici QR con la libreria preferita. Il codice HTML contiene un `qrCode` elemento in cui è possibile inserire un codice a matrice in base a qualsiasi meccanismo fornito dalla libreria.
 
 L'URL correttamente formattato per il codice a matrice è disponibile in:
 

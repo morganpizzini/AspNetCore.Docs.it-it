@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/policyschemes
-ms.openlocfilehash: ddedf62c5e8363bd93c9948fd2d3418abc566539
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a8bde9633f06f41ebcb55480eb2322544db4b4da
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767317"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408760"
 ---
 # <a name="policy-schemes-in-aspnet-core"></a>Schemi di criteri in ASP.NET Core
 
@@ -25,14 +27,14 @@ Gli schemi dei criteri di autenticazione rendono più semplice disporre di un si
 * Facile da inviare qualsiasi azione di autenticazione a un altro schema.
 * In avanti in modo dinamico in base alla richiesta.
 
-Tutti gli schemi di autenticazione che <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> utilizzano le [>e\< ](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1)derivate e AuthenticationHandler associate:
+Tutti gli schemi di autenticazione che usano Derived <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> e il [AuthenticationHandler \<TOptions> ](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1)associato:
 
 * Gli schemi di criteri sono automaticamente in ASP.NET Core 2,1 e versioni successive.
 * Può essere abilitato tramite la configurazione delle opzioni dello schema.
 
 [!code-csharp[sample](policyschemes/samples/AuthenticationSchemeOptions.cs?name=snippet)]
 
-## <a name="examples"></a>Esempi
+## <a name="examples"></a>Esempio
 
 Nell'esempio seguente viene illustrato uno schema di livello superiore che combina schemi di livello inferiore. L'autenticazione di Google viene utilizzata per le richieste e l'autenticazione dei cookie viene utilizzata per tutte le altre operazioni:
 

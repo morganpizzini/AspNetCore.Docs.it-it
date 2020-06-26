@@ -8,17 +8,19 @@ ms.date: 09/22/2018
 ms.custom: mvc, seodec18
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/2fa
-ms.openlocfilehash: e33f22356de983c8c4e0211822d5027a33b48de6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 032650296cfdcc4fef632c6a6a9ce2b56db6a6df
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775830"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408578"
 ---
 # <a name="two-factor-authentication-with-sms-in-aspnet-core"></a>Autenticazione a due fattori con SMS in ASP.NET Core
 
@@ -33,7 +35,7 @@ Questa esercitazione illustra come configurare l'autenticazione a due fattori (2
 
 ## <a name="create-a-new-aspnet-core-project"></a>Creare un nuovo progetto ASP.NET Core
 
-Creare una nuova app Web di ASP.NET Core `Web2FA` denominata con singoli account utente. Seguire le istruzioni in <xref:security/enforcing-ssl> per configurare e richiedere HTTPS.
+Creare una nuova app Web di ASP.NET Core denominata `Web2FA` con singoli account utente. Seguire le istruzioni in <xref:security/enforcing-ssl> per configurare e richiedere HTTPS.
 
 ### <a name="create-an-sms-account"></a>Creare un account SMS
 
@@ -49,7 +51,7 @@ Dalla scheda Dashboard dell'account Twilio copiare il **SID dell'account** e il 
 
 Dalle impostazioni dell'account passare a **userKey** e copiarlo insieme alla **password**.
 
-Questi valori vengono archiviati in un secondo momento con lo strumento di gestione del segreto all' `SMSAccountIdentification` interno `SMSAccountPassword`delle chiavi e.
+Questi valori vengono archiviati in un secondo momento con lo strumento di gestione del segreto all'interno delle chiavi `SMSAccountIdentification` e `SMSAccountPassword` .
 
 #### <a name="specifying-senderid--originator"></a>Specifica di SenderID/originator
 
@@ -57,7 +59,7 @@ Questi valori vengono archiviati in un secondo momento con lo strumento di gesti
 
 **ASPSMS:** Nel menu Sblocca autori sbloccare uno o più autori o scegliere un originatore alfanumerico (non supportato da tutte le reti).
 
-Questo valore verrà archiviato in un secondo momento con lo strumento di gestione del segreto `SMSAccountFrom`all'interno della chiave.
+Questo valore verrà archiviato in un secondo momento con lo strumento di gestione del segreto all'interno della chiave `SMSAccountFrom` .
 
 ### <a name="provide-credentials-for-the-sms-service"></a>Fornire le credenziali per il servizio SMS
 
@@ -67,7 +69,7 @@ Per accedere all'account utente e alle impostazioni della chiave verrà usato il
 
 [!code-csharp[](2fa/sample/Web2FA/Services/SMSoptions.cs)]
 
-`SMSAccountIdentification`Impostare `SMSAccountPassword` e `SMSAccountFrom` con lo strumento di [gestione dei segreti](xref:security/app-secrets). Ad esempio:
+Impostare `SMSAccountIdentification` `SMSAccountPassword` e `SMSAccountFrom` con lo strumento di [gestione dei segreti](xref:security/app-secrets). Ad esempio:
 
 ```none
 C:/Web2FA/src/WebApp1>dotnet user-secrets set SMSAccountIdentification 12345
@@ -152,7 +154,7 @@ Il blocco degli account è consigliato con 2FA. Quando un utente accede tramite 
 
 [!code-csharp[](2fa/sample/Web2FA/Startup.cs?name=snippet2&highlight=13-17)]
 
-Confermare che [PasswordSignInAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync) imposta `lockoutOnFailure` su `true`:
+Confermare che [PasswordSignInAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.passwordsigninasync) imposta `lockoutOnFailure` su `true` :
 
 ```csharp
 var result = await _signInManager.PasswordSignInAsync(

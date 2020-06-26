@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/02/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/cross-site-scripting
-ms.openlocfilehash: 5a14042db6250d5f7a47acaf4083b44272c606ab
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a94fe1612c023468238f09a91ddb0346b65d52ba
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777488"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408019"
 ---
 # <a name="prevent-cross-site-scripting-xss-in-aspnet-core"></a>Impedisci l'esecuzione di script tra siti (XSS) in ASP.NET Core
 
@@ -26,21 +28,21 @@ Il cross-site scripting (XSS) è una vulnerabilità della sicurezza che consente
 
 ## <a name="protecting-your-application-against-xss"></a>Protezione dell'applicazione da XSS
 
-A un livello di base XSS funziona facendo in modo che l'applicazione inserisca un `<script>` tag nella pagina di cui è stato eseguito il `On*` rendering oppure inserendo un evento in un elemento. Per evitare di introdurre XSS nella propria applicazione, gli sviluppatori devono utilizzare i seguenti passaggi di prevenzione.
+A un livello di base XSS funziona facendo in modo che l'applicazione inserisca un `<script>` tag nella pagina di cui è stato eseguito il rendering oppure inserendo un `On*` evento in un elemento. Per evitare di introdurre XSS nella propria applicazione, gli sviluppatori devono utilizzare i seguenti passaggi di prevenzione.
 
 1. Non inserire mai i dati non attendibili nell'input HTML, a meno che non si segua il resto dei passaggi riportati di seguito. I dati non attendibili sono i dati che possono essere controllati da un utente malintenzionato, input di form HTML, stringhe di query, intestazioni HTTP, persino dati originati da un database, perché un utente malintenzionato potrebbe violare il database anche se non è in grado di violare l'applicazione.
 
-2. Prima di inserire dati non attendibili all'interno di un elemento HTML, assicurarsi che sia codificato in HTML. La codifica HTML accetta caratteri come &lt; e li modifica in un formato sicuro come &amp;lt;
+2. Prima di inserire dati non attendibili all'interno di un elemento HTML, assicurarsi che sia codificato in HTML. La codifica HTML accetta caratteri come &lt; e li modifica in un formato sicuro come &amp; lt;
 
 3. Prima di inserire dati non attendibili in un attributo HTML, assicurarsi che sia codificato in HTML. La codifica dell'attributo HTML è un superset della codifica HTML e codifica caratteri aggiuntivi come "and".
 
-4. Prima di inserire dati non attendibili in JavaScript, inserire i dati in un elemento HTML il cui contenuto viene recuperato in fase di esecuzione. Se ciò non è possibile, assicurarsi che i dati siano codificati in JavaScript. La codifica JavaScript accetta caratteri pericolosi per JavaScript e li sostituisce con la relativa esadecimale &lt; , ad esempio, verrebbe codificata come `\u003C`.
+4. Prima di inserire dati non attendibili in JavaScript, inserire i dati in un elemento HTML il cui contenuto viene recuperato in fase di esecuzione. Se ciò non è possibile, assicurarsi che i dati siano codificati in JavaScript. La codifica JavaScript accetta caratteri pericolosi per JavaScript e li sostituisce con la relativa esadecimale, ad esempio, &lt; verrebbe codificata come `\u003C` .
 
 5. Prima di inserire dati non attendibili in una stringa di query URL, assicurarsi che l'URL sia codificato.
 
 ## <a name="html-encoding-using-razor"></a>Codifica HTML conRazor
 
-Il Razor motore usato in MVC codifica automaticamente tutto l'output originato dalle variabili, a meno che non si stia effettivamente lavorando per impedirlo. Usa le regole di codifica degli attributi HTML quando si *@* usa la direttiva. Poiché la codifica degli attributi HTML è un superset della codifica HTML, questo significa che non è necessario preoccuparsi se è necessario usare la codifica HTML o la codifica degli attributi HTML. È necessario assicurarsi di usare @ solo in un contesto HTML, non quando si tenta di inserire input non attendibile direttamente in JavaScript. Gli helper Tag codificano inoltre l'input usato nei parametri tag.
+Il Razor motore usato in MVC codifica automaticamente tutto l'output originato dalle variabili, a meno che non si stia effettivamente lavorando per impedirlo. Usa le regole di codifica degli attributi HTML quando si usa la *@* direttiva. Poiché la codifica degli attributi HTML è un superset della codifica HTML, questo significa che non è necessario preoccuparsi se è necessario usare la codifica HTML o la codifica degli attributi HTML. È necessario assicurarsi di usare @ solo in un contesto HTML, non quando si tenta di inserire input non attendibile direttamente in JavaScript. Gli helper Tag codificano inoltre l'input usato nei parametri tag.
 
 Eseguire la seguente Razor visualizzazione:
 
@@ -52,7 +54,7 @@ Eseguire la seguente Razor visualizzazione:
    @untrustedInput
    ```
 
-Questa visualizzazione restituisce il contenuto della variabile *untrustedInput* . Questa variabile include alcuni caratteri utilizzati negli attacchi XSS, ovvero &lt;"e. &gt; L'analisi dell'origine Mostra l'output sottoposto a rendering codificato come:
+Questa visualizzazione restituisce il contenuto della variabile *untrustedInput* . Questa variabile include alcuni caratteri utilizzati negli attacchi XSS, ovvero &lt; "e &gt; . L'analisi dell'origine Mostra l'output sottoposto a rendering codificato come:
 
 ```html
 &lt;&quot;123&quot;&gt;
@@ -144,11 +146,11 @@ Verrà eseguito il rendering nel browser nel modo seguente:
 ```
 
 >[!WARNING]
-> Non concatenare input non attendibile in JavaScript per creare elementi DOM. È consigliabile usare `createElement()` e assegnare i valori di proprietà in modo `node.TextContent=`appropriato, ad `element.SetAttribute()` / `element[attribute]=` esempio, o usare in caso contrario si espongono a XSS basati su Dom.
+> Non concatenare input non attendibile in JavaScript per creare elementi DOM. È consigliabile usare `createElement()` e assegnare i valori di proprietà in modo appropriato, ad esempio `node.TextContent=` , o usare `element.SetAttribute()` / `element[attribute]=` in caso contrario si espongono a XSS basati su Dom.
 
 ## <a name="accessing-encoders-in-code"></a>Accesso ai codificatori nel codice
 
-I codificatori HTML, JavaScript e URL sono disponibili per il codice in due modi, è possibile inserirli tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection) oppure è possibile usare i codificatori predefiniti contenuti `System.Text.Encodings.Web` nello spazio dei nomi. Se si usano i codificatori predefiniti, qualsiasi utente applicato agli intervalli di caratteri per essere considerato sicuro non avrà effetto. i codificatori predefiniti utilizzano le regole di codifica più sicure possibili.
+I codificatori HTML, JavaScript e URL sono disponibili per il codice in due modi, è possibile inserirli tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection) oppure è possibile usare i codificatori predefiniti contenuti nello `System.Text.Encodings.Web` spazio dei nomi. Se si usano i codificatori predefiniti, qualsiasi utente applicato agli intervalli di caratteri per essere considerato sicuro non avrà effetto. i codificatori predefiniti utilizzano le regole di codifica più sicure possibili.
 
 Per usare i codificatori configurabili tramite i, i costruttori devono prendere un parametro *HtmlEncoder*, *JavaScriptEncoder* e *UrlEncoder* in base alle esigenze. ad esempio:
 
@@ -179,7 +181,7 @@ var example = "\"Quoted Value with spaces and &\"";
    var encodedValue = _urlEncoder.Encode(example);
    ```
 
-Dopo la codifica `%22Quoted%20Value%20with%20spaces%20and%20%26%22`, la variabile valore conterrà. Spazi, virgolette, punteggiatura e altri caratteri unsafe verranno codificati in percentuale nel valore esadecimale. ad esempio, un carattere di spazio diventerà %20.
+Dopo la codifica, la variabile valore conterrà `%22Quoted%20Value%20with%20spaces%20and%20%26%22` . Spazi, virgolette, punteggiatura e altri caratteri unsafe verranno codificati in percentuale nel valore esadecimale. ad esempio, un carattere di spazio diventerà %20.
 
 >[!WARNING]
 > Non usare input non attendibile come parte di un percorso URL. Passare sempre un input non attendibile come valore stringa di query.
@@ -188,13 +190,13 @@ Dopo la codifica `%22Quoted%20Value%20with%20spaces%20and%20%26%22`, la variabil
 
 ## <a name="customizing-the-encoders"></a>Personalizzazione dei codificatori
 
-Per impostazione predefinita, i codificatori utilizzano un elenco sicuro limitato all'intervallo Unicode Basic Latin e codificano tutti i caratteri al di fuori di tale intervallo come equivalenti del codice carattere. Questo comportamento influiscono Razor anche sul rendering di TagHelper e HtmlHelper perché utilizzerà i codificatori per restituire le stringhe.
+Per impostazione predefinita, i codificatori utilizzano un elenco sicuro limitato all'intervallo Unicode Basic Latin e codificano tutti i caratteri al di fuori di tale intervallo come equivalenti del codice carattere. Questo comportamento influiscono anche Razor sul rendering di TagHelper e HtmlHelper perché utilizzerà i codificatori per restituire le stringhe.
 
 Il motivo è quello di proteggersi da bug sconosciuti o futuri (i bug del browser precedenti hanno attivato l'analisi in base all'elaborazione di caratteri non in lingua inglese). Se il sito Web USA in modo intensivo caratteri non latini, come il cinese, il cirillico o altri, probabilmente non è il comportamento desiderato.
 
-È possibile personalizzare gli elenchi di sicurezza del codificatore in modo da includere gli intervalli Unicode appropriati per `ConfigureServices()`l'applicazione durante l'avvio, in.
+È possibile personalizzare gli elenchi di sicurezza del codificatore in modo da includere gli intervalli Unicode appropriati per l'applicazione durante l'avvio, in `ConfigureServices()` .
 
-Se ad esempio si usa la configurazione predefinita, è possibile Razor usare un oggetto HtmlHelper come segue;
+Se ad esempio si usa la configurazione predefinita, è possibile usare un oggetto Razor htmlHelper come segue;
 
 ```html
 <p>This link text is in Chinese: @Html.ActionLink("汉语/漢語", "Index")</p>
@@ -206,7 +208,7 @@ Quando si visualizza l'origine della pagina Web, si noterà che è stato eseguit
 <p>This link text is in Chinese: <a href="/">&#x6C49;&#x8BED;/&#x6F22;&#x8A9E;</a></p>
    ```
 
-Per ampliare i caratteri considerati sicuri dal codificatore, inserire la riga seguente nel `ConfigureServices()` metodo in; `startup.cs`
+Per ampliare i caratteri considerati sicuri dal codificatore, inserire la riga seguente nel `ConfigureServices()` metodo in `startup.cs` ;
 
 ```csharp
 services.AddSingleton<HtmlEncoder>(

@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: f2588665c26887a6e3864866425b887e97e656d5
-ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
+ms.openlocfilehash: 6e31a8f49ca535f98f4e073af13896386a4a0feb
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/13/2020
-ms.locfileid: "84755872"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408214"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Novità di ASP.NET Core 3,0
 
@@ -43,13 +45,13 @@ Blazorscenari supportati dal Framework:
 
 Per altre informazioni, vedere <xref:blazor/index>.
 
-### <a name="blazor-server"></a>BlazorServer
+### Blazor Server
 
-Blazorsepara la logica di rendering dei componenti dal modo in cui vengono applicati gli aggiornamenti dell'interfaccia utente. BlazorIl server fornisce il supporto per l'hosting di Razor componenti nel server in un'app ASP.NET Core. Gli aggiornamenti dell'interfaccia utente vengono gestiti tramite una SignalR connessione. BlazorIl server è supportato in ASP.NET Core 3,0.
+Blazorsepara la logica di rendering dei componenti dal modo in cui vengono applicati gli aggiornamenti dell'interfaccia utente. Blazor Serverfornisce supporto per l'hosting di Razor componenti nel server in un'app ASP.NET Core. Gli aggiornamenti dell'interfaccia utente vengono gestiti tramite una SignalR connessione. Blazor Serverè supportato in ASP.NET Core 3,0.
 
-### <a name="blazor-webassembly-preview"></a>BlazorWebassembly (anteprima)
+### <a name="blazor-webassembly-preview"></a>Blazor WebAssembly (anteprima)
 
-Blazorle app possono essere eseguite anche direttamente nel browser usando un Runtime .NET basato su webassembly. BlazorWebassembly è in anteprima e *non* è supportato in ASP.NET Core 3,0. BlazorWebassembly sarà supportato in una versione futura di ASP.NET Core.
+Blazorle app possono essere eseguite anche direttamente nel browser usando un Runtime .NET basato su webassembly. Blazor WebAssemblyè in anteprima e *non* è supportato in ASP.NET Core 3,0. Blazor WebAssemblyverrà supportato in una versione futura di ASP.NET Core.
 
 ### <a name="razor-components"></a>Componenti di Razor
 

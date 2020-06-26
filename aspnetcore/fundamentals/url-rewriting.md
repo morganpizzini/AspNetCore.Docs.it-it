@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 08/16/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: e43cd5055737feaef451d27b651c1d301c1f93d2
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: c41ba2e067c8dc978b1359db548733c5f8890a2b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105948"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408383"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>Middleware Riscrittura URL in ASP.NET Core
 
@@ -192,7 +194,7 @@ L'accento circonflesso (`^`) all'inizio dell'espressione indica che la corrispon
 
 Nell'esempio precedente della regola di reindirizzamento `redirect-rule/(.*)`, non è presente l'accento circonflesso (`^`) all'inizio dell'espressione regolare. È quindi possibile ottenere una corrispondenza anteponendo qualsiasi carattere a `redirect-rule/`.
 
-| Path                               | Corrispondente |
+| Percorso                               | Corrispondente |
 | ---------------------------------- | :---: |
 | `/redirect-rule/1234/5678`         | Sì   |
 | `/my-cool-redirect-rule/1234/5678` | Sì   |
@@ -200,7 +202,7 @@ Nell'esempio precedente della regola di reindirizzamento `redirect-rule/(.*)`, n
 
 La regola di riscrittura, `^rewrite-rule/(\d+)/(\d+)`, rileva la corrispondenza dei percorsi solo se iniziano con `rewrite-rule/`. Nella tabella seguente, si noti la differenza nella corrispondenza.
 
-| Path                              | Corrispondente |
+| Percorso                              | Corrispondente |
 | --------------------------------- | :---: |
 | `/rewrite-rule/1234/5678`         | Sì   |
 | `/my-cool-rewrite-rule/1234/5678` | No    |
@@ -220,7 +222,7 @@ Non viene eseguito alcun round trip al server per ottenere la risorsa. Se la ris
 
 Applicare le regole del modulo Apache mod_rewrite con <xref:Microsoft.AspNetCore.Rewrite.ApacheModRewriteOptionsExtensions.AddApacheModRewrite*>. Assicurarsi che il file delle regole venga distribuito con l'app. Per altre informazioni ed esempi di regole mod_rewrite, vedere [Modulo Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/).
 
-<xref:System.IO.StreamReader>Viene usato per leggere le regole del file di regole *ApacheModRewrite. txt* :
+<xref:System.IO.StreamReader>Viene usato per leggere le regole del file di regole *ApacheModRewrite.txt* :
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=3-4,12)]
 
@@ -268,7 +270,7 @@ Il middleware supporta le seguenti variabili server del modulo Apache mod_rewrit
 
 Per usare lo stesso set di regole applicabile a IIS URL Rewrite Module, usare <xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*>. Assicurarsi che il file delle regole venga distribuito con l'app. Non indirizzare il middleware all'uso del file *web.config* dell'app quando è in esecuzione in Windows Server IIS. Con IIS queste regole devono essere archiviate al di fuori del file *web.config* dell'app, per evitare conflitti con il modulo IIS Rewrite. Per altre informazioni ed esempi di regole di IIS URL Rewrite Module, vedere [Using URL Rewrite Module 2.0](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20) (Uso di URL Rewrite Module 2.0) e [URL Rewrite Module Configuration Reference](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference) (Guida di riferimento per la configurazione di URL Rewrite Module).
 
-<xref:System.IO.StreamReader>Viene usato per leggere le regole del file di regole *IISUrlRewrite. XML* :
+<xref:System.IO.StreamReader>Viene usato per leggere le regole del file di regole *IISUrlRewrite.xml* :
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=5-6,13)]
 
@@ -546,7 +548,7 @@ L'accento circonflesso (`^`) all'inizio dell'espressione indica che la corrispon
 
 Nell'esempio precedente della regola di reindirizzamento `redirect-rule/(.*)`, non è presente l'accento circonflesso (`^`) all'inizio dell'espressione regolare. È quindi possibile ottenere una corrispondenza anteponendo qualsiasi carattere a `redirect-rule/`.
 
-| Path                               | Corrispondente |
+| Percorso                               | Corrispondente |
 | ---------------------------------- | :---: |
 | `/redirect-rule/1234/5678`         | Sì   |
 | `/my-cool-redirect-rule/1234/5678` | Sì   |
@@ -554,7 +556,7 @@ Nell'esempio precedente della regola di reindirizzamento `redirect-rule/(.*)`, n
 
 La regola di riscrittura, `^rewrite-rule/(\d+)/(\d+)`, rileva la corrispondenza dei percorsi solo se iniziano con `rewrite-rule/`. Nella tabella seguente, si noti la differenza nella corrispondenza.
 
-| Path                              | Corrispondente |
+| Percorso                              | Corrispondente |
 | --------------------------------- | :---: |
 | `/rewrite-rule/1234/5678`         | Sì   |
 | `/my-cool-rewrite-rule/1234/5678` | No    |
@@ -574,7 +576,7 @@ Non viene eseguito alcun round trip al server per ottenere la risorsa. Se la ris
 
 Applicare le regole del modulo Apache mod_rewrite con <xref:Microsoft.AspNetCore.Rewrite.ApacheModRewriteOptionsExtensions.AddApacheModRewrite*>. Assicurarsi che il file delle regole venga distribuito con l'app. Per altre informazioni ed esempi di regole mod_rewrite, vedere [Modulo Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/).
 
-<xref:System.IO.StreamReader>Viene usato per leggere le regole del file di regole *ApacheModRewrite. txt* :
+<xref:System.IO.StreamReader>Viene usato per leggere le regole del file di regole *ApacheModRewrite.txt* :
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=3-4,12)]
 
@@ -622,7 +624,7 @@ Il middleware supporta le seguenti variabili server del modulo Apache mod_rewrit
 
 Per usare lo stesso set di regole applicabile a IIS URL Rewrite Module, usare <xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*>. Assicurarsi che il file delle regole venga distribuito con l'app. Non indirizzare il middleware all'uso del file *web.config* dell'app quando è in esecuzione in Windows Server IIS. Con IIS queste regole devono essere archiviate al di fuori del file *web.config* dell'app, per evitare conflitti con il modulo IIS Rewrite. Per altre informazioni ed esempi di regole di IIS URL Rewrite Module, vedere [Using URL Rewrite Module 2.0](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20) (Uso di URL Rewrite Module 2.0) e [URL Rewrite Module Configuration Reference](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference) (Guida di riferimento per la configurazione di URL Rewrite Module).
 
-<xref:System.IO.StreamReader>Viene usato per leggere le regole del file di regole *IISUrlRewrite. XML* :
+<xref:System.IO.StreamReader>Viene usato per leggere le regole del file di regole *IISUrlRewrite.xml* :
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=5-6,13)]
 

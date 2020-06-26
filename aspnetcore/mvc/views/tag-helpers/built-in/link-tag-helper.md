@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 09/24/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
-ms.openlocfilehash: 1efd7c1a63baea4312a4a01cd9cd9c7582375d97
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c767ff4c2a1e0d5d10ccb3ff855126f541c04f64
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777354"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408240"
 ---
 # <a name="link-tag-helper-in-aspnet-core"></a>Helper tag di collegamento in ASP.NET Core
 
@@ -29,7 +31,7 @@ L' [Helper tag di collegamento](xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTag
 
 L'helper tag di collegamento consente di specificare una rete CDN per il file CSS e un fallback quando la rete CDN non è disponibile. L'helper tag di collegamento offre il vantaggio delle prestazioni di una rete CDN con l'affidabilità dell'hosting locale.
 
-Il markup Razor seguente mostra l' `head` elemento di un file di layout creato con il modello di app Web di ASP.NET Core:
+Il Razor markup seguente mostra l' `head` elemento di un file di layout creato con il modello di app web di ASP.NET Core:
 
 [!code-html[](link-tag-helper/sample/_Layout.cshtml?name=snippet)]
 
@@ -37,7 +39,7 @@ Di seguito viene eseguito il rendering del codice HTML dal codice precedente (in
 
 [!code-csharp[](link-tag-helper/sample/HtmlPage1.html)]
 
-Nel codice precedente, l'helper tag di collegamento ha generato l' `<meta name="x-stylesheet-fallback-test" content="" class="sr-only" />` elemento e il seguente codice JavaScript usato per verificare che il file *bootstrap. min. CSS* richiesto sia disponibile nella rete CDN. In questo caso, il file CSS era disponibile, in modo che l'helper tag `<link />` generasse l'elemento con il file CSS della rete CDN.
+Nel codice precedente, l'helper tag di collegamento ha generato l' `<meta name="x-stylesheet-fallback-test" content="" class="sr-only" />` elemento e il seguente codice JavaScript usato per verificare che il file *bootstrap. min. CSS* richiesto sia disponibile nella rete CDN. In questo caso, il file CSS era disponibile, in modo che l'helper Tag generasse l' `<link />` elemento con il file CSS della rete CDN.
 
 ## <a name="commonly-used-link-tag-helper-attributes"></a>Attributi di helper tag di collegamento comunemente utilizzati
 

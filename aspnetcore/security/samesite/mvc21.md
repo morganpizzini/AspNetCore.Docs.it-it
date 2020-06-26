@@ -8,21 +8,23 @@ ms.custom: mvc
 ms.date: 12/03/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: 6a53c0d3c0a314c4137f071cf50062182b654658
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4239321531f3a7696a15b1dea164450ea0860c2b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777306"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85409059"
 ---
 # <a name="aspnet-core-21-mvc-samesite-cookie-sample"></a>Esempio di ASP.NET Core cookie navigava sullostesso sito 2,1 MVC
 
-ASP.NET Core 2,1 dispone del supporto incorporato per l'attributo [navigava sullostesso sito](https://www.owasp.org/index.php/SameSite) , ma è stato scritto nello standard originale. Il [comportamento con patch](https://github.com/dotnet/aspnetcore/issues/8212) ha modificato il significato `SameSite.None` di per emettere l'attributo navigava sullostesso sito con un valore `None`di, anziché non creare il valore. Se non si desidera creare il valore, è possibile impostare la `SameSite` proprietà su un cookie su-1.
+ASP.NET Core 2,1 dispone del supporto incorporato per l'attributo [navigava sullostesso sito](https://www.owasp.org/index.php/SameSite) , ma è stato scritto nello standard originale. Il [comportamento con patch](https://github.com/dotnet/aspnetcore/issues/8212) ha modificato il significato di `SameSite.None` per emettere l'attributo navigava sullostesso sito con un valore di `None` , anziché non creare il valore. Se non si desidera creare il valore, è possibile impostare la `SameSite` proprietà su un cookie su-1.
 
 ## <a name="writing-the-samesite-attribute"></a><a name="sampleCode"></a>Scrittura dell'attributo navigava sullostesso sito
 
@@ -69,21 +71,21 @@ services.AddSession(options =>
 });
 ```
 
-Nel codice precedente, sia l'autenticazione dei cookie che lo stato della sessione impostano il relativo attributo navigava sullostesso sito su `None`, `None` creando l'attributo con un valore e impostando anche l'attributo Secure su true.
+Nel codice precedente, sia l'autenticazione dei cookie che lo stato della sessione impostano il relativo attributo navigava sullostesso sito su `None` , creando l'attributo con un `None` valore e impostando anche l'attributo Secure su true.
 
 ### <a name="run-the-sample"></a>Eseguire l'esempio
 
-Se si esegue il [progetto di esempio](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC), caricare il debugger del browser nella pagina iniziale e usarlo per visualizzare la raccolta di cookie per il sito. A tale scopo, in Edge e Chrome `F12` premere quindi selezionare `Application` la scheda e fare clic sull'URL del `Cookies` sito sotto l' `Storage` opzione nella sezione.
+Se si esegue il [progetto di esempio](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC), caricare il debugger del browser nella pagina iniziale e usarlo per visualizzare la raccolta di cookie per il sito. A tale scopo, in Edge e Chrome premere `F12` quindi selezionare la `Application` scheda e fare clic sull'URL del sito sotto l' `Cookies` opzione nella `Storage` sezione.
 
 ![Elenco dei cookie del debugger del browser](BrowserDebugger.png)
 
-È possibile osservare dall'immagine precedente che il cookie creato dall'esempio quando si fa clic sul pulsante "crea cookie navigava sullostesso sito" ha un valore di `Lax`attributo navigava sullostesso sito, che corrisponde al valore impostato nel codice di [esempio](#sampleCode).
+È possibile osservare dall'immagine precedente che il cookie creato dall'esempio quando si fa clic sul pulsante "crea cookie navigava sullostesso sito" ha un valore di attributo navigava sullostesso sito `Lax` , che corrisponde al valore impostato nel [codice di esempio](#sampleCode).
 
 ## <a name="intercepting-cookies"></a><a name="interception"></a>Intercettazione di cookie
 
-Per intercettare i cookie, per modificare il valore None in base al relativo supporto nell'agente browser dell'utente, è necessario usare `CookiePolicy` il middleware. Questa deve essere inserita nella pipeline di richieste HTTP **prima** di tutti i componenti che scrivono cookie e `ConfigureServices()`configurati in.
+Per intercettare i cookie, per modificare il valore None in base al relativo supporto nell'agente browser dell'utente, è necessario usare il `CookiePolicy` middleware. Questa deve essere inserita nella pipeline di richieste HTTP **prima** di tutti i componenti che scrivono cookie e configurati in `ConfigureServices()` .
 
-Per inserirlo nell'uso `app.UseCookiePolicy()` della pipeline nel `Configure(IApplicationBuilder, IHostingEnvironment)` metodo in [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Ad esempio:
+Per inserirlo nell'uso della pipeline `app.UseCookiePolicy()` nel `Configure(IApplicationBuilder, IHostingEnvironment)` metodo in [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Ad esempio:
 
 ```c#
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -142,10 +144,10 @@ private void CheckSameSite(HttpContext httpContext, CookieOptions options)
 }
 ```
 
-Funzione `CheckSameSite(HttpContext, CookieOptions)`Helper:
+Funzione helper `CheckSameSite(HttpContext, CookieOptions)` :
 
 * Viene chiamato quando i cookie vengono aggiunti alla richiesta o eliminati dalla richiesta.
-* Verifica se la `SameSite` proprietà è impostata su `None`.
+* Verifica se la `SameSite` proprietà è impostata su `None` .
 * Se `SameSite` è impostato su `None` e l'agente utente corrente non supporta il valore dell'attributo None. Il controllo viene eseguito usando la classe [SameSiteSupport](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/samesite/sample/snippets/SameSiteSupport.cs) :
   * Imposta `SameSite` per non creare il valore impostando la proprietà su`(SameSiteMode)(-1)`
 
@@ -164,6 +166,6 @@ Per ottenere le modifiche ASP.NET Core per .NET Framework assicurarsi di disporr
 
 ### <a name="more-information"></a>Altre informazioni
  
-[Aggiornamenti](https://www.chromium.org/updates/same-site)
-di Chrome[ASP.NET Core documentazione](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1)
-di navigava sullostesso sito[ASP.NET Core 2,1 annuncio di modifica navigava sullostesso sito](https://github.com/dotnet/aspnetcore/issues/8212)
+[Aggiornamenti Chrome](https://www.chromium.org/updates/same-site) 
+ Documentazione di ASP.NET Core [navigava sullostesso sito](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) 
+ [Annuncio di modifica di ASP.NET Core 2,1 navigava sullostesso sito](https://github.com/dotnet/aspnetcore/issues/8212)

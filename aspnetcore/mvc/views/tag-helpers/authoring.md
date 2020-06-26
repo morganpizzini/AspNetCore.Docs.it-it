@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: 0b60468b96ded559d180e7b3bf5f799ce2f4d7e3
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 5e250debb5c4c2ef00b844557d31ed8281d2ff2f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775089"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407590"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Creare helper tag in ASP.NET Core
 
@@ -55,7 +57,7 @@ In altre parole, un tag di ancoraggio che dà come risultato un collegamento di 
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1EmailTagHelperCopy.cs)]
 
-   * Gli helper tag usano una convenzione di denominazione che interessa gli elementi del nome della classe di base (meno la parte *TagHelper* del nome della classe). In questo esempio, il nome radice di **EmailTagHelper** è *posta elettronica*, quindi `<email>` il tag verrà assegnato come destinazione. Questa convenzione di denominazione dovrebbe funzionare per la maggior parte degli helper tag. Più avanti verrà illustrato come eseguirne l'override.
+   * Gli helper tag usano una convenzione di denominazione che interessa gli elementi del nome della classe di base (meno la parte *TagHelper* del nome della classe). In questo esempio, il nome radice di **EmailTagHelper** è *posta elettronica*, quindi il `<email>` tag verrà assegnato come destinazione. Questa convenzione di denominazione dovrebbe funzionare per la maggior parte degli helper tag. Più avanti verrà illustrato come eseguirne l'override.
 
    * La classe `EmailTagHelper` deriva da `TagHelper`. La classe `TagHelper` mette a disposizione metodi e proprietà per la scrittura di helper tag.
 
@@ -98,7 +100,7 @@ Per aggiungere un helper tag a una visualizzazione usando un nome completo, aggi
 
 ## <a name="setattribute-and-setcontent"></a>SetAttribute e SetContent
 
-In questa sezione la classe `EmailTagHelper` verrà aggiornata in modo che crei un tag di ancoraggio valido per la posta elettronica. Il modulo verrà aggiornato in modo da ottenere le Razor informazioni da una vista (sotto forma `mail-to` di attributo) e usarle per generare l'ancoraggio.
+In questa sezione la classe `EmailTagHelper` verrà aggiornata in modo che crei un tag di ancoraggio valido per la posta elettronica. Il modulo verrà aggiornato in modo da ottenere le informazioni da una Razor vista (sotto forma di `mail-to` attributo) e usarle per generare l'ancoraggio.
 
 Aggiornare la classe `EmailTagHelper` con il codice seguente:
 
@@ -123,7 +125,7 @@ Questo approccio funziona per l'attributo "href" a condizione che non esista nel
 <a name="self-closing"></a>
 
    > [!NOTE]
-   > Se si scrive il tag di posta elettronica a chiusura automatica (`<email mail-to="Rick" />`), anche l'output finale è a chiusura automatica. Per consentire la scrittura del tag con solo un tag di inizio (`<email mail-to="Rick">`) è necessario contrassegnare la classe con quanto segue:
+   > Se si scrive il tag di posta elettronica a chiusura automatica (`<email mail-to="Rick" />`), anche l'output finale è a chiusura automatica. Per consentire la scrittura del tag con solo un tag di inizio ( `<email mail-to="Rick">` ) è necessario contrassegnare la classe con quanto segue:
    >
    > [!code-csharp[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/EmailTagHelperMailVoid.cs?highlight=1&range=6-10)]
 
@@ -199,7 +201,7 @@ Se si aggiungono più attributi alla stessa istruzione, il runtime li gestisce c
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs)]
 
-   * Come affermato in precedenza, gli helper tag convertono i nomi delle relative classi e proprietà C#, definiti secondo la convenzione Pascal, in formato [kebab case](https://wiki.c2.com/?KebabCase). Pertanto, per utilizzare `WebsiteInformationTagHelper` in Razor, si scriverà. `<website-information />`
+   * Come affermato in precedenza, gli helper tag convertono i nomi delle relative classi e proprietà C#, definiti secondo la convenzione Pascal, in formato [kebab case](https://wiki.c2.com/?KebabCase). Pertanto, per utilizzare `WebsiteInformationTagHelper` in Razor , si scriverà `<website-information />` .
 
    * Non si sta identificando in modo esplicito l'elemento di destinazione con l'attributo `[HtmlTargetElement]` e quindi verrà considerato come destinazione il valore predefinito di `website-information`. Se è stato applicato l'attributo seguente (si noti che non è nel formato kebab case ma corrisponde al nome della classe):
 
@@ -230,7 +232,7 @@ Se si aggiungono più attributi alla stessa istruzione, il runtime li gestisce c
    >
    > [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?range=18-18)]
    >
-   > Razorsa che `info` l'attributo è una classe, non una stringa, e si vuole scrivere il codice C#. Qualsiasi attributo di helper tag non di tipo stringa deve essere scritto senza il carattere `@`.
+   > Razorsa `info` che l'attributo è una classe, non una stringa, e si vuole scrivere il codice C#. Qualsiasi attributo di helper tag non di tipo stringa deve essere scritto senza il carattere `@`.
 
 1. Eseguire l'app e passare alla visualizzazione About per visualizzare le informazioni sul sito Web.
 

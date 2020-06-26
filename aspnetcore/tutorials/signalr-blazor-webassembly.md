@@ -1,33 +1,35 @@
 ---
-title: Usare ASP.NET Core SignalR con Blazor webassembly
+title: Usare ASP.NET Core SignalR conBlazor WebAssembly
 author: guardrex
-description: Creare un'app di chat che usa ASP.NET Core SignalR con Blazor webassembly.
+description: Creare un'app di chat che usa ASP.NET Core SignalR con Blazor WebAssembly .
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 3f8aeec1e0471bab5034d1dcc8a42023f6b13c0d
-ms.sourcegitcommit: 77729ba225d5143c0e3954db005906f4a5c7da95
+ms.openlocfilehash: 5a58e7ae28842e2e8a0f3bae8f47e252839903fe
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/20/2020
-ms.locfileid: "85122100"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408877"
 ---
-# <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Usare ASP.NET Core SignalR con Blazor webassembly
+# <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Usare ASP.NET Core SignalR conBlazor WebAssembly
 
 Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
-Questa esercitazione illustra le nozioni di base per la creazione di un'app in tempo reale usando SignalR con Blazor webassembly. Si apprenderà come:
+Questa esercitazione illustra le nozioni di base per la creazione di un'app in tempo reale usando SignalR con Blazor WebAssembly . Si apprenderà come:
 
 > [!div class="checklist"]
-> * Creare un Blazor progetto di app ospitata Webassembly
+> * Creare un Blazor WebAssembly progetto di app ospitata
 > * Aggiungere la SignalR libreria client
 > * Aggiungere un SignalR Hub
 > * Aggiungere SignalR Servizi e un endpoint per l' SignalR Hub
@@ -59,7 +61,7 @@ Al termine di questa esercitazione, si disporrà di un'app di chat funzionante.
 
 ---
 
-## <a name="create-a-hosted-blazor-webassembly-app-project"></a>Creare un Blazor progetto di app webassembly ospitato
+## <a name="create-a-hosted-blazor-webassembly-app-project"></a>Creare un progetto di app ospitata Blazor WebAssembly
 
 Seguire le istruzioni per la scelta degli strumenti:
 
@@ -72,13 +74,13 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Selezionare ** Blazor app** e fare clic su **Next (avanti**).
 
-1. Digitare `BlazorSignalRApp` nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
+1. Digitare `BlazorSignalRApp` nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
 
-1. Scegliere il modello ** Blazor app webassembly** .
+1. Scegliere il modello di ** Blazor WebAssembly app** .
 
 1. In **Avanzate**selezionare la casella di controllo **ASP.NET Core Hosted** .
 
-1. Selezionare **Create** (Crea).
+1. Selezionare **Crea**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -100,7 +102,7 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Nella barra laterale selezionare app **Web e console**  >  **App**.
 
-1. Scegliere il modello ** Blazor app webassembly** . Selezionare **Avanti**.
+1. Scegliere il modello di ** Blazor WebAssembly app** . Selezionare **Avanti**.
 
    Verificare le configurazioni seguenti:
 
@@ -111,7 +113,7 @@ Seguire le istruzioni per la scelta degli strumenti:
 
    Selezionare **Avanti**.
 
-1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Create** (Crea).
+1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Crea**.
 
    Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare. Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain.
 
@@ -221,7 +223,7 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
 
 1. Scegliere browser, immettere un nome e un messaggio e selezionare il pulsante per l'invio del messaggio. Il nome e il messaggio vengono visualizzati immediatamente in entrambe le pagine:
 
-   ![SignalRBlazorApp di esempio webassembly aperta in due finestre del browser che mostrano i messaggi scambiati.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   ![SignalRBlazor WebAssemblyapp di esempio aperta in due finestre del browser che mostrano i messaggi scambiati.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Virgolette: *Star Trek VI: il paese non individuato* &copy; 1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -239,7 +241,7 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
 
 1. Scegliere browser, immettere un nome e un messaggio e selezionare il pulsante per l'invio del messaggio. Il nome e il messaggio vengono visualizzati immediatamente in entrambe le pagine:
 
-   ![SignalRBlazorApp di esempio webassembly aperta in due finestre del browser che mostrano i messaggi scambiati.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   ![SignalRBlazor WebAssemblyapp di esempio aperta in due finestre del browser che mostrano i messaggi scambiati.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Virgolette: *Star Trek VI: il paese non individuato* &copy; 1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -251,7 +253,7 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
 
 1. Scegliere browser, immettere un nome e un messaggio e selezionare il pulsante per l'invio del messaggio. Il nome e il messaggio vengono visualizzati immediatamente in entrambe le pagine:
 
-   ![SignalRBlazorApp di esempio webassembly aperta in due finestre del browser che mostrano i messaggi scambiati.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   ![SignalRBlazor WebAssemblyapp di esempio aperta in due finestre del browser che mostrano i messaggi scambiati.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Virgolette: *Star Trek VI: il paese non individuato* &copy; 1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -268,7 +270,7 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
 
 1. Scegliere browser, immettere un nome e un messaggio e selezionare il pulsante per l'invio del messaggio. Il nome e il messaggio vengono visualizzati immediatamente in entrambe le pagine:
 
-   ![SignalRBlazorApp di esempio webassembly aperta in due finestre del browser che mostrano i messaggi scambiati.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+   ![SignalRBlazor WebAssemblyapp di esempio aperta in due finestre del browser che mostrano i messaggi scambiati.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
    Virgolette: *Star Trek VI: il paese non individuato* &copy; 1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -279,7 +281,7 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
 In questa esercitazione sono state illustrate le procedure per:
 
 > [!div class="checklist"]
-> * Creare un Blazor progetto di app ospitata Webassembly
+> * Creare un Blazor WebAssembly progetto di app ospitata
 > * Aggiungere la SignalR libreria client
 > * Aggiungere un SignalR Hub
 > * Aggiungere SignalR Servizi e un endpoint per l' SignalR Hub

@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/13/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: 142ad62bbbc25fc5390331b253a6173f064ef162
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: af0f07a0f50a79f25b6a14459402f9dd8b59dae2
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773965"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408253"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Helper tag di ancoraggio in ASP.NET Core
 
@@ -189,13 +191,13 @@ Considerare la gerarchia di directory seguente:
   * **wwwroot**
   * **Aree**
     * **Sessioni**
-      * **.NET**
+      * **Pagine**
         * *\_ViewStart. cshtml*
         * *Index.cshtml*
         * *Index.cshtml.cs*
-  * **.NET**
+  * **Pagine**
 
-Il markup per fare riferimento alla pagina di *Indice* Razor dell'area *sessioni* è:
+Il markup per fare riferimento alla pagina di *Indice* dell'area *sessioni* Razor è:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAreaRazorPages)]
 
@@ -206,7 +208,7 @@ Codice HTML generato:
 ```
 
 > [!TIP]
-> Per supportare le aree in Razor un'app pagine, effettuare una delle operazioni seguenti `Startup.ConfigureServices`in:
+> Per supportare le aree in un' Razor app pagine, effettuare una delle operazioni seguenti in `Startup.ConfigureServices` :
 >
 > * Impostare la [versione di compatibilità](xref:mvc/compatibility-version) su 2.1 o successiva.
 > * Impostare la proprietà [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) su `true`:
@@ -241,7 +243,7 @@ Codice HTML generato:
 ```
 
 > [!TIP]
-> Per supportare le aree in un'app MVC, il modello di route deve includere un riferimento all'area, se esistente. Tale modello è rappresentato dal secondo parametro della chiamata al `routes.MapRoute` metodo in *Startup. Configure*:
+> Per supportare le aree in un'app MVC, il modello di route deve includere un riferimento all'area, se esistente. Tale modello è rappresentato dal secondo parametro della `routes.MapRoute` chiamata al metodo in *Startup.ConfigUre*:
 >
 > [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=5)]
 
@@ -273,9 +275,9 @@ Codice HTML generato:
 
 ### <a name="asp-page"></a>asp-page
 
-L'attributo [asp-page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) viene utilizzato con Razor le pagine. Usarlo per impostare il valore dell'attributo `href` per un tag di ancoraggio su una pagina specifica. L'URL viene creato anteponendo una barra ("/") al nome della pagina.
+L'attributo [asp-page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) viene utilizzato con le Razor pagine. Usarlo per impostare il valore dell'attributo `href` per un tag di ancoraggio su una pagina specifica. L'URL viene creato anteponendo una barra ("/") al nome della pagina.
 
-L'esempio seguente fa riferimento alla Razor pagina partecipante:
+L'esempio seguente fa riferimento alla pagina partecipante Razor :
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspPage)]
 
@@ -297,7 +299,7 @@ Codice HTML generato:
 
 ### <a name="asp-page-handler"></a>asp-page-handler
 
-L'attributo [ASP-Page-Handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) viene utilizzato con Razor le pagine. È progettato per il collegamento di gestori di pagine specifici.
+L'attributo [ASP-Page-Handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) viene utilizzato con le Razor pagine. È progettato per il collegamento di gestori di pagine specifici.
 
 Si consideri il gestore di pagine seguente:
 

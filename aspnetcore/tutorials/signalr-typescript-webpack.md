@@ -1,37 +1,39 @@
 ---
 title: Usare ASP.NET Core SignalR con typescript e Webpack
 author: ssougnez
-description: In questa esercitazione viene configurato Webpack per aggregare e compilare un'app SignalR Web ASP.NET Core il cui client è scritto in typescript.
+description: In questa esercitazione viene configurato Webpack per aggregare e compilare un' SignalR app web ASP.NET Core il cui client è scritto in typescript.
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 02/10/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/signalr-typescript-webpack
-ms.openlocfilehash: 67a6217055db69fe540412f42411dd3a33bbbe73
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 49d185ce941d5f8e841224e7de3b72b8350a1c47
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775505"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407902"
 ---
-# <a name="use-aspnet-core-signalr-with-typescript-and-webpack"></a>Usare ASP.NET Core SignalR con TypeScript e Webpack
+# <a name="use-aspnet-core-signalr-with-typescript-and-webpack"></a>Usare ASP.NET Core SignalR con typescript e Webpack
 
 Di [Sébastien Sougnez](https://twitter.com/ssougnez) e [Scott Addie](https://twitter.com/Scott_Addie)
 
-[Webpack](https://webpack.js.org/) consente agli sviluppatori di creare un bundle delle risorse di un'app Web sul lato client-e di compilarle. Questa esercitazione illustra l'uso di Webpack in un'app Web ASP.NET Core SignalR il cui client è scritto in [TypeScript](https://www.typescriptlang.org/).
+[Webpack](https://webpack.js.org/) consente agli sviluppatori di creare un bundle delle risorse di un'app Web sul lato client-e di compilarle. Questa esercitazione illustra l'uso di Webpack in un' SignalR app web ASP.NET Core il cui client è scritto in [typescript](https://www.typescriptlang.org/).
 
 In questa esercitazione verranno illustrate le procedure per:
 
 > [!div class="checklist"]
-> * Eseguire lo scaffolding di un'app ASP.NET Core SignalR di base
-> * Configurare il client TypeScript di SignalR
+> * Impalcatura di un' SignalR app starter ASP.NET Core
+> * Configurare il SignalR client typescript
 > * Configurare una pipeline di compilazione tramite Webpack
-> * Configurare il server SignalR
+> * Configurare il SignalR Server
 > * Abilitare la comunicazione tra client e server
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([procedura per il download](xref:index#how-to-download-a-sample))
@@ -69,13 +71,13 @@ Configurare Visual Studio in modo che cerchi npm nella variabile di ambiente *PA
 
 La configurazione di Visual Studio è stata completata.
 
-1. Usare l'opzione di menu **file** > **nuovo** > **progetto** e scegliere il modello **applicazione Web ASP.NET Core** . Selezionare **Avanti**.
+1. Usare l'opzione di menu **file**  >  **nuovo**  >  **progetto** e scegliere il modello **applicazione Web ASP.NET Core** . Selezionare **Avanti**.
 1. Assegnare al progetto il nome *SignalRWebPack*e selezionare **Crea**.
 1. Selezionare *.NET Core* dall'elenco a discesa Framework di destinazione e selezionare *ASP.NET Core 3,1* dall'elenco a discesa del selettore del Framework. Selezionare il modello **vuoto** e selezionare **Crea**.
 
 Aggiungere il `Microsoft.TypeScript.MSBuild` pacchetto al progetto:
 
-1. In **Esplora soluzioni** (riquadro a destra), fare clic con il pulsante destro del mouse sul nodo del progetto e scegliere **Gestisci pacchetti NuGet**. Nella scheda **Sfoglia** cercare `Microsoft.TypeScript.MSBuild`, quindi fare clic su **Installa** a destra per installare il pacchetto.
+1. In **Esplora soluzioni** (riquadro a destra), fare clic con il pulsante destro del mouse sul nodo del progetto e scegliere **Gestisci pacchetti NuGet**. Nella scheda **Sfoglia** cercare `Microsoft.TypeScript.MSBuild` , quindi fare clic su **Installa** a destra per installare il pacchetto.
 
 Visual Studio aggiunge il pacchetto NuGet nel nodo **dipendenze** in **Esplora soluzioni**, abilitando la compilazione typescript nel progetto.
 
@@ -88,7 +90,7 @@ dotnet new web -o SignalRWebPack
 code -r SignalRWebPack
 ```
 
-* Il `dotnet new` comando crea un'app Web ASP.NET Core vuota in una directory *SignalRWebPack* .
+* Il `dotnet new` comando crea un'app web ASP.NET Core vuota in una directory *SignalRWebPack* .
 * Il `code` comando apre la cartella *SignalRWebPack* nell'istanza corrente di Visual Studio Code.
 
 Eseguire il comando interfaccia della riga di comando di .NET Core seguente nel **terminale integrato**:
@@ -105,13 +107,13 @@ Il comando precedente aggiunge il pacchetto [Microsoft. typescript. MSBuild](htt
 
 I passaggi seguenti consentono di configurare la conversione da TypeScript a JavaScript e di creare un bundle delle risorse sul lato client.
 
-1. Eseguire il comando seguente nella radice del progetto per creare un file *Package. JSON* :
+1. Eseguire il comando seguente nella radice del progetto per creare un *package.jsnel* file:
 
     ```console
     npm init -y
     ```
 
-1. Aggiungere la proprietà evidenziata al file *Package. JSON* e salvare le modifiche apportate al file:
+1. Aggiungere la proprietà evidenziata al *package.jsnel* file e salvare le modifiche apportate al file:
 
     [!code-json[package.json](signalr-typescript-webpack/sample/3.x/snippets/package1.json?highlight=4)]
 
@@ -130,7 +132,7 @@ I passaggi seguenti consentono di configurare la conversione da TypeScript a Jav
 
     Per altri dettagli, vedere [NPM-install](https://docs.npmjs.com/cli/install) docs.
 
-1. Sostituire la `scripts` proprietà del file *Package. JSON* con il codice seguente:
+1. Sostituire la `scripts` proprietà del *package.jsnel* file con il codice seguente:
 
     ```json
     "scripts": {
@@ -146,14 +148,14 @@ I passaggi seguenti consentono di configurare la conversione da TypeScript a Jav
     * `release`: Aggrega le risorse sul lato client in modalità di produzione.
     * `publish`: esegue lo script `release` per creare il bundle delle risorse sul lato client in modalità di produzione. Chiama il comando [publish](/dotnet/core/tools/dotnet-publish) dell'interfaccia della riga di comando di .NET Core per pubblicare l'app.
 
-1. Creare un file denominato *Webpack. config. js*nella radice del progetto, con il codice seguente:
+1. Creare un file denominato *webpack.config.js*, nella radice del progetto, con il codice seguente:
 
     [!code-javascript[webpack.config.js](signalr-typescript-webpack/sample/3.x/webpack.config.js)]
 
     Il file precedente configura la compilazione di Webpack. Ecco alcuni dettagli di configurazione del server da tenere in considerazione:
 
     * La proprietà `output` esegue l'override del valore predefinito di *dist*. Il bundle viene invece creato nella directory *wwwroot*.
-    * La matrice `resolve.extensions` include *.js* per importare il codice JavaScript del client SignalR.
+    * La `resolve.extensions` matrice include *. js* per importare il SignalR codice JavaScript del client.
 
 1. Creare una nuova directory *src* nella radice del progetto per archiviare gli asset lato client del progetto.
 
@@ -171,7 +173,7 @@ I passaggi seguenti consentono di configurare la conversione da TypeScript a Jav
 
     Il file *main.css* precedente definisce lo stile dell'app.
 
-1. Creare *src/tsconfig. JSON* con il codice JSON seguente:
+1. Creare *src/tsconfig.json* con il codice JSON seguente:
 
     [!code-json[tsconfig.json](signalr-typescript-webpack/sample/3.x/src/tsconfig.json)]
 
@@ -183,32 +185,32 @@ I passaggi seguenti consentono di configurare la conversione da TypeScript a Jav
 
     Il compilatore TypeScript precedente recupera i riferimenti agli elementi DOM e collega due gestori eventi:
 
-    * `keyup`: Questo evento viene generato quando l'utente digita nella `tbMessage`casella di testo. La funzione `send` viene chiamata quando l'utente preme **INVIO**.
+    * `keyup`: Questo evento viene generato quando l'utente digita nella `tbMessage` casella di testo. La funzione `send` viene chiamata quando l'utente preme **INVIO**.
     * `click`: questo evento viene generato quando l'utente fa clic sul pulsante **Invia**. Viene chiamata la funzione `send`.
 
 ## <a name="configure-the-app"></a>Configurare l'app
 
-1. In `Startup.Configure`aggiungere chiamate a [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_).
+1. In `Startup.Configure` aggiungere chiamate a [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_).
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_UseStaticDefaultFiles&highlight=9-10)]
 
-   Il codice precedente consente al server di individuare e gestire il file *index. html* .  Il file viene servito se l'utente immette l'URL completo o l'URL radice dell'app Web.
+   Il codice precedente consente al server di individuare e gestire il file *index.html* .  Il file viene servito se l'utente immette l'URL completo o l'URL radice dell'app Web.
 
-1. Alla fine di `Startup.Configure`, eseguire il mapping di una route */Hub* all' `ChatHub` Hub. Sostituire il codice che visualizza *Hello World!* con la riga seguente: 
+1. Alla fine di `Startup.Configure` , eseguire il mapping di una route */Hub* all' `ChatHub` Hub. Sostituire il codice che visualizza *Hello World!* con la riga seguente: 
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_UseSignalR&highlight=3)]
 
-1. In `Startup.ConfigureServices`chiamare [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_).
+1. In `Startup.ConfigureServices` chiamare [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_).
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_AddSignalR)]
 
-1. Creare una nuova directory denominata *Hub* nella radice del progetto *SignalRWebPack/* per archiviare l'hub SignalR.
+1. Creare una nuova directory denominata *Hub* nella radice del progetto *SignalRWebPack/* per archiviare l' SignalR Hub.
 
 1. Creare l'hub *Hubs/ChatHub.cs* con il codice seguente:
 
     [!code-csharp[ChatHub](signalr-typescript-webpack/sample/3.x/snippets/ChatHub.cs?name=snippet_ChatHubStubClass)]
 
-1. Aggiungere l'istruzione `using` seguente all'inizio del file *Startup.cs* per risolvere il `ChatHub` riferimento:
+1. Aggiungere l' `using` istruzione seguente all'inizio del file *Startup.cs* per risolvere il `ChatHub` riferimento:
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_HubsNamespace)]
 
@@ -224,8 +226,8 @@ L'app Visualizza attualmente un modulo di base per inviare i messaggi, ma non è
 
     Il comando precedente installa:
 
-     * Il [client typescript di SignalR](https://www.npmjs.com/package/@microsoft/signalr), che consente al client di inviare messaggi al server.
-     * Definizioni di tipo TypeScript per node. js, che consente il controllo in fase di compilazione dei tipi node. js.
+     * Il [ SignalR client typescript](https://www.npmjs.com/package/@microsoft/signalr), che consente al client di inviare messaggi al server.
+     * Definizioni del tipo di TypeScript per Node.js, che consente il controllo in fase di compilazione dei tipi di Node.js.
 
 1. Aggiungere il codice evidenziato al file *src/index.ts*:
 
@@ -233,7 +235,7 @@ L'app Visualizza attualmente un modulo di base per inviare i messaggi, ma non è
 
     Il codice precedente supporta la ricezione di messaggi dal server. La classe `HubConnectionBuilder` crea un nuovo compilatore per la configurazione della connessione al server. La funzione `withUrl` configura l'URL dell'hub.
 
-    SignalR consente lo scambio di messaggi tra un client e un server. Ogni messaggio ha un nome specifico. Ad esempio, i messaggi con il `messageReceived` nome possono eseguire la logica responsabile della visualizzazione del nuovo messaggio nella zona messaggi. L'ascolto di un messaggio specifico può essere eseguito tramite la funzione `on`. È possibile ascoltare un numero qualsiasi di nomi di messaggi. Si può anche passare parametri al messaggio, come il nome dell'autore e il contenuto del messaggio ricevuto. Quando il client riceve un messaggio, viene creato un nuovo elemento `div` con il nome dell'autore e il contenuto del messaggio nell'attributo `innerHTML`. Viene aggiunto all'elemento `div` principale che visualizza i messaggi.
+    SignalRconsente lo scambio di messaggi tra un client e un server. Ogni messaggio ha un nome specifico. Ad esempio, i messaggi con il nome `messageReceived` possono eseguire la logica responsabile della visualizzazione del nuovo messaggio nella zona messaggi. L'ascolto di un messaggio specifico può essere eseguito tramite la funzione `on`. È possibile ascoltare un numero qualsiasi di nomi di messaggi. Si può anche passare parametri al messaggio, come il nome dell'autore e il contenuto del messaggio ricevuto. Quando il client riceve un messaggio, viene creato un nuovo elemento `div` con il nome dell'autore e il contenuto del messaggio nell'attributo `innerHTML`. Viene aggiunto all'elemento `div` principale che visualizza i messaggi.
 
 1. Ora che il client può ricevere messaggi, configurarlo anche per l'invio. Aggiungere il codice evidenziato al file *src/index.ts*:
 
@@ -259,7 +261,7 @@ Per verificare che l'app funzioni, eseguire la procedura seguente.
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
-1. Selezionare **debug** > **Avvia senza eseguire debug** per avviare l'app in un browser senza aggiungere il debugger. Il file *wwwroot/index.html* viene servito all'indirizzo `http://localhost:<port_number>`.
+1. Selezionare **debug**  >  **Avvia senza eseguire debug** per avviare l'app in un browser senza aggiungere il debugger. Il file *wwwroot/index.html* viene servito all'indirizzo `http://localhost:<port_number>`.
 
    Se vengono visualizzati errori di compilazione, provare a chiudere e riaprire la soluzione. 
 
@@ -345,7 +347,7 @@ Nella directory *SignalRWebPack* viene creata un'app Web ASP.NET Core vuota dest
 
 I passaggi seguenti consentono di configurare la conversione da TypeScript a JavaScript e di creare un bundle delle risorse sul lato client.
 
-1. Eseguire il comando seguente nella radice del progetto per creare un file *Package. JSON* :
+1. Eseguire il comando seguente nella radice del progetto per creare un *package.jsnel* file:
 
     ```console
     npm init -y
@@ -370,7 +372,7 @@ I passaggi seguenti consentono di configurare la conversione da TypeScript a Jav
 
     Per altri dettagli, vedere [NPM-install](https://docs.npmjs.com/cli/install) docs.
 
-1. Sostituire la `scripts` proprietà del file *Package. JSON* con il codice seguente:
+1. Sostituire la `scripts` proprietà del *package.jsnel* file con il codice seguente:
 
     ```json
     "scripts": {
@@ -386,14 +388,14 @@ I passaggi seguenti consentono di configurare la conversione da TypeScript a Jav
     * `release`: Aggrega le risorse sul lato client in modalità di produzione.
     * `publish`: esegue lo script `release` per creare il bundle delle risorse sul lato client in modalità di produzione. Chiama il comando [publish](/dotnet/core/tools/dotnet-publish) dell'interfaccia della riga di comando di .NET Core per pubblicare l'app.
 
-1. Creare un file denominato *Webpack. config. js* nella radice del progetto, con il codice seguente:
+1. Creare un file denominato *webpack.config.js* nella radice del progetto, con il codice seguente:
 
     [!code-javascript[webpack.config.js](signalr-typescript-webpack/sample/2.x/webpack.config.js)]
 
     Il file precedente configura la compilazione di Webpack. Ecco alcuni dettagli di configurazione del server da tenere in considerazione:
 
     * La proprietà `output` esegue l'override del valore predefinito di *dist*. Il bundle viene invece creato nella directory *wwwroot*.
-    * La matrice `resolve.extensions` include *.js* per importare il codice JavaScript del client SignalR.
+    * La `resolve.extensions` matrice include *. js* per importare il SignalR codice JavaScript del client.
 
 1. Creare una nuova directory *src* nella radice del progetto per archiviare gli asset lato client del progetto.
 
@@ -411,7 +413,7 @@ I passaggi seguenti consentono di configurare la conversione da TypeScript a Jav
 
     Il file *main.css* precedente definisce lo stile dell'app.
 
-1. Creare *src/tsconfig. JSON* con il codice JSON seguente:
+1. Creare *src/tsconfig.json* con il codice JSON seguente:
 
     [!code-json[tsconfig.json](signalr-typescript-webpack/sample/2.x/src/tsconfig.json)]
 
@@ -434,15 +436,15 @@ I passaggi seguenti consentono di configurare la conversione da TypeScript a Jav
 
     Il codice precedente consente al server di individuare e servire il file *index.html*, sia che l'utente immetta l'URL completo o l'URL radice dell'app Web.
 
-1. Chiamare [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) in `Startup.ConfigureServices`. Aggiunge i servizi SignalR al progetto.
+1. Chiamare [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) in `Startup.ConfigureServices` . Aggiunge i SignalR servizi al progetto.
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_AddSignalR)]
 
-1. Eseguire il mapping di una route */hub* all'hub `ChatHub`. Aggiungere le righe seguenti alla fine di `Startup.Configure`:
+1. Eseguire il mapping di una route */hub* all'hub `ChatHub`. Aggiungere le righe seguenti alla fine di `Startup.Configure` :
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_UseSignalR)]
 
-1. Creare una nuova directory denominata *Hubs* nella radice del progetto. La sua funzione è quella di archiviare l'hub SignalR, che verrà creato nel passaggio successivo.
+1. Creare una nuova directory denominata *Hubs* nella radice del progetto. Lo scopo è archiviare l' SignalR Hub, che verrà creato nel passaggio successivo.
 
 1. Creare l'hub *Hubs/ChatHub.cs* con il codice seguente:
 
@@ -462,7 +464,7 @@ L'app attualmente visualizza un semplice form per l'invio di messaggi. Quando si
     npm install @aspnet/signalr
     ```
 
-    Il comando precedente installa il [client TypeScript di SignalR](https://www.npmjs.com/package/@microsoft/signalr), che consente al client di inviare messaggi al server.
+    Il comando precedente installa il [ SignalR client typescript](https://www.npmjs.com/package/@microsoft/signalr), che consente al client di inviare messaggi al server.
 
 1. Aggiungere il codice evidenziato al file *src/index.ts*:
 
@@ -470,7 +472,7 @@ L'app attualmente visualizza un semplice form per l'invio di messaggi. Quando si
 
     Il codice precedente supporta la ricezione di messaggi dal server. La classe `HubConnectionBuilder` crea un nuovo compilatore per la configurazione della connessione al server. La funzione `withUrl` configura l'URL dell'hub.
 
-    SignalR consente lo scambio di messaggi tra un client e un server. Ogni messaggio ha un nome specifico. Ad esempio, i messaggi con il `messageReceived` nome possono eseguire la logica responsabile della visualizzazione del nuovo messaggio nella zona messaggi. L'ascolto di un messaggio specifico può essere eseguito tramite la funzione `on`. È possibile restare in ascolto di un numero indefinito di nomi di messaggio. Si può anche passare parametri al messaggio, come il nome dell'autore e il contenuto del messaggio ricevuto. Quando il client riceve un messaggio, viene creato un nuovo elemento `div` con il nome dell'autore e il contenuto del messaggio nell'attributo `innerHTML`. Il nuovo messaggio viene aggiunto all'elemento principale `div` visualizzando i messaggi.
+    SignalRconsente lo scambio di messaggi tra un client e un server. Ogni messaggio ha un nome specifico. Ad esempio, i messaggi con il nome `messageReceived` possono eseguire la logica responsabile della visualizzazione del nuovo messaggio nella zona messaggi. L'ascolto di un messaggio specifico può essere eseguito tramite la funzione `on`. È possibile restare in ascolto di un numero indefinito di nomi di messaggio. Si può anche passare parametri al messaggio, come il nome dell'autore e il contenuto del messaggio ricevuto. Quando il client riceve un messaggio, viene creato un nuovo elemento `div` con il nome dell'autore e il contenuto del messaggio nell'attributo `innerHTML`. Il nuovo messaggio viene aggiunto all'elemento principale `div` visualizzando i messaggi.
 
 1. Ora che il client può ricevere messaggi, configurarlo anche per l'invio. Aggiungere il codice evidenziato al file *src/index.ts*:
 
@@ -496,7 +498,7 @@ Per verificare che l'app funzioni, eseguire la procedura seguente.
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
-1. Selezionare **debug** > **Avvia senza eseguire debug** per avviare l'app in un browser senza aggiungere il debugger. Il file *wwwroot/index.html* viene servito all'indirizzo `http://localhost:<port_number>`.
+1. Selezionare **debug**  >  **Avvia senza eseguire debug** per avviare l'app in un browser senza aggiungere il debugger. Il file *wwwroot/index.html* viene servito all'indirizzo `http://localhost:<port_number>`.
 
 1. Aprire un'altra istanza del browser (qualsiasi browser). Incollare l'URL nella barra degli indirizzi.
 

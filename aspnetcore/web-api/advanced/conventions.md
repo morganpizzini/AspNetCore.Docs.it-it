@@ -8,23 +8,25 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: web-api/advanced/conventions
-ms.openlocfilehash: f74327cd5bb6a5794c90ffdd3896f2b343e175a6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: eece8130c152fdada1e1d86cf3c94932c5ee9f63
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774886"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408448"
 ---
 # <a name="use-web-api-conventions"></a>Usare le convenzioni dell'API Web
 
 Di [Pranav Krishnamoorthy](https://github.com/pranavkm) e [Scott Addie](https://github.com/scottaddie)
 
-ASP.NET Core 2.2 e versioni successive include una modalità per l'estrazione di [documentazione dell'API](xref:tutorials/web-api-help-pages-using-swagger) comune e l'applicazione della documentazione a più azioni o controller, oppure a tutti i controller inclusi in un assembly. Le convenzioni API Web sono un sostituto per la [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute)decorazione di singole azioni con.
+ASP.NET Core 2.2 e versioni successive include una modalità per l'estrazione di [documentazione dell'API](xref:tutorials/web-api-help-pages-using-swagger) comune e l'applicazione della documentazione a più azioni o controller, oppure a tutti i controller inclusi in un assembly. Le convenzioni API Web sono un sostituto per la decorazione di singole azioni con [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) .
 
 Una convenzione consente di:
 
@@ -41,7 +43,7 @@ In fase di runtime, <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> riconosce le con
 
 Le convenzioni non sono componibili; ogni azione può essere associata a una sola convenzione. Le convenzioni più specifiche hanno la precedenza su quelle meno specifiche. Quando si applicano a un'azione due o più convenzioni con la stessa priorità, la selezione è non deterministica. Per applicare una convenzione a un'azione sono disponibili le opzioni seguenti, dalla più specifica alla meno specifica:
 
-1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute`&mdash; Si applica a singole azioni e specifica il tipo di convenzione e il metodo di convenzione applicabile.
+1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute`&mdash;Si applica a singole azioni e specifica il tipo di convenzione e il metodo di convenzione applicabile.
 
     Nell'esempio seguente, il metodo della convenzione `Microsoft.AspNetCore.Mvc.DefaultApiConventions.Put` del tipo di convenzione predefinito viene applicato all'azione `Update`:
 

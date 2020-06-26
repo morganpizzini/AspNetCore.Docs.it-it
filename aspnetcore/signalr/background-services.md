@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/background-services
-ms.openlocfilehash: 7bc3b9535055e3fccf23ffa4638bd29676910348
-ms.sourcegitcommit: e87dfa08fec0be1008249b1be678e5f79dcc5acb
+ms.openlocfilehash: bf5fff213b2cd7db0b3227922a8c5babba2fc904
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382569"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85409085"
 ---
 # <a name="host-aspnet-core-signalr-in-background-services"></a>ASP.NET Core host SignalR nei servizi in background
 
@@ -62,7 +64,7 @@ Nell'esempio precedente, la `ClockHub` classe implementa la `Hub<T>` classe per 
 Per altre informazioni sugli hub fortemente tipizzati, vedere [usare hub in SignalR per ASP.NET Core](xref:signalr/hubs#strongly-typed-hubs).
 
 > [!NOTE]
-> Questa funzionalità non è limitata alla classe di [ \<>hub t](xref:Microsoft.AspNetCore.SignalR.Hub`1) . Tutte le classi che ereditano dall' [Hub](xref:Microsoft.AspNetCore.SignalR.Hub), ad esempio [DynamicHub](xref:Microsoft.AspNetCore.SignalR.DynamicHub), funzionano.
+> Questa funzionalità non è limitata alla [classe \<T> Hub](xref:Microsoft.AspNetCore.SignalR.Hub`1) . Tutte le classi che ereditano dall' [Hub](xref:Microsoft.AspNetCore.SignalR.Hub), ad esempio [DynamicHub](xref:Microsoft.AspNetCore.SignalR.DynamicHub), funzionano.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -154,7 +156,7 @@ Durante il `IHostedService.StopAsync` metodo, l'oggetto `HubConnection` viene el
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Attività iniziali](xref:tutorials/signalr)
+* [Operazioni preliminari](xref:tutorials/signalr)
 * [Hub](xref:signalr/hubs)
 * [Pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
 * [Hub fortemente tipizzati](xref:signalr/hubs#strongly-typed-hubs)

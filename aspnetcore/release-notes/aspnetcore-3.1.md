@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 02/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 6a03e35495e2ae545dc0a3cdd38578b433d8df6b
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 92804d168381526100ddb8a368f71d201bd4cad9
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102577"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407668"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>Novità di ASP.NET Core 3,1
 
@@ -37,7 +39,7 @@ In Blazor con ASP.NET Core 3,0 i componenti venivano sottoposti a rendering in p
 
 L'helper HTML rimane supportato in ASP.NET Core 3,1, ma è consigliabile usare l'helper Tag Component.
 
-BlazorLe app Server possono ora passare parametri ai componenti di primo livello durante il rendering iniziale. In precedenza era possibile passare i parametri solo a un componente di primo livello con [RenderMode. static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). Con questa versione sono supportati sia [RenderMode. Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) che [RenderMode. ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered) . Qualsiasi valore di parametro specificato viene serializzato come JSON e incluso nella risposta iniziale.
+Blazor Serverle app possono ora passare parametri ai componenti di primo livello durante il rendering iniziale. In precedenza era possibile passare i parametri solo a un componente di primo livello con [RenderMode. static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). Con questa versione sono supportati sia [RenderMode. Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) che [RenderMode. ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered) . Qualsiasi valore di parametro specificato viene serializzato come JSON e incluso nella risposta iniziale.
 
 Ad esempio, prerenderizzare un `Counter` componente con un valore di incremento ( `IncrementAmount` ):
 

@@ -1,30 +1,38 @@
 ---
-title: Considerazioni sulla progettazione di API SignalR
+title: SignalRConsiderazioni sulla progettazione di API
 author: anurse
-description: Informazioni su come progettare APIs SignalR per garantire la compatibilità tra versioni dell'app.
+description: Informazioni su come progettare SignalR API per la compatibilità tra le versioni dell'app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
-ms.date: 11/06/2018
+ms.date: 11/12/2019
+no-loc:
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: signalr/api-design
-ms.openlocfilehash: 3f17bf055b793e8fc91fbcc15f668928ca261f77
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 9ad8d30da552d3d3084534b8c7ca57386ad111ac
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64897808"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407798"
 ---
-# <a name="signalr-api-design-considerations"></a>Considerazioni sulla progettazione di API SignalR
+# <a name="signalr-api-design-considerations"></a>SignalRConsiderazioni sulla progettazione di API
 
-Da [Andrew Stanton-Nurse](https://twitter.com/anurse)
+Di [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
-Questo articolo fornisce indicazioni per la compilazione di API basate su SignalR.
+Questo articolo fornisce informazioni aggiuntive per la creazione di SignalR API basate su.
 
-## <a name="use-custom-object-parameters-to-ensure-backwards-compatibility"></a>Usare i parametri dell'oggetto personalizzato per garantire la compatibilità
+## <a name="use-custom-object-parameters-to-ensure-backwards-compatibility"></a>Utilizzare parametri oggetto personalizzati per garantire la compatibilità con le versioni precedenti
 
-Aggiunta di parametri a un metodo dell'hub di SignalR (sul client o server) è un *modifica di rilievo*. Ciò significa che i client/server meno recenti verranno generati errori quando si tenta di richiamare il metodo senza il numero appropriato di parametri. Aggiunta di proprietà a un parametro di oggetto personalizzato è tuttavia **non** una modifica sostanziale. Utilizzabile per la progettazione di API compatibili che siano resilienti alle modifiche apportate sul client o server.
+L'aggiunta di parametri a un SignalR Metodo Hub (sul client o sul server) è una *modifica di rilievo*. Ciò significa che client/server meno recenti riceveranno errori quando tenteranno di richiamare il metodo senza il numero appropriato di parametri. Tuttavia, l'aggiunta di proprietà a un parametro di oggetto personalizzato **non** è una modifica sostanziale. Questo può essere usato per progettare API compatibili con resilienza alle modifiche nel client o nel server.
 
-Si consideri ad esempio un'API lato server simile al seguente:
+Si consideri, ad esempio, un'API sul lato server come la seguente:
 
 [!code-csharp[ParameterBasedOldVersion](api-design/sample/Samples.cs?name=ParameterBasedOldVersion)]
 
@@ -32,23 +40,23 @@ Il client JavaScript chiama questo metodo usando `invoke` come indicato di segui
 
 [!code-typescript[CallWithOneParameter](api-design/sample/Samples.ts?name=CallWithOneParameter)]
 
-Se in un secondo momento si aggiunge un secondo parametro al metodo del server, client meno recenti non specificare questo valore di parametro. Ad esempio:
+Se successivamente si aggiunge un secondo parametro al metodo Server, i client meno recenti non forniranno questo valore di parametro. Ad esempio:
 
 [!code-csharp[ParameterBasedNewVersion](api-design/sample/Samples.cs?name=ParameterBasedNewVersion)]
 
-Quando il client precedente tenta di richiamare questo metodo, otterrà un errore simile al seguente:
+Quando il client precedente tenta di richiamare questo metodo, riceverà un errore simile al seguente:
 
 ```
 Microsoft.AspNetCore.SignalR.HubException: Failed to invoke 'GetTotalLength' due to an error on the server.
 ```
 
-Nel server, si verrà visualizzato un messaggio di log simile al seguente:
+Nel server verrà visualizzato un messaggio di log simile al seguente:
 
 ```
 System.IO.InvalidDataException: Invocation provides 1 argument(s) but target expects 2.
 ```
 
-Client precedente inviato solo un parametro, ma l'API del server più recenti necessari due parametri. Utilizzo di oggetti personalizzati come parametri offre maggiore flessibilità. È possibile riprogettare l'API originale per l'uso di un oggetto personalizzato:
+Il client precedente ha inviato un solo parametro, ma l'API del server più recente ha richiesto due parametri. L'utilizzo di oggetti personalizzati come parametri garantisce maggiore flessibilità. Riprogettare l'API originale per usare un oggetto personalizzato:
 
 [!code-csharp[ObjectBasedOldVersion](api-design/sample/Samples.cs?name=ObjectBasedOldVersion)]
 
@@ -56,28 +64,28 @@ A questo punto, il client usa un oggetto per chiamare il metodo:
 
 [!code-typescript[CallWithObject](api-design/sample/Samples.ts?name=CallWithObject)]
 
-Anziché aggiungere un parametro, aggiungere una proprietà di `TotalLengthRequest` oggetto:
+Anziché aggiungere un parametro, aggiungere una proprietà all' `TotalLengthRequest` oggetto:
 
 [!code-csharp[ObjectBasedNewVersion](api-design/sample/Samples.cs?name=ObjectBasedNewVersion&highlight=4,9-13)]
 
-Quando il client precedente invia un singolo parametro, extra `Param2` verrà lasciata proprietà `null`. È possibile rilevare un messaggio inviato da un client precedente controllando il `Param2` per `null` e applicare un valore predefinito. Un nuovo client può inviare entrambi i parametri.
+Quando il client precedente Invia un singolo parametro, la proprietà aggiuntiva `Param2` verrà lasciata `null` . È possibile rilevare un messaggio inviato da un client precedente controllando `Param2` `null` e applicando un valore predefinito. Un nuovo client può inviare entrambi i parametri.
 
 [!code-typescript[CallWithObjectNew](api-design/sample/Samples.ts?name=CallWithObjectNew)]
 
-La stessa tecnica funziona per i metodi definiti nel client. È possibile inviare un oggetto personalizzato sul lato server:
+La stessa tecnica funziona per i metodi definiti nel client. È possibile inviare un oggetto personalizzato dal lato server:
 
 [!code-csharp[ClientSideObjectBasedOld](api-design/sample/Samples.cs?name=ClientSideObjectBasedOld)]
 
-Sul lato client, è accedere il `Message` proprietà anziché con un parametro:
+Sul lato client, è possibile accedere alla `Message` proprietà anziché usare un parametro:
 
 [!code-typescript[OnWithObjectOld](api-design/sample/Samples.ts?name=OnWithObjectOld)]
 
-Se successivamente si decide di aggiungere il mittente del messaggio al payload, aggiungere una proprietà nell'oggetto:
+Se successivamente si decide di aggiungere il mittente del messaggio al payload, aggiungere una proprietà all'oggetto:
 
 [!code-csharp[ClientSideObjectBasedNew](api-design/sample/Samples.cs?name=ClientSideObjectBasedNew&highlight=5)]
 
-I client meno recenti non aspetta il `Sender` valore, quindi verrà ignorata. Un nuovo client può accettarlo aggiornando in modo che la nuova proprietà di lettura:
+I client meno recenti non sono in attesa del `Sender` valore, quindi verranno ignorati. Un nuovo client può accettarlo aggiornando per leggere la nuova proprietà:
 
 [!code-typescript[OnWithObjectNew](api-design/sample/Samples.ts?name=OnWithObjectNew&highlight=2-5)]
 
-In questo caso, il nuovo client è anche tolleranza di errore di un server precedente che non forniscono il `Sender` valore. Dal momento che il vecchio server non fornisce il `Sender` valore, il client controlla per verificare se è presente prima dell'accesso.
+In questo caso, anche il nuovo client è a tolleranza di un server obsoleto che non fornisce il `Sender` valore. Poiché il server precedente non fornirà il `Sender` valore, il client verificherà se esiste prima di accedervi.

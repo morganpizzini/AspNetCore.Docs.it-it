@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: aspnetcore-2.1
-ms.openlocfilehash: 1f68bd5347ba1f67e56b7a2fe8914ffdaef8010c
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: bf041965b009d5c10b96ad4f2a349c6efb346eb5
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774080"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408162"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Novità di ASP.NET Core 2.1
 
@@ -38,7 +40,7 @@ Per ulteriori informazioni, vedere [ASP.NET Core SignalR ](xref:signalr/introduc
 
 ## <a name="razor-class-libraries"></a>Razorlibrerie di classi
 
-ASP.NET Core 2,1 semplifica la compilazione e l'inclusione Razordell'interfaccia utente basata su in una libreria e la condivisione tra più progetti. Il nuovo Razor SDK consente di Razor creare file in un progetto di libreria di classi che può essere incluso in un pacchetto NuGet. Le visualizzazioni e le pagine delle librerie vengono individuate automaticamente e possono essere sostituite dall'app. Integrando la Razor compilazione nella compilazione:
+ASP.NET Core 2,1 semplifica la compilazione e l'inclusione Razor dell'interfaccia utente basata su in una libreria e la condivisione tra più progetti. Il nuovo Razor SDK consente di creare Razor file in un progetto di libreria di classi che può essere incluso in un pacchetto NuGet. Le visualizzazioni e le pagine delle librerie vengono individuate automaticamente e possono essere sostituite dall'app. Integrando Razor la compilazione nella compilazione:
 
 * Si riduce notevolmente il tempo di avvio dell'app.
 * Gli aggiornamenti rapidi alle Razor viste e alle pagine in fase di esecuzione sono ancora disponibili come parte di un flusso di lavoro di sviluppo iterativo.
@@ -47,9 +49,9 @@ Per altre informazioni, vedere [creare un'interfaccia utente riutilizzabile usan
 
 ## <a name="identity-ui-library--scaffolding"></a>IdentityImpalcatura & della libreria dell'interfaccia utente
 
-ASP.NET Core 2,1 fornisce [ASP.NET Core Identity ](xref:security/authentication/identity) come [ Razor libreria di classi](xref:razor-pages/ui-class). Le app che Identity includono possono applicare il Identity nuovo ponteggi per aggiungere selettivamente il codice sorgente contenuto nella Identity Razor libreria di classi (RCL). Se si vuole generare un codice sorgente, è possibile modificare il codice e modificarne il comportamento. Ad esempio, è possibile indicare allo scaffolder di generare il codice usato nella registrazione. Il codice generato ha la precedenza sullo stesso codice in Identity RCL.
+ASP.NET Core 2,1 fornisce [ASP.NET Core Identity ](xref:security/authentication/identity) come [ Razor libreria di classi](xref:razor-pages/ui-class). Le app che includono Identity possono applicare il nuovo Identity ponteggi per aggiungere selettivamente il codice sorgente contenuto nella Identity Razor libreria di classi (RCL). Se si vuole generare un codice sorgente, è possibile modificare il codice e modificarne il comportamento. Ad esempio, è possibile indicare allo scaffolder di generare il codice usato nella registrazione. Il codice generato ha la precedenza sullo stesso codice in Identity RCL.
 
-Le app che **non** includono l'autenticazione possono applicare Identity l'impalcatura per aggiungere il Identity pacchetto RCL. È possibile scegliere di selezionare Identity il codice da generare.
+Le app che **non** includono l'autenticazione possono applicare l' Identity impalcatura per aggiungere il Identity pacchetto RCL. È possibile scegliere di selezionare il Identity codice da generare.
 
 Per ulteriori informazioni, vedere la pagina relativa [all'impalcatura Identity nei progetti ASP.NET Core](xref:security/authentication/scaffold-identity).
 
@@ -87,7 +89,7 @@ ASP.NET Core offre API e modelli con cui è possibile soddisfare alcuni dei requ
 
 È stato introdotto un nuovo pacchetto che semplifica la creazione e l'esecuzione di test. Con il pacchetto [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/) è possibile gestire le attività seguenti:
 
-* Copia il file di dipendenza (*\*. Deps*) dall'app testata nella cartella *bin* del progetto di test.
+* Copia il file di dipendenza (* \* . Deps*) dall'app testata nella cartella *bin* del progetto di test.
 * Impostare la radice del contenuto sulla radice del progetto dell'app testata in modo che i file statici e le pagine/visualizzazioni siano rilevate durante l'esecuzione dei test.
 * Specificare la classe [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) per semplificare il bootstrap dell'app testata con [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver).
 
@@ -157,7 +159,7 @@ Per altre informazioni, vedere:
 * <xref:spa/react>
 * <xref:spa/react-with-redux>
 
-## <a name="razor-pages-search-for-razor-assets"></a>RazorPagine ricerca di Razor asset
+## <a name="razor-pages-search-for-razor-assets"></a>RazorPagine ricerca di Razor Asset
 
 In 2,1 le Razor pagine ricercano Razor risorse (ad esempio layout e parziali) nelle directory seguenti nell'ordine elencato:
 
@@ -167,7 +169,7 @@ In 2,1 le Razor pagine ricercano Razor risorse (ad esempio layout e parziali) ne
 
 ## <a name="razor-pages-in-an-area"></a>RazorPagine in un'area
 
-RazorLe pagine supportano ora le [aree](xref:mvc/controllers/areas). Per visualizzare un esempio di aree, creare una nuova Razor app Web di pagine con singoli account utente. Un' Razor app Web di pagine con account utente singoli *includeIdentity/areas//Pages*.
+RazorLe pagine supportano ora le [aree](xref:mvc/controllers/areas). Per visualizzare un esempio di aree, creare una nuova Razor app Web di pagine con singoli account utente. Un' Razor app Web di pagine con account utente singoli include */areas/ Identity /pages*.
 
 ## <a name="mvc-compatibility-version"></a>Versione di compatibilità MVC
 

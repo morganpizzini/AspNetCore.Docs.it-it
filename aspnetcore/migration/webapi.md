@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 05/26/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: 3c8bf27a97de92a42817d4af625976a4920001aa
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 530455c85c4c869f06ba795d9fb63dcfd1c8d5cf
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84145551"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407226"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Eseguire la migrazione da API Web ASP.NET a ASP.NET Core
 
@@ -59,7 +61,7 @@ Creare una nuova soluzione vuota in Visual Studio e aggiungere il progetto API W
 
 1. Scegliere **Nuovo** > **Progetto** dal menu **File**.
 1. Selezionare il modello di **soluzione vuota** e selezionare **Avanti**.
-1. Assegnare alla soluzione il nome *WebAPIMigration*. Selezionare **Create** (Crea).
+1. Assegnare alla soluzione il nome *WebAPIMigration*. Selezionare **Crea**.
 1. Aggiungere il progetto *ProductsApp* esistente alla soluzione.
 
 Aggiungere un nuovo progetto API per la migrazione a:
@@ -73,7 +75,7 @@ La soluzione ora contiene due progetti. Le sezioni seguenti illustrano come eseg
 
 ## <a name="migrate-configuration"></a>Eseguire la migrazione della configurazione
 
-ASP.NET Core non utilizza la cartella *app_start* o il file *Global. asax* . Il file *Web. config* viene inoltre aggiunto in fase di pubblicazione.
+ASP.NET Core non utilizza la cartella *app_start* o il file *Global. asax* . Il file di *web.config* viene inoltre aggiunto in fase di pubblicazione.
 
 La classe `Startup`:
 
@@ -186,7 +188,7 @@ La soluzione ora contiene due progetti. Le sezioni seguenti illustrano come eseg
 ASP.NET Core non USA:
 
 * *App_start* cartella o il file *Global. asax*
-* il file *Web. config* viene aggiunto in fase di pubblicazione.
+* *web.config* file viene aggiunto in fase di pubblicazione.
 
 La classe `Startup`:
 

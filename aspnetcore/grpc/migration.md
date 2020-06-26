@@ -7,17 +7,19 @@ ms.author: johluo
 ms.date: 09/25/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: grpc/migration
-ms.openlocfilehash: 1846195cc43aec703333e69f66380ddcabcf2ad4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 2f0cd5f224453ee7be16f8a1d10e383de2a0d426
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768822"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407252"
 ---
 # <a name="migrating-grpc-services-from-c-core-to-aspnet-core"></a>Migrazione di servizi gRPC da C-core ad ASP.NET Core
 
@@ -29,13 +31,13 @@ A causa dell'implementazione dello stack sottostante, non tutte le funzionalità
 
 Nello stack ASP.NET Core, per impostazione predefinita, i servizi gRPC vengono creati con una [durata con ambito](xref:fundamentals/dependency-injection#service-lifetimes). Al contrario, gRPC C-core per impostazione predefinita viene associato a un servizio con una [durata singleton](xref:fundamentals/dependency-injection#service-lifetimes).
 
-Una durata con ambito consente all'implementazione del servizio di risolvere altri servizi con durata con ambito. Ad esempio, una durata con ambito può essere risolta `DbContext` anche dal contenitore di inserimento delle dipendenze tramite l'inserimento del costruttore. Uso della durata con ambito:
+Una durata con ambito consente all'implementazione del servizio di risolvere altri servizi con durata con ambito. Ad esempio, una durata con ambito può essere risolta anche `DbContext` dal contenitore di inserimento delle dipendenze tramite l'inserimento del costruttore. Uso della durata con ambito:
 
 * Per ogni richiesta viene costruita una nuova istanza dell'implementazione del servizio.
 * Non è possibile condividere lo stato tra le richieste tramite i membri di istanza nel tipo di implementazione.
 * Si prevede di archiviare gli stati condivisi in un servizio singleton nel contenitore DI inserimento delle dipendenze. Gli stati condivisi archiviati vengono risolti nel costruttore dell'implementazione del servizio gRPC.
 
-Per ulteriori informazioni sulla durata del servizio, vedere <xref:fundamentals/dependency-injection#service-lifetimes>.
+Per ulteriori informazioni sulla durata del servizio, vedere <xref:fundamentals/dependency-injection#service-lifetimes> .
 
 ### <a name="add-a-singleton-service"></a>Aggiungere un servizio singleton
 
@@ -55,7 +57,7 @@ Tuttavia, l'implementazione di un servizio con una durata singleton non è più 
 
 Nelle app basate su C-core, le impostazioni come `grpc.max_receive_message_length` e `grpc.max_send_message_length` vengono configurate con `ChannelOption` quando si [costruisce l'istanza del server](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server__ctor_System_Collections_Generic_IEnumerable_Grpc_Core_ChannelOption__).
 
-In ASP.NET Core, gRPC fornisce la configurazione tramite `GrpcServiceOptions` il tipo. Ad esempio, la dimensione massima del messaggio in ingresso di un servizio gRPC può essere configurata tramite `AddGrpc`. Nell'esempio seguente viene modificato il `MaxReceiveMessageSize` valore predefinito di 4 MB in 16 MB:
+In ASP.NET Core, gRPC fornisce la configurazione tramite il `GrpcServiceOptions` tipo. Ad esempio, la dimensione massima del messaggio in ingresso di un servizio gRPC può essere configurata tramite `AddGrpc` . Nell'esempio seguente viene modificato il valore predefinito `MaxReceiveMessageSize` di 4 MB in 16 MB:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -67,11 +69,11 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Per ulteriori informazioni sulla configurazione, vedere <xref:grpc/configuration>.
+Per ulteriori informazioni sulla configurazione, vedere <xref:grpc/configuration> .
 
 ## <a name="logging"></a>Registrazione
 
-Le app basate su C-Core `GrpcEnvironment` si basano su per [configurare il logger](https://grpc.io/grpc/csharp/api/Grpc.Core.GrpcEnvironment.html?q=size#Grpc_Core_GrpcEnvironment_SetLogger_Grpc_Core_Logging_ILogger_) a scopo di debug. Lo stack di ASP.NET Core fornisce questa funzionalità tramite l' [API di registrazione](xref:fundamentals/logging/index). Ad esempio, è possibile aggiungere un logger al servizio gRPC tramite l'inserimento del costruttore:
+Le app basate su C-core si basano su `GrpcEnvironment` per [configurare il logger](https://grpc.io/grpc/csharp/api/Grpc.Core.GrpcEnvironment.html?q=size#Grpc_Core_GrpcEnvironment_SetLogger_Grpc_Core_Logging_ILogger_) a scopo di debug. Lo stack di ASP.NET Core fornisce questa funzionalità tramite l' [API di registrazione](xref:fundamentals/logging/index). Ad esempio, è possibile aggiungere un logger al servizio gRPC tramite l'inserimento del costruttore:
 
 ```csharp
 public class GreeterService : Greeter.GreeterBase
@@ -92,9 +94,9 @@ ASP.NET Core [middleware](xref:fundamentals/middleware/index) offre funzionalit�
 
 * Vengono usati per costruire una pipeline che gestisce una richiesta gRPC.
 * Consentire l'esecuzione del lavoro prima o dopo il componente successivo nella pipeline.
-* Fornire l'accesso `HttpContext`a:
+* Fornire l'accesso a `HttpContext` :
   * Nel middleware `HttpContext` è un parametro.
-  * Negli intercettori è `HttpContext` possibile accedere a tramite il `ServerCallContext` parametro con il `ServerCallContext.GetHttpContext` metodo di estensione. Si noti che questa funzionalità è specifica degli intercettori in esecuzione in ASP.NET Core.
+  * Negli intercettori `HttpContext` è possibile accedere a tramite il `ServerCallContext` parametro con il `ServerCallContext.GetHttpContext` metodo di estensione. Si noti che questa funzionalità è specifica degli intercettori in esecuzione in ASP.NET Core.
 
 differenze tra gli intercettori gRPC e il middleware ASP.NET Core:
 

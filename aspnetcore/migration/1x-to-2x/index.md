@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: migration/1x-to-2x/index
-ms.openlocfilehash: 1b7b89b130f66c851bf01d0eb6d643e4b3676a1e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 97fe2f36aed4a2ac60a7ffc30ede5e682a838e5e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774223"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408695"
 ---
 # <a name="migrate-from-aspnet-core-1x-to-20"></a>Eseguire la migrazione da ASP.NET Core 1.x alla versione 2.0
 
@@ -124,7 +126,7 @@ Nei progetti di 1. x viene usato il costruttore `Startup` per aggiungere i provi
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Startup.cs?name=snippet_1xStartup)]
 
-Nell'esempio precedente il membro `Configuration` viene caricato con le impostazioni di configurazione da *appsettings.json* e da un qualsiasi file *appsettings.\<NomeAmbiente\>.json* corrispondente alla proprietà `IHostingEnvironment.EnvironmentName`. Questi file si trovano nello stesso percorso di *Startup.cs*.
+Nell'esempio precedente viene caricato il `Configuration` membro con le impostazioni di configurazione da *appsettings.js* e qualsiasi *appSettings. \<EnvironmentName\> . file JSON* che corrisponde alla `IHostingEnvironment.EnvironmentName` Proprietà. Questi file si trovano nello stesso percorso di *Startup.cs*.
 
 Nei progetti 2.0 il codice di configurazione boilerplate relativo ai progetti 1. x viene eseguito in background. Le variabili di ambiente e le impostazioni dell'app vengono ad esempio caricate all'avvio. Il codice *Startup.cs* equivalente viene ridotto all'inizializzazione `IConfiguration` con l'istanza inserita:
 
@@ -158,17 +160,17 @@ Nei progetti 2.0 spostare la chiamata `SeedData.Initialize` al metodo `Main` di 
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program2.cs?name=snippet_Main2Code&highlight=10)]
 
-A partire dalla versione 2.0, non è una buona prassi eseguire alcuna operazione in `BuildWebHost` ad eccezione della compilazione e della configurazione dell'host Web. Tutto ciò che riguarda l'esecuzione dell'applicazione deve essere gestito all' `BuildWebHost` &mdash; esterno di in `Main` genere nel metodo di *Program.cs*.
+A partire dalla versione 2.0, non è una buona prassi eseguire alcuna operazione in `BuildWebHost` ad eccezione della compilazione e della configurazione dell'host Web. Tutto ciò che riguarda l'esecuzione dell'applicazione deve essere gestito all'esterno di `BuildWebHost` &mdash; in genere nel `Main` metodo di *Program.cs*.
 
 <a name="view-compilation"></a>
 
 ## <a name="review-razor-view-compilation-setting"></a>Verifica Razor impostazione di compilazione vista
 
-Tempi di avvio dell'applicazione più rapidi e aggregazioni pubblicate più piccole sono di importanza fondamentale per l'utente. Per questi motivi, [ Razor la compilazione delle visualizzazioni](xref:mvc/views/view-compilation) è abilitata per impostazione predefinita in ASP.NET Core 2,0.
+Tempi di avvio dell'applicazione più rapidi e aggregazioni pubblicate più piccole sono di importanza fondamentale per l'utente. Per questi motivi, la [ Razor compilazione delle visualizzazioni](xref:mvc/views/view-compilation) è abilitata per impostazione predefinita in ASP.NET Core 2,0.
 
 L'impostazione della proprietà `MvcRazorCompileOnPublish` su true non è più necessaria. A meno che non si stia disattivando la compilazione della vista, la proprietà può essere rimossa dal file *csproj*.
 
-Quando la destinazione è .NET Framework, è comunque necessario fare riferimento in modo esplicito a [Microsoft. AspNetCoreRazor. Mvc. ](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation)Pacchetto NuGet ViewCompilation nel file con *estensione csproj* :
+Quando la destinazione è .NET Framework, è comunque necessario fare riferimento in modo esplicito a [Microsoft. AspNetCore. Mvc. Razor ](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation)Pacchetto NuGet ViewCompilation nel file con *estensione csproj* :
 
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=15)]
 
@@ -196,9 +198,9 @@ Se si usa Application Insights SDK direttamente, continuare a farlo. Il [metapac
 
 <a name="auth-and-identity"></a>
 
-## <a name="adopt-authenticationidentity-improvements"></a>Adottare l'autenticazioneIdentity /miglioramenti
+## <a name="adopt-authenticationidentity-improvements"></a>Adottare l'autenticazione/ Identity miglioramenti
 
-ASP.NET Core 2,0 dispone di un nuovo modello di autenticazione e di una serie di modifiche Identitysignificative da ASP.NET Core. Se il progetto è stato creato con account utente singoli abilitati o se è stata aggiunta manualmente l' Identityautenticazione o, vedere [eseguire Identity la migrazione dell'autenticazione e al ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x).
+ASP.NET Core 2,0 dispone di un nuovo modello di autenticazione e di una serie di modifiche significative da ASP.NET Core Identity . Se il progetto è stato creato con account utente singoli abilitati o se è stata aggiunta manualmente l'autenticazione o Identity , vedere [eseguire la migrazione dell'autenticazione e Identity al ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

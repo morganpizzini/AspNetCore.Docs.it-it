@@ -6,17 +6,19 @@ ms.author: scaddie
 ms.date: 10/18/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 985c08e0994314cec8d52a6651681c93aca96514
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 59c513038d41779a4cf56a70045f9e72f8008d28
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766511"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407720"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Eseguire la migrazione da ASP.NET ad ASP.NET Core
 
@@ -149,7 +151,7 @@ Una parte importante dello sviluppo Web è la possibilità di distribuire asset 
 
 In ASP.NET i file statici vengono archiviati in directory diverse e viene fatto riferimento ai file nelle viste.
 
-In ASP.NET Core i file statici vengono archiviati nella radice Web (*&lt;/wwwroot radice&gt;del contenuto*), a meno che non sia configurato diversamente. I file vengono caricati nella pipeline delle richieste chiamando il metodo di estensione `UseStaticFiles` da `Startup.Configure`:
+In ASP.NET Core i file statici vengono archiviati nella radice Web (* &lt; &gt; /wwwroot radice del contenuto*), a meno che non sia configurato diversamente. I file vengono caricati nella pipeline delle richieste chiamando il metodo di estensione `UseStaticFiles` da `Startup.Configure`:
 
 [!code-csharp[](../../fundamentals/static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
@@ -167,7 +169,7 @@ I [cookie multivalore](xref:System.Web.HttpCookie.Values) non sono supportati in
 
 ## <a name="partial-app-migration"></a>Migrazione parziale delle app
 
-Un approccio alla migrazione parziale delle app consiste nel creare un'applicazione secondaria IIS e spostare solo determinate route da ASP.NET 4. x a ASP.NET Core mantenendo la struttura dell'URL dell'app. Si consideri, ad esempio, la struttura dell'URL dell'app dal file *ApplicationHost. config* :
+Un approccio alla migrazione parziale delle app consiste nel creare un'applicazione secondaria IIS e spostare solo determinate route da ASP.NET 4. x a ASP.NET Core mantenendo la struttura dell'URL dell'app. Si consideri, ad esempio, la struttura dell'URL dell'app dal file *applicationHost.config* :
 
 ```xml
 <sites>

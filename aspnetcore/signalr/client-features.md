@@ -7,33 +7,35 @@ ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/client-features
-ms.openlocfilehash: a759e473ff7ffaebd0eb9309f37a959d0e06a466
-ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
+ms.openlocfilehash: 10752e8cace82dc08721af7d38c0250182e9bfb0
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/16/2020
-ms.locfileid: "83438961"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408487"
 ---
 # <a name="aspnet-core-signalr-clients"></a>Client di ASP.NET Core SignalR
 
 ## <a name="versioning-support-and-compatibility"></a>Controllo delle versioni, supporto e compatibilità
 
-I client SignalR vengono forniti insieme ai componenti server e vengono sottolineati con la versione corrispondente. Qualsiasi client supportato può connettersi in modo sicuro a qualsiasi server supportato e gli eventuali problemi di compatibilità sarebbero considerati bug da correggere. I client SignalR sono supportati nello stesso ciclo di vita del supporto del resto di .NET Core. Per informazioni dettagliate, vedere [i criteri di supporto di .NET Core](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) .
+I SignalR client vengono forniti insieme ai componenti server e vengono sottolineati con la versione corrispondente. Qualsiasi client supportato può connettersi in modo sicuro a qualsiasi server supportato e gli eventuali problemi di compatibilità sarebbero considerati bug da correggere. SignalRi client sono supportati nello stesso ciclo di vita del supporto come il resto di .NET Core. Per informazioni dettagliate, vedere [i criteri di supporto di .NET Core](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) .
 
 Molte funzionalità richiedono un client **e** un server compatibili. Per una tabella che mostra le versioni minime per le varie funzionalità, vedere di seguito.
 
-Le versioni 1. x di SignalR vengono mappate alle versioni di .NET Core 2,1 e 2,2 e hanno la stessa durata. Per la versione 3. x e versioni successive, la versione di SignalR corrisponde esattamente al resto di .NET e ha lo stesso ciclo di vita del supporto.
+Le versioni 1. x di SignalR sono mappate alle versioni di .NET Core 2,1 e 2,2 e hanno la stessa durata. Per la versione 3. x e versioni successive, la SignalR versione corrisponde esattamente al resto di .NET e ha lo stesso ciclo di vita del supporto.
 
-| Versione SignalR | Versione di .NET Core | Livello di supporto | Fine del supporto |
+| Versione di SignalR | Versione di .NET Core | Livello di supporto | Fine del supporto |
 | - | - | - | - |
 | 1.0. x | 2.1.x | Supporto a lungo termine | 21 agosto 2021 |
 | 1.1. x | 2.2. x | Fine vita | 23 dicembre 2019 |
-| 3. x o superiore | *uguale alla versione SignalR* | Vedere i [criteri di supporto di .NET Core](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) |
+| 3. x o superiore | *uguale a SignalR Version* | Vedere i [criteri di supporto di .NET Core](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) |
 
 **Nota:** In ASP.NET Core 3,0 il client JavaScript è stato *spostato* nel `@microsoft/signalr` pacchetto NPM.
 
@@ -41,7 +43,7 @@ Le versioni 1. x di SignalR vengono mappate alle versioni di .NET Core 2,1 e 2,2
 
 La tabella seguente illustra le funzionalità e il supporto per i client che offrono il supporto in tempo reale. Per ogni funzionalità viene elencata la versione *minima* supportata per questa funzionalità. Se non è elencata alcuna versione, la funzionalità non è supportata.
 
-| Feature | Server | Client .NET | Client JavaScript | Client Java |
+| Funzionalità | Server | Client .NET | Client JavaScript | Client Java |
 | ---- | :-: | :-: | :-: | :-: |
 | Supporto per i servizi di Azure SignalR |2.1.0|1.0.0|1.0.0|1.0.0|
 | [Streaming da server a client](xref:signalr/streaming)          |2.1.0|1.0.0|1.0.0|1.0.0|

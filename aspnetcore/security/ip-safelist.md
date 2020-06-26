@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 03/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/ip-safelist
-ms.openlocfilehash: 7923a81e72124cfb0e11e3c1ac327c1e32194b21
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 5b74205bc7b17d61edbb73cf309f6e24e4318391
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776500"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85409007"
 ---
 # <a name="client-ip-safelist-for-aspnet-core"></a>Indirizzi IP attendibili del client per ASP.NET Core
 
@@ -28,7 +30,7 @@ Questo articolo illustra tre modi per implementare un elenco di indirizzi IP att
 
 * Middleware per controllare l'indirizzo IP remoto di ogni richiesta.
 * Filtri azione MVC per controllare l'indirizzo IP remoto delle richieste per controller o metodi di azione specifici.
-* RazorFiltra le pagine per controllare l'indirizzo IP remoto delle richieste Razor di pagine.
+* RazorFiltra le pagine per controllare l'indirizzo IP remoto delle richieste di Razor pagine.
 
 In ogni caso, una stringa contenente gli indirizzi IP client approvati viene archiviata in un'impostazione dell'app. Il middleware o il filtro:
 
@@ -43,16 +45,16 @@ L'accesso è consentito se la matrice contiene l'indirizzo IP. In caso contrario
 
 Nell'app di esempio, l'indirizzo IP attendibile è:
 
-* Definito dalla `AdminSafeList` proprietà nel file *appSettings. JSON* .
+* Definito dalla `AdminSafeList` proprietà nel *appsettings.jssu* file.
 * Stringa delimitata da punti e virgola che può contenere indirizzi IP [versione 4 (IPv4)](https://wikipedia.org/wiki/IPv4) e [IPv6 (Internet Protocol versione 6)](https://wikipedia.org/wiki/IPv6) .
 
 [!code-json[](ip-safelist/samples/3.x/ClientIpAspNetCore/appsettings.json?range=1-3&highlight=2)]
 
-Nell'esempio precedente sono consentiti gli indirizzi `127.0.0.1` IPv4 `192.168.1.5` di e e l'indirizzo di `::1` loopback IPv6 (formato `0:0:0:0:0:0:0:1`compresso per).
+Nell'esempio precedente `127.0.0.1` sono consentiti gli indirizzi IPv4 di e `192.168.1.5` e l'indirizzo di loopback IPv6 `::1` (formato compresso per `0:0:0:0:0:0:0:1` ).
 
 ## <a name="middleware"></a>Middleware
 
-Il `Startup.Configure` metodo aggiunge il tipo `AdminSafeListMiddleware` di middleware personalizzato alla pipeline delle richieste dell'app. L'oggetto safename viene recuperato con il provider di configurazione .NET Core e viene passato come parametro del costruttore.
+Il `Startup.Configure` metodo aggiunge il `AdminSafeListMiddleware` tipo di middleware personalizzato alla pipeline delle richieste dell'app. L'oggetto safename viene recuperato con il provider di configurazione .NET Core e viene passato come parametro del costruttore.
 
 [!code-csharp[](ip-safelist/samples/3.x/ClientIpAspNetCore/Startup.cs?name=snippet_ConfigureAddMiddleware)]
 
@@ -66,7 +68,7 @@ Se si desidera il controllo degli accessi basato su attendibili per controller M
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckActionFilter.cs?name=snippet_ClassOnly)]
 
-In `Startup.ConfigureServices`aggiungere il filtro azioni alla raccolta di filtri MVC. Nell'esempio seguente viene aggiunto un `ClientIpCheckActionFilter` filtro azioni. Un oggetto safe e un'istanza del logger della console vengono passati come parametri del costruttore.
+In `Startup.ConfigureServices` aggiungere il filtro azioni alla raccolta di filtri MVC. Nell'esempio seguente `ClientIpCheckActionFilter` viene aggiunto un filtro azioni. Un oggetto safe e un'istanza del logger della console vengono passati come parametri del costruttore.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -84,9 +86,9 @@ Il filtro azioni può quindi essere applicato a un controller o a un metodo di a
 
 [!code-csharp[](ip-safelist/samples/3.x/ClientIpAspNetCore/Controllers/ValuesController.cs?name=snippet_ActionFilter&highlight=1)]
 
-Nell'app di esempio, il filtro azioni viene applicato al metodo di `Get` azione del controller. Quando si esegue il test dell'app inviando:
+Nell'app di esempio, il filtro azioni viene applicato al metodo di azione del controller `Get` . Quando si esegue il test dell'app inviando:
 
-* Una richiesta HTTP GET, l' `[ServiceFilter]` attributo convalida l'indirizzo IP del client. Se è consentito l' `Get` accesso al metodo di azione, viene generata una variante del seguente output della console dal filtro azioni e dal metodo di azione:
+* Una richiesta HTTP GET, l' `[ServiceFilter]` attributo convalida l'indirizzo IP del client. Se è consentito l'accesso al `Get` metodo di azione, viene generata una variante del seguente output della console dal filtro azioni e dal metodo di azione:
 
     ```
     dbug: ClientIpSafelistComponents.Filters.ClientIpCheckActionFilter[0]
@@ -95,15 +97,15 @@ Nell'app di esempio, il filtro azioni viene applicato al metodo di `Get` azione 
           successful HTTP GET    
     ```
 
-* Un verbo di richiesta HTTP diverso da GET, `AdminSafeListMiddleware` il middleware convalida l'indirizzo IP del client.
+* Un verbo di richiesta HTTP diverso da GET, il `AdminSafeListMiddleware` middleware convalida l'indirizzo IP del client.
 
 ## <a name="razor-pages-filter"></a>RazorFiltro pagine
 
-Se si desidera il controllo degli accessi basato su attendibilità per un' Razor app pagine Razor , utilizzare un filtro pagine. Ad esempio:
+Se si desidera il controllo degli accessi basato su attendibilità per un' Razor app pagine, utilizzare un Razor filtro pagine. Ad esempio:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 
-In `Startup.ConfigureServices`abilitare il Razor filtro pagine aggiungendolo alla raccolta di filtri MVC. Nell'esempio seguente viene aggiunto un `ClientIpCheckPageFilter` Razor filtro Pages. Un oggetto safe e un'istanza del logger della console vengono passati come parametri del costruttore.
+In `Startup.ConfigureServices` abilitare il Razor filtro pagine aggiungendolo alla raccolta di filtri MVC. Nell'esempio seguente `ClientIpCheckPageFilter` Razor viene aggiunto un filtro Pages. Un oggetto safe e un'istanza del logger della console vengono passati come parametri del costruttore.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -117,7 +119,7 @@ In `Startup.ConfigureServices`abilitare il Razor filtro pagine aggiungendolo all
 
 ::: moniker-end
 
-Quando viene richiesta la pagina di *Indice* Razor dell'app di esempio Razor , il filtro pagine convalida l'indirizzo IP del client. Il filtro produce una variante dell'output della console seguente:
+Quando viene richiesta la pagina di *Indice* dell'app di esempio Razor , il Razor filtro pagine convalida l'indirizzo IP del client. Il filtro produce una variante dell'output della console seguente:
 
 ```
 dbug: ClientIpSafelistComponents.Filters.ClientIpCheckPageFilter[0]

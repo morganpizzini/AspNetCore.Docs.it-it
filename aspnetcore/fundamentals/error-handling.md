@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: bbd16e2e045a24f018eb59b67dfdf50d9bed6f32
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 46654b61d631ef36a6501c6bf6c187ec064a7c9a
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775037"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407681"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Gestire gli errori in ASP.NET Core
 
@@ -26,7 +28,7 @@ Di [Tom Dykstra](https://github.com/tdykstra/) e [Steve Smith](https://ardalis.c
 
 Questo articolo illustra gli approcci comuni per la gestione degli errori nelle app Web ASP.NET Core. Vedere <xref:web-api/handle-errors> per le API Web.
 
-[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples). ([Come scaricare](xref:index#how-to-download-a-sample)). L'articolo include istruzioni su come impostare le direttive per il preprocessore `#endif`( `#define``#if`,,) nell'app di esempio per abilitare diversi scenari.
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples). ([Come scaricare](xref:index#how-to-download-a-sample)). L'articolo include istruzioni su come impostare le direttive per il preprocessore ( `#if` , `#endif` , `#define` ) nell'app di esempio per abilitare diversi scenari.
 
 ## <a name="developer-exception-page"></a>Pagina delle eccezioni per gli sviluppatori
 
@@ -59,7 +61,7 @@ Nell'esempio seguente <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensi
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-Il Razor modello di app pagine fornisce una pagina di errore (*cshtml*) <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> e una`ErrorModel`classe () nella cartella *pagine* . Per un'app MVC, il modello di progetto include un metodo di azione Error e una visualizzazione degli errori. Ecco il metodo di azione:
+Il Razor modello di app pagine fornisce una pagina di errore (*cshtml*) e una <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> classe ( `ErrorModel` ) nella cartella *pagine* . Per un'app MVC, il modello di progetto include un metodo di azione Error e una visualizzazione degli errori. Ecco il metodo di azione:
 
 ```csharp
 [AllowAnonymous]
@@ -70,7 +72,7 @@ public IActionResult Error()
 }
 ```
 
-Non contrassegnare il metodo di azione del gestore errori con attributi di metodo `HttpGet`http, ad esempio. I verbi espliciti impediscono ad alcune richieste di raggiungere il metodo. Consentire l'accesso anonimo al metodo in modo che gli utenti non autenticati possano ricevere la visualizzazione degli errori.
+Non contrassegnare il metodo di azione del gestore errori con attributi di metodo HTTP, ad esempio `HttpGet` . I verbi espliciti impediscono ad alcune richieste di raggiungere il metodo. Consentire l'accesso anonimo al metodo in modo che gli utenti non autenticati possano ricevere la visualizzazione degli errori.
 
 ### <a name="access-the-exception"></a>Accedere all'eccezione
 
@@ -91,7 +93,7 @@ Di seguito è riportato un esempio dell'uso di un'espressione lambda per la gest
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_HandlerPageLambda)]
 
-Nel codice precedente viene aggiunto `await context.Response.WriteAsync(new string(' ', 512));` , in modo che il browser Internet Explorer visualizzi il messaggio di errore anziché un messaggio di errore di IE. Per altre informazioni, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/16144).
+Nel codice precedente `await context.Response.WriteAsync(new string(' ', 512));` viene aggiunto, in modo che il browser Internet Explorer visualizzi il messaggio di errore anziché un messaggio di errore di IE. Per altre informazioni, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/16144).
 
 > [!WARNING]
 > **Non** fornire informazioni sugli errori sensibili da <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> o <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> ai client. Fornire informazioni sugli errori rappresenta un rischio di sicurezza.
@@ -139,7 +141,7 @@ Metodo di estensione <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtension
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
 
-Il modello di URL può includere un segnaposto `{0}` per il codice di stato, come illustrato nell'esempio. Se il modello di URL inizia con una tilde (~), la tilde viene sostituita con il valore `PathBase` dell'app. Se si punta a un endpoint all'interno dell'app, creare una visualizzazione o Razor una pagina MVC per l'endpoint. Per un Razor esempio di pagine, vedere *pages/StatusCode. cshtml* nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
+Il modello di URL può includere un segnaposto `{0}` per il codice di stato, come illustrato nell'esempio. Se il modello di URL inizia con una tilde (~), la tilde viene sostituita con il valore `PathBase` dell'app. Se si punta a un endpoint all'interno dell'app, creare una visualizzazione o una Razor pagina MVC per l'endpoint. Per un Razor esempio di pagine, vedere *pages/StatusCode. cshtml* nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
 
 Questo metodo viene usato comunemente quando l'app:
 
@@ -155,14 +157,14 @@ Metodo di estensione <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtension
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithReExecute)]
 
-Se si punta a un endpoint all'interno dell'app, creare una visualizzazione o Razor una pagina MVC per l'endpoint. Per un Razor esempio di pagine, vedere *pages/StatusCode. cshtml* nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
+Se si punta a un endpoint all'interno dell'app, creare una visualizzazione o una Razor pagina MVC per l'endpoint. Per un Razor esempio di pagine, vedere *pages/StatusCode. cshtml* nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
 
 Questo metodo viene usato comunemente quando l'app deve:
 
 * Elaborare la richiesta senza il reindirizzamento a un endpoint diverso. Per le app Web, la barra degli indirizzi del browser del client riflette l'endpoint richiesto in origine.
 * Conservare e restituire il codice di stato originale con la risposta.
 
-I modelli di URL e di stringa di query potrebbero includere un segnaposto (`{0}`) per il codice di stato. Il modello di URL deve iniziare con una barra (`/`). Quando si usa un segnaposto nel percorso, verificare che l'endpoint (pagina o controller) possa elaborare il segmento del percorso. Ad esempio, una Razor pagina per gli errori deve accettare il valore del segmento di percorso `@page` facoltativo con la direttiva:
+I modelli di URL e di stringa di query potrebbero includere un segnaposto (`{0}`) per il codice di stato. Il modello di URL deve iniziare con una barra (`/`). Quando si usa un segnaposto nel percorso, verificare che l'endpoint (pagina o controller) possa elaborare il segmento del percorso. Ad esempio, una Razor pagina per gli errori deve accettare il valore del segmento di percorso facoltativo con la `@page` direttiva:
 
 ```cshtml
 @page "{code?}"
@@ -174,9 +176,9 @@ L'endpoint che elabora l'errore può ottenere l'URL originale che ha generato l'
 
 ## <a name="disable-status-code-pages"></a>Disabilitare le tabelle codici di stato
 
-Per disabilitare le tabelle codici di stato per un controller MVC o un metodo di [`[SkipStatusCodePages]`](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) azione, usare l'attributo.
+Per disabilitare le tabelle codici di stato per un controller MVC o un metodo di azione, usare l' [`[SkipStatusCodePages]`](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) attributo.
 
-Per disabilitare le tabelle codici di stato per richieste specifiche Razor in un metodo del gestore di pagine o in un <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>controller MVC, usare:
+Per disabilitare le tabelle codici di stato per richieste specifiche in un Razor metodo del gestore di pagine o in un controller MVC, usare <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature> :
 
 ```csharp
 var statusCodePagesFeature = HttpContext.Features.Get<IStatusCodePagesFeature>();

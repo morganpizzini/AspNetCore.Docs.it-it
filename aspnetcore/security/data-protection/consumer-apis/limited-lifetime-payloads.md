@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/limited-lifetime-payloads
-ms.openlocfilehash: bc1597f75d8c5f786d46e59ac027d01ffca077c0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d8c83ca46b1993af1f5e7985571ff012d90b1e01
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768611"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408370"
 ---
 # <a name="limit-the-lifetime-of-protected-payloads-in-aspnet-core"></a>Limitare la durata dei payload protetti in ASP.NET Core
 
@@ -26,11 +28,11 @@ Per semplificare questa operazione per i destinatari degli sviluppatori, il pacc
 
 ## <a name="api-usage"></a>Utilizzo API
 
-L' `ITimeLimitedDataProtector` interfaccia è l'interfaccia di base per la protezione e la rimozione della protezione dei payload a tempo limitato o a scadenza automatica. Per creare un'istanza di un `ITimeLimitedDataProtector`, è necessario innanzitutto un'istanza di un [IDataProtector](xref:security/data-protection/consumer-apis/overview) normale costruito con uno scopo specifico. Quando l' `IDataProtector` istanza è disponibile, chiamare il `IDataProtector.ToTimeLimitedDataProtector` metodo di estensione per ottenere una protezione con le funzionalità di scadenza predefinite.
+L' `ITimeLimitedDataProtector` interfaccia è l'interfaccia di base per la protezione e la rimozione della protezione dei payload a tempo limitato o a scadenza automatica. Per creare un'istanza di un `ITimeLimitedDataProtector` , è necessario innanzitutto un'istanza di un [IDataProtector](xref:security/data-protection/consumer-apis/overview) normale costruito con uno scopo specifico. Quando l' `IDataProtector` istanza è disponibile, chiamare il `IDataProtector.ToTimeLimitedDataProtector` metodo di estensione per ottenere una protezione con le funzionalità di scadenza predefinite.
 
 `ITimeLimitedDataProtector`espone i seguenti metodi di estensione e superficie API:
 
-* CreateProtector (scopo della stringa): ITimeLimitedDataProtector-questa API è simile a quella `IDataProtectionProvider.CreateProtector` esistente perché può essere usata per creare [catene di scopi](xref:security/data-protection/consumer-apis/purpose-strings) da un programma di protezione con limitazioni temporali radice.
+* CreateProtector (scopo della stringa): ITimeLimitedDataProtector-questa API è simile a quella esistente perché `IDataProtectionProvider.CreateProtector` può essere usata per creare [catene di scopi](xref:security/data-protection/consumer-apis/purpose-strings) da un programma di protezione con limitazioni temporali radice.
 
 * Protect (byte [] testo normale, scadenza DateTimeOffset): byte []
 
@@ -44,7 +46,7 @@ L' `ITimeLimitedDataProtector` interfaccia è l'interfaccia di base per la prote
 
 * Protect (testo non crittografato): stringa
 
-Oltre ai metodi principali `Protect` che accettano solo il testo non crittografato, sono disponibili nuovi overload che consentono di specificare la data di scadenza del payload. La data di scadenza può essere specificata come una data assoluta (tramite `DateTimeOffset`un) o come ora relativa (dall'ora di sistema corrente, tramite `TimeSpan`). Se viene chiamato un overload che non accetta una scadenza, il payload viene considerato mai scaduto.
+Oltre ai `Protect` metodi principali che accettano solo il testo non crittografato, sono disponibili nuovi overload che consentono di specificare la data di scadenza del payload. La data di scadenza può essere specificata come una data assoluta (tramite un `DateTimeOffset` ) o come ora relativa (dall'ora di sistema corrente, tramite `TimeSpan` ). Se viene chiamato un overload che non accetta una scadenza, il payload viene considerato mai scaduto.
 
 * Unprotect (byte [] protectedData, out DateTimeOffset scadenza): byte []
 

@@ -1,11 +1,26 @@
 ---
-title: autore: Descrizione: monikerRange: ms. Author: ms. Custom: ms. Date: No-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID '': 
-
+title: Scrivere middleware di ASP.NET Core personalizzato
+author: rick-anderson
+description: Informazioni su come scrivere middleware di ASP.NET Core personalizzato.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 5/18/2020
+no-loc:
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: fundamentals/middleware/write
+ms.openlocfilehash: aeebc7d5a7cbfaaab6d48b8da76d35c47c2c552b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407850"
 ---
 # <a name="write-custom-aspnet-core-middleware"></a>Scrivere middleware di ASP.NET Core personalizzato
 

@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 03/17/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/mfa
-ms.openlocfilehash: e2f34a72515a700223ce83ce6ec8b55020599ab0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cb7d63aa2f04b0c53fd403dfa6e4885b2d94da0b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767421"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408994"
 ---
 # <a name="multi-factor-authentication-in-aspnet-core"></a>Autenticazione a più fattori in ASP.NET Core
 
@@ -41,7 +43,7 @@ L'autenticazione a due fattori (2FA) è come un subset di autenticazione a più 
 
 ### <a name="mfa-totp-time-based-one-time-password-algorithm"></a>TOTP di autenticazione a più fattori (algoritmo monouso basato sul tempo)
 
-L'autenticazione a più fattori con TOTP è un' Identityimplementazione supportata con ASP.NET Core. Questo può essere usato insieme a qualsiasi app di autenticazione conforme, tra cui:
+L'autenticazione a più fattori con TOTP è un'implementazione supportata con ASP.NET Core Identity . Questo può essere usato insieme a qualsiasi app di autenticazione conforme, tra cui:
 
 * App Microsoft Authenticator
 * App Google Authenticator
@@ -69,11 +71,11 @@ L'autenticazione a più fattori con SMS aumenta notevolmente la sicurezza rispet
 
 ## <a name="configure-mfa-for-administration-pages-using-aspnet-core-identity"></a>Configurare Multi-Factor Authentication per le pagine di amministrazione usando ASP.NET CoreIdentity
 
-L'autenticazione a più fattori può essere forzata sugli utenti per accedere alle Identity pagine sensibili all'interno di un'app ASP.NET Core. Questa operazione può essere utile per le app in cui esistono diversi livelli di accesso per le diverse identità. Ad esempio, gli utenti potrebbero essere in grado di visualizzare i dati del profilo utilizzando un account di accesso con password, ma per accedere alle pagine amministrative è necessario un amministratore per utilizzare l'autenticazione a più fattori.
+L'autenticazione a più fattori può essere forzata sugli utenti per accedere alle pagine sensibili all'interno di un' Identity app ASP.NET Core. Questa operazione può essere utile per le app in cui esistono diversi livelli di accesso per le diverse identità. Ad esempio, gli utenti potrebbero essere in grado di visualizzare i dati del profilo utilizzando un account di accesso con password, ma per accedere alle pagine amministrative è necessario un amministratore per utilizzare l'autenticazione a più fattori.
 
 ### <a name="extend-the-login-with-an-mfa-claim"></a>Estendere l'accesso con un'attestazione di autenticazione a più fattori
 
-Il codice demo viene configurato usando ASP.NET Core con Identity le Razor pagine e. Viene `AddIdentity` utilizzato il metodo anziché `AddDefaultIdentity` uno, pertanto è possibile `IUserClaimsPrincipalFactory` utilizzare un'implementazione per aggiungere attestazioni all'identità dopo un accesso riuscito.
+Il codice demo viene configurato usando ASP.NET Core con Identity le Razor pagine e. `AddIdentity`Viene utilizzato il metodo anziché `AddDefaultIdentity` uno, pertanto è `IUserClaimsPrincipalFactory` possibile utilizzare un'implementazione per aggiungere attestazioni all'identità dopo un accesso riuscito.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -144,7 +146,7 @@ namespace IdentityStandaloneMfa
 }
 ```
 
-Poiché l' Identity installazione del servizio è cambiata `Startup` nella classe, è Identity necessario aggiornare i layout di. Impalcature Identity delle pagine nell'app. Definire il layout nel file * Identity/account/Manage/_Layout. cshtml* .
+Poiché l' Identity installazione del servizio è cambiata nella `Startup` classe, Identity è necessario aggiornare i layout di. Impalcature delle Identity pagine nell'app. Definire il layout nel file * Identity /account/Manage/_Layout. cshtml* .
 
 ```cshtml
 @{
@@ -162,7 +164,7 @@ Assegnare anche il layout per tutte le pagine Gestisci dalle Identity pagine:
 
 ### <a name="validate-the-mfa-requirement-in-the-administration-page"></a>Convalidare il requisito di autenticazione a più fattori nella pagina di amministrazione
 
-La pagina Razor di amministrazione verifica che l'utente abbia eseguito l'accesso con l'autenticazione a più fattori. Nel `OnGet` metodo, l'identità viene usata per accedere alle attestazioni utente. L' `amr` attestazione viene verificata per `mfa`il valore. Se nell'identità manca questa attestazione o se `false`è, la pagina viene reindirizzata alla pagina Abilita autenticazione a più fattori. Questa operazione è possibile perché l'utente ha già eseguito l'accesso, ma senza autenticazione a più fattori.
+La pagina di amministrazione verifica Razor che l'utente abbia eseguito l'accesso con l'autenticazione a più fattori. Nel `OnGet` metodo, l'identità viene usata per accedere alle attestazioni utente. L' `amr` attestazione viene verificata per il valore `mfa` . Se nell'identità manca questa attestazione o se è `false` , la pagina viene reindirizzata alla pagina Abilita autenticazione a più fattori. Questa operazione è possibile perché l'utente ha già eseguito l'accesso, ma senza autenticazione a più fattori.
 
 ```csharp
 using System;
@@ -200,7 +202,7 @@ namespace IdentityStandaloneMfa
 
 ### <a name="ui-logic-to-toggle-user-login-information"></a>Logica dell'interfaccia utente per abilitare o disabilitare le informazioni di accesso degli utenti
 
-Un criterio di autorizzazione è stato aggiunto all'avvio. Il criterio richiede l' `amr` attestazione con il `mfa`valore.
+Un criterio di autorizzazione è stato aggiunto all'avvio. Il criterio richiede l' `amr` attestazione con il valore `mfa` .
 
 ```csharp
 services.AddAuthorization(options =>
@@ -261,9 +263,9 @@ Il `acr_values` parametro può essere usato per passare il `mfa` valore richiest
 
 ### <a name="openid-connect-aspnet-core-client"></a>Client ASP.NET Core OpenID Connect
 
-L'app Razor client Open ID Connect per le pagine ASP.NET Core `AddOpenIdConnect` usa il metodo per accedere al server Open ID Connect. Il `acr_values` parametro viene impostato con il `mfa` valore e inviato con la richiesta di autenticazione. Viene `OpenIdConnectEvents` usato per aggiungere questo oggetto.
+L' Razor app client Open ID Connect per le pagine ASP.NET Core usa il `AddOpenIdConnect` metodo per accedere al server Open ID Connect. Il `acr_values` parametro viene impostato con il `mfa` valore e inviato con la richiesta di autenticazione. `OpenIdConnectEvents`Viene usato per aggiungere questo oggetto.
 
-Per i `acr_values` valori dei parametri consigliati, vedere [valori di riferimento del metodo di autenticazione](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08).
+Per `acr_values` i valori dei parametri consigliati, vedere [valori di riferimento del metodo di autenticazione](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08).
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -304,7 +306,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Nel server OpenID Connect, implementato usando ASP.NET Core Identity con le visualizzazioni MVC, viene creata una nuova vista denominata *ErrorEnable2FA. cshtml* . Visualizzazione:
 
-* Visualizza se il Identity deriva da un'app che richiede l'autenticazione a più fattori, ma l' Identityutente non ha attivato questa operazione in.
+* Visualizza se il Identity deriva da un'app che richiede l'autenticazione a più fattori, ma l'utente non ha attivato questa operazione in Identity .
 * Informa l'utente e aggiunge un collegamento per attivarlo.
 
 ```cshtml
@@ -323,9 +325,9 @@ You can enable MFA to login here:
 <a asp-controller="Manage" asp-action="TwoFactorAuthentication">Enable MFA</a>
 ```
 
-Nel `Login` metodo, l'implementazione `IIdentityServerInteractionService` `_interaction` dell'interfaccia viene usata per accedere ai parametri della richiesta Open ID Connect. È `acr_values` possibile accedere al parametro utilizzando `AcrValues` la proprietà. Il client ha inviato questo oggetto `mfa` con set, quindi è possibile verificarlo.
+Nel `Login` metodo, l' `IIdentityServerInteractionService` implementazione dell'interfaccia `_interaction` viene usata per accedere ai parametri della richiesta Open ID Connect. `acr_values`È possibile accedere al parametro utilizzando la `AcrValues` Proprietà. Il client ha inviato questo oggetto con `mfa` set, quindi è possibile verificarlo.
 
-Se è richiesta l'autenticazione a più fattori e l' Identity utente in ASP.NET Core dispone di autenticazione a più fattori abilitata, l'accesso continua. Quando l'utente non dispone di autenticazione a più fattori abilitata, l'utente viene reindirizzato alla visualizzazione personalizzata *ErrorEnable2FA. cshtml*. Quindi ASP.NET Core Identity firma l'utente in.
+Se è richiesta l'autenticazione a più fattori e l'utente in ASP.NET Core dispone di autenticazione a più fattori Identity abilitata, l'accesso continua. Quando l'utente non dispone di autenticazione a più fattori abilitata, l'utente viene reindirizzato alla visualizzazione personalizzata *ErrorEnable2FA. cshtml*. Quindi ASP.NET Core Identity firma l'utente in.
 
 ```csharp
 //
@@ -350,7 +352,7 @@ public async Task<IActionResult> Login(LoginInputModel model)
     // code omitted for brevity
 ```
 
-Il `ExternalLoginCallback` metodo funziona come l'account Identity di accesso locale. Viene `AcrValues` verificata la proprietà per `mfa` il valore. Se il `mfa` valore è presente, l'autenticazione a più fattori viene forzata prima del completamento dell'accesso, ad esempio `ErrorEnable2FA` reindirizzato alla visualizzazione.
+Il `ExternalLoginCallback` metodo funziona come l' Identity account di accesso locale. `AcrValues`Viene verificata la proprietà per il `mfa` valore. Se il `mfa` valore è presente, l'autenticazione a più fattori viene forzata prima del completamento dell'accesso, ad esempio reindirizzato alla `ErrorEnable2FA` visualizzazione.
 
 ```csharp
 //
@@ -406,15 +408,15 @@ public async Task<IActionResult> ExternalLoginCallback(
 Se l'utente ha già eseguito l'accesso, l'app client:
 
 * Convalida comunque l' `amr` attestazione.
-* Consente di configurare l'autenticazione a più fattori con un collegamento Identity alla visualizzazione ASP.NET Core.
+* Consente di configurare l'autenticazione a più fattori con un collegamento alla Identity visualizzazione ASP.NET Core.
 
 ![acr_values-1](mfa/_static/acr_values-1.png)
 
 ## <a name="force-aspnet-core-openid-connect-client-to-require-mfa"></a>Forza ASP.NET Core client OpenID Connect a richiedere l'autenticazione a più fattori
 
-Questo esempio Mostra come un'app Razor ASP.NET Core pagina, che usa OpenID Connect per accedere, può richiedere l'autenticazione degli utenti con l'autenticazione a più fattori.
+Questo esempio Mostra come un' Razor app ASP.NET Core pagina, che usa OpenID Connect per accedere, può richiedere l'autenticazione degli utenti con l'autenticazione a più fattori.
 
-Per convalidare il requisito di `IAuthorizationRequirement` autenticazione a più fattori, viene creato un requisito. Questa operazione verrà aggiunta alle pagine usando criteri che richiedono l'autenticazione a più fattori.
+Per convalidare il requisito di autenticazione a più fattori, `IAuthorizationRequirement` viene creato un requisito. Questa operazione verrà aggiunta alle pagine usando criteri che richiedono l'autenticazione a più fattori.
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -425,11 +427,11 @@ namespace AspNetCoreRequireMfaOidc
 }
 ```
 
-Viene `AuthorizationHandler` implementato un oggetto che utilizzerà `amr` l'attestazione e verificherà `mfa`il valore. Viene restituito nell'oggetto `id_token` di un'autenticazione riuscita e può avere molti valori diversi come definito nella specifica dei [valori di riferimento del metodo di autenticazione](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) . `amr`
+Viene implementato un oggetto che utilizzerà `AuthorizationHandler` l' `amr` attestazione e verificherà il valore `mfa` . `amr`Viene restituito nell'oggetto `id_token` di un'autenticazione riuscita e può avere molti valori diversi come definito nella specifica dei [valori di riferimento del metodo di autenticazione](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) .
 
 Il valore restituito dipende dal modo in cui l'identità è stata autenticata e dall'implementazione del server Open ID Connect.
 
-`AuthorizationHandler` Usa il `RequireMfa` requisito e convalida l' `amr` attestazione. Il server OpenID Connect può essere implementato usando IdentityServer4 con ASP.NET Core Identity. Quando un utente esegue l'accesso con TOTP, `amr` l'attestazione viene restituita con un valore di autenticazione a più fattori. Se si usa un'implementazione del server OpenID Connect diversa o un tipo di autenticazione `amr` a più fattori differente, l'attestazione sarà o può avere un valore diverso. Il codice deve essere esteso per accettare anche questa operazione.
+`AuthorizationHandler`Usa il `RequireMfa` requisito e convalida l' `amr` attestazione. Il server OpenID Connect può essere implementato usando IdentityServer4 con ASP.NET Core Identity . Quando un utente esegue l'accesso con TOTP, l' `amr` attestazione viene restituita con un valore di autenticazione a più fattori. Se si usa un'implementazione del server OpenID Connect diversa o un tipo di autenticazione a più fattori differente, l' `amr` attestazione sarà o può avere un valore diverso. Il codice deve essere esteso per accettare anche questa operazione.
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -540,7 +542,7 @@ namespace AspNetCoreRequireMfaOidc.Pages
 }
 ```
 
-Se l'utente esegue l'autenticazione senza autenticazione a `amr` più fattori, l'attestazione avrà probabilmente un `pwd` valore. La richiesta non sarà autorizzata ad accedere alla pagina. Utilizzando i valori predefiniti, l'utente verrà reindirizzato alla pagina *account/AccessDenied* . Questo comportamento può essere modificato oppure è possibile implementare qui la logica personalizzata. In questo esempio viene aggiunto un collegamento in modo che l'utente valido possa configurare l'autenticazione a più fattori per il proprio account.
+Se l'utente esegue l'autenticazione senza autenticazione a più fattori, l' `amr` attestazione avrà probabilmente un `pwd` valore. La richiesta non sarà autorizzata ad accedere alla pagina. Utilizzando i valori predefiniti, l'utente verrà reindirizzato alla pagina *account/AccessDenied* . Questo comportamento può essere modificato oppure è possibile implementare qui la logica personalizzata. In questo esempio viene aggiunto un collegamento in modo che l'utente valido possa configurare l'autenticazione a più fattori per il proprio account.
 
 ```cshtml
 @page
@@ -557,21 +559,21 @@ You require MFA to login here
 <a href="https://localhost:44352/Manage/TwoFactorAuthentication">Enable MFA</a>
 ```
 
-Ora solo gli utenti che eseguono l'autenticazione con l'autenticazione a più fattori possono accedere alla pagina o al sito Web. Se vengono usati diversi tipi di autenticazione a più fattori o se 2FA `amr` è corretto, l'attestazione avrà valori diversi e deve essere elaborata correttamente. Diversi server di connessione Open ID restituiscono anche valori diversi per questa attestazione e potrebbero non seguire la specifica dei [valori di riferimento del metodo di autenticazione](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) .
+Ora solo gli utenti che eseguono l'autenticazione con l'autenticazione a più fattori possono accedere alla pagina o al sito Web. Se vengono usati diversi tipi di autenticazione a più fattori o se 2FA è corretto, l' `amr` attestazione avrà valori diversi e deve essere elaborata correttamente. Diversi server di connessione Open ID restituiscono anche valori diversi per questa attestazione e potrebbero non seguire la specifica dei [valori di riferimento del metodo di autenticazione](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) .
 
 Quando si esegue l'accesso senza autenticazione a più fattori, ad esempio usando solo una password:
 
-* Il `amr` `pwd` valore di è:
+* Il `amr` valore di è `pwd` :
 
-    ![require_mfa_oidc_02. png](mfa/_static/require_mfa_oidc_02.png)
+    ![require_mfa_oidc_02.png](mfa/_static/require_mfa_oidc_02.png)
 
 * Accesso negato:
 
-    ![require_mfa_oidc_03. png](mfa/_static/require_mfa_oidc_03.png)
+    ![require_mfa_oidc_03.png](mfa/_static/require_mfa_oidc_03.png)
 
-In alternativa, accedere usando OTP con Identity:
+In alternativa, accedere usando OTP con Identity :
 
-![require_mfa_oidc_01. png](mfa/_static/require_mfa_oidc_01.png)
+![require_mfa_oidc_01.png](mfa/_static/require_mfa_oidc_01.png)
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

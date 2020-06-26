@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 01/13/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 29f70d6bd1d5c1223ef35b4e24e5b9c0a8465d1d
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 28274d1deccdfe9e6430aa2899854f23d3ddc12a
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652378"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408981"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Parte 4: aggiungere un modello a un'app MVC ASP.NET Core
 
@@ -146,7 +148,7 @@ Il nome della stringa di connessione viene passato al contesto chiamando un meto
 
 ## <a name="add-a-database-connection-string"></a>Aggiungere una stringa di connessione del database
 
-Aggiungere una stringa di connessione al file *appSettings. JSON* :
+Aggiungere una stringa di connessione al *appsettings.jsnel* file:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

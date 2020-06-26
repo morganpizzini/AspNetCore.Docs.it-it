@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: 533bddc9c4499dad99cfdb3089045ea10aed4548
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: 8c68f2a15d07909d4576a2426d92f9beaa91fbb7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074154"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408071"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Autorizzazione basata su criteri in ASP.NET Core
 
@@ -127,7 +129,9 @@ I criteri vengono applicati alle Razor pagine usando l' `[Authorize]` attributo 
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-I criteri possono essere applicati anche alle Razor pagine utilizzando una [convenzione di autorizzazione](xref:security/authorization/razor-pages-authorization).
+I criteri ***non*** possono essere applicati a Razor livello di gestore di pagina, ma devono essere applicati alla pagina.
+
+I criteri possono essere applicati alle Razor pagine utilizzando una [convenzione di autorizzazione](xref:security/authorization/razor-pages-authorization).
 
 ## <a name="requirements"></a>Requisiti
 

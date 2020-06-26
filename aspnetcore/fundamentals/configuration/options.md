@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/20/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/configuration/options
-ms.openlocfilehash: 9a9febba060cca591f2cbcdc03cb4c35edcfdda7
-ms.sourcegitcommit: 74d80a36103fdbd54baba0118535a4647f511913
+ms.openlocfilehash: 300b26c198e6ea07fe83af8fb9ae967e814396fb
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84529663"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408357"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Modello di opzioni in ASP.NET Core
 
@@ -116,7 +118,7 @@ Opzioni denominate:
 * Sono utili quando più sezioni di configurazione sono associate alle stesse proprietà.
 * Distinzione tra maiuscole e minuscole.
 
-Si consideri il file *appSettings. JSON* seguente:
+Si considerino i *appsettings.jsseguenti nel* file:
 
 [!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/appsettings.NO.json)]
 
@@ -163,7 +165,7 @@ Tutte le opzioni sono istanze denominate. <xref:Microsoft.Extensions.Options.ICo
 
 La convalida delle opzioni consente di convalidare i valori dell'opzione.
 
-Si consideri il file *appSettings. JSON* seguente:
+Si considerino i *appsettings.jsseguenti nel* file:
 
 [!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsValidationSample/appsettings.Dev2.json)]
 
@@ -269,9 +271,9 @@ public void Configure(IApplicationBuilder app,
 
 Non usare <xref:Microsoft.Extensions.Options.IOptions%601> oppure <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in `Startup.ConfigureServices`. Le opzioni potrebbero avere uno stato incoerente a causa dell'ordinamento delle registrazioni dei servizi.
 
-## <a name="optionsconfigurationextensions-nuget-package"></a>Pacchetto NuGet Options. ConfigurationExtensions
+## <a name="optionsconfigurationextensions-nuget-package"></a>Options.Configpacchetto NuGet urationExtensions
 
-Al pacchetto [Microsoft. Extensions. Options. ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) viene fatto riferimento in modo implicito nelle app ASP.NET Core.
+Il pacchetto [urationExtensionsMicrosoft.Extensions.Options.Config](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) viene fatto riferimento in modo implicito nelle app ASP.NET Core.
 
 ::: moniker-end
 
@@ -469,7 +471,7 @@ L'immagine seguente illustra i valori iniziali `option1` e `option2` caricati da
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-Modificare i valori nel file *appsettings.json* in `value1_from_json UPDATED` e `200`. Salvare il file *appSettings. JSON* . Aggiornare il browser per visualizzare i valori delle opzioni aggiornati:
+Modificare i valori nel file *appsettings.json* in `value1_from_json UPDATED` e `200`. Salvare il *appsettings.jssu* file. Aggiornare il browser per visualizzare i valori delle opzioni aggiornati:
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
@@ -479,7 +481,7 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 Il supporto delle opzioni denominate con <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> è illustrato nell'Esempio 6 nell'app di esempio.
 
-Il supporto delle opzioni denominate consente all'app di distinguere le configurazioni delle opzioni denominate. Nell'app di esempio le opzioni denominate sono dichiarate con [OptionsServiceCollectionExtensions. Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), che chiama [ConfigureNamedOptions \<TOptions> . Configurare](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) il metodo di estensione. Le opzioni denominate fanno distinzione maiuscole/minuscole
+Il supporto delle opzioni denominate consente all'app di distinguere le configurazioni delle opzioni denominate. Nell'app di esempio le opzioni denominate sono dichiarate con [OptionsServiceCollectionExtensions.ConfigUre](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), che chiama [ConfigureNamedOptions \<TOptions> . Configurare](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) il metodo di estensione. Le opzioni denominate fanno distinzione maiuscole/minuscole
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 
@@ -883,7 +885,7 @@ L'immagine seguente illustra i valori iniziali `option1` e `option2` caricati da
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-Modificare i valori nel file *appsettings.json* in `value1_from_json UPDATED` e `200`. Salvare il file *appSettings. JSON* . Aggiornare il browser per visualizzare i valori delle opzioni aggiornati:
+Modificare i valori nel file *appsettings.json* in `value1_from_json UPDATED` e `200`. Salvare il *appsettings.jssu* file. Aggiornare il browser per visualizzare i valori delle opzioni aggiornati:
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
@@ -893,7 +895,7 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 Il supporto delle opzioni denominate con <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> è illustrato nell'Esempio 6 nell'app di esempio.
 
-Il supporto delle opzioni denominate consente all'app di distinguere le configurazioni delle opzioni denominate. Nell'app di esempio le opzioni denominate sono dichiarate con [OptionsServiceCollectionExtensions. Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), che chiama [ConfigureNamedOptions \<TOptions> . Configurare](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) il metodo di estensione. Le opzioni denominate fanno distinzione maiuscole/minuscole
+Il supporto delle opzioni denominate consente all'app di distinguere le configurazioni delle opzioni denominate. Nell'app di esempio le opzioni denominate sono dichiarate con [OptionsServiceCollectionExtensions.ConfigUre](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), che chiama [ConfigureNamedOptions \<TOptions> . Configurare](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) il metodo di estensione. Le opzioni denominate fanno distinzione maiuscole/minuscole
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 
