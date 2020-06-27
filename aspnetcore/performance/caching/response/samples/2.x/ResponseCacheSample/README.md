@@ -1,3 +1,0 @@
-# <a name="aspnet-core-response-cache-sample"></a><span data-ttu-id="f3de1-101">Esempio di cache della risposta ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="f3de1-101">ASP.NET Core Response Cache Sample</span></span>
-
-<span data-ttu-id="f3de1-102">Questo esempio illustra l'uso della memorizzazione nella cache delle risposte in ASP.NET Core per accompagnare la [memorizzazione nella cache delle risposte in ASP.NET Core](https://docs.microsoft.com/aspnet/core/performance/caching/response).</span><span class="sxs-lookup"><span data-stu-id="f3de1-102">This sample illustrates the usage of response caching in ASP.NET Core to accompany [Response caching in ASP.NET Core](https://docs.microsoft.com/aspnet/core/performance/caching/response).</span></span>
