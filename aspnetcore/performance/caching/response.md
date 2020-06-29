@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 25d6bdae0fce7821ec7b9195817dc07ef9aed40f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 5c3314991d05ea868fe9190bb3a0206b27fd920f
+ms.sourcegitcommit: b06511252f165dd4590ba9b5beca4153fa220779
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408188"
+ms.lasthandoff: 06/27/2020
+ms.locfileid: "85459766"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Memorizzazione nella cache delle risposte in ASP.NET Core
 
@@ -176,7 +176,17 @@ Anziché duplicare le impostazioni della cache di risposta su molti attributi de
 
 Configurare un profilo della cache. L'esempio seguente mostra un profilo della cache di 30 secondi nell'app di esempio `Startup.ConfigureServices` :
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](response/samples/3.x/Startup.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup.cs?name=snippet1)]
+
+::: moniker-end
 
 Il modello di pagina Cache4 dell'app di esempio fa riferimento al `Default30` profilo della cache:
 
@@ -184,9 +194,9 @@ Il modello di pagina Cache4 dell'app di esempio fa riferimento al `Default30` pr
 
 Il <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> può essere applicato a:
 
-* RazorGestori di pagine (classi): gli attributi non possono essere applicati ai metodi del gestore.
-* Controller MVC (classi).
-* Azioni MVC (metodi): gli attributi a livello di metodo eseguono l'override delle impostazioni specificate negli attributi a livello di classe.
+* RazorPagine: gli attributi non possono essere applicati ai metodi del gestore.
+* Controller MVC.
+* Metodi di azione MVC: gli attributi a livello di metodo eseguono l'override delle impostazioni specificate negli attributi a livello di classe.
 
 Intestazione risultante applicata alla risposta della pagina Cache4 dal `Default30` profilo della cache:
 

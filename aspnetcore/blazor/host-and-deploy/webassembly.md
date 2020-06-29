@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 47ba6f54c68158b3f6dcbbdda06ec8747cf88241
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2b100ba029c08e0ce68d208df761f22a712fbbfd
+ms.sourcegitcommit: 99c784a873b62fbd97a73c5c07f4fe7a7f5db638
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402546"
+ms.lasthandoff: 06/27/2020
+ms.locfileid: "85503513"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Ospitare e distribuire ASP.NET CoreBlazor WebAssembly
 
@@ -67,16 +67,16 @@ Blazorsi basa sull'host per gestire i file compressi appropriati. Quando si usa 
             const originalResponseArray = new Int8Array(originalResponseBuffer);
             const decompressedResponseArray = BrotliDecode(originalResponseArray);
             const contentType = type === 
-          'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
+              'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
             return new Response(decompressedResponseArray, 
-          { headers: { 'content-type': contentType } });
+              { headers: { 'content-type': contentType } });
           })();
         }
       }
     });
-  </script>
-  ```
-   
+    </script>
+    ```
+ 
 Per disabilitare la compressione, aggiungere la `BlazorEnableCompression` Proprietà MSBuild al file di progetto dell'app e impostare il valore su `false` :
 
 ```xml

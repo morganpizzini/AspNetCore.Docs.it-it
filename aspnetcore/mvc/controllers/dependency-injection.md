@@ -13,16 +13,80 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/dependency-injection
-ms.openlocfilehash: 67861b2cdb946f7cd630770507181ee853b7fbfd
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: bae31e38c3b4146ec5e4b7a398a2e0fa290fd34c
+ms.sourcegitcommit: 99c784a873b62fbd97a73c5c07f4fe7a7f5db638
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408422"
+ms.lasthandoff: 06/27/2020
+ms.locfileid: "85503539"
 ---
 # <a name="dependency-injection-into-controllers-in-aspnet-core"></a>Inserimento di dipendenze in controller in ASP.NET Core
 
-<a name="dependency-injection-controllers"></a>
+::: moniker range=">= aspnetcore-3.0"
+
+Di [Shadi Namrouti](https://github.com/shadinamrouti), [Rick Anderson](https://twitter.com/RickAndMSFT) e [Steve Smith](https://github.com/ardalis)
+
+I controller ASP.NET Core MVC richiedono le proprie dipendenze in modo esplicito tramite costruttori. ASP.NET Core include il supporto predefinito per l'[inserimento di dipendenze](xref:fundamentals/dependency-injection). L'inserimento delle dipendenze rende più facile testare e gestire le app.
+
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/dependency-injection/sample) ([procedura per il download](xref:index#how-to-download-a-sample))
+
+## <a name="constructor-injection"></a>Inserimento di costruttori
+
+I servizi vengono aggiunti come parametri del costruttore e il runtime risolve il servizio dal contenitore di servizi. In genere i servizi vengono definiti tramite interfacce. Si consideri ad esempio un'app che richiede l'ora corrente. L'interfaccia seguente espone il servizio `IDateTime`:
+
+[!code-csharp[](dependency-injection/3.1sample/ControllerDI/Interfaces/IDateTime.cs?name=snippet)]
+
+Il codice seguente implementa l'interfaccia `IDateTime`:
+
+[!code-csharp[](dependency-injection/3.1sample/ControllerDI/Services/SystemDateTime.cs?name=snippet)]
+
+Aggiungere il servizio al contenitore di servizi:
+
+[!code-csharp[](dependency-injection/3.1sample/ControllerDI/Startup1.cs?name=snippet&highlight=3)]
+
+Per altre informazioni su <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>, vedere le [durate dei servizi di inserimento delle dipendenze](xref:fundamentals/dependency-injection#service-lifetimes).
+
+Il codice seguente visualizza un messaggio di saluto all'utente in base all'orario:
+
+[!code-csharp[](dependency-injection/3.1sample/ControllerDI/Controllers/HomeController.cs?name=snippet)]
+
+Eseguire l'app e verrà visualizzato un messaggio in base all'orario.
+
+## <a name="action-injection-with-fromservices"></a>Inserimento di azioni con FromServices
+
+<xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> consente di inserire un servizio direttamente in un metodo di azione senza usare l'inserimento del costruttore:
+
+[!code-csharp[](dependency-injection/3.1sample/ControllerDI/Controllers/HomeController.cs?name=snippet2)]
+
+## <a name="access-settings-from-a-controller"></a>Accedere alle impostazioni da un controller
+
+L'accesso alle impostazioni di un'app o alle impostazioni di configurazione da un controller è un tipo di azione comune. Il *modello di opzioni* descritto in <xref:fundamentals/configuration/options> rappresenta l'approccio consigliato per gestire le impostazioni. In linea generale, non inserire direttamente <xref:Microsoft.Extensions.Configuration.IConfiguration> in un controller.
+
+Creare una classe che rappresenta le opzioni. Ad esempio:
+
+[!code-csharp[](dependency-injection/3.1sample/ControllerDI/Models/SampleWebSettings.cs?name=snippet)]
+
+Aggiungere la classe di configurazione alla raccolta di servizi:
+
+[!code-csharp[](dependency-injection/3.1sample/ControllerDI/Startup.cs?highlight=4&name=snippet1)]
+
+Configurare l'app per leggere le impostazioni da un file in formato JSON:
+
+[!code-csharp[](dependency-injection/3.1sample/ControllerDI/Program.cs?name=snippet&range=10-15)]
+
+Il codice seguente richiede le impostazioni `IOptions<SampleWebSettings>` dal contenitore dei servizi e le usa nel metodo `Index`:
+
+[!code-csharp[](dependency-injection/3.1sample/ControllerDI/Controllers/SettingsController.cs?name=snippet)]
+
+## <a name="additional-resources"></a>Risorse aggiuntive
+
+* Vedere <xref:mvc/controllers/testing> per informazioni su come semplificare il test del codice richiedendo in modo esplicito le dipendenze nei controller.
+
+* [Sostituire il contenitore di inserimento delle dipendenze predefinito con un'implementazione di terze parti](xref:fundamentals/dependency-injection#default-service-container-replacement).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 
 Di [Shadi Namrouti](https://github.com/shadinamrouti), [Rick Anderson](https://twitter.com/RickAndMSFT) e [Steve Smith](https://github.com/ardalis)
 
@@ -83,3 +147,5 @@ Il codice seguente richiede le impostazioni `IOptions<SampleWebSettings>` dal co
 * Vedere <xref:mvc/controllers/testing> per informazioni su come semplificare il test del codice richiedendo in modo esplicito le dipendenze nei controller.
 
 * [Sostituire il contenitore di inserimento delle dipendenze predefinito con un'implementazione di terze parti](xref:fundamentals/dependency-injection#default-service-container-replacement).
+
+::: moniker-end
