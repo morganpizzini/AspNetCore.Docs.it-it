@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: 35873e57171b4d86affcb475ad2d55aef443d3b5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0f2741a78b58d7380fcbe84e97f5a08ef291c27b
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399179"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944512"
 ---
 # <a name="aspnet-core-blazor-data-binding"></a>ASP.NET Core Blazor Data Binding
 
@@ -365,6 +365,7 @@ Password:
 }
 ```
 
-## <a name="radio-buttons"></a>Pulsanti di opzione
+## <a name="additional-resources"></a>Risorse aggiuntive
 
-Per informazioni sull'associazione ai pulsanti di opzione in un modulo, vedere <xref:blazor/forms-validation#work-with-radio-buttons> .
+* [Associazione ai pulsanti di opzione in un modulo](xref:blazor/forms-validation#radio-buttons)
+* [Associazione `<select>` di opzioni di elementi a valori di oggetti C# `null` in un form](xref:blazor/forms-validation#binding-select-element-options-to-c-object-null-values)

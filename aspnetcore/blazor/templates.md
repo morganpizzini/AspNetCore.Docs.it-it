@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: 6359a02b23803f26c4a40772c68d39e804396403
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f1b131947a242323295a763ba2f2473af0ccfb4f
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401896"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944534"
 ---
 # <a name="aspnet-core-blazor-templates"></a>Modelli di ASP.NET Core Blazor
 
@@ -32,8 +32,6 @@ Il Blazor Framework fornisce modelli per lo sviluppo di app per ognuno dei Blazo
 * Blazor Server (`blazorserver`)
 
 Per ulteriori informazioni sui Blazor modelli di hosting di, vedere <xref:blazor/hosting-models> .
-
-Per istruzioni dettagliate sulla creazione di un' Blazor app da un modello, vedere <xref:blazor/get-started> .
 
 Le opzioni del modello sono disponibili passando l' `--help` opzione al [`dotnet new`](/dotnet/core/tools/dotnet-new) comando CLI:
 

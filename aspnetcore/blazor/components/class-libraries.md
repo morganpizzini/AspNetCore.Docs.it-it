@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: b54eb7142fc7e1665cc0aaaad068a67852ac2f74
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b172059407f9a08dacc0fadd804864c7aee7fb90
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399075"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944492"
 ---
 # <a name="aspnet-core-razor-components-class-libraries"></a>RazorLibrerie di classi dei componenti ASP.NET Core
 
@@ -35,8 +35,6 @@ I componenti possono essere condivisi in una [ Razor libreria di classi (RCL)](x
 Così come i componenti sono tipi .NET normali, i componenti forniti da un RCL sono assembly .NET normali.
 
 ## <a name="create-an-rcl"></a>Creare un RCL
-
-Per <xref:blazor/get-started> configurare l'ambiente per, seguire le istruzioni riportate nell'articolo Blazor .
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

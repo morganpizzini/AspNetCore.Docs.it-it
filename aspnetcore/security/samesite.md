@@ -15,12 +15,12 @@ no-loc:
 - SignalR
 - Electron
 uid: security/samesite
-ms.openlocfilehash: 68766591ec86e12e5602d741de74e20aec67cf49
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 3e3c12e17de3e12ead15c405e9339761a3f2f711
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399504"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944276"
 ---
 # <a name="work-with-samesite-cookies-in-aspnet-core"></a>Usare i cookie navigava sullostesso sito in ASP.NET Core
 
@@ -37,6 +37,10 @@ Navigava sullostesso sito è uno standard [IETF](https://ietf.org/about/) Draft 
 L' `SameSite=Lax` impostazione funziona per la maggior parte dei cookie dell'applicazione. Alcune forme di autenticazione come [OpenID Connect](https://openid.net/connect/) (OIDC) e l'impostazione predefinita di [WS-Federation](https://auth0.com/docs/protocols/ws-fed) sono i reindirizzamenti basati su post. I reindirizzamenti basati su POST attivano le protezioni del browser navigava sullostesso sito, pertanto navigava sullostesso sito è disabilitato per questi componenti. La maggior parte degli accessi [OAuth](https://oauth.net/) non è interessata a causa di differenze nel modo in cui la richiesta fluisce.
 
 Ogni componente ASP.NET Core che emette cookie deve decidere se navigava sullostesso sito è appropriato.
+
+## <a name="samesite-and-identity"></a>Navigava sullostesso sito eIdentity
+
+[!INCLUDE[](~/includes/SameSiteIdentity.md)]
 
 ## <a name="samesite-test-sample-code"></a>Codice di esempio di test di navigava sullostesso sito
 

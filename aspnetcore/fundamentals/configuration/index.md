@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 5e413fad090ff2cb5e1379bf7311caf159a57a4b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 5a9ed8d6737352f56be78039a895a85f22dec361
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408591"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944641"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configurazione in ASP.NET Core
 
@@ -184,6 +184,10 @@ Per altre informazioni, vedere [App di Azure: Eseguire l'override della configur
 
 Per informazioni sulle stringhe di connessione del database di Azure, vedere [prefissi della stringa di connessione](#constr) .
 
+### <a name="environment-variables-set-in-launchsettingsjson"></a>Variabili di ambiente impostate in launchSettings.js
+
+Le variabili di ambiente impostate in *launchSettings.jssu* sostituiscono quelle impostate nell'ambiente di sistema.
+
 <a name="clcp"></a>
 
 ## <a name="command-line"></a>Riga di comando
@@ -219,7 +223,7 @@ dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
 Valore chiave:
 
 * Deve seguire `=` oppure la chiave deve avere un prefisso `--` o `/` quando il valore segue uno spazio.
-* Non è obbligatorio se `=` si usa. Ad esempio: `MySetting=`.
+* Non è obbligatorio se `=` si usa. Ad esempio, `MySetting=`
 
 All'interno dello stesso comando, non combinare coppie chiave-valore dell'argomento della riga di comando che usano `=` con coppie chiave-valore che usano uno spazio.
 
@@ -751,6 +755,8 @@ Questo argomento riguarda solo la *configurazione dell'app*. Altri aspetti dell'
   * <xref:host-and-deploy/iis/index>
   * <xref:host-and-deploy/aspnet-core-module>
 
+Le variabili di ambiente impostate in *launchSettings.jssu* sostituiscono quelle impostate nell'ambiente di sistema.
+
 Per ulteriori informazioni sulla migrazione della configurazione dell'app da versioni precedenti di ASP.NET, vedere <xref:migration/proper-to-2x/index#store-configurations> .
 
 ## <a name="add-configuration-from-an-external-assembly"></a>Aggiungere la configurazione da un assembly esterno
@@ -904,7 +910,7 @@ public class HomeController : Controller
 
 I provider di configurazione non possono usare l'inserimento delle dipendenze, perché non è disponibile quando vengono configurati dall'host.
 
-### <a name="keys"></a>Tasti
+### <a name="keys"></a>Chiavi
 
 Le chiavi di configurazione adottano le convenzioni seguenti:
 
@@ -1047,7 +1053,7 @@ L'app di esempio consente di sfruttare il metodo di servizio statico `CreateDefa
 1. Dopo che l'app è in esecuzione, aprire un browser per l'app all'indirizzo `http://localhost:5000`.
 1. Notare che l'output contiene la coppia chiave-valore per l'argomento della riga di comando di configurazione fornito per `dotnet run`.
 
-### <a name="arguments"></a>Argomenti
+### <a name="arguments"></a>Arguments
 
 Il valore deve seguire un segno di uguale (`=`) o la chiave deve avere un prefisso (`--` o `/`) quando il valore segue uno spazio. Il valore non è necessario se viene usato un segno di uguale, ad esempio `CommandLineKey=`.
 

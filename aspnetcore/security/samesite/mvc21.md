@@ -15,16 +15,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: 4239321531f3a7696a15b1dea164450ea0860c2b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ce301cd7e2cbfbfc724d78bd5734dff231d0ab93
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85409059"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944741"
 ---
 # <a name="aspnet-core-21-mvc-samesite-cookie-sample"></a>Esempio di ASP.NET Core cookie navigava sullostesso sito 2,1 MVC
 
 ASP.NET Core 2,1 dispone del supporto incorporato per l'attributo [navigava sullostesso sito](https://www.owasp.org/index.php/SameSite) , ma è stato scritto nello standard originale. Il [comportamento con patch](https://github.com/dotnet/aspnetcore/issues/8212) ha modificato il significato di `SameSite.None` per emettere l'attributo navigava sullostesso sito con un valore di `None` , anziché non creare il valore. Se non si desidera creare il valore, è possibile impostare la `SameSite` proprietà su un cookie su-1.
+
+[!INCLUDE[](~/includes/SameSiteIdentity.md)]
 
 ## <a name="writing-the-samesite-attribute"></a><a name="sampleCode"></a>Scrittura dell'attributo navigava sullostesso sito
 

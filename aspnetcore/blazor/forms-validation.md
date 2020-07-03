@@ -5,7 +5,7 @@ description: Informazioni su come usare i moduli e gli scenari di convalida di c
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/04/2020
+ms.date: 07/01/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 1ed87b4aa2519334d2339b500a615aa96ef4d57d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 925051d7426470aebfddbdb5ff83d7dab9f82726
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402962"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944432"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET Core Blazor moduli e convalida
 
@@ -302,7 +302,7 @@ Il `CustomInputText` componente può essere usato ovunque <xref:Microsoft.AspNet
 }
 ```
 
-## <a name="work-with-radio-buttons"></a>Usare i pulsanti di opzione
+## <a name="radio-buttons"></a>Pulsanti di opzione
 
 Quando si utilizzano pulsanti di opzione in un modulo, data binding viene gestito in modo diverso rispetto ad altri elementi perché i pulsanti di opzione vengono valutati come un gruppo. Il valore di ogni pulsante di opzione è fisso, ma il valore del gruppo di pulsanti di opzione è il valore del pulsante di opzione selezionato. L'esempio seguente illustra come:
 
@@ -390,6 +390,30 @@ Nell'esempio seguente <xref:Microsoft.AspNetCore.Components.Forms.EditForm> vien
 }
 ```
 
+## <a name="binding-select-element-options-to-c-object-null-values"></a>Associazione `<select>` di opzioni di elementi a valori di oggetti C# `null`
+
+Non esiste un modo sensato per rappresentare il valore dell'opzione di un `<select>` elemento come valore dell'oggetto C# `null` , perché:
+
+* Gli attributi HTML non possono avere `null` valori. L'equivalente più vicino a `null` in HTML è l'assenza dell'attributo HTML dell' `value` `<option>` elemento.
+* Quando si seleziona un oggetto `<option>` senza `value` attributo, il browser considera il valore come *contenuto di testo* dell' `<option>` elemento.
+
+Il Blazor Framework non tenta di evitare il comportamento predefinito perché comporterebbe:
+
+* Creazione di una catena di soluzioni alternative per casi speciali nel Framework.
+* Modifiche di rilievo al comportamento del Framework corrente.
+
+::: moniker range=">= aspnetcore-5.0"
+
+L'equivalente più plausibile `null` in HTML è una *stringa vuota* `value` . Il Blazor Framework gestisce le `null` conversioni di stringa vuote per l'associazione bidirezionale a un `<select>` valore di.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Il Blazor Framework non gestisce automaticamente le `null` conversioni di stringa vuote quando si tenta l'associazione bidirezionale al `<select>` valore di un oggetto. Per ulteriori informazioni, vedere [la pagina relativa alla correzione dell'associazione `<select>` a un valore null (DotNet/aspnetcore #23221)](https://github.com/dotnet/aspnetcore/pull/23221).
+
+::: moniker-end
+
 ## <a name="validation-support"></a>Supporto della convalida
 
 Il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente connette il supporto di convalida usando le annotazioni dei dati a a cascata <xref:Microsoft.AspNetCore.Components.Forms.EditContext> . L'abilitazione del supporto per la convalida usando le annotazioni dei dati richiede questo movimento esplicito. Per usare un sistema di convalida diverso rispetto alle annotazioni dei dati, sostituire <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> con un'implementazione personalizzata. L'implementazione del ASP.NET Core è disponibile per l'ispezione nell'origine riferimento: [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs) / [`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs) . I collegamenti precedenti a origine riferimento forniscono il codice dal ramo del repository `master` , che rappresenta lo sviluppo corrente dell'unità di prodotto per la prossima versione di ASP.NET Core. Per selezionare il ramo per una versione diversa, usare il selettore di ramo GitHub (ad esempio `release/3.1` ).
@@ -429,7 +453,7 @@ Per assicurarsi che un risultato di convalida venga associato correttamente a un
 using System;
 using System.ComponentModel.DataAnnotations;
 
-private class MyCustomValidator : ValidationAttribute
+private class CustomValidator : ValidationAttribute
 {
     protected override ValidationResult IsValid(object value, 
         ValidationContext validationContext)
@@ -441,6 +465,9 @@ private class MyCustomValidator : ValidationAttribute
     }
 }
 ```
+
+> [!NOTE]
+> <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService%2A?displayProperty=nameWithType> è `null`. L'inserimento di servizi per la convalida nel `IsValid` metodo non è supportato.
 
 ### <a name="blazor-data-annotations-validation-package"></a>Blazorpacchetto di convalida delle annotazioni dei dati
 

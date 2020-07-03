@@ -15,22 +15,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: ba43ff052fbd290412fa27cf57ace3ee3491f8d0
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 56681e713e008188d57166da9c8fd4eb6923928c
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402559"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944217"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>BlazorModelli di hosting ASP.NET Core
 
 Di [Daniel Roth](https://github.com/danroth27)
 
 Blazorè un framework web progettato per l'esecuzione sul lato client nel browser in un Runtime .NET basato su [webassembly](https://webassembly.org/)( *Blazor WebAssembly* ) o sul lato server in ASP.NET Core ( *Blazor Server* ). Indipendentemente dal modello di hosting, i modelli di app e componenti *sono gli stessi*.
-
-Per creare un progetto per i modelli di hosting descritti in questo articolo, vedere <xref:blazor/get-started> .
-
-Per la configurazione avanzata, vedere <xref:blazor/fundamentals/configuration> .
 
 ## Blazor WebAssembly
 
@@ -155,7 +151,6 @@ Quando si usa IIS, le sessioni permanenti sono abilitate con il routing delle ri
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* <xref:blazor/get-started>
 * <xref:signalr/introduction>
 * <xref:blazor/fundamentals/additional-scenarios>
 * <xref:tutorials/signalr-blazor-webassembly>

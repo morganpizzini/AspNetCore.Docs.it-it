@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
-ms.openlocfilehash: 123b664b87eb41a8f07344608713d9aed7a0aa37
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 3f5fa42aea0af8880f9598f2e923b4e62481a797
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402247"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944315"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Proteggere un' Blazor WebAssembly app ospitata ASP.NET Core con Azure Active Directory B2C
 
@@ -98,7 +98,7 @@ In **autorizzazioni API**:
 1. Aprire l'elenco di **API** .
 1. Abilitare l'accesso all'API (ad esempio, `API.Access` ).
 1. Selezionare **Aggiungi autorizzazioni**.
-1. Selezionare il pulsante **Concedi contenuto amministratore per {tenant Name}** . Selezionare **Sì** per confermare.
+1. Selezionare il pulsante **concedere il consenso dell'amministratore per {tenant Name}** . Selezionare **Sì** per confermare.
 
 In **Home**  >  **Azure ad B2C**  >  **flussi utente**:
 
