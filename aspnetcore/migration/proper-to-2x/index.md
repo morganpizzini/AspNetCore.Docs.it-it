@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 59c513038d41779a4cf56a70045f9e72f8008d28
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 1530a5e6cc4b241b916ed7c64587b515186cc6ca
+ms.sourcegitcommit: d306407dc5bfe6fdfbac482214b3f59371b582bc
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407720"
+ms.lasthandoff: 07/04/2020
+ms.locfileid: "85951927"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Eseguire la migrazione da ASP.NET ad ASP.NET Core
 
@@ -153,7 +153,7 @@ In ASP.NET i file statici vengono archiviati in directory diverse e viene fatto 
 
 In ASP.NET Core i file statici vengono archiviati nella radice Web (* &lt; &gt; /wwwroot radice del contenuto*), a meno che non sia configurato diversamente. I file vengono caricati nella pipeline delle richieste chiamando il metodo di estensione `UseStaticFiles` da `Startup.Configure`:
 
-[!code-csharp[](../../fundamentals/static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
+[!code-csharp[](../../fundamentals/static-files/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
 > [!NOTE]
 > Se la destinazione è .NET Framework, installare il pacchetto NuGet `Microsoft.AspNetCore.StaticFiles`.
