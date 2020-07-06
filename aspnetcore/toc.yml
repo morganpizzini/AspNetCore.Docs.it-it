@@ -79,7 +79,7 @@
               uid: tutorials/first-mvc-app/details
         - name: Blazor
           displayName: tutorial
-          uid: tutorials/first-blazor-app
+          uid: tutorials/build-a-blazor-app
     - name: App per le API Web
       items:
         - name: Creare un'API Web
@@ -285,14 +285,14 @@
           uid: blazor/index
         - name: Piattaforme supportate
           uid: blazor/supported-platforms
-        - name: Introduzione
-          uid: blazor/get-started
+        - name: Strumenti
+          uid: blazor/tooling
         - name: Modelli di hosting
           uid: blazor/hosting-models
         - name: Esercitazioni
           items:
-            - name: Creare la prima app
-              uid: tutorials/first-blazor-app
+            - name: Creare un'app di elenco attività Blazer
+              uid: tutorials/build-a-blazor-app
             - name: SignalR con WebAssembly Blazor
               uid: tutorials/signalr-blazor-webassembly
         - name: Modelli
