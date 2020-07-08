@@ -5,7 +5,7 @@ description: Informazioni sulle Blazor funzionalità di gestione degli eventi, i
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/04/2020
+ms.date: 07/06/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: 60a2ff43945bcb92136b3bb8e622669d51ea3b19
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: f15f7e0fc7ef460cefffd817a7d0fa40c1f919b2
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944458"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059799"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>BlazorGestione degli eventi ASP.NET Core
 
@@ -86,12 +86,12 @@ private void ShowMessage(MouseEventArgs e)
 
 <xref:System.EventArgs>I supportati sono riportati nella tabella seguente.
 
-| Event            | Classe                | Eventi e note DOM |
+| Evento            | Classe                | Eventi e note DOM |
 | ---------------- | -------------------- | -------------------- |
 | Appunti        | <xref:Microsoft.AspNetCore.Components.Web.ClipboardEventArgs> | `oncut`, `oncopy`, `onpaste` |
 | Trascinamento             | <xref:Microsoft.AspNetCore.Components.Web.DragEventArgs> | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br><xref:Microsoft.AspNetCore.Components.Web.DataTransfer>e <xref:Microsoft.AspNetCore.Components.Web.DataTransferItem> contengono dati di elementi trascinati. |
 | Errore            | <xref:Microsoft.AspNetCore.Components.Web.ErrorEventArgs> | `onerror` |
-| Event            | <xref:System.EventArgs> | *Generale*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Appunti*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Input*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit><br><br>*Supporti*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onended`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting`<br><br><xref:Microsoft.AspNetCore.Components.Web.EventHandlers>include gli attributi per configurare i mapping tra i nomi di evento e i tipi di argomenti dell'evento. |
+| Evento            | <xref:System.EventArgs> | *Generale*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Appunti*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Input*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit><br><br>*Supporti*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onended`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting`<br><br><xref:Microsoft.AspNetCore.Components.Web.EventHandlers>include gli attributi per configurare i mapping tra i nomi di evento e i tipi di argomenti dell'evento. |
 | Focus            | <xref:Microsoft.AspNetCore.Components.Web.FocusEventArgs> | `onfocus`, `onblur`, `onfocusin`, `onfocusout`<br><br>Non include il supporto per `relatedTarget` . |
 | Input            | <xref:Microsoft.AspNetCore.Components.ChangeEventArgs> | `onchange`, `oninput` |
 | Tastiera         | <xref:Microsoft.AspNetCore.Components.Web.KeyboardEventArgs> | `onkeydown`, `onkeypress`, `onkeyup` |
@@ -183,7 +183,7 @@ Quando il pulsante è selezionato in `ChildComponent` :
 * `ParentComponent` `ShowMessage` Viene chiamato il metodo di. `messageText`viene aggiornato e visualizzato nell'oggetto `ParentComponent` .
 * Una chiamata a [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) non è obbligatoria nel metodo del callback ( `ShowMessage` ). <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>viene chiamato automaticamente per eseguire il rendering di `ParentComponent` , proprio come gli eventi figlio attivano il rendering dei componenti nei gestori eventi che vengono eseguiti all'interno dell'elemento figlio.
 
-<xref:Microsoft.AspNetCore.Components.EventCallback>e <xref:Microsoft.AspNetCore.Components.EventCallback%601> consentono delegati asincroni. <xref:Microsoft.AspNetCore.Components.EventCallback%601>è fortemente tipizzato e richiede un tipo di argomento specifico. <xref:Microsoft.AspNetCore.Components.EventCallback>è debolmente tipizzato e consente qualsiasi tipo di argomento.
+<xref:Microsoft.AspNetCore.Components.EventCallback>e <xref:Microsoft.AspNetCore.Components.EventCallback%601> consentono delegati asincroni. <xref:Microsoft.AspNetCore.Components.EventCallback>è debolmente tipizzato e consente di passare qualsiasi argomento di tipo in `InvokeAsync(Object)` . <xref:Microsoft.AspNetCore.Components.EventCallback%601>è fortemente tipizzato e richiede il passaggio di un `T` argomento in `InvokeAsync(T)` assegnabile a `TValue` .
 
 ```razor
 <ChildComponent 

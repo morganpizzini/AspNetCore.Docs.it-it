@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: 08efb79f5085acff455744e46ca411777b2641e5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: caf9e99bcd4a1887fe5d69a3641fabee08573ef1
+ms.sourcegitcommit: d1fa3d69dda675d7a52c7100742dfa6297413376
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406160"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86093317"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Confrontare servizi gRPC e API HTTP
 
@@ -37,7 +37,7 @@ La tabella seguente offre un confronto di alto livello tra le funzionalità tra 
 | Protocollo         | HTTP/2                                             | HTTP                          |
 | Payload          | [Protobuf (Small, Binary)](#performance)           | JSON (grande, leggibile)  |
 | Prescriptiveness | [Specifica Strict](#strict-specification)      | Sciolto. Qualsiasi HTTP è valido.     |
-| Streaming        | [Client, server, bidirezionale](#streaming)       | Client, server                |
+| Flusso        | [Client, server, bidirezionale](#streaming)       | Client, server                |
 | Supporto browser  | [No (richiede grpc-Web)](#limited-browser-support) | Sì                           |
 | Sicurezza         | Trasporto (TLS)                                    | Trasporto (TLS)               |
 | Generazione di codice client | [Sì](#code-generation)                      | OpenAPI + strumenti di terze parti |
@@ -67,7 +67,7 @@ Una specifica formale per l'API HTTP con JSON non esiste. Gli sviluppatori discu
 
 La [specifica gRPC](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) è prescrittiva sul formato che deve essere seguito da un servizio gRPC. gRPC Elimina il dibattito e Risparmia tempo per gli sviluppatori perché gRPC è coerente tra piattaforme e implementazioni.
 
-### <a name="streaming"></a>Streaming
+### <a name="streaming"></a>Flusso
 
 HTTP/2 fornisce una base per flussi di comunicazione di lunga durata e in tempo reale. gRPC fornisce il supporto di prima classe per lo streaming tramite HTTP/2.
 
@@ -104,7 +104,7 @@ Attualmente non è possibile chiamare direttamente un servizio gRPC da un browse
 Non tutte le funzionalità di gRPC sono supportate da gRPC-Web. Il flusso client e bidirezionale non è supportato ed è disponibile un supporto limitato per lo streaming del server.
 
 > [!TIP]
-> .NET Core offre supporto sperimentale per gRPC-Web. <xref:grpc/browser>Per ulteriori informazioni, visitare.
+> .NET Core dispone del supporto per gRPC-Web. <xref:grpc/browser>Per ulteriori informazioni, visitare.
 
 ### <a name="not-human-readable"></a>Non leggibile
 

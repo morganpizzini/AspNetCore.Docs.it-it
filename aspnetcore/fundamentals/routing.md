@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 7ac6dc983454153792610a07c1df01fbc38c8d67
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 25464817314f79c5bfd11d982cc9b09a3c72df15
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400830"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060345"
 ---
 # <a name="routing-in-aspnet-core"></a>Routing in ASP.NET Core
 
@@ -565,7 +565,7 @@ Per eseguire l'escape dei caratteri di delimitazione del parametro di routing,,,
 
 Le espressioni regolari utilizzate nel routing spesso iniziano con il `^` carattere e corrispondono alla posizione iniziale della stringa. Le espressioni terminano spesso con il `$` carattere e corrispondono alla fine della stringa. I `^` `$` caratteri e assicurano che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i `^` `$` caratteri e, l'espressione regolare trova la corrispondenza con qualsiasi sottostringa all'interno della stringa, che è spesso indesiderata. La tabella seguente fornisce esempi e spiega perché corrispondono o non riescono a corrispondere:
 
-| Expression   | String    | Corrispondente | Comment               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -1436,26 +1436,26 @@ I vincoli di route vengono eseguiti quando si verifica una corrispondenza nell'U
 
 La tabella seguente illustra i vincoli di route di esempio e il relativo comportamento.
 
-| vincolo | Esempio | Esempi di corrispondenza | Note |
-| ---------- | ------- | --------------- | ----- |
-| `int` | `{id:int}` | `123456789`, `-123456789` | Corrisponde a qualsiasi numero intero. |
-| `bool` | `{active:bool}` | `true`, `FALSE` | Corrisponde a `true` o a' false. Senza distinzione tra maiuscole e minuscole. |
+| Vincolo | Esempio | Corrispondenze di esempio | Note |
+|------------|---------|-----------------|-------|
+| `int` | `{id:int}` | `123456789`, `-123456789` | Corrisponde a qualsiasi numero intero.|
+| `bool` | `{active:bool}` | `true`, `FALSE` | Corrisponde a `true` o `false` . Senza distinzione tra maiuscole e minuscole.|
 | `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Corrisponde a un `DateTime` valore valido della lingua inglese. Vedere l'avviso precedente.|
 | `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Corrisponde a un `decimal` valore valido della lingua inglese. Vedere l'avviso precedente.|
 | `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Corrisponde a un `double` valore valido della lingua inglese. Vedere l'avviso precedente.|
 | `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Corrisponde a un `float` valore valido della lingua inglese. Vedere l'avviso precedente.|
-| `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Corrisponde a un `Guid` valore valido. |
-| `long` | `{ticks:long}` | `123456789`, `-123456789` | Corrisponde a un `long` valore valido. |
-| `minlength(value)` | `{username:minlength(4)}` | `Rick` | La stringa deve contenere almeno 4 caratteri. |
-| `maxlength(value)` | `{filename:maxlength(8)}` | `MyFile` | La stringa ha un massimo di 8 caratteri. |
-| `length(length)` | `{filename:length(12)}` | `somefile.txt` | La lunghezza della stringa deve essere uguale a 12 caratteri. |
-| `length(min,max)` | `{filename:length(8,16)}` | `somefile.txt` | La stringa deve essere almeno 8 e può contenere un massimo di 16 caratteri. |
-| `min(value)` | `{age:min(18)}` | `19` | Il valore intero deve essere almeno 18. |
-| `max(value)` | `{age:max(120)}` | `91` | Valore intero massimo di 120. |
-| `range(min,max)` | `{age:range(18,120)}` | `91` | Il valore intero deve essere almeno 18 e un massimo di 120. |
-| `alpha` | `{name:alpha}` | `Rick` | La stringa deve essere costituita da uno o più caratteri alfabetici `a` - `z` .  Senza distinzione tra maiuscole e minuscole. |
-| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | La stringa deve corrispondere all'espressione regolare. Vedere suggerimenti sulla definizione di un'espressione regolare. |
-| `required` | `{name:required}` | `Rick` | Utilizzato per imporre che un valore non di parametro sia presente durante la generazione dell'URL. |
+| `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Corrisponde a un `Guid` valore valido.|
+| `long` | `{ticks:long}` | `123456789`, `-123456789` | Corrisponde a un `long` valore valido.|
+| `minlength(value)` | `{username:minlength(4)}` | `Rick` | La stringa deve contenere almeno 4 caratteri.|
+| `maxlength(value)` | `{filename:maxlength(8)}` | `MyFile` | La stringa ha un massimo di 8 caratteri.|
+| `length(length)` | `{filename:length(12)}` | `somefile.txt` | La lunghezza della stringa deve essere uguale a 12 caratteri.|
+| `length(min,max)` | `{filename:length(8,16)}` | `somefile.txt` | La stringa deve essere almeno 8 e può contenere un massimo di 16 caratteri.|
+| `min(value)` | `{age:min(18)}` | `19` | Il valore intero deve essere almeno 18.|
+| `max(value)` | `{age:max(120)}` | `91` | Valore intero massimo di 120.|
+| `range(min,max)` | `{age:range(18,120)}` | `91` | Il valore intero deve essere almeno 18 e un massimo di 120.|
+| `alpha` | `{name:alpha}` | `Rick` | La stringa deve essere costituita da uno o più caratteri alfabetici `a` - `z` . Senza distinzione tra maiuscole e minuscole.|
+| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | La stringa deve corrispondere all'espressione regolare. Vedere suggerimenti sulla definizione di un'espressione regolare.|
+| `required` | `{name:required}` | `Rick` | Utilizzato per imporre che un valore non di parametro sia presente durante la generazione dell'URL.|
 
 Più vincoli delimitati da punti possono essere applicati a un singolo parametro. Ad esempio il vincolo seguente limita un parametro a un valore intero maggiore o uguale a 1:
 
@@ -1486,7 +1486,7 @@ Per eseguire l'escape dei caratteri di delimitazione del parametro di routing,,,
 
 Le espressioni regolari utilizzate nel routing spesso iniziano con il `^` carattere del punto di inserimento e corrispondono alla posizione iniziale della stringa. Le espressioni spesso terminano con il `$` carattere di segno di dollaro e la fine della corrispondenza della stringa. I caratteri `^` e `$` consentono di verificare che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i caratteri `^` e `$` l'espressione regolare corrisponde a qualsiasi sottostringa all'interno della stringa e spesso questo non è il risultato desiderato. La tabella seguente include alcuni esempi e descrive perché si verifica o non si verifica la corrispondenza.
 
-| Expression   | String    | Corrispondente | Comment               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -1930,7 +1930,7 @@ Le espressioni regolari usano delimitatori e token simili a quelli usati dal rou
 
 Le espressioni regolari usate nel routing spesso iniziano con l'accento circonflesso (`^`) e corrispondono alla posizione iniziale della stringa. Le espressioni spesso terminano con il segno di dollaro (`$`) e corrispondono alla fine della stringa. I caratteri `^` e `$` consentono di verificare che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i caratteri `^` e `$` l'espressione regolare corrisponde a qualsiasi sottostringa all'interno della stringa e spesso questo non è il risultato desiderato. La tabella seguente include alcuni esempi e descrive perché si verifica o non si verifica la corrispondenza.
 
-| Expression   | String    | Corrispondente | Comment               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |

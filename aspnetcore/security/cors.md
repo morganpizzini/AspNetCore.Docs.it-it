@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cors
-ms.openlocfilehash: 76e79c2d9762e242dc44857370b0ce1d13f1d1cb
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0a2be31092ab491e23ab9de9be676b5b4d3963ee
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403781"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060280"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Abilitare le richieste tra le origini (CORS) in ASP.NET Core
 
@@ -794,7 +794,7 @@ Si consideri, ad esempio, un'app configurata come segue:
 app.UseCors(policy => policy.WithHeaders(HeaderNames.CacheControl));
 ```
 
-Il middleware CORS risponde correttamente a una richiesta preliminare con la seguente intestazione di richiesta perché è sempre consentita `Content-Language` :
+Il middleware CORS risponde correttamente a una richiesta preliminare con la seguente intestazione di richiesta perché `Content-Language` è sempre consentita:
 
 ```
 Access-Control-Request-Headers: Cache-Control, Content-Language

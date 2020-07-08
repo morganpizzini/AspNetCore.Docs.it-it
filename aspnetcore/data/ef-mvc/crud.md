@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/crud
-ms.openlocfilehash: 0be63811874709db95285f4013e47bc1706050b1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e7e4c4b15cca9612a552c58029ae8b34b79070d1
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401480"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060124"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Esercitazione: implementare la funzionalità CRUD-ASP.NET MVC con EF Core
 
@@ -187,7 +187,7 @@ Queste modifiche implementano una procedura di sicurezza consigliata per impedir
 
 Il nuovo codice legge l'entità esistente e chiama `TryUpdateModel` per aggiornare i campi nell'entità recuperata [in base all'input dell'utente nei dati del modulo inviati](xref:mvc/models/model-binding). Il rilevamento modifiche automatico di Entity Framework imposta il flag `Modified` nei campi modificati dall'input del modulo. Quando viene chiamato il metodo `SaveChanges`, Entity Framework crea le istruzioni SQL per aggiornare la riga del database. I conflitti di concorrenza vengono ignorati e vengono aggiornate solo le colonne della tabella che sono state aggiornate dall'utente nel database. (Un'esercitazione successiva illustra come gestire i conflitti di concorrenza).
 
-Per evitare l'overposting, è consigliabile che i campi che devono essere aggiornati dalla pagina **Edit** siano consentiti nei parametri `TryUpdateModel`. La stringa vuota che precede l'elenco dei campi nell'elenco di parametri è relativa a un prefisso da usare con i nomi dei campi del modulo. Attualmente non sono presenti campi aggiuntivi da proteggere, ma elencando i campi che si desidera associare allo strumento di associazione di modelli si garantisce che se si aggiungono i campi al modello di dati in futuro, questi ultimi vengono protetti automaticamente finché non vengono aggiunti in modo esplicito.
+Come procedura consigliata per evitare l'overposting, i campi che si desidera aggiornare dalla pagina di **modifica** vengono dichiarati nei `TryUpdateModel` parametri. La stringa vuota che precede l'elenco dei campi nell'elenco di parametri è relativa a un prefisso da usare con i nomi dei campi del modulo. Attualmente non sono presenti campi aggiuntivi da proteggere, ma elencando i campi che si desidera associare allo strumento di associazione di modelli si garantisce che se si aggiungono i campi al modello di dati in futuro, questi ultimi vengono protetti automaticamente finché non vengono aggiunti in modo esplicito.
 
 In seguito a queste modifiche, la firma del metodo HttpPost `Edit` corrisponde al metodo HttpGet `Edit`. Di conseguenza, il metodo `EditPost` è stato rinominato.
 

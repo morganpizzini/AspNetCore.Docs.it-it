@@ -5,7 +5,7 @@ description: Informazioni sugli strumenti disponibili per la compilazione di Bla
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2020
+ms.date: 07/07/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -16,12 +16,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems-set-one
-ms.openlocfilehash: 538257597ec5c6c705d8280a817c409debe22224
-ms.sourcegitcommit: c6467f86c09b1f608b09d37d33c8c43de7ae8bc7
+ms.openlocfilehash: bda287e54efadf8575c15c7b621416f20ae591c9
+ms.sourcegitcommit: d1fa3d69dda675d7a52c7100742dfa6297413376
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946808"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86093329"
 ---
 # <a name="tooling-for-aspnet-core-blazor"></a>Strumenti per ASP.NET CoreBlazor
 
@@ -43,6 +43,8 @@ Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.co
 
 1. Premere <kbd>CTRL</kbd> + <kbd>F5</kbd> per eseguire l'app.
 
+Per ulteriori informazioni su come considerare attendibile il certificato di sviluppo HTTPS ASP.NET Core, vedere <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos> .
+
 ::: zone-end
 
 ::: zone pivot="os-linux"
@@ -55,9 +57,7 @@ Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.co
 
 1. Installare la versione più recente di [Visual Studio Code](https://code.visualstudio.com/).
 
-1. Installare la versione più recente [di C# per Visual Studio Code estensione](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e l'estensione del [debugger JavaScript (notturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) con `debug.javascript.usePreview` impostato su `true` .
-
-   Per impostare `debug.javascript.usePreview` `true` l'utilizzo dell'interfaccia utente di vs Code **File**, aprire  >  **Preferences**  >  **Impostazioni** preferenze file e cercare `debug javascript use preview` . Selezionare la casella di controllo **Usa il nuovo debugger JavaScript in anteprima per Node.js e Chrome**.
+1. Installare la versione più recente [di C# per Visual Studio Code estensione](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
 1. Per un' Blazor WebAssembly esperienza, eseguire il comando seguente in una shell dei comandi:
 
@@ -78,6 +78,16 @@ Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.co
 1. Le richieste dell'IDE aggiungono risorse per compilare ed eseguire il debug del progetto. Selezionare **Sì**.
 
 1. Premere <kbd>CTRL</kbd> + <kbd>F5</kbd> per eseguire l'app.
+
+## <a name="trust-a-development-certificate"></a>Attendibilità di un certificato di sviluppo
+
+Non esiste un modo centralizzato per considerare attendibile un certificato in Linux. Viene in genere adottato uno degli approcci seguenti:
+
+* Escludere l'URL dell'app nell'elenco di esclusione del browser.
+* Considerare attendibili tutti i certificati autofirmati per `localhost` .
+* Aggiungere il certificato all'elenco dei certificati attendibili nel browser.
+
+Per altre informazioni, vedere le linee guida fornite dal browser e dalla distribuzione Linux.
 
 ::: zone-end
 
@@ -104,6 +114,6 @@ Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.co
 
 1. Selezionare **Esegui**  >  **Avvia senza eseguire debug** per eseguire l'app *senza il debugger*. Eseguire l'app con **Esegui**  >  **debug Avvia debug** o il pulsante Esegui (&#9654;) per eseguire l'app *con il debugger*.
 
-Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare. Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain.
+Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare. Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain. Per ulteriori informazioni su come considerare attendibile il certificato di sviluppo HTTPS ASP.NET Core, vedere <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos> .
 
 ::: zone-end

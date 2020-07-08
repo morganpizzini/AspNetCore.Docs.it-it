@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/context-headers
-ms.openlocfilehash: 078392662281253b8b6cfc0d50fddc8d66482b63
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0995cd80c10f638c90a60630378518988ffb89ed
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406894"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060098"
 ---
 # <a name="context-headers-in-aspnet-core"></a>Intestazioni di contesto nel ASP.NET Core
 
@@ -26,7 +26,7 @@ ms.locfileid: "85406894"
 
 ## <a name="background-and-theory"></a>Background e teoria
 
-Nel sistema di protezione dei dati, una "chiave" indica un oggetto che può fornire servizi di crittografia autenticati. Ogni chiave è identificata da un ID univoco (GUID), che contiene informazioni algoritmiche e materiali intropici. È necessario che ogni chiave includa un'entropia univoca, ma non può essere applicata dal sistema ed è inoltre necessario tenere conto degli sviluppatori che potrebbero modificare manualmente l'anello della chiave modificando le informazioni algoritmiche di una chiave esistente nell'anello chiave. Per soddisfare i requisiti di sicurezza in base a questi casi, il sistema di protezione dei dati ha un concetto di [agilità crittografica](https://www.microsoft.com/en-us/research/publication/cryptographic-agility-and-its-relation-to-circular-encryption/), che consente di usare in modo sicuro un singolo valore in più algoritmi di crittografia.
+Nel sistema di protezione dei dati, una "chiave" indica un oggetto che può fornire servizi di crittografia autenticati. Ogni chiave è identificata da un ID univoco (GUID), che contiene informazioni algoritmiche e materiali intropici. È necessario che ogni chiave includa un'entropia univoca, ma non può essere applicata dal sistema ed è inoltre necessario tenere conto degli sviluppatori che potrebbero modificare manualmente l'anello della chiave modificando le informazioni algoritmiche di una chiave esistente nell'anello chiave. Per soddisfare i requisiti di sicurezza in base a questi casi, il sistema di protezione dei dati ha un concetto di [agilità crittografica](https://www.microsoft.com/research/publication/cryptographic-agility-and-its-relation-to-circular-encryption), che consente di usare in modo sicuro un singolo valore in più algoritmi di crittografia.
 
 La maggior parte dei sistemi che supportano l'agilità crittografica consente di includere alcune informazioni di identificazione sull'algoritmo all'interno del payload. L'OID dell'algoritmo è in genere un buon candidato per questa operazione. Tuttavia, un problema che si è verificato è che esistono diversi modi per specificare lo stesso algoritmo: "AES" (CNG) e le classi gestite AES, AesManaged, AesCryptoServiceProvider, AesCng e RijndaelManaged (determinati parametri specifici) sono in realtà la stessa cosa ed è necessario mantenere un mapping di tutti questi nell'OID corretto. Se uno sviluppatore vuole fornire un algoritmo personalizzato (o anche un'altra implementazione di AES!), deve indicare il relativo OID. Questo passaggio di registrazione aggiuntivo rende la configurazione del sistema particolarmente penosa.
 
@@ -50,21 +50,21 @@ L'intestazione del contesto è costituita dai componenti seguenti:
 
 * [bit 32] Dimensioni del digest (in byte, big endian) dell'algoritmo HMAC.
 
-* EncCBC (K_E, IV, ""), che è l'output dell'algoritmo di crittografia a blocchi simmetrico dato un input di stringa vuoto e dove IV è un vettore all-zero. La costruzione di K_E è descritta di seguito.
+* `EncCBC(K_E, IV, "")`, ovvero l'output dell'algoritmo di crittografia a blocchi simmetrico dato un input di stringa vuoto e dove IV è un vettore all-zero. La costruzione di `K_E` è descritta di seguito.
 
-* MAC (K_H, ""), ovvero l'output dell'algoritmo HMAC dato un input di stringa vuoto. La costruzione di K_H è descritta di seguito.
+* `MAC(K_H, "")`, ovvero l'output dell'algoritmo HMAC dato un input di stringa vuoto. La costruzione di `K_H` è descritta di seguito.
 
-Idealmente, è possibile passare tutti gli zero vettori per K_E e K_H. Tuttavia, si desidera evitare la situazione in cui l'algoritmo sottostante controlla l'esistenza di chiavi vulnerabili prima di eseguire qualsiasi operazione (in particolare DES e 3DES), che impedisce l'utilizzo di un modello semplice o ripetibile come un vettore all-zero.
+Idealmente, è possibile passare tutti i vettori zero per `K_E` e `K_H` . Tuttavia, si desidera evitare la situazione in cui l'algoritmo sottostante controlla l'esistenza di chiavi vulnerabili prima di eseguire qualsiasi operazione (in particolare DES e 3DES), che impedisce l'utilizzo di un modello semplice o ripetibile come un vettore all-zero.
 
-Viene invece usato il KDF NIST SP800-108 in modalità contatore (vedere [NIST SP800-108](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), Sec. 5,1) con una chiave di lunghezza zero, un'etichetta e un contesto e HMACSHA512 come PRF sottostante. Deriva | K_E | + | K_H | byte di output, quindi scomporre il risultato in K_E e K_H. In matematica, questo viene rappresentato come indicato di seguito.
+Viene invece usato il KDF NIST SP800-108 in modalità contatore (vedere [NIST SP800-108](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), Sec. 5,1) con una chiave di lunghezza zero, un'etichetta e un contesto e HMACSHA512 come PRF sottostante. Si derivano `| K_E | + | K_H |` i byte di output, quindi si scompone il risultato in `K_E` e in `K_H` se stesso. In matematica, questo viene rappresentato come indicato di seguito.
 
-(K_E | | K_H) = SP800_108_CTR (PRF = HMACSHA512, Key = "", label = "", context = "")
+`( K_E || K_H ) = SP800_108_CTR(prf = HMACSHA512, key = "", label = "", context = "")`
 
 ### <a name="example-aes-192-cbc--hmacsha256"></a>Esempio: AES-192-CBC + HMACSHA256
 
 Ad esempio, si consideri il caso in cui l'algoritmo di crittografia a blocchi simmetrico è AES-192-CBC e l'algoritmo di convalida è HMACSHA256. Il sistema genera l'intestazione del contesto attenendosi alla procedura seguente.
 
-Per prima cosa, Let (K_E | | K_H) = SP800_108_CTR (PRF = HMACSHA512, Key = "", label = "", context = ""), dove | K_E | = 192 bit e | K_H | = 256 bit per gli algoritmi specificati. Questo porta a K_E = 5BB6.. 21DD e K_H = A04A.. 00A9 nell'esempio seguente:
+Prima di tutto, lasciare `( K_E || K_H ) = SP800_108_CTR(prf = HMACSHA512, key = "", label = "", context = "")` , dove `| K_E | = 192 bits` e in `| K_H | = 256 bits` base agli algoritmi specificati. Questa operazione conduce a `K_E = 5BB6..21DD` e `K_H = A04A..00A9` nell'esempio seguente:
 
 ```
 5B B6 C9 83 13 78 22 1D 8E 10 73 CA CF 65 8E B0
@@ -73,13 +73,13 @@ Per prima cosa, Let (K_E | | K_H) = SP800_108_CTR (PRF = HMACSHA512, Key = "", l
 B7 92 3D BF 59 90 00 A9
 ```
 
-Successivamente, COMPUTE Enc_CBC (K_E, IV, "") per AES-192-CBC dato IV = 0 * e K_E come sopra.
+Successivamente, calcolo `Enc_CBC (K_E, IV, "")` per AES-192-CBC specificato `IV = 0*` e `K_E` come sopra.
 
-risultato: = F474B1872B3B53E4721DE19C0841DB6F
+`result := F474B1872B3B53E4721DE19C0841DB6F`
 
-Successivamente, COMPUTE MAC (K_H "") per HMACSHA256 K_H come indicato in precedenza.
+Quindi, calcolo `MAC(K_H, "")` per HMACSHA256 specificato `K_H` come sopra.
 
-risultato: = D4791184B996092EE1202F36E8608FA8FBD98ABDFF5402F264B1D7211536220C
+`result := D4791184B996092EE1202F36E8608FA8FBD98ABDFF5402F264B1D7211536220C`
 
 Questa operazione produce l'intestazione del contesto completo seguente:
 
@@ -93,26 +93,26 @@ DB 6F D4 79 11 84 B9 96 09 2E E1 20 2F 36 E8 60
 
 Questa intestazione del contesto è l'identificazione personale della coppia di algoritmi di crittografia autenticata (la convalida AES-192-CBC Encryption + HMACSHA256). I componenti, come descritto in [precedenza](xref:security/data-protection/implementation/context-headers#data-protection-implementation-context-headers-cbc-components) , sono i seguenti:
 
-* marcatore (00 00)
+* marcatore`(00 00)`
 
-* lunghezza della chiave di crittografia a blocchi (00 00 00 18)
+* lunghezza della chiave di crittografia a blocchi`(00 00 00 18)`
 
-* dimensioni del blocco di crittografia a blocchi (00 00 00 10)
+* Dimensioni blocco crittografico blocco`(00 00 00 10)`
 
-* lunghezza della chiave HMAC (00 00 00 20)
+* lunghezza della chiave HMAC`(00 00 00 20)`
 
-* dimensioni del digest HMAC (00 00 00 20)
+* dimensioni del digest HMAC`(00 00 00 20)`
 
-* output della crittografia a blocchi (F4 74-DB 6F) e
+* output della crittografia a blocchi `(F4 74 - DB 6F)` e
 
-* output della PRF HMAC (D4 79-end).
+* output della PRF HMAC `(D4 79 - end)` .
 
 > [!NOTE]
 > L'intestazione del contesto di autenticazione CBC-Mode Encryption + HMAC viene compilata allo stesso modo, indipendentemente dal fatto che le implementazioni degli algoritmi siano fornite da Windows CNG o dai tipi gestiti SymmetricAlgorithm e KeyedHashAlgorithm. Ciò consente alle applicazioni in esecuzione su sistemi operativi diversi di produrre in modo affidabile la stessa intestazione di contesto anche se le implementazioni degli algoritmi sono diverse tra i sistemi operativi. In pratica, il KeyedHashAlgorithm non deve essere un HMAC appropriato. Può essere qualsiasi tipo di algoritmo hash con chiave.
 
 ### <a name="example-3des-192-cbc--hmacsha1"></a>Esempio: 3DES-192-CBC + HMACSHA1
 
-Per prima cosa, Let (K_E | | K_H) = SP800_108_CTR (PRF = HMACSHA512, Key = "", label = "", context = ""), dove | K_E | = 192 bit e | K_H | = 160 bit per gli algoritmi specificati. Questo porta a K_E = A219.. E2BB e K_H = DC4A.. B464 nell'esempio seguente:
+Prima di tutto, lasciare `( K_E || K_H ) = SP800_108_CTR(prf = HMACSHA512, key = "", label = "", context = "")` , dove `| K_E | = 192 bits` e in `| K_H | = 160 bits` base agli algoritmi specificati. Questa operazione conduce a `K_E = A219..E2BB` e `K_H = DC4A..B464` nell'esempio seguente:
 
 ```
 A2 19 60 2F 83 A9 13 EA B0 61 3A 39 B8 A6 7E 22
@@ -120,13 +120,13 @@ A2 19 60 2F 83 A9 13 EA B0 61 3A 39 B8 A6 7E 22
 D1 F7 5A 34 EB 28 3E D7 D4 67 B4 64
 ```
 
-Successivamente, COMPUTE Enc_CBC (K_E, IV, "") per 3DES-192-CBC dato IV = 0 * e K_E come sopra.
+Successivamente, calcolo `Enc_CBC (K_E, IV, "")` per 3DES-192-CBC specificato `IV = 0*` e `K_E` come sopra.
 
-risultato: = ABB100F81E53E10E
+`result := ABB100F81E53E10E`
 
-Successivamente, COMPUTE MAC (K_H "") per HMACSHA1 K_H come indicato in precedenza.
+Quindi, calcolo `MAC(K_H, "")` per HMACSHA1 specificato `K_H` come sopra.
 
-risultato: = 76EB189B35CF03461DDF877CD9F4B1B4D63A7555
+`result := 76EB189B35CF03461DDF877CD9F4B1B4D63A7555`
 
 Questa operazione produce l'intestazione del contesto completo che rappresenta un'identificazione personale della coppia di algoritmi di crittografia autenticata (3DES-192-CBC Encryption + HMACSHA1 Validation), mostrata di seguito:
 
@@ -138,19 +138,19 @@ Questa operazione produce l'intestazione del contesto completo che rappresenta u
 
 I componenti si suddividono come segue:
 
-* marcatore (00 00)
+* marcatore`(00 00)`
 
-* lunghezza della chiave di crittografia a blocchi (00 00 00 18)
+* lunghezza della chiave di crittografia a blocchi`(00 00 00 18)`
 
-* dimensioni del blocco di crittografia a blocchi (00 00 00 08)
+* Dimensioni blocco crittografico blocco`(00 00 00 08)`
 
-* lunghezza della chiave HMAC (00 00 00 14)
+* lunghezza della chiave HMAC`(00 00 00 14)`
 
-* dimensioni del digest HMAC (00 00 00 14)
+* dimensioni del digest HMAC`(00 00 00 14)`
 
-* output della crittografia a blocchi (AB B1-E1 0E) e
+* output della crittografia a blocchi `(AB B1 - E1 0E)` e
 
-* output della PRF HMAC (76 EB-end).
+* output della PRF HMAC `(76 EB - end)` .
 
 ## <a name="galoiscounter-mode-encryption--authentication"></a>Crittografia e autenticazione in modalità contatore di Galois/Counter
 
@@ -166,21 +166,21 @@ L'intestazione del contesto è costituita dai componenti seguenti:
 
 * [bit 32] Dimensioni del tag di autenticazione (in byte, big endian) prodotte dalla funzione di crittografia autenticata. Per il nostro sistema, questo problema viene risolto in corrispondenza della dimensione del tag = 128 bit.
 
-* [bit 128] Tag di Enc_GCM (K_E, nonce, ""), che è l'output dell'algoritmo di crittografia a blocchi simmetrico dato un input di stringa vuoto e dove nonce è un vettore all-zero a 96 bit.
+* [bit 128] Tag di `Enc_GCM (K_E, nonce, "")` , ovvero l'output dell'algoritmo di crittografia a blocchi simmetrico dato un input di stringa vuoto e dove nonce è un vettore all-zero a 96 bit.
 
-K_E viene derivato utilizzando lo stesso meccanismo dello scenario di autenticazione CBC Encryption + HMAC. Tuttavia, poiché non c'è K_H in gioco, abbiamo essenzialmente | K_H | = 0 e l'algoritmo viene compresso nel formato seguente.
+`K_E`viene derivato utilizzando lo stesso meccanismo dello scenario di autenticazione CBC Encryption + HMAC. Tuttavia, poiché non è presente `K_H` in questa sezione, abbiamo essenzialmente `| K_H | = 0` e l'algoritmo viene compresso nel formato seguente.
 
-K_E = SP800_108_CTR (PRF = HMACSHA512, Key = "", label = "", context = "")
+`K_E = SP800_108_CTR(prf = HMACSHA512, key = "", label = "", context = "")`
 
 ### <a name="example-aes-256-gcm"></a>Esempio: AES-256-GCM
 
-Per prima cosa, Let K_E = SP800_108_CTR (PRF = HMACSHA512, Key = "", label = "", context = ""), dove | K_E | = 256 bit.
+Per prima cosa, let `K_E = SP800_108_CTR(prf = HMACSHA512, key = "", label = "", context = "")` , Where `| K_E | = 256 bits` .
 
-K_E: = 22BC6F1B171C08C4AE2F27444AF8FC8B3087A90006CAEA91FDCFB47C1B8733B8
+`K_E := 22BC6F1B171C08C4AE2F27444AF8FC8B3087A90006CAEA91FDCFB47C1B8733B8`
 
-Successivamente, calcolare il tag di autenticazione di Enc_GCM (K_E, nonce, "") per AES-256-GCM dati nonce = 096 e K_E come sopra.
+Successivamente, calcolare il tag di autenticazione di `Enc_GCM (K_E, nonce, "")` per AES-256-GCM specificato `nonce = 096` e `K_E` come sopra.
 
-risultato: = E7DCCE66DF855A323A6BB7BD7A59BE45
+`result := E7DCCE66DF855A323A6BB7BD7A59BE45`
 
 Questa operazione produce l'intestazione del contesto completo seguente:
 
@@ -192,14 +192,14 @@ BE 45
 
 I componenti si suddividono come segue:
 
-* marcatore (00 01)
+* marcatore`(00 01)`
 
-* lunghezza della chiave di crittografia a blocchi (00 00 00 20)
+* lunghezza della chiave di crittografia a blocchi`(00 00 00 20)`
 
-* dimensioni del parametro nonce (00 00 00 0C)
+* dimensioni del parametro nonce`(00 00 00 0C)`
 
-* dimensioni del blocco di crittografia a blocchi (00 00 00 10)
+* Dimensioni blocco crittografico blocco`(00 00 00 10)`
 
-* dimensioni del tag di autenticazione (00 00 00 10) e
+* dimensioni del tag `(00 00 00 10)` di autenticazione e
 
-* il tag di autenticazione dall'esecuzione della crittografia a blocchi (E7 DC-end).
+* Tag di autenticazione dall'esecuzione della crittografia a blocchi `(E7 DC - end)` .

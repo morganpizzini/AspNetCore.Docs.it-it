@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 59bf94f6818108f09e9af147559fc304f48936bc
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 066bebf95a941fca5e7cc175c4c0d6d56abc9cb5
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401311"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060059"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: aggiornare i dati correlati-ASP.NET MVC con EF Core
 
@@ -143,7 +143,7 @@ Il codice esegue le seguenti attività:
 
 * Ottiene l'entità Instructor corrente dal database tramite il caricamento eager per la proprietà di navigazione `OfficeAssignment`. Ciò corrisponde a quanto effettuato nel metodo `Edit` HttpGet.
 
-* Aggiorna l'entità Instructor recuperata con valori dallo strumento di associazione di modelli. L'overload `TryUpdateModel` consente di creare un elenco elementi consentiti per le proprietà da includere. In questo modo è possibile evitare l'overposting, come illustrato nella [seconda esercitazione](crud.md).
+* Aggiorna l'entità Instructor recuperata con valori dallo strumento di associazione di modelli. L' `TryUpdateModel` Overload consente di dichiarare le proprietà che si desidera includere. In questo modo è possibile evitare l'overposting, come illustrato nella [seconda esercitazione](crud.md).
 
     <!-- Snippets don't play well with <ul> [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?range=241-244)] -->
 
@@ -211,7 +211,7 @@ Aggiungere quindi il codice che viene eseguito quando l'utente fa clic su **Save
 
 La firma del metodo è ora diversa dal metodo `Edit` HttpGet, quindi il nome del metodo cambia di nuovo da `EditPost` a `Edit`.
 
-Poiché la visualizzazione non ha una raccolta di entità Course, lo strumento di associazione di modelli non può aggiornare automaticamente la proprietà di navigazione `CourseAssignments`. Anziché usare lo strumento di associazione di modelli per aggiornare la proprietà di navigazione `CourseAssignments`, questa operazione viene eseguita nel nuovo metodo `UpdateInstructorCourses`. È pertanto necessario escludere la proprietà `CourseAssignments` dall'associazione di modelli. Ciò non richiede modifiche al codice che chiama `TryUpdateModel`, poiché si sta usando l'overload dell'elenco elementi consentiti e `CourseAssignments` non è presente nell'elenco di inclusione.
+Poiché la visualizzazione non ha una raccolta di entità Course, lo strumento di associazione di modelli non può aggiornare automaticamente la proprietà di navigazione `CourseAssignments`. Anziché usare lo strumento di associazione di modelli per aggiornare la proprietà di navigazione `CourseAssignments`, questa operazione viene eseguita nel nuovo metodo `UpdateInstructorCourses`. È pertanto necessario escludere la `CourseAssignments` proprietà dall'associazione di modelli. Questa operazione non richiede alcuna modifica al codice che chiama `TryUpdateModel` perché si sta usando l'overload che richiede l'approvazione esplicita e `CourseAssignments` non è incluso nell'elenco di inclusione.
 
 Se nessuna casella di controllo è selezionata, il codice in `UpdateInstructorCourses` inizializza la proprietà di navigazione `CourseAssignments` con una raccolta vuota e torna:
 

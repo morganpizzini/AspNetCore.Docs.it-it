@@ -5,7 +5,7 @@ description: Informazioni sugli scenari aggiuntivi per la Blazor configurazione 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2020
+ms.date: 07/07/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: ff9b2b089ca61a4ac6dd8bc6bd5ab1f1e68a050b
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: e62cb2ab865fbf57166d5ec3d1344183c00c2095
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944419"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059839"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>BlazorConfigurazione del modello di hosting ASP.NET Core
 
@@ -75,6 +75,18 @@ Per personalizzare l'interfaccia utente, definire un elemento con un valore `id`
 </div>
 ```
 
+Aggiungere quanto segue al foglio di stile dell'app ( `wwwroot/css/app.css` o `wwwroot/css/site.css` ):
+
+```css
+#components-reconnect-modal {
+    display: none;
+}
+
+#components-reconnect-modal.components-reconnect-show {
+    display: block;
+}
+```
+
 Nella tabella seguente vengono descritte le classi CSS applicate all' `components-reconnect-modal` elemento.
 
 | Classe CSS                       | Indica&hellip; |
@@ -105,7 +117,7 @@ Blazor Serverper impostazione predefinita, le app sono configurate per eseguire 
 * Viene preeseguito nella pagina.
 * Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' Blazor app dall'agente utente.
 
-| Modalità di rendering | Description |
+| Modalità di rendering | Descrizione |
 | --- | --- |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering del componente in HTML statico e include un marcatore per un' Blazor Server app. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un' Blazor Server app. L'output del componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. |

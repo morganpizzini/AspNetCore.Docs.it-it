@@ -5,7 +5,7 @@ description: Informazioni su come eseguire il debug delle Blazor app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/25/2020
+ms.date: 07/06/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 9fe51b8c7eafdd62cc6fc1a820135d9ee5ff010e
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c48eb19c5a1759aace112e2afb1637c649173a3d
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401012"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059903"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>ASP.NET Core di debugBlazor WebAssembly
 
@@ -105,13 +105,7 @@ Quando si esegue il debug dell' Blazor WebAssembly app, è anche possibile esegu
 
 ## <a name="visual-studio-code"></a>Visual Studio Code
 
-Per eseguire il debug di un' Blazor WebAssembly app in Visual Studio Code:
- 
-Installare l' [estensione C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e l'estensione del [debugger JavaScript (notturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) con `debug.javascript.usePreview` impostato su `true` .
-
-![Estensioni](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-extensions.png)
-
-![Debugger di anteprima JS](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-js-use-preview.png)
+Per informazioni sull'installazione di Visual Studio Code per Blazor lo sviluppo di app, vedere <xref:blazor/tooling> .
 
 ### <a name="debug-standalone-blazor-webassembly"></a>Debug autonomoBlazor WebAssembly
 
@@ -220,11 +214,17 @@ Per il tipo di debug sono supportate le seguenti opzioni di configurazione di av
 
 1. Eseguire una build di debug dell'app nell'ambiente di sviluppo.
 
-1. Premere <kbd>MAIUSC</kbd> + <kbd>ALT</kbd> + <kbd>D</kbd>.
+1. Avviare un browser e passare all'URL dell'app, ad esempio `https://localhost:5001` .
 
-1. Il browser deve essere eseguito con il debug remoto abilitato. Se il debug remoto è disabilitato, viene generata una pagina di errore della **scheda del browser di cui è possibile eseguire il debug** . La pagina di errore contiene le istruzioni per eseguire il browser con la porta di debug aperta, in modo che il Blazor proxy di debug possa connettersi all'app. *Chiudere tutte le istanze del browser* e riavviare il browser come indicato.
+1. Nel browser provare ad avviare il debug remoto premendo <kbd>MAIUSC</kbd> + <kbd>ALT</kbd> + <kbd>D</kbd>.
 
-Quando il browser è in esecuzione con il debug remoto abilitato, il tasto di scelta rapida di debug apre una nuova scheda del debugger. Dopo qualche istante la scheda **Sources (origini** ) Mostra un elenco degli assembly .NET nell'app. Espandere ogni assembly e trovare i `.cs` / `.razor` file di origine disponibili per il debug. Impostare i punti di interruzione, tornare alla scheda dell'app e i punti di interruzione vengono raggiunti quando viene eseguito il codice. Quando viene raggiunto un punto di interruzione, l'esecuzione<kbd>F10</kbd>del codice in un singolo passaggio (F10<kbd>) viene</kbd>eseguito normalmente.
+   Il browser deve essere in esecuzione con il debug remoto abilitato, che non è il valore predefinito. Se il debug remoto è disabilitato, viene eseguito il rendering della pagina di errore della **scheda del browser di cui è possibile eseguire** il debug con le istruzioni per avviare il browser con la porta di debug aperta. Seguire le istruzioni per il browser, che consente di aprire una nuova finestra del browser. Chiudere la finestra del browser precedente.
+
+1. Quando il browser è in esecuzione con il debug remoto abilitato, il tasto di scelta rapida per il debug (<kbd>MAIUSC</kbd> + <kbd>ALT</kbd> + <kbd>D</kbd>) apre una nuova scheda del debugger.
+
+1. Dopo qualche istante, la scheda **origini** Mostra un elenco degli assembly .NET dell'app all'interno del `file://` nodo.
+
+1. Nel codice componente ( `.razor` file) e nei file di codice C# ( `.cs` ), i punti di interruzione impostati vengono raggiunti durante l'esecuzione del codice. Quando viene raggiunto un punto di interruzione, l'esecuzione<kbd>F10</kbd>del codice in un singolo passaggio (F10<kbd>) viene</kbd>eseguito normalmente.
 
 Blazorfornisce un proxy di debug che implementa il [protocollo devtools di Chrome](https://chromedevtools.github.io/devtools-protocol/) e potenzia il protocollo con. Informazioni specifiche del NET. Quando si preme il tasto di scelta rapida Blazor per il debug, punta il devtools di Chrome sul proxy. Il proxy si connette alla finestra del browser che si sta tentando di eseguire il debug, quindi è necessario abilitare il debug remoto.
 

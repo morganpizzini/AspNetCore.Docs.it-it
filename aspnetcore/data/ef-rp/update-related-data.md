@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: b084404a7fdd8b2fc18c407bd11705ccd1c496c1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b442a4ce1f63c047c123315626f559155fd06424
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406303"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060137"
 ---
 # <a name="part-7-razor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Parte 7, Razor pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core
 
@@ -158,7 +158,7 @@ Creare la classe di base *Pages/Instructors/InstructorCoursesPageModel.cs*:
 
 `InstructorCoursesPageModel` è la classe di base che verrà usata per i modelli delle pagine Edit (Modifica) e Create (Crea). `PopulateAssignedCourseData` legge tutte le entità `Course` per popolare `AssignedCourseDataList`. Per ogni corso, il codice imposta `CourseID` e titolo, e stabilisce se l'insegnante è assegnato al corso. Viene usato un [HashSet](/dotnet/api/system.collections.generic.hashset-1) per ricerche efficienti.
 
-Poiché la Razor pagina non include una raccolta di entità Course, lo strumento di associazione di modelli non può aggiornare automaticamente la `CourseAssignments` proprietà di navigazione. Anziché usare lo strumento di associazione di modelli per aggiornare la proprietà di navigazione `CourseAssignments`, questa operazione viene eseguita nel nuovo metodo `UpdateInstructorCourses`. È pertanto necessario escludere la proprietà `CourseAssignments` dall'associazione di modelli. Ciò non richiede modifiche al codice che chiama `TryUpdateModel`, poiché si sta usando l'overload dell'elenco elementi consentiti e `CourseAssignments` non è presente nell'elenco di inclusione.
+Poiché la Razor pagina non include una raccolta di entità Course, lo strumento di associazione di modelli non può aggiornare automaticamente la `CourseAssignments` proprietà di navigazione. Anziché usare lo strumento di associazione di modelli per aggiornare la proprietà di navigazione `CourseAssignments`, questa operazione viene eseguita nel nuovo metodo `UpdateInstructorCourses`. È pertanto necessario escludere la proprietà `CourseAssignments` dall'associazione di modelli. Questa operazione non richiede alcuna modifica al codice che chiama `TryUpdateModel` perché si sta usando l'overload con proprietà dichiarate e `CourseAssignments` non è incluso nell'elenco di inclusione.
 
 Se nessuna casella di controllo è selezionata, il codice in `UpdateInstructorCourses` inizializza la proprietà di navigazione `CourseAssignments` con una raccolta vuota e torna:
 

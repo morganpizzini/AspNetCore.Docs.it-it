@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/simple
-ms.openlocfilehash: 497103a14591476f3167602631b6b011264f5086
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6bd83473e168ba9100d4f6041d5d71139762b46c
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408331"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060111"
 ---
 # <a name="simple-authorization-in-aspnet-core"></a>Autorizzazione semplice in ASP.NET Core
 
@@ -92,7 +92,7 @@ Per applicare l'autorizzazione ai metodi del gestore di pagina, è possibile usa
 
 * Usare pagine separate per i gestori di pagine che richiedono un'autorizzazione diversa. Il contenuto condiviso è stato spostato in una o più [visualizzazioni parziali](xref:mvc/views/partial). Quando possibile, questo è l'approccio consigliato.
 * Per il contenuto che deve condividere una pagina comune, scrivere un filtro che esegua l'autorizzazione come parte di [IAsyncPageFilter. OnPageHandlerSelectionAsync](xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A). Il progetto GitHub [PageHandlerAuth](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth) illustra questo approccio:
-  * [AuthorizePageHandlerFilter](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth/AuthorizePageHandlerFilter.cs) implementa il filtro di autorizzazione:[!code-csharp[](~/security/authorization/simple/samples/3.1/PageHandlerAuth/Pages/Index.cshtml.cs?name=snippet)]
+  * [AuthorizeIndexPageHandlerFilter](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth/AuthorizeIndexPageHandlerFilter.cs) implementa il filtro di autorizzazione:[!code-csharp[](~/security/authorization/simple/samples/3.1/PageHandlerAuth/Pages/Index.cshtml.cs?name=snippet)]
 
   * L'attributo [[AuthorizePageHandler]](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth/Pages/Index.cshtml.cs#L16) viene applicato al `OnGet` gestore di pagina:[!code-csharp[](~/security/authorization/simple/samples/3.1/PageHandlerAuth/AuthorizeIndexPageHandlerFilter.cs?name=snippet)]
 

@@ -5,7 +5,7 @@ description: Informazioni su come usare i moduli e gli scenari di convalida di c
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2020
+ms.date: 07/06/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 925051d7426470aebfddbdb5ff83d7dab9f82726
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: f31a1f1d8942c9d9654dc26e946c022cf21ed9d1
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944432"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059864"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET Core Blazor moduli e convalida
 
@@ -444,6 +444,14 @@ Il <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> componente
 ```
 
 I <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> componenti e supportano attributi arbitrari. Qualsiasi attributo che non corrisponde a un parametro component viene aggiunto all' `<div>` elemento generato o `<ul>` .
+
+Controllare lo stile dei messaggi di convalida nel foglio di stile dell'app ( `wwwroot/css/app.css` o `wwwroot/css/site.css` ). La `validation-message` classe predefinita imposta il colore del testo dei messaggi di convalida su rosso:
+
+```css
+.validation-message {
+    color: red;
+}
+```
 
 ### <a name="custom-validation-attributes"></a>Attributi di convalida personalizzati
 

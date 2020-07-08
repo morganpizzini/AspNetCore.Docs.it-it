@@ -4,7 +4,7 @@ author: RicoSuter
 description: In questa esercitazione viene descritta una procedura dettagliata per aggiungere Swagger e generare la documentazione e le pagine della Guida di un'app API Web.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/07/2019
+ms.date: 07/06/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -14,18 +14,18 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/web-api-help-pages-using-swagger
-ms.openlocfilehash: 815581bbee3169f04f1da67227f6fa8c7275071b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 66b8278e84df5ee56582254ebe2dc99ada98a9dc
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408812"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060306"
 ---
 # <a name="aspnet-core-web-api-help-pages-with-swagger--openapi"></a>Pagine della Guida dell'API Web ASP.NET Core con Swagger/OpenAPI
 
 Di [Christoph Nienaber](https://twitter.com/zuckerthoben) e [Rico Suter](https://blog.rsuter.com/)
 
-Quando si usa un'API Web, la comprensione dei vari metodi che la compongono può risultare complessa per gli sviluppatori. [Swagger](https://swagger.io/), detto anche [OpenAPI](https://www.openapis.org/), risolve il problema della generazione di pagine della Guida e della documentazione utili per le API Web. Offre vantaggi quali la documentazione interattiva, la generazione di SDK client e l'individuabilità delle API.
+Quando si usa un'API Web, la comprensione dei diversi metodi può risultare complessa per uno sviluppatore. [Spavalderia](https://swagger.io/), noto anche come [openapi](https://www.openapis.org/), risolve il problema della generazione di documentazione e pagine della guida utili per le API Web. Offre vantaggi quali la documentazione interattiva, la generazione di SDK client e l'individuabilità delle API.
 
 Questo articolo illustra le implementazioni .NET di Swagger [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) e [NSwag](https://github.com/RicoSuter/NSwag):
 
@@ -37,82 +37,99 @@ Questo articolo illustra le implementazioni .NET di Swagger [Swashbuckle.AspNetC
 
 Swagger è una specifica indipendente dal linguaggio per la descrizione delle API [REST](https://en.wikipedia.org/wiki/Representational_state_transfer). Il progetto Swagger è stato donato all'[iniziativa OpenAPI](https://www.openapis.org/), in cui è ora denominato OpenAPI. I nomi sono intercambiabili, ma è preferibile usare OpenAPI. Questo strumento consente a computer e utenti di comprendere le funzionalità di un servizio senza accedere direttamente all'implementazione (codice sorgente, accesso alla rete, documentazione). Un obiettivo è la riduzione al minimo della quantità di lavoro necessaria per la connessione di servizi non associati. Un altro obiettivo è la riduzione del tempo necessario per documentare in modo accurato un servizio.
 
-## <a name="swagger-specification-swaggerjson"></a>Specifica Swagger (swagger.json)
+## <a name="openapi-specification-openapijson"></a>Specifica OpenAPI (openapi.js)
 
-Il nucleo del flusso di Swagger è la specifica Swagger, che per impostazione predefinita è un documento denominato *swagger.json*. La specifica viene generata dalla catena di strumenti Swagger (o da implementazioni di terzi della catena) a seconda del servizio. Descrive le funzionalità dell'API e come accedervi mediante HTTP. Gestisce Swagger UI ed è usata dalla catena di strumenti per abilitare l'individuazione e la generazione del codice client. Di seguito è riportato un esempio di specifica di Swagger, ridotto per ragioni di brevità:
+Per impostazione predefinita, il nucleo del flusso OpenAPI è la specifica &mdash; , un documento denominato *openapi.json*. Viene generato dalla catena di strumenti OpenAPI (o implementazioni di terze parti) in base al servizio. Descrive le funzionalità dell'API e come accedervi mediante HTTP. Gestisce Swagger UI ed è usata dalla catena di strumenti per abilitare l'individuazione e la generazione del codice client. Di seguito è riportato un esempio di una specifica OpenAPI, ridotta per brevità:
 
 ```json
 {
-   "swagger": "2.0",
-   "info": {
-       "version": "v1",
-       "title": "API V1"
-   },
-   "basePath": "/",
-   "paths": {
-       "/api/Todo": {
-           "get": {
-               "tags": [
-                   "Todo"
-               ],
-               "operationId": "ApiTodoGet",
-               "consumes": [],
-               "produces": [
-                   "text/plain",
-                   "application/json",
-                   "text/json"
-               ],
-               "responses": {
-                   "200": {
-                       "description": "Success",
-                       "schema": {
-                           "type": "array",
-                           "items": {
-                               "$ref": "#/definitions/TodoItem"
-                           }
-                       }
-                   }
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Todo": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "operationId": "ApiTodoGet",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ToDoItem"
+                  }
                 }
-           },
-           "post": {
-               ...
-           }
-       },
-       "/api/Todo/{id}": {
-           "get": {
-               ...
-           },
-           "put": {
-               ...
-           },
-           "delete": {
-               ...
-   },
-   "definitions": {
-       "TodoItem": {
-           "type": "object",
-            "properties": {
-                "id": {
-                    "format": "int64",
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "isComplete": {
-                    "default": false,
-                    "type": "boolean"
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ToDoItem"
+                  }
                 }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ToDoItem"
+                  }
+                }
+              }
             }
-       }
-   },
-   "securityDefinitions": {}
+          }
+        }
+      },
+      "post": {
+        …
+      }
+    },
+    "/api/Todo/{id}": {
+      "get": {
+        …
+      },
+      "put": {
+        …
+      },
+      "delete": {
+        …
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ToDoItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCompleted": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
 }
 ```
 
 ## <a name="swagger-ui"></a>Interfaccia utente di Swagger
 
-[Swagger UI](https://swagger.io/swagger-ui/) offre un'interfaccia utente basata sul web che produce informazioni sul servizio usando la specifica di Swagger generata. Sia Swashbuckle sia NSwag includono una versione incorporata di Swagger UI che può essere ospitata nell'applicazione ASP.NET Core dell'utente con una chiamata di registrazione middleware. L'interfaccia utente Web è simile alla seguente:
+L' [interfaccia utente di spavalderia](https://swagger.io/swagger-ui/) offre un'interfaccia utente basata sul Web che fornisce informazioni sul servizio, usando la specifica openapi generata. Sia Swashbuckle sia NSwag includono una versione incorporata di Swagger UI che può essere ospitata nell'applicazione ASP.NET Core dell'utente con una chiamata di registrazione middleware. L'interfaccia utente Web è simile alla seguente:
 
 ![Interfaccia utente di Swagger](web-api-help-pages-using-swagger/_static/swagger-ui.png)
 
