@@ -4,7 +4,7 @@ author: juntaoluo
 description: Informazioni sui concetti di base per la scrittura di servizi gRPC con C#.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 07/03/2019
+ms.date: 07/09/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/basics
-ms.openlocfilehash: 08c755cf078fe71d09e8c7af2cc16f5c427495f1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: a99e5c78e291469bdce5c2b5cfa6eec86caa9735
+ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407291"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86176289"
 ---
 # <a name="grpc-services-with-c"></a>Servizi gRPC con C\#
 
@@ -50,6 +50,13 @@ Si consideri ad esempio il file *greet. proto* usato in [Introduzione al servizi
 Il file con * \* estensione proto* è incluso in un progetto aggiungendolo al `<Protobuf>` gruppo di elementi:
 
 [!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-9)]
+
+Per impostazione predefinita, un `<Protobuf>` riferimento genera un client concreto e una classe di base del servizio. L'attributo dell'elemento di riferimento `GrpcServices` può essere usato per limitare la generazione di asset in C#. Le `GrpcServices` Opzioni valide sono:
+
+* `Both`(impostazione predefinita quando non è presente)
+* `Server`
+* `Client`
+* `None`
 
 ## <a name="c-tooling-support-for-proto-files"></a>Supporto degli strumenti C# per i file. proto
 

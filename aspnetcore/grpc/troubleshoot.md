@@ -5,7 +5,7 @@ description: Risolvere gli errori quando si usa gRPC in .NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 05/26/2020
+ms.date: 07/09/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/troubleshoot
-ms.openlocfilehash: 9a3e7269db04b79146686668879bf47f1a7dd6af
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 385291ec6bb6719a5fade927fa9f599af8c94045
+ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400037"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86176182"
 ---
 # <a name="troubleshoot-grpc-on-net-core"></a>Risolvere i problemi di gRPC in .NET Core
 
@@ -135,13 +135,6 @@ per la generazione di codice gRPC di client concreti e classi di base del serviz
 * Riferimento al pacchetto per il pacchetto di [strumenti GRPC gRPC. Tools](https://www.nuget.org/packages/Grpc.Tools/).
 
 Per ulteriori informazioni sulla generazione di asset gRPC C#, vedere <xref:grpc/basics> .
-
-Per impostazione predefinita, un `<Protobuf>` riferimento genera un client concreto e una classe di base del servizio. L'attributo dell'elemento di riferimento `GrpcServices` può essere usato per limitare la generazione di asset in C#. Le `GrpcServices` Opzioni valide sono:
-
-* `Both`(impostazione predefinita quando non è presente)
-* `Server`
-* `Client`
-* `None`
 
 Un ASP.NET Core app Web che ospita i servizi gRPC richiede solo la classe di base del servizio generata:
 
