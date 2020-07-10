@@ -320,31 +320,31 @@
             - name: Componenti predefiniti
               items:
                 - name: App
-                  uid: blazor/templates
+                  href: blazor/templates.md#blazor-project-structure
                 - name: Authentication
-                  uid: blazor/security/webassembly/additional-scenarios
+                  href: blazor/security/webassembly/index.md#authentication-component
                 - name: AuthorizeView
-                  uid: blazor/security/index
+                  href: blazor/security/index.md#authorizeview-component
                 - name: InputCheckbox
-                  uid: blazor/forms-validation
+                  href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputDate
-                  uid: blazor/forms-validation
+                  href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputNumber
-                  uid: blazor/forms-validation
+                  href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputSelect
-                  uid: blazor/forms-validation
+                  href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputText
-                  uid: blazor/forms-validation
+                  href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputTextArea
-                  uid: blazor/forms-validation
+                  href: blazor/forms-validation.md#built-in-forms-components
                 - name: MainLayout
-                  uid: blazor/layouts
+                  href: blazor/layouts.md#mainlayout-component
                 - name: NavLink
-                  uid: blazor/fundamentals/routing
+                  href: blazor/fundamentals/routing.md#navlink-component
                 - name: NavMenu
-                  uid: blazor/fundamentals/routing
+                  href: blazor/fundamentals/routing.md#navlink-component
                 - name: Router
-                  uid: blazor/fundamentals/routing
+                  href: blazor/fundamentals/routing.md#route-templates
             - name: Valori e parametri a cascata
               uid: blazor/components/cascading-values-and-parameters
             - name: Associazione dati
@@ -927,16 +927,6 @@
     - name: Controlli di integrità
       uid: host-and-deploy/health-checks
       displayName: 'deploy, publish'
-    - name: Blazor
-      items:
-        - name: Panoramica
-          uid: blazor/host-and-deploy/index
-        - name: WebAssembly Blazor
-          uid: blazor/host-and-deploy/webassembly
-        - name: Server Blazor
-          uid: blazor/host-and-deploy/server
-        - name: Configurare il linker
-          uid: blazor/host-and-deploy/configure-linker
 - name: Sicurezza e Identity
   displayName: 'authentication, authorization'
   items:
@@ -1169,42 +1159,6 @@
       uid: security/ip-safelist
     - name: Sicurezza dell'applicazione - OWASP
       href: 'https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html'
-    - name: Blazor
-      items:
-        - name: Panoramica
-          uid: blazor/security/index
-        - name: WebAssembly Blazor
-          items:
-            - name: Panoramica
-              uid: blazor/security/webassembly/index
-            - name: App autonoma con libreria di autenticazione
-              uid: blazor/security/webassembly/standalone-with-authentication-library
-            - name: App autonoma con account Microsoft
-              uid: blazor/security/webassembly/standalone-with-microsoft-accounts
-            - name: App autonoma con AAD
-              uid: blazor/security/webassembly/standalone-with-azure-active-directory
-            - name: App autonoma con AAD B2C
-              uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
-            - name: App ospitata con AAD
-              uid: blazor/security/webassembly/hosted-with-azure-active-directory
-            - name: App ospitata con AAD B2C
-              uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
-            - name: App ospitata con Identity Server
-              uid: blazor/security/webassembly/hosted-with-identity-server
-            - name: Scenari aggiuntivi
-              uid: blazor/security/webassembly/additional-scenarios
-            - name: Gruppi e ruoli di AAD
-              uid: blazor/security/webassembly/aad-groups-roles
-        - name: Server Blazor
-          items:
-            - name: Panoramica
-              uid: blazor/security/server/index
-            - name: Prevenzione delle minacce
-              uid: blazor/security/server/threat-mitigation
-            - name: Scenari aggiuntivi
-              uid: blazor/security/server/additional-scenarios
-        - name: Criteri di sicurezza del contenuto
-          uid: blazor/security/content-security-policy
 - name: Prestazioni
   items:
     - name: Panoramica
@@ -1229,8 +1183,6 @@
       uid: performance/diagnostic-tools
     - name: Test di carico e di stress
       uid: test/loadtests
-    - name: WebAssembly Blazor
-      uid: blazor/webassembly-performance-best-practices
 - name: Globalizzazione e localizzazione
   items:
     - name: Panoramica

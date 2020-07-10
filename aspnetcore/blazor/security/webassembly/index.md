@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: 3fdea9f553cbd37f2c27740487cfe030ebd81937
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0ff580dd7cbefdfe3121b30490f99e0235d93bc3
+ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402091"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86176151"
 ---
 # <a name="secure-aspnet-core-blazor-webassembly"></a>ASP.NET Core protettoBlazor WebAssembly
 
@@ -55,6 +55,18 @@ La [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nu
 * Quando l' Blazor WebAssembly app carica l'endpoint di callback dell'account di accesso ( `/authentication/login-callback` ), viene elaborata la risposta di autenticazione.
   * Se il processo di autenticazione viene completato correttamente, l'utente viene autenticato e, facoltativamente, restituito all'URL protetto originale richiesto dall'utente.
   * Se il processo di autenticazione ha esito negativo per qualsiasi motivo, l'utente viene inviato alla pagina di accesso non riuscita ( `/authentication/login-failed` ) e viene visualizzato un errore.
+
+## <a name="authentication-component"></a>Componente `Authentication`
+
+Il `Authentication` componente ( `Pages/Authentication.razor` ) gestisce le operazioni di autenticazione remota e consente all'app di:
+
+* Configurare le route delle app per gli Stati di autenticazione.
+* Imposta il contenuto dell'interfaccia utente per gli Stati di autenticazione.
+* Gestire lo stato di autenticazione.
+
+Le azioni di autenticazione, ad esempio la registrazione o la firma in un utente, vengono passate al Blazor componente del Framework <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorViewCore%601> , che rende permanente e controlla lo stato tra le operazioni di autenticazione.
+
+Per altre informazioni ed esempi, vedere <xref:blazor/security/webassembly/additional-scenarios>.
 
 ## <a name="authorization"></a>Autorizzazione
 

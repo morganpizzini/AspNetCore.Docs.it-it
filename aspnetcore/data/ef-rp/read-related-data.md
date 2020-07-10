@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: 14b28f04f4077cb5622858dad1bd18b81b198f3d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 171607544bfe89fdd0a1ed9efb68f7a532f9aee1
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405796"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212653"
 ---
 # <a name="part-6-razor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Parte 6, Razor pagine con EF core nei dati correlati alla lettura ASP.NET Core
 
@@ -420,7 +420,7 @@ Il codice precedente aggiunge `AsNoTracking`. `AsNoTracking` migliora le prestaz
 
 Aggiornare *Pages/Courses/Index.cshtml* con il markup evidenziato seguente:
 
-[!code-html[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
+[!code-cshtml[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
 Al codice con scaffolding sono state apportate le modifiche seguenti:
 
@@ -515,7 +515,7 @@ La query ha due istruzioni Include, che riguardano:
 
 Aggiornare *Pages/Instructors/Index.cshtml* con il markup seguente:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,43-57)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,43-57)]
 
 Il markup precedente apporta le modifiche seguenti:
 
@@ -595,7 +595,7 @@ Il codice seguente popola la proprietà `Enrollments` del modello di visualizzaz
 
 Aggiungere il markup seguente alla fine della pagina *pages/Instructors/index. cshtml* Razor :
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
 
 Quando è selezionato un insegnante, il markup precedente visualizza un elenco dei corsi correlati all'insegnante stesso.
 
@@ -611,7 +611,7 @@ Aggiornare la query nel metodo `OnGetAsync` in *Pages/Instructors/Index.cshtml.c
 
 Aggiornare *Pages/Instructors/Index.cshtml*. Aggiungere il markup seguente alla fine del file:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=103-)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=103-)]
 
 Il markup precedente visualizza l'elenco degli studenti iscritti al corso selezionato.
 

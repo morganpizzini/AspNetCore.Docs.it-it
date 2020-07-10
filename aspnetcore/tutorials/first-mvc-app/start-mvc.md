@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 01321d68defafbe79371250669f921307bcfdba6
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d4eb1744b1186704603430584b3da0793f90ee49
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407044"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86213089"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introduzione ad ASP.NET Core MVC
 
@@ -106,14 +106,12 @@ Nell'esercitazione si presuppone una familarità con Visual Studio Code. Vedere 
 
   ![selezione del modello di app Web macOS](start-mvc/_static/web_app_template_vsmac.png)
 
-* Verificare le configurazioni seguenti:
+* Nella finestra di dialogo **Configura nuova applicazione Web** :
 
-  * Il **Framework di destinazione** è impostato su **.NET Core 3,1**.
-  * **L'autenticazione** è impostata su **Nessuna autenticazione**.
-   
+  * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
+  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione**, selezionare la versione 3. x più recente.
+
   Selezionare **Avanti**.
-
-  ![selezione di macOS .NET Core 3,1](start-mvc/_static/new_project_31_vsmac.png)
 
 * Denominare il progetto **MvcMovie**, quindi selezionare **Crea**.
 
@@ -129,7 +127,7 @@ Selezionare **CTRL+F5** per eseguire l'app in modalità non di debug.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
-* Visual Studio avvia [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) ed esegue l'app. Si noti che la barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, per il server Web viene usata una porta casuale.
+* Visual Studio avvia [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) ed esegue l'app. Si noti che la barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, viene usata una porta casuale per il server Web.
 * Se si avvia l'app con CTRL+F5 (modalità non di debug) sarà possibile apportare modifiche al codice, salvare il file, aggiornare il browser e visualizzare le modifiche del codice. Molti sviluppatori preferiscono usare la modalità non di debug per avviare l'app rapidamente e visualizzare le modifiche.
 * È possibile scegliere se avviare l'app in modalità di debug o non di debug nella voce di menu **Debug**:
 
@@ -161,7 +159,7 @@ Selezionare **Esegui**  >  **Avvia senza eseguire debug** per avviare l'app. Vis
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* La barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, per il server Web viene usata una porta casuale. Quando si esegue l'app verrà visualizzato un numero di porta diverso.
+* La barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, viene usata una porta casuale per il server Web. Quando si esegue l'app verrà visualizzato un numero di porta diverso.
 * È possibile scegliere se avviare l'app in modalità di debug o non di dal menu **Esegui**.
 
   La figura seguente mostra l'app:
@@ -259,9 +257,12 @@ Nell'esercitazione si presuppone una familarità con Visual Studio Code. Vedere 
 
 * In Visual Studio per Mac precedente alla versione 8,6, selezionare applicazione Web **.NET Core**  >  **app**  >  **(Model-View-Controller)**  >  **Avanti**. Nella versione 8,6 o successive selezionare **Web e applicazione console**  >  **app**  >  **Web (Model-View-Controller)**  >  **Avanti**.
 
-* Nella finestra di dialogo **configurare la nuova ASP.NET Core API Web** accettare il **Framework di destinazione** predefinito di **.NET Core 2,2**.
+* Nella finestra di dialogo **Configura nuova applicazione Web** :
 
-  ![Selezione di .NET Core 2.2 per macOS](./start-mvc/_static/new_project_22_vsmac.png)
+  * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
+  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione**, selezionare la versione 2. x più recente.
+
+  Selezionare **Avanti**.
 
 * Denominare il progetto **MvcMovie**, quindi selezionare **Crea**.
 
@@ -275,7 +276,7 @@ Selezionare **CTRL+F5** per eseguire l'app in modalità non di debug.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
-* Visual Studio avvia [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) ed esegue l'app. Si noti che la barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, per il server Web viene usata una porta casuale.
+* Visual Studio avvia [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) ed esegue l'app. Si noti che la barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, viene usata una porta casuale per il server Web.
 * Se si avvia l'app con CTRL+F5 (modalità non di debug) sarà possibile apportare modifiche al codice, salvare il file, aggiornare il browser e visualizzare le modifiche del codice. Molti sviluppatori preferiscono usare la modalità non di debug per avviare l'app rapidamente e visualizzare le modifiche.
 * È possibile scegliere se avviare l'app in modalità di debug o non di debug nella voce di menu **Debug**:
 
@@ -285,7 +286,7 @@ Selezionare **CTRL+F5** per eseguire l'app in modalità non di debug.
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
-* Selezionare **Accept** (Accetto) per autorizzare il rilevamento. Questa app non rileva informazioni personali. Il codice generato del modello include asset che consentono di soddisfare il [Regolamento generale sulla protezione dei dati (GDPR)](xref:security/gdpr).
+* Selezionare **Accetto** per acconsentire al rilevamento. Questa app non tiene traccia delle informazioni personali. Il codice generato del modello include asset che consentono di soddisfare il [Regolamento generale sulla protezione dei dati (GDPR)](xref:security/gdpr).
 
   ![Pagina Home o di indice](start-mvc/_static/privacy.png)
 
@@ -303,7 +304,7 @@ Premere CTRL+F5 per l'esecuzione senza il debugger.
 
   Se si avvia l'app con CTRL+F5 (modalità non di debug) sarà possibile apportare modifiche al codice, salvare il file, aggiornare il browser e visualizzare le modifiche del codice. Molti sviluppatori preferiscono usare la modalità non di debug per aggiornare la pagina e visualizzare le modifiche.
 
-* Selezionare **Accept** (Accetto) per autorizzare il rilevamento. Questa app non rileva informazioni personali. Il codice generato del modello include asset che consentono di soddisfare il [Regolamento generale sulla protezione dei dati (GDPR)](xref:security/gdpr).
+* Selezionare **Accetto** per acconsentire al rilevamento. Questa app non tiene traccia delle informazioni personali. Il codice generato del modello include asset che consentono di soddisfare il [Regolamento generale sulla protezione dei dati (GDPR)](xref:security/gdpr).
 
   ![Pagina Home o di indice](start-mvc/_static/privacy.png)
 
@@ -317,10 +318,10 @@ Selezionare **Esegui**  >  **Avvia senza eseguire debug** per avviare l'app. Vis
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* La barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, per il server Web viene usata una porta casuale. Quando si esegue l'app verrà visualizzato un numero di porta diverso.
+* La barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, viene usata una porta casuale per il server Web. Quando si esegue l'app verrà visualizzato un numero di porta diverso.
 * È possibile scegliere se avviare l'app in modalità di debug o non di dal menu **Esegui**.
 
-* Selezionare **Accept** (Accetto) per autorizzare il rilevamento. Questa app non rileva informazioni personali. Il codice generato del modello include asset che consentono di soddisfare il [Regolamento generale sulla protezione dei dati (GDPR)](xref:security/gdpr).
+* Selezionare **Accetto** per acconsentire al rilevamento. Questa app non tiene traccia delle informazioni personali. Il codice generato del modello include asset che consentono di soddisfare il [Regolamento generale sulla protezione dei dati (GDPR)](xref:security/gdpr).
 
   ![Pagina Home o di indice](./start-mvc/_static/output_privacy_macos.png)
 

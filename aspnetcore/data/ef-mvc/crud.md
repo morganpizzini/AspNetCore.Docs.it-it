@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/crud
-ms.openlocfilehash: e7e4c4b15cca9612a552c58029ae8b34b79070d1
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: c33ff357ec6b467435325578047ac851a39e533e
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060124"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212725"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Esercitazione: implementare la funzionalità CRUD-ASP.NET MVC con EF Core
 
@@ -102,11 +102,11 @@ Per altre informazioni sugli helper tag, vedere <xref:mvc/views/tag-helpers/intr
 
 Aprire *Views/Students/Details.cshtml*. Ogni campo viene visualizzato usando gli helper `DisplayNameFor` e `DisplayFor`, come illustrato nell'esempio seguente:
 
-[!code-html[](intro/samples/cu/Views/Students/Details.cshtml?range=13-18&highlight=2,5)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Details.cshtml?range=13-18&highlight=2,5)]
 
 Dopo l'ultimo campo e immediatamente prima del tag `</dl>` di chiusura, aggiungere il codice seguente per visualizzare un elenco delle registrazioni:
 
-[!code-html[](intro/samples/cu/Views/Students/Details.cshtml?range=31-52)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Details.cshtml?range=31-52)]
 
 Se dopo aver incollato il codice il rientro è errato, premere CTRL-K-D per correggerlo.
 
@@ -267,7 +267,7 @@ Se l'entità include anche dati correlati che devono essere eliminati, assicurar
 
 In *Views/Student/Delete.cshtml* aggiungere un messaggio di errore tra l'intestazione h2 e l'intestazione h3, come illustrato nell'esempio seguente:
 
-[!code-html[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
 
 Eseguire l'app, selezionare la scheda **Students** e fare clic sul collegamento ipertestuale **Elimina**:
 

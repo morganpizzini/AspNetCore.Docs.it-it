@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: a22bc9f9156b671d7bf17b56b62e384a60b2568b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b473b8575a870b91d83e5494103d39486ef4fee1
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405263"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86213040"
 ---
 # <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>Parte 6, metodi e viste del controller in ASP.NET Core
 
@@ -42,7 +42,7 @@ Passare al controller `Movies` e posizionare il puntatore del mouse su un colleg
 
 I collegamenti **Edit** (Modifica), **Details** (Dettagli) e **Delete** (Elimina) vengono generati dall'helper per i tag di ancoraggio di Core MVC nel file *Views/Movies/Index.cshtml*.
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
 
 Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file. Nel codice precedente, genera in `AnchorTagHelper` modo dinamico il valore dell' `href` attributo HTML dal metodo di azione del controller e dall'ID della route. Usare **Visualizza origine** dal browser preferito oppure usare gli strumenti di sviluppo per esaminare il markup generato. Di seguito è riportata una parte del codice HTML generato:
 
@@ -106,7 +106,7 @@ L'attributo `HttpPost` specifica che questo metodo `Edit` può essere richiamato
 
 L'attributo `ValidateAntiForgeryToken` viene usato per [impedire la falsificazione di una richiesta](xref:security/anti-request-forgery) ed è accoppiato a un token antifalsificazione generato nel file di vista di modifica (*Views/Movies/Edit.cshtml*). Il file di vista di modifica genera il token antifalsificazione con l'[helper tag di modulo](xref:mvc/views/working-with-forms).
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
 
 L'[helper tag](xref:mvc/views/working-with-forms) genera un token antifalsificazione nascosto che deve corrispondere al token antifalsificazione generato `[ValidateAntiForgeryToken]` nel metodo `Edit` del controller di film. Per altre informazioni, vedere [Richiesta intersito falsa](xref:security/anti-request-forgery).
 
@@ -116,7 +116,7 @@ Il metodo `HttpGet Edit` accetta il parametro `ID`, cerca il film tramite il met
 
 Quando il sistema di scaffolding ha creato la vista Edit, ha esaminato la classe `Movie` e il codice creato per eseguire il rendering degli elementi `<label>` e `<input>` per ogni proprietà della classe. L'esempio seguente illustra la vista Edit (Modifica) generata dal sistema di scaffolding di Visual Studio:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/EditOriginal.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/EditOriginal.cshtml)]
 
 Si noti come il modello di vista contiene un'istruzione `@model MvcMovie.Models.Movie` all'inizio del file. `@model MvcMovie.Models.Movie` specifica che il modelli previsto dalla vista per il modello di vista sia di tipo `Movie`.
 

@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/logging/loggermessage
-ms.openlocfilehash: dc90c6cdbcea7c36079bcb4a032014998056b56d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: cf391c773a1187dd96e3719e0fb11d6244c8e94d
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401168"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212770"
 ---
 # <a name="high-performance-logging-with-loggermessage-in-aspnet-core"></a>Registrazione a prestazioni elevate con LoggerMessage in ASP.NET Core
 
@@ -153,7 +153,7 @@ L'app di esempio include un pulsante **Clear All** (Cancella tutto) per eliminar
 
 Abilitare `IncludeScopes` nella sezione del logger di console di *appsettings.json*:
 
-[!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
+[!code-json[](loggermessage/samples/3.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
 Per creare un ambito di log, aggiungere un campo per inserire un delegato <xref:System.Func%601> per l'ambito. L'app di esempio crea un campo denominato `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 
@@ -321,7 +321,7 @@ L'app di esempio include un pulsante **Clear All** (Cancella tutto) per eliminar
 
 Abilitare `IncludeScopes` nella sezione del logger di console di *appsettings.json*:
 
-[!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
+[!code-json[](loggermessage/samples/2.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
 Per creare un ambito di log, aggiungere un campo per inserire un delegato <xref:System.Func%601> per l'ambito. L'app di esempio crea un campo denominato `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 

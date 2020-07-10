@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/concurrency
-ms.openlocfilehash: 3038ae8f01273013e6c35694583d9674a1668bac
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f6ee60bf5e75256a9bf330f56b2f09b06f720a85
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401558"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212795"
 ---
 # <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Esercitazione: gestire la concorrenza ASP.NET MVC con EF Core
 
@@ -148,7 +148,7 @@ Il motore di scaffolding crea una colonna RowVersion nella vista Index, ma quest
 
 Sostituire il codice in *Views/Departments/Index.cshtml* con il codice seguente:
 
-[!code-html[](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
 
 Questo codice imposta come intestazione "Departments" (Reparti), elimina la colonna RowVersion e visualizza il nome completo anziché solo il cognome dell'amministratore.
 
@@ -198,7 +198,7 @@ In *Views/Departments/Edit.cshtml* apportare le modifiche seguenti:
 
 * Aggiungere un'opzione "Select Administrator" (Seleziona amministratore) all'elenco a discesa.
 
-[!code-html[](intro/samples/cu/Views/Departments/Edit.cshtml?highlight=16,34-36)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Edit.cshtml?highlight=16,34-36)]
 
 ## <a name="test-concurrency-conflicts"></a>Testare i conflitti di concorrenza
 
@@ -214,7 +214,7 @@ Modificare un campo nella seconda scheda del browser.
 
 ![Pagina Department Edit (Modifica - Reparto) 2 dopo la modifica](concurrency/_static/edit-after-change-2.png)
 
-Fare clic su **Save**. Viene visualizzato un messaggio di errore:
+Fare clic su **Save** (Salva). Viene visualizzato un messaggio di errore:
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error.png)
 
@@ -258,7 +258,7 @@ Se viene rilevato un errore di concorrenza, il codice visualizza nuovamente la p
 
 In *Views/Departments/Delete.cshtml*, sostituire il codice sottoposto a scaffolding con il codice seguente, che aggiunge un campo messaggio di errore e campi nascosti per le proprietà DepartmentID e RowVersion. Le modifiche sono evidenziate.
 
-[!code-html[](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44,45,48)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44,45,48)]
 
 Questa impostazione determina le modifiche seguenti:
 
@@ -288,11 +288,11 @@ Facoltativamente è possibile pulire il codice di scaffolding nelle visualizzazi
 
 Sostituire il codice in *Views/Departments/Details.cshtml* per eliminare la colonna RowVersion e visualizzare il nome completo di Administrator (Amministratore).
 
-[!code-html[](intro/samples/cu/Views/Departments/Details.cshtml?highlight=35)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Details.cshtml?highlight=35)]
 
 Sostituire il codice in *Views/Departments/Create.cshtml* per aggiungere all'elenco a discesa un'opzione Select (Seleziona).
 
-[!code-html[](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
 
 ## <a name="get-the-code"></a>Ottenere il codice
 

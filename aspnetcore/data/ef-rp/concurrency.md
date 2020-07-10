@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: 597f396237151f49a9ae333973e91d8f4f7c6ff1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ff9e01df002ac0fc94ced6d5d093099d66a14f36
+ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401376"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86176283"
 ---
 # <a name="part-8-razor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Parte 8, Razor pagine con EF core in ASP.NET Core concorrenza
 
@@ -86,7 +86,7 @@ EF Core genera eccezioni `DbConcurrencyException` quando rileva conflitti. Il mo
 
 * Configurare EF Core in modo che includa i valori originali delle colonne configurate come [token di concorrenza](/ef/core/modeling/concurrency) nella clausola Where dei comandi Update e Delete.
 
-  Quando viene chiamato `SaveChanges`, la clausola Where cerca i valori originali di tutte le proprietà annotate con l'attributo [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute). L'istruzione Update non troverà una riga da aggiornare se una delle proprietà del token di concorrenza è cambiata dopo la prima lettura della riga. EF Core interpreta questa condizione come conflitto di concorrenza. Per le tabelle di database con molte colonne, questo approccio può risultare in clausole Where molto grandi e richiedere grandi quantità di stato. Pertanto questo approccio è in genere sconsigliato e non è il metodo usato in questa esercitazione.
+  Quando `SaveChanges` viene chiamato il metodo, la clausola WHERE Cerca i valori originali di tutte le proprietà annotate con l' <xref:System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute> attributo. L'istruzione Update non troverà una riga da aggiornare se una delle proprietà del token di concorrenza è cambiata dopo la prima lettura della riga. EF Core interpreta questa condizione come conflitto di concorrenza. Per le tabelle di database con molte colonne, questo approccio può risultare in clausole Where molto grandi e richiedere grandi quantità di stato. Pertanto questo approccio è in genere sconsigliato e non è il metodo usato in questa esercitazione.
 
 * Nella tabella del database, includere una colonna di rilevamento che può essere usata per determinare quando è stata modificata una riga.
 
@@ -98,7 +98,7 @@ In *Models/Department.cs* aggiungere una proprietà di rilevamento denominata Ro
 
 [!code-csharp[](intro/samples/cu30/Models/Department.cs?highlight=26,27)]
 
-L'attributo [Timestamp](/dotnet/api/system.componentmodel.dataannotations.timestampattribute) è quello che identifica la colonna come colonna di rilevamento della concorrenza. L'API Fluent è un modo alternativo per specificare la proprietà di rilevamento:
+L' <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> attributo identifica la colonna come colonna di rilevamento della concorrenza. L'API Fluent è un modo alternativo per specificare la proprietà di rilevamento:
 
 ```csharp
 modelBuilder.Entity<Department>()
@@ -250,7 +250,7 @@ Aggiornare la pagina *Pages\Departments\Index.cshtml*:
 
 Il codice seguente mostra la pagina aggiornata:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
 
 ## <a name="update-the-edit-page-model"></a>Aggiornare il modello di pagina Edit
 
@@ -258,7 +258,7 @@ Aggiornare *Pages\Departments\Edit.cshtml.cs* con il codice seguente:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_All)]
 
-[OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) viene aggiornato con il valore `rowVersion` dall'entità al momento del recupero nel metodo `OnGet`. EF Core genera un comando SQL UPDATE con una clausola WHERE contenente il valore `RowVersion` originale. Se il comando UPDATE non ha effetto su nessuna riga (nessuna riga ha il valore originale `RowVersion`), viene generata un'eccezione `DbUpdateConcurrencyException`.
+<xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue>Viene aggiornato con il `rowVersion` valore dell'entità quando è stato recuperato nel `OnGet` metodo. EF Core genera un comando SQL UPDATE con una clausola WHERE contenente il valore `RowVersion` originale. Se il comando UPDATE non ha effetto su nessuna riga (nessuna riga ha il valore originale `RowVersion`), viene generata un'eccezione `DbUpdateConcurrencyException`.
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion&highlight=17-18)]
 
@@ -282,16 +282,16 @@ Il codice evidenziato seguente imposta il valore `RowVersion` sul nuovo valore r
 
 L'istruzione `ModelState.Remove` è necessaria perché `ModelState` presenta il valore obsoleto `RowVersion`. Nella Razor pagina, il `ModelState` valore di un campo ha la precedenza sui valori delle proprietà del modello quando entrambi sono presenti.
 
-### <a name="update-the-razor-page"></a>Aggiornare la Razor pagina
+### <a name="update-the-edit-page"></a>Aggiornare la pagina Edit (Modifica)
 
 Aggiornare *Pages/Departments/Edit.cshtml* con il codice seguente:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 Il codice precedente:
 
 * Aggiorna la direttiva `page` da `@page` a `@page "{id:int}"`.
-* Aggiunge una versione di riga nascosta. L'aggiunta di `RowVersion` è necessaria per far sì che il postback associ il valore.
+* Aggiunge una versione di riga nascosta. `RowVersion`è necessario aggiungere, in modo che il postback associ il valore.
 * Visualizza l'ultimo byte di `RowVersion` a scopo di debug.
 * Sostituisce `ViewData` con l'elemento `InstructorNameSL` fortemente tipizzato.
 
@@ -315,7 +315,7 @@ Modificare un altro campo nella seconda scheda del browser.
 
 ![Pagina Department Edit (Modifica - Reparto) 2 dopo la modifica](concurrency/_static/edit-after-change-230.png)
 
-Fare clic su **Save**. Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
+Fare clic su **Save** (Salva). Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error30.png)
 
@@ -323,7 +323,7 @@ Questa finestra del browser non prevedeva la modifica del campo Name (Nome). Cop
 
 Fare clic su **Salva**. Il valore immesso nella seconda scheda del browser viene salvato. I valori salvati vengono visualizzati nella pagina Index.
 
-## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
+## <a name="update-the-delete-page-model"></a>Aggiornare il modello di pagina Elimina
 
 Aggiornare *Pages/Departments/Delete.cshtml.cs* con il codice seguente:
 
@@ -335,11 +335,11 @@ La pagina Delete (Elimina) rileva i conflitti di concorrenza quando l'entità è
 * Viene generata un'eccezione DbUpdateConcurrencyException.
 * `OnGetAsync` viene chiamata con `concurrencyError`.
 
-### <a name="update-the-delete-razor-page"></a>Aggiornare la Razor pagina Elimina
+### <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
 Aggiornare *Pages/Departments/Delete.cshtml* con il codice seguente:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,42,51)]
 
 Il codice precedente apporta le modifiche seguenti:
 
@@ -347,7 +347,7 @@ Il codice precedente apporta le modifiche seguenti:
 * Aggiunge un messaggio di errore.
 * Sostituisce FirstMidName con FullName nel campo **Administrator** (Amministratore).
 * Modifica `RowVersion` per visualizzare l'ultimo byte.
-* Aggiunge una versione di riga nascosta. L'aggiunta di `RowVersion` è necessaria per l'associazione del valore.
+* Aggiunge una versione di riga nascosta. `RowVersion`è necessario aggiungere, in modo che il postback associ il valore.
 
 ### <a name="test-concurrency-conflicts"></a>Testare i conflitti di concorrenza
 
@@ -365,7 +365,7 @@ Modificare il budget nella prima scheda del browser e fare clic su **Salva**.
 
 Il browser visualizza la pagina Index con il valore modificato e l'indicatore rowVersion aggiornato. Si noti l'indicatore rowVersion aggiornato, che è visualizzato sul secondo postback nell'altra scheda.
 
-Eliminare il reparto di test dalla seconda scheda. Viene visualizzato un errore di concorrenza con i valori correnti del database. Se si fa clic su **Delete** (Elimina) l'entità viene eliminata, salvo se l'elemento `RowVersion` è stato aggiornato.
+Eliminare il reparto di test dalla seconda scheda. Viene visualizzato un errore di concorrenza con i valori correnti del database. Fare clic su **Elimina per eliminare** l'entità, a meno che non `RowVersion` sia stato aggiornato.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -550,7 +550,7 @@ Aggiornare la pagina Index:
 
 Il markup seguente visualizza la pagina aggiornata:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
 
 ### <a name="update-the-edit-page-model"></a>Aggiornare il modello di pagina Edit
 
@@ -582,7 +582,7 @@ L'istruzione `ModelState.Remove` è necessaria perché `ModelState` presenta il 
 
 Aggiornare *Pages/Departments/Edit.cshtml* con il markup seguente:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 Il markup precedente:
 
@@ -611,7 +611,7 @@ Modificare un altro campo nella seconda scheda del browser.
 
 ![Pagina Department Edit (Modifica - Reparto) 2 dopo la modifica](concurrency/_static/edit-after-change-2.png)
 
-Fare clic su **Save**. Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
+Fare clic su **Save** (Salva). Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error.png)
 
@@ -637,7 +637,7 @@ La pagina Delete (Elimina) rileva i conflitti di concorrenza quando l'entità è
 
 Aggiornare *Pages/Departments/Delete.cshtml* con il codice seguente:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
 Il codice precedente apporta le modifiche seguenti:
 
@@ -663,7 +663,7 @@ Modificare il budget nella prima scheda del browser e fare clic su **Salva**.
 
 Il browser visualizza la pagina Index con il valore modificato e l'indicatore rowVersion aggiornato. Si noti l'indicatore rowVersion aggiornato, che è visualizzato sul secondo postback nell'altra scheda.
 
-Eliminare il reparto di test dalla seconda scheda. Viene visualizzato un errore di concorrenza con i valori correnti del database. Se si fa clic su **Delete** (Elimina) l'entità viene eliminata, salvo se l'elemento `RowVersion` è stato aggiornato.
+Eliminare il reparto di test dalla seconda scheda. Viene visualizzato un errore di concorrenza con i valori correnti del database. Fare clic su **Elimina per eliminare** l'entità, a meno che non `RowVersion` sia stato aggiornato.
 
 Per informazioni su come ereditare un modello di dati, vedere [Ereditarietà](xref:data/ef-mvc/inheritance).
 

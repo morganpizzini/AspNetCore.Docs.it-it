@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: 5e250debb5c4c2ef00b844557d31ed8281d2ff2f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e630bf4b0c121796315be077623abae73d240b37
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407590"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212466"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Creare helper tag in ASP.NET Core
 
@@ -87,14 +87,14 @@ In altre parole, un tag di ancoraggio che dà come risultato un collegamento di 
 
 <!--
 the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
-    [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml?highlight=3&range=1-3)]
+    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml?highlight=3&range=1-3)]
 -->
 
 Per aggiungere un helper tag a una visualizzazione usando un nome completo, aggiungere prima il nome completo (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`) e quindi il **nome dell'assembly** (*AuthoringTagHelpers*, non necessariamente `namespace`). La maggior parte degli sviluppatori preferisce usare la sintassi con caratteri jolly. [Introduzione agli helper tag](intro.md) descrive in dettaglio la sintassi di aggiunta, rimozione, gerarchia degli helper tag, nonché la sintassi con caratteri jolly.
 
 1. Aggiornare il markup nel file *Views/Home/Contact.cshtml* con queste modifiche:
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
 1. Eseguire l'app e usare il browser preferito per visualizzare l'origine HTML e verificare che i tag di posta elettronica siano stati sostituiti dal markup di ancoraggio, ad esempio, `<a>Support</a>`. *Support* e *Marketing* sono visualizzati come collegamenti, ma non hanno un attributo `href` che li renda funzionali. Questo problema verrà corretto nella prossima sezione.
 
@@ -118,7 +118,7 @@ Questo approccio funziona per l'attributo "href" a condizione che non esista nel
 
 1. Aggiornare il markup nel file *Views/Home/Contact.cshtml* con queste modifiche:
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
 
 1. Eseguire l'app e verificare che generi collegamenti corretti.
 
@@ -147,7 +147,7 @@ In questa sezione verrà scritto un helper di posta elettronica asincrono.
 
 1. Apportare le seguenti modifiche al file *Views/Home/Contact.cshtml*, in modo che l'helper tag possa ottenere la posta elettronica di destinazione.
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
 1. Eseguire l'app e verificare che generi collegamenti di posta elettronica validi.
 
@@ -163,7 +163,7 @@ In questa sezione verrà scritto un helper di posta elettronica asincrono.
 
 1. Modificare la visualizzazione *About.cshtml* in modo che contenga un valore di attributo `bold`. Il codice completo è illustrato di seguito.
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutBoldOnly.cshtml?highlight=7)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutBoldOnly.cshtml?highlight=7)]
 
 1. Eseguire l'app. È possibile usare il browser preferito per controllare l'origine e verificare il markup.
 
@@ -225,7 +225,7 @@ Se si aggiungono più attributi alla stessa istruzione, il runtime li gestisce c
 
 1. Aggiungere il markup seguente alla visualizzazione *About.cshtml*. Il markup evidenziato visualizza le informazioni sul sito Web.
 
-   [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
+   [!code-cshtml[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
 
    > [!NOTE]
    > Nel Razor markup mostrato di seguito:
@@ -251,7 +251,7 @@ L'helper tag di condizione esegue il rendering dell'output quando riceve un valo
 
 1. Sostituire il contenuto del file *Views/Home/Index.cshtml* con il markup seguente:
 
-   [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml)]
+   [!code-cshtml[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml)]
 
 1. Sostituire il metodo `Index` nel controller `Home` con il codice seguente:
 
@@ -281,7 +281,7 @@ Poiché questi due helper sono strettamente correlati e in futuro potrebbero ess
 
 1. Aggiungere il markup seguente alla fine del file *Views/Home/Contact.cshtml*:
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=19)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=19)]
 
 1. Eseguire l'app e verificare che l'helper tag esegua correttamente il rendering dell'ancoraggio.
 

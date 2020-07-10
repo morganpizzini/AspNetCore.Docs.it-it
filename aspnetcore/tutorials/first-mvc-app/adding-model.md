@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 0974abfe632fd897c08435b82a7c695534cc3139
-ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
+ms.openlocfilehash: 77c12b98462c8a84ab807abef247573b6a028fcc
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793597"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86213165"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Parte 4: aggiungere un modello a un'app MVC ASP.NET Core
 
@@ -63,7 +63,7 @@ L' <xref:System.ComponentModel.DataAnnotations.DataType> attributo on `ReleaseDa
 
 L'attributo [DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) viene analizzato in un'esercitazione successiva.
 
-## <a name="add-nuget-packages"></a>Aggiungere i pacchetti NuGet
+## <a name="add-nuget-packages"></a>Aggiungere pacchetti NuGet
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -409,7 +409,7 @@ Poiché l'oggetto `Model` è fortemente tipizzato (come un oggetto `IEnumerable<
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Helper tag](xref:mvc/views/tag-helpers/intro)
+* [Helper per i tag](xref:mvc/views/tag-helpers/intro)
 * [Globalizzazione e localizzazione](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
@@ -690,7 +690,7 @@ return View(movie);
 
 Esaminare il contenuto del file *Views/Movies/Details.cshtml*:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
 Includendo un'istruzione `@model` all'inizio del file di vista, è possibile specificare il tipo di oggetto previsto dalla vista. Al momento della creazione del controller di film, l'istruzione `@model` seguente è stata inclusa automaticamente all'inizio del file *Details.cshtml*:
 
@@ -708,17 +708,17 @@ Al momento della creazione del controller di film, lo scaffolding ha incluso aut
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
 
 La direttiva `@model` consente di accedere all'elenco di film che il controller ha passato alla vista usando un oggetto `Model` fortemente tipizzato. Ad esempio, nella vista *Index.cshtml* il codice scorre i film con un'istruzione `foreach` sull'oggetto fortemente tipizzato `Model`:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
 Poiché l'oggetto `Model` è fortemente tipizzato (come un oggetto `IEnumerable<Movie>`), ogni elemento nel ciclo viene tipizzato come `Movie`. Tra gli altri vantaggi, si ottiene un controllo del codice in fase di compilazione:
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Helper tag](xref:mvc/views/tag-helpers/intro)
+* [Helper per i tag](xref:mvc/views/tag-helpers/intro)
 * [Globalizzazione e localizzazione](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]

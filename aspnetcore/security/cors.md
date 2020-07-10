@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cors
-ms.openlocfilehash: 0a2be31092ab491e23ab9de9be676b5b4d3963ee
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: dc8e68ef482025443147eeb27bd3f245c1a1a5ed
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060280"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212887"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Abilitare le richieste tra le origini (CORS) in ASP.NET Core
 
@@ -998,7 +998,7 @@ Per testare CORS:
 1. Creare un progetto di app Web ( Razor pagine o MVC). Nell'esempio vengono utilizzate le Razor pagine. È possibile creare l'app Web nella stessa soluzione del progetto API.
 1. Aggiungere il codice evidenziato seguente al file *index. cshtml* :
 
-  [!code-csharp[](cors/sample/Cors/ClientApp/Pages/Index2.cshtml?highlight=7-99)]
+  [!code-cshtml[](cors/sample/Cors/ClientApp/Pages/Index2.cshtml?highlight=7-99)]
 
 1. Nel codice precedente sostituire `url: 'https://<web app>.azurewebsites.net/api/values/1',` con l'URL dell'app distribuita.
 1. Distribuire il progetto API. Ad esempio, [eseguire la distribuzione in Azure](xref:host-and-deploy/azure-apps/index).
