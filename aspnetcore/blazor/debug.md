@@ -5,7 +5,7 @@ description: Informazioni su come eseguire il debug delle Blazor app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 07/15/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: c48eb19c5a1759aace112e2afb1637c649173a3d
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 828fb0ce5101407b6f40195138d59c335eec389f
+ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86059903"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86407671"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>ASP.NET Core di debugBlazor WebAssembly
 
@@ -48,8 +48,8 @@ Si continuerà a migliorare l'esperienza di debug nelle prossime versioni.
 
 Il debug richiede uno dei seguenti browser:
 
+* Google Chrome (versione 70 o successiva) (impostazione predefinita)
 * Microsoft Edge (versione 80 o successiva)
-* Google Chrome (versione 70 o successiva)
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Abilitare il debug per Visual Studio e Visual Studio Code
 
@@ -133,13 +133,13 @@ Per informazioni sull'installazione di Visual Studio Code per Blazor lo sviluppo
 
 ### <a name="debug-hosted-blazor-webassembly"></a>Debug ospitatoBlazor WebAssembly
 
-1. Aprire l'app ospitata Blazor WebAssembly in vs code.
+1. Aprire la cartella della soluzione dell'app ospitata Blazor WebAssembly in vs code.
 
 1. Se non è impostata alcuna configurazione di avvio per il progetto, viene visualizzata la notifica seguente. Selezionare **Sì**.
 
    ![Aggiungi asset necessari](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
 
-1. Nella finestra di selezione selezionare il progetto *Server* all'interno della soluzione ospitata.
+1. Nel riquadro comandi nella parte superiore della finestra selezionare il progetto *Server* all'interno della soluzione ospitata.
 
 `launch.json`Viene generato un file con la configurazione di avvio per l'avvio del debugger.
 
@@ -160,7 +160,7 @@ Per connettersi a un'app in esecuzione Blazor , creare un `launch.json` file con
 
 ### <a name="launch-configuration-options"></a>Opzioni di configurazione di avvio
 
-Per il tipo di debug sono supportate le seguenti opzioni di configurazione di avvio `blazorwasm` .
+Le seguenti opzioni di configurazione di avvio sono supportate per il `blazorwasm` tipo di debug ( `.vscode/launch.json` ).
 
 | Opzione    | Descrizione |
 | --------- | ----------- |
@@ -198,17 +198,23 @@ Per il tipo di debug sono supportate le seguenti opzioni di configurazione di av
 }
 ```
 
-#### <a name="launch-and-debug-a-hosted-blazor-webassembly-app"></a>Avviare ed eseguire il debug di un'app ospitata Blazor WebAssembly
+#### <a name="launch-and-debug-a-hosted-blazor-webassembly-app-with-microsoft-edge"></a>Avviare ed eseguire il debug di un'app ospitata Blazor WebAssembly con Microsoft Edge
+
+Per impostazione predefinita, la configurazione del browser è Google Chrome. Quando si usa Microsoft Edge per il debug, impostare `browser` su `edge` . Per usare Google Chrome, non impostare l' `browser` opzione o impostare il valore dell'opzione su `chrome` .
 
 ```json
 {
+  "name": "Launch and Debug Hosted Blazor WebAssembly App",
   "type": "blazorwasm",
   "request": "launch",
-  "name": "Launch and Debug Hosted App",
+  "hosted": true,
   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/MyHostedApp.Server.dll",
-  "cwd": "${workspaceFolder}"
+  "cwd": "${workspaceFolder}/Server",
+  "browser": "edge"
 }
 ```
+
+Nell'esempio precedente, `MyHostedApp.Server.dll` è l'assembly dell'app *Server* . La `.vscode` cartella si trova nella cartella della soluzione accanto alle `Client` `Server` cartelle, e `Shared` .
 
 ## <a name="debug-in-the-browser"></a>Debug nel browser
 
@@ -232,7 +238,7 @@ Blazorfornisce un proxy di debug che implementa il [protocollo devtools di Chrom
 
 Le mappe di origine del browser consentono al browser di eseguire il mapping dei file compilati ai file di origine originali e vengono comunemente usati per il debug sul lato client. Tuttavia, Blazor attualmente non esegue il mapping di C# direttamente a JavaScript/WASM. Al contrario, Blazor l'interpretazione il nel browser, quindi le mappe di origine non sono rilevanti.
 
-## <a name="troubleshoot"></a>Risolvere problemi
+## <a name="troubleshoot"></a>Risolvere i problemi
 
 Se si verificano errori, è possibile che vengano visualizzati i suggerimenti seguenti:
 

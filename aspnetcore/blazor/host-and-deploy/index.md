@@ -5,7 +5,7 @@ description: Scopri come ospitare e distribuire le Blazor app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/15/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/index
-ms.openlocfilehash: 040f9560bd51841063ca2785b0c0730c6bb16002
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 77202cd60d357c27237cdb925e0adc00e66d2e56
+ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402650"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86407710"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor"></a>Ospitare e distribuire ASP.NET CoreBlazor
 
@@ -106,6 +106,20 @@ dotnet run --pathbase=/CoolApp
 ```
 
 L' Blazor WebAssembly app risponde localmente all'indirizzo `http://localhost:port/CoolApp` .
+
+**Blazor Server`MapFallbackToPage`configurazione di**
+
+Passare il seguente percorso a <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure` :
+
+```csharp
+endpoints.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
+```
+
+Il segnaposto `{RELATIVE PATH}` è il percorso non radice sul server. Ad esempio, `CoolApp` è il segmento segnaposto se l'URL non radice dell'app è `https://{HOST}:{PORT}/CoolApp/` ):
+
+```csharp
+endpoints.MapFallbackToPage("/CoolApp/{**path:nonfile}");
+```
 
 ## <a name="deployment"></a>Distribuzione
 

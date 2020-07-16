@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/app-state
-ms.openlocfilehash: 4ecbf6920980e293e8c274996c6a4f25e74a5cb7
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 30123e043a7c152b5719af8092b2ab42a70d2787
+ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403625"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86407619"
 ---
 # <a name="session-and-state-management-in-aspnet-core"></a>Gestione delle sessioni e dello stato in ASP.NET Core
 
@@ -75,7 +75,7 @@ Lo stato della sessione presenta i comportamenti seguenti:
 * L'app conserva una sessione per un periodo di tempo limitato dopo l'ultima richiesta. L'app imposta il timeout della sessione o usa il valore predefinito, pari a 20 minuti. Lo stato della sessione è ideale per l'archiviazione dei dati utente:
   * Questo è specifico di una particolare sessione.
   * Dove i dati non richiedono l'archiviazione permanente tra le sessioni.
-* I dati della sessione vengono eliminati quando viene chiamata l'implementazione [ISession.Clear](/dotnet/api/microsoft.aspnetcore.http.isession.clear) o alla scadenza della sessione.
+* I dati della sessione vengono eliminati quando <xref:Microsoft.AspNetCore.Http.ISession.Clear%2A?displayProperty=nameWithType> viene chiamata l'implementazione o quando la sessione scade.
 * Non esiste un meccanismo predefinito per indicare al codice app che un browser client è stato chiuso o che il cookie di sessione viene eliminato o è scaduto nel client.
 * Per impostazione predefinita, i cookie di stato della sessione non sono contrassegnati come essenziali. Lo stato della sessione non è funzionante a meno che non sia consentito il rilevamento da parte del visitatore del sito. Per altre informazioni, vedere <xref:security/gdpr#tempdata-provider-and-session-state-cookies-arent-essential>.
 
@@ -85,7 +85,7 @@ Lo stato della sessione presenta i comportamenti seguenti:
 Il provider di cache in memoria archivia i dati della sessione nella memoria del server in cui si trova l'app. In uno scenario di server farm:
 
 * Usare *sessioni permanenti* per associare ogni sessione a un'istanza specifica dell'app in un singolo server. Il [Servizio app di Azure](https://azure.microsoft.com/services/app-service/) usa il modulo [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) per applicare le sessioni permanenti per impostazione predefinita. Tuttavia le sessioni permanenti possono compromettere la scalabilità e complicare gli aggiornamenti delle app Web. Un approccio migliore è usare la cache distribuita Redis o SQL Server, che non richiede sessioni permanenti. Per altre informazioni, vedere <xref:performance/caching/distributed>.
-* Il cookie di sessione viene crittografato con [IDataProtector](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotector). La protezione dati deve essere configurata correttamente in modo da leggere i cookie di sessione in ogni computer. Per altre informazioni, vedere <xref:security/data-protection/introduction> e [Provider di archiviazione chiavi](xref:security/data-protection/implementation/key-storage-providers).
+* Il cookie di sessione è crittografato tramite <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> . La protezione dati deve essere configurata correttamente in modo da leggere i cookie di sessione in ogni computer. Per altre informazioni, vedere <xref:security/data-protection/introduction> e [Provider di archiviazione chiavi](xref:security/data-protection/implementation/key-storage-providers).
 
 ### <a name="configure-session-state"></a>Configurare lo stato della sessione
 
@@ -96,9 +96,9 @@ Il pacchetto [Microsoft. AspNetCore. Session](https://www.nuget.org/packages/Mic
 
 Per abilitare il middleware della sessione, `Startup` deve contenere:
 
-* Una delle cache di memoria [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache). L'implementazione `IDistributedCache` viene usata come archivio di backup per la sessione. Per altre informazioni, vedere <xref:performance/caching/distributed>.
-* Una chiamata ad [AddSession](/dotnet/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions.addsession) in `ConfigureServices`.
-* Una chiamata a [UseSession](/dotnet/api/microsoft.aspnetcore.builder.sessionmiddlewareextensions.usesession#Microsoft_AspNetCore_Builder_SessionMiddlewareExtensions_UseSession_Microsoft_AspNetCore_Builder_IApplicationBuilder_) in `Configure`.
+* Qualsiasi cache di <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memoria. L'implementazione `IDistributedCache` viene usata come archivio di backup per la sessione. Per altre informazioni, vedere <xref:performance/caching/distributed>.
+* Una chiamata a <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession%2A> in `ConfigureServices` .
+* Una chiamata a <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A> in `Configure` .
 
 Il codice seguente indica come configurare il provider della sessione in memoria con un'implementazione in memoria predefinita di `IDistributedCache`:
 
@@ -116,43 +116,43 @@ Non è possibile creare un nuovo cookie di sessione dopo che l'app ha iniziato l
 
 ### <a name="load-session-state-asynchronously"></a>Caricare lo stato della sessione in modo asincrono
 
-Il provider di sessione predefinito in ASP.NET Core carica in modo asincrono i record di sessione dall'archivio di backup [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache) sottostante solo se il metodo [ISession.LoadAsync](/dotnet/api/microsoft.aspnetcore.http.isession.loadasync) viene chiamato in modo esplicito prima dei metodi [TryGetValue](/dotnet/api/microsoft.aspnetcore.http.isession.trygetvalue), [Set](/dotnet/api/microsoft.aspnetcore.http.isession.set) o [Remove](/dotnet/api/microsoft.aspnetcore.http.isession.remove). Se `LoadAsync` non viene chiamato per primo, il record di sessione sottostante viene caricato in modo sincrono e ciò può compromettere le prestazioni su larga scala.
+Il provider di sessione predefinito in ASP.NET Core carica i record di sessione dall'archivio di backup sottostante in <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> modo asincrono solo se il <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync%2A?displayProperty=nameWithType> metodo viene chiamato in modo esplicito prima dei <xref:Microsoft.AspNetCore.Http.ISession.TryGetValue%2A> <xref:Microsoft.AspNetCore.Http.ISession.Set%2A> metodi, o <xref:Microsoft.AspNetCore.Http.ISession.Remove%2A> . Se `LoadAsync` non viene chiamato per primo, il record di sessione sottostante viene caricato in modo sincrono e ciò può compromettere le prestazioni su larga scala.
 
-Per fare in modo che le app implementino questo criterio, eseguire il wrapping delle implementazioni [DistributedSessionStore](/dotnet/api/microsoft.aspnetcore.session.distributedsessionstore) e [DistributedSession](/dotnet/api/microsoft.aspnetcore.session.distributedsession) con versioni che generano un'eccezione se il metodo `LoadAsync` non viene chiamato prima di `TryGetValue`, `Set` o `Remove`. Registrare le versioni con wrapping nel contenitore di servizi.
+Per consentire alle app di applicare questo modello, eseguire il wrapping delle <xref:Microsoft.AspNetCore.Session.DistributedSessionStore> <xref:Microsoft.AspNetCore.Session.DistributedSession> implementazioni e con le versioni che generano un'eccezione se il `LoadAsync` metodo non viene chiamato prima `TryGetValue` di, `Set` o `Remove` . Registrare le versioni con wrapping nel contenitore di servizi.
 
 ### <a name="session-options"></a>Opzioni di sessione
 
-Per eseguire l'override delle impostazioni predefinite di sessione, usare [SessionOptions](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions).
+Per eseguire l'override delle impostazioni predefinite della sessione, usare <xref:Microsoft.AspNetCore.Builder.SessionOptions> .
 
 | Opzione | Descrizione |
 | ------ | ----------- |
-| [Cookie](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookie) | Determina le impostazioni usate per creare il cookie. Per impostazione predefinita, [Name](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.name) è [SessionDefaults.CookieName](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiename) (`.AspNetCore.Session`). Per impostazione predefinita, [Path](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.path) è [SessionDefaults.CookiePath](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiepath) (`/`). [SameSite](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.samesite) per impostazione predefinita è [SameSiteMode.Lax](/dotnet/api/microsoft.aspnetcore.http.samesitemode) (`1`). Per [HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly) il valore predefinito è `true`. Per [IsEssential](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.isessential) il valore predefinito è `false`. |
-| [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) | Il valore `IdleTimeout` indica quanto tempo la sessione può rimanere inattiva prima che il relativo contenuto venga abbandonato. Ogni accesso alla sessione reimposta il timeout. Si noti che questa impostazione vale solo per il contenuto della sessione, non per il cookie. Il valore predefinito è 20 minuti. |
-| [IOTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.iotimeout) | L'intervallo di tempo massimo consentito per caricare una sessione dall'archivio o per eseguirne il commit nell'archivio. Questa impostazione può essere applicabile solo alle operazioni asincrone. Questo timeout può essere disattivato usando [InfiniteTimeSpan](/dotnet/api/system.threading.timeout.infinitetimespan). Il valore predefinito è 1 minuto. |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie> | Determina le impostazioni usate per creare il cookie. <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name>il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName?displayProperty=nameWithType> ( `.AspNetCore.Session` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.Path>il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath?displayProperty=nameWithType> ( `/` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite>il valore predefinito è <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType> ( `1` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly>il valore predefinito è `true` . <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential>il valore predefinito è `false` . |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> | Il valore `IdleTimeout` indica quanto tempo la sessione può rimanere inattiva prima che il relativo contenuto venga abbandonato. Ogni accesso alla sessione reimposta il timeout. Si noti che questa impostazione vale solo per il contenuto della sessione, non per il cookie. Il valore predefinito è 20 minuti. |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.IOTimeout> | L'intervallo di tempo massimo consentito per caricare una sessione dall'archivio o per eseguirne il commit nell'archivio. Questa impostazione può essere applicabile solo alle operazioni asincrone. Questo timeout può essere disabilitato utilizzando <xref:System.Threading.Timeout.InfiniteTimeSpan> . Il valore predefinito è 1 minuto. |
 
-Session usa un cookie per tenere traccia e identificare le richieste provenienti da un solo browser. Per impostazione predefinita, questo cookie è denominato `.AspNetCore.Session` e usa il percorso `/`. Poiché il cookie predefinito non specifica un dominio, non viene reso disponibile allo script lato client nella pagina (perché il valore predefinito di [HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly) è `true`).
+Session usa un cookie per tenere traccia e identificare le richieste provenienti da un solo browser. Per impostazione predefinita, questo cookie è denominato `.AspNetCore.Session` e usa il percorso `/`. Poiché il cookie predefinito non specifica un dominio, non viene reso disponibile per lo script sul lato client nella pagina (poiché il <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> valore predefinito è `true` ).
 
 Per eseguire l'override delle impostazioni predefinite della sessione con cookie, usare <xref:Microsoft.AspNetCore.Builder.SessionOptions>:
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Startup2.cs?name=snippet1&highlight=5-10)]
 
-L'app usa la proprietà [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) per determinare quanto tempo una sessione può rimanere inattiva prima che il relativo contenuto nella cache del server venga abbandonato. Questa proprietà è indipendente dalla scadenza del cookie. Ogni richiesta che passa attraverso il [middleware di sessione](/dotnet/api/microsoft.aspnetcore.session.sessionmiddleware) reimposta il timeout.
+L'app usa la <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> proprietà per determinare per quanto tempo una sessione può rimanere inattiva prima che il relativo contenuto nella cache del server venga abbandonato. Questa proprietà è indipendente dalla scadenza del cookie. Ogni richiesta che passa attraverso il [middleware di sessione](xref:Microsoft.AspNetCore.Session.SessionMiddleware) reimposta il timeout.
 
 Lo stato della sessione è *non di blocco*. Se due richieste tentano simultaneamente di modificare il contenuto di una sessione, l'ultima richiesta sostituisce la prima. `Session` viene implementata come *sessione coerente*, ovvero tutto il contenuto viene archiviato insieme. Quando due richieste tentano di modificare diversi valori della sessione, l'ultima richiesta può sostituire le modifiche apportate alla sessione dalla prima.
 
 ### <a name="set-and-get-session-values"></a>Impostare e ottenere i valori della sessione
 
-È possibile accedere allo stato della sessione da una classe Razor pages [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) o da una classe [controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) MVC con [HttpContext. Session](/dotnet/api/microsoft.aspnetcore.http.httpcontext.session). Questa proprietà è un'implementazione di [ISession](/dotnet/api/microsoft.aspnetcore.http.isession).
+È possibile accedere allo stato della sessione da una classe Razor pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> o una <xref:Microsoft.AspNetCore.Mvc.Controller> classe MVC con <xref:Microsoft.AspNetCore.Http.HttpContext.Session?displayProperty=nameWithType> . Questa proprietà è un' <xref:Microsoft.AspNetCore.Http.ISession> implementazione di.
 
-L'implementazione `ISession` offre diversi metodi di estensione per impostare e recuperare i valori interi e stringa. I metodi di estensione si trovano nello spazio dei nomi [Microsoft. AspNetCore. http](/dotnet/api/microsoft.aspnetcore.http) .
+L'implementazione `ISession` offre diversi metodi di estensione per impostare e recuperare i valori interi e stringa. I metodi di estensione si trovano nello <xref:Microsoft.AspNetCore.Http> spazio dei nomi.
 
 Metodi di estensione `ISession`:
 
-* [Get(ISession, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.get)
-* [GetInt32(ISession, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.getint32)
-* [GetString(ISession, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.getstring)
-* [SetInt32(ISession, String, Int32)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setint32)
-* [SetString(ISession, String, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setstring)
+* [Get(ISession, String)](xref:Microsoft.AspNetCore.Http.SessionExtensions.Get%2A)
+* [GetInt32(ISession, String)](xref:Microsoft.AspNetCore.Http.SessionExtensions.GetInt32%2A)
+* [GetString(ISession, String)](xref:Microsoft.AspNetCore.Http.SessionExtensions.GetString%2A)
+* [SetInt32(ISession, String, Int32)](xref:Microsoft.AspNetCore.Http.SessionExtensions.SetInt32%2A)
+* [SetString(ISession, String, String)](xref:Microsoft.AspNetCore.Http.SessionExtensions.SetString%2A)
 
 L'esempio seguente recupera il valore della sessione per la `IndexModel.SessionKeyName` chiave ( `_Name` nell'app di esempio) in una Razor pagina di pagine:
 
@@ -170,7 +170,7 @@ L'esempio seguente illustra come impostare e ottenere un intero e una stringa:
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet1&highlight=18-19,22-23)]
 
-Tutti i dati della sessione devono essere serializzati per abilitare uno scenario di cache distribuita, anche quando si usa la cache in memoria. I serializzatori stringa e integer sono forniti dai metodi di estensione di [ISession](/dotnet/api/microsoft.aspnetcore.http.isession). I tipi complessi devono essere serializzati dall'utente usando un altro meccanismo, ad esempio JSON.
+Tutti i dati della sessione devono essere serializzati per abilitare uno scenario di cache distribuita, anche quando si usa la cache in memoria. I serializzatori stringa e integer sono forniti dai metodi di estensione di <xref:Microsoft.AspNetCore.Http.ISession> . I tipi complessi devono essere serializzati dall'utente usando un altro meccanismo, ad esempio JSON.
 
 Usare il codice di esempio seguente per serializzare gli oggetti:
 
@@ -213,7 +213,7 @@ Il codice seguente visualizza `TempData["Message"]` , ma alla fine della richies
 
 Il provider TempData basato su cookie viene usato per impostazione predefinita per archiviare TempData nei cookie.
 
-I dati del cookie vengono crittografati tramite [IDataProtector](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotector), codificati con [Base64UrlTextEncoder](/dotnet/api/microsoft.aspnetcore.webutilities.base64urltextencoder) e quindi suddivisi in blocchi. Le dimensioni massime dei cookie sono inferiori a [4096 byte](http://www.faqs.org/rfcs/rfc2965.html) a causa della crittografia e della suddivisione in blocchi. I dati del cookie non vengono compressi perché la compressione di dati crittografati può comportare problemi di sicurezza, ad esempio con attacchi [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) e [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)). Per altre informazioni sul provider TempData basato sui cookie, vedere [CookieTempDataProvider](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.cookietempdataprovider).
+I dati dei cookie vengono crittografati <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> con, codificati con <xref:Microsoft.AspNetCore.WebUtilities.Base64UrlTextEncoder> , quindi suddivisi in blocchi. Le dimensioni massime dei cookie sono inferiori a [4096 byte](http://www.faqs.org/rfcs/rfc2965.html) a causa della crittografia e della suddivisione in blocchi. I dati del cookie non vengono compressi perché la compressione di dati crittografati può comportare problemi di sicurezza, ad esempio con attacchi [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) e [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)). Per ulteriori informazioni sul provider TempData basato su cookie, vedere <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider> .
 
 ### <a name="choose-a-tempdata-provider"></a>Scegliere un provider TempData
 
@@ -229,9 +229,9 @@ La maggior parte dei client Web, ad esempio i Web browser, applica limiti alla d
 
 Il provider TempData basato su cookie è abilitato per impostazione predefinita.
 
-Per abilitare il provider TempData basato sulla sessione, usare il metodo di estensione [AddSessionStateTempDataProvider](/dotnet/api/microsoft.extensions.dependencyinjection.mvcviewfeaturesmvcbuilderextensions.addsessionstatetempdataprovider) . È necessaria una sola chiamata a `AddSessionStateTempDataProvider` :
+Per abilitare il provider TempData basato sulla sessione, usare il <xref:Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcBuilderExtensions.AddSessionStateTempDataProvider%2A> metodo di estensione. È necessaria una sola chiamata a `AddSessionStateTempDataProvider` :
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup3.cs?name=snippet1&highlight=4,6,30)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Startup3.cs?name=snippet1&highlight=4,6,8,30)]
 
 ## <a name="query-strings"></a>Stringhe di query
 
@@ -245,7 +245,7 @@ I dati possono essere salvati in campi modulo nascosti e pubblicati di nuovo nel
 
 ## <a name="httpcontextitems"></a>HttpContext.Items
 
-La raccolta [HttpContext.Items](/dotnet/api/microsoft.aspnetcore.http.httpcontext.items) viene usata per archiviare i dati durante l'elaborazione di una singola richiesta. Il contenuto della raccolta viene rimosso al termine dell'elaborazione della richiesta. La raccolta `Items` spesso viene usata per consentire ai componenti o al middleware di comunicare quando operano in momenti diversi durante una richiesta e non è disponibile un metodo diretto per passare i parametri.
+La <xref:Microsoft.AspNetCore.Http.HttpContext.Items?displayProperty=nameWithType> raccolta viene usata per archiviare i dati durante l'elaborazione di una singola richiesta. Il contenuto della raccolta viene rimosso al termine dell'elaborazione della richiesta. La raccolta `Items` spesso viene usata per consentire ai componenti o al middleware di comunicare quando operano in momenti diversi durante una richiesta e non è disponibile un metodo diretto per passare i parametri.
 
 Nell'esempio seguente il [middleware](xref:fundamentals/middleware/index) aggiunge `isVerified` alla `Items` raccolta:
 
@@ -342,7 +342,7 @@ Lo stato della sessione presenta i comportamenti seguenti:
 * Se viene ricevuto un cookie per una sessione scaduta, viene creata una nuova sessione che usa lo stesso cookie di sessione.
 * Le sessioni vuote non vengono conservate: nella sessione deve essere impostato almeno un valore perché la sessione diventi permanente tra le richieste. Se una sessione non viene conservata, viene generato un nuovo ID sessione per ogni nuova richiesta.
 * L'app conserva una sessione per un periodo di tempo limitato dopo l'ultima richiesta. L'app imposta il timeout della sessione o usa il valore predefinito, pari a 20 minuti. Lo stato sessione è ideale per archiviare i dati utente specifici per una determinata sessione, ma nel caso in cui i dati non richiedano un'archiviazione permanente tra le sessioni.
-* I dati della sessione vengono eliminati quando viene chiamata l'implementazione [ISession.Clear](/dotnet/api/microsoft.aspnetcore.http.isession.clear) o alla scadenza della sessione.
+* I dati della sessione vengono eliminati quando <xref:Microsoft.AspNetCore.Http.ISession.Clear%2A?displayProperty=nameWithType> viene chiamata l'implementazione o quando la sessione scade.
 * Non esiste un meccanismo predefinito per indicare al codice app che un browser client è stato chiuso o che il cookie di sessione viene eliminato o è scaduto nel client.
 * I modelli ASP.NET Core MVC e Razor pages includono il supporto per regolamento generale sulla protezione dei dati (GDPR). I cookie di stato della sessione non sono contrassegnati come fondamentali per impostazione predefinita, pertanto lo stato della sessione non è funzionale, a meno che il rilevamento non sia consentito dal visitatore del sito. Per altre informazioni, vedere <xref:security/gdpr#tempdata-provider-and-session-state-cookies-arent-essential>.
 
@@ -352,15 +352,15 @@ Lo stato della sessione presenta i comportamenti seguenti:
 Il provider di cache in memoria archivia i dati della sessione nella memoria del server in cui si trova l'app. In uno scenario di server farm:
 
 * Usare *sessioni permanenti* per associare ogni sessione a un'istanza specifica dell'app in un singolo server. Il [Servizio app di Azure](https://azure.microsoft.com/services/app-service/) usa il modulo [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) per applicare le sessioni permanenti per impostazione predefinita. Tuttavia le sessioni permanenti possono compromettere la scalabilità e complicare gli aggiornamenti delle app Web. Un approccio migliore è usare la cache distribuita Redis o SQL Server, che non richiede sessioni permanenti. Per altre informazioni, vedere <xref:performance/caching/distributed>.
-* Il cookie di sessione viene crittografato con [IDataProtector](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotector). La protezione dati deve essere configurata correttamente in modo da leggere i cookie di sessione in ogni computer. Per altre informazioni, vedere <xref:security/data-protection/introduction> e [Provider di archiviazione chiavi](xref:security/data-protection/implementation/key-storage-providers).
+* Il cookie di sessione è crittografato tramite <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> . La protezione dati deve essere configurata correttamente in modo da leggere i cookie di sessione in ogni computer. Per altre informazioni, vedere <xref:security/data-protection/introduction> e [Provider di archiviazione chiavi](xref:security/data-protection/implementation/key-storage-providers).
 
 ### <a name="configure-session-state"></a>Configurare lo stato della sessione
 
 Con il pacchetto [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/), incluso nel [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app), è disponibile il middleware per la gestione dello stato della sessione. Per abilitare il middleware della sessione, `Startup` deve contenere:
 
-* Una delle cache di memoria [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache). L'implementazione `IDistributedCache` viene usata come archivio di backup per la sessione. Per altre informazioni, vedere <xref:performance/caching/distributed>.
-* Una chiamata ad [AddSession](/dotnet/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions.addsession) in `ConfigureServices`.
-* Una chiamata a [UseSession](/dotnet/api/microsoft.aspnetcore.builder.sessionmiddlewareextensions.usesession#Microsoft_AspNetCore_Builder_SessionMiddlewareExtensions_UseSession_Microsoft_AspNetCore_Builder_IApplicationBuilder_) in `Configure`.
+* Qualsiasi cache di <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memoria. L'implementazione `IDistributedCache` viene usata come archivio di backup per la sessione. Per altre informazioni, vedere <xref:performance/caching/distributed>.
+* Una chiamata a <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession%2A> in `ConfigureServices` .
+* Una chiamata a <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A> in `Configure` .
 
 Il codice seguente indica come configurare il provider della sessione in memoria con un'implementazione in memoria predefinita di `IDistributedCache`:
 
@@ -368,7 +368,7 @@ Il codice seguente indica come configurare il provider della sessione in memoria
 
 L'ordine del middleware è importante. Nell'esempio precedente si verifica un'eccezione `InvalidOperationException` se `UseSession` viene chiamata dopo `UseMvc`. Per altre informazioni, vedere la sezione relativa all'[ordine del middleware](xref:fundamentals/middleware/index#order).
 
-[HttpContext. Session](/dotnet/api/microsoft.aspnetcore.http.httpcontext.session) è disponibile dopo che è stato configurato lo stato della sessione.
+<xref:Microsoft.AspNetCore.Http.HttpContext.Session?displayProperty=nameWithType>è disponibile dopo la configurazione dello stato della sessione.
 
 Non è possibile accedere a `HttpContext.Session` prima di chiamare `UseSession`.
 
@@ -376,43 +376,43 @@ Non è possibile creare un nuovo cookie di sessione dopo che l'app ha iniziato l
 
 ### <a name="load-session-state-asynchronously"></a>Caricare lo stato della sessione in modo asincrono
 
-Il provider di sessione predefinito in ASP.NET Core carica in modo asincrono i record di sessione dall'archivio di backup [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache) sottostante solo se il metodo [ISession.LoadAsync](/dotnet/api/microsoft.aspnetcore.http.isession.loadasync) viene chiamato in modo esplicito prima dei metodi [TryGetValue](/dotnet/api/microsoft.aspnetcore.http.isession.trygetvalue), [Set](/dotnet/api/microsoft.aspnetcore.http.isession.set) o [Remove](/dotnet/api/microsoft.aspnetcore.http.isession.remove). Se `LoadAsync` non viene chiamato per primo, il record di sessione sottostante viene caricato in modo sincrono e ciò può compromettere le prestazioni su larga scala.
+Il provider di sessione predefinito in ASP.NET Core carica i record di sessione dall'archivio di backup sottostante in <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> modo asincrono solo se il <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync%2A?displayProperty=nameWithType> metodo viene chiamato in modo esplicito prima dei <xref:Microsoft.AspNetCore.Http.ISession.TryGetValue%2A> <xref:Microsoft.AspNetCore.Http.ISession.Set%2A> metodi, o <xref:Microsoft.AspNetCore.Http.ISession.Remove%2A> . Se `LoadAsync` non viene chiamato per primo, il record di sessione sottostante viene caricato in modo sincrono e ciò può compromettere le prestazioni su larga scala.
 
-Per fare in modo che le app implementino questo criterio, eseguire il wrapping delle implementazioni [DistributedSessionStore](/dotnet/api/microsoft.aspnetcore.session.distributedsessionstore) e [DistributedSession](/dotnet/api/microsoft.aspnetcore.session.distributedsession) con versioni che generano un'eccezione se il metodo `LoadAsync` non viene chiamato prima di `TryGetValue`, `Set` o `Remove`. Registrare le versioni con wrapping nel contenitore di servizi.
+Per consentire alle app di applicare questo modello, eseguire il wrapping delle <xref:Microsoft.AspNetCore.Session.DistributedSessionStore> <xref:Microsoft.AspNetCore.Session.DistributedSession> implementazioni e con le versioni che generano un'eccezione se il `LoadAsync` metodo non viene chiamato prima `TryGetValue` di, `Set` o `Remove` . Registrare le versioni con wrapping nel contenitore di servizi.
 
 ### <a name="session-options"></a>Opzioni di sessione
 
-Per eseguire l'override delle impostazioni predefinite di sessione, usare [SessionOptions](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions).
+Per eseguire l'override delle impostazioni predefinite della sessione, usare <xref:Microsoft.AspNetCore.Builder.SessionOptions> .
 
 | Opzione | Descrizione |
 | ------ | ----------- |
-| [Cookie](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.cookie) | Determina le impostazioni usate per creare il cookie. Per impostazione predefinita, [Name](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.name) è [SessionDefaults.CookieName](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiename) (`.AspNetCore.Session`). Per impostazione predefinita, [Path](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.path) è [SessionDefaults.CookiePath](/dotnet/api/microsoft.aspnetcore.session.sessiondefaults.cookiepath) (`/`). [SameSite](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.samesite) per impostazione predefinita è [SameSiteMode.Lax](/dotnet/api/microsoft.aspnetcore.http.samesitemode) (`1`). Per [HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly) il valore predefinito è `true`. Per [IsEssential](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.isessential) il valore predefinito è `false`. |
-| [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) | Il valore `IdleTimeout` indica quanto tempo la sessione può rimanere inattiva prima che il relativo contenuto venga abbandonato. Ogni accesso alla sessione reimposta il timeout. Si noti che questa impostazione vale solo per il contenuto della sessione, non per il cookie. Il valore predefinito è 20 minuti. |
-| [IOTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.iotimeout) | L'intervallo di tempo massimo consentito per caricare una sessione dall'archivio o per eseguirne il commit nell'archivio. Questa impostazione può essere applicabile solo alle operazioni asincrone. Questo timeout può essere disattivato usando [InfiniteTimeSpan](/dotnet/api/system.threading.timeout.infinitetimespan). Il valore predefinito è 1 minuto. |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie> | Determina le impostazioni usate per creare il cookie. <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name>il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName?displayProperty=nameWithType> ( `.AspNetCore.Session` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.Path>il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath?displayProperty=nameWithType> ( `/` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite>il valore predefinito è <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType> ( `1` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly>il valore predefinito è `true` . <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential>il valore predefinito è `false` . |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> | Il valore `IdleTimeout` indica quanto tempo la sessione può rimanere inattiva prima che il relativo contenuto venga abbandonato. Ogni accesso alla sessione reimposta il timeout. Si noti che questa impostazione vale solo per il contenuto della sessione, non per il cookie. Il valore predefinito è 20 minuti. |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.IOTimeout> | L'intervallo di tempo massimo consentito per caricare una sessione dall'archivio o per eseguirne il commit nell'archivio. Questa impostazione può essere applicabile solo alle operazioni asincrone. Questo timeout può essere disabilitato utilizzando <xref:System.Threading.Timeout.InfiniteTimeSpan> . Il valore predefinito è 1 minuto. |
 
-Session usa un cookie per tenere traccia e identificare le richieste provenienti da un solo browser. Per impostazione predefinita, questo cookie è denominato `.AspNetCore.Session` e usa il percorso `/`. Poiché il cookie predefinito non specifica un dominio, non viene reso disponibile allo script lato client nella pagina (perché il valore predefinito di [HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly) è `true`).
+Session usa un cookie per tenere traccia e identificare le richieste provenienti da un solo browser. Per impostazione predefinita, questo cookie è denominato `.AspNetCore.Session` e usa il percorso `/`. Poiché il cookie predefinito non specifica un dominio, non viene reso disponibile per lo script sul lato client nella pagina (poiché il <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> valore predefinito è `true` ).
 
 Per eseguire l'override delle impostazioni predefinite della sessione con cookie, usare `SessionOptions`:
 
 [!code-csharp[](app-state/samples_snapshot/2.x/SessionSample/Startup.cs?name=snippet1&highlight=14-19)]
 
-L'app usa la proprietà [IdleTimeout](/dotnet/api/microsoft.aspnetcore.builder.sessionoptions.idletimeout) per determinare quanto tempo una sessione può rimanere inattiva prima che il relativo contenuto nella cache del server venga abbandonato. Questa proprietà è indipendente dalla scadenza del cookie. Ogni richiesta che passa attraverso il [middleware di sessione](/dotnet/api/microsoft.aspnetcore.session.sessionmiddleware) reimposta il timeout.
+L'app usa la <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> proprietà per determinare per quanto tempo una sessione può rimanere inattiva prima che il relativo contenuto nella cache del server venga abbandonato. Questa proprietà è indipendente dalla scadenza del cookie. Ogni richiesta che passa attraverso il [middleware di sessione](xref:Microsoft.AspNetCore.Session.SessionMiddleware) reimposta il timeout.
 
 Lo stato della sessione è *non di blocco*. Se due richieste tentano simultaneamente di modificare il contenuto di una sessione, l'ultima richiesta sostituisce la prima. `Session` viene implementata come *sessione coerente*, ovvero tutto il contenuto viene archiviato insieme. Quando due richieste tentano di modificare diversi valori della sessione, l'ultima richiesta può sostituire le modifiche apportate alla sessione dalla prima.
 
 ### <a name="set-and-get-session-values"></a>Impostare e ottenere i valori della sessione
 
-È possibile accedere allo stato della sessione da una classe Razor pages [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel) o da una classe [controller](/dotnet/api/microsoft.aspnetcore.mvc.controller) MVC con [HttpContext. Session](/dotnet/api/microsoft.aspnetcore.http.httpcontext.session). Questa proprietà è un'implementazione di [ISession](/dotnet/api/microsoft.aspnetcore.http.isession).
+È possibile accedere allo stato della sessione da una classe Razor pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> o una <xref:Microsoft.AspNetCore.Mvc.Controller> classe MVC con <xref:Microsoft.AspNetCore.Http.HttpContext.Session?displayProperty=nameWithType> . Questa proprietà è un' <xref:Microsoft.AspNetCore.Http.ISession> implementazione di.
 
-L'implementazione `ISession` offre diversi metodi di estensione per impostare e recuperare i valori interi e stringa. I metodi di estensione si trovano nello spazio dei nomi [Microsoft.AspNetCore.Http](/dotnet/api/microsoft.aspnetcore.http) (aggiungere un'istruzione `using Microsoft.AspNetCore.Http;` per ottenere l'accesso ai metodi di estensione) quando al pacchetto [Microsoft.AspNetCore.Http.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Extensions/) fa riferimento il progetto. Entrambi i pacchetti sono inclusi nel [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).
+L'implementazione `ISession` offre diversi metodi di estensione per impostare e recuperare i valori interi e stringa. I metodi di estensione si trovano nello <xref:Microsoft.AspNetCore.Http> spazio dei nomi (aggiungere un' `using Microsoft.AspNetCore.Http;` istruzione per accedere ai metodi di estensione) quando il progetto fa riferimento al pacchetto [Microsoft. AspNetCore. http. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Extensions/) . Entrambi i pacchetti sono inclusi nel [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).
 
 Metodi di estensione `ISession`:
 
-* [Get(ISession, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.get)
-* [GetInt32(ISession, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.getint32)
-* [GetString(ISession, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.getstring)
-* [SetInt32(ISession, String, Int32)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setint32)
-* [SetString(ISession, String, String)](/dotnet/api/microsoft.aspnetcore.http.sessionextensions.setstring)
+* [Get(ISession, String)](xref:Microsoft.AspNetCore.Http.SessionExtensions.Get%2A)
+* [GetInt32(ISession, String)](xref:Microsoft.AspNetCore.Http.SessionExtensions.GetInt32%2A)
+* [GetString(ISession, String)](xref:Microsoft.AspNetCore.Http.SessionExtensions.GetString%2A)
+* [SetInt32(ISession, String, Int32)](xref:Microsoft.AspNetCore.Http.SessionExtensions.SetInt32%2A)
+* [SetString(ISession, String, String)](xref:Microsoft.AspNetCore.Http.SessionExtensions.SetString%2A)
 
 L'esempio seguente recupera il valore della sessione per la `IndexModel.SessionKeyName` chiave ( `_Name` nell'app di esempio) in una Razor pagina di pagine:
 
@@ -430,7 +430,7 @@ L'esempio seguente illustra come impostare e ottenere un intero e una stringa:
 
 [!code-csharp[](app-state/samples/2.x/SessionSample/Pages/Index.cshtml.cs?name=snippet1&highlight=18-19,22-23)]
 
-Tutti i dati della sessione devono essere serializzati per abilitare uno scenario di cache distribuita, anche quando si usa la cache in memoria. I serializzatori stringa e integer sono forniti dai metodi di estensione di [ISession](/dotnet/api/microsoft.aspnetcore.http.isession)). I tipi complessi devono essere serializzati dall'utente usando un altro meccanismo, ad esempio JSON.
+Tutti i dati della sessione devono essere serializzati per abilitare uno scenario di cache distribuita, anche quando si usa la cache in memoria. I serializzatori stringa e integer sono forniti dai metodi di estensione di <xref:Microsoft.AspNetCore.Http.ISession> ). I tipi complessi devono essere serializzati dall'utente usando un altro meccanismo, ad esempio JSON.
 
 Aggiungere i seguenti metodi di estensione per impostare e ottenere oggetti serializzabili:
 
@@ -470,7 +470,7 @@ Il codice seguente visualizza `TempData["Message"]` , ma alla fine della richies
 
 Il provider TempData basato su cookie viene usato per impostazione predefinita per archiviare TempData nei cookie.
 
-I dati del cookie vengono crittografati tramite [IDataProtector](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotector), codificati con [Base64UrlTextEncoder](/dotnet/api/microsoft.aspnetcore.webutilities.base64urltextencoder) e quindi suddivisi in blocchi. Dato che il cookie è suddiviso in blocchi, il limite di dimensione per un singolo cookie di ASP.NET Core 1.x non è applicabile. I dati del cookie non vengono compressi perché la compressione di dati crittografati può comportare problemi di sicurezza, ad esempio con attacchi [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) e [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)). Per altre informazioni sul provider TempData basato sui cookie, vedere [CookieTempDataProvider](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.cookietempdataprovider).
+I dati dei cookie vengono crittografati <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> con, codificati con <xref:Microsoft.AspNetCore.WebUtilities.Base64UrlTextEncoder> , quindi suddivisi in blocchi. Dato che il cookie è suddiviso in blocchi, il limite di dimensione per un singolo cookie di ASP.NET Core 1.x non è applicabile. I dati del cookie non vengono compressi perché la compressione di dati crittografati può comportare problemi di sicurezza, ad esempio con attacchi [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) e [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)). Per ulteriori informazioni sul provider TempData basato su cookie, vedere <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider> .
 
 ### <a name="choose-a-tempdata-provider"></a>Scegliere un provider TempData
 
@@ -487,7 +487,7 @@ La scelta di un provider TempData implica diverse considerazioni, tra cui:
 
 Il provider TempData basato su cookie è abilitato per impostazione predefinita.
 
-Per abilitare il provider TempData basato sulla sessione, usare il metodo di estensione [AddSessionStateTempDataProvider](/dotnet/api/microsoft.extensions.dependencyinjection.mvcviewfeaturesmvcbuilderextensions.addsessionstatetempdataprovider):
+Per abilitare il provider TempData basato sulla sessione, usare il <xref:Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcBuilderExtensions.AddSessionStateTempDataProvider%2A> metodo di estensione:
 
 [!code-csharp[](app-state/samples_snapshot_2/2.x/SessionSample/Startup.cs?name=snippet1&highlight=11,13,32)]
 
@@ -508,7 +508,7 @@ I dati possono essere salvati in campi modulo nascosti e pubblicati di nuovo nel
 
 ## <a name="httpcontextitems"></a>HttpContext.Items
 
-La raccolta [HttpContext.Items](/dotnet/api/microsoft.aspnetcore.http.httpcontext.items) viene usata per archiviare i dati durante l'elaborazione di una singola richiesta. Il contenuto della raccolta viene rimosso al termine dell'elaborazione della richiesta. La raccolta `Items` spesso viene usata per consentire ai componenti o al middleware di comunicare quando operano in momenti diversi durante una richiesta e non è disponibile un metodo diretto per passare i parametri.
+La <xref:Microsoft.AspNetCore.Http.HttpContext.Items?displayProperty=nameWithType> raccolta viene usata per archiviare i dati durante l'elaborazione di una singola richiesta. Il contenuto della raccolta viene rimosso al termine dell'elaborazione della richiesta. La raccolta `Items` spesso viene usata per consentire ai componenti o al middleware di comunicare quando operano in momenti diversi durante una richiesta e non è disponibile un metodo diretto per passare i parametri.
 
 Nell'esempio seguente [middleware](xref:fundamentals/middleware/index) aggiunge `isVerified` alla raccolta `Items`.
 
