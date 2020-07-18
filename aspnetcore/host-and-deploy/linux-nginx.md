@@ -5,7 +5,7 @@ description: Informazioni su come configurare Nginx come proxy inverso in Ubuntu
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/10/2020
+ms.date: 07/09/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: c936ff9a7aadd21ce99a0c37184ae8cf911c3070
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8038c63200c7c9aaadb9e0e7a68ae315ff620197
+ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403976"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86445294"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Hosting di ASP.NET Core in Linux con Nginx
 
@@ -297,7 +297,7 @@ Per filtrare ulteriormente, opzioni come `--since today`, `--until 1 hour ago` o
 sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-10-18 04:00"
 ```
 
-## <a name="data-protection"></a>Protezione dei dati
+## <a name="data-protection"></a>Protezione dati
 
 Lo [stack di protezione dei dati di ASP.NET Core](xref:security/data-protection/introduction) è usato da diversi [middleware](xref:fundamentals/middleware/index) di ASP.NET Core, tra cui i middleware di autenticazione (ad esempio il middleware per i cookie) e le protezioni CSRF (Cross-Site Request Forgery). Anche se le DPAPI (Data Protection API) non vengono chiamate dal codice dell'utente, è consigliabile configurare la protezione dati per la creazione di un [archivio di chiavi](xref:security/data-protection/implementation/key-management) crittografiche permanente. Se non si configura la protezione dei dati, le chiavi vengono mantenute in memoria ed eliminate al riavvio dell'app.
 
@@ -395,6 +395,9 @@ Aggiungere il file di configurazione */etc/nginx/proxy.conf*:
 Aggiungere il file di configurazione */etc/nginx/proxy.conf*. L'esempio contiene entrambe le sezioni `http` e `server` in un unico file di configurazione.
 
 [!code-nginx[](linux-nginx/nginx.conf?highlight=2)]
+
+> [!NOTE]
+> Blazor WebAssemblyle app richiedono un `burst` valore di parametro maggiore per contenere il numero maggiore di richieste effettuate da un'app. Per altre informazioni, vedere <xref:blazor/host-and-deploy/webassembly#nginx>.
 
 #### <a name="secure-nginx-from-clickjacking"></a>Proteggere Nginx dal clickjacking
 

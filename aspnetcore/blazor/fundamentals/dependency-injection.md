@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/dependency-injection
-ms.openlocfilehash: e88a471a35e1c2be5f77407a6c594cd6a97e1737
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 07fe7d4b64c84956be44e7d3ac0b1d8687b085c6
+ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944367"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86445164"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>BlazorInserimento di dipendenze ASP.NET Core
 
@@ -39,7 +39,7 @@ I servizi predefiniti vengono aggiunti automaticamente alla raccolta di servizi 
 
 | Service | Durata | Descrizione |
 | ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Temporaneo | Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.<br><br>L'istanza di <xref:System.Net.Http.HttpClient> in un' Blazor WebAssembly applicazione utilizza il browser per gestire il traffico HTTP in background.<br><br>Blazor Serverper impostazione predefinita, le app non includono un <xref:System.Net.Http.HttpClient> configurato come servizio. Fornire un <xref:System.Net.Http.HttpClient> a un' Blazor Server app.<br><br>Per altre informazioni, vedere <xref:blazor/call-web-api>. |
+| <xref:System.Net.Http.HttpClient> | Con ambito | Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.<br><br>L'istanza di <xref:System.Net.Http.HttpClient> in un' Blazor WebAssembly applicazione utilizza il browser per gestire il traffico HTTP in background.<br><br>Blazor Serverper impostazione predefinita, le app non includono un <xref:System.Net.Http.HttpClient> configurato come servizio. Fornire un <xref:System.Net.Http.HttpClient> a un' Blazor Server app.<br><br>Per altre informazioni, vedere <xref:blazor/call-web-api>. |
 | <xref:Microsoft.JSInterop.IJSRuntime> | Singleton ( Blazor WebAssembly )<br>Con ambito ( Blazor Server ) | Rappresenta un'istanza di un runtime JavaScript in cui vengono inviate le chiamate a JavaScript. Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet>. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager> | Singleton ( Blazor WebAssembly )<br>Con ambito ( Blazor Server ) | Contiene gli helper per lavorare con gli URI e lo stato di navigazione. Per ulteriori informazioni, vedere [URI e Helper dello stato di navigazione](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
 
@@ -66,8 +66,11 @@ public class Program
         builder.Services.AddSingleton<IMyDependency, MyDependency>();
         builder.RootComponents.Add<App>("app");
         
-        builder.Services.AddTransient(sp => 
-            new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+        builder.Services.AddScoped(sp => 
+            new HttpClient
+            {
+                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+            });
 
         await builder.Build().RunAsync();
     }
@@ -85,8 +88,11 @@ public class Program
         builder.Services.AddSingleton<WeatherService>();
         builder.RootComponents.Add<App>("app");
         
-        builder.Services.AddTransient(sp => 
-            new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+        builder.Services.AddScoped(sp => 
+            new HttpClient
+            {
+                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+            });
 
         var host = builder.Build();
 
@@ -109,8 +115,11 @@ public class Program
         builder.Services.AddSingleton<WeatherService>();
         builder.RootComponents.Add<App>("app");
         
-        builder.Services.AddTransient(sp => 
-            new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+        builder.Services.AddScoped(sp => 
+            new HttpClient
+            {
+                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+            });
 
         var host = builder.Build();
 

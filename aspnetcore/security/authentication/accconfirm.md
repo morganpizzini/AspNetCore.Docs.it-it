@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: bf599487fdc3e574f72f1a3d35278cc9c2ce7513
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 1156ddd2921afbfeccaf077ca29d267f8b1e844a
+ms.sourcegitcommit: 3544941682869734ea0113e24e02ed0ec9e1a9ec
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404652"
+ms.lasthandoff: 07/18/2020
+ms.locfileid: "86464553"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Account confirmation and password recovery in ASP.NET Core (Conferma dell'account e recupero della password in ASP.NET Core)
 
@@ -32,13 +32,7 @@ Questa esercitazione illustra come compilare un'app ASP.NET Core con la conferma
 
 <!-- see C:/Dropbox/wrk/Code/SendGridConsole/Program.cs -->
 
-::: moniker range="<= aspnetcore-2.0"
-
-Vedere [questo file PDF](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) per la versione ASP.NET Core 1,1.
-
-::: moniker-end
-
-::: moniker range="> aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
 
 ## <a name="prerequisites"></a>Prerequisiti
 
@@ -136,6 +130,16 @@ Aggiungere il codice seguente al `ConfigureServices` metodo nel file *Startup.cs
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Startup.cs?name=snippet1&highlight=11-15)]
 
+## <a name="scaffold-registerconfirmation"></a>RegisterConfirmation ponteggi
+
+Seguire le istruzioni per [impalcature Identity ](xref:security/authentication/scaffold-identity) e impalcature `RegisterConfirmation` .
+
+<!-- .NET 5 fixes this, see
+https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
+-->
+
+[!INCLUDE[](~/includes/disableVer.md)]
+
 ## <a name="register-confirm-email-and-reset-password"></a>Registrare, confermare la posta elettronica e reimpostare la password
 
 Eseguire l'app Web e testare la conferma dell'account e il flusso di recupero della password.
@@ -225,7 +229,7 @@ L'abilitazione della conferma dell'account in un sito con utenti blocca tutti gl
 
 ::: moniker-end
 
-::: moniker range="> aspnetcore-2.0 < aspnetcore-3.0"
+::: moniker range="< aspnetcore-3.0"
 
 ## <a name="prerequisites"></a>Prerequisiti
 
@@ -244,8 +248,10 @@ dotnet aspnet-codegenerator identity -dc WebPWrecover.Data.ApplicationDbContext 
 dotnet ef database drop -f
 dotnet ef database update
 dotnet run
-
 ```
+
+> [!NOTE]
+> Se <xref:Microsoft.AspNetCore.Identity.PasswordOptions> sono configurati in `Startup.ConfigureServices` , la configurazione degli [ `[StringLength]` attributi](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) potrebbe essere necessaria per la `Password` proprietà nelle pagine con impalcature Identity . Una `InputModel` `Password` proprietà viene trovata nel `Areas/Identity/Pages/Account/Register.cshtml.cs` file dopo l'impalcatura Identity .
 
 ## <a name="test-new-user-registration"></a>Testare la registrazione di un nuovo utente
 

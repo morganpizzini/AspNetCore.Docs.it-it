@@ -3,7 +3,7 @@ title: Introduzione a Identity on ASP.NET Core
 author: rick-anderson
 description: Usare Identity con un'app ASP.NET Core. Informazioni su come impostare i requisiti per le password (RequireDigit, RequiredLength, RequiredUniqueChars e altro).
 ms.author: riande
-ms.date: 01/15/2020
+ms.date: 7/15/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 6ac565bfa4862168fa143417ab5a81c51b620f16
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: dd3296db568700a363c427398f02239846a46ada
+ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212444"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86445431"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>Introduzione a Identity on ASP.NET Core
 
@@ -37,7 +37,7 @@ Il [ Identity codice sorgente](https://github.com/dotnet/AspNetCore/tree/master/
 
 Identityviene in genere configurato utilizzando un database di SQL Server per archiviare i nomi utente, le password e i dati di profilo. In alternativa, è possibile usare un altro archivio permanente, ad esempio archiviazione tabelle di Azure.
 
-In questo argomento si apprenderà come usare Identity per registrare, accedere e disconnettere un utente. Nota: i modelli considerano il nome utente e il messaggio di posta elettronica come lo stesso per gli utenti. Per istruzioni più dettagliate sulla creazione di app che usano Identity , vedere la sezione passaggi successivi alla fine di questo articolo.
+In questo argomento si apprenderà come usare Identity per registrare, accedere e disconnettere un utente. Nota: i modelli considerano il nome utente e il messaggio di posta elettronica come lo stesso per gli utenti. Per istruzioni più dettagliate sulla creazione di app che usano Identity , vedere [passaggi successivi](#next).
 
 [Piattaforma di identità Microsoft](/azure/active-directory/develop/) :
 
@@ -117,7 +117,7 @@ Eseguire l'app e registrare un utente. A seconda delle dimensioni dello schermo,
 
 I servizi vengono aggiunti in `ConfigureServices` . Il modello tipico consiste nel chiamare tutti i metodi `Add{Service}` e quindi chiamare tutti i metodi `services.Configure{Service}`.
 
-[!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configureservices&highlight=10-99)]
+[!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configureservices&highlight=11-99)]
 
 Il codice evidenziato precedente viene configurato Identity con i valori di opzione predefiniti. I servizi vengono resi disponibili per l'applicazione tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).
 
@@ -129,11 +129,11 @@ L'app generata dal modello non usa l' [autorizzazione](xref:security/authorizati
 
 Per ulteriori informazioni su `IdentityOptions` e `Startup` , vedere <xref:Microsoft.AspNetCore.Identity.IdentityOptions> e [avvio dell'applicazione](xref:fundamentals/startup).
 
-## <a name="scaffold-register-login-and-logout"></a>Registrazione, accesso e disconnessione del patibolo
+## <a name="scaffold-register-login-logout-and-registerconfirmation"></a>Registro di ponteggi, account di accesso, disconnessione e RegisterConfirmation
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Aggiungere i file di registro, di accesso e di disconnessione. Seguire l' [identità del patibolo in un Razor progetto con](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) le istruzioni di autorizzazione per generare il codice illustrato in questa sezione.
+Aggiungere i `Register` `Login` file,, `LogOut` e `RegisterConfirmation` . Seguire l' [identità del patibolo in un Razor progetto con](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) le istruzioni di autorizzazione per generare il codice illustrato in questa sezione.
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
@@ -141,7 +141,7 @@ Se il progetto è stato creato con il nome **app Web 1**, eseguire i comandi seg
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
+dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout;Account.RegisterConfirmation"
 ```
 
 PowerShell usa il punto e virgola come separatore di comandi. Quando si usa PowerShell, usare il carattere di escape per il punto e virgola nell'elenco dei file o inserire l'elenco di file tra virgolette doppie, come illustrato nell'esempio precedente.
@@ -152,13 +152,14 @@ Per ulteriori informazioni sull'impalcatura Identity , vedere la pagina relativa
 
 ### <a name="examine-register"></a>Esaminare il registro
 
-Quando un utente fa clic sul collegamento **Register** , `RegisterModel.OnPostAsync` viene richiamata l'azione. L'utente viene creato da [CreateAsync](/dotnet/api/microsoft.aspnetcore.identity.usermanager-1.createasync#Microsoft_AspNetCore_Identity_UserManager_1_CreateAsync__0_System_String_) nell' `_userManager` oggetto:
+Quando un utente fa clic sul pulsante **registra** nella `Register` pagina, `RegisterModel.OnPostAsync` viene richiamata l'azione. L'utente viene creato da [CreateAsync](/dotnet/api/microsoft.aspnetcore.identity.usermanager-1.createasync#Microsoft_AspNetCore_Identity_UserManager_1_CreateAsync__0_System_String_) nell' `_userManager` oggetto:
 
 [!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=9)]
 
-Se l'utente è stato creato correttamente, l'utente è connesso dalla chiamata a `_signInManager.SignInAsync` .
-
-Vedere la [conferma dell'account](xref:security/authentication/accconfirm#prevent-login-at-registration) per i passaggi per impedire l'accesso immediato alla registrazione.
+<!-- .NET 5 fixes this, see
+https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
+-->
+[!INCLUDE[](~/includes/disableVer.md)]
 
 ### <a name="log-in"></a>Accesso
 
@@ -241,6 +242,8 @@ Per evitare la pubblicazione Identity di risorse statiche (fogli di stile e file
   </ItemGroup>
 </Target>
 ```
+
+<a name="next"></a>
 
 ## <a name="next-steps"></a>Passaggi successivi
 

@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 0cf2c2d2ef0d199ca5df6c27ddcc39e84db46ebd
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 79f7b2177d6d07101c73cde841c062b0e1468593
+ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86059760"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86445151"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor WebAssembly scenari di sicurezza aggiuntivi
 
@@ -59,7 +59,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 In `Program.Main` ( `Program.cs` ), un oggetto <xref:System.Net.Http.HttpClient> viene configurato con il gestore dei messaggi di autorizzazione personalizzati:
 
 ```csharp
-builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
+builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("ServerAPI",
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
@@ -108,16 +108,14 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddTransient(sp =>
-{
-    return new HttpClient(sp.GetRequiredService<AuthorizationMessageHandler>()
-        .ConfigureHandler(
-            authorizedUrls: new [] { "https://www.example.com/base" },
-            scopes: new[] { "example.read", "example.write" }))
-        {
-            BaseAddress = new Uri("https://www.example.com/base")
-        };
-});
+builder.Services.AddScoped(sp => new HttpClient(
+    sp.GetRequiredService<AuthorizationMessageHandler>()
+    .ConfigureHandler(
+        authorizedUrls: new[] { "https://www.example.com/base" },
+        scopes: new[] { "example.read", "example.write" }))
+    {
+        BaseAddress = new Uri("https://www.example.com/base")
+    });
 ```
 
 Per un' Blazor app basata sul Blazor WebAssembly modello ospitato, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> può essere assegnato a:
@@ -137,7 +135,7 @@ builder.Services.AddHttpClient("ServerAPI",
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
-builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("ServerAPI"));
 ```
 
@@ -904,10 +902,11 @@ public class Program
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.RootComponents.Add<App>("app");
 
-        builder.Services.AddTransient(new HttpClient 
-        {
-            BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-        });
+        builder.Services.AddScoped(sp => 
+            new HttpClient
+            {
+                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+            });
 
         services.Add...;
 
@@ -1043,3 +1042,79 @@ In alternativa, l'impostazione può essere eseguita nel file delle impostazioni 
 Se l'uso di un segmento nell'autorità non è appropriato per il provider OIDC dell'app, ad esempio con i provider non AAD, impostare <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> direttamente la proprietà. Impostare la proprietà in <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> o nel file di impostazioni dell'app ( `appsettings.json` ) con la `Authority` chiave.
 
 L'elenco di attestazioni nel token ID cambia per gli endpoint della versione 2.0. Per ulteriori informazioni, vedere la pagina relativa [all'aggiornamento alla piattaforma di identità Microsoft (v 2.0)](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison).
+
+## <a name="configure-and-use-grpc-in-components"></a>Configurare e usare gRPC nei componenti
+
+Per configurare un' Blazor WebAssembly app per l'uso del [framework ASP.NET Core gRPC](xref:grpc/index):
+
+* Abilitare gRPC-Web sul server. Per altre informazioni, vedere <xref:grpc/browser>.
+* Registrare i servizi di gRPC per il gestore di messaggi dell'app. Nell'esempio seguente viene configurato il gestore dei messaggi di autorizzazione dell'app per usare il [ `GreeterClient` servizio dell'esercitazione su gRPC](xref:tutorials/grpc/grpc-start#create-a-grpc-service) ( `Program.Main` ):
+
+```csharp
+using System.Net.Http;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Grpc.Net.Client;
+using Grpc.Net.Client.Web;
+using {APP ASSEMBLY}.Shared;
+
+...
+
+builder.Services.AddScoped(sp =>
+{
+    var baseAddressMessageHandler = 
+        sp.GetRequiredService<BaseAddressAuthorizationMessageHandler>();
+    baseAddressMessageHandler.InnerHandler = new HttpClientHandler();
+    var grpcWebHandler = 
+        new GrpcWebHandler(GrpcWebMode.GrpcWeb, baseAddressMessageHandler);
+    var channel = GrpcChannel.ForAddress(builder.HostEnvironment.BaseAddress, 
+        new GrpcChannelOptions { HttpHandler = grpcWebHandler });
+
+    return new Greeter.GreeterClient(channel);
+});
+```
+
+Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `BlazorSample` ). Inserire il `.proto` file nel `Shared` progetto della soluzione ospitata Blazor .
+
+Un componente nell'app client può effettuare chiamate gRPC usando il client gRPC ( `Pages/Grpc.razor` ):
+
+```razor
+@page "/grpc"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Authorization
+@using {APP ASSEMBLY}.Shared
+@inject Greeter.GreeterClient GreeterClient
+
+<h1>Invoke gRPC service</h1>
+
+<p>
+    <input @bind="name" placeholder="Type your name" />
+    <button @onclick="GetGreeting" class="btn btn-primary">Call gRPC service</button>
+</p>
+
+Server response: <strong>@serverResponse</strong>
+
+@code {
+    private string name = "Bert";
+    private string serverResponse;
+
+    private async Task GetGreeting()
+    {
+        try
+        {
+            var request = new HelloRequest { Name = name };
+            var reply = await GreeterClient.SayHelloAsync(request);
+            serverResponse = reply.Message;
+        }
+        catch (Grpc.Core.RpcException ex)
+            when (ex.Status.DebugException is 
+                AccessTokenNotAvailableException tokenEx)
+        {
+            tokenEx.Redirect();
+        }
+    }
+}
+```
+
+Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `BlazorSample` ). Per usare la `Status.DebugException` proprietà, usare [Grpc .NET. client](https://www.nuget.org/packages/Grpc.Net.Client) versione 2.30.0 o successiva.
+
+Per altre informazioni, vedere <xref:grpc/browser>.

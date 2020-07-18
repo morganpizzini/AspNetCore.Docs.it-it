@@ -5,7 +5,7 @@ description: Informazioni su come ospitare e distribuire un' Blazor app usando A
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/07/2020
+ms.date: 07/09/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 2b100ba029c08e0ce68d208df761f22a712fbbfd
-ms.sourcegitcommit: 99c784a873b62fbd97a73c5c07f4fe7a7f5db638
+ms.openlocfilehash: 2a2b0dabc26c14624144ce7eceb5861fe56f1054
+ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/27/2020
-ms.locfileid: "85503513"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86445138"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Ospitare e distribuire ASP.NET CoreBlazor WebAssembly
 
@@ -244,12 +244,30 @@ http {
         listen 80;
 
         location / {
-            root /usr/share/nginx/html;
+            root      /usr/share/nginx/html;
             try_files $uri $uri/ /index.html =404;
         }
     }
 }
 ```
+
+Quando si imposta il [limite di velocità](https://www.nginx.com/blog/rate-limiting-nginx/#bursts) di espansione nginx con, le [`limit_req`](https://nginx.org/docs/http/ngx_http_limit_req_module.html#limit_req) Blazor WebAssembly app possono richiedere un `burst` valore di parametro di grandi dimensioni per contenere il numero relativamente elevato di richieste effettuate da un'app. Inizialmente, impostare il valore su almeno 60:
+
+```
+http {
+    server {
+        ...
+
+        location / {
+            ...
+
+            limit_req zone=one burst=60 nodelay;
+        }
+    }
+}
+```
+
+Aumentare il valore se browser Developer Tools o uno strumento di traffico di rete indica che le richieste ricevono un codice di stato *503-servizio non disponibile* .
 
 Per altre informazioni sulla configurazione del server Web Nginx in ambiente di produzione, vedere [Creating NGINX Plus and NGINX Configuration Files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) (Creazione di file di configurazione NGINX Plus e NGINX).
 
@@ -313,7 +331,7 @@ Per distribuire un' Blazor WebAssembly app in CentOS 7 o versione successiva:
 
 Per ulteriori informazioni, vedere [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) e [`mod_deflate`](https://httpd.apache.org/docs/current/mod/mod_deflate.html) .
 
-### <a name="github-pages"></a>Pagine di GitHub
+### <a name="github-pages"></a>GitHub Pages
 
 Per gestire le riscritture URL, aggiungere un `404.html` file con uno script che gestisce il reindirizzamento della richiesta alla `index.html` pagina. Per un esempio di implementazione fornito dalla community, vedere [Single Page Apps for GitHub Pages](https://spa-github-pages.rafrex.com/) (App a pagina singola per pagine GitHub) ([rafrex/spa-github-pages on GitHub](https://github.com/rafrex/spa-github-pages#readme)). È possibile visualizzare un esempio d'uso dell'approccio della community in [blazor-demo/blazor-demo.github.io su GitHub](https://github.com/blazor-demo/blazor-demo.github.io) ([sito live](https://blazor-demo.github.io/)).
 

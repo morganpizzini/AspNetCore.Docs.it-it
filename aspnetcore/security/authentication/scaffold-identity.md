@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: e2ae82b9c26771ee5da16b1611026c6d62804bce
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: a8ca520d84d382b95cd4c0e2962ba4e5c922049e
+ms.sourcegitcommit: 3544941682869734ea0113e24e02ed0ec9e1a9ec
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212947"
+ms.lasthandoff: 07/18/2020
+ms.locfileid: "86464566"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Impalcatura Identity nei progetti ASP.NET Core
 
@@ -400,6 +400,14 @@ cd RPauth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
 -->
+
+## <a name="password-configuration"></a>Configurazione password
+
+Se <xref:Microsoft.AspNetCore.Identity.PasswordOptions> sono configurati in `Startup.ConfigureServices` , la configurazione degli [ `[StringLength]` attributi](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) potrebbe essere necessaria per la `Password` proprietà nelle pagine con impalcature Identity . `InputModel``Password`le proprietà si trovano nei file seguenti:
+
+* `Areas/Identity/Pages/Account/Register.cshtml.cs`
+* `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
+
 ## <a name="disable-a-page"></a>Disabilitare una pagina
 
 In questa sezione viene illustrato come disabilitare la pagina Register, ma è possibile utilizzare l'approccio per disabilitare qualsiasi pagina.
@@ -647,6 +655,14 @@ cd RPauth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
 -->
+
+## <a name="password-configuration"></a>Configurazione password
+
+Se <xref:Microsoft.AspNetCore.Identity.PasswordOptions> sono configurati in `Startup.ConfigureServices` , la configurazione degli [ `[StringLength]` attributi](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) potrebbe essere necessaria per la `Password` proprietà nelle pagine con impalcature Identity . `InputModel``Password`le proprietà si trovano nei file seguenti:
+
+* `Areas/Identity/Pages/Account/Register.cshtml.cs`
+* `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
+
 ## <a name="disable-register-page"></a>Disabilita pagina Registro
 
 Per disabilitare la registrazione dell'utente:

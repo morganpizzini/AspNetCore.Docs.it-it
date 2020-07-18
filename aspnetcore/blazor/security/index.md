@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: e905f08f867b73fc37d5fed7138256ac89811312
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 85446ac18608b39c469da766e1a9f2e92a1f5e11
+ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402403"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86445112"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>BlazorAutenticazione e autorizzazione ASP.NET Core
 
@@ -320,7 +320,7 @@ Se non si specifica <xref:Microsoft.AspNetCore.Components.Authorization.Authoriz
 
 Blazorconsente di determinare lo stato di autenticazione in *modo asincrono*. Lo scenario principale per questo approccio è nelle Blazor WebAssembly app che effettuano una richiesta a un endpoint esterno per l'autenticazione.
 
-Mentre è in corso l'autenticazione <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> non visualizza alcun contenuto per impostazione predefinita. Per visualizzare contenuto durante l'autenticazione, usare l'elemento `<Authorizing>`:
+Mentre è in corso l'autenticazione <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> non visualizza alcun contenuto per impostazione predefinita. Per visualizzare il contenuto quando si verifica l'autenticazione, usare il `<Authorizing>` Tag:
 
 ```razor
 <AuthorizeView>
@@ -413,7 +413,7 @@ Nel modello di Blazor Server progetto predefinito, il `App` componente ( `App.ra
 
 Il contenuto dei `<NotFound>` `<NotAuthorized>` tag, e `<Authorizing>` può includere elementi arbitrari, ad esempio altri componenti interattivi.
 
-Se l' `<NotAuthorized>` elemento non è specificato, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> utilizza il seguente messaggio di fallback:
+Se il `<NotAuthorized>` tag non è specificato, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> utilizza il seguente messaggio di fallback:
 
 ```html
 Not authorized.

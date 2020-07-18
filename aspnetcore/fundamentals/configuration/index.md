@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 5a9ed8d6737352f56be78039a895a85f22dec361
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 6e47e627915bd8988d161f7d5af4a89f3671c0a7
+ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944641"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86445450"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configurazione in ASP.NET Core
 
@@ -32,7 +32,7 @@ La configurazione in ASP.NET Core viene eseguita utilizzando uno o più [provide
 
 * File di impostazioni, ad esempio *appsettings.js*
 * Variabili di ambiente
-* Insieme di credenziali chiave di Azure
+* Azure Key Vault
 * Configurazione app di Azure
 * Argomenti della riga di comando
 * Provider personalizzati, installati o creati
@@ -223,7 +223,7 @@ dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
 Valore chiave:
 
 * Deve seguire `=` oppure la chiave deve avere un prefisso `--` o `/` quando il valore segue uno spazio.
-* Non è obbligatorio se `=` si usa. Ad esempio, `MySetting=`
+* Non è obbligatorio se `=` si usa. Ad esempio: `MySetting=`.
 
 All'interno dello stesso comando, non combinare coppie chiave-valore dell'argomento della riga di comando che usano `=` con coppie chiave-valore che usano uno spazio.
 
@@ -246,18 +246,18 @@ Il codice seguente mostra i valori chiave per le chiavi sostituite:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test3.cshtml.cs?name=snippet)]
 
-Eseguire il comando seguente per testare la sostituzione della chiave:
-
-```dotnetcli
-dotnet run -k1=value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
-```
-
-Nota: attualmente `=` non è possibile usare per impostare i valori di sostituzione delle chiavi con un trattino singolo `-` . Vedere [il problema in GitHub](https://github.com/dotnet/extensions/issues/3059).
-
 Il comando seguente funziona per testare la sostituzione della chiave:
 
 ```dotnetcli
 dotnet run -k1 value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
+```
+
+<!-- Run the following command to test the key replacement: -->
+
+Nota: attualmente `=` non è possibile usare per impostare i valori di sostituzione delle chiavi con un trattino singolo `-` . Vedere [il problema in GitHub](https://github.com/dotnet/extensions/issues/3059).
+
+```dotnetcli
+dotnet run -k1=value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
 ```
 
 Per le app che usano i mapping di sostituzione, la chiamata a `CreateDefaultBuilder` non deve passare argomenti. La `CreateDefaultBuilder` chiamata al metodo `AddCommandLine` non include opzioni mappate e non è possibile passare il dizionario di mapping switch a `CreateDefaultBuilder` . La soluzione non passa gli argomenti a `CreateDefaultBuilder` ma per consentire al metodo del `ConfigurationBuilder` metodo `AddCommandLine` di elaborare sia gli argomenti sia il dizionario di mapping delle opzioni.
@@ -307,7 +307,7 @@ La tabella seguente mostra i provider di configurazione disponibili per le app A
 
 | Provider | Fornisce la configurazione da |
 | -------- | ----------------------------------- |
-| [Provider di configurazione Azure Key Vault](xref:security/key-vault-configuration) | Insieme di credenziali chiave di Azure |
+| [Provider di configurazione Azure Key Vault](xref:security/key-vault-configuration) | Azure Key Vault |
 | [Provider di configurazione app Azure](/azure/azure-app-configuration/quickstart-aspnet-core-app) | Configurazione app di Azure |
 | [Provider di configurazione della riga di comando](#clcp) | Parametri della riga di comando |
 | [Provider di configurazione personalizzato](#custom-configuration-provider) | Origine personalizzata |
@@ -367,7 +367,7 @@ Gli overload possono specificare:
 * Se il file è facoltativo.
 * Se la configurazione viene ricaricata se viene modificato il file.
 
-Esaminare il codice seguente:
+Osservare il codice seguente:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON.cs?name=snippet&highlight=12-14)]
 
@@ -775,7 +775,7 @@ Un'implementazione <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> consente 
 
 La configurazione delle app in ASP.NET Core si basa su coppie chiave-valore stabilite dai *provider di configurazione*. I provider di configurazione leggono i dati di configurazione in coppie chiave-valore da un'ampia gamma di origini di configurazione:
 
-* Insieme di credenziali chiave di Azure
+* Azure Key Vault
 * Configurazione app di Azure
 * Argomenti della riga di comando
 * Provider personalizzati (installati o creati)
@@ -929,13 +929,13 @@ I valori di configurazione adottano le convenzioni seguenti:
 * I valori sono stringhe.
 * I valori null non possono essere archiviati nella configurazione o associati a oggetti.
 
-## <a name="providers"></a>Providers
+## <a name="providers"></a>Provider
 
 La tabella seguente mostra i provider di configurazione disponibili per le app ASP.NET Core.
 
 | Provider | Fornisce la configurazione da&hellip; |
 | -------- | ----------------------------------- |
-| [Provider di configurazione di Azure Key Vault](xref:security/key-vault-configuration) (argomenti *Sicurezza*) | Insieme di credenziali chiave di Azure |
+| [Provider di configurazione di Azure Key Vault](xref:security/key-vault-configuration) (argomenti *Sicurezza*) | Azure Key Vault |
 | [Provider di Configurazione app](/azure/azure-app-configuration/quickstart-aspnet-core-app) (Documentazione di Azure) | Configurazione app di Azure |
 | [Provider di configurazione della riga di comando](#command-line-configuration-provider) | Parametri della riga di comando |
 | [Provider di configurazione personalizzato](#custom-configuration-provider) | Origine personalizzata |
@@ -950,7 +950,7 @@ Le origini di configurazione vengono lette nell'ordine in cui vengono specificat
 Una sequenza tipica di provider di configurazione è:
 
 1. File (*appsettings.json*, *appSettings. { Environment}. JSON*, dove `{Environment}` è l'ambiente host corrente dell'app)
-1. [Insieme di credenziali chiave Azure](xref:security/key-vault-configuration)
+1. [Azure Key Vault](xref:security/key-vault-configuration)
 1. [Segreti utente (Secret Manager)](xref:security/app-secrets) (solo nell'ambiente di sviluppo)
 1. Variabili di ambiente
 1. Argomenti della riga di comando
@@ -1053,7 +1053,7 @@ L'app di esempio consente di sfruttare il metodo di servizio statico `CreateDefa
 1. Dopo che l'app è in esecuzione, aprire un browser per l'app all'indirizzo `http://localhost:5000`.
 1. Notare che l'output contiene la coppia chiave-valore per l'argomento della riga di comando di configurazione fornito per `dotnet run`.
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 Il valore deve seguire un segno di uguale (`=`) o la chiave deve avere un prefisso (`--` o `/`) quando il valore segue uno spazio. Il valore non è necessario se viene usato un segno di uguale, ad esempio `CommandLineKey=`.
 
@@ -1108,7 +1108,7 @@ Per le app che usano i mapping di sostituzione, la chiamata a `CreateDefaultBuil
 
 Il dizionario dei mapping di sostituzione creato contiene i dati visualizzati nella tabella seguente.
 
-| Chiave       | valore             |
+| Chiave       | Valore             |
 | --------- | ----------------- |
 | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
@@ -1121,7 +1121,7 @@ dotnet run -CLKey1=value1 -CLKey2=value2
 
 Dopo aver eseguito il comando precedente, la configurazione contiene i valori mostrati nella tabella seguente.
 
-| Chiave               | valore    |
+| Chiave               | Valore    |
 | ----------------- | -------- |
 | `CommandLineKey1` | `value1` |
 | `CommandLineKey2` | `value2` |
@@ -1625,7 +1625,7 @@ Il <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> supporta 
 
 Prendere in considerazione le chiavi di configurazione e i valori indicati nella tabella seguente.
 
-| Chiave             | valore  |
+| Chiave             | Valore  |
 | :-------------: | :----: |
 | array:entries:0 | value0 |
 | array:entries:1 | value1 |
@@ -1685,7 +1685,7 @@ config.AddJsonFile(
 
 La coppia chiave-valore mostrata nella tabella viene caricata nella configurazione.
 
-| Chiave             | valore  |
+| Chiave             | Valore  |
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 
@@ -1708,7 +1708,7 @@ Se un file JSON contiene una matrice, vengono create chiavi di configurazione pe
 
 Il provider di configurazione JSON legge i dati di configurazione nelle coppie chiave-valore seguenti:
 
-| Chiave                     | valore  |
+| Chiave                     | Valore  |
 | ----------------------- | :----: |
 | json_array:key          | valueA |
 | json_array:subsection:0 | valueB |
