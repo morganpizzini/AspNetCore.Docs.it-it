@@ -1,50 +1,50 @@
 ---
-title: Introduzione a Identity on ASP.NET Core
+title: 'Introduzione a :::no-loc(Identity)::: on ASP.NET Core'
 author: rick-anderson
-description: Usare Identity con un'app ASP.NET Core. Informazioni su come impostare i requisiti per le password (RequireDigit, RequiredLength, RequiredUniqueChars e altro).
+description: "Usare :::no-loc(Identity)::: con un'app ASP.NET Core. Informazioni su come impostare i requisiti per le password (RequireDigit, RequiredLength, RequiredUniqueChars e altro)."
 ms.author: riande
 ms.date: 7/15/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: security/authentication/identity
 ms.openlocfilehash: dd3296db568700a363c427398f02239846a46ada
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/17/2020
+ms.lasthandoff: 07/21/2020
 ms.locfileid: "86445431"
 ---
-# <a name="introduction-to-identity-on-aspnet-core"></a>Introduzione a Identity on ASP.NET Core
+# <a name="introduction-to-no-locidentity-on-aspnet-core"></a>Introduzione a :::no-loc(Identity)::: on ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core Identity :
+ASP.NET Core :::no-loc(Identity)::: :
 
 * È un'API che supporta la funzionalità di accesso dell'interfaccia utente.
 * Gestisce utenti, password, dati di profilo, ruoli, attestazioni, token, conferma tramite posta elettronica e altro ancora.
 
-Gli utenti possono creare un account con le informazioni di accesso archiviate in Identity o possono usare un provider di accesso esterno. I provider di accesso esterni supportati includono [Facebook, Google, account Microsoft e Twitter](xref:security/authentication/social/index).
+Gli utenti possono creare un account con le informazioni di accesso archiviate in :::no-loc(Identity)::: o possono usare un provider di accesso esterno. I provider di accesso esterni supportati includono [Facebook, Google, account Microsoft e Twitter](xref:security/authentication/social/index).
 
-Il [ Identity codice sorgente](https://github.com/dotnet/AspNetCore/tree/master/src/Identity) è disponibile in GitHub. [Impalcatura Identity ](xref:security/authentication/scaffold-identity) e visualizzare i file generati per esaminare l'interazione del modello con Identity .
+Il [ :::no-loc(Identity)::: codice sorgente](https://github.com/dotnet/AspNetCore/tree/master/src/:::no-loc(Identity):::) è disponibile in GitHub. [Impalcatura :::no-loc(Identity)::: ](xref:security/authentication/scaffold-identity) e visualizzare i file generati per esaminare l'interazione del modello con :::no-loc(Identity)::: .
 
-Identityviene in genere configurato utilizzando un database di SQL Server per archiviare i nomi utente, le password e i dati di profilo. In alternativa, è possibile usare un altro archivio permanente, ad esempio archiviazione tabelle di Azure.
+:::no-loc(Identity):::viene in genere configurato utilizzando un database di SQL Server per archiviare i nomi utente, le password e i dati di profilo. In alternativa, è possibile usare un altro archivio permanente, ad esempio archiviazione tabelle di Azure.
 
-In questo argomento si apprenderà come usare Identity per registrare, accedere e disconnettere un utente. Nota: i modelli considerano il nome utente e il messaggio di posta elettronica come lo stesso per gli utenti. Per istruzioni più dettagliate sulla creazione di app che usano Identity , vedere [passaggi successivi](#next).
+In questo argomento si apprenderà come usare :::no-loc(Identity)::: per registrare, accedere e disconnettere un utente. Nota: i modelli considerano il nome utente e il messaggio di posta elettronica come lo stesso per gli utenti. Per istruzioni più dettagliate sulla creazione di app che usano :::no-loc(Identity)::: , vedere [passaggi successivi](#next).
 
 [Piattaforma di identità Microsoft](/azure/active-directory/develop/) :
 
 * Evoluzione della piattaforma per sviluppatori Azure Active Directory (Azure AD).
-* Non correlato a ASP.NET Core Identity .
+* Non correlato a ASP.NET Core :::no-loc(Identity)::: .
 
-[!INCLUDE[](~/includes/IdentityServer4.md)]
+[!INCLUDE[](~/includes/:::no-loc(Identity):::Server4.md)]
 
 Consente di [visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample) ([come scaricare)](xref:index#how-to-download-a-sample).
 
@@ -67,7 +67,7 @@ Creare un progetto di applicazione Web di ASP.NET Core con singoli account utent
 dotnet new webapp --auth Individual -o WebApp1
 ```
 
-Il comando precedente crea un' Razor app Web con SQLite. Per creare l'app Web con il database locale, eseguire il comando seguente:
+Il comando precedente crea un' :::no-loc(Razor)::: app Web con SQLite. Per creare l'app Web con il database locale, eseguire il comando seguente:
 
 ```dotnetcli
 dotnet new webapp --auth Individual -uld -o WebApp1
@@ -75,11 +75,11 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-Il progetto generato fornisce [ASP.NET Core Identity ](xref:security/authentication/identity) come [ Razor libreria di classi](xref:razor-pages/ui-class). La Identity Razor libreria di classi espone gli endpoint con l' `Identity` area. Ad esempio:
+Il progetto generato fornisce [ASP.NET Core :::no-loc(Identity)::: ](xref:security/authentication/identity) come [ :::no-loc(Razor)::: libreria di classi](xref:razor-pages/ui-class). La :::no-loc(Identity)::: :::no-loc(Razor)::: libreria di classi espone gli endpoint con l' `:::no-loc(Identity):::` area. ad esempio:
 
-* /Identity/Account/Login
-* /Identity/Account/Logout
-* /Identity/Account/Manage
+* /:::no-loc(Identity):::/Account/Login
+* /:::no-loc(Identity):::/Account/Logout
+* /:::no-loc(Identity):::/Account/Manage
 
 ### <a name="apply-migrations"></a>Applicare le migrazioni
 
@@ -113,27 +113,27 @@ Eseguire l'app e registrare un utente. A seconda delle dimensioni dello schermo,
 
 <a name="pw"></a>
 
-### <a name="configure-identity-services"></a>Configurare i Identity Servizi
+### <a name="configure-no-locidentity-services"></a>Configurare i :::no-loc(Identity)::: Servizi
 
 I servizi vengono aggiunti in `ConfigureServices` . Il modello tipico consiste nel chiamare tutti i metodi `Add{Service}` e quindi chiamare tutti i metodi `services.Configure{Service}`.
 
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configureservices&highlight=11-99)]
 
-Il codice evidenziato precedente viene configurato Identity con i valori di opzione predefiniti. I servizi vengono resi disponibili per l'applicazione tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).
+Il codice evidenziato precedente viene configurato :::no-loc(Identity)::: con i valori di opzione predefiniti. I servizi vengono resi disponibili per l'applicazione tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).
 
-Identityviene abilitato chiamando <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> . `UseAuthentication`aggiunge il [middleware](xref:fundamentals/middleware/index) di autenticazione alla pipeline della richiesta.
+:::no-loc(Identity):::viene abilitato chiamando <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> . `UseAuthentication`aggiunge il [middleware](xref:fundamentals/middleware/index) di autenticazione alla pipeline della richiesta.
 
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configure&highlight=19)]
 
 L'app generata dal modello non usa l' [autorizzazione](xref:security/authorization/secure-data). `app.UseAuthorization`è incluso per assicurarsi che venga aggiunto nell'ordine corretto se l'app aggiunge l'autorizzazione. `UseRouting`, `UseAuthentication` , `UseAuthorization` e `UseEndpoints` devono essere chiamati nell'ordine indicato nel codice precedente.
 
-Per ulteriori informazioni su `IdentityOptions` e `Startup` , vedere <xref:Microsoft.AspNetCore.Identity.IdentityOptions> e [avvio dell'applicazione](xref:fundamentals/startup).
+Per ulteriori informazioni su `:::no-loc(Identity):::Options` e `Startup` , vedere <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.:::no-loc(Identity):::Options> e [avvio dell'applicazione](xref:fundamentals/startup).
 
 ## <a name="scaffold-register-login-logout-and-registerconfirmation"></a>Registro di ponteggi, account di accesso, disconnessione e RegisterConfirmation
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Aggiungere i `Register` `Login` file,, `LogOut` e `RegisterConfirmation` . Seguire l' [identità del patibolo in un Razor progetto con](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) le istruzioni di autorizzazione per generare il codice illustrato in questa sezione.
+Aggiungere i `Register` `Login` file,, `LogOut` e `RegisterConfirmation` . Seguire l' [identità del patibolo in un :::no-loc(Razor)::: progetto con](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) le istruzioni di autorizzazione per generare il codice illustrato in questa sezione.
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
@@ -146,18 +146,18 @@ dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --fil
 
 PowerShell usa il punto e virgola come separatore di comandi. Quando si usa PowerShell, usare il carattere di escape per il punto e virgola nell'elenco dei file o inserire l'elenco di file tra virgolette doppie, come illustrato nell'esempio precedente.
 
-Per ulteriori informazioni sull'impalcatura Identity , vedere la pagina relativa all' [identità del patibolo in un Razor progetto con autorizzazione](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization).
+Per ulteriori informazioni sull'impalcatura :::no-loc(Identity)::: , vedere la pagina relativa all' [identità del patibolo in un :::no-loc(Razor)::: progetto con autorizzazione](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization).
 
 ---
 
 ### <a name="examine-register"></a>Esaminare il registro
 
-Quando un utente fa clic sul pulsante **registra** nella `Register` pagina, `RegisterModel.OnPostAsync` viene richiamata l'azione. L'utente viene creato da [CreateAsync](/dotnet/api/microsoft.aspnetcore.identity.usermanager-1.createasync#Microsoft_AspNetCore_Identity_UserManager_1_CreateAsync__0_System_String_) nell' `_userManager` oggetto:
+Quando un utente fa clic sul pulsante **registra** nella `Register` pagina, `RegisterModel.OnPostAsync` viene richiamata l'azione. L'utente viene creato da [CreateAsync](/dotnet/api/microsoft.aspnetcore.identity.usermanager-1.createasync#Microsoft_AspNetCore_:::no-loc(Identity):::_UserManager_1_CreateAsync__0_System_String_) nell' `_userManager` oggetto:
 
-[!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=9)]
+[!code-csharp[](identity/sample/WebApp3/Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml.cs?name=snippet&highlight=9)]
 
 <!-- .NET 5 fixes this, see
-https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
+https://github.com/dotnet/aspnetcore/blob/master/src/:::no-loc(Identity):::/UI/src/Areas/:::no-loc(Identity):::/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
 -->
 [!INCLUDE[](~/includes/disableVer.md)]
 
@@ -170,7 +170,7 @@ Il modulo di accesso viene visualizzato quando:
 
 Quando viene inviato il modulo nella pagina di accesso, `OnPostAsync` viene chiamata l'azione. `PasswordSignInAsync`viene chiamato sull' `_signInManager` oggetto.
 
-[!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=10-11)]
+[!code-csharp[](identity/sample/WebApp3/Areas/:::no-loc(Identity):::/Pages/Account/Login.cshtml.cs?name=snippet&highlight=10-11)]
 
 Per informazioni su come prendere decisioni relative alle autorizzazioni, vedere <xref:security/authorization/introduction> .
 
@@ -178,67 +178,67 @@ Per informazioni su come prendere decisioni relative alle autorizzazioni, vedere
 
 Il collegamento **Disconnetti** richiama l' `LogoutModel.OnPost` azione. 
 
-[!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Logout.cshtml.cs?highlight=36)]
+[!code-csharp[](identity/sample/WebApp3/Areas/:::no-loc(Identity):::/Pages/Account/Logout.cshtml.cs?highlight=36)]
 
 Nel codice precedente, il codice `return RedirectToPage();` deve essere un reindirizzamento in modo che il browser esegua una nuova richiesta e venga aggiornata l'identità dell'utente.
 
-[SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) Cancella le attestazioni dell'utente archiviate in un cookie.
+[SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_:::no-loc(Identity):::_SignInManager_1_SignOutAsync) Cancella le attestazioni dell'utente archiviate in un cookie.
 
 Post viene specificato nelle *pagine/Shared/_LoginPartial. cshtml*:
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
-## <a name="test-identity"></a>TestIdentity
+## <a name="test-no-locidentity"></a>Test:::no-loc(Identity):::
 
-I modelli di progetto Web predefiniti consentono l'accesso anonimo alle Home page. Per eseguire il test Identity , aggiungere [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) :
+I modelli di progetto Web predefiniti consentono l'accesso anonimo alle Home page. Per eseguire il test :::no-loc(Identity)::: , aggiungere [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) :
 
 [!code-csharp[](identity/sample/WebApp3/Pages/Privacy.cshtml.cs?highlight=7)]
 
 Se è stato eseguito l'accesso, disconnettersi. Eseguire l'app e selezionare il collegamento per la **privacy** . Si verrà reindirizzati alla pagina di accesso.
 
-### <a name="explore-identity"></a>EsplorareIdentity
+### <a name="explore-no-locidentity"></a>Esplorare:::no-loc(Identity):::
 
-Per esplorare Identity in modo più dettagliato:
+Per esplorare :::no-loc(Identity)::: in modo più dettagliato:
 
 * [Crea origine interfaccia utente con identità completa](xref:security/authentication/scaffold-identity#create-full-identity-ui-source)
 * Esaminare l'origine di ogni pagina ed eseguire un'istruzione alla volta nel debugger.
 
-## <a name="identity-components"></a>IdentityComponenti
+## <a name="no-locidentity-components"></a>:::no-loc(Identity):::Componenti
 
-Tutti i Identity pacchetti NuGet dipendenti da sono inclusi nel [framework condiviso ASP.NET Core](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework).
+Tutti i :::no-loc(Identity)::: pacchetti NuGet dipendenti da sono inclusi nel [framework condiviso ASP.NET Core](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework).
 
-Il pacchetto primario per Identity è [Microsoft. AspNetCore. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/) Questo pacchetto contiene il set principale di interfacce per ASP.NET Core Identity ed è incluso in `Microsoft.AspNetCore.Identity.EntityFrameworkCore` .
+Il pacchetto primario per :::no-loc(Identity)::: è [Microsoft. AspNetCore. :::no-loc(Identity)::: ](https://www.nuget.org/packages/Microsoft.AspNetCore.:::no-loc(Identity):::/) Questo pacchetto contiene il set principale di interfacce per ASP.NET Core :::no-loc(Identity)::: ed è incluso in `Microsoft.AspNetCore.:::no-loc(Identity):::.EntityFrameworkCore` .
 
-## <a name="migrating-to-aspnet-core-identity"></a>Migrazione a ASP.NET CoreIdentity
+## <a name="migrating-to-aspnet-core-no-locidentity"></a>Migrazione a ASP.NET Core:::no-loc(Identity):::
 
-Per ulteriori informazioni e istruzioni sulla migrazione dell' Identity archivio esistente, vedere [eseguire la migrazione Identity dell'autenticazione e ](xref:migration/identity).
+Per ulteriori informazioni e istruzioni sulla migrazione dell' :::no-loc(Identity)::: archivio esistente, vedere [eseguire la migrazione :::no-loc(Identity)::: dell'autenticazione e ](xref:migration/identity).
 
 ## <a name="setting-password-strength"></a>Impostazione della complessità della password
 
 Vedere [configurazione](#pw) per un esempio che consente di impostare i requisiti minimi per le password.
 
-## <a name="adddefaultidentity-and-addidentity"></a>AddDefault Identity e AggiungiIdentity
+## <a name="adddefaultno-locidentity-and-addno-locidentity"></a>AddDefault :::no-loc(Identity)::: e Aggiungi:::no-loc(Identity):::
 
-<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*>è stato introdotto in ASP.NET Core 2,1. `AddDefaultIdentity`La chiamata a è simile alla chiamata a quanto segue:
+<xref:Microsoft.Extensions.DependencyInjection.:::no-loc(Identity):::ServiceCollectionUIExtensions.AddDefault:::no-loc(Identity):::*>è stato introdotto in ASP.NET Core 2,1. `AddDefault:::no-loc(Identity):::`La chiamata a è simile alla chiamata a quanto segue:
 
-* <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity*>
-* <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>
-* <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders*>
+* <xref:Microsoft.Extensions.DependencyInjection.:::no-loc(Identity):::ServiceCollectionExtensions.Add:::no-loc(Identity):::*>
+* <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.:::no-loc(Identity):::BuilderUIExtensions.AddDefaultUI*>
+* <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.:::no-loc(Identity):::BuilderExtensions.AddDefaultTokenProviders*>
 
-Per altre informazioni, vedere [ Identity origine AddDefault](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) .
+Per altre informazioni, vedere [ :::no-loc(Identity)::: origine AddDefault](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/:::no-loc(Identity):::/UI/src/:::no-loc(Identity):::ServiceCollectionUIExtensions.cs#L47-L63) .
 
-## <a name="prevent-publish-of-static-identity-assets"></a>Impedisci la pubblicazione di Identity Asset statici
+## <a name="prevent-publish-of-static-no-locidentity-assets"></a>Impedisci la pubblicazione di :::no-loc(Identity)::: Asset statici
 
-Per evitare la pubblicazione Identity di risorse statiche (fogli di stile e file JavaScript per Identity l'interfaccia utente) nella radice Web, aggiungere la `ResolveStaticWebAssetsInputsDependsOn` proprietà e la `RemoveIdentityAssets` destinazione seguenti al file di progetto dell'app:
+Per evitare la pubblicazione :::no-loc(Identity)::: di risorse statiche (fogli di stile e file JavaScript per :::no-loc(Identity)::: l'interfaccia utente) nella radice Web, aggiungere la `ResolveStaticWebAssetsInputsDependsOn` proprietà e la `Remove:::no-loc(Identity):::Assets` destinazione seguenti al file di progetto dell'app:
 
 ```xml
 <PropertyGroup>
-  <ResolveStaticWebAssetsInputsDependsOn>RemoveIdentityAssets</ResolveStaticWebAssetsInputsDependsOn>
+  <ResolveStaticWebAssetsInputsDependsOn>Remove:::no-loc(Identity):::Assets</ResolveStaticWebAssetsInputsDependsOn>
 </PropertyGroup>
 
-<Target Name="RemoveIdentityAssets">
+<Target Name="Remove:::no-loc(Identity):::Assets">
   <ItemGroup>
-    <StaticWebAsset Remove="@(StaticWebAsset)" Condition="%(SourceId) == 'Microsoft.AspNetCore.Identity.UI'" />
+    <StaticWebAsset Remove="@(StaticWebAsset)" Condition="%(SourceId) == 'Microsoft.AspNetCore.:::no-loc(Identity):::.UI'" />
   </ItemGroup>
 </Target>
 ```
@@ -247,9 +247,9 @@ Per evitare la pubblicazione Identity di risorse statiche (fogli di stile e file
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [IdentityCodice sorgente ASP.NET Core](https://github.com/dotnet/aspnetcore/tree/master/src/Identity)
-* Per informazioni sulla configurazione di using SQLite, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) Identity .
-* [ConfigurareIdentity](xref:security/authentication/identity-configuration)
+* [:::no-loc(Identity):::Codice sorgente ASP.NET Core](https://github.com/dotnet/aspnetcore/tree/master/src/:::no-loc(Identity):::)
+* Per informazioni sulla configurazione di using SQLite, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) :::no-loc(Identity)::: .
+* [Configurare:::no-loc(Identity):::](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
 * <xref:security/authentication/identity-enable-qrcodes>
@@ -264,25 +264,25 @@ Per evitare la pubblicazione Identity di risorse statiche (fogli di stile e file
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core Identity è un sistema di appartenenza che aggiunge la funzionalità di accesso alle app ASP.NET Core. Gli utenti possono creare un account con le informazioni di accesso archiviate in Identity o possono usare un provider di accesso esterno. I provider di accesso esterni supportati includono [Facebook, Google, account Microsoft e Twitter](xref:security/authentication/social/index).
+ASP.NET Core :::no-loc(Identity)::: è un sistema di appartenenza che aggiunge la funzionalità di accesso alle app ASP.NET Core. Gli utenti possono creare un account con le informazioni di accesso archiviate in :::no-loc(Identity)::: o possono usare un provider di accesso esterno. I provider di accesso esterni supportati includono [Facebook, Google, account Microsoft e Twitter](xref:security/authentication/social/index).
 
-Identitypuò essere configurato usando un database di SQL Server per archiviare i nomi utente, le password e i dati di profilo. In alternativa, è possibile usare un altro archivio permanente, ad esempio archiviazione tabelle di Azure.
+:::no-loc(Identity):::può essere configurato usando un database di SQL Server per archiviare i nomi utente, le password e i dati di profilo. In alternativa, è possibile usare un altro archivio permanente, ad esempio archiviazione tabelle di Azure.
 
-Consente di [visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) ([come scaricare)](xref:index#how-to-download-a-sample).
+Consente di [visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-:::no-loc(Identity):::DemoComplete/) ([come scaricare)](xref:index#how-to-download-a-sample).
 
-In questo argomento si apprenderà come usare Identity per registrare, accedere e disconnettere un utente. Per istruzioni più dettagliate sulla creazione di app che usano Identity , vedere la sezione passaggi successivi alla fine di questo articolo.
+In questo argomento si apprenderà come usare :::no-loc(Identity)::: per registrare, accedere e disconnettere un utente. Per istruzioni più dettagliate sulla creazione di app che usano :::no-loc(Identity)::: , vedere la sezione passaggi successivi alla fine di questo articolo.
 
 <a name="adi"></a>
 
-## <a name="adddefaultidentity-and-addidentity"></a>AddDefault Identity e AggiungiIdentity
+## <a name="adddefaultno-locidentity-and-addno-locidentity"></a>AddDefault :::no-loc(Identity)::: e Aggiungi:::no-loc(Identity):::
 
-<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*>è stato introdotto in ASP.NET Core 2,1. `AddDefaultIdentity`La chiamata a è simile alla chiamata a quanto segue:
+<xref:Microsoft.Extensions.DependencyInjection.:::no-loc(Identity):::ServiceCollectionUIExtensions.AddDefault:::no-loc(Identity):::*>è stato introdotto in ASP.NET Core 2,1. `AddDefault:::no-loc(Identity):::`La chiamata a è simile alla chiamata a quanto segue:
 
-* <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity*>
-* <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>
-* <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders*>
+* <xref:Microsoft.Extensions.DependencyInjection.:::no-loc(Identity):::ServiceCollectionExtensions.Add:::no-loc(Identity):::*>
+* <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.:::no-loc(Identity):::BuilderUIExtensions.AddDefaultUI*>
+* <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.:::no-loc(Identity):::BuilderExtensions.AddDefaultTokenProviders*>
 
-Per altre informazioni, vedere [ Identity origine AddDefault](https://github.com/dotnet/AspNetCore/blob/release/2.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) .
+Per altre informazioni, vedere [ :::no-loc(Identity)::: origine AddDefault](https://github.com/dotnet/AspNetCore/blob/release/2.1/src/:::no-loc(Identity):::/UI/src/:::no-loc(Identity):::ServiceCollectionUIExtensions.cs#L47-L63) .
 
 ## <a name="create-a-web-app-with-authentication"></a>Creare un'app Web con l'autenticazione
 
@@ -303,11 +303,11 @@ dotnet new webapp --auth Individual -o WebApp1
 
 ---
 
-Il progetto generato fornisce [ASP.NET Core Identity ](xref:security/authentication/identity) come [ Razor libreria di classi](xref:razor-pages/ui-class). La Identity Razor libreria di classi espone gli endpoint con l' `Identity` area. Ad esempio:
+Il progetto generato fornisce [ASP.NET Core :::no-loc(Identity)::: ](xref:security/authentication/identity) come [ :::no-loc(Razor)::: libreria di classi](xref:razor-pages/ui-class). La :::no-loc(Identity)::: :::no-loc(Razor)::: libreria di classi espone gli endpoint con l' `:::no-loc(Identity):::` area. ad esempio:
 
-* /Identity/Account/Login
-* /Identity/Account/Logout
-* /Identity/Account/Manage
+* /:::no-loc(Identity):::/Account/Login
+* /:::no-loc(Identity):::/Account/Logout
+* /:::no-loc(Identity):::/Account/Manage
 
 ### <a name="apply-migrations"></a>Applicare le migrazioni
 
@@ -337,23 +337,23 @@ Eseguire l'app e registrare un utente. A seconda delle dimensioni dello schermo,
 
 <a name="pw"></a>
 
-### <a name="configure-identity-services"></a>Configurare i Identity Servizi
+### <a name="configure-no-locidentity-services"></a>Configurare i :::no-loc(Identity)::: Servizi
 
 I servizi vengono aggiunti in `ConfigureServices` . Il modello tipico consiste nel chiamare tutti i metodi `Add{Service}` e quindi chiamare tutti i metodi `services.Configure{Service}`.
 
 [!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configureservices)]
 
-Il codice precedente Configura Identity con i valori di opzione predefiniti. I servizi vengono resi disponibili per l'applicazione tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).
+Il codice precedente Configura :::no-loc(Identity)::: con i valori di opzione predefiniti. I servizi vengono resi disponibili per l'applicazione tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).
 
-Identityviene abilitato chiamando [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_). `UseAuthentication`aggiunge il [middleware](xref:fundamentals/middleware/index) di autenticazione alla pipeline della richiesta.
+:::no-loc(Identity):::viene abilitato chiamando [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_). `UseAuthentication`aggiunge il [middleware](xref:fundamentals/middleware/index) di autenticazione alla pipeline della richiesta.
 
 [!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configure&highlight=18)]
 
-Per ulteriori informazioni, vedere la [ Identity classe Options](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) e l' [avvio dell'applicazione](xref:fundamentals/startup).
+Per ulteriori informazioni, vedere la [ :::no-loc(Identity)::: classe Options](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) e l' [avvio dell'applicazione](xref:fundamentals/startup).
 
 ## <a name="scaffold-register-login-and-logout"></a>Registrazione, accesso e disconnessione del patibolo
 
-Seguire l' [identità del patibolo in un Razor progetto con](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) le istruzioni di autorizzazione per generare il codice illustrato in questa sezione.
+Seguire l' [identità del patibolo in un :::no-loc(Razor)::: progetto con](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization) le istruzioni di autorizzazione per generare il codice illustrato in questa sezione.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -374,9 +374,9 @@ PowerShell usa il punto e virgola come separatore di comandi. Quando si usa Powe
 
 ### <a name="examine-register"></a>Esaminare il registro
 
-Quando un utente fa clic sul collegamento **Register** , `RegisterModel.OnPostAsync` viene richiamata l'azione. L'utente viene creato da [CreateAsync](/dotnet/api/microsoft.aspnetcore.identity.usermanager-1.createasync#Microsoft_AspNetCore_Identity_UserManager_1_CreateAsync__0_System_String_) nell' `_userManager` oggetto:
+Quando un utente fa clic sul collegamento **Register** , `RegisterModel.OnPostAsync` viene richiamata l'azione. L'utente viene creato da [CreateAsync](/dotnet/api/microsoft.aspnetcore.identity.usermanager-1.createasync#Microsoft_AspNetCore_:::no-loc(Identity):::_UserManager_1_CreateAsync__0_System_String_) nell' `_userManager` oggetto:
 
-[!code-csharp[](identity/sample/WebApp1/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=7)]
+[!code-csharp[](identity/sample/WebApp1/Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml.cs?name=snippet&highlight=7)]
 
 Se l'utente è stato creato correttamente, l'utente è connesso dalla chiamata a `_signInManager.SignInAsync` .
 
@@ -391,7 +391,7 @@ Il modulo di accesso viene visualizzato quando:
 
 Quando viene inviato il modulo nella pagina di accesso, `OnPostAsync` viene chiamata l'azione. `PasswordSignInAsync`viene chiamato sull' `_signInManager` oggetto.
 
-[!code-csharp[](identity/sample/WebApp1/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=10-11)]
+[!code-csharp[](identity/sample/WebApp1/Areas/:::no-loc(Identity):::/Pages/Account/Login.cshtml.cs?name=snippet&highlight=10-11)]
 
 Per informazioni su come prendere decisioni relative alle autorizzazioni, vedere <xref:security/authorization/introduction> .
 
@@ -399,38 +399,38 @@ Per informazioni su come prendere decisioni relative alle autorizzazioni, vedere
 
 Il collegamento **Disconnetti** richiama l' `LogoutModel.OnPost` azione. 
 
-[!code-csharp[](identity/sample/WebApp1/Areas/Identity/Pages/Account/Logout.cshtml.cs)]
+[!code-csharp[](identity/sample/WebApp1/Areas/:::no-loc(Identity):::/Pages/Account/Logout.cshtml.cs)]
 
-[SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) Cancella le attestazioni dell'utente archiviate in un cookie.
+[SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_:::no-loc(Identity):::_SignInManager_1_SignOutAsync) Cancella le attestazioni dell'utente archiviate in un cookie.
 
 Post viene specificato nelle *pagine/Shared/_LoginPartial. cshtml*:
 
 [!code-cshtml[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 
-## <a name="test-identity"></a>TestIdentity
+## <a name="test-no-locidentity"></a>Test:::no-loc(Identity):::
 
-I modelli di progetto Web predefiniti consentono l'accesso anonimo alle Home page. Per eseguire Identity il test, aggiungere [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) alla pagina privacy.
+I modelli di progetto Web predefiniti consentono l'accesso anonimo alle Home page. Per eseguire :::no-loc(Identity)::: il test, aggiungere [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) alla pagina privacy.
 
 [!code-csharp[](identity/sample/WebApp1/Pages/Privacy.cshtml.cs?highlight=7)]
 
 Se è stato eseguito l'accesso, disconnettersi. Eseguire l'app e selezionare il collegamento per la **privacy** . Si verrà reindirizzati alla pagina di accesso.
 
-### <a name="explore-identity"></a>EsplorareIdentity
+### <a name="explore-no-locidentity"></a>Esplorare:::no-loc(Identity):::
 
-Per esplorare Identity in modo più dettagliato:
+Per esplorare :::no-loc(Identity)::: in modo più dettagliato:
 
 * [Crea origine interfaccia utente con identità completa](xref:security/authentication/scaffold-identity#create-full-identity-ui-source)
 * Esaminare l'origine di ogni pagina ed eseguire un'istruzione alla volta nel debugger.
 
-## <a name="identity-components"></a>IdentityComponenti
+## <a name="no-locidentity-components"></a>:::no-loc(Identity):::Componenti
 
-Tutti i Identity pacchetti NuGet dipendenti sono inclusi nel [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
+Tutti i :::no-loc(Identity)::: pacchetti NuGet dipendenti sono inclusi nel [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
 
-Il pacchetto primario per Identity è [Microsoft. AspNetCore. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/) Questo pacchetto contiene il set principale di interfacce per ASP.NET Core Identity ed è incluso in `Microsoft.AspNetCore.Identity.EntityFrameworkCore` .
+Il pacchetto primario per :::no-loc(Identity)::: è [Microsoft. AspNetCore. :::no-loc(Identity)::: ](https://www.nuget.org/packages/Microsoft.AspNetCore.:::no-loc(Identity):::/) Questo pacchetto contiene il set principale di interfacce per ASP.NET Core :::no-loc(Identity)::: ed è incluso in `Microsoft.AspNetCore.:::no-loc(Identity):::.EntityFrameworkCore` .
 
-## <a name="migrating-to-aspnet-core-identity"></a>Migrazione a ASP.NET CoreIdentity
+## <a name="migrating-to-aspnet-core-no-locidentity"></a>Migrazione a ASP.NET Core:::no-loc(Identity):::
 
-Per ulteriori informazioni e istruzioni sulla migrazione dell' Identity archivio esistente, vedere [eseguire la migrazione Identity dell'autenticazione e ](xref:migration/identity).
+Per ulteriori informazioni e istruzioni sulla migrazione dell' :::no-loc(Identity)::: archivio esistente, vedere [eseguire la migrazione :::no-loc(Identity)::: dell'autenticazione e ](xref:migration/identity).
 
 ## <a name="setting-password-strength"></a>Impostazione della complessità della password
 
@@ -438,8 +438,8 @@ Vedere [configurazione](#pw) per un esempio che consente di impostare i requisit
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per informazioni sulla configurazione di using SQLite, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) Identity .
-* [ConfigurareIdentity](xref:security/authentication/identity-configuration)
+* Per informazioni sulla configurazione di using SQLite, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) :::no-loc(Identity)::: .
+* [Configurare:::no-loc(Identity):::](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
 * <xref:security/authentication/identity-enable-qrcodes>

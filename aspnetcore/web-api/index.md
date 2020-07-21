@@ -5,7 +5,7 @@ description: Informazioni di base sulla creazione di un'API Web in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/02/2020
+ms.date: 07/20/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/index
-ms.openlocfilehash: 7c9762d23ff612155846357bfadeaaad492c7299
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 98fb8c0a26f5f8e7ce5f07066f2f36e748ab2398
+ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404730"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86568743"
 ---
 # <a name="create-web-apis-with-aspnet-core"></a>Creare API Web con ASP.NET Core
 
@@ -98,16 +98,12 @@ La funzionalità *Dettagli problema per i codici di stato di errore* richiede un
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.1"
-
 * [Requisiti del routing degli attributi](#attribute-routing-requirement)
 * [Risposte HTTP 400 automatiche](#automatic-http-400-responses)
 * [Inferenza del parametro di origine di associazione](#binding-source-parameter-inference)
 * [Inferenza di richieste multipart/form-data](#multipartform-data-request-inference)
 
 Queste funzionalità richiedono la [versione di compatibilità](xref:mvc/compatibility-version) 2.1 o successiva.
-
-::: moniker-end
 
 ### <a name="attribute-on-specific-controllers"></a>Attributo su controller specifici
 
@@ -164,7 +160,7 @@ namespace WebApiSample
 
 ## <a name="attribute-routing-requirement"></a>Requisiti del routing degli attributi
 
-Con l'attributo `[ApiController]` il routing degli attributi è un requisito. Ad esempio:
+Con l'attributo `[ApiController]` il routing degli attributi è un requisito. ad esempio:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -232,9 +228,11 @@ Con una versione di compatibilità 2,2 o successiva, il tipo di risposta predefi
 
 ::: moniker-end
 
+Per rendere coerenti le risposte automatiche e personalizzate, chiamare il <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A> metodo anziché <xref:System.Web.Http.ApiController.BadRequest%2A> . `ValidationProblem`Restituisce un <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> oggetto e la risposta automatica.
+
 ### <a name="log-automatic-400-responses"></a>Registrare le risposte 400 automatiche
 
-Vedere [How to log automatic 400 responses on model validation errors (aspnet/AspNetCore.Docs #12157)](https://github.com/dotnet/AspNetCore.Docs/issues/12157) (Come registrare le risposte 400 automatiche negli errori di convalida del modello - aspnet/AspNetCore.Docs 12157).
+Vedere [come registrare risposte automatiche 400 sugli errori di convalida del modello (DotNet/AspNetCore.Docs # 12157)](https://github.com/dotnet/AspNetCore.Docs/issues/12157).
 
 ### <a name="disable-automatic-400-response"></a>Disabilitare la risposta automatica 400
 
@@ -377,7 +375,7 @@ Si consideri il codice seguente in un'azione del controller:
 
 [!code-csharp[](index/samples/2.x/2.2/Controllers/PetsController.cs?name=snippet_ProblemDetailsStatusCode)]
 
-Il `NotFound` metodo produce un codice di stato HTTP 404 con un `ProblemDetails` corpo. Ad esempio:
+Il `NotFound` metodo produce un codice di stato HTTP 404 con un `ProblemDetails` corpo. ad esempio:
 
 ```json
 {

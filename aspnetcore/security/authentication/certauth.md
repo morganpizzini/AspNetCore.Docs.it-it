@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 2c58a274e8de0b1205b223287b7690b1d5caed23
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: 06803ee57824bbfac5725763938abbb9db0e360a
+ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445125"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86568847"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurare l'autenticazione del certificato in ASP.NET Core
 
@@ -36,7 +36,7 @@ L'autenticazione del certificato è uno scenario con stato usato principalmente 
 
 Un'alternativa all'autenticazione del certificato negli ambienti in cui vengono usati proxy e servizi di bilanciamento del carico è Active Directory servizi federati (ADFS) con OpenID Connect (OIDC).
 
-## <a name="get-started"></a>Operazioni preliminari
+## <a name="get-started"></a>Introduzione
 
 Acquisire un certificato HTTPS, applicarlo e [configurare il server](#configure-your-server-to-require-certificates) per richiedere i certificati.
 
@@ -44,7 +44,7 @@ Nell'app Web aggiungere un riferimento al pacchetto [Microsoft. AspNetCore. Auth
 
 Se l'autenticazione ha esito negativo, questo gestore restituisce una `403 (Forbidden)` risposta anziché un `401 (Unauthorized)` , come si può immaginare. Il motivo è che l'autenticazione deve verificarsi durante la connessione TLS iniziale. Quando raggiunge il gestore, è troppo tardi. Non è possibile aggiornare la connessione da una connessione anonima a un'altra con un certificato.
 
-Aggiungere anche `app.UseAuthentication();` il `Startup.Configure` metodo. In caso contrario, `HttpContext.User` non verrà impostato su `ClaimsPrincipal` creato dal certificato. Ad esempio:
+Aggiungere anche `app.UseAuthentication();` il `Startup.Configure` metodo. In caso contrario, `HttpContext.User` non verrà impostato su `ClaimsPrincipal` creato dal certificato. ad esempio:
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -630,7 +630,7 @@ Il rinegozio TLS è stato un modo obsoleto per implementare certificati client f
 - HTTP/2 [vieta esplicitamente](https://tools.ietf.org/html/rfc7540#section-9.2.1) la rinegoziazione.
 - TLS 1,3 ha [rimosso](https://tools.ietf.org/html/rfc8740#section-1) il supporto per la rinegoziazione.
 
-ASP.NET Core 5 Preview 4 e versioni successive aggiunge un supporto più pratico per i certificati client facoltativi. Per ulteriori informazioni, vedere l' [esempio relativo ai certificati facoltativi](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+ASP.NET Core 5 Preview 7 e versioni successive aggiunge un supporto più pratico per i certificati client facoltativi. Per ulteriori informazioni, vedere l' [esempio relativo ai certificati facoltativi](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
 
 L'approccio seguente supporta i certificati client facoltativi:
 
