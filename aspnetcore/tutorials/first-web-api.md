@@ -6,20 +6,20 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 2/25/2020
 no-loc:
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: 79f36168d0430ceee3794cfb5a4e29f3671ac73f
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: 2383934070a65b8131e890a170186b736d3fcec0
+ms.sourcegitcommit: d00a200bc8347af794b24184da14ad5c8b6bba9a
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 07/21/2020
-ms.locfileid: "86212619"
+ms.locfileid: "86869991"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Esercitazione: creare un'API Web con ASP.NET Core
 
@@ -29,7 +29,7 @@ Questa esercitazione illustra le nozioni di base della creazione di un'API Web c
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In questa esercitazione verranno illustrate le procedure per:
+In questa esercitazione si apprenderà come:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -114,7 +114,7 @@ Il diagramma seguente visualizza la struttura dell'app.
 
   ![Selezione modello API macOS](first-web-api-mac/_static/api_template.png)
 
-* Nella finestra di dialogo **Configura nuova ASP.NET Core API Web** selezionare il **Framework di destinazione**.NET Core 3. x più recente. Selezionare **Next** (Avanti).
+* Nella finestra di dialogo **Configura nuova ASP.NET Core API Web** selezionare il **Framework di destinazione**.NET Core 3. x più recente. Selezionare **Avanti**.
 
 * Immettere *TodoApi* in **Nome progetto**, quindi selezionare **Crea**.
 
@@ -232,7 +232,7 @@ Il *contesto di database* è la classe principale che coordina le funzionalità 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-### <a name="add-microsoftentityframeworkcoresqlserver"></a>Aggiungere Microsoft.EntityFrameworkCore.SqlServer
+### <a name="add-nuget-packages"></a>Aggiungere pacchetti NuGet
 
 * Dal menu **Strumenti** selezionare **Gestione pacchetti NuGet > Gestisci pacchetti NuGet per la soluzione**.
 * Selezionare la scheda **Esplora** e quindi immettere **Microsoft.EntityFrameworkCore.SqlServer** nella casella di ricerca.
@@ -380,7 +380,7 @@ Questi metodi implementano due metodi GET:
 * `GET /api/TodoItems`
 * `GET /api/TodoItems/{id}`
 
-Testare l'app chiamando i due endpoint da un browser o da Postman. ad esempio:
+Testare l'app chiamando i due endpoint da un browser o da Postman. Ad esempio:
 
 * `https://localhost:5001/api/TodoItems`
 * `https://localhost:5001/api/TodoItems/1`
@@ -401,7 +401,7 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su **GET**.
-* Impostare l'URL della richiesta su `https://localhost:<port>/api/TodoItems`. Ad esempio: `https://localhost:5001/api/TodoItems`.
+* Impostare l'URL della richiesta su `https://localhost:<port>/api/TodoItems`. Ad esempio, `https://localhost:5001/api/TodoItems`
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -512,7 +512,7 @@ Vedere [esercitazione: chiamare un'API web ASP.NET Core con JavaScript](xref:tut
 
 ::: moniker range="< aspnetcore-3.0"
 
-In questa esercitazione verranno illustrate le procedure per:
+In questa esercitazione si apprenderà come:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -592,7 +592,7 @@ Il diagramma seguente visualizza la struttura dell'app.
 
 * In Visual Studio per Mac precedente alla versione 8,6 Selezionare API **app .NET Core**  >  **App**  >  **API**  >  **Avanti**. Nella versione 8,6 o successive selezionare API **app Web e console**  >  **App**  >  **API**  >  **Avanti**.
   
-* Nella finestra di dialogo **Configura nuova ASP.NET Core API Web** selezionare il **Framework di destinazione**.NET Core 2. x più recente. Selezionare **Next** (Avanti).
+* Nella finestra di dialogo **Configura nuova ASP.NET Core API Web** selezionare il **Framework di destinazione**.NET Core 2. x più recente. Selezionare **Avanti**.
 
 * Immettere *TodoApi* in **Nome progetto**, quindi selezionare **Crea**.
 
@@ -737,7 +737,7 @@ Questi metodi implementano due metodi GET:
 
 Arrestare l'app se è ancora in esecuzione. Quindi eseguirla di nuovo per includere le modifiche più recenti.
 
-Testare l'app chiamando i due endpoint da un browser. ad esempio:
+Testare l'app chiamando i due endpoint da un browser. Ad esempio:
 
 * `https://localhost:<port>/api/todo`
 * `https://localhost:<port>/api/todo/1`
@@ -802,7 +802,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
   * Impostare il metodo HTTP su **GET**.
-  * Impostare l'URL della richiesta su `https://localhost:<port>/api/todo`. Ad esempio: `https://localhost:5001/api/todo`.
+  * Impostare l'URL della richiesta su `https://localhost:<port>/api/todo`. Ad esempio, `https://localhost:5001/api/todo`
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -958,7 +958,7 @@ L'aggiornamento di un elemento attività è simile all'aggiunta di un elemento d
 
 ## <a name="add-authentication-support-to-a-web-api"></a>Aggiungere il supporto per l'autenticazione a un'API Web
 
-[!INCLUDE[](~/includes/:::no-loc(Identity):::Server4.md)]
+[!INCLUDE[](~/includes/IdentityServer4.md)]
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
