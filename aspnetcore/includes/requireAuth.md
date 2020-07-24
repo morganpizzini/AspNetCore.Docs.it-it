@@ -1,0 +1,1 @@
+Per informazioni su come richiedere l'autenticazione a tutti gli utenti, vedere richiedere l'autenticazione [degli utenti](xref:security/authorization/secure-data#rau).

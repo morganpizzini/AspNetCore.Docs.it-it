@@ -6,20 +6,20 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: security/authorization/policies
-ms.openlocfilehash: 8c68f2a15d07909d4576a2426d92f9beaa91fbb7
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 668c68bc328860ef17e1f2df09103fca07733ef7
+ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408071"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "87160177"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Autorizzazione basata su criteri in ASP.NET Core
 
@@ -109,7 +109,7 @@ public void ConfigureServices(IServiceCollection services)
 
 
     services.AddControllersWithViews();
-    services.AddRazorPages();
+    services.Add:::no-loc(Razor):::Pages();
 }
 ```
 
@@ -117,21 +117,21 @@ Utilizzare <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> o `[A
 
 ## <a name="apply-policies-to-mvc-controllers"></a>Applicare criteri ai controller MVC
 
-Se si usano le Razor pagine, vedere [applicare i criteri alle Razor pagine](#apply-policies-to-razor-pages) di questo documento.
+Se si usano le :::no-loc(Razor)::: pagine, vedere [applicare i criteri alle :::no-loc(Razor)::: pagine](#apply-policies-to-razor-pages) di questo documento.
 
 I criteri vengono applicati ai controller usando l' `[Authorize]` attributo con il nome del criterio. Ad esempio:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
-## <a name="apply-policies-to-razor-pages"></a>Applicare criteri alle Razor pagine
+## <a name="apply-policies-to-no-locrazor-pages"></a>Applicare criteri alle :::no-loc(Razor)::: pagine
 
-I criteri vengono applicati alle Razor pagine usando l' `[Authorize]` attributo con il nome del criterio. Ad esempio:
+I criteri vengono applicati alle :::no-loc(Razor)::: pagine usando l' `[Authorize]` attributo con il nome del criterio. Ad esempio:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-I criteri ***non*** possono essere applicati a Razor livello di gestore di pagina, ma devono essere applicati alla pagina.
+I criteri ***non*** possono essere applicati a :::no-loc(Razor)::: livello di gestore di pagina, ma devono essere applicati alla pagina.
 
-I criteri possono essere applicati alle Razor pagine utilizzando una [convenzione di autorizzazione](xref:security/authorization/razor-pages-authorization).
+I criteri possono essere applicati alle :::no-loc(Razor)::: pagine utilizzando una [convenzione di autorizzazione](xref:security/authorization/razor-pages-authorization).
 
 ## <a name="requirements"></a>Requisiti
 
@@ -225,7 +225,7 @@ Ad esempio, il precedente `BadgeEntryHandler` potrebbe essere riscritto come seg
 
 ## <a name="access-mvc-request-context-in-handlers"></a>Accedere al contesto della richiesta MVC nei gestori
 
-Il `HandleRequirementAsync` metodo implementato in un gestore autorizzazioni presenta due parametri: un oggetto `AuthorizationHandlerContext` e l'oggetto `TRequirement` che si sta gestendo. I Framework come MVC o SignalR possono aggiungere qualsiasi oggetto alla `Resource` Proprietà in `AuthorizationHandlerContext` per passare informazioni aggiuntive.
+Il `HandleRequirementAsync` metodo implementato in un gestore autorizzazioni presenta due parametri: un oggetto `AuthorizationHandlerContext` e l'oggetto `TRequirement` che si sta gestendo. I Framework come MVC o :::no-loc(SignalR)::: possono aggiungere qualsiasi oggetto alla `Resource` Proprietà in `AuthorizationHandlerContext` per passare informazioni aggiuntive.
 
 Quando si usa il routing degli endpoint, l'autorizzazione viene in genere gestita dal middleware di autorizzazione. In questo caso, la `Resource` proprietà è un'istanza di <xref:Microsoft.AspNetCore.Http.Endpoint> . L'endpoint può essere usato per eseguire il probe della risorsa sottostante a cui si sta eseguendo il routing. Ad esempio:
 
@@ -239,7 +239,7 @@ if (context.Resource is Endpoint endpoint)
 
 L'endpoint non fornisce l'accesso all'oggetto corrente `HttpContext` . Quando si utilizza il routing dell'endpoint, utilizzare `IHttpContextAcessor` per accedere `HttpContext` all'interno di un gestore autorizzazioni. Per altre informazioni, vedere [usare HttpContext da componenti personalizzati](xref:fundamentals/httpcontext#use-httpcontext-from-custom-components).
 
-Con il routing tradizionale o quando viene eseguita l'autorizzazione come parte del filtro di autorizzazione di MVC, il valore di `Resource` è un' <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> istanza di. Questa proprietà consente di accedere a `HttpContext` , `RouteData` e a tutti gli altri elementi forniti da MVC e dalle Razor pagine.
+Con il routing tradizionale o quando viene eseguita l'autorizzazione come parte del filtro di autorizzazione di MVC, il valore di `Resource` è un' <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> istanza di. Questa proprietà consente di accedere a `HttpContext` , `RouteData` e a tutti gli altri elementi forniti da MVC e dalle :::no-loc(Razor)::: pagine.
 
 L'uso della `Resource` proprietà è specifico del Framework. L'uso delle informazioni nella `Resource` proprietà limita i criteri di autorizzazione a specifici Framework. È necessario eseguire il cast della `Resource` proprietà usando la `is` parola chiave e quindi verificare che il cast abbia avuto esito positivo per verificare che il codice non si arresti in modo anomalo con un `InvalidCastException` quando viene eseguito in altri Framework:
 
@@ -252,8 +252,11 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 }
 ```
 
-::: moniker-end
+## <a name="globally-require-all-users-to-be-authenticated"></a>Richiedere l'autenticazione di tutti gli utenti a livello globale
 
+[!INCLUDE[](~/includes/requireAuth.md)]
+
+::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
@@ -350,19 +353,19 @@ Utilizzare <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> o `[A
 
 ## <a name="apply-policies-to-mvc-controllers"></a>Applicare criteri ai controller MVC
 
-Se si usano le Razor pagine, vedere [applicare i criteri alle Razor pagine](#apply-policies-to-razor-pages) di questo documento.
+Se si usano le :::no-loc(Razor)::: pagine, vedere [applicare i criteri alle :::no-loc(Razor)::: pagine](#apply-policies-to-razor-pages) di questo documento.
 
 I criteri vengono applicati ai controller usando l' `[Authorize]` attributo con il nome del criterio. Ad esempio:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
-## <a name="apply-policies-to-razor-pages"></a>Applicare criteri alle Razor pagine
+## <a name="apply-policies-to-no-locrazor-pages"></a>Applicare criteri alle :::no-loc(Razor)::: pagine
 
-I criteri vengono applicati alle Razor pagine usando l' `[Authorize]` attributo con il nome del criterio. Ad esempio:
+I criteri vengono applicati alle :::no-loc(Razor)::: pagine usando l' `[Authorize]` attributo con il nome del criterio. Ad esempio:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-I criteri possono essere applicati anche alle Razor pagine utilizzando una [convenzione di autorizzazione](xref:security/authorization/razor-pages-authorization).
+I criteri possono essere applicati anche alle :::no-loc(Razor)::: pagine utilizzando una [convenzione di autorizzazione](xref:security/authorization/razor-pages-authorization).
 
 ## <a name="requirements"></a>Requisiti
 
@@ -456,9 +459,9 @@ Ad esempio, il precedente `BadgeEntryHandler` potrebbe essere riscritto come seg
 
 ## <a name="access-mvc-request-context-in-handlers"></a>Accedere al contesto della richiesta MVC nei gestori
 
-Il `HandleRequirementAsync` metodo implementato in un gestore autorizzazioni presenta due parametri: un oggetto `AuthorizationHandlerContext` e l'oggetto `TRequirement` che si sta gestendo. I Framework come MVC o SignalR possono aggiungere qualsiasi oggetto alla `Resource` Proprietà in `AuthorizationHandlerContext` per passare informazioni aggiuntive.
+Il `HandleRequirementAsync` metodo implementato in un gestore autorizzazioni presenta due parametri: un oggetto `AuthorizationHandlerContext` e l'oggetto `TRequirement` che si sta gestendo. I Framework come MVC o :::no-loc(SignalR)::: possono aggiungere qualsiasi oggetto alla `Resource` Proprietà in `AuthorizationHandlerContext` per passare informazioni aggiuntive.
 
-Ad esempio, MVC passa un'istanza di [AuthorizationFilterContext](/dotnet/api/?term=AuthorizationFilterContext) nella `Resource` Proprietà. Questa proprietà consente di accedere a `HttpContext` , `RouteData` e a tutti gli altri elementi forniti da MVC e dalle Razor pagine.
+Ad esempio, MVC passa un'istanza di [AuthorizationFilterContext](/dotnet/api/?term=AuthorizationFilterContext) nella `Resource` Proprietà. Questa proprietà consente di accedere a `HttpContext` , `RouteData` e a tutti gli altri elementi forniti da MVC e dalle :::no-loc(Razor)::: pagine.
 
 L'uso della `Resource` proprietà è specifico del Framework. L'uso delle informazioni nella `Resource` proprietà limita i criteri di autorizzazione a specifici Framework. È necessario eseguire il cast della `Resource` proprietà usando la `is` parola chiave e quindi verificare che il cast abbia avuto esito positivo per verificare che il codice non si arresti in modo anomalo con un `InvalidCastException` quando viene eseguito in altri Framework:
 

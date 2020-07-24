@@ -5,22 +5,22 @@ description: Informazioni sulla gestione degli errori con ASP.NET Core le API We
 monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
-ms.date: 12/10/2019
+ms.date: 07/23/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: web-api/handle-errors
-ms.openlocfilehash: 0abb5e78e1971925c8e741386c65bdf71a0f0072
-ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
+ms.openlocfilehash: d9517bc14ced15094f279029abb791477f7a0004
+ms.sourcegitcommit: cc845634a490c49ff869c89b6e422b6d65d0e886
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/15/2020
-ms.locfileid: "86407632"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "87159744"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>Gestire gli errori nelle API Web di ASP.NET Core
 
@@ -229,6 +229,8 @@ Il contenuto della risposta può essere modificato dall'esterno del controller. 
 1. Creare un filtro azione denominato `HttpResponseExceptionFilter` :
 
     [!code-csharp[](handle-errors/samples/3.x/Filters/HttpResponseExceptionFilter.cs?name=snippet_HttpResponseExceptionFilter)]
+
+    Nel filtro precedente, il numero magico 10 viene sottratto dal valore integer massimo. La sottrazione di questo numero consente l'esecuzione di altri filtri alla fine della pipeline.
 
 1. In `Startup.ConfigureServices` aggiungere il filtro azioni alla raccolta filters:
 

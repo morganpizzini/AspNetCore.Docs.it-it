@@ -13,12 +13,12 @@ no-loc:
 - ':::no-loc(Razor):::'
 - ':::no-loc(SignalR):::'
 uid: security/authentication/identity
-ms.openlocfilehash: dd3296db568700a363c427398f02239846a46ada
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: 25070e90050db9dca8b003ae782662811096526a
+ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86445431"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "87160307"
 ---
 # <a name="introduction-to-no-locidentity-on-aspnet-core"></a>Introduzione a :::no-loc(Identity)::: on ASP.NET Core
 
@@ -32,6 +32,8 @@ ASP.NET Core :::no-loc(Identity)::: :
 * Gestisce utenti, password, dati di profilo, ruoli, attestazioni, token, conferma tramite posta elettronica e altro ancora.
 
 Gli utenti possono creare un account con le informazioni di accesso archiviate in :::no-loc(Identity)::: o possono usare un provider di accesso esterno. I provider di accesso esterni supportati includono [Facebook, Google, account Microsoft e Twitter](xref:security/authentication/social/index).
+
+[!INCLUDE[](~/includes/requireAuth.md)]
 
 Il [ :::no-loc(Identity)::: codice sorgente](https://github.com/dotnet/AspNetCore/tree/master/src/:::no-loc(Identity):::) è disponibile in GitHub. [Impalcatura :::no-loc(Identity)::: ](xref:security/authentication/scaffold-identity) e visualizzare i file generati per esaminare l'interazione del modello con :::no-loc(Identity)::: .
 
@@ -75,7 +77,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-Il progetto generato fornisce [ASP.NET Core :::no-loc(Identity)::: ](xref:security/authentication/identity) come [ :::no-loc(Razor)::: libreria di classi](xref:razor-pages/ui-class). La :::no-loc(Identity)::: :::no-loc(Razor)::: libreria di classi espone gli endpoint con l' `:::no-loc(Identity):::` area. ad esempio:
+Il progetto generato fornisce [ASP.NET Core :::no-loc(Identity)::: ](xref:security/authentication/identity) come [ :::no-loc(Razor)::: libreria di classi](xref:razor-pages/ui-class). La :::no-loc(Identity)::: :::no-loc(Razor)::: libreria di classi espone gli endpoint con l' `:::no-loc(Identity):::` area. Ad esempio:
 
 * /:::no-loc(Identity):::/Account/Login
 * /:::no-loc(Identity):::/Account/Logout
@@ -303,7 +305,7 @@ dotnet new webapp --auth Individual -o WebApp1
 
 ---
 
-Il progetto generato fornisce [ASP.NET Core :::no-loc(Identity)::: ](xref:security/authentication/identity) come [ :::no-loc(Razor)::: libreria di classi](xref:razor-pages/ui-class). La :::no-loc(Identity)::: :::no-loc(Razor)::: libreria di classi espone gli endpoint con l' `:::no-loc(Identity):::` area. ad esempio:
+Il progetto generato fornisce [ASP.NET Core :::no-loc(Identity)::: ](xref:security/authentication/identity) come [ :::no-loc(Razor)::: libreria di classi](xref:razor-pages/ui-class). La :::no-loc(Identity)::: :::no-loc(Razor)::: libreria di classi espone gli endpoint con l' `:::no-loc(Identity):::` area. Ad esempio:
 
 * /:::no-loc(Identity):::/Account/Login
 * /:::no-loc(Identity):::/Account/Logout
