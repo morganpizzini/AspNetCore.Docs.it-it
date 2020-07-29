@@ -6,13 +6,13 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2020
 no-loc:
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/index
 ms.openlocfilehash: a230e1ae85a54ddf16900b2ee7ed4a18d45e4ea2
 ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
@@ -49,7 +49,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 <span data-ttu-id="42ba8-119">Se si utilizzano più schemi, i criteri di autorizzazione o gli attributi di autorizzazione possono [specificare lo schema di autenticazione (o gli schemi)](xref:security/authorization/limitingidentitybyscheme) da cui dipendono per autenticare l'utente.</span><span class="sxs-lookup"><span data-stu-id="42ba8-119">If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/limitingidentitybyscheme) they depend on to authenticate the user.</span></span> <span data-ttu-id="42ba8-120">Nell'esempio precedente, è possibile usare lo schema di autenticazione dei cookie specificandone il nome ( `CookieAuthenticationDefaults.AuthenticationScheme` per impostazione predefinita, ma è possibile specificare un nome diverso quando si chiama `AddCookie` ).</span><span class="sxs-lookup"><span data-stu-id="42ba8-120">In the example above, the cookie authentication scheme could be used by specifying its name (`CookieAuthenticationDefaults.AuthenticationScheme` by default, though a different name could be provided when calling `AddCookie`).</span></span>
 
-<span data-ttu-id="42ba8-121">In alcuni casi, la chiamata a `AddAuthentication` viene eseguita automaticamente da altri metodi di estensione.</span><span class="sxs-lookup"><span data-stu-id="42ba8-121">In some cases, the call to `AddAuthentication` is automatically made by other extension methods.</span></span> <span data-ttu-id="42ba8-122">Ad esempio, quando si [Usa :::no-loc(Identity)::: ASP.NET Core ](xref:security/authentication/identity), `AddAuthentication` viene chiamato internamente.</span><span class="sxs-lookup"><span data-stu-id="42ba8-122">For example, when using [ASP.NET Core :::no-loc(Identity):::](xref:security/authentication/identity), `AddAuthentication` is called internally.</span></span>
+<span data-ttu-id="42ba8-121">In alcuni casi, la chiamata a `AddAuthentication` viene eseguita automaticamente da altri metodi di estensione.</span><span class="sxs-lookup"><span data-stu-id="42ba8-121">In some cases, the call to `AddAuthentication` is automatically made by other extension methods.</span></span> <span data-ttu-id="42ba8-122">Ad esempio, quando si [Usa Identity ASP.NET Core ](xref:security/authentication/identity), `AddAuthentication` viene chiamato internamente.</span><span class="sxs-lookup"><span data-stu-id="42ba8-122">For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.</span></span>
 
 <span data-ttu-id="42ba8-123">Il middleware di autenticazione viene aggiunto in chiamando `Startup.Configure` il <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> metodo di estensione nell'app `IApplicationBuilder` .</span><span class="sxs-lookup"><span data-stu-id="42ba8-123">The Authentication middleware is added in `Startup.Configure` by calling the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> extension method on the app's `IApplicationBuilder`.</span></span> <span data-ttu-id="42ba8-124">La chiamata a `UseAuthentication` registra il middleware che utilizza gli schemi di autenticazione registrati in precedenza.</span><span class="sxs-lookup"><span data-stu-id="42ba8-124">Calling `UseAuthentication` registers the middleware which uses the previously registered authentication schemes.</span></span> <span data-ttu-id="42ba8-125">Chiamare `UseAuthentication` prima di qualsiasi middleware che dipende da utenti autenticati.</span><span class="sxs-lookup"><span data-stu-id="42ba8-125">Call `UseAuthentication` before any middleware that depends on users being authenticated.</span></span> <span data-ttu-id="42ba8-126">Quando si usa il routing degli endpoint, la chiamata a `UseAuthentication` deve essere:</span><span class="sxs-lookup"><span data-stu-id="42ba8-126">When using endpoint routing, the call to `UseAuthentication` must go:</span></span>
 

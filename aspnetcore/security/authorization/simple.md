@@ -5,13 +5,13 @@ description: Informazioni su come usare l'attributo di autorizzazione per limita
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authorization/simple
 ms.openlocfilehash: 09514032349d489b73d5bb785f11e44ca18b169c
 ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
@@ -24,7 +24,7 @@ ms.locfileid: "87160235"
 
 <a name="security-authorization-simple"></a>
 
-<span data-ttu-id="3584c-104">L'autorizzazione in ASP.NET Core viene controllata con <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> e i vari parametri.</span><span class="sxs-lookup"><span data-stu-id="3584c-104">Authorization in ASP.NET Core is controlled with <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and its various parameters.</span></span> <span data-ttu-id="3584c-105">Nella sua forma più semplice, applicando l' `[Authorize]` attributo a un controller, a un'azione o a una :::no-loc(Razor)::: pagina, è possibile limitare l'accesso a tale componente a qualsiasi utente autenticato.</span><span class="sxs-lookup"><span data-stu-id="3584c-105">In its simplest form, applying the `[Authorize]` attribute to a controller, action, or :::no-loc(Razor)::: Page, limits access to that component to any authenticated user.</span></span>
+<span data-ttu-id="3584c-104">L'autorizzazione in ASP.NET Core viene controllata con <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> e i vari parametri.</span><span class="sxs-lookup"><span data-stu-id="3584c-104">Authorization in ASP.NET Core is controlled with <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and its various parameters.</span></span> <span data-ttu-id="3584c-105">Nella sua forma più semplice, applicando l' `[Authorize]` attributo a un controller, a un'azione o a una Razor pagina, è possibile limitare l'accesso a tale componente a qualsiasi utente autenticato.</span><span class="sxs-lookup"><span data-stu-id="3584c-105">In its simplest form, applying the `[Authorize]` attribute to a controller, action, or Razor Page, limits access to that component to any authenticated user.</span></span>
 
 <span data-ttu-id="3584c-106">Il codice seguente, ad esempio, limita l'accesso a `AccountController` a qualsiasi utente autenticato.</span><span class="sxs-lookup"><span data-stu-id="3584c-106">For example, the following code limits access to the `AccountController` to any authenticated user.</span></span>
 
@@ -86,11 +86,11 @@ public class AccountController : Controller
 
 <a name="aarp"></a>
 
-## <a name="authorize-attribute-and-no-locrazor-pages"></a><span data-ttu-id="3584c-115">Autorizzare gli attributi e le :::no-loc(Razor)::: pagine</span><span class="sxs-lookup"><span data-stu-id="3584c-115">Authorize attribute and :::no-loc(Razor)::: Pages</span></span>
+## <a name="authorize-attribute-and-no-locrazor-pages"></a><span data-ttu-id="3584c-115">Autorizzare gli attributi e le Razor pagine</span><span class="sxs-lookup"><span data-stu-id="3584c-115">Authorize attribute and Razor Pages</span></span>
 
-<span data-ttu-id="3584c-116"><xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ***Non*** può essere applicato ai :::no-loc(Razor)::: gestori di pagine.</span><span class="sxs-lookup"><span data-stu-id="3584c-116">The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can ***not*** be applied to :::no-loc(Razor)::: Page handlers.</span></span> <span data-ttu-id="3584c-117">Ad esempio, `[Authorize]` non può essere applicato a `OnGet` , `OnPost` o a qualsiasi altro gestore di pagina.</span><span class="sxs-lookup"><span data-stu-id="3584c-117">For example, `[Authorize]` can't be applied to `OnGet`, `OnPost`, or any other page handler.</span></span> <span data-ttu-id="3584c-118">Considerare l'uso di un controller ASP.NET Core MVC per le pagine con requisiti di autorizzazione diversi per gestori diversi.</span><span class="sxs-lookup"><span data-stu-id="3584c-118">Consider using an ASP.NET Core MVC controller for pages with different authorization requirements for different handlers.</span></span>
+<span data-ttu-id="3584c-116"><xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ***Non*** può essere applicato ai Razor gestori di pagine.</span><span class="sxs-lookup"><span data-stu-id="3584c-116">The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can ***not*** be applied to Razor Page handlers.</span></span> <span data-ttu-id="3584c-117">Ad esempio, `[Authorize]` non può essere applicato a `OnGet` , `OnPost` o a qualsiasi altro gestore di pagina.</span><span class="sxs-lookup"><span data-stu-id="3584c-117">For example, `[Authorize]` can't be applied to `OnGet`, `OnPost`, or any other page handler.</span></span> <span data-ttu-id="3584c-118">Considerare l'uso di un controller ASP.NET Core MVC per le pagine con requisiti di autorizzazione diversi per gestori diversi.</span><span class="sxs-lookup"><span data-stu-id="3584c-118">Consider using an ASP.NET Core MVC controller for pages with different authorization requirements for different handlers.</span></span>
 
-<span data-ttu-id="3584c-119">Per applicare l'autorizzazione ai metodi del gestore di pagina, è possibile usare i due approcci seguenti :::no-loc(Razor)::: :</span><span class="sxs-lookup"><span data-stu-id="3584c-119">The following two approaches can be used to apply authorization to :::no-loc(Razor)::: Page handler methods:</span></span>
+<span data-ttu-id="3584c-119">Per applicare l'autorizzazione ai metodi del gestore di pagina, è possibile usare i due approcci seguenti Razor :</span><span class="sxs-lookup"><span data-stu-id="3584c-119">The following two approaches can be used to apply authorization to Razor Page handler methods:</span></span>
 
 * <span data-ttu-id="3584c-120">Usare pagine separate per i gestori di pagine che richiedono un'autorizzazione diversa.</span><span class="sxs-lookup"><span data-stu-id="3584c-120">Use separate pages for page handlers requiring different authorization.</span></span> <span data-ttu-id="3584c-121">Il contenuto condiviso è stato spostato in una o più [visualizzazioni parziali](xref:mvc/views/partial).</span><span class="sxs-lookup"><span data-stu-id="3584c-121">Moved shared content into one or more [partial views](xref:mvc/views/partial).</span></span> <span data-ttu-id="3584c-122">Quando possibile, questo è l'approccio consigliato.</span><span class="sxs-lookup"><span data-stu-id="3584c-122">When possible, this is the recommended approach.</span></span>
 * <span data-ttu-id="3584c-123">Per il contenuto che deve condividere una pagina comune, scrivere un filtro che esegua l'autorizzazione come parte di [IAsyncPageFilter. OnPageHandlerSelectionAsync](xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A).</span><span class="sxs-lookup"><span data-stu-id="3584c-123">For content that must share a common page, write a filter that performs authorization as part of [IAsyncPageFilter.OnPageHandlerSelectionAsync](xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A).</span></span> <span data-ttu-id="3584c-124">Il progetto GitHub [PageHandlerAuth](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth) illustra questo approccio:</span><span class="sxs-lookup"><span data-stu-id="3584c-124">The [PageHandlerAuth](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth) GitHub project demonstrates this approach:</span></span>
@@ -103,4 +103,4 @@ public class AccountController : Controller
 > * <span data-ttu-id="3584c-128">Comporre con attributi di autorizzazione applicati alla pagina, al modello di pagina o a livello globale.</span><span class="sxs-lookup"><span data-stu-id="3584c-128">Compose with authorization attributes applied to the page, page model, or globally.</span></span> <span data-ttu-id="3584c-129">La composizione di attributi di autorizzazione comporta l'autenticazione e l'autorizzazione eseguite più volte quando si dispone `AuthorizeAttribute` di un'altra `AuthorizeFilter` istanza o di istanze applicate anche alla pagina.</span><span class="sxs-lookup"><span data-stu-id="3584c-129">Composing authorization attributes results in authentication and authorization executing multiple times when you have one more `AuthorizeAttribute` or `AuthorizeFilter` instances also applied to the page.</span></span>
 > * <span data-ttu-id="3584c-130">Usare insieme al resto del sistema di autenticazione e autorizzazione ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="3584c-130">Work in conjunction with the rest of ASP.NET Core authentication and authorization system.</span></span> <span data-ttu-id="3584c-131">È necessario verificare che l'utilizzo di questo approccio funzioni correttamente per l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="3584c-131">You must verify using this approach works correctly for your application.</span></span>
 
-<span data-ttu-id="3584c-132">Non sono previsti piani per il supporto `AuthorizeAttribute` dei :::no-loc(Razor)::: gestori di pagine.</span><span class="sxs-lookup"><span data-stu-id="3584c-132">There are no plans to support the `AuthorizeAttribute` on :::no-loc(Razor)::: Page handlers.</span></span> 
+<span data-ttu-id="3584c-132">Non sono previsti piani per il supporto `AuthorizeAttribute` dei Razor gestori di pagine.</span><span class="sxs-lookup"><span data-stu-id="3584c-132">There are no plans to support the `AuthorizeAttribute` on Razor Page handlers.</span></span> 
