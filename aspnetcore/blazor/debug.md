@@ -1,19 +1,19 @@
 ---
-title: 'ASP.NET Core di debug:::no-loc(Blazor WebAssembly):::'
+title: ASP.NET Core di debugBlazor WebAssembly
 author: guardrex
-description: 'Informazioni su come eseguire il debug delle :::no-loc(Blazor)::: app.'
+description: Informazioni su come eseguire il debug delle Blazor app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/15/2020
 no-loc:
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/debug
 ms.openlocfilehash: 14943b9f7847ac9144addfdf16a003f6fc8c340c
 ms.sourcegitcommit: cc845634a490c49ff869c89b6e422b6d65d0e886
@@ -22,11 +22,11 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 07/24/2020
 ms.locfileid: "87159702"
 ---
-# <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debug:::no-loc(Blazor WebAssembly):::
+# <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debugBlazor WebAssembly
 
 [Daniel Roth](https://github.com/danroth27)
 
-:::no-loc(Blazor WebAssembly):::è possibile eseguire il debug delle app usando gli strumenti di sviluppo del browser nei browser basati su cromo (Edge/Chrome). In alternativa, è possibile eseguire il debug dell'app usando Visual Studio o Visual Studio Code.
+Blazor WebAssemblyè possibile eseguire il debug delle app usando gli strumenti di sviluppo del browser nei browser basati su cromo (Edge/Chrome). In alternativa, è possibile eseguire il debug dell'app usando Visual Studio o Visual Studio Code.
 
 Gli scenari disponibili includono:
 
@@ -53,7 +53,7 @@ Il debug richiede uno dei seguenti browser:
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Abilitare il debug per Visual Studio e Visual Studio Code
 
-Per abilitare il debug per un' :::no-loc(Blazor WebAssembly)::: app esistente, aggiornare il `launchSettings.json` file nel progetto di avvio per includere la `inspectUri` proprietà seguente in ogni profilo di avvio:
+Per abilitare il debug per un' Blazor WebAssembly app esistente, aggiornare il `launchSettings.json` file nel progetto di avvio per includere la `inspectUri` proprietà seguente in ogni profilo di avvio:
 
 ```json
 "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
@@ -65,16 +65,16 @@ Al termine dell'aggiornamento, il `launchSettings.json` file dovrebbe essere sim
 
 `inspectUri`Proprietà:
 
-* Consente all'IDE di rilevare che l'app è un' :::no-loc(Blazor WebAssembly)::: app.
-* Indica all'infrastruttura di debug degli script di connettersi al browser tramite il :::no-loc(Blazor)::: proxy di debug.
+* Consente all'IDE di rilevare che l'app è un' Blazor WebAssembly app.
+* Indica all'infrastruttura di debug degli script di connettersi al browser tramite il Blazor proxy di debug.
 
 I valori segnaposto per i protocolli WebSockets ( `wsProtocol` ), host ( `url.hostname` ), Port ( `url.port` ) e Inspector URI nel browser avviato ( `browserInspectUri` ) sono forniti dal Framework.
 
 ## <a name="visual-studio"></a>Visual Studio
 
-Per eseguire il debug di un' :::no-loc(Blazor WebAssembly)::: app in Visual Studio:
+Per eseguire il debug di un' Blazor WebAssembly app in Visual Studio:
 
-1. Creare una nuova app ospitata ASP.NET Core :::no-loc(Blazor WebAssembly)::: .
+1. Creare una nuova app ospitata ASP.NET Core Blazor WebAssembly .
 1. Premere <kbd>F5</kbd> per eseguire l'app nel debugger.
 1. Impostare un punto di interruzione in `Pages/Counter.razor` nel `IncrementCount` metodo.
 1. Passare alla **`Counter`** scheda e selezionare il pulsante per raggiungere il punto di interruzione:
@@ -87,7 +87,7 @@ Per eseguire il debug di un' :::no-loc(Blazor WebAssembly)::: app in Visual Stud
 
 1. Premere <kbd>F5</kbd> per continuare l'esecuzione.
 
-Quando si esegue il debug dell' :::no-loc(Blazor WebAssembly)::: app, è anche possibile eseguire il debug del codice del server:
+Quando si esegue il debug dell' Blazor WebAssembly app, è anche possibile eseguire il debug del codice del server:
 
 1. Impostare un punto di interruzione nella `Pages/FetchData.razor` pagina in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> .
 1. Impostare un punto di interruzione in `WeatherForecastController` nel `Get` metodo di azione.
@@ -105,9 +105,9 @@ Quando si esegue il debug dell' :::no-loc(Blazor WebAssembly)::: app, è anche p
 
 ## <a name="visual-studio-code"></a>Visual Studio Code
 
-### <a name="debug-standalone-no-locblazor-webassembly"></a>Debug autonomo:::no-loc(Blazor WebAssembly):::
+### <a name="debug-standalone-no-locblazor-webassembly"></a>Debug autonomoBlazor WebAssembly
 
-1. Aprire l'app autonoma :::no-loc(Blazor WebAssembly)::: in vs code.
+1. Aprire l'app autonoma Blazor WebAssembly in vs code.
 
    Se viene visualizzata la notifica seguente, è necessaria un'installazione aggiuntiva per abilitare il debug:
    
@@ -119,7 +119,7 @@ Quando si esegue il debug dell' :::no-loc(Blazor WebAssembly)::: app, è anche p
 
 1. Avviare il debug usando il tasto di scelta rapida <kbd>F5</kbd> o la voce di menu.
 
-1. Quando richiesto, selezionare l'opzione ** :::no-loc(Blazor WebAssembly)::: debug** per avviare il debug.
+1. Quando richiesto, selezionare l'opzione ** Blazor WebAssembly debug** per avviare il debug.
 
    ![Elenco delle opzioni di debug disponibili](index/_static/blazor-vscode-debugtypes.png)
 
@@ -129,9 +129,9 @@ Quando si esegue il debug dell' :::no-loc(Blazor WebAssembly)::: app, è anche p
 
    ![Esegui il debug del contatore in VS Code](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-debug-counter.png)
 
-### <a name="debug-hosted-no-locblazor-webassembly"></a>Debug ospitato:::no-loc(Blazor WebAssembly):::
+### <a name="debug-hosted-no-locblazor-webassembly"></a>Debug ospitatoBlazor WebAssembly
 
-1. Aprire la cartella della soluzione dell'app ospitata :::no-loc(Blazor WebAssembly)::: in vs code.
+1. Aprire la cartella della soluzione dell'app ospitata Blazor WebAssembly in vs code.
 
 1. Se non è impostata alcuna configurazione di avvio per il progetto, viene visualizzata la notifica seguente. Selezionare **Sì**.
 
@@ -143,13 +143,13 @@ Quando si esegue il debug dell' :::no-loc(Blazor WebAssembly)::: app, è anche p
 
 ### <a name="attach-to-an-existing-debugging-session"></a>Connetti a una sessione di debug esistente
 
-Per connettersi a un'app in esecuzione :::no-loc(Blazor)::: , creare un `launch.json` file con la configurazione seguente:
+Per connettersi a un'app in esecuzione Blazor , creare un `launch.json` file con la configurazione seguente:
 
 ```json
 {
   "type": "blazorwasm",
   "request": "attach",
-  "name": "Attach to Existing :::no-loc(Blazor WebAssembly)::: Application"
+  "name": "Attach to Existing Blazor WebAssembly Application"
 }
 ```
 
@@ -162,11 +162,11 @@ Le seguenti opzioni di configurazione di avvio sono supportate per il `blazorwas
 
 | Opzione    | Description |
 | --------- | ----------- |
-| `request` | Usare `launch` per avviare e alleghi una sessione di debug a un' :::no-loc(Blazor WebAssembly)::: app o `attach` per alleghi una sessione di debug a un'app già in esecuzione. |
+| `request` | Usare `launch` per avviare e alleghi una sessione di debug a un' Blazor WebAssembly app o `attach` per alleghi una sessione di debug a un'app già in esecuzione. |
 | `url`     | URL da aprire nel browser durante il debug. Il valore predefinito è `https://localhost:5001`. |
 | `browser` | Browser da avviare per la sessione di debug. Impostare su `edge` o `chrome`. Il valore predefinito è `chrome`. |
 | `trace`   | Usato per generare log dal debugger JS. Impostare su `true` per generare i log. |
-| `hosted`  | Deve essere impostato su `true` se si avvia e si esegue il debug di un'app ospitata :::no-loc(Blazor WebAssembly)::: . |
+| `hosted`  | Deve essere impostato su `true` se si avvia e si esegue il debug di un'app ospitata Blazor WebAssembly . |
 | `webRoot` | Specifica il percorso assoluto del server Web. Deve essere impostato se un'app viene gestita da una route secondaria. |
 | `timeout` | Numero di millisecondi di attesa per il fissaggio della sessione di debug. Il valore predefinito è 30.000 millisecondi (30 secondi). |
 | `program` | Riferimento al file eseguibile per eseguire il server dell'app ospitata. Deve essere impostato se `hosted` è `true` . |
@@ -175,7 +175,7 @@ Le seguenti opzioni di configurazione di avvio sono supportate per il `blazorwas
 
 ### <a name="example-launch-configurations"></a>Configurazioni di avvio di esempio
 
-#### <a name="launch-and-debug-a-standalone-no-locblazor-webassembly-app"></a>Avviare ed eseguire il debug di un'app autonoma :::no-loc(Blazor WebAssembly):::
+#### <a name="launch-and-debug-a-standalone-no-locblazor-webassembly-app"></a>Avviare ed eseguire il debug di un'app autonoma Blazor WebAssembly
 
 ```json
 {
@@ -196,13 +196,13 @@ Le seguenti opzioni di configurazione di avvio sono supportate per il `blazorwas
 }
 ```
 
-#### <a name="launch-and-debug-a-hosted-no-locblazor-webassembly-app-with-microsoft-edge"></a>Avviare ed eseguire il debug di un'app ospitata :::no-loc(Blazor WebAssembly)::: con Microsoft Edge
+#### <a name="launch-and-debug-a-hosted-no-locblazor-webassembly-app-with-microsoft-edge"></a>Avviare ed eseguire il debug di un'app ospitata Blazor WebAssembly con Microsoft Edge
 
 Per impostazione predefinita, la configurazione del browser è Google Chrome. Quando si usa Microsoft Edge per il debug, impostare `browser` su `edge` . Per usare Google Chrome, non impostare l' `browser` opzione o impostare il valore dell'opzione su `chrome` .
 
 ```json
 {
-  "name": "Launch and Debug Hosted :::no-loc(Blazor WebAssembly)::: App",
+  "name": "Launch and Debug Hosted Blazor WebAssembly App",
   "type": "blazorwasm",
   "request": "launch",
   "hosted": true,
@@ -230,11 +230,11 @@ Nell'esempio precedente, `MyHostedApp.Server.dll` è l'assembly dell'app *Server
 
 1. Nel codice componente ( `.razor` file) e nei file di codice C# ( `.cs` ), i punti di interruzione impostati vengono raggiunti durante l'esecuzione del codice. Quando viene raggiunto un punto di interruzione, l'esecuzione<kbd>F10</kbd>del codice in un singolo passaggio (F10<kbd>) viene</kbd>eseguito normalmente.
 
-:::no-loc(Blazor):::fornisce un proxy di debug che implementa il [protocollo devtools di Chrome](https://chromedevtools.github.io/devtools-protocol/) e potenzia il protocollo con. Informazioni specifiche del NET. Quando si preme il tasto di scelta rapida :::no-loc(Blazor)::: per il debug, punta il devtools di Chrome sul proxy. Il proxy si connette alla finestra del browser che si sta tentando di eseguire il debug, quindi è necessario abilitare il debug remoto.
+Blazorfornisce un proxy di debug che implementa il [protocollo devtools di Chrome](https://chromedevtools.github.io/devtools-protocol/) e potenzia il protocollo con. Informazioni specifiche del NET. Quando si preme il tasto di scelta rapida Blazor per il debug, punta il devtools di Chrome sul proxy. Il proxy si connette alla finestra del browser che si sta tentando di eseguire il debug, quindi è necessario abilitare il debug remoto.
 
 ## <a name="browser-source-maps"></a>Mappe di origine del browser
 
-Le mappe di origine del browser consentono al browser di eseguire il mapping dei file compilati ai file di origine originali e vengono comunemente usati per il debug sul lato client. Tuttavia, :::no-loc(Blazor)::: attualmente non esegue il mapping di C# direttamente a JavaScript/WASM. Al contrario, :::no-loc(Blazor)::: l'interpretazione il nel browser, quindi le mappe di origine non sono rilevanti.
+Le mappe di origine del browser consentono al browser di eseguire il mapping dei file compilati ai file di origine originali e vengono comunemente usati per il debug sul lato client. Tuttavia, Blazor attualmente non esegue il mapping di C# direttamente a JavaScript/WASM. Al contrario, Blazor l'interpretazione il nel browser, quindi le mappe di origine non sono rilevanti.
 
 ## <a name="troubleshoot"></a>Risolvere problemi
 
