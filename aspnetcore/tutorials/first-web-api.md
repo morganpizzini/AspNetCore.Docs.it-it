@@ -15,10 +15,10 @@ no-loc:
 - SignalR
 uid: tutorials/first-web-api
 ms.openlocfilehash: 2383934070a65b8131e890a170186b736d3fcec0
-ms.sourcegitcommit: d00a200bc8347af794b24184da14ad5c8b6bba9a
+ms.sourcegitcommit: 5a36758cca2861aeb10840093e46d273a6e6e91d
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/21/2020
+ms.lasthandoff: 07/28/2020
 ms.locfileid: "86869991"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Esercitazione: creare un'API Web con ASP.NET Core
@@ -29,7 +29,7 @@ Questa esercitazione illustra le nozioni di base della creazione di un'API Web c
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In questa esercitazione si apprenderà come:
+In questa esercitazione verranno illustrate le procedure per:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -50,7 +50,7 @@ Questa esercitazione consente di creare l'API seguente:
 |`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
 |`POST /api/TodoItems` | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
 |`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
-|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
+|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Elimina un elemento &nbsp;&nbsp; | Nessuna | Nessuna|
 
 Il diagramma seguente visualizza la struttura dell'app.
 
@@ -358,7 +358,7 @@ Questa esercitazione usa Postman per testare l'API Web.
     }
     ```
 
-* Selezionare **Send** (Invia).
+* Selezionare**Send** (Invia).
 
   ![Postman con richiesta di creazione](first-web-api/_static/3/create.png)
 
@@ -371,7 +371,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Impostare il metodo su GET.
 * Incollare l'URI (ad esempio, `https://localhost:5001/api/TodoItems/1` ).
-* Selezionare **Send** (Invia).
+* Selezionare**Send** (Invia).
 
 ## <a name="examine-the-get-methods"></a>Esaminare i metodi GET
 
@@ -401,9 +401,9 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su **GET**.
-* Impostare l'URL della richiesta su `https://localhost:<port>/api/TodoItems`. Ad esempio, `https://localhost:5001/api/TodoItems`
+* Impostare l'URL della richiesta su `https://localhost:<port>/api/TodoItems`. Ad esempio: `https://localhost:5001/api/TodoItems`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
-* Selezionare **Send** (Invia).
+* Selezionare**Send** (Invia).
 
 Questa app usa un database in memoria. Se l'app viene arrestata e avviata, la richiesta GET precedente non restituirà alcun dato. Se non vengono restituiti dati, eseguire [POST](#post) per pubblicare i dati nell'app.
 
@@ -471,7 +471,7 @@ Usare Postman per eliminare un elemento attività:
 
 * Impostare il metodo su `DELETE`.
 * Impostare l'URI dell'oggetto da eliminare (ad esempio `https://localhost:5001/api/TodoItems/1` ).
-* Selezionare **Send** (Invia).
+* Selezionare**Send** (Invia).
 
 <a name="over-post"></a>
 
@@ -512,7 +512,7 @@ Vedere [esercitazione: chiamare un'API web ASP.NET Core con JavaScript](xref:tut
 
 ::: moniker range="< aspnetcore-3.0"
 
-In questa esercitazione si apprenderà come:
+In questa esercitazione verranno illustrate le procedure per:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -536,7 +536,7 @@ Questa esercitazione consente di creare l'API seguente:
 |GET /api/TodoItems/{id} | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
 |POST /api/TodoItems | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
 |PUT /api/TodoItems/{id} | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
-|Elimina/api/TodoItems/{id} &nbsp;&nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
+|Elimina/api/TodoItems/{id} &nbsp;&nbsp; | Elimina un elemento &nbsp;&nbsp; | Nessuna | Nessuna|
 
 Il diagramma seguente visualizza la struttura dell'app.
 
@@ -802,9 +802,9 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
   * Impostare il metodo HTTP su **GET**.
-  * Impostare l'URL della richiesta su `https://localhost:<port>/api/todo`. Ad esempio, `https://localhost:5001/api/todo`
+  * Impostare l'URL della richiesta su `https://localhost:<port>/api/todo`. Ad esempio: `https://localhost:5001/api/todo`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
-* Selezionare **Send** (Invia).
+* Selezionare**Send** (Invia).
 
 ![Postman con richiesta GET](first-web-api/_static/2pv.png)
 
@@ -840,7 +840,7 @@ Il metodo `CreatedAtAction`:
     }
     ```
 
-* Selezionare **Send** (Invia).
+* Selezionare**Send** (Invia).
 
   ![Postman con richiesta di creazione](first-web-api/_static/create.png)
 
@@ -855,7 +855,7 @@ Il metodo `CreatedAtAction`:
 
 * Impostare il metodo su GET.
 * Incollare l'URI (ad esempio, `https://localhost:5001/api/Todo/2` ).
-* Selezionare **Send** (Invia).
+* Selezionare**Send** (Invia).
 
 ## <a name="add-a-puttodoitem-method"></a>Aggiungere un metodo PutTodoItem
 
@@ -899,7 +899,7 @@ Usare Postman per eliminare un elemento attività:
 
 * Impostare il metodo su `DELETE`.
 * Impostare l'URI dell'oggetto da eliminare (ad esempio, `https://localhost:5001/api/todo/1` ).
-* Selezionare **Send** (Invia).
+* Selezionare**Send** (Invia).
 
 L'app di esempio consente di eliminare tutti gli elementi. Quando viene eliminato l'ultimo elemento, tuttavia, ne viene creato uno nuovo dal costruttore della classe modello alla successiva chiamata dell'API.
 
@@ -917,7 +917,7 @@ Aggiungere un file HTML denominato *index.html* alla directory *wwwroot*. Sostit
 
 [!code-html[](first-web-api/samples/2.2/TodoApi/wwwroot/index.html)]
 
-Aggiungere un file JavaScript con nome *site.js* alla directory *wwwroot*. Sostituirne il contenuto con il codice seguente:
+Aggiungere un file JavaScript con nome *site.js* alla directory *wwwroot*. Sostituire il contenuto con il codice seguente:
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_SiteJs)]
 

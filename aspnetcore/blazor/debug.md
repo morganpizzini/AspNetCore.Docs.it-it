@@ -5,7 +5,7 @@ description: Informazioni su come eseguire il debug delle Blazor app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/15/2020
+ms.date: 07/27/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 14943b9f7847ac9144addfdf16a003f6fc8c340c
-ms.sourcegitcommit: cc845634a490c49ff869c89b6e422b6d65d0e886
+ms.openlocfilehash: b4199c3a99af5875c5d9a87f29f7c7e2758ffd71
+ms.sourcegitcommit: 5a36758cca2861aeb10840093e46d273a6e6e91d
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87159702"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87303560"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debugBlazor WebAssembly
 
@@ -109,13 +109,15 @@ Quando si esegue il debug dell' Blazor WebAssembly app, è anche possibile esegu
 
 1. Aprire l'app autonoma Blazor WebAssembly in vs code.
 
-   Se viene visualizzata la notifica seguente, è necessaria un'installazione aggiuntiva per abilitare il debug:
+   È possibile che venga ricevuta la notifica seguente che è necessaria un'installazione aggiuntiva per abilitare il debug:
    
-   * Verificare che siano installate le estensioni corrette.
-   * Verificare che l'anteprima JavaScript sia abilitata.
-   * Ricaricare la finestra.
-
    ![Installazione aggiuntiva richiesta](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
+   
+   Se si riceve la notifica:
+
+   * Verificare che sia installata la versione più recente [di C# per Visual Studio Code estensione](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) . Per esaminare le estensioni installate, aprire **View**  >  **Extensions** dalla barra dei menu o selezionare l'icona **Extensions** nella barra laterale **Activity** .
+   * Verificare che l'anteprima JavaScript sia abilitata. Aprire le impostazioni dalla barra dei menu (**File**  >  **Preferences**  >  **Impostazioni**preferenze file). Eseguire la ricerca usando le parole chiave `debug preview` . Nei risultati della ricerca verificare che la casella di controllo per **Debug > JavaScript: USA anteprima** sia selezionata.
+   * Ricaricare la finestra.
 
 1. Avviare il debug usando il tasto di scelta rapida <kbd>F5</kbd> o la voce di menu.
 
@@ -160,7 +162,7 @@ Per connettersi a un'app in esecuzione Blazor , creare un `launch.json` file con
 
 Le seguenti opzioni di configurazione di avvio sono supportate per il `blazorwasm` tipo di debug ( `.vscode/launch.json` ).
 
-| Opzione    | Description |
+| Opzione    | Descrizione |
 | --------- | ----------- |
 | `request` | Usare `launch` per avviare e alleghi una sessione di debug a un' Blazor WebAssembly app o `attach` per alleghi una sessione di debug a un'app già in esecuzione. |
 | `url`     | URL da aprire nel browser durante il debug. Il valore predefinito è `https://localhost:5001`. |
