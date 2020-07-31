@@ -1,213 +1,231 @@
 ---
 title: Configurare l'autenticazione di Windows in ASP.NET Core
 author: scottaddie
-description: Informazioni su come configurare l'autenticazione di Windows in ASP.NET Core per HTTP. sys e IIS.
+description: Informazioni su come configurare l'autenticazione di Windows in ASP.NET Core per IIS e HTTP.sys.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 07/01/2019
+ms.date: 02/26/2020
+no-loc:
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/windowsauth
-ms.openlocfilehash: 30f1f554a29412ed6b84115d457d2da1aba91c17
-ms.sourcegitcommit: eb3e51d58dd713eefc242148f45bd9486be3a78a
+ms.openlocfilehash: 8f6dc8620df04bcebe996119869ca2e498cffccc
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/02/2019
-ms.locfileid: "67500500"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "87330684"
 ---
 # <a name="configure-windows-authentication-in-aspnet-core"></a>Configurare l'autenticazione di Windows in ASP.NET Core
 
-Dal [Scott Addie](https://twitter.com/Scott_Addie) e [Luke Latham](https://github.com/guardrex)
+Di [Scott Addie](https://twitter.com/Scott_Addie)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-L'autenticazione di Windows (noto anche come autenticazione Negotiate, Kerberos o NTLM) può essere configurato per le app ASP.NET Core ospitate con [IIS](xref:host-and-deploy/iis/index), [Kestrel](xref:fundamentals/servers/kestrel), o [HTTP. sys](xref:fundamentals/servers/httpsys) .
+L'autenticazione di Windows (nota anche come Negotiate, Kerberos o NTLM) può essere configurata per ASP.NET Core app ospitate con [IIS](xref:host-and-deploy/iis/index), [gheppio](xref:fundamentals/servers/kestrel)o [HTTP.sys](xref:fundamentals/servers/httpsys).
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-L'autenticazione di Windows (noto anche come autenticazione Negotiate, Kerberos o NTLM) può essere configurato per le app ASP.NET Core ospitate con [IIS](xref:host-and-deploy/iis/index) oppure [HTTP. sys](xref:fundamentals/servers/httpsys).
+L'autenticazione di Windows (nota anche come Negotiate, Kerberos o NTLM) può essere configurata per ASP.NET Core app ospitate con [IIS](xref:host-and-deploy/iis/index) o [HTTP.sys](xref:fundamentals/servers/httpsys).
 
 ::: moniker-end
 
-L'autenticazione di Windows si basa sul sistema operativo per autenticare gli utenti delle App ASP.NET Core. È possibile usare l'autenticazione di Windows quando il server in esecuzione in una rete aziendale usando le identità di dominio Active Directory o account di Windows per identificare gli utenti. L'autenticazione di Windows è più adatta agli ambienti intranet in cui gli utenti, le app client e server web appartengono allo stesso dominio di Windows.
+L'autenticazione di Windows si basa sul sistema operativo per autenticare gli utenti delle app ASP.NET Core. È possibile usare l'autenticazione di Windows quando il server viene eseguito in una rete aziendale usando Active Directory identità di dominio o account di Windows per identificare gli utenti. L'autenticazione di Windows è più adatta agli ambienti Intranet in cui gli utenti, le app client e i server Web appartengono allo stesso dominio Windows.
 
 > [!NOTE]
-> L'autenticazione di Windows non è supportata con HTTP/2. Problemi di autenticazione possono essere inviati nelle risposte HTTP/2, ma il client deve effettuare il downgrade al protocollo HTTP/1.1 prima l'autenticazione.
+> L'autenticazione di Windows non è supportata con HTTP/2. Le richieste di autenticazione possono essere inviate in risposta HTTP/2, ma il client deve eseguire il downgrade a HTTP/1.1 prima dell'autenticazione.
+
+## <a name="proxy-and-load-balancer-scenarios"></a>Scenari di proxy e bilanciamento del carico
+
+L'autenticazione di Windows è uno scenario con stato utilizzato principalmente in una rete Intranet, in cui un proxy o un servizio di bilanciamento del carico non gestisce in genere il traffico tra client e server. Se si usa un proxy o un servizio di bilanciamento del carico, l'autenticazione di Windows funziona solo se il proxy o il servizio di bilanciamento del carico:
+
+* Gestisce l'autenticazione.
+* Passa le informazioni di autenticazione utente all'app, ad esempio in un'intestazione di richiesta, che agisce sulle informazioni di autenticazione.
+
+Un'alternativa all'autenticazione di Windows negli ambienti in cui vengono usati proxy e servizi di bilanciamento del carico è Active Directory servizi federati (ADFS) con OpenID Connect (OIDC).
 
 ## <a name="iisiis-express"></a>IIS/IIS Express
 
-Aggiungere servizi di autenticazione richiamando <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> (<xref:Microsoft.AspNetCore.Server.IISIntegration?displayProperty=fullName> dello spazio dei nomi) in `Startup.ConfigureServices`:
+Aggiungere i servizi di autenticazione richiamando <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> ( <xref:Microsoft.AspNetCore.Server.IISIntegration?displayProperty=fullName> spazio dei nomi) in `Startup.ConfigureServices` :
 
 ```csharp
 services.AddAuthentication(IISDefaults.AuthenticationScheme);
 ```
 
-### <a name="launch-settings-debugger"></a>Avviare le impostazioni (debugger)
+### <a name="launch-settings-debugger"></a>Impostazioni di avvio (debugger)
 
-Configurazione per le impostazioni di avvio interessa solo il *Properties/launchSettings.json* per IIS Express e non configurare IIS per l'autenticazione di Windows. Configurazione del server viene illustrata nel [IIS](#iis) sezione.
+La configurazione per le impostazioni di avvio influiscono solo sulle *Proprietà/launchSettings.jsnel* file per IIS Express e non configura IIS per l'autenticazione di Windows. La configurazione del server è illustrata nella sezione [IIS](#iis) .
 
-Il **applicazione Web** modello disponibile tramite la CLI di .NET Core o Visual Studio possono essere configurato per supportare l'autenticazione di Windows, che aggiorna il *Properties/launchSettings.json* file automaticamente.
+Il modello di **applicazione Web** disponibile tramite Visual Studio o il interfaccia della riga di comando di .NET Core può essere configurato per supportare l'autenticazione di Windows, che aggiorna automaticamente le *Proprietà/launchSettings.jssul* file.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-**nuovo progetto**
+**Nuovo progetto**
 
 1. Creare un nuovo progetto.
-1. Selezionare **Applicazione Web ASP.NET Core**. Scegliere **Avanti**.
-1. Specificare un nome nella **nome progetto** campo. Verificare i **posizione** voce sia corretta o specificare un percorso per il progetto. Scegliere **Crea**.
-1. Selezionare **Change** sotto **autenticazione**.
-1. Nel **Modifica autenticazione** finestra, seleziona **l'autenticazione di Windows**. Scegliere **OK**.
-1. Selezionare **Applicazione Web**.
-1. Scegliere **Crea**.
+1. Selezionare **Applicazione Web ASP.NET Core**. Selezionare **Avanti**.
+1. Specificare un nome nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
+1. Selezionare **modifica** in **autenticazione**.
+1. Nella finestra **Cambia autenticazione** selezionare autenticazione di **Windows**. Seleziona **OK**.
+1. Selezionare **applicazione Web**.
+1. Selezionare **Crea**.
 
-Eseguire l'app. Il nome utente viene visualizzato nell'interfaccia utente dell'app sottoposto a rendering.
+Eseguire l'app. Il nome utente viene visualizzato nell'interfaccia utente dell'app di cui è stato eseguito il rendering.
 
 **Progetto esistente**
 
-Le proprietà del progetto abilita l'autenticazione di Windows e disattivano l'autenticazione anonima:
+Le proprietà del progetto abilitano l'autenticazione di Windows e disabilitano l'autenticazione anonima:
 
-1. Fare clic con il pulsante destro del mouse in **Esplora soluzioni** e scegliere **Proprietà**.
+1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Proprietà**.
 1. Selezionare la scheda **Debug**.
-1. Deselezionare la casella di controllo **abilitare l'autenticazione anonima**.
-1. Selezionare la casella di controllo **abilitare l'autenticazione di Windows**.
+1. Deselezionare la casella di controllo **Abilita autenticazione anonima**.
+1. Selezionare la casella di controllo **Abilita autenticazione di Windows**.
 1. Salvare e chiudere la pagina delle proprietà.
 
-In alternativa, è possibile configurare le proprietà nel `iisSettings` nodo il *launchsettings. JSON* file:
+In alternativa, le proprietà possono essere configurate nel `iisSettings` nodo del *launchSettings.js* nel file:
 
 [!code-json[](windowsauth/sample_snapshot/launchSettings.json?highlight=2-3)]
 
-# <a name="visual-studio-code--net-core-clitabvisual-studio-codenetcore-cli"></a>[Visual Studio Code/Interfaccia della riga di comando di .NET Core](#tab/visual-studio-code+netcore-cli)
+# <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-**nuovo progetto**
+**Nuovo progetto**
 
-Eseguire la [dotnet nuove](/dotnet/core/tools/dotnet-new) con il `webapp` argomento (App Web di ASP.NET Core) e `--auth Windows` passare:
+Eseguire il comando [DotNet New](/dotnet/core/tools/dotnet-new) con l' `webapp` argomento (ASP.NET Core app Web) e `--auth Windows` Switch:
 
-```console
+```dotnetcli
 dotnet new webapp --auth Windows
 ```
 
 **Progetto esistente**
 
-Aggiornamento il `iisSettings` nodo il *launchsettings. JSON* file:
+Aggiornare il `iisSettings` nodo del *launchSettings.jsnel* file:
 
 [!code-json[](windowsauth/sample_snapshot/launchSettings.json?highlight=2-3)]
 
 ---
 
-Quando si modifica un progetto esistente, verificare che il file di progetto include un riferimento al pacchetto per il [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) **oppure** il [ Microsoft.AspNetCore.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication/) pacchetto NuGet.
+Quando si modifica un progetto esistente, verificare che il file di progetto includa un riferimento al pacchetto per il [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) **o** il pacchetto NuGet [Microsoft. AspNetCore. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication/) .
 
 ### <a name="iis"></a>IIS
 
-IIS Usa il [modulo di ASP.NET Core](xref:host-and-deploy/aspnet-core-module) per ospitare App ASP.NET Core. L'autenticazione di Windows è configurato per IIS tramite il *Web. config* file. Le sezioni seguenti mostrano come:
+IIS usa il [modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) per ospitare ASP.NET Core app. L'autenticazione di Windows è configurata per IIS tramite il file di *web.config* . Le sezioni seguenti mostrano come:
 
-* Specificare una variabile locale *Web. config* file che attiva l'autenticazione di Windows nel server quando l'app viene distribuita.
-* Usare Gestione IIS per configurare il *Web. config* file di un'app ASP.NET Core che è già stata distribuita nel server.
+* Fornire un file di *web.config* locale che attiva l'autenticazione di Windows nel server quando viene distribuita l'app.
+* Utilizzare Gestione IIS per configurare il file di *web.config* di un'app ASP.NET Core che è già stata distribuita nel server.
 
-Se non già stato fatto, abilitare IIS per ospitare App ASP.NET Core. Per altre informazioni, vedere <xref:host-and-deploy/iis/index>.
+Se non è già stato fatto, abilitare IIS per ospitare ASP.NET Core app. Per altre informazioni, vedere <xref:host-and-deploy/iis/index>.
 
-Abilitare il servizio ruolo IIS per l'autenticazione di Windows. Per altre informazioni, vedere [abilitare l'autenticazione di Windows nei servizi di ruolo IIS (vedere il passaggio 2)](xref:host-and-deploy/iis/index#iis-configuration).
+Abilitare il servizio ruolo IIS per l'autenticazione di Windows. Per ulteriori informazioni, vedere [abilitare l'autenticazione di Windows nei servizi ruolo IIS (vedere il passaggio 2)](xref:host-and-deploy/iis/index#iis-configuration).
 
-[Middleware di integrazione IIS](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) è configurato per autenticare automaticamente le richieste per impostazione predefinita. Per altre informazioni, vedere [Host ASP.NET Core in Windows con IIS: Le opzioni di IIS (AutomaticAuthentication)](xref:host-and-deploy/iis/index#iis-options).
+Il [middleware di integrazione IIS](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) è configurato per l'autenticazione automatica delle richieste per impostazione predefinita. Per ulteriori informazioni, vedere [Host ASP.NET Core in Windows con IIS: opzioni IIS (AutomaticAuthentication)](xref:host-and-deploy/iis/index#iis-options).
 
-Per impostazione predefinita, il modulo ASP.NET Core è configurato per inoltrare il token di autenticazione di Windows per l'app. Per altre informazioni, vedere [riferimento configurazione modulo ASP.NET Core: Attributi dell'elemento aspNetCore](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+Il modulo ASP.NET Core è configurato per l'invio del token di autenticazione di Windows all'app per impostazione predefinita. Per altre informazioni, vedere [riferimento alla configurazione del modulo ASP.NET Core: attributi dell'elemento aspNetCore](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
 
-Uso **entrambi** degli approcci seguenti:
+Usare **uno** degli approcci seguenti:
 
-* **Prima della pubblicazione e la distribuzione del progetto** aggiungere il codice seguente *Web. config* file alla radice del progetto:
+* **Prima di pubblicare e distribuire il progetto,** aggiungere il seguente file di *web.config* alla radice del progetto:
 
   [!code-xml[](windowsauth/sample_snapshot/web_2.config)]
 
-  Quando il progetto viene pubblicato per .NET Core SDK (senza il `<IsTransformWebConfigDisabled>` impostata su `true` nel file di progetto), pubblicato *Web. config* file include il `<location><system.webServer><security><authentication>` sezione. Per altre informazioni sul `<IsTransformWebConfigDisabled>` proprietà, vedere <xref:host-and-deploy/iis/index#webconfig-file>.
+  Quando il progetto viene pubblicato dal .NET Core SDK (senza la `<IsTransformWebConfigDisabled>` proprietà impostata su `true` nel file di progetto), il file di *web.config* pubblicato include la `<location><system.webServer><security><authentication>` sezione. Per ulteriori informazioni sulla `<IsTransformWebConfigDisabled>` proprietà, vedere <xref:host-and-deploy/iis/index#webconfig-file> .
 
-* **Dopo la pubblicazione e la distribuzione del progetto,** eseguire la configurazione lato server con Gestione IIS:
+* **Dopo la pubblicazione e la distribuzione del progetto,** eseguire la configurazione lato server con gestione IIS:
 
-  1. In Gestione IIS selezionare il sito IIS sotto il **siti** nodo del **connessioni** nella barra laterale.
-  1. Fare doppio clic su **Authentication** nel **IIS** area.
-  1. Selezionare **l'autenticazione anonima**. Selezionare **disabilitare** nel **azioni** nella barra laterale.
-  1. Selezionare **Windows autenticazione**. Selezionare **abilitare** nel **azioni** nella barra laterale.
+  1. In Gestione IIS selezionare il sito IIS nel nodo **siti** della barra laterale **connessioni** .
+  1. Fare doppio clic su **autenticazione** nell'area **IIS** .
+  1. Selezionare **autenticazione anonima**. Selezionare **Disabilita** nella barra laterale **azioni** .
+  1. Selezionare **Autenticazione di Windows**. Selezionare **Abilita** nella barra laterale **azioni** .
 
-  Quando vengono eseguite queste operazioni, Gestione IIS modifica dell'app *Web. config* file. Oggetto `<system.webServer><security><authentication>` nodo viene aggiunto con impostazioni aggiornate per `anonymousAuthentication` e `windowsAuthentication`:
+  Quando vengono eseguite queste azioni, gestione IIS modifica il file di *web.config* dell'app. `<system.webServer><security><authentication>`Viene aggiunto un nodo con le impostazioni aggiornate per `anonymousAuthentication` e `windowsAuthentication` :
 
   [!code-xml[](windowsauth/sample_snapshot/web_1.config?highlight=4-5)]
 
-  Il `<system.webServer>` aggiunto alla sezione di *Web. config* file da Gestione IIS è di fuori dell'app `<location>` sezione aggiunte per .NET Core SDK quando la pubblicazione dell'app. Poiché la sezione viene aggiunta di fuori del `<location>` nodo, le impostazioni vengono ereditate da qualsiasi [App secondarie](xref:host-and-deploy/iis/index#sub-applications) all'app corrente. Per impedire l'ereditarietà, spostare l'aggiunta `<security>` all'interno della sezione di `<location><system.webServer>` sezione che .NET Core SDK fornito.
+  La `<system.webServer>` sezione aggiunta al file di *web.config* da Gestione IIS si trova al di fuori della `<location>` sezione dell'app aggiunta dall'.NET Core SDK quando viene pubblicata l'app. Poiché la sezione viene aggiunta all'esterno del `<location>` nodo, le impostazioni vengono ereditate dalle app [secondarie](xref:host-and-deploy/iis/index#sub-applications) all'app corrente. Per impedire l'ereditarietà, spostare la `<security>` sezione aggiunta all'interno della `<location><system.webServer>` sezione specificata dal .NET Core SDK.
 
-  Quando Gestione IIS consente di aggiungere la configurazione di IIS, questo interessa solo l'app *Web. config* file sul server. Una distribuzione dell'app per le successive possa sovrascrivere le impostazioni nel server se la copia del server del *Web. config* viene sostituita da del progetto *Web. config* file. Uso **entrambi** degli approcci seguenti per gestire le impostazioni:
+  Quando si usa Gestione IIS per aggiungere la configurazione di IIS, questo influisca solo sul file di *web.config* dell'app nel server. Una distribuzione successiva dell'app potrebbe sovrascrivere le impostazioni nel server se la copia del server *web.config* viene sostituita dal file *web.config* del progetto. Per gestire le impostazioni, usare **uno** degli approcci seguenti:
 
-  * Utilizzare Gestione IIS per reimpostare le impostazioni nel *Web. config* file dopo che il file viene sovrascritto nella distribuzione.
-  * Aggiungere un *file Web. config* all'app in locale con le impostazioni.
+  * Utilizzare Gestione IIS per reimpostare le impostazioni nel file di *web.config* dopo la sovrascrittura del file durante la distribuzione.
+  * Aggiungere un *file diweb.config* all'app localmente con le impostazioni.
 
 ::: moniker range=">= aspnetcore-3.0"
 
 ## <a name="kestrel"></a>Kestrel
 
- Il [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) pacchetto NuGet può essere utilizzato con [Kestrel](xref:fundamentals/servers/kestrel) per supportare l'autenticazione di Windows utilizzando Negotiate, Kerberos e NTLM su Windows, Linux e macOS.
+Il pacchetto NuGet [Microsoft. AspNetCore. Authentication. Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) può essere usato con [gheppio](xref:fundamentals/servers/kestrel) per supportare l'autenticazione di Windows tramite Negotiate e Kerberos in Windows, Linux e MacOS.
 
 > [!WARNING]
-> Credenziali possono essere reso persistente tra le richieste su una connessione. *Negozia l'autenticazione non deve essere usata con i proxy, a meno che il proxy mantiene un'affinità di connessione 1:1 (una connessione permanente) con Kestrel.*
+> Le credenziali possono essere rese permanente tra le richieste in una connessione. *L'autenticazione Negotiate non deve essere usata con i proxy, a meno che il proxy non mantenga un'affinità di connessione 1:1 (una connessione permanente) con gheppio.*
 
 > [!NOTE]
-> Il gestore Negotiate rileva se il server sottostante supporta l'autenticazione di Windows in modo nativo e se è abilitato. Se il server supporta l'autenticazione di Windows, ma è disabilitato, viene generato un errore che chiede di consentire l'implementazione del server. Quando è abilitata l'autenticazione di Windows nel server, il gestore Negotiate inoltra in modo trasparente ad esso.
+> Il gestore Negotiate rileva se il server sottostante supporta l'autenticazione di Windows in modalità nativa e se è abilitato. Se il server supporta l'autenticazione di Windows ma è disabilitato, viene generato un errore in cui viene chiesto di abilitare l'implementazione del server. Quando l'autenticazione di Windows è abilitata nel server, il gestore Negotiate li trasmette in modo trasparente.
 
- Aggiungere servizi di autenticazione richiamando <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> (`Microsoft.AspNetCore.Authentication.Negotiate` dello spazio dei nomi) e `AddNegotitate` (`Microsoft.AspNetCore.Authentication.Negotiate` dello spazio dei nomi) in `Startup.ConfigureServices`:
+Aggiungere i servizi di autenticazione richiamando <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> e <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate*> in `Startup.ConfigureServices` :
 
  ```csharp
+// using Microsoft.AspNetCore.Authentication.Negotiate;
+// using Microsoft.Extensions.DependencyInjection;
+
 services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     .AddNegotiate();
 ```
 
-Aggiungere il Middleware di autenticazione chiamando <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> in `Startup.Configure`:
+Aggiungere il middleware di autenticazione chiamando <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> in `Startup.Configure` :
 
  ```csharp
 app.UseAuthentication();
-
-app.UseMvc();
 ```
 
-Per altre informazioni sul middleware, vedere <xref:fundamentals/middleware/index>.
+Per ulteriori informazioni sul middleware, vedere <xref:fundamentals/middleware/index> .
 
-Sono consentite richieste anonime. Uso [autorizzazione ASP.NET Core](xref:security/authorization/introduction) per stimolare le richieste anonime per l'autenticazione.
+Sono consentite richieste anonime. Utilizzare [ASP.NET Core autorizzazione](xref:security/authorization/introduction) per la verifica delle richieste anonime di autenticazione.
 
-### <a name="windows-environment-configuration"></a>Configurazione dell'ambiente di Windows
+### <a name="windows-environment-configuration"></a>Configurazione dell'ambiente Windows
 
-Il [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) componente esegue l'autenticazione in modalità utente. Nomi dell'entità servizio (SPN) deve essere aggiunto all'account utente che esegue il servizio, non l'account del computer. Eseguire `setspn -S HTTP/mysrevername.mydomain.com myuser` in una shell dei comandi amministrativo.
+Il componente [Microsoft. AspNetCore. Authentication. Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) esegue l'autenticazione in modalità utente. È necessario aggiungere i nomi dell'entità servizio (SPN) all'account utente che esegue il servizio, non all'account del computer. Eseguire `setspn -S HTTP/myservername.mydomain.com myuser` in una shell di comandi amministrativi.
 
-### <a name="linux-and-macos-environment-configuration"></a>Configurazione dell'ambiente di Linux e macOS
+### <a name="linux-and-macos-environment-configuration"></a>Configurazione dell'ambiente Linux e macOS
 
-Le istruzioni per la partecipazione a un computer Linux o macOS a un dominio di Windows sono disponibili nel [connessione di Studio di Azure Data a SQL Server utilizzando l'autenticazione di Windows - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller) articolo. Le istruzioni di creare un account computer per il computer Linux nel dominio. I nomi SPN devono essere aggiunto a tale account del computer.
+Le istruzioni per l'aggiunta di un computer Linux o macOS a un dominio Windows sono disponibili nell'articolo [connettere Azure Data Studio all'SQL Server mediante autenticazione di Windows-Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller) . Le istruzioni creano un account computer per il computer Linux nel dominio. È necessario aggiungere nomi SPN all'account del computer.
 
 > [!NOTE]
-> Quando si seguono le istruzioni fornite nel [connessione di Studio di Azure Data a SQL Server utilizzando l'autenticazione di Windows - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller) articolo, sostituire `python-software-properties` con `python3-software-properties` se necessario.
+> Quando si seguono le istruzioni riportate nell'articolo [connettere Azure Data Studio all'SQL Server mediante autenticazione di Windows-Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller) , sostituire `python-software-properties` con `python3-software-properties` se necessario.
 
-Quando il computer Linux o macOS è aggiunto al dominio, sono necessari passaggi aggiuntivi per fornire una [file keytab](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) con i nomi SPN:
+Una volta che il computer Linux o macOS è stato aggiunto al dominio, sono necessari passaggi aggiuntivi per fornire un [file keytab](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) con i nomi SPN:
 
-* Nel controller di dominio, aggiungere nuovi nomi SPN del servizio web per l'account del computer:
+* Nel controller di dominio aggiungere nuovi SPN del servizio Web all'account del computer:
   * `setspn -S HTTP/mywebservice.mydomain.com mymachine`
   * `setspn -S HTTP/mywebservice@MYDOMAIN.COM mymachine`
-* Uso [molte](/windows-server/administration/windows-commands/ktpass) per generare un file keytab:
+* Usare [lo Ktpass](/windows-server/administration/windows-commands/ktpass) per generare un file keytab:
   * `ktpass -princ HTTP/mywebservice.mydomain.com@MYDOMAIN.COM -pass myKeyTabFilePassword -mapuser MYDOMAIN\mymachine$ -pType KRB5_NT_PRINCIPAL -out c:\temp\mymachine.HTTP.keytab -crypto AES256-SHA1`
-  * Alcuni campi devono essere specificate in lettere maiuscole come indicato.
-* Copiare il file keytab al computer Linux o macOS.
-* Selezionare il file keytab tramite una variabile di ambiente: `export KRB5_KTNAME=/tmp/mymachine.HTTP.keytab`
-* Richiamare `klist` per mostrare i nomi SPN attualmente disponibili per l'uso.
+  * Alcuni campi devono essere specificati in lettere maiuscole come indicato.
+* Copiare il file keytab nel computer Linux o macOS.
+* Selezionare il file keytab tramite una variabile di ambiente:`export KRB5_KTNAME=/tmp/mymachine.HTTP.keytab`
+* Richiama `klist` per visualizzare gli SPN attualmente disponibili per l'utilizzo.
 
 > [!NOTE]
-> File keytab contiene le credenziali di accesso di dominio e debba essere adeguatamente protette.
+> Un file keytab contiene le credenziali di accesso al dominio e deve essere protetto di conseguenza.
 
 ::: moniker-end
 
 ## <a name="httpsys"></a>HTTP.sys
 
-[Http. sys](xref:fundamentals/servers/httpsys) supporta l'autenticazione in modalità Kernel Windows utilizzando Negotiate, NTLM o l'autenticazione di base.
+[HTTP.sys](xref:fundamentals/servers/httpsys) supporta l'autenticazione di Windows in modalità kernel utilizzando l'autenticazione Negotiate, NTLM o di base.
 
-Aggiungere servizi di autenticazione richiamando <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> (<xref:Microsoft.AspNetCore.Server.HttpSys?displayProperty=fullName> dello spazio dei nomi) in `Startup.ConfigureServices`:
+Aggiungere i servizi di autenticazione richiamando <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> ( <xref:Microsoft.AspNetCore.Server.HttpSys?displayProperty=fullName> spazio dei nomi) in `Startup.ConfigureServices` :
 
 ```csharp
 services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 ```
 
-Configurare l'host web dell'app per usare HTTP. sys con l'autenticazione di Windows (*Program.cs*). <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> le novità di <xref:Microsoft.AspNetCore.Server.HttpSys?displayProperty=fullName> dello spazio dei nomi.
+Configurare l'host web dell'app per l'uso di HTTP.sys con l'autenticazione di Windows (*Program.cs*). <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*>si trova nello <xref:Microsoft.AspNetCore.Server.HttpSys?displayProperty=fullName> spazio dei nomi.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -225,48 +243,48 @@ Configurare l'host web dell'app per usare HTTP. sys con l'autenticazione di Wind
 > Per la delega all'autenticazione in modalità kernel, HTTP.sys usa il protocollo di autenticazione Kerberos. L'autenticazione in modalità utente non è supportata con Kerberos e HTTP.sys. È necessario usare l'account del computer per decrittografare il token/ticket Kerberos ottenuto da Active Directory e inoltrato dal client al server per autenticare l'utente. Registrare il nome dell'entità servizio per l'host, non l'utente dell'app.
 
 > [!NOTE]
-> Http. sys non è supportata in Nano Server versione 1709 o successiva. Per usare l'autenticazione di Windows e HTTP. sys con Nano Server, usare una [contenitore di Server Core (microsoft/windowsservercore)](https://hub.docker.com/r/microsoft/windowsservercore/). Per altre informazioni su Server Core, vedere [qual è l'opzione di installazione Server Core in Windows Server?](/windows-server/administration/server-core/what-is-server-core).
+> HTTP.sys non è supportato in nano Server versione 1709 o successiva. Per usare l'autenticazione di Windows e HTTP.sys con nano server, usare un [contenitore Server Core (Microsoft/windowsservercore)](https://hub.docker.com/r/microsoft/windowsservercore/). Per ulteriori informazioni su Server Core, vedere [che cos'è l'opzione di installazione dei componenti di base del server in Windows Server?](/windows-server/administration/server-core/what-is-server-core).
 
 ## <a name="authorize-users"></a>Autorizzare gli utenti
 
-Lo stato di configurazione dell'accesso anonimo determina il modo in cui il `[Authorize]` e `[AllowAnonymous]` attributi vengono usati nell'app. Le due sezioni seguenti illustrano come gestire gli Stati non consentiti e consentito la configurazione dell'accesso anonimo.
+Lo stato di configurazione dell'accesso anonimo determina il modo in cui `[Authorize]` gli `[AllowAnonymous]` attributi e vengono usati nell'app. Nelle due sezioni seguenti viene illustrato come gestire gli Stati di configurazione non consentiti e consentiti di accesso anonimo.
 
 ### <a name="disallow-anonymous-access"></a>Non consentire l'accesso anonimo
 
-Quando è abilitata l'autenticazione di Windows e accesso anonimo è disabilitato, il `[Authorize]` e `[AllowAnonymous]` attributi non hanno alcun effetto. Se un sito IIS è configurato per non consentire l'accesso anonimo, la richiesta raggiunga mai l'app. Per questo motivo, il `[AllowAnonymous]` attributo non è applicabile.
+Quando l'autenticazione di Windows è abilitata e l'accesso anonimo è disabilitato, gli `[Authorize]` `[AllowAnonymous]` attributi e non hanno alcun effetto. Se un sito IIS è configurato per non consentire l'accesso anonimo, la richiesta non raggiunge mai l'app. Per questo motivo, l' `[AllowAnonymous]` attributo non è applicabile.
 
 ### <a name="allow-anonymous-access"></a>Consenti accesso anonimo
 
-Quando sono abilitati sia l'autenticazione di Windows e l'accesso anonimo, usare il `[Authorize]` e `[AllowAnonymous]` attributi. Il `[Authorize]` attributo consente di proteggere gli endpoint dell'app che richiedono l'autenticazione. Il `[AllowAnonymous]` esegue l'override dell'attributo di `[Authorize]` attributo nelle App che consente l'accesso anonimo. Per informazioni dettagliate sull'utilizzo di attributi, vedere <xref:security/authorization/simple>.
+Quando è abilitata l'autenticazione di Windows e l'accesso anonimo, utilizzare gli `[Authorize]` `[AllowAnonymous]` attributi e. L' `[Authorize]` attributo consente di proteggere gli endpoint dell'app che richiedono l'autenticazione. L' `[AllowAnonymous]` attributo sostituisce l' `[Authorize]` attributo nelle app che consentono l'accesso anonimo. Per informazioni dettagliate sull'utilizzo degli attributi, vedere <xref:security/authorization/simple> .
 
 > [!NOTE]
-> Per impostazione predefinita, gli utenti che non dispongono di autorizzazione per accedere a una pagina vengono visualizzati una risposta HTTP 403 vuota. Il [StatusCodePages Middleware](xref:fundamentals/error-handling#usestatuscodepages) può essere configurato per fornire agli utenti una migliore esperienza di "Accesso negato".
+> Per impostazione predefinita, gli utenti che non dispongono dell'autorizzazione per accedere a una pagina vengono presentati con una risposta HTTP 403 vuota. Il [middleware StatusCodePages](xref:fundamentals/error-handling#usestatuscodepages) può essere configurato in modo da offrire agli utenti una migliore esperienza di "accesso negato".
 
 ## <a name="impersonation"></a>Rappresentazione
 
-ASP.NET Core non implementa la rappresentazione. Le app vengono eseguite con l'identità dell'app per tutte le richieste, usando l'identità del pool o un processo dell'app. Se l'app deve eseguire un'azione per conto di un utente, usare [WindowsIdentity.RunImpersonated](xref:System.Security.Principal.WindowsIdentity.RunImpersonated*) in un [middleware inline terminal](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) in `Startup.Configure`. Eseguire una singola azione in questo contesto e quindi chiudere il contesto.
+ASP.NET Core non implementa la rappresentazione. Le app vengono eseguite con l'identità dell'app per tutte le richieste, usando il pool di applicazioni o l'identità del processo. Se l'app deve eseguire un'azione per conto di un utente, utilizzare [WindowsIdentity. RunImpersonated](xref:System.Security.Principal.WindowsIdentity.RunImpersonated*) in un [middleware inline terminale](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) in `Startup.Configure` . Eseguire una singola azione in questo contesto e quindi chiudere il contesto.
 
 [!code-csharp[](windowsauth/sample_snapshot/Startup.cs?highlight=10-19)]
 
-`RunImpersonated` non supporta operazioni asincrone e non deve essere usata per scenari complessi. Ad esempio, di wrapping delle richieste intere o catene di middleware, non è supportato o consigliato.
+`RunImpersonated`non supporta le operazioni asincrone e non deve essere usato per scenari complessi. Ad esempio, il wrapping di intere richieste o catene di middleware non è supportato o consigliato.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Mentre il [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) pacchetto consente l'autenticazione in Windows, Linux e macOS, la rappresentazione è supportata solo in Windows.
+Mentre il pacchetto [Microsoft. AspNetCore. Authentication. Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) Abilita l'autenticazione in Windows, Linux e MacOS, la rappresentazione è supportata solo in Windows.
 
 ::: moniker-end
 
-## <a name="claims-transformations"></a>Trasformazioni di attestazioni
+## <a name="claims-transformations"></a>Trasformazioni delle attestazioni
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Durante l'hosting con IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> non viene chiamato internamente per inizializzare un utente. Pertanto, un'implementazione di <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> usate per trasformare le attestazioni dopo ogni autenticazione non viene attivata per impostazione predefinita. Per altre informazioni e un esempio di codice che attiva le trasformazioni di attestazioni, vedere <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model>.
+Quando si ospita con IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> non viene chiamato internamente per inizializzare un utente. Pertanto, un'implementazione di <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> usate per trasformare le attestazioni dopo ogni autenticazione non viene attivata per impostazione predefinita. Per ulteriori informazioni e un esempio di codice che attiva le trasformazioni delle attestazioni, vedere <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model> .
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-Quando si ospitano con la modalità in-process IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> non viene chiamato internamente per inizializzare un utente. Pertanto, un'implementazione di <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> usate per trasformare le attestazioni dopo ogni autenticazione non viene attivata per impostazione predefinita. Per altre informazioni e un esempio di codice che attiva le trasformazioni di attestazioni per l'hosting in-process, vedere <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model>.
+Quando si esegue l'hosting con la modalità in-process di IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> non viene chiamato internamente per inizializzare un utente. Pertanto, un'implementazione di <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> usate per trasformare le attestazioni dopo ogni autenticazione non viene attivata per impostazione predefinita. Per ulteriori informazioni e un esempio di codice che attiva le trasformazioni delle attestazioni durante l'hosting in-process, vedere <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model> .
 
 ::: moniker-end
 

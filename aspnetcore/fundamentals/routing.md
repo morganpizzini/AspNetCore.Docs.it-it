@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 18f1aee5ac33b17914bd182e46453120e14b31ab
-ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
+ms.openlocfilehash: fcf79966abf7a023773ef892636530278b668c44
+ms.sourcegitcommit: 5a36758cca2861aeb10840093e46d273a6e6e91d
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86176198"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87303612"
 ---
 # <a name="routing-in-aspnet-core"></a>Routing in ASP.NET Core
 
@@ -435,7 +435,7 @@ I modelli di URL che tentano di acquisire un nome file con un'estensione facolta
 * `/files/myFile.txt`
 * `/files/myFile`
 
-I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio, `id?` La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
+I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio: `id?`. La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
 
 * Un parametro di route con un valore predefinito produce sempre un valore.
 * Un parametro facoltativo ha un valore solo quando un valore viene fornito dall'URL della richiesta.
@@ -565,7 +565,7 @@ Per eseguire l'escape dei caratteri di delimitazione del parametro di routing,,,
 
 Le espressioni regolari utilizzate nel routing spesso iniziano con il `^` carattere e corrispondono alla posizione iniziale della stringa. Le espressioni terminano spesso con il `$` carattere e corrispondono alla fine della stringa. I `^` `$` caratteri e assicurano che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i `^` `$` caratteri e, l'espressione regolare trova la corrispondenza con qualsiasi sottostringa all'interno della stringa, che è spesso indesiderata. La tabella seguente fornisce esempi e spiega perché corrispondono o non riescono a corrispondere:
 
-| Espressione   | Stringa    | Corrispondenza | Commento               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -806,7 +806,7 @@ Successivamente, è possibile usare i **valori accettati** per espandere il mode
 
 I valori specificati in modo esplicito che non corrispondono a un segmento della route vengono aggiunti alla stringa di query. La tabella seguente illustra il risultato ottenuto quando si usa il modello di route `{controller}/{action}/{id?}`.
 
-| Valori di ambiente                     | Valori espliciti                        | Result                  |
+| Valori di ambiente                     | Valori espliciti                        | Risultato                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
 | controller = "Home"                | action = "About"                       | `/Home/About`           |
 | controller = "Home"                | controller = "Order", action = "About" | `/Order/About`          |
@@ -831,7 +831,7 @@ Nel codice precedente, il `culture` parametro di route viene usato per la locali
 I collegamenti seguenti forniscono informazioni sulla configurazione dei metadati dell'endpoint:
 
 * [Abilitare cors con routing degli endpoint](xref:security/cors#enable-cors-with-endpoint-routing)
-* [Esempio di IAuthorizationPolicyProvider](https://github.com/dotnet/AspNetCore/tree/release/3.0/src/Security/samples/CustomPolicyProvider) con un `[MinimumAgeAuthorize]` attributo personalizzato
+* [Esempio di IAuthorizationPolicyProvider](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider) con un `[MinimumAgeAuthorize]` attributo personalizzato
 * [Testare l'autenticazione con l'attributo [autorizzate]](xref:security/authentication/identity#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
 * [Selezione dello schema con l'attributo [autorizzate]](xref:security/authorization/limitingidentitybyscheme#selecting-the-scheme-with-the-authorize-attribute)
@@ -1486,7 +1486,7 @@ Per eseguire l'escape dei caratteri di delimitazione del parametro di routing,,,
 
 Le espressioni regolari utilizzate nel routing spesso iniziano con il `^` carattere del punto di inserimento e corrispondono alla posizione iniziale della stringa. Le espressioni spesso terminano con il `$` carattere di segno di dollaro e la fine della corrispondenza della stringa. I caratteri `^` e `$` consentono di verificare che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i caratteri `^` e `$` l'espressione regolare corrisponde a qualsiasi sottostringa all'interno della stringa e spesso questo non è il risultato desiderato. La tabella seguente include alcuni esempi e descrive perché si verifica o non si verifica la corrispondenza.
 
-| Espressione   | Stringa    | Corrispondenza | Commento               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -1571,7 +1571,7 @@ I valori di ambiente che non corrispondono a un parametro vengono ignorati. I va
 
 I valori specificati in modo esplicito ma che non corrispondono a un segmento della route vengono aggiunti alla stringa di query. La tabella seguente illustra il risultato ottenuto quando si usa il modello di route `{controller}/{action}/{id?}`.
 
-| Valori di ambiente                     | Valori espliciti                        | Result                  |
+| Valori di ambiente                     | Valori espliciti                        | Risultato                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
 | controller = "Home"                | action = "About"                       | `/Home/About`           |
 | controller = "Home"                | controller = "Order", action = "About" | `/Order/About`          |
@@ -1930,7 +1930,7 @@ Le espressioni regolari usano delimitatori e token simili a quelli usati dal rou
 
 Le espressioni regolari usate nel routing spesso iniziano con l'accento circonflesso (`^`) e corrispondono alla posizione iniziale della stringa. Le espressioni spesso terminano con il segno di dollaro (`$`) e corrispondono alla fine della stringa. I caratteri `^` e `$` consentono di verificare che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i caratteri `^` e `$` l'espressione regolare corrisponde a qualsiasi sottostringa all'interno della stringa e spesso questo non è il risultato desiderato. La tabella seguente include alcuni esempi e descrive perché si verifica o non si verifica la corrispondenza.
 
-| Espressione   | Stringa    | Corrispondenza | Commento               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -1977,7 +1977,7 @@ I valori di ambiente che non corrispondono a un parametro vengono ignorati. I va
 
 I valori specificati in modo esplicito ma che non corrispondono a un segmento della route vengono aggiunti alla stringa di query. La tabella seguente illustra il risultato ottenuto quando si usa il modello di route `{controller}/{action}/{id?}`.
 
-| Valori di ambiente                     | Valori espliciti                        | Result                  |
+| Valori di ambiente                     | Valori espliciti                        | Risultato                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
 | controller = "Home"                | action = "About"                       | `/Home/About`           |
 | controller = "Home"                | controller = "Order", action = "About" | `/Order/About`          |
