@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: a106654c8a37e84e9186a2f06d90605df753e8a7
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: af151b65d3fefb5863529de1cd97c6315f11ca82
+ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405601"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87444130"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -60,13 +60,13 @@ Il comando globale `dotnet aspnet-codegenerator` esegue il generatore di codice 
 
 Il generatore di codice da eseguire. Sono disponibili i generatori seguenti:
 
-| Generatore | Operazione |
-| ----------------- | ------------ | 
-| area      | [Esegue lo scaffolding di un'area](/aspnet/core/mvc/controllers/areas) |
-  controller| [Esegue lo scaffolding di un controller](/aspnet/core/tutorials/first-mvc-app/adding-model) |
-  identity  | [Esegue lo scaffoldingIdentity](/aspnet/core/security/authentication/scaffold-identity) |
-  razorpage | [Pagine di ponteggi Razor](/aspnet/core/tutorials/razor-pages/model) |
-  vista      | [Esegue lo scaffolding di una visualizzazione](/aspnet/core/mvc/views/overview) |
+| Generatore  | Operazione                                                            |
+| ---------- | -------------------------------------------------------------------- |
+| area       | [Esegue lo scaffolding di un'area](xref:mvc/controllers/areas)                      |
+| controller | [Esegue lo scaffolding di un controller](xref:tutorials/first-mvc-app/adding-model)  |
+| identity   | [Esegue lo scaffoldingIdentity](xref:security/authentication/scaffold-identity) |
+| razorpage  | [Pagine di ponteggi Razor](xref:tutorials/razor-pages/model)            |
+| vista       | [Esegue lo scaffolding di una visualizzazione](xref:mvc/views/overview)                          |
 
 ## <a name="options"></a>Opzioni
 
@@ -135,13 +135,13 @@ Nella tabella seguente sono elencate le opzioni per `aspnet-codegenerator` `cont
 
 La tabella seguente contiene un elenco di opzioni specifiche per `aspnet-codegenerator controller`:
 
-| Opzione               | Descrizione|
-| ----------------- | ------------ |
-| --controllerName o -name | Nome del controller. |
-| --useAsyncActions o -async | Genera le azioni del controller asincrone. |
-| --noViews or -nv | **Non** genera alcuna visualizzazione. |
-| --restWithNoViews o -api  | Genera un controller con l'API in stile REST. Si presuppone `noViews` e qualsiasi opzione correlata alla visualizzazione viene ignorata. |
-| --readWriteActions o -actions | Genera un controller con azioni di lettura/scrittura senza un modello. |
+| Opzione                         | Descrizione                                                                                               |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| --controllerName o -name      | Nome del controller.                                                                                   |
+| --useAsyncActions o -async    | Genera le azioni del controller asincrone.                                                                        |
+| --noViews or -nv               | **Non** genera alcuna visualizzazione.                                                                                    |
+| --restWithNoViews o -api      | Genera un controller con l'API in stile REST. Si presuppone `noViews` e qualsiasi opzione correlata alla visualizzazione viene ignorata. |
+| --readWriteActions o -actions | Genera un controller con azioni di lettura/scrittura senza un modello.                                              |
 
 Usare l'opzione `-h` per ottenere informazioni della Guida per il comando `aspnet-codegenerator controller`:
 
@@ -149,9 +149,9 @@ Usare l'opzione `-h` per ottenere informazioni della Guida per il comando `aspne
 dotnet aspnet-codegenerator controller -h
 ```
 
-Vedere [Eseguire lo scaffolding del modello di filmato](/aspnet/core/tutorials/razor-pages/model) per un esempio di `dotnet aspnet-codegenerator controller`.
+Vedere [Eseguire lo scaffolding del modello di filmato](xref:tutorials/first-mvc-app/adding-model) per un esempio di `dotnet aspnet-codegenerator controller`.
 
-### <a name="razorpage"></a>Razorpage
+### <a name="no-locrazorpage"></a>Razorpage
 
 <a name="rp"></a>
 
@@ -184,11 +184,11 @@ Nella tabella seguente sono elencate le opzioni per `aspnet-codegenerator` `razo
 
 La tabella seguente contiene un elenco di opzioni specifiche per `aspnet-codegenerator razorpage`:
 
-| Opzione               | Descrizione|
-| ----------------- | ------------ |
-|   --namespaceName o -namespace | Nome dello spazio dei nomi da usare per il PageModel generato |
-| --partialView o -partial | Genera una visualizzazione parziale. Le opzioni di layout -l e -udl vengono ignorate se viene specificata questa opzione. |
-| --noPageModel o -npm | Opzione per non generare una classe PageModel per un modello vuoto |
+| Opzione                        | Descrizione                                                                           |
+| ----------------------------- | ------------------------------------------------------------------------------------- |
+| --namespaceName o -namespace | Nome dello spazio dei nomi da usare per il PageModel generato                          |
+| --partialView o -partial     | Genera una visualizzazione parziale. Le opzioni di layout -l e -udl vengono ignorate se viene specificata questa opzione. |
+| --noPageModel o -npm         | Opzione per non generare una classe PageModel per un modello vuoto                           |
 
 Usare l'opzione `-h` per ottenere informazioni della Guida per il comando `aspnet-codegenerator razorpage`:
 
@@ -196,8 +196,8 @@ Usare l'opzione `-h` per ottenere informazioni della Guida per il comando `aspne
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-Vedere [Eseguire lo scaffolding del modello di filmato](/aspnet/core/tutorials/razor-pages/model) per un esempio di `dotnet aspnet-codegenerator razorpage`.
+Vedere [Eseguire lo scaffolding del modello di filmato](xref:tutorials/razor-pages/model) per un esempio di `dotnet aspnet-codegenerator razorpage`.
 
 ### Identity
 
-Vedere [impalcatura Identity ](/aspnet/core/security/authentication/scaffold-identity)
+Vedere [impalcatura Identity ](xref:security/authentication/scaffold-identity)

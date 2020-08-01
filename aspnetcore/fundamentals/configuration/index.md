@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 6e47e627915bd8988d161f7d5af4a89f3671c0a7
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: a08993a7909d67be34446815b10d32089d9e0629
+ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445450"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87444154"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configurazione in ASP.NET Core
 
@@ -32,7 +32,7 @@ La configurazione in ASP.NET Core viene eseguita utilizzando uno o più [provide
 
 * File di impostazioni, ad esempio *appsettings.js*
 * Variabili di ambiente
-* Azure Key Vault
+* Insieme di credenziali chiave di Azure
 * Configurazione app di Azure
 * Argomenti della riga di comando
 * Provider personalizzati, installati o creati
@@ -307,7 +307,7 @@ La tabella seguente mostra i provider di configurazione disponibili per le app A
 
 | Provider | Fornisce la configurazione da |
 | -------- | ----------------------------------- |
-| [Provider di configurazione Azure Key Vault](xref:security/key-vault-configuration) | Azure Key Vault |
+| [Provider di configurazione Azure Key Vault](xref:security/key-vault-configuration) | Insieme di credenziali chiave di Azure |
 | [Provider di configurazione app Azure](/azure/azure-app-configuration/quickstart-aspnet-core-app) | Configurazione app di Azure |
 | [Provider di configurazione della riga di comando](#clcp) | Parametri della riga di comando |
 | [Provider di configurazione personalizzato](#custom-configuration-provider) | Origine personalizzata |
@@ -675,7 +675,7 @@ Un metodo di estensione `AddEFConfiguration` consente di aggiungere l'origine di
 
 L'esempio di codice seguente mostra come usare il `EFConfigurationProvider` personalizzato in *Program.cs*:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=29-30)]
+[!code-csharp[](index/samples_snippets/3.x/ConfigurationSample/Program.cs?highlight=7-8)]
 
 <a name="acs"></a>
 
@@ -687,7 +687,7 @@ Il codice seguente consente di visualizzare i dati di configurazione nei `Startu
 
 Per un esempio di accesso alla configurazione usando metodi di servizio di avvio, vedere [Avvio dell'applicazione: Metodi pratici](xref:fundamentals/startup#convenience-methods).
 
-## <a name="access-configuration-in-razor-pages"></a>Accedi alla configurazione nelle Razor pagine
+## <a name="access-configuration-in-no-locrazor-pages"></a>Accedi alla configurazione nelle Razor pagine
 
 Il codice seguente consente di visualizzare i dati di configurazione in una Razor pagina:
 
@@ -775,7 +775,7 @@ Un'implementazione <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> consente 
 
 La configurazione delle app in ASP.NET Core si basa su coppie chiave-valore stabilite dai *provider di configurazione*. I provider di configurazione leggono i dati di configurazione in coppie chiave-valore da un'ampia gamma di origini di configurazione:
 
-* Azure Key Vault
+* Insieme di credenziali chiave di Azure
 * Configurazione app di Azure
 * Argomenti della riga di comando
 * Provider personalizzati (installati o creati)
@@ -935,7 +935,7 @@ La tabella seguente mostra i provider di configurazione disponibili per le app A
 
 | Provider | Fornisce la configurazione da&hellip; |
 | -------- | ----------------------------------- |
-| [Provider di configurazione di Azure Key Vault](xref:security/key-vault-configuration) (argomenti *Sicurezza*) | Azure Key Vault |
+| [Provider di configurazione di Azure Key Vault](xref:security/key-vault-configuration) (argomenti *Sicurezza*) | Insieme di credenziali chiave di Azure |
 | [Provider di Configurazione app](/azure/azure-app-configuration/quickstart-aspnet-core-app) (Documentazione di Azure) | Configurazione app di Azure |
 | [Provider di configurazione della riga di comando](#command-line-configuration-provider) | Parametri della riga di comando |
 | [Provider di configurazione personalizzato](#custom-configuration-provider) | Origine personalizzata |
@@ -1799,7 +1799,7 @@ public class Startup
 
 Per un esempio di accesso alla configurazione usando metodi di servizio di avvio, vedere [Avvio dell'applicazione: Metodi pratici](xref:fundamentals/startup#convenience-methods).
 
-## <a name="access-configuration-in-a-razor-pages-page-or-mvc-view"></a>Accedere alla configurazione in una Razor pagina di pagine o in una visualizzazione MVC
+## <a name="access-configuration-in-a-no-locrazor-pages-page-or-mvc-view"></a>Accedere alla configurazione in una Razor pagina di pagine o in una visualizzazione MVC
 
 Per accedere alle impostazioni di configurazione in una Razor pagina di pagine o in una visualizzazione MVC, aggiungere una [direttiva using](xref:mvc/views/razor#using) ([riferimenti per C#: direttiva using](/dotnet/csharp/language-reference/keywords/using-directive)) per lo [spazio dei nomiMicrosoft.Extensions.Configuration](xref:Microsoft.Extensions.Configuration) e inserire <xref:Microsoft.Extensions.Configuration.IConfiguration> nella pagina o nella vista.
 
