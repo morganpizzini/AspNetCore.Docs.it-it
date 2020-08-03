@@ -5,7 +5,7 @@ Le app del server Blazer risiedono nella memoria del server. Ciò significa che 
 
 È possibile usare i servizi singleton con stato nelle app Blazer se sono appositamente progettati. Ad esempio, è possibile usare una cache in memoria come singleton perché richiede una chiave per accedere a una determinata voce, supponendo che gli utenti non abbiano il controllo delle chiavi di cache usate.
 
-**Inoltre, per motivi di sicurezza, non è necessario usare <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> nelle app blazer.** Le app Blazer vengono eseguite al di fuori del contesto della pipeline ASP.NET Core e non è garantito che sia <xref:Microsoft.AspNetCore.Http.HttpContext> disponibile all'interno del, né che sia presente <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> il contesto che ha avviato l'app blazer.
+**Inoltre, per motivi di sicurezza, non è necessario usare <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> nelle app blazer.** Le app Blazer vengono eseguite al di fuori del contesto della pipeline ASP.NET Core. Non è garantito che sia <xref:Microsoft.AspNetCore.Http.HttpContext> disponibile all'interno di <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> , né che contenga il contesto che ha avviato l'app blazer.
 
 Il modo consigliato per passare lo stato della richiesta all'app Blaze consiste nell'usare i parametri per il componente radice nel rendering iniziale dell'app:
 
