@@ -5,6 +5,8 @@
     - name: 2020
       expanded: true
       items:
+        - name: Luglio
+          href: 2020-07.md
         - name: Giugno
           href: 2020-06.md
         - name: Mag
@@ -15,5 +17,3 @@
           href: 2020-03.md
         - name: Febbraio
           href: 2020-02.md
-        - name: January
-          href: 2020-01.md
