@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: f7bd0d356030e6ddb95c77d7376995320e3ec40e
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6bd3d2f7902baf16e278e58feb83abb13f6e6821
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401883"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87818612"
 ---
-# <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>Blazor WebAssemblyProcedure consigliate per le prestazioni ASP.NET Core
+# <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>Blazor WebAssemblyProcedure consigliate per le prestazioni ASP.NET Core
 
 Di [il](https://github.com/pranavkm) suo
 
@@ -145,6 +145,10 @@ Il [collegamento di un' Blazor WebAssembly app](xref:blazor/host-and-deploy/conf
 ```dotnetcli
 dotnet publish -c Release
 ```
+
+### <a name="lazy-load-assemblies"></a>Assembly di caricamento lazy
+
+Caricare gli assembly in fase di esecuzione quando gli assembly sono necessari per una route. Per altre informazioni, vedere <xref:blazor/webassembly-lazy-load-assemblies>.
 
 ### <a name="compression"></a>Compressione
 

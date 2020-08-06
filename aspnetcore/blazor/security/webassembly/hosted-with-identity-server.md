@@ -1,7 +1,7 @@
 ---
-title: Proteggere un' Blazor WebAssembly app ospitata ASP.NET Core Identity con server
+title: Proteggere un'app ASP.NET Core ospitata Blazor WebAssembly con il Identity Server
 author: guardrex
-description: Per creare una nuova Blazor app ospitata con autenticazione da Visual Studio che usa un back-end del [ Identity server](https://identityserver.io/)
+description: Per creare una nuova soluzione ospitata Blazor con autenticazione da Visual Studio che usa un back-end del [ Identity server](https://identityserver.io/)
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -15,18 +15,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: a27d31345cfe6a4212e3c61d0d99ae6745eab052
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: 87424f413ab21ae51fc1b1b2033069f5a41da566
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445177"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87818885"
 ---
-# <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Proteggere un' Blazor WebAssembly app ospitata ASP.NET Core Identity con server
+# <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-no-locidentity-server"></a>Proteggere un' Blazor WebAssembly app ospitata ASP.NET Core Identity con server
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
 
-Questo articolo illustra come creare una nuova Blazor app ospitata che usa il [ Identity server](https://identityserver.io/) per autenticare gli utenti e le chiamate API.
+Questo articolo illustra come creare una nuova soluzione ospitata Blazor che usa il [ Identity server](https://identityserver.io/) per autenticare gli utenti e le chiamate API.
 
 > [!NOTE]
 > Per configurare un'app autonoma o ospitata Blazor WebAssembly per l'uso di un' Identity istanza del server esterno esistente, seguire le istruzioni riportate in <xref:blazor/security/webassembly/standalone-with-authentication-library> .
@@ -107,7 +107,7 @@ La `Startup` classe presenta le aggiunte seguenti.
 
 * In `Startup.Configure`:
 
-  * Il Identity middleware server espone gli endpoint Open ID Connect (OIDC):
+  * Il Identity middleware server espone gli endpoint OpenID Connect (OIDC):
 
     ```csharp
     app.UseIdentityServer();
@@ -130,7 +130,7 @@ La `Startup` classe presenta le aggiunte seguenti.
 
 Il <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> metodo helper configura il [ Identity server](https://identityserver.io/) per gli scenari di ASP.NET Core. IdentityServer è un Framework potente ed estendibile per la gestione dei problemi di sicurezza delle app. IdentityIl server espone complessità non necessaria per gli scenari più comuni. Di conseguenza, viene fornito un set di convenzioni e opzioni di configurazione che consideriamo un valido punto di partenza. Una volta modificate le esigenze di autenticazione, è disponibile tutta la potenza del Identity Server per personalizzare l'autenticazione per soddisfare i requisiti di un'app.
 
-### <a name="addidentityserverjwt"></a>Aggiungi Identity ServerJwt
+### <a name="addno-locidentityserverjwt"></a>Aggiungi Identity ServerJwt
 
 Il <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> metodo helper configura uno schema di criteri per l'app come gestore di autenticazione predefinito. Il criterio è configurato in modo da consentire Identity a di gestire tutte le richieste indirizzate a qualsiasi sottopercorso nello Identity spazio URL `/Identity` . <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler>Gestisce tutte le altre richieste. Inoltre, questo metodo:
 
@@ -151,7 +151,7 @@ Per ottenere il controllo completo dello schema del database, ereditare da una d
 
 In `OidcConfigurationController` ( `Controllers/OidcConfigurationController.cs` ), viene eseguito il provisioning dell'endpoint client per gestire i parametri OIDC.
 
-### <a name="app-settings"></a>Impostazioni app
+### <a name="app-settings"></a>Impostazioni dell'app
 
 Nel file di impostazioni dell'app ( `appsettings.json` ) nella radice del progetto, la `IdentityServer` sezione descrive l'elenco dei client configurati. Nell'esempio seguente è presente un singolo client. Il nome del client corrisponde al nome dell'app e viene mappato per convenzione al `ClientId` parametro OAuth. Il profilo indica il tipo di app da configurare. Il profilo viene utilizzato internamente per guidare le convenzioni che semplificano il processo di configurazione per il server. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
@@ -195,7 +195,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
 ```
 
 > [!NOTE]
-> Se si sta configurando un' Blazor WebAssembly app per l'uso di un' Identity istanza del server esistente che non fa parte di una Blazor soluzione ospitata, modificare la <xref:System.Net.Http.HttpClient> registrazione dell'indirizzo di base da <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> () nell'URL dell' `builder.HostEnvironment.BaseAddress` endpoint di autorizzazione dell'API dell'app Server.
+> Se si sta configurando un' Blazor WebAssembly app per l'uso di un' Identity istanza del server esistente che non fa parte di una soluzione ospitata Blazor , modificare la <xref:System.Net.Http.HttpClient> registrazione dell'indirizzo di base da <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> () nell'URL dell' `builder.HostEnvironment.BaseAddress` endpoint di autorizzazione dell'API dell'app Server.
 
 ### <a name="api-authorization-support"></a>Supporto dell'autorizzazione API
 
@@ -364,7 +364,7 @@ services.AddDefaultIdentity<ApplicationUser>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 ```
 
-### <a name="configure-identity-server"></a>Configura Identity Server
+### <a name="configure-no-locidentity-server"></a>Configura Identity Server
 
 Usare **uno** degli approcci seguenti:
 

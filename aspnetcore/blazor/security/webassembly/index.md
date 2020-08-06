@@ -15,18 +15,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: fbb3f6d254e6d294edc7af59d7980a1d67e4a801
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: 8d75852c74b33fe538d05c5945829e0726a5030f
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86568808"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87818820"
 ---
-# <a name="secure-aspnet-core-blazor-webassembly"></a>ASP.NET Core protettoBlazor WebAssembly
+# <a name="secure-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core protettoBlazor WebAssembly
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn)
 
-Blazor WebAssemblyle app sono protette in modo analogo alle applicazioni a pagina singola (Spa). Esistono diversi approcci per l'autenticazione degli utenti in Spa, ma l'approccio più comune e completo consiste nell'usare un'implementazione basata sul [protocollo OAuth 2,0](https://oauth.net/), ad esempio [Open ID Connect (OIDC)](https://openid.net/connect/).
+Blazor WebAssemblyle app sono protette in modo analogo alle applicazioni a pagina singola (Spa). Esistono diversi approcci per l'autenticazione degli utenti in Spa, ma l'approccio più comune e completo consiste nell'usare un'implementazione basata sul [protocollo OAuth 2,0](https://oauth.net/), ad esempio [OPENID Connect (OIDC)](https://openid.net/connect/).
 
 ## <a name="authentication-library"></a>Libreria di autenticazione
 

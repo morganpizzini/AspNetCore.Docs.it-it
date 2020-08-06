@@ -5,7 +5,7 @@ description: Scopri in che modo i componenti possono essere inclusi nelle Blazor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 07/27/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: b172059407f9a08dacc0fadd804864c7aee7fb90
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 8293d61f88f53e55d94b114ca2143fdfb6fd8468
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944492"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87819067"
 ---
-# <a name="aspnet-core-razor-components-class-libraries"></a>RazorLibrerie di classi dei componenti ASP.NET Core
+# <a name="aspnet-core-no-locrazor-components-class-libraries"></a>RazorLibrerie di classi dei componenti ASP.NET Core
 
 Di [Simon Timms](https://github.com/stimms)
 
@@ -41,7 +41,7 @@ Così come i componenti sono tipi .NET normali, i componenti forniti da un RCL s
 1. Creare un nuovo progetto.
 1. Selezionare ** Razor libreria di classi**. Selezionare **Avanti**.
 1. Nella finestra di dialogo **Crea una nuova Razor libreria di classi** Selezionare **Crea**.
-1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `MyComponentLib1` . Selezionare **Crea**.
+1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `ComponentLibrary` . Selezionare **Crea**.
 1. Aggiungere RCL a una soluzione:
    1. Fare clic con il pulsante destro del mouse sulla soluzione. Selezionare **Aggiungi**  >  **progetto esistente**.
    1. Passare al file di progetto di RCL.
@@ -61,10 +61,10 @@ Così come i componenti sono tipi .NET normali, i componenti forniti da un RCL s
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-1. Usare il modello ** Razor libreria di classi** ( `razorclasslib` ) con il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando in una shell dei comandi. Nell'esempio seguente viene creato un RCL denominato `MyComponentLib1` . La cartella che include `MyComponentLib1` viene creata automaticamente quando si esegue il comando:
+1. Usare il modello ** Razor libreria di classi** ( `razorclasslib` ) con il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando in una shell dei comandi. Nell'esempio seguente viene creato un RCL denominato `ComponentLibrary` . La cartella che include `ComponentLibrary` viene creata automaticamente quando si esegue il comando:
 
    ```dotnetcli
-   dotnet new razorclasslib -o MyComponentLib1
+   dotnet new razorclasslib -o ComponentLibrary
    ```
 
    > [!NOTE]
@@ -91,35 +91,82 @@ Per utilizzare i componenti definiti in una raccolta in un altro progetto, utili
 * Usare il nome completo del tipo con lo spazio dei nomi.
 * Usare Razor la [`@using`](xref:mvc/views/razor#using) direttiva. I singoli componenti possono essere aggiunti in base al nome.
 
-Negli esempi seguenti `MyComponentLib1` è una libreria di componenti contenente un `SalesReport` componente di.
+Negli esempi seguenti `ComponentLibrary` è una libreria di componenti contenente il `Component1` componente ( `Component1.razor` ). Il `Component1` componente è un componente di esempio aggiunto automaticamente dal modello di progetto RCL al momento della creazione della libreria.
 
-`SalesReport`È possibile fare riferimento al componente usando il nome completo del tipo con lo spazio dei nomi:
+Fare riferimento al `Component1` componente utilizzando il relativo spazio dei nomi:
 
 ```razor
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<MyComponentLib1.SalesReport />
+<ComponentLibrary.Component1 />
 ```
 
-È possibile fare riferimento al componente anche se la libreria viene inserita nell'ambito con una `@using` direttiva:
+In alternativa, portare la libreria nell'ambito con una [`@using`](xref:mvc/views/razor#using) direttiva e usare il componente senza il relativo spazio dei nomi:
 
 ```razor
-@using MyComponentLib1
+@using ComponentLibrary
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<SalesReport />
+<Component1 />
 ```
 
-Includere la `@using MyComponentLib1` direttiva nel file di primo livello `_Import.razor` per rendere disponibili i componenti della libreria a un intero progetto. Aggiungere la direttiva a un `_Import.razor` file a qualsiasi livello per applicare lo spazio dei nomi a una singola pagina o a un set di pagine all'interno di una cartella.
+Facoltativamente, includere la `@using ComponentLibrary` direttiva nel file di primo livello `_Import.razor` per rendere disponibili i componenti della libreria a un intero progetto. Aggiungere la direttiva a un `_Import.razor` file a qualsiasi livello per applicare lo spazio dei nomi a un singolo componente o a un set di componenti all'interno di una cartella.
 
-## <a name="create-a-razor-components-class-library-with-static-assets"></a>Creare una Razor libreria di classi di componenti con asset statici
+::: moniker range=">= aspnetcore-5.0"
+
+Per specificare `Component1` la `my-component` classe CSS per il componente, collegarsi al foglio di stile della libreria usando il [ `Link` componente](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) del Framework in `Component1.razor` :
+
+```razor
+<div class="my-component">
+    <Link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+
+    <p>
+        This Blazor component is defined in the <strong>ComponentLibrary</strong> package.
+    </p>
+</div>
+```
+
+Per fornire il foglio di stile nell'app, è possibile collegarsi in alternativa al foglio di stile della libreria nel `wwwroot/index.html` file ( Blazor WebAssembly ) o nel file dell'app `Pages/_Host.cshtml` ( Blazor Server ):
+
+```html
+<head>
+    ...
+    <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+</head>
+```
+
+Quando il `Link` componente viene usato in un componente figlio, l'asset collegato è disponibile anche per qualsiasi altro componente figlio del componente padre, purché venga eseguito il rendering dell'elemento figlio con il `Link` componente. La distinzione tra l'uso del `Link` componente in un componente figlio e l'inserimento di un `<link>` tag HTML in `wwwroot/index.html` o `Pages/_Host.cshtml` è che il tag HTML sottoposto a rendering di un componente del Framework:
+
+* Può essere modificato in base allo stato dell'applicazione. Un `<link>` tag HTML hardcoded non può essere modificato in base allo stato dell'applicazione.
+* Viene rimosso dal codice HTML `<head>` quando il componente padre non viene più sottoposto a rendering.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Per specificare `Component1` la `my-component` classe CSS, collegarsi al foglio di stile della libreria nel `wwwroot/index.html` file ( Blazor WebAssembly ) o nel file dell'app `Pages/_Host.cshtml` ( Blazor Server ):
+
+```html
+<head>
+    ...
+    <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+</head>
+```
+
+::: moniker-end
+
+## <a name="create-a-no-locrazor-components-class-library-with-static-assets"></a>Creare una Razor libreria di classi di componenti con asset statici
 
 Un RCL può includere asset statici. Gli asset statici sono disponibili per qualsiasi app che usa la libreria. Per altre informazioni, vedere <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
+
+## <a name="supply-components-and-static-assets-to-multiple-hosted-no-locblazor-apps"></a>Fornire componenti e risorse statiche a più app ospitate Blazor
+
+Per altre informazioni, vedere <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries>.
 
 ## <a name="build-pack-and-ship-to-nuget"></a>Compilare, comprimere e spedire a NuGet
 

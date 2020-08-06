@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 56681e713e008188d57166da9c8fd4eb6923928c
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 6e3753131388c294130f11aa913a0bb7e8127fa3
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944217"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87818950"
 ---
-# <a name="aspnet-core-blazor-hosting-models"></a>BlazorModelli di hosting ASP.NET Core
+# <a name="aspnet-core-no-locblazor-hosting-models"></a>BlazorModelli di hosting ASP.NET Core
 
 Di [Daniel Roth](https://github.com/danroth27)
 
@@ -32,7 +32,7 @@ Blazorè un framework web progettato per l'esecuzione sul lato client nel browse
 
 Il modello di hosting principale per Blazor viene eseguito sul lato client nel browser sul webassembly. L' Blazor app, le relative dipendenze e il Runtime .NET vengono scaricati nel browser. L'app viene eseguita direttamente nel thread dell'interfaccia utente del browser. Gli aggiornamenti dell'interfaccia utente e la gestione degli eventi si verificano nello stesso processo. Le risorse dell'app vengono distribuite come file statici in un server Web o in un servizio in grado di servire contenuto statico ai client.
 
-![Blazor WebAssembly: L' Blazor app viene eseguita su un thread dell'interfaccia utente all'interno del browser.](hosting-models/_static/blazor-webassembly.png)
+![::: NO-LOC (webassembly Blaze):::: l'oggetto::: NO-LOC (Blazer)::: app viene eseguito su un thread dell'interfaccia utente all'interno del browser.](hosting-models/_static/blazor-webassembly.png)
 
 Per creare un' Blazor app usando il modello di hosting lato client, usare il modello di ** Blazor WebAssembly app** ( [`dotnet new blazorwasm`](/dotnet/core/tools/dotnet-new) ).
 
@@ -57,13 +57,13 @@ Ci sono svantaggi per l' Blazor WebAssembly hosting:
 * Le dimensioni del download sono maggiori e le app importano più tempo per il caricamento.
 * Il supporto di runtime e strumenti .NET è meno maturo. Ad esempio, esistono limitazioni in [.NET standard](/dotnet/standard/net-standard) supporto e debug.
 
-Il Blazor modello di app ospitata supporta i [contenitori Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index). Fare clic con il pulsante destro del mouse sul progetto server in Visual Studio e scegliere **Aggiungi**  >  **supporto Docker**.
+Il modello di app ospitata Blazor supporta i [contenitori Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index). Fare clic con il pulsante destro del mouse sul progetto server in Visual Studio e scegliere **Aggiungi**  >  **supporto Docker**.
 
 ## Blazor Server
 
 Con il Blazor Server modello di hosting, l'app viene eseguita nel server dall'interno di un'app ASP.NET Core. Gli aggiornamenti dell'interfaccia utente, la gestione degli eventi e le chiamate JavaScript vengono gestiti tramite una [SignalR](xref:signalr/introduction) connessione.
 
-![Il browser interagisce con l'app (ospitata all'interno di un'app ASP.NET Core) sul server tramite una SignalR connessione.](hosting-models/_static/blazor-server.png)
+![Il browser interagisce con l'app (ospitata all'interno di un'app ASP.NET Core) nel server tramite::: NO-LOC (SignalR)::: Connection.](hosting-models/_static/blazor-server.png)
 
 Per creare un' Blazor app usando il Blazor Server modello di hosting, usare il modello di ** Blazor Server app** ASP.NET Core ( [`dotnet new blazorserver`](/dotnet/core/tools/dotnet-new) ). L'app ASP.NET Core ospita l' Blazor Server app e crea l' SignalR endpoint a cui si connettono i client.
 
