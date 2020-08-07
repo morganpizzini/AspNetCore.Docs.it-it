@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 15f3ce5a8e8d47ac567acaadcdc4bf8ba738b2ff
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f74f6ce93093adbc931dd90b32a14de5d4f89096
+ms.sourcegitcommit: b0fa7ff0cb158277df61bcd08058a81222c3fe10
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408175"
+ms.lasthandoff: 08/07/2020
+ms.locfileid: "87913883"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Procedure consigliate per le prestazioni ASP.NET Core
 
@@ -146,7 +146,7 @@ Consigli:
 
 ## <a name="use-the-latest-aspnet-core-release"></a>Usa la versione ASP.NET Core più recente
 
-Ogni nuova versione di ASP.NET Core include miglioramenti delle prestazioni. Le ottimizzazioni in .NET Core e ASP.NET Core indicano che le versioni più recenti superano in genere le versioni precedenti. Ad esempio, .NET Core 2,1 ha aggiunto il supporto per le espressioni regolari compilate ed è stato avvantaggiato da [span \<T> ](https://msdn.microsoft.com/magazine/mt814808.aspx). ASP.NET Core 2,2 è stato aggiunto il supporto per HTTP/2. [ASP.NET Core 3,0 aggiunge molti miglioramenti](xref:aspnetcore-3.0) che consentono di ridurre l'utilizzo della memoria e migliorare la velocità effettiva. Se le prestazioni sono una priorità, provare a eseguire l'aggiornamento alla versione corrente di ASP.NET Core.
+Ogni nuova versione di ASP.NET Core include miglioramenti delle prestazioni. Le ottimizzazioni in .NET Core e ASP.NET Core indicano che le versioni più recenti superano in genere le versioni precedenti. Ad esempio, .NET Core 2,1 ha aggiunto il supporto per le espressioni regolari compilate ed è stato avvantaggiato da [span \<T> ](/archive/msdn-magazine/2018/january/csharp-all-about-span-exploring-a-new-net-mainstay). ASP.NET Core 2,2 è stato aggiunto il supporto per HTTP/2. [ASP.NET Core 3,0 aggiunge molti miglioramenti](xref:aspnetcore-3.0) che consentono di ridurre l'utilizzo della memoria e migliorare la velocità effettiva. Se le prestazioni sono una priorità, provare a eseguire l'aggiornamento alla versione corrente di ASP.NET Core.
 
 ## <a name="minimize-exceptions"></a>Riduci le eccezioni
 
@@ -192,7 +192,7 @@ Il codice precedente deserializza in modo asincrono il corpo della richiesta in 
 
 ## <a name="prefer-readformasync-over-requestform"></a>Preferisci ReadFormAsync su request. Form
 
-Usare `HttpContext.Request.ReadFormAsync` anziché `HttpContext.Request.Form`.
+Usare `HttpContext.Request.ReadFormAsync` invece di `HttpContext.Request.Form`.
 `HttpContext.Request.Form`è possibile leggere in modo sicuro solo con le condizioni seguenti:
 
 * Il modulo è stato letto da una chiamata a `ReadFormAsync` e

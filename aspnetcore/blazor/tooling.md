@@ -16,18 +16,18 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 33245e669b317ed577a8a1652b2eed8f9ea5b915
-ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
+ms.openlocfilehash: 094ec24fb6599168f0aa84f16c00deabf5f239b7
+ms.sourcegitcommit: b0fa7ff0cb158277df61bcd08058a81222c3fe10
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/15/2020
-ms.locfileid: "86407645"
+ms.lasthandoff: 08/07/2020
+ms.locfileid: "87913832"
 ---
-# <a name="tooling-for-aspnet-core-blazor"></a>Strumenti per ASP.NET CoreBlazor
+# <a name="tooling-for-aspnet-core-no-locblazor"></a>Strumenti per ASP.NET CoreBlazor
 
 Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
-::: zone pivot="os-windows"
+::: zone pivot="windows"
 
 1. Installare la versione più recente di [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) con il carico di lavoro **sviluppo di ASP.NET e Web** .
 
@@ -47,7 +47,7 @@ Per ulteriori informazioni su come considerare attendibile il certificato di svi
 
 ::: zone-end
 
-::: zone pivot="os-linux"
+::: zone pivot="linux"
 
 1. Installare la versione più recente di [.NET Core 3,1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). Se in precedenza è stato installato l'SDK, è possibile determinare la versione installata eseguendo il comando seguente in una shell dei comandi:
 
@@ -91,7 +91,7 @@ Per altre informazioni, vedere le linee guida fornite dal browser e dalla distri
 
 ::: zone-end
 
-::: zone pivot="os-macos"
+::: zone pivot="macos"
 
 1. Installare [Visual Studio per Mac](https://visualstudio.microsoft.com/vs/mac/).
 

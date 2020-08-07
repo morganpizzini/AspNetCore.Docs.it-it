@@ -14,18 +14,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/dangerous-unprotect
-ms.openlocfilehash: a0b5bb29c509e8cc999b998776da3ab4ec27ec29
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 55a7ec4052b3ab47d5ff41bbce3fc3f9662f609c
+ms.sourcegitcommit: b0fa7ff0cb158277df61bcd08058a81222c3fe10
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408396"
+ms.lasthandoff: 08/07/2020
+ms.locfileid: "87913853"
 ---
 # <a name="unprotect-payloads-whose-keys-have-been-revoked-in-aspnet-core"></a>Rimuovere la protezione dai payload le cui chiavi sono state revocate in ASP.NET Core
 
 <a name="data-protection-consumer-apis-dangerous-unprotect"></a>
 
-Le API di protezione dei dati ASP.NET Core non sono destinate principalmente alla persistenza illimitata dei payload riservati. Altre tecnologie come [DPAPI di Windows](https://msdn.microsoft.com/library/windows/desktop/hh706794%28v=vs.85%29.aspx) e [Rights Management di Azure](/rights-management/) sono più adatte allo scenario di archiviazione indefinita e hanno funzionalità di gestione delle chiavi corrispondenti. Detto questo, non c'è nulla che impedisce agli sviluppatori di usare le API di protezione dei dati ASP.NET Core per la protezione a lungo termine dei dati riservati. Le chiavi non vengono mai rimosse dall'anello chiave, quindi è `IDataProtector.Unprotect` possibile recuperare sempre i payload esistenti purché le chiavi siano disponibili e valide.
+Le API di protezione dei dati ASP.NET Core non sono destinate principalmente alla persistenza illimitata dei payload riservati. Altre tecnologie come [DPAPI di Windows](/windows/win32/seccng/cng-dpapi) e [Rights Management di Azure](/rights-management/) sono più adatte allo scenario di archiviazione indefinita e hanno funzionalità di gestione delle chiavi corrispondenti. Detto questo, non c'è nulla che impedisce agli sviluppatori di usare le API di protezione dei dati ASP.NET Core per la protezione a lungo termine dei dati riservati. Le chiavi non vengono mai rimosse dall'anello chiave, quindi è `IDataProtector.Unprotect` possibile recuperare sempre i payload esistenti purché le chiavi siano disponibili e valide.
 
 Tuttavia, si verifica un problema quando lo sviluppatore tenta di rimuovere la protezione dei dati protetti con una chiave revocata, `IDataProtector.Unprotect` in quanto genererà un'eccezione in questo caso. Questa operazione può essere corretta per i payload temporanei o temporanei, ad esempio i token di autenticazione, in quanto questi tipi di payload possono essere facilmente ricreati dal sistema e, nel peggiore dei casi, potrebbe essere necessario che il visitatore del sito acceda nuovamente. Tuttavia, per i payload salvati in modo permanente, la `Unprotect` generazione di throw potrebbe causare una perdita di dati inaccettabile.
 

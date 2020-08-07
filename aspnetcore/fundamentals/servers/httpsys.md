@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: 27ee69130bc455ab2570556091692053d59e89a5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f7c5d75fbbbecacea8bbe3a0e54b526f000a001b
+ms.sourcegitcommit: b0fa7ff0cb158277df61bcd08058a81222c3fe10
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408227"
+ms.lasthandoff: 08/07/2020
+ms.locfileid: "87913761"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementazione del server Web HTTP.sys in ASP.NET Core
 
@@ -169,7 +169,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
    Le impostazioni di `UrlPrefixes` sostituiscono le impostazioni `UseUrls`/`urls`/`ASPNETCORE_URLS`. Pertanto, un vantaggio offerto da `UseUrls`, `urls` e dalla variabile di ambiente `ASPNETCORE_URLS` è che risulta più semplice alternare Kestrel e HTTP.sys.
 
-   HTTP.sys usa i [formati di stringa UrlPrefix dell'API del server HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys usa i [formati di stringa UrlPrefix dell'API del server HTTP](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > Le associazioni con caratteri jolly di livello superiore (`http://*:80/` e `http://+:80`) **non** devono essere usate, poiché possono creare vulnerabilità a livello di sicurezza nell'app. Questo concetto vale sia per i caratteri jolly sicuri che vulnerabili. Usare nomi host o indirizzi IP espliciti al posto di caratteri jolly. L'associazione con caratteri jolly del sottodominio (ad esempio, `*.mysub.com`) non costituisce un rischio per la sicurezza se viene controllato l'intero dominio padre (a differenza di `*.com`, che è vulnerabile). Per ulteriori informazioni, vedere [RFC 7230: Section 5,4: host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -253,7 +253,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    Documentazione di riferimento per *netsh.exe*:
 
    * [Comandi netsh per HTTP (Hypertext Transfer Protocol)](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix Strings](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx) (Stringhe UrlPrefix)
+   * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings) (Stringhe UrlPrefix)
 
 1. Eseguire l'app.
 
@@ -272,7 +272,7 @@ Per le app ospitate da HTTP.sys che interagiscono con richieste da Internet o da
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * [Abilitare l'autenticazione di Windows con HTTP. sys](xref:security/authentication/windowsauth#httpsys)
-* [API di HTTP Server](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [API di HTTP Server](/windows/win32/http/http-api-start-page)
 * [Repository di GitHub aspnet/HttpSysServer (codice sorgente)](https://github.com/aspnet/HttpSysServer/)
 * [Host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -420,7 +420,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
    Le impostazioni di `UrlPrefixes` sostituiscono le impostazioni `UseUrls`/`urls`/`ASPNETCORE_URLS`. Pertanto, un vantaggio offerto da `UseUrls`, `urls` e dalla variabile di ambiente `ASPNETCORE_URLS` è che risulta più semplice alternare Kestrel e HTTP.sys.
 
-   HTTP.sys usa i [formati di stringa UrlPrefix dell'API del server HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys usa i [formati di stringa UrlPrefix dell'API del server HTTP](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > Le associazioni con caratteri jolly di livello superiore (`http://*:80/` e `http://+:80`) **non** devono essere usate, poiché possono creare vulnerabilità a livello di sicurezza nell'app. Questo concetto vale sia per i caratteri jolly sicuri che vulnerabili. Usare nomi host o indirizzi IP espliciti al posto di caratteri jolly. L'associazione con caratteri jolly del sottodominio (ad esempio, `*.mysub.com`) non costituisce un rischio per la sicurezza se viene controllato l'intero dominio padre (a differenza di `*.com`, che è vulnerabile). Per ulteriori informazioni, vedere [RFC 7230: Section 5,4: host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -504,7 +504,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    Documentazione di riferimento per *netsh.exe*:
 
    * [Comandi netsh per HTTP (Hypertext Transfer Protocol)](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix Strings](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx) (Stringhe UrlPrefix)
+   * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings) (Stringhe UrlPrefix)
 
 1. Eseguire l'app.
 
@@ -523,7 +523,7 @@ Per le app ospitate da HTTP.sys che interagiscono con richieste da Internet o da
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * [Abilitare l'autenticazione di Windows con HTTP. sys](xref:security/authentication/windowsauth#httpsys)
-* [API di HTTP Server](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [API di HTTP Server](/windows/win32/http/http-api-start-page)
 * [Repository di GitHub aspnet/HttpSysServer (codice sorgente)](https://github.com/aspnet/HttpSysServer/)
 * [Host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -673,7 +673,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
    Le impostazioni di `UrlPrefixes` sostituiscono le impostazioni `UseUrls`/`urls`/`ASPNETCORE_URLS`. Pertanto, un vantaggio offerto da `UseUrls`, `urls` e dalla variabile di ambiente `ASPNETCORE_URLS` è che risulta più semplice alternare Kestrel e HTTP.sys.
 
-   HTTP.sys usa i [formati di stringa UrlPrefix dell'API del server HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys usa i [formati di stringa UrlPrefix dell'API del server HTTP](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > Le associazioni con caratteri jolly di livello superiore (`http://*:80/` e `http://+:80`) **non** devono essere usate, poiché possono creare vulnerabilità a livello di sicurezza nell'app. Questo concetto vale sia per i caratteri jolly sicuri che vulnerabili. Usare nomi host o indirizzi IP espliciti al posto di caratteri jolly. L'associazione con caratteri jolly del sottodominio (ad esempio, `*.mysub.com`) non costituisce un rischio per la sicurezza se viene controllato l'intero dominio padre (a differenza di `*.com`, che è vulnerabile). Per ulteriori informazioni, vedere [RFC 7230: Section 5,4: host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -757,7 +757,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    Documentazione di riferimento per *netsh.exe*:
 
    * [Comandi netsh per HTTP (Hypertext Transfer Protocol)](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix Strings](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx) (Stringhe UrlPrefix)
+   * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings) (Stringhe UrlPrefix)
 
 1. Eseguire l'app.
 
@@ -776,7 +776,7 @@ Per le app ospitate da HTTP.sys che interagiscono con richieste da Internet o da
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * [Abilitare l'autenticazione di Windows con HTTP. sys](xref:security/authentication/windowsauth#httpsys)
-* [API di HTTP Server](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [API di HTTP Server](/windows/win32/http/http-api-start-page)
 * [Repository di GitHub aspnet/HttpSysServer (codice sorgente)](https://github.com/aspnet/HttpSysServer/)
 * [Host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -926,7 +926,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
    Le impostazioni di `UrlPrefixes` sostituiscono le impostazioni `UseUrls`/`urls`/`ASPNETCORE_URLS`. Pertanto, un vantaggio offerto da `UseUrls`, `urls` e dalla variabile di ambiente `ASPNETCORE_URLS` è che risulta più semplice alternare Kestrel e HTTP.sys.
 
-   HTTP.sys usa i [formati di stringa UrlPrefix dell'API del server HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+   HTTP.sys usa i [formati di stringa UrlPrefix dell'API del server HTTP](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > Le associazioni con caratteri jolly di livello superiore (`http://*:80/` e `http://+:80`) **non** devono essere usate, poiché possono creare vulnerabilità a livello di sicurezza nell'app. Questo concetto vale sia per i caratteri jolly sicuri che vulnerabili. Usare nomi host o indirizzi IP espliciti al posto di caratteri jolly. L'associazione con caratteri jolly del sottodominio (ad esempio, `*.mysub.com`) non costituisce un rischio per la sicurezza se viene controllato l'intero dominio padre (a differenza di `*.com`, che è vulnerabile). Per ulteriori informazioni, vedere [RFC 7230: Section 5,4: host](https://tools.ietf.org/html/rfc7230#section-5.4).
@@ -1010,7 +1010,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    Documentazione di riferimento per *netsh.exe*:
 
    * [Comandi netsh per HTTP (Hypertext Transfer Protocol)](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix Strings](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx) (Stringhe UrlPrefix)
+   * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings) (Stringhe UrlPrefix)
 
 1. Eseguire l'app.
 
@@ -1029,7 +1029,7 @@ Per le app ospitate da HTTP.sys che interagiscono con richieste da Internet o da
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * [Abilitare l'autenticazione di Windows con HTTP. sys](xref:security/authentication/windowsauth#httpsys)
-* [API di HTTP Server](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
+* [API di HTTP Server](/windows/win32/http/http-api-start-page)
 * [Repository di GitHub aspnet/HttpSysServer (codice sorgente)](https://github.com/aspnet/HttpSysServer/)
 * [Host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
