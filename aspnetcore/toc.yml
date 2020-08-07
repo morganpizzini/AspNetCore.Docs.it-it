@@ -38,7 +38,7 @@
               uid: tutorials/razor-pages/index
             - name: Introduzione
               uid: tutorials/razor-pages/razor-pages-start
-            - name: Aggiungere un modello
+            - name: Aggiunta di un modello
               uid: tutorials/razor-pages/model
             - name: Scaffolding
               uid: tutorials/razor-pages/page
@@ -59,11 +59,11 @@
               uid: tutorials/first-mvc-app/index
             - name: Introduzione
               uid: tutorials/first-mvc-app/start-mvc
-            - name: Aggiungere un controller
+            - name: Aggiunta di un controller
               uid: tutorials/first-mvc-app/adding-controller
             - name: Aggiungere una vista
               uid: tutorials/first-mvc-app/adding-view
-            - name: Aggiungere un modello
+            - name: Aggiunta di un modello
               uid: tutorials/first-mvc-app/adding-model
             - name: Usare un database
               uid: tutorials/first-mvc-app/working-with-sql
@@ -172,7 +172,7 @@
         - name: Sicurezza delle app Web >>
           displayName: 'tutorial, identity'
           href: /learn/modules/secure-aspnet-core-identity/
-- name: Concetti fondamentali
+- name: Nozioni fondamentali
   items:
     - name: Panoramica
       uid: fundamentals/index
@@ -219,7 +219,7 @@
               uid: tutorials/razor-pages/index
             - name: Introduzione
               uid: tutorials/razor-pages/razor-pages-start
-            - name: Aggiungere un modello
+            - name: Aggiunta di un modello
               uid: tutorials/razor-pages/model
             - name: Scaffolding
               uid: tutorials/razor-pages/page
@@ -247,11 +247,11 @@
               uid: tutorials/first-mvc-app/index
             - name: Introduzione
               uid: tutorials/first-mvc-app/start-mvc
-            - name: Aggiungere un controller
+            - name: Aggiunta di un controller
               uid: tutorials/first-mvc-app/adding-controller
             - name: Aggiungere una vista
               uid: tutorials/first-mvc-app/adding-view
-            - name: Aggiungere un modello
+            - name: Aggiunta di un modello
               uid: tutorials/first-mvc-app/adding-model
             - name: Usare un database
               uid: tutorials/first-mvc-app/working-with-sql
@@ -265,7 +265,7 @@
               uid: tutorials/first-mvc-app/validation
             - name: Esaminare i dettagli e i metodi di eliminazione
               uid: tutorials/first-mvc-app/details
-        - name: Visualizzazioni
+        - name: Viste
           uid: mvc/views/overview
         - name: Visualizzazioni parziali
           uid: mvc/views/partial
@@ -337,19 +337,25 @@
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputTextArea
                   href: blazor/forms-validation.md#built-in-forms-components
+                - name: Collegamento
+                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: MainLayout
                   href: blazor/layouts.md#mainlayout-component
+                - name: Meta
+                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: NavLink
                   href: blazor/fundamentals/routing.md#navlink-component
                 - name: NavMenu
                   href: blazor/fundamentals/routing.md#navlink-component
                 - name: Router
                   href: blazor/fundamentals/routing.md#route-templates
+                - name: Titolo
+                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
             - name: Valori e parametri a cascata
               uid: blazor/components/cascading-values-and-parameters
             - name: Associazione dati
               uid: blazor/components/data-binding
-            - name: Gestione di eventi
+            - name: Gestione degli eventi
               uid: blazor/components/event-handling
             - name: Ciclo di vita
               uid: blazor/components/lifecycle
@@ -411,6 +417,8 @@
           uid: blazor/state-management
         - name: Eseguire il debug di WebAssembly
           uid: blazor/debug
+        - name: Assembly con caricamento lazy con WebAssembly
+          uid: blazor/webassembly-lazy-load-assemblies
         - name: Prestazioni di WebAssembly
           uid: blazor/webassembly-performance-best-practices
         - name: Applicazioni Web progressive
@@ -482,25 +490,25 @@
               uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
             - name: Cache distribuita
               uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
-            - name: Ambiente
+            - name: Environment
               uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
             - name: Form
               href: mvc/views/working-with-forms.md#the-form-tag-helper
             - name: Azione modulo
               href: mvc/views/working-with-forms.md#the-form-action-tag-helper
-            - name: Image
+            - name: Immagine
               uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
             - name: Input
               href: mvc/views/working-with-forms.md#the-input-tag-helper
-            - name: Label
+            - name: Etichetta
               href: mvc/views/working-with-forms.md#the-label-tag-helper
             - name: Collegamento
               uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
-            - name: Partial
+            - name: Parziale
               uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
             - name: Script
               uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
-            - name: Seleziona
+            - name: Select
               href: mvc/views/working-with-forms.md#the-select-tag-helper
             - name: Area di testo
               href: mvc/views/working-with-forms.md#the-textarea-tag-helper
@@ -647,13 +655,13 @@
     - name: Autenticazione e autorizzazione
       uid: signalr/authn-and-authz
       displayName: signalr
-    - name: Considerazioni sulla sicurezza
+    - name: Considerazioni relative alla sicurezza
       uid: signalr/security
       displayName: signalr
     - name: Protocollo hub MessagePack
       uid: signalr/messagepackhubprotocol
       displayName: signalr
-    - name: Flusso
+    - name: Streaming
       uid: signalr/streaming
       displayName: signalr
     - name: Confronto tra SignalR e SignalR Core
@@ -696,7 +704,7 @@
       uid: grpc/authn-and-authz
     - name: Registrazione e diagnostica
       uid: grpc/diagnostics
-    - name: Considerazioni sulla sicurezza
+    - name: Considerazioni relative alla sicurezza
       uid: grpc/security
     - name: Controllo delle versioni dei servizi gRPC
       uid: grpc/versioning
@@ -790,9 +798,9 @@
           href: /visualstudio/azure/vs-azure-tools-connected-services-storage
         - name: Archiviazione - BLOB
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-blobs?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-        - name: Archiviazione - Code
+        - name: Archiviazione code
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-        - name: Archiviazione - Tabelle
+        - name: Archiviazione tabelle
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Ospitare e distribuire
   displayName: publish
@@ -1127,7 +1135,7 @@
         - name: Provider di configurazione di Azure Key Vault
           displayName: 'password, connection string, API key, secrets'
           uid: security/key-vault-configuration
-    - name: Imporre HTTPS
+    - name: Applicare HTTPS
       uid: security/enforcing-ssl
     - name: Ospitare Docker con HTTPS
       uid: security/docker-https
@@ -1286,7 +1294,7 @@
     - name: Registrazione (non ASP.NET Core)
       displayName: 'migrate, migration'
       uid: migration/logging-nonaspnetcore
-- name: API (riferimento)
+- name: Informazioni di riferimento sulle API
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Collaborazione
   href: 'https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md'
