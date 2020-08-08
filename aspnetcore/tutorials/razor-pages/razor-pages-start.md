@@ -5,6 +5,8 @@ description: Questa serie di esercitazioni illustra come usare le Razor pagine i
 ms.author: riande
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 77b230f14b4eef60d771daf8fe09288a9dd3c69c
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 5fb841de2fa9a04cf05aaf08f255041ee1952638
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212993"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021094"
 ---
-# <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Esercitazione: Introduzione alle Razor pagine in ASP.NET Core
+# <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>Esercitazione: Introduzione alle Razor pagine in ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -60,7 +62,7 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 
 ---
 
-## <a name="create-a-razor-pages-web-app"></a>Creare un' Razor app Web di pagine
+## <a name="create-a-no-locrazor-pages-web-app"></a>Creare un' Razor app Web di pagine
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -161,7 +163,7 @@ Contiene codice che consente di configurare il comportamento dell'app. Per altre
 Passare all'esercitazione successiva della serie:
 
 > [!div class="step-by-step"]
-> [Aggiungere un modello](xref:tutorials/razor-pages/model)
+> [Aggiunta di un modello](xref:tutorials/razor-pages/model)
 
 ::: moniker-end
 
@@ -204,7 +206,7 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 
 ---
 
-## <a name="create-a-razor-pages-web-app"></a>Creare un' Razor app Web di pagine
+## <a name="create-a-no-locrazor-pages-web-app"></a>Creare un' Razor app Web di pagine
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -356,7 +358,7 @@ Contiene il punto di ingresso per il programma. Per altre informazioni, vedere <
 
 ### <a name="startupcs"></a>Startup.cs
 
-Contiene codice che configura il comportamento dell'app, ad esempio se richiede il consenso per i cookie. Per altre informazioni, vedere <xref:fundamentals/startup>.
+Contiene il codice che configura il comportamento dell'app, ad esempio se richiede il consenso per cookie s. Per altre informazioni, vedere <xref:fundamentals/startup>.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -367,6 +369,6 @@ Contiene codice che configura il comportamento dell'app, ad esempio se richiede 
 Passare all'esercitazione successiva della serie:
 
 > [!div class="step-by-step"]
-> [Aggiungere un modello](xref:tutorials/razor-pages/model)
+> [Aggiunta di un modello](xref:tutorials/razor-pages/model)
 
 ::: moniker-end

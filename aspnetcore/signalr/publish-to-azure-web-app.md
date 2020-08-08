@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/publish-to-azure-web-app
-ms.openlocfilehash: d3f48b3171012b03fcaf7665c2089b27d37bbeca
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 3163a2743c544d0a07d92eb7547e77c3b200ac83
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408838"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022537"
 ---
-# <a name="publish-an-aspnet-core-signalr-app-to-azure-app-service"></a>Pubblicare un' SignalR app ASP.NET Core in app Azure servizio
+# <a name="publish-an-aspnet-core-no-locsignalr-app-to-azure-app-service"></a>Pubblicare un' SignalR app ASP.NET Core in app Azure servizio
 
 Di [Brady Gaster](https://twitter.com/bradygaster)
 
@@ -52,7 +54,7 @@ Questo articolo illustra la pubblicazione con gli strumenti di Visual Studio. Vi
 
 1. Selezionare il ** SignalR servizio di Azure** nell'elenco a discesa **dipendenze**  >  **Aggiungi** :
 
-   ![Area dipendenze che mostra la selezione del servizio di Azure SignalR nell'elenco a discesa Aggiungi](publish-to-azure-web-app/_static/signalr-service-dependency.png)
+   ![Area dipendenze che mostra la selezione di Azure::: NO-LOC (SignalR)::: Service nell'elenco a discesa Aggiungi](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 
 1. Nella finestra di dialogo ** SignalR servizio di Azure** Selezionare **Crea una nuova SignalR istanza del servizio di Azure**.
 
@@ -78,7 +80,7 @@ Se si verifica un errore di *Gateway HTTP 502,2-Bad* quando si distribuisce un'a
 
 Per le app ospitate senza il servizio di Azure SignalR , abilitare:
 
-* [Affinità arr](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html) per indirizzare le richieste da un utente alla stessa istanza del servizio app. L'impostazione predefinita è **on**.
+* [Affinità ARR] ( https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity- cookie -(Arr- cookie ) -for-Azure-web-apps.html) per indirizzare le richieste da un utente alla stessa istanza del servizio app. L'impostazione predefinita è **on**.
 * [Web socket](xref:fundamentals/websockets) per consentire il funzionamento del trasporto di Web Socket. L'impostazione predefinita è **off**.
 
 1. Nella portale di Azure passare all'app Web in **Servizi app**.

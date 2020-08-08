@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/14/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/iauthorizationpolicyprovider
-ms.openlocfilehash: bb9b52da08639680b05a102dd4df71ff1af00971
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 724b1f065e83302137d920fe4e0e2b381be505b7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399556"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022134"
 ---
 # <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>Provider di criteri di autorizzazione personalizzati che usano IAuthorizationPolicyProvider in ASP.NET Core 
 
@@ -100,7 +102,7 @@ Quando `MinimumAgeAuthorizationAttribute` si usa, i nomi dei criteri di autorizz
 
 * Analisi dell'età dal nome del criterio.
 * Utilizzo `AuthorizationPolicyBuilder` di per creare un nuovo`AuthorizationPolicy`
-* In questo e negli esempi seguenti si presuppone che l'utente venga autenticato tramite un cookie. Il `AuthorizationPolicyBuilder` deve essere costruito con almeno un nome dello schema di autorizzazione o avere sempre esito positivo. In caso contrario, non sono disponibili informazioni su come fornire un problema all'utente e verrà generata un'eccezione.
+* In questo e negli esempi seguenti si presuppone che l'utente venga autenticato tramite un cookie . Il `AuthorizationPolicyBuilder` deve essere costruito con almeno un nome dello schema di autorizzazione o avere sempre esito positivo. In caso contrario, non sono disponibili informazioni su come fornire un problema all'utente e verrà generata un'eccezione.
 * Aggiunta di requisiti ai criteri in base all'età con `AuthorizationPolicyBuilder.AddRequirements` . In altri scenari, è possibile usare `RequireClaim` `RequireRole` invece, o `RequireUserName` .
 
 ```csharp

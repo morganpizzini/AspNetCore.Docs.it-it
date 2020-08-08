@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/08/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 8c7acad42f3a49ccf1bc60f8ae5b4f68a602d97b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 04200ced41113eb9a68cefc2f485f2d3798476c6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406927"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022342"
 ---
-# <a name="aspnet-core-signalr-javascript-client"></a>ASP.NET Core SignalR client JavaScript
+# <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.NET Core SignalR client JavaScript
 
 Di [Rachel Appel](https://twitter.com/rachelappel)
 
@@ -30,7 +32,7 @@ La SignalR libreria client JavaScript ASP.NET Core consente agli sviluppatori di
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-## <a name="install-the-signalr-client-package"></a>Installare il SignalR pacchetto client
+## <a name="install-the-no-locsignalr-client-package"></a>Installare il SignalR pacchetto client
 
 La SignalR libreria client JavaScript viene distribuita come pacchetto [NPM](https://www.npmjs.com/) . Le sezioni seguenti illustrano diversi modi per installare la libreria client.
 
@@ -316,6 +318,6 @@ Un'implementazione reale utilizzerebbe un backup esponenziale o ritenterà un nu
 * [Esercitazione su Webpack e TypeScript](xref:tutorials/signalr-typescript-webpack)
 * [Hub](xref:signalr/hubs)
 * [Client .NET](xref:signalr/dotnet-client)
-* [Pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
+* [Eseguire la pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
 * [Richieste tra le origini (CORS)](xref:security/cors)
 * [Documentazione senza server per i servizi di Azure SignalR](/azure/azure-signalr/signalr-concept-serverless-development-config)

@@ -5,6 +5,8 @@ description: Vedere il sommario per un'introduzione ad ASP.NET Core MVC.
 ms.author: riande
 ms.date: 10/26/2017
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/index
-ms.openlocfilehash: 497bed916a38667312fbddae2ca044482d06fd2f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 100c3112b7bcaeed8679f4dd7593f2d2c18c8906
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405133"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021588"
 ---
 # <a name="create-a-web-app-with-aspnet-core-mvc"></a>Creare un'app Web con ASP.NET Core MVC
 
@@ -27,9 +29,9 @@ ms.locfileid: "85405133"
 La serie di esercitazioni include gli argomenti seguenti:
 
 1. [Operazioni preliminari](start-mvc.md)
-1. [Aggiungere un controller](adding-controller.md)
+1. [Aggiunta di un controller](adding-controller.md)
 1. [Aggiungere una vista](adding-view.md)
-1. [Aggiungere un modello](adding-model.md)
+1. [Aggiunta di un modello](adding-model.md)
 1. [Usare SQL Server Local DB](working-with-sql.md)
 1. [Metodi e viste del controller](controller-methods-views.md)
 1. [Aggiungere la funzionalità di ricerca](search.md)

@@ -6,6 +6,8 @@ ms.author: riande
 ms.date: 03/26/2020
 ms.custom: mvc, seodec18
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: e5c23cc49a52b8772a43853e9e953dd416d69f69
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d65974e9ff8e2f5be52ab79b063ed9d2dca557ea
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408734"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020860"
 ---
-# <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>Aggiungere, scaricare ed eliminare dati utente personalizzati Identity in un progetto ASP.NET Core
+# <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a>Aggiungere, scaricare ed eliminare dati utente personalizzati Identity in un progetto ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -48,7 +50,7 @@ Il progetto di esempio viene creato da un' Razor app Web di pagine, ma le istruz
 
 ::: moniker-end
 
-## <a name="create-a-razor-web-app"></a>Creare un' Razor app Web
+## <a name="create-a-no-locrazor-web-app"></a>Creare un' Razor app Web
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -81,7 +83,7 @@ dotnet new webapp -o WebApp1
 
 ---
 
-## <a name="run-the-identity-scaffolder"></a>Eseguire l' Identity impalcatura
+## <a name="run-the-no-locidentity-scaffolder"></a>Eseguire l' Identity impalcatura
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -137,7 +139,7 @@ Seguire le istruzioni in [Migrations, UseAuthentication e layout](xref:security/
   * Selezionare il pulsante **download** ed esaminare il *PersonalData.jssu* file.
   * Testare il pulsante **Elimina per eliminare** l'utente che ha eseguito l'accesso.
 
-## <a name="add-custom-user-data-to-the-identity-db"></a>Aggiungere dati utente personalizzati al Identity database
+## <a name="add-custom-user-data-to-the-no-locidentity-db"></a>Aggiungere dati utente personalizzati al Identity database
 
 Aggiornare la `IdentityUser` classe derivata con proprietà personalizzate. Se è stato denominato il progetto app Web 1, il file è denominato *aree/ Identity /Data/WebApp1User.cs*. Aggiornare il file con il codice seguente:
 
@@ -237,7 +239,7 @@ Eseguire il test dell'app:
 * Visualizzare i dati utente personalizzati nella `/Identity/Account/Manage` pagina.
 * Scaricare e visualizzare i dati personali degli utenti dalla `/Identity/Account/Manage/PersonalData` pagina.
 
-## <a name="add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser"></a>Aggiungere attestazioni all' Identity uso di IUserClaimsPrincipalFactory<ApplicationUser>
+## <a name="add-claims-to-no-locidentity-using-iuserclaimsprincipalfactoryapplicationuser"></a>Aggiungere attestazioni all' Identity uso di IUserClaimsPrincipalFactory<ApplicationUser>
 
 > [!NOTE]
 > Questa sezione non è un'estensione dell'esercitazione precedente. Per applicare i passaggi seguenti all'app compilata con l'esercitazione, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/18797).

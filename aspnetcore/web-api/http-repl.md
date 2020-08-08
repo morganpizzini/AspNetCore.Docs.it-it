@@ -7,6 +7,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 05/20/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: ead745ae8843173bb25b94672005cc6ce295db2e
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0fb19aa19703e68812b83f0631f029dd66a3d64e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403378"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021328"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testare le API Web con il ciclo Read-Eval-Print (REPL) HTTP
 
@@ -40,7 +42,7 @@ Sono supportati i [verbi HTTP](https://github.com/microsoft/api-guidelines/blob/
 * [Opzioni](#test-http-options-requests)
 * [PATCH](#test-http-patch-requests)
 * [POST](#test-http-post-requests)
-* [METTERE](#test-http-put-requests)
+* [PUT](#test-http-put-requests)
 
 Per continuare, [visualizzare o scaricare l'API Web ASP.NET Core di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([come scaricare](xref:index#how-to-download-a-sample)).
 
@@ -996,7 +998,7 @@ Se si esegue spesso lo stesso set di comandi del ciclo Read-Eval-Print HTTP, pu√
     https://localhost:5001/~ run C:\http-repl-scripts\people-script.txt
     ```
 
-    Viene visualizzato l'output seguente:
+    Compare l'output seguente:
 
     ```console
     https://localhost:5001/~ set base https://localhost:5001

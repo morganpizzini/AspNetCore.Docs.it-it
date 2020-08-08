@@ -5,6 +5,8 @@ description: Parte 2 della serie di esercitazioni su ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2017
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: 30272900b2ff19879921f1954a1c9b3eba203ca4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6a2c9fe6dde725129e293a3137c1281bfb1a30ef
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400453"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021055"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Parte 2, aggiungere un controller a un'app MVC ASP.NET Core
 
@@ -38,7 +40,7 @@ Il pattern MVC consente di creare app che separano i diversi aspetti dell'app (l
 
 Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono come compilare un'app per i film. Il progetto MVC contiene le cartelle per i *controller* e le *viste*.
 
-## <a name="add-a-controller"></a>Aggiungere un controller
+## <a name="add-a-controller"></a>Aggiunta di un controller
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -100,7 +102,7 @@ Passare a `https://localhost:{PORT}/HelloWorld/Welcome`. Il metodo `Welcome` vie
 
 ![Finestra del browser con una risposta dell'applicazione, This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
-Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio: `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
+Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4` Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 
@@ -152,7 +154,7 @@ Il pattern MVC consente di creare app che separano i diversi aspetti dell'app (l
 
 Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono come compilare un'app per i film. Il progetto MVC contiene le cartelle per i *controller* e le *viste*.
 
-## <a name="add-a-controller"></a>Aggiungere un controller
+## <a name="add-a-controller"></a>Aggiunta di un controller
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -219,7 +221,7 @@ Passare a `https://localhost:{PORT}/HelloWorld/Welcome`. Il metodo `Welcome` vie
 
 ![Finestra del browser con una risposta dell'applicazione, This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
-Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio: `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
+Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4` Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 

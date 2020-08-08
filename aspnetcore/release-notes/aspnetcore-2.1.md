@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.1
-ms.openlocfilehash: bf041965b009d5c10b96ad4f2a349c6efb346eb5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 3fb524748b9e2aa2c12b64f67a7960c4f0f911b0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408162"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021159"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Novità di ASP.NET Core 2.1
 
@@ -38,7 +40,7 @@ SignalRè stato riscritto per ASP.NET Core 2,1. ASP.NET Core SignalR include una
 
 Per ulteriori informazioni, vedere [ASP.NET Core SignalR ](xref:signalr/introduction).
 
-## <a name="razor-class-libraries"></a>Razorlibrerie di classi
+## <a name="no-locrazor-class-libraries"></a>Razorlibrerie di classi
 
 ASP.NET Core 2,1 semplifica la compilazione e l'inclusione Razor dell'interfaccia utente basata su in una libreria e la condivisione tra più progetti. Il nuovo Razor SDK consente di creare Razor file in un progetto di libreria di classi che può essere incluso in un pacchetto NuGet. Le visualizzazioni e le pagine delle librerie vengono individuate automaticamente e possono essere sostituite dall'app. Integrando Razor la compilazione nella compilazione:
 
@@ -47,7 +49,7 @@ ASP.NET Core 2,1 semplifica la compilazione e l'inclusione Razor dell'interfacci
 
 Per altre informazioni, vedere [creare un'interfaccia utente riutilizzabile usando il Razor progetto libreria di classi](xref:razor-pages/ui-class).
 
-## <a name="identity-ui-library--scaffolding"></a>IdentityImpalcatura & della libreria dell'interfaccia utente
+## <a name="no-locidentity-ui-library--scaffolding"></a>IdentityImpalcatura & della libreria dell'interfaccia utente
 
 ASP.NET Core 2,1 fornisce [ASP.NET Core Identity ](xref:security/authentication/identity) come [ Razor libreria di classi](xref:razor-pages/ui-class). Le app che includono Identity possono applicare il nuovo Identity ponteggi per aggiungere selettivamente il codice sorgente contenuto nella Identity Razor libreria di classi (RCL). Se si vuole generare un codice sorgente, è possibile modificare il codice e modificarne il comportamento. Ad esempio, è possibile indicare allo scaffolder di generare il codice usato nella registrazione. Il codice generato ha la precedenza sullo stesso codice in Identity RCL.
 
@@ -159,7 +161,7 @@ Per altre informazioni, vedere:
 * <xref:spa/react>
 * <xref:spa/react-with-redux>
 
-## <a name="razor-pages-search-for-razor-assets"></a>RazorPagine ricerca di Razor Asset
+## <a name="no-locrazor-pages-search-for-no-locrazor-assets"></a>RazorPagine ricerca di Razor Asset
 
 In 2,1 le Razor pagine ricercano Razor risorse (ad esempio layout e parziali) nelle directory seguenti nell'ordine elencato:
 
@@ -167,7 +169,7 @@ In 2,1 le Razor pagine ricercano Razor risorse (ad esempio layout e parziali) ne
 1. */Pages/Shared/*
 1. */Views/Shared/*
 
-## <a name="razor-pages-in-an-area"></a>RazorPagine in un'area
+## <a name="no-locrazor-pages-in-an-area"></a>RazorPagine in un'area
 
 RazorLe pagine supportano ora le [aree](xref:mvc/controllers/areas). Per visualizzare un esempio di aree, creare una nuova Razor app Web di pagine con singoli account utente. Un' Razor app Web di pagine con account utente singoli include */areas/ Identity /pages*.
 

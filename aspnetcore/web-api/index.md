@@ -7,6 +7,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 07/20/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/index
-ms.openlocfilehash: 98fb8c0a26f5f8e7ce5f07066f2f36e748ab2398
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: 7c59867f6d6fbf0f4d8207eb5d2919967d825e8b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86568743"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021302"
 ---
 # <a name="create-web-apis-with-aspnet-core"></a>Creare API Web con ASP.NET Core
 
@@ -160,7 +162,7 @@ namespace WebApiSample
 
 ## <a name="attribute-routing-requirement"></a>Requisiti del routing degli attributi
 
-Con l'attributo `[ApiController]` il routing degli attributi è un requisito. ad esempio:
+Con l'attributo `[ApiController]` il routing degli attributi è un requisito. Ad esempio:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -260,7 +262,7 @@ Per disabilitare il comportamento automatico per gli errori 400, impostare la pr
 
 Un attributo di origine di associazione definisce la posizione in cui viene trovato il valore del parametro di un'azione. Esistono gli attributi di origine di associazione seguente:
 
-|Attributo|Origine di associazione |
+|Attributo|Origine di binding |
 |---------|---------|
 |[`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)     | Corpo della richiesta |
 |[`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)     | Dati di modulo nel corpo della richiesta |
@@ -375,7 +377,7 @@ Si consideri il codice seguente in un'azione del controller:
 
 [!code-csharp[](index/samples/2.x/2.2/Controllers/PetsController.cs?name=snippet_ProblemDetailsStatusCode)]
 
-Il `NotFound` metodo produce un codice di stato HTTP 404 con un `ProblemDetails` corpo. ad esempio:
+Il `NotFound` metodo produce un codice di stato HTTP 404 con un `ProblemDetails` corpo. Ad esempio:
 
 ```json
 {

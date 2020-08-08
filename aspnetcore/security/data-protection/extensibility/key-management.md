@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/extensibility/key-management
-ms.openlocfilehash: e319872799ef4994b55ba941956836f0848dd76d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 5f55b56bd35a583e1f078a5a281788b68412e4f7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408539"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021692"
 ---
 # <a name="key-management-extensibility-in-aspnet-core"></a>Estendibilità della gestione delle chiavi in ASP.NET Core
 
@@ -29,7 +31,7 @@ ms.locfileid: "85408539"
 > [!WARNING]
 > I tipi che implementano una delle interfacce seguenti devono essere thread-safe per più chiamanti.
 
-## <a name="key"></a>Chiave
+## <a name="key"></a>Key
 
 L' `IKey` interfaccia è la rappresentazione di base di una chiave in cryptosystem. Il termine chiave viene usato qui in senso astratto, non nel senso letterale del "materiale della chiave crittografica". Una chiave presenta le proprietà seguenti:
 

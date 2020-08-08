@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
 ms.date: 07/16/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 06803ee57824bbfac5725763938abbb9db0e360a
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: 7a23f2b17cc8fb3a4989b9fddd5c128add13db5b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86568847"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021952"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurare l'autenticazione del certificato in ASP.NET Core
 
@@ -44,7 +46,7 @@ Nell'app Web aggiungere un riferimento al pacchetto [Microsoft. AspNetCore. Auth
 
 Se l'autenticazione ha esito negativo, questo gestore restituisce una `403 (Forbidden)` risposta anziché un `401 (Unauthorized)` , come si può immaginare. Il motivo è che l'autenticazione deve verificarsi durante la connessione TLS iniziale. Quando raggiunge il gestore, è troppo tardi. Non è possibile aggiornare la connessione da una connessione anonima a un'altra con un certificato.
 
-Aggiungere anche `app.UseAuthentication();` il `Startup.Configure` metodo. In caso contrario, `HttpContext.User` non verrà impostato su `ClaimsPrincipal` creato dal certificato. ad esempio:
+Aggiungere anche `app.UseAuthentication();` il `Startup.Configure` metodo. In caso contrario, `HttpContext.User` non verrà impostato su `ClaimsPrincipal` creato dal certificato. Ad esempio:
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -614,7 +616,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-L'implementazione della memorizzazione nella cache predefinita archivia i risultati in memoria. È possibile fornire la propria cache implementando `ICertificateValidationCache` e registrando l'inserimento delle dipendenze. Ad esempio: `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
+L'implementazione della memorizzazione nella cache predefinita archivia i risultati in memoria. È possibile fornire la propria cache implementando `ICertificateValidationCache` e registrando l'inserimento delle dipendenze. Ad esempio, `services.AddSingleton<ICertificateValidationCache, YourCache>()`
 
 ::: moniker-end
 

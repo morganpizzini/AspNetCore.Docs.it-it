@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/17/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: cfa1a4c67649e1816f510a33cc53e559c4a59153
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2d128d54dc9b1189124563e45d72d74b19704ab1
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408682"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022524"
 ---
-# <a name="aspnet-core-signalr-hosting-and-scaling"></a>ASP.NET Core SignalR hosting e scalabilità
+# <a name="aspnet-core-no-locsignalr-hosting-and-scaling"></a>ASP.NET Core SignalR hosting e scalabilità
 
 Di [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaster](https://twitter.com/bradygaster)e [Tom Dykstra](https://github.com/tdykstra),
 
@@ -58,19 +60,19 @@ Per evitare SignalR che l'utilizzo delle risorse causi errori in altre app Web, 
 
 Per evitare che SignalR l'utilizzo delle risorse causi errori in un' SignalR app, aumentare il numero di connessioni per limitare il numero di connessioni che un server deve gestire.
 
-## <a name="scale-out"></a>Scalabilità orizzontale
+## <a name="scale-out"></a>Aumentare il numero di istanze
 
 Un'app che usa SignalR deve tenere traccia di tutte le connessioni, che creano problemi per un server farm. Aggiungere un server e ottenere nuove connessioni che gli altri server non conoscono. Ad esempio, in SignalR ogni server del diagramma seguente non è a conoscenza delle connessioni sugli altri server. Quando SignalR in uno dei server si desidera inviare un messaggio a tutti i client, il messaggio passa solo ai client connessi a tale server.
 
-![Ridimensionamento SignalR senza backplane](scale/_static/scale-no-backplane.png)
+![Ridimensionamento::: NO-LOC (SignalR)::: senza un backplane](scale/_static/scale-no-backplane.png)
 
 Le opzioni per la risoluzione di questo problema sono [il SignalR servizio di Azure](#azure-signalr-service) e il [backplane di redis](#redis-backplane).
 
-## <a name="azure-signalr-service"></a>Servizio di Azure SignalR
+## <a name="azure-no-locsignalr-service"></a>Servizio di Azure SignalR
 
 Il SignalR servizio di Azure è un proxy anziché un backplane. Ogni volta che un client avvia una connessione al server, il client viene reindirizzato per connettersi al servizio. Questo processo è illustrato nel diagramma seguente:
 
-![Stabilire una connessione al servizio di Azure SignalR](scale/_static/azure-signalr-service-one-connection.png)
+![Stabilire una connessione al servizio Azure::: NO-LOC (SignalR)::: Service](scale/_static/azure-signalr-service-one-connection.png)
 
 Il risultato è che il servizio gestisce tutte le connessioni client, mentre per ogni server è necessario solo un piccolo numero costante di connessioni al servizio, come illustrato nel diagramma seguente:
 
@@ -126,7 +128,7 @@ proxy_set_header Connection $connection_upgrade;
 
 Per altre informazioni, vedere [nginx come proxy WebSocket](https://www.nginx.com/blog/websocket-nginx/).
 
-## <a name="third-party-signalr-backplane-providers"></a>Provider backplane di terze parti SignalR
+## <a name="third-party-no-locsignalr-backplane-providers"></a>Provider backplane di terze parti SignalR
 
 * [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
 * [Orleans](https://github.com/OrleansContrib/SignalR.Orleans)

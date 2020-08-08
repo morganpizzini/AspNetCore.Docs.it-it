@@ -5,6 +5,8 @@ description: Viene visualizzata una breve panoramica delle diverse API per i con
 ms.author: riande
 ms.date: 06/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/overview
-ms.openlocfilehash: 0bb163b677062c46a077731c014a40c602764594
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 985c8cdc3518a51b9ec764407f4e2e3e5ff07e12
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406719"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021133"
 ---
 # <a name="consumer-apis-overview-for-aspnet-core"></a>Panoramica delle API consumer per ASP.NET Core
 
@@ -60,4 +62,4 @@ Il pacchetto Microsoft. AspNetCore. dataprotection. abstracts contiene un metodo
 [!code-csharp[](./overview/samples/getdataprotector.cs?highlight=15)]
 
 >[!TIP]
-> Le istanze di `IDataProtectionProvider` e `IDataProtector` sono thread-safe per più chiamanti. Si intende che quando un componente ottiene un riferimento a un `IDataProtector` tramite una chiamata a, utilizzerà `CreateProtector` tale riferimento per più chiamate a `Protect` e `Unprotect` . Una chiamata a `Unprotect` genererà CryptographicException se non è possibile verificare o decifrare il payload protetto. Alcuni componenti potrebbero voler ignorare gli errori durante le operazioni di rimozione della protezione. un componente che legge i cookie di autenticazione potrebbe gestire questo errore e trattare la richiesta come se non fosse disponibile alcun cookie anziché interrompere la richiesta in modo non corretto. I componenti che vogliono questo comportamento devono rilevare in modo specifico CryptographicException anziché ingoiare tutte le eccezioni.
+> Le istanze di `IDataProtectionProvider` e `IDataProtector` sono thread-safe per più chiamanti. Si intende che quando un componente ottiene un riferimento a un `IDataProtector` tramite una chiamata a, utilizzerà `CreateProtector` tale riferimento per più chiamate a `Protect` e `Unprotect` . Una chiamata a `Unprotect` genererà CryptographicException se non è possibile verificare o decifrare il payload protetto. Alcuni componenti potrebbero voler ignorare gli errori durante le operazioni di rimozione della protezione. un componente che legge le autenticazioni cookie potrebbe gestire questo errore e trattare la richiesta come se non fosse disponibile, cookie anziché interrompere la richiesta in modo non corretto. I componenti che vogliono questo comportamento devono rilevare in modo specifico CryptographicException anziché ingoiare tutte le eccezioni.

@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: e76ddad795237991c49bf2a3b1ca840795989260
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c0edf56c966cb90c1c308f300a8944d392fdc0e7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404912"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020977"
 ---
-# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Convalida di modelli in ASP.NET Core MVC e Razor pagine
+# <a name="model-validation-in-aspnet-core-mvc-and-no-locrazor-pages"></a>Convalida di modelli in ASP.NET Core MVC e Razor pagine
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -140,7 +142,7 @@ Per implementare la convalida remota:
  
    L'attributo `[Remote]` si trova nello spazio dei nomi `Microsoft.AspNetCore.Mvc`.
    
-### <a name="additional-fields"></a>Campi aggiuntivi
+### <a name="additional-fields"></a>Altri campi
 
 La proprietà `[Remote]` dell'attributo `AdditionalFields` consente di convalidare combinazioni di campi rispetto ai dati nel server. Ad esempio, se il modello `User` avesse le proprietà `FirstName` e `LastName`, potrebbe essere necessario controllare che non siano già esistenti utenti con la stessa coppia di nomi. Nell'esempio riportato di seguito viene illustrato come usare `AdditionalFields`:
 
@@ -506,7 +508,7 @@ Per implementare la convalida remota:
  
    L'attributo `[Remote]` si trova nello spazio dei nomi `Microsoft.AspNetCore.Mvc`. Installare il pacchetto NuGet [Microsoft.AspNetCore.Mvc.ViewFeatures](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.ViewFeatures) se non si usa il metapacchetto `Microsoft.AspNetCore.App` o `Microsoft.AspNetCore.All`.
    
-### <a name="additional-fields"></a>Campi aggiuntivi
+### <a name="additional-fields"></a>Altri campi
 
 La proprietà `[Remote]` dell'attributo `AdditionalFields` consente di convalidare combinazioni di campi rispetto ai dati nel server. Ad esempio, se il modello `User` avesse le proprietà `FirstName` e `LastName`, potrebbe essere necessario controllare che non siano già esistenti utenti con la stessa coppia di nomi. Nell'esempio riportato di seguito viene illustrato come usare `AdditionalFields`:
 

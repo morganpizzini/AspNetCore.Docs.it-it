@@ -7,6 +7,8 @@ ms.author: anurse
 ms.custom: signalr
 ms.date: 06/12/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: f2b864d47c98a031872be676a68143bd79f49829
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 61733fe4fbcd7b94662404a39a288ff2ce75ec53
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85409098"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021835"
 ---
-# <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registrazione e diagnostica in ASP.NET CoreSignalR
+# <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Registrazione e diagnostica in ASP.NET CoreSignalR
 
 Di [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
@@ -218,7 +220,7 @@ La maggior parte del browser Strumenti di sviluppo dispone di una scheda di rete
 
 Metrica è una rappresentazione delle misure dei dati in intervalli di tempo. Ad esempio, richieste al secondo. I dati di metrica consentono di osservare lo stato di un'app a un livello elevato. Le metriche gRPC di .NET vengono emesse usando <xref:System.Diagnostics.Tracing.EventCounter> .
 
-### <a name="signalr-server-metrics"></a>SignalRmetriche del server
+### <a name="no-locsignalr-server-metrics"></a>SignalRmetriche del server
 
 SignalRle metriche del server sono segnalate nell' <xref:Microsoft.AspNetCore.Http.Connections> origine evento.
 

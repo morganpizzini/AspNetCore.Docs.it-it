@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/03/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 720da8a8fe22f0e1911fd554c094661b4465a335
-ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
+ms.openlocfilehash: a11e6325143b9db57d6fbd1cd67478dc1dd6122d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86568834"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021250"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Caricare file in ASP.NET Core
 
@@ -191,7 +193,7 @@ L'esempio seguente è analogo all'esempio precedente, ad eccezione del fatto che
 Per eseguire il POST del form in JavaScript per i client che [non supportano l'API fetch](https://caniuse.com/#feat=fetch), usare uno degli approcci seguenti:
 
 * Usare un riempimento di recupero (ad esempio, [Window. fetch Refill (github/fetch)](https://github.com/github/fetch)).
-* Usare `XMLHttpRequest`. ad esempio:
+* Usare `XMLHttpRequest`. Ad esempio:
 
   ```javascript
   <script>
@@ -414,7 +416,7 @@ L'esempio precedente è simile a uno scenario illustrato nell'app di esempio:
 
 Nell'esempio seguente viene illustrato come utilizzare JavaScript per trasmettere un file a un'azione del controller. Il token antifalsificazione del file viene generato usando un attributo di filtro personalizzato e passato alle intestazioni HTTP del client anziché nel corpo della richiesta. Poiché il metodo di azione elabora direttamente i dati caricati, l'associazione del modello di modulo viene disabilitata da un altro filtro personalizzato. All'interno dell'azione, il contenuto del form viene letto tramite un `MultipartReader`, che legge ogni singola `MultipartSection`, elaborando il file o archiviandone il contenuto, come appropriato. Una volta lette le sezioni multiparte, l'azione esegue una propria associazione di modelli.
 
-La risposta della pagina iniziale carica il modulo e salva un token antifalsificazione in un cookie (tramite l' `GenerateAntiforgeryTokenCookieAttribute` attributo). L'attributo usa il [supporto antifalsificazione](xref:security/anti-request-forgery) predefinito di ASP.NET Core per impostare un cookie con un token di richiesta:
+La risposta della pagina iniziale carica il form e salva un token antifalsificazione in un cookie (tramite l' `GenerateAntiforgeryTokenCookieAttribute` attributo). L'attributo usa il [supporto antifalsificazione](xref:security/anti-request-forgery) predefinito di ASP.NET Core per impostare un cookie con un token di richiesta:
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/Antiforgery.cs?name=snippet_GenerateAntiforgeryTokenCookieAttribute)]
 
@@ -464,7 +466,7 @@ L'analisi dei file richiede le risorse del server in scenari con volumi elevati.
 
 ### <a name="file-extension-validation"></a>Convalida dell'estensione di file
 
-L'estensione del file caricato deve essere verificata rispetto a un elenco di estensioni consentite. ad esempio:
+L'estensione del file caricato deve essere verificata rispetto a un elenco di estensioni consentite. Ad esempio:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -918,7 +920,7 @@ L'esempio seguente è analogo all'esempio precedente, ad eccezione del fatto che
 Per eseguire il POST del form in JavaScript per i client che [non supportano l'API fetch](https://caniuse.com/#feat=fetch), usare uno degli approcci seguenti:
 
 * Usare un riempimento di recupero (ad esempio, [Window. fetch Refill (github/fetch)](https://github.com/github/fetch)).
-* Usare `XMLHttpRequest`. ad esempio:
+* Usare `XMLHttpRequest`. Ad esempio:
 
   ```javascript
   <script>
@@ -1141,7 +1143,7 @@ L'esempio precedente è simile a uno scenario illustrato nell'app di esempio:
 
 Nell'esempio seguente viene illustrato come utilizzare JavaScript per trasmettere un file a un'azione del controller. Il token antifalsificazione del file viene generato usando un attributo di filtro personalizzato e passato alle intestazioni HTTP del client anziché nel corpo della richiesta. Poiché il metodo di azione elabora direttamente i dati caricati, l'associazione del modello di modulo viene disabilitata da un altro filtro personalizzato. All'interno dell'azione, il contenuto del form viene letto tramite un `MultipartReader`, che legge ogni singola `MultipartSection`, elaborando il file o archiviandone il contenuto, come appropriato. Una volta lette le sezioni multiparte, l'azione esegue una propria associazione di modelli.
 
-La risposta della pagina iniziale carica il modulo e salva un token antifalsificazione in un cookie (tramite l' `GenerateAntiforgeryTokenCookieAttribute` attributo). L'attributo usa il [supporto antifalsificazione](xref:security/anti-request-forgery) predefinito di ASP.NET Core per impostare un cookie con un token di richiesta:
+La risposta della pagina iniziale carica il form e salva un token antifalsificazione in un cookie (tramite l' `GenerateAntiforgeryTokenCookieAttribute` attributo). L'attributo usa il [supporto antifalsificazione](xref:security/anti-request-forgery) predefinito di ASP.NET Core per impostare un cookie con un token di richiesta:
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Filters/Antiforgery.cs?name=snippet_GenerateAntiforgeryTokenCookieAttribute)]
 
@@ -1191,7 +1193,7 @@ L'analisi dei file richiede le risorse del server in scenari con volumi elevati.
 
 ### <a name="file-extension-validation"></a>Convalida dell'estensione di file
 
-L'estensione del file caricato deve essere verificata rispetto a un elenco di estensioni consentite. ad esempio:
+L'estensione del file caricato deve essere verificata rispetto a un elenco di estensioni consentite. Ad esempio:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };

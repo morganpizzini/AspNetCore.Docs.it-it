@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/02/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/jsonpatch
-ms.openlocfilehash: 08ae366859c4466e6957592f78dda813d6670bb4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 09da557d678889ba16abe6f9af40ae1b33583d8b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405029"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022368"
 ---
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JSON Patch nell'API Web ASP.NET Core
 
@@ -110,11 +112,11 @@ Le modifiche apportate applicando un documento Patch JSON a una risorsa sono ato
 
 ## <a name="path-syntax"></a>Sintassi di path
 
-La proprietà [path](https://tools.ietf.org/html/rfc6901) di un oggetto operazione include barre tra livelli. Ad esempio: `"/address/zipCode"`.
+La proprietà [path](https://tools.ietf.org/html/rfc6901) di un oggetto operazione include barre tra livelli. Ad esempio, `"/address/zipCode"`
 
 Vengono usati indici in base zero per specificare gli elementi della matrice. Il primo elemento della matrice `addresses` è in corrispondenza di `/addresses/0`. Fino alla `add` fine di una matrice, usare un trattino ( `-` ) invece di un numero di indice: `/addresses/-` .
 
-### <a name="operations"></a>Gestione operativa
+### <a name="operations"></a>Operazioni
 
 La tabella seguente mostra le operazioni supportate in base a quanto definito nella [specifica JSON Patch](https://tools.ietf.org/html/rfc6902):
 
@@ -139,7 +141,7 @@ In un controller API un metodo di azione per JSON Patch:
 * Accetta un oggetto `JsonPatchDocument<T>` , in genere con `[FromBody]` .
 * Chiama `ApplyTo` nel documento di patch per applicare le modifiche.
 
-Ad esempio:
+Ecco un esempio:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -322,11 +324,11 @@ Le modifiche apportate tramite l'applicazione di un documento JSON Patch a una r
 
 ## <a name="path-syntax"></a>Sintassi di path
 
-La proprietà [path](https://tools.ietf.org/html/rfc6901) di un oggetto operazione include barre tra livelli. Ad esempio: `"/address/zipCode"`.
+La proprietà [path](https://tools.ietf.org/html/rfc6901) di un oggetto operazione include barre tra livelli. Ad esempio, `"/address/zipCode"`
 
 Vengono usati indici in base zero per specificare gli elementi della matrice. Il primo elemento della matrice `addresses` è in corrispondenza di `/addresses/0`. Per aggiungere (`add`) un elemento alla fine della matrice, usare un trattino (-) invece di un numero di indice: `/addresses/-`.
 
-### <a name="operations"></a>Gestione operativa
+### <a name="operations"></a>Operazioni
 
 La tabella seguente mostra le operazioni supportate in base a quanto definito nella [specifica JSON Patch](https://tools.ietf.org/html/rfc6902):
 
@@ -351,7 +353,7 @@ In un controller API un metodo di azione per JSON Patch:
 * Accetta un oggetto `JsonPatchDocument<T>` , in genere con `[FromBody]` .
 * Chiama `ApplyTo` nel documento di patch per applicare le modifiche.
 
-Ad esempio:
+Ecco un esempio:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 

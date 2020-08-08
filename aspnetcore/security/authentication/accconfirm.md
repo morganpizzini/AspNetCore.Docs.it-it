@@ -5,6 +5,8 @@ description: Informazioni su come creare un'app ASP.NET Core con la conferma del
 ms.author: riande
 ms.date: 03/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 1156ddd2921afbfeccaf077ca29d267f8b1e844a
-ms.sourcegitcommit: 3544941682869734ea0113e24e02ed0ec9e1a9ec
+ms.openlocfilehash: 7016c2c1997d961f4b3d3cf513fc1769bd65247b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/18/2020
-ms.locfileid: "86464553"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021614"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Account confirmation and password recovery in ASP.NET Core (Conferma dell'account e recupero della password in ASP.NET Core)
 
@@ -235,7 +237,7 @@ L'abilitazione della conferma dell'account in un sito con utenti blocca tutti gl
 
 [.NET Core 2,2 SDK o versione successiva](https://dotnet.microsoft.com/download/dotnet-core)
 
-## <a name="create-a-web--app-and-scaffold-identity"></a>Creare un'app Web e un patiboloIdentity
+## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>Creare un'app Web e un patiboloIdentity
 
 Eseguire i comandi seguenti per creare un'app Web con l'autenticazione di.
 

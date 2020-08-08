@@ -5,6 +5,8 @@ description: Informazioni sulle nozioni di base sull'autorizzazione e sul funzio
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/introduction
-ms.openlocfilehash: b0d6c91adfb5dc273aeb662cb2c249626ef1d3c6
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 215c61b034abf530010b7beeb58100a1ff0e8eb3
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405432"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022121"
 ---
 # <a name="introduction-to-authorization-in-aspnet-core"></a>Introduzione all'autorizzazione in ASP.NET Core
 

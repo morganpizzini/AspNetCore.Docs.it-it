@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,24 +17,24 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hubs
-ms.openlocfilehash: 1757d205b583c8b3f3bbf845594d7228f8d45175
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: bd7432fc29d0cda003abed1f0e522bdddf2e4efc
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408552"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022212"
 ---
-# <a name="use-hubs-in-signalr-for-aspnet-core"></a>Usare gli hub in SignalR per ASP.NET Core
+# <a name="use-hubs-in-no-locsignalr-for-aspnet-core"></a>Usare gli hub in SignalR per ASP.NET Core
 
 Di [Rachel Appel](https://twitter.com/rachelappel) e [Kevin Griffin](https://twitter.com/1kevgriff)
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) [(procedura per il download)](xref:index#how-to-download-a-sample)
 
-## <a name="what-is-a-signalr-hub"></a>Che cos'è un SignalR Hub
+## <a name="what-is-a-no-locsignalr-hub"></a>Che cos'è un SignalR Hub
 
 L' SignalR API Hub consente di chiamare i metodi sui client connessi dal server. Nel codice del server si definiscono i metodi che vengono chiamati dal client. Nel codice client è possibile definire metodi che vengono chiamati dal server. SignalRgestisce tutti gli elementi dietro le quinte che rendono possibili le comunicazioni da client a server e da server a client in tempo reale.
 
-## <a name="configure-signalr-hubs"></a>Configurare gli SignalR Hub
+## <a name="configure-no-locsignalr-hubs"></a>Configurare gli SignalR Hub
 
 Il SignalR middleware richiede alcuni servizi, che vengono configurati chiamando `services.AddSignalR` .
 
@@ -207,4 +209,4 @@ Se si ha una condizione *eccezionale da* propagare al client, è possibile usare
 
 * [Introduzione a ASP.NET CoreSignalR](xref:signalr/introduction)
 * [Client JavaScript](xref:signalr/javascript-client)
-* [Pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
+* [Eseguire la pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)

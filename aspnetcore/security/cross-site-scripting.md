@@ -5,6 +5,8 @@ description: Informazioni sulle tecniche e sugli script tra siti (XSS) per risol
 ms.author: riande
 ms.date: 10/02/2018
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,18 +15,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cross-site-scripting
-ms.openlocfilehash: a94fe1612c023468238f09a91ddb0346b65d52ba
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 24fab313c3af30cfd4143ba29a33ba25bfcdf9a9
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408019"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021809"
 ---
 # <a name="prevent-cross-site-scripting-xss-in-aspnet-core"></a>Impedisci l'esecuzione di script tra siti (XSS) in ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Il cross-site scripting (XSS) è una vulnerabilità della sicurezza che consente a un utente malintenzionato di inserire gli script sul lato client (in genere JavaScript) nelle pagine Web. Quando gli altri utenti caricano pagine interessate, gli script dell'utente malintenzionato vengono eseguiti, consentendo all'autore dell'attacco di rubare cookie e token di sessione, modificare il contenuto della pagina Web tramite la manipolazione DOM o reindirizzare il browser a un'altra pagina. In genere, le vulnerabilità XSS si verificano quando un'applicazione accetta l'input dell'utente e la restituisce a una pagina senza convalidare, codificare o eseguire l'escape.
+Il cross-site scripting (XSS) è una vulnerabilità della sicurezza che consente a un utente malintenzionato di inserire gli script sul lato client (in genere JavaScript) nelle pagine Web. Quando gli altri utenti caricano le pagine interessate, gli script dell'utente malintenzionato vengono eseguiti, consentendo all'autore dell'attacco di rubare i cookie token di sessione e di, modificare il contenuto della pagina Web tramite la manipolazione Dom o reindirizzare il browser a un'altra pagina. In genere, le vulnerabilità XSS si verificano quando un'applicazione accetta l'input dell'utente e la restituisce a una pagina senza convalidare, codificare o eseguire l'escape.
 
 ## <a name="protecting-your-application-against-xss"></a>Protezione dell'applicazione da XSS
 
@@ -40,7 +42,7 @@ A un livello di base XSS funziona facendo in modo che l'applicazione inserisca u
 
 5. Prima di inserire dati non attendibili in una stringa di query URL, assicurarsi che l'URL sia codificato.
 
-## <a name="html-encoding-using-razor"></a>Codifica HTML conRazor
+## <a name="html-encoding-using-no-locrazor"></a>Codifica HTML conRazor
 
 Il Razor motore usato in MVC codifica automaticamente tutto l'output originato dalle variabili, a meno che non si stia effettivamente lavorando per impedirlo. Usa le regole di codifica degli attributi HTML quando si usa la *@* direttiva. Poiché la codifica degli attributi HTML è un superset della codifica HTML, questo significa che non è necessario preoccuparsi se è necessario usare la codifica HTML o la codifica degli attributi HTML. È necessario assicurarsi di usare @ solo in un contesto HTML, non quando si tenta di inserire input non attendibile direttamente in JavaScript. Gli helper Tag codificano inoltre l'input usato nei parametri tag.
 
@@ -63,7 +65,7 @@ Questa visualizzazione restituisce il contenuto della variabile *untrustedInput*
 >[!WARNING]
 > ASP.NET Core MVC fornisce una `HtmlString` classe che non viene codificata automaticamente al momento dell'output. Questa operazione non deve mai essere utilizzata in combinazione con un input non attendibile, in quanto verrà esposta una vulnerabilità XSS.
 
-## <a name="javascript-encoding-using-razor"></a>Codifica JavaScript conRazor
+## <a name="javascript-encoding-using-no-locrazor"></a>Codifica JavaScript conRazor
 
 In alcuni casi potrebbe essere necessario inserire un valore in JavaScript da elaborare nella visualizzazione. Per eseguire questa operazione è possibile procedere in due modi: Il modo più sicuro per inserire valori consiste nell'inserire il valore in un attributo di dati di un tag e recuperarlo nel codice JavaScript. Ad esempio:
 
@@ -174,7 +176,7 @@ public class HomeController : Controller
 
 ## <a name="encoding-url-parameters"></a>Parametri URL di codifica
 
-Se si vuole compilare una stringa di query URL con input non attendibile come valore, usare `UrlEncoder` per codificare il valore. Ad esempio,
+Se si vuole compilare una stringa di query URL con input non attendibile come valore, usare `UrlEncoder` per codificare il valore. ad esempio:
 
 ```csharp
 var example = "\"Quoted Value with spaces and &\"";

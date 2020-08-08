@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,20 +17,20 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/authn-and-authz
-ms.openlocfilehash: 794465ceb69f47ee3d5cc8c100b321cb958d9cfe
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 1e022c510dda3e39dd02d607f1d9c493aecdeb5a
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407135"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021562"
 ---
-# <a name="authentication-and-authorization-in-aspnet-core-signalr"></a>Autenticazione e autorizzazione in ASP.NET CoreSignalR
+# <a name="authentication-and-authorization-in-aspnet-core-no-locsignalr"></a>Autenticazione e autorizzazione in ASP.NET CoreSignalR
 
 Di [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/authn-and-authz/sample/) [(procedura per il download)](xref:index#how-to-download-a-sample)
 
-## <a name="authenticate-users-connecting-to-a-signalr-hub"></a>Autenticare gli utenti che si connettono a un SignalR Hub
+## <a name="authenticate-users-connecting-to-a-no-locsignalr-hub"></a>Autenticare gli utenti che si connettono a un SignalR Hub
 
 SignalRpuò essere usato con [l'autenticazione ASP.NET Core](xref:security/authentication/identity) per associare un utente a ogni connessione. In un hub è possibile accedere ai dati di autenticazione dalla proprietà [HubConnectionContext. User](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) . L'autenticazione consente all'hub di chiamare i metodi su tutte le connessioni associate a un utente. Per ulteriori informazioni, vedere [gestire utenti e gruppi in SignalR ](xref:signalr/groups). Più connessioni possono essere associate a un singolo utente.
 
@@ -86,15 +88,15 @@ public void Configure(IApplicationBuilder app)
 
 ::: moniker-end
 
-### <a name="cookie-authentication"></a>Autenticazione cookie
+### <a name="no-loccookie-authentication"></a>Cookie
 
-In un'app basata su browser, l'autenticazione dei cookie consente alle credenziali utente esistenti di eseguire automaticamente il flusso alle SignalR connessioni. Quando si usa il client browser, non è necessaria alcuna configurazione aggiuntiva. Se l'utente è connesso all'app, la SignalR connessione eredita automaticamente l'autenticazione.
+In un'app basata su browser, cookie l'autenticazione consente alle credenziali utente esistenti di eseguire automaticamente il flusso alle SignalR connessioni. Quando si usa il client browser, non è necessaria alcuna configurazione aggiuntiva. Se l'utente è connesso all'app, la SignalR connessione eredita automaticamente l'autenticazione.
 
-I cookie sono un modo specifico del browser per inviare i token di accesso, ma i client non basati su browser possono inviarli. Quando si usa il [client .NET](xref:signalr/dotnet-client), la `Cookies` proprietà può essere configurata nella `.WithUrl` chiamata per fornire un cookie. Tuttavia, l'uso dell'autenticazione basata su cookie dal client .NET richiede che l'app fornisca un'API per lo scambio dei dati di autenticazione per un cookie.
+Cookiesono un modo specifico del browser per inviare i token di accesso, ma i client non basati su browser possono inviarli. Quando si usa il [client .NET](xref:signalr/dotnet-client), la `Cookies` proprietà può essere configurata nella `.WithUrl` chiamata per fornire un cookie . Tuttavia, l'uso dell' cookie autenticazione dal client .NET richiede che l'app fornisca un'API per lo scambio dei dati di autenticazione per un cookie .
 
 ### <a name="bearer-token-authentication"></a>Autenticazione del token di porta
 
-Il client può fornire un token di accesso invece di usare un cookie. Il server convalida il token e lo usa per identificare l'utente. Questa convalida viene eseguita solo quando viene stabilita la connessione. Durante il ciclo di vita della connessione, il server non viene riconvalidato automaticamente per verificare la revoca dei token.
+Il client può fornire un token di accesso anziché usare un oggetto cookie . Il server convalida il token e lo usa per identificare l'utente. Questa convalida viene eseguita solo quando viene stabilita la connessione. Durante il ciclo di vita della connessione, il server non viene riconvalidato automaticamente per verificare la revoca dei token.
 
 Nel server bearer token autenticazione viene configurata con il [middleware di JWT Bearer](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer).
 
@@ -125,9 +127,9 @@ Nelle API Web standard, i token di porta sono inviati in un'intestazione HTTP. T
 > [!NOTE]
 > La stringa di query viene usata nei browser quando ci si connette con WebSocket ed eventi inviati dal server a causa delle limitazioni dell'API del browser. Quando si usa HTTPS, i valori della stringa di query sono protetti dalla connessione TLS. Tuttavia, molti server registrano i valori della stringa di query. Per ulteriori informazioni, vedere [considerazioni sulla sicurezza in SignalR ASP.NET Core ](xref:signalr/security). SignalRUsa le intestazioni per trasmettere i token negli ambienti che li supportano, ad esempio i client .NET e Java.
 
-### <a name="cookies-vs-bearer-tokens"></a>Cookie e token di porta 
+### <a name="no-loccookies-vs-bearer-tokens"></a>Cookies rispetto ai token di porta 
 
-I cookie sono specifici dei browser. L'invio da altri tipi di client aggiunge complessità rispetto all'invio dei token di porta. Di conseguenza, l'autenticazione dei cookie non è consigliata, a meno che l'app non debba solo autenticare gli utenti dal client browser. L'autenticazione del token di porta è l'approccio consigliato quando si usano client diversi dal client browser.
+Cookiele istanze di sono specifiche per i browser. L'invio da altri tipi di client aggiunge complessità rispetto all'invio dei token di porta. Di conseguenza, l' cookie autenticazione non è consigliata, a meno che l'app non debba solo autenticare gli utenti dal client browser. L'autenticazione del token di porta è l'approccio consigliato quando si usano client diversi dal client browser.
 
 ### <a name="windows-authentication"></a>Autenticazione di Windows
 

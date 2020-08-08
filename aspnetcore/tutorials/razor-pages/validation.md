@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 1bc9b2b081c58392bd2c226ebedc804b43810bc2
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: dad2e667cb6fa3ace7cb5e5dcb982511357ed49b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408851"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021523"
 ---
-# <a name="part-8-add-validation-to-an-aspnet-core-razor-page"></a>Parte 8: aggiungere la convalida a una Razor pagina ASP.NET Core
+# <a name="part-8-add-validation-to-an-aspnet-core-no-locrazor-page"></a>Parte 8: aggiungere la convalida a una Razor pagina ASP.NET Core
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -63,7 +65,7 @@ Gli attributi di convalida specificano il comportamento da implementare nelle pr
 
 L'applicazione automatica di regole di convalida da ASP.NET Core è utile per rendere un'app più solida. In questo modo inoltre non è possibile omettere la convalida di un elemento e quindi inserire involontariamente dati errati nel database.
 
-### <a name="validation-error-ui-in-razor-pages"></a>Interfaccia utente degli errori di convalida nelle Razor pagine
+### <a name="validation-error-ui-in-no-locrazor-pages"></a>Interfaccia utente degli errori di convalida nelle Razor pagine
 
 Eseguire l'app e passare a Pages/Movies.
 
@@ -215,7 +217,7 @@ Non sono necessarie migrazioni per SQLite.
 
 ---
 
-### <a name="publish-to-azure"></a>Pubblicazione in Azure
+### <a name="publish-to-azure"></a>Eseguire la pubblicazione in Azure
 
 Per informazioni sulla distribuzione in Azure, vedere [esercitazione: compilare un'app ASP.NET Core in Azure con il database SQL](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
 

@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/16/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/ws-federation
-ms.openlocfilehash: 91dab7764e6915ccacacf73f74861faaee532777
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e303679190a7d7f42d8525541cec031ba090fd7a
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406225"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022303"
 ---
 # <a name="authenticate-users-with-ws-federation-in-aspnet-core"></a>Autenticare gli utenti con WS-Federation in ASP.NET Core
 
@@ -88,7 +90,7 @@ Per impostazione predefinita, il nuovo middleware:
 
 ![Azure Active Directory: Proprietà registrazione app](ws-federation/_static/AadAppIdUri.png)
 
-## <a name="use-ws-federation-without-aspnet-core-identity"></a>Usare WS-Federation senza ASP.NET CoreIdentity
+## <a name="use-ws-federation-without-aspnet-core-no-locidentity"></a>Usare WS-Federation senza ASP.NET CoreIdentity
 
 Il middleware WS-Federation può essere utilizzato senza Identity . Ad esempio:
 ::: moniker range=">= aspnetcore-3.0"
@@ -99,7 +101,7 @@ Il middleware WS-Federation può essere utilizzato senza Identity . Ad esempio:
 [!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
 ::: moniker-end
 
-## <a name="add-ws-federation-as-an-external-login-provider-for-aspnet-core-identity"></a>Aggiungere WS-Federation come provider di accesso esterno per ASP.NET CoreIdentity
+## <a name="add-ws-federation-as-an-external-login-provider-for-aspnet-core-no-locidentity"></a>Aggiungere WS-Federation come provider di accesso esterno per ASP.NET CoreIdentity
 
 * Aggiungere una dipendenza da [Microsoft. AspNetCore. Authentication. WSFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) al progetto.
 * Aggiungi WS-Federation a `Startup.ConfigureServices` :

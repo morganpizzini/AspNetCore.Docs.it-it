@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 2/18/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/filter
-ms.openlocfilehash: 626003ad75333cfaf17a3ea97549ca82650469a8
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b8942020e98d0f985e5445bb1816c540bcb7829b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407369"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021406"
 ---
-# <a name="filter-methods-for-razor-pages-in-aspnet-core"></a>Metodi di filtro per le Razor pagine in ASP.NET Core
+# <a name="filter-methods-for-no-locrazor-pages-in-aspnet-core"></a>Metodi di filtro per le Razor pagine in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -57,7 +59,7 @@ RazorI filtri di pagina forniscono i metodi seguenti, che possono essere applica
 
 Implementare la versione sincrona **oppure** la versione asincrona di un'interfaccia di filtro, **non** entrambe. Il framework controlla per prima cosa se il filtro implementa l'interfaccia asincrona e, in tal caso, la chiama. In caso contrario, chiama i metodi dell'interfaccia sincrona. Se entrambe le interfacce sono implementate, verranno chiamati solo i metodi asincroni. La stessa regola vale per gli override nelle pagine. Implementare la versione sincrona o la versione asincrona dell'override, non entrambe.
 
-## <a name="implement-razor-page-filters-globally"></a>Implementare i Razor filtri di pagina a livello globale
+## <a name="implement-no-locrazor-page-filters-globally"></a>Implementare i Razor filtri di pagina a livello globale
 
 Il codice seguente implementa `IAsyncPageFilter`:
 
@@ -81,7 +83,7 @@ Il codice seguente abilita `SamplePageFilter`:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/StartupSync.cs?name=snippet2)]
 
-## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Implementare i Razor filtri di pagina eseguendo l'override dei metodi di filtro
+## <a name="implement-no-locrazor-page-filters-by-overriding-filter-methods"></a>Implementare i Razor filtri di pagina eseguendo l'override dei metodi di filtro
 
 Il codice seguente esegue l'override dei Razor filtri di pagina asincroni:
 
@@ -149,7 +151,7 @@ RazorI filtri di pagina forniscono i metodi seguenti, che possono essere applica
 > [!NOTE]
 > Implementare la versione sincrona **oppure** la versione asincrona di un'interfaccia di filtro, non entrambe. Il framework controlla per prima cosa se il filtro implementa l'interfaccia asincrona e, in tal caso, la chiama. In caso contrario, chiama i metodi dell'interfaccia sincrona. Se entrambe le interfacce sono implementate, verranno chiamati solo i metodi asincroni. La stessa regola vale per gli override nelle pagine. Implementare la versione sincrona o la versione asincrona dell'override, non entrambe.
 
-## <a name="implement-razor-page-filters-globally"></a>Implementare i Razor filtri di pagina a livello globale
+## <a name="implement-no-locrazor-page-filters-globally"></a>Implementare i Razor filtri di pagina a livello globale
 
 Il codice seguente implementa `IAsyncPageFilter`:
 
@@ -177,7 +179,7 @@ Il codice seguente abilita `SamplePageFilter`:
 
 [!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
-## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Implementare i Razor filtri di pagina eseguendo l'override dei metodi di filtro
+## <a name="implement-no-locrazor-page-filters-by-overriding-filter-methods"></a>Implementare i Razor filtri di pagina eseguendo l'override dei metodi di filtro
 
 Il codice seguente esegue l'override dei Razor filtri di pagina sincroni:
 

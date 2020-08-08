@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/08/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,16 +16,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/limitingidentitybyscheme
-ms.openlocfilehash: 042b22a220d961773437e9d85d5f0c5782e29bea
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 66b307a3629e18e49b5bb6e65a156054c0002ba8
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406017"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022108"
 ---
 # <a name="authorize-with-a-specific-scheme-in-aspnet-core"></a>Autorizzare con uno schema specifico in ASP.NET Core
 
-In alcuni scenari, ad esempio le applicazioni a pagina singola (Spa), è comune usare più metodi di autenticazione. Ad esempio, l'app può usare l'autenticazione basata su cookie per l'accesso e l'autenticazione di connessione JWT per le richieste JavaScript. In alcuni casi, l'app può avere più istanze di un gestore di autenticazione. Ad esempio, due gestori di cookie in cui uno contiene un'identità di base e uno viene creato quando viene attivata un'autenticazione a più fattori (multi-factor authentication). L'autenticazione a più fattori può essere attivata perché l'utente ha richiesto un'operazione che richiede una maggiore sicurezza. Per altre informazioni sull'applicazione dell'autenticazione a più fattori quando un utente richiede una risorsa che richiede l'autenticazione a più fattori, vedere la [sezione relativa alla protezione](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195)dei problemi di GitHub con l'autenticazione a
+In alcuni scenari, ad esempio le applicazioni a pagina singola (Spa), è comune usare più metodi di autenticazione. Ad esempio, l'app può usare l' cookie autenticazione basata su per accedere e l'autenticazione di connessione JWT per le richieste JavaScript. In alcuni casi, l'app può avere più istanze di un gestore di autenticazione. Ad esempio, due cookie gestori dove uno contiene un'identità di base e uno viene creato quando viene attivata un'autenticazione a più fattori (multi-factor authentication). L'autenticazione a più fattori può essere attivata perché l'utente ha richiesto un'operazione che richiede una maggiore sicurezza. Per altre informazioni sull'applicazione dell'autenticazione a più fattori quando un utente richiede una risorsa che richiede l'autenticazione a più fattori, vedere la [sezione relativa alla protezione](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195)dei problemi di GitHub con l'autenticazione a
 
 Uno schema di autenticazione viene denominato quando il servizio di autenticazione viene configurato durante l'autenticazione. Ad esempio:
 
@@ -43,7 +45,7 @@ public void ConfigureServices(IServiceCollection services)
         });
 ```
 
-Nel codice precedente sono stati aggiunti due gestori di autenticazione: uno per i cookie e uno per il titolare.
+Nel codice precedente sono stati aggiunti due gestori di autenticazione: uno per cookie s e uno per Bearer.
 
 >[!NOTE]
 >Se si specifica lo schema predefinito `HttpContext.User` , la proprietà viene impostata su tale identità. Se questo comportamento non è necessario, disabilitarlo richiamando il formato senza parametri di `AddAuthentication` .
@@ -63,7 +65,7 @@ public class MixedController : Controller
         JwtBearerDefaults.AuthenticationScheme;
 ```
 
-Nell'esempio precedente vengono eseguiti sia i gestori di cookie che i gestori di porta e hanno la possibilità di creare e aggiungere un'identità per l'utente corrente. Specificando solo un singolo schema, viene eseguito il gestore corrispondente.
+Nell'esempio precedente, entrambi i cookie gestori di porta e sono eseguiti e hanno la possibilità di creare e aggiungere un'identità per l'utente corrente. Specificando solo un singolo schema, viene eseguito il gestore corrispondente.
 
 ```csharp
 [Authorize(AuthenticationSchemes = 
@@ -71,7 +73,7 @@ Nell'esempio precedente vengono eseguiti sia i gestori di cookie che i gestori d
 public class MixedController : Controller
 ```
 
-Nel codice precedente viene eseguito solo il gestore con lo schema "Bearer". Eventuali identità basate su cookie vengono ignorate.
+Nel codice precedente viene eseguito solo il gestore con lo schema "Bearer". Qualsiasi cookie identità basata su viene ignorata.
 
 ## <a name="selecting-the-scheme-with-policies"></a>Selezione dello schema con i criteri
 

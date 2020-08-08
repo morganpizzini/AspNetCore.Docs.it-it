@@ -5,6 +5,8 @@ description: Informazioni sul framework avanzato di ASP.NET Core MVC per la crea
 ms.author: riande
 ms.date: 02/12/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/overview
-ms.openlocfilehash: 68a0b14eb0897f6ff6e24e74b1fe5536bee1adfe
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 64bee1966eff40e9057166adfafbf78d0cc5b6aa
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405848"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021445"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Panoramica di ASP.NET MVC
 
@@ -67,7 +69,7 @@ ASP.NET Core MVC offre un sistema basato su schemi per la creazione di siti Web 
 
 ASP.NET Core MVC include:
 
-* [Routing.](#routing)
+* [Routing](#routing)
 * [Associazione di modelli](#model-binding)
 * [Convalida modello](#model-validation)
 * [Inserimento di dipendenze](../fundamentals/dependency-injection.md)
@@ -77,10 +79,10 @@ ASP.NET Core MVC include:
 * [Testabilità](#testability)
 * [Razormotore di visualizzazione](#razor-view-engine)
 * [Visualizzazioni fortemente tipizzate](#strongly-typed-views)
-* [Helper tag](#tag-helpers)
+* [Helper per i tag](#tag-helpers)
 * [Visualizza componenti](#view-components)
 
-### <a name="routing"></a>Routing.
+### <a name="routing"></a>Routing
 
 ASP.NET Core MVC si basa sul [routing di ASP.NET Core](../fundamentals/routing.md), un potente componente per il mapping di URL che consente di compilare applicazioni con URL comprensibili che supportano la ricerca. Ciò consente di definire criteri di denominazione dell'URL dell'applicazione che funzionano perfettamente per l'ottimizzazione dei motori di ricerca (SEO) e la generazione di collegamenti, indipendentemente da come sono organizzati i file nel server Web. È possibile definire le route usando una pratica sintassi del modello di route che supporta i vincoli di valore delle route, i valori predefiniti e quelli facoltativi.
 
@@ -194,7 +196,7 @@ Usare la generazione di collegamenti per abilitare il supporto per l'ipermedia. 
 
 L'uso delle interfacce e dell'inserimento di dipendenze rende il framework adatto al testing unità. Il framework include inoltre funzionalità come TestHost e il provider InMemory per Entity Framework grazie alle quali i [test di integrazione](xref:test/integration-tests) risultano semplici e veloci. Per altre informazioni, vedere [Test della logica dei controller](controllers/testing.md).
 
-### <a name="razor-view-engine"></a>Razormotore di visualizzazione
+### <a name="no-locrazor-view-engine"></a>Razormotore di visualizzazione
 
 [ASP.NET Core visualizzazioni MVC](views/overview.md) usano il [ Razor motore di visualizzazione](views/razor.md) per eseguire il rendering delle visualizzazioni. Razorè un linguaggio di markup modello compatto, espressivo e fluido per la definizione di visualizzazioni con codice C# incorporato. Razorviene utilizzato per generare dinamicamente contenuto Web nel server. È possibile combinare correttamente il codice server con il contenuto e il codice sul lato client.
 

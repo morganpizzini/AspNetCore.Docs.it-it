@@ -5,6 +5,8 @@ description: Informazioni sulla gestione e la durata delle chiavi di protezione 
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/configuration/default-settings
-ms.openlocfilehash: f758c814280ee09a240d99cc59cdab2dc4590df6
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b39187d93247dc83c34bbbe6ec6accfd77108794
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407096"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021380"
 ---
 # <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>Gestione e durata delle chiavi di protezione dati in ASP.NET Core
 
@@ -31,7 +33,7 @@ L'app tenta di rilevare il proprio ambiente operativo e gestire la configurazion
 1. Se l'app è ospitata in [app di Azure](https://azure.microsoft.com/services/app-service/), le chiavi vengono salvate in modo permanente nella cartella *%Home%\ASP.NET\DataProtection-Keys* . La cartella è associata all'archiviazione di rete e sincronizzata in tutti i computer che ospitano l'app.
    * Le chiavi non vengono protette quando sono inattive.
    * La cartella *DataProtection-Keys* fornisce l'anello chiave a tutte le istanze di un'app in un unico slot di distribuzione.
-   * Gli slot di distribuzione separati, ad esempio gli slot di gestione temporanea e di produzione, non condividono un KeyRing. Quando si esegue lo scambio tra gli slot di distribuzione, ad esempio lo scambio di staging in produzione o l'uso di un test A/B, qualsiasi app che usa la protezione dei dati non sarà in grado di decrittografare i dati archiviati usando l'anello chiave all'interno dello slot precedente. In questo modo gli utenti vengono disconnessi da un'app che usa l'autenticazione ASP.NET Core cookie standard, perché usa la protezione dei dati per proteggere i cookie. Se si vuole che gli anelli chiave indipendenti dallo slot, usare un provider di anello chiave esterno, ad esempio archiviazione BLOB di Azure, Azure Key Vault, un archivio SQL o cache Redis.
+   * Gli slot di distribuzione separati, ad esempio gli slot di gestione temporanea e di produzione, non condividono un KeyRing. Quando si esegue lo scambio tra gli slot di distribuzione, ad esempio lo scambio di staging in produzione o l'uso di un test A/B, qualsiasi app che usa la protezione dei dati non sarà in grado di decrittografare i dati archiviati usando l'anello chiave all'interno dello slot precedente. In questo modo gli utenti vengono disconnessi da un'app che usa l'autenticazione ASP.NET Core standard cookie , perché usa la protezione dei dati per proteggere i relativi cookie . Se si vuole che gli anelli chiave indipendenti dallo slot, usare un provider di anello chiave esterno, ad esempio archiviazione BLOB di Azure, Azure Key Vault, un archivio SQL o cache Redis.
 
 1. Se il profilo utente è disponibile, le chiavi vengono salvate in modo permanente nella cartella *%LocalAppData%\ASP.NET\DataProtection-Keys* . Se il sistema operativo è Windows, le chiavi vengono crittografate a riposo tramite DPAPI.
 

@@ -7,6 +7,8 @@ ms.author: anurse
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/security
-ms.openlocfilehash: 4e125fd6c4ad2cd4989d692dd28a63638218ee57
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e004899e334738f723cb98638cb31de8d314a830
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400414"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022472"
 ---
-# <a name="security-considerations-in-aspnet-core-signalr"></a>Considerazioni sulla sicurezza in ASP.NET CoreSignalR
+# <a name="security-considerations-in-aspnet-core-no-locsignalr"></a>Considerazioni sulla sicurezza in ASP.NET CoreSignalR
 
 Di [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
@@ -41,12 +43,12 @@ Per altre informazioni sulla configurazione di CORS, vedere [abilitare le richie
 
 * Consente le origini previste specifiche. Consentire qualsiasi origine è possibile, ma **non** è sicura o consigliata.
 * I metodi HTTP `GET` e `POST` devono essere consentiti.
-* Le credenziali devono essere consentite affinché le sessioni permanenti basate su cookie funzionino correttamente. Devono essere abilitati anche quando non viene utilizzata l'autenticazione.
+* Per il cookie corretto funzionamento delle sessioni permanenti basate su, è necessario che le credenziali siano consentite. Devono essere abilitati anche quando non viene utilizzata l'autenticazione.
 
 ::: moniker range=">= aspnetcore-5.0"
 
 Tuttavia, in 5,0 è stata fornita un'opzione nel client di TypeScript per non usare le credenziali.
-L'opzione per non usare le credenziali deve essere usata solo quando si conosce il 100% che le credenziali come i cookie non sono necessarie nell'app (i cookie vengono usati dal servizio app di Azure quando si usano più server per le sessioni permanenti).
+L'opzione per non usare le credenziali deve essere usata solo quando si conosce il 100% che le credenziali come Cookie le non sono necessarie nell'app ( cookie i vengono usati dal servizio app di Azure quando si usano più server per le sessioni permanenti).
 
 ::: moniker-end
 

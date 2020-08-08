@@ -6,6 +6,8 @@ ms.author: casoper
 ms.custom: mvc
 ms.date: 01/21/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: 4933203b8bdd8f653268c1df7ff83b8e9423341f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 78fe4d5dd9e3f64789956e58a4490bef6bdbca1e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405068"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021705"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticazione cloud con Azure Active Directory B2C in ASP.NET Core
 
@@ -42,7 +44,7 @@ In questa esercitazione si apprenderà come:
 
 Per questa procedura dettagliata sono necessari gli elementi seguenti:
 
-* [iscriversi a Microsoft Azure](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
+* [Sottoscrizione di Microsoft Azure](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
 ## <a name="create-the-azure-active-directory-b2c-tenant"></a>Creare il tenant di Azure Active Directory B2C
@@ -55,13 +57,13 @@ Nel tenant di Azure AD B2C appena creato registrare l'app seguendo [la procedura
 
 Usare i valori seguenti:
 
-| Impostazione                       | valore                     | Note                                                                                                                                                                                              |
+| Impostazione                       | Valore                     | Note                                                                                                                                                                                              |
 |-------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nome**                      | *&lt;nome dell'app&gt;*        | Immettere un **nome** per l'app che descriva l'app agli utenti.                                                                                                                                 |
 | **Includi app Web/API Web** | Sì                       |                                                                                                                                                                                                    |
 | **Consenti il flusso implicito**       | Sì                       |                                                                                                                                                                                                    |
 | **URL di risposta**                 | `https://localhost:44300/signin-oidc` | Gli URL di risposta sono gli endpoint a cui Azure AD B2C restituisce eventuali token richiesti dall'app. Visual Studio fornisce l'URL di risposta da usare. Per il momento, immettere `https://localhost:44300/signin-oidc` per completare il modulo. |
-| **URI ID app**                | Lasciare vuoto               | Non richiesto per questa esercitazione.                                                                                                                                                                    |
+| **URI ID app**                | Lasciare vuoto il campo               | Non richiesto per questa esercitazione.                                                                                                                                                                    |
 | **Includi client nativo**     | No                        |                                                                                                                                                                                                    |
 
 > [!WARNING]
@@ -89,14 +91,14 @@ In Visual Studio:
 
 5. Completare il modulo con i valori seguenti:
     
-    | Impostazione                       | valore                                                 |
+    | Impostazione                       | Valore                                                 |
     |-------------------------------|-------------------------------------------------------|
     | **Nome di dominio**               | *&lt;nome di dominio del tenant B2C&gt;*          |
     | **ID applicazione**            | *&lt;incollare l'ID applicazione dagli Appunti&gt;* |
     | **Percorso di callback**             | *&lt;Usa il valore predefinito&gt;*                       |
     | **Criteri di iscrizione o di accesso** | `B2C_1_SiUpIn`                                        |
     | **Reimposta criteri password**     | `B2C_1_SSPR`                                          |
-    | **Modificare i criteri del profilo**       | *&lt;lascia vuoto&gt;*                                 |
+    | **Modificare i criteri del profilo**       | *&lt;lasciare vuoto&gt;*                                 |
     
     Selezionare il collegamento **copia** accanto a **URI di risposta** per copiare l'URI di risposta negli Appunti. Selezionare **OK** per chiudere la finestra di dialogo **Modifica autenticazione** . Selezionare **OK** per creare l'app Web.
 
@@ -114,7 +116,7 @@ Usare la procedura descritta nella documentazione di Azure AD B2C per [creare un
 > [!WARNING]
 > Verificare che i nomi dei criteri siano esattamente come descritto nella documentazione, perché tali criteri sono stati usati nella finestra di dialogo **Cambia autenticazione** in Visual Studio. I nomi dei criteri possono essere verificati in *appsettings.js*.
 
-## <a name="configure-the-underlying-openidconnectoptionsjwtbearercookie-options"></a>Configurare le opzioni di OpenIdConnectOptions/JwtBearer/cookie sottostanti
+## <a name="configure-the-underlying-openidconnectoptionsjwtbearerno-loccookie-options"></a>Configurare OpenIdConnectOptions/JwtBearer/opzioni sottostanti Cookie
 
 Per configurare direttamente le opzioni sottostanti, utilizzare la costante dello schema appropriata in `Startup.ConfigureServices` :
 
@@ -140,7 +142,7 @@ services.Configure<JwtBearerOptions>(
 
 ## <a name="run-the-app"></a>Eseguire l'app
 
-In Visual Studio premere **F5** per compilare ed eseguire l'app. Dopo l'avvio dell'app Web, selezionare **Accept (accetta** ) per accettare l'uso dei cookie (se richiesto) e quindi selezionare **Sign in (accedi**).
+In Visual Studio premere **F5** per compilare ed eseguire l'app. Dopo l'avvio dell'app Web, selezionare **Accept (accetta** ) per accettare l'uso di cookie s (se richiesto) e quindi selezionare **Sign in (accedi**).
 
 ![Accedi all'app](./azure-ad-b2c/_static/signin.png)
 

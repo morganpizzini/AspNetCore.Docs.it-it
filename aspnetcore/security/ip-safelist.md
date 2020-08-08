@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/12/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/ip-safelist
-ms.openlocfilehash: 5b74205bc7b17d61edbb73cf309f6e24e4318391
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 75c1ea3a6087f89a200d1f73b1ff65080c819ccd
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85409007"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021770"
 ---
 # <a name="client-ip-safelist-for-aspnet-core"></a>Indirizzi IP attendibili del client per ASP.NET Core
 
@@ -99,7 +101,7 @@ Nell'app di esempio, il filtro azioni viene applicato al metodo di azione del co
 
 * Un verbo di richiesta HTTP diverso da GET, il `AdminSafeListMiddleware` middleware convalida l'indirizzo IP del client.
 
-## <a name="razor-pages-filter"></a>RazorFiltro pagine
+## <a name="no-locrazor-pages-filter"></a>RazorFiltro pagine
 
 Se si desidera il controllo degli accessi basato su attendibilità per un' Razor app pagine, utilizzare un Razor filtro pagine. Ad esempio:
 

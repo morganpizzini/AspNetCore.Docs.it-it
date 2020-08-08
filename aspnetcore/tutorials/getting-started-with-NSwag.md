@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/get-started-with-nswag
-ms.openlocfilehash: 7c24340af0f0d589d683b0134d186bf9304d91b1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8fd42c7d31edd20c2aae7577c5a490b54ab8129c
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403443"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022264"
 ---
 # <a name="get-started-with-nswag-and-aspnet-core"></a>Introduzione a NSwag e ad ASP.NET Core
 
@@ -118,7 +120,7 @@ Aggiungere e configurare Swagger nell'app ASP.NET Core eseguendo i passaggi segu
 ### <a name="generate-code-with-nswagstudio"></a>Generare il codice con NSwagStudio
 
 * Installare NSwagStudio seguendo le istruzioni riportate nel [repository di GitHub NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio). Nella pagina della versione NSwag è possibile scaricare una versione di XCOPY che può essere avviata senza privilegi di amministratore e di installazione.
-* Avviare NSwagStudio e immettere l'URL del file *swagger.json* nella casella di testo **Swagger Specification URL** (URL di specifica Swagger). Ad esempio, *http://localhost:44354/swagger/v1/swagger.json* .
+* Avviare NSwagStudio e immettere l'URL del file *swagger.json* nella casella di testo **Swagger Specification URL** (URL di specifica Swagger). ad esempio *http://localhost:44354/swagger/v1/swagger.json*.
 * Fare clic sul pulsante **Create local Copy** (Crea copia locale) per generare una rappresentazione JSON della specifica di Swagger.
 
   ![Creare una copia locale della specifica di Swagger](web-api-help-pages-using-swagger/_static/CreateLocalCopy-NSwagStudio.PNG)
@@ -197,7 +199,7 @@ L'interfaccia utente di Swagger visualizza le informazioni sulla versione:
 
 ![Interfaccia utente Swagger con informazioni sulla versione](web-api-help-pages-using-swagger/_static/custom-info-nswag.png)
 
-### <a name="xml-comments"></a>XML (commenti)
+### <a name="xml-comments"></a>Commenti in XML
 
 Per abilitare i commenti XML, seguire questa procedura:
 

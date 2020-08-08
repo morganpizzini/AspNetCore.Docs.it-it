@@ -5,6 +5,8 @@ description: Informazioni su come usare le API di protezione dei dati ASP.NET Co
 ms.author: riande
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/using-data-protection
-ms.openlocfilehash: 1b0dc6756de55d9ce35eb08ca037e4d4b1fede75
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0d088e0e974742e51d9ca39a5cec5b84b46f5d21
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405614"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022433"
 ---
 # <a name="get-started-with-the-data-protection-apis-in-aspnet-core"></a>Iniziare a usare le API di protezione dei dati in ASP.NET Core
 
@@ -41,4 +43,4 @@ Quando si crea una protezione, è necessario specificare una o più [stringhe pe
 >[!TIP]
 > Le istanze di `IDataProtectionProvider` e `IDataProtector` sono thread-safe per più chiamanti. Si intende che quando un componente ottiene un riferimento a un `IDataProtector` tramite una chiamata a, utilizzerà `CreateProtector` tale riferimento per più chiamate a `Protect` e `Unprotect` .
 >
->Una chiamata a `Unprotect` genererà CryptographicException se non è possibile verificare o decifrare il payload protetto. Alcuni componenti potrebbero voler ignorare gli errori durante le operazioni di rimozione della protezione. un componente che legge i cookie di autenticazione potrebbe gestire questo errore e trattare la richiesta come se non fosse disponibile alcun cookie anziché interrompere la richiesta in modo non corretto. I componenti che vogliono questo comportamento devono rilevare in modo specifico CryptographicException anziché ingoiare tutte le eccezioni.
+>Una chiamata a `Unprotect` genererà CryptographicException se non è possibile verificare o decifrare il payload protetto. Alcuni componenti potrebbero voler ignorare gli errori durante le operazioni di rimozione della protezione. un componente che legge le autenticazioni cookie potrebbe gestire questo errore e trattare la richiesta come se non fosse disponibile, cookie anziché interrompere la richiesta in modo non corretto. I componenti che vogliono questo comportamento devono rilevare in modo specifico CryptographicException anziché ingoiare tutte le eccezioni.

@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: d261a26de7b9ba77e5f9787ae2eb37293257a0fc
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 09df67657c9b6e4e59d6a1379bf801c289028819
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406394"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020938"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Gestione della memoria e Garbage Collection (GC) in ASP.NET Core
 
@@ -206,7 +208,7 @@ Alcuni oggetti .NET Core si basano sulla memoria nativa. La memoria nativa **non
 
 .NET fornisce l' <xref:System.IDisposable> interfaccia per consentire agli sviluppatori di rilasciare la memoria nativa. Anche se <xref:System.IDisposable.Dispose*> non viene chiamato, le classi implementate correttamente chiamano `Dispose` quando viene eseguito il [finalizzatore](/dotnet/csharp/programming-guide/classes-and-structs/destructors) .
 
-Esaminare il codice seguente:
+Osservare il codice seguente:
 
 ```csharp
 [HttpGet("fileprovider")]
@@ -355,7 +357,7 @@ Per un modo migliore per gestire la durata di un'istanza, vedere quanto segue `H
 * [Gestione di HttpClient e durata](/aspnet/core/fundamentals/http-requests#httpclient-and-lifetime-management)
 * [Blog di HTTPClient Factory](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
  
-### <a name="object-pooling"></a>Pool di oggetti
+### <a name="object-pooling"></a>Pooling di oggetti
 
 Nell'esempio precedente è stato illustrato come l' `HttpClient` istanza può essere resa statica e riutilizzata da tutte le richieste. Il riutilizzo impedisce l'esaurimento delle risorse.
 
