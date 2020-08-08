@@ -6,6 +6,8 @@ ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: 7cf6395b6f57413d85532ed15e5a875af10f905b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 4349e8a994cfa4007ce847b2952c53f4223f1b3d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400388"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88012358"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Distribuire un'app nel servizio app
 
@@ -81,7 +83,7 @@ Da una shell dei comandi scaricare il codice, compilare il progetto ed eseguirlo
 
 Per distribuire l'app, è necessario creare un' [app Web](/azure/app-service/app-service-web-overview)del servizio app. Dopo la creazione dell'app Web, verrà distribuita nel computer locale usando git.
 
-1. Accedere ad [Azure Cloud Shell](https://shell.azure.com/bash). Nota: quando si accede per la prima volta, Cloud Shell richiede di creare un account di archiviazione per i file di configurazione. Accettare le impostazioni predefinite o specificare un nome univoco.
+1. Accedere al [Azure cloud Shell](https://shell.azure.com/bash). Nota: quando si accede per la prima volta, Cloud Shell richiede di creare un account di archiviazione per i file di configurazione. Accettare le impostazioni predefinite o specificare un nome univoco.
 
 2. Usare il Cloud Shell per i passaggi seguenti.
 
@@ -232,7 +234,7 @@ Gli slot di distribuzione supportano la gestione temporanea delle modifiche senz
 
     ![Confronto tra le finestre del browser dopo lo scambio](./media/deploying-to-app-service/swapped.png)
 
-## <a name="summary"></a>Summary
+## <a name="summary"></a>Riepilogo
 
 In questa sezione sono state completate le attività seguenti:
 
@@ -246,9 +248,9 @@ In questa sezione sono state completate le attività seguenti:
 
 Nella sezione successiva si apprenderà come creare una pipeline DevOps con Azure Pipelines.
 
-## <a name="additional-reading"></a>Informazioni aggiuntive
+## <a name="additional-reading"></a>Altre letture
 
 * [Panoramica di App Web](/azure/app-service/app-service-web-overview)
 * [Creare un'app Web .NET Core e database SQL nel Servizio app di Azure](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 * [Configurazione delle credenziali per la distribuzione del Servizio app di Azure](/azure/app-service/app-service-deployment-credentials)
-* [Configurare gli ambienti di gestione temporanea nel Servizio app di Azure](/azure/app-service/web-sites-staged-publishing)
+* [Configurare gli ambienti di gestione temporanea in Servizio app di Azure](/azure/app-service/web-sites-staged-publishing)

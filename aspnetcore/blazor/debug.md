@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/30/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: cb0a8737fb975db285986d18b995e488f09580e8
-ms.sourcegitcommit: 37f6f2e13ceb4eae268d20973d76e4b83acf6a24
+ms.openlocfilehash: 225916411550cc8e89c604e1426316843bb0ff52
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87526290"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014542"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debugBlazor WebAssembly
 
@@ -76,6 +78,10 @@ Per eseguire il debug di un' Blazor WebAssembly app in Visual Studio:
 
 1. Creare una nuova app ospitata ASP.NET Core Blazor WebAssembly .
 1. Premere <kbd>F5</kbd> per eseguire l'app nel debugger.
+
+   > [!NOTE]
+   > **Avvia senza eseguire debug** (<kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato.
+
 1. Impostare un punto di interruzione in `Pages/Counter.razor` nel `IncrementCount` metodo.
 1. Passare alla **`Counter`** scheda e selezionare il pulsante per raggiungere il punto di interruzione:
 
@@ -116,10 +122,13 @@ Quando si esegue il debug dell' Blazor WebAssembly app, è anche possibile esegu
    Se si riceve la notifica:
 
    * Verificare che sia installata la versione più recente [di C# per Visual Studio Code estensione](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) . Per esaminare le estensioni installate, aprire **View**  >  **Extensions** dalla barra dei menu o selezionare l'icona **Extensions** nella barra laterale **Activity** .
-   * Verificare che l'anteprima JavaScript sia abilitata. Aprire le impostazioni dalla barra dei menu (**File**  >  **Preferences**  >  **Impostazioni**preferenze file). Eseguire la ricerca usando le parole chiave `debug preview` . Nei risultati della ricerca verificare che la casella di controllo per **Debug > JavaScript: USA anteprima** sia selezionata.
+   * Verificare che l'anteprima JavaScript sia abilitata. Aprire le impostazioni dalla barra dei menu (**File**  >  **Preferences**  >  **Impostazioni**preferenze file). Eseguire la ricerca usando le parole chiave `debug preview` . Nei risultati della ricerca verificare che la casella di controllo per **Debug > JavaScript: USA anteprima** sia selezionata. Se l'opzione per abilitare il debug in anteprima non è presente, eseguire l'aggiornamento alla versione più recente di VS Code o installare l' [estensione del debugger JavaScript](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code versioni 1,46 o precedenti).
    * Ricaricare la finestra.
 
 1. Avviare il debug usando il tasto di scelta rapida <kbd>F5</kbd> o la voce di menu.
+
+   > [!NOTE]
+   > L' **esecuzione senza debug** (<kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportata.
 
 1. Quando richiesto, selezionare l'opzione ** Blazor WebAssembly debug** per avviare il debug.
 
@@ -162,7 +171,7 @@ Per connettersi a un'app in esecuzione Blazor , creare un `launch.json` file con
 
 Le seguenti opzioni di configurazione di avvio sono supportate per il `blazorwasm` tipo di debug ( `.vscode/launch.json` ).
 
-| Opzione    | Description |
+| Opzione    | Descrizione |
 | --------- | ----------- |
 | `request` | Usare `launch` per avviare e alleghi una sessione di debug a un' Blazor WebAssembly app o `attach` per alleghi una sessione di debug a un'app già in esecuzione. |
 | `url`     | URL da aprire nel browser durante il debug. Il valore predefinito è `https://localhost:5001`. |

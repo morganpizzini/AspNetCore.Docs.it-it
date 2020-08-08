@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/18/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: bdea9f2fe5c552b56414bb49588733c8dc2a34db
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d6446447a51e22b7df1289e7ef20a4a6381c2b20
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400219"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88012527"
 ---
-# <a name="aspnet-core-blazor-advanced-scenarios"></a>BlazorScenari ASP.NET Core avanzati
+# <a name="aspnet-core-no-locblazor-advanced-scenarios"></a>BlazorScenari ASP.NET Core avanzati
 
 Di [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
 
-## <a name="blazor-server-circuit-handler"></a>Blazor Servergestore circuito
+## <a name="no-locblazor-server-circuit-handler"></a>Blazor Servergestore circuito
 
 Blazor Serverconsente al codice di definire un *gestore di circuito*, che consente l'esecuzione di codice in base alle modifiche apportate allo stato del circuito di un utente. Un gestore di circuito viene implementato tramite la derivazione da `CircuitHandler` e la registrazione della classe nel contenitore del servizio dell'app. L'esempio seguente di un gestore di circuito tiene traccia delle SignalR connessioni aperte:
 
@@ -163,14 +165,14 @@ builder.AddContent(1, "Second");
 
 Quando il codice viene eseguito per la prima volta, se `someFlag` è `true` , il generatore riceve:
 
-| Sequenza | Tipo      | Dati   |
+| Sequenza | Type      | Data   |
 | :------: | --------- | :----: |
-| 0        | Nodo testo | First (Primo)  |
+| 0        | Nodo testo | Primo  |
 | 1        | Nodo testo | Second |
 
 Si supponga che `someFlag` diventi `false` e che venga eseguito nuovamente il rendering del markup. Questa volta, il generatore riceve:
 
-| Sequenza | Tipo       | Dati   |
+| Sequenza | Type       | Data   |
 | :------: | ---------- | :----: |
 | 1        | Nodo testo  | Second |
 
@@ -195,14 +197,14 @@ builder.AddContent(seq++, "Second");
 
 A questo punto, il primo output è:
 
-| Sequenza | Tipo      | Dati   |
+| Sequenza | Type      | Data   |
 | :------: | --------- | :----: |
-| 0        | Nodo testo | First (Primo)  |
+| 0        | Nodo testo | Primo  |
 | 1        | Nodo testo | Second |
 
 Questo risultato è identico al caso precedente, pertanto non esistono problemi negativi. `someFlag`si trova `false` nel secondo rendering e l'output è:
 
-| Sequenza | Tipo      | Dati   |
+| Sequenza | Type      | Data   |
 | :------: | --------- | ------ |
 | 0        | Nodo testo | Second |
 
@@ -223,7 +225,7 @@ Questo è un esempio semplice. Nei casi più realistici con strutture complesse 
 * Se i numeri di sequenza sono hardcoded, l'algoritmo Diff richiede solo che i numeri di sequenza aumentino nel valore. Il valore iniziale e i gap sono irrilevanti. Una delle opzioni legittime consiste nell'usare il numero di riga del codice come numero di sequenza oppure iniziare da zero e aumentare di uno o di centinaia (o qualsiasi intervallo preferito). 
 * BlazorUSA i numeri di sequenza, mentre altri Framework dell'interfaccia utente con differenze tra gli alberi non li usano. La diffing è molto più veloce quando si usano i numeri Blazor di sequenza e presenta il vantaggio di un passaggio di compilazione che gestisce automaticamente i numeri di sequenza per gli sviluppatori che creano `.razor` file.
 
-## <a name="perform-large-data-transfers-in-blazor-server-apps"></a>Eseguire trasferimenti di dati di grandi dimensioni nelle Blazor Server app
+## <a name="perform-large-data-transfers-in-no-locblazor-server-apps"></a>Eseguire trasferimenti di dati di grandi dimensioni nelle Blazor Server app
 
 In alcuni scenari, è necessario trasferire grandi quantità di dati tra JavaScript e Blazor . Generalmente, i trasferimenti di dati di grandi dimensioni si verificano quando:
 

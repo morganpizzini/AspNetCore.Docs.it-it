@@ -5,6 +5,8 @@ description: Indicazioni sulla migrazione di app ASP.NET MVC o Web API esistenti
 ms.author: scaddie
 ms.date: 10/18/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 1530a5e6cc4b241b916ed7c64587b515186cc6ca
-ms.sourcegitcommit: d306407dc5bfe6fdfbac482214b3f59371b582bc
+ms.openlocfilehash: defdb190acf915eaa7c4aa8469ee47888f771526
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/04/2020
-ms.locfileid: "85951927"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014919"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Eseguire la migrazione da ASP.NET ad ASP.NET Core
 
@@ -163,9 +165,9 @@ Ad esempio, un asset immagine nella cartella *wwwroot/images* è accessibile al 
 > [!NOTE]
 > Per informazioni più dettagliate sulla gestione dei file statici in ASP.NET Core, vedere [File statici](xref:fundamentals/static-files).
 
-## <a name="multi-value-cookies"></a>Cookie multivalore
+## <a name="multi-value-no-loccookies"></a>S multivalore cookie
 
-I [cookie multivalore](xref:System.Web.HttpCookie.Values) non sono supportati in ASP.NET Core. Creare un cookie per valore.
+Gli oggetti [multivalore cookie ](xref:System.Web.HttpCookie.Values) non sono supportati in ASP.NET Core. Crearne uno cookie per ogni valore.
 
 ## <a name="partial-app-migration"></a>Migrazione parziale delle app
 

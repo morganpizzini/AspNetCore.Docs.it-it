@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/06/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: b57e2a34f79691f7f2b1ed69cfad25de00c5ca13
-ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
+ms.openlocfilehash: 3e719261315ed3a17833da7751d801d79a11ee6c
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86176210"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014478"
 ---
-# <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET Core Blazor moduli e convalida
+# <a name="aspnet-core-no-locblazor-forms-and-validation"></a>ASP.NET Core Blazor moduli e convalida
 
 Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
@@ -479,7 +481,7 @@ private class CustomValidator : ValidationAttribute
 > [!NOTE]
 > <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService%2A?displayProperty=nameWithType> è `null`. L'inserimento di servizi per la convalida nel `IsValid` metodo non è supportato.
 
-### <a name="blazor-data-annotations-validation-package"></a>Blazorpacchetto di convalida delle annotazioni dei dati
+### <a name="no-locblazor-data-annotations-validation-package"></a>Blazorpacchetto di convalida delle annotazioni dei dati
 
 [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation)È un pacchetto che colma i gap dell'esperienza di convalida usando il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente. Il pacchetto è attualmente *sperimentale*.
 

@@ -5,6 +5,8 @@ description: USA Grugnio in ASP.NET Core
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/using-grunt
-ms.openlocfilehash: fc871e22f9bd5a9c137008f1d87019542c45b5d2
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 019f31c1a6fa3a33783f78f2fee71f710642ce6d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401766"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013203"
 ---
 # <a name="use-grunt-in-aspnet-core"></a>USA Grugnio in ASP.NET Core
 
@@ -289,6 +291,6 @@ A meno che non si desideri avviare manualmente le attività ogni volta che si la
 
 Scaricare e ricaricare il progetto. Quando il progetto viene caricato nuovamente, l'attività Watch viene avviata automaticamente.
 
-## <a name="summary"></a>Summary
+## <a name="summary"></a>Riepilogo
 
 Grugnito è un potente strumento di esecuzione delle attività che può essere usato per automatizzare la maggior parte delle attività di compilazione client. Grugni si avvale di NPM per distribuire i pacchetti e include funzionalità di integrazione degli strumenti con Visual Studio. Esplora attività di Visual Studio rileva le modifiche apportate ai file di configurazione e offre una comoda interfaccia per eseguire attività, visualizzare attività in esecuzione e associare attività agli eventi di Visual Studio.

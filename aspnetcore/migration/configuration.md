@@ -5,6 +5,8 @@ description: Informazioni su come eseguire la migrazione della configurazione da
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/configuration
-ms.openlocfilehash: 9be321850b14847973877fb6a32217bd2dbb5171
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 7c1f2feb40e115d71fb087201acdf52197a52c88
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399816"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015101"
 ---
 # <a name="migrate-configuration-to-aspnet-core"></a>Eseguire la migrazione della configurazione a ASP.NET Core
 
@@ -56,6 +58,6 @@ Il progetto MVC ASP.NET include la stringa di connessione del database * *richie
 
 Nella riga evidenziata sopra, modificare il nome del database da **_CHANGE_ME** al nome del database.
 
-## <a name="summary"></a>Summary
+## <a name="summary"></a>Riepilogo
 
 ASP.NET Core inserisce tutta la logica di avvio per l'applicazione in un unico file, in cui è possibile definire e configurare le dipendenze e i servizi necessari. Sostituisce il file di *web.config* con una funzionalità di configurazione flessibile che può sfruttare diversi formati di file, ad esempio JSON, nonché variabili di ambiente.

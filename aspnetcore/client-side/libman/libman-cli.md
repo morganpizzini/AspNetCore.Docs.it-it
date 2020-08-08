@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/libman/libman-cli
-ms.openlocfilehash: ed5dffb83a2f1a40f3d6596d23135c0fa5b6791f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6e1ab9c540e1714f2f8cd6e6f2603e4d589a7d2b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403183"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013476"
 ---
 # <a name="use-the-libman-cli-with-aspnet-core"></a>Usare l'interfaccia della riga di comando di LibMan con ASP.NET Core
 
@@ -125,7 +127,7 @@ Per il comando `libman init` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 Per creare un *libman.jssu* file in un progetto ASP.NET Core:
 
@@ -191,7 +193,7 @@ Per il comando `libman install` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 Si considerino i *libman.jsseguenti nel* file:
 
@@ -288,7 +290,7 @@ Per il comando `libman restore` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 Per ripristinare i file di libreria definiti in *libman.jsin*:
 
@@ -313,7 +315,7 @@ Per il comando `libman clean` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 Per eliminare i file di libreria installati tramite LibMan:
 
@@ -354,7 +356,7 @@ Per il comando `libman uninstall` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 Si considerino i *libman.jsseguenti nel* file:
 
@@ -414,7 +416,7 @@ Per il comando `libman update` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 * Per aggiornare jQuery alla versione più recente:
 
@@ -468,7 +470,7 @@ Per il comando `libman cache` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 * Per visualizzare i nomi delle librerie memorizzate nella cache per ogni provider, usare uno dei comandi seguenti:
 

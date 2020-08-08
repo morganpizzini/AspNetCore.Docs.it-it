@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/05/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: 4477b16d0d35fb90c35d17852f4639676d76aa02
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2637645da9db7d52668c6a36c822df25520ff1f1
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402286"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013814"
 ---
-# <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Linee guida per la mitigazione delle minacce per ASP.NET CoreBlazor Server
+# <a name="threat-mitigation-guidance-for-aspnet-core-no-locblazor-server"></a>Linee guida per la mitigazione delle minacce per ASP.NET CoreBlazor Server
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn)
 
@@ -37,7 +39,7 @@ Negli ambienti vincolati, ad esempio all'interno di reti aziendali o Intranet, a
 * Non si applica nell'ambiente vincolato.
 * Non vale la pena di implementare perché il rischio per la sicurezza è ridotto in un ambiente vincolato.
 
-## <a name="blazor-and-shared-state"></a>Blazore stato condiviso
+## <a name="no-locblazor-and-shared-state"></a>Blazore stato condiviso
 
 [!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]
 

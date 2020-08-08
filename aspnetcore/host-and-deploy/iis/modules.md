@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: 124f2a629ebd14210cb21351a720e007bba48f02
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c526fc779d778cd0f99bcdaae283b6a5a0fe09ab
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404015"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015608"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>Moduli IIS con ASP.NET Core
 
@@ -76,7 +78,7 @@ I moduli gestiti *non* funzionano con le app ASP.NET Core ospitate quando la ver
 | AnonymousIdentification | |
 | DefaultAuthentication   | |
 | FileAuthorization       | |
-| FormsAuthentication     | [Cookie del middleware di autenticazione](xref:security/authentication/cookie) |
+| FormsAuthentication     | [CookieMiddleware di autenticazione](xref:security/authentication/cookie) |
 | OutputCache             | [Middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) |
 | Profilo                 | |
 | RoleManager             | |

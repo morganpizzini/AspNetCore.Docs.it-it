@@ -5,6 +5,8 @@ description: Informazioni su come eseguire la migrazione dell'autenticazione e d
 ms.author: riande
 ms.date: 3/22/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,22 +15,22 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/identity
-ms.openlocfilehash: 995de894bc77c4db5e5683b36e691b0c5a3463d3
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8a6cc1e612dbf59dc2db2eca165dd1a03ab92f81
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403755"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014932"
 ---
-# <a name="migrate-authentication-and-identity-to-aspnet-core"></a>Eseguire la migrazione dell'autenticazione e Identity a ASP.NET Core
+# <a name="migrate-authentication-and-no-locidentity-to-aspnet-core"></a>Eseguire la migrazione dell'autenticazione e Identity a ASP.NET Core
 
 Di [Steve Smith](https://ardalis.com/)
 
 Nell'articolo precedente è stata [eseguita la migrazione della configurazione da un progetto mvc ASP.NET a ASP.NET Core MVC](xref:migration/configuration). Questo articolo illustra come eseguire la migrazione delle funzionalità di registrazione, accesso e gestione degli utenti.
 
-## <a name="configure-identity-and-membership"></a>Configurare Identity e appartenere
+## <a name="configure-no-locidentity-and-membership"></a>Configurare Identity e appartenere
 
-In ASP.NET MVC le funzionalità di autenticazione e identità vengono configurate usando ASP.NET Identity in *Startup.Auth.cs* e *IdentityConfig.cs*, che si trova nella cartella *app_start* . In ASP.NET Core MVC queste funzionalità sono configurate in *Startup.cs*.
+In ASP.NET MVC le funzionalità di autenticazione e identità vengono configurate usando ASP.NET Identity in *Startup.Auth.cs* e * Identity config.cs*, che si trova nella cartella *app_start* . In ASP.NET Core MVC queste funzionalità sono configurate in *Startup.cs*.
 
 Installare i pacchetti NuGet seguenti:
 
@@ -53,7 +55,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-A questo punto, esistono due tipi a cui si fa riferimento nel codice precedente, di cui non è ancora stata eseguita la migrazione dal progetto MVC ASP.NET: `ApplicationDbContext` e `ApplicationUser` . Creare una nuova cartella *Models* nel progetto ASP.NET Core e aggiungere due classi alla classe corrispondente a questi tipi. Le versioni di queste classi di ASP.NET MVC sono disponibili in */Models/IdentityModels.cs*, ma si userà un file per classe nel progetto migrato, perché questo è più chiaro.
+A questo punto, esistono due tipi a cui si fa riferimento nel codice precedente, di cui non è ancora stata eseguita la migrazione dal progetto MVC ASP.NET: `ApplicationDbContext` e `ApplicationUser` . Creare una nuova cartella *Models* nel progetto ASP.NET Core e aggiungere due classi alla classe corrispondente a questi tipi. Sono disponibili le versioni ASP.NET MVC di queste classi in */Models/ Identity Models.cs*, ma si userà un file per classe nel progetto migrato, perché questo è più chiaro.
 
 *ApplicationUser.cs*:
 
@@ -155,6 +157,6 @@ else
 
 A questo punto, dovrebbe essere possibile aggiornare il sito nel browser.
 
-## <a name="summary"></a>Summary
+## <a name="summary"></a>Riepilogo
 
 ASP.NET Core introduce le modifiche apportate alle Identity funzionalità ASP.NET. In questo articolo è stato illustrato come eseguire la migrazione delle funzionalità di autenticazione e gestione utenti di ASP.NET Identity in ASP.NET Core.

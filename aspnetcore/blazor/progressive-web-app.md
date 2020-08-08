@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 237a8fceb75ba724625f018cf94c8d5bc5acfdad
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 1c33a3abd2ebee60a4025d4598495d276663dc9b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402585"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014165"
 ---
-# <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Creazione di applicazioni Web progressive con ASP.NET CoreBlazor WebAssembly
+# <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>Creazione di applicazioni Web progressive con ASP.NET CoreBlazor WebAssembly
 
 Di [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -69,13 +71,13 @@ Facoltativamente, è possibile configurare PWA per un'app creata dal modello di 
 
 Quando si visita un'app creata usando il modello di PWA, gli utenti hanno la possibilità di installare l'app nel menu Start del sistema operativo, nell'ancoraggio o nella schermata iniziale. Il modo in cui viene presentata questa opzione dipende dal browser dell'utente. Quando si usano i browser basati su Chrome Desktop, ad esempio Edge o Chrome, viene visualizzato un pulsante **Aggiungi** nella barra degli URL. Dopo che l'utente ha selezionato il pulsante **Aggiungi** , viene visualizzata una finestra di dialogo di conferma:
 
-![Il diaglog di conferma in Google Chrome visualizza un pulsante di installazione per l'app ' MyBlazorPwa '.](progressive-web-app/_static/image2.png)
+![Il diaglog di conferma in Google Chrome visualizza un pulsante Installa per l'utente per l'app ' My::: NO-LOC (Blazer):::P WA '.](progressive-web-app/_static/image2.png)
 
 In iOS i visitatori possono installare il PWA usando il pulsante di **condivisione** di Safari e l'opzione **Aggiungi a homescreen** . In Chrome per Android, gli utenti devono selezionare il pulsante di **menu** nell'angolo in alto a destra, seguito da **Aggiungi alla schermata iniziale**.
 
 Una volta installato, l'app viene visualizzata nella propria finestra senza una barra degli indirizzi:
 
-![L'app ' MyBlazorPwa ' viene eseguita in Google Chrome senza una barra degli indirizzi.](progressive-web-app/_static/image3.png)
+![L'app ' My::: NO-LOC (Blazer):::P WA ' viene eseguita in Google Chrome senza una barra degli indirizzi.](progressive-web-app/_static/image3.png)
 
 Per personalizzare il titolo, la combinazione di colori, l'icona o altri dettagli della finestra, vedere il `manifest.json` file nella directory del progetto `wwwroot` . Lo schema di questo file è definito dagli standard Web. Per altre informazioni, vedere la pagina relativa ai [documenti MDN Web: manifesto dell'app Web](https://developer.mozilla.org/docs/Web/Manifest).
 
@@ -164,7 +166,7 @@ Si consideri cosa accade quando l'utente accede per la prima volta a un URL, ad 
 
 Il ruolo di lavoro del servizio predefinito contiene la logica speciale per le richieste di navigazione. Il ruolo di lavoro del servizio risolve le richieste restituendo il contenuto memorizzato nella cache per `/index.html` , indipendentemente dall'URL richiesto. Questa logica viene implementata nella `onFetch` funzione all'interno di `service-worker.published.js` .
 
-Se l'app dispone di determinati URL che devono restituire codice HTML sottoposto a rendering del server e non `/index.html` vengono usati dalla cache, è necessario modificare la logica nel ruolo di lavoro del servizio. Se tutti gli URL che contengono `/Identity/` devono essere gestiti come richieste normali solo in linea al server, modificare la `service-worker.published.js` `onFetch` logica. Individuare il codice seguente:
+Se l'app dispone di determinati URL che devono restituire codice HTML sottoposto a rendering del server e non `/index.html` vengono usati dalla cache, è necessario modificare la logica nel ruolo di lavoro del servizio. Se tutti gli URL che contengono `/Identity/` devono essere gestiti come richieste normali solo in linea al server, modificare la `service-worker.published.js` `onFetch` logica. Trovare il codice seguente:
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate';

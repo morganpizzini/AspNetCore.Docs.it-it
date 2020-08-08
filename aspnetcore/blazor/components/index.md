@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/14/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 1312ae531b0acb0ce09137cc2bae6299ddda5c32
-ms.sourcegitcommit: e6b3dd344521ce320d5c2121bbc27c211df87e57
+ms.openlocfilehash: a145cfd551650445f9ff35259cbedf71ebb686f0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2020
-ms.locfileid: "86468847"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014594"
 ---
-# <a name="create-and-use-aspnet-core-razor-components"></a>Creazione e utilizzo di Razor componenti ASP.NET Core
+# <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Creazione e utilizzo di Razor componenti ASP.NET Core
 
 Di [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27)e [Tobias Bartsch](https://www.aveo-solutions.com/)
 
@@ -34,7 +36,7 @@ Blazorle app vengono compilate usando i *componenti*. Un componente è un blocco
 
 I componenti sono implementati in [Razor](xref:mvc/views/razor) file componente ( `.razor` ) utilizzando una combinazione di markup C# e HTML. Un componente in Blazor viene definito formalmente come * Razor componente*.
 
-### <a name="razor-syntax"></a>Sintassi Razor
+### <a name="no-locrazor-syntax"></a>Sintassi Razor
 
 Razori componenti nelle Blazor app utilizzano ampiamente la Razor sintassi. Se non si ha familiarità con il Razor linguaggio di markup, è consigliabile leggere <xref:mvc/views/razor> prima di procedere.
 
@@ -796,7 +798,7 @@ Nell'esempio seguente viene illustrato l'utilizzo del `MarkupString` tipo per ag
 }
 ```
 
-## <a name="razor-templates"></a>Razormodelli
+## <a name="no-locrazor-templates"></a>Razormodelli
 
 I frammenti di rendering possono essere definiti usando la Razor sintassi del modello. Razori modelli sono un modo per definire un frammento di interfaccia utente e presupporre il formato seguente:
 

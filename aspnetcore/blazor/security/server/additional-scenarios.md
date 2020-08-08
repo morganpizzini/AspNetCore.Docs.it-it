@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: 8f112a4d71e44cae112e9854fc77dfda4af5a47a
-ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
+ms.openlocfilehash: 16896577c56c638cae6824c58f4d3a6ce1489458
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87818911"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014009"
 ---
 # <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a>ASP.NET Core Blazor Server scenari di sicurezza aggiuntivi
 
@@ -30,7 +32,7 @@ Di [Javier Calvarro Nelson](https://github.com/javiercn)
 
 I token disponibili all'esterno dei Razor componenti di un' Blazor Server app possono essere passati ai componenti con l'approccio descritto in questa sezione. Per il codice di esempio, incluso un `Startup.ConfigureServices` esempio completo, vedere il [passaggio di token a un' Blazor applicazione lato server](https://github.com/javiercn/blazor-server-aad-sample).
 
-Autenticare l' Blazor Server app come se si trattasse di un normale Razor sito o di un'app MVC. Eseguire il provisioning e salvare i token nel cookie di autenticazione. Ad esempio:
+Autenticare l' Blazor Server app come se si trattasse di un normale Razor sito o di un'app MVC. Eseguire il provisioning e salvare i token nell'autenticazione cookie . Ad esempio:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;

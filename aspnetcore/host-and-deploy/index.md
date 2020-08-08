@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/index
-ms.openlocfilehash: 79022af0e6ee1294e12c21492bc81bc40482a3fb
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 1084cdb9120b1b40acd21fa2de45c7f280337da3
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403963"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015595"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hosting e distribuzione di ASP.NET Core
 
@@ -71,7 +73,7 @@ In molti casi la distribuzione richiede attività aggiuntive oltre alla copia de
 
 Mediante la [funzionalità Pubblica sito Web](xref:tutorials/publish-to-azure-webapp-using-vs) o il [supporto di Git incorporato](xref:host-and-deploy/azure-apps/azure-continuous-deployment) è possibile eseguire direttamente la distribuzione di app da Visual Studio al Servizio app di Azure. Azure DevOps Services supporta la [distribuzione continua al Servizio app di Azure](/azure/devops/pipelines/targets/webapp). Per altre informazioni, vedere [DevOps con ASP.NET Core e Azure](xref:azure/devops/index).
 
-## <a name="publish-to-azure"></a>Pubblicazione in Azure
+## <a name="publish-to-azure"></a>Eseguire la pubblicazione in Azure
 
 Vedere <xref:tutorials/publish-to-azure-webapp-using-vs> per istruzioni su come pubblicare un'app in Azure usando Visual Studio. Un altro esempio è disponibile in [Creare un'app Web ASP.NET Core in Azure](/azure/app-service/app-service-web-get-started-dotnet).
 
@@ -149,7 +151,7 @@ In molti casi la distribuzione richiede attività aggiuntive oltre alla copia de
 
 Mediante la [funzionalità Pubblica sito Web](xref:tutorials/publish-to-azure-webapp-using-vs) o il [supporto di Git incorporato](xref:host-and-deploy/azure-apps/azure-continuous-deployment) è possibile eseguire direttamente la distribuzione di app da Visual Studio al Servizio app di Azure. Azure DevOps Services supporta la [distribuzione continua al Servizio app di Azure](/azure/devops/pipelines/targets/webapp). Per altre informazioni, vedere [DevOps con ASP.NET Core e Azure](xref:azure/devops/index).
 
-## <a name="publish-to-azure"></a>Pubblicazione in Azure
+## <a name="publish-to-azure"></a>Eseguire la pubblicazione in Azure
 
 Vedere <xref:tutorials/publish-to-azure-webapp-using-vs> per istruzioni su come pubblicare un'app in Azure usando Visual Studio. Un altro esempio è disponibile in [Creare un'app Web ASP.NET Core in Azure](/azure/app-service/app-service-web-get-started-dotnet).
 

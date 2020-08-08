@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.date: 10/24/2018
 ms.custom: mvc, seodec18
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/cicd
-ms.openlocfilehash: 0edded18d766d6f2af08f6be5dbecbfd52a14a35
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 780d233014c26e37886d6bc5bd8fcb23d857dff0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400557"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88012618"
 ---
-# <a name="continuous-integration-and-deployment"></a>Integrazione e distribuzione continue
+# <a name="continuous-integration-and-deployment"></a>Integrazione e distribuzione continua
 
 Nel capitolo precedente è stato creato un repository git locale per la semplice app Reader di feed. In questo capitolo si pubblicherà il codice in un repository GitHub e si creerà una pipeline Azure DevOps Services usando Azure Pipelines. La pipeline consente le compilazioni continue e le distribuzioni dell'app. Qualsiasi commit nel repository GitHub attiva una compilazione e una distribuzione nello slot di staging dell'app Web di Azure.
 
@@ -29,7 +31,7 @@ In questa sezione verranno completate le attività seguenti:
 
 * Pubblicare il codice dell'app in GitHub
 * Disconnettere la distribuzione git locale
-* Creare un'organizzazione di Azure DevOps
+* Creare un'organizzazione Azure DevOps
 * Creare un progetto team in Azure DevOps Services
 * Creare una definizione di compilazione
 * Creare una pipeline di versione
@@ -78,7 +80,7 @@ Rimuovere la distribuzione git locale con i passaggi seguenti. Azure Pipelines (
 1. Passare alla *<mywebapp unique_number>* servizio app. Come promemoria, è possibile usare la casella di ricerca del portale per individuare rapidamente il servizio app.
 1. Fare clic su **centro distribuzione**. Verrà visualizzato un nuovo pannello. Fare clic su **Disconnetti** per rimuovere la configurazione del controllo del codice sorgente git locale aggiunta nel capitolo precedente. Confermare l'operazione di rimozione facendo clic sul pulsante **Sì** .
 
-## <a name="create-an-azure-devops-organization"></a>Creare un'organizzazione di Azure DevOps
+## <a name="create-an-azure-devops-organization"></a>Creare un'organizzazione Azure DevOps
 
 1. Aprire un browser e passare alla pagina di [creazione dell'organizzazione DevOps di Azure](https://go.microsoft.com/fwlink/?LinkId=307137).
 1. Digitare un nome univoco nella casella di testo **selezionare un nome memorabile** per creare l'URL per l'accesso all'organizzazione DevOps di Azure.
@@ -132,7 +134,7 @@ Sono disponibili tre passaggi distinti per il completamento. Il completamento de
 
 1. Fare clic sul pulsante **salva & coda** e selezionare l'opzione **Salva** :
 
-    ![Pulsante per il salvataggio](media/cicd/vsts-save-build.png)
+    ![Pulsante Salva](media/cicd/vsts-save-build.png)
 
 1. Viene visualizzata la finestra di dialogo modale seguente:
 
@@ -289,7 +291,7 @@ Se si fa clic sull'attività swap slot, viene visualizzata la configurazione del
 
 Vengono forniti i dettagli relativi a sottoscrizione, gruppo di risorse, tipo di servizio, nome dell'app Web e slot di distribuzione. La casella **di controllo scambia con produzione** è selezionata. Di conseguenza, i bit distribuiti nello slot di *staging* vengono scambiati nell'ambiente di produzione.
 
-## <a name="additional-reading"></a>Informazioni aggiuntive
+## <a name="additional-reading"></a>Altre letture
 
 * [Creare la prima pipeline con Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
 * [Compilazione e progetto .NET Core](/azure/devops/pipelines/languages/dotnet-core)

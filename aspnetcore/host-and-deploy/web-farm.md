@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/web-farm
-ms.openlocfilehash: 13c4a8e287e4b62a1429f67fbe83ff5b0dc65f52
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 58409b5c47d71c96ece6f4ecfab6f18df47f798b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408279"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015439"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Ospitare ASP.NET Core in una Web farm
 
@@ -68,10 +70,10 @@ Gli scenari seguenti non richiedono configurazioni aggiuntive, ma dipendono da t
 
 | Scenario | Dipende da &hellip; |
 | -------- | ------------------- |
-| Authentication | Protezione dei dati (vedere <xref:security/data-protection/configuration/overview>).<br><br>Per altre informazioni, vedere <xref:security/authentication/cookie> e <xref:security/cookie-sharing>. |
+| Autenticazione | Protezione dei dati (vedere <xref:security/data-protection/configuration/overview>).<br><br>Per altre informazioni, vedere <xref:security/authentication/cookie> e <xref:security/cookie-sharing>. |
 | Identity | Configurazione di autenticazione e database.<br><br>Per altre informazioni, vedere <xref:security/authentication/identity>. |
-| sessione | Protezione dei dati (cookie crittografati) (vedere <xref:security/data-protection/configuration/overview>) e memorizzazione nella cache (vedere <xref:performance/caching/distributed>).<br><br>Per ulteriori informazioni, vedere [sessione e gestione dello stato: stato della sessione](xref:fundamentals/app-state#session-state). |
-| TempData | Protezione dei dati (cookie crittografati) (vedere <xref:security/data-protection/configuration/overview> ) o sessione (vedere [gestione di sessioni e Stati: stato sessione](xref:fundamentals/app-state#session-state)).<br><br>Per ulteriori informazioni, vedere [gestione delle sessioni e dello stato: TempData](xref:fundamentals/app-state#tempdata). |
+| sessione | Protezione dei dati (informazioni crittografate) cookie (vedere <xref:security/data-protection/configuration/overview> ) e memorizzazione nella cache (vedere <xref:performance/caching/distributed> ).<br><br>Per ulteriori informazioni, vedere [sessione e gestione dello stato: stato della sessione](xref:fundamentals/app-state#session-state). |
+| TempData | Protezione dei dati (informazioni crittografate cookie ) (vedere <xref:security/data-protection/configuration/overview> ) o sessione (vedere [gestione di sessioni e Stati: stato sessione](xref:fundamentals/app-state#session-state)).<br><br>Per ulteriori informazioni, vedere [gestione delle sessioni e dello stato: TempData](xref:fundamentals/app-state#tempdata). |
 | Antifalsificazione | Protezione dei dati (vedere <xref:security/data-protection/configuration/overview>).<br><br>Per altre informazioni, vedere <xref:security/anti-request-forgery>. |
 
 ## <a name="troubleshoot"></a>Risolvere problemi
@@ -80,11 +82,11 @@ Gli scenari seguenti non richiedono configurazioni aggiuntive, ma dipendono da t
 
 Quando la protezione dei dati o la memorizzazione nella cache non è configurata per un ambiente Web farm, si verificano errori intermittenti durante l'elaborazione delle richieste. Ciò si verifica perché i nodi non condividono le stesse risorse e le richieste degli utenti non vengono sempre indirizzate allo stesso nodo.
 
-Si consideri, ad esempio, un utente che accede all'app usando l'autenticazione basata su cookie. L'utente acceda all'app in un nodo della Web farm. Se la richiesta successiva dell'utente arriva nello stesso nodo in cui ha eseguito l'accesso, l'app è in grado di decrittografare il cookie di autenticazione e consente l'accesso alla risorsa dell'app. Se la richiesta successiva arriva a un nodo diverso, l'app non può decrittografare il cookie di autenticazione dal nodo in cui l'utente ha eseguito l'accesso e l'autorizzazione per la risorsa richiesta ha esito negativo.
+Si consideri un utente che accede all'app usando cookie l'autenticazione di. L'utente acceda all'app in un nodo della Web farm. Se la richiesta successiva arriva nello stesso nodo in cui è stato eseguito l'accesso, l'app è in grado di decrittografare l'autenticazione cookie e consente l'accesso alla risorsa dell'app. Se la richiesta successiva arriva a un nodo diverso, l'app non può decrittografare l'autenticazione cookie dal nodo in cui l'utente ha effettuato l'accesso e l'autorizzazione per la risorsa richiesta ha esito negativo.
 
 Quando si verificano **intermittenti**di uno dei seguenti sintomi, il problema viene in genere tracciato a una configurazione di protezione dei dati o di memorizzazione nella cache non corretta per un ambiente Web farm:
 
-* Interruzioni di autenticazione: il cookie di autenticazione non è configurato correttamente o non può essere decrittografato. Gli accessi OAuth (Facebook, Microsoft, Twitter) o OpenIdConnect non riescono con l'errore "Correlazione non riuscita."
+* Interruzioni di autenticazione: l'autenticazione cookie non è configurata correttamente o non può essere decrittografata. Gli accessi OAuth (Facebook, Microsoft, Twitter) o OpenIdConnect non riescono con l'errore "Correlazione non riuscita."
 * Interruzioni di autorizzazione: Identity viene persa.
 * Perdita dei dati per lo stato della sessione.
 * Gli elementi memorizzati nella cache scompaiono.

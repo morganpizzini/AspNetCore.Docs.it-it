@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 05/26/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: 530455c85c4c869f06ba795d9fb63dcfd1c8d5cf
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 4888de6ad55037be540cb62b6e4f02878e2b57ab
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407226"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014815"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Eseguire la migrazione da API Web ASP.NET a ASP.NET Core
 
@@ -177,7 +179,7 @@ Le sezioni seguenti illustrano la migrazione del progetto API Web a ASP.NET Core
 
 Completare i passaggi seguenti in Visual Studio:
 
-* Passare a **file**  >  **nuovo**  >  **progetto**  >  **altri tipi di progetto**  >  **soluzioni di Visual Studio**. Selezionare **soluzione vuota**e denominare la soluzione *WebAPIMigration*. Fare clic sul pulsante **OK**.
+* Passare a **file**  >  **nuovo**  >  **progetto**  >  **altri tipi di progetto**  >  **soluzioni di Visual Studio**. Selezionare **soluzione vuota**e denominare la soluzione *WebAPIMigration*. Fare clic sul pulsante **OK** .
 * Aggiungere il progetto *ProductsApp* esistente alla soluzione.
 * Aggiungere un nuovo progetto di **applicazione Web ASP.NET Core** alla soluzione. Selezionare **.NET Core** Target Framework dall'elenco a discesa e selezionare il modello di progetto **API** . Denominare il progetto *ProductsCore*e fare clic sul pulsante **OK** .
 

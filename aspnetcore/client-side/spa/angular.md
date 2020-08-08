@@ -7,6 +7,8 @@ ms.author: stevesa
 ms.custom: mvc
 ms.date: 02/06/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: spa/angular
-ms.openlocfilehash: 1c91f1adadca8b339e4daf33207ca60008679810
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ce29d891b0fba2581d352637c2ae50ac792b785e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401779"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013164"
 ---
 # <a name="use-the-angular-project-template-with-aspnet-core"></a>Usare il modello di progetto per Angular con ASP.NET Core
 
@@ -107,7 +109,7 @@ Nell'ambiente di produzione usare una versione dell'app ottimizzata per le prest
 
 Il progetto è configurato in modo da avviare in background la propria istanza del server dell'interfaccia della riga di comando di Angular all'avvio dell'app ASP.NET Core in modalità di sviluppo. Ciò risulta utile in quanto evita di dover eseguire manualmente un server distinto.
 
-Questa configurazione predefinita presenta tuttavia uno svantaggio. Ogni volta che si modifica il codice C# ed è necessario riavviare l'app ASP.NET Core, il server dell'interfaccia della riga di comando di Angular viene riavviato. Per avviare il backup sono necessari circa 10 secondi. Se si apportano frequentemente modifiche al codice C# e non si vuole attendere il riavvio dell'interfaccia della riga di comando di Angular, eseguire il server dell'interfaccia della riga di comando di Angular esternamente, in modo indipendente dal processo ASP.NET Core. A tale scopo, procedere come indicato di seguito:
+Questa configurazione predefinita presenta tuttavia uno svantaggio. Ogni volta che si modifica il codice C# ed è necessario riavviare l'app ASP.NET Core, il server dell'interfaccia della riga di comando di Angular viene riavviato. Per avviare il backup sono necessari circa 10 secondi. Se si apportano frequentemente modifiche al codice C# e non si vuole attendere il riavvio dell'interfaccia della riga di comando di Angular, eseguire il server dell'interfaccia della riga di comando di Angular esternamente, in modo indipendente dal processo ASP.NET Core. A tale scopo:
 
 1. In un prompt dei comandi passare alla sottodirectory *ClientApp* e avviare il server di sviluppo dell'interfaccia della riga di comando di Angular:
 
@@ -129,7 +131,7 @@ All'avvio dell'app ASP.NET Core, questa non avvierà un server dell'interfaccia 
 
 ### <a name="pass-data-from-net-code-into-typescript-code"></a>Passare dati dal codice .NET nel codice TypeScript
 
-Durante il rendering lato server, potrebbe essere necessario passare dati per ogni richiesta dall'app ASP.NET Core nell'app Angular. Ad esempio, è possibile passare informazioni sui cookie o dati letti da un database. A tale scopo, modificare la classe *Startup*. Nel callback per `UseSpaPrerendering`, impostare un valore per `options.SupplyData` come il seguente:
+Durante il rendering lato server, potrebbe essere necessario passare dati per ogni richiesta dall'app ASP.NET Core nell'app Angular. Ad esempio, è possibile passare cookie informazioni o leggere da un database. A tale scopo, modificare la classe *Startup*. Nel callback per `UseSpaPrerendering`, impostare un valore per `options.SupplyData` come il seguente:
 
 ```csharp
 options.SupplyData = (context, data) =>

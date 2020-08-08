@@ -5,6 +5,8 @@ description: ''
 ms.author: riande
 ms.date: 12/07/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 362dd16db358f7ceb6730bde908fff9854c73a84
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 92672b2d05ee6bbdfcf0255ae14529a5c28c41b7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403651"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014984"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Eseguire la migrazione di gestori e moduli HTTP a ASP.NET Core middleware
 
@@ -291,7 +293,7 @@ Fornisce un ID univoco per ogni richiesta. Molto utile da includere nei log.
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
 
-**HttpContext. Request. cookies** viene convertito in:
+**HttpContext. Request. Cookie s** viene convertito in:
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
 
@@ -374,9 +376,9 @@ Il `SetHeaders` metodo di callback avrà un aspetto simile al seguente:
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetHeaders)]
 
-**HttpContext. Response. cookies**
+**HttpContext. Response. Cookie s**
 
-I cookie passano al browser in un'intestazione di risposta *set-cookie* . Di conseguenza, l'invio di cookie richiede lo stesso callback utilizzato per inviare le intestazioni di risposta:
+Cookies viene spostata nel browser in un'intestazione *set- Cookie * Response. Di conseguenza, l'invio di cookie richiede lo stesso callback utilizzato per inviare le intestazioni di risposta:
 
 ```csharp
 public async Task Invoke(HttpContext httpContext)
@@ -393,6 +395,6 @@ Il `SetCookies` metodo di callback avrà un aspetto simile al seguente:
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * [Cenni preliminari sui gestori HTTP e sui moduli HTTP](/iis/configuration/system.webserver/)
-* [Configuration](xref:fundamentals/configuration/index)
+* [Configurazione](xref:fundamentals/configuration/index)
 * [Avvio dell'applicazione](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware/index)

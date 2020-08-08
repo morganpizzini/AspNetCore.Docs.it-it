@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/logging
-ms.openlocfilehash: 1f4b18bdea02016fb76b75dd01a8fcbeab9b2bc9
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c2e8ee24c135b3c2f9b6be5b0e0efa54750c68b2
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402832"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014359"
 ---
-# <a name="aspnet-core-blazor-logging"></a>BlazorRegistrazione ASP.NET Core
+# <a name="aspnet-core-no-locblazor-logging"></a>BlazorRegistrazione ASP.NET Core
 
 ## Blazor WebAssembly
 
@@ -47,7 +49,7 @@ La configurazione della registrazione può essere caricata da file di impostazio
 
 Per informazioni generali sulla registrazione di ASP.NET Core, vedere <xref:fundamentals/logging/index> .
 
-## <a name="blazor-webassembly-signalr-net-client-logging"></a>Blazor WebAssemblySignalRRegistrazione client .NET
+## <a name="no-locblazor-webassembly-no-locsignalr-net-client-logging"></a>Blazor WebAssemblySignalRRegistrazione client .NET
 
 Inserire un oggetto <xref:Microsoft.Extensions.Logging.ILoggerProvider> per aggiungere un oggetto `WebAssemblyConsoleLogger` ai provider di registrazione passati a <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder> . Diversamente da un tradizionale <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger> , `WebAssemblyConsoleLogger` è un wrapper per le API di registrazione specifiche del browser (ad esempio, `console.log` ). L'uso di `WebAssemblyConsoleLogger` rende possibile la registrazione in mono all'interno di un contesto del browser.
 
@@ -63,7 +65,7 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-## <a name="log-in-razor-components"></a>Componenti di accesso Razor
+## <a name="log-in-no-locrazor-components"></a>Componenti di accesso Razor
 
 I logger rispettano la configurazione di avvio dell'app.
 

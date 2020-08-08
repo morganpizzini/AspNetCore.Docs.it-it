@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/17/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: index
-ms.openlocfilehash: 2ad97dd7eb38b4cb69fa7af5ae1e1d1837a97443
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 9cf721b381d3c4c737c15225edcf7918dd1fcf5b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944552"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015348"
 ---
 # <a name="introduction-to-aspnet-core"></a>Introduzione a ASP.NET Core
 
@@ -68,7 +70,7 @@ Usare .NET Core come destinazione offre diversi vantaggi, che aumentano con ogni
 * prestazioni migliorate
 * [Controllo delle versioni affiancato](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level)
 * Nuove API
-* Aprire origine
+* Open source
 
 ## <a name="recommended-learning-path"></a>Percorso di apprendimento consigliato
 
@@ -78,9 +80,9 @@ Per un'introduzione allo sviluppo di app ASP.NET Core, è consigliabile usare la
 
    |Tipo di app  |Scenario  |Esercitazione  |
    |----------|----------|----------|
-   |App Web                   | Nuovo sviluppo di interfaccia utente Web sul lato server |[Introduzione alle Razor pagine](xref:tutorials/razor-pages/razor-pages-start) |
-   |App Web                   | Gestione di un'app MVC |[Introduzione a MVC](xref:tutorials/first-mvc-app/start-mvc)|
-   |App Web                   | Sviluppo di interfaccia utente Web lato client |[Introduzione aBlazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) |
+   |app Web                   | Nuovo sviluppo di interfaccia utente Web sul lato server |[Introduzione alle Razor pagine](xref:tutorials/razor-pages/razor-pages-start) |
+   |app Web                   | Gestione di un'app MVC |[Introduzione a MVC](xref:tutorials/first-mvc-app/start-mvc)|
+   |app Web                   | Sviluppo di interfaccia utente Web lato client |[Introduzione aBlazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) |
    |API Web                   | Servizi HTTP RESTful |[Creare un'API Web](xref:tutorials/first-web-api)&dagger; |
    |App RPC (Remote Procedure Call) | Servizi di primo contratto che usano i buffer del protocollo |[Introduzione all'uso di un servizio gRPC](xref:tutorials/grpc/grpc-start) |
    |App in tempo reale             | Comunicazione bidirezionale tra i server e i client connessi |[Introduzione aSignalR](xref:tutorials/signalr) |
@@ -154,7 +156,7 @@ Usare .NET Core come destinazione offre diversi vantaggi, che aumentano con ogni
 * prestazioni migliorate
 * [Controllo delle versioni affiancato](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level)
 * Nuove API
-* Aprire origine
+* Open source
 
 Per semplificare la divariazione dell'API da .NET Framework a .NET Core, [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) ha reso disponibili migliaia di API solo per Windows disponibili in .NET Core. Queste API non erano disponibili in .NET Core 1. x.
 
@@ -166,8 +168,8 @@ Per un'introduzione allo sviluppo delle app ASP.NET Core, è consigliabile esegu
 
    |Tipo di app  |Scenario  |Esercitazione  |
    |----------|----------|----------|
-   |App Web                   | Per un nuovo sviluppo        |[Introduzione alle Razor pagine](xref:tutorials/razor-pages/razor-pages-start) |
-   |App Web                   | Per gestire un'app MVC |[Introduzione a MVC](xref:tutorials/first-mvc-app/start-mvc)|
+   |app Web                   | Per un nuovo sviluppo        |[Introduzione alle Razor pagine](xref:tutorials/razor-pages/razor-pages-start) |
+   |app Web                   | Per gestire un'app MVC |[Introduzione a MVC](xref:tutorials/first-mvc-app/start-mvc)|
    |API Web                   |                            |[Creare un'API Web](xref:tutorials/first-web-api)&dagger; |
    |App in tempo reale             |                            |[Introduzione aSignalR](xref:tutorials/signalr) |
 

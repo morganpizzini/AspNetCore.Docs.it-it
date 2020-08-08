@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/02/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,20 +17,20 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 69a24fc955a0f2fb524ec817eb50372052f538a1
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 4dc9040b9410304eb33e5df7c47db2f9a42152d3
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944256"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013996"
 ---
-# <a name="secure-aspnet-core-blazor-server-apps"></a>Proteggere le Blazor Server app ASP.NET Core
+# <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Proteggere le Blazor Server app ASP.NET Core
 
 Di [Luke Latham](https://github.com/guardrex)
 
 Blazor Serverle app sono configurate per la sicurezza in modo analogo alle app ASP.NET Core. Per ulteriori informazioni, vedere gli articoli in <xref:security/index> . Gli argomenti di questa panoramica si applicano in modo specifico a Blazor Server . 
 
-## <a name="blazor-server-project-template"></a>Blazor Servermodello di progetto
+## <a name="no-locblazor-server-project-template"></a>Blazor Servermodello di progetto
 
 Il Blazor Server modello di progetto può essere configurato per l'autenticazione quando viene creato il progetto.
 
@@ -57,7 +59,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 I valori di autenticazione consentiti (`{AUTHENTICATION}`) sono indicati nella tabella seguente.
 
-| Meccanismo di autenticazione | Description |
+| Meccanismo di autenticazione | Descrizione |
 | ------------------------ | ----------- |
 | `None` (impostazione predefinita)         | Nessuna autenticazione |
 | `Individual`             | Utenti archiviati nell'app con ASP.NET CoreIdentity |
@@ -91,7 +93,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 I valori di autenticazione consentiti (`{AUTHENTICATION}`) sono indicati nella tabella seguente.
 
-| Meccanismo di autenticazione | Description |
+| Meccanismo di autenticazione | Descrizione |
 | ------------------------ | ----------- |
 | `None` (impostazione predefinita)         | Nessuna autenticazione |
 | `Individual`             | Utenti archiviati nell'app con ASP.NET CoreIdentity |
@@ -109,7 +111,7 @@ Per ulteriori informazioni, vedere il [`dotnet new`](/dotnet/core/tools/dotnet-n
 
 ---
 
-## <a name="scaffold-identity"></a>ScaffoldIdentity
+## <a name="scaffold-no-locidentity"></a>ScaffoldIdentity
 
 Impalcatura Identity in un Blazor Server progetto:
 
