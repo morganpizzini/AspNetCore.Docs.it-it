@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/1/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,48 +17,48 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: a8ca520d84d382b95cd4c0e2962ba4e5c922049e
-ms.sourcegitcommit: 3544941682869734ea0113e24e02ed0ec9e1a9ec
+ms.openlocfilehash: 4404a5513d9dc989e50c904f3e7863de59991939
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/18/2020
-ms.locfileid: "86464566"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88022329"
 ---
-# <a name="scaffold-identity-in-aspnet-core-projects"></a><span data-ttu-id="5b903-103">Impalcatura Identity nei progetti ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="5b903-103">Scaffold Identity in ASP.NET Core projects</span></span>
+# <a name="scaffold-no-locidentity-in-aspnet-core-projects"></a><span data-ttu-id="4eb9f-103">Impalcatura Identity nei progetti ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="4eb9f-103">Scaffold Identity in ASP.NET Core projects</span></span>
 
-<span data-ttu-id="5b903-104">Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)</span><span class="sxs-lookup"><span data-stu-id="5b903-104">By [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
+<span data-ttu-id="4eb9f-104">Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)</span><span class="sxs-lookup"><span data-stu-id="4eb9f-104">By [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="5b903-105">ASP.NET Core fornisce [ASP.NET Core Identity ](xref:security/authentication/identity) come [ Razor libreria di classi](xref:razor-pages/ui-class).</span><span class="sxs-lookup"><span data-stu-id="5b903-105">ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class).</span></span> <span data-ttu-id="5b903-106">Le applicazioni che includono Identity possono applicare l'impalcatura per aggiungere selettivamente il codice sorgente contenuto nella Identity Razor libreria di classi (RCL).</span><span class="sxs-lookup"><span data-stu-id="5b903-106">Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL).</span></span> <span data-ttu-id="5b903-107">Se si vuole generare un codice sorgente, è possibile modificare il codice e modificarne il comportamento.</span><span class="sxs-lookup"><span data-stu-id="5b903-107">You might want to generate source code so you can modify the code and change the behavior.</span></span> <span data-ttu-id="5b903-108">Ad esempio, è possibile indicare allo scaffolder di generare il codice usato nella registrazione.</span><span class="sxs-lookup"><span data-stu-id="5b903-108">For example, you could instruct the scaffolder to generate the code used in registration.</span></span> <span data-ttu-id="5b903-109">Il codice generato ha la precedenza sullo stesso codice in Identity RCL.</span><span class="sxs-lookup"><span data-stu-id="5b903-109">Generated code takes precedence over the same code in the Identity RCL.</span></span> <span data-ttu-id="5b903-110">Per ottenere il controllo completo dell'interfaccia utente e non usare il RCL predefinito, vedere la sezione [creare un'origine completa dell' Identity interfaccia utente](#full).</span><span class="sxs-lookup"><span data-stu-id="5b903-110">To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).</span></span>
+<span data-ttu-id="4eb9f-105">ASP.NET Core fornisce [ASP.NET Core Identity ](xref:security/authentication/identity) come [ Razor libreria di classi](xref:razor-pages/ui-class).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-105">ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class).</span></span> <span data-ttu-id="4eb9f-106">Le applicazioni che includono Identity possono applicare l'impalcatura per aggiungere selettivamente il codice sorgente contenuto nella Identity Razor libreria di classi (RCL).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-106">Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL).</span></span> <span data-ttu-id="4eb9f-107">Se si vuole generare un codice sorgente, è possibile modificare il codice e modificarne il comportamento.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-107">You might want to generate source code so you can modify the code and change the behavior.</span></span> <span data-ttu-id="4eb9f-108">Ad esempio, è possibile indicare allo scaffolder di generare il codice usato nella registrazione.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-108">For example, you could instruct the scaffolder to generate the code used in registration.</span></span> <span data-ttu-id="4eb9f-109">Il codice generato ha la precedenza sullo stesso codice in Identity RCL.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-109">Generated code takes precedence over the same code in the Identity RCL.</span></span> <span data-ttu-id="4eb9f-110">Per ottenere il controllo completo dell'interfaccia utente e non usare il RCL predefinito, vedere la sezione [creare un'origine completa dell' Identity interfaccia utente](#full).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-110">To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).</span></span>
 
-<span data-ttu-id="5b903-111">Le applicazioni che **non** includono l'autenticazione possono applicare l'impalcatura per aggiungere il Identity pacchetto RCL.</span><span class="sxs-lookup"><span data-stu-id="5b903-111">Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package.</span></span> <span data-ttu-id="5b903-112">È possibile scegliere di selezionare il Identity codice da generare.</span><span class="sxs-lookup"><span data-stu-id="5b903-112">You have the option of selecting Identity code to be generated.</span></span>
+<span data-ttu-id="4eb9f-111">Le applicazioni che **non** includono l'autenticazione possono applicare l'impalcatura per aggiungere il Identity pacchetto RCL.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-111">Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package.</span></span> <span data-ttu-id="4eb9f-112">È possibile scegliere di selezionare il Identity codice da generare.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-112">You have the option of selecting Identity code to be generated.</span></span>
 
-<span data-ttu-id="5b903-113">Sebbene l'impalcatura generi la maggior parte del codice necessario, è necessario aggiornare il progetto per completare il processo.</span><span class="sxs-lookup"><span data-stu-id="5b903-113">Although the scaffolder generates most of the necessary code, you need to update your project to complete the process.</span></span> <span data-ttu-id="5b903-114">Questo documento illustra i passaggi necessari per completare un Identity aggiornamento di ponteggi.</span><span class="sxs-lookup"><span data-stu-id="5b903-114">This document explains the steps needed to complete an Identity scaffolding update.</span></span>
+<span data-ttu-id="4eb9f-113">Sebbene l'impalcatura generi la maggior parte del codice necessario, è necessario aggiornare il progetto per completare il processo.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-113">Although the scaffolder generates most of the necessary code, you need to update your project to complete the process.</span></span> <span data-ttu-id="4eb9f-114">Questo documento illustra i passaggi necessari per completare un Identity aggiornamento di ponteggi.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-114">This document explains the steps needed to complete an Identity scaffolding update.</span></span>
 
-<span data-ttu-id="5b903-115">È consigliabile usare un sistema di controllo del codice sorgente che mostra le differenze dei file e consente di eseguire il backup delle modifiche.</span><span class="sxs-lookup"><span data-stu-id="5b903-115">We recommend using a source control system that shows file differences and allows you to back out of changes.</span></span> <span data-ttu-id="5b903-116">Controllare le modifiche dopo l'esecuzione dell' Identity impalcatura.</span><span class="sxs-lookup"><span data-stu-id="5b903-116">Inspect the changes after running the Identity scaffolder.</span></span>
+<span data-ttu-id="4eb9f-115">È consigliabile usare un sistema di controllo del codice sorgente che mostra le differenze dei file e consente di eseguire il backup delle modifiche.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-115">We recommend using a source control system that shows file differences and allows you to back out of changes.</span></span> <span data-ttu-id="4eb9f-116">Controllare le modifiche dopo l'esecuzione dell' Identity impalcatura.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-116">Inspect the changes after running the Identity scaffolder.</span></span>
 
-<span data-ttu-id="5b903-117">I servizi sono necessari quando si usa [l'autenticazione a due fattori](xref:security/authentication/identity-enable-qrcodes), la [conferma dell'account e il recupero della password](xref:security/authentication/accconfirm)e altre funzionalità di sicurezza con Identity .</span><span class="sxs-lookup"><span data-stu-id="5b903-117">Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity.</span></span> <span data-ttu-id="5b903-118">I servizi o gli stub di servizio non vengono generati durante l'impalcatura Identity .</span><span class="sxs-lookup"><span data-stu-id="5b903-118">Services or service stubs aren't generated when scaffolding Identity.</span></span> <span data-ttu-id="5b903-119">I servizi per abilitare queste funzionalità devono essere aggiunti manualmente.</span><span class="sxs-lookup"><span data-stu-id="5b903-119">Services to enable these features must be added manually.</span></span> <span data-ttu-id="5b903-120">Vedere ad esempio [Richiedi conferma tramite posta elettronica](xref:security/authentication/accconfirm#require-email-confirmation).</span><span class="sxs-lookup"><span data-stu-id="5b903-120">For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).</span></span>
+<span data-ttu-id="4eb9f-117">I servizi sono necessari quando si usa [l'autenticazione a due fattori](xref:security/authentication/identity-enable-qrcodes), la [conferma dell'account e il recupero della password](xref:security/authentication/accconfirm)e altre funzionalità di sicurezza con Identity .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-117">Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity.</span></span> <span data-ttu-id="4eb9f-118">I servizi o gli stub di servizio non vengono generati durante l'impalcatura Identity .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-118">Services or service stubs aren't generated when scaffolding Identity.</span></span> <span data-ttu-id="4eb9f-119">I servizi per abilitare queste funzionalità devono essere aggiunti manualmente.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-119">Services to enable these features must be added manually.</span></span> <span data-ttu-id="4eb9f-120">Vedere ad esempio [Richiedi conferma tramite posta elettronica](xref:security/authentication/accconfirm#require-email-confirmation).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-120">For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).</span></span>
 
-<span data-ttu-id="5b903-121">Quando si esegue il ponteggi Identity con un nuovo contesto dati in un progetto con account singoli esistenti:</span><span class="sxs-lookup"><span data-stu-id="5b903-121">When scaffolding Identity with a new data context into a project with existing individual accounts:</span></span>
+<span data-ttu-id="4eb9f-121">Quando si esegue il ponteggi Identity con un nuovo contesto dati in un progetto con account singoli esistenti:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-121">When scaffolding Identity with a new data context into a project with existing individual accounts:</span></span>
 
-* <span data-ttu-id="5b903-122">In `Startup.ConfigureServices` rimuovere le chiamate a:</span><span class="sxs-lookup"><span data-stu-id="5b903-122">In `Startup.ConfigureServices`, remove the calls to:</span></span>
+* <span data-ttu-id="4eb9f-122">In `Startup.ConfigureServices` rimuovere le chiamate a:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-122">In `Startup.ConfigureServices`, remove the calls to:</span></span>
   * `AddDbContext`
   * `AddDefaultIdentity`
 
-<span data-ttu-id="5b903-123">Ad esempio, `AddDbContext` e `AddDefaultIdentity` sono impostati come commento nel codice seguente:</span><span class="sxs-lookup"><span data-stu-id="5b903-123">For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the following code:</span></span>
+<span data-ttu-id="4eb9f-123">Ad esempio, `AddDbContext` e `AddDefaultIdentity` sono impostati come commento nel codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-123">For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the following code:</span></span>
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupRemove.cs?name=snippet)]
 
-<span data-ttu-id="5b903-124">Il codice precedente commenta il codice duplicato in *aree/ Identity / Identity HostingStartup.cs*</span><span class="sxs-lookup"><span data-stu-id="5b903-124">The preceeding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*</span></span>
+<span data-ttu-id="4eb9f-124">Il codice precedente commenta il codice duplicato in *aree/ Identity / Identity HostingStartup.cs*</span><span class="sxs-lookup"><span data-stu-id="4eb9f-124">The preceeding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*</span></span>
 
-<span data-ttu-id="5b903-125">In genere, le app create con singoli account ***non*** devono creare un nuovo contesto dati.</span><span class="sxs-lookup"><span data-stu-id="5b903-125">Typically, apps that were created with individual accounts should ***not*** create a new data context.</span></span>
+<span data-ttu-id="4eb9f-125">In genere, le app create con singoli account ***non*** devono creare un nuovo contesto dati.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-125">Typically, apps that were created with individual accounts should ***not*** create a new data context.</span></span>
 
-## <a name="scaffold-identity-into-an-empty-project"></a><span data-ttu-id="5b903-126">Impalcatura Identity in un progetto vuoto</span><span class="sxs-lookup"><span data-stu-id="5b903-126">Scaffold Identity into an empty project</span></span>
+## <a name="scaffold-no-locidentity-into-an-empty-project"></a><span data-ttu-id="4eb9f-126">Impalcatura Identity in un progetto vuoto</span><span class="sxs-lookup"><span data-stu-id="4eb9f-126">Scaffold Identity into an empty project</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-<span data-ttu-id="5b903-127">Aggiornare la `Startup` classe con codice simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="5b903-127">Update the `Startup` class with code similar to the following:</span></span>
+<span data-ttu-id="4eb9f-127">Aggiornare la `Startup` classe con codice simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-127">Update the `Startup` class with code similar to the following:</span></span>
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
 
@@ -64,7 +66,7 @@ ms.locfileid: "86464566"
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-## <a name="scaffold-identity-into-a-razor-project-without-existing-authorization"></a><span data-ttu-id="5b903-128">Impalcatura Identity in un Razor progetto senza autorizzazione esistente</span><span class="sxs-lookup"><span data-stu-id="5b903-128">Scaffold Identity into a Razor project without existing authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-without-existing-authorization"></a><span data-ttu-id="4eb9f-128">Impalcatura Identity in un Razor progetto senza autorizzazione esistente</span><span class="sxs-lookup"><span data-stu-id="4eb9f-128">Scaffold Identity into a Razor project without existing authorization</span></span>
 
 <!--  Updated for 3.0
 set projNam=RPnoAuth
@@ -93,31 +95,31 @@ before dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity<span data-ttu-id="5b903-129">è configurato in *areas/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="5b903-129"> is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="5b903-130">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="5b903-130">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="4eb9f-129">Identityè configurato in *areas/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-129">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="4eb9f-130">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-130">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
 <a name="efm"></a>
 
-### <a name="migrations-useauthentication-and-layout"></a><span data-ttu-id="5b903-131">Migrazioni, UseAuthentication e layout</span><span class="sxs-lookup"><span data-stu-id="5b903-131">Migrations, UseAuthentication, and layout</span></span>
+### <a name="migrations-useauthentication-and-layout"></a><span data-ttu-id="4eb9f-131">Migrazioni, UseAuthentication e layout</span><span class="sxs-lookup"><span data-stu-id="4eb9f-131">Migrations, UseAuthentication, and layout</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
 <a name="useauthentication"></a>
 
-### <a name="enable-authentication"></a><span data-ttu-id="5b903-132">Abilita autenticazione</span><span class="sxs-lookup"><span data-stu-id="5b903-132">Enable authentication</span></span>
+### <a name="enable-authentication"></a><span data-ttu-id="4eb9f-132">Abilita autenticazione</span><span class="sxs-lookup"><span data-stu-id="4eb9f-132">Enable authentication</span></span>
 
-<span data-ttu-id="5b903-133">Aggiornare la `Startup` classe con codice simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="5b903-133">Update the `Startup` class with code similar to the following:</span></span>
+<span data-ttu-id="4eb9f-133">Aggiornare la `Startup` classe con codice simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-133">Update the `Startup` class with code similar to the following:</span></span>
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupRP.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-### <a name="layout-changes"></a><span data-ttu-id="5b903-134">Modifiche del layout</span><span class="sxs-lookup"><span data-stu-id="5b903-134">Layout changes</span></span>
+### <a name="layout-changes"></a><span data-ttu-id="4eb9f-134">Modifiche del layout</span><span class="sxs-lookup"><span data-stu-id="4eb9f-134">Layout changes</span></span>
 
-<span data-ttu-id="5b903-135">Facoltativo: aggiungere l'account di accesso parziale ( `_LoginPartial` ) al file di layout:</span><span class="sxs-lookup"><span data-stu-id="5b903-135">Optional: Add the login partial (`_LoginPartial`) to the layout file:</span></span>
+<span data-ttu-id="4eb9f-135">Facoltativo: aggiungere l'account di accesso parziale ( `_LoginPartial` ) al file di layout:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-135">Optional: Add the login partial (`_LoginPartial`) to the layout file:</span></span>
 
 [!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
-## <a name="scaffold-identity-into-a-razor-project-with-authorization"></a><span data-ttu-id="5b903-136">Impalcatura Identity in un Razor progetto con autorizzazione</span><span class="sxs-lookup"><span data-stu-id="5b903-136">Scaffold Identity into a Razor project with authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-with-authorization"></a><span data-ttu-id="4eb9f-136">Impalcatura Identity in un Razor progetto con autorizzazione</span><span class="sxs-lookup"><span data-stu-id="4eb9f-136">Scaffold Identity into a Razor project with authorization</span></span>
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -132,9 +134,9 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-<span data-ttu-id="5b903-137">Alcune Identity opzioni sono configurate in *aree/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="5b903-137">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="5b903-138">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="5b903-138">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="4eb9f-137">Alcune Identity opzioni sono configurate in *aree/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-137">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="4eb9f-138">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-138">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
-## <a name="scaffold-identity-into-an-mvc-project-without-existing-authorization"></a><span data-ttu-id="5b903-139">Impalcatura Identity in un progetto MVC senza autorizzazione esistente</span><span class="sxs-lookup"><span data-stu-id="5b903-139">Scaffold Identity into an MVC project without existing authorization</span></span>
+## <a name="scaffold-no-locidentity-into-an-mvc-project-without-existing-authorization"></a><span data-ttu-id="4eb9f-139">Impalcatura Identity in un progetto MVC senza autorizzazione esistente</span><span class="sxs-lookup"><span data-stu-id="4eb9f-139">Scaffold Identity into an MVC project without existing authorization</span></span>
 
 <!--
 set projNam=MvcNoAuth
@@ -152,23 +154,23 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-<span data-ttu-id="5b903-140">Facoltativo: aggiungere l'account di accesso parziale ( `_LoginPartial` ) al file *Views/Shared/_Layout. cshtml* :</span><span class="sxs-lookup"><span data-stu-id="5b903-140">Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:</span></span>
+<span data-ttu-id="4eb9f-140">Facoltativo: aggiungere l'account di accesso parziale ( `_LoginPartial` ) al file *Views/Shared/_Layout. cshtml* :</span><span class="sxs-lookup"><span data-stu-id="4eb9f-140">Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:</span></span>
 
 [!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
-* <span data-ttu-id="5b903-141">Spostare il file *pages/Shared/_LoginPartial. cshtml* in *Views/Shared/_LoginPartial. cshtml*</span><span class="sxs-lookup"><span data-stu-id="5b903-141">Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*</span></span>
+* <span data-ttu-id="4eb9f-141">Spostare il file *pages/Shared/_LoginPartial. cshtml* in *Views/Shared/_LoginPartial. cshtml*</span><span class="sxs-lookup"><span data-stu-id="4eb9f-141">Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*</span></span>
 
-Identity<span data-ttu-id="5b903-142">è configurato in *areas/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="5b903-142"> is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="5b903-143">Per ulteriori informazioni, vedere IHostingStartup.</span><span class="sxs-lookup"><span data-stu-id="5b903-143">For more information, see IHostingStartup.</span></span>
+<span data-ttu-id="4eb9f-142">Identityè configurato in *areas/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-142">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="4eb9f-143">Per ulteriori informazioni, vedere IHostingStartup.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-143">For more information, see IHostingStartup.</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-<span data-ttu-id="5b903-144">Aggiornare la `Startup` classe con codice simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="5b903-144">Update the `Startup` class with code similar to the following:</span></span>
+<span data-ttu-id="4eb9f-144">Aggiornare la `Startup` classe con codice simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-144">Update the `Startup` class with code similar to the following:</span></span>
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-## <a name="scaffold-identity-into-an-mvc-project-with-authorization"></a><span data-ttu-id="5b903-145">Impalcatura Identity in un progetto MVC con autorizzazione</span><span class="sxs-lookup"><span data-stu-id="5b903-145">Scaffold Identity into an MVC project with authorization</span></span>
+## <a name="scaffold-no-locidentity-into-an-mvc-project-with-authorization"></a><span data-ttu-id="4eb9f-145">Impalcatura Identity in un progetto MVC con autorizzazione</span><span class="sxs-lookup"><span data-stu-id="4eb9f-145">Scaffold Identity into an MVC project with authorization</span></span>
 
 <!--
 dotnet new mvc -au Individual -o MvcAuth
@@ -180,26 +182,26 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-## <a name="scaffold-identity-into-a-blazor-server-project-without-existing-authorization"></a><span data-ttu-id="5b903-146">Impalcatura Identity in un Blazor Server progetto senza autorizzazione esistente</span><span class="sxs-lookup"><span data-stu-id="5b903-146">Scaffold Identity into a Blazor Server project without existing authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locblazor-server-project-without-existing-authorization"></a><span data-ttu-id="4eb9f-146">Impalcatura Identity in un Blazor Server progetto senza autorizzazione esistente</span><span class="sxs-lookup"><span data-stu-id="4eb9f-146">Scaffold Identity into a Blazor Server project without existing authorization</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity<span data-ttu-id="5b903-147">è configurato in *areas/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="5b903-147"> is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="5b903-148">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="5b903-148">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="4eb9f-147">Identityè configurato in *areas/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-147">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="4eb9f-148">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-148">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
-### <a name="migrations"></a><span data-ttu-id="5b903-149">Migrazioni</span><span class="sxs-lookup"><span data-stu-id="5b903-149">Migrations</span></span>
+### <a name="migrations"></a><span data-ttu-id="4eb9f-149">Migrazioni</span><span class="sxs-lookup"><span data-stu-id="4eb9f-149">Migrations</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-### <a name="pass-an-xsrf-token-to-the-app"></a><span data-ttu-id="5b903-150">Passare un token XSRF all'app</span><span class="sxs-lookup"><span data-stu-id="5b903-150">Pass an XSRF token to the app</span></span>
+### <a name="pass-an-xsrf-token-to-the-app"></a><span data-ttu-id="4eb9f-150">Passare un token XSRF all'app</span><span class="sxs-lookup"><span data-stu-id="4eb9f-150">Pass an XSRF token to the app</span></span>
 
-<span data-ttu-id="5b903-151">I token possono essere passati ai componenti:</span><span class="sxs-lookup"><span data-stu-id="5b903-151">Tokens can be passed to components:</span></span>
+<span data-ttu-id="4eb9f-151">I token possono essere passati ai componenti:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-151">Tokens can be passed to components:</span></span>
 
-* <span data-ttu-id="5b903-152">Quando i token di autenticazione vengono sottoposti a provisioning e salvati nel cookie di autenticazione, possono essere passati ai componenti di.</span><span class="sxs-lookup"><span data-stu-id="5b903-152">When authentication tokens are provisioned and saved to the authentication cookie, they can be passed to components.</span></span>
-* Razor<span data-ttu-id="5b903-153">i componenti non possono usare `HttpContext` direttamente, quindi non è possibile ottenere un [token anti-request falsificazione (XSRF)](xref:security/anti-request-forgery) per pubblicare l' Identity endpoint di disconnessione in `/Identity/Account/Logout` .</span><span class="sxs-lookup"><span data-stu-id="5b903-153"> components can't use `HttpContext` directly, so there's no way to obtain an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity's logout endpoint at `/Identity/Account/Logout`.</span></span> <span data-ttu-id="5b903-154">Un token XSRF può essere passato ai componenti.</span><span class="sxs-lookup"><span data-stu-id="5b903-154">An XSRF token can be passed to components.</span></span>
+* <span data-ttu-id="4eb9f-152">Quando i token di autenticazione vengono sottoposti a provisioning e salvati nell'autenticazione cookie , possono essere passati ai componenti di.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-152">When authentication tokens are provisioned and saved to the authentication cookie, they can be passed to components.</span></span>
+* <span data-ttu-id="4eb9f-153">Razori componenti non possono usare `HttpContext` direttamente, quindi non è possibile ottenere un [token anti-request falsificazione (XSRF)](xref:security/anti-request-forgery) per pubblicare l' Identity endpoint di disconnessione in `/Identity/Account/Logout` .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-153">Razor components can't use `HttpContext` directly, so there's no way to obtain an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity's logout endpoint at `/Identity/Account/Logout`.</span></span> <span data-ttu-id="4eb9f-154">Un token XSRF può essere passato ai componenti.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-154">An XSRF token can be passed to components.</span></span>
 
-<span data-ttu-id="5b903-155">Per altre informazioni, vedere <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.</span><span class="sxs-lookup"><span data-stu-id="5b903-155">For more information, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.</span></span>
+<span data-ttu-id="4eb9f-155">Per altre informazioni, vedere <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-155">For more information, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.</span></span>
 
-<span data-ttu-id="5b903-156">Nel file *pages/_Host. cshtml* , stabilire il token dopo averlo aggiunto alle `InitialApplicationState` classi e `TokenProvider` :</span><span class="sxs-lookup"><span data-stu-id="5b903-156">In the *Pages/_Host.cshtml* file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:</span></span>
+<span data-ttu-id="4eb9f-156">Nel file *pages/_Host. cshtml* , stabilire il token dopo averlo aggiunto alle `InitialApplicationState` classi e `TokenProvider` :</span><span class="sxs-lookup"><span data-stu-id="4eb9f-156">In the *Pages/_Host.cshtml* file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:</span></span>
 
 ```csharp
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
@@ -214,7 +216,7 @@ var tokens = new InitialApplicationState
 };
 ```
 
-<span data-ttu-id="5b903-157">Aggiornare il `App` componente (*app. Razor*) per assegnare `InitialState.XsrfToken` :</span><span class="sxs-lookup"><span data-stu-id="5b903-157">Update the `App` component (*App.razor*) to assign the `InitialState.XsrfToken`:</span></span>
+<span data-ttu-id="4eb9f-157">Aggiornare il `App` componente (*app. Razor*) per assegnare `InitialState.XsrfToken` :</span><span class="sxs-lookup"><span data-stu-id="4eb9f-157">Update the `App` component (*App.razor*) to assign the `InitialState.XsrfToken`:</span></span>
 
 ```csharp
 @inject TokenProvider TokenProvider
@@ -224,25 +226,25 @@ var tokens = new InitialApplicationState
 TokenProvider.XsrfToken = InitialState.XsrfToken;
 ```
 
-<span data-ttu-id="5b903-158">Il `TokenProvider` servizio illustrato nell'argomento viene usato nel `LoginDisplay` componente nella sezione [modifiche del flusso di layout e autenticazione](#layout-and-authentication-flow-changes) seguente.</span><span class="sxs-lookup"><span data-stu-id="5b903-158">The `TokenProvider` service demonstrated in the topic is used in the `LoginDisplay` component in the following [Layout and authentication flow changes](#layout-and-authentication-flow-changes) section.</span></span>
+<span data-ttu-id="4eb9f-158">Il `TokenProvider` servizio illustrato nell'argomento viene usato nel `LoginDisplay` componente nella sezione [modifiche del flusso di layout e autenticazione](#layout-and-authentication-flow-changes) seguente.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-158">The `TokenProvider` service demonstrated in the topic is used in the `LoginDisplay` component in the following [Layout and authentication flow changes](#layout-and-authentication-flow-changes) section.</span></span>
 
-### <a name="enable-authentication"></a><span data-ttu-id="5b903-159">Abilita autenticazione</span><span class="sxs-lookup"><span data-stu-id="5b903-159">Enable authentication</span></span>
+### <a name="enable-authentication"></a><span data-ttu-id="4eb9f-159">Abilita autenticazione</span><span class="sxs-lookup"><span data-stu-id="4eb9f-159">Enable authentication</span></span>
 
-<span data-ttu-id="5b903-160">Nella `Startup` classe:</span><span class="sxs-lookup"><span data-stu-id="5b903-160">In the `Startup` class:</span></span>
+<span data-ttu-id="4eb9f-160">Nella `Startup` classe:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-160">In the `Startup` class:</span></span>
 
-* <span data-ttu-id="5b903-161">Verificare che Razor i servizi Pages siano stati aggiunti in `Startup.ConfigureServices` .</span><span class="sxs-lookup"><span data-stu-id="5b903-161">Confirm that Razor Pages services are added in `Startup.ConfigureServices`.</span></span>
-* <span data-ttu-id="5b903-162">Se si usa [TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), registrare il servizio.</span><span class="sxs-lookup"><span data-stu-id="5b903-162">If using the [TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), register the service.</span></span>
-* <span data-ttu-id="5b903-163">Chiamare il `UseDatabaseErrorPage` Generatore di applicazioni in `Startup.Configure` per l'ambiente di sviluppo.</span><span class="sxs-lookup"><span data-stu-id="5b903-163">Call `UseDatabaseErrorPage` on the application builder in `Startup.Configure` for the Development environment.</span></span>
-* <span data-ttu-id="5b903-164">Chiamare `UseAuthentication` e `UseAuthorization` dopo `UseRouting` .</span><span class="sxs-lookup"><span data-stu-id="5b903-164">Call `UseAuthentication` and `UseAuthorization` after `UseRouting`.</span></span>
-* <span data-ttu-id="5b903-165">Aggiungere un endpoint per le Razor pagine.</span><span class="sxs-lookup"><span data-stu-id="5b903-165">Add an endpoint for Razor Pages.</span></span>
+* <span data-ttu-id="4eb9f-161">Verificare che Razor i servizi Pages siano stati aggiunti in `Startup.ConfigureServices` .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-161">Confirm that Razor Pages services are added in `Startup.ConfigureServices`.</span></span>
+* <span data-ttu-id="4eb9f-162">Se si usa [TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), registrare il servizio.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-162">If using the [TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), register the service.</span></span>
+* <span data-ttu-id="4eb9f-163">Chiamare il `UseDatabaseErrorPage` Generatore di applicazioni in `Startup.Configure` per l'ambiente di sviluppo.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-163">Call `UseDatabaseErrorPage` on the application builder in `Startup.Configure` for the Development environment.</span></span>
+* <span data-ttu-id="4eb9f-164">Chiamare `UseAuthentication` e `UseAuthorization` dopo `UseRouting` .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-164">Call `UseAuthentication` and `UseAuthorization` after `UseRouting`.</span></span>
+* <span data-ttu-id="4eb9f-165">Aggiungere un endpoint per le Razor pagine.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-165">Add an endpoint for Razor Pages.</span></span>
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupBlazor.cs?highlight=3,6,14,27-28,32)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-### <a name="layout-and-authentication-flow-changes"></a><span data-ttu-id="5b903-166">Modifiche al layout e al flusso di autenticazione</span><span class="sxs-lookup"><span data-stu-id="5b903-166">Layout and authentication flow changes</span></span>
+### <a name="layout-and-authentication-flow-changes"></a><span data-ttu-id="4eb9f-166">Modifiche al layout e al flusso di autenticazione</span><span class="sxs-lookup"><span data-stu-id="4eb9f-166">Layout and authentication flow changes</span></span>
 
-<span data-ttu-id="5b903-167">Aggiungere un `RedirectToLogin` componente (*RedirectToLogin. Razor*) alla cartella *condivisa* dell'app nella radice del progetto:</span><span class="sxs-lookup"><span data-stu-id="5b903-167">Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared* folder in the project root:</span></span>
+<span data-ttu-id="4eb9f-167">Aggiungere un `RedirectToLogin` componente (*RedirectToLogin. Razor*) alla cartella *condivisa* dell'app nella radice del progetto:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-167">Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared* folder in the project root:</span></span>
 
 ```razor
 @inject NavigationManager Navigation
@@ -255,7 +257,7 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 }
 ```
 
-Aggiungere un `LoginDisplay` componente (*LoginDisplay. Razor*) alla cartella *condivisa* dell'app. <span data-ttu-id="5b903-169">Il [servizio TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) fornisce il token XSRF per il form HTML che invia un messaggio all' Identity endpoint di disconnessione:</span><span class="sxs-lookup"><span data-stu-id="5b903-169">The [TokenProvider service](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:</span></span>
+Aggiungere un `LoginDisplay` componente (*LoginDisplay. Razor*) alla cartella *condivisa* dell'app. <span data-ttu-id="4eb9f-169">Il [servizio TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) fornisce il token XSRF per il form HTML che invia un messaggio all' Identity endpoint di disconnessione:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-169">The [TokenProvider service](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:</span></span>
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
@@ -280,7 +282,7 @@ Aggiungere un `LoginDisplay` componente (*LoginDisplay. Razor*) alla cartella *c
 </AuthorizeView>
 ```
 
-<span data-ttu-id="5b903-170">Nel `MainLayout` componente (*Shared/MainLayout. Razor*) aggiungere il `LoginDisplay` componente al contenuto dell'elemento della riga superiore `<div>` :</span><span class="sxs-lookup"><span data-stu-id="5b903-170">In the `MainLayout` component (*Shared/MainLayout.razor*), add the `LoginDisplay` component to the top-row `<div>` element's content:</span></span>
+<span data-ttu-id="4eb9f-170">Nel `MainLayout` componente (*Shared/MainLayout. Razor*) aggiungere il `LoginDisplay` componente al contenuto dell'elemento della riga superiore `<div>` :</span><span class="sxs-lookup"><span data-stu-id="4eb9f-170">In the `MainLayout` component (*Shared/MainLayout.razor*), add the `LoginDisplay` component to the top-row `<div>` element's content:</span></span>
 
 ```razor
 <div class="top-row px-4 auth">
@@ -289,42 +291,42 @@ Aggiungere un `LoginDisplay` componente (*LoginDisplay. Razor*) alla cartella *c
 </div>
 ```
 
-### <a name="style-authentication-endpoints"></a><span data-ttu-id="5b903-171">Endpoint di autenticazione dello stile</span><span class="sxs-lookup"><span data-stu-id="5b903-171">Style authentication endpoints</span></span>
+### <a name="style-authentication-endpoints"></a><span data-ttu-id="4eb9f-171">Endpoint di autenticazione dello stile</span><span class="sxs-lookup"><span data-stu-id="4eb9f-171">Style authentication endpoints</span></span>
 
-<span data-ttu-id="5b903-172">Poiché Blazor Server utilizza Razor pagine Identity di pagine, lo stile dell'interfaccia utente cambia quando un visitatore si sposta tra le Identity pagine e i componenti.</span><span class="sxs-lookup"><span data-stu-id="5b903-172">Because Blazor Server uses Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components.</span></span> <span data-ttu-id="5b903-173">Sono disponibili due opzioni per risolvere gli stili incongruenti:</span><span class="sxs-lookup"><span data-stu-id="5b903-173">You have two options to address the incongruous styles:</span></span>
+<span data-ttu-id="4eb9f-172">Poiché Blazor Server utilizza Razor pagine Identity di pagine, lo stile dell'interfaccia utente cambia quando un visitatore si sposta tra le Identity pagine e i componenti.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-172">Because Blazor Server uses Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components.</span></span> <span data-ttu-id="4eb9f-173">Sono disponibili due opzioni per risolvere gli stili incongruenti:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-173">You have two options to address the incongruous styles:</span></span>
 
-#### <a name="build-identity-components"></a><span data-ttu-id="5b903-174">Componenti di compilazione Identity</span><span class="sxs-lookup"><span data-stu-id="5b903-174">Build Identity components</span></span>
+#### <a name="build-no-locidentity-components"></a><span data-ttu-id="4eb9f-174">Componenti di compilazione Identity</span><span class="sxs-lookup"><span data-stu-id="4eb9f-174">Build Identity components</span></span>
 
-<span data-ttu-id="5b903-175">Un approccio all'utilizzo di componenti per Identity invece di pagine consiste nel creare Identity componenti.</span><span class="sxs-lookup"><span data-stu-id="5b903-175">An approach to using components for Identity instead of pages is to build Identity components.</span></span> <span data-ttu-id="5b903-176">Poiché `SignInManager` e `UserManager` non sono supportati nei Razor componenti, usare gli endpoint API nell' Blazor Server app per elaborare le azioni dell'account utente.</span><span class="sxs-lookup"><span data-stu-id="5b903-176">Because `SignInManager` and `UserManager` aren't supported in Razor components, use API endpoints in the Blazor Server app to process user account actions.</span></span>
+<span data-ttu-id="4eb9f-175">Un approccio all'utilizzo di componenti per Identity invece di pagine consiste nel creare Identity componenti.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-175">An approach to using components for Identity instead of pages is to build Identity components.</span></span> <span data-ttu-id="4eb9f-176">Poiché `SignInManager` e `UserManager` non sono supportati nei Razor componenti, usare gli endpoint API nell' Blazor Server app per elaborare le azioni dell'account utente.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-176">Because `SignInManager` and `UserManager` aren't supported in Razor components, use API endpoints in the Blazor Server app to process user account actions.</span></span>
 
-#### <a name="use-a-custom-layout-with-blazor-app-styles"></a><span data-ttu-id="5b903-177">Usare un layout personalizzato con Blazor stili di app</span><span class="sxs-lookup"><span data-stu-id="5b903-177">Use a custom layout with Blazor app styles</span></span>
+#### <a name="use-a-custom-layout-with-no-locblazor-app-styles"></a><span data-ttu-id="4eb9f-177">Usare un layout personalizzato con Blazor stili di app</span><span class="sxs-lookup"><span data-stu-id="4eb9f-177">Use a custom layout with Blazor app styles</span></span>
 
-<span data-ttu-id="5b903-178">Il Identity layout e gli stili delle pagine possono essere modificati per produrre pagine che usano il Blazor tema predefinito.</span><span class="sxs-lookup"><span data-stu-id="5b903-178">The Identity pages layout and styles can be modified to produce pages that use the default Blazor theme.</span></span>
+<span data-ttu-id="4eb9f-178">Il Identity layout e gli stili delle pagine possono essere modificati per produrre pagine che usano il Blazor tema predefinito.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-178">The Identity pages layout and styles can be modified to produce pages that use the default Blazor theme.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="5b903-179">L'esempio in questa sezione è semplicemente un punto di partenza per la personalizzazione.</span><span class="sxs-lookup"><span data-stu-id="5b903-179">The example in this section is merely a starting point for customization.</span></span> <span data-ttu-id="5b903-180">Il lavoro aggiuntivo è probabilmente necessario per la migliore esperienza utente.</span><span class="sxs-lookup"><span data-stu-id="5b903-180">Additional work is likely required for the best user experience.</span></span>
+> <span data-ttu-id="4eb9f-179">L'esempio in questa sezione è semplicemente un punto di partenza per la personalizzazione.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-179">The example in this section is merely a starting point for customization.</span></span> <span data-ttu-id="4eb9f-180">Il lavoro aggiuntivo è probabilmente necessario per la migliore esperienza utente.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-180">Additional work is likely required for the best user experience.</span></span>
 
-<span data-ttu-id="5b903-181">Creare un nuovo `NavMenu_IdentityLayout` componente (*Shared/NavMenu_ Identity layout. Razor*).</span><span class="sxs-lookup"><span data-stu-id="5b903-181">Create a new `NavMenu_IdentityLayout` component (*Shared/NavMenu_IdentityLayout.razor*).</span></span> <span data-ttu-id="5b903-182">Per il markup e il codice del componente, usare lo stesso contenuto del componente dell'app `NavMenu` (*Shared/NavMenu. Razor*).</span><span class="sxs-lookup"><span data-stu-id="5b903-182">For the markup and code of the component, use the same content of the app's `NavMenu` component (*Shared/NavMenu.razor*).</span></span> <span data-ttu-id="5b903-183">Rimuovere i `NavLink` componenti che non possono essere raggiunti in modo anonimo perché i reindirizzamenti automatici nel `RedirectToLogin` componente hanno esito negativo per i componenti che richiedono l'autenticazione o l'autorizzazione.</span><span class="sxs-lookup"><span data-stu-id="5b903-183">Strip out any `NavLink`s to components that can't be reached anonymously because automatic redirects in the `RedirectToLogin` component fail for components requiring authentication or authorization.</span></span>
+<span data-ttu-id="4eb9f-181">Creare un nuovo `NavMenu_IdentityLayout` componente (*Shared/NavMenu_ Identity layout. Razor*).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-181">Create a new `NavMenu_IdentityLayout` component (*Shared/NavMenu_IdentityLayout.razor*).</span></span> <span data-ttu-id="4eb9f-182">Per il markup e il codice del componente, usare lo stesso contenuto del componente dell'app `NavMenu` (*Shared/NavMenu. Razor*).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-182">For the markup and code of the component, use the same content of the app's `NavMenu` component (*Shared/NavMenu.razor*).</span></span> <span data-ttu-id="4eb9f-183">Rimuovere i `NavLink` componenti che non possono essere raggiunti in modo anonimo perché i reindirizzamenti automatici nel `RedirectToLogin` componente hanno esito negativo per i componenti che richiedono l'autenticazione o l'autorizzazione.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-183">Strip out any `NavLink`s to components that can't be reached anonymously because automatic redirects in the `RedirectToLogin` component fail for components requiring authentication or authorization.</span></span>
 
-<span data-ttu-id="5b903-184">Nel file *pages/Shared/layout. cshtml* apportare le modifiche seguenti:</span><span class="sxs-lookup"><span data-stu-id="5b903-184">In the *Pages/Shared/Layout.cshtml* file, make the following changes:</span></span>
+<span data-ttu-id="4eb9f-184">Nel file *pages/Shared/layout. cshtml* apportare le modifiche seguenti:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-184">In the *Pages/Shared/Layout.cshtml* file, make the following changes:</span></span>
 
-* <span data-ttu-id="5b903-185">Aggiungere le Razor direttive all'inizio del file per usare gli helper tag e i componenti dell'app nella cartella *condivisa* :</span><span class="sxs-lookup"><span data-stu-id="5b903-185">Add Razor directives to the top of the file to use Tag Helpers and the app's components in the *Shared* folder:</span></span>
+* <span data-ttu-id="4eb9f-185">Aggiungere le Razor direttive all'inizio del file per usare gli helper tag e i componenti dell'app nella cartella *condivisa* :</span><span class="sxs-lookup"><span data-stu-id="4eb9f-185">Add Razor directives to the top of the file to use Tag Helpers and the app's components in the *Shared* folder:</span></span>
 
   ```cshtml
   @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
   @using {APPLICATION ASSEMBLY}.Shared
   ```
 
-  <span data-ttu-id="5b903-186">Sostituire `{APPLICATION ASSEMBLY}` con il nome dell'assembly dell'app.</span><span class="sxs-lookup"><span data-stu-id="5b903-186">Replace `{APPLICATION ASSEMBLY}` with the app's assembly name.</span></span>
+  <span data-ttu-id="4eb9f-186">Sostituire `{APPLICATION ASSEMBLY}` con il nome dell'assembly dell'app.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-186">Replace `{APPLICATION ASSEMBLY}` with the app's assembly name.</span></span>
 
-* <span data-ttu-id="5b903-187">Aggiungere un `<base>` tag e un Blazor foglio `<link>` di stile al `<head>` contenuto:</span><span class="sxs-lookup"><span data-stu-id="5b903-187">Add a `<base>` tag and Blazor stylesheet `<link>` to the `<head>` content:</span></span>
+* <span data-ttu-id="4eb9f-187">Aggiungere un `<base>` tag e un Blazor foglio `<link>` di stile al `<head>` contenuto:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-187">Add a `<base>` tag and Blazor stylesheet `<link>` to the `<head>` content:</span></span>
 
   ```cshtml
   <base href="~/" />
   <link rel="stylesheet" href="~/css/site.css" />
   ```
 
-* <span data-ttu-id="5b903-188">Modificare il contenuto del `<body>` tag come segue:</span><span class="sxs-lookup"><span data-stu-id="5b903-188">Change the content of the `<body>` tag to the following:</span></span>
+* <span data-ttu-id="4eb9f-188">Modificare il contenuto del `<body>` tag come segue:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-188">Change the content of the `<body>` tag to the following:</span></span>
 
   ```cshtml
   <div class="sidebar" style="float:left">
@@ -362,31 +364,31 @@ Aggiungere un `LoginDisplay` componente (*LoginDisplay. Razor*) alla cartella *c
   <script src="_framework/blazor.server.js"></script>
   ```
 
-## <a name="scaffold-identity-into-a-blazor-server-project-with-authorization"></a><span data-ttu-id="5b903-189">Impalcatura Identity in un Blazor Server progetto con autorizzazione</span><span class="sxs-lookup"><span data-stu-id="5b903-189">Scaffold Identity into a Blazor Server project with authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locblazor-server-project-with-authorization"></a><span data-ttu-id="4eb9f-189">Impalcatura Identity in un Blazor Server progetto con autorizzazione</span><span class="sxs-lookup"><span data-stu-id="4eb9f-189">Scaffold Identity into a Blazor Server project with authorization</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-<span data-ttu-id="5b903-190">Alcune Identity opzioni sono configurate in *aree/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="5b903-190">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="5b903-191">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="5b903-191">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="4eb9f-190">Alcune Identity opzioni sono configurate in *aree/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-190">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="4eb9f-191">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-191">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
 <a name="full"></a>
 
-## <a name="create-full-identity-ui-source"></a><span data-ttu-id="5b903-192">Crea Identity origine interfaccia utente completa</span><span class="sxs-lookup"><span data-stu-id="5b903-192">Create full Identity UI source</span></span>
+## <a name="create-full-no-locidentity-ui-source"></a><span data-ttu-id="4eb9f-192">Crea Identity origine interfaccia utente completa</span><span class="sxs-lookup"><span data-stu-id="4eb9f-192">Create full Identity UI source</span></span>
 
-<span data-ttu-id="5b903-193">Per mantenere il controllo completo dell' Identity interfaccia utente, eseguire l' Identity impalcatura e selezionare **Sostituisci tutti i file**.</span><span class="sxs-lookup"><span data-stu-id="5b903-193">To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.</span></span>
+<span data-ttu-id="4eb9f-193">Per mantenere il controllo completo dell' Identity interfaccia utente, eseguire l' Identity impalcatura e selezionare **Sostituisci tutti i file**.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-193">To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.</span></span>
 
-<span data-ttu-id="5b903-194">Il codice evidenziato seguente mostra le modifiche per sostituire l' Identity interfaccia utente predefinita con Identity in un'app web ASP.NET Core 2,1.</span><span class="sxs-lookup"><span data-stu-id="5b903-194">The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app.</span></span> <span data-ttu-id="5b903-195">Questa operazione può essere eseguita per avere il controllo completo dell' Identity interfaccia utente.</span><span class="sxs-lookup"><span data-stu-id="5b903-195">You might want to do this to have full control of the Identity UI.</span></span>
+<span data-ttu-id="4eb9f-194">Il codice evidenziato seguente mostra le modifiche per sostituire l' Identity interfaccia utente predefinita con Identity in un'app web ASP.NET Core 2,1.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-194">The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app.</span></span> <span data-ttu-id="4eb9f-195">Questa operazione può essere eseguita per avere il controllo completo dell' Identity interfaccia utente.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-195">You might want to do this to have full control of the Identity UI.</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
 
-<span data-ttu-id="5b903-196">Il valore predefinito Identity viene sostituito nel codice seguente:</span><span class="sxs-lookup"><span data-stu-id="5b903-196">The default Identity is replaced in the following code:</span></span>
+<span data-ttu-id="4eb9f-196">Il valore predefinito Identity viene sostituito nel codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-196">The default Identity is replaced in the following code:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
 
-<span data-ttu-id="5b903-197">Il codice seguente imposta [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath)e [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span><span class="sxs-lookup"><span data-stu-id="5b903-197">The following code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span></span>
+<span data-ttu-id="4eb9f-197">Il codice seguente imposta [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath)e [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span><span class="sxs-lookup"><span data-stu-id="4eb9f-197">The following code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
-<span data-ttu-id="5b903-198">Registrare un' `IEmailSender` implementazione, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="5b903-198">Register an `IEmailSender` implementation, for example:</span></span>
+<span data-ttu-id="4eb9f-198">Registrare un' `IEmailSender` implementazione, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-198">Register an `IEmailSender` implementation, for example:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
 
@@ -401,34 +403,34 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
 -->
 
-## <a name="password-configuration"></a><span data-ttu-id="5b903-199">Configurazione password</span><span class="sxs-lookup"><span data-stu-id="5b903-199">Password configuration</span></span>
+## <a name="password-configuration"></a><span data-ttu-id="4eb9f-199">Configurazione password</span><span class="sxs-lookup"><span data-stu-id="4eb9f-199">Password configuration</span></span>
 
-<span data-ttu-id="5b903-200">Se <xref:Microsoft.AspNetCore.Identity.PasswordOptions> sono configurati in `Startup.ConfigureServices` , la configurazione degli [ `[StringLength]` attributi](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) potrebbe essere necessaria per la `Password` proprietà nelle pagine con impalcature Identity .</span><span class="sxs-lookup"><span data-stu-id="5b903-200">If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Startup.ConfigureServices`, [`[StringLength]` attribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded Identity pages.</span></span> <span data-ttu-id="5b903-201">`InputModel``Password`le proprietà si trovano nei file seguenti:</span><span class="sxs-lookup"><span data-stu-id="5b903-201">`InputModel` `Password` properties are found in the following files:</span></span>
+<span data-ttu-id="4eb9f-200">Se <xref:Microsoft.AspNetCore.Identity.PasswordOptions> sono configurati in `Startup.ConfigureServices` , la configurazione degli [ `[StringLength]` attributi](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) potrebbe essere necessaria per la `Password` proprietà nelle pagine con impalcature Identity .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-200">If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Startup.ConfigureServices`, [`[StringLength]` attribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded Identity pages.</span></span> <span data-ttu-id="4eb9f-201">`InputModel``Password`le proprietà si trovano nei file seguenti:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-201">`InputModel` `Password` properties are found in the following files:</span></span>
 
 * `Areas/Identity/Pages/Account/Register.cshtml.cs`
 * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
-## <a name="disable-a-page"></a><span data-ttu-id="5b903-202">Disabilitare una pagina</span><span class="sxs-lookup"><span data-stu-id="5b903-202">Disable a page</span></span>
+## <a name="disable-a-page"></a><span data-ttu-id="4eb9f-202">Disabilitare una pagina</span><span class="sxs-lookup"><span data-stu-id="4eb9f-202">Disable a page</span></span>
 
-<span data-ttu-id="5b903-203">In questa sezione viene illustrato come disabilitare la pagina Register, ma è possibile utilizzare l'approccio per disabilitare qualsiasi pagina.</span><span class="sxs-lookup"><span data-stu-id="5b903-203">This sections show how to disable the register page but the approach can be used to disable any page.</span></span>
+<span data-ttu-id="4eb9f-203">In questa sezione viene illustrato come disabilitare la pagina Register, ma è possibile utilizzare l'approccio per disabilitare qualsiasi pagina.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-203">This sections show how to disable the register page but the approach can be used to disable any page.</span></span>
 
-<span data-ttu-id="5b903-204">Per disabilitare la registrazione dell'utente:</span><span class="sxs-lookup"><span data-stu-id="5b903-204">To disable user registration:</span></span>
+<span data-ttu-id="4eb9f-204">Per disabilitare la registrazione dell'utente:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-204">To disable user registration:</span></span>
 
-* <span data-ttu-id="5b903-205">Impalcature Identity .</span><span class="sxs-lookup"><span data-stu-id="5b903-205">Scaffold Identity.</span></span> <span data-ttu-id="5b903-206">Includere account. Register, account. login e account. RegisterConfirmation.</span><span class="sxs-lookup"><span data-stu-id="5b903-206">Include Account.Register, Account.Login, and Account.RegisterConfirmation.</span></span> <span data-ttu-id="5b903-207">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="5b903-207">For example:</span></span>
+* <span data-ttu-id="4eb9f-205">Impalcature Identity .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-205">Scaffold Identity.</span></span> <span data-ttu-id="4eb9f-206">Includere account. Register, account. login e account. RegisterConfirmation.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-206">Include Account.Register, Account.Login, and Account.RegisterConfirmation.</span></span> <span data-ttu-id="4eb9f-207">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-207">For example:</span></span>
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
   ```
 
-* <span data-ttu-id="5b903-208">Aggiornare le *aree/ Identity /pages/account/Register.cshtml.cs* in modo che gli utenti non possano effettuare la registrazione da questo endpoint:</span><span class="sxs-lookup"><span data-stu-id="5b903-208">Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:</span></span>
+* <span data-ttu-id="4eb9f-208">Aggiornare le *aree/ Identity /pages/account/Register.cshtml.cs* in modo che gli utenti non possano effettuare la registrazione da questo endpoint:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-208">Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:</span></span>
 
   [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
 
-* <span data-ttu-id="5b903-209">Aggiornare le *aree/ Identity /pages/account/Register.cshtml* in modo che siano coerenti con le modifiche precedenti:</span><span class="sxs-lookup"><span data-stu-id="5b903-209">Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:</span></span>
+* <span data-ttu-id="4eb9f-209">Aggiornare le *aree/ Identity /pages/account/Register.cshtml* in modo che siano coerenti con le modifiche precedenti:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-209">Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:</span></span>
 
   [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
 
-* <span data-ttu-id="5b903-210">Impostare come commento o rimuovere il collegamento di registrazione da *aree/ Identity /pages/account/login.cshtml*</span><span class="sxs-lookup"><span data-stu-id="5b903-210">Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*</span></span>
+* <span data-ttu-id="4eb9f-210">Impostare come commento o rimuovere il collegamento di registrazione da *aree/ Identity /pages/account/login.cshtml*</span><span class="sxs-lookup"><span data-stu-id="4eb9f-210">Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*</span></span>
 
   ```cshtml
   @*
@@ -438,10 +440,10 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
   *@
   ```
 
-* <span data-ttu-id="5b903-211">Aggiornare la pagina *aree/ Identity /pages/account/RegisterConfirmation* .</span><span class="sxs-lookup"><span data-stu-id="5b903-211">Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.</span></span>
+* <span data-ttu-id="4eb9f-211">Aggiornare la pagina *aree/ Identity /pages/account/RegisterConfirmation* .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-211">Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.</span></span>
 
-  * <span data-ttu-id="5b903-212">Rimuovere il codice e i collegamenti dal file cshtml.</span><span class="sxs-lookup"><span data-stu-id="5b903-212">Remove the code and links from the cshtml file.</span></span>
-  * <span data-ttu-id="5b903-213">Rimuovere il codice di conferma da `PageModel` :</span><span class="sxs-lookup"><span data-stu-id="5b903-213">Remove the confirmation code from the `PageModel`:</span></span>
+  * <span data-ttu-id="4eb9f-212">Rimuovere il codice e i collegamenti dal file cshtml.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-212">Remove the code and links from the cshtml file.</span></span>
+  * <span data-ttu-id="4eb9f-213">Rimuovere il codice di conferma da `PageModel` :</span><span class="sxs-lookup"><span data-stu-id="4eb9f-213">Remove the confirmation code from the `PageModel`:</span></span>
 
   ```csharp
    [AllowAnonymous]
@@ -454,58 +456,58 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
     }
   ```
   
-### <a name="use-another-app-to-add-users"></a><span data-ttu-id="5b903-214">Usare un'altra app per aggiungere utenti</span><span class="sxs-lookup"><span data-stu-id="5b903-214">Use another app to add users</span></span>
+### <a name="use-another-app-to-add-users"></a><span data-ttu-id="4eb9f-214">Usare un'altra app per aggiungere utenti</span><span class="sxs-lookup"><span data-stu-id="4eb9f-214">Use another app to add users</span></span>
 
-<span data-ttu-id="5b903-215">Fornire un meccanismo per aggiungere utenti all'esterno dell'app Web.</span><span class="sxs-lookup"><span data-stu-id="5b903-215">Provide a mechanism to add users outside the web app.</span></span> <span data-ttu-id="5b903-216">Le opzioni per aggiungere utenti includono:</span><span class="sxs-lookup"><span data-stu-id="5b903-216">Options to add users include:</span></span>
+<span data-ttu-id="4eb9f-215">Fornire un meccanismo per aggiungere utenti all'esterno dell'app Web.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-215">Provide a mechanism to add users outside the web app.</span></span> <span data-ttu-id="4eb9f-216">Le opzioni per aggiungere utenti includono:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-216">Options to add users include:</span></span>
 
-* <span data-ttu-id="5b903-217">Un'app Web amministrativa dedicata.</span><span class="sxs-lookup"><span data-stu-id="5b903-217">A dedicated admin web app.</span></span>
-* <span data-ttu-id="5b903-218">Un'app console.</span><span class="sxs-lookup"><span data-stu-id="5b903-218">A console app.</span></span>
+* <span data-ttu-id="4eb9f-217">Un'app Web amministrativa dedicata.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-217">A dedicated admin web app.</span></span>
+* <span data-ttu-id="4eb9f-218">Un'app console.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-218">A console app.</span></span>
 
-<span data-ttu-id="5b903-219">Il codice seguente illustra un approccio per l'aggiunta di utenti:</span><span class="sxs-lookup"><span data-stu-id="5b903-219">The following code outlines one approach to adding users:</span></span>
+<span data-ttu-id="4eb9f-219">Il codice seguente illustra un approccio per l'aggiunta di utenti:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-219">The following code outlines one approach to adding users:</span></span>
 
-* <span data-ttu-id="5b903-220">Un elenco di utenti viene letto in memoria.</span><span class="sxs-lookup"><span data-stu-id="5b903-220">A list of users is read into memory.</span></span>
-* <span data-ttu-id="5b903-221">Per ogni utente viene generata una password univoca complessa.</span><span class="sxs-lookup"><span data-stu-id="5b903-221">A strong unique password is generated for each user.</span></span>
-* <span data-ttu-id="5b903-222">L'utente viene aggiunto al Identity database.</span><span class="sxs-lookup"><span data-stu-id="5b903-222">The user is added to the Identity database.</span></span>
-* <span data-ttu-id="5b903-223">Viene inviata una notifica all'utente e viene chiesto di modificare la password.</span><span class="sxs-lookup"><span data-stu-id="5b903-223">The user is notified and told to change the password.</span></span>
+* <span data-ttu-id="4eb9f-220">Un elenco di utenti viene letto in memoria.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-220">A list of users is read into memory.</span></span>
+* <span data-ttu-id="4eb9f-221">Per ogni utente viene generata una password univoca complessa.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-221">A strong unique password is generated for each user.</span></span>
+* <span data-ttu-id="4eb9f-222">L'utente viene aggiunto al Identity database.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-222">The user is added to the Identity database.</span></span>
+* <span data-ttu-id="4eb9f-223">Viene inviata una notifica all'utente e viene chiesto di modificare la password.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-223">The user is notified and told to change the password.</span></span>
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Program.cs?name=snippet)]
 
-<span data-ttu-id="5b903-224">Il codice seguente illustra l'aggiunta di un utente:</span><span class="sxs-lookup"><span data-stu-id="5b903-224">The following code outlines adding a user:</span></span>
+<span data-ttu-id="4eb9f-224">Il codice seguente illustra l'aggiunta di un utente:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-224">The following code outlines adding a user:</span></span>
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Data/SeedData.cs?name=snippet)]
 
-<span data-ttu-id="5b903-225">Per gli scenari di produzione è possibile seguire un approccio simile.</span><span class="sxs-lookup"><span data-stu-id="5b903-225">A similar approach can be followed for production scenarios.</span></span>
+<span data-ttu-id="4eb9f-225">Per gli scenari di produzione è possibile seguire un approccio simile.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-225">A similar approach can be followed for production scenarios.</span></span>
 
-## <a name="prevent-publish-of-static-identity-assets"></a><span data-ttu-id="5b903-226">Impedisci la pubblicazione di Identity Asset statici</span><span class="sxs-lookup"><span data-stu-id="5b903-226">Prevent publish of static Identity assets</span></span>
+## <a name="prevent-publish-of-static-no-locidentity-assets"></a><span data-ttu-id="4eb9f-226">Impedisci la pubblicazione di Identity Asset statici</span><span class="sxs-lookup"><span data-stu-id="4eb9f-226">Prevent publish of static Identity assets</span></span>
 
-<span data-ttu-id="5b903-227">Per evitare la pubblicazione Identity di asset statici nella radice Web, vedere <xref:security/authentication/identity#prevent-publish-of-static-identity-assets> .</span><span class="sxs-lookup"><span data-stu-id="5b903-227">To prevent publishing static Identity assets to the web root, see <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.</span></span>
+<span data-ttu-id="4eb9f-227">Per evitare la pubblicazione Identity di asset statici nella radice Web, vedere <xref:security/authentication/identity#prevent-publish-of-static-identity-assets> .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-227">To prevent publishing static Identity assets to the web root, see <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="5b903-228">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="5b903-228">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="4eb9f-228">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="4eb9f-228">Additional resources</span></span>
 
-* [<span data-ttu-id="5b903-229">Modifiche al codice di autenticazione in ASP.NET Core 2,1 e versioni successive</span><span class="sxs-lookup"><span data-stu-id="5b903-229">Changes to authentication code to ASP.NET Core 2.1 and later</span></span>](xref:migration/20_21#changes-to-authentication-code)
+* [<span data-ttu-id="4eb9f-229">Modifiche al codice di autenticazione in ASP.NET Core 2,1 e versioni successive</span><span class="sxs-lookup"><span data-stu-id="4eb9f-229">Changes to authentication code to ASP.NET Core 2.1 and later</span></span>](xref:migration/20_21#changes-to-authentication-code)
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-<span data-ttu-id="5b903-230">ASP.NET Core 2,1 e versioni successive [fornisce Identity ASP.NET Core](xref:security/authentication/identity) come [ Razor libreria di classi](xref:razor-pages/ui-class).</span><span class="sxs-lookup"><span data-stu-id="5b903-230">ASP.NET Core 2.1 and later provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class).</span></span> <span data-ttu-id="5b903-231">Le applicazioni che includono Identity possono applicare l'impalcatura per aggiungere selettivamente il codice sorgente contenuto nella Identity Razor libreria di classi (RCL).</span><span class="sxs-lookup"><span data-stu-id="5b903-231">Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL).</span></span> <span data-ttu-id="5b903-232">Se si vuole generare un codice sorgente, è possibile modificare il codice e modificarne il comportamento.</span><span class="sxs-lookup"><span data-stu-id="5b903-232">You might want to generate source code so you can modify the code and change the behavior.</span></span> <span data-ttu-id="5b903-233">Ad esempio, è possibile indicare allo scaffolder di generare il codice usato nella registrazione.</span><span class="sxs-lookup"><span data-stu-id="5b903-233">For example, you could instruct the scaffolder to generate the code used in registration.</span></span> <span data-ttu-id="5b903-234">Il codice generato ha la precedenza sullo stesso codice in Identity RCL.</span><span class="sxs-lookup"><span data-stu-id="5b903-234">Generated code takes precedence over the same code in the Identity RCL.</span></span> <span data-ttu-id="5b903-235">Per ottenere il controllo completo dell'interfaccia utente e non usare il RCL predefinito, vedere la sezione [creare l'origine dell'interfaccia utente Full Identity](#full).</span><span class="sxs-lookup"><span data-stu-id="5b903-235">To gain full control of the UI and not use the default RCL, see the section [Create full identity UI source](#full).</span></span>
+<span data-ttu-id="4eb9f-230">ASP.NET Core 2,1 e versioni successive [fornisce Identity ASP.NET Core](xref:security/authentication/identity) come [ Razor libreria di classi](xref:razor-pages/ui-class).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-230">ASP.NET Core 2.1 and later provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class).</span></span> <span data-ttu-id="4eb9f-231">Le applicazioni che includono Identity possono applicare l'impalcatura per aggiungere selettivamente il codice sorgente contenuto nella Identity Razor libreria di classi (RCL).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-231">Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL).</span></span> <span data-ttu-id="4eb9f-232">Se si vuole generare un codice sorgente, è possibile modificare il codice e modificarne il comportamento.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-232">You might want to generate source code so you can modify the code and change the behavior.</span></span> <span data-ttu-id="4eb9f-233">Ad esempio, è possibile indicare allo scaffolder di generare il codice usato nella registrazione.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-233">For example, you could instruct the scaffolder to generate the code used in registration.</span></span> <span data-ttu-id="4eb9f-234">Il codice generato ha la precedenza sullo stesso codice in Identity RCL.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-234">Generated code takes precedence over the same code in the Identity RCL.</span></span> <span data-ttu-id="4eb9f-235">Per ottenere il controllo completo dell'interfaccia utente e non usare il RCL predefinito, vedere la sezione [creare l'origine dell'interfaccia utente Full Identity](#full).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-235">To gain full control of the UI and not use the default RCL, see the section [Create full identity UI source](#full).</span></span>
 
-<span data-ttu-id="5b903-236">Le applicazioni che **non** includono l'autenticazione possono applicare l'impalcatura per aggiungere il Identity pacchetto RCL.</span><span class="sxs-lookup"><span data-stu-id="5b903-236">Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package.</span></span> <span data-ttu-id="5b903-237">È possibile scegliere di selezionare il Identity codice da generare.</span><span class="sxs-lookup"><span data-stu-id="5b903-237">You have the option of selecting Identity code to be generated.</span></span>
+<span data-ttu-id="4eb9f-236">Le applicazioni che **non** includono l'autenticazione possono applicare l'impalcatura per aggiungere il Identity pacchetto RCL.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-236">Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package.</span></span> <span data-ttu-id="4eb9f-237">È possibile scegliere di selezionare il Identity codice da generare.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-237">You have the option of selecting Identity code to be generated.</span></span>
 
-<span data-ttu-id="5b903-238">Sebbene l'impalcatura generi la maggior parte del codice necessario, sarà necessario aggiornare il progetto per completare il processo.</span><span class="sxs-lookup"><span data-stu-id="5b903-238">Although the scaffolder generates most of the necessary code, you'll have to update your project to complete the process.</span></span> <span data-ttu-id="5b903-239">Questo documento illustra i passaggi necessari per completare un Identity aggiornamento di ponteggi.</span><span class="sxs-lookup"><span data-stu-id="5b903-239">This document explains the steps needed to complete an Identity scaffolding update.</span></span>
+<span data-ttu-id="4eb9f-238">Sebbene l'impalcatura generi la maggior parte del codice necessario, sarà necessario aggiornare il progetto per completare il processo.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-238">Although the scaffolder generates most of the necessary code, you'll have to update your project to complete the process.</span></span> <span data-ttu-id="4eb9f-239">Questo documento illustra i passaggi necessari per completare un Identity aggiornamento di ponteggi.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-239">This document explains the steps needed to complete an Identity scaffolding update.</span></span>
 
-<span data-ttu-id="5b903-240">Quando Identity si esegue l'impalcatura, viene creato un file di *ScaffoldingReadme.txt* nella directory del progetto.</span><span class="sxs-lookup"><span data-stu-id="5b903-240">When the Identity scaffolder is run, a *ScaffoldingReadme.txt* file is created in the project directory.</span></span> <span data-ttu-id="5b903-241">Il file di *ScaffoldingReadme.txt* contiene istruzioni generali sugli elementi necessari per completare l' Identity aggiornamento di ponteggi.</span><span class="sxs-lookup"><span data-stu-id="5b903-241">The *ScaffoldingReadme.txt* file contains general instructions on what's needed to complete the Identity scaffolding update.</span></span> <span data-ttu-id="5b903-242">Questo documento contiene istruzioni più complete rispetto al file *ScaffoldingReadme.txt* .</span><span class="sxs-lookup"><span data-stu-id="5b903-242">This document contains more complete instructions than the *ScaffoldingReadme.txt* file.</span></span>
+<span data-ttu-id="4eb9f-240">Quando Identity si esegue l'impalcatura, viene creato un file di *ScaffoldingReadme.txt* nella directory del progetto.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-240">When the Identity scaffolder is run, a *ScaffoldingReadme.txt* file is created in the project directory.</span></span> <span data-ttu-id="4eb9f-241">Il file di *ScaffoldingReadme.txt* contiene istruzioni generali sugli elementi necessari per completare l' Identity aggiornamento di ponteggi.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-241">The *ScaffoldingReadme.txt* file contains general instructions on what's needed to complete the Identity scaffolding update.</span></span> <span data-ttu-id="4eb9f-242">Questo documento contiene istruzioni più complete rispetto al file *ScaffoldingReadme.txt* .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-242">This document contains more complete instructions than the *ScaffoldingReadme.txt* file.</span></span>
 
-<span data-ttu-id="5b903-243">È consigliabile usare un sistema di controllo del codice sorgente che mostra le differenze dei file e consente di eseguire il backup delle modifiche.</span><span class="sxs-lookup"><span data-stu-id="5b903-243">We recommend using a source control system that shows file differences and allows you to back out of changes.</span></span> <span data-ttu-id="5b903-244">Controllare le modifiche dopo l'esecuzione dell' Identity impalcatura.</span><span class="sxs-lookup"><span data-stu-id="5b903-244">Inspect the changes after running the Identity scaffolder.</span></span>
+<span data-ttu-id="4eb9f-243">È consigliabile usare un sistema di controllo del codice sorgente che mostra le differenze dei file e consente di eseguire il backup delle modifiche.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-243">We recommend using a source control system that shows file differences and allows you to back out of changes.</span></span> <span data-ttu-id="4eb9f-244">Controllare le modifiche dopo l'esecuzione dell' Identity impalcatura.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-244">Inspect the changes after running the Identity scaffolder.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="5b903-245">I servizi sono necessari quando si usa [l'autenticazione a due fattori](xref:security/authentication/identity-enable-qrcodes), la [conferma dell'account e il recupero della password](xref:security/authentication/accconfirm)e altre funzionalità di sicurezza con Identity .</span><span class="sxs-lookup"><span data-stu-id="5b903-245">Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity.</span></span> <span data-ttu-id="5b903-246">I servizi o gli stub di servizio non vengono generati durante l'impalcatura Identity .</span><span class="sxs-lookup"><span data-stu-id="5b903-246">Services or service stubs aren't generated when scaffolding Identity.</span></span> <span data-ttu-id="5b903-247">I servizi per abilitare queste funzionalità devono essere aggiunti manualmente.</span><span class="sxs-lookup"><span data-stu-id="5b903-247">Services to enable these features must be added manually.</span></span> <span data-ttu-id="5b903-248">Vedere ad esempio [Richiedi conferma tramite posta elettronica](xref:security/authentication/accconfirm#require-email-confirmation).</span><span class="sxs-lookup"><span data-stu-id="5b903-248">For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).</span></span>
+> <span data-ttu-id="4eb9f-245">I servizi sono necessari quando si usa [l'autenticazione a due fattori](xref:security/authentication/identity-enable-qrcodes), la [conferma dell'account e il recupero della password](xref:security/authentication/accconfirm)e altre funzionalità di sicurezza con Identity .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-245">Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity.</span></span> <span data-ttu-id="4eb9f-246">I servizi o gli stub di servizio non vengono generati durante l'impalcatura Identity .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-246">Services or service stubs aren't generated when scaffolding Identity.</span></span> <span data-ttu-id="4eb9f-247">I servizi per abilitare queste funzionalità devono essere aggiunti manualmente.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-247">Services to enable these features must be added manually.</span></span> <span data-ttu-id="4eb9f-248">Vedere ad esempio [Richiedi conferma tramite posta elettronica](xref:security/authentication/accconfirm#require-email-confirmation).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-248">For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).</span></span>
 
-## <a name="scaffold-identity-into-an-empty-project"></a><span data-ttu-id="5b903-249">Impalcatura Identity in un progetto vuoto</span><span class="sxs-lookup"><span data-stu-id="5b903-249">Scaffold Identity into an empty project</span></span>
+## <a name="scaffold-no-locidentity-into-an-empty-project"></a><span data-ttu-id="4eb9f-249">Impalcatura Identity in un progetto vuoto</span><span class="sxs-lookup"><span data-stu-id="4eb9f-249">Scaffold Identity into an empty project</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-<span data-ttu-id="5b903-250">Aggiungere le seguenti chiamate evidenziate alla `Startup` classe:</span><span class="sxs-lookup"><span data-stu-id="5b903-250">Add the following highlighted calls to the `Startup` class:</span></span>
+<span data-ttu-id="4eb9f-250">Aggiungere le seguenti chiamate evidenziate alla `Startup` classe:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-250">Add the following highlighted calls to the `Startup` class:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=5,20-23)]
 
@@ -513,7 +515,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-## <a name="scaffold-identity-into-a-razor-project-without-existing-authorization"></a><span data-ttu-id="5b903-251">Impalcatura Identity in un Razor progetto senza autorizzazione esistente</span><span class="sxs-lookup"><span data-stu-id="5b903-251">Scaffold Identity into a Razor project without existing authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-without-existing-authorization"></a><span data-ttu-id="4eb9f-251">Impalcatura Identity in un Razor progetto senza autorizzazione esistente</span><span class="sxs-lookup"><span data-stu-id="4eb9f-251">Scaffold Identity into a Razor project without existing authorization</span></span>
 
 <!--  Updated for 3.0
 set projNam=RPnoAuth
@@ -534,31 +536,31 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity<span data-ttu-id="5b903-252">è configurato in *areas/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="5b903-252"> is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="5b903-253">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="5b903-253">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="4eb9f-252">Identityè configurato in *areas/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-252">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="4eb9f-253">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-253">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
 <a name="efm"></a>
 
-### <a name="migrations-useauthentication-and-layout"></a><span data-ttu-id="5b903-254">Migrazioni, UseAuthentication e layout</span><span class="sxs-lookup"><span data-stu-id="5b903-254">Migrations, UseAuthentication, and layout</span></span>
+### <a name="migrations-useauthentication-and-layout"></a><span data-ttu-id="4eb9f-254">Migrazioni, UseAuthentication e layout</span><span class="sxs-lookup"><span data-stu-id="4eb9f-254">Migrations, UseAuthentication, and layout</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
 <a name="useauthentication"></a>
 
-### <a name="enable-authentication"></a><span data-ttu-id="5b903-255">Abilita autenticazione</span><span class="sxs-lookup"><span data-stu-id="5b903-255">Enable authentication</span></span>
+### <a name="enable-authentication"></a><span data-ttu-id="4eb9f-255">Abilita autenticazione</span><span class="sxs-lookup"><span data-stu-id="4eb9f-255">Enable authentication</span></span>
 
-<span data-ttu-id="5b903-256">Nel `Configure` metodo della `Startup` classe, chiamare [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) dopo `UseStaticFiles` :</span><span class="sxs-lookup"><span data-stu-id="5b903-256">In the `Configure` method of the `Startup` class, call [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:</span></span>
+<span data-ttu-id="4eb9f-256">Nel `Configure` metodo della `Startup` classe, chiamare [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) dopo `UseStaticFiles` :</span><span class="sxs-lookup"><span data-stu-id="4eb9f-256">In the `Configure` method of the `Startup` class, call [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-### <a name="layout-changes"></a><span data-ttu-id="5b903-257">Modifiche del layout</span><span class="sxs-lookup"><span data-stu-id="5b903-257">Layout changes</span></span>
+### <a name="layout-changes"></a><span data-ttu-id="4eb9f-257">Modifiche del layout</span><span class="sxs-lookup"><span data-stu-id="4eb9f-257">Layout changes</span></span>
 
-<span data-ttu-id="5b903-258">Facoltativo: aggiungere l'account di accesso parziale ( `_LoginPartial` ) al file di layout:</span><span class="sxs-lookup"><span data-stu-id="5b903-258">Optional: Add the login partial (`_LoginPartial`) to the layout file:</span></span>
+<span data-ttu-id="4eb9f-258">Facoltativo: aggiungere l'account di accesso parziale ( `_LoginPartial` ) al file di layout:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-258">Optional: Add the login partial (`_LoginPartial`) to the layout file:</span></span>
 
 [!code-cshtml[](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
-## <a name="scaffold-identity-into-a-razor-project-with-authorization"></a><span data-ttu-id="5b903-259">Impalcatura Identity in un Razor progetto con autorizzazione</span><span class="sxs-lookup"><span data-stu-id="5b903-259">Scaffold Identity into a Razor project with authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-with-authorization"></a><span data-ttu-id="4eb9f-259">Impalcatura Identity in un Razor progetto con autorizzazione</span><span class="sxs-lookup"><span data-stu-id="4eb9f-259">Scaffold Identity into a Razor project with authorization</span></span>
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -573,9 +575,9 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-<span data-ttu-id="5b903-260">Alcune Identity opzioni sono configurate in *aree/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="5b903-260">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="5b903-261">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="5b903-261">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="4eb9f-260">Alcune Identity opzioni sono configurate in *aree/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-260">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="4eb9f-261">Per ulteriori informazioni, vedere [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span><span class="sxs-lookup"><span data-stu-id="4eb9f-261">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
-## <a name="scaffold-identity-into-an-mvc-project-without-existing-authorization"></a><span data-ttu-id="5b903-262">Impalcatura Identity in un progetto MVC senza autorizzazione esistente</span><span class="sxs-lookup"><span data-stu-id="5b903-262">Scaffold Identity into an MVC project without existing authorization</span></span>
+## <a name="scaffold-no-locidentity-into-an-mvc-project-without-existing-authorization"></a><span data-ttu-id="4eb9f-262">Impalcatura Identity in un progetto MVC senza autorizzazione esistente</span><span class="sxs-lookup"><span data-stu-id="4eb9f-262">Scaffold Identity into an MVC project without existing authorization</span></span>
 
 <!--
 set projNam=MvcNoAuth
@@ -593,23 +595,23 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-<span data-ttu-id="5b903-263">Facoltativo: aggiungere l'account di accesso parziale ( `_LoginPartial` ) al file *Views/Shared/_Layout. cshtml* :</span><span class="sxs-lookup"><span data-stu-id="5b903-263">Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:</span></span>
+<span data-ttu-id="4eb9f-263">Facoltativo: aggiungere l'account di accesso parziale ( `_LoginPartial` ) al file *Views/Shared/_Layout. cshtml* :</span><span class="sxs-lookup"><span data-stu-id="4eb9f-263">Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:</span></span>
 
 [!code-cshtml[](scaffold-identity/sample/_LayoutMvc.cshtml?highlight=37)]
 
-* <span data-ttu-id="5b903-264">Spostare il file *pages/Shared/_LoginPartial. cshtml* in *Views/Shared/_LoginPartial. cshtml*</span><span class="sxs-lookup"><span data-stu-id="5b903-264">Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*</span></span>
+* <span data-ttu-id="4eb9f-264">Spostare il file *pages/Shared/_LoginPartial. cshtml* in *Views/Shared/_LoginPartial. cshtml*</span><span class="sxs-lookup"><span data-stu-id="4eb9f-264">Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*</span></span>
 
-Identity<span data-ttu-id="5b903-265">è configurato in *areas/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="5b903-265"> is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="5b903-266">Per ulteriori informazioni, vedere IHostingStartup.</span><span class="sxs-lookup"><span data-stu-id="5b903-266">For more information, see IHostingStartup.</span></span>
+<span data-ttu-id="4eb9f-265">Identityè configurato in *areas/ Identity / Identity HostingStartup.cs*.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-265">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="4eb9f-266">Per ulteriori informazioni, vedere IHostingStartup.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-266">For more information, see IHostingStartup.</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-<span data-ttu-id="5b903-267">Chiama [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) dopo `UseStaticFiles` :</span><span class="sxs-lookup"><span data-stu-id="5b903-267">Call [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:</span></span>
+<span data-ttu-id="4eb9f-267">Chiama [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) dopo `UseStaticFiles` :</span><span class="sxs-lookup"><span data-stu-id="4eb9f-267">Call [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupMvcNoAuth.cs?name=snippet1&highlight=23)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-## <a name="scaffold-identity-into-an-mvc-project-with-authorization"></a><span data-ttu-id="5b903-268">Impalcatura Identity in un progetto MVC con autorizzazione</span><span class="sxs-lookup"><span data-stu-id="5b903-268">Scaffold Identity into an MVC project with authorization</span></span>
+## <a name="scaffold-no-locidentity-into-an-mvc-project-with-authorization"></a><span data-ttu-id="4eb9f-268">Impalcatura Identity in un progetto MVC con autorizzazione</span><span class="sxs-lookup"><span data-stu-id="4eb9f-268">Scaffold Identity into an MVC project with authorization</span></span>
 
 <!--
 dotnet new mvc -au Individual -o MvcAuth
@@ -621,27 +623,27 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-<span data-ttu-id="5b903-269">Eliminare le *pagine o* la cartella condivisa e i file in tale cartella.</span><span class="sxs-lookup"><span data-stu-id="5b903-269">Delete the *Pages/Shared* folder and the files in that folder.</span></span>
+<span data-ttu-id="4eb9f-269">Eliminare le *pagine o* la cartella condivisa e i file in tale cartella.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-269">Delete the *Pages/Shared* folder and the files in that folder.</span></span>
 
 <a name="full"></a>
 
-## <a name="create-full-identity-ui-source"></a><span data-ttu-id="5b903-270">Crea Identity origine interfaccia utente completa</span><span class="sxs-lookup"><span data-stu-id="5b903-270">Create full Identity UI source</span></span>
+## <a name="create-full-no-locidentity-ui-source"></a><span data-ttu-id="4eb9f-270">Crea Identity origine interfaccia utente completa</span><span class="sxs-lookup"><span data-stu-id="4eb9f-270">Create full Identity UI source</span></span>
 
-<span data-ttu-id="5b903-271">Per mantenere il controllo completo dell' Identity interfaccia utente, eseguire l' Identity impalcatura e selezionare **Sostituisci tutti i file**.</span><span class="sxs-lookup"><span data-stu-id="5b903-271">To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.</span></span>
+<span data-ttu-id="4eb9f-271">Per mantenere il controllo completo dell' Identity interfaccia utente, eseguire l' Identity impalcatura e selezionare **Sostituisci tutti i file**.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-271">To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.</span></span>
 
-<span data-ttu-id="5b903-272">Il codice evidenziato seguente mostra le modifiche per sostituire l' Identity interfaccia utente predefinita con Identity in un'app web ASP.NET Core 2,1.</span><span class="sxs-lookup"><span data-stu-id="5b903-272">The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app.</span></span> <span data-ttu-id="5b903-273">Questa operazione può essere eseguita per avere il controllo completo dell' Identity interfaccia utente.</span><span class="sxs-lookup"><span data-stu-id="5b903-273">You might want to do this to have full control of the Identity UI.</span></span>
+<span data-ttu-id="4eb9f-272">Il codice evidenziato seguente mostra le modifiche per sostituire l' Identity interfaccia utente predefinita con Identity in un'app web ASP.NET Core 2,1.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-272">The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app.</span></span> <span data-ttu-id="4eb9f-273">Questa operazione può essere eseguita per avere il controllo completo dell' Identity interfaccia utente.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-273">You might want to do this to have full control of the Identity UI.</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
 
-<span data-ttu-id="5b903-274">Il valore predefinito Identity viene sostituito nel codice seguente:</span><span class="sxs-lookup"><span data-stu-id="5b903-274">The default Identity is replaced in the following code:</span></span>
+<span data-ttu-id="4eb9f-274">Il valore predefinito Identity viene sostituito nel codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-274">The default Identity is replaced in the following code:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
 
-<span data-ttu-id="5b903-275">Il codice seguente imposta [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath)e [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span><span class="sxs-lookup"><span data-stu-id="5b903-275">The following code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span></span>
+<span data-ttu-id="4eb9f-275">Il codice seguente imposta [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath)e [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span><span class="sxs-lookup"><span data-stu-id="4eb9f-275">The following code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
-<span data-ttu-id="5b903-276">Registrare un' `IEmailSender` implementazione, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="5b903-276">Register an `IEmailSender` implementation, for example:</span></span>
+<span data-ttu-id="4eb9f-276">Registrare un' `IEmailSender` implementazione, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-276">Register an `IEmailSender` implementation, for example:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
 
@@ -656,32 +658,32 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
 -->
 
-## <a name="password-configuration"></a><span data-ttu-id="5b903-277">Configurazione password</span><span class="sxs-lookup"><span data-stu-id="5b903-277">Password configuration</span></span>
+## <a name="password-configuration"></a><span data-ttu-id="4eb9f-277">Configurazione password</span><span class="sxs-lookup"><span data-stu-id="4eb9f-277">Password configuration</span></span>
 
-<span data-ttu-id="5b903-278">Se <xref:Microsoft.AspNetCore.Identity.PasswordOptions> sono configurati in `Startup.ConfigureServices` , la configurazione degli [ `[StringLength]` attributi](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) potrebbe essere necessaria per la `Password` proprietà nelle pagine con impalcature Identity .</span><span class="sxs-lookup"><span data-stu-id="5b903-278">If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Startup.ConfigureServices`, [`[StringLength]` attribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded Identity pages.</span></span> <span data-ttu-id="5b903-279">`InputModel``Password`le proprietà si trovano nei file seguenti:</span><span class="sxs-lookup"><span data-stu-id="5b903-279">`InputModel` `Password` properties are found in the following files:</span></span>
+<span data-ttu-id="4eb9f-278">Se <xref:Microsoft.AspNetCore.Identity.PasswordOptions> sono configurati in `Startup.ConfigureServices` , la configurazione degli [ `[StringLength]` attributi](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) potrebbe essere necessaria per la `Password` proprietà nelle pagine con impalcature Identity .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-278">If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Startup.ConfigureServices`, [`[StringLength]` attribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded Identity pages.</span></span> <span data-ttu-id="4eb9f-279">`InputModel``Password`le proprietà si trovano nei file seguenti:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-279">`InputModel` `Password` properties are found in the following files:</span></span>
 
 * `Areas/Identity/Pages/Account/Register.cshtml.cs`
 * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
-## <a name="disable-register-page"></a><span data-ttu-id="5b903-280">Disabilita pagina Registro</span><span class="sxs-lookup"><span data-stu-id="5b903-280">Disable register page</span></span>
+## <a name="disable-register-page"></a><span data-ttu-id="4eb9f-280">Disabilita pagina Registro</span><span class="sxs-lookup"><span data-stu-id="4eb9f-280">Disable register page</span></span>
 
-<span data-ttu-id="5b903-281">Per disabilitare la registrazione dell'utente:</span><span class="sxs-lookup"><span data-stu-id="5b903-281">To disable user registration:</span></span>
+<span data-ttu-id="4eb9f-281">Per disabilitare la registrazione dell'utente:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-281">To disable user registration:</span></span>
 
-* <span data-ttu-id="5b903-282">Impalcature Identity .</span><span class="sxs-lookup"><span data-stu-id="5b903-282">Scaffold Identity.</span></span> <span data-ttu-id="5b903-283">Includere account. Register, account. login e account. RegisterConfirmation.</span><span class="sxs-lookup"><span data-stu-id="5b903-283">Include Account.Register, Account.Login, and Account.RegisterConfirmation.</span></span> <span data-ttu-id="5b903-284">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="5b903-284">For example:</span></span>
+* <span data-ttu-id="4eb9f-282">Impalcature Identity .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-282">Scaffold Identity.</span></span> <span data-ttu-id="4eb9f-283">Includere account. Register, account. login e account. RegisterConfirmation.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-283">Include Account.Register, Account.Login, and Account.RegisterConfirmation.</span></span> <span data-ttu-id="4eb9f-284">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-284">For example:</span></span>
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
   ```
 
-* <span data-ttu-id="5b903-285">Aggiornare le *aree/ Identity /pages/account/Register.cshtml.cs* in modo che gli utenti non possano effettuare la registrazione da questo endpoint:</span><span class="sxs-lookup"><span data-stu-id="5b903-285">Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:</span></span>
+* <span data-ttu-id="4eb9f-285">Aggiornare le *aree/ Identity /pages/account/Register.cshtml.cs* in modo che gli utenti non possano effettuare la registrazione da questo endpoint:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-285">Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:</span></span>
 
   [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
 
-* <span data-ttu-id="5b903-286">Aggiornare le *aree/ Identity /pages/account/Register.cshtml* in modo che siano coerenti con le modifiche precedenti:</span><span class="sxs-lookup"><span data-stu-id="5b903-286">Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:</span></span>
+* <span data-ttu-id="4eb9f-286">Aggiornare le *aree/ Identity /pages/account/Register.cshtml* in modo che siano coerenti con le modifiche precedenti:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-286">Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:</span></span>
 
   [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
 
-* <span data-ttu-id="5b903-287">Impostare come commento o rimuovere il collegamento di registrazione da *aree/ Identity /pages/account/login.cshtml*</span><span class="sxs-lookup"><span data-stu-id="5b903-287">Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*</span></span>
+* <span data-ttu-id="4eb9f-287">Impostare come commento o rimuovere il collegamento di registrazione da *aree/ Identity /pages/account/login.cshtml*</span><span class="sxs-lookup"><span data-stu-id="4eb9f-287">Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*</span></span>
 
 ```cshtml
 @*
@@ -691,10 +693,10 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 *@
 ```
 
-* <span data-ttu-id="5b903-288">Aggiornare la pagina *aree/ Identity /pages/account/RegisterConfirmation* .</span><span class="sxs-lookup"><span data-stu-id="5b903-288">Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.</span></span>
+* <span data-ttu-id="4eb9f-288">Aggiornare la pagina *aree/ Identity /pages/account/RegisterConfirmation* .</span><span class="sxs-lookup"><span data-stu-id="4eb9f-288">Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.</span></span>
 
-  * <span data-ttu-id="5b903-289">Rimuovere il codice e i collegamenti dal file cshtml.</span><span class="sxs-lookup"><span data-stu-id="5b903-289">Remove the code and links from the cshtml file.</span></span>
-  * <span data-ttu-id="5b903-290">Rimuovere il codice di conferma da `PageModel` :</span><span class="sxs-lookup"><span data-stu-id="5b903-290">Remove the confirmation code from the `PageModel`:</span></span>
+  * <span data-ttu-id="4eb9f-289">Rimuovere il codice e i collegamenti dal file cshtml.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-289">Remove the code and links from the cshtml file.</span></span>
+  * <span data-ttu-id="4eb9f-290">Rimuovere il codice di conferma da `PageModel` :</span><span class="sxs-lookup"><span data-stu-id="4eb9f-290">Remove the confirmation code from the `PageModel`:</span></span>
 
   ```csharp
    [AllowAnonymous]
@@ -707,30 +709,30 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
     }
   ```
   
-### <a name="use-another-app-to-add-users"></a><span data-ttu-id="5b903-291">Usare un'altra app per aggiungere utenti</span><span class="sxs-lookup"><span data-stu-id="5b903-291">Use another app to add users</span></span>
+### <a name="use-another-app-to-add-users"></a><span data-ttu-id="4eb9f-291">Usare un'altra app per aggiungere utenti</span><span class="sxs-lookup"><span data-stu-id="4eb9f-291">Use another app to add users</span></span>
 
-<span data-ttu-id="5b903-292">Fornire un meccanismo per aggiungere utenti all'esterno dell'app Web.</span><span class="sxs-lookup"><span data-stu-id="5b903-292">Provide a mechanism to add users outside the web app.</span></span> <span data-ttu-id="5b903-293">Le opzioni per aggiungere utenti includono:</span><span class="sxs-lookup"><span data-stu-id="5b903-293">Options to add users include:</span></span>
+<span data-ttu-id="4eb9f-292">Fornire un meccanismo per aggiungere utenti all'esterno dell'app Web.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-292">Provide a mechanism to add users outside the web app.</span></span> <span data-ttu-id="4eb9f-293">Le opzioni per aggiungere utenti includono:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-293">Options to add users include:</span></span>
 
-* <span data-ttu-id="5b903-294">Un'app Web amministrativa dedicata.</span><span class="sxs-lookup"><span data-stu-id="5b903-294">A dedicated admin web app.</span></span>
-* <span data-ttu-id="5b903-295">Un'app console.</span><span class="sxs-lookup"><span data-stu-id="5b903-295">A console app.</span></span>
+* <span data-ttu-id="4eb9f-294">Un'app Web amministrativa dedicata.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-294">A dedicated admin web app.</span></span>
+* <span data-ttu-id="4eb9f-295">Un'app console.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-295">A console app.</span></span>
 
-<span data-ttu-id="5b903-296">Il codice seguente illustra un approccio per l'aggiunta di utenti:</span><span class="sxs-lookup"><span data-stu-id="5b903-296">The following code outlines one approach to adding users:</span></span>
+<span data-ttu-id="4eb9f-296">Il codice seguente illustra un approccio per l'aggiunta di utenti:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-296">The following code outlines one approach to adding users:</span></span>
 
-* <span data-ttu-id="5b903-297">Un elenco di utenti viene letto in memoria.</span><span class="sxs-lookup"><span data-stu-id="5b903-297">A list of users is read into memory.</span></span>
-* <span data-ttu-id="5b903-298">Per ogni utente viene generata una password univoca complessa.</span><span class="sxs-lookup"><span data-stu-id="5b903-298">A strong unique password is generated for each user.</span></span>
-* <span data-ttu-id="5b903-299">L'utente viene aggiunto al Identity database.</span><span class="sxs-lookup"><span data-stu-id="5b903-299">The user is added to the Identity database.</span></span>
-* <span data-ttu-id="5b903-300">Viene inviata una notifica all'utente e viene chiesto di modificare la password.</span><span class="sxs-lookup"><span data-stu-id="5b903-300">The user is notified and told to change the password.</span></span>
+* <span data-ttu-id="4eb9f-297">Un elenco di utenti viene letto in memoria.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-297">A list of users is read into memory.</span></span>
+* <span data-ttu-id="4eb9f-298">Per ogni utente viene generata una password univoca complessa.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-298">A strong unique password is generated for each user.</span></span>
+* <span data-ttu-id="4eb9f-299">L'utente viene aggiunto al Identity database.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-299">The user is added to the Identity database.</span></span>
+* <span data-ttu-id="4eb9f-300">Viene inviata una notifica all'utente e viene chiesto di modificare la password.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-300">The user is notified and told to change the password.</span></span>
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Program.cs?name=snippet)]
 
-<span data-ttu-id="5b903-301">Il codice seguente illustra l'aggiunta di un utente:</span><span class="sxs-lookup"><span data-stu-id="5b903-301">The following code outlines adding a user:</span></span>
+<span data-ttu-id="4eb9f-301">Il codice seguente illustra l'aggiunta di un utente:</span><span class="sxs-lookup"><span data-stu-id="4eb9f-301">The following code outlines adding a user:</span></span>
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Data/SeedData.cs?name=snippet)]
 
-<span data-ttu-id="5b903-302">Per gli scenari di produzione è possibile seguire un approccio simile.</span><span class="sxs-lookup"><span data-stu-id="5b903-302">A similar approach can be followed for production scenarios.</span></span>
+<span data-ttu-id="4eb9f-302">Per gli scenari di produzione è possibile seguire un approccio simile.</span><span class="sxs-lookup"><span data-stu-id="4eb9f-302">A similar approach can be followed for production scenarios.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="5b903-303">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="5b903-303">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="4eb9f-303">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="4eb9f-303">Additional resources</span></span>
 
-* [<span data-ttu-id="5b903-304">Modifiche al codice di autenticazione in ASP.NET Core 2,1 e versioni successive</span><span class="sxs-lookup"><span data-stu-id="5b903-304">Changes to authentication code to ASP.NET Core 2.1 and later</span></span>](xref:migration/20_21#changes-to-authentication-code)
+* [<span data-ttu-id="4eb9f-304">Modifiche al codice di autenticazione in ASP.NET Core 2,1 e versioni successive</span><span class="sxs-lookup"><span data-stu-id="4eb9f-304">Changes to authentication code to ASP.NET Core 2.1 and later</span></span>](xref:migration/20_21#changes-to-authentication-code)
 
 ::: moniker-end
