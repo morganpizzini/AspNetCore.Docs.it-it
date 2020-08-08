@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 8247d66900a0c15b3b386dca021c5c5922d26e71
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 5dcdf50ff9f750e4966ed3bdf24a71b9f433240a
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404562"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019001"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Applicare HTTPS in ASP.NET Core
 
@@ -321,7 +323,7 @@ Deselezionare la casella **di controllo Configura per HTTPS** .
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli) 
 
-Usare l'opzione `--no-https`. Ad esempio
+Usare l'opzione `--no-https`. Ad esempio:
 
 ```dotnetcli
 dotnet new webapp --no-https

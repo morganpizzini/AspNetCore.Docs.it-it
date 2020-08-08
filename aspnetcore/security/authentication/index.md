@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/index
-ms.openlocfilehash: a230e1ae85a54ddf16900b2ee7ed4a18d45e4ea2
-ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
+ms.openlocfilehash: b0258118e116b1686abbebf1c8d89135ae3cb1f6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87160196"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019316"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Panoramica dell'autenticazione ASP.NET Core
 
@@ -37,7 +39,7 @@ Gli schemi di autenticazione vengono specificati registrando i servizi di autent
 * Chiamando un metodo di estensione specifico dello schema dopo una chiamata a `services.AddAuthentication` (ad `AddJwtBearer` esempio o `AddCookie` , ad esempio). Questi metodi di estensione usano [AuthenticationBuilder. AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) per registrare gli schemi con le impostazioni appropriate.
 * Meno comunemente, chiamando direttamente [AuthenticationBuilder. AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) .
 
-Il codice seguente, ad esempio, registra i servizi di autenticazione e i gestori per gli schemi di autenticazione di JWT e cookie:
+Il codice seguente, ad esempio, registra i gestori e i servizi di autenticazione per gli cookie schemi di autenticazione di JWT Bearer:
 
 ```csharp
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -47,7 +49,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 Il `AddAuthentication` parametro `JwtBearerDefaults.AuthenticationScheme` è il nome dello schema da utilizzare per impostazione predefinita quando non è richiesto uno schema specifico.
 
-Se si utilizzano più schemi, i criteri di autorizzazione o gli attributi di autorizzazione possono [specificare lo schema di autenticazione (o gli schemi)](xref:security/authorization/limitingidentitybyscheme) da cui dipendono per autenticare l'utente. Nell'esempio precedente, è possibile usare lo schema di autenticazione dei cookie specificandone il nome ( `CookieAuthenticationDefaults.AuthenticationScheme` per impostazione predefinita, ma è possibile specificare un nome diverso quando si chiama `AddCookie` ).
+Se si utilizzano più schemi, i criteri di autorizzazione o gli attributi di autorizzazione possono [specificare lo schema di autenticazione (o gli schemi)](xref:security/authorization/limitingidentitybyscheme) da cui dipendono per autenticare l'utente. Nell'esempio precedente, lo cookie schema di autenticazione può essere usato specificandone il nome ( `CookieAuthenticationDefaults.AuthenticationScheme` per impostazione predefinita, ma è possibile specificare un nome diverso quando si chiama `AddCookie` ).
 
 In alcuni casi, la chiamata a `AddAuthentication` viene eseguita automaticamente da altri metodi di estensione. Ad esempio, quando si [Usa Identity ASP.NET Core ](xref:security/authentication/identity), `AddAuthentication` viene chiamato internamente.
 
@@ -90,14 +92,14 @@ In base alla configurazione dello schema di autenticazione e al contesto della r
 
 Un'azione di autenticazione dello schema di autenticazione è responsabile della costruzione dell'identità dell'utente in base al contesto della richiesta. Restituisce un valore <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> che indica se l'autenticazione ha avuto esito positivo e, in caso affermativo, l'identità dell'utente in un ticket di autenticazione. Vedere <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Gli esempi di autenticazione includono:
 
-* Schema di autenticazione dei cookie che costruisce l'identità dell'utente dai cookie.
+* Uno cookie schema di autenticazione che costruisce l'identità dell'utente da cookie s.
 * Uno schema di portatore JWT che deserializza e convalida un JWT bearer token per costruire l'identità dell'utente.
 
 ### <a name="challenge"></a>Sfida
 
 Una richiesta di autenticazione viene richiamata dall'autorizzazione quando un utente non autenticato richiede un endpoint che richiede l'autenticazione. Viene eseguita una richiesta di autenticazione, ad esempio quando un utente anonimo richiede una risorsa limitata o fa clic su un collegamento di accesso. L'autorizzazione richiama una richiesta di verifica utilizzando gli schemi di autenticazione specificati oppure il valore predefinito se non ne viene specificato alcuno. Vedere <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Gli esempi di richiesta di autenticazione includono:
 
-* Uno schema di autenticazione dei cookie che reindirizza l'utente a una pagina di accesso.
+* Uno cookie schema di autenticazione che reindirizza l'utente a una pagina di accesso.
 * Uno schema di portatore JWT che restituisce un risultato 401 con un' `www-authenticate: bearer` intestazione.
 
 Un'azione di verifica deve consentire all'utente di conoscere il meccanismo di autenticazione da usare per accedere alla risorsa richiesta.
@@ -105,7 +107,7 @@ Un'azione di verifica deve consentire all'utente di conoscere il meccanismo di a
 ### <a name="forbid"></a>Impediscono
 
 Un'azione di proibisce dello schema di autenticazione viene chiamata dall'autorizzazione quando un utente autenticato tenta di accedere a una risorsa a cui non è consentito l'accesso. Vedere <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ForbidAsync%2A>. Gli esempi di autenticazione proibita includono:
-* Uno schema di autenticazione dei cookie che reindirizza l'utente a una pagina che indica che l'accesso non è consentito.
+* Uno cookie schema di autenticazione che reindirizza l'utente a una pagina che indica che l'accesso non è consentito.
 * Uno schema di porta JWT che restituisce un risultato 403.
 * Uno schema di autenticazione personalizzato che reindirizza a una pagina in cui l'utente può richiedere l'accesso alla risorsa.
 

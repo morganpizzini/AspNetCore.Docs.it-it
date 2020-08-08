@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 96d24940af6c591e3c02bfa26ed9d7d6ea60d27d
-ms.sourcegitcommit: d00a200bc8347af794b24184da14ad5c8b6bba9a
+ms.openlocfilehash: 11d0c514dd15e787224510991ffb81680c9fc479
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86869978"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019342"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtri in ASP.NET Core
 
@@ -288,7 +290,7 @@ Pertanto il filtro `AddHeader` non viene mai eseguito per l'azione `SomeResource
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
 
-## <a name="dependency-injection"></a>Inserimento delle dipendenze
+## <a name="dependency-injection"></a>Inserimento di dipendenze
 
 È possibile aggiungere filtri per tipo o per istanza. Se viene aggiunta un'istanza, tale istanza viene usata per ogni richiesta. Se viene aggiunto un tipo, il filtro è attivato dal tipo. Un filtro attivato dal tipo comporta:
 
@@ -439,7 +441,7 @@ La classe <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> specific
 Per un oggetto `IAsyncActionFilter`, una chiamata a <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate>:
 
 * Esegue qualsiasi filtro azione successivo e il metodo di azione.
-* Restituisce `ActionExecutedContext`.
+* Restituisca il valore `ActionExecutedContext`.
 
 Per causare il corto circuito, assegnare <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result?displayProperty=fullName> a un'istanza del risultato e non chiamare `next` (`ActionExecutionDelegate`).
 
@@ -746,7 +748,7 @@ Questa sequenza mostra che:
 * Il filtro del metodo è annidato all'interno del filtro del controller.
 * Il filtro del controller è annidato all'interno del filtro globale.
 
-### <a name="controller-and-razor-page-level-filters"></a>Filtri a Razor livello di pagina e controller
+### <a name="controller-and-no-locrazor-page-level-filters"></a>Filtri a Razor livello di pagina e controller
 
 Ogni controller che eredita dalla classe di base <xref:Microsoft.AspNetCore.Mvc.Controller> include i metodi [Controller.OnActionExecuting](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*), [Controller.OnActionExecutionAsync](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*) e [Controller.OnActionExecuted](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*)
 `OnActionExecuted`. Questi metodi:
@@ -820,7 +822,7 @@ Pertanto il filtro `AddHeader` non viene mai eseguito per l'azione `SomeResource
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1,9)]
 
-## <a name="dependency-injection"></a>Inserimento delle dipendenze
+## <a name="dependency-injection"></a>Inserimento di dipendenze
 
 È possibile aggiungere filtri per tipo o per istanza. Se viene aggiunta un'istanza, tale istanza viene usata per ogni richiesta. Se viene aggiunto un tipo, il filtro è attivato dal tipo. Un filtro attivato dal tipo comporta:
 
@@ -973,7 +975,7 @@ La classe <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> specific
 Per un oggetto `IAsyncActionFilter`, una chiamata a <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate>:
 
 * Esegue qualsiasi filtro azione successivo e il metodo di azione.
-* Restituisce `ActionExecutedContext`.
+* Restituisca il valore `ActionExecutedContext`.
 
 Per causare il corto circuito, assegnare <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result?displayProperty=fullName> a un'istanza del risultato e non chiamare `next` (`ActionExecutionDelegate`).
 

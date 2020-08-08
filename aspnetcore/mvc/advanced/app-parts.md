@@ -5,6 +5,8 @@ description: Condividi controller, Visualizza, Razor pagine e altro con le parti
 ms.author: riande
 ms.date: 11/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/extensibility/app-parts
-ms.openlocfilehash: cb1f8b045b8f2b143afc7895234733fbfb02cb07
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 690ef0843f567dc2335f4d51436e428207fd6eb1
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399751"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019573"
 ---
-# <a name="share-controllers-views-razor-pages-and-more-with-application-parts"></a>Condividi controller, visualizzazioni, Razor pagine e altro ancora con le parti dell'applicazione
+# <a name="share-controllers-views-no-locrazor-pages-and-more-with-application-parts"></a>Condividi controller, visualizzazioni, Razor pagine e altro ancora con le parti dell'applicazione
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -72,7 +74,7 @@ I provider di funzionalità dell'applicazione esaminano le parti dell'applicazio
 * <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperFeatureProvider>
 * <xref:Microsoft.AspNetCore.Mvc.Razor.Compilation.MetadataReferenceFeatureProvider>
 * <xref:Microsoft.AspNetCore.Mvc.Razor.Compilation.ViewsFeatureProvider>
-* `internal class`[RazorCompiledItemFeatureProvider](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Razor/src/ApplicationParts/RazorCompiledItemFeatureProvider.cs#L14)
+* `internal class`[ Razor CompiledItemFeatureProvider](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Razor/src/ApplicationParts/RazorCompiledItemFeatureProvider.cs#L14)
 
 I provider di funzionalità ereditano da <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider`1>, dove `T` è il tipo della funzionalità. I provider di funzionalità possono essere implementati per uno qualsiasi dei tipi di funzionalità elencati in precedenza. L'ordine dei provider di funzionalità in `ApplicationPartManager.FeatureProviders` può influisca sul comportamento in fase di esecuzione. I provider aggiunti successivamente possono rispondere alle azioni eseguite dai provider aggiunti precedentemente.
 
@@ -157,7 +159,7 @@ Il codice seguente usa <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> per rimu
 I provider di funzionalità dell'applicazione esaminano le parti dell'applicazione e forniscono funzionalità per tali parti. Sono disponibili provider di funzionalità predefiniti per le funzionalità di ASP.NET Core seguenti:
 
 * [Controllers](/dotnet/api/microsoft.aspnetcore.mvc.controllers.controllerfeatureprovider)
-* [Helper tag](/dotnet/api/microsoft.aspnetcore.mvc.razor.taghelpers.taghelperfeatureprovider)
+* [Helper per i tag](/dotnet/api/microsoft.aspnetcore.mvc.razor.taghelpers.taghelperfeatureprovider)
 * [Visualizza componenti](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponents.viewcomponentfeatureprovider)
 
 I provider di funzionalità ereditano da <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider`1>, dove `T` è il tipo della funzionalità. I provider di funzionalità possono essere implementati per uno qualsiasi dei tipi di funzionalità elencati in precedenza. L'ordine dei provider di funzionalità in `ApplicationPartManager.FeatureProviders` può influisca sul comportamento in fase di esecuzione. I provider aggiunti successivamente possono rispondere alle azioni eseguite dai provider aggiunti precedentemente.

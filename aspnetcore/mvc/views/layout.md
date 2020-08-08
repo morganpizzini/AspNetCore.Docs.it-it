@@ -5,6 +5,8 @@ description: Informazioni su come usare layout comuni, condividere direttive ed 
 ms.author: riande
 ms.date: 07/30/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: 08e6284a6c5fc8e8926651f6fe873a71df449acb
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 4d5032f02db28341d7781dd57d58d776636fd16d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406654"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020444"
 ---
 # <a name="layout-in-aspnet-core"></a>Layout in ASP.NET Core
 
@@ -41,7 +43,7 @@ La maggior parte delle applicazioni web presenta un layout comune che fornisce a
 
 ![Esempio di layout di pagina](layout/_static/page-layout.png)
 
-Molte pagine all'interno di un'app utilizzano anche strutture HTML comuni, come script e fogli di stile. Tutti questi elementi condivisi possono essere definiti in un file di *layout*, cui è possibile fare riferimento da qualsiasi visualizzazione utilizzata all'interno dell'app. I layout riducono il codice duplicato nelle visualizzazioni.
+Anche le strutture HTML comuni, ad esempio gli script e i fogli di stile, vengono spesso usate da molte pagine all'interno di un'app. Tutti questi elementi condivisi possono essere definiti in un file di *layout* , a cui è possibile fare riferimento da qualsiasi visualizzazione usata nell'app. I layout riducono il codice duplicato nelle visualizzazioni.
 
 Per convenzione, il layout predefinito per un'app ASP.NET Core è denominato *_Layout.cshtml*. I file di layout per i nuovi progetti ASP.NET Core creati con i modelli sono:
 
@@ -53,7 +55,7 @@ Per convenzione, il layout predefinito per un'app ASP.NET Core è denominato *_L
 
   ![Cartella Views in Esplora soluzioni](layout/_static/mvc-web-project-views.png)
 
-Il layout definisce un modello di primo livello per le visualizzazioni nell'app. Le app non richiedono un layout. Le app possono definire più di un layout, con visualizzazioni diverse che specificano layout differenti.
+Il layout definisce un modello di primo livello per le visualizzazioni nell'app. Le app non richiedono un layout. Le app possono definire più di un layout, con visualizzazioni diverse che specificano layout diversi.
 
 Il codice seguente mostra il file di layout per un progetto creato da modello con un controller e visualizzazioni:
 

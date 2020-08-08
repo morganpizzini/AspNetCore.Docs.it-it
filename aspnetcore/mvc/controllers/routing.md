@@ -5,6 +5,8 @@ description: Informazioni su come ASP.NET Core MVC usa middleware di routing per
 ms.author: riande
 ms.date: 3/25/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 962b42239b2101fc95e55fb38ce214481bf0ef01
-ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
+ms.openlocfilehash: 4d367a6b15fdcf9ef6be1bac749368fd48fa259e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87444143"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020366"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing ad azioni del controller in ASP.NET Core
 
@@ -721,7 +723,7 @@ Se il valore `{ d = Donovan }` viene aggiunto:
 
 È possibile che si verifichi questo problema con la route predefinita `{controller}/{action}/{id?}` . Questo problema è raro in pratica perché `Url.Action` specifica sempre in modo esplicito un `controller` `action` valore e.
 
-Diversi overload di [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) accettano un oggetto dei valori di route per fornire valori per i parametri di route diversi da `controller` e `action` . L'oggetto valori di route viene spesso usato con `id` . Ad esempio: `Url.Action("Buy", "Products", new { id = 17 })`. Oggetto valori di route:
+Diversi overload di [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) accettano un oggetto dei valori di route per fornire valori per i parametri di route diversi da `controller` e `action` . L'oggetto valori di route viene spesso usato con `id` . Ad esempio, `Url.Action("Buy", "Products", new { id = 17 })` Oggetto valori di route:
 
 * Per convenzione è in genere un oggetto di tipo anonimo.
 * Può essere un oggetto `IDictionary<>` o un oggetto [poco](https://wikipedia.org/wiki/Plain_old_CLR_object)).

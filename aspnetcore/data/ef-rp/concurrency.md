@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: ff9e01df002ac0fc94ced6d5d093099d66a14f36
-ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
+ms.openlocfilehash: bb29001e30578e0992e578c2f98cda82c5dcf185
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86176283"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018663"
 ---
-# <a name="part-8-razor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Parte 8, Razor pagine con EF core in ASP.NET Core concorrenza
+# <a name="part-8-no-locrazor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Parte 8, Razor pagine con EF core in ASP.NET Core concorrenza
 
 Di [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra) e [Jon P Smith](https://twitter.com/thereformedprog)
 
@@ -315,7 +317,7 @@ Modificare un altro campo nella seconda scheda del browser.
 
 ![Pagina Department Edit (Modifica - Reparto) 2 dopo la modifica](concurrency/_static/edit-after-change-230.png)
 
-Fare clic su **Save** (Salva). Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
+Fare clic su **Save**. Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error30.png)
 
@@ -611,7 +613,7 @@ Modificare un altro campo nella seconda scheda del browser.
 
 ![Pagina Department Edit (Modifica - Reparto) 2 dopo la modifica](concurrency/_static/edit-after-change-2.png)
 
-Fare clic su **Save** (Salva). Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
+Fare clic su **Save**. Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error.png)
 

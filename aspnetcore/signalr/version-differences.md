@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.date: 11/21/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,18 +16,18 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/version-differences
-ms.openlocfilehash: b5b5686f87d6e511672f6a50db7be8e2613a8a9e
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: f52bf6c82cd5125e0905d9bcbda5dd5499d6455e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060150"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020041"
 ---
-# <a name="differences-between-aspnet-signalr-and-aspnet-core-signalr"></a>Differenze tra ASP.NET SignalR e ASP.NET CoreSignalR
+# <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>Differenze tra ASP.NET SignalR e ASP.NET CoreSignalR
 
 ASP.NET Core SignalR non è compatibile con i client o i server per ASP.NET SignalR . Questo articolo descrive in dettaglio le funzionalità che sono state rimosse o modificate in ASP.NET Core SignalR .
 
-## <a name="how-to-identify-the-signalr-version"></a>Come identificare la SignalR versione
+## <a name="how-to-identify-the-no-locsignalr-version"></a>Come identificare la SignalR versione
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -143,7 +145,7 @@ Il modello di scalabilità orizzontale per ASP.NET SignalR consente ai client di
 
 In ASP.NET Core SignalR , il modello di connessione è stato semplificato. Le connessioni vengono effettuate direttamente in un singolo hub, anziché una singola connessione usata per condividere l'accesso a più hub.
 
-### <a name="streaming"></a>Flusso
+### <a name="streaming"></a>Streaming
 
 ASP.NET Core SignalR supporta ora lo [streaming dei dati](xref:signalr/streaming) dall'hub al client.
 

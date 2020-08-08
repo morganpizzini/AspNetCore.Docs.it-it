@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/distributed
-ms.openlocfilehash: 56c67178bd5c63f08a812357a4f8e672dd483994
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 64a4b6f606a4f5f8e73ef08f53cbb6e4003245aa
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405393"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020678"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>Caching distribuito in ASP.NET Core
 
@@ -171,7 +173,7 @@ Aggiornare immediatamente l'ora memorizzata nella cache all'ora corrente selezio
 Quando si decide quale implementazione di <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> è migliore per l'app, tenere presente quanto segue:
 
 * Infrastruttura esistente
-* Requisiti relativi alle prestazioni
+* Requisiti per le prestazioni
 * Costi
 * Esperienza del team
 
@@ -341,7 +343,7 @@ Aggiornare immediatamente l'ora memorizzata nella cache all'ora corrente selezio
 Quando si decide quale implementazione di <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> è migliore per l'app, tenere presente quanto segue:
 
 * Infrastruttura esistente
-* Requisiti relativi alle prestazioni
+* Requisiti per le prestazioni
 * Costi
 * Esperienza del team
 
@@ -517,7 +519,7 @@ Aggiornare immediatamente l'ora memorizzata nella cache all'ora corrente selezio
 Quando si decide quale implementazione di <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> è migliore per l'app, tenere presente quanto segue:
 
 * Infrastruttura esistente
-* Requisiti relativi alle prestazioni
+* Requisiti per le prestazioni
 * Costi
 * Esperienza del team
 

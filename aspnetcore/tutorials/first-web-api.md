@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 2/25/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: b6a189907f521d7d9d18c1373747a13ab38a621f
-ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
+ms.openlocfilehash: ad6eac246e5bc7039158981bbe96036389512e4f
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87444169"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019235"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Esercitazione: creare un'API Web con ASP.NET Core
 
@@ -29,7 +31,7 @@ Questa esercitazione illustra le nozioni di base della creazione di un'API Web c
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In questa esercitazione si apprenderà come:
+In questa esercitazione verranno illustrate le procedure per:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -46,17 +48,17 @@ Questa esercitazione consente di creare l'API seguente:
 
 |API | Descrizione | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
-|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | Nessuno | Matrice di elementi attività|
-|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
+|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
+|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
 |`POST /api/TodoItems` | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
-|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
-|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Elimina un elemento &nbsp;&nbsp; | Nessuna | Nessuna|
+|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | nessuno |
+|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
 
 Il diagramma seguente visualizza la struttura dell'app.
 
 ![Il client è rappresentato da una casella a sinistra. Invia una richiesta e riceve una risposta dall'applicazione, una casella disegnata a destra. Nella riquadro dell'applicazione tre caselle rappresentano il controller, il modello e il livello di accesso ai dati. La richiesta viene ricevuta dal controller dell'applicazione e vengono eseguite operazioni di lettura/scrittura tra il controller e il livello di accesso ai dati. Il modello viene serializzato e restituito al client nella risposta.](first-web-api/_static/architecture.png)
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -401,7 +403,7 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su **GET**.
-* Impostare l'URL della richiesta su `https://localhost:<port>/api/TodoItems`. Ad esempio: `https://localhost:5001/api/TodoItems`.
+* Impostare l'URL della richiesta su `https://localhost:<port>/api/TodoItems`. Ad esempio, `https://localhost:5001/api/TodoItems`
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare**Send** (Invia).
 
@@ -512,7 +514,7 @@ Vedere [esercitazione: chiamare un'API web ASP.NET Core con JavaScript](xref:tut
 
 ::: moniker range="< aspnetcore-3.0"
 
-In questa esercitazione si apprenderà come:
+In questa esercitazione verranno illustrate le procedure per:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -532,17 +534,17 @@ Questa esercitazione consente di creare l'API seguente:
 
 |API | Descrizione | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
-|GET /api/TodoItems | Ottiene tutti gli elementi attività | Nessuno | Matrice di elementi attività|
-|GET /api/TodoItems/{id} | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
+|GET /api/TodoItems | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
+|GET /api/TodoItems/{id} | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
 |POST /api/TodoItems | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
-|PUT /api/TodoItems/{id} | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
-|Elimina/api/TodoItems/{id} &nbsp;&nbsp; | Elimina un elemento &nbsp;&nbsp; | Nessuna | Nessuna|
+|PUT /api/TodoItems/{id} | Aggiorna un elemento esistente &nbsp; | Elemento attività | nessuno |
+|Elimina/api/TodoItems/{id} &nbsp;&nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
 
 Il diagramma seguente visualizza la struttura dell'app.
 
 ![Il client è rappresentato da una casella a sinistra. Invia una richiesta e riceve una risposta dall'applicazione, una casella disegnata a destra. Nella riquadro dell'applicazione tre caselle rappresentano il controller, il modello e il livello di accesso ai dati. La richiesta viene ricevuta dal controller dell'applicazione e vengono eseguite operazioni di lettura/scrittura tra il controller e il livello di accesso ai dati. Il modello viene serializzato e restituito al client nella risposta.](first-web-api/_static/architecture.png)
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -802,7 +804,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
   * Impostare il metodo HTTP su **GET**.
-  * Impostare l'URL della richiesta su `https://localhost:<port>/api/todo`. Ad esempio: `https://localhost:5001/api/todo`.
+  * Impostare l'URL della richiesta su `https://localhost:<port>/api/todo`. Ad esempio, `https://localhost:5001/api/todo`
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare**Send** (Invia).
 
@@ -917,7 +919,7 @@ Aggiungere un file HTML denominato *index.html* alla directory *wwwroot*. Sostit
 
 [!code-html[](first-web-api/samples/2.2/TodoApi/wwwroot/index.html)]
 
-Aggiungere un file JavaScript con nome *site.js* alla directory *wwwroot*. Sostituire il contenuto con il codice seguente:
+Aggiungere un file JavaScript con nome *site.js* alla directory *wwwroot*. Sostituirne il contenuto con il codice seguente:
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_SiteJs)]
 
@@ -964,7 +966,7 @@ L'aggiornamento di un elemento attività è simile all'aggiunta di un elemento d
 
 [Visualizzare o scaricare il codice di esempio per questa esercitazione](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). Vedere [come scaricare un esempio](xref:index#how-to-download-a-sample).
 
-Per altre informazioni, vedere le risorse seguenti:
+Per altre informazioni, vedere le seguenti risorse:
 
 * <xref:web-api/index>
 * <xref:tutorials/web-api-help-pages-using-swagger>

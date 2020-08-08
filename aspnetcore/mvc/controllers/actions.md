@@ -5,6 +5,8 @@ description: ''
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/actions
-ms.openlocfilehash: 0c91edc947b1a17f2dd36b281afe348aa8611bd7
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 05985acb559f63eb5f1d9854041be737291a3809
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406914"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019911"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Gestire le richieste con controller in ASP.NET Core MVC
 
@@ -85,7 +87,7 @@ La maggior parte dei metodi helper di questa categoria includono una proprietà 
 
 All'interno di questa categoria sono presenti due tipi di risultato: [visualizzazione](xref:mvc/views/overview) e [risposta formattata](xref:web-api/advanced/formatting).
 
-* **Visualizza**
+* **Visualizzazione**
 
     Questo tipo restituisce una visualizzazione che esegue il rendering HTML usando un modello. `return View(customer);`, ad esempio, passa un modello alla visualizzazione per eseguire il data binding.
 

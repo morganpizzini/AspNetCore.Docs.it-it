@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/introduction
-ms.openlocfilehash: bf41d5a756c988b239824c19ef7a9d177a93a4a1
-ms.sourcegitcommit: b0fa7ff0cb158277df61bcd08058a81222c3fe10
+ms.openlocfilehash: b29711e8e1ef1558731ba58ca2ff14000af19ca2
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87913817"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019356"
 ---
 # <a name="aspnet-core-data-protection"></a>Protezione dei dati ASP.NET Core
 
@@ -31,7 +33,7 @@ Lo stack di protezione dei dati ASP.NET Core è progettato per fungere da sostit
 
 L'informativa sul problema generale può essere concisa in una singola frase: è necessario rendere persistenti le informazioni attendibili per il recupero successivo, ma non si considera attendibile il meccanismo di persistenza. In termini Web, questo potrebbe essere scritto come "è necessario eseguire il round trip di stato attendibile tramite un client non attendibile".
 
-L'esempio canonico è un cookie di autenticazione o bearer token. Il server genera un token "I am Groot and have XYZ Permissions" e lo passa al client. In una data futura il client presenta il token al server, ma il server richiede un certo tipo di garanzia che il client non abbia falsificato il token. Quindi, il primo requisito: autenticità (noto anche come integrità, correzione delle manomissioni.
+L'esempio canonico è un'autenticazione cookie o Bearer token. Il server genera un token "I am Groot and have XYZ Permissions" e lo passa al client. In una data futura il client presenta il token al server, ma il server richiede un certo tipo di garanzia che il client non abbia falsificato il token. Quindi, il primo requisito: autenticità (noto anche come integrità, correzione delle manomissioni.
 
 Poiché lo stato permanente è considerato attendibile dal server, si prevede che questo stato possa contenere informazioni specifiche per l'ambiente operativo. Il formato potrebbe essere un percorso di file, un'autorizzazione, un handle o un altro riferimento indiretto o altri dati specifici del server. Tali informazioni in genere non devono essere divulgate a un client non attendibile. Quindi, il secondo requisito: riservatezza.
 

@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: af0f07a0f50a79f25b6a14459402f9dd8b59dae2
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 25f1716b5c80492edb72bc9555954c9c93c02a49
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408253"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018766"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Helper tag di ancoraggio in ASP.NET Core
 
@@ -181,7 +183,7 @@ I tag hash sono utili per la compilazione di app sul lato client. Ad esempio pos
 
 L'attributo [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) imposta il nome dell'area usato per impostare la route appropriata. Gli esempi seguenti illustrano come l'attributo `asp-area` determina la modifica del mapping delle route.
 
-#### <a name="usage-in-razor-pages"></a>Utilizzo nelle Razor pagine
+#### <a name="usage-in-no-locrazor-pages"></a>Utilizzo nelle Razor pagine
 
 RazorLe aree delle pagine sono supportate in ASP.NET Core 2,1 o versioni successive.
 
@@ -211,7 +213,7 @@ Codice HTML generato:
 > Per supportare le aree in un' Razor app pagine, effettuare una delle operazioni seguenti in `Startup.ConfigureServices` :
 >
 > * Impostare la [versione di compatibilità](xref:mvc/compatibility-version) su 2.1 o successiva.
-> * Impostare la proprietà [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) su `true`:
+> * Impostare la proprietà [ Razor PagesOptions. AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) su `true` :
 >
 >   [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_AllowAreas)]
 

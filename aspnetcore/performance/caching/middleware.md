@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/middleware
-ms.openlocfilehash: 0d13c44b5538f617343a89a441856d4a3f0cc7f1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 7e1463671323cddd2b95c03de994d497449d7884
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399946"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019092"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>Middleware di memorizzazione nella cache delle risposte in ASP.NET Core
 
@@ -112,7 +114,7 @@ Nella tabella seguente vengono fornite informazioni sulle intestazioni HTTP che 
 | `Authorization` | Se l'intestazione esiste, la risposta non viene memorizzata nella cache. |
 | `Cache-Control` | Il middleware considera solo le risposte di memorizzazione nella cache contrassegnate con la `public` direttiva della cache. Controllare la memorizzazione nella cache con i parametri seguenti:<ul><li>validità massima</li><li>numero massimo di&#8224; obsoleti</li><li>min-Fresh</li><li>must-revalidate</li><li>no-cache</li><li>Nessun archivio</li><li>solo-if-Cached</li><li>private</li><li>public</li><li>s-maxage</li><li>proxy-riconvalida&#8225;</li></ul>&#8224;se non viene specificato alcun limite a `max-stale` , il middleware non esegue alcuna azione.<br>&#8225;`proxy-revalidate` ha lo stesso effetto di `must-revalidate` .<br><br>Per altre informazioni, vedere [RFC 7231: direttive Cache-Control della richiesta](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
 | `Pragma` | Un' `Pragma: no-cache` intestazione nella richiesta produce lo stesso effetto di `Cache-Control: no-cache` . Questa intestazione viene sottoposta a override dalle direttive pertinenti nell' `Cache-Control` intestazione, se presente. Considerato per compatibilità con le versioni precedenti di HTTP/1.0. |
-| `Set-Cookie` | Se l'intestazione esiste, la risposta non viene memorizzata nella cache. Qualsiasi middleware nella pipeline di elaborazione delle richieste che imposta uno o più cookie impedisce al middleware di caching della risposta di memorizzare nella cache la risposta, ad esempio il [provider TempData basato su cookie](xref:fundamentals/app-state#tempdata).  |
+| `Set-Cookie` | Se l'intestazione esiste, la risposta non viene memorizzata nella cache. Qualsiasi middleware nella pipeline di elaborazione della richiesta che imposta uno o più cookie impedisce al middleware di memorizzazione nella cache della risposta di memorizzare nella cache la risposta, ad esempio il [ cookie provider TempData basato su](xref:fundamentals/app-state#tempdata).  |
 | `Vary` | L' `Vary` intestazione viene utilizzata per variare la risposta memorizzata nella cache da un'altra intestazione. Ad esempio, memorizzare nella cache le risposte per codifica includendo l' `Vary: Accept-Encoding` intestazione, che memorizza nella cache le risposte per le richieste con intestazioni `Accept-Encoding: gzip` e `Accept-Encoding: text/plain` separatamente. Una risposta con un valore di intestazione `*` non viene mai archiviata. |
 | `Expires` | Una risposta ritenuta obsoleta da questa intestazione non viene archiviata o recuperata a meno che non venga sottoposta a override da altre `Cache-Control` intestazioni. |
 | `If-None-Match` | La risposta completa viene servita dalla cache se il valore non è `*` e la `ETag` della risposta non corrisponde ad alcuno dei valori forniti. In caso contrario, viene servita una risposta 304 (non modificata). |
@@ -256,7 +258,7 @@ Nella tabella seguente vengono fornite informazioni sulle intestazioni HTTP che 
 | `Authorization` | Se l'intestazione esiste, la risposta non viene memorizzata nella cache. |
 | `Cache-Control` | Il middleware considera solo le risposte di memorizzazione nella cache contrassegnate con la `public` direttiva della cache. Controllare la memorizzazione nella cache con i parametri seguenti:<ul><li>validità massima</li><li>numero massimo di&#8224; obsoleti</li><li>min-Fresh</li><li>must-revalidate</li><li>no-cache</li><li>Nessun archivio</li><li>solo-if-Cached</li><li>private</li><li>public</li><li>s-maxage</li><li>proxy-riconvalida&#8225;</li></ul>&#8224;se non viene specificato alcun limite a `max-stale` , il middleware non esegue alcuna azione.<br>&#8225;`proxy-revalidate` ha lo stesso effetto di `must-revalidate` .<br><br>Per altre informazioni, vedere [RFC 7231: direttive Cache-Control della richiesta](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
 | `Pragma` | Un' `Pragma: no-cache` intestazione nella richiesta produce lo stesso effetto di `Cache-Control: no-cache` . Questa intestazione viene sottoposta a override dalle direttive pertinenti nell' `Cache-Control` intestazione, se presente. Considerato per compatibilità con le versioni precedenti di HTTP/1.0. |
-| `Set-Cookie` | Se l'intestazione esiste, la risposta non viene memorizzata nella cache. Qualsiasi middleware nella pipeline di elaborazione delle richieste che imposta uno o più cookie impedisce al middleware di caching della risposta di memorizzare nella cache la risposta, ad esempio il [provider TempData basato su cookie](xref:fundamentals/app-state#tempdata).  |
+| `Set-Cookie` | Se l'intestazione esiste, la risposta non viene memorizzata nella cache. Qualsiasi middleware nella pipeline di elaborazione della richiesta che imposta uno o più cookie impedisce al middleware di memorizzazione nella cache della risposta di memorizzare nella cache la risposta, ad esempio il [ cookie provider TempData basato su](xref:fundamentals/app-state#tempdata).  |
 | `Vary` | L' `Vary` intestazione viene utilizzata per variare la risposta memorizzata nella cache da un'altra intestazione. Ad esempio, memorizzare nella cache le risposte per codifica includendo l' `Vary: Accept-Encoding` intestazione, che memorizza nella cache le risposte per le richieste con intestazioni `Accept-Encoding: gzip` e `Accept-Encoding: text/plain` separatamente. Una risposta con un valore di intestazione `*` non viene mai archiviata. |
 | `Expires` | Una risposta ritenuta obsoleta da questa intestazione non viene archiviata o recuperata a meno che non venga sottoposta a override da altre `Cache-Control` intestazioni. |
 | `If-None-Match` | La risposta completa viene servita dalla cache se il valore non è `*` e la `ETag` della risposta non corrisponde ad alcuno dei valori forniti. In caso contrario, viene servita una risposta 304 (non modificata). |

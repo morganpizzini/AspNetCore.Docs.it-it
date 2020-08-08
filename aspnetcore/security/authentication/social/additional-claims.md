@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/additional-claims
-ms.openlocfilehash: 291897b06d3d8294bc170996683f36532712ebe4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f7a440a13891cd51226cad12924cfc65684632ea
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399010"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020184"
 ---
 # <a name="persist-additional-claims-and-tokens-from-external-providers-in-aspnet-core"></a>Mantieni attestazioni e token aggiuntivi da provider esterni in ASP.NET Core
 
@@ -80,19 +82,19 @@ Nell'app di esempio `OnPostConfirmationAsync` (*account/ExternalLogin. cshtml. c
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=35-51)]
 
-Per impostazione predefinita, le attestazioni di un utente vengono archiviate nel cookie di autenticazione. Se il cookie di autenticazione è troppo grande, può causare un errore dell'app perché:
+Per impostazione predefinita, le attestazioni di un utente vengono archiviate nell'autenticazione di cookie . Se l'autenticazione cookie è troppo grande, può causare un errore dell'app perché:
 
-* Il browser rileva che l'intestazione del cookie è troppo lungo.
+* Il browser rileva che l' cookie intestazione è troppo lungo.
 * La dimensione complessiva della richiesta è troppo grande.
 
 Se per l'elaborazione delle richieste utente è richiesta una grande quantità di dati utente:
 
 * Limitare il numero e le dimensioni delle attestazioni utente per l'elaborazione delle richieste solo ai componenti richiesti dall'app.
-* Usare un personalizzato <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> per il middleware di autenticazione dei cookie <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> per archiviare l'identità tra le richieste. Mantenere grandi quantità di informazioni sull'identità sul server inviando al client solo una chiave di identificatore di sessione di piccole dimensioni.
+* Usare un personalizzato <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> per il Cookie middleware di autenticazione <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> per archiviare l'identità tra le richieste. Mantenere grandi quantità di informazioni sull'identità sul server inviando al client solo una chiave di identificatore di sessione di piccole dimensioni.
 
 ## <a name="save-the-access-token"></a>Salvare il token di accesso
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*>definisce se i token di accesso e di aggiornamento devono essere archiviati in <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> dopo un'autorizzazione riuscita. `SaveTokens`per impostazione predefinita, è impostato su `false` per ridurre le dimensioni del cookie di autenticazione finale.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*>definisce se i token di accesso e di aggiornamento devono essere archiviati in <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> dopo un'autorizzazione riuscita. `SaveTokens`è impostato su per `false` impostazione predefinita per ridurre le dimensioni dell'autenticazione finale cookie .
 
 L'app di esempio imposta il valore di `SaveTokens` su `true` in <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> :
 
@@ -220,19 +222,19 @@ Nell'app di esempio `OnPostConfirmationAsync` (*account/ExternalLogin. cshtml. c
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=35-51)]
 
-Per impostazione predefinita, le attestazioni di un utente vengono archiviate nel cookie di autenticazione. Se il cookie di autenticazione è troppo grande, può causare un errore dell'app perché:
+Per impostazione predefinita, le attestazioni di un utente vengono archiviate nell'autenticazione di cookie . Se l'autenticazione cookie è troppo grande, può causare un errore dell'app perché:
 
-* Il browser rileva che l'intestazione del cookie è troppo lungo.
+* Il browser rileva che l' cookie intestazione è troppo lungo.
 * La dimensione complessiva della richiesta è troppo grande.
 
 Se per l'elaborazione delle richieste utente è richiesta una grande quantità di dati utente:
 
 * Limitare il numero e le dimensioni delle attestazioni utente per l'elaborazione delle richieste solo ai componenti richiesti dall'app.
-* Usare un personalizzato <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> per il middleware di autenticazione dei cookie <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> per archiviare l'identità tra le richieste. Mantenere grandi quantità di informazioni sull'identità sul server inviando al client solo una chiave di identificatore di sessione di piccole dimensioni.
+* Usare un personalizzato <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> per il Cookie middleware di autenticazione <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> per archiviare l'identità tra le richieste. Mantenere grandi quantità di informazioni sull'identità sul server inviando al client solo una chiave di identificatore di sessione di piccole dimensioni.
 
 ## <a name="save-the-access-token"></a>Salvare il token di accesso
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*>definisce se i token di accesso e di aggiornamento devono essere archiviati in <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> dopo un'autorizzazione riuscita. `SaveTokens`per impostazione predefinita, è impostato su `false` per ridurre le dimensioni del cookie di autenticazione finale.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens*>definisce se i token di accesso e di aggiornamento devono essere archiviati in <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> dopo un'autorizzazione riuscita. `SaveTokens`è impostato su per `false` impostazione predefinita per ridurre le dimensioni dell'autenticazione finale cookie .
 
 L'app di esempio imposta il valore di `SaveTokens` su `true` in <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> :
 

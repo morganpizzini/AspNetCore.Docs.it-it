@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 700370fd11a0df40a45c47e8c378d5bdd0c60009
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: cd6624d107fb19da92a7e58a747cc85e876a6ba4
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212701"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018637"
 ---
-# <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>RazorPagine con Entity Framework Core in ASP.NET Core-esercitazione 1 di 8
+# <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>RazorPagine con Entity Framework Core in ASP.NET Core-esercitazione 1 di 8
 
 Di [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -498,7 +500,7 @@ Gli utenti possono visualizzare e aggiornare le informazioni che riguardano stud
 
 Lo stile dell'interfaccia utente del sito è simile a quanto è stato generato tramite i modelli predefiniti. Lo stato attivo dell'esercitazione è EF Core con le Razor pagine, non con l'interfaccia utente.
 
-## <a name="create-the-contosouniversity-razor-pages-web-app"></a>Creare l' Razor app Web ContosoUniversity Pages
+## <a name="create-the-contosouniversity-no-locrazor-pages-web-app"></a>Creare l' Razor app Web ContosoUniversity Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -673,7 +675,7 @@ Il codice seguente illustra il file *Program.cs* aggiornato.
 
 ### <a name="test-the-app"></a>Testare l'app
 
-Eseguire l'app e accettare l'informativa sui cookie. Questa app non memorizza informazioni personali. È possibile consultare l'informativa sui cookie in [Supporto per il Regolamento generale sulla protezione dei dati (GDPR) dell'Unione Europea](xref:security/gdpr).
+Eseguire l'app e accettare i cookie criteri. Questa app non memorizza informazioni personali. Per informazioni sui criteri, vedere la pagina relativa cookie al [supporto per regolamento generale sulla protezione dei dati UE (GDPR)](xref:security/gdpr).
 
 * Selezionare il collegamento **Students** (Studenti) e quindi **Crea nuovo**.
 * Eseguire il test dei collegamenti Edit (Modifica), Details (Dettagli) e Delete (Elimina).

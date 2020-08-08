@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: cebfc88a8a8313bfd975001b50db6e41b6939aed
-ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
+ms.openlocfilehash: 10741cfc701bf261484b9e6c73a2347e2dd7083d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87819143"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019835"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Novità di ASP.NET Core 3,0
 
@@ -324,8 +326,8 @@ Per aggiungere Json.NET a ASP.NET Core 3,0, vedere [aggiungere Newtonsoft.Jssupp
 
 L'elenco seguente contiene le nuove Razor direttive:
 
-* [`@attribute`](xref:mvc/views/razor#attribute): La `@attribute` direttiva applica l'attributo specificato alla classe della pagina o della visualizzazione generata. Ad esempio: `@attribute [Authorize]`.
-* [`@implements`](xref:mvc/views/razor#implements): La `@implements` direttiva implementa un'interfaccia per la classe generata. Ad esempio: `@implements IDisposable`.
+* [`@attribute`](xref:mvc/views/razor#attribute): La `@attribute` direttiva applica l'attributo specificato alla classe della pagina o della visualizzazione generata. Ad esempio, `@attribute [Authorize]`
+* [`@implements`](xref:mvc/views/razor#implements): La `@implements` direttiva implementa un'interfaccia per la classe generata. Ad esempio, `@implements IDisposable`
 
 ## <a name="no-locidentityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>IdentityServer4 supporta l'autenticazione e l'autorizzazione per le API Web e le Spa
 
@@ -402,7 +404,7 @@ Per altre informazioni, vedere <xref:security/authentication/windowsauth>.
 
 I modelli dell'interfaccia utente Web ( Razor pagine, MVC con controller e visualizzazioni) hanno rimosso quanto segue:
 
-* L'interfaccia utente di consenso del cookie non è più inclusa. Per abilitare la funzionalità di consenso dei cookie in un ASP.NET Core app generata da un modello 3,0, vedere <xref:security/gdpr> .
+* L' cookie interfaccia utente di consenso non è più inclusa. Per abilitare la cookie funzionalità di consenso in un ASP.NET Core app generata da un modello 3,0, vedere <xref:security/gdpr> .
 * Agli script e agli asset statici correlati viene ora fatto riferimento come file locali invece di usare CDNs. Per altre informazioni, vedere [gli script e gli asset statici correlati a cui viene ora fatto riferimento come file locali invece di usare CDNs in base all'ambiente corrente (ASPNET/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350).
 
 Modello angolare aggiornato per l'utilizzo di 8 angolare.

@@ -7,6 +7,8 @@ ms.author: scaddie
 ms.custom: mvc, seodec18
 ms.date: 08/17/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mongo-app
-ms.openlocfilehash: 831479f04551441b079d3f34d043c7486bad7ac0
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: fac4adb6ffa487c7ca9650a8ebd063dd344d84a7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85409020"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020249"
 ---
 # <a name="create-a-web-api-with-aspnet-core-and-mongodb"></a>Creare un'API Web con ASP.NET Core e MongoDB
 
@@ -296,7 +298,7 @@ La classe `BookService` usa i membri `MongoDB.Driver` seguenti per eseguire oper
 * [InsertOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm): inserisce l'oggetto fornito come nuovo documento nella raccolta.
 * [ReplaceOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm): sostituisce il singolo documento corrispondente ai criteri di ricerca specificati con l'oggetto fornito.
 
-## <a name="add-a-controller"></a>Aggiungere un controller
+## <a name="add-a-controller"></a>Aggiunta di un controller
 
 Aggiungere una classe `BooksController` alla directory *Controllers* con il codice seguente:
 
@@ -310,7 +312,7 @@ Il controller dell'API Web precedente:
 
 ## <a name="test-the-web-api"></a>Testare l'API Web
 
-1. Compilare ed eseguire l'app.
+1. Compila ed esegui l'app.
 
 1. Passare a `http://localhost:<port>/api/books` per testare il metodo dell'azione `Get` senza parametri del controller. Viene visualizzata la risposta JSON seguente:
 
@@ -646,7 +648,7 @@ La classe `BookService` usa i membri `MongoDB.Driver` seguenti per eseguire oper
 * [InsertOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm): inserisce l'oggetto fornito come nuovo documento nella raccolta.
 * [ReplaceOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm): sostituisce il singolo documento corrispondente ai criteri di ricerca specificati con l'oggetto fornito.
 
-## <a name="add-a-controller"></a>Aggiungere un controller
+## <a name="add-a-controller"></a>Aggiunta di un controller
 
 Aggiungere una classe `BooksController` alla directory *Controllers* con il codice seguente:
 
@@ -660,7 +662,7 @@ Il controller dell'API Web precedente:
 
 ## <a name="test-the-web-api"></a>Testare l'API Web
 
-1. Compilare ed eseguire l'app.
+1. Compila ed esegui l'app.
 
 1. Passare a `http://localhost:<port>/api/books` per testare il metodo dell'azione `Get` senza parametri del controller. Viene visualizzata la risposta JSON seguente:
 

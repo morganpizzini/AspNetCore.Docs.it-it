@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/gdpr
-ms.openlocfilehash: 8a7041a976ea9f0e99bfd1eba792d0e919eaf6d3
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 6392a22e316f903da18cd1a91d1eb779d8dde1b3
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212831"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020015"
 ---
 # <a name="eu-general-data-protection-regulation-gdpr-support-in-aspnet-core"></a>Supporto per Regolamento generale sulla protezione dei dati UE (GDPR) in ASP.NET Core
 
@@ -29,34 +31,34 @@ ASP.NET Core fornisce API e modelli per aiutare a soddisfare alcuni dei requisit
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* I modelli di progetto includono punti di estensione e markup con stub che è possibile sostituire con i criteri di uso della privacy e dei cookie.
+* I modelli di progetto includono i punti di estensione e il markup con stub che è possibile sostituire con la privacy e i cookie criteri di utilizzo.
 * La pagina *pages/privacy. cshtml* o *views/Home/Privacy. cshtml* Visualizza una pagina che illustra in dettaglio l'informativa sulla privacy del sito.
 
-Per abilitare la funzionalità di consenso dei cookie predefinita come quella disponibile nei modelli ASP.NET Core 2,2 in un'app generata da un modello ASP.NET Core 3,0:
+Per abilitare la cookie funzionalità di consenso predefinita come quella disponibile nei modelli ASP.NET Core 2,2 in un'app generata da un modello ASP.NET Core 3,0:
 
 * Aggiungere `using Microsoft.AspNetCore.Http` all'elenco delle direttive using.
-* Aggiungere [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) a `Startup.ConfigureServices` e [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) a `Startup.Configure` :
+* Aggiungere [ Cookie PolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) a `Startup.ConfigureServices` e [usare i Cookie criteri](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) per `Startup.Configure` :
 
   [!code-csharp[Main](gdpr/sample/RP3.0/Startup.cs?name=snippet1&highlight=12-19,38)]
 
-* Aggiungere il consenso del cookie parziale al file *_Layout. cshtml* :
+* Aggiungere il cookie consenso parziale al file *_Layout. cshtml* :
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_Layout.cshtml?name=snippet&highlight=4)]
 
-* Aggiungere il file * \_ CookieConsentPartial. cshtml* al progetto:
+* Aggiungere il file * \_ Cookie ConsentPartial. cshtml* al progetto:
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_CookieConsentPartial.cshtml)]
 
-* Selezionare la versione di ASP.NET Core 2,2 di questo articolo per informazioni sulla funzionalità di consenso dei cookie.
+* Selezionare la versione di ASP.NET Core 2,2 di questo articolo per leggere la cookie funzionalità di consenso.
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.2"
 
-* I modelli di progetto includono punti di estensione e markup con stub che è possibile sostituire con i criteri di uso della privacy e dei cookie.
-* Una funzionalità di consenso dei cookie consente di richiedere (e tenere traccia) il consenso degli utenti per l'archiviazione di informazioni personali. Se un utente non ha acconsentito alla raccolta dei dati e l'app è impostata su [CheckConsentNeeded](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.checkconsentneeded) `true` , i cookie non essenziali non vengono inviati al browser.
-* I cookie possono essere contrassegnati come essenziali. I cookie essenziali vengono inviati al browser anche quando l'utente non ha acconsentito e la verifica è disabilitata.
-* [TempData e cookie di sessione](#tempdata) non sono funzionali quando il rilevamento è disabilitato.
+* I modelli di progetto includono i punti di estensione e il markup con stub che è possibile sostituire con la privacy e i cookie criteri di utilizzo.
+* Una cookie funzionalità di consenso consente di richiedere (e tenere traccia) il consenso degli utenti per l'archiviazione di informazioni personali. Se un utente non ha acconsentito alla raccolta dei dati e l'app [CheckConsentNeeded](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.checkconsentneeded) è impostata su `true` , i non essenziali cookie non vengono inviati al browser.
+* Cookiei possono essere contrassegnati come essenziali. Gli elementi essenziali cookie vengono inviati al browser anche quando l'utente non ha acconsentito e la verifica è disabilitata.
+* [TempData e Session cookie s](#tempdata) non sono funzionali quando il rilevamento è disabilitato.
 * La pagina [ Identity Gestisci](#pd) fornisce un collegamento per scaricare ed eliminare i dati utente.
 
 L' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) consente di testare la maggior parte delle API e dei punti di estensione GDPR aggiunti ai modelli ASP.NET Core 2,1. Per le istruzioni di test, vedere il file [Leggimi](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) .
@@ -67,48 +69,48 @@ L' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetco
 
 RazorLe pagine e i progetti MVC creati con i modelli di progetto includono il supporto GDPR seguente:
 
-* [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) e [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) vengono impostati nella `Startup` classe.
-* [Visualizzazione parziale](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper) * \_ CookieConsentPartial. cshtml* . In questo file è incluso un pulsante **Accept** . Quando l'utente fa clic sul pulsante **Accept** , viene fornito il consenso per l'archiviazione dei cookie.
-* La pagina *pages/privacy. cshtml* o *views/Home/Privacy. cshtml* Visualizza una pagina che illustra in dettaglio l'informativa sulla privacy del sito. Il file * \_ CookieConsentPartial. cshtml* genera un collegamento alla pagina privacy.
+* I [ Cookie criteri](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) [ Cookie PolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) e Use vengono impostati nella `Startup` classe.
+* [Visualizzazione parziale](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper) * \_ Cookie ConsentPartial. cshtml* . In questo file è incluso un pulsante **Accept** . Quando l'utente fa clic sul pulsante **Accept** , viene fornito il consenso per l'archiviazione cookie .
+* La pagina *pages/privacy. cshtml* o *views/Home/Privacy. cshtml* Visualizza una pagina che illustra in dettaglio l'informativa sulla privacy del sito. Il file * \_ Cookie ConsentPartial. cshtml* genera un collegamento alla pagina privacy.
 * Per le app create con singoli account utente, la pagina Gestisci fornisce collegamenti per scaricare ed eliminare [i dati utente personali](#pd).
 
-### <a name="cookiepolicyoptions-and-usecookiepolicy"></a>CookiePolicyOptions e UseCookiePolicy
+### <a name="no-loccookiepolicyoptions-and-useno-loccookiepolicy"></a>CookiePolicyOptions e criteri di utilizzo Cookie
 
-[CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) vengono inizializzati in `Startup.ConfigureServices` :
+[ Cookie PolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) vengono inizializzati in `Startup.ConfigureServices` :
 
 [!code-csharp[Main](gdpr/sample/Startup.cs?name=snippet1&highlight=14-20)]
 
-[UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) viene chiamato in `Startup.Configure` :
+[Usa Cookie Il criterio](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) viene chiamato in `Startup.Configure` :
 
 [!code-csharp[](gdpr/sample/Startup.cs?name=snippet1&highlight=51)]
 
-### <a name="_cookieconsentpartialcshtml-partial-view"></a>\_Visualizzazione parziale CookieConsentPartial. cshtml
+### <a name="_no-loccookieconsentpartialcshtml-partial-view"></a>\_CookieVisualizzazione parziale ConsentPartial. cshtml
 
-Visualizzazione parziale * \_ CookieConsentPartial. cshtml* :
+Visualizzazione parziale * \_ Cookie ConsentPartial. cshtml* :
 
 [!code-cshtml[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 Questa parte parziale:
 
-* Ottiene lo stato di rilevamento per l'utente. Se l'app è configurata in modo da richiedere il consenso, l'utente deve fornire il consenso prima di poter tenere traccia dei cookie. Se è necessario il consenso, il pannello di consenso del cookie viene fissato nella parte superiore della barra di spostamento creata dal file * \_ layout. cshtml* .
-* Fornisce un `<p>` elemento HTML per riepilogare i criteri di utilizzo della privacy e dei cookie.
+* Ottiene lo stato di rilevamento per l'utente. Se l'app è configurata in modo da richiedere il consenso, l'utente deve fornire il consenso prima di cookie poter tenere traccia di s. Se è necessario il consenso, il cookie Pannello di consenso viene fissato nella parte superiore della barra di spostamento creata dal file * \_ layout. cshtml* .
+* Fornisce un `<p>` elemento HTML per riepilogare la privacy e i cookie criteri di utilizzo.
 * Fornisce un collegamento alla pagina privacy o alla visualizzazione in cui è possibile visualizzare i dettagli dell'informativa sulla privacy del sito.
 
-## <a name="essential-cookies"></a>Cookie essenziali
+## <a name="essential-no-loccookies"></a>Essential cookie s
 
-Se non è stato fornito il consenso per l'archiviazione dei cookie, verranno inviati al browser solo i cookie contrassegnati come essenziali. Il codice seguente rende un cookie essenziale:
+Se cookie non è stato fornito il consenso per archiviare s, cookie al browser vengono inviate solo le chiavi contrassegnate come essenziali. Il codice seguente rende cookie essenziale:
 
 [!code-csharp[Main](gdpr/sample/RP2.2/Pages/Cookie.cshtml.cs?name=snippet1&highlight=5)]
 
 <a name="tempdata"></a>
 
-### <a name="tempdata-provider-and-session-state-cookies-arent-essential"></a>I cookie di stato della sessione e del provider TempData non sono essenziali
+### <a name="tempdata-provider-and-session-state-no-loccookies-arent-essential"></a>Il provider TempData e lo stato della sessione cookie non sono essenziali
 
-Il cookie del [provider TempData](xref:fundamentals/app-state#tempdata) non è essenziale. Se il rilevamento è disabilitato, il provider TempData non funziona. Per abilitare il provider TempData quando il rilevamento è disabilitato, contrassegnare il cookie TempData come essenziale in `Startup.ConfigureServices` :
+Il [provider TempData](xref:fundamentals/app-state#tempdata) cookie non è essenziale. Se il rilevamento è disabilitato, il provider TempData non funziona. Per abilitare il provider TempData quando il rilevamento è disabilitato, contrassegnare il TempData cookie come essenziale in `Startup.ConfigureServices` :
 
 [!code-csharp[Main](gdpr/sample/RP2.2/Startup.cs?name=snippet1)]
 
-I cookie di [stato della sessione](xref:fundamentals/app-state) non sono essenziali. Lo stato della sessione non è funzionante quando il rilevamento è disabilitato. Il codice seguente rende essenziali i cookie di sessione:
+[Stato sessione](xref:fundamentals/app-state) cookie i non sono essenziali. Lo stato della sessione non è funzionante quando il rilevamento è disabilitato. Il codice seguente rende la sessione cookie essenziale:
 
 [!code-csharp[](gdpr/sample/RP2.2/Startup.cs?name=snippet2)]
 
@@ -127,7 +129,7 @@ Note:
 * Per generare il `Account/Manage` codice, vedere [ Identity impalcatura ](xref:security/authentication/scaffold-identity).
 * I collegamenti **Delete** e **download** agiscono solo sui dati di identità predefiniti. È necessario estendere le app che creano dati utente personalizzati per eliminare o scaricare i dati utente personalizzati. Per ulteriori informazioni, vedere [aggiungere, scaricare ed eliminare dati utente personalizzati in Identity ](xref:security/authentication/add-user-data).
 * I token salvati per l'utente archiviati nella Identity tabella di database `AspNetUserTokens` vengono eliminati quando l'utente viene eliminato tramite il comportamento di eliminazione a cascata a causa della [chiave esterna](https://github.com/aspnet/Identity/blob/release/2.1/src/EF/IdentityUserContext.cs#L152).
-* L' [autenticazione del provider esterno](xref:security/authentication/social/index), ad esempio Facebook e Google, non è disponibile prima che i criteri dei cookie vengano accettati.
+* L' [autenticazione del provider esterno](xref:security/authentication/social/index), ad esempio Facebook e Google, non è disponibile prima che i cookie criteri vengano accettati.
 
 ::: moniker-end
 

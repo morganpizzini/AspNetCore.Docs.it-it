@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/11/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,16 +16,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-configuration
-ms.openlocfilehash: 5c999b426742cf75b1997f5b40223e2dda112901
-ms.sourcegitcommit: 1b89fc58114a251926abadfd5c69c120f1ba12d8
+ms.openlocfilehash: b7f6eaba1a0e819a077e3d63b4f997e75b8cd317
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87160287"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020600"
 ---
 # <a name="configure-aspnet-core-no-locidentity"></a>Configurare ASP.NET CoreIdentity
 
-ASP.NET Core Identity utilizza i valori predefiniti per le impostazioni, ad esempio i criteri password, il blocco e la configurazione dei cookie. È possibile eseguire l'override di queste impostazioni nella `Startup` classe.
+ASP.NET Core Identity utilizza i valori predefiniti per le impostazioni, ad esempio i criteri password, il blocco e la cookie configurazione. È possibile eseguire l'override di queste impostazioni nella `Startup` classe.
 
 ## <a name="no-locidentity-options"></a>IdentityOpzioni
 
@@ -125,19 +127,19 @@ Il codice seguente imposta `SignIn` le impostazioni (sui valori predefiniti):
 | [AllowedUserNameCharacters](/dotnet/api/microsoft.aspnetcore.identity.useroptions.allowedusernamecharacters) | Caratteri consentiti nel nome utente. | abcdefghijklmnopqrstuvwxyz<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789<br>-.\_@+ |
 | [RequireUniqueEmail](/dotnet/api/microsoft.aspnetcore.identity.useroptions.requireuniqueemail) | Richiede che ogni utente disponga di un messaggio di posta elettronica univoco. | `false` |
 
-### <a name="cookie-settings"></a>Impostazioni cookie
+### <a name="no-loccookie-settings"></a>Impostazioni diCookie
 
-Configurare il cookie dell'app in `Startup.ConfigureServices` . [ConfigureApplicationCookie](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) deve essere chiamato **dopo aver** chiamato `AddIdentity` o `AddDefaultIdentity` .
+Configurare l'app cookie in `Startup.ConfigureServices` . [ConfigureApplication Cookie ](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) deve essere chiamato **dopo aver** chiamato `AddIdentity` o `AddDefaultIdentity` .
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_cookie)]
 
-Per ulteriori informazioni, vedere [CookieAuthenticationOptions](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions).
+Per ulteriori informazioni, vedere [ Cookie AuthenticationOptions](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions).
 
 ## <a name="password-hasher-options"></a>Opzioni dell'hash delle password
 
 <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions>Ottiene e imposta le opzioni per l'hashing delle password.
 
-| Opzione | Description |
+| Opzione | Descrizione |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | Modalità di compatibilità utilizzata per l'hashing di nuove password. Il valore predefinito è <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. Il primo byte di una password con hash, denominato *marcatore di formato*, specifica la versione dell'algoritmo hash utilizzato per l'hash della password. Quando si verifica una password rispetto a un hash, il <xref:Microsoft.AspNetCore.Identity.PasswordHasher`1.VerifyHashedPassword*> metodo seleziona l'algoritmo corretto in base al primo byte. Un client è in grado di eseguire l'autenticazione indipendentemente dalla versione dell'algoritmo utilizzata per eseguire l'hashing della password. L'impostazione della modalità di compatibilità influiscono sull'hashing delle *nuove password*. |
 | <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | Numero di iterazioni utilizzate quando si esegue l'hashing delle password utilizzando PBKDF2. Questo valore viene utilizzato solo quando <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> è impostato su <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3> . Il valore deve essere un numero intero positivo e il valore predefinito è `10000` . |

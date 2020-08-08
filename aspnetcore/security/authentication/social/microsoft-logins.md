@@ -7,6 +7,8 @@ ms.custom: mvc
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/microsoft-logins
-ms.openlocfilehash: df3e738880902e3005221c6047b6be9e924f2929
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ce0e56595611a8a34d0ad11680e67e2252da66c6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406134"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020613"
 ---
 # <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>Configurazione dell'accesso esterno all'account Microsoft con ASP.NET Core
 
@@ -38,12 +40,12 @@ Se non si dispone di un account Microsoft, selezionare **crearne uno**. Dopo ave
 * Seleziona **nuova registrazione**
 * Immettere un **Nome**.
 * Selezionare un'opzione per i **tipi di account supportati**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
-* In **URI di reindirizzamento**immettere l'URL di sviluppo con `/signin-microsoft` accodato. Ad esempio: `https://localhost:5001/signin-microsoft`. Lo schema di autenticazione Microsoft configurato più avanti in questo esempio gestirà automaticamente le richieste in `/signin-microsoft` Route per implementare il flusso OAuth.
+* In **URI di reindirizzamento**immettere l'URL di sviluppo con `/signin-microsoft` accodato. Ad esempio, `https://localhost:5001/signin-microsoft` Lo schema di autenticazione Microsoft configurato più avanti in questo esempio gestirà automaticamente le richieste in `/signin-microsoft` Route per implementare il flusso OAuth.
 * Selezionare **Registra**
 
 ### <a name="create-client-secret"></a>Crea segreto client
 
-* Nel riquadro sinistro selezionare **certificati & segreti**.
+* Nel riquadro sinistro selezionare **Certificati e segreti**.
 * In **segreti client**selezionare **nuovo segreto client**
 
   * Aggiungere una descrizione per il segreto client.

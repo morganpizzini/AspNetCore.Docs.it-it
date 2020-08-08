@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 04/06/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: f74f6ce93093adbc931dd90b32a14de5d4f89096
-ms.sourcegitcommit: b0fa7ff0cb158277df61bcd08058a81222c3fe10
+ms.openlocfilehash: 0d99c5881b1ca786287d8643c82cab6a3f98f988
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87913883"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019859"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Procedure consigliate per le prestazioni ASP.NET Core
 
@@ -108,7 +110,7 @@ Consigli:
 
 ## <a name="keep-common-code-paths-fast"></a>Mantieni rapidamente i percorsi di codice comuni
 
-Si vuole che tutto il codice sia veloce. I percorsi di codice comunemente chiamati sono i più importanti da ottimizzare. incluse le seguenti:
+Si vuole che tutto il codice sia veloce. I percorsi di codice comunemente chiamati sono i più importanti da ottimizzare. Tra queste sono incluse:
 
 * Componenti middleware nella pipeline di elaborazione delle richieste dell'app, in particolare il middleware viene eseguito all'inizio della pipeline. Questi componenti hanno un notevole effetto sulle prestazioni.
 * Codice eseguito per ogni richiesta o più volte per richiesta. Ad esempio, la registrazione personalizzata, i gestori di autorizzazione o l'inizializzazione di servizi temporanei.
