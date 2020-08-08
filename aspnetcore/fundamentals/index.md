@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/30/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/index
-ms.openlocfilehash: c797ce8bcb22aec2b56df2f3b108da4cbfde263d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f141e9248a702ad9a1d9737f82543a0ccc8fb573
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403300"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017207"
 ---
 # <a name="aspnet-core-fundamentals"></a>Nozioni fondamentali su ASP.NET Core
 
@@ -172,7 +174,7 @@ I metodi di registrazione, ad esempio, `LogInformation` supportano un numero qua
 
 Per altre informazioni, vedere <xref:fundamentals/logging/index>.
 
-## <a name="routing"></a>Routing.
+## <a name="routing"></a>Routing
 
 Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore. Il gestore è in genere una Razor pagina, un metodo di azione in un controller MVC o un middleware. Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.
 
@@ -421,7 +423,7 @@ L'interfaccia `ILogger` consente di passare qualsiasi numero di campi al provide
 
 Per altre informazioni, vedere <xref:fundamentals/logging/index>.
 
-## <a name="routing"></a>Routing.
+## <a name="routing"></a>Routing
 
 Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore. Il gestore è in genere una Razor pagina, un metodo di azione in un controller MVC o un middleware. Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.
 

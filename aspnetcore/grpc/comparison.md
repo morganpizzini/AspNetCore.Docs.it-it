@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: caf9e99bcd4a1887fe5d69a3641fabee08573ef1
-ms.sourcegitcommit: d1fa3d69dda675d7a52c7100742dfa6297413376
+ms.openlocfilehash: cdddb14e62f42bc9c0ec0bbe2a8595fe1cb27ceb
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "86093317"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016206"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Confrontare servizi gRPC e API HTTP
 
@@ -37,7 +39,7 @@ La tabella seguente offre un confronto di alto livello tra le funzionalità tra 
 | Protocollo         | HTTP/2                                             | HTTP                          |
 | Payload          | [Protobuf (Small, Binary)](#performance)           | JSON (grande, leggibile)  |
 | Prescriptiveness | [Specifica Strict](#strict-specification)      | Sciolto. Qualsiasi HTTP è valido.     |
-| Flusso        | [Client, server, bidirezionale](#streaming)       | Client, server                |
+| Streaming        | [Client, server, bidirezionale](#streaming)       | Client, server                |
 | Supporto browser  | [No (richiede grpc-Web)](#limited-browser-support) | Sì                           |
 | Sicurezza         | Trasporto (TLS)                                    | Trasporto (TLS)               |
 | Generazione di codice client | [Sì](#code-generation)                      | OpenAPI + strumenti di terze parti |
@@ -67,7 +69,7 @@ Una specifica formale per l'API HTTP con JSON non esiste. Gli sviluppatori discu
 
 La [specifica gRPC](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) è prescrittiva sul formato che deve essere seguito da un servizio gRPC. gRPC Elimina il dibattito e Risparmia tempo per gli sviluppatori perché gRPC è coerente tra piattaforme e implementazioni.
 
-### <a name="streaming"></a>Flusso
+### <a name="streaming"></a>Streaming
 
 HTTP/2 fornisce una base per flussi di comunicazione di lunga durata e in tempo reale. gRPC fornisce il supporto di prima classe per lo streaming tramite HTTP/2.
 

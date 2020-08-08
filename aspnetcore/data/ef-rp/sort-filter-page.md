@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 496221bb4e34e1f9e4177d1934786a77d8c9b411
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 5bfea63cc1ff85adbe5ce572858b78a8e86b2280
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212534"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017727"
 ---
-# <a name="part-3-razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Parte 3, Razor pagine con EF core in ASP.NET Core ordinamento, filtro, paging
+# <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Parte 3, Razor pagine con EF core in ASP.NET Core ordinamento, filtro, paging
 
 Di [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT) e [Jon P Smith](https://twitter.com/thereformedprog)
 
@@ -134,7 +136,7 @@ Si verifica una riduzione delle prestazioni per la chiamata di `ToUpper`. Il cod
 
 Per altre informazioni, vedere [How to use case-insensitive query with Sqlite provider](https://github.com/aspnet/EntityFrameworkCore/issues/11414) (Come usare una query senza distinzione tra maiuscole e minuscole con il provider SQLite).
 
-### <a name="update-the-razor-page"></a>Aggiornare la Razor pagina
+### <a name="update-the-no-locrazor-page"></a>Aggiornare la Razor pagina
 
 Sostituire il codice in *Pages/Students/Index.cshtml* per creare un pulsante **Cerca** e riquadri diversi.
 
@@ -211,7 +213,7 @@ Se la stringa di ricerca viene modificata durante la suddivisione in pagine, la 
 
   I due punti interrogativi dopo `pageIndex` nella chiamata di `PaginatedList.CreateAsync` rappresentano l'[operatore null-coalescing](/dotnet/csharp/language-reference/operators/null-conditional-operator). L'operatore null-coalescing definisce un valore predefinito per un tipo nullable. L'espressione `(pageIndex ?? 1)` restituisce il valore di `pageIndex` se ha un valore. Se `pageIndex` non ha un valore, restituisce 1.
 
-### <a name="add-paging-links-to-the-razor-page"></a>Aggiungere collegamenti di paging alla Razor pagina
+### <a name="add-paging-links-to-the-no-locrazor-page"></a>Aggiungere collegamenti di paging alla Razor pagina
 
 Sostituire il codice in *students/index. cshtml* con il codice seguente. Le modifiche sono evidenziate:
 
@@ -247,7 +249,7 @@ Creare *SchoolViewModels/EnrollmentDateGroup.cs* con il codice seguente:
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### <a name="create-the-razor-page"></a>Creazione della Razor pagina
+### <a name="create-the-no-locrazor-page"></a>Creazione della Razor pagina
 
 Aggiungere un file *Pages/About.cshtml* con il codice seguente:
 
@@ -467,7 +469,7 @@ Il metodo `PaginatedList.CreateAsync` converte la query degli studenti in una pa
 
 I due punti interrogativi in `PaginatedList.CreateAsync` rappresentano l'[operatore null-coalescing](/dotnet/csharp/language-reference/operators/null-conditional-operator). L'operatore null-coalescing definisce un valore predefinito per un tipo nullable. L'espressione `(pageIndex ?? 1)` restituisce il valore di `pageIndex` se ha un valore. Se `pageIndex` non ha un valore, restituisce 1.
 
-## <a name="add-paging-links-to-the-student-razor-page"></a>Aggiungere collegamenti di paging alla Razor pagina Student
+## <a name="add-paging-links-to-the-student-no-locrazor-page"></a>Aggiungere collegamenti di paging alla Razor pagina Student
 
 Aggiornare il markup in *Students/Index.cshtml*. Le modifiche sono evidenziate:
 
@@ -521,7 +523,7 @@ Aggiornare il file *Pages/About.cshtml.cs* file con il codice seguente:
 
 L'istruzione LINQ raggruppa le entità di studenti per data di registrazione, calcola il numero di entità in ogni gruppo e archivia i risultati in una raccolta di oggetti di modello della visualizzazione `EnrollmentDateGroup`.
 
-### <a name="modify-the-about-razor-page"></a>Modificare la pagina informazioni su Razor
+### <a name="modify-the-about-no-locrazor-page"></a>Modificare la pagina informazioni su Razor
 
 Sostituire il codice nel file *Pages/About.cshtml* con il codice seguente:
 

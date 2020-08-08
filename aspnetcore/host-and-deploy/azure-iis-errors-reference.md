@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: 1b0402ceccde0f2410ac29e9c6a251110c81eafa
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8f21e02409a04b06c06dff5b0a113b0f21d59090
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408136"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015868"
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Errori comuni di Servizio app di Azure e IIS con ASP.NET Core
 
@@ -173,7 +175,7 @@ Risoluzione dei problemi:
 
   Per altre informazioni, vedere [Installare il bundle di hosting .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
-* Verificare che il **Application Pool** > **modello di processo** del pool > **Identity** di applicazioni sia impostato su **ApplicationPoolIdentity** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
+* Verificare che il **Application Pool** > **modello di processo** del pool > **Identity** di applicazioni sia impostato su **ApplicationPool Identity ** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
 
 * Se il bundle di hosting ASP.NET Core è stato disinstallato e quindi è stata installata una versione del bundle di hosting precedente, il file *applicationHost.config* non include una sezione per il modulo ASP.NET Core. Aprire *applicationHost.config* in *%windir%/System32/inetsrv/config* e trovare il gruppo di sezioni `<configuration><configSections><sectionGroup name="system.webServer">`. Se la sezione per il modulo ASP.NET Core non è presente nel gruppo di sezioni, aggiungere l'elemento della sezione:
 
@@ -451,7 +453,7 @@ Risoluzione dei problemi:
 
   Per altre informazioni, vedere [Installare il bundle di hosting .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
-* Verificare che il **Application Pool** > **modello di processo** del pool > **Identity** di applicazioni sia impostato su **ApplicationPoolIdentity** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
+* Verificare che il **Application Pool** > **modello di processo** del pool > **Identity** di applicazioni sia impostato su **ApplicationPool Identity ** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
 
 * Se il bundle di hosting ASP.NET Core è stato disinstallato e quindi è stata installata una versione del bundle di hosting precedente, il file *applicationHost.config* non include una sezione per il modulo ASP.NET Core. Aprire *applicationHost.config* in *%windir%/System32/inetsrv/config* e trovare il gruppo di sezioni `<configuration><configSections><sectionGroup name="system.webServer">`. Se la sezione per il modulo ASP.NET Core non è presente nel gruppo di sezioni, aggiungere l'elemento della sezione:
 

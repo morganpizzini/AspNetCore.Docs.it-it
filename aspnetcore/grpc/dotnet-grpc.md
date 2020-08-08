@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 10/17/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/dotnet-grpc
-ms.openlocfilehash: 1e4e5cd6a4a687ecacf0c4803784e68aee228498
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d41958d586f54d5944af187933f2b0248f763171
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404210"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016129"
 ---
 # <a name="manage-protobuf-references-with-dotnet-grpc"></a>Gestire i riferimenti Protobuf con dotnet-grpc
 
@@ -66,7 +68,7 @@ Se i file si trovano all'esterno della directory del progetto, `Link` viene aggi
 dotnet grpc add-file [options] <files>...
 ```
 
-#### <a name="arguments"></a>Arguments
+#### <a name="arguments"></a>Argomenti
 
 | Argomento | Descrizione |
 |-|-|
@@ -91,7 +93,7 @@ Il `add-url` comando viene usato per aggiungere un file remoto specificato da un
 dotnet-grpc add-url [options] <url>
 ```
 
-#### <a name="arguments"></a>Arguments
+#### <a name="arguments"></a>Argomenti
 
 | Argomento | Descrizione |
 |-|-|
@@ -120,7 +122,7 @@ Il `remove` comando viene usato per rimuovere i riferimenti protobuf dal file co
 dotnet-grpc remove [options] <references>...
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 | Argomento | Descrizione |
 |-|-|
@@ -147,7 +149,7 @@ Se è necessario un aggiornamento, lo strumento sostituisce sempre il file local
 dotnet-grpc refresh [options] [<references>...]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argomenti
 
 | Argomento | Descrizione |
 |-|-|

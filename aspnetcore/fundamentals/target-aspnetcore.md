@@ -6,6 +6,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/16/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/target-aspnetcore
-ms.openlocfilehash: 1c794092b856a916a318956d7cfb357d46a22d1d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: a6c20c61f7f33706e620fcbc239b2cc4bace15f0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399647"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016492"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>Usare API di ASP.NET Core in una libreria di classi
 
@@ -48,7 +50,7 @@ Per fare riferimento ASP.NET Core, aggiungere il seguente `<FrameworkReference>`
 
 Il riferimento ASP.NET Core in questo modo è supportato solo per i progetti destinati a .NET Core 3. x.
 
-## <a name="include-blazor-extensibility"></a>Includi Blazor estendibilità
+## <a name="include-no-locblazor-extensibility"></a>Includi Blazor estendibilità
 
 Blazorsupporta i [modelli di hosting](xref:blazor/hosting-models)webassembly (WASM) e server. A meno che non esista un motivo specifico per non farlo, una libreria di [ Razor componenti](xref:blazor/components/index) deve supportare entrambi i modelli di hosting. Una Razor libreria di componenti deve usare [Microsoft. NET. Sdk. Razor SDK](xref:razor-pages/sdk).
 
@@ -104,12 +106,12 @@ Per ulteriori informazioni sulle librerie contenenti i Razor componenti di, vede
 Questa sezione descrive le raccomandazioni per le librerie che includono:
 
 * [Razorviste o Razor pagine](#razor-views-or-razor-pages)
-* [Helper tag](#tag-helpers)
+* [Helper per i tag](#tag-helpers)
 * [Componenti di visualizzazione](#view-components)
 
 Questa sezione non illustra la funzionalità multitargeting per supportare più versioni di MVC. Per informazioni sul supporto di più versioni di ASP.NET Core, vedere [supportare più versioni di ASP.NET Core](#support-multiple-aspnet-core-versions).
 
-### <a name="razor-views-or-razor-pages"></a>Razorviste o Razor pagine
+### <a name="no-locrazor-views-or-no-locrazor-pages"></a>Razorviste o Razor pagine
 
 Un progetto che include [ Razor viste](xref:mvc/views/overview) o [ Razor pagine](xref:razor-pages/index) deve utilizzare [Microsoft. NET. Sdk. Razor SDK](xref:razor-pages/sdk).
 

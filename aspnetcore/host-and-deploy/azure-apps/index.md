@@ -7,6 +7,8 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 12/16/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: 9ffeebbf8125ddac5d6e621e411c4e86c5bd34b1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 11de6b04f6813161e5eaee294f3e67e223ae0db3
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399309"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015920"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Distribuire le app ASP.NET Core in Servizio app di Azure
 
@@ -131,7 +133,7 @@ Per informazioni sul monitoraggio, la registrazione e la risoluzione dei problem
 [Monitorare le app in Servizio app di Azure](/azure/app-service/web-sites-monitor)  
 Informazioni su come esaminare le quote e le metriche per le app e i piani del servizio app.
 
-[Abilitare la registrazione diagnostica per le app nel servizio app Azure](/azure/app-service/web-sites-enable-diagnostic-log)  
+[Abilitare la registrazione diagnostica per le app nel Servizio app di Azure](/azure/app-service/web-sites-enable-diagnostic-log)  
 Informazioni su come abilitare e accedere alla registrazione diagnostica per i codici di stato HTTP, le richieste non riuscite e l'attività del server Web.
 
 <xref:fundamentals/error-handling>  
@@ -147,7 +149,7 @@ Informazioni sugli errori comuni di configurazione della distribuzione per le ap
 
 Le [chiavi di protezione dati](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) sono salvate in modo permanente nella cartella *%HOME%\ASP.NET\DataProtection-Keys*. La cartella è associata all'archiviazione di rete e sincronizzata in tutti i computer che ospitano l'app. Le chiavi non vengono protette quando sono inattive. La cartella offre il KeyRing a tutte le istanze di un'app in un singolo slot di distribuzione. Gli slot di distribuzione separati, ad esempio gli slot di gestione temporanea e di produzione, non condividono un KeyRing.
 
-Nel passaggio da uno slot di distribuzione all'altro, tutti i sistemi che usano la protezione dati non saranno in grado di decrittografare i dati archiviati usando il KeyRing all'interno dello slot precedente. Il middleware dei cookie di ASP.NET usa la protezione dati per proteggere i cookie. Di conseguenza, gli utenti vengono disconnessi da un'app che usa il middleware dei cookie di ASP.NET standard. Per una soluzione di KeyRing indipendente dallo slot, usare un provider di KeyRing esterno, ad esempio:
+Nel passaggio da uno slot di distribuzione all'altro, tutti i sistemi che usano la protezione dati non saranno in grado di decrittografare i dati archiviati usando il KeyRing all'interno dello slot precedente. CookieIl Middleware ASP.NET usa la protezione dei dati per proteggere i relativi cookie . In questo modo gli utenti vengono disconnessi da un'app che usa il middleware ASP.NET standard Cookie . Per una soluzione di KeyRing indipendente dallo slot, usare un provider di KeyRing esterno, ad esempio:
 
 * Archiviazione BLOB di Azure
 * Insieme di credenziali chiave di Azure
@@ -208,7 +210,7 @@ Se si verifica un problema usando l'estensione del sito di anteprima, aprire un 
 1. Dal portale di Azure passare al servizio app.
 1. Selezionare l'app Web.
 1. Digitare "es" nella casella di ricerca per filtrare per "Estensioni" o scorrere l'elenco degli strumenti di gestione.
-1. Selezionare **estensioni**.
+1. Selezionare **Estensioni**.
 1. Selezionare **Aggiungi**.
 1. Selezionare l'estensione **ASP.NET Core {X.Y} ({x64|x86}) Runtime** nell'elenco, dove `{X.Y}` è la versione di anteprima di ASP.NET Core e `{x64|x86}` specifica la piattaforma.
 1. Selezionare **OK** per accettare le condizioni legali.

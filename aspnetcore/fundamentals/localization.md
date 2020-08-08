@@ -5,6 +5,8 @@ description: Informazioni su come ASP.NET Core offre servizi e middleware per la
 ms.author: riande
 ms.date: 11/30/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 412cd7a39a0eed6800e15d235102ed367da5f746
-ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
+ms.openlocfilehash: 9fd68d3b412c2cef6125c657653f605689ca6e70
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793474"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017220"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalizzazione e localizzazione in ASP.NET Core
 
@@ -83,7 +85,7 @@ L'implementazione predefinita di `IViewLocalizer` individua il file di risorse i
 
 Un file di risorse francese può contenere quanto segue:
 
-| Chiave | valore |
+| Chiave | Valore |
 | --- | ----- |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
@@ -161,7 +163,7 @@ Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `Resources
 | Nome risorsa | Denominazione con il punto o il percorso |
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Punto  |
-| Resources/Controllers/HomeController.fr.resx  | Path |
+| Resources/Controllers/HomeController.fr.resx  | Percorso |
 
 I file di risorse che usano `@inject IViewLocalizer` nelle Razor viste seguono un modello simile. Il file di risorse per una visualizzazione può essere denominato usando la denominazione con il punto o con il percorso. RazorVisualizza file di risorse riproduce il percorso del file di visualizzazione associato. Se `ResourcesPath` viene impostato su "Resources", il file di risorse francese associato alla visualizzazione *Views/Home/About.cshtml* sarà uno dei seguenti:
 
@@ -247,7 +249,7 @@ L'elenco predefinito passa dal più specifico al meno specifico. Di seguito in q
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Alcune app usano una stringa di query per specificare le [impostazioni cultura e le impostazioni cultura dell'interfaccia utente](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). Per le app che usano il cookie o l'approccio dell'intestazione Accept-Language, è utile aggiungere una stringa di query all'URL per eseguire il debug e il test del codice. Per impostazione predefinita, `QueryStringRequestCultureProvider` viene registrato come primo provider di localizzazione nell'elenco `RequestCultureProvider`. Passare i parametri della stringa di query `culture` e `ui-culture`. L'esempio seguente specifica le impostazioni cultura specifiche (lingua e area) per spagnolo/Messico:
+Alcune app usano una stringa di query per specificare le [impostazioni cultura e le impostazioni cultura dell'interfaccia utente](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). Per le app che usano l' cookie approccio dell'intestazione o Accept-Language, l'aggiunta di una stringa di query all'URL è utile per il debug e il test del codice. Per impostazione predefinita, `QueryStringRequestCultureProvider` viene registrato come primo provider di localizzazione nell'elenco `RequestCultureProvider`. Passare i parametri della stringa di query `culture` e `ui-culture`. L'esempio seguente specifica le impostazioni cultura specifiche (lingua e area) per spagnolo/Messico:
 
    `http://localhost:5000/?culture=es-MX&ui-culture=es-MX`
 
@@ -257,13 +259,13 @@ Se si passa uno solo dei due parametri (`culture` o `ui-culture`), il provider d
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
 
-Le app di produzione offrono spesso la possibilità di specificare le impostazioni cultura con il cookie delle impostazioni cultura di ASP.NET Core. Usare il metodo `MakeCookieValue` per creare un cookie.
+Le app di produzione forniranno spesso un meccanismo per impostare le impostazioni cultura con le impostazioni cultura ASP.NET Core cookie . Usare il `MakeCookieValue` metodo per creare un oggetto cookie .
 
-`CookieRequestCultureProvider` `DefaultCookieName` Restituisce il nome del cookie predefinito utilizzato per tenere traccia delle informazioni sulle impostazioni cultura preferite dell'utente. Il nome del cookie predefinito è `.AspNetCore.Culture`.
+`CookieRequestCultureProvider` `DefaultCookieName` Restituisce il nome predefinito cookie utilizzato per tenere traccia delle informazioni sulle impostazioni cultura preferite dell'utente. Il cookie nome predefinito è `.AspNetCore.Culture` .
 
-Il formato del cookie è `c=%LANGCODE%|uic=%LANGCODE%`, dove `c` è `Culture` e `uic` è `UICulture`, ad esempio:
+Il cookie formato è `c=%LANGCODE%|uic=%LANGCODE%` , dove `c` è `Culture` e `uic` è `UICulture` , ad esempio:
 
 ```
 c=en-UK|uic=en-US
@@ -330,7 +332,7 @@ Il file *Views/Shared/_SelectLanguagePartial.cshtml* viene aggiunto alla sezione
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
-Il metodo `SetLanguage` imposta il cookie delle impostazioni cultura.
+Il `SetLanguage` metodo imposta le impostazioni cultura cookie .
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
@@ -437,7 +439,7 @@ L'implementazione predefinita di `IViewLocalizer` individua il file di risorse i
 
 Un file di risorse francese può contenere quanto segue:
 
-| Chiave | valore |
+| Chiave | Valore |
 | --- | ----- |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
@@ -515,7 +517,7 @@ Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `Resources
 | Nome risorsa | Denominazione con il punto o il percorso |
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Punto  |
-| Resources/Controllers/HomeController.fr.resx  | Path |
+| Resources/Controllers/HomeController.fr.resx  | Percorso |
 
 I file di risorse che usano `@inject IViewLocalizer` nelle Razor viste seguono un modello simile. Il file di risorse per una visualizzazione può essere denominato usando la denominazione con il punto o con il percorso. RazorVisualizza file di risorse riproduce il percorso del file di visualizzazione associato. Se `ResourcesPath` viene impostato su "Resources", il file di risorse francese associato alla visualizzazione *Views/Home/About.cshtml* sarà uno dei seguenti:
 
@@ -601,7 +603,7 @@ L'elenco predefinito passa dal più specifico al meno specifico. Di seguito in q
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Alcune app usano una stringa di query per specificare le [impostazioni cultura e le impostazioni cultura dell'interfaccia utente](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). Per le app che usano il cookie o l'approccio dell'intestazione Accept-Language, è utile aggiungere una stringa di query all'URL per eseguire il debug e il test del codice. Per impostazione predefinita, `QueryStringRequestCultureProvider` viene registrato come primo provider di localizzazione nell'elenco `RequestCultureProvider`. Passare i parametri della stringa di query `culture` e `ui-culture`. L'esempio seguente specifica le impostazioni cultura specifiche (lingua e area) per spagnolo/Messico:
+Alcune app usano una stringa di query per specificare le [impostazioni cultura e le impostazioni cultura dell'interfaccia utente](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). Per le app che usano l' cookie approccio dell'intestazione o Accept-Language, l'aggiunta di una stringa di query all'URL è utile per il debug e il test del codice. Per impostazione predefinita, `QueryStringRequestCultureProvider` viene registrato come primo provider di localizzazione nell'elenco `RequestCultureProvider`. Passare i parametri della stringa di query `culture` e `ui-culture`. L'esempio seguente specifica le impostazioni cultura specifiche (lingua e area) per spagnolo/Messico:
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
@@ -613,13 +615,13 @@ Se si passa uno solo dei due parametri (`culture` o `ui-culture`), il provider d
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
 
-Le app di produzione offrono spesso la possibilità di specificare le impostazioni cultura con il cookie delle impostazioni cultura di ASP.NET Core. Usare il metodo `MakeCookieValue` per creare un cookie.
+Le app di produzione forniranno spesso un meccanismo per impostare le impostazioni cultura con le impostazioni cultura ASP.NET Core cookie . Usare il `MakeCookieValue` metodo per creare un oggetto cookie .
 
-`CookieRequestCultureProvider` `DefaultCookieName` Restituisce il nome del cookie predefinito utilizzato per tenere traccia delle informazioni sulle impostazioni cultura preferite dell'utente. Il nome del cookie predefinito è `.AspNetCore.Culture`.
+`CookieRequestCultureProvider` `DefaultCookieName` Restituisce il nome predefinito cookie utilizzato per tenere traccia delle informazioni sulle impostazioni cultura preferite dell'utente. Il cookie nome predefinito è `.AspNetCore.Culture` .
 
-Il formato del cookie è `c=%LANGCODE%|uic=%LANGCODE%`, dove `c` è `Culture` e `uic` è `UICulture`, ad esempio:
+Il cookie formato è `c=%LANGCODE%|uic=%LANGCODE%` , dove `c` è `Culture` e `uic` è `UICulture` , ad esempio:
 
 ```
 c=en-UK|uic=en-US
@@ -686,7 +688,7 @@ Il file *Views/Shared/_SelectLanguagePartial.cshtml* viene aggiunto alla sezione
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
-Il metodo `SetLanguage` imposta il cookie delle impostazioni cultura.
+Il `SetLanguage` metodo imposta le impostazioni cultura cookie .
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
@@ -792,7 +794,7 @@ L'implementazione predefinita di `IViewLocalizer` individua il file di risorse i
 
 Un file di risorse francese può contenere quanto segue:
 
-| Chiave | valore |
+| Chiave | Valore |
 | --- | ----- |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
@@ -870,7 +872,7 @@ Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `Resources
 | Nome risorsa | Denominazione con il punto o il percorso |
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Punto  |
-| Resources/Controllers/HomeController.fr.resx  | Path |
+| Resources/Controllers/HomeController.fr.resx  | Percorso |
 
 I file di risorse che usano `@inject IViewLocalizer` nelle Razor viste seguono un modello simile. Il file di risorse per una visualizzazione può essere denominato usando la denominazione con il punto o con il percorso. RazorVisualizza file di risorse riproduce il percorso del file di visualizzazione associato. Se `ResourcesPath` viene impostato su "Resources", il file di risorse francese associato alla visualizzazione *Views/Home/About.cshtml* sarà uno dei seguenti:
 
@@ -956,7 +958,7 @@ L'elenco predefinito passa dal più specifico al meno specifico. Di seguito in q
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Alcune app usano una stringa di query per specificare le [impostazioni cultura e le impostazioni cultura dell'interfaccia utente](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). Per le app che usano il cookie o l'approccio dell'intestazione Accept-Language, è utile aggiungere una stringa di query all'URL per eseguire il debug e il test del codice. Per impostazione predefinita, `QueryStringRequestCultureProvider` viene registrato come primo provider di localizzazione nell'elenco `RequestCultureProvider`. Passare i parametri della stringa di query `culture` e `ui-culture`. L'esempio seguente specifica le impostazioni cultura specifiche (lingua e area) per spagnolo/Messico:
+Alcune app usano una stringa di query per specificare le [impostazioni cultura e le impostazioni cultura dell'interfaccia utente](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). Per le app che usano l' cookie approccio dell'intestazione o Accept-Language, l'aggiunta di una stringa di query all'URL è utile per il debug e il test del codice. Per impostazione predefinita, `QueryStringRequestCultureProvider` viene registrato come primo provider di localizzazione nell'elenco `RequestCultureProvider`. Passare i parametri della stringa di query `culture` e `ui-culture`. L'esempio seguente specifica le impostazioni cultura specifiche (lingua e area) per spagnolo/Messico:
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
@@ -968,13 +970,13 @@ Se si passa uno solo dei due parametri (`culture` o `ui-culture`), il provider d
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
 
-Le app di produzione offrono spesso la possibilità di specificare le impostazioni cultura con il cookie delle impostazioni cultura di ASP.NET Core. Usare il metodo `MakeCookieValue` per creare un cookie.
+Le app di produzione forniranno spesso un meccanismo per impostare le impostazioni cultura con le impostazioni cultura ASP.NET Core cookie . Usare il `MakeCookieValue` metodo per creare un oggetto cookie .
 
-`CookieRequestCultureProvider` `DefaultCookieName` Restituisce il nome del cookie predefinito utilizzato per tenere traccia delle informazioni sulle impostazioni cultura preferite dell'utente. Il nome del cookie predefinito è `.AspNetCore.Culture`.
+`CookieRequestCultureProvider` `DefaultCookieName` Restituisce il nome predefinito cookie utilizzato per tenere traccia delle informazioni sulle impostazioni cultura preferite dell'utente. Il cookie nome predefinito è `.AspNetCore.Culture` .
 
-Il formato del cookie è `c=%LANGCODE%|uic=%LANGCODE%`, dove `c` è `Culture` e `uic` è `UICulture`, ad esempio:
+Il cookie formato è `c=%LANGCODE%|uic=%LANGCODE%` , dove `c` è `Culture` e `uic` è `UICulture` , ad esempio:
 
 ```
 c=en-UK|uic=en-US
@@ -1064,7 +1066,7 @@ Il file *Views/Shared/_SelectLanguagePartial.cshtml* viene aggiunto alla sezione
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
-Il metodo `SetLanguage` imposta il cookie delle impostazioni cultura.
+Il `SetLanguage` metodo imposta le impostazioni cultura cookie .
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 

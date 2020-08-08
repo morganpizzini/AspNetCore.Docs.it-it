@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: 0636c62c4373533234ab252d64052b476b123bbf
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 13728bca9d382bad39a85144ae9efd5b63a05dc4
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405094"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017389"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Usare assembly di avvio dell'hosting in ASP.NET Core
 
@@ -240,7 +242,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 Quando sono presenti più montaggi di avvio host, i relativi <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodi vengono eseguiti nell'ordine in cui sono elencati gli assembly.
 
-## <a name="activation"></a>Attivazione
+## <a name="activation"></a>Activation
 
 Le opzioni di attivazione dell'avvio dell'hosting sono:
 
@@ -626,7 +628,7 @@ HostingStartupLibrary;HostingStartupPackage;StartupDiagnostics
 
 Quando sono presenti più montaggi di avvio host, i relativi <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> metodi vengono eseguiti nell'ordine in cui sono elencati gli assembly.
 
-## <a name="activation"></a>Attivazione
+## <a name="activation"></a>Activation
 
 Le opzioni di attivazione dell'avvio dell'hosting sono:
 

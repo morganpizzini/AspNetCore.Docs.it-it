@@ -5,6 +5,8 @@ description: Dettagli dell'implementazione di server Web relativi alle richieste
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/request-features
-ms.openlocfilehash: 21e78c6c1d05eb3b2ce8ade1b950b15823fa0e83
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 4b6b34724bc848578293e586da12ead63c96cfbd
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407278"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016791"
 ---
 # <a name="request-features-in-aspnet-core"></a>Funzionalità di richiesta in ASP.NET Core
 
@@ -71,7 +73,7 @@ Il middleware può anche eseguire aggiunte alla raccolta di funzionalità impost
 
 Combinando implementazioni server personalizzate e miglioramenti specifici del middleware, è possibile costruire il set di funzionalità preciso richiesto da un'applicazione. In questo modo è possibile aggiungere le funzionalità mancanti senza che siano necessarie modifiche nel server e garantire che venga esposta solo una quantità minima di funzionalità, limitando in tal modo la superficie di attacco e migliorando le prestazioni.
 
-## <a name="summary"></a>Summary
+## <a name="summary"></a>Riepilogo
 
 Le interfacce di funzionalità definiscono funzionalità HTTP specifiche supportate da una data richiesta. I server definiscono le raccolte di funzionalità e il set iniziale di funzionalità supportato dal server, ma è possibile usare il middleware per migliorare tali funzionalità.
 

@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 38d3753b889da709e2d4691590290a5438208290
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b3531f786b3101fcbea4b25d3950d1bce9a289dc
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401454"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018052"
 ---
-# <a name="part-5-razor-pages-with-ef-core-in-aspnet-core---data-model"></a>Parte 5, Razor pagine con EF core in ASP.NET Core-modello di dati
+# <a name="part-5-no-locrazor-pages-with-ef-core-in-aspnet-core---data-model"></a>Parte 5, Razor pagine con EF core in ASP.NET Core-modello di dati
 
 Di [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -29,7 +31,7 @@ Di [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Nelle esercitazioni precedenti è stato usato un modello di dati semplice costituito da tre entità. In questa esercitazione:
+Nelle esercitazioni precedenti è stato usato un modello di dati semplice costituito da tre entità. Contenuto dell'esercitazione:
 
 * Vengono aggiunte altre entità e relazioni.
 * Il modello di dati viene personalizzato specificando regole di formattazione, convalida e mapping del database.
@@ -733,7 +735,7 @@ Nelle due esercitazioni successive viene illustrato come leggere e aggiornare i 
 
 ::: moniker range="< aspnetcore-3.0"
 
-Nelle esercitazioni precedenti è stato usato un modello di dati semplice costituito da tre entità. In questa esercitazione:
+Nelle esercitazioni precedenti è stato usato un modello di dati semplice costituito da tre entità. Contenuto dell'esercitazione:
 
 * Vengono aggiunte altre entità e relazioni.
 * Il modello di dati viene personalizzato specificando regole di formattazione, convalida e mapping del database.

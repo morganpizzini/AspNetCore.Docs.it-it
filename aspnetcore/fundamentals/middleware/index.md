@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/15/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/index
-ms.openlocfilehash: 7b0212ce6463d00a4c5cc87e2b36e1e7e7c5a54e
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: 560f25c9acabe2860bcaaddcdb42e2b15842a29d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445411"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017077"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware di ASP.NET Core
 
@@ -108,11 +110,11 @@ Il metodo `Startup.Configure` seguente aggiunge componenti del middleware per gl
      * Il middleware del protocollo HSTS (HTTP Strict Transport Security) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>) aggiunge l'intestazione `Strict-Transport-Security`.
 1. Il middleware di reindirizzamento HTTPS (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) reindirizza le richieste HTTP a HTTPS.
 1. Il middleware dei file statici (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) restituisce i file statici e impedisce ulteriori elaborazioni della richiesta.
-1. Il middleware dei criteri per i cookie (<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>) rende l'app conforme al Regolamento generale sulla protezione dei dati (GDPR).
+1. CookieIl middleware criterio ( <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> ) conforme all'app alle normative EU regolamento generale sulla protezione dei dati (GDPR).
 1. Middleware di routing ( <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> ) per indirizzare le richieste.
 1. Il middleware di autenticazione (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>) tenta di autenticare l'utente prima che sia autorizzato ad accedere a risorse protette.
 1. Il middleware di autorizzazione ( <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> ) autorizza un utente ad accedere a risorse protette.
-1. Il middleware di sessione (<xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) stabilisce e mantiene aggiornato lo stato sessione. Se l'app usa lo stato sessione, chiamare il middleware della sessione dopo il middleware dei criteri per i cookie e prima del middleware MVC.
+1. Il middleware di sessione (<xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) stabilisce e mantiene aggiornato lo stato sessione. Se l'app usa lo stato della sessione, chiamare il middleware della sessione dopo il middleware dei Cookie criteri e prima del middleware MVC.
 1. Middleware di routing dell'endpoint ( <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> con <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A> ) per aggiungere Razor gli endpoint di pagina alla pipeline della richiesta.
 
 <!--
@@ -251,7 +253,7 @@ ASP.NET Core include i componenti middleware seguenti. Nella colonna *Ordinament
 | ---------- | ----------- | ----- |
 | [autenticazione](xref:security/authentication/identity) | Offre il supporto dell'autenticazione. | Prima di `HttpContext.User`. Terminale per i callback OAuth. |
 | [Autorizzazione](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) | Fornisce supporto per l'autorizzazione. | Subito dopo il middleware di autenticazione. |
-| [Criteri per i cookie](xref:security/gdpr) | Registra il consenso degli utenti per l'archiviazione delle informazioni personali e applica gli standard minimi per i campi dei cookie, come `secure` e `SameSite`. | Prima del middleware che emette i cookie. Esempi: Autenticazione, Sessione, MVC (TempData). |
+| [CookiePolitica](xref:security/gdpr) | Tiene traccia del consenso degli utenti per l'archiviazione di informazioni personali e impone gli standard minimi per i cookie campi, ad esempio `secure` e `SameSite` . | Prima del middleware che rilascia cookie . Esempi: Autenticazione, Sessione, MVC (TempData). |
 | [CORS](xref:security/cors) | Configura la condivisione di risorse tra le origini (CORS). | Prima dei componenti che usano CORS. `UseCors`attualmente deve andare prima `UseResponseCaching` a causa di [questo bug](https://github.com/dotnet/aspnetcore/issues/23218).|
 | [Diagnostica](xref:fundamentals/error-handling) | Diversi middleware distinti che forniscono una pagina di eccezione per gli sviluppatori, la gestione delle eccezioni, le tabelle codici di stato e la pagina Web predefinita per le nuove app. | Prima dei componenti che generano errori. Terminale per le eccezioni o per la pagina Web predefinita per le nuove app. |
 | [Intestazioni inoltrate](xref:host-and-deploy/proxy-load-balancer) | Inoltra le intestazioni proxy nella richiesta corrente. | Prima dei componenti che usano i campi aggiornati. Esempi: schema, host, IP client, metodo. |
@@ -353,9 +355,9 @@ Il metodo `Startup.Configure` seguente aggiunge componenti del middleware per gl
      * Il middleware del protocollo HSTS (HTTP Strict Transport Security) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>) aggiunge l'intestazione `Strict-Transport-Security`.
 1. Il middleware di reindirizzamento HTTPS (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) reindirizza le richieste HTTP a HTTPS.
 1. Il middleware dei file statici (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) restituisce i file statici e impedisce ulteriori elaborazioni della richiesta.
-1. Il middleware dei criteri per i cookie (<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>) rende l'app conforme al Regolamento generale sulla protezione dei dati (GDPR).
+1. CookieIl middleware criterio ( <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> ) conforme all'app alle normative EU regolamento generale sulla protezione dei dati (GDPR).
 1. Il middleware di autenticazione (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>) tenta di autenticare l'utente prima che sia autorizzato ad accedere a risorse protette.
-1. Il middleware di sessione (<xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) stabilisce e mantiene aggiornato lo stato sessione. Se l'app usa lo stato sessione, chiamare il middleware della sessione dopo il middleware dei criteri per i cookie e prima del middleware MVC.
+1. Il middleware di sessione (<xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>) stabilisce e mantiene aggiornato lo stato sessione. Se l'app usa lo stato della sessione, chiamare il middleware della sessione dopo il middleware dei Cookie criteri e prima del middleware MVC.
 1. MVC (<xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc%2A>) per aggiungere MVC alla pipeline delle richieste.
 
 ```csharp
@@ -457,7 +459,7 @@ ASP.NET Core include i componenti middleware seguenti. Nella colonna *Ordinament
 | Middleware | Descrizione | JSON |
 | ---------- | ----------- | ----- |
 | [autenticazione](xref:security/authentication/identity) | Offre il supporto dell'autenticazione. | Prima di `HttpContext.User`. Terminale per i callback OAuth. |
-| [Criteri per i cookie](xref:security/gdpr) | Registra il consenso degli utenti per l'archiviazione delle informazioni personali e applica gli standard minimi per i campi dei cookie, come `secure` e `SameSite`. | Prima del middleware che emette i cookie. Esempi: Autenticazione, Sessione, MVC (TempData). |
+| [CookiePolitica](xref:security/gdpr) | Tiene traccia del consenso degli utenti per l'archiviazione di informazioni personali e impone gli standard minimi per i cookie campi, ad esempio `secure` e `SameSite` . | Prima del middleware che rilascia cookie . Esempi: Autenticazione, Sessione, MVC (TempData). |
 | [CORS](xref:security/cors) | Configura la condivisione di risorse tra le origini (CORS). | Prima dei componenti che usano CORS. |
 | [Diagnostica](xref:fundamentals/error-handling) | Diversi middleware distinti che forniscono una pagina di eccezione per gli sviluppatori, la gestione delle eccezioni, le tabelle codici di stato e la pagina Web predefinita per le nuove app. | Prima dei componenti che generano errori. Terminale per le eccezioni o per la pagina Web predefinita per le nuove app. |
 | [Intestazioni inoltrate](xref:host-and-deploy/proxy-load-balancer) | Inoltra le intestazioni proxy nella richiesta corrente. | Prima dei componenti che usano i campi aggiornati. Esempi: schema, host, IP client, metodo. |

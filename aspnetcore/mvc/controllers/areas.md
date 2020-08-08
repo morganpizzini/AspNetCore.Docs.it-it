@@ -5,6 +5,8 @@ description: Informazioni sulle aree, una funzionalità di ASP.NET MVC che conse
 ms.author: riande
 ms.date: 03/21/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/areas
-ms.openlocfilehash: f4471f54e92b940ecb0eabab82f03e0c77a0509f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: af765eebfa8bfd147bd3b721508b5794d15d64a7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406407"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018442"
 ---
 # <a name="areas-in-aspnet-core"></a>Aree in ASP.NET Core
 
@@ -67,7 +69,7 @@ Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi*. U
       * Controllers
         * HomeController.cs
         * ManageController.cs
-      * Visualizzazioni
+      * Viste
         * Home page
           * Index.cshtml
         * Gestione
@@ -76,7 +78,7 @@ Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi*. U
     * Servizi
       * Controllers
         * HomeController.cs
-      * Visualizzazioni
+      * Viste
         * Home page
           * Index.cshtml
 
@@ -162,24 +164,24 @@ Il codice seguente modifica la cartella dell'area predefinita da `"Areas"` a `"M
 
 <a name="arp"></a>
 
-## <a name="areas-with-razor-pages"></a>Aree con Razor pagine
+## <a name="areas-with-no-locrazor-pages"></a>Aree con Razor pagine
 
 Le aree con Razor pagine richiedono una `Areas/<area name>/Pages` cartella nella radice dell'app. La struttura di cartelle seguente viene usata con l'[app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples):
 
 * Project name (Nome progetto)
   * Aree
     * Prodotti
-      * Pages
+      * Pagine
         * _ViewImports
         * Informazioni
         * Indice
     * Servizi
-      * Pages
+      * Pagine
         * Gestione
           * Informazioni
           * Indice
 
-### <a name="link-generation-with-razor-pages-and-areas"></a>Generazione di collegamenti con Razor pagine e aree
+### <a name="link-generation-with-no-locrazor-pages-and-areas"></a>Generazione di collegamenti con Razor pagine e aree
 
 Il codice seguente dal [download di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) mostra la generazione di collegamenti con l'area specificata (ad esempio, `asp-area="Products"`):
 
@@ -222,7 +224,7 @@ Nel file precedente lo spazio dei nomi e la direttiva `@addTagHelper` vengono im
 
 Per altre informazioni, vedere [Gestione dell'ambito dell'helper tag](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) e [Importazione delle direttive condivise](xref:mvc/views/layout#importing-shared-directives).
 
-### <a name="shared-layout-for-razor-pages-areas"></a>Layout condiviso per le Razor aree delle pagine
+### <a name="shared-layout-for-no-locrazor-pages-areas"></a>Layout condiviso per le Razor aree delle pagine
 
 Per condividere un layout comune per l'intera app, spostare *_ViewStart.cshtml* nella cartella radice dell'applicazione.
 
@@ -269,7 +271,7 @@ Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi*. U
       * Controllers
         * HomeController.cs
         * ManageController.cs
-      * Visualizzazioni
+      * Viste
         * Home page
           * Index.cshtml
         * Gestione
@@ -278,7 +280,7 @@ Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi*. U
     * Servizi
       * Controllers
         * HomeController.cs
-      * Visualizzazioni
+      * Viste
         * Home page
           * Index.cshtml
 
@@ -349,24 +351,24 @@ Il codice seguente modifica la cartella dell'area predefinita da `"Areas"` a `"M
 
 <a name="arp"></a>
 
-## <a name="areas-with-razor-pages"></a>Aree con Razor pagine
+## <a name="areas-with-no-locrazor-pages"></a>Aree con Razor pagine
 
 Le aree con Razor pagine richiedono una `Areas/<area name>/Pages` cartella nella radice dell'app. La struttura di cartelle seguente viene usata con l'[app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples):
 
 * Project name (Nome progetto)
   * Aree
     * Prodotti
-      * Pages
+      * Pagine
         * _ViewImports
         * Informazioni
         * Indice
     * Servizi
-      * Pages
+      * Pagine
         * Gestione
           * Informazioni
           * Indice
 
-### <a name="link-generation-with-razor-pages-and-areas"></a>Generazione di collegamenti con Razor pagine e aree
+### <a name="link-generation-with-no-locrazor-pages-and-areas"></a>Generazione di collegamenti con Razor pagine e aree
 
 Il codice seguente dal [download di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) mostra la generazione di collegamenti con l'area specificata (ad esempio, `asp-area="Products"`):
 
@@ -411,7 +413,7 @@ Nel file precedente lo spazio dei nomi e la direttiva `@addTagHelper` vengono im
 
 Per altre informazioni, vedere [Gestione dell'ambito dell'helper tag](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) e [Importazione delle direttive condivise](xref:mvc/views/layout#importing-shared-directives).
 
-### <a name="shared-layout-for-razor-pages-areas"></a>Layout condiviso per le Razor aree delle pagine
+### <a name="shared-layout-for-no-locrazor-pages-areas"></a>Layout condiviso per le Razor aree delle pagine
 
 Per condividere un layout comune per l'intera app, spostare *_ViewStart.cshtml* nella cartella radice dell'applicazione.
 

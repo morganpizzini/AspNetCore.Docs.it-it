@@ -5,6 +5,8 @@ description: Parte 2 delle Razor pagine e della serie di esercitazioni Entity Fr
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 46846d99230620e45d8a2baab46df320425cfb6c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f205e7741c8e901e9219bec2028c7bee98129161
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401207"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018364"
 ---
-# <a name="part-2-razor-pages-with-ef-core-in-aspnet-core---crud"></a>Parte 2, Razor pagine con EF core in ASP.NET Core-CRUD
+# <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>Parte 2, Razor pagine con EF core in ASP.NET Core-CRUD
 
 [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -87,7 +89,7 @@ Il codice precedente crea un oggetto Student e quindi usa i campi del modulo pub
 
 * Usa i valori del modulo pubblicati dalla proprietà [PageContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) in [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel).
 * Aggiorna solo le proprietà elencate (`s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
-* Cerca i campi del modulo con il prefisso "student". Ad esempio: `Student.FirstMidName`. Non viene fatta distinzione tra maiuscole e minuscole.
+* Cerca i campi del modulo con il prefisso "student". Ad esempio, `Student.FirstMidName` Non viene fatta distinzione tra maiuscole e minuscole.
 * Usa il sistema di [associazione di modelli](xref:mvc/models/model-binding) per convertire i valori dei moduli da stringa ai tipi nel modello `Student`. Ad esempio, `EnrollmentDate` deve essere convertito in DateTime.
 
 Eseguire l'app e creare un'entità Student per testare la pagina Create.
@@ -393,7 +395,7 @@ Il codice precedente recupera l'entità selezionata, quindi chiama il metodo [Re
 * Viene rilevata l'eccezione di database.
 * Il metodo `OnGetAsync` delle pagine Delete viene chiamato con `saveChangesError=true`.
 
-### <a name="update-the-delete-razor-page"></a>Aggiornare la Razor pagina Elimina
+### <a name="update-the-delete-no-locrazor-page"></a>Aggiornare la Razor pagina Elimina
 
 Aggiungere il messaggio di errore evidenziato seguente alla Razor pagina Elimina.
 <!--

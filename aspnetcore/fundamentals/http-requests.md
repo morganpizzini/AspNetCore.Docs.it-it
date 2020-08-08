@@ -7,6 +7,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/09/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/http-requests
-ms.openlocfilehash: fb9001c06228b4290ca1e0c7cfb6b1338f431cd6
-ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
+ms.openlocfilehash: ef6ed0911c2615ea543b1c2cea31a9a453f0c604
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87444114"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017233"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Effettuare richieste HTTP usando IHttpClientFactory in ASP.NET Core
 
@@ -359,14 +361,14 @@ Gli approcci precedenti risolvono i problemi di gestione delle risorse che vengo
 - Il `SocketsHttpHandler` condivide le connessioni tra le `HttpClient` istanze. Questa condivisione impedisce l'esaurimento del socket.
 - Il `SocketsHttpHandler` ciclo di connessioni in base a `PooledConnectionLifetime` per evitare problemi DNS non aggiornati.
 
-### <a name="cookies"></a>Cookie
+### <a name="no-loccookies"></a>Cookies
 
-Le `HttpMessageHandler` istanze in pool generano `CookieContainer` oggetti condivisi. La `CookieContainer` condivisione di oggetti imprevista spesso genera codice errato. Per le app che richiedono cookie, prendere in considerazione una delle seguenti operazioni:
+Le `HttpMessageHandler` istanze in pool generano `CookieContainer` oggetti condivisi. La `CookieContainer` condivisione di oggetti imprevista spesso genera codice errato. Per le app che richiedono cookie s, prendere in considerazione quanto segue:
 
- - Disabilitazione della gestione automatica dei cookie
+ - Disabilitazione della cookie gestione automatica
  - Evitando`IHttpClientFactory`
 
-Chiamare <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> per disabilitare la gestione automatica dei cookie:
+Chiamare <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> per disabilitare la cookie gestione automatica:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
@@ -677,14 +679,14 @@ Gli approcci precedenti risolvono i problemi di gestione delle risorse che vengo
 - Il `SocketsHttpHandler` condivide le connessioni tra le `HttpClient` istanze. Questa condivisione impedisce l'esaurimento del socket.
 - Il `SocketsHttpHandler` ciclo di connessioni in base a `PooledConnectionLifetime` per evitare problemi DNS non aggiornati.
 
-### <a name="cookies"></a>Cookie
+### <a name="no-loccookies"></a>Cookies
 
-Le `HttpMessageHandler` istanze in pool generano `CookieContainer` oggetti condivisi. La `CookieContainer` condivisione di oggetti imprevista spesso genera codice errato. Per le app che richiedono cookie, prendere in considerazione una delle seguenti operazioni:
+Le `HttpMessageHandler` istanze in pool generano `CookieContainer` oggetti condivisi. La `CookieContainer` condivisione di oggetti imprevista spesso genera codice errato. Per le app che richiedono cookie s, prendere in considerazione quanto segue:
 
- - Disabilitazione della gestione automatica dei cookie
+ - Disabilitazione della cookie gestione automatica
  - Evitando`IHttpClientFactory`
 
-Chiamare <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> per disabilitare la gestione automatica dei cookie:
+Chiamare <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> per disabilitare la cookie gestione automatica:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
@@ -744,7 +746,7 @@ Di [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/r
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Prerequisiti
 
 I progetti destinati a .NET Framework richiedono l'installazione del pacchetto NuGet [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/). I progetti destinati a .NET Core che fanno riferimento al [metapacchetto Microsoft.AspNetCore.All](xref:fundamentals/metapackage-app) sono già inclusi nel pacchetto `Microsoft.Extensions.Http`.
 
@@ -985,14 +987,14 @@ Gli approcci precedenti risolvono i problemi di gestione delle risorse che vengo
 - Il `SocketsHttpHandler` condivide le connessioni tra le `HttpClient` istanze. Questa condivisione impedisce l'esaurimento del socket.
 - Il `SocketsHttpHandler` ciclo di connessioni in base a `PooledConnectionLifetime` per evitare problemi DNS non aggiornati.
 
-### <a name="cookies"></a>Cookie
+### <a name="no-loccookies"></a>Cookies
 
-Le `HttpMessageHandler` istanze in pool generano `CookieContainer` oggetti condivisi. La `CookieContainer` condivisione di oggetti imprevista spesso genera codice errato. Per le app che richiedono cookie, prendere in considerazione una delle seguenti operazioni:
+Le `HttpMessageHandler` istanze in pool generano `CookieContainer` oggetti condivisi. La `CookieContainer` condivisione di oggetti imprevista spesso genera codice errato. Per le app che richiedono cookie s, prendere in considerazione quanto segue:
 
- - Disabilitazione della gestione automatica dei cookie
+ - Disabilitazione della cookie gestione automatica
  - Evitando`IHttpClientFactory`
 
-Chiamare <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> per disabilitare la gestione automatica dei cookie:
+Chiamare <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> per disabilitare la cookie gestione automatica:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 

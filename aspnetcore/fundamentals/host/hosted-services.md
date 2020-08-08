@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/10/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: ebc39e7a6869911d464a340caea8eadc93ea72e0
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 5ad99a261356540782b9e4d601e1a38724d50a97
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407201"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017376"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Attività in background con servizi ospitati in ASP.NET Core
 
@@ -134,7 +136,7 @@ Per usare i [servizi con ambito](xref:fundamentals/dependency-injection#service-
 
 Il servizio dell'attività in background con ambito contiene la logica dell'attività in background. Nell'esempio seguente:
 
-* Il servizio è asincrono. Il metodo `DoWork` restituisce un elemento `Task`. A scopo dimostrativo, nel metodo è atteso un ritardo di dieci secondi `DoWork` .
+* Il servizio è asincrono. Il metodo `DoWork` restituisce un oggetto `Task`. A scopo dimostrativo, nel metodo è atteso un ritardo di dieci secondi `DoWork` .
 * Un oggetto <xref:Microsoft.Extensions.Logging.ILogger> viene inserito nel servizio.
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ScopedProcessingService.cs?name=snippet1)]

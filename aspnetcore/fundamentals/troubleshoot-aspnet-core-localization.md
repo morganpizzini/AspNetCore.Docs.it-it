@@ -5,6 +5,8 @@ description: Informazioni su come diagnosticare i problemi di localizzazione nel
 ms.author: riande
 ms.date: 01/24/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/troubleshoot-aspnet-core-localization
-ms.openlocfilehash: 48f75b4fbfdb2078f07efeffd8d4105366998876
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 801ae3a708d23308cbf909ceeace160e3c0db1bd
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407083"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016466"
 ---
 # <a name="troubleshoot-aspnet-core-localization"></a>Risolvere i problemi di localizzazione di ASP.NET Core
 
@@ -58,7 +60,7 @@ Le cause comuni per le quali non è possibile trovare le risorse sono:
 - La risorsa non è presente in `resx` per alcune lingue, ma è presente per altre.
 - Se si verificano ancora problemi, controllare i messaggi del log di localizzazione (al livello di log `Debug`) per altre informazioni sulle risorse mancanti.
 
-_**Suggerimento:** Quando `CookieRequestCultureProvider` si utilizza, verificare che le virgolette singole non vengano utilizzate con le impostazioni cultura all'interno del valore del cookie di localizzazione. Ad esempio, `c='en-UK'|uic='en-US'` è un valore di cookie non valido, mentre `c=en-UK|uic=en-US` è valido._
+_**Suggerimento:** Quando `CookieRequestCultureProvider` si utilizza, verificare che le virgolette singole non vengano utilizzate con le impostazioni cultura all'interno del valore di localizzazione cookie . Ad esempio, `c='en-UK'|uic='en-US'` è un valore non valido cookie , mentre `c=en-UK|uic=en-US` è un oggetto valido._
 
 ## <a name="resources--class-libraries-issues"></a>Problemi con le risorse e le librerie di classi
 

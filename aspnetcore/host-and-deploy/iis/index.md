@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/7/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 951ae53876edf345af1a3eb32cb9be1b9668fa53
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0594303f3ae8c57a0a7776900e6b2a6781c919db
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404171"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015829"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Host ASP.NET Core in Windows con IIS
 
@@ -354,7 +356,7 @@ Quando si distribuiscono app ai server con [Distribuzione Web](/iis/install/inst
 
 1. Confermare che l'identità del modello del processo disponga delle autorizzazioni appropriate.
 
-   Se l'identità predefinita del pool di app (**modello**  >  **Identity** di processo) viene modificata da **ApplicationPoolIdentity** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
+   Se l'identità predefinita del pool di app (**modello**  >  **Identity** di processo) viene modificata **da Identity ApplicationPool** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
 
 **Configurazione dell'autenticazione di Windows (facoltativa)**  
 Per altre informazioni, vedere [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
@@ -414,9 +416,9 @@ Lo [stack di protezione dei dati di ASP.NET Core](xref:security/data-protection/
 
 Se il gruppo di chiavi viene archiviato in memoria quando l'app viene riavviata:
 
-* Tutti i token di autenticazione basati su cookie vengono invalidati. 
+* Tutti i cookie token di autenticazione basati su vengono invalidati. 
 * Gli utenti devono ripetere l'accesso alla richiesta successiva. 
-* Tutti i dati protetti con il gruppo di chiavi non possono più essere decrittografati. Questo può includere i [token CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e i [cookie TEMPDATA di ASP.NET Core MVC](xref:fundamentals/app-state#tempdata).
+* Tutti i dati protetti con il gruppo di chiavi non possono più essere decrittografati. Questo può includere [i token CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e [ASP.NET Core TempData MVC cookie ](xref:fundamentals/app-state#tempdata).
 
 Per configurare la protezione dati in IIS in modo da rendere permanente il gruppo di chiavi, usare **uno** degli approcci seguenti:
 
@@ -510,9 +512,9 @@ L'isolamento dei pool di app è determinato dal modello di hosting:
 
 Nella finestra di dialogo **Aggiungi sito Web** è selezionato per impostazione predefinita un singolo pool di app per ogni app. Quando si specifica un valore in **Nome del sito**, il testo viene automaticamente trasferito alla casella di testo **Pool di applicazioni**. Quando si aggiunge il sito viene creato un nuovo pool di applicazioni con il nome del sito.
 
-## <a name="application-pool-identity"></a>Pool di applicazioniIdentity
+## <a name="application-pool-no-locidentity"></a>Pool di applicazioniIdentity
 
-Un account di identità del pool di app consente di eseguire un'app in un account univoco, senza dover creare e gestire domini o account locali. In IIS 8.0 o versioni successive il processo di lavoro amministrazione IIS (WAS) crea un account virtuale con il nome del nuovo pool di applicazioni ed esegue i processi di lavoro del pool di applicazioni inclusi nell'account per impostazione predefinita. Nella console di gestione IIS in **Impostazioni avanzate** per il pool di applicazioni, verificare che **Identity** sia impostato per utilizzare **ApplicationPoolIdentity**:
+Un account di identità del pool di app consente di eseguire un'app in un account univoco, senza dover creare e gestire domini o account locali. In IIS 8.0 o versioni successive il processo di lavoro amministrazione IIS (WAS) crea un account virtuale con il nome del nuovo pool di applicazioni ed esegue i processi di lavoro del pool di applicazioni inclusi nell'account per impostazione predefinita. Nella console di gestione IIS in **Impostazioni avanzate** per il pool di applicazioni, verificare che **Identity** sia impostato per utilizzare **ApplicationPool Identity **:
 
 ![Finestra di dialogo Impostazioni avanzate del pool di applicazione](index/_static/apppool-identity.png)
 
@@ -954,7 +956,7 @@ Quando si distribuiscono app ai server con [Distribuzione Web](/iis/install/inst
 
 1. Confermare che l'identità del modello del processo disponga delle autorizzazioni appropriate.
 
-   Se l'identità predefinita del pool di app (**modello**  >  **Identity** di processo) viene modificata da **ApplicationPoolIdentity** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
+   Se l'identità predefinita del pool di app (**modello**  >  **Identity** di processo) viene modificata **da Identity ApplicationPool** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
 
 **Configurazione dell'autenticazione di Windows (facoltativa)**  
 Per altre informazioni, vedere [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
@@ -1014,9 +1016,9 @@ Lo [stack di protezione dei dati di ASP.NET Core](xref:security/data-protection/
 
 Se il gruppo di chiavi viene archiviato in memoria quando l'app viene riavviata:
 
-* Tutti i token di autenticazione basati su cookie vengono invalidati. 
+* Tutti i cookie token di autenticazione basati su vengono invalidati. 
 * Gli utenti devono ripetere l'accesso alla richiesta successiva. 
-* Tutti i dati protetti con il gruppo di chiavi non possono più essere decrittografati. Questo può includere i [token CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e i [cookie TEMPDATA di ASP.NET Core MVC](xref:fundamentals/app-state#tempdata).
+* Tutti i dati protetti con il gruppo di chiavi non possono più essere decrittografati. Questo può includere [i token CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e [ASP.NET Core TempData MVC cookie ](xref:fundamentals/app-state#tempdata).
 
 Per configurare la protezione dati in IIS in modo da rendere permanente il gruppo di chiavi, usare **uno** degli approcci seguenti:
 
@@ -1110,9 +1112,9 @@ L'isolamento dei pool di app è determinato dal modello di hosting:
 
 Nella finestra di dialogo **Aggiungi sito Web** è selezionato per impostazione predefinita un singolo pool di app per ogni app. Quando si specifica un valore in **Nome del sito**, il testo viene automaticamente trasferito alla casella di testo **Pool di applicazioni**. Quando si aggiunge il sito viene creato un nuovo pool di applicazioni con il nome del sito.
 
-## <a name="application-pool-identity"></a>Pool di applicazioniIdentity
+## <a name="application-pool-no-locidentity"></a>Pool di applicazioniIdentity
 
-Un account di identità del pool di app consente di eseguire un'app in un account univoco, senza dover creare e gestire domini o account locali. In IIS 8.0 o versioni successive il processo di lavoro amministrazione IIS (WAS) crea un account virtuale con il nome del nuovo pool di applicazioni ed esegue i processi di lavoro del pool di applicazioni inclusi nell'account per impostazione predefinita. Nella console di gestione IIS in **Impostazioni avanzate** per il pool di applicazioni, verificare che **Identity** sia impostato per utilizzare **ApplicationPoolIdentity**:
+Un account di identità del pool di app consente di eseguire un'app in un account univoco, senza dover creare e gestire domini o account locali. In IIS 8.0 o versioni successive il processo di lavoro amministrazione IIS (WAS) crea un account virtuale con il nome del nuovo pool di applicazioni ed esegue i processi di lavoro del pool di applicazioni inclusi nell'account per impostazione predefinita. Nella console di gestione IIS in **Impostazioni avanzate** per il pool di applicazioni, verificare che **Identity** sia impostato per utilizzare **ApplicationPool Identity **:
 
 ![Finestra di dialogo Impostazioni avanzate del pool di applicazione](index/_static/apppool-identity.png)
 
@@ -1522,7 +1524,7 @@ Quando si distribuiscono app ai server con [Distribuzione Web](/iis/install/inst
 
 1. Confermare che l'identità del modello del processo disponga delle autorizzazioni appropriate.
 
-   Se l'identità predefinita del pool di app (**modello**  >  **Identity** di processo) viene modificata da **ApplicationPoolIdentity** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
+   Se l'identità predefinita del pool di app (**modello**  >  **Identity** di processo) viene modificata **da Identity ApplicationPool** a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
 
 **Configurazione dell'autenticazione di Windows (facoltativa)**  
 Per altre informazioni, vedere [Configurare l'autenticazione Windows](xref:security/authentication/windowsauth).
@@ -1582,9 +1584,9 @@ Lo [stack di protezione dei dati di ASP.NET Core](xref:security/data-protection/
 
 Se il gruppo di chiavi viene archiviato in memoria quando l'app viene riavviata:
 
-* Tutti i token di autenticazione basati su cookie vengono invalidati. 
+* Tutti i cookie token di autenticazione basati su vengono invalidati. 
 * Gli utenti devono ripetere l'accesso alla richiesta successiva. 
-* Tutti i dati protetti con il gruppo di chiavi non possono più essere decrittografati. Questo può includere i [token CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e i [cookie TEMPDATA di ASP.NET Core MVC](xref:fundamentals/app-state#tempdata).
+* Tutti i dati protetti con il gruppo di chiavi non possono più essere decrittografati. Questo può includere [i token CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e [ASP.NET Core TempData MVC cookie ](xref:fundamentals/app-state#tempdata).
 
 Per configurare la protezione dati in IIS in modo da rendere permanente il gruppo di chiavi, usare **uno** degli approcci seguenti:
 
@@ -1706,9 +1708,9 @@ Le applicazioni ASP.NET Core vengono configurate tramite altri provider di confi
 
 Quando si ospitano più siti Web in un server, è consigliabile isolare le app le une dalle altre eseguendo ogni app nel relativo pool di applicazioni. La finestra di dialogo **Aggiungi sito Web** di IIS ha questa configurazione come impostazione predefinita. Quando si specifica un valore in **Nome del sito**, il testo viene automaticamente trasferito alla casella di testo **Pool di applicazioni**. Quando si aggiunge il sito viene creato un nuovo pool di applicazioni con il nome del sito.
 
-## <a name="application-pool-identity"></a>Pool di applicazioniIdentity
+## <a name="application-pool-no-locidentity"></a>Pool di applicazioniIdentity
 
-Un account di identità del pool di app consente di eseguire un'app in un account univoco, senza dover creare e gestire domini o account locali. In IIS 8.0 o versioni successive il processo di lavoro amministrazione IIS (WAS) crea un account virtuale con il nome del nuovo pool di applicazioni ed esegue i processi di lavoro del pool di applicazioni inclusi nell'account per impostazione predefinita. Nella console di gestione IIS in **Impostazioni avanzate** per il pool di applicazioni, verificare che **Identity** sia impostato per utilizzare **ApplicationPoolIdentity**:
+Un account di identità del pool di app consente di eseguire un'app in un account univoco, senza dover creare e gestire domini o account locali. In IIS 8.0 o versioni successive il processo di lavoro amministrazione IIS (WAS) crea un account virtuale con il nome del nuovo pool di applicazioni ed esegue i processi di lavoro del pool di applicazioni inclusi nell'account per impostazione predefinita. Nella console di gestione IIS in **Impostazioni avanzate** per il pool di applicazioni, verificare che **Identity** sia impostato per utilizzare **ApplicationPool Identity **:
 
 ![Finestra di dialogo Impostazioni avanzate del pool di applicazione](index/_static/apppool-identity.png)
 

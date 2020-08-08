@@ -5,6 +5,8 @@ description: Gli schemi dei criteri di autenticazione rendono più semplice aver
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,16 +15,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/policyschemes
-ms.openlocfilehash: a8bde9633f06f41ebcb55480eb2322544db4b4da
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ddee613bf9c603542f17adf59a835a2ddbdc25a3
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408760"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017805"
 ---
 # <a name="policy-schemes-in-aspnet-core"></a>Schemi di criteri in ASP.NET Core
 
-Gli schemi dei criteri di autenticazione rendono più semplice disporre di un singolo schema di autenticazione logica che potenzialmente utilizza diversi approcci. Ad esempio, uno schema di criteri può utilizzare l'autenticazione di Google per le richieste di problemi e l'autenticazione dei cookie per tutti gli altri elementi. Gli schemi dei criteri di autenticazione lo rendono:
+Gli schemi dei criteri di autenticazione rendono più semplice disporre di un singolo schema di autenticazione logica che potenzialmente utilizza diversi approcci. Ad esempio, uno schema di criteri può utilizzare l'autenticazione Google per le richieste e cookie l'autenticazione per tutti gli altri elementi. Gli schemi dei criteri di autenticazione lo rendono:
 
 * Facile da inviare qualsiasi azione di autenticazione a un altro schema.
 * In avanti in modo dinamico in base alla richiesta.
@@ -34,13 +36,13 @@ Tutti gli schemi di autenticazione che usano Derived <xref:Microsoft.AspNetCore.
 
 [!code-csharp[sample](policyschemes/samples/AuthenticationSchemeOptions.cs?name=snippet)]
 
-## <a name="examples"></a>Esempio
+## <a name="examples"></a>Esempi
 
-Nell'esempio seguente viene illustrato uno schema di livello superiore che combina schemi di livello inferiore. L'autenticazione di Google viene utilizzata per le richieste e l'autenticazione dei cookie viene utilizzata per tutte le altre operazioni:
+Nell'esempio seguente viene illustrato uno schema di livello superiore che combina schemi di livello inferiore. Google Authentication viene usato per le richieste e cookie l'autenticazione viene usata per tutte le altre operazioni:
 
 [!code-csharp[sample](policyschemes/samples/Startup.cs?name=snippet1)]
 
-Nell'esempio seguente viene abilitata la selezione dinamica degli schemi in base alle singole richieste. Ovvero come combinare cookie e autenticazione API:
+Nell'esempio seguente viene abilitata la selezione dinamica degli schemi in base alle singole richieste. Ovvero come combinare cookie s e l'autenticazione API:
 
  <!-- REVIEW, missing If set in public Func<HttpContext, string> ForwardDefaultSelector -->
 

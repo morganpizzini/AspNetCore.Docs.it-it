@@ -5,6 +5,8 @@ description: Parte 7 di Razor pagine e Entity Framework serie di esercitazioni.
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: b442a4ce1f63c047c123315626f559155fd06424
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 3807c52bb843c4d6403e8236fde50c034a8d1e2b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060137"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017740"
 ---
-# <a name="part-7-razor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Parte 7, Razor pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core
+# <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Parte 7, Razor pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core
 
 Di [Tom Dykstra](https://github.com/tdykstra), e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -65,7 +67,7 @@ Il codice precedente:
 * Usa `TryUpdateModelAsync` per evitare l'[overposting](xref:data/ef-rp/crud#overposting).
 * Rimuove `ViewData["DepartmentID"]`. `DepartmentNameSL`dalla classe base è un modello fortemente tipizzato e verrà usato dalla Razor pagina. I modelli fortemente tipizzati sono preferibili a quelli scarsamente tipizzati. Per altre informazioni, vedere [Dati con tipizzazione debole (ViewData e ViewBag)](xref:mvc/views/overview#VD_VB).
 
-### <a name="update-the-course-create-razor-page"></a>Aggiornare la pagina di creazione del corso Razor
+### <a name="update-the-course-create-no-locrazor-page"></a>Aggiornare la pagina di creazione del corso Razor
 
 Aggiornare *Pages/Courses/Create.cshtml* con il codice seguente:
 
@@ -92,7 +94,7 @@ Aggiornare *Pages/Courses/Edit.cshtml.cs* con il codice seguente:
 
 Le modifiche sono simili a quelle apportate nel modello della pagina Create (Crea). Nel codice precedente, `PopulateDepartmentsDropDownList` passa l'ID del dipartimento, che seleziona il dipartimento nell'elenco a discesa.
 
-### <a name="update-the-course-edit-razor-page"></a>Aggiornare la pagina di modifica del corso Razor
+### <a name="update-the-course-edit-no-locrazor-page"></a>Aggiornare la pagina di modifica del corso Razor
 
 Aggiornare *Pages/Courses/Edit.cshtml* con il codice seguente:
 
@@ -120,7 +122,7 @@ Apportare la stessa modifica nel file *Pages/Courses/Details.cshtml.cs*:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=28)]
 
-### <a name="update-the-course-razor-pages"></a>Aggiornare le pagine del corso Razor
+### <a name="update-the-course-no-locrazor-pages"></a>Aggiornare le pagine del corso Razor
 
 Aggiornare *Pages/Courses/Delete.cshtml* con il codice seguente:
 
@@ -197,7 +199,7 @@ Il codice precedente:
 * Chiama `UpdateInstructorCourses` in `OnPostAsync` per applicare le informazioni dalle caselle di controllo all'entità Instructor in corso di modifica.
 * Chiama `PopulateAssignedCourseData` e `UpdateInstructorCourses` in `OnPostAsync` se `TryUpdateModel` ha esito negativo. Queste chiamate di metodo ripristinano i dati dei corsi assegnati immessi nella pagina quando viene rivisualizzata con un messaggio di errore.
 
-### <a name="update-the-instructor-edit-razor-page"></a>Aggiornare la pagina di modifica dell'insegnante Razor
+### <a name="update-the-instructor-edit-no-locrazor-page"></a>Aggiornare la pagina di modifica dell'insegnante Razor
 
 Aggiornare *Pages/Instructors/Edit.cshtml* con il codice seguente:
 

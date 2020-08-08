@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: 171607544bfe89fdd0a1ed9efb68f7a532f9aee1
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: d2594dd05ee6d7e8e0dbd3c279ecd8783d182b62
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212653"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017831"
 ---
-# <a name="part-6-razor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Parte 6, Razor pagine con EF core nei dati correlati alla lettura ASP.NET Core
+# <a name="part-6-no-locrazor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Parte 6, Razor pagine con EF core nei dati correlati alla lettura ASP.NET Core
 
 [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 

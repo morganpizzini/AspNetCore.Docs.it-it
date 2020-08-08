@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/5/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/httpcontext
-ms.openlocfilehash: d4512c9fa136e518fa0230c0cf9c607519eed6d8
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2b8ac1d6c6cdeee14b74c5b14206bff51982c711
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399452"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017246"
 ---
 # <a name="access-httpcontext-in-aspnet-core"></a>Accedere a HttpContext in ASP.NET Core
 
 ASP.NET Core l'accesso alle app `HttpContext` tramite l' <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interfaccia e l'implementazione predefinita <xref:Microsoft.AspNetCore.Http.HttpContextAccessor> . L'uso di `IHttpContextAccessor` è necessario solo per l'accesso a `HttpContext` all'interno di un servizio.
 
-## <a name="use-httpcontext-from-razor-pages"></a>USA HttpContext da Razor pagine
+## <a name="use-httpcontext-from-no-locrazor-pages"></a>USA HttpContext da Razor pagine
 
 Le Razor pagine espongono <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> la <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext> proprietà:
 
@@ -42,9 +44,9 @@ public class AboutModel : PageModel
 }
 ```
 
-## <a name="use-httpcontext-from-a-razor-view"></a>Usare HttpContext da una Razor vista
+## <a name="use-httpcontext-from-a-no-locrazor-view"></a>Usare HttpContext da una Razor vista
 
-Razorle visualizzazioni espongono `HttpContext` direttamente tramite una proprietà [RazorPage. Context](xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context) nella vista. Nell'esempio seguente viene recuperato il nome utente corrente in un'app Intranet utilizzando l'autenticazione di Windows:
+Razorle visualizzazioni espongono `HttpContext` direttamente tramite una proprietà [ Razor Page. Context](xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context) nella vista. Nell'esempio seguente viene recuperato il nome utente corrente in un'app Intranet utilizzando l'autenticazione di Windows:
 
 ```cshtml
 @{
@@ -173,6 +175,6 @@ public class EmailController : Controller
 }
 ```
 
-## <a name="blazor-and-shared-state"></a>Blazore stato condiviso
+## <a name="no-locblazor-and-shared-state"></a>Blazore stato condiviso
 
 [!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]
