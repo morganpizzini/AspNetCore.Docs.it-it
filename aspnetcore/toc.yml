@@ -163,9 +163,14 @@
         - name: App per le API Web >>
           displayName: tutorial
           href: /learn/modules/build-web-api-net-core/
-        - name: Microservizi nativi del cloud >>
-          displayName: 'tutorial, kubernetes, aks, acr, docker'
-          href: /learn/modules/microservices-aspnet-core/
+        - name: Microservizi nativi del cloud
+          items:
+            - name: Creare e distribuire >>
+              displayName: 'tutorial, kubernetes, aks, acr, docker'
+              href: /learn/modules/microservices-aspnet-core/
+            - name: Implementare la resilienza > >
+              displayName: 'tutorial, kubernetes, aks, acr, docker'
+              href: /learn/modules/microservices-resiliency-aspnet-core/
         - name: Accesso ai dati >>
           displayName: 'tutorial, ef, entity framework'
           href: /learn/modules/persist-data-ef-core/
@@ -716,7 +721,7 @@
       uid: grpc/comparison
     - name: Esempi
       href: 'https://github.com/grpc/grpc-dotnet/tree/master/examples'
-    - name: Risolvere i problemi
+    - name: Risolvere problemi
       uid: grpc/troubleshoot
 - name: 'Test, debug e risoluzione dei problemi'
   items:
@@ -832,7 +837,7 @@
         - name: Modulo ASP.NET Core
           displayName: 'azure, deploy, publish'
           uid: host-and-deploy/aspnet-core-module
-        - name: Risolvere i problemi
+        - name: Risolvere problemi
           displayName: 'azure, deploy, publish'
           uid: test/troubleshoot-azure-iis
         - name: Informazioni di riferimento sugli errori
@@ -875,7 +880,7 @@
         - name: Moduli IIS
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/modules
-        - name: Risolvere i problemi
+        - name: Risolvere problemi
           displayName: 'deploy, publish'
           uid: test/troubleshoot-azure-iis
         - name: Informazioni di riferimento sugli errori
@@ -1191,6 +1196,8 @@
       uid: performance/diagnostic-tools
     - name: Test di carico e di stress
       uid: test/loadtests
+    - name: Contatori di eventi
+      href: /dotnet/core/diagnostics/event-counter-perf
 - name: Globalizzazione e localizzazione
   items:
     - name: Panoramica
@@ -1200,7 +1207,7 @@
       uid: fundamentals/portable-object-localization
     - name: Estendibilità
       uid: fundamentals/localization-extensibility
-    - name: Risolvere i problemi
+    - name: Risolvere problemi
       uid: fundamentals/troubleshoot-aspnet-core-localization
 - name: Avanzate
   items:
