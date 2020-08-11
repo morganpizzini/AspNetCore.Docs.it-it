@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: 6a2c9fe6dde725129e293a3137c1281bfb1a30ef
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 46f8cbc5ef3d9fe00a5151160a9119f68a9fe572
+ms.sourcegitcommit: 68d03d1aee8906b53bda66f8f1e0747efc3007e6
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021055"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88051810"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Parte 2, aggiungere un controller a un'app MVC ASP.NET Core
 
@@ -47,7 +47,7 @@ Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono
 * In **Esplora soluzioni**fare clic con il pulsante destro del mouse su **controller > Aggiungi >** 
    ![ menu contestuale](adding-controller/_static/add_controller.png)
 
-* Nella finestra di dialogo **Aggiungi scaffolding**, selezionare **Controller MVC - vuoto**
+* Nella finestra di dialogo **Aggiungi impalcatura** selezionare **classe controller-vuota**
 
   ![Aggiungere il controller MVC e assegnarli un nome](adding-controller/_static/ac.png)
 
@@ -64,7 +64,7 @@ Selezionare l'icona **EXPLORER** e quindi fare CTRL+clic (clic con il pulsante d
 In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Controller > Aggiungi > Nuovo file**.
 ![Menu di scelta rapida](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
-Selezionare **ASP.NET Core** e **Classe controller MVC**.
+Selezionare **ASP.NET Core** e **classe controller**.
 
 Assegnare il nome **HelloWorldController** al controller.
 
@@ -102,7 +102,7 @@ Passare a `https://localhost:{PORT}/HelloWorld/Welcome`. Il metodo `Welcome` vie
 
 ![Finestra del browser con una risposta dell'applicazione, This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
-Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4` Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
+Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio: `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 
@@ -221,7 +221,7 @@ Passare a `https://localhost:{PORT}/HelloWorld/Welcome`. Il metodo `Welcome` vie
 
 ![Finestra del browser con una risposta dell'applicazione, This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
-Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4` Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
+Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio: `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 
