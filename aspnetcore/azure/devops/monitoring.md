@@ -3,7 +3,7 @@ title: Monitorare ed eseguire il debug di DevOps con ASP.NET Core e Azure
 author: CamSoper
 description: Monitoraggio e debug del codice come parte di una soluzione DevOps con ASP.NET Core e Azure
 ms.author: casoper
-ms.custom: mvc, seodec18
+ms.custom: devx-track-csharp, mvc, seodec18
 ms.date: 07/10/2019
 no-loc:
 - cookie
@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/monitor
-ms.openlocfilehash: 9e8b48df5a3ecf78e315c7f33b5ab75d6f329cc2
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 98d7c820b20f4f4c6b57f283ef718ce056dcdcae
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88012774"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130496"
 ---
 # <a name="monitor-and-debug"></a>Monitorare ed eseguire il debug
 
@@ -102,7 +102,7 @@ Il server Web e i log delle app sono disabilitati per impostazione predefinita n
 1. Attivare la **registrazione delle applicazioni (filesystem)**. Se richiesto, fare clic sulla casella per installare le estensioni per abilitare la registrazione delle app nell'app Web.
 1. Impostare la **registrazione del server Web** sul **file System**.
 1. Immettere il **periodo di conservazione** in giorni. Ad esempio, 30.
-1. Fare clic su **Save**.
+1. Fare clic su **Salva**.
 
 ASP.NET Core e i log del server Web (servizio app) vengono generati per l'app Web. Possono essere scaricati usando le informazioni FTP/FTPS visualizzate. La password è identica a quella delle credenziali di distribuzione create in precedenza in questa guida. I log possono essere [trasmessi direttamente al computer locale con PowerShell o l'interfaccia della riga di comando di Azure](/azure/app-service/web-sites-enable-diagnostic-log#download). I log possono essere [visualizzati anche in Application Insights](/azure/app-service/web-sites-enable-diagnostic-log#how-to-view-logs-in-application-insights).
 

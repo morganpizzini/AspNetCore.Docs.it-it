@@ -5,7 +5,7 @@ description: Comprendere Blazor WebAssembly e Blazor Server ospitare i modelli.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 08/11/2020
 no-loc:
 - cookie
 - Cookie
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 0d2ee7862c5737a1e16335a5d5987779884d5536
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 14fa13bafa984c0ca7b9fd8cde538042cc0ec2cc
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014282"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130444"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-models"></a>BlazorModelli di hosting ASP.NET Core
 
@@ -32,13 +32,13 @@ Blazorè un framework web progettato per l'esecuzione sul lato client nel browse
 
 ## Blazor WebAssembly
 
-Il modello di hosting principale per Blazor viene eseguito sul lato client nel browser sul webassembly. L' Blazor app, le relative dipendenze e il Runtime .NET vengono scaricati nel browser. L'app viene eseguita direttamente nel thread dell'interfaccia utente del browser. Gli aggiornamenti dell'interfaccia utente e la gestione degli eventi si verificano nello stesso processo. Le risorse dell'app vengono distribuite come file statici in un server Web o in un servizio in grado di servire contenuto statico ai client.
+Il modello di hosting principale per Blazor viene eseguito sul lato client nel browser sul webassembly. L' Blazor app, le relative dipendenze e il Runtime .NET vengono scaricati nel browser. L'app viene eseguita direttamente nel thread dell'interfaccia utente del browser. Gli aggiornamenti dell'interfaccia utente e la gestione degli eventi si verificano nello stesso processo. Le risorse dell'app vengono distribuite come file statici in un server Web o in un servizio in grado di servire contenuto statico ai client. Poiché l'app viene creata per la distribuzione senza un back-end ASP.NET Core app, viene *chiamata Blazor WebAssembly app autonoma*.
 
 ![::: NO-LOC (webassembly Blaze):::: l'oggetto::: NO-LOC (Blazer)::: app viene eseguito su un thread dell'interfaccia utente all'interno del browser.](hosting-models/_static/blazor-webassembly.png)
 
 Per creare un' Blazor app usando il modello di hosting lato client, usare il modello di ** Blazor WebAssembly app** ( [`dotnet new blazorwasm`](/dotnet/core/tools/dotnet-new) ).
 
-Dopo aver selezionato il modello di ** Blazor WebAssembly app** , è possibile configurare l'app per l'uso di un back-end ASP.NET Core selezionando la casella di controllo **ASP.NET Core Hosted** ( [`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new) ). L'app ASP.NET Core serve l' Blazor app ai client. L' Blazor WebAssembly app può interagire con il server tramite la rete usando chiamate API Web o [SignalR](xref:signalr/introduction) ( <xref:tutorials/signalr-blazor-webassembly> ).
+Dopo aver selezionato il modello di ** Blazor WebAssembly app** , è possibile configurare l'app per l'uso di un back-end ASP.NET Core selezionando la casella di controllo **ASP.NET Core Hosted** ( [`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new) ). L'app ASP.NET Core serve l' Blazor app ai client. Un'app con un back-end ASP.NET Core viene *chiamata Blazor WebAssembly app ospitata*. L' Blazor WebAssembly app può interagire con il server tramite la rete usando chiamate API Web o [SignalR](xref:signalr/introduction) ( <xref:tutorials/signalr-blazor-webassembly> ).
 
 I modelli includono lo `blazor.webassembly.js` script che gestisce:
 

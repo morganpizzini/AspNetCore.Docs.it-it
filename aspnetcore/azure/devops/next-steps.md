@@ -3,7 +3,7 @@ title: Passaggi successivi-DevOps con ASP.NET Core e Azure
 author: CamSoper
 description: Percorsi di apprendimento aggiuntivi per DevOps con ASP.NET Core e Azure.
 ms.author: casoper
-ms.custom: mvc, seodec18
+ms.custom: devx-track-csharp, mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
 - cookie
@@ -16,16 +16,16 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/next-steps
-ms.openlocfilehash: feff73b307791c0a7ad8968b5145c0388df1ca10
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a9a6b0a588b7813f9d6e2b215630a1b9100be890
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88012586"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130431"
 ---
 # <a name="next-steps"></a>Passaggi successivi
 
-In questa guida è stata creata una pipeline DevOps per un'app di esempio ASP.NET Core. Congratulazioni! Ci auguriamo che tu abbia goduto di imparare a pubblicare ASP.NET Core app Web per app Azure servizio e automatizzare l'integrazione continuativa delle modifiche.
+In questa guida è stata creata una pipeline DevOps per un'app di esempio ASP.NET Core. La procedura è stata completata. Ci auguriamo che tu abbia goduto di imparare a pubblicare ASP.NET Core app Web per app Azure servizio e automatizzare l'integrazione continuativa delle modifiche.
 
 Oltre all'hosting Web e a DevOps, Azure offre un'ampia gamma di servizi PaaS (Platform-as-a-Service) utili per ASP.NET Core gli sviluppatori. Questa sezione fornisce una breve panoramica di alcuni dei servizi usati più di frequente.
 
@@ -43,7 +43,7 @@ Il [database SQL di Azure](/azure/sql-database/) offre funzionalità di database
 
 [Azure Active Directory](/azure/active-directory/) e [Azure Active Directory B2C](/azure/active-directory-b2c/) sono entrambi servizi di identità. Azure Active Directory è progettato per gli scenari aziendali e consente la collaborazione Azure AD B2B (business to business), mentre Azure Active Directory B2C è concepita per gli scenari business-to-Customer, incluso l'accesso ai social network.
 
-## <a name="mobile"></a>Dispositivi mobili
+## <a name="mobile"></a>Mobile
 
 [Hub di notifica](/azure/notification-hubs/) è un motore di notifiche push multipiattaforma e scalabile che consente di inviare rapidamente milioni di messaggi alle app in esecuzione su diversi tipi di dispositivi.
 

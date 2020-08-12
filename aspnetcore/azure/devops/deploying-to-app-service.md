@@ -3,7 +3,7 @@ title: Distribuire un'app nel servizio app-DevOps con ASP.NET Core e Azure
 author: CamSoper
 description: Distribuire un'app ASP.NET Core al servizio app Azure, il primo passaggio per DevOps con ASP.NET Core e Azure.
 ms.author: casoper
-ms.custom: mvc, seodec18
+ms.custom: devx-track-csharp, mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
 - cookie
@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: 4349e8a994cfa4007ce847b2952c53f4223f1b3d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: f27c33d692512130ba0a36e9d00d46dffe90da16
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88012358"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130236"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Distribuire un'app nel servizio app
 
