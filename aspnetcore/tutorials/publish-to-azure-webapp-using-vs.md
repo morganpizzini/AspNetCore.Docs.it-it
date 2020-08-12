@@ -3,7 +3,7 @@ title: Pubblicare un'app ASP.NET Core in Azure con Visual Studio
 author: rick-anderson
 description: Informazioni su come pubblicare un'app ASP.NET Core in Servizio app di Azure con Visual Studio.
 ms.author: riande
-ms.custom: mvc
+ms.custom: devx-track-csharp, mvc
 ms.date: 07/10/2019
 no-loc:
 - cookie
@@ -16,16 +16,16 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/publish-to-azure-webapp-using-vs
-ms.openlocfilehash: aa078fa30217d737d579b97d4de9704b5d1dd8a3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 1fced12700fcd5910c1484ebb9190c7652b2646e
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022082"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130704"
 ---
-# <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a><span data-ttu-id="3faae-103">Pubblicare un'app ASP.NET Core in Azure con Visual Studio</span><span class="sxs-lookup"><span data-stu-id="3faae-103">Publish an ASP.NET Core app to Azure with Visual Studio</span></span>
+# <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a><span data-ttu-id="c6d6d-103">Pubblicare un'app ASP.NET Core in Azure con Visual Studio</span><span class="sxs-lookup"><span data-stu-id="c6d6d-103">Publish an ASP.NET Core app to Azure with Visual Studio</span></span>
 
-<span data-ttu-id="3faae-104">Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)</span><span class="sxs-lookup"><span data-stu-id="3faae-104">By [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
+<span data-ttu-id="c6d6d-104">Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)</span><span class="sxs-lookup"><span data-stu-id="c6d6d-104">By [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
 ::: moniker range=">= aspnetcore-3.0"
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
@@ -33,192 +33,192 @@ ms.locfileid: "88022082"
 ::: moniker-end
 
 
-<span data-ttu-id="3faae-105">Vedere [pubblicare un'app Web nel servizio app Azure usando Visual Studio per Mac](https://docs.microsoft.com/visualstudio/mac/publish-app-svc?view=vsmac-2019) se si lavora in MacOS.</span><span class="sxs-lookup"><span data-stu-id="3faae-105">See [Publish a Web app to Azure App Service using Visual Studio for Mac](https://docs.microsoft.com/visualstudio/mac/publish-app-svc?view=vsmac-2019) if you are working on macOS.</span></span>
+<span data-ttu-id="c6d6d-105">Vedere [pubblicare un'app Web nel servizio app Azure usando Visual Studio per Mac](https://docs.microsoft.com/visualstudio/mac/publish-app-svc?view=vsmac-2019) se si lavora in MacOS.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-105">See [Publish a Web app to Azure App Service using Visual Studio for Mac](https://docs.microsoft.com/visualstudio/mac/publish-app-svc?view=vsmac-2019) if you are working on macOS.</span></span>
 
-<span data-ttu-id="3faae-106">Per risolvere un problema di distribuzione del Servizio app di Azure, vedere <xref:test/troubleshoot-azure-iis>.</span><span class="sxs-lookup"><span data-stu-id="3faae-106">To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.</span></span>
+<span data-ttu-id="c6d6d-106">Per risolvere un problema di distribuzione del Servizio app di Azure, vedere <xref:test/troubleshoot-azure-iis>.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-106">To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.</span></span>
 
-## <a name="set-up"></a><span data-ttu-id="3faae-107">Configurazione</span><span class="sxs-lookup"><span data-stu-id="3faae-107">Set up</span></span>
+## <a name="set-up"></a><span data-ttu-id="c6d6d-107">Configurazione</span><span class="sxs-lookup"><span data-stu-id="c6d6d-107">Set up</span></span>
 
-* <span data-ttu-id="3faae-108">Aprire un [account Azure gratuito](https://azure.microsoft.com/free/dotnet/) se non è già disponibile un account.</span><span class="sxs-lookup"><span data-stu-id="3faae-108">Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.</span></span> 
+* <span data-ttu-id="c6d6d-108">Aprire un [account Azure gratuito](https://azure.microsoft.com/free/dotnet/) se non è già disponibile un account.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-108">Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.</span></span> 
 
-## <a name="create-a-web-app"></a><span data-ttu-id="3faae-109">Creare un'app Web</span><span class="sxs-lookup"><span data-stu-id="3faae-109">Create a web app</span></span>
+## <a name="create-a-web-app"></a><span data-ttu-id="c6d6d-109">Creare un'app Web</span><span class="sxs-lookup"><span data-stu-id="c6d6d-109">Create a web app</span></span>
 
-<span data-ttu-id="3faae-110">Nella Pagina iniziale di Visual Studio selezionare **File > Nuovo > Progetto**</span><span class="sxs-lookup"><span data-stu-id="3faae-110">In the Visual Studio Start Page, select **File > New > Project...**</span></span>
+<span data-ttu-id="c6d6d-110">Nella Pagina iniziale di Visual Studio selezionare **File > Nuovo > Progetto**</span><span class="sxs-lookup"><span data-stu-id="c6d6d-110">In the Visual Studio Start Page, select **File > New > Project...**</span></span>
 
 ![Menu File](publish-to-azure-webapp-using-vs/_static/file_new_project.png)
 
-<span data-ttu-id="3faae-112">Completare la finestra di dialogo **Nuovo progetto**:</span><span class="sxs-lookup"><span data-stu-id="3faae-112">Complete the **New Project** dialog:</span></span>
+<span data-ttu-id="c6d6d-112">Completare la finestra di dialogo **Nuovo progetto**:</span><span class="sxs-lookup"><span data-stu-id="c6d6d-112">Complete the **New Project** dialog:</span></span>
 
-* <span data-ttu-id="3faae-113">Selezionare **Applicazione Web ASP.NET Core**.</span><span class="sxs-lookup"><span data-stu-id="3faae-113">Select **ASP.NET Core Web Application**.</span></span>
-* <span data-ttu-id="3faae-114">Selezionare **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="3faae-114">Select **Next**.</span></span>
+* <span data-ttu-id="c6d6d-113">Selezionare **Applicazione Web ASP.NET Core**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-113">Select **ASP.NET Core Web Application**.</span></span>
+* <span data-ttu-id="c6d6d-114">Selezionare **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-114">Select **Next**.</span></span>
 
 ![Finestra di dialogo Nuovo progetto](publish-to-azure-webapp-using-vs/_static/new_prj.png)
 
-<span data-ttu-id="3faae-116">Nella finestra di dialogo **Nuova applicazione Web ASP.NET Core**:</span><span class="sxs-lookup"><span data-stu-id="3faae-116">In the **New ASP.NET Core Web Application** dialog:</span></span>
+<span data-ttu-id="c6d6d-116">Nella finestra di dialogo **Nuova applicazione Web ASP.NET Core**:</span><span class="sxs-lookup"><span data-stu-id="c6d6d-116">In the **New ASP.NET Core Web Application** dialog:</span></span>
 
-* <span data-ttu-id="3faae-117">Selezionare **applicazione Web**.</span><span class="sxs-lookup"><span data-stu-id="3faae-117">Select **Web Application**.</span></span>
-* <span data-ttu-id="3faae-118">Selezionare **modifica** in autenticazione.</span><span class="sxs-lookup"><span data-stu-id="3faae-118">Select **Change** under Authentication.</span></span>
+* <span data-ttu-id="c6d6d-117">Selezionare **applicazione Web**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-117">Select **Web Application**.</span></span>
+* <span data-ttu-id="c6d6d-118">Selezionare **modifica** in autenticazione.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-118">Select **Change** under Authentication.</span></span>
 
 ![Finestra di dialogo nuovo ASP.NET Core Web](publish-to-azure-webapp-using-vs/_static/new_prj_2.png)
 
-<span data-ttu-id="3faae-120">Viene visualizzata la finestra di dialogo **Modifica autenticazione**.</span><span class="sxs-lookup"><span data-stu-id="3faae-120">The **Change Authentication** dialog appears.</span></span> 
+<span data-ttu-id="c6d6d-120">Viene visualizzata la finestra di dialogo **Modifica autenticazione**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-120">The **Change Authentication** dialog appears.</span></span> 
 
-* <span data-ttu-id="3faae-121">Selezionare **Account utente individuali**.</span><span class="sxs-lookup"><span data-stu-id="3faae-121">Select **Individual User Accounts**.</span></span>
-* <span data-ttu-id="3faae-122">Selezionare **OK** per tornare alla **nuova applicazione Web ASP.NET Core**, quindi selezionare **Crea**.</span><span class="sxs-lookup"><span data-stu-id="3faae-122">Select **OK** to return to the **New ASP.NET Core Web Application**, then select **Create**.</span></span>
+* <span data-ttu-id="c6d6d-121">Selezionare **Account utente individuali**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-121">Select **Individual User Accounts**.</span></span>
+* <span data-ttu-id="c6d6d-122">Selezionare **OK** per tornare alla **nuova applicazione Web ASP.NET Core**, quindi selezionare **Crea**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-122">Select **OK** to return to the **New ASP.NET Core Web Application**, then select **Create**.</span></span>
 
 ![Finestra per autenticazione Nuova applicazione Web ASP.NET Core](publish-to-azure-webapp-using-vs/_static/new_prj_auth.png) 
 
-<span data-ttu-id="3faae-124">Visual Studio crea la soluzione.</span><span class="sxs-lookup"><span data-stu-id="3faae-124">Visual Studio creates the solution.</span></span>
+<span data-ttu-id="c6d6d-124">Visual Studio crea la soluzione.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-124">Visual Studio creates the solution.</span></span>
 
-## <a name="run-the-app"></a><span data-ttu-id="3faae-125">Eseguire l'app</span><span class="sxs-lookup"><span data-stu-id="3faae-125">Run the app</span></span>
+## <a name="run-the-app"></a><span data-ttu-id="c6d6d-125">Eseguire l'app</span><span class="sxs-lookup"><span data-stu-id="c6d6d-125">Run the app</span></span>
 
-* <span data-ttu-id="3faae-126">Premere CTRL+F5 per eseguire il progetto.</span><span class="sxs-lookup"><span data-stu-id="3faae-126">Press CTRL+F5 to run the project.</span></span>
-* <span data-ttu-id="3faae-127">Testare il collegamento per la **privacy** .</span><span class="sxs-lookup"><span data-stu-id="3faae-127">Test the **Privacy** link.</span></span>
+* <span data-ttu-id="c6d6d-126">Premere CTRL+F5 per eseguire il progetto.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-126">Press CTRL+F5 to run the project.</span></span>
+* <span data-ttu-id="c6d6d-127">Testare il collegamento per la **privacy** .</span><span class="sxs-lookup"><span data-stu-id="c6d6d-127">Test the **Privacy** link.</span></span>
 
 ![Applicazione Web aperta in Microsoft Edge su localhost](publish-to-azure-webapp-using-vs/_static/show.png)
 
-### <a name="register-a-user"></a><span data-ttu-id="3faae-129">Registrare un utente</span><span class="sxs-lookup"><span data-stu-id="3faae-129">Register a user</span></span>
+### <a name="register-a-user"></a><span data-ttu-id="c6d6d-129">Registrare un utente</span><span class="sxs-lookup"><span data-stu-id="c6d6d-129">Register a user</span></span>
 
-* <span data-ttu-id="3faae-130">Selezionare **Registra** e registrare un nuovo utente.</span><span class="sxs-lookup"><span data-stu-id="3faae-130">Select **Register** and register a new user.</span></span> <span data-ttu-id="3faae-131">È possibile usare un indirizzo di posta elettronica fittizio.</span><span class="sxs-lookup"><span data-stu-id="3faae-131">You can use a fictitious email address.</span></span> <span data-ttu-id="3faae-132">Quando si esegue l'invio, nella pagina viene visualizzato l'errore seguente:</span><span class="sxs-lookup"><span data-stu-id="3faae-132">When you submit, the page displays the following error:</span></span>
+* <span data-ttu-id="c6d6d-130">Selezionare **Registra** e registrare un nuovo utente.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-130">Select **Register** and register a new user.</span></span> <span data-ttu-id="c6d6d-131">È possibile usare un indirizzo di posta elettronica fittizio.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-131">You can use a fictitious email address.</span></span> <span data-ttu-id="c6d6d-132">Quando si esegue l'invio, nella pagina viene visualizzato l'errore seguente:</span><span class="sxs-lookup"><span data-stu-id="c6d6d-132">When you submit, the page displays the following error:</span></span>
 
-    <span data-ttu-id="3faae-133">*"Un'operazione sul database non è riuscita durante l'elaborazione della richiesta. Per risolvere il problema, è possibile applicare le migrazioni esistenti per il contesto di database dell'applicazione. "*</span><span class="sxs-lookup"><span data-stu-id="3faae-133">*"A database operation failed while processing the request. Applying existing migrations for Application DB context may resolve this issue."*</span></span>
-* <span data-ttu-id="3faae-134">Selezionare **Apply Migrations** (Applica migrazioni) e, quando la pagina è stata caricata, eseguire l'aggiornamento.</span><span class="sxs-lookup"><span data-stu-id="3faae-134">Select **Apply Migrations** and, once the page updates, refresh the page.</span></span>
+    <span data-ttu-id="c6d6d-133">*"Un'operazione sul database non è riuscita durante l'elaborazione della richiesta. Per risolvere il problema, è possibile applicare le migrazioni esistenti per il contesto di database dell'applicazione. "*</span><span class="sxs-lookup"><span data-stu-id="c6d6d-133">*"A database operation failed while processing the request. Applying existing migrations for Application DB context may resolve this issue."*</span></span>
+* <span data-ttu-id="c6d6d-134">Selezionare **Apply Migrations** (Applica migrazioni) e, quando la pagina è stata caricata, eseguire l'aggiornamento.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-134">Select **Apply Migrations** and, once the page updates, refresh the page.</span></span>
 
 ![A database operation failed while processing the request.](publish-to-azure-webapp-using-vs/_static/mig.png)
 
-<span data-ttu-id="3faae-137">L'app Visualizza il messaggio di posta elettronica usato per registrare il nuovo utente e un collegamento di **disconnessione** .</span><span class="sxs-lookup"><span data-stu-id="3faae-137">The app displays the email used to register the new user and a **Logout** link.</span></span>
+<span data-ttu-id="c6d6d-137">L'app Visualizza il messaggio di posta elettronica usato per registrare il nuovo utente e un collegamento di **disconnessione** .</span><span class="sxs-lookup"><span data-stu-id="c6d6d-137">The app displays the email used to register the new user and a **Logout** link.</span></span>
 
 ![Applicazione Web aperta in Microsoft Edge](publish-to-azure-webapp-using-vs/_static/hello.png)
 
-## <a name="deploy-the-app-to-azure"></a><span data-ttu-id="3faae-140">Distribuire l'app in Azure</span><span class="sxs-lookup"><span data-stu-id="3faae-140">Deploy the app to Azure</span></span>
+## <a name="deploy-the-app-to-azure"></a><span data-ttu-id="c6d6d-140">Distribuire l'app in Azure</span><span class="sxs-lookup"><span data-stu-id="c6d6d-140">Deploy the app to Azure</span></span>
 
-<span data-ttu-id="3faae-141">Fare clic con il pulsante destro del mouse sul progetto in Esplora soluzioni e scegliere **pubblica.**...</span><span class="sxs-lookup"><span data-stu-id="3faae-141">Right-click on the project in Solution Explorer and select **Publish...**.</span></span>
+<span data-ttu-id="c6d6d-141">Fare clic con il pulsante destro del mouse sul progetto in Esplora soluzioni e scegliere **pubblica.**...</span><span class="sxs-lookup"><span data-stu-id="c6d6d-141">Right-click on the project in Solution Explorer and select **Publish...**.</span></span>
 
 ![Menu di scelta rapida con il collegamento per la pubblicazione evidenziato](publish-to-azure-webapp-using-vs/_static/pub.png)
 
-<span data-ttu-id="3faae-143">Nella finestra di dialogo **Pubblica**:</span><span class="sxs-lookup"><span data-stu-id="3faae-143">In the **Publish** dialog:</span></span>
+<span data-ttu-id="c6d6d-143">Nella finestra di dialogo **Pubblica**:</span><span class="sxs-lookup"><span data-stu-id="c6d6d-143">In the **Publish** dialog:</span></span>
 
-* <span data-ttu-id="3faae-144">Selezionare **Azure**.</span><span class="sxs-lookup"><span data-stu-id="3faae-144">Select **Azure**.</span></span>
-* <span data-ttu-id="3faae-145">Selezionare **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="3faae-145">Select **Next**.</span></span>
+* <span data-ttu-id="c6d6d-144">Selezionare **Azure**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-144">Select **Azure**.</span></span>
+* <span data-ttu-id="c6d6d-145">Selezionare **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-145">Select **Next**.</span></span>
 
 ![Finestra di dialogo Pubblica](publish-to-azure-webapp-using-vs/_static/maas1.png)
 
-<span data-ttu-id="3faae-147">Nella finestra di dialogo **Pubblica**:</span><span class="sxs-lookup"><span data-stu-id="3faae-147">In the **Publish** dialog:</span></span>
+<span data-ttu-id="c6d6d-147">Nella finestra di dialogo **Pubblica**:</span><span class="sxs-lookup"><span data-stu-id="c6d6d-147">In the **Publish** dialog:</span></span>
 
-* <span data-ttu-id="3faae-148">Selezionare **servizio app Azure (Linux)**.</span><span class="sxs-lookup"><span data-stu-id="3faae-148">Select **Azure App Service (Linux)**.</span></span>
-* <span data-ttu-id="3faae-149">Selezionare **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="3faae-149">Select **Next**.</span></span>
+* <span data-ttu-id="c6d6d-148">Selezionare **servizio app Azure (Linux)**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-148">Select **Azure App Service (Linux)**.</span></span>
+* <span data-ttu-id="c6d6d-149">Selezionare **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-149">Select **Next**.</span></span>
 
 ![Finestra di dialogo pubblica: selezionare il servizio di Azure](publish-to-azure-webapp-using-vs/_static/maas2.png)
 
-<span data-ttu-id="3faae-151">Nella finestra di dialogo **pubblica** selezionare **Crea un nuovo servizio app Azure...**</span><span class="sxs-lookup"><span data-stu-id="3faae-151">In the **Publish** dialog select **Create a new Azure App Service...**</span></span>
+<span data-ttu-id="c6d6d-151">Nella finestra di dialogo **pubblica** selezionare **Crea un nuovo servizio app Azure...**</span><span class="sxs-lookup"><span data-stu-id="c6d6d-151">In the **Publish** dialog select **Create a new Azure App Service...**</span></span>
 
 ![Finestra di dialogo pubblica: selezionare l'istanza del servizio di Azure](publish-to-azure-webapp-using-vs/_static/maas3.png)
 
-<span data-ttu-id="3faae-153">Viene visualizzata la finestra di dialogo **Crea servizio app** :</span><span class="sxs-lookup"><span data-stu-id="3faae-153">The **Create App Service** dialog appears:</span></span>
+<span data-ttu-id="c6d6d-153">Viene visualizzata la finestra di dialogo **Crea servizio app** :</span><span class="sxs-lookup"><span data-stu-id="c6d6d-153">The **Create App Service** dialog appears:</span></span>
 
-* <span data-ttu-id="3faae-154">I campi di immissione **Nome dell'app**, **Gruppo di risorse** e **Piano di servizio app** vengono popolati automaticamente.</span><span class="sxs-lookup"><span data-stu-id="3faae-154">The **App Name**, **Resource Group**, and **App Service Plan** entry fields are populated.</span></span> <span data-ttu-id="3faae-155">È possibile mantenere questi nomi o modificarli.</span><span class="sxs-lookup"><span data-stu-id="3faae-155">You can keep these names or change them.</span></span>
-* <span data-ttu-id="3faae-156">Selezionare **Crea**.</span><span class="sxs-lookup"><span data-stu-id="3faae-156">Select **Create**.</span></span>
+* <span data-ttu-id="c6d6d-154">I campi di immissione **Nome dell'app**, **Gruppo di risorse** e **Piano di servizio app** vengono popolati automaticamente.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-154">The **App Name**, **Resource Group**, and **App Service Plan** entry fields are populated.</span></span> <span data-ttu-id="c6d6d-155">È possibile mantenere questi nomi o modificarli.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-155">You can keep these names or change them.</span></span>
+* <span data-ttu-id="c6d6d-156">Selezionare **Crea**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-156">Select **Create**.</span></span>
 
 ![Finestra di dialogo Crea servizio app](publish-to-azure-webapp-using-vs/_static/newrg1.png)
 
-<span data-ttu-id="3faae-158">Al termine della creazione, la finestra di dialogo viene chiusa automaticamente e la finestra di dialogo di **pubblicazione** viene nuovamente messa a fuoco:</span><span class="sxs-lookup"><span data-stu-id="3faae-158">After creation is completed the dialog is automatically closed and the **Publish** dialog gets focus again:</span></span>
+<span data-ttu-id="c6d6d-158">Al termine della creazione, la finestra di dialogo viene chiusa automaticamente e la finestra di dialogo di **pubblicazione** viene nuovamente messa a fuoco:</span><span class="sxs-lookup"><span data-stu-id="c6d6d-158">After creation is completed the dialog is automatically closed and the **Publish** dialog gets focus again:</span></span>
 
-* <span data-ttu-id="3faae-159">La nuova istanza appena creata viene selezionata automaticamente.</span><span class="sxs-lookup"><span data-stu-id="3faae-159">The new instance that was just created is automatically selected.</span></span>
-* <span data-ttu-id="3faae-160">Selezionare **Fine**.</span><span class="sxs-lookup"><span data-stu-id="3faae-160">Select **Finish**.</span></span>
+* <span data-ttu-id="c6d6d-159">La nuova istanza appena creata viene selezionata automaticamente.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-159">The new instance that was just created is automatically selected.</span></span>
+* <span data-ttu-id="c6d6d-160">Selezionare **Fine**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-160">Select **Finish**.</span></span>
 
 ![Finestra di dialogo pubblica: selezionare l'istanza del servizio app](publish-to-azure-webapp-using-vs/_static/select_as.png)
 
-<span data-ttu-id="3faae-162">Verrà visualizzata la pagina di **Riepilogo del profilo di pubblicazione** .</span><span class="sxs-lookup"><span data-stu-id="3faae-162">Next you see the **Publish Profile summary** page.</span></span> <span data-ttu-id="3faae-163">Visual Studio ha rilevato che questa applicazione richiede un database di SQL Server e chiede di configurarlo.</span><span class="sxs-lookup"><span data-stu-id="3faae-163">Visual Studio has detected that this application requires a SQL Server database and it's asking you to configure it.</span></span> <span data-ttu-id="3faae-164">Selezionare **Configura**.</span><span class="sxs-lookup"><span data-stu-id="3faae-164">Select **Configure**.</span></span>
+<span data-ttu-id="c6d6d-162">Verrà visualizzata la pagina di **Riepilogo del profilo di pubblicazione** .</span><span class="sxs-lookup"><span data-stu-id="c6d6d-162">Next you see the **Publish Profile summary** page.</span></span> <span data-ttu-id="c6d6d-163">Visual Studio ha rilevato che questa applicazione richiede un database di SQL Server e chiede di configurarlo.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-163">Visual Studio has detected that this application requires a SQL Server database and it's asking you to configure it.</span></span> <span data-ttu-id="c6d6d-164">Selezionare **Configura**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-164">Select **Configure**.</span></span>
 
 ![Pagina Riepilogo profilo di pubblicazione: Configura dipendenza SQL Server](publish-to-azure-webapp-using-vs/_static/sql.png)
 
-<span data-ttu-id="3faae-166">Verrà visualizzata la finestra di dialogo **Configura dipendenza** :</span><span class="sxs-lookup"><span data-stu-id="3faae-166">The **Configure dependency** dialog appears:</span></span>
+<span data-ttu-id="c6d6d-166">Verrà visualizzata la finestra di dialogo **Configura dipendenza** :</span><span class="sxs-lookup"><span data-stu-id="c6d6d-166">The **Configure dependency** dialog appears:</span></span>
 
-* <span data-ttu-id="3faae-167">Selezionare **database SQL di Azure**.</span><span class="sxs-lookup"><span data-stu-id="3faae-167">Select **Azure SQL Database**.</span></span>
-* <span data-ttu-id="3faae-168">Selezionare **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="3faae-168">Select **Next**.</span></span>
+* <span data-ttu-id="c6d6d-167">Selezionare **database SQL di Azure**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-167">Select **Azure SQL Database**.</span></span>
+* <span data-ttu-id="c6d6d-168">Selezionare **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-168">Select **Next**.</span></span>
 
 ![Configurare la finestra di dialogo SQL Server dipendenza](publish-to-azure-webapp-using-vs/_static/sql1.png)
 
-<span data-ttu-id="3faae-170">Nella finestra di dialogo **Configura database SQL di Azure** selezionare **Crea un database SQL**</span><span class="sxs-lookup"><span data-stu-id="3faae-170">In the **Configure Azure SQL database** dialog select **Create a SQL Database**</span></span>
+<span data-ttu-id="c6d6d-170">Nella finestra di dialogo **Configura database SQL di Azure** selezionare **Crea un database SQL**</span><span class="sxs-lookup"><span data-stu-id="c6d6d-170">In the **Configure Azure SQL database** dialog select **Create a SQL Database**</span></span>
 
 ![Finestra di dialogo Configura database SQL di Azure](publish-to-azure-webapp-using-vs/_static/sql2.png)
 
-<span data-ttu-id="3faae-172">Viene visualizzato il **database SQL di Azure per creare** :</span><span class="sxs-lookup"><span data-stu-id="3faae-172">The **Create Azure SQL Database** appears:</span></span>
+<span data-ttu-id="c6d6d-172">Viene visualizzato il **database SQL di Azure per creare** :</span><span class="sxs-lookup"><span data-stu-id="c6d6d-172">The **Create Azure SQL Database** appears:</span></span>
 
-* <span data-ttu-id="3faae-173">Il **nome del database**, il **gruppo di risorse**, il **server di database** e i campi di immissione del **piano di servizio app** sono popolati</span><span class="sxs-lookup"><span data-stu-id="3faae-173">The **Database name**, **Resource Group**, **Database server** and **App Service Plan** entry fields are populated.</span></span> <span data-ttu-id="3faae-174">Questi valori possono essere conservati o modificati.</span><span class="sxs-lookup"><span data-stu-id="3faae-174">You can keep these values or change them.</span></span>
-* <span data-ttu-id="3faae-175">Immettere il **nome utente dell'amministratore** di database e la **password di amministratore** del database per il **server di database** selezionato (si noti che l'account usato deve avere le autorizzazioni necessarie per creare il nuovo database SQL di Azure)</span><span class="sxs-lookup"><span data-stu-id="3faae-175">Enter the **Database administrator username** and **Database administrator password** for the selected **Database server** (note the account you use must have the necessary permissions to create the new Azure SQL database)</span></span>
-* <span data-ttu-id="3faae-176">Selezionare **Crea**.</span><span class="sxs-lookup"><span data-stu-id="3faae-176">Select **Create**.</span></span>
+* <span data-ttu-id="c6d6d-173">Il **nome del database**, il **gruppo di risorse**, il **server di database** e i campi di immissione del **piano di servizio app** sono popolati</span><span class="sxs-lookup"><span data-stu-id="c6d6d-173">The **Database name**, **Resource Group**, **Database server** and **App Service Plan** entry fields are populated.</span></span> <span data-ttu-id="c6d6d-174">Questi valori possono essere conservati o modificati.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-174">You can keep these values or change them.</span></span>
+* <span data-ttu-id="c6d6d-175">Immettere il **nome utente dell'amministratore** di database e la **password di amministratore** del database per il **server di database** selezionato (si noti che l'account usato deve avere le autorizzazioni necessarie per creare il nuovo database SQL di Azure)</span><span class="sxs-lookup"><span data-stu-id="c6d6d-175">Enter the **Database administrator username** and **Database administrator password** for the selected **Database server** (note the account you use must have the necessary permissions to create the new Azure SQL database)</span></span>
+* <span data-ttu-id="c6d6d-176">Selezionare **Crea**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-176">Select **Create**.</span></span>
 
 ![Finestra di dialogo nuovo database SQL di Azure](publish-to-azure-webapp-using-vs/_static/sql_create.png)
 
-<span data-ttu-id="3faae-178">Al termine della creazione, la finestra di dialogo viene chiusa automaticamente e la finestra di dialogo **Configura database SQL di Azure** ottiene nuovamente lo stato attivo:</span><span class="sxs-lookup"><span data-stu-id="3faae-178">After creation is completed the dialog is automatically closed and the **Configure Azure SQL Database** dialog gets focus again:</span></span>
+<span data-ttu-id="c6d6d-178">Al termine della creazione, la finestra di dialogo viene chiusa automaticamente e la finestra di dialogo **Configura database SQL di Azure** ottiene nuovamente lo stato attivo:</span><span class="sxs-lookup"><span data-stu-id="c6d6d-178">After creation is completed the dialog is automatically closed and the **Configure Azure SQL Database** dialog gets focus again:</span></span>
 
-* <span data-ttu-id="3faae-179">La nuova istanza appena creata viene selezionata automaticamente.</span><span class="sxs-lookup"><span data-stu-id="3faae-179">The new instance that was just created is automatically selected.</span></span>
-* <span data-ttu-id="3faae-180">Selezionare **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="3faae-180">Select **Next**.</span></span>
+* <span data-ttu-id="c6d6d-179">La nuova istanza appena creata viene selezionata automaticamente.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-179">The new instance that was just created is automatically selected.</span></span>
+* <span data-ttu-id="c6d6d-180">Selezionare **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-180">Select **Next**.</span></span>
 
 ![Finestra di dialogo Configura database SQL di Azure](publish-to-azure-webapp-using-vs/_static/sql_select.png)
 
-<span data-ttu-id="3faae-182">Nel passaggio successivo della finestra di dialogo **Configura database SQL di Azure** :</span><span class="sxs-lookup"><span data-stu-id="3faae-182">In the next step of the **Configure Azure SQL Database** dialog:</span></span>
+<span data-ttu-id="c6d6d-182">Nel passaggio successivo della finestra di dialogo **Configura database SQL di Azure** :</span><span class="sxs-lookup"><span data-stu-id="c6d6d-182">In the next step of the **Configure Azure SQL Database** dialog:</span></span>
 
-* <span data-ttu-id="3faae-183">Immettere i campi **nome utente** e **password** connessione database per la connessione al database.</span><span class="sxs-lookup"><span data-stu-id="3faae-183">Enter the **Database connection user name** and **Database connection password** fields.</span></span> <span data-ttu-id="3faae-184">Questi sono i dettagli che verranno usati dall'applicazione per connettersi al database in fase di esecuzione.</span><span class="sxs-lookup"><span data-stu-id="3faae-184">These are the details your application will use to connect to the database at runtime.</span></span> <span data-ttu-id="3faae-185">La procedura consigliata consiste nell'evitare di utilizzare gli stessi dettagli del nome utente amministratore & password utilizzata nel passaggio precedente.</span><span class="sxs-lookup"><span data-stu-id="3faae-185">Best practice is to avoid using the same details as the admin username & password used in the previous step.</span></span>
-* <span data-ttu-id="3faae-186">Selezionare **Fine**.</span><span class="sxs-lookup"><span data-stu-id="3faae-186">Select **Finish**.</span></span>
+* <span data-ttu-id="c6d6d-183">Immettere i campi **nome utente** e **password** connessione database per la connessione al database.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-183">Enter the **Database connection user name** and **Database connection password** fields.</span></span> <span data-ttu-id="c6d6d-184">Questi sono i dettagli che verranno usati dall'applicazione per connettersi al database in fase di esecuzione.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-184">These are the details your application will use to connect to the database at runtime.</span></span> <span data-ttu-id="c6d6d-185">La procedura consigliata consiste nell'evitare di utilizzare gli stessi dettagli del nome utente amministratore & password utilizzata nel passaggio precedente.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-185">Best practice is to avoid using the same details as the admin username & password used in the previous step.</span></span>
+* <span data-ttu-id="c6d6d-186">Selezionare **Fine**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-186">Select **Finish**.</span></span>
 
 ![Finestra di dialogo Configura database SQL di Azure, dettagli stringa di connessione](publish-to-azure-webapp-using-vs/_static/sql_connection.png)
 
-<span data-ttu-id="3faae-188">Nella pagina di **Riepilogo del profilo di pubblicazione** selezionare **Impostazioni**:</span><span class="sxs-lookup"><span data-stu-id="3faae-188">In the **Publish Profile summary** page select **Settings**:</span></span>
+<span data-ttu-id="c6d6d-188">Nella pagina di **Riepilogo del profilo di pubblicazione** selezionare **Impostazioni**:</span><span class="sxs-lookup"><span data-stu-id="c6d6d-188">In the **Publish Profile summary** page select **Settings**:</span></span>
 
 ![Pagina Riepilogo profilo di pubblicazione: modifica impostazioni](publish-to-azure-webapp-using-vs/_static/pp_configured.png)
 
-<span data-ttu-id="3faae-190">Nella pagina **Impostazioni** della finestra di dialogo **Pubblica**:</span><span class="sxs-lookup"><span data-stu-id="3faae-190">On the **Settings** page of the **Publish** dialog:</span></span>
+<span data-ttu-id="c6d6d-190">Nella pagina **Impostazioni** della finestra di dialogo **Pubblica**:</span><span class="sxs-lookup"><span data-stu-id="c6d6d-190">On the **Settings** page of the **Publish** dialog:</span></span>
 
-* <span data-ttu-id="3faae-191">Espandere **database** e selezionare **Usa questa stringa di connessione in fase di esecuzione**.</span><span class="sxs-lookup"><span data-stu-id="3faae-191">Expand **Databases** and check **Use this connection string at runtime**.</span></span>
-* <span data-ttu-id="3faae-192">Espandere **Entity Framework migrazioni** e selezionare **applica questa migrazione alla pubblicazione**.</span><span class="sxs-lookup"><span data-stu-id="3faae-192">Expand **Entity Framework Migrations** and check **Apply this migration on publish**.</span></span>
+* <span data-ttu-id="c6d6d-191">Espandere **database** e selezionare **Usa questa stringa di connessione in fase di esecuzione**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-191">Expand **Databases** and check **Use this connection string at runtime**.</span></span>
+* <span data-ttu-id="c6d6d-192">Espandere **Entity Framework migrazioni** e selezionare **applica questa migrazione alla pubblicazione**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-192">Expand **Entity Framework Migrations** and check **Apply this migration on publish**.</span></span>
 
-* <span data-ttu-id="3faae-193">Selezionare **Salva**.</span><span class="sxs-lookup"><span data-stu-id="3faae-193">Select **Save**.</span></span> <span data-ttu-id="3faae-194">Visual Studio torna alla finestra di dialogo **Pubblica**.</span><span class="sxs-lookup"><span data-stu-id="3faae-194">Visual Studio returns to the **Publish** dialog.</span></span> 
+* <span data-ttu-id="c6d6d-193">Selezionare **Salva**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-193">Select **Save**.</span></span> <span data-ttu-id="c6d6d-194">Visual Studio torna alla finestra di dialogo **Pubblica**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-194">Visual Studio returns to the **Publish** dialog.</span></span> 
 
 ![Finestra di dialogo Pubblica: pannello Impostazioni](publish-to-azure-webapp-using-vs/_static/pp_settings.png)
 
-<span data-ttu-id="3faae-196">Fare clic su **Pubblica**.</span><span class="sxs-lookup"><span data-stu-id="3faae-196">Click **Publish**.</span></span> <span data-ttu-id="3faae-197">Visual Studio pubblica l'app in Azure.</span><span class="sxs-lookup"><span data-stu-id="3faae-197">Visual Studio publishes your app to Azure.</span></span> <span data-ttu-id="3faae-198">Al termine della distribuzione, l'app viene aperta in un browser.</span><span class="sxs-lookup"><span data-stu-id="3faae-198">When the deployment completes, the app is opened in a browser.</span></span>
+<span data-ttu-id="c6d6d-196">Fare clic su **Pubblica**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-196">Click **Publish**.</span></span> <span data-ttu-id="c6d6d-197">Visual Studio pubblica l'app in Azure.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-197">Visual Studio publishes your app to Azure.</span></span> <span data-ttu-id="c6d6d-198">Al termine della distribuzione, l'app viene aperta in un browser.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-198">When the deployment completes, the app is opened in a browser.</span></span>
 
 ![Finestra di dialogo Pubblica: pannello Impostazioni](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
 
-### <a name="update-the-app"></a><span data-ttu-id="3faae-200">Aggiornare l'app</span><span class="sxs-lookup"><span data-stu-id="3faae-200">Update the app</span></span>
+### <a name="update-the-app"></a><span data-ttu-id="c6d6d-200">Aggiornare l'app</span><span class="sxs-lookup"><span data-stu-id="c6d6d-200">Update the app</span></span>
 
-* <span data-ttu-id="3faae-201">Modificare la pagina *pages/index. cshtml* Razor e modificarne il contenuto.</span><span class="sxs-lookup"><span data-stu-id="3faae-201">Edit the *Pages/Index.cshtml* Razor page and change its contents.</span></span> <span data-ttu-id="3faae-202">Ad esempio, è possibile modificare il paragrafo specificando "Hello ASP.NET Core!":</span><span class="sxs-lookup"><span data-stu-id="3faae-202">For example, you can modify the paragraph to say "Hello ASP.NET Core!":</span></span>
+* <span data-ttu-id="c6d6d-201">Modificare la pagina *pages/index. cshtml* Razor e modificarne il contenuto.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-201">Edit the *Pages/Index.cshtml* Razor page and change its contents.</span></span> <span data-ttu-id="c6d6d-202">Ad esempio, è possibile modificare il paragrafo specificando "Hello ASP.NET Core!":</span><span class="sxs-lookup"><span data-stu-id="c6d6d-202">For example, you can modify the paragraph to say "Hello ASP.NET Core!":</span></span>
 
     [!code-html[Index](publish-to-azure-webapp-using-vs/sample/index.cshtml?highlight=10&range=1-12)]
 
-* <span data-ttu-id="3faae-203">Selezionare di nuovo **pubblica** nella pagina di **Riepilogo del profilo di pubblicazione** .</span><span class="sxs-lookup"><span data-stu-id="3faae-203">Select **Publish** from the **Publish Profile summary** page again.</span></span>
+* <span data-ttu-id="c6d6d-203">Selezionare di nuovo **pubblica** nella pagina di **Riepilogo del profilo di pubblicazione** .</span><span class="sxs-lookup"><span data-stu-id="c6d6d-203">Select **Publish** from the **Publish Profile summary** page again.</span></span>
 
 ![Pagina Riepilogo profilo di pubblicazione](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
 
-* <span data-ttu-id="3faae-205">Dopo la pubblicazione dell'app, verificare che le modifiche apportate siano disponibili in Azure.</span><span class="sxs-lookup"><span data-stu-id="3faae-205">After the app is published, verify the changes you made are available on Azure.</span></span>
+* <span data-ttu-id="c6d6d-205">Dopo la pubblicazione dell'app, verificare che le modifiche apportate siano disponibili in Azure.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-205">After the app is published, verify the changes you made are available on Azure.</span></span>
 
 ![Verificare che l'attività sia stata completata](publish-to-azure-webapp-using-vs/_static/final.png)
 
-### <a name="clean-up"></a><span data-ttu-id="3faae-207">Eseguire la pulizia</span><span class="sxs-lookup"><span data-stu-id="3faae-207">Clean up</span></span>
+### <a name="clean-up"></a><span data-ttu-id="c6d6d-207">Eseguire la pulizia</span><span class="sxs-lookup"><span data-stu-id="c6d6d-207">Clean up</span></span>
 
-<span data-ttu-id="3faae-208">Al termine del test dell'app accedere al [portale di Azure](https://portal.azure.com/) ed eliminare l'app.</span><span class="sxs-lookup"><span data-stu-id="3faae-208">When you have finished testing the app, go to the [Azure portal](https://portal.azure.com/) and delete the app.</span></span>
+<span data-ttu-id="c6d6d-208">Al termine del test dell'app accedere al [portale di Azure](https://portal.azure.com/) ed eliminare l'app.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-208">When you have finished testing the app, go to the [Azure portal](https://portal.azure.com/) and delete the app.</span></span>
 
-* <span data-ttu-id="3faae-209">Selezionare **Gruppi di risorse** e in seguito il gruppo di risorse che è stato creato.</span><span class="sxs-lookup"><span data-stu-id="3faae-209">Select **Resource groups**, then select the resource group you created.</span></span>
+* <span data-ttu-id="c6d6d-209">Selezionare **Gruppi di risorse** e in seguito il gruppo di risorse che è stato creato.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-209">Select **Resource groups**, then select the resource group you created.</span></span>
 
 ![Portale di Azure: Gruppi di risorse nel menu laterale](publish-to-azure-webapp-using-vs/_static/portalrg.png)
 
-* <span data-ttu-id="3faae-211">Nella pagina **Gruppi di risorse** selezionare **Elimina**.</span><span class="sxs-lookup"><span data-stu-id="3faae-211">In the **Resource groups** page, select **Delete**.</span></span>
+* <span data-ttu-id="c6d6d-211">Nella pagina **Gruppi di risorse** selezionare **Elimina**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-211">In the **Resource groups** page, select **Delete**.</span></span>
 
 ![Portale di Azure: pagina Gruppi di risorse](publish-to-azure-webapp-using-vs/_static/rgd.png)
 
-* <span data-ttu-id="3faae-213">Immettere il nome del gruppo di risorse e selezionare **Elimina**.</span><span class="sxs-lookup"><span data-stu-id="3faae-213">Enter the name of the resource group and select **Delete**.</span></span> <span data-ttu-id="3faae-214">A questo punto l'app e tutte le altre risorse create in questa esercitazione vengono eliminate da Azure.</span><span class="sxs-lookup"><span data-stu-id="3faae-214">Your app and all other resources created in this tutorial are now deleted from Azure.</span></span>
+* <span data-ttu-id="c6d6d-213">Immettere il nome del gruppo di risorse e selezionare **Elimina**.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-213">Enter the name of the resource group and select **Delete**.</span></span> <span data-ttu-id="c6d6d-214">A questo punto l'app e tutte le altre risorse create in questa esercitazione vengono eliminate da Azure.</span><span class="sxs-lookup"><span data-stu-id="c6d6d-214">Your app and all other resources created in this tutorial are now deleted from Azure.</span></span>
 
-### <a name="next-steps"></a><span data-ttu-id="3faae-215">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="3faae-215">Next steps</span></span>
+### <a name="next-steps"></a><span data-ttu-id="c6d6d-215">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="c6d6d-215">Next steps</span></span>
 
 * <xref:host-and-deploy/azure-apps/azure-continuous-deployment>
 
-## <a name="additional-resources"></a><span data-ttu-id="3faae-216">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="3faae-216">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="c6d6d-216">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="c6d6d-216">Additional resources</span></span>
 
-* <span data-ttu-id="3faae-217">Per Visual Studio Code, vedere [Profili di pubblicazione](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles).</span><span class="sxs-lookup"><span data-stu-id="3faae-217">For Visual Studio Code, see [Publish profiles](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles).</span></span>
-* [<span data-ttu-id="3faae-218">Servizio app di Azure</span><span class="sxs-lookup"><span data-stu-id="3faae-218">Azure App Service</span></span>](/azure/app-service/app-service-web-overview)
-* [<span data-ttu-id="3faae-219">Gruppi di risorse di Azure</span><span class="sxs-lookup"><span data-stu-id="3faae-219">Azure resource groups</span></span>](/azure/azure-resource-manager/resource-group-overview#resource-groups)
-* [<span data-ttu-id="3faae-220">Database SQL di Azure</span><span class="sxs-lookup"><span data-stu-id="3faae-220">Azure SQL Database</span></span>](/azure/sql-database/)
+* <span data-ttu-id="c6d6d-217">Per Visual Studio Code, vedere [Profili di pubblicazione](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles).</span><span class="sxs-lookup"><span data-stu-id="c6d6d-217">For Visual Studio Code, see [Publish profiles](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles).</span></span>
+* [<span data-ttu-id="c6d6d-218">Servizio app di Azure</span><span class="sxs-lookup"><span data-stu-id="c6d6d-218">Azure App Service</span></span>](/azure/app-service/app-service-web-overview)
+* [<span data-ttu-id="c6d6d-219">Gruppi di risorse di Azure</span><span class="sxs-lookup"><span data-stu-id="c6d6d-219">Azure resource groups</span></span>](/azure/azure-resource-manager/resource-group-overview#resource-groups)
+* [<span data-ttu-id="c6d6d-220">Database SQL di Azure</span><span class="sxs-lookup"><span data-stu-id="c6d6d-220">Azure SQL Database</span></span>](/azure/sql-database/)
 * <xref:host-and-deploy/visual-studio-publish-profiles>
 * <xref:test/troubleshoot-azure-iis>
