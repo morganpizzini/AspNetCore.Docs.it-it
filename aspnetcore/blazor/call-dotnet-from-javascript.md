@@ -1,11 +1,11 @@
 ---
-title: Chiamare i metodi .NET da funzioni JavaScript in ASP.NET CoreBlazor
+title: Chiamare i metodi .NET da funzioni JavaScript in ASP.NET Core Blazor
 author: guardrex
 description: Informazioni su come richiamare i metodi .NET dalle funzioni JavaScript nelle Blazor app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 08/12/2020
 no-loc:
 - cookie
 - Cookie
@@ -17,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 5a0731b45424ffd8560bb3b0d9123c686ae9e247
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 65a339bc7b246ab1825ad9bad5a2b5523259b488
+ms.sourcegitcommit: ec41ab354952b75557240923756a8c2ac79b49f8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88012566"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88202739"
 ---
-# <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a>Chiamare i metodi .NET da funzioni JavaScript in ASP.NET CoreBlazor
+# <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a>Chiamare i metodi .NET da funzioni JavaScript in ASP.NET Core Blazor
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Rudrawadi](http://wisne.co)e [Luke Latham](https://github.com/guardrex)
 
@@ -129,7 +129,7 @@ Quando il **`Trigger .NET instance method HelloHelper.SayHello`** pulsante è se
 }
 ```
 
-`CallHelloHelperSayHello`richiama la funzione JavaScript `sayHello` con una nuova istanza di `HelloHelper` .
+`CallHelloHelperSayHello` richiama la funzione JavaScript `sayHello` con una nuova istanza di `HelloHelper` .
 
 `JsInteropClasses/ExampleJsInterop.cs`:
 
@@ -233,11 +233,16 @@ Per richiamare i metodi .NET di un componente:
 * Utilizzare la `invokeMethod` `invokeMethodAsync` funzione o per eseguire una chiamata al metodo statico al componente.
 * Il metodo statico del componente esegue il wrapping della chiamata al metodo di istanza come oggetto richiamato <xref:System.Action> .
 
+> [!NOTE]
+> Per Blazor Server le app, in cui più utenti possono usare contemporaneamente lo stesso componente, usare una classe helper per richiamare i metodi di istanza.
+>
+> Per ulteriori informazioni, vedere la sezione relativa alla [classe helper del metodo di istanza Component](#component-instance-method-helper-class) .
+
 Nel codice JavaScript lato client:
 
 ```javascript
 function updateMessageCallerJS() {
-  DotNet.invokeMethod('{APP ASSEMBLY}', 'UpdateMessageCaller');
+  DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'UpdateMessageCaller');
 }
 ```
 
@@ -279,7 +284,70 @@ Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `B
 }
 ```
 
-Quando sono presenti diversi componenti, ognuno con i metodi di istanza da chiamare, usare una classe helper per richiamare i metodi di istanza (come <xref:System.Action> s) di ogni componente.
+Per passare argomenti al metodo di istanza:
+
+* Aggiungere parametri alla chiamata del metodo JS. Nell'esempio seguente un nome viene passato al metodo. È possibile aggiungere altri parametri all'elenco in base alle esigenze.
+
+  ```javascript
+  function updateMessageCallerJS(name) {
+    DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'UpdateMessageCaller', name);
+  }
+  ```
+  
+  Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `BlazorSample` ).
+
+* Fornire i tipi corretti a <xref:System.Action> per i parametri. Fornire l'elenco di parametri ai metodi di C#. Richiamare <xref:System.Action> ( `UpdateMessage` ) con i parametri ( `action.Invoke(name)` ).
+
+  `Pages/JSInteropComponent.razor`:
+
+  ```razor
+  @page "/JSInteropComponent"
+
+  <p>
+      Message: @message
+  </p>
+
+  <p>
+      <button onclick="updateMessageCallerJS('Sarah Jane')">
+          Call JS Method
+      </button>
+  </p>
+
+  @code {
+      private static Action<string> action;
+      private string message = "Select the button.";
+
+      protected override void OnInitialized()
+      {
+          action = UpdateMessage;
+      }
+
+      private void UpdateMessage(string name)
+      {
+          message = $"{name}, UpdateMessage Called!";
+          StateHasChanged();
+      }
+
+      [JSInvokable]
+      public static void UpdateMessageCaller(string name)
+      {
+          action.Invoke(name);
+      }
+  }
+  ```
+
+  Output `message` quando viene selezionato il pulsante **chiama metodo JS** :
+
+  ```
+  Sarah Jane, UpdateMessage Called!
+  ```
+
+## <a name="component-instance-method-helper-class"></a>Classe helper del metodo di istanza Component
+
+La classe helper viene utilizzata per richiamare un metodo di istanza come <xref:System.Action> . Le classi helper sono utili nei casi seguenti:
+
+* Viene eseguito il rendering di diversi componenti dello stesso tipo nella stessa pagina.
+* Blazor ServerViene usata un'app, in cui più utenti potrebbero usare un componente simultaneamente.
 
 Nell'esempio seguente:
 
@@ -388,5 +456,5 @@ Per ulteriori informazioni, vedere i seguenti problemi:
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:blazor/call-javascript-from-dotnet>
-* [`InteropComponent.razor`esempio (repository GitHub DotNet/AspNetCore, ramo di versione 3,1)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
+* [`InteropComponent.razor` esempio (repository GitHub DotNet/AspNetCore, ramo di versione 3,1)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
 * [Eseguire trasferimenti di dati di grandi dimensioni nelle Blazor Server app](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: fa73075650a23d90e2e546335c06c4d50a29d34a
-ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
+ms.openlocfilehash: c64e6f75c4d778a534b1e14e61df39c32cf2943d
+ms.sourcegitcommit: ec41ab354952b75557240923756a8c2ac79b49f8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88130262"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88202752"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-azure-active-directory"></a>Proteggere un' Blazor WebAssembly app autonoma ASP.NET Core con Azure Active Directory
 
@@ -150,6 +150,14 @@ Per ulteriori informazioni, vedere le sezioni seguenti dell'articolo *scenari ag
 
 * [Richiedere token di accesso aggiuntivi](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
 * [Connetti token alle richieste in uscita](xref:blazor/security/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="login-mode"></a>Modalità di accesso
+
+[!INCLUDE[](~/includes/blazor-security/msal-login-mode.md)]
+
+::: moniker-end
 
 ## <a name="imports-file"></a>Importa file
 

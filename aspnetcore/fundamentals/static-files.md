@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 32f794d498533e846343831d2360e98939105fb1
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b1f84a936ee1327498abce660cd64f8d7d0a2864
+ms.sourcegitcommit: ec41ab354952b75557240923756a8c2ac79b49f8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016677"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88202786"
 ---
 # <a name="static-files-in-aspnet-core"></a>File statici in ASP.NET Core
 
@@ -48,7 +48,7 @@ I file statici sono accessibili tramite un percorso relativo alla [radice Web](x
   * `js`
   * `lib`
 
-Si consiglia di creare la cartella *wwwroot/images* e di aggiungere il file *wwwroot/images/MyImage.jpg* . Il formato dell'URI per accedere a un file nella `images` cartella è `https://<hostname>/images/<image_file_name>` . Ad esempio: `https://localhost:5001/images/MyImage.jpg`
+Si consiglia di creare la cartella *wwwroot/images* e di aggiungere il file *wwwroot/images/MyImage.jpg* . Il formato dell'URI per accedere a un file nella `images` cartella è `https://<hostname>/images/<image_file_name>` . Ad esempio, usare `https://localhost:5001/images/MyImage.jpg`
 
 ### <a name="serve-files-in-web-root"></a>Gestire i file nella radice Web
 
@@ -117,8 +117,8 @@ Per motivi di sicurezza, l'esplorazione directory è disabilitata per impostazio
 
 Abilitare l'esplorazione directory con:
 
-* <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A>in `Startup.ConfigureServices` .
-* <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A>in `Startup.Configure` .
+* <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> in `Startup.ConfigureServices` .
+* <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A> in `Startup.Configure` .
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupBrowse.cs?name=snippet_ClassMembers&highlight=4,21-35)]
 
@@ -132,7 +132,7 @@ L'impostazione di una pagina predefinita fornisce ai visitatori un punto di part
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupEmpty.cs?name=snippet_Configure&highlight=15)]
 
-`UseDefaultFiles` deve essere chiamato prima di `UseStaticFiles` per usare il file predefinito. `UseDefaultFiles`è un rewriter URL che non serve il file.
+`UseDefaultFiles` deve essere chiamato prima di `UseStaticFiles` per usare il file predefinito. `UseDefaultFiles` è un rewriter URL che non serve il file.
 
 Con `UseDefaultFiles` , richiede a una cartella in `wwwroot` Cerca:
 
@@ -153,7 +153,7 @@ Il codice seguente illustra `Startup.Configure` con il codice precedente:
 
 ### <a name="usefileserver-for-default-documents"></a>UseFileServer per i documenti predefiniti
 
-<xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*>combina la funzionalità di `UseStaticFiles` , `UseDefaultFiles` e facoltativamente `UseDirectoryBrowser` .
+<xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> combina la funzionalità di `UseStaticFiles` , `UseDefaultFiles` e facoltativamente `UseDirectoryBrowser` .
 
 Chiamare `app.UseFileServer` per abilitare la funzione di file statici e il file predefinito. L'esplorazione directory non è abilitata. Il codice seguente illustra `Startup.Configure` con `UseFileServer` :
 
@@ -184,7 +184,7 @@ Il codice seguente consente di mantenere i file statici, il file predefinito e l
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupFileServer.cs?name=snippet_ClassMembers&highlight=4,21-31)]
 
-<xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A>deve essere chiamato quando il `EnableDirectoryBrowsing` valore della proprietà è `true` .
+<xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> deve essere chiamato quando il `EnableDirectoryBrowsing` valore della proprietà è `true` .
 
 Dall'uso della gerarchia di file e del codice precedente ne deriva quanto segue:
 
@@ -197,7 +197,7 @@ Se nella directory *MyStaticFiles* non è presente alcun file con nome predefini
 
 ![Elenco di file statici](static-files/_static/db2.png)
 
-<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*>ed <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> eseguono un reindirizzamento sul lato client dall'URI di destinazione senza una finalizzazione `/` all'URI di destinazione con una finalizzazione `/` . Ad esempio, da `https://<hostname>/StaticFiles` a `https://<hostname>/StaticFiles/` . Gli URL relativi nella directory *staticfiles* non sono validi senza una barra finale ( `/` ).
+<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> ed <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> eseguono un reindirizzamento sul lato client dall'URI di destinazione senza una finalizzazione `/`  all'URI di destinazione con una finalizzazione `/` . Ad esempio, da `https://<hostname>/StaticFiles` a `https://<hostname>/StaticFiles/` . Gli URL relativi nella directory *staticfiles* non sono validi senza una barra finale ( `/` ).
 
 ## <a name="fileextensioncontenttypeprovider"></a>Classe FileExtensionContentTypeProvider
 
@@ -230,7 +230,7 @@ Con il codice precedente, una richiesta per un file con un tipo di contenuto sco
 
 ## <a name="serve-files-from-multiple-locations"></a>Gestire i file da più posizioni
 
-`UseStaticFiles`e `UseFileServer` per impostazione predefinita il provider di file che punta a `wwwroot` . Istanze aggiuntive di `UseStaticFiles` e `UseFileServer` possono essere fornite con altri provider di file per gestire i file da altri percorsi. Per altre informazioni, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/15578).
+`UseStaticFiles` e `UseFileServer` per impostazione predefinita il provider di file che punta a `wwwroot` . Istanze aggiuntive di `UseStaticFiles` e `UseFileServer` possono essere fornite con altri provider di file per gestire i file da altri percorsi. Per altre informazioni, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/15578).
 
 <a name="sc"></a>
 
@@ -391,7 +391,7 @@ Il codice seguente modifica il nome file predefinito in *mydefault.html*:
 
 ## <a name="usefileserver"></a>UseFileServer
 
-<xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*>combina la funzionalità di `UseStaticFiles` , `UseDefaultFiles` e facoltativamente `UseDirectoryBrowser` .
+<xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> combina la funzionalità di `UseStaticFiles` , `UseDefaultFiles` e facoltativamente `UseDirectoryBrowser` .
 
 Il codice seguente consente di usare i file statici e il file predefinito. L'esplorazione directory non è abilitata.
 
@@ -445,6 +445,8 @@ La <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> clas
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupFileExtensionContentTypeProvider.cs?name=snippet_ConfigureMethod&highlight=3-12,19)]
 
 Vedere [Tipi di contenuto MIME](https://www.iana.org/assignments/media-types/media-types.xhtml).
+
+Per informazioni sull'utilizzo di un oggetto personalizzato <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> o per la configurazione di altri <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> in Blazor app Server, vedere <xref:blazor/fundamentals/additional-scenarios#static-files> .
 
 ## <a name="non-standard-content-types"></a>Tipi di contenuto non standard
 
