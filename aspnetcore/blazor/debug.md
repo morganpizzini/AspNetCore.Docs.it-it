@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core di debugBlazor WebAssembly
+title: ASP.NET Core di debug Blazor WebAssembly
 author: guardrex
 description: Informazioni su come eseguire il debug delle Blazor app.
 monikerRange: '>= aspnetcore-3.1'
@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 225916411550cc8e89c604e1426316843bb0ff52
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 838ed1a10ab3312e449782a29c305a976265550c
+ms.sourcegitcommit: 503b348e9046fcd969de85898394a1ea8274ec38
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014542"
+ms.lasthandoff: 08/14/2020
+ms.locfileid: "88227592"
 ---
-# <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debugBlazor WebAssembly
+# <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debug Blazor WebAssembly
 
 [Daniel Roth](https://github.com/danroth27)
 
-Blazor WebAssemblyè possibile eseguire il debug delle app usando gli strumenti di sviluppo del browser nei browser basati su cromo (Edge/Chrome). In alternativa, è possibile eseguire il debug dell'app usando Visual Studio o Visual Studio Code.
+Blazor WebAssembly è possibile eseguire il debug delle app usando gli strumenti di sviluppo del browser nei browser basati su cromo (Edge/Chrome). In alternativa, è possibile eseguire il debug dell'app usando Visual Studio o Visual Studio Code.
 
 Gli scenari disponibili includono:
 
@@ -80,7 +80,7 @@ Per eseguire il debug di un' Blazor WebAssembly app in Visual Studio:
 1. Premere <kbd>F5</kbd> per eseguire l'app nel debugger.
 
    > [!NOTE]
-   > **Avvia senza eseguire debug** (<kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato.
+   > **Avvia senza eseguire debug** (<kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
 
 1. Impostare un punto di interruzione in `Pages/Counter.razor` nel `IncrementCount` metodo.
 1. Passare alla **`Counter`** scheda e selezionare il pulsante per raggiungere il punto di interruzione:
@@ -111,7 +111,7 @@ Quando si esegue il debug dell' Blazor WebAssembly app, è anche possibile esegu
 
 ## <a name="visual-studio-code"></a>Visual Studio Code
 
-### <a name="debug-standalone-no-locblazor-webassembly"></a>Debug autonomoBlazor WebAssembly
+### <a name="debug-standalone-no-locblazor-webassembly"></a>Debug autonomo Blazor WebAssembly
 
 1. Aprire l'app autonoma Blazor WebAssembly in vs code.
 
@@ -128,7 +128,7 @@ Quando si esegue il debug dell' Blazor WebAssembly app, è anche possibile esegu
 1. Avviare il debug usando il tasto di scelta rapida <kbd>F5</kbd> o la voce di menu.
 
    > [!NOTE]
-   > L' **esecuzione senza debug** (<kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportata.
+   > **Avvia senza eseguire debug** (<kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
 
 1. Quando richiesto, selezionare l'opzione ** Blazor WebAssembly debug** per avviare il debug.
 
@@ -140,7 +140,7 @@ Quando si esegue il debug dell' Blazor WebAssembly app, è anche possibile esegu
 
    ![Esegui il debug del contatore in VS Code](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-debug-counter.png)
 
-### <a name="debug-hosted-no-locblazor-webassembly"></a>Debug ospitatoBlazor WebAssembly
+### <a name="debug-hosted-no-locblazor-webassembly"></a>Debug ospitato Blazor WebAssembly
 
 1. Aprire la cartella della soluzione dell'app ospitata Blazor WebAssembly in vs code.
 
@@ -241,7 +241,7 @@ Nell'esempio precedente, `MyHostedApp.Server.dll` è l'assembly dell'app *Server
 
 1. Nel codice componente ( `.razor` file) e nei file di codice C# ( `.cs` ), i punti di interruzione impostati vengono raggiunti durante l'esecuzione del codice. Quando viene raggiunto un punto di interruzione, l'esecuzione<kbd>F10</kbd>del codice in un singolo passaggio (F10<kbd>) viene</kbd>eseguito normalmente.
 
-Blazorfornisce un proxy di debug che implementa il [protocollo devtools di Chrome](https://chromedevtools.github.io/devtools-protocol/) e potenzia il protocollo con. Informazioni specifiche del NET. Quando si preme il tasto di scelta rapida Blazor per il debug, punta il devtools di Chrome sul proxy. Il proxy si connette alla finestra del browser che si sta tentando di eseguire il debug, quindi è necessario abilitare il debug remoto.
+Blazor fornisce un proxy di debug che implementa il [protocollo devtools di Chrome](https://chromedevtools.github.io/devtools-protocol/) e potenzia il protocollo con. Informazioni specifiche del NET. Quando si preme il tasto di scelta rapida Blazor per il debug, punta il devtools di Chrome sul proxy. Il proxy si connette alla finestra del browser che si sta tentando di eseguire il debug, quindi è necessario abilitare il debug remoto.
 
 ## <a name="browser-source-maps"></a>Mappe di origine del browser
 

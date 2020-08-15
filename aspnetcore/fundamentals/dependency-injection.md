@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 0d8b349d0381e2902907ea841e07bbc96db5b847
-ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
+ms.openlocfilehash: b0ba7c7598df13413c00934a30e03681129de98a
+ms.sourcegitcommit: 503b348e9046fcd969de85898394a1ea8274ec38
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88130653"
+ms.lasthandoff: 08/14/2020
+ms.locfileid: "88227579"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserimento delle dipendenze in ASP.NET Core
 
@@ -111,9 +111,9 @@ Il `ConfigureServices` metodo aggiornato registra la nuova `IMyDependency` imple
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency2.cs?name=snippet1)]
 
-`MyDependency2`richiede un oggetto <xref:Microsoft.Extensions.Logging.ILogger`1> nel costruttore. Non è insolito usare l'inserimento delle dipendenze in modo concatenato. Ogni dipendenza richiesta richiede a sua volta le proprie dipendenze. Il contenitore risolve le dipendenze nel grafico e restituisce il servizio completamente risolto. Il set di dipendenze che devono essere risolte viene generalmente chiamato *albero delle dipendenze* o *grafico dipendenze* o *grafico degli oggetti*.
+`MyDependency2` richiede un oggetto <xref:Microsoft.Extensions.Logging.ILogger`1> nel costruttore. Non è insolito usare l'inserimento delle dipendenze in modo concatenato. Ogni dipendenza richiesta richiede a sua volta le proprie dipendenze. Il contenitore risolve le dipendenze nel grafico e restituisce il servizio completamente risolto. Il set di dipendenze che devono essere risolte viene generalmente chiamato *albero delle dipendenze* o *grafico dipendenze* o *grafico degli oggetti*.
 
-`ILogger<TCategoryName>`è un [servizio fornito dal Framework](#framework-provided-services).
+`ILogger<TCategoryName>` è un [servizio fornito dal Framework](#framework-provided-services).
 
 Il contenitore si risolve sfruttando `ILogger<TCategoryName>` i vantaggi dei [tipi aperti (generici)](/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types), eliminando la necessità di registrare tutti i tipi [costruiti (generici)](/dotnet/csharp/language-reference/language-specification/types#constructed-types).
 
@@ -234,7 +234,7 @@ I metodi di estensione per la registrazione del servizio offrono overload che ri
 
 Per ulteriori informazioni sull'eliminazione dei tipi, vedere la sezione [Eliminazione dei servizi](#disposal-of-services). Uno scenario comune per più implementazioni è costituito dai [tipi di simulazioni per i test](xref:test/integration-tests#inject-mock-services).
 
-`TryAdd{LIFETIME}`i metodi registrano il servizio se non è già stata registrata un'implementazione.
+`TryAdd{LIFETIME}` i metodi registrano il servizio se non è già stata registrata un'implementazione.
 
 Nell'esempio seguente, la prima riga registra `MyDependency` per `IMyDependency`. La seconda riga non ha alcun effetto perché `IMyDependency` dispone già di un'implementazione registrata:
 
@@ -268,7 +268,7 @@ services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
 
 La registrazione del servizio è in genere indipendente dall'ordine, tranne quando si registrano più implementazioni dello stesso tipo.
 
-`IServiceCollection`è una raccolta di <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor> . Il codice seguente illustra come aggiungere un servizio con un costruttore:
+`IServiceCollection` è una raccolta di <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor> . Il codice seguente illustra come aggiungere un servizio con un costruttore:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup5.cs?name=snippet)]
 
@@ -608,6 +608,7 @@ Il `Startup.ConfigureServices` metodo è responsabile della definizione dei serv
 * <xref:mvc/controllers/dependency-injection>
 * <xref:security/authorization/dependencyinjection>
 * <xref:blazor/fundamentals/dependency-injection>
+* [Modelli DI conferenza NDC per lo sviluppo DI app DI](https://www.youtube.com/watch?v=x-C-CNBVTaY)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>
 * [Quattro modi per eliminare IDisposable in ASP.NET Core](https://andrewlock.net/four-ways-to-dispose-idisposables-in-asp-net-core/)
@@ -686,7 +687,7 @@ Questa interfaccia viene implementata da un tipo concreto, `MyDependency`:
 
 `MyDependency` richiede <xref:Microsoft.Extensions.Logging.ILogger`1> nel costruttore. Non è insolito usare l'inserimento delle dipendenze in modo concatenato. Ogni dipendenza richiesta richiede a sua volta le proprie dipendenze. Il contenitore risolve le dipendenze nel grafico e restituisce il servizio completamente risolto. Il set di dipendenze che devono essere risolte viene generalmente chiamato *albero delle dipendenze* o *grafico dipendenze* o *grafico degli oggetti*.
 
-`IMyDependency` e `ILogger<TCategoryName>` devono essere registrati nel contenitore di servizi. `IMyDependency` viene registrato in `Startup.ConfigureServices`. `ILogger<TCategoryName>`viene registrato dall'infrastruttura di registrazione delle astrazioni, pertanto si tratta di un [servizio fornito dal Framework](#framework-provided-services) registrato per impostazione predefinita dal Framework.
+`IMyDependency` e `ILogger<TCategoryName>` devono essere registrati nel contenitore di servizi. `IMyDependency` viene registrato in `Startup.ConfigureServices`. `ILogger<TCategoryName>` viene registrato dall'infrastruttura di registrazione delle astrazioni, pertanto si tratta di un [servizio fornito dal Framework](#framework-provided-services) registrato per impostazione predefinita dal Framework.
 
 Il contenitore risolve `ILogger<TCategoryName>` avvalendosi di [tipi aperti (generici)](/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types), eliminando l'esigenza di registrare ogni singolo [tipo costruito (generico)](/dotnet/csharp/language-reference/language-specification/types#constructed-types):
 

@@ -1,11 +1,11 @@
 ---
-title: Ospitare e distribuire ASP.NET CoreBlazor Server
+title: Ospitare e distribuire ASP.NET Core Blazor Server
 author: guardrex
 description: Informazioni su come ospitare e distribuire un' Blazor Server app usando ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/04/2020
+ms.date: 08/14/2020
 no-loc:
 - cookie
 - Cookie
@@ -17,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/server
-ms.openlocfilehash: e7c8627cd27fd30288b4bcfa1ac2ffe3e9b46e29
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ce767e591bd87ccb293f4698308e0bdbd6817d1f
+ms.sourcegitcommit: 503b348e9046fcd969de85898394a1ea8274ec38
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014217"
+ms.lasthandoff: 08/14/2020
+ms.locfileid: "88227618"
 ---
-# <a name="host-and-deploy-no-locblazor-server"></a>Ospitare e distribuireBlazor Server
+# <a name="host-and-deploy-no-locblazor-server"></a>Ospitare e distribuire Blazor Server
 
 Di [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com) e [Daniel Roth](https://github.com/danroth27)
 
@@ -56,11 +56,11 @@ Per istruzioni sulla creazione di app Server sicure e scalabili Blazor , vedere 
 
 Ogni circuito utilizza circa 250 KB di memoria per un'app di tipo *Hello World*minima. La dimensione di un circuito dipende dal codice dell'app e dai requisiti di manutenzione dello stato associati a ogni componente. Si consiglia di misurare le richieste di risorse durante lo sviluppo dell'applicazione e dell'infrastruttura, ma la linea di base seguente può essere un punto di partenza per la pianificazione della destinazione di distribuzione: se si prevede che l'app supporti 5.000 utenti simultanei, valutare la possibilità di prevedere almeno 1,3 GB di memoria del server per l'app (o ~ 273 KB per utente).
 
-### <a name="no-locsignalr-configuration"></a>SignalRconfigurazione
+### <a name="no-locsignalr-configuration"></a>SignalR configurazione
 
-Blazor Serverle app usano ASP.NET Core SignalR per comunicare con il browser. [ SignalR le condizioni di hosting e scalabilità sono](xref:signalr/publish-to-azure-web-app) valide per le Blazor Server app.
+Blazor Server le app usano ASP.NET Core SignalR per comunicare con il browser. [ SignalR le condizioni di hosting e scalabilità sono](xref:signalr/publish-to-azure-web-app) valide per le Blazor Server app.
 
-Blazorfunziona meglio quando si usano WebSocket come il SignalR trasporto a causa di una latenza, affidabilità e [sicurezza](xref:signalr/security)più bassa. Il polling prolungato viene usato da SignalR quando i WebSocket non sono disponibili o quando l'app è configurata in modo esplicito per l'uso del polling prolungato. Quando si esegue la distribuzione nel servizio app Azure, configurare l'app per l'uso di WebSocket nelle impostazioni portale di Azure per il servizio. Per informazioni dettagliate sulla configurazione dell'app per il servizio app Azure, vedere le [ SignalR linee guida](xref:signalr/publish-to-azure-web-app)per la pubblicazione.
+Blazor funziona meglio quando si usano WebSocket come il SignalR trasporto a causa di una latenza, affidabilità e [sicurezza](xref:signalr/security)più bassa. Il polling prolungato viene usato da SignalR quando i WebSocket non sono disponibili o quando l'app è configurata in modo esplicito per l'uso del polling prolungato. Quando si esegue la distribuzione nel servizio app Azure, configurare l'app per l'uso di WebSocket nelle impostazioni portale di Azure per il servizio. Per informazioni dettagliate sulla configurazione dell'app per il servizio app Azure, vedere le [ SignalR linee guida](xref:signalr/publish-to-azure-web-app)per la pubblicazione.
 
 #### <a name="azure-no-locsignalr-service"></a>Servizio di Azure SignalR
 
@@ -120,7 +120,7 @@ metadata:
 Per SignalR il corretto funzionamento di WebSocket, verificare che le `Upgrade` intestazioni e del proxy `Connection` siano impostate sui valori seguenti e che `$connection_upgrade` sia mappato a uno dei seguenti valori:
 
 * Valore dell'intestazione di aggiornamento per impostazione predefinita.
-* `close`Quando l'intestazione di aggiornamento è mancante o vuota.
+* `close` Quando l'intestazione di aggiornamento è mancante o vuota.
 
 ```
 http {
@@ -203,16 +203,19 @@ else
     <span>@(latency.Value.TotalMilliseconds)ms</span>
 }
 
-@code
-{
+@code {
     private DateTime startTime;
     private TimeSpan? latency;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        startTime = DateTime.UtcNow;
-        var _ = await JS.InvokeAsync<string>("toString");
-        latency = DateTime.UtcNow - startTime;
+        if (firstRender)
+        {
+            startTime = DateTime.UtcNow;
+            var _ = await JS.InvokeAsync<string>("toString");
+            latency = DateTime.UtcNow - startTime;
+            StateHasChanged();
+        }
     }
 }
 ```
