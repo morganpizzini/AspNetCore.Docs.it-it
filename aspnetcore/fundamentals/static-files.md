@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: b1f84a936ee1327498abce660cd64f8d7d0a2864
-ms.sourcegitcommit: ec41ab354952b75557240923756a8c2ac79b49f8
+ms.openlocfilehash: 3dbc233cef752bbf593e677728aee7b9e93c1621
+ms.sourcegitcommit: 4df445e7d49a99f81625430f728c28e5d6bf2107
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88202786"
+ms.lasthandoff: 08/15/2020
+ms.locfileid: "88253629"
 ---
 # <a name="static-files-in-aspnet-core"></a>File statici in ASP.NET Core
 
@@ -103,6 +103,19 @@ I file statici possono essere memorizzati nella cache pubblicamente per 600 seco
 ## <a name="static-file-authorization"></a>Autorizzazione dei file statici
 
 Il middleware dei file statici non offre controlli di autorizzazione. Tutti i file serviti, inclusi quelli in `wwwroot` , sono accessibili pubblicamente. Per usare i file in base alle autorizzazioni:
+
+* Archiviarli all'esterno di `wwwroot` e di qualsiasi directory accessibile al middleware dei file statici predefiniti.
+* Chiamare `UseStaticFiles` dopo `UseAuthorization` e specificare il percorso:
+
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2)]
+  
+  I set di approcci precedenti richiedono l'autenticazione degli utenti:
+
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-99)]
+
+   [!INCLUDE[](~/includes/requireAuth.md)]
+
+Un approccio alternativo per gestire i file in base all'autorizzazione:
 
 * Archiviarli all'esterno di `wwwroot` e di qualsiasi directory accessibile al middleware di file statici.
 * Servirle tramite un metodo di azione a cui viene applicata l'autorizzazione e restituire un <xref:Microsoft.AspNetCore.Mvc.FileResult> oggetto:
