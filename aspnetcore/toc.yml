@@ -177,7 +177,7 @@
         - name: Sicurezza delle app Web >>
           displayName: 'tutorial, identity'
           href: /learn/modules/secure-aspnet-core-identity/
-- name: Nozioni fondamentali
+- name: Concetti fondamentali
   items:
     - name: Panoramica
       uid: fundamentals/index
@@ -203,7 +203,7 @@
       uid: fundamentals/environments
     - name: Registrazione
       uid: fundamentals/logging/index
-    - name: Routing
+    - name: Routing.
       uid: fundamentals/routing
     - name: Gestire gli errori
       uid: fundamentals/error-handling
@@ -276,7 +276,7 @@
           uid: mvc/views/partial
         - name: Controllers
           uid: mvc/controllers/actions
-        - name: Routing
+        - name: Routing.
           uid: mvc/controllers/routing
         - name: Inserimento di dipendenze - Controller
           uid: mvc/controllers/dependency-injection
@@ -426,6 +426,8 @@
           uid: blazor/webassembly-lazy-load-assemblies
         - name: Prestazioni di WebAssembly
           uid: blazor/webassembly-performance-best-practices
+        - name: Test
+          uid: blazor/test
         - name: Applicazioni Web progressive
           uid: blazor/progressive-web-app
         - name: Ospitare e distribuire
@@ -438,6 +440,8 @@
               uid: blazor/host-and-deploy/server
             - name: Configurare il linker
               uid: blazor/host-and-deploy/configure-linker
+        - name: Blazor Server e EF Core
+          uid: blazor/blazor-server-ef-core
         - name: Scenari avanzati
           uid: blazor/advanced-scenarios
     - name: Sviluppo lato client
@@ -1303,5 +1307,5 @@
       uid: migration/logging-nonaspnetcore
 - name: Informazioni di riferimento sulle API
   href: /dotnet/api/?view=aspnetcore-2.2
-- name: Collaborazione
+- name: Contribuire
   href: 'https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md'
