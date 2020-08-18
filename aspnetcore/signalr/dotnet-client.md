@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/dotnet-client
-ms.openlocfilehash: a03598f887d628c8a2b6720d99826d4aef4e52fa
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e27748e8267a931390f831119a3fd1d45e87745a
+ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020002"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88504736"
 ---
 # <a name="aspnet-core-no-locsignalr-net-client"></a>SignalRClient .net ASP.NET Core
 
@@ -110,7 +110,7 @@ connection.Reconnected += connectionId =>
 };
 ```
 
-`WithAutomaticReconnect()`non configurerà `HubConnection` per ritentare gli errori iniziali iniziali, quindi gli errori di avvio devono essere gestiti manualmente:
+`WithAutomaticReconnect()` non configurerà `HubConnection` per ritentare gli errori iniziali iniziali, quindi gli errori di avvio devono essere gestiti manualmente:
 
 ```csharp
 public static async Task<bool> ConnectWithRetryAsync(HubConnection connection, CancellationToken token)
@@ -172,9 +172,9 @@ Il comportamento personalizzato, quindi, differisce di nuovo dal comportamento p
 
 Se si desidera un maggiore controllo sull'intervallo e sul numero di tentativi di riconnessione automatici, `WithAutomaticReconnect` accetta un oggetto che implementa l' `IRetryPolicy` interfaccia, che dispone di un singolo metodo denominato `NextRetryDelay` .
 
-`NextRetryDelay`accetta un solo argomento con il tipo `RetryContext` . `RetryContext`Dispone di tre proprietà: `PreviousRetryCount` , `ElapsedTime` e `RetryReason` , che sono rispettivamente un oggetto `long` `TimeSpan` e `Exception` un oggetto. Prima del primo tentativo di riconnessione, sia che `PreviousRetryCount` `ElapsedTime` saranno zero e sarà `RetryReason` l'eccezione che ha causato la perdita della connessione. Dopo ogni tentativo non riuscito, verrà `PreviousRetryCount` incrementato di uno, `ElapsedTime` verrà aggiornato in modo da riflettere la quantità di tempo impiegato per la riconnessione fino a questo momento e `RetryReason` sarà l'eccezione che ha causato l'ultimo tentativo di riconnessione.
+`NextRetryDelay` accetta un solo argomento con il tipo `RetryContext` . `RetryContext`Dispone di tre proprietà: `PreviousRetryCount` , `ElapsedTime` e `RetryReason` , che sono rispettivamente un oggetto `long` `TimeSpan` e `Exception` un oggetto. Prima del primo tentativo di riconnessione, sia che `PreviousRetryCount` `ElapsedTime` saranno zero e sarà `RetryReason` l'eccezione che ha causato la perdita della connessione. Dopo ogni tentativo non riuscito, verrà `PreviousRetryCount` incrementato di uno, `ElapsedTime` verrà aggiornato in modo da riflettere la quantità di tempo impiegato per la riconnessione fino a questo momento e `RetryReason` sarà l'eccezione che ha causato l'ultimo tentativo di riconnessione.
 
-`NextRetryDelay`deve restituire un valore TimeSpan che rappresenta il tempo di attesa prima del successivo tentativo di riconnessione o `null` se l'oggetto `HubConnection` deve arrestare la riconnessione.
+`NextRetryDelay` deve restituire un valore TimeSpan che rappresenta il tempo di attesa prima del successivo tentativo di riconnessione o `null` se l'oggetto `HubConnection` deve arrestare la riconnessione.
 
 ```csharp
 public class RandomRetryPolicy : IRetryPolicy
@@ -237,7 +237,7 @@ In un `Closed` gestore che riavvia la connessione, provare ad attendere un ritar
 
 ## <a name="call-hub-methods-from-client"></a>Chiamare i metodi dell'hub dal client
 
-`InvokeAsync`chiama i metodi sull'hub. Passare il nome del metodo dell'hub e gli eventuali argomenti definiti nel metodo Hub a `InvokeAsync` . SignalRè asincrono, quindi usare `async` e `await` quando si effettuano le chiamate.
+`InvokeAsync` chiama i metodi sull'hub. Passare il nome del metodo dell'hub e gli eventuali argomenti definiti nel metodo Hub a `InvokeAsync` . SignalR è asincrono, quindi usare `async` e `await` quando si effettuano le chiamate.
 
 [!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_InvokeAsync)]
 
@@ -246,7 +246,7 @@ Il `InvokeAsync` metodo restituisce un oggetto `Task` che viene completato quand
 Il `SendAsync` metodo restituisce un oggetto `Task` che viene completato quando il messaggio è stato inviato al server. Non viene fornito alcun valore restituito poiché questo `Task` non attende il completamento del metodo del server. Tutte le eccezioni generate nel client durante l'invio del messaggio generano un errore `Task` . Utilizzare `await` la `try...catch` sintassi e per gestire gli errori di invio.
 
 > [!NOTE]
-> Se si usa SignalR il servizio di Azure *in modalità senza server*, non è possibile chiamare i metodi dell'hub da un client. Per ulteriori informazioni, vedere la [ SignalR documentazione del servizio](/azure/azure-signalr/signalr-concept-serverless-development-config).
+> La chiamata di metodi dell'hub da un client è supportata solo quando si usa il SignalR servizio di Azure in modalità *predefinita* . Per altre informazioni, vedere [domande frequenti (repository GitHub di Azure-SignalR)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
 
 ## <a name="call-client-methods-from-hub"></a>Chiamare i metodi client dall'hub
 
@@ -268,5 +268,5 @@ Gestire gli errori con un'istruzione try-catch. Controllare l' `Exception` ogget
 
 * [Hub](xref:signalr/hubs)
 * [Client JavaScript](xref:signalr/javascript-client)
-* [Eseguire la pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
+* [Pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
 * [Documentazione senza server per i servizi di Azure SignalR](/azure/azure-signalr/signalr-concept-serverless-development-config)

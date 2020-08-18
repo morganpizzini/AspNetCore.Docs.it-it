@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 04200ced41113eb9a68cefc2f485f2d3798476c6
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e6feeb0009034d9ea92f09c44ed0ca882d80fe1b
+ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022342"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88504762"
 ---
 # <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.NET Core SignalR client JavaScript
 
@@ -122,7 +122,7 @@ I client JavaScript chiamano metodi pubblici sugli hub tramite il metodo [Invoke
   [!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
 
 > [!NOTE]
-> Se si usa SignalR il servizio di Azure *in modalità senza server*, non è possibile chiamare i metodi dell'hub da un client. Per ulteriori informazioni, vedere la [ SignalR documentazione del servizio](/azure/azure-signalr/signalr-concept-serverless-development-config).
+> La chiamata di metodi dell'hub da un client è supportata solo quando si usa il SignalR servizio di Azure in modalità *predefinita* . Per altre informazioni, vedere [domande frequenti (repository GitHub di Azure-SignalR)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
 
 Il `invoke` metodo restituisce una [promessa](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)JavaScript. `Promise`Viene risolto con il valore restituito (se presente) quando il metodo nel server restituisce. Se il metodo sul server genera un errore, `Promise` viene rifiutato con il messaggio di errore. Usare i `then` `catch` metodi e sull'oggetto `Promise` stesso per gestire questi casi (o la `await` sintassi).
 
@@ -144,7 +144,7 @@ Il codice precedente in `connection.on` viene eseguito quando il codice lato ser
 
 [!code-csharp[Call client-side](javascript-client/sample/hubs/chathub.cs?range=8-11)]
 
-SignalRdetermina il metodo client da chiamare mediante la corrispondenza tra il nome del metodo e gli argomenti definiti in `SendAsync` e `connection.on` .
+SignalR determina il metodo client da chiamare mediante la corrispondenza tra il nome del metodo e gli argomenti definiti in `SendAsync` e `connection.on` .
 
 > [!NOTE]
 > Come procedura consigliata, chiamare il metodo [Start](/javascript/api/%40aspnet/signalr/hubconnection#start) sul valore `HubConnection` after `on` . In questo modo si garantisce che i gestori vengano registrati prima della ricezione dei messaggi.
@@ -216,7 +216,7 @@ connection.onreconnected(connectionId => {
 });
 ```
 
-`withAutomaticReconnect()`non configurerà `HubConnection` per ritentare gli errori iniziali iniziali, quindi gli errori di avvio devono essere gestiti manualmente:
+`withAutomaticReconnect()` non configurerà `HubConnection` per ritentare gli errori iniziali iniziali, quindi gli errori di avvio devono essere gestiti manualmente:
 
 ```javascript
 async function start() {
@@ -267,9 +267,9 @@ Il comportamento personalizzato, quindi, differisce di nuovo dal comportamento p
 
 Se si desidera un maggiore controllo sull'intervallo e sul numero di tentativi di riconnessione automatici, `withAutomaticReconnect` accetta un oggetto che implementa l' `IRetryPolicy` interfaccia, che dispone di un singolo metodo denominato `nextRetryDelayInMilliseconds` .
 
-`nextRetryDelayInMilliseconds`accetta un solo argomento con il tipo `RetryContext` . `RetryContext`Dispone di tre proprietà: `previousRetryCount` , `elapsedMilliseconds` e `retryReason` che sono rispettivamente un oggetto `number` `number` e `Error` un oggetto. Prima del primo tentativo di riconnessione, sia che `previousRetryCount` `elapsedMilliseconds` saranno zero e sarà `retryReason` l'errore che ha causato la perdita della connessione. Dopo ogni tentativo non riuscito, verrà `previousRetryCount` incrementato di uno, `elapsedMilliseconds` verrà aggiornato in modo da riflettere la quantità di tempo impiegato per la riconnessione fino a questo punto, in millisecondi, e `retryReason` sarà l'errore che ha causato l'esito negativo dell'ultimo tentativo di riconnessione.
+`nextRetryDelayInMilliseconds` accetta un solo argomento con il tipo `RetryContext` . `RetryContext`Dispone di tre proprietà: `previousRetryCount` , `elapsedMilliseconds` e `retryReason` che sono rispettivamente un oggetto `number` `number` e `Error` un oggetto. Prima del primo tentativo di riconnessione, sia che `previousRetryCount` `elapsedMilliseconds` saranno zero e sarà `retryReason` l'errore che ha causato la perdita della connessione. Dopo ogni tentativo non riuscito, verrà `previousRetryCount` incrementato di uno, `elapsedMilliseconds` verrà aggiornato in modo da riflettere la quantità di tempo impiegato per la riconnessione fino a questo punto, in millisecondi, e `retryReason` sarà l'errore che ha causato l'esito negativo dell'ultimo tentativo di riconnessione.
 
-`nextRetryDelayInMilliseconds`deve restituire un numero che rappresenta il numero di millisecondi di attesa prima del successivo tentativo di riconnessione o `null` se l'oggetto `HubConnection` deve arrestare la riconnessione.
+`nextRetryDelayInMilliseconds` deve restituire un numero che rappresenta il numero di millisecondi di attesa prima del successivo tentativo di riconnessione o `null` se l'oggetto `HubConnection` deve arrestare la riconnessione.
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -318,6 +318,6 @@ Un'implementazione reale utilizzerebbe un backup esponenziale o ritenterà un nu
 * [Esercitazione su Webpack e TypeScript](xref:tutorials/signalr-typescript-webpack)
 * [Hub](xref:signalr/hubs)
 * [Client .NET](xref:signalr/dotnet-client)
-* [Eseguire la pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
+* [Pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
 * [Richieste tra le origini (CORS)](xref:security/cors)
 * [Documentazione senza server per i servizi di Azure SignalR](/azure/azure-signalr/signalr-concept-serverless-development-config)
