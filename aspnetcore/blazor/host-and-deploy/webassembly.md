@@ -1,5 +1,5 @@
 ---
-title: Ospitare e distribuire ASP.NET CoreBlazor WebAssembly
+title: Ospitare e distribuire ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Informazioni su come ospitare e distribuire un' Blazor app usando ASP.NET Core, le reti per la distribuzione di contenuti (CDN), i file server e le pagine github.
 monikerRange: '>= aspnetcore-3.1'
@@ -17,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 06059e0f9ff6a3f4073d8d01d1ac541c30ad1ab1
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e66a470bf5bd23950bdb0ccf61c6743916ed9349
+ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014191"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88504554"
 ---
-# <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Ospitare e distribuire ASP.NET CoreBlazor WebAssembly
+# <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor WebAssembly
 
 Di [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), [ben Adams](https://twitter.com/ben_a_adams)e [Safia Amodio](https://safia.rocks)
 
@@ -45,7 +45,7 @@ Quando Blazor WebAssembly viene pubblicata un'app, l'output viene compresso in m
 * [Brotli](https://tools.ietf.org/html/rfc7932) (livello massimo)
 * [Gzip](https://tools.ietf.org/html/rfc1952)
 
-Blazorsi basa sull'host per gestire i file compressi appropriati. Quando si usa un ASP.NET Core progetto ospitato, il progetto host è in grado di eseguire la negoziazione del contenuto e di servire i file compressi in modo statico. Quando si ospita un' Blazor WebAssembly app autonoma, potrebbe essere necessario lavoro aggiuntivo per garantire che vengano serviti file compressi in modo statico:
+Blazor si basa sull'host per gestire i file compressi appropriati. Quando si usa un ASP.NET Core progetto ospitato, il progetto host è in grado di eseguire la negoziazione del contenuto e di servire i file compressi in modo statico. Quando si ospita un' Blazor WebAssembly app autonoma, potrebbe essere necessario lavoro aggiuntivo per garantire che vengano serviti file compressi in modo statico:
 
 * Per `web.config` la configurazione della compressione IIS, vedere la sezione [IIS: Brotli e la compressione gzip](#brotli-and-gzip-compression) . 
 * Quando si ospitano soluzioni di hosting statiche che non supportano la negoziazione del contenuto di file compressi in modo statico, ad esempio pagine di GitHub, è consigliabile configurare l'app per recuperare e decodificare i file compressi Brotli:
@@ -87,6 +87,12 @@ Per disabilitare la compressione, aggiungere la `BlazorEnableCompression` Propri
 </PropertyGroup>
 ```
 
+La `BlazorEnableCompression` proprietà può essere passata al [`dotnet publish`](/dotnet/core/tools/dotnet-publish) comando con la sintassi seguente in una shell dei comandi:
+
+```dotnetcli
+dotnet publish -p:BlazorEnableCompression=false
+```
+
 ## <a name="rewrite-urls-for-correct-routing"></a>Riscrivere gli URL per il routing corretto
 
 Il routing delle richieste per i componenti della pagina in un' Blazor WebAssembly app non è semplice come il routing delle richieste in un' Blazor Server app ospitata. Si consideri un' Blazor WebAssembly app con due componenti:
@@ -98,7 +104,7 @@ Quando viene richiesto il documento predefinito dell'app usando la barra degli i
 
 1. Il browser invia una richiesta.
 1. Viene restituita la pagina predefinita, in genere `index.html` .
-1. `index.html`avvia l'app.
+1. `index.html` avvia l'app.
 1. Blazoril router viene caricato e il componente viene sottoposto a Razor `Main` rendering.
 
 Nella pagina principale, selezionando il collegamento al `About` componente funziona sul client perché il Blazor router interrompe il browser per effettuare una richiesta su Internet per `www.contoso.com` e serve il componente di cui è stato `About` eseguito il rendering `About` . Tutte le richieste per gli endpoint interni *all'interno dell' Blazor WebAssembly app* funzionano allo stesso modo: le richieste non attivano richieste basate su browser a risorse ospitate su server su Internet. Le richieste vengono gestite internamente dal router.
@@ -410,7 +416,7 @@ Le risorse di distribuzione autonome vengono pubblicate nella `/bin/Release/{TAR
 
 ### <a name="azure-app-service"></a>Servizio app di Azure
 
-Blazor WebAssemblyle app possono essere distribuite in app Azure Services in Windows, che ospita l'app in [IIS](#iis).
+Blazor WebAssembly le app possono essere distribuite in app Azure Services in Windows, che ospita l'app in [IIS](#iis).
 
 La distribuzione di un'app autonoma Blazor WebAssembly nel servizio app Azure per Linux non è attualmente supportata. Un'immagine server Linux per ospitare l'app non è disponibile in questo momento. Il lavoro è in corso per abilitare questo scenario.
 
@@ -504,7 +510,7 @@ L'hosting di file statici di [archiviazione di Azure](/azure/storage/) consente 
 Quando il servizio BLOB è abilitato per l'hosting di siti Web statici in un account di archiviazione:
 
 * Impostare **Nome del documento di indice** su `index.html`.
-* Impostare **Percorso del documento di errore** su `index.html`. Razori componenti e altri endpoint non di file non si trovano in percorsi fisici nel contenuto statico archiviato dal servizio BLOB. Quando viene ricevuta una richiesta per una di queste risorse che il Blazor router deve gestire, l'errore *404 non trovato* generato dal servizio BLOB instrada la richiesta al **percorso del documento di errore**. `index.html`Viene restituito il BLOB e il Blazor router carica ed elabora il percorso.
+* Impostare **Percorso del documento di errore** su `index.html`. Razor i componenti e altri endpoint non di file non si trovano in percorsi fisici nel contenuto statico archiviato dal servizio BLOB. Quando viene ricevuta una richiesta per una di queste risorse che il Blazor router deve gestire, l'errore *404 non trovato* generato dal servizio BLOB instrada la richiesta al **percorso del documento di errore**. `index.html`Viene restituito il BLOB e il Blazor router carica ed elabora il percorso.
 
 Se i file non vengono caricati in fase di esecuzione a causa di tipi MIME non appropriati nelle intestazioni dei file `Content-Type` , eseguire una delle azioni seguenti:
 
@@ -703,7 +709,7 @@ L'argomento `--urls` imposta gli indirizzi IP o gli indirizzi host con le porte 
 
 ## <a name="configure-the-linker"></a>Configurare il linker
 
-Blazoresegue il collegamento Intermediate Language (IL) a ogni build di rilascio per rimuovere IL linguaggio intermedio non necessario dagli assembly di output. Per altre informazioni, vedere <xref:blazor/host-and-deploy/configure-linker>.
+Blazor esegue il collegamento Intermediate Language (IL) a ogni build di rilascio per rimuovere IL linguaggio intermedio non necessario dagli assembly di output. Per altre informazioni, vedere <xref:blazor/host-and-deploy/configure-linker>.
 
 ## <a name="custom-boot-resource-loading"></a>Caricamento di risorse di avvio personalizzate
 
@@ -713,16 +719,16 @@ Un' Blazor WebAssembly app può essere inizializzata con la `loadBootResource` f
 * Caricare gli assembly compressi usando una richiesta HTTP e decomprimerli sul client per gli host che non supportano il recupero di contenuti compressi dal server.
 * Eseguire l'alias delle risorse con un nome diverso reindirizzando ogni `fetch` richiesta a un nuovo nome.
 
-`loadBootResource`i parametri vengono visualizzati nella tabella seguente.
+`loadBootResource` i parametri vengono visualizzati nella tabella seguente.
 
 | Parametro    | Descrizione |
 | ------------ | ----------- |
-| `type`       | Tipo di risorsa. Tipi di consentiti: `assembly` , `pdb` , `dotnetjs` , `dotnetwasm` ,`timezonedata` |
+| `type`       | Tipo di risorsa. Tipi di consentiti: `assembly` , `pdb` , `dotnetjs` , `dotnetwasm` , `timezonedata` |
 | `name`       | Nome della risorsa. |
 | `defaultUri` | URI relativo o assoluto della risorsa. |
 | `integrity`  | Stringa di integrità che rappresenta il contenuto previsto nella risposta. |
 
-`loadBootResource`restituisce uno dei seguenti elementi per eseguire l'override del processo di caricamento:
+`loadBootResource` restituisce uno dei seguenti elementi per eseguire l'override del processo di caricamento:
 
 * Stringa URI. Nell'esempio seguente ( `wwwroot/index.html` ), i file seguenti vengono serviti da una rete CDN all'indirizzo `https://my-awesome-cdn.com/` :
 

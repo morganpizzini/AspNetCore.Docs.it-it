@@ -17,19 +17,19 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/configuration
-ms.openlocfilehash: 437e7be6b805ad836df60e831f5e0dc0bda4f5a5
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 159b6da106ab21946ae02a970a28e1f0309acf6c
+ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014451"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88504580"
 ---
 # <a name="aspnet-core-no-locblazor-configuration"></a>Configurazione di ASP.NET Core Blazor
 
 > [!NOTE]
 > Questo argomento si applica a Blazor WebAssembly . Per indicazioni generali sulla configurazione dell'app ASP.NET Core, vedere <xref:fundamentals/configuration/index> .
 
-Blazor WebAssemblycarica la configurazione dai file di impostazioni dell'app per impostazione predefinita:
+Blazor WebAssembly carica la configurazione dai file di impostazioni dell'app per impostazione predefinita:
 
 * `wwwroot/appsettings.json`
 * `wwwroot/appsettings.{ENVIRONMENT}.json`
@@ -200,11 +200,13 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## <a name="logging-configuration"></a>Configurazione della registrazione
 
-Aggiungere un riferimento al pacchetto per [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration/) :
+Aggiungere un riferimento al pacchetto per [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) :
 
 ```xml
 <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
 ```
+
+Per il segnaposto `{VERSION}` , la versione stabile più recente del pacchetto che corrisponde alla versione del Framework condiviso dell'app è disponibile nella cronologia delle **versioni** del pacchetto in [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
 
 `wwwroot/appsettings.json`:
 

@@ -5,7 +5,7 @@ description: Informazioni su come eseguire il debug delle Blazor app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/14/2020
+ms.date: 08/17/2020
 no-loc:
 - cookie
 - Cookie
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 7b5dac5c634ae3eef180ef2c7c7287da94342169
-ms.sourcegitcommit: 4df445e7d49a99f81625430f728c28e5d6bf2107
+ms.openlocfilehash: ac649b80a6cb1106de8acbb4764b53017afaa238
+ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/15/2020
-ms.locfileid: "88253577"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88504593"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debug Blazor WebAssembly
 
@@ -42,7 +42,7 @@ Gli scenari disponibili includono:
 Per il momento *non è possibile*:
 
 * Interrompi in corrispondenza di eccezioni non gestite.
-* Raggiunge i punti di interruzione durante l'avvio dell'app.
+* Premere i punti di interruzione durante l'avvio dell'app prima che il proxy di debug sia in esecuzione. Sono inclusi i punti di interruzione in `Program.Main` ( `Program.cs` ) e i punti di interruzione nei [ `OnInitialized{Async}` Metodi](xref:blazor/components/lifecycle#component-initialization-methods) dei componenti caricati dalla prima pagina richiesta dall'app.
 
 Si continuerà a migliorare l'esperienza di debug nelle prossime versioni.
 

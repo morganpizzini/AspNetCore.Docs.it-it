@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 3dbc233cef752bbf593e677728aee7b9e93c1621
-ms.sourcegitcommit: 4df445e7d49a99f81625430f728c28e5d6bf2107
+ms.openlocfilehash: 2dcde5a88bbd70e70cacac41822d54543ef51577
+ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/15/2020
-ms.locfileid: "88253629"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88504788"
 ---
 # <a name="static-files-in-aspnet-core"></a>File statici in ASP.NET Core
 
@@ -109,7 +109,7 @@ Il middleware dei file statici non offre controlli di autorizzazione. Tutti i fi
 
   [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2)]
   
-  I set di approcci precedenti richiedono l'autenticazione degli utenti:
+  Per l'approccio precedente è necessario che gli utenti siano autenticati:
 
   [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-99)]
 
