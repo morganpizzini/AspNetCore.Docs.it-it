@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/26/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/sdk
-ms.openlocfilehash: b960460a50558a11bc47f9a1844931aa32e3d696
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d11600af88d499d63adf9eae90d6deb929f9d92a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021419"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632915"
 ---
 # <a name="aspnet-core-no-locrazor-sdk"></a>SDK di ASP.NET Core Razor
 
@@ -171,7 +172,7 @@ Le proprietà e gli elementi nella tabella seguente vengono usati per configurar
 
 Per altre informazioni sulle proprietà, vedere [proprietà di MSBuild](/visualstudio/msbuild/msbuild-properties).
 
-### <a name="targets"></a>Destinazioni
+### <a name="targets"></a>Server di destinazione
 
 L' Razor SDK definisce due destinazioni primarie:
 
@@ -185,7 +186,7 @@ L' Razor SDK definisce due destinazioni primarie:
 
 * Per un'app Web, verificare che l'app sia destinata all' `Microsoft.NET.Sdk.Web` SDK.
 
-## <a name="no-locrazor-language-version"></a>Razorversione lingua
+## <a name="no-locrazor-language-version"></a>Razor versione lingua
 
 Quando la destinazione `Microsoft.NET.Sdk.Web` è SDK, la Razor versione del linguaggio viene dedotta dalla versione del Framework di destinazione dell'app. Per i progetti destinati all' `Microsoft.NET.Sdk.Razor` SDK o nel raro caso in cui l'app richieda una versione della lingua diversa da quella Razor del valore derivato, è possibile configurare una versione impostando la `<RazorLangVersion>` proprietà nel file di progetto dell'app:
 

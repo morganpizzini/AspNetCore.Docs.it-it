@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/ip-safelist
-ms.openlocfilehash: 75c1ea3a6087f89a200d1f73b1ff65080c819ccd
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 621be5351acb251335a42f57e8ea670af1b35a87
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021770"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634449"
 ---
 # <a name="client-ip-safelist-for-aspnet-core"></a>Indirizzi IP attendibili del client per ASP.NET Core
 
@@ -32,7 +33,7 @@ Questo articolo illustra tre modi per implementare un elenco di indirizzi IP att
 
 * Middleware per controllare l'indirizzo IP remoto di ogni richiesta.
 * Filtri azione MVC per controllare l'indirizzo IP remoto delle richieste per controller o metodi di azione specifici.
-* RazorFiltra le pagine per controllare l'indirizzo IP remoto delle richieste di Razor pagine.
+* Razor Filtra le pagine per controllare l'indirizzo IP remoto delle richieste di Razor pagine.
 
 In ogni caso, una stringa contenente gli indirizzi IP client approvati viene archiviata in un'impostazione dell'app. Il middleware o il filtro:
 
@@ -101,7 +102,7 @@ Nell'app di esempio, il filtro azioni viene applicato al metodo di azione del co
 
 * Un verbo di richiesta HTTP diverso da GET, il `AdminSafeListMiddleware` middleware convalida l'indirizzo IP del client.
 
-## <a name="no-locrazor-pages-filter"></a>RazorFiltro pagine
+## <a name="no-locrazor-pages-filter"></a>Razor Filtro pagine
 
 Se si desidera il controllo degli accessi basato su attendibilità per un' Razor app pagine, utilizzare un Razor filtro pagine. Ad esempio:
 

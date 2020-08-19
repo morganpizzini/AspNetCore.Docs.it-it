@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/27/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: 0bace66e0aab41cf31e18fe9f86dbf9bbcf59447
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d933a677a063d50fbe708264106e3ce19400a270
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014698"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628573"
 ---
 # <a name="aspnet-core-no-locrazor-components-class-libraries"></a>RazorLibrerie di classi dei componenti ASP.NET Core
 
@@ -43,7 +44,7 @@ Così come i componenti sono tipi .NET normali, i componenti forniti da un RCL s
 1. Creare un nuovo progetto.
 1. Selezionare ** Razor libreria di classi**. Selezionare **Avanti**.
 1. Nella finestra di dialogo **Crea una nuova Razor libreria di classi** Selezionare **Crea**.
-1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `ComponentLibrary` . Selezionare **Crea**.
+1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `ComponentLibrary` . Selezionare **Create** (Crea).
 1. Aggiungere RCL a una soluzione:
    1. Fare clic con il pulsante destro del mouse sulla soluzione. Selezionare **Aggiungi**  >  **progetto esistente**.
    1. Passare al file di progetto di RCL.

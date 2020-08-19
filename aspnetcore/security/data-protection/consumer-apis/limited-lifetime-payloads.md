@@ -5,6 +5,7 @@ description: Informazioni su come limitare la durata di un payload protetto usan
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/limited-lifetime-payloads
-ms.openlocfilehash: c7bc86cd42a725f21cf66187c033376a8c5a9e65
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: f76aca460c293b5f814ba10ee6c8ac68b3d147bb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014828"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634423"
 ---
 # <a name="limit-the-lifetime-of-protected-payloads-in-aspnet-core"></a>Limitare la durata dei payload protetti in ASP.NET Core
 
@@ -32,7 +33,7 @@ Per semplificare questa operazione per i destinatari degli sviluppatori, il pacc
 
 L' `ITimeLimitedDataProtector` interfaccia è l'interfaccia di base per la protezione e la rimozione della protezione dei payload a tempo limitato o a scadenza automatica. Per creare un'istanza di un `ITimeLimitedDataProtector` , è necessario innanzitutto un'istanza di un [IDataProtector](xref:security/data-protection/consumer-apis/overview) normale costruito con uno scopo specifico. Quando l' `IDataProtector` istanza è disponibile, chiamare il `IDataProtector.ToTimeLimitedDataProtector` metodo di estensione per ottenere una protezione con le funzionalità di scadenza predefinite.
 
-`ITimeLimitedDataProtector`espone i seguenti metodi di estensione e superficie API:
+`ITimeLimitedDataProtector` espone i seguenti metodi di estensione e superficie API:
 
 * CreateProtector (scopo della stringa): ITimeLimitedDataProtector-questa API è simile a quella esistente perché `IDataProtectionProvider.CreateProtector` può essere usata per creare [catene di scopi](xref:security/data-protection/consumer-apis/purpose-strings) da un programma di protezione con limitazioni temporali radice.
 

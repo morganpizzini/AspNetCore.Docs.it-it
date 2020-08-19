@@ -5,6 +5,7 @@ description: Parte 2 della serie di esercitazioni sulle Razor pagine.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 6b50f46863a6dabb01bcf0976a42abb504e6f7b7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 4099873142b99afb7f0659dfd9a4fde8bec3081d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020457"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633773"
 ---
 # <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a>Parte 2, aggiungere un modello a un' Razor app di pagine in ASP.NET Core
 
@@ -242,7 +243,7 @@ I comandi precedenti generano l'avviso seguente: "nessun tipo specificato per la
 
 Il comando Migrations genera il codice per creare lo schema del database iniziale. Lo schema è basato sul modello specificato in `DbContext` . L'argomento `InitialCreate` viene usato per denominare le migrazioni. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione.
 
-Il `update` comando esegue il `Up` Metodo nelle migrazioni che non sono state applicate. In tal caso, `update` esegue il `Up` metodo nel file *migrations/ \<time-stamp> _InitialCreate. cs* , che crea il database.
+Il `update` comando esegue il `Up` Metodo nelle migrazioni che non sono state applicate. In tal caso, `update` esegue il `Up` metodo nel file  *migrations/ \<time-stamp> _InitialCreate. cs* , che crea il database.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

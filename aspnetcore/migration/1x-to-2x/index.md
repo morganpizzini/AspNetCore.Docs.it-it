@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/1x-to-2x/index
-ms.openlocfilehash: cad1cd868ef8c972d7e0fbfec79cd1d8b49c3b6e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6160dfd117235065ba4b990b95bbc1f4abdf1626
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015335"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634345"
 ---
 # <a name="migrate-from-aspnet-core-1x-to-20"></a>Eseguire la migrazione da ASP.NET Core 1.x alla versione 2.0
 
@@ -172,7 +173,7 @@ Tempi di avvio dell'applicazione più rapidi e aggregazioni pubblicate più picc
 
 L'impostazione della proprietà `MvcRazorCompileOnPublish` su true non è più necessaria. A meno che non si stia disattivando la compilazione della vista, la proprietà può essere rimossa dal file *csproj*.
 
-Quando la destinazione è .NET Framework, è comunque necessario fare riferimento in modo esplicito a [Microsoft. AspNetCore. Mvc. Razor ](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation)Pacchetto NuGet ViewCompilation nel file con *estensione csproj* :
+Quando la destinazione è .NET Framework, è comunque necessario fare riferimento in modo esplicito a [Microsoft. AspNetCore. Mvc. Razor ](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation) Pacchetto NuGet ViewCompilation nel file con *estensione csproj* :
 
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=15)]
 
@@ -202,7 +203,7 @@ Se si usa Application Insights SDK direttamente, continuare a farlo. Il [metapac
 
 ## <a name="adopt-authenticationno-locidentity-improvements"></a>Adottare l'autenticazione/ Identity miglioramenti
 
-ASP.NET Core 2,0 dispone di un nuovo modello di autenticazione e di una serie di modifiche significative da ASP.NET Core Identity . Se il progetto è stato creato con account utente singoli abilitati o se è stata aggiunta manualmente l'autenticazione o Identity , vedere [eseguire la migrazione dell'autenticazione e Identity al ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x).
+ASP.NET Core 2,0 dispone di un nuovo modello di autenticazione e di una serie di modifiche significative a ASP.NET Core Identity . Se il progetto è stato creato con account utente singoli abilitati o se è stata aggiunta manualmente l'autenticazione o Identity , vedere [eseguire la migrazione dell'autenticazione e Identity al ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

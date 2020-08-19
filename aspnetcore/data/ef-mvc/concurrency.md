@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/concurrency
-ms.openlocfilehash: f97d551348ca31cc35ab5b04493ea702311a069e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 629baeba545142e156e1a51107b470c932dae3cb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88012956"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629275"
 ---
 # <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Esercitazione: gestire la concorrenza ASP.NET MVC con EF Core
 
@@ -216,7 +217,7 @@ Modificare un campo nella seconda scheda del browser.
 
 ![Pagina Department Edit (Modifica - Reparto) 2 dopo la modifica](concurrency/_static/edit-after-change-2.png)
 
-Fare clic su **Save**. Viene visualizzato un messaggio di errore:
+Fare clic su **Salva**. Viene visualizzato un messaggio di errore:
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error.png)
 

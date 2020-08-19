@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: bb29001e30578e0992e578c2f98cda82c5dcf185
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e03711d970c83c2b7d6cc76039cb0d556a751018
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018663"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628911"
 ---
 # <a name="part-8-no-locrazor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Parte 8, Razor pagine con EF core in ASP.NET Core concorrenza
 
@@ -293,7 +294,7 @@ Aggiornare *Pages/Departments/Edit.cshtml* con il codice seguente:
 Il codice precedente:
 
 * Aggiorna la direttiva `page` da `@page` a `@page "{id:int}"`.
-* Aggiunge una versione di riga nascosta. `RowVersion`è necessario aggiungere, in modo che il postback associ il valore.
+* Aggiunge una versione di riga nascosta. `RowVersion` è necessario aggiungere, in modo che il postback associ il valore.
 * Visualizza l'ultimo byte di `RowVersion` a scopo di debug.
 * Sostituisce `ViewData` con l'elemento `InstructorNameSL` fortemente tipizzato.
 
@@ -317,7 +318,7 @@ Modificare un altro campo nella seconda scheda del browser.
 
 ![Pagina Department Edit (Modifica - Reparto) 2 dopo la modifica](concurrency/_static/edit-after-change-230.png)
 
-Fare clic su **Save**. Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
+Fare clic su **Salva**. Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error30.png)
 
@@ -349,7 +350,7 @@ Il codice precedente apporta le modifiche seguenti:
 * Aggiunge un messaggio di errore.
 * Sostituisce FirstMidName con FullName nel campo **Administrator** (Amministratore).
 * Modifica `RowVersion` per visualizzare l'ultimo byte.
-* Aggiunge una versione di riga nascosta. `RowVersion`è necessario aggiungere, in modo che il postback associ il valore.
+* Aggiunge una versione di riga nascosta. `RowVersion` è necessario aggiungere, in modo che il postback associ il valore.
 
 ### <a name="test-concurrency-conflicts"></a>Testare i conflitti di concorrenza
 
@@ -613,7 +614,7 @@ Modificare un altro campo nella seconda scheda del browser.
 
 ![Pagina Department Edit (Modifica - Reparto) 2 dopo la modifica](concurrency/_static/edit-after-change-2.png)
 
-Fare clic su **Save**. Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
+Fare clic su **Salva**. Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error.png)
 

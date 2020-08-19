@@ -6,6 +6,7 @@ description: Informazioni su come usare l'helper Tag componente ASP.NET Core per
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: 09291b537e35d00df6f8006aaccdf4db12acfaea
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 1a0422da6bd48049cac73debe7d335da91e311be
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018689"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633916"
 ---
 # <a name="component-tag-helper-in-aspnet-core"></a>Helper tag di componente in ASP.NET Core
 
@@ -155,9 +156,9 @@ public class MyClass
     param-MyObject="@myObject" />
 ```
 
-Nell'esempio precedente si presuppone che il `MyComponent` componente si trovi nella cartella *condivisa* dell'app. Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app, ad esempio `@using BlazorSample` e `@using BlazorSample.Shared` . `MyClass`si trova nello spazio dei nomi dell'app.
+Nell'esempio precedente si presuppone che il `MyComponent` componente si trovi nella cartella *condivisa* dell'app. Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app, ad esempio `@using BlazorSample` e `@using BlazorSample.Shared` . `MyClass` si trova nello spazio dei nomi dell'app.
 
-<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>Configura se il componente:
+<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> Configura se il componente:
 
 * Viene preeseguito nella pagina.
 * Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' Blazor app dall'agente utente.

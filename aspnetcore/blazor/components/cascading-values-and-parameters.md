@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/06/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/cascading-values-and-parameters
-ms.openlocfilehash: 1ee30a84e0869f6b9ee937648eb87bd41e8702e3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8cb2bd5f19a4cc21671a0b077d4ef0fda2e30455
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014711"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628586"
 ---
 # <a name="aspnet-core-no-locblazor-cascading-values-and-parameters"></a>BlazorParametri e valori di propagazione ASP.NET Core
 
@@ -47,9 +48,9 @@ public class ThemeInfo
 
 Un componente predecessore può fornire un valore di propagazione utilizzando il componente valore di propagazione. Il <xref:Microsoft.AspNetCore.Components.CascadingValue%601> componente esegue il wrapping di un sottoalbero della gerarchia dei componenti e fornisce un singolo valore a tutti i componenti all'interno di tale sottoalbero.
 
-Ad esempio, l'app di esempio specifica le informazioni sul tema ( `ThemeInfo` ) in uno dei layout dell'app come parametro di propagazione per tutti i componenti che costituiscono il corpo del layout della `@Body` Proprietà. `ButtonClass`viene assegnato un valore di `btn-success` nel componente layout. Qualsiasi componente discendente può utilizzare questa proprietà tramite l' `ThemeInfo` oggetto a cascata.
+Ad esempio, l'app di esempio specifica le informazioni sul tema ( `ThemeInfo` ) in uno dei layout dell'app come parametro di propagazione per tutti i componenti che costituiscono il corpo del layout della `@Body` Proprietà. `ButtonClass` viene assegnato un valore di `btn-success` nel componente layout. Qualsiasi componente discendente può utilizzare questa proprietà tramite l' `ThemeInfo` oggetto a cascata.
 
-`CascadingValuesParametersLayout`componente
+`CascadingValuesParametersLayout` componente
 
 ```razor
 @inherits LayoutComponentBase
@@ -79,7 +80,7 @@ Per utilizzare i valori di propagazione, i componenti dichiarano i parametri di 
 
 Nell'app di esempio, il `CascadingValuesParametersTheme` componente associa il `ThemeInfo` valore a cascata a un parametro di propagazione. Il parametro viene usato per impostare la classe CSS per uno dei pulsanti visualizzati dal componente.
 
-`CascadingValuesParametersTheme`componente
+`CascadingValuesParametersTheme` componente
 
 ```razor
 @page "/cascadingvaluesparameterstheme"
@@ -190,12 +191,12 @@ Il `CascadingValuesParametersTabSet` componente usa il `TabSet` componente, che 
 
 I `Tab` componenti figlio non vengono passati in modo esplicito come parametri a `TabSet` . Al contrario, i `Tab` componenti figlio fanno parte del contenuto figlio di `TabSet` . Tuttavia, `TabSet` è comunque necessario conoscere ogni componente in `Tab` modo che sia in grado di eseguire il rendering delle intestazioni e della scheda attiva. Per abilitare questo coordinamento senza richiedere codice aggiuntivo, il `TabSet` componente *può fornire se stesso come valore* di propagazione che viene quindi prelevato dai `Tab` componenti discendenti.
 
-`TabSet`componente
+`TabSet` componente
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TabSet.razor)]
 
 I componenti discendenti `Tab` acquisiscono l'oggetto che contiene `TabSet` come parametro di propagazione, in modo `Tab` che i componenti si aggiungano alla `TabSet` coordinata e della scheda attiva.
 
-`Tab`componente
+`Tab` componente
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/Tab.razor)]
