@@ -5,6 +5,7 @@ description: Vari argomenti dedicati all'implementazione della protezione dati d
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,29 +16,29 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/index
-ms.openlocfilehash: b56e8c88bb53fe9ca28a7aefd5660e8217178ffa
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: f97b9ec40422a2c6cce45b23f166934acc64e2c9
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022251"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633695"
 ---
-# <a name="aspnet-core-data-protection-implementation"></a><span data-ttu-id="867dc-103">Implementazione della protezione dati di ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="867dc-103">ASP.NET Core Data Protection implementation</span></span>
+# <a name="aspnet-core-data-protection-implementation"></a><span data-ttu-id="e12da-103">Implementazione della protezione dati di ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="e12da-103">ASP.NET Core Data Protection implementation</span></span>
 
-* [<span data-ttu-id="867dc-104">Dettagli di crittografia autenticata</span><span class="sxs-lookup"><span data-stu-id="867dc-104">Authenticated encryption details</span></span>](xref:security/data-protection/implementation/authenticated-encryption-details)
+* [<span data-ttu-id="e12da-104">Dettagli di crittografia autenticata</span><span class="sxs-lookup"><span data-stu-id="e12da-104">Authenticated encryption details</span></span>](xref:security/data-protection/implementation/authenticated-encryption-details)
 
-* [<span data-ttu-id="867dc-105">Derivazione di sottochiavi e crittografia autenticata</span><span class="sxs-lookup"><span data-stu-id="867dc-105">Subkey Derivation and Authenticated Encryption</span></span>](xref:security/data-protection/implementation/subkeyderivation)
+* [<span data-ttu-id="e12da-105">Derivazione di sottochiavi e crittografia autenticata</span><span class="sxs-lookup"><span data-stu-id="e12da-105">Subkey Derivation and Authenticated Encryption</span></span>](xref:security/data-protection/implementation/subkeyderivation)
 
-* [<span data-ttu-id="867dc-106">Intestazioni di contesto</span><span class="sxs-lookup"><span data-stu-id="867dc-106">Context headers</span></span>](xref:security/data-protection/implementation/context-headers)
+* [<span data-ttu-id="e12da-106">Intestazioni di contesto</span><span class="sxs-lookup"><span data-stu-id="e12da-106">Context headers</span></span>](xref:security/data-protection/implementation/context-headers)
 
-* [<span data-ttu-id="867dc-107">Gestione delle chiavi</span><span class="sxs-lookup"><span data-stu-id="867dc-107">Key Management</span></span>](xref:security/data-protection/implementation/key-management)
+* [<span data-ttu-id="e12da-107">Gestione delle chiavi</span><span class="sxs-lookup"><span data-stu-id="e12da-107">Key Management</span></span>](xref:security/data-protection/implementation/key-management)
 
-* [<span data-ttu-id="867dc-108">Provider di archiviazione chiavi</span><span class="sxs-lookup"><span data-stu-id="867dc-108">Key Storage Providers</span></span>](xref:security/data-protection/implementation/key-storage-providers)
+* [<span data-ttu-id="e12da-108">Provider di archiviazione chiavi</span><span class="sxs-lookup"><span data-stu-id="e12da-108">Key Storage Providers</span></span>](xref:security/data-protection/implementation/key-storage-providers)
 
-* [<span data-ttu-id="867dc-109">Crittografia delle chiavi inattive</span><span class="sxs-lookup"><span data-stu-id="867dc-109">Key Encryption At Rest</span></span>](xref:security/data-protection/implementation/key-encryption-at-rest)
+* [<span data-ttu-id="e12da-109">Crittografia delle chiavi inattive</span><span class="sxs-lookup"><span data-stu-id="e12da-109">Key Encryption At Rest</span></span>](xref:security/data-protection/implementation/key-encryption-at-rest)
 
-* [<span data-ttu-id="867dc-110">Immutabilità delle chiavi e impostazioni</span><span class="sxs-lookup"><span data-stu-id="867dc-110">Key immutability and settings</span></span>](xref:security/data-protection/implementation/key-immutability)
+* [<span data-ttu-id="e12da-110">Immutabilità delle chiavi e impostazioni</span><span class="sxs-lookup"><span data-stu-id="e12da-110">Key immutability and settings</span></span>](xref:security/data-protection/implementation/key-immutability)
 
-* [<span data-ttu-id="867dc-111">Formato di archiviazione chiavi</span><span class="sxs-lookup"><span data-stu-id="867dc-111">Key Storage Format</span></span>](xref:security/data-protection/implementation/key-storage-format)
+* [<span data-ttu-id="e12da-111">Formato di archiviazione chiavi</span><span class="sxs-lookup"><span data-stu-id="e12da-111">Key Storage Format</span></span>](xref:security/data-protection/implementation/key-storage-format)
 
-* [<span data-ttu-id="867dc-112">Provider di protezione dati temporanea</span><span class="sxs-lookup"><span data-stu-id="867dc-112">Ephemeral data protection providers</span></span>](xref:security/data-protection/implementation/key-storage-ephemeral)
+* [<span data-ttu-id="e12da-112">Provider di protezione dati temporanea</span><span class="sxs-lookup"><span data-stu-id="e12da-112">Ephemeral data protection providers</span></span>](xref:security/data-protection/implementation/key-storage-ephemeral)
