@@ -5,6 +5,7 @@ description: Condividi controller, Visualizza, Razor pagine e altro con le parti
 ms.author: riande
 ms.date: 11/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/extensibility/app-parts
-ms.openlocfilehash: 690ef0843f567dc2335f4d51436e428207fd6eb1
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2e86025eaf98c4e2cbbd86a5a353664204c35594
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019573"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630419"
 ---
 # <a name="share-controllers-views-no-locrazor-pages-and-more-with-application-parts"></a>Condividi controller, visualizzazioni, Razor pagine e altro ancora con le parti dell'applicazione
 
@@ -30,7 +31,7 @@ Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-Una *parte dell'applicazione* è un'astrazione sulle risorse di un'app. Le parti dell'applicazione consentono ASP.NET Core di individuare controller, componenti di visualizzazione, helper tag, Razor pagine, origini di compilazione Razor e altro ancora. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart>è una parte dell'applicazione. `AssemblyPart`Incapsula un riferimento all'assembly ed espone i tipi e i riferimenti di compilazione.
+Una *parte dell'applicazione* è un'astrazione sulle risorse di un'app. Le parti dell'applicazione consentono ASP.NET Core di individuare controller, componenti di visualizzazione, helper tag, Razor pagine, origini di compilazione Razor e altro ancora. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> è una parte dell'applicazione. `AssemblyPart` Incapsula un riferimento all'assembly ed espone i tipi e i riferimenti di compilazione.
 
 I [provider di funzionalità](#fp) funzionano con le parti dell'applicazione per popolare le funzionalità di un'app ASP.NET Core. Il caso d'uso principale per le parti dell'applicazione consiste nel configurare un'app per individuare (o evitare il caricamento) ASP.NET Core funzionalità da un assembly. Ad esempio, potrebbe essere necessario condividere le funzionalità comuni tra più app. Con le parti dell'applicazione è possibile condividere un assembly (DLL) contenente controller, visualizzazioni, Razor pagine, origini di compilazione Razor, helper tag e altro ancora con più app. La condivisione di un assembly è preferibile alla duplicazione del codice in più progetti.
 
@@ -38,7 +39,7 @@ ASP.NET Core le app caricano le funzionalità da <xref:System.Web.WebPages.Appli
 
 ## <a name="load-aspnet-core-features"></a>Carica ASP.NET Core funzionalità
 
-Usare le <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> classi e per individuare e caricare ASP.NET Core funzionalità (controller, componenti di visualizzazione e così via). Consente di tenere <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> traccia delle parti dell'applicazione e dei provider di funzionalità disponibili. `ApplicationPartManager`è configurato in `Startup.ConfigureServices` :
+Usare le <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> classi e per individuare e caricare ASP.NET Core funzionalità (controller, componenti di visualizzazione e così via). Consente di tenere <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> traccia delle parti dell'applicazione e dei provider di funzionalità disponibili. `ApplicationPartManager` è configurato in `Startup.ConfigureServices` :
 
 [!code-csharp[](./app-parts/3.0sample1/WebAppParts/Startup.cs?name=snippet)]
 
@@ -54,7 +55,7 @@ Utilizzare una [ Razor libreria di classi](xref:razor-pages/ui-class) per includ
 
 ### <a name="prevent-loading-resources"></a>Impedisci il caricamento delle risorse
 
-Le parti dell'applicazione possono essere utilizzate per *evitare* il caricamento di risorse in un assembly o in un percorso specifico. Aggiungere o rimuovere membri della <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> raccolta per nascondere o rendere disponibili risorse. L'ordine delle voci nella raccolta `ApplicationParts` non è importante. Configurare `ApplicationPartManager` prima di usarlo per configurare i servizi nel contenitore. Configurare, ad esempio, `ApplicationPartManager` prima di richiamare `AddControllersAsServices` . Chiamare `Remove` sulla `ApplicationParts` raccolta per rimuovere una risorsa.
+Le parti dell'applicazione possono essere utilizzate per *evitare* il caricamento di risorse in un assembly o in un percorso specifico. Aggiungere o rimuovere membri della  <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> raccolta per nascondere o rendere disponibili risorse. L'ordine delle voci nella raccolta `ApplicationParts` non è importante. Configurare `ApplicationPartManager` prima di usarlo per configurare i servizi nel contenitore. Configurare, ad esempio, `ApplicationPartManager` prima di richiamare `AddControllersAsServices` . Chiamare `Remove` sulla `ApplicationParts` raccolta per rimuovere una risorsa.
 
 `ApplicationPartManager`Include le parti per:
 
@@ -120,7 +121,7 @@ Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-Una *parte dell'applicazione* è un'astrazione sulle risorse di un'app. Le parti dell'applicazione consentono ASP.NET Core di individuare controller, componenti di visualizzazione, helper tag, Razor pagine, origini di compilazione Razor e altro ancora. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) è una parte dell'applicazione. `AssemblyPart`Incapsula un riferimento all'assembly ed espone i tipi e i riferimenti di compilazione.
+Una *parte dell'applicazione* è un'astrazione sulle risorse di un'app. Le parti dell'applicazione consentono ASP.NET Core di individuare controller, componenti di visualizzazione, helper tag, Razor pagine, origini di compilazione Razor e altro ancora. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) è una parte dell'applicazione. `AssemblyPart` Incapsula un riferimento all'assembly ed espone i tipi e i riferimenti di compilazione.
 
 I *provider di funzionalità* funzionano con le parti dell'applicazione per popolare le funzionalità di un'app ASP.NET Core. Il caso d'uso principale per le parti dell'applicazione consiste nel configurare un'app per individuare (o evitare il caricamento) ASP.NET Core funzionalità da un assembly. Ad esempio, potrebbe essere necessario condividere le funzionalità comuni tra più app. Con le parti dell'applicazione è possibile condividere un assembly (DLL) contenente controller, visualizzazioni, Razor pagine, origini di compilazione Razor, helper tag e altro ancora con più app. La condivisione di un assembly è preferibile alla duplicazione del codice in più progetti.
 
@@ -128,7 +129,7 @@ ASP.NET Core le app caricano le funzionalità da <xref:System.Web.WebPages.Appli
 
 ## <a name="load-aspnet-core-features"></a>Carica ASP.NET Core funzionalità
 
-Usare le `ApplicationPart` `AssemblyPart` classi e per individuare e caricare ASP.NET Core funzionalità (controller, componenti di visualizzazione e così via). Consente di tenere <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> traccia delle parti dell'applicazione e dei provider di funzionalità disponibili. `ApplicationPartManager`è configurato in `Startup.ConfigureServices` :
+Usare le `ApplicationPart` `AssemblyPart` classi e per individuare e caricare ASP.NET Core funzionalità (controller, componenti di visualizzazione e così via). Consente di tenere <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> traccia delle parti dell'applicazione e dei provider di funzionalità disponibili. `ApplicationPartManager` è configurato in `Startup.ConfigureServices` :
 
 [!code-csharp[](./app-parts/sample1/WebAppParts/Startup.cs?name=snippet)]
 
@@ -144,9 +145,9 @@ Utilizzare una [ Razor libreria di classi](xref:razor-pages/ui-class) per includ
 
 ### <a name="prevent-loading-resources"></a>Impedisci il caricamento delle risorse
 
-Le parti dell'applicazione possono essere utilizzate per *evitare* il caricamento di risorse in un assembly o in un percorso specifico. Aggiungere o rimuovere membri della <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> raccolta per nascondere o rendere disponibili risorse. L'ordine delle voci nella raccolta `ApplicationParts` non è importante. Configurare `ApplicationPartManager` prima di usarlo per configurare i servizi nel contenitore. Configurare, ad esempio, `ApplicationPartManager` prima di richiamare `AddControllersAsServices` . Chiamare `Remove` sulla `ApplicationParts` raccolta per rimuovere una risorsa.
+Le parti dell'applicazione possono essere utilizzate per *evitare* il caricamento di risorse in un assembly o in un percorso specifico. Aggiungere o rimuovere membri della  <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> raccolta per nascondere o rendere disponibili risorse. L'ordine delle voci nella raccolta `ApplicationParts` non è importante. Configurare `ApplicationPartManager` prima di usarlo per configurare i servizi nel contenitore. Configurare, ad esempio, `ApplicationPartManager` prima di richiamare `AddControllersAsServices` . Chiamare `Remove` sulla `ApplicationParts` raccolta per rimuovere una risorsa.
 
-Il codice seguente usa <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> per rimuovere `MyDependentLibrary` dall'app:[!code-csharp[](./app-parts/sample1/WebAppParts/StartupRm.cs?name=snippet)]
+Il codice seguente usa <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> per rimuovere `MyDependentLibrary` dall'app: [!code-csharp[](./app-parts/sample1/WebAppParts/StartupRm.cs?name=snippet)]
 
 `ApplicationPartManager`Include le parti per:
 

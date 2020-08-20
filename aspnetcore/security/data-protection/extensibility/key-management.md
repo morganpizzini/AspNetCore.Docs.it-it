@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/extensibility/key-management
-ms.openlocfilehash: 5f55b56bd35a583e1f078a5a281788b68412e4f7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 797df457a5584233043210e9ba2657b7fd7f3893
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021692"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631004"
 ---
 # <a name="key-management-extensibility-in-aspnet-core"></a>Estendibilità della gestione delle chiavi in ASP.NET Core
 
@@ -31,7 +32,7 @@ ms.locfileid: "88021692"
 > [!WARNING]
 > I tipi che implementano una delle interfacce seguenti devono essere thread-safe per più chiamanti.
 
-## <a name="key"></a>Key
+## <a name="key"></a>Chiave
 
 L' `IKey` interfaccia è la rappresentazione di base di una chiave in cryptosystem. Il termine chiave viene usato qui in senso astratto, non nel senso letterale del "materiale della chiave crittografica". Una chiave presenta le proprietà seguenti:
 
@@ -73,7 +74,7 @@ L' `IKeyManager` interfaccia rappresenta un oggetto responsabile dell'archiviazi
 
 Il `XmlKeyManager` tipo è l'implementazione concreta predefinita di `IKeyManager` . Offre diverse funzionalità utili, tra cui la chiave di deposito e la crittografia delle chiavi inattive. Le chiavi in questo sistema sono rappresentate come elementi XML (in particolare, [XElement](/dotnet/csharp/programming-guide/concepts/linq/xelement-class-overview)).
 
-`XmlKeyManager`dipende da diversi altri componenti in corso di completamento delle attività:
+`XmlKeyManager` dipende da diversi altri componenti in corso di completamento delle attività:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -81,9 +82,9 @@ Il `XmlKeyManager` tipo è l'implementazione concreta predefinita di `IKeyManage
 
 * `IXmlRepository`, che controlla dove le chiavi vengono salvate in modo permanente nell'archiviazione.
 
-* `IXmlEncryptor`[facoltativo], che consente di crittografare le chiavi inattive.
+* `IXmlEncryptor` [facoltativo], che consente di crittografare le chiavi inattive.
 
-* `IKeyEscrowSink`[facoltativo], che fornisce i servizi di deposito chiavi.
+* `IKeyEscrowSink` [facoltativo], che fornisce i servizi di deposito chiavi.
 
 ::: moniker-end
 
@@ -91,9 +92,9 @@ Il `XmlKeyManager` tipo è l'implementazione concreta predefinita di `IKeyManage
 
 * `IXmlRepository`, che controlla dove le chiavi vengono salvate in modo permanente nell'archiviazione.
 
-* `IXmlEncryptor`[facoltativo], che consente di crittografare le chiavi inattive.
+* `IXmlEncryptor` [facoltativo], che consente di crittografare le chiavi inattive.
 
-* `IKeyEscrowSink`[facoltativo], che fornisce i servizi di deposito chiavi.
+* `IKeyEscrowSink` [facoltativo], che fornisce i servizi di deposito chiavi.
 
 ::: moniker-end
 
@@ -125,7 +126,7 @@ Nell'implementazione di `CreateNewKey` , il `IAuthenticatedEncryptorConfiguratio
 
 *Recupero chiavi/GetAllKeys*
 
-Nell'implementazione di `GetAllKeys` , i documenti XML che rappresentano le chiavi e le revoche vengono letti dall'oggetto sottostante `IXmlRepository` . Se questi documenti sono crittografati, verranno automaticamente decrittografati dal sistema. `XmlKeyManager`Crea le `IAuthenticatedEncryptorDescriptorDeserializer` istanze appropriate per deserializzare i documenti di nuovo in `IAuthenticatedEncryptorDescriptor` istanze di, che vengono quindi sottoposte a incapsulamento in singole `IKey` istanze. Questa raccolta di `IKey` istanze viene restituita al chiamante.
+Nell'implementazione di `GetAllKeys` , i documenti XML che rappresentano le chiavi e le revoche vengono letti dall'oggetto sottostante `IXmlRepository` . Se questi documenti sono crittografati, verranno automaticamente decrittografati dal sistema. `XmlKeyManager` Crea le `IAuthenticatedEncryptorDescriptorDeserializer` istanze appropriate per deserializzare i documenti di nuovo in `IAuthenticatedEncryptorDescriptor` istanze di, che vengono quindi sottoposte a incapsulamento in singole `IKey` istanze. Questa raccolta di `IKey` istanze viene restituita al chiamante.
 
 Altre informazioni sui particolari elementi XML sono reperibili nel [documento formato archiviazione chiavi](xref:security/data-protection/implementation/key-storage-format#data-protection-implementation-key-storage-format).
 

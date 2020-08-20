@@ -1,5 +1,5 @@
 ---
-title: Considerazioni sulla sicurezza in ASP.NET CoreSignalR
+title: Considerazioni sulla sicurezza in ASP.NET Core SignalR
 author: bradygaster
 description: Informazioni su come usare l'autenticazione e l'autorizzazione in ASP.NET Core SignalR .
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/security
-ms.openlocfilehash: e004899e334738f723cb98638cb31de8d314a830
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 12293c5cb3dc49d505225f1b44e824e9273cfffc
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022472"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630991"
 ---
-# <a name="security-considerations-in-aspnet-core-no-locsignalr"></a>Considerazioni sulla sicurezza in ASP.NET CoreSignalR
+# <a name="security-considerations-in-aspnet-core-no-locsignalr"></a>Considerazioni sulla sicurezza in ASP.NET Core SignalR
 
 Di [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
@@ -34,8 +35,8 @@ In questo articolo vengono fornite informazioni sulla protezione di SignalR .
 
 La [condivisione di risorse tra le origini (CORS)](https://www.w3.org/TR/cors/) può essere usata per consentire SignalR le connessioni tra le origini nel browser. Se il codice JavaScript è ospitato in un dominio diverso dall' SignalR app, è necessario abilitare il [middleware CORS](xref:security/cors) per consentire a JavaScript di connettersi all' SignalR app. Consenti richieste tra le origini solo da domini che consideri attendibili o controlli. Ad esempio:
 
-* Il sito è ospitato in`http://www.example.com`
-* L' SignalR app è ospitata in`http://signalr.example.com`
+* Il sito è ospitato in `http://www.example.com`
+* L' SignalR app è ospitata in `http://signalr.example.com`
 
 CORS deve essere configurato nell' SignalR app per consentire solo l'origine `www.example.com` .
 
@@ -137,7 +138,7 @@ I messaggi di eccezione vengono in genere considerati dati sensibili che non dev
 
 ## <a name="buffer-management"></a>Gestione del buffer
 
-SignalRUSA i buffer per connessione per gestire i messaggi in ingresso e in uscita. Per impostazione predefinita, SignalR i buffer vengono limitati a 32 KB. Il messaggio più grande che può essere inviato da un client o da un server è 32 KB. La quantità massima di memoria utilizzata da una connessione per i messaggi è 32 KB. Se i messaggi sono sempre minori di 32 KB, è possibile ridurre il limite, che:
+SignalR USA i buffer per connessione per gestire i messaggi in ingresso e in uscita. Per impostazione predefinita, SignalR i buffer vengono limitati a 32 KB. Il messaggio più grande che può essere inviato da un client o da un server è 32 KB. La quantità massima di memoria utilizzata da una connessione per i messaggi è 32 KB. Se i messaggi sono sempre minori di 32 KB, è possibile ridurre il limite, che:
 
 * Impedisce a un client di inviare un messaggio di dimensioni maggiori.
 * Il server non dovrà mai allocare buffer di grandi dimensioni per accettare messaggi.
@@ -149,7 +150,7 @@ Se i messaggi sono maggiori di 32 KB, è possibile aumentare il limite. L'aument
 
 Esistono limiti per i messaggi in ingresso e in uscita, entrambi possono essere configurati nell'oggetto [HttpConnectionDispatcherOptions](xref:signalr/configuration#configure-server-options) configurato in `MapHub` :
 
-* `ApplicationMaxBufferSize`rappresenta il numero massimo di byte dal client che il server memorizza nel buffer. Se il client tenta di inviare un messaggio di dimensioni superiori a questo limite, è possibile che la connessione venga chiusa.
-* `TransportMaxBufferSize`rappresenta il numero massimo di byte che il server può inviare. Se il server tenta di inviare un messaggio (compresi i valori restituiti dai metodi dell'hub) maggiore di questo limite, verrà generata un'eccezione.
+* `ApplicationMaxBufferSize` rappresenta il numero massimo di byte dal client che il server memorizza nel buffer. Se il client tenta di inviare un messaggio di dimensioni superiori a questo limite, è possibile che la connessione venga chiusa.
+* `TransportMaxBufferSize` rappresenta il numero massimo di byte che il server può inviare. Se il server tenta di inviare un messaggio (compresi i valori restituiti dai metodi dell'hub) maggiore di questo limite, verrà generata un'eccezione.
 
 Impostando il limite su `0` , il limite viene disabilitato. La rimozione del limite consente a un client di inviare un messaggio di qualsiasi dimensione. I client malintenzionati che inviano messaggi di grandi dimensioni possono causare l'allocazione di memoria. Un utilizzo eccessivo della memoria può ridurre significativamente il numero di connessioni simultanee.

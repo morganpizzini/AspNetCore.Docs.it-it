@@ -1,5 +1,5 @@
 ---
-title: Autenticazione e autorizzazione in ASP.NET CoreSignalR
+title: Autenticazione e autorizzazione in ASP.NET Core SignalR
 author: bradygaster
 description: Informazioni su come usare l'autenticazione e l'autorizzazione in ASP.NET Core SignalR .
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/authn-and-authz
-ms.openlocfilehash: 1e022c510dda3e39dd02d607f1d9c493aecdeb5a
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 3a2ae5c7bc4853bad7b94af0d26ad5cd0358688f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021562"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628933"
 ---
-# <a name="authentication-and-authorization-in-aspnet-core-no-locsignalr"></a>Autenticazione e autorizzazione in ASP.NET CoreSignalR
+# <a name="authentication-and-authorization-in-aspnet-core-no-locsignalr"></a>Autenticazione e autorizzazione in ASP.NET Core SignalR
 
 Di [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
@@ -32,7 +33,7 @@ Di [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
 ## <a name="authenticate-users-connecting-to-a-no-locsignalr-hub"></a>Autenticare gli utenti che si connettono a un SignalR Hub
 
-SignalRpuò essere usato con [l'autenticazione ASP.NET Core](xref:security/authentication/identity) per associare un utente a ogni connessione. In un hub è possibile accedere ai dati di autenticazione dalla proprietà [HubConnectionContext. User](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) . L'autenticazione consente all'hub di chiamare i metodi su tutte le connessioni associate a un utente. Per ulteriori informazioni, vedere [gestire utenti e gruppi in SignalR ](xref:signalr/groups). Più connessioni possono essere associate a un singolo utente.
+SignalR può essere usato con [l'autenticazione ASP.NET Core](xref:security/authentication/identity) per associare un utente a ogni connessione. In un hub è possibile accedere ai dati di autenticazione dalla proprietà [HubConnectionContext. User](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) . L'autenticazione consente all'hub di chiamare i metodi su tutte le connessioni associate a un utente. Per ulteriori informazioni, vedere [gestire utenti e gruppi in SignalR ](xref:signalr/groups). Più connessioni possono essere associate a un singolo utente.
 
 Di seguito è riportato un esempio di `Startup.Configure` utilizzo di SignalR e ASP.NET Core l'autenticazione:
 
@@ -125,7 +126,7 @@ Nelle API Web standard, i token di porta sono inviati in un'intestazione HTTP. T
 [!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
 > [!NOTE]
-> La stringa di query viene usata nei browser quando ci si connette con WebSocket ed eventi inviati dal server a causa delle limitazioni dell'API del browser. Quando si usa HTTPS, i valori della stringa di query sono protetti dalla connessione TLS. Tuttavia, molti server registrano i valori della stringa di query. Per ulteriori informazioni, vedere [considerazioni sulla sicurezza in SignalR ASP.NET Core ](xref:signalr/security). SignalRUsa le intestazioni per trasmettere i token negli ambienti che li supportano, ad esempio i client .NET e Java.
+> La stringa di query viene usata nei browser quando ci si connette con WebSocket ed eventi inviati dal server a causa delle limitazioni dell'API del browser. Quando si usa HTTPS, i valori della stringa di query sono protetti dalla connessione TLS. Tuttavia, molti server registrano i valori della stringa di query. Per ulteriori informazioni, vedere [considerazioni sulla sicurezza in SignalR ASP.NET Core ](xref:signalr/security). SignalR Usa le intestazioni per trasmettere i token negli ambienti che li supportano, ad esempio i client .NET e Java.
 
 ### <a name="no-loccookies-vs-bearer-tokens"></a>Cookies rispetto ai token di porta 
 
@@ -133,7 +134,7 @@ Cookiele istanze di sono specifiche per i browser. L'invio da altri tipi di clie
 
 ### <a name="windows-authentication"></a>Autenticazione di Windows
 
-Se [l'autenticazione di Windows](xref:security/authentication/windowsauth) è configurata nell'app, SignalR può usare tale identità per proteggere gli hub. Tuttavia, per inviare messaggi a singoli utenti, è necessario aggiungere un provider di ID utente personalizzato. Il sistema di autenticazione di Windows non fornisce l'attestazione "identificatore nome". SignalRUsa l'attestazione per determinare il nome utente.
+Se [l'autenticazione di Windows](xref:security/authentication/windowsauth) è configurata nell'app, SignalR può usare tale identità per proteggere gli hub. Tuttavia, per inviare messaggi a singoli utenti, è necessario aggiungere un provider di ID utente personalizzato. Il sistema di autenticazione di Windows non fornisce l'attestazione "identificatore nome". SignalR Usa l'attestazione per determinare il nome utente.
 
 Aggiungere una nuova classe che implementi `IUserIdProvider` e recuperi una delle attestazioni dall'utente da utilizzare come identificatore. Ad esempio, per usare l'attestazione "Name" (che è il nome utente di Windows nel formato `[Domain]\[Username]` ), creare la classe seguente:
 
@@ -228,7 +229,7 @@ public class ChatHub : Hub
 
 ### <a name="use-authorization-handlers-to-customize-hub-method-authorization"></a>Usare i gestori di autorizzazione per personalizzare l'autorizzazione del metodo dell'hub
 
-SignalRfornisce una risorsa personalizzata ai gestori di autorizzazione quando un metodo Hub richiede l'autorizzazione. La risorsa è un'istanza di `HubInvocationContext` . `HubInvocationContext`Include `HubCallerContext` , il nome del metodo Hub richiamato e gli argomenti del metodo Hub.
+SignalR fornisce una risorsa personalizzata ai gestori di autorizzazione quando un metodo Hub richiede l'autorizzazione. La risorsa è un'istanza di `HubInvocationContext` . `HubInvocationContext`Include `HubCallerContext` , il nome del metodo Hub richiamato e gli argomenti del metodo Hub.
 
 Si consideri l'esempio di una chat room che consente l'accesso a più organizzazioni tramite Azure Active Directory. Chiunque disponga di un account Microsoft può accedere a chat, ma solo i membri dell'organizzazione proprietaria dovrebbero essere in grado di vietare gli utenti o visualizzare le cronologie della chat degli utenti. Inoltre, potrebbe essere necessario limitare determinate funzionalità di determinati utenti. Utilizzando le funzionalità aggiornate di ASP.NET Core 3,0, questa operazione è interamente possibile. Si noti che il `DomainRestrictedRequirement` funge da personalizzato `IAuthorizationRequirement` . Ora che il `HubInvocationContext` parametro Resource viene passato, la logica interna può ispezionare il contesto in cui viene chiamato l'hub e prendere decisioni per consentire all'utente di eseguire singoli metodi dell'hub.
 

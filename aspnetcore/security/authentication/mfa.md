@@ -7,6 +7,7 @@ ms.author: rick-anderson
 ms.custom: mvc
 ms.date: 03/17/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/mfa
-ms.openlocfilehash: 4538030b4ce6aba6c78edb69cf44fc5812ddff76
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 048d88a121d0a4a7ab3d3adee9b426b95fd68a80
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017857"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629587"
 ---
 # <a name="multi-factor-authentication-in-aspnet-core"></a>Autenticazione a più fattori in ASP.NET Core
 
@@ -33,7 +34,7 @@ Multi-factor authentication è un processo in cui un utente viene richiesto dura
 In questo articolo vengono illustrate le aree seguenti:
 
 * Che cos'è l'autenticazione a più fattori e i flussi di autenticazione a più fattori
-* Configurare Multi-Factor Authentication per le pagine di amministrazione usando ASP.NET CoreIdentity
+* Configurare l'autenticazione a più fattori per le pagine di amministrazione usando ASP.NET Core Identity
 * Inviare il requisito di accesso a multi-factor authentication al server OpenID Connect
 * Forza ASP.NET Core client OpenID Connect a richiedere l'autenticazione a più fattori
 
@@ -45,7 +46,7 @@ L'autenticazione a due fattori (2FA) è come un subset di autenticazione a più 
 
 ### <a name="mfa-totp-time-based-one-time-password-algorithm"></a>TOTP di autenticazione a più fattori (algoritmo monouso basato sul tempo)
 
-L'autenticazione a più fattori con TOTP è un'implementazione supportata con ASP.NET Core Identity . Questo può essere usato insieme a qualsiasi app di autenticazione conforme, tra cui:
+L'autenticazione a più fattori con TOTP è un'implementazione supportata tramite ASP.NET Core Identity . Questo può essere usato insieme a qualsiasi app di autenticazione conforme, tra cui:
 
 * App Microsoft Authenticator
 * App Google Authenticator
@@ -71,9 +72,9 @@ L'autenticazione a più fattori con SMS aumenta notevolmente la sicurezza rispet
 
 [Linee guida del NIST](https://pages.nist.gov/800-63-3/sp800-63b.html)
 
-## <a name="configure-mfa-for-administration-pages-using-aspnet-core-no-locidentity"></a>Configurare Multi-Factor Authentication per le pagine di amministrazione usando ASP.NET CoreIdentity
+## <a name="configure-mfa-for-administration-pages-using-no-locaspnet-core-identity"></a>Configurare l'autenticazione a più fattori per le pagine di amministrazione usando ASP.NET Core Identity
 
-L'autenticazione a più fattori può essere forzata sugli utenti per accedere alle pagine sensibili all'interno di un' Identity app ASP.NET Core. Questa operazione può essere utile per le app in cui esistono diversi livelli di accesso per le diverse identità. Ad esempio, gli utenti potrebbero essere in grado di visualizzare i dati del profilo utilizzando un account di accesso con password, ma per accedere alle pagine amministrative è necessario un amministratore per utilizzare l'autenticazione a più fattori.
+L'autenticazione a più fattori può essere forzata sugli utenti per accedere alle pagine sensibili all'interno di un' ASP.NET Core Identity app. Questa operazione può essere utile per le app in cui esistono diversi livelli di accesso per le diverse identità. Ad esempio, gli utenti potrebbero essere in grado di visualizzare i dati del profilo utilizzando un account di accesso con password, ma per accedere alle pagine amministrative è necessario un amministratore per utilizzare l'autenticazione a più fattori.
 
 ### <a name="extend-the-login-with-an-mfa-claim"></a>Estendere l'accesso con un'attestazione di autenticazione a più fattori
 
@@ -304,7 +305,7 @@ public void ConfigureServices(IServiceCollection services)
     });
 ```
 
-### <a name="example-openid-connect-no-locidentityserver-4-server-with-aspnet-core-no-locidentity"></a>Esempio di OpenID Connect Identity Server 4 server con ASP.NET CoreIdentity
+### <a name="example-openid-connect-no-locidentityserver-4-server-with-no-locaspnet-core-identity"></a>Esempio di OpenID Connect Identity Server 4 server con ASP.NET Core Identity
 
 Nel server OpenID Connect, implementato usando ASP.NET Core Identity con le visualizzazioni MVC, viene creata una nuova vista denominata *ErrorEnable2FA. cshtml* . Visualizzazione:
 
@@ -329,7 +330,7 @@ You can enable MFA to login here:
 
 Nel `Login` metodo, l' `IIdentityServerInteractionService` implementazione dell'interfaccia `_interaction` viene usata per accedere ai parametri della richiesta OpenID Connect. `acr_values`È possibile accedere al parametro utilizzando la `AcrValues` Proprietà. Il client ha inviato questo oggetto con `mfa` set, quindi è possibile verificarlo.
 
-Se è richiesta l'autenticazione a più fattori e l'utente in ASP.NET Core dispone di autenticazione a più fattori Identity abilitata, l'accesso continua. Quando l'utente non dispone di autenticazione a più fattori abilitata, l'utente viene reindirizzato alla visualizzazione personalizzata *ErrorEnable2FA. cshtml*. Quindi ASP.NET Core Identity firma l'utente in.
+Se l'autenticazione a più fattori è obbligatoria e l'utente in ha l'autenticazione a più fattori ASP.NET Core Identity abilitata, l'accesso continua. Quando l'utente non dispone di autenticazione a più fattori abilitata, l'utente viene reindirizzato alla visualizzazione personalizzata *ErrorEnable2FA. cshtml*. Quindi ASP.NET Core Identity firma l'utente in.
 
 ```csharp
 //
@@ -410,7 +411,7 @@ public async Task<IActionResult> ExternalLoginCallback(
 Se l'utente ha già eseguito l'accesso, l'app client:
 
 * Convalida comunque l' `amr` attestazione.
-* Consente di configurare l'autenticazione a più fattori con un collegamento alla Identity visualizzazione ASP.NET Core.
+* Consente di configurare l'autenticazione a più fattori con un collegamento alla ASP.NET Core Identity visualizzazione.
 
 ![acr_values-1](mfa/_static/acr_values-1.png)
 

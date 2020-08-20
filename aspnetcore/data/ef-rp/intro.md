@@ -1,11 +1,12 @@
 ---
-title: RazorPagine con Entity Framework Core in ASP.NET Core-esercitazione 1 di 8
+title: Razor Pagine con Entity Framework Core in ASP.NET Core-esercitazione 1 di 8
 author: rick-anderson
 description: Mostra come creare un'app per le Razor pagine usando Entity Framework Core
 ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: cd6624d107fb19da92a7e58a747cc85e876a6ba4
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 00d5c348b7ab06f9044e6705026e43feb7807ae3
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018637"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630302"
 ---
-# <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>RazorPagine con Entity Framework Core in ASP.NET Core-esercitazione 1 di 8
+# <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pagine con Entity Framework Core in ASP.NET Core-esercitazione 1 di 8
 
 Di [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -89,7 +90,7 @@ Per eseguire l'app dopo il download del progetto completato:
 Per eseguire l'app dopo il download del progetto completato:
 
 * Eliminare *ContosoUniversity.csproj* e rinominare *ContosoUniversitySQLite.csproj* in *ContosoUniversity.csproj*.
-* Eliminare *Startup.cs* e rinominare *StartupSQLite.cs* in *Startup.cs*.
+* In *Program.cs*, impostare come commento l' `#define Startup` `StartupSQLite` utilizzo di.
 * Eliminare *appSettings.json* e rinominare *appSettingsSQLite.json* in *appSettings.json*.
 * Eliminare la cartella *Migrations* e rinominare *MigrationsSQL* in *Migrations*.
 * Eseguire una ricerca globale `#if SQLiteVersion` e rimuovere `#if SQLiteVersion` e l'istruzione associata `#endif` .
@@ -214,7 +215,7 @@ Compilare il progetto per verificare che non siano presenti errori del compilato
 In questa sezione si userà lo strumento di scaffolding di ASP.NET Core per generare:
 
 * Una classe *contesto* di EF Core. Il contesto è la classe principale che coordina le funzionalità di Entity Framework per un determinato modello di dati. Deriva dalla classe `Microsoft.EntityFrameworkCore.DbContext`.
-* Razorpagine che gestiscono le operazioni di creazione, lettura, aggiornamento ed eliminazione (CRUD) per l' `Student` entità.
+* Razor pagine che gestiscono le operazioni di creazione, lettura, aggiornamento ed eliminazione (CRUD) per l' `Student` entità.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

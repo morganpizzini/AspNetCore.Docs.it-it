@@ -1,11 +1,12 @@
 ---
-title: Provider di archiviazione personalizzati per ASP.NET CoreIdentity
+title: Provider di archiviazione personalizzati per ASP.NET Core Identity
 author: ardalis
 description: Informazioni su come configurare i provider di archiviazione personalizzati per ASP.NET Core Identity .
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/23/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-custom-storage-providers
-ms.openlocfilehash: 27f6130742e25e07d4b908973e1ebf26288fdbfd
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a8414efeece1afd55d0f30d232ef360d0a21714c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021536"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630133"
 ---
-# <a name="custom-storage-providers-for-aspnet-core-no-locidentity"></a>Provider di archiviazione personalizzati per ASP.NET CoreIdentity
+# <a name="custom-storage-providers-for-no-locaspnet-core-identity"></a>Provider di archiviazione personalizzati per ASP.NET Core Identity
 
 Di [Steve Smith](https://ardalis.com/)
 
@@ -33,7 +34,7 @@ ASP.NET Core Identity è un sistema estensibile che consente di creare un provid
 
 ## <a name="introduction"></a>Introduzione
 
-Per impostazione predefinita, il Identity sistema ASP.NET Core archivia le informazioni sugli utenti in un database SQL Server utilizzando Entity Framework Core. Per molte app, questo approccio funziona correttamente. Tuttavia, può essere preferibile utilizzare un meccanismo di persistenza o uno schema di dati diverso. Ad esempio:
+Per impostazione predefinita, il ASP.NET Core Identity sistema archivia le informazioni sugli utenti in un database SQL Server usando Entity Framework Core. Per molte app, questo approccio funziona correttamente. Tuttavia, può essere preferibile utilizzare un meccanismo di persistenza o uno schema di dati diverso. Ad esempio:
 
 * Si usa l' [archiviazione tabelle di Azure](/azure/storage/) o un altro archivio dati.
 * Le tabelle di database hanno una struttura diversa. 
@@ -49,7 +50,7 @@ Quando si usa il interfaccia della riga di comando di .NET Core, aggiungere `-au
 dotnet new mvc -au Individual
 ```
 
-## <a name="the-aspnet-core-no-locidentity-architecture"></a>Architettura ASP.NET Core Identity
+## <a name="the-no-locaspnet-core-identity-architecture"></a>ASP.NET Core IdentityArchitettura
 
 ASP.NET Core Identity è costituito da classi denominate Manager e archivi. I *responsabili* sono classi di alto livello che lo sviluppatore di app usa per eseguire operazioni, ad esempio la creazione di un Identity utente. Gli *archivi* sono classi di livello inferiore che specificano il modo in cui le entità, ad esempio utenti e ruoli, vengono rese permanente. Gli archivi seguono il modello di repository e sono strettamente collegati al meccanismo di persistenza. I Manager vengono separati dagli archivi, ovvero è possibile sostituire il meccanismo di persistenza senza modificare il codice dell'applicazione (ad eccezione della configurazione).
 
@@ -63,9 +64,9 @@ Quando si crea una nuova istanza di `UserManager` o `RoleManager` si fornisce il
 
 [Riconfigurare l'app per l'uso di un nuovo provider di archiviazione](#reconfigure-app-to-use-a-new-storage-provider) Mostra come creare un'istanza di `UserManager` e `RoleManager` con un archivio personalizzato.
 
-## <a name="aspnet-core-no-locidentity-stores-data-types"></a>ASP.NET Core Identity archivia i tipi di dati
+## <a name="no-locaspnet-core-identity-stores-data-types"></a>ASP.NET Core Identity Archivia i tipi di dati
 
-[ASP.NET Core Identity ](https://github.com/aspnet/identity) i tipi di dati sono descritti in dettaglio nelle sezioni seguenti:
+[ASP.NET Core Identity](https://github.com/aspnet/identity) i tipi di dati sono descritti in dettaglio nelle sezioni seguenti:
 
 ### <a name="users"></a>Utenti
 
@@ -85,7 +86,7 @@ Gruppi di autorizzazione per il sito. Include l'ID del ruolo e il nome del ruolo
 
 ## <a name="the-data-access-layer"></a>Livello di accesso ai dati
 
-In questo argomento si presuppone che l'utente abbia familiarità con il meccanismo di persistenza che si intende usare e come creare entità per tale meccanismo. In questo argomento non vengono fornite informazioni dettagliate su come creare i repository o le classi di accesso ai dati. fornisce alcuni suggerimenti sulle decisioni di progettazione quando si lavora con ASP.NET Core Identity .
+In questo argomento si presuppone che l'utente abbia familiarità con il meccanismo di persistenza che si intende usare e come creare entità per tale meccanismo. In questo argomento non vengono fornite informazioni dettagliate su come creare i repository o le classi di accesso ai dati. fornisce alcuni suggerimenti sulle decisioni di progettazione quando si utilizza ASP.NET Core Identity .
 
 Quando si progetta il livello di accesso ai dati per un provider di archivio personalizzato, è possibile avere una grande libertà. È sufficiente creare meccanismi di persistenza per le funzionalità che si intende usare nell'app. Se, ad esempio, non si usano i ruoli nell'app, non è necessario creare spazio di archiviazione per i ruoli o le associazioni ruolo utente. La tecnologia e l'infrastruttura esistente possono richiedere una struttura molto diversa dall'implementazione predefinita di ASP.NET Core Identity . Nel livello di accesso ai dati fornire la logica per lavorare con la struttura dell'implementazione dell'archiviazione.
 
@@ -247,5 +248,5 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="references"></a>Riferimenti
 
-* [Provider di archiviazione personalizzati per ASP.NET 4. xIdentity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
-* [ASP.NET Core Identity ](https://github.com/dotnet/AspNetCore/tree/master/src/Identity): questo repository include collegamenti a provider di archivi gestiti dalla community.
+* [Provider di archiviazione personalizzati per ASP.NET 4. x Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
+* [ASP.NET Core Identity](https://github.com/dotnet/AspNetCore/tree/master/src/Identity): Questo repository include collegamenti a provider di archivi gestiti dalla community.

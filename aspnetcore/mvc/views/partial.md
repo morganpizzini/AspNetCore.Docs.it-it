@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 826d7cf96d95ee7eb98b0f05a233401a1e3bff33
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7a370042520adfe5b06784b76acf41a81eb2c72d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020834"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630627"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Visualizzazioni parziali in ASP.NET Core
 
@@ -147,7 +148,7 @@ Quando è presente un'estensione di file, l'helper tag fa riferimento a una visu
 
 L'esempio seguente fa riferimento a una visualizzazione parziale dalla radice dell'app. I percorsi che iniziano con una tilde e una barra (`~/`) o con una barra (`/`) fanno riferimento alla radice dell'app:
 
-**RazorPagine**
+**Razor Pagine**
 
 ```cshtml
 <partial name="~/Pages/Folder/_PartialName.cshtml" />
@@ -189,7 +190,7 @@ L'esempio seguente fa riferimento a una visualizzazione parziale dalla radice de
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**RazorPagine**
+**Razor Pagine**
 
 ```cshtml
 @await Html.PartialAsync("~/Pages/Folder/_PartialName.cshtml")
@@ -240,7 +241,7 @@ Quando si fa riferimento a una visualizzazione parziale per nome senza un'estens
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**RazorPagine**
+**Razor Pagine**
 
 1. Cartella della pagina attualmente in esecuzione
 1. Grafico delle directory sopra la cartella della pagina
@@ -296,7 +297,7 @@ L'esempio seguente mostra come passare un'istanza di [ViewDataDictionary](/dotne
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**RazorPagine**
+**Razor Pagine**
 
 Il markup seguente nella pagina di esempio è tratto dalla pagina *Pages/ArticlesRP/ReadRP.cshtml*. La pagina contiene due visualizzazioni parziali. La seconda visualizzazione parziale viene trasmessa a un modello e `ViewData` viene trasmesso alla visualizzazione parziale. L'overload del costruttore `ViewDataDictionary` viene usato per passare un nuovo dizionario `ViewData` mantenendo il dizionario `ViewData` esistente.
 

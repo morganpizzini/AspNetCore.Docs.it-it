@@ -5,6 +5,7 @@ description: Parte 7 di Razor pagine e Entity Framework serie di esercitazioni.
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: 3807c52bb843c4d6403e8236fde50c034a8d1e2b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 603c5e7c9f095c380461f8c6e4ead783ad35abe2
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017740"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630861"
 ---
 # <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Parte 7, Razor pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core
 
@@ -65,7 +66,7 @@ Il codice precedente:
 
 * Classe derivata da `DepartmentNamePageModel`.
 * Usa `TryUpdateModelAsync` per evitare l'[overposting](xref:data/ef-rp/crud#overposting).
-* Rimuove `ViewData["DepartmentID"]`. `DepartmentNameSL`dalla classe base è un modello fortemente tipizzato e verrà usato dalla Razor pagina. I modelli fortemente tipizzati sono preferibili a quelli scarsamente tipizzati. Per altre informazioni, vedere [Dati con tipizzazione debole (ViewData e ViewBag)](xref:mvc/views/overview#VD_VB).
+* Rimuove `ViewData["DepartmentID"]`. `DepartmentNameSL` dalla classe base è un modello fortemente tipizzato e verrà usato dalla Razor pagina. I modelli fortemente tipizzati sono preferibili a quelli scarsamente tipizzati. Per altre informazioni, vedere [Dati con tipizzazione debole (ViewData e ViewBag)](xref:mvc/views/overview#VD_VB).
 
 ### <a name="update-the-course-create-no-locrazor-page"></a>Aggiornare la pagina di creazione del corso Razor
 

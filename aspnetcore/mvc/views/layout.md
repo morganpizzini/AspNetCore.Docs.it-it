@@ -5,6 +5,7 @@ description: Informazioni su come usare layout comuni, condividere direttive ed 
 ms.author: riande
 ms.date: 07/30/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: 4d5032f02db28341d7781dd57d58d776636fd16d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 308e567e0480f83972ab7a55c7b957af83a164fd
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020444"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630692"
 ---
 # <a name="layout-in-aspnet-core"></a>Layout in ASP.NET Core
 
@@ -34,7 +35,7 @@ Le pagine e le visualizzazioni condividono spesso elementi visivi e programmatic
 
 Questo documento illustra i layout per i due diversi approcci per ASP.NET Core MVC: Razor pagine e controller con le visualizzazioni. Per questo argomento le differenze siano minime:
 
-* RazorLe pagine si trovano nella cartella *pages* .
+* Razor Le pagine si trovano nella cartella *pages* .
 * I controller con visualizzazioni usano una cartella *Views* per le visualizzazioni.
 
 ## <a name="what-is-a-layout"></a>Che cos'è il layout?
@@ -47,7 +48,7 @@ Anche le strutture HTML comuni, ad esempio gli script e i fogli di stile, vengon
 
 Per convenzione, il layout predefinito per un'app ASP.NET Core è denominato *_Layout.cshtml*. I file di layout per i nuovi progetti ASP.NET Core creati con i modelli sono:
 
-* RazorPagine: *pagine/condivise/_Layout. cshtml*
+* Razor Pagine: *pagine/condivise/_Layout. cshtml*
 
   ![Cartella Pages in Esplora soluzioni](layout/_static/rp-web-project-views.png)
 
@@ -63,7 +64,7 @@ Il codice seguente mostra il file di layout per un progetto creato da modello co
 
 ## <a name="specifying-a-layout"></a>Definizione di un layout
 
-Razorle visualizzazioni hanno una `Layout` Proprietà. Le visualizzazioni singole specificano un layout impostando la seguente proprietà:
+Razor le visualizzazioni hanno una `Layout` Proprietà. Le visualizzazioni singole specificano un layout impostando la seguente proprietà:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/_ViewStart.cshtml?highlight=2)]
 

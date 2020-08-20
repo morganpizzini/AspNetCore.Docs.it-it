@@ -5,6 +5,7 @@ description: Informazioni su come le visualizzazioni gestiscono la presentazione
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/overview
-ms.openlocfilehash: 8630df0ad8ea556c6edf0ab251b3c86493f751e2
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6afd69414f2dc0158f724c6e6f7b3a3e51c1e92c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020873"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630679"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Visualizzazioni in ASP.NET Core MVC
 
@@ -28,7 +29,7 @@ Di [Steve Smith](https://ardalis.com/)
 
 Questo documento illustra le visualizzazioni usate nelle applicazioni ASP.NET Core MVC. Per informazioni sulle Razor pagine, vedere [Introduzione alle Razor pagine](xref:razor-pages/index).
 
-Nello schema Model-View-Controller (MVC) la *visualizzazione* gestisce la presentazione dei dati dell'app e l'interazione dell'utente. Una vista è un modello HTML con [ Razor markup](xref:mvc/views/razor)incorporato. Razoril markup è codice che interagisce con il markup HTML per produrre una pagina Web che viene inviata al client.
+Nello schema Model-View-Controller (MVC) la *visualizzazione* gestisce la presentazione dei dati dell'app e l'interazione dell'utente. Una vista è un modello HTML con [ Razor markup](xref:mvc/views/razor)incorporato. Razor il markup è codice che interagisce con il markup HTML per produrre una pagina Web che viene inviata al client.
 
 In ASP.NET Core MVC le visualizzazioni sono file con *estensione cshtml* che usano il [linguaggio di programmazione C#](/dotnet/csharp/) nel Razor markup. I file di visualizzazione sono in genere raggruppati in cartelle denominate per ognuno dei [controller](xref:mvc/controllers/actions) dell'app. Le cartelle vengono archiviate in una cartella *Views* alla radice dell'app:
 
@@ -298,7 +299,7 @@ Nel layout il titolo viene letto dal dizionario ViewData:
 
 `ViewBag`*non è disponibile in Razor Pagine.*
 
-`ViewBag`è un oggetto [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) che fornisce l'accesso dinamico agli oggetti archiviati in `ViewData` . `ViewBag` può risultare più comodo da usare poiché non richiede l'esecuzione del cast. Nell'esempio seguente viene illustrato come usare `ViewBag` con lo stesso risultato che si ottiene con l'uso di `ViewData` descritto in precedenza:
+`ViewBag` è un oggetto [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) che fornisce l'accesso dinamico agli oggetti archiviati in `ViewData` . `ViewBag` può risultare più comodo da usare poiché non richiede l'esecuzione del cast. Nell'esempio seguente viene illustrato come usare `ViewBag` con lo stesso risultato che si ottiene con l'uso di `ViewData` descritto in precedenza:
 
 ```csharp
 public IActionResult SomeAction()
@@ -369,7 +370,7 @@ L'uso simultaneo di `ViewData` e `ViewBag` funziona, così come funziona la comb
 
 **Riepilogo delle differenze tra ViewData e ViewBag**
 
- `ViewBag`non è disponibile nelle Razor pagine.
+ `ViewBag` non è disponibile nelle Razor pagine.
 
 * `ViewData`
   * Deriva da [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), quindi presenta proprietà del dizionario che possono essere utili, ad esempio `ContainsKey` ,, `Add` `Remove` e `Clear` .

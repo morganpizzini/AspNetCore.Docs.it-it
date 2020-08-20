@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 09/24/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/metapackage-app
-ms.openlocfilehash: 182d167a1848492846a04c938749a6de30bce377
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d9753a43bdc47b467dcf781c97069edfaa693a8f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017064"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630510"
 ---
 # <a name="microsoftaspnetcoreapp-for-aspnet-core"></a>Microsoft. AspNetCore. app per ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
- Il Framework condiviso ASP.NET Core ( `Microsoft.AspNetCore.App` ) contiene gli assembly sviluppati e supportati da Microsoft. `Microsoft.AspNetCore.App`viene installato quando è installato [.NET Core 3,0 o versione successiva SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) . Il *Framework condiviso* è il set di assembly (file con*estensione dll* ) installato nel computer e include un componente di runtime e un Targeting Pack. Per altre informazioni, vedere [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Il framework condiviso).
+ Il Framework condiviso ASP.NET Core ( `Microsoft.AspNetCore.App` ) contiene gli assembly sviluppati e supportati da Microsoft. `Microsoft.AspNetCore.App` viene installato quando è installato [.NET Core 3,0 o versione successiva SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) . Il *Framework condiviso* è il set di assembly (file con*estensione dll* ) installato nel computer e include un componente di runtime e un Targeting Pack. Per altre informazioni, vedere [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Il framework condiviso).
 
 * I progetti destinati all' `Microsoft.NET.Sdk.Web` SDK fanno riferimento in modo implicito al `Microsoft.AspNetCore.App` Framework.
 

@@ -5,6 +5,7 @@ description: Scopri come abilitare la generazione di codice a matrice per le app
 ms.author: riande
 ms.date: 08/14/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-enable-qrcodes
-ms.openlocfilehash: 4ccfd83c273f7179ac26b075eb33f138e724b967
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e61aa925262fc9fe25c7bb2d37958cfaa308aeaf
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019560"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630796"
 ---
 # <a name="enable-qr-code-generation-for-totp-authenticator-apps-in-aspnet-core"></a>Abilitare la generazione di codice a matrice per le app TOTP Authenticator in ASP.NET Core
 
@@ -42,7 +43,7 @@ L'autenticazione a due fattori non viene eseguita con un provider di autenticazi
 
 Queste istruzioni usano *qrcode.js* dal https://davidshimjs.github.io/qrcodejs/ repository.
 
-* Scaricare la [libreria javascriptqrcode.js](https://davidshimjs.github.io/qrcodejs/) `wwwroot\lib` nella cartella del progetto.
+* Scaricare la [ libreria javascriptqrcode.js](https://davidshimjs.github.io/qrcodejs/) `wwwroot\lib` nella cartella del progetto.
 
 ::: moniker-end
 
@@ -128,8 +129,8 @@ Il secondo parametro nella chiamata a `string.Format` è il nome del sito, tratt
 
 L'URL correttamente formattato per il codice a matrice è disponibile in:
 
-* `AuthenticatorUri`Proprietà del modello.
-* `data-url`Proprietà nell' `qrCodeData` elemento.
+* `AuthenticatorUri` Proprietà del modello.
+* `data-url` Proprietà nell' `qrCodeData` elemento.
 
 ## <a name="totp-client-and-server-time-skew"></a>Sfasamento dell'ora del client e del server TOTP
 

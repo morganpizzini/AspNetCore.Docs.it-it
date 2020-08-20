@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 9/25/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/compatibility-version
-ms.openlocfilehash: 3e705a43b263fcb0867f096e6062023ce10d5ad8
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: fb24ca0b3a67ceca03a2666d5a4eb8782e05ba17
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019872"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630354"
 ---
 # <a name="compatibility-version-for-aspnet-core-mvc"></a>Versione di compatibilità per ASP.NET Core MVC
 
@@ -33,7 +34,7 @@ Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 Il <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> metodo è un no-op per le app ASP.NET Core 3,0. Ovvero, la chiamata `SetCompatibilityVersion` a con qualsiasi valore di <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion> non ha alcun effetto sull'applicazione.
 
 * La versione secondaria successiva di ASP.NET Core può fornire un nuovo `CompatibilityVersion` valore.
-* `CompatibilityVersion`i valori `Version_2_0` tramite `Version_2_2` sono contrassegnati `[Obsolete(...)]` .
+* `CompatibilityVersion` i valori `Version_2_0` tramite `Version_2_2` sono contrassegnati `[Obsolete(...)]` .
 * Vedere la pagina relativa [alle modifiche delle API in antifalsificazione, CORS, diagnostica, MVC e routing](https://github.com/aspnet/Announcements/issues/387). Questo elenco include modifiche di rilievo per le opzioni di compatibilità.
 
 Per vedere come `SetCompatibilityVersion` funziona con le app ASP.NET Core 2. x, selezionare la [versione ASP.NET Core 2,2 di questo articolo](https://docs.microsoft.com/aspnet/core/mvc/compatibility-version?view=aspnetcore-2.2).

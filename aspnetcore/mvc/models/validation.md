@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: c0edf56c966cb90c1c308f300a8944d392fdc0e7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e911512c1dce892c670659f04959be89cea067bb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020977"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630107"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-no-locrazor-pages"></a>Convalida di modelli in ASP.NET Core MVC e Razor pagine
 
@@ -51,7 +52,7 @@ La convalida è automatica, ma potrebbe essere necessario ripeterla manualmente.
 
 ## <a name="validation-attributes"></a>Attributi di convalida
 
-Gli attributi di convalida consentono di specificare le regole di convalida per le proprietà del modello. Nell'esempio seguente dell'app di esempio viene illustrata una classe di modello annotata con attributi di convalida. `[ClassicMovie]` è un attributo di convalida personalizzato, mentre gli altri sono attributi predefiniti. Non viene visualizzato `[ClassicMovieWithClientValidator]` . `[ClassicMovieWithClientValidator]`Mostra un metodo alternativo per implementare un attributo personalizzato.
+Gli attributi di convalida consentono di specificare le regole di convalida per le proprietà del modello. Nell'esempio seguente dell'app di esempio viene illustrata una classe di modello annotata con attributi di convalida. `[ClassicMovie]` è un attributo di convalida personalizzato, mentre gli altri sono attributi predefiniti. Non viene visualizzato `[ClassicMovieWithClientValidator]` . `[ClassicMovieWithClientValidator]` Mostra un metodo alternativo per implementare un attributo personalizzato.
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Models/Movie.cs?name=snippet_Class)]
 
@@ -72,7 +73,7 @@ Di seguito sono elencati alcuni degli attributi di convalida predefiniti:
 
 Nello spazio dei nomi [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) è possibile trovare un elenco completo degli attributi di convalida.
 
-### <a name="error-messages"></a>Messaggi di errore
+### <a name="error-messages"></a>messaggi di errore
 
 Gli attributi di convalida consentono di specificare il messaggio di errore da visualizzare in caso di input non valido. Ad esempio:
 
@@ -148,7 +149,7 @@ La proprietà `[Remote]` dell'attributo `AdditionalFields` consente di convalida
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Models/User.cs?name=snippet_Name&highlight=1,5)]
 
-`AdditionalFields`potrebbe essere impostato in modo esplicito sulle stringhe "FirstName" e "LastName", ma l'uso dell'operatore [NameOf](/dotnet/csharp/language-reference/keywords/nameof) semplifica il refactoring in un secondo momento. Il metodo di azione per questa convalida deve accettare `firstName` gli `lastName` argomenti e:
+`AdditionalFields` potrebbe essere impostato in modo esplicito sulle stringhe "FirstName" e "LastName", ma l'uso dell'operatore [NameOf](/dotnet/csharp/language-reference/keywords/nameof) semplifica il refactoring in un secondo momento. Il metodo di azione per questa convalida deve accettare `firstName` gli `lastName` argomenti e:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Controllers/UsersController.cs?name=snippet_VerifyName)]
 
@@ -386,7 +387,7 @@ Altre opzioni per disabilitare la convalida sul lato client:
 * Impostare come commento il riferimento a `_ValidationScriptsPartial` in tutti i file con *estensione cshtml* .
 * Rimuovere il contenuto del file *Pages\Shared \_ ValidationScriptsPartial. cshtml* .
 
-L'approccio precedente non impedisce la convalida lato client della Identity Razor libreria di classi ASP.NET Core. Per altre informazioni, vedere <xref:security/authentication/scaffold-identity>.
+L'approccio precedente non impedisce la convalida lato client della ASP.NET Core Identity Razor libreria di classi. Per altre informazioni, vedere <xref:security/authentication/scaffold-identity>.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -442,7 +443,7 @@ Quando si usa l' `[RegularExpression]` attributo con la convalida sul lato clien
 
 Nello spazio dei nomi [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) è possibile trovare un elenco completo degli attributi di convalida.
 
-### <a name="error-messages"></a>Messaggi di errore
+### <a name="error-messages"></a>messaggi di errore
 
 Gli attributi di convalida consentono di specificare il messaggio di errore da visualizzare in caso di input non valido. Ad esempio:
 
@@ -514,7 +515,7 @@ La proprietà `[Remote]` dell'attributo `AdditionalFields` consente di convalida
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Models/User.cs?name=snippet_UserNameProperties)]
 
-`AdditionalFields`potrebbe essere impostato in modo esplicito sulle stringhe `"FirstName"` e `"LastName"` , ma l'uso dell'operatore [NameOf](/dotnet/csharp/language-reference/keywords/nameof) semplifica il refactoring in un secondo momento. Il metodo di azione per la convalida deve accettare gli argomenti sia per il nome e sia per il cognome:
+`AdditionalFields` potrebbe essere impostato in modo esplicito sulle stringhe `"FirstName"` e `"LastName"` , ma l'uso dell'operatore [NameOf](/dotnet/csharp/language-reference/keywords/nameof) semplifica il refactoring in un secondo momento. Il metodo di azione per la convalida deve accettare gli argomenti sia per il nome e sia per il cognome:
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Controllers/UsersController.cs?name=snippet_VerifyName)]
 

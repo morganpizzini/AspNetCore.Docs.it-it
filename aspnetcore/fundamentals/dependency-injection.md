@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/21/2020
 no-loc:
+- ASP.NET Core Identity
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: b0ba7c7598df13413c00934a30e03681129de98a
-ms.sourcegitcommit: 503b348e9046fcd969de85898394a1ea8274ec38
+ms.openlocfilehash: ececea3c7cc2f0cdf39bbfd29feec061f9bc6764
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227579"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628794"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserimento delle dipendenze in ASP.NET Core
 
