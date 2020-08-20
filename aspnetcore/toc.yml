@@ -203,7 +203,7 @@
       uid: fundamentals/environments
     - name: Registrazione
       uid: fundamentals/logging/index
-    - name: Routing.
+    - name: Routing
       uid: fundamentals/routing
     - name: Gestire gli errori
       uid: fundamentals/error-handling
@@ -276,7 +276,7 @@
           uid: mvc/views/partial
         - name: Controllers
           uid: mvc/controllers/actions
-        - name: Routing.
+        - name: Routing
           uid: mvc/controllers/routing
         - name: Inserimento di dipendenze - Controller
           uid: mvc/controllers/dependency-injection
@@ -1156,7 +1156,7 @@
       uid: security/anti-request-forgery
     - name: Prevenire attacchi di reindirizzamento aperto
       uid: security/preventing-open-redirects
-    - name: Evitare il cross-site scripting
+    - name: Evitare il cross-site scripting (XSS)
       uid: security/cross-site-scripting
     - name: Abilitare richieste tra le origini (CORS)
       uid: security/cors
