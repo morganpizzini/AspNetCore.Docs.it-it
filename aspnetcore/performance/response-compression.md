@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/response-compression
-ms.openlocfilehash: 1dd931d0ee654b888814df8a0d0675d32b5c3a20
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b8947e3c3c4f634fbd838c22ff60799257143480
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020964"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634995"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Compressione della risposta in ASP.NET Core
 
@@ -43,7 +44,7 @@ Usare il middleware di compressione della risposta quando si è:
   * [Modulo Apache mod_deflate](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Compressione e decompressione nginx](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Hosting diretto in:
-  * [ServerHTTP.sys](xref:fundamentals/servers/httpsys) (denominato in precedenza webListener)
+  * [ ServerHTTP.sys](xref:fundamentals/servers/httpsys) (denominato in precedenza webListener)
   * [Server gheppio](xref:fundamentals/servers/kestrel)
 
 ## <a name="response-compression"></a>Compressione delle risposte
@@ -52,7 +53,7 @@ In genere, qualsiasi risposta non compressa in modo nativo può trarre vantaggio
 
 Quando un client è in grado di elaborare il contenuto compresso, il client deve informare il server delle sue funzionalità inviando l' `Accept-Encoding` intestazione con la richiesta. Quando un server invia contenuto compresso, deve includere informazioni nell' `Content-Encoding` intestazione sulla modalità di codifica della risposta compressa. Le designazioni di codifica del contenuto supportate dal middleware sono illustrate nella tabella seguente.
 
-| `Accept-Encoding`valori di intestazione | Middleware supportato | Descrizione |
+| `Accept-Encoding` valori di intestazione | Middleware supportato | Descrizione |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Sì (impostazione predefinita)        | [Formato dati compresso Brotli](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | No                   | [Deflate formato dati compresso](https://tools.ietf.org/html/rfc1951) |
@@ -111,7 +112,7 @@ public class Startup
 
 Note:
 
-* `app.UseResponseCompression`deve essere chiamato prima di qualsiasi middleware che comprime le risposte. Per altre informazioni, vedere <xref:fundamentals/middleware/index#middleware-order>.
+* `app.UseResponseCompression` deve essere chiamato prima di qualsiasi middleware che comprime le risposte. Per altre informazioni, vedere <xref:fundamentals/middleware/index#middleware-order>.
 * Per impostare l'intestazione della [Fiddler](https://www.telerik.com/fiddler)richiesta e [Firebug](https://getfirebug.com/)studiare le intestazioni, le dimensioni e il corpo della risposta, usare uno strumento, ad esempio Fiddler, Firebug o [postazione](https://www.getpostman.com/) `Accept-Encoding` .
 
 Inviare una richiesta all'app di esempio senza l' `Accept-Encoding` intestazione e osservare che la risposta non è compressa. Le `Content-Encoding` `Vary` intestazioni e non sono presenti nella risposta.
@@ -289,7 +290,7 @@ Usare il middleware di compressione della risposta quando si è:
   * [Modulo Apache mod_deflate](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Compressione e decompressione nginx](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Hosting diretto in:
-  * [ServerHTTP.sys](xref:fundamentals/servers/httpsys) (denominato in precedenza webListener)
+  * [ ServerHTTP.sys](xref:fundamentals/servers/httpsys) (denominato in precedenza webListener)
   * [Server gheppio](xref:fundamentals/servers/kestrel)
 
 ## <a name="response-compression"></a>Compressione delle risposte
@@ -298,7 +299,7 @@ In genere, qualsiasi risposta non compressa in modo nativo può trarre vantaggio
 
 Quando un client è in grado di elaborare il contenuto compresso, il client deve informare il server delle sue funzionalità inviando l' `Accept-Encoding` intestazione con la richiesta. Quando un server invia contenuto compresso, deve includere informazioni nell' `Content-Encoding` intestazione sulla modalità di codifica della risposta compressa. Le designazioni di codifica del contenuto supportate dal middleware sono illustrate nella tabella seguente.
 
-| `Accept-Encoding`valori di intestazione | Middleware supportato | Descrizione |
+| `Accept-Encoding` valori di intestazione | Middleware supportato | Descrizione |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Sì (impostazione predefinita)        | [Formato dati compresso Brotli](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | No                   | [Deflate formato dati compresso](https://tools.ietf.org/html/rfc1951) |
@@ -357,7 +358,7 @@ public class Startup
 
 Note:
 
-* `app.UseResponseCompression`deve essere chiamato prima di qualsiasi middleware che comprime le risposte. Per altre informazioni, vedere <xref:fundamentals/middleware/index#middleware-order>.
+* `app.UseResponseCompression` deve essere chiamato prima di qualsiasi middleware che comprime le risposte. Per altre informazioni, vedere <xref:fundamentals/middleware/index#middleware-order>.
 * Per impostare l'intestazione della [Fiddler](https://www.telerik.com/fiddler)richiesta e [Firebug](https://getfirebug.com/)studiare le intestazioni, le dimensioni e il corpo della risposta, usare uno strumento, ad esempio Fiddler, Firebug o [postazione](https://www.getpostman.com/) `Accept-Encoding` .
 
 Inviare una richiesta all'app di esempio senza l' `Accept-Encoding` intestazione e osservare che la risposta non è compressa. Le `Content-Encoding` `Vary` intestazioni e non sono presenti nella risposta.
@@ -534,7 +535,7 @@ Usare il middleware di compressione della risposta quando si è:
   * [Modulo Apache mod_deflate](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Compressione e decompressione nginx](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Hosting diretto in:
-  * [ServerHTTP.sys](xref:fundamentals/servers/httpsys) (denominato in precedenza webListener)
+  * [ ServerHTTP.sys](xref:fundamentals/servers/httpsys) (denominato in precedenza webListener)
   * [Server gheppio](xref:fundamentals/servers/kestrel)
 
 ## <a name="response-compression"></a>Compressione delle risposte
@@ -543,7 +544,7 @@ In genere, qualsiasi risposta non compressa in modo nativo può trarre vantaggio
 
 Quando un client è in grado di elaborare il contenuto compresso, il client deve informare il server delle sue funzionalità inviando l' `Accept-Encoding` intestazione con la richiesta. Quando un server invia contenuto compresso, deve includere informazioni nell' `Content-Encoding` intestazione sulla modalità di codifica della risposta compressa. Le designazioni di codifica del contenuto supportate dal middleware sono illustrate nella tabella seguente.
 
-| `Accept-Encoding`valori di intestazione | Middleware supportato | Descrizione |
+| `Accept-Encoding` valori di intestazione | Middleware supportato | Descrizione |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | No                   | [Formato dati compresso Brotli](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | No                   | [Deflate formato dati compresso](https://tools.ietf.org/html/rfc1951) |
@@ -602,7 +603,7 @@ public class Startup
 
 Note:
 
-* `app.UseResponseCompression`deve essere chiamato prima di qualsiasi middleware che comprime le risposte. Per altre informazioni, vedere <xref:fundamentals/middleware/index#middleware-order>.
+* `app.UseResponseCompression` deve essere chiamato prima di qualsiasi middleware che comprime le risposte. Per altre informazioni, vedere <xref:fundamentals/middleware/index#middleware-order>.
 * Per impostare l'intestazione della [Fiddler](https://www.telerik.com/fiddler)richiesta e [Firebug](https://getfirebug.com/)studiare le intestazioni, le dimensioni e il corpo della risposta, usare uno strumento, ad esempio Fiddler, Firebug o [postazione](https://www.getpostman.com/) `Accept-Encoding` .
 
 Inviare una richiesta all'app di esempio senza l' `Accept-Encoding` intestazione e osservare che la risposta non è compressa. Le `Content-Encoding` `Vary` intestazioni e non sono presenti nella risposta.

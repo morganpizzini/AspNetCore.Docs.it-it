@@ -5,6 +5,7 @@ description: Informazioni su come creare un'app ASP.NET Core con la conferma del
 ms.author: riande
 ms.date: 03/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 7016c2c1997d961f4b3d3cf513fc1769bd65247b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 57607390e7d5e58df9f27437faecd57504ad64df
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021614"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635372"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Account confirmation and password recovery in ASP.NET Core (Conferma dell'account e recupero della password in ASP.NET Core)
 
@@ -52,7 +53,7 @@ dotnet run
 
 Eseguire l'app, selezionare il collegamento **Register** e registrare un utente. Una volta effettuata la registrazione, si verrà reindirizzati alla `/Identity/Account/RegisterConfirmation` pagina a contenente un collegamento per simulare la conferma della posta elettronica:
 
-* Selezionare il `Click here to confirm your account` collegamento.
+* Selezionare il collegamento `Click here to confirm your account`.
 * Selezionare il collegamento di **accesso** e accedere con le stesse credenziali.
 * Selezionare il `Hello YourEmail@provider.com!` collegamento per reindirizzare l'utente alla `/Identity/Account/Manage/PersonalData` pagina.
 * Selezionare la scheda **Personal Data (dati personali** ) a sinistra e quindi fare clic su **Delete (Elimina**).
@@ -237,7 +238,7 @@ L'abilitazione della conferma dell'account in un sito con utenti blocca tutti gl
 
 [.NET Core 2,2 SDK o versione successiva](https://dotnet.microsoft.com/download/dotnet-core)
 
-## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>Creare un'app Web e un patiboloIdentity
+## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>Creare un'app Web e un patibolo Identity
 
 Eseguire i comandi seguenti per creare un'app Web con l'autenticazione di.
 
@@ -273,11 +274,11 @@ Potrebbe essere necessario usare nuovamente questo messaggio di posta elettronic
 
 In genere si vuole impedire ai nuovi utenti di inviare dati al sito Web prima di avere un messaggio di posta elettronica confermato.
 
-Aggiornamento `Startup.ConfigureServices` per richiedere un messaggio di posta elettronica confermato:
+Aggiornamento `Startup.ConfigureServices`  per richiedere un messaggio di posta elettronica confermato:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=8-11)]
 
-`config.SignIn.RequireConfirmedEmail = true;`impedisce agli utenti registrati di accedere fino a quando non viene confermata la posta elettronica.
+`config.SignIn.RequireConfirmedEmail = true;` impedisce agli utenti registrati di accedere fino a quando non viene confermata la posta elettronica.
 
 ### <a name="configure-email-provider"></a>Configurare il provider di posta elettronica
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/14/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/integration-tests
-ms.openlocfilehash: 508c2d2cb668f5dbf416d341c1d9a966f9d16fd4
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b06c06fb5e525a0bdc3df1de50236fa8f76daca9
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021042"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635112"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Test di integrazione in ASP.NET Core
 
@@ -40,7 +41,7 @@ L'app di esempio è un' Razor app di pagine e presuppone una conoscenza di base 
 
 * [Introduzione alle Razor pagine](xref:razor-pages/index)
 * [Introduzione alle Razor pagine](xref:tutorials/razor-pages/razor-pages-start)
-* [RazorUnit test di pagine](xref:test/razor-pages-tests)
+* [Razor Unit test di pagine](xref:test/razor-pages-tests)
 
 > [!NOTE]
 > Per il test di Spa è stato consigliato uno strumento come [Selenium](https://www.seleniumhq.org/), che consente di automatizzare un browser.
@@ -136,7 +137,7 @@ Se l' [ambiente](xref:fundamentals/environments) di Sut non è impostato, il val
 
 ## <a name="basic-tests-with-the-default-webapplicationfactory"></a>Test di base con WebApplicationFactory predefinito
 
-[WebApplicationFactory \<TEntryPoint> ](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) viene usato per creare un [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver) per i test di integrazione. `TEntryPoint`è la classe del punto di ingresso di SUT, in genere la `Startup` classe.
+[WebApplicationFactory \<TEntryPoint> ](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) viene usato per creare un [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver) per i test di integrazione. `TEntryPoint` è la classe del punto di ingresso di SUT, in genere la `Startup` classe.
 
 Le classi di test implementano una *classe fixture* Interface ([IClassFixture](https://xunit.github.io/docs/shared-context#class-fixture)) per indicare che la classe contiene test e fornisce istanze di oggetti condivisi tra i test nella classe.
 
@@ -195,8 +196,8 @@ Qualsiasi richiesta POST a SUT deve soddisfare il controllo antifalsificazione c
 
 I `SendAsync` metodi di estensione Helper (*Helper/Metodo HttpClientExtensions. cs*) e il `GetDocumentAsync` metodo helper (*Helper/htmlhelpers. cs*) nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) usano il parser [AngleSharp](https://anglesharp.github.io/) per gestire il controllo antifalsificazione con i metodi seguenti:
 
-* `GetDocumentAsync`: Riceve il [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) e restituisce un oggetto `IHtmlDocument` . `GetDocumentAsync`Usa una factory che prepara una *risposta virtuale* basata sull'originale `HttpResponseMessage` . Per ulteriori informazioni, vedere la [documentazione di AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
-* `SendAsync`i metodi di estensione per `HttpClient` compongono un [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) e chiamano [SendAsync (HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) per inviare richieste a SUT. Gli overload per `SendAsync` accettano il formato HTML ( `IHtmlFormElement` ) e gli elementi seguenti:
+* `GetDocumentAsync`: Riceve il [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) e restituisce un oggetto `IHtmlDocument` . `GetDocumentAsync` Usa una factory che prepara una *risposta virtuale* basata sull'originale `HttpResponseMessage` . Per ulteriori informazioni, vedere la [documentazione di AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
+* `SendAsync` i metodi di estensione per `HttpClient` compongono un [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) e chiamano [SendAsync (HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) per inviare richieste a SUT. Gli overload per `SendAsync` accettano il formato HTML ( `IHtmlFormElement` ) e gli elementi seguenti:
   * Pulsante Invia nel formato ( `IHtmlElement` )
   * Raccolta di valori di form ( `IEnumerable<KeyValuePair<string, string>>` )
   * Pulsante Invia ( `IHtmlElement` ) e valori form ( `IEnumerable<KeyValuePair<string, string>>` )
@@ -277,7 +278,7 @@ Per testare il servizio e l'inserimento di virgolette in un test di integrazione
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet4)]
 
-`ConfigureTestServices`viene chiamato e il servizio con ambito viene registrato:
+`ConfigureTestServices` viene chiamato e il servizio con ambito viene registrato:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet5&highlight=7-10,17,20-21)]
 
@@ -428,7 +429,7 @@ L'app di esempio è un' Razor app di pagine e presuppone una conoscenza di base 
 
 * [Introduzione alle Razor pagine](xref:razor-pages/index)
 * [Introduzione alle Razor pagine](xref:tutorials/razor-pages/razor-pages-start)
-* [RazorUnit test di pagine](xref:test/razor-pages-tests)
+* [Razor Unit test di pagine](xref:test/razor-pages-tests)
 
 > [!NOTE]
 > Per il test di Spa è stato consigliato uno strumento come [Selenium](https://www.seleniumhq.org/), che consente di automatizzare un browser.
@@ -518,7 +519,7 @@ Se l' [ambiente](xref:fundamentals/environments) di Sut non è impostato, il val
 
 ## <a name="basic-tests-with-the-default-webapplicationfactory"></a>Test di base con WebApplicationFactory predefinito
 
-[WebApplicationFactory \<TEntryPoint> ](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) viene usato per creare un [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver) per i test di integrazione. `TEntryPoint`è la classe del punto di ingresso di SUT, in genere la `Startup` classe.
+[WebApplicationFactory \<TEntryPoint> ](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) viene usato per creare un [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver) per i test di integrazione. `TEntryPoint` è la classe del punto di ingresso di SUT, in genere la `Startup` classe.
 
 Le classi di test implementano una *classe fixture* Interface ([IClassFixture](https://xunit.github.io/docs/shared-context#class-fixture)) per indicare che la classe contiene test e fornisce istanze di oggetti condivisi tra i test nella classe.
 
@@ -558,8 +559,8 @@ Qualsiasi richiesta POST a SUT deve soddisfare il controllo antifalsificazione c
 
 I `SendAsync` metodi di estensione Helper (*Helper/Metodo HttpClientExtensions. cs*) e il `GetDocumentAsync` metodo helper (*Helper/htmlhelpers. cs*) nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) usano il parser [AngleSharp](https://anglesharp.github.io/) per gestire il controllo antifalsificazione con i metodi seguenti:
 
-* `GetDocumentAsync`: Riceve il [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) e restituisce un oggetto `IHtmlDocument` . `GetDocumentAsync`Usa una factory che prepara una *risposta virtuale* basata sull'originale `HttpResponseMessage` . Per ulteriori informazioni, vedere la [documentazione di AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
-* `SendAsync`i metodi di estensione per `HttpClient` compongono un [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) e chiamano [SendAsync (HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) per inviare richieste a SUT. Gli overload per `SendAsync` accettano il formato HTML ( `IHtmlFormElement` ) e gli elementi seguenti:
+* `GetDocumentAsync`: Riceve il [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) e restituisce un oggetto `IHtmlDocument` . `GetDocumentAsync` Usa una factory che prepara una *risposta virtuale* basata sull'originale `HttpResponseMessage` . Per ulteriori informazioni, vedere la [documentazione di AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
+* `SendAsync` i metodi di estensione per `HttpClient` compongono un [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) e chiamano [SendAsync (HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) per inviare richieste a SUT. Gli overload per `SendAsync` accettano il formato HTML ( `IHtmlFormElement` ) e gli elementi seguenti:
   * Pulsante Invia nel formato ( `IHtmlElement` )
   * Raccolta di valori di form ( `IEnumerable<KeyValuePair<string, string>>` )
   * Pulsante Invia ( `IHtmlElement` ) e valori form ( `IEnumerable<KeyValuePair<string, string>>` )
@@ -640,7 +641,7 @@ Per testare il servizio e l'inserimento di virgolette in un test di integrazione
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet4)]
 
-`ConfigureTestServices`viene chiamato e il servizio con ambito viene registrato:
+`ConfigureTestServices` viene chiamato e il servizio con ambito viene registrato:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet5&highlight=7-10,17,20-21)]
 

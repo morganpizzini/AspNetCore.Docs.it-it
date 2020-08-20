@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/08/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 21bd1db322a984b5644b817e82a293b6c0b2d91e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 913f8f1e43586ce71353c080e72be3b80f4c0573
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019329"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634267"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Autenticazione e autorizzazione per le ZPS
 
-ASP.NET Core 3,0 o versione successiva offre l'autenticazione in app a pagina singola (Spa) usando il supporto per l'autorizzazione dell'API. ASP.NET Core Identity per l'autenticazione e l'archiviazione degli utenti è combinato con [ Identity server](https://identityserver.io/) per l'implementazione di OpenID Connect.
+ASP.NET Core 3,0 o versione successiva offre l'autenticazione in app a pagina singola (Spa) usando il supporto per l'autorizzazione dell'API. ASP.NET Core Identityper l'autenticazione e l'archiviazione degli utenti è combinato con [ Identity Server](https://identityserver.io/) per l'implementazione di OpenID Connect.
 
 Un parametro di autenticazione è stato aggiunto ai modelli di progetto **angolari** e **React** , che è simile al parametro Authentication nei modelli di progetto **applicazione Web** (MVC) e **applicazione Web** ( Razor pagine). I valori dei parametri consentiti sono **None** e **individual**. Il modello di progetto **React.js e Redux** non supporta il parametro Authentication al momento.
 
@@ -54,12 +55,12 @@ Le sezioni seguenti descrivono le aggiunte al progetto quando è incluso il supp
 
 ### <a name="startup-class"></a>Classe di avvio
 
-Gli esempi di codice seguenti si basano su [Microsoft. AspNetCore. ApiAuthorization. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer)Pacchetto NuGet del server. Gli esempi configurano l'autenticazione e l'autorizzazione dell'API usando i <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> metodi di estensione e. I progetti che usano i modelli di progetto REACT o unangolar SPA con autenticazione includono un riferimento a questo pacchetto.
+Gli esempi di codice seguenti si basano su [Microsoft. AspNetCore. ApiAuthorization. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) Pacchetto NuGet del server. Gli esempi configurano l'autenticazione e l'autorizzazione dell'API usando i <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> metodi di estensione e. I progetti che usano i modelli di progetto REACT o unangolar SPA con autenticazione includono un riferimento a questo pacchetto.
 
 La `Startup` classe presenta le aggiunte seguenti:
 
 * All'interno del `Startup.ConfigureServices` Metodo:
-  * Identitycon l'interfaccia utente predefinita:
+  * Identity con l'interfaccia utente predefinita:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>

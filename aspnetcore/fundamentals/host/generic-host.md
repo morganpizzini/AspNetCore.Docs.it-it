@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/17/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: 7f662aac3714e49e6a3a63175415a1a63b0940c2
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e606812c1c2164a7e4d0926a76d2ff7ada4c9a87
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017428"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635385"
 ---
 # <a name="net-generic-host"></a>Host generico .NET
 
@@ -203,10 +204,10 @@ Questa sezione elenca le impostazioni dell'host che si applicano ai carichi di l
 
 La proprietà [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName*) viene impostata dalla configurazione dell'host durante la costruzione dell'host.
 
-**Chiave**:`applicationName`  
-**Tipo**:`string`  
+**Chiave**: `applicationName`  
+**Tipo**: `string`  
 **Impostazione predefinita**: il nome dell'assembly che contiene il punto di ingresso dell'app.  
-**Variabile di ambiente**:`<PREFIX_>APPLICATIONNAME`
+**Variabile di ambiente**: `<PREFIX_>APPLICATIONNAME`
 
 per impostare questo valore usare la variabile di ambiente. 
 
@@ -214,10 +215,10 @@ per impostare questo valore usare la variabile di ambiente.
 
 La proprietà [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath*) determina il punto in cui l'host inizia a cercare i file di contenuto. Se il percorso non esiste, l'host non verrà avviato.
 
-**Chiave**:`contentRoot`  
-**Tipo**:`string`  
+**Chiave**: `contentRoot`  
+**Tipo**: `string`  
 **Impostazione predefinita**: la cartella in cui risiede l'assembly dell'app.  
-**Variabile di ambiente**:`<PREFIX_>CONTENTROOT`
+**Variabile di ambiente**: `<PREFIX_>CONTENTROOT`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseContentRoot` su `IHostBuilder`:
 
@@ -236,10 +237,10 @@ Per altre informazioni, vedere:
 
 La proprietà [IHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName*) può essere impostata su qualsiasi valore. I valori definiti dal framework includono `Development`, `Staging` e `Production`. I valori non fanno distinzione tra maiuscole e minuscole.
 
-**Chiave**:`environment`  
-**Tipo**:`string`  
-**Impostazione predefinita**:`Production`  
-**Variabile di ambiente**:`<PREFIX_>ENVIRONMENT`
+**Chiave**: `environment`  
+**Tipo**: `string`  
+**Impostazione predefinita**: `Production`  
+**Variabile di ambiente**: `<PREFIX_>ENVIRONMENT`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseEnvironment` su `IHostBuilder`:
 
@@ -258,10 +259,10 @@ Host.CreateDefaultBuilder(args)
 
 Se il periodo di timeout scade prima che siano stati arrestati tutti i servizi ospitati, gli eventuali servizi attivi rimanenti vengono interrotti quando l'app viene arrestata. I servizi si arrestano anche se non hanno completato l'elaborazione. Se l'arresto dei servizi richiede più tempo, aumentare il valore di timeout.
 
-**Chiave**:`shutdownTimeoutSeconds`  
-**Tipo**:`int`  
+**Chiave**: `shutdownTimeoutSeconds`  
+**Tipo**: `int`  
 **Impostazione predefinita**: 5 secondi  
-**Variabile di ambiente**:`<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
+**Variabile di ambiente**: `<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
 
 Per impostare questo valore, usare la variabile di ambiente o configurare `HostOptions`. Nell'esempio seguente il timeout viene impostato su 20 secondi:
 
@@ -287,10 +288,10 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 Quando è `false`, gli errori durante l'avvio causano la chiusura dell'host. Quando è `true`, l'host acquisisce le eccezioni durante l'avvio e tenta di avviare il server.
 
-**Chiave**:`captureStartupErrors`  
+**Chiave**: `captureStartupErrors`  
 **Tipo**: `bool` ( `true` o `1` )  
 **Impostazione predefinita**: il valore predefinito è `false` a meno che l'app non venga eseguita con Kestrel in IIS, in tal caso il valore predefinito è `true`.  
-**Variabile di ambiente**:`<PREFIX_>CAPTURESTARTUPERRORS`
+**Variabile di ambiente**: `<PREFIX_>CAPTURESTARTUPERRORS`
 
 Per impostare questo valore, usare la configurazione o chiamare `CaptureStartupErrors`:
 
@@ -302,10 +303,10 @@ webBuilder.CaptureStartupErrors(true);
 
 Quando è abilitata o quando l'ambiente è `Development`, l'app acquisisce gli errori dettagliati.
 
-**Chiave**:`detailedErrors`  
+**Chiave**: `detailedErrors`  
 **Tipo**: `bool` ( `true` o `1` )  
-**Impostazione predefinita**:`false`  
-**Variabile di ambiente**:`<PREFIX_>_DETAILEDERRORS`
+**Impostazione predefinita**: `false`  
+**Variabile di ambiente**: `<PREFIX_>_DETAILEDERRORS`
 
 Per impostare questo valore, usare la configurazione o chiamare `UseSetting`:
 
@@ -317,10 +318,10 @@ webBuilder.UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
 
 Una stringa delimitata da punto e virgola di assembly di avvio dell'hosting da caricare all'avvio. Sebbene il valore di configurazione predefinito sia una stringa vuota, gli assembly di avvio dell'hosting includono sempre l'assembly dell'app. Quando vengono specificati, gli assembly di avvio dell'hosting vengono aggiunti all'assembly dell'app per essere caricati quando l'app compila i servizi comuni durante l'avvio.
 
-**Chiave**:`hostingStartupAssemblies`  
-**Tipo**:`string`  
+**Chiave**: `hostingStartupAssemblies`  
+**Tipo**: `string`  
 **Impostazione predefinita**: stringa vuota  
-**Variabile di ambiente**:`<PREFIX_>_HOSTINGSTARTUPASSEMBLIES`
+**Variabile di ambiente**: `<PREFIX_>_HOSTINGSTARTUPASSEMBLIES`
 
 Per impostare questo valore, usare la configurazione o chiamare `UseSetting`:
 
@@ -332,10 +333,10 @@ webBuilder.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "assembly1;as
 
 Una stringa delimitata da punto e virgola di assembly di avvio dell'hosting da escludere all'avvio.
 
-**Chiave**:`hostingStartupExcludeAssemblies`  
-**Tipo**:`string`  
+**Chiave**: `hostingStartupExcludeAssemblies`  
+**Tipo**: `string`  
 **Impostazione predefinita**: stringa vuota  
-**Variabile di ambiente**:`<PREFIX_>_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
+**Variabile di ambiente**: `<PREFIX_>_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
 
 Per impostare questo valore, usare la configurazione o chiamare `UseSetting`:
 
@@ -347,10 +348,10 @@ webBuilder.UseSetting(WebHostDefaults.HostingStartupExcludeAssembliesKey, "assem
 
 Porta di reindirizzamento HTTPS. Usata per [imporre HTTPS](xref:security/enforcing-ssl).
 
-**Chiave**:`https_port`  
-**Tipo**:`string`  
+**Chiave**: `https_port`  
+**Tipo**: `string`  
 **Impostazione predefinita**: un valore predefinito non è impostato.  
-**Variabile di ambiente**:`<PREFIX_>HTTPS_PORT`
+**Variabile di ambiente**: `<PREFIX_>HTTPS_PORT`
 
 Per impostare questo valore, usare la configurazione o chiamare `UseSetting`:
 
@@ -362,10 +363,10 @@ webBuilder.UseSetting("https_port", "8080");
 
 Indica se l'host deve essere in ascolto sugli URL configurati con `IWebHostBuilder` anziché gli URL configurati con l' `IServer` implementazione di.
 
-**Chiave**:`preferHostingUrls`  
+**Chiave**: `preferHostingUrls`  
 **Tipo**: `bool` ( `true` o `1` )  
-**Impostazione predefinita**:`true`  
-**Variabile di ambiente**:`<PREFIX_>_PREFERHOSTINGURLS`
+**Impostazione predefinita**: `true`  
+**Variabile di ambiente**: `<PREFIX_>_PREFERHOSTINGURLS`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `PreferHostingUrls`:
 
@@ -377,10 +378,10 @@ webBuilder.PreferHostingUrls(false);
 
 Impedisce il caricamento automatico degli assembly di avvio dell'hosting, inclusi gli assembly di avvio dell'hosting configurati dall'assembly dell'app. Per altre informazioni, vedere <xref:fundamentals/configuration/platform-specific-configuration>.
 
-**Chiave**:`preventHostingStartup`  
+**Chiave**: `preventHostingStartup`  
 **Tipo**: `bool` ( `true` o `1` )  
-**Impostazione predefinita**:`false`  
-**Variabile di ambiente**:`<PREFIX_>_PREVENTHOSTINGSTARTUP`
+**Impostazione predefinita**: `false`  
+**Variabile di ambiente**: `<PREFIX_>_PREVENTHOSTINGSTARTUP`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseSetting`:
 
@@ -392,10 +393,10 @@ webBuilder.UseSetting(WebHostDefaults.PreventHostingStartupKey, "true");
 
 L'assembly per la ricerca della classe `Startup`.
 
-**Chiave**:`startupAssembly`  
-**Tipo**:`string`  
+**Chiave**: `startupAssembly`  
+**Tipo**: `string`  
 **Impostazione predefinita**: assembly dell'app  
-**Variabile di ambiente**:`<PREFIX_>STARTUPASSEMBLY`
+**Variabile di ambiente**: `<PREFIX_>STARTUPASSEMBLY`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseStartup`. `UseStartup` può richiedere un nome di assembly (`string`) o un tipo (`TStartup`). Se vengono chiamati più metodi `UseStartup`, l'ultimo metodo ha la precedenza.
 
@@ -409,12 +410,12 @@ webBuilder.UseStartup<Startup>();
 
 ### <a name="urls"></a>URL
 
-Elenco delimitato da punto e virgola degli indirizzi IP o gli indirizzi host con le porte e protocolli su cui il server deve eseguire l'ascolto per le richieste. Ad esempio, `http://localhost:123` Usare "\*" per indicare che il server deve eseguire l'ascolto per le richieste su tutti gli indirizzi IP o nomi host usando la porta e il protocollo specificati (ad esempio, `http://*:5000`). Il protocollo (`http://` o `https://`) deve essere incluso con ogni URL. I formati supportati variano a seconda del server.
+Elenco delimitato da punto e virgola degli indirizzi IP o gli indirizzi host con le porte e protocolli su cui il server deve eseguire l'ascolto per le richieste. Ad esempio: `http://localhost:123`. Usare "\*" per indicare che il server deve eseguire l'ascolto per le richieste su tutti gli indirizzi IP o nomi host usando la porta e il protocollo specificati (ad esempio, `http://*:5000`). Il protocollo (`http://` o `https://`) deve essere incluso con ogni URL. I formati supportati variano a seconda del server.
 
-**Chiave**:`urls`  
-**Tipo**:`string`  
-**Impostazione predefinita**: `http://localhost:5000` e`https://localhost:5001`  
-**Variabile di ambiente**:`<PREFIX_>URLS`
+**Chiave**: `urls`  
+**Tipo**: `string`  
+**Impostazione predefinita**: `http://localhost:5000` e `https://localhost:5001`  
+**Variabile di ambiente**: `<PREFIX_>URLS`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseUrls`:
 
@@ -428,10 +429,10 @@ Kestrel ha una propria API di configurazione degli endpoint. Per altre informazi
 
 La proprietà [IWebHostEnvironment. WebRootPath](xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath) determina il percorso relativo degli asset statici dell'app. Se il percorso non esiste, viene usato un provider di file no-op.  
 
-**Chiave**:`webroot`  
-**Tipo**:`string`  
+**Chiave**: `webroot`  
+**Tipo**: `string`  
 **Impostazione predefinita**: il valore predefinito è `wwwroot` . Il percorso di *{radice del contenuto}/wwwroot* deve esistere.  
-**Variabile di ambiente**:`<PREFIX_>WEBROOT`
+**Variabile di ambiente**: `<PREFIX_>WEBROOT`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseWebRoot` su `IWebHostBuilder`:
 
@@ -593,20 +594,20 @@ La configurazione dell'host viene creata tramite:
 
 La proprietà [IHostingEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ApplicationName*) viene impostata dalla configurazione dell'host durante la costruzione dell'host. Per impostare il valore in modo esplicito, usare [HostDefaults.ApplicationKey](xref:Microsoft.Extensions.Hosting.HostDefaults.ApplicationKey):
 
-**Chiave**:`applicationName`  
-**Tipo**:`string`  
+**Chiave**: `applicationName`  
+**Tipo**: `string`  
 **Impostazione predefinita**: il nome dell'assembly contenente il punto di ingresso dell'app.  
-**Imposta utilizzando**:`HostBuilderContext.HostingEnvironment.ApplicationName`  
+**Imposta utilizzando**: `HostBuilderContext.HostingEnvironment.ApplicationName`  
 **Variabile di ambiente**: `<PREFIX_>APPLICATIONNAME` ( `<PREFIX_>` è [facoltativo e definito dall'utente](#configurehostconfiguration))
 
 ### <a name="content-root"></a>Radice del contenuto
 
 Questa impostazione determina la posizione da cui l'host inizia la ricerca dei file di contenuto.
 
-**Chiave**:`contentRoot`  
-**Tipo**:`string`  
+**Chiave**: `contentRoot`  
+**Tipo**: `string`  
 **Impostazione predefinita**: il valore predefinito corrisponde alla cartella contenente l'assembly dell'app.  
-**Imposta utilizzando**:`UseContentRoot`  
+**Imposta utilizzando**: `UseContentRoot`  
 **Variabile di ambiente**: `<PREFIX_>CONTENTROOT` ( `<PREFIX_>` è [facoltativo e definito dall'utente](#configurehostconfiguration))
 
 Se il percorso non esiste, l'host non verrà avviato.
@@ -619,10 +620,10 @@ Per altre informazioni, vedere [nozioni fondamentali: radice del contenuto](xref
 
 Imposta l' [ambiente](xref:fundamentals/environments)dell'app.
 
-**Chiave**:`environment`  
-**Tipo**:`string`  
-**Impostazione predefinita**:`Production`  
-**Imposta utilizzando**:`UseEnvironment`  
+**Chiave**: `environment`  
+**Tipo**: `string`  
+**Impostazione predefinita**: `Production`  
+**Imposta utilizzando**: `UseEnvironment`  
 **Variabile di ambiente**: `<PREFIX_>ENVIRONMENT` ( `<PREFIX_>` è [facoltativo e definito dall'utente](#configurehostconfiguration))
 
 L'ambiente può essere impostato su qualsiasi valore. I valori definiti dal framework includono `Development`, `Staging` e `Production`. I valori non fanno distinzione tra maiuscole e minuscole.
@@ -712,7 +713,7 @@ L'[app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetc
 
 ### <a name="useconsolelifetime"></a>UseConsoleLifetime
 
-<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*>Ascolta la <kbd>combinazione di tasti CTRL</kbd> + <kbd>C</kbd>/SIGINT o SIGTERM e chiama <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> per avviare il processo di arresto. <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*>Sblocca le estensioni, ad esempio [RunAsync](#runasync) e [WaitForShutdownAsync](#waitforshutdownasync). `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` è preregistrata come implementazione di durata predefinita. Viene usata l'ultima durata registrata.
+<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*>Ascolta la <kbd>combinazione di tasti CTRL</kbd> + <kbd>C</kbd>/SIGINT o SIGTERM e chiama <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> per avviare il processo di arresto. <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> Sblocca le estensioni, ad esempio [RunAsync](#runasync) e [WaitForShutdownAsync](#waitforshutdownasync). `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` è preregistrata come implementazione di durata predefinita. Viene usata l'ultima durata registrata.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseConsoleLifetime)]
 
@@ -1178,10 +1179,10 @@ Questa sezione elenca le impostazioni dell'host che si applicano ai carichi di l
 
 La proprietà [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName*) viene impostata dalla configurazione dell'host durante la costruzione dell'host.
 
-**Chiave**:`applicationName`  
-**Tipo**:`string`  
+**Chiave**: `applicationName`  
+**Tipo**: `string`  
 **Impostazione predefinita**: il nome dell'assembly che contiene il punto di ingresso dell'app.  
-**Variabile di ambiente**:`<PREFIX_>APPLICATIONNAME`
+**Variabile di ambiente**: `<PREFIX_>APPLICATIONNAME`
 
 per impostare questo valore usare la variabile di ambiente. 
 
@@ -1189,10 +1190,10 @@ per impostare questo valore usare la variabile di ambiente.
 
 La proprietà [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath*) determina il punto in cui l'host inizia a cercare i file di contenuto. Se il percorso non esiste, l'host non verrà avviato.
 
-**Chiave**:`contentRoot`  
-**Tipo**:`string`  
+**Chiave**: `contentRoot`  
+**Tipo**: `string`  
 **Impostazione predefinita**: la cartella in cui risiede l'assembly dell'app.  
-**Variabile di ambiente**:`<PREFIX_>CONTENTROOT`
+**Variabile di ambiente**: `<PREFIX_>CONTENTROOT`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseContentRoot` su `IHostBuilder`:
 
@@ -1211,10 +1212,10 @@ Per altre informazioni, vedere:
 
 La proprietà [IHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName*) può essere impostata su qualsiasi valore. I valori definiti dal framework includono `Development`, `Staging` e `Production`. I valori non fanno distinzione tra maiuscole e minuscole.
 
-**Chiave**:`environment`  
-**Tipo**:`string`  
-**Impostazione predefinita**:`Production`  
-**Variabile di ambiente**:`<PREFIX_>ENVIRONMENT`
+**Chiave**: `environment`  
+**Tipo**: `string`  
+**Impostazione predefinita**: `Production`  
+**Variabile di ambiente**: `<PREFIX_>ENVIRONMENT`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseEnvironment` su `IHostBuilder`:
 
@@ -1233,10 +1234,10 @@ Host.CreateDefaultBuilder(args)
 
 Se il periodo di timeout scade prima che siano stati arrestati tutti i servizi ospitati, gli eventuali servizi attivi rimanenti vengono interrotti quando l'app viene arrestata. I servizi si arrestano anche se non hanno completato l'elaborazione. Se l'arresto dei servizi richiede più tempo, aumentare il valore di timeout.
 
-**Chiave**:`shutdownTimeoutSeconds`  
-**Tipo**:`int`  
+**Chiave**: `shutdownTimeoutSeconds`  
+**Tipo**: `int`  
 **Impostazione predefinita**: 5 secondi  
-**Variabile di ambiente**:`<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
+**Variabile di ambiente**: `<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
 
 Per impostare questo valore, usare la variabile di ambiente o configurare `HostOptions`. Nell'esempio seguente il timeout viene impostato su 20 secondi:
 
@@ -1246,11 +1247,11 @@ Per impostare questo valore, usare la variabile di ambiente o configurare `HostO
 
 Per [impostazione predefinita](xref:fundamentals/configuration/index#default), *appsettings.json* e *appSettings. { L'ambiente}. JSON* viene ricaricato quando il file viene modificato. Per disabilitare questo comportamento di ricaricamento in ASP.NET Core 5,0 Preview 3 o versione successiva, impostare la `hostBuilder:reloadConfigOnChange` chiave su `false` .
 
-**Chiave**:`hostBuilder:reloadConfigOnChange`  
+**Chiave**: `hostBuilder:reloadConfigOnChange`  
 **Tipo**: `bool` ( `true` o `1` )  
-**Impostazione predefinita**:`true`  
-**Argomento della riga di comando**:`hostBuilder:reloadConfigOnChange`  
-**Variabile di ambiente**:`<PREFIX_>hostBuilder:reloadConfigOnChange`
+**Impostazione predefinita**: `true`  
+**Argomento della riga di comando**: `hostBuilder:reloadConfigOnChange`  
+**Variabile di ambiente**: `<PREFIX_>hostBuilder:reloadConfigOnChange`
 
 > [!WARNING]
 > Il separatore dei due punti ( `:` ) non funziona con le chiavi gerarchiche delle variabili di ambiente in tutte le piattaforme. Per altre informazioni, vedere [variabili di ambiente](xref:fundamentals/configuration/index#environment-variables).
@@ -1275,10 +1276,10 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 Quando è `false`, gli errori durante l'avvio causano la chiusura dell'host. Quando è `true`, l'host acquisisce le eccezioni durante l'avvio e tenta di avviare il server.
 
-**Chiave**:`captureStartupErrors`  
+**Chiave**: `captureStartupErrors`  
 **Tipo**: `bool` ( `true` o `1` )  
 **Impostazione predefinita**: il valore predefinito è `false` a meno che l'app non venga eseguita con Kestrel in IIS, in tal caso il valore predefinito è `true`.  
-**Variabile di ambiente**:`<PREFIX_>CAPTURESTARTUPERRORS`
+**Variabile di ambiente**: `<PREFIX_>CAPTURESTARTUPERRORS`
 
 Per impostare questo valore, usare la configurazione o chiamare `CaptureStartupErrors`:
 
@@ -1290,10 +1291,10 @@ webBuilder.CaptureStartupErrors(true);
 
 Quando è abilitata o quando l'ambiente è `Development`, l'app acquisisce gli errori dettagliati.
 
-**Chiave**:`detailedErrors`  
+**Chiave**: `detailedErrors`  
 **Tipo**: `bool` ( `true` o `1` )  
-**Impostazione predefinita**:`false`  
-**Variabile di ambiente**:`<PREFIX_>_DETAILEDERRORS`
+**Impostazione predefinita**: `false`  
+**Variabile di ambiente**: `<PREFIX_>_DETAILEDERRORS`
 
 Per impostare questo valore, usare la configurazione o chiamare `UseSetting`:
 
@@ -1305,10 +1306,10 @@ webBuilder.UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
 
 Una stringa delimitata da punto e virgola di assembly di avvio dell'hosting da caricare all'avvio. Sebbene il valore di configurazione predefinito sia una stringa vuota, gli assembly di avvio dell'hosting includono sempre l'assembly dell'app. Quando vengono specificati, gli assembly di avvio dell'hosting vengono aggiunti all'assembly dell'app per essere caricati quando l'app compila i servizi comuni durante l'avvio.
 
-**Chiave**:`hostingStartupAssemblies`  
-**Tipo**:`string`  
+**Chiave**: `hostingStartupAssemblies`  
+**Tipo**: `string`  
 **Impostazione predefinita**: stringa vuota  
-**Variabile di ambiente**:`<PREFIX_>_HOSTINGSTARTUPASSEMBLIES`
+**Variabile di ambiente**: `<PREFIX_>_HOSTINGSTARTUPASSEMBLIES`
 
 Per impostare questo valore, usare la configurazione o chiamare `UseSetting`:
 
@@ -1320,10 +1321,10 @@ webBuilder.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "assembly1;as
 
 Una stringa delimitata da punto e virgola di assembly di avvio dell'hosting da escludere all'avvio.
 
-**Chiave**:`hostingStartupExcludeAssemblies`  
-**Tipo**:`string`  
+**Chiave**: `hostingStartupExcludeAssemblies`  
+**Tipo**: `string`  
 **Impostazione predefinita**: stringa vuota  
-**Variabile di ambiente**:`<PREFIX_>_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
+**Variabile di ambiente**: `<PREFIX_>_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
 
 Per impostare questo valore, usare la configurazione o chiamare `UseSetting`:
 
@@ -1335,10 +1336,10 @@ webBuilder.UseSetting(WebHostDefaults.HostingStartupExcludeAssembliesKey, "assem
 
 Porta di reindirizzamento HTTPS. Usata per [imporre HTTPS](xref:security/enforcing-ssl).
 
-**Chiave**:`https_port`  
-**Tipo**:`string`  
+**Chiave**: `https_port`  
+**Tipo**: `string`  
 **Impostazione predefinita**: un valore predefinito non è impostato.  
-**Variabile di ambiente**:`<PREFIX_>HTTPS_PORT`
+**Variabile di ambiente**: `<PREFIX_>HTTPS_PORT`
 
 Per impostare questo valore, usare la configurazione o chiamare `UseSetting`:
 
@@ -1350,10 +1351,10 @@ webBuilder.UseSetting("https_port", "8080");
 
 Indica se l'host deve essere in ascolto sugli URL configurati con `IWebHostBuilder` anziché gli URL configurati con l' `IServer` implementazione di.
 
-**Chiave**:`preferHostingUrls`  
+**Chiave**: `preferHostingUrls`  
 **Tipo**: `bool` ( `true` o `1` )  
-**Impostazione predefinita**:`true`  
-**Variabile di ambiente**:`<PREFIX_>_PREFERHOSTINGURLS`
+**Impostazione predefinita**: `true`  
+**Variabile di ambiente**: `<PREFIX_>_PREFERHOSTINGURLS`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `PreferHostingUrls`:
 
@@ -1365,10 +1366,10 @@ webBuilder.PreferHostingUrls(false);
 
 Impedisce il caricamento automatico degli assembly di avvio dell'hosting, inclusi gli assembly di avvio dell'hosting configurati dall'assembly dell'app. Per altre informazioni, vedere <xref:fundamentals/configuration/platform-specific-configuration>.
 
-**Chiave**:`preventHostingStartup`  
+**Chiave**: `preventHostingStartup`  
 **Tipo**: `bool` ( `true` o `1` )  
-**Impostazione predefinita**:`false`  
-**Variabile di ambiente**:`<PREFIX_>_PREVENTHOSTINGSTARTUP`
+**Impostazione predefinita**: `false`  
+**Variabile di ambiente**: `<PREFIX_>_PREVENTHOSTINGSTARTUP`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseSetting`:
 
@@ -1380,10 +1381,10 @@ webBuilder.UseSetting(WebHostDefaults.PreventHostingStartupKey, "true");
 
 L'assembly per la ricerca della classe `Startup`.
 
-**Chiave**:`startupAssembly`  
-**Tipo**:`string`  
+**Chiave**: `startupAssembly`  
+**Tipo**: `string`  
 **Impostazione predefinita**: assembly dell'app  
-**Variabile di ambiente**:`<PREFIX_>STARTUPASSEMBLY`
+**Variabile di ambiente**: `<PREFIX_>STARTUPASSEMBLY`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseStartup`. `UseStartup` può richiedere un nome di assembly (`string`) o un tipo (`TStartup`). Se vengono chiamati più metodi `UseStartup`, l'ultimo metodo ha la precedenza.
 
@@ -1397,12 +1398,12 @@ webBuilder.UseStartup<Startup>();
 
 ### <a name="urls"></a>URL
 
-Elenco delimitato da punto e virgola degli indirizzi IP o gli indirizzi host con le porte e protocolli su cui il server deve eseguire l'ascolto per le richieste. Ad esempio, `http://localhost:123` Usare "\*" per indicare che il server deve eseguire l'ascolto per le richieste su tutti gli indirizzi IP o nomi host usando la porta e il protocollo specificati (ad esempio, `http://*:5000`). Il protocollo (`http://` o `https://`) deve essere incluso con ogni URL. I formati supportati variano a seconda del server.
+Elenco delimitato da punto e virgola degli indirizzi IP o gli indirizzi host con le porte e protocolli su cui il server deve eseguire l'ascolto per le richieste. Ad esempio: `http://localhost:123`. Usare "\*" per indicare che il server deve eseguire l'ascolto per le richieste su tutti gli indirizzi IP o nomi host usando la porta e il protocollo specificati (ad esempio, `http://*:5000`). Il protocollo (`http://` o `https://`) deve essere incluso con ogni URL. I formati supportati variano a seconda del server.
 
-**Chiave**:`urls`  
-**Tipo**:`string`  
-**Impostazione predefinita**: `http://localhost:5000` e`https://localhost:5001`  
-**Variabile di ambiente**:`<PREFIX_>URLS`
+**Chiave**: `urls`  
+**Tipo**: `string`  
+**Impostazione predefinita**: `http://localhost:5000` e `https://localhost:5001`  
+**Variabile di ambiente**: `<PREFIX_>URLS`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseUrls`:
 
@@ -1416,10 +1417,10 @@ Kestrel ha una propria API di configurazione degli endpoint. Per altre informazi
 
 La proprietà [IWebHostEnvironment. WebRootPath](xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath) determina il percorso relativo degli asset statici dell'app. Se il percorso non esiste, viene usato un provider di file no-op.  
 
-**Chiave**:`webroot`  
-**Tipo**:`string`  
+**Chiave**: `webroot`  
+**Tipo**: `string`  
 **Impostazione predefinita**: il valore predefinito è `wwwroot` . Il percorso di *{radice del contenuto}/wwwroot* deve esistere.  
-**Variabile di ambiente**:`<PREFIX_>WEBROOT`
+**Variabile di ambiente**: `<PREFIX_>WEBROOT`
 
 Per impostare questo valore, usare la variabile di ambiente o chiamare `UseWebRoot` su `IWebHostBuilder`:
 

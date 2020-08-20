@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/19/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/google-logins
-ms.openlocfilehash: 7a10b66be7f4dda25f94437b55bad9746bda97e0
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a7a5260a2446ac3f3be00755ef051e56080a7485
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020483"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634293"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>Installazione di Google External login in ASP.NET Core
 
@@ -34,7 +35,7 @@ Questa esercitazione illustra come consentire agli utenti di accedere con il pro
 * Installare [Microsoft. AspNetCore. Authentication. Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google).
 * Passare all'articolo relativo all' [integrazione di Google Sign-in nell'app Web](https://developers.google.com/identity/sign-in/web/sign-in) e selezionare **configura un progetto**.
 * Nella finestra di dialogo **Configura client OAuth** selezionare **server Web**.
-* Nella casella voce di testo **URI di reindirizzamento autorizzato** impostare l'URI di reindirizzamento. Ad esempio: `https://localhost:44312/signin-google`
+* Nella casella voce di testo **URI di reindirizzamento autorizzato** impostare l'URI di reindirizzamento. Ad esempio, usare `https://localhost:44312/signin-google`
 * Salvare l' **ID client** e il **segreto client**.
 * Quando si distribuisce il sito, registrare il nuovo URL pubblico dalla **console di Google**.
 

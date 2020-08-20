@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/30/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/index
-ms.openlocfilehash: f141e9248a702ad9a1d9737f82543a0ccc8fb573
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8fa44f567906ecf36a9bbaa5076cd36c75c10781
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017207"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634878"
 ---
 # <a name="aspnet-core-fundamentals"></a>Nozioni fondamentali su ASP.NET Core
 
@@ -210,7 +211,7 @@ La radice del contenuto è il percorso di base per:
 * Eseguibile che ospita l'app (*exe*).
 * Assembly compilati che costituiscono l'app (*. dll*).
 * File di contenuto usati dall'app, ad esempio:
-  * Razorfile (*. cshtml*, *. Razor*)
+  * Razor file (*. cshtml*, *. Razor*)
   * File di configurazione (con*estensione JSON*, *XML*)
   * File di dati (*. DB*)
 * La [radice Web](#web-root), in genere la cartella *wwwroot* .
@@ -459,7 +460,7 @@ La radice del contenuto è il percorso di base di:
 * Eseguibile che ospita l'app (*exe*).
 * Assembly compilati che costituiscono l'app (*. dll*).
 * File di contenuto non di codice usati dall'app, ad esempio:
-  * Razorfile (*. cshtml*, *. Razor*)
+  * Razor file (*. cshtml*, *. Razor*)
   * File di configurazione (con*estensione JSON*, *XML*)
   * File di dati (*. DB*)
 * [Radice Web](#web-root), in genere la cartella *wwwroot* pubblicata.

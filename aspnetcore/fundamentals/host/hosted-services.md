@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/10/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: 5ad99a261356540782b9e4d601e1a38724d50a97
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 04841eb4f6adfec76020d3fe61601037c3fc0733
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017376"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635346"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Attività in background con servizi ospitati in ASP.NET Core
 
@@ -60,7 +61,7 @@ Per le app Web che usano l' `Microsoft.NET.Sdk.Web` SDK, viene fatto riferimento
 
 L' <xref:Microsoft.Extensions.Hosting.IHostedService> interfaccia definisce due metodi per gli oggetti gestiti dall'host:
 
-* [StartAsync (CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*): `StartAsync` contiene la logica per avviare l'attività in background. `StartAsync`viene chiamato *prima*di:
+* [StartAsync (CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*): `StartAsync` contiene la logica per avviare l'attività in background. `StartAsync` viene chiamato *prima*di:
 
   * La pipeline di elaborazione delle richieste dell'app è configurata ( `Startup.Configure` ).
   * Il server viene avviato e viene attivato [IApplicationLifetime. ApplicationStarted](xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted*) .
@@ -112,7 +113,7 @@ Il servizio ospitato viene attivato una volta all'avvio dell'app e arrestato nor
 
 ## <a name="backgroundservice-base-class"></a>Classe di base BackgroundService
 
-<xref:Microsoft.Extensions.Hosting.BackgroundService>è una classe di base per l'implementazione di un oggetto a esecuzione prolungata <xref:Microsoft.Extensions.Hosting.IHostedService> .
+<xref:Microsoft.Extensions.Hosting.BackgroundService> è una classe di base per l'implementazione di un oggetto a esecuzione prolungata <xref:Microsoft.Extensions.Hosting.IHostedService> .
 
 [ExecuteAsync (CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.ExecuteAsync*) viene chiamato per eseguire il servizio in background. L'implementazione restituisce un oggetto <xref:System.Threading.Tasks.Task> che rappresenta l'intera durata del servizio in background. Non vengono avviati altri servizi fino a quando [ExecuteAsync non diventa asincrono](https://github.com/dotnet/extensions/issues/2149), ad esempio chiamando `await` . Evitare di eseguire operazioni di inizializzazione lunghe e bloccate in `ExecuteAsync` . Blocchi host in [StopAsync (CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.StopAsync*) in attesa del `ExecuteAsync` completamento di.
 
@@ -141,7 +142,7 @@ Il servizio dell'attività in background con ambito contiene la logica dell'atti
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ScopedProcessingService.cs?name=snippet1)]
 
-Il servizio ospitato crea un ambito per risolvere il servizio attività in background con ambito per chiamare il relativo `DoWork` metodo. `DoWork`Restituisce un oggetto `Task` , che è atteso in `ExecuteAsync` :
+Il servizio ospitato crea un ambito per risolvere il servizio attività in background con ambito per chiamare il relativo `DoWork` metodo. `DoWork` Restituisce un oggetto `Task` , che è atteso in `ExecuteAsync` :
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=19,22-35)]
 
@@ -166,7 +167,7 @@ Nell'esempio seguente `QueueHostedService` :
 Un `MonitorLoop` servizio gestisce le attività di Accodamento per il servizio ospitato ogni volta che la `w` chiave viene selezionata in un dispositivo di input:
 
 * `IBackgroundTaskQueue`Viene inserito nel `MonitorLoop` servizio.
-* `IBackgroundTaskQueue.QueueBackgroundWorkItem`viene chiamato per accodare un elemento di lavoro.
+* `IBackgroundTaskQueue.QueueBackgroundWorkItem` viene chiamato per accodare un elemento di lavoro.
 * L'elemento di lavoro simula un'attività in background con esecuzione prolungata:
   * Vengono eseguiti tre ritardi di 5 secondi ( `Task.Delay` ).
   * `try-catch` <xref:System.OperationCanceledException> Se l'attività viene annullata, viene intercettata un'istruzione.
@@ -177,7 +178,7 @@ I servizi sono registrati in `IHostBuilder.ConfigureServices` (*Program.cs*). Il
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
 
-`MonitorLoop`viene avviato in `Program.Main` :
+`MonitorLoop` viene avviato in `Program.Main` :
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet4)]
 
@@ -270,7 +271,7 @@ Nella classe modello della pagina di indice:
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Pages/Index.cshtml.cs?name=snippet1)]
 
-Quando si seleziona il pulsante **Aggiungi attività** nella pagina di indice, viene eseguito il metodo `OnPostAddTask`. `QueueBackgroundWorkItem`viene chiamato per accodare un elemento di lavoro:
+Quando si seleziona il pulsante **Aggiungi attività** nella pagina di indice, viene eseguito il metodo `OnPostAddTask`. `QueueBackgroundWorkItem` viene chiamato per accodare un elemento di lavoro:
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Pages/Index.cshtml.cs?name=snippet2)]
 

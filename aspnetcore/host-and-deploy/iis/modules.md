@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: c526fc779d778cd0f99bcdaae283b6a5a0fe09ab
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7ddc1b0f80625fbc39ac49f305f745b005cbce46
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015608"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634670"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>Moduli IIS con ASP.NET Core
 
@@ -56,7 +57,7 @@ La tabella indica i moduli di IIS nativi che funzionano con le app ASP.NET Core 
 | **Filtri ISAPI**<br>`IsapiFilterModule`                                                         | Sì | [Middleware](xref:fundamentals/middleware/index) |
 | **ISAPI**<br>`IsapiModule`                                                                       | Sì | [Middleware](xref:fundamentals/middleware/index) |
 | **Protocolli supportati**<br>`ProtocolSupportModule`                                                  | Sì | |
-| **Filtro richieste**<br>`RequestFilteringModule`                                                | Sì | [Middleware di riscrittura URL`IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
+| **Filtro richieste**<br>`RequestFilteringModule`                                                | Sì | [Middleware di riscrittura URL `IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
 | **Monitoraggio richieste**<br>`RequestMonitorModule`                                                    | Sì | |
 | **Riscrittura degli URL**&#8224;<br>`RewriteModule`                                                      | Sì | [Middleware di riscrittura URL](xref:fundamentals/url-rewriting) |
 | **Inclusioni lato server**<br>`ServerSideIncludeModule`                                            | No  | |
@@ -64,7 +65,7 @@ La tabella indica i moduli di IIS nativi che funzionano con le app ASP.NET Core 
 | **Contenuto statico**<br>`StaticFileModule`                                                         | No  | [Middleware dei file statici](xref:fundamentals/static-files) |
 | **Memorizzazione di token nella cache**<br>`TokenCacheModule`                                                          | Sì | |
 | **Memorizzazione nella cache degli URI**<br>`UriCacheModule`                                                              | Sì | |
-| **Autorizzazione URL**<br>`UrlAuthorizationModule`                                                | Sì | [ASP.NET CoreIdentity](xref:security/authentication/identity) |
+| **Autorizzazione URL**<br>`UrlAuthorizationModule`                                                | Sì | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | **Autenticazione di Windows**<br>`WindowsAuthenticationModule`                                      | Sì | |
 
 &#8224;I tipi corrispondenti `isFile` e `isDirectory` di URL Rewrite Module non funzionano con le app ASP.NET Core a causa delle modifiche apportate alla [struttura di directory](xref:host-and-deploy/directory-structure).
@@ -78,7 +79,7 @@ I moduli gestiti *non* funzionano con le app ASP.NET Core ospitate quando la ver
 | AnonymousIdentification | |
 | DefaultAuthentication   | |
 | FileAuthorization       | |
-| FormsAuthentication     | [CookieMiddleware di autenticazione](xref:security/authentication/cookie) |
+| FormsAuthentication     | [Cookie Middleware di autenticazione](xref:security/authentication/cookie) |
 | OutputCache             | [Middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) |
 | Profilo                 | |
 | RoleManager             | |
@@ -86,7 +87,7 @@ I moduli gestiti *non* funzionano con le app ASP.NET Core ospitate quando la ver
 | sessione                 | [Middleware di sessione](xref:fundamentals/app-state) |
 | UrlAuthorization        | |
 | UrlMappingsModule       | [Middleware di riscrittura URL](xref:fundamentals/url-rewriting) |
-| UrlRoutingModule-4.0    | [ASP.NET CoreIdentity](xref:security/authentication/identity) |
+| UrlRoutingModule-4.0    | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | WindowsAuthentication   | |
 
 ## <a name="iis-manager-application-changes"></a>Modifiche dell'applicazione Gestione IIS
@@ -178,4 +179,4 @@ Il modulo di memorizzazione nella cache HTTP (`HttpCacheModule`) implementa la c
 * [Introduction to IIS Architectures: Modules in IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#modules-in-iis) (Introduzione alle architetture IIS: moduli di IIS)
 * [IIS Modules Overview](/iis/get-started/introduction-to-iis/iis-modules-overview) (Panoramica dei moduli IIS)
 * [Customizing IIS 7.0 Roles and Modules](https://technet.microsoft.com/library/cc627313.aspx) (Personalizzazione di ruoli e moduli di IIS 7.0)
-* [IIS\<system.webServer>](/iis/configuration/system.webServer/)
+* [IIS \<system.webServer>](/iis/configuration/system.webServer/)

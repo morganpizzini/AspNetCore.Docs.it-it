@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/5/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/httpcontext
-ms.openlocfilehash: 2b8ac1d6c6cdeee14b74c5b14206bff51982c711
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 0eade76f8cf0bdd81cc290218f36fe9276233104
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017246"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635281"
 ---
 # <a name="access-httpcontext-in-aspnet-core"></a>Accedere a HttpContext in ASP.NET Core
 
@@ -144,7 +145,7 @@ public class UserRepository : IUserRepository
 
 ## <a name="httpcontext-access-from-a-background-thread"></a>Accesso a HttpContext da un thread in background
 
-`HttpContext`non è thread-safe. La lettura o scrittura delle proprietà `HttpContext` di fuori dell'elaborazione di una richiesta può provocare un'eccezione <xref:System.NullReferenceException>.
+`HttpContext` non è thread-safe. La lettura o scrittura delle proprietà `HttpContext` di fuori dell'elaborazione di una richiesta può provocare un'eccezione <xref:System.NullReferenceException>.
 
 > [!NOTE]
 > Se l'app genera errori sporadici `NullReferenceException` , esaminare parti del codice che avviano l'elaborazione in background o che continuano l'elaborazione dopo il completamento di una richiesta. Individuare gli errori, ad esempio definendo un metodo del controller come `async void` .
@@ -175,6 +176,6 @@ public class EmailController : Controller
 }
 ```
 
-## <a name="no-locblazor-and-shared-state"></a>Blazore stato condiviso
+## <a name="no-locblazor-and-shared-state"></a>Blazor e stato condiviso
 
 [!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]

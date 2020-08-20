@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 11d0c514dd15e787224510991ffb81680c9fc479
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7134344abb5bc724aceb9a2adb117b3749435f55
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019342"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634852"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtri in ASP.NET Core
 
@@ -60,8 +61,8 @@ Ogni tipo di filtro viene eseguito in una fase diversa della pipeline di filtro:
 * [Filtri risorse](#resource-filters):
 
   * Vengono eseguiti dopo l'autorizzazione.  
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuting*>esegue il codice prima del resto della pipeline filtro. Ad esempio, `OnResourceExecuting` esegue il codice prima dell'associazione di modelli.
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuted*>esegue il codice una volta completato il resto della pipeline.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuting*> esegue il codice prima del resto della pipeline filtro. Ad esempio, `OnResourceExecuting` esegue il codice prima dell'associazione di modelli.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuted*> esegue il codice una volta completato il resto della pipeline.
 
 * [Filtri azione](#action-filters):
 
@@ -98,8 +99,8 @@ Nel codice precedente, `SampleAsyncActionFilter` ha un <xref:Microsoft.AspNetCor
 
 È possibile implementare interfacce per più fasi di filtro in una singola classe. Ad esempio, la <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> classe implementa:
 
-* Sincrona: <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter> e<xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter>
-* Asincrono: <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter> e<xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>
+* Sincrona: <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter> e  <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter>
+* Asincrono: <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter> e <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>
 * <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter>
 
 Implementare la versione sincrona **oppure** la versione asincrona di un'interfaccia di filtro, **non** entrambe. Il runtime controlla per prima cosa se il filtro implementa l'interfaccia asincrona e, in tal caso, la chiama. In caso contrario, chiama i metodi dell'interfaccia sincrona. Se in una classe sono implementate entrambe le interfacce, sincrona e asincrona, viene chiamato solo il metodo asincrono. Quando si usano classi astratte come <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> , eseguire l'override solo dei metodi sincroni o del metodo asincrono per ogni tipo di filtro.
@@ -408,7 +409,7 @@ Esempi di filtri di risorse:
 
 ## <a name="action-filters"></a>Filtri azione
 
-I filtri azione **non** si applicano alle Razor pagine. RazorPages supporta <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> e <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Per ulteriori informazioni, vedere [metodi di filtro per le Razor pagine](xref:razor-pages/filter).
+I filtri azione **non** si applicano alle Razor pagine. Razor Pages supporta <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> e <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Per ulteriori informazioni, vedere [metodi di filtro per le Razor pagine](xref:razor-pages/filter).
 
 I filtri di azione:
 
@@ -421,7 +422,7 @@ Il codice seguente mostra un filtro di azione di esempio:
 
 La classe <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext> specifica le proprietà seguenti:
 
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.ActionArguments>: consente di leggere gli input in un metodo di azione.
+* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.ActionArguments> : consente di leggere gli input in un metodo di azione.
 * <xref:Microsoft.AspNetCore.Mvc.Controller>: consente di modificare l'istanza del controller.
 * <xref:System.Web.Mvc.ActionExecutingContext.Result>: l'impostazione di `Result` causa il corto circuito del metodo di azione e dei filtri di azione successivi.
 
@@ -942,7 +943,7 @@ Esempi di filtri di risorse:
 ## <a name="action-filters"></a>Filtri azione
 
 > [!IMPORTANT]
-> I filtri azione **non** si applicano alle Razor pagine. RazorPages supporta <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> e <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Per ulteriori informazioni, vedere [metodi di filtro per le Razor pagine](xref:razor-pages/filter).
+> I filtri azione **non** si applicano alle Razor pagine. Razor Pages supporta <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> e <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . Per ulteriori informazioni, vedere [metodi di filtro per le Razor pagine](xref:razor-pages/filter).
 
 I filtri di azione:
 

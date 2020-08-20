@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/17/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: index
-ms.openlocfilehash: 9cf721b381d3c4c737c15225edcf7918dd1fcf5b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: f1235337748bacdb6eaa775a5853238bf729e605
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015348"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634553"
 ---
 # <a name="introduction-to-aspnet-core"></a>Introduzione a ASP.NET Core
 
@@ -82,16 +83,16 @@ Per un'introduzione allo sviluppo di app ASP.NET Core, è consigliabile usare la
    |----------|----------|----------|
    |app Web                   | Nuovo sviluppo di interfaccia utente Web sul lato server |[Introduzione alle Razor pagine](xref:tutorials/razor-pages/razor-pages-start) |
    |app Web                   | Gestione di un'app MVC |[Introduzione a MVC](xref:tutorials/first-mvc-app/start-mvc)|
-   |app Web                   | Sviluppo di interfaccia utente Web lato client |[Introduzione aBlazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) |
+   |app Web                   | Sviluppo di interfaccia utente Web lato client |[Introduzione a Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) |
    |API Web                   | Servizi HTTP RESTful |[Creare un'API Web](xref:tutorials/first-web-api)&dagger; |
    |App RPC (Remote Procedure Call) | Servizi di primo contratto che usano i buffer del protocollo |[Introduzione all'uso di un servizio gRPC](xref:tutorials/grpc/grpc-start) |
-   |App in tempo reale             | Comunicazione bidirezionale tra i server e i client connessi |[Introduzione aSignalR](xref:tutorials/signalr) |
+   |App in tempo reale             | Comunicazione bidirezionale tra i server e i client connessi |[Introduzione a SignalR](xref:tutorials/signalr) |
 
 1. Seguire un'esercitazione che illustra come eseguire l'accesso ai dati di base.
 
    |Scenario  |Esercitazione  |
    |----------|----------|
-   |Nuovo sviluppo        |[RazorPagine con Entity Framework Core](xref:data/ef-rp/intro) |
+   |Nuovo sviluppo        |[Razor Pagine con Entity Framework Core](xref:data/ef-rp/intro) |
    |Gestione di un'app MVC |[MVC con Entity Framework Core](xref:data/ef-mvc/intro) |
 
 1. Leggi una panoramica dei [concetti di base](xref:fundamentals/index) ASP.NET Core che si applicano a tutti i tipi di app.
@@ -171,13 +172,13 @@ Per un'introduzione allo sviluppo delle app ASP.NET Core, è consigliabile esegu
    |app Web                   | Per un nuovo sviluppo        |[Introduzione alle Razor pagine](xref:tutorials/razor-pages/razor-pages-start) |
    |app Web                   | Per gestire un'app MVC |[Introduzione a MVC](xref:tutorials/first-mvc-app/start-mvc)|
    |API Web                   |                            |[Creare un'API Web](xref:tutorials/first-web-api)&dagger; |
-   |App in tempo reale             |                            |[Introduzione aSignalR](xref:tutorials/signalr) |
+   |App in tempo reale             |                            |[Introduzione a SignalR](xref:tutorials/signalr) |
 
 1. Seguire un'esercitazione che illustra come eseguire l'accesso ai dati di base.
 
    |Scenario  |Esercitazione  |
    |----------|----------|
-   | Per un nuovo sviluppo        |[RazorPagine con Entity Framework Core](xref:data/ef-rp/intro) |
+   | Per un nuovo sviluppo        |[Razor Pagine con Entity Framework Core](xref:data/ef-rp/intro) |
    | Per gestire un'app MVC |[MVC con Entity Framework Core](xref:data/ef-mvc/intro) |
 
 1. Leggi una panoramica dei [concetti di base](xref:fundamentals/index) ASP.NET Core che si applicano a tutti i tipi di app.

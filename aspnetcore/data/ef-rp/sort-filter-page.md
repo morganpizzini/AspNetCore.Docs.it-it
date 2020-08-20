@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 5bfea63cc1ff85adbe5ce572858b78a8e86b2280
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 5e073845acbecdf0db4c30c4725f12033cfc42ac
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017727"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634683"
 ---
 # <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Parte 3, Razor pagine con EF core in ASP.NET Core ordinamento, filtro, paging
 
@@ -55,7 +56,7 @@ Il parametro `sortOrder` è "Name" o "Data". Il parametro `sortOrder` è facolta
 
 Quando la pagina Index (Indice) viene richiesta dal collegamento **Students** (Studenti), non è presente alcuna stringa di query. Gli studenti vengono visualizzati in ordine crescente in base al cognome. L'ordine crescente in base al cognome è l'impostazione predefinita (caso di fallthrough) nell'istruzione `switch`. Quando l'utente fa clic sul collegamento di un'intestazione di colonna, nel valore della stringa di query viene specificato il valore `sortOrder` appropriato.
 
-`NameSort`e `DateSort` vengono usati dalla Razor pagina per configurare i collegamenti ipertestuali dell'intestazione di colonna con i valori della stringa di query appropriati:
+`NameSort` e `DateSort` vengono usati dalla Razor pagina per configurare i collegamenti ipertestuali dell'intestazione di colonna con i valori della stringa di query appropriati:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_Ternary)]
 
@@ -304,7 +305,7 @@ Il parametro `sortOrder` è "Name" o "Data". Il parametro `sortOrder` è facolta
 
 Quando la pagina Index (Indice) viene richiesta dal collegamento **Students** (Studenti), non è presente alcuna stringa di query. Gli studenti vengono visualizzati in ordine crescente in base al cognome. L'ordine crescente in base al cognome è l'impostazione predefinita (caso di fallthrough) nell'istruzione `switch`. Quando l'utente fa clic sul collegamento di un'intestazione di colonna, nel valore della stringa di query viene specificato il valore `sortOrder` appropriato.
 
-`NameSort`e `DateSort` vengono usati dalla Razor pagina per configurare i collegamenti ipertestuali dell'intestazione di colonna con i valori della stringa di query appropriati:
+`NameSort` e `DateSort` vengono usati dalla Razor pagina per configurare i collegamenti ipertestuali dell'intestazione di colonna con i valori della stringa di query appropriati:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=3-4)]
 
@@ -449,9 +450,9 @@ Tutti i parametri sono Null quando:
 
 Se si seleziona un collegamento di suddivisione in pagine, la variabile dell'indice di pagina contiene il numero di pagina da visualizzare.
 
-`CurrentSort`fornisce la Razor pagina con l'ordinamento corrente. L'ordinamento corrente deve essere incluso nei collegamenti di suddivisione in pagine per mantenere l'ordinamento nella suddivisione in pagine.
+`CurrentSort` fornisce la Razor pagina con l'ordinamento corrente. L'ordinamento corrente deve essere incluso nei collegamenti di suddivisione in pagine per mantenere l'ordinamento nella suddivisione in pagine.
 
-`CurrentFilter`fornisce la Razor pagina con la stringa di filtro corrente. Il valore `CurrentFilter`:
+`CurrentFilter` fornisce la Razor pagina con la stringa di filtro corrente. Il valore `CurrentFilter`:
 
 * Deve essere incluso nei collegamenti di suddivisione in pagine per mantenere le impostazioni di filtro nella suddivisione in pagine.
 * Deve essere ripristinato nella casella di testo quando viene nuovamente visualizzata la pagina.

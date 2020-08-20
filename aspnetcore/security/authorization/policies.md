@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: 03d6e7fdc4ab4b5e4925508952bfd6c835d90486
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 82ed4cc2ce47d3bd85ca9c2ba2bbeb075eaefcef
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021276"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635333"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Autorizzazione basata su criteri in ASP.NET Core
 
@@ -43,7 +44,7 @@ Il servizio primario che determina se l'autorizzazione ha esito positivo è <xre
 
 Il codice precedente evidenzia i due metodi di [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>è un servizio marcatore senza metodi e il meccanismo per verificare se l'autorizzazione ha esito positivo.
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> è un servizio marcatore senza metodi e il meccanismo per verificare se l'autorizzazione ha esito positivo.
 
 Ogni <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> è responsabile di verificare se sono soddisfatti i requisiti:
 <!--The following code is a copy/paste from 
@@ -192,7 +193,7 @@ Si noti che il `Handle` metodo nell' [esempio di gestore](#security-authorizatio
 
 * Per garantire un errore, anche se altri gestori di requisiti hanno esito positivo, chiamare `context.Fail` .
 
-Se un gestore chiama `context.Succeed` o `context.Fail` , tutti gli altri gestori vengono ancora chiamati. Questo consente ai requisiti di produrre effetti collaterali, ad esempio la registrazione, che si verifica anche se un altro gestore ha correttamente convalidato o non ha superato un requisito. Se impostato su `false` , la proprietà [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (disponibile in ASP.NET Core 1,1 e versioni successive) esegue il cortocircuito dell'esecuzione dei gestori quando `context.Fail` viene chiamato il metodo. `InvokeHandlersAfterFailure`il valore predefinito `true` è, nel qual caso vengono chiamati tutti i gestori.
+Se un gestore chiama `context.Succeed` o `context.Fail` , tutti gli altri gestori vengono ancora chiamati. Questo consente ai requisiti di produrre effetti collaterali, ad esempio la registrazione, che si verifica anche se un altro gestore ha correttamente convalidato o non ha superato un requisito. Se impostato su `false` , la proprietà [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (disponibile in ASP.NET Core 1,1 e versioni successive) esegue il cortocircuito dell'esecuzione dei gestori quando `context.Fail` viene chiamato il metodo. `InvokeHandlersAfterFailure` il valore predefinito `true` è, nel qual caso vengono chiamati tutti i gestori.
 
 > [!NOTE]
 > I gestori di autorizzazione vengono chiamati anche se l'autenticazione ha esito negativo.
@@ -280,7 +281,7 @@ Il servizio primario che determina se l'autorizzazione ha esito positivo è <xre
 
 Il codice precedente evidenzia i due metodi di [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>è un servizio marcatore senza metodi e il meccanismo per verificare se l'autorizzazione ha esito positivo.
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> è un servizio marcatore senza metodi e il meccanismo per verificare se l'autorizzazione ha esito positivo.
 
 Ogni <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> è responsabile di verificare se sono soddisfatti i requisiti:
 <!--The following code is a copy/paste from 
@@ -426,7 +427,7 @@ Si noti che il `Handle` metodo nell' [esempio di gestore](#security-authorizatio
 
 * Per garantire un errore, anche se altri gestori di requisiti hanno esito positivo, chiamare `context.Fail` .
 
-Se un gestore chiama `context.Succeed` o `context.Fail` , tutti gli altri gestori vengono ancora chiamati. Questo consente ai requisiti di produrre effetti collaterali, ad esempio la registrazione, che si verifica anche se un altro gestore ha correttamente convalidato o non ha superato un requisito. Se impostato su `false` , la proprietà [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (disponibile in ASP.NET Core 1,1 e versioni successive) esegue il cortocircuito dell'esecuzione dei gestori quando `context.Fail` viene chiamato il metodo. `InvokeHandlersAfterFailure`il valore predefinito `true` è, nel qual caso vengono chiamati tutti i gestori.
+Se un gestore chiama `context.Succeed` o `context.Fail` , tutti gli altri gestori vengono ancora chiamati. Questo consente ai requisiti di produrre effetti collaterali, ad esempio la registrazione, che si verifica anche se un altro gestore ha correttamente convalidato o non ha superato un requisito. Se impostato su `false` , la proprietà [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (disponibile in ASP.NET Core 1,1 e versioni successive) esegue il cortocircuito dell'esecuzione dei gestori quando `context.Fail` viene chiamato il metodo. `InvokeHandlersAfterFailure` il valore predefinito `true` è, nel qual caso vengono chiamati tutti i gestori.
 
 > [!NOTE]
 > I gestori di autorizzazione vengono chiamati anche se l'autenticazione ha esito negativo.

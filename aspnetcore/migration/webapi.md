@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 05/26/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: 4888de6ad55037be540cb62b6e4f02878e2b57ab
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e3e46f8050ba87c3108885341675c9d2a2cb7847
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014815"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635164"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Eseguire la migrazione da API Web ASP.NET a ASP.NET Core
 
@@ -63,7 +64,7 @@ Creare una nuova soluzione vuota in Visual Studio e aggiungere il progetto API W
 
 1. Scegliere **Nuovo** > **Progetto** dal menu **File**.
 1. Selezionare il modello di **soluzione vuota** e selezionare **Avanti**.
-1. Assegnare alla soluzione il nome *WebAPIMigration*. Selezionare **Crea**.
+1. Assegnare alla soluzione il nome *WebAPIMigration*. Selezionare **Create** (Crea).
 1. Aggiungere il progetto *ProductsApp* esistente alla soluzione.
 
 Aggiungere un nuovo progetto API per la migrazione a:
@@ -205,7 +206,7 @@ In ASP.NET Core MVC, il routing degli attributi è incluso per impostazione pred
 
 ## <a name="migrate-models-and-controllers"></a>Eseguire la migrazione di modelli e controller
 
-Il codice seguente illustra l' `ProductsController` aggiornamento per ASP.NET Core:[!code-csharp[](webapi/sample/2.x/ProductsApp/Controllers/ProductsController.cs)]
+Il codice seguente illustra l' `ProductsController` aggiornamento per ASP.NET Core: [!code-csharp[](webapi/sample/2.x/ProductsApp/Controllers/ProductsController.cs)]
 
 Aggiornare `ProductsController` per ASP.NET Core:
 
@@ -272,7 +273,7 @@ Le funzionalità di compatibilità incluse in `Microsoft.AspNetCore.Mvc.WebApiCo
 * Estende l'associazione di modelli in modo che le azioni del controller possano prendere parametri di tipo `HttpRequestMessage` .
 * Aggiunge formattatori di messaggi che consentono alle azioni di restituire risultati di tipo `HttpResponseMessage` .
 * Aggiunge metodi di risposta aggiuntivi che possono essere usati dalle azioni API Web 2 per rispondere alle risposte:
-  * `HttpResponseMessage`generatori
+  * `HttpResponseMessage` generatori
     * `CreateResponse<T>`
     * `CreateErrorResponse`
   * Metodi di risultato dell'azione:

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/file-providers
-ms.openlocfilehash: e2441a56fc8b05ba16dd8e368382501ac6b268a3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 30c28e7bd4cd9c926b157f5a7b9e6688bd5b9b9a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017441"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634605"
 ---
 # <a name="file-providers-in-aspnet-core"></a>Provider di file in ASP.NET Core
 
@@ -32,9 +33,9 @@ Di [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core astrae l'accesso al file system tramite l'utilizzo di provider di file. I provider di file vengono utilizzati in tutto il framework ASP.NET Core. Ad esempio:
 
-* <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>espone la radice del [contenuto](xref:fundamentals/index#content-root) dell'app e la [radice Web](xref:fundamentals/index#web-root) come `IFileProvider` tipi.
+* <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> espone la radice del [contenuto](xref:fundamentals/index#content-root) dell'app e la [radice Web](xref:fundamentals/index#web-root) come `IFileProvider` tipi.
 * Il [middleware dei file statici](xref:fundamentals/static-files) usa i provider di file per trovare i file statici.
-* [Razor](xref:mvc/views/razor)USA i provider di file per individuare le pagine e le visualizzazioni.
+* [Razor](xref:mvc/views/razor) USA i provider di file per individuare le pagine e le visualizzazioni.
 * Gli strumenti .NET Core usano i provider di file e i criteri GLOB per specificare i file da pubblicare.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
@@ -183,9 +184,9 @@ La tabella seguente fornisce esempi comuni di modelli glob.
 
 ASP.NET Core astrae l'accesso al file system tramite l'utilizzo di provider di file. I provider di file vengono usati in tutto il framework di ASP.NET Core:
 
-* <xref:Microsoft.Extensions.Hosting.IHostingEnvironment>espone la radice del [contenuto](xref:fundamentals/index#content-root) dell'app e la [radice Web](xref:fundamentals/index#web-root) come `IFileProvider` tipi.
+* <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> espone la radice del [contenuto](xref:fundamentals/index#content-root) dell'app e la [radice Web](xref:fundamentals/index#web-root) come `IFileProvider` tipi.
 * Il [middleware dei file statici](xref:fundamentals/static-files) usa i provider di file per trovare i file statici.
-* [Razor](xref:mvc/views/razor)USA i provider di file per individuare le pagine e le visualizzazioni.
+* [Razor](xref:mvc/views/razor) USA i provider di file per individuare le pagine e le visualizzazioni.
 * Gli strumenti .NET Core usano i provider di file e i criteri GLOB per specificare i file da pubblicare.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([procedura per il download](xref:index#how-to-download-a-sample))

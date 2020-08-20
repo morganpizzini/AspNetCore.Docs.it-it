@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 2/18/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/filter
-ms.openlocfilehash: b8942020e98d0f985e5445bb1816c540bcb7829b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b6d6585c0cbd52715c4192d4ab3bee756dbb41b3
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021406"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635047"
 ---
 # <a name="filter-methods-for-no-locrazor-pages-in-aspnet-core"></a>Metodi di filtro per le Razor pagine in ASP.NET Core
 
@@ -29,9 +30,9 @@ ms.locfileid: "88021406"
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-RazorI filtri di pagina [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) e [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) consentono Razor alle pagine di eseguire codice prima e dopo l'esecuzione di un Razor gestore di pagina. RazorI filtri di pagina sono simili a [ASP.NET Core filtri azione MVC](xref:mvc/controllers/filters#action-filters), ma non possono essere applicati ai singoli metodi del gestore di pagina.
+Razor I filtri di pagina [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) e [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) consentono Razor alle pagine di eseguire codice prima e dopo l'esecuzione di un Razor gestore di pagina. Razor I filtri di pagina sono simili a [ASP.NET Core filtri azione MVC](xref:mvc/controllers/filters#action-filters), ma non possono essere applicati ai singoli metodi del gestore di pagina.
 
-RazorFiltri di pagina:
+Razor Filtri di pagina:
 
 * Eseguono il codice dopo aver selezionato un metodo del gestore, ma prima che si verifichi l'associazione di modelli.
 * Eseguono il codice prima che il metodo del gestore venga eseguito, al termine dell'associazione di modelli.
@@ -44,7 +45,7 @@ Mentre i costruttori di pagina e il middleware abilitano l'esecuzione di codice 
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/3.1sample) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-RazorI filtri di pagina forniscono i metodi seguenti, che possono essere applicati a livello globale o a livello di pagina:
+Razor I filtri di pagina forniscono i metodi seguenti, che possono essere applicati a livello globale o a livello di pagina:
 
 * Metodi sincroni:
 
@@ -121,9 +122,9 @@ L'attributo [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorize
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-RazorI filtri di pagina [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) e [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) consentono Razor alle pagine di eseguire codice prima e dopo l'esecuzione di un Razor gestore di pagina. RazorI filtri di pagina sono simili a [ASP.NET Core filtri azione MVC](xref:mvc/controllers/filters#action-filters), ma non possono essere applicati ai singoli metodi del gestore di pagina.
+Razor I filtri di pagina [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) e [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) consentono Razor alle pagine di eseguire codice prima e dopo l'esecuzione di un Razor gestore di pagina. Razor I filtri di pagina sono simili a [ASP.NET Core filtri azione MVC](xref:mvc/controllers/filters#action-filters), ma non possono essere applicati ai singoli metodi del gestore di pagina.
 
-RazorFiltri di pagina:
+Razor Filtri di pagina:
 
 * Eseguono il codice dopo aver selezionato un metodo del gestore, ma prima che si verifichi l'associazione di modelli.
 * Eseguono il codice prima che il metodo del gestore venga eseguito, al termine dell'associazione di modelli.
@@ -135,7 +136,7 @@ Il codice può essere eseguito prima dell'esecuzione di un metodo del gestore us
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/sample/PageFilter) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-RazorI filtri di pagina forniscono i metodi seguenti, che possono essere applicati a livello globale o a livello di pagina:
+Razor I filtri di pagina forniscono i metodi seguenti, che possono essere applicati a livello globale o a livello di pagina:
 
 * Metodi sincroni:
 

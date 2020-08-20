@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/14/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/iauthorizationpolicyprovider
-ms.openlocfilehash: 724b1f065e83302137d920fe4e0e2b381be505b7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2d231440847270b3b2fe47fbe29359f494900292
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022134"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635203"
 ---
 # <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>Provider di criteri di autorizzazione personalizzati che usano IAuthorizationPolicyProvider in ASP.NET Core 
 
@@ -39,7 +40,7 @@ Esempi di scenari in cui un [IAuthorizationPolicyProvider](/dotnet/api/microsoft
 
 ## <a name="customize-policy-retrieval"></a>Personalizzare il recupero dei criteri
 
-Le app ASP.NET Core usano un'implementazione dell' `IAuthorizationPolicyProvider` interfaccia per recuperare i criteri di autorizzazione. Per impostazione predefinita, [DefaultAuthorizationPolicyProvider](/dotnet/api/microsoft.aspnetcore.authorization.defaultauthorizationpolicyprovider) è registrato e usato. `DefaultAuthorizationPolicyProvider`Restituisce i criteri dall'oggetto `AuthorizationOptions` fornito in una `IServiceCollection.AddAuthorization` chiamata a.
+Le app ASP.NET Core usano un'implementazione dell' `IAuthorizationPolicyProvider` interfaccia per recuperare i criteri di autorizzazione. Per impostazione predefinita, [DefaultAuthorizationPolicyProvider](/dotnet/api/microsoft.aspnetcore.authorization.defaultauthorizationpolicyprovider) è registrato e usato. `DefaultAuthorizationPolicyProvider` Restituisce i criteri dall'oggetto `AuthorizationOptions` fornito in una `IServiceCollection.AddAuthorization` chiamata a.
 
 Personalizzare questo comportamento registrando un'implementazione diversa `IAuthorizationPolicyProvider` nel contenitore di inserimento delle [dipendenze](xref:fundamentals/dependency-injection) dell'app. 
 
@@ -101,7 +102,7 @@ Il personalizzato `MinimumAgeAuthorizeAttribute` rende più semplice richiedere 
 Quando `MinimumAgeAuthorizationAttribute` si usa, i nomi dei criteri di autorizzazione seguiranno il modello `"MinimumAge" + Age` , pertanto l'oggetto personalizzato `IAuthorizationPolicyProvider` deve generare i criteri di autorizzazione per:
 
 * Analisi dell'età dal nome del criterio.
-* Utilizzo `AuthorizationPolicyBuilder` di per creare un nuovo`AuthorizationPolicy`
+* Utilizzo `AuthorizationPolicyBuilder` di per creare un nuovo `AuthorizationPolicy`
 * In questo e negli esempi seguenti si presuppone che l'utente venga autenticato tramite un cookie . Il `AuthorizationPolicyBuilder` deve essere costruito con almeno un nome dello schema di autorizzazione o avere sempre esito positivo. In caso contrario, non sono disponibili informazioni su come fornire un problema all'utente e verrà generata un'eccezione.
 * Aggiunta di requisiti ai criteri in base all'età con `AuthorizationPolicyBuilder.AddRequirements` . In altri scenari, è possibile usare `RequireClaim` `RequireRole` invece, o `RequireUserName` .
 

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: 7d2ff774b7654993e2cd9b126db252f81a3032d3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b1cab7ab8b491529ee4208d92fb30082be795eda
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018754"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635060"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Helper tag di cache in ASP.NET Core MVC
 
@@ -75,7 +76,7 @@ Il codice di esempio seguente memorizza nella cache il contenuto dell'helper tag
 
 ### <a name="expires-after"></a>expires-after
 
-| Tipo di attributo | Esempio                      | Impostazione predefinita    |
+| Tipo di attributo | Esempio                      | Predefinito    |
 | -------------- | ---------------------------- | ---------- |
 | `TimeSpan`     | `@TimeSpan.FromSeconds(120)` | 20 minuti |
 
@@ -171,7 +172,7 @@ routes.MapRoute(
 | -------------- | -------------------------------------------------------------------------------- |
 | string         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
-`vary-by-cookie`accetta un elenco delimitato da virgole di cookie nomi che attivano un aggiornamento della cache quando cookie cambiano i valori.
+`vary-by-cookie` accetta un elenco delimitato da virgole di cookie nomi che attivano un aggiornamento della cache quando cookie cambiano i valori.
 
 Nell'esempio seguente viene monitorato l'oggetto cookie associato a ASP.NET Core Identity . Quando un utente viene autenticato, una modifica in Identity cookie attiva un aggiornamento della cache:
 

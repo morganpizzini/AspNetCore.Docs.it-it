@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/23/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/index
-ms.openlocfilehash: 7dacbb00b40d2741fcbfc78ec7cdf2a67482a8da
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: da025cb8dced8ac8a6ecf559d4de7795c9797f71
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020470"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634280"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticazione dei provider Facebook, Google ed esterni in ASP.NET Core
 
@@ -44,7 +45,7 @@ Per degli esempi di come gli account di accesso ai social possano risultare util
 
 * Creare un nuovo progetto.
 * Selezionare **Applicazione Web ASP.NET Core** e **Avanti**.
-* Specificare un **Nome progetto** e confermare o modificare il **Percorso**. Selezionare **Crea**.
+* Specificare un **Nome progetto** e confermare o modificare il **Percorso**. Selezionare **Create** (Crea).
 * Selezionare la versione più recente di ASP.NET Core nell'elenco a discesa (**ASP.NET Core {X. Y}**), quindi selezionare **applicazione Web**.
 * In **Autenticazione** selezionare **Modifica** e impostare l'autenticazione su **Account utente individuali**. Selezionare **OK**.
 * Nella finestra **Crea una nuova applicazione Web ASP.NET Core** selezionare **Crea**.
@@ -69,7 +70,7 @@ Per degli esempi di come gli account di accesso ai social possano risultare util
 
   * Il `dotnet new` comando crea un nuovo Razor progetto di pagine nella cartella *app Web 1* .
   * `-au Individual` crea il codice per l'autenticazione individuale.
-  * `-uld`Usa il database locale, una versione leggera di SQL Server Express per Windows. Omettere `-uld` per usare SQLite.
+  * `-uld` Usa il database locale, una versione leggera di SQL Server Express per Windows. Omettere `-uld` per usare SQLite.
   * Il comando `code` apre la cartella *WebApp1* in una nuova istanza di Visual Studio Code.
 
 ---

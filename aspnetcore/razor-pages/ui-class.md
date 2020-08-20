@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 01/25/2020
 ms.custom: mvc, seodec18
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: 042ef8dcc7135e0c60baec972d405380d85a6a10
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 95399246df954549cb76139a66d6998fd05a051a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019222"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634826"
 ---
 # <a name="create-reusable-ui-using-the-no-locrazor-class-library-project-in-aspnet-core"></a>Creare un'interfaccia utente riutilizzabile usando il Razor progetto libreria di classi in ASP.NET Core
 
@@ -40,7 +41,7 @@ Razorle visualizzazioni, le pagine, i controller, i modelli di pagina, i [ Razor
 * In Visual Studio selezionare **Crea nuovo nuovo progetto**.
 * Selezionare ** Razor libreria di classi** > **Avanti**.
 * Assegnare un nome alla libreria (ad esempio, " Razor CLASSLIB") > **creare**. Per evitare un conflitto di nomi di file con la libreria di visualizzazione generata, verificare che il nome della libreria non finisca per `.Views`.
-* Se è necessario supportare le visualizzazioni, selezionare **pagine e visualizzazioni di supporto** . Per impostazione predefinita, Razor sono supportate solo le pagine. Selezionare **Crea**.
+* Se è necessario supportare le visualizzazioni, selezionare **pagine e visualizzazioni di supporto** . Per impostazione predefinita, Razor sono supportate solo le pagine. Selezionare **Create** (Crea).
 
 Per impostazione predefinita, il Razor modello libreria di classi (RCL) prevede Razor lo sviluppo di componenti. L'opzione **pagine e visualizzazioni di supporto** supporta pagine e viste.
 
@@ -269,7 +270,7 @@ Seguire le istruzioni indicate in [Testare WebApp1](#test-webapp1)
 
 ## <a name="create-an-rcl"></a>Creare un RCL
 
-In questa sezione viene creato un RCL. Razori file vengono aggiunti a RCL.
+In questa sezione viene creato un RCL. Razor i file vengono aggiunti a RCL.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

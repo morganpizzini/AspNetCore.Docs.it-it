@@ -6,6 +6,7 @@ description: Individuare gli attributi dell'helper tag di collegamento ASP.NET C
 ms.custom: mvc
 ms.date: 09/24/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
-ms.openlocfilehash: 7487bc64f8e20f85ef95e5389409c0194ec31337
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 09507294b90f08bbaf134f611aad0b91504ccffb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018559"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635073"
 ---
 # <a name="link-tag-helper-in-aspnet-core"></a>Helper tag di collegamento in ASP.NET Core
 
@@ -45,7 +46,7 @@ Nel codice precedente, l'helper tag di collegamento ha generato l' `<meta name="
 
 ## <a name="commonly-used-link-tag-helper-attributes"></a>Attributi di helper tag di collegamento comunemente utilizzati
 
-Vedere [Helper tag di collegamento](xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper) per tutti gli attributi, le proprietà e i metodi dell'helper tag di collegamento.
+Vedere [Helper tag di collegamento](xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper)  per tutti gli attributi, le proprietà e i metodi dell'helper tag di collegamento.
 
 ### <a name="href"></a>href
 

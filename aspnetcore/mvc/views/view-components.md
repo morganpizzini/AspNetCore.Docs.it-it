@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-components
-ms.openlocfilehash: 0c952502d58744bbbe06c92f51bd51bd547fb8ae
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 32ae699c4ef501096a9c4ab7bca6673139910f02
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020951"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635086"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componenti di visualizzazione in ASP.NET Core
 
@@ -52,7 +53,7 @@ I componenti di visualizzazione possono essere impiegati in un punto qualsiasi d
 
 Un componente di visualizzazione è costituito da due parti: la classe (in genere derivata da [ViewComponent](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponent)) e il risultato restituito (in genere una visualizzazione). Come per i controller, un componente di visualizzazione può essere un oggetto POCO. Molti sviluppatori preferiscono tuttavia sfruttare i metodi e le proprietà disponibili derivando da `ViewComponent`.
 
-Quando si considera che i componenti di visualizzazione soddisfino le specifiche di un'app, è consigliabile usare i Razor componenti. RazorI componenti combinano anche il markup con il codice C# per produrre unità di interfaccia utente riutilizzabili. RazorI componenti sono progettati per la produttività degli sviluppatori quando forniscono la logica e la composizione dell'interfaccia utente lato client. Per altre informazioni, vedere <xref:blazor/components/index>.
+Quando si considera che i componenti di visualizzazione soddisfino le specifiche di un'app, è consigliabile usare i Razor componenti. Razor I componenti combinano anche il markup con il codice C# per produrre unità di interfaccia utente riutilizzabili. Razor I componenti sono progettati per la produttività degli sviluppatori quando forniscono la logica e la composizione dell'interfaccia utente lato client. Per altre informazioni, vedere <xref:blazor/components/index>.
 
 ## <a name="creating-a-view-component"></a>Creazione di un componente di visualizzazione
 

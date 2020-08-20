@@ -5,6 +5,7 @@ description: Parte 5 aggiungere un modello a un'app MVC ASP.NET Core
 ms.author: riande
 ms.date: 8/16/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/working-with-sql
-ms.openlocfilehash: 88af3e724032f8324155a0a1e6c30c8558f97f72
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 23ecee4e3482b3ee82ae597671a8c45515eb4589
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021263"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634930"
 ---
 # <a name="part-5-work-with-a-database-in-an-aspnet-core-mvc-app"></a>Parte 5, usare un database in un'app MVC ASP.NET Core
 
@@ -101,7 +102,7 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Aggiungere l'inizializzatore del valore di inizializzazione
 
-Sostituire il contenuto del file *Program.cs* con il codice seguente:
+Sostituire il contenuto di *Program.cs* con il codice seguente:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Program.cs)]
 
@@ -213,7 +214,7 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Aggiungere l'inizializzatore del valore di inizializzazione
 
-Sostituire il contenuto del file *Program.cs* con il codice seguente:
+Sostituire il contenuto di *Program.cs* con il codice seguente:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Program.cs)]
 
