@@ -1,5 +1,5 @@
 ---
-title: Applicare un criterio di sicurezza del contenuto per ASP.NET CoreBlazor
+title: Applicare un criterio di sicurezza del contenuto per ASP.NET Core Blazor
 author: guardrex
 description: Informazioni su come usare un criterio di sicurezza del contenuto (CSP) con ASP.NET Core Blazor app per la protezione da attacchi XSS (cross-site scripting).
 monikerRange: '>= aspnetcore-3.1'
@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/content-security-policy
-ms.openlocfilehash: bbe4bf1b0999d66471743c9efa1a9a9f121f2e05
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 09f4cb5ba11feb7d81a410dd3869f9863d104d0e
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014036"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627845"
 ---
-# <a name="enforce-a-content-security-policy-for-aspnet-core-no-locblazor"></a>Applicare un criterio di sicurezza del contenuto per ASP.NET CoreBlazor
+# <a name="enforce-a-content-security-policy-for-aspnet-core-no-locblazor"></a>Applicare un criterio di sicurezza del contenuto per ASP.NET Core Blazor
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
 

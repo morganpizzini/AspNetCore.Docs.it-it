@@ -5,6 +5,7 @@ description: Informazioni sulle tecniche e sugli script tra siti (XSS) per risol
 ms.author: riande
 ms.date: 10/02/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cross-site-scripting
-ms.openlocfilehash: 24fab313c3af30cfd4143ba29a33ba25bfcdf9a9
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ec8b321be08447ca634a1e28799f790f723f17d1
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021809"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625622"
 ---
 # <a name="prevent-cross-site-scripting-xss-in-aspnet-core"></a>Impedisci l'esecuzione di script tra siti (XSS) in ASP.NET Core
 
@@ -42,7 +43,7 @@ A un livello di base XSS funziona facendo in modo che l'applicazione inserisca u
 
 5. Prima di inserire dati non attendibili in una stringa di query URL, assicurarsi che l'URL sia codificato.
 
-## <a name="html-encoding-using-no-locrazor"></a>Codifica HTML conRazor
+## <a name="html-encoding-using-no-locrazor"></a>Codifica HTML con Razor
 
 Il Razor motore usato in MVC codifica automaticamente tutto l'output originato dalle variabili, a meno che non si stia effettivamente lavorando per impedirlo. Usa le regole di codifica degli attributi HTML quando si usa la *@* direttiva. Poiché la codifica degli attributi HTML è un superset della codifica HTML, questo significa che non è necessario preoccuparsi se è necessario usare la codifica HTML o la codifica degli attributi HTML. È necessario assicurarsi di usare @ solo in un contesto HTML, non quando si tenta di inserire input non attendibile direttamente in JavaScript. Gli helper Tag codificano inoltre l'input usato nei parametri tag.
 
@@ -65,7 +66,7 @@ Questa visualizzazione restituisce il contenuto della variabile *untrustedInput*
 >[!WARNING]
 > ASP.NET Core MVC fornisce una `HtmlString` classe che non viene codificata automaticamente al momento dell'output. Questa operazione non deve mai essere utilizzata in combinazione con un input non attendibile, in quanto verrà esposta una vulnerabilità XSS.
 
-## <a name="javascript-encoding-using-no-locrazor"></a>Codifica JavaScript conRazor
+## <a name="javascript-encoding-using-no-locrazor"></a>Codifica JavaScript con Razor
 
 In alcuni casi potrebbe essere necessario inserire un valore in JavaScript da elaborare nella visualizzazione. Per eseguire questa operazione è possibile procedere in due modi: Il modo più sicuro per inserire valori consiste nell'inserire il valore in un attributo di dati di un tag e recuperarlo nel codice JavaScript. Ad esempio:
 
@@ -176,7 +177,7 @@ public class HomeController : Controller
 
 ## <a name="encoding-url-parameters"></a>Parametri URL di codifica
 
-Se si vuole compilare una stringa di query URL con input non attendibile come valore, usare `UrlEncoder` per codificare il valore. ad esempio:
+Se si vuole compilare una stringa di query URL con input non attendibile come valore, usare `UrlEncoder` per codificare il valore. Ad esempio,
 
 ```csharp
 var example = "\"Quoted Value with spaces and &\"";

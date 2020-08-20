@@ -7,6 +7,7 @@ ms.author: jukotali
 ms.custom: mvc
 ms.date: 5/29/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/request-response
-ms.openlocfilehash: da863ac5ecf649adffe8a3d13838be2ac1f748c2
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ce7357ccbb52736bfb44cd8e041c68a0992bf319
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016960"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627780"
 ---
 # <a name="request-and-response-operations-in-aspnet-core"></a>Operazioni di richiesta e risposta in ASP.NET Core
 
@@ -32,7 +33,7 @@ Questo articolo illustra come leggere dal corpo della richiesta e scrivere nel c
 
 Esistono due astrazioni per i corpi di richiesta e risposta: <xref:System.IO.Stream> e <xref:System.IO.Pipelines.Pipe> . Per la lettura della richiesta, <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> è un oggetto <xref:System.IO.Stream> e `HttpRequest.BodyReader` è un oggetto <xref:System.IO.Pipelines.PipeReader> . Per la scrittura della risposta, <xref:Microsoft.AspNetCore.Http.HttpResponse.Body?displayProperty=nameWithType> è un oggetto <xref:System.IO.Stream> e `HttpResponse.BodyWriter` è un oggetto <xref:System.IO.Pipelines.PipeWriter> .
 
-Le [pipeline](/dotnet/standard/io/pipelines) sono consigliate per i flussi. I flussi possono essere più facili da usare per alcune operazioni semplici, ma le pipeline hanno prestazioni migliori e sono più facili da usare nella maggior parte degli scenari. ASP.NET Core sta iniziando a usare le pipeline anziché i flussi internamente. Ecco alcuni esempi:
+Le [pipeline](/dotnet/standard/io/pipelines) sono consigliate per i flussi. I flussi possono essere più facili da usare per alcune operazioni semplici, ma le pipeline hanno prestazioni migliori e sono più facili da usare nella maggior parte degli scenari. ASP.NET Core sta iniziando a usare le pipeline anziché i flussi internamente. Tra gli esempi sono inclusi:
 
 * `FormReader`
 * `TextReader`
@@ -98,7 +99,7 @@ Le `Body` `BodyReader` proprietà, e `BodyWriter` sono disponibili per `HttpRequ
 
 ## <a name="startasync"></a>StartAsync
 
-`HttpResponse.StartAsync`viene utilizzato per indicare che le intestazioni non sono modificabili e per eseguire i `OnStarting` callback. Quando si usa gheppio come server, `StartAsync` la chiamata di prima di usare `PipeReader` garantisce che la memoria restituita da `GetMemory` appartenga a un buffer interno di Gheppio <xref:System.IO.Pipelines.Pipe> anziché a un buffer esterno.
+`HttpResponse.StartAsync` viene utilizzato per indicare che le intestazioni non sono modificabili e per eseguire i `OnStarting` callback. Quando si usa gheppio come server, `StartAsync` la chiamata di prima di usare `PipeReader` garantisce che la memoria restituita da `GetMemory` appartenga a un buffer interno di Gheppio <xref:System.IO.Pipelines.Pipe> anziché a un buffer esterno.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

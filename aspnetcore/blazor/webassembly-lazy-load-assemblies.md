@@ -1,5 +1,5 @@
 ---
-title: Assembly di caricamento lazy in ASP.NET CoreBlazor WebAssembly
+title: Assembly di caricamento lazy in ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Scopri come Lazy caricare gli assembly nelle Blazor WebAssembly app ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/16/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: 0ce03badccad4e06aa3c316580ab82be38a806c6
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 31e6c9638d3262d3cb0a5e0fbcf34d24e2d1e91c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88013372"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625804"
 ---
-# <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>Assembly di caricamento lazy in ASP.NET CoreBlazor WebAssembly
+# <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>Assembly di caricamento lazy in ASP.NET Core Blazor WebAssembly
 
 Di [Safia Amodio](https://safia.rocks) e [Luke Latham](https://github.com/guardrex)
 
-Blazor WebAssemblyle prestazioni di avvio dell'app possono essere migliorate posticipando il caricamento di alcuni assembly di applicazioni fino a quando non sono necessarie, operazione denominata *caricamento lazy*. Ad esempio, gli assembly che vengono utilizzati solo per il rendering di un singolo componente possono essere impostati per il caricamento solo se l'utente passa a tale componente. Dopo il caricamento, gli assembly vengono memorizzati nella cache sul lato client e sono disponibili per tutte le navigazioni future.
+Blazor WebAssembly le prestazioni di avvio dell'app possono essere migliorate posticipando il caricamento di alcuni assembly di applicazioni fino a quando non sono necessarie, operazione denominata *caricamento lazy*. Ad esempio, gli assembly che vengono utilizzati solo per il rendering di un singolo componente possono essere impostati per il caricamento solo se l'utente passa a tale componente. Dopo il caricamento, gli assembly vengono memorizzati nella cache sul lato client e sono disponibili per tutte le navigazioni future.
 
 Blazorla funzionalità di caricamento lazy consente di contrassegnare gli assembly dell'app per il caricamento lazy, che carica gli assembly in fase di esecuzione quando l'utente passa a una route specifica. La funzionalità è costituita dalle modifiche apportate al file di progetto e dalle modifiche apportate al router dell'applicazione.
 
@@ -77,19 +78,19 @@ Nel componente dell'app `Router` ( `App.razor` ):
 
 Se il `OnNavigateAsync` callback genera un'eccezione non gestita, viene richiamata l' [ Blazor interfaccia utente dell'errore](xref:blazor/fundamentals/handle-errors#detailed-errors-during-development) .
 
-### <a name="assembly-load-logic-in-onnavigateasync"></a>Logica di caricamento dell'assembly in`OnNavigateAsync`
+### <a name="assembly-load-logic-in-onnavigateasync"></a>Logica di caricamento dell'assembly in `OnNavigateAsync`
 
-`OnNavigateAsync`dispone di un `NavigationContext` parametro che fornisce informazioni sull'evento di spostamento asincrono corrente, inclusi il percorso di destinazione ( `Path` ) e il token di annullamento ( `CancellationToken` ):
+`OnNavigateAsync` dispone di un `NavigationContext` parametro che fornisce informazioni sull'evento di spostamento asincrono corrente, inclusi il percorso di destinazione ( `Path` ) e il token di annullamento ( `CancellationToken` ):
 
 * La `Path` proprietà è il percorso di destinazione dell'utente relativo al percorso di base dell'applicazione, ad esempio `/robot` .
-* L'oggetto `CancellationToken` può essere utilizzato per osservare l'annullamento dell'attività asincrona. `OnNavigateAsync`Annulla automaticamente l'attività di spostamento attualmente in esecuzione quando l'utente passa a una pagina diversa.
+* L'oggetto `CancellationToken` può essere utilizzato per osservare l'annullamento dell'attività asincrona. `OnNavigateAsync` Annulla automaticamente l'attività di spostamento attualmente in esecuzione quando l'utente passa a una pagina diversa.
 
 All'interno di `OnNavigateAsync` implementare la logica per determinare gli assembly da caricare. Le opzioni includono:
 
 * Controlli condizionali all'interno del `OnNavigateAsync` metodo.
 * Tabella di ricerca che esegue il mapping delle route ai nomi degli assembly, inseriti nel componente o implementati all'interno del [`@code`](xref:mvc/views/razor#code) blocco.
 
-`LazyAssemblyLoader`è un servizio singleton fornito dal Framework per il caricamento di assembly. Inserire `LazyAssemblyLoader` nel `Router` componente:
+`LazyAssemblyLoader` è un servizio singleton fornito dal Framework per il caricamento di assembly. Inserire `LazyAssemblyLoader` nel `Router` componente:
 
 ```razor
 ...
@@ -130,7 +131,7 @@ Durante il caricamento degli assembly, che possono richiedere alcuni secondi, il
 ...
 ```
 
-### <a name="handle-cancellations-in-onnavigateasync"></a>Gestisci annullamenti in`OnNavigateAsync`
+### <a name="handle-cancellations-in-onnavigateasync"></a>Gestisci annullamenti in `OnNavigateAsync`
 
 L' `NavigationContext` oggetto passato al `OnNavigateAsync` callback contiene un oggetto `CancellationToken` impostato quando si verifica un nuovo evento di navigazione. Il `OnNavigateAsync` callback deve generare quando questo token di annullamento è impostato in modo da evitare di continuare a eseguire il `OnNavigateAsync` callback in una navigazione obsoleta.
 

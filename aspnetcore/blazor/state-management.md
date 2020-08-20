@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -18,12 +19,12 @@ no-loc:
 - SignalR
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 28ca3b5c4472dc21e709d01705dc64168107ca61
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 43794fad36efe44cad6fbb2f1a1cae293a2ddad1
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88013554"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625960"
 ---
 # <a name="aspnet-core-no-locblazor-state-management"></a>BlazorGestione dello stato ASP.NET Core
 
@@ -74,7 +75,7 @@ Per la persistenza permanente dei dati che si estende su più utenti e dispositi
 
 Dopo il salvataggio dei dati, lo stato dell'utente viene mantenuto e disponibile in qualsiasi nuova sessione del browser.
 
-Poiché Blazor WebAssembly le app vengono eseguite interamente nel browser dell'utente, richiedono misure aggiuntive per accedere a sistemi esterni protetti, ad esempio i servizi di archiviazione e i database. Blazor WebAssemblyle app sono protette in modo analogo alle applicazioni a pagina singola (Spa). In genere, un'app autentica un utente tramite [OAuth](https://oauth.net) / [OpenID Connect (OIDC)](https://openid.net/connect/) e quindi interagisce con i servizi di archiviazione e i database tramite chiamate API Web a un'app sul lato server. L'app sul lato server media il trasferimento dei dati tra l' Blazor WebAssembly app e il servizio di archiviazione o il database. L'app Blazor WebAssembly mantiene una connessione temporanea all'app sul lato server, mentre l'app sul lato server dispone di una connessione permanente alla risorsa di archiviazione.
+Poiché Blazor WebAssembly le app vengono eseguite interamente nel browser dell'utente, richiedono misure aggiuntive per accedere a sistemi esterni protetti, ad esempio i servizi di archiviazione e i database. Blazor WebAssembly le app sono protette in modo analogo alle applicazioni a pagina singola (Spa). In genere, un'app autentica un utente tramite [OAuth](https://oauth.net) / [OpenID Connect (OIDC)](https://openid.net/connect/) e quindi interagisce con i servizi di archiviazione e i database tramite chiamate API Web a un'app sul lato server. L'app sul lato server media il trasferimento dei dati tra l' Blazor WebAssembly app e il servizio di archiviazione o il database. L'app Blazor WebAssembly mantiene una connessione temporanea all'app sul lato server, mentre l'app sul lato server dispone di una connessione permanente alla risorsa di archiviazione.
 
 Per altre informazioni, vedere le seguenti risorse:
 
@@ -102,18 +103,18 @@ Per informazioni sulla definizione di modelli URL con la [`@page`](xref:mvc/view
 
 Per i dati temporanei che l'utente sta creando attivamente, un percorso di archiviazione di uso comune è costituito dalle [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) raccolte e del browser [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) :
 
-* `localStorage`ha come ambito la finestra del browser. Se l'utente ricarica la pagina o chiude e riapre il browser, lo stato è permanente. Se l'utente apre più schede del browser, lo stato viene condiviso tra le schede. I dati rimangono in `localStorage` fino a quando non vengono cancellati in modo esplicito.
-* `sessionStorage`ha come ambito la scheda Esplorazione. Se l'utente ricarica la scheda, lo stato è permanente. Se l'utente chiude la scheda o il browser, lo stato viene perso. Se l'utente apre più schede del browser, ogni scheda ha una propria versione indipendente dei dati.
+* `localStorage` ha come ambito la finestra del browser. Se l'utente ricarica la pagina o chiude e riapre il browser, lo stato è permanente. Se l'utente apre più schede del browser, lo stato viene condiviso tra le schede. I dati rimangono in `localStorage` fino a quando non vengono cancellati in modo esplicito.
+* `sessionStorage` ha come ambito la scheda Esplorazione. Se l'utente ricarica la scheda, lo stato è permanente. Se l'utente chiude la scheda o il browser, lo stato viene perso. Se l'utente apre più schede del browser, ogni scheda ha una propria versione indipendente dei dati.
 
 > [!NOTE]
-> `localStorage`e `sessionStorage` possono essere usati nelle Blazor WebAssembly app, ma solo scrivendo codice personalizzato o usando un pacchetto di terze parti.
+> `localStorage` e `sessionStorage` possono essere usati nelle Blazor WebAssembly app, ma solo scrivendo codice personalizzato o usando un pacchetto di terze parti.
 
-In genere, `sessionStorage` è più sicuro da usare. `sessionStorage`evita il rischio che un utente apra più schede e riscontri quanto segue:
+In genere, `sessionStorage` è più sicuro da usare. `sessionStorage` evita il rischio che un utente apra più schede e riscontri quanto segue:
 
 * Bug nell'archiviazione dello stato tra le schede.
 * Comportamento confuso quando una scheda sovrascrive lo stato di altre schede.
 
-`localStorage`è la scelta migliore se l'app deve conservare lo stato tra la chiusura e la riapertura del browser.
+`localStorage` è la scelta migliore se l'app deve conservare lo stato tra la chiusura e la riapertura del browser.
 
 > [!WARNING]
 > Gli utenti possono visualizzare o manomettere i dati archiviati in `localStorage` e `sessionStorage` .
@@ -128,7 +129,7 @@ In genere, `sessionStorage` è più sicuro da usare. `sessionStorage`evita il ri
 
 ::: zone pivot="server"
 
-Blazor Serverè un Framework di app con stato. Nella maggior parte dei casi, l'app mantiene una connessione al server. Lo stato dell'utente viene mantenuto nella memoria del server in un *circuito*. 
+Blazor Server è un Framework di app con stato. Nella maggior parte dei casi, l'app mantiene una connessione al server. Lo stato dell'utente viene mantenuto nella memoria del server in un *circuito*. 
 
 Esempi di stato utente contenuti in un circuito includono:
 
@@ -201,15 +202,15 @@ Per informazioni sulla definizione di modelli URL con la [`@page`](xref:mvc/view
 
 Per i dati temporanei che l'utente sta creando attivamente, un percorso di archiviazione di uso comune è costituito dalle [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) raccolte e del browser [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) :
 
-* `localStorage`ha come ambito la finestra del browser. Se l'utente ricarica la pagina o chiude e riapre il browser, lo stato è permanente. Se l'utente apre più schede del browser, lo stato viene condiviso tra le schede. I dati rimangono in `localStorage` fino a quando non vengono cancellati in modo esplicito.
-* `sessionStorage`ha come ambito la scheda Esplorazione. Se l'utente ricarica la scheda, lo stato è permanente. Se l'utente chiude la scheda o il browser, lo stato viene perso. Se l'utente apre più schede del browser, ogni scheda ha una propria versione indipendente dei dati.
+* `localStorage` ha come ambito la finestra del browser. Se l'utente ricarica la pagina o chiude e riapre il browser, lo stato è permanente. Se l'utente apre più schede del browser, lo stato viene condiviso tra le schede. I dati rimangono in `localStorage` fino a quando non vengono cancellati in modo esplicito.
+* `sessionStorage` ha come ambito la scheda Esplorazione. Se l'utente ricarica la scheda, lo stato è permanente. Se l'utente chiude la scheda o il browser, lo stato viene perso. Se l'utente apre più schede del browser, ogni scheda ha una propria versione indipendente dei dati.
 
-In genere, `sessionStorage` è più sicuro da usare. `sessionStorage`evita il rischio che un utente apra più schede e riscontri quanto segue:
+In genere, `sessionStorage` è più sicuro da usare. `sessionStorage` evita il rischio che un utente apra più schede e riscontri quanto segue:
 
 * Bug nell'archiviazione dello stato tra le schede.
 * Comportamento confuso quando una scheda sovrascrive lo stato di altre schede.
 
-`localStorage`è la scelta migliore se l'app deve conservare lo stato tra la chiusura e la riapertura del browser.
+`localStorage` è la scelta migliore se l'app deve conservare lo stato tra la chiusura e la riapertura del browser.
 
 Avvertenze per l'uso dell'archiviazione del browser:
 
@@ -264,7 +265,7 @@ private async Task IncrementCount()
 }
 ```
 
-Nelle app più grandi e più realistiche, l'archiviazione dei singoli campi è uno scenario improbabile. È più probabile che le app memorizzino interi oggetti modello che includono lo stato complesso. `ProtectedSessionStore`serializza e deserializza automaticamente i dati JSON per archiviare oggetti di stato complessi.
+Nelle app più grandi e più realistiche, l'archiviazione dei singoli campi è uno scenario improbabile. È più probabile che le app memorizzino interi oggetti modello che includono lo stato complesso. `ProtectedSessionStore` serializza e deserializza automaticamente i dati JSON per archiviare oggetti di stato complessi.
 
 Nell'esempio di codice precedente i `currentCount` dati vengono archiviati come `sessionStorage['count']` nel browser dell'utente. I dati non vengono archiviati in testo normale ma sono invece protetti tramite la protezione dei dati ASP.NET Core. I dati crittografati possono essere controllati se `sessionStorage['count']` viene valutato nella console per sviluppatori del browser.
 
@@ -278,7 +279,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Se i parametri del componente includono lo stato di navigazione, chiamare `ProtectedSessionStore.GetAsync` e assegnare un non `null` risultato in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> , non <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> . <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>viene chiamato una sola volta al momento della creazione di un'istanza del componente. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>non viene chiamato di nuovo in un secondo momento se l'utente passa a un URL diverso rimanendo nella stessa pagina. Per altre informazioni, vedere <xref:blazor/components/lifecycle>.
+Se i parametri del componente includono lo stato di navigazione, chiamare `ProtectedSessionStore.GetAsync` e assegnare un non `null` risultato in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> , non <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> . <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> viene chiamato una sola volta al momento della creazione di un'istanza del componente. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> non viene chiamato di nuovo in un secondo momento se l'utente passa a un URL diverso rimanendo nella stessa pagina. Per altre informazioni, vedere <xref:blazor/components/lifecycle>.
 
 > [!WARNING]
 > Gli esempi in questa sezione funzionano solo se per il server non è abilitato il prerendering. Con il prerendering abilitato, viene generato un errore che indica che non è possibile eseguire chiamate di interoperabilità JavaScript perché è in corso il rendering del componente.
@@ -316,7 +317,7 @@ Durante il prerendering:
 * Una connessione interattiva al browser dell'utente non esiste.
 * Il browser non dispone ancora di una pagina in cui è possibile eseguire il codice JavaScript.
 
-`localStorage`o `sessionStorage` non sono disponibili durante il prerendering. Se il componente tenta di interagire con l'archiviazione, viene generato un errore che indica che non è possibile eseguire chiamate di interoperabilità JavaScript perché è in corso il rendering del componente.
+`localStorage` o `sessionStorage` non sono disponibili durante il prerendering. Se il componente tenta di interagire con l'archiviazione, viene generato un errore che indica che non è possibile eseguire chiamate di interoperabilità JavaScript perché è in corso il rendering del componente.
 
 Un modo per risolvere l'errore consiste nel disabilitare il prerendering. Questa è in genere la scelta migliore se l'app usa in modo intensivo l'archiviazione basata su browser. Il prerendering aggiunge complessità e non è vantaggioso per l'app perché l'app non può prerenderizzare contenuti utili fino a quando non `localStorage` `sessionStorage` sono disponibili o.
 
@@ -465,7 +466,7 @@ Per salvare in modo permanente molti oggetti di stato diversi e utilizzare subse
 ASP.NET Core archiviazione del browser protetta sfrutta la [protezione dei dati ASP.NET Core](xref:security/data-protection/introduction) per [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) e [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) .
 
 > [!WARNING]
-> `Microsoft.AspNetCore.ProtectedBrowserStorage`è un pacchetto sperimentale non supportato non adatto per l'uso in ambiente di produzione.
+> `Microsoft.AspNetCore.ProtectedBrowserStorage` è un pacchetto sperimentale non supportato non adatto per l'uso in ambiente di produzione.
 >
 > Il pacchetto è disponibile solo per l'uso in app ASP.NET Core 3,1 Blazor Server .
 
@@ -510,7 +511,7 @@ private async Task IncrementCount()
 }
 ```
 
-Nelle app più grandi e più realistiche, l'archiviazione dei singoli campi è uno scenario improbabile. È più probabile che le app memorizzino interi oggetti modello che includono lo stato complesso. `ProtectedSessionStore`serializza e deserializza automaticamente i dati JSON.
+Nelle app più grandi e più realistiche, l'archiviazione dei singoli campi è uno scenario improbabile. È più probabile che le app memorizzino interi oggetti modello che includono lo stato complesso. `ProtectedSessionStore` serializza e deserializza automaticamente i dati JSON.
 
 Nell'esempio di codice precedente i `currentCount` dati vengono archiviati come `sessionStorage['count']` nel browser dell'utente. I dati non vengono archiviati in testo normale ma sono invece protetti tramite la protezione dei dati ASP.NET Core. I dati crittografati possono essere controllati se `sessionStorage['count']` viene valutato nella console per sviluppatori del browser.
 
@@ -523,7 +524,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Se i parametri del componente includono lo stato di navigazione, chiamare `ProtectedSessionStore.GetAsync` e assegnare il risultato in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> , non <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> . <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>viene chiamato una sola volta al momento della creazione di un'istanza del componente. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>non viene chiamato di nuovo in un secondo momento se l'utente passa a un URL diverso rimanendo nella stessa pagina. Per altre informazioni, vedere <xref:blazor/components/lifecycle>.
+Se i parametri del componente includono lo stato di navigazione, chiamare `ProtectedSessionStore.GetAsync` e assegnare il risultato in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> , non <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> . <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> viene chiamato una sola volta al momento della creazione di un'istanza del componente. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> non viene chiamato di nuovo in un secondo momento se l'utente passa a un URL diverso rimanendo nella stessa pagina. Per altre informazioni, vedere <xref:blazor/components/lifecycle>.
 
 > [!WARNING]
 > Gli esempi in questa sezione funzionano solo se per il server non è abilitato il prerendering. Con il prerendering abilitato, viene generato un errore che indica che non è possibile eseguire chiamate di interoperabilità JavaScript perché è in corso il rendering del componente.
@@ -561,7 +562,7 @@ Durante il prerendering:
 * Una connessione interattiva al browser dell'utente non esiste.
 * Il browser non dispone ancora di una pagina in cui è possibile eseguire il codice JavaScript.
 
-`localStorage`o `sessionStorage` non sono disponibili durante il prerendering. Se il componente tenta di interagire con l'archiviazione, viene generato un errore che indica che non è possibile eseguire chiamate di interoperabilità JavaScript perché è in corso il rendering del componente.
+`localStorage` o `sessionStorage` non sono disponibili durante il prerendering. Se il componente tenta di interagire con l'archiviazione, viene generato un errore che indica che non è possibile eseguire chiamate di interoperabilità JavaScript perché è in corso il rendering del componente.
 
 Un modo per risolvere l'errore consiste nel disabilitare il prerendering. Questa è in genere la scelta migliore se l'app usa in modo intensivo l'archiviazione basata su browser. Il prerendering aggiunge complessità e non è vantaggioso per l'app perché l'app non può prerenderizzare contenuti utili fino a quando non `localStorage` `sessionStorage` sono disponibili o.
 

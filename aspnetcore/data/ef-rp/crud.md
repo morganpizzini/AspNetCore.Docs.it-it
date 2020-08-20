@@ -5,6 +5,7 @@ description: Parte 2 delle Razor pagine e della serie di esercitazioni Entity Fr
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: f205e7741c8e901e9219bec2028c7bee98129161
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a6a99d736a60a55b81eb7e852413dc52b733d2fb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018364"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627533"
 ---
 # <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>Parte 2, Razor pagine con EF core in ASP.NET Core-CRUD
 
@@ -89,7 +90,7 @@ Il codice precedente crea un oggetto Student e quindi usa i campi del modulo pub
 
 * Usa i valori del modulo pubblicati dalla proprietà [PageContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) in [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel).
 * Aggiorna solo le proprietà elencate (`s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
-* Cerca i campi del modulo con il prefisso "student". Ad esempio, `Student.FirstMidName` Non viene fatta distinzione tra maiuscole e minuscole.
+* Cerca i campi del modulo con il prefisso "student". Ad esempio: `Student.FirstMidName`. Non viene fatta distinzione tra maiuscole e minuscole.
 * Usa il sistema di [associazione di modelli](xref:mvc/models/model-binding) per convertire i valori dei moduli da stringa ai tipi nel modello `Student`. Ad esempio, `EnrollmentDate` deve essere convertito in DateTime.
 
 Eseguire l'app e creare un'entità Student per testare la pagina Create.

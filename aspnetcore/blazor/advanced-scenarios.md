@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/18/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,20 +18,20 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: 4bd73acd821a8791d7f6cc93545edc2e39a6f2c7
-ms.sourcegitcommit: 68d03d1aee8906b53bda66f8f1e0747efc3007e6
+ms.openlocfilehash: ce1786f644d1c0a70487f44ec3051de8189c5381
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88051784"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625323"
 ---
 # <a name="aspnet-core-no-locblazor-advanced-scenarios"></a>BlazorScenari ASP.NET Core avanzati
 
 Di [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
 
-## <a name="no-locblazor-server-circuit-handler"></a>Blazor Servergestore circuito
+## <a name="no-locblazor-server-circuit-handler"></a>Blazor Server gestore circuito
 
-Blazor Serverconsente al codice di definire un *gestore di circuito*, che consente l'esecuzione di codice in base alle modifiche apportate allo stato del circuito di un utente. Un gestore di circuito viene implementato tramite la derivazione da `CircuitHandler` e la registrazione della classe nel contenitore del servizio dell'app. L'esempio seguente di un gestore di circuito tiene traccia delle SignalR connessioni aperte:
+Blazor Server consente al codice di definire un *gestore di circuito*, che consente l'esecuzione di codice in base alle modifiche apportate allo stato del circuito di un utente. Un gestore di circuito viene implementato tramite la derivazione da `CircuitHandler` e la registrazione della classe nel contenitore del servizio dell'app. L'esempio seguente di un gestore di circuito tiene traccia delle SignalR connessioni aperte:
 
 ```csharp
 using System.Collections.Generic;
@@ -78,7 +79,7 @@ Quando un circuito termina perché un utente si è disconnesso e il Framework pu
 
 ## <a name="manual-rendertreebuilder-logic"></a>Logica RenderTreeBuilder manuale
 
-<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>fornisce metodi per la modifica di componenti ed elementi, inclusa la compilazione manuale di componenti nel codice C#.
+<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> fornisce metodi per la modifica di componenti ed elementi, inclusa la compilazione manuale di componenti nel codice C#.
 
 > [!NOTE]
 > L'utilizzo di <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> per la creazione di componenti è uno scenario avanzato. Un componente con formato non valido, ad esempio un tag di markup non chiuso, può causare un comportamento indefinito.
@@ -99,7 +100,7 @@ Si consideri il `PetDetails` componente seguente, che può essere incorporato ma
 
 Nell'esempio seguente il ciclo nel `CreateComponent` metodo genera tre `PetDetails` componenti. Nei <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> metodi con un numero di sequenza, i numeri di sequenza sono numeri di riga del codice sorgente. L' Blazor algoritmo Difference si basa sui numeri di sequenza corrispondenti a righe di codice distinte, non sulle chiamate di chiamata distinti. Quando si crea un componente con <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> i metodi, impostare come hardcoded gli argomenti per i numeri di sequenza. **L'utilizzo di un calcolo o di un contatore per generare il numero di sequenza può causare un calo delle prestazioni.** Per ulteriori informazioni, vedere la sezione [numeri di sequenza correlati ai numeri di riga del codice e non all'ordine di esecuzione](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order) .
 
-`BuiltContent`componente
+`BuiltContent` componente
 
 ```razor
 @page "/BuiltContent"
@@ -137,7 +138,7 @@ Nell'esempio seguente il ciclo nel `CreateComponent` metodo genera tre `PetDetai
 
 ### <a name="sequence-numbers-relate-to-code-line-numbers-and-not-execution-order"></a>I numeri di sequenza sono correlati ai numeri di riga del codice e non all'ordine di esecuzione
 
-Razori file dei componenti ( `.razor` ) vengono sempre compilati. La compilazione è un potenziale vantaggio rispetto all'interpretazione del codice perché il passaggio di compilazione può essere usato per inserire informazioni che migliorano le prestazioni dell'app in fase di esecuzione.
+Razor i file dei componenti ( `.razor` ) vengono sempre compilati. La compilazione è un potenziale vantaggio rispetto all'interpretazione del codice perché il passaggio di compilazione può essere usato per inserire informazioni che migliorano le prestazioni dell'app in fase di esecuzione.
 
 Un esempio fondamentale di questi miglioramenti riguarda i *numeri di sequenza*. I numeri di sequenza indicano al runtime quali output provengono da righe di codice distinte e ordinate. Il runtime usa queste informazioni per generare differenze di albero efficienti nel tempo lineare, che è molto più veloce rispetto a quanto normalmente è possibile per un algoritmo diff della struttura ad albero generale.
 
@@ -167,7 +168,7 @@ Quando il codice viene eseguito per la prima volta, se `someFlag` è `true` , il
 
 | Sequenza | Type      | Data   |
 | :------: | --------- | :----: |
-| 0        | Nodo testo | Primo  |
+| 0        | Nodo testo | First (Primo)  |
 | 1        | Nodo testo | Second |
 
 Si supponga che `someFlag` diventi `false` e che venga eseguito nuovamente il rendering del markup. Questa volta, il generatore riceve:
@@ -199,10 +200,10 @@ A questo punto, il primo output è:
 
 | Sequenza | Type      | Data   |
 | :------: | --------- | :----: |
-| 0        | Nodo testo | Primo  |
+| 0        | Nodo testo | First (Primo)  |
 | 1        | Nodo testo | Second |
 
-Questo risultato è identico al caso precedente, pertanto non esistono problemi negativi. `someFlag`si trova `false` nel secondo rendering e l'output è:
+Questo risultato è identico al caso precedente, pertanto non esistono problemi negativi. `someFlag` si trova `false` nel secondo rendering e l'output è:
 
 | Sequenza | Type      | Data   |
 | :------: | --------- | ------ |
@@ -223,7 +224,7 @@ Questo è un esempio semplice. Nei casi più realistici con strutture complesse 
 * Il Framework non è in grado di creare automaticamente i propri numeri di sequenza in fase di esecuzione perché le informazioni necessarie non esistono a meno che non vengano acquisite in fase di compilazione.
 * Non scrivere blocchi lunghi di logica implementata manualmente <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> . Preferire i `.razor` file e consentire al compilatore di gestire i numeri di sequenza. Se non si è in grado di evitare <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> la logica manuale, suddividere i blocchi di codice lunghi in parti più piccole racchiuse tra le <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenRegion%2A> / <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseRegion%2A> chiamate. Ogni area ha il proprio spazio separato dei numeri di sequenza, quindi è possibile riavviare da zero (o qualsiasi altro numero arbitrario) all'interno di ogni area.
 * Se i numeri di sequenza sono hardcoded, l'algoritmo Diff richiede solo che i numeri di sequenza aumentino nel valore. Il valore iniziale e i gap sono irrilevanti. Una delle opzioni legittime consiste nell'usare il numero di riga del codice come numero di sequenza oppure iniziare da zero e aumentare di uno o di centinaia (o qualsiasi intervallo preferito). 
-* BlazorUSA i numeri di sequenza, mentre altri Framework dell'interfaccia utente con differenze tra gli alberi non li usano. La diffing è molto più veloce quando si usano i numeri Blazor di sequenza e presenta il vantaggio di un passaggio di compilazione che gestisce automaticamente i numeri di sequenza per gli sviluppatori che creano `.razor` file.
+* Blazor USA i numeri di sequenza, mentre altri Framework dell'interfaccia utente con differenze tra gli alberi non li usano. La diffing è molto più veloce quando si usano i numeri Blazor di sequenza e presenta il vantaggio di un passaggio di compilazione che gestisce automaticamente i numeri di sequenza per gli sviluppatori che creano `.razor` file.
 
 ## <a name="perform-large-data-transfers-in-no-locblazor-server-apps"></a>Eseguire trasferimenti di dati di grandi dimensioni nelle Blazor Server app
 

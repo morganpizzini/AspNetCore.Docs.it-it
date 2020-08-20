@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/04/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: 8f5792bc5cde358105f396112ed1b17b7695f248
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 0069a6d25c1a8edcfaa454623a95702aae58ca22
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88013541"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625895"
 ---
 # <a name="aspnet-core-no-locblazor-templates"></a>Modelli di ASP.NET Core Blazor
 
@@ -42,7 +43,7 @@ dotnet new blazorwasm --help
 dotnet new blazorserver --help
 ```
 
-## <a name="no-locblazor-project-structure"></a>Blazorstruttura del progetto
+## <a name="no-locblazor-project-structure"></a>Blazor struttura del progetto
 
 I file e le cartelle seguenti costituiscono un' Blazor app generata da un Blazor modello di progetto:
 
@@ -53,14 +54,14 @@ I file e le cartelle seguenti costituiscono un' Blazor app generata da un Blazor
     * Il `App` componente è il componente radice dell'app. Il `App` componente viene specificato come `app` elemento DOM ( `<app>...</app>` ) nella raccolta di componenti radice ( `builder.RootComponents.Add<App>("app")` ).
     * I [Servizi](xref:blazor/fundamentals/dependency-injection) vengono aggiunti e configurati, ad esempio `builder.Services.AddSingleton<IMyDependency, MyDependency>()` .
 
-* `Startup.cs`( Blazor Server ): Contiene la logica di avvio dell'app. La `Startup` classe definisce due metodi:
+* `Startup.cs` ( Blazor Server ): Contiene la logica di avvio dell'app. La `Startup` classe definisce due metodi:
 
   * `ConfigureServices`: Configura i servizi [di inserimento delle dipendenze](xref:fundamentals/dependency-injection) dell'app. Nelle Blazor Server app, i servizi vengono aggiunti chiamando <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> e il `WeatherForecastService` viene aggiunto al contenitore del servizio per l'uso da parte del `FetchData` componente di esempio.
   * `Configure`: Configura la pipeline di gestione delle richieste dell'app:
-    * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>viene chiamato per configurare un endpoint per la connessione in tempo reale con il browser. La connessione viene creata con [SignalR](xref:signalr/introduction) , che è un Framework per l'aggiunta di funzionalità Web in tempo reale alle app.
-    * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*)viene chiamato per impostare la pagina radice dell'app ( `Pages/_Host.cshtml` ) e abilitare la navigazione.
+    * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> viene chiamato per configurare un endpoint per la connessione in tempo reale con il browser. La connessione viene creata con [SignalR](xref:signalr/introduction) , che è un Framework per l'aggiunta di funzionalità Web in tempo reale alle app.
+    * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) viene chiamato per impostare la pagina radice dell'app ( `Pages/_Host.cshtml` ) e abilitare la navigazione.
 
-* `wwwroot/index.html`( Blazor WebAssembly ): La pagina radice dell'app è stata implementata come pagina HTML:
+* `wwwroot/index.html` ( Blazor WebAssembly ): La pagina radice dell'app è stata implementata come pagina HTML:
   * Quando viene inizialmente richiesta una pagina dell'app, il rendering della pagina viene eseguito e restituito nella risposta.
   * La pagina specifica la posizione in cui `App` viene eseguito il rendering del componente radice. Il rendering del componente viene eseguito in corrispondenza della posizione dell' `app` elemento DOM ( `<app>...</app>` ).
   * `_framework/blazor.webassembly.js`Viene caricato il file JavaScript, che:
@@ -69,25 +70,25 @@ I file e le cartelle seguenti costituiscono un' Blazor app generata da un Blazor
 
 * `App.razor`: Componente radice dell'app che imposta il routing sul lato client usando il <xref:Microsoft.AspNetCore.Components.Routing.Router> componente. Il <xref:Microsoft.AspNetCore.Components.Routing.Router> componente intercetta la navigazione del browser ed esegue il rendering della pagina che corrisponde all'indirizzo richiesto.
 
-* `Pages`cartella: contiene i componenti e le pagine instradabili ( `.razor` ) che costituiscono l' Blazor app e la Razor pagina radice di un' Blazor Server app. La route per ogni pagina viene specificata utilizzando la [`@page`](xref:mvc/views/razor#page) direttiva. Il modello include quanto segue:
-  * `_Host.cshtml`( Blazor Server ): La pagina radice dell'app è stata implementata come Razor Pagina
+* `Pages` cartella: contiene i componenti e le pagine instradabili ( `.razor` ) che costituiscono l' Blazor app e la Razor pagina radice di un' Blazor Server app. La route per ogni pagina viene specificata utilizzando la [`@page`](xref:mvc/views/razor#page) direttiva. Il modello include quanto segue:
+  * `_Host.cshtml` ( Blazor Server ): La pagina radice dell'app è stata implementata come Razor Pagina
     * Quando viene inizialmente richiesta una pagina dell'app, il rendering della pagina viene eseguito e restituito nella risposta.
     * `_framework/blazor.server.js`Viene caricato il file JavaScript, che configura la connessione in tempo reale SignalR tra il browser e il server.
     * Nella pagina host viene specificata la posizione in cui `App` viene eseguito il rendering del componente radice ( `App.razor` ).
-  * `Counter`( `Pages/Counter.razor` ): Implementa la pagina del contatore.
-  * `Error`( `Error.razor` , Blazor Server solo app): viene eseguito il rendering quando si verifica un'eccezione non gestita nell'app.
-  * `FetchData`( `Pages/FetchData.razor` ): Implementa la pagina Recupera dati.
-  * `Index`( `Pages/Index.razor` ): Implementa la Home page.
+  * `Counter` ( `Pages/Counter.razor` ): Implementa la pagina del contatore.
+  * `Error` ( `Error.razor` , Blazor Server solo app): viene eseguito il rendering quando si verifica un'eccezione non gestita nell'app.
+  * `FetchData` ( `Pages/FetchData.razor` ): Implementa la pagina Recupera dati.
+  * `Index` ( `Pages/Index.razor` ): Implementa la Home page.
   
 * `Properties/launchSettings.json`: Include la [configurazione dell'ambiente di sviluppo](xref:fundamentals/environments#development-and-launchsettingsjson).
 
-* `Shared`cartella: contiene altri componenti dell'interfaccia utente ( `.razor` ) usati dall'app:
-  * `MainLayout`( `MainLayout.razor` ): [Componente del layout](xref:blazor/layouts)dell'app.
-  * `NavMenu`( `NavMenu.razor` ): Implementa la navigazione dell'intestazione laterale. Include il [ `NavLink` componente](xref:blazor/fundamentals/routing#navlink-component) ( <xref:Microsoft.AspNetCore.Components.Routing.NavLink> ) che esegue il rendering dei collegamenti di navigazione ad altri Razor componenti. Il <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componente indica automaticamente uno stato selezionato quando viene caricato il componente, che consente all'utente di comprendere il componente attualmente visualizzato.
+* `Shared` cartella: contiene altri componenti dell'interfaccia utente ( `.razor` ) usati dall'app:
+  * `MainLayout` ( `MainLayout.razor` ): [Componente del layout](xref:blazor/layouts)dell'app.
+  * `NavMenu` ( `NavMenu.razor` ): Implementa la navigazione dell'intestazione laterale. Include il [ `NavLink` componente](xref:blazor/fundamentals/routing#navlink-component) ( <xref:Microsoft.AspNetCore.Components.Routing.NavLink> ) che esegue il rendering dei collegamenti di navigazione ad altri Razor componenti. Il <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componente indica automaticamente uno stato selezionato quando viene caricato il componente, che consente all'utente di comprendere il componente attualmente visualizzato.
 
 * `_Imports.razor`: Include Razor direttive comuni da includere nei componenti dell'app ( `.razor` ), ad esempio le [`@using`](xref:mvc/views/razor#using) direttive per gli spazi dei nomi.
 
-* `Data`Folder ( Blazor Server ): contiene la `WeatherForecast` classe e l'implementazione di `WeatherForecastService` che forniscono dati meteorologici di esempio al componente dell'app `FetchData` .
+* `Data` Folder ( Blazor Server ): contiene la `WeatherForecast` classe e l'implementazione di `WeatherForecastService` che forniscono dati meteorologici di esempio al componente dell'app `FetchData` .
 
 * `wwwroot`: La cartella [radice Web](xref:fundamentals/index#web-root) per l'app contenente le risorse statiche pubbliche dell'app.
 

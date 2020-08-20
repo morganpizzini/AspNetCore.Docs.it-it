@@ -1,5 +1,5 @@
 ---
-title: Strumenti per ASP.NET CoreBlazor
+title: Strumenti per ASP.NET Core Blazor
 author: guardrex
 description: Informazioni sugli strumenti disponibili per la compilazione di Blazor app.
 monikerRange: '>= aspnetcore-3.1'
@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -18,14 +19,14 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 077d8943e424df4d5a14950dfadc2dd73d2ce4d6
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d7e3743d12c235c20cc27f6a3263e2994a9e160a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88013398"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625830"
 ---
-# <a name="tooling-for-aspnet-core-no-locblazor"></a>Strumenti per ASP.NET CoreBlazor
+# <a name="tooling-for-aspnet-core-no-locblazor"></a>Strumenti per ASP.NET Core Blazor
 
 Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
@@ -37,9 +38,9 @@ Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.co
 
 1. Selezionare ** Blazor app**. Selezionare **Avanti**.
 
-1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
+1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
 
-1. Per un' Blazor WebAssembly esperienza, scegliere il modello ** Blazor WebAssembly app** . Per un' Blazor Server esperienza, scegliere il modello ** Blazor Server app** . Selezionare **Crea**.
+1. Per un' Blazor WebAssembly esperienza, scegliere il modello ** Blazor WebAssembly app** . Per un' Blazor Server esperienza, scegliere il modello ** Blazor Server app** . Selezionare **Create** (Crea).
 
    Per informazioni sui due Blazor modelli di hosting *Blazor WebAssembly* e *Blazor Server* , vedere <xref:blazor/hosting-models> .
 
@@ -107,7 +108,7 @@ Per altre informazioni, vedere le linee guida fornite dal browser e dalla distri
 
 1. Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**. Selezionare **Avanti**.
 
-1. Nel campo **nome progetto** assegnare un nome all'app `WebApplication1` . Selezionare **Crea**.
+1. Nel campo **nome progetto** assegnare un nome all'app `WebApplication1` . Selezionare **Create** (Crea).
 
 1. Selezionare **Esegui**  >  **Avvia senza eseguire debug** per eseguire l'app *senza il debugger*. Eseguire l'app con **Esegui**  >  **debug Avvia debug** o il pulsante Esegui (&#9654;) per eseguire l'app *con il debugger*.
 

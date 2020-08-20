@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/13/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/messagepackhubprotocol
-ms.openlocfilehash: 8e590c87f75d35cbafde1adbc87dea9c45eac92d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ab9bd11e37182f5b24db5595d5d050f4cc0e32da
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022550"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626649"
 ---
 # <a name="use-messagepack-hub-protocol-in-no-locsignalr-for-aspnet-core"></a>Usare il protocollo dell'hub MessagePack in SignalR per ASP.NET Core
 
@@ -32,7 +33,7 @@ Questo articolo presuppone che il lettore abbia familiarità con gli argomenti t
 
 ## <a name="what-is-messagepack"></a>Che cos'è MessagePack?
 
-[MessagePack](https://msgpack.org/index.html) è un formato di serializzazione binaria veloce e compatto. È utile quando le prestazioni e la larghezza di banda rappresentano un problema perché crea messaggi più piccoli rispetto a [JSON](https://www.json.org/). I messaggi binari sono illeggibili quando si esaminano le tracce di rete e i log, a meno che i byte non vengano passati tramite un parser MessagePack. SignalRdispone del supporto incorporato per il formato MessagePack e fornisce API per il client e il server da utilizzare.
+[MessagePack](https://msgpack.org/index.html) è un formato di serializzazione binaria veloce e compatto. È utile quando le prestazioni e la larghezza di banda rappresentano un problema perché crea messaggi più piccoli rispetto a [JSON](https://www.json.org/). I messaggi binari sono illeggibili quando si esaminano le tracce di rete e i log, a meno che i byte non vengano passati tramite un parser MessagePack. SignalR dispone del supporto incorporato per il formato MessagePack e fornisce API per il client e il server da utilizzare.
 
 ## <a name="configure-messagepack-on-the-server"></a>Configurare MessagePack nel server
 
@@ -197,7 +198,7 @@ Questo articolo presuppone che il lettore abbia familiarità con gli argomenti t
 
 ## <a name="what-is-messagepack"></a>Che cos'è MessagePack?
 
-[MessagePack](https://msgpack.org/index.html) è un formato di serializzazione binaria veloce e compatto. È utile quando le prestazioni e la larghezza di banda rappresentano un problema perché crea messaggi più piccoli rispetto a [JSON](https://www.json.org/). I messaggi binari sono illeggibili quando si esaminano le tracce di rete e i log, a meno che i byte non vengano passati tramite un parser MessagePack. SignalRdispone del supporto incorporato per il formato MessagePack e fornisce le API per il client e il server da utilizzare.
+[MessagePack](https://msgpack.org/index.html) è un formato di serializzazione binaria veloce e compatto. È utile quando le prestazioni e la larghezza di banda rappresentano un problema perché crea messaggi più piccoli rispetto a [JSON](https://www.json.org/). I messaggi binari sono illeggibili quando si esaminano le tracce di rete e i log, a meno che i byte non vengano passati tramite un parser MessagePack. SignalR dispone del supporto incorporato per il formato MessagePack e fornisce le API per il client e il server da utilizzare.
 
 ## <a name="configure-messagepack-on-the-server"></a>Configurare MessagePack nel server
 
@@ -372,7 +373,7 @@ Questo articolo presuppone che il lettore abbia familiarità con gli argomenti t
 
 ## <a name="what-is-messagepack"></a>Che cos'è MessagePack?
 
-[MessagePack](https://msgpack.org/index.html) è un formato di serializzazione binaria veloce e compatto. È utile quando le prestazioni e la larghezza di banda rappresentano un problema perché crea messaggi più piccoli rispetto a [JSON](https://www.json.org/). I messaggi binari sono illeggibili quando si esaminano le tracce di rete e i log, a meno che i byte non vengano passati tramite un parser MessagePack. SignalRdispone del supporto incorporato per il formato MessagePack e fornisce le API per il client e il server da utilizzare.
+[MessagePack](https://msgpack.org/index.html) è un formato di serializzazione binaria veloce e compatto. È utile quando le prestazioni e la larghezza di banda rappresentano un problema perché crea messaggi più piccoli rispetto a [JSON](https://www.json.org/). I messaggi binari sono illeggibili quando si esaminano le tracce di rete e i log, a meno che i byte non vengano passati tramite un parser MessagePack. SignalR dispone del supporto incorporato per il formato MessagePack e fornisce le API per il client e il server da utilizzare.
 
 ## <a name="configure-messagepack-on-the-server"></a>Configurare MessagePack nel server
 

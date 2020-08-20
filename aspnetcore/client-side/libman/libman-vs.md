@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/libman/libman-vs
-ms.openlocfilehash: 2dc944ffd4307aa108a54b70d58f298c26959ce0
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 77cfced18edd9db5be21265469b42f32e3de274d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88013346"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625674"
 ---
 # <a name="use-libman-with-aspnet-core-in-visual-studio"></a>Usare LibMan con ASP.NET Core in Visual Studio
 
@@ -94,7 +95,7 @@ Per installare una libreria sul lato client, attenersi alla procedura seguente:
 
 ### <a name="manually-configure-libman-manifest-file-entries"></a>Configurare manualmente le voci del file manifesto LibMan
 
-Tutte le operazioni LibMan in Visual Studio sono basate sul contenuto del manifesto LibMan della radice del progetto (*libman.json*). È possibile modificare manualmente *libman.jssu* per configurare i file di libreria per il progetto. Quandolibman.jsviene salvato, Visual Studio Ripristina tutti i file *di* libreria.
+Tutte le operazioni LibMan in Visual Studio sono basate sul contenuto del manifesto LibMan della radice del progetto (*libman.json*). È possibile modificare manualmente *libman.jssu* per configurare i file di libreria per il progetto. Quandolibman.jsviene salvato, Visual Studio Ripristina tutti i file * di* libreria.
 
 Per aprire *libman.js* per la modifica, sono disponibili le opzioni seguenti:
 
@@ -132,7 +133,7 @@ LibMan consente di ripristinare i file di libreria definiti come parte del proce
 
 Per abilitare e testare il comportamento di ripristino in base alla compilazione:
 
-* Fare clic con il pulsante destro del mouse *sulibman.js* in **Esplora soluzioni** e selezionare **Abilita ripristino di librerie sul lato client in compilazione** dal menu di scelta rapida.
+* Fare clic con il pulsante destro del mouse * sulibman.js* in **Esplora soluzioni** e selezionare **Abilita ripristino di librerie sul lato client in compilazione** dal menu di scelta rapida.
 * Quando viene richiesto di installare un pacchetto NuGet, fare clic sul pulsante **Sì** . Al progetto viene aggiunto il pacchetto NuGet [Microsoft. Web. librarymanager. Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) :
 
   [!code-xml[](samples/LibManSample/LibManSample.csproj?name=snippet_RestoreOnBuildPackage)]

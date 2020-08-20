@@ -1,5 +1,5 @@
 ---
-title: RazorPagine relative alle convenzioni di route e app in ASP.NET Core
+title: Razor Pagine relative alle convenzioni di route e app in ASP.NET Core
 author: rick-anderson
 description: Informazioni su come le convenzioni di route e del provider di modello di app consentono di controllare routing, individuazione ed elaborazione delle pagine.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/razor-pages-conventions
-ms.openlocfilehash: 5fbb72d2195ca9fc1494f15ba0045cbb2707f72c
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: fc639178fc29438e16ad0989e61bd8dd32cf7590
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019508"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625492"
 ---
-# <a name="no-locrazor-pages-route-and-app-conventions-in-aspnet-core"></a>RazorPagine relative alle convenzioni di route e app in ASP.NET Core
+# <a name="no-locrazor-pages-route-and-app-conventions-in-aspnet-core"></a>Razor Pagine relative alle convenzioni di route e app in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -44,7 +45,7 @@ Sono disponibili parole riservate che non possono essere usate come segmenti di 
 | [Convenzioni per le azioni di route di pagina](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Aggiungere un modello di route alle pagine in una cartella e a una pagina singola. |
 | [Convenzioni per le azioni del modello di pagina](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (classe di filtro, espressione lambda o factory di filtro)</li></ul> | Aggiungere un'intestazione alle pagine in una cartella, aggiungere un'intestazione a una pagina singola e configurare una [factory di filtro](xref:mvc/controllers/filters#ifilterfactory) per aggiungere un'intestazione alle pagine di un'app. |
 
-RazorLe convenzioni di pagine vengono configurate utilizzando un <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> Overload che configura <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> in `Startup.ConfigureServices` . Gli esempi di convenzione seguenti sono illustrati più avanti in questo argomento:
+Razor Le convenzioni di pagine vengono configurate utilizzando un <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> Overload che configura <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> in `Startup.ConfigureServices` . Gli esempi di convenzione seguenti sono illustrati più avanti in questo argomento:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -86,7 +87,7 @@ L'elaborazione delle route viene stabilita per convenzione:
 
 Se possibile, evitare di basarsi su un ordine di elaborazione di Route definito. In genere, il routing seleziona la route corretta con l'URL corrispondente. Se è necessario impostare `Order` le proprietà della route in modo che le richieste vengano indirizzate correttamente, lo schema di routing dell'app è probabilmente confuso per i client ed è fragile da mantenere. Cercare di semplificare lo schema di routing dell'app. L'app di esempio richiede un ordine esplicito di elaborazione della route per illustrare diversi scenari di routing usando una singola app. Tuttavia, è consigliabile provare a evitare la procedura di impostazione della route `Order` nelle app di produzione.
 
-RazorIl routing di pagine e il routing del controller MVC condividono un'implementazione. Le informazioni sugli ordini di route negli argomenti di MVC sono disponibili in [routing alle azioni del controller: ordinamento delle route degli attributi](xref:mvc/controllers/routing#ordering-attribute-routes).
+Razor Il routing di pagine e il routing del controller MVC condividono un'implementazione. Le informazioni sugli ordini di route negli argomenti di MVC sono disponibili in [routing alle azioni del controller: ordinamento delle route degli attributi](xref:mvc/controllers/routing#ordering-attribute-routes).
 
 ## <a name="model-conventions"></a>Convenzioni del modello
 
@@ -108,7 +109,7 @@ La proprietà <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteMod
 
 Laddove possibile, non impostare `Order` , che restituisce `Order = 0` . Basarsi sul routing per selezionare la route corretta.
 
-RazorLe opzioni relative alle pagine, ad esempio l'aggiunta <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> , vengono aggiunte quando Razor si aggiungono pagine alla raccolta di servizi in `Startup.ConfigureServices` . Per un esempio completo, vedere [l'app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/).
+Razor Le opzioni relative alle pagine, ad esempio l'aggiunta <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> , vengono aggiunte quando Razor si aggiungono pagine alla raccolta di servizi in `Startup.ConfigureServices` . Per un esempio completo, vedere [l'app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/).
 
 [!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet1)]
 
@@ -186,7 +187,7 @@ Le route di pagina generate da ASP.NET Core possono essere personalizzate usando
 
 La `PageRouteTransformerConvention` convenzione del modello di route di pagina applica un trasformatore di parametri ai segmenti di cartella e nome file delle route di pagina generate automaticamente in un'app. Ad esempio, il Razor file di pagine in */pages/SubscriptionManagement/ViewAll.cshtml* avrebbe la route riscritta da `/SubscriptionManagement/ViewAll` a `/subscription-management/view-all` .
 
-`PageRouteTransformerConvention`trasforma solo i segmenti generati automaticamente di una route di pagina che provengono dalla Razor cartella pagine e dal nome file. Non trasforma i segmenti di route aggiunti con la `@page` direttiva. La convenzione non trasforma inoltre le route aggiunte da <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*> .
+`PageRouteTransformerConvention` trasforma solo i segmenti generati automaticamente di una route di pagina che provengono dalla Razor cartella pagine e dal nome file. Non trasforma i segmenti di route aggiunti con la `@page` direttiva. La convenzione non trasforma inoltre le route aggiunte da <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*> .
 
 Il `PageRouteTransformerConvention` è registrato come opzione in `Startup.ConfigureServices` :
 
@@ -266,7 +267,7 @@ Richiedere la pagina di informazioni dell'esempio in `localhost:5000/About` ed e
 
 **Configurare un filtro**
 
-<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*>Configura il filtro specificato da applicare. È possibile implementare una classe di filtro, ma l'app di esempio illustra come implementare un filtro in un'espressione lambda, che viene implementata in background come una factory che restituisce un filtro:
+<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> Configura il filtro specificato da applicare. È possibile implementare una classe di filtro, ma l'app di esempio illustra come implementare un filtro in un'espressione lambda, che viene implementata in background come una factory che restituisce un filtro:
 
 [!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet8)]
 
@@ -280,7 +281,7 @@ Richiedere la pagina Page2 dell'esempio in `localhost:5000/OtherPages/Page2` ed 
 
 **Configurare una factory di filtro**
 
-<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*>Configura la factory specificata per applicare [filtri](xref:mvc/controllers/filters) a tutte le Razor pagine.
+<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> Configura la factory specificata per applicare [filtri](xref:mvc/controllers/filters) a tutte le Razor pagine.
 
 L'app di esempio illustra un esempio dell'uso di una [factory di filtro](xref:mvc/controllers/filters#ifilterfactory) aggiungendo un'intestazione, `FilterFactoryHeader`, con due valori per le pagine dell'app:
 
@@ -325,7 +326,7 @@ Sono disponibili parole riservate che non possono essere usate come segmenti di 
 | [Convenzioni per le azioni di route di pagina](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Aggiungere un modello di route alle pagine in una cartella e a una pagina singola. |
 | [Convenzioni per le azioni del modello di pagina](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (classe di filtro, espressione lambda o factory di filtro)</li></ul> | Aggiungere un'intestazione alle pagine in una cartella, aggiungere un'intestazione a una pagina singola e configurare una [factory di filtro](xref:mvc/controllers/filters#ifilterfactory) per aggiungere un'intestazione alle pagine di un'app. |
 
-RazorLe convenzioni di pagine vengono aggiunte e configurate mediante il <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.AddRazorPagesOptions*> metodo di estensione a nella <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*> raccolta di servizi nella `Startup` classe. Gli esempi di convenzione seguenti sono illustrati più avanti in questo argomento:
+Razor Le convenzioni di pagine vengono aggiunte e configurate mediante il <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.AddRazorPagesOptions*> metodo di estensione a nella <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*> raccolta di servizi nella `Startup` classe. Gli esempi di convenzione seguenti sono illustrati più avanti in questo argomento:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -368,7 +369,7 @@ L'elaborazione delle route viene stabilita per convenzione:
 
 Se possibile, evitare di basarsi su un ordine di elaborazione di Route definito. In genere, il routing seleziona la route corretta con l'URL corrispondente. Se è necessario impostare `Order` le proprietà della route in modo che le richieste vengano indirizzate correttamente, lo schema di routing dell'app è probabilmente confuso per i client ed è fragile da mantenere. Cercare di semplificare lo schema di routing dell'app. L'app di esempio richiede un ordine esplicito di elaborazione della route per illustrare diversi scenari di routing usando una singola app. Tuttavia, è consigliabile provare a evitare la procedura di impostazione della route `Order` nelle app di produzione.
 
-RazorIl routing di pagine e il routing del controller MVC condividono un'implementazione. Le informazioni sugli ordini di route negli argomenti di MVC sono disponibili in [routing alle azioni del controller: ordinamento delle route degli attributi](xref:mvc/controllers/routing#ordering-attribute-routes).
+Razor Il routing di pagine e il routing del controller MVC condividono un'implementazione. Le informazioni sugli ordini di route negli argomenti di MVC sono disponibili in [routing alle azioni del controller: ordinamento delle route degli attributi](xref:mvc/controllers/routing#ordering-attribute-routes).
 
 ## <a name="model-conventions"></a>Convenzioni del modello
 
@@ -390,7 +391,7 @@ La proprietà <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteMod
 
 Laddove possibile, non impostare `Order` , che restituisce `Order = 0` . Basarsi sul routing per selezionare la route corretta.
 
-RazorLe opzioni relative alle pagine, ad esempio l'aggiunta <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> , vengono aggiunte quando MVC viene aggiunto alla raccolta di servizi in `Startup.ConfigureServices` . Per un esempio completo, vedere [l'app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/).
+Razor Le opzioni relative alle pagine, ad esempio l'aggiunta <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> , vengono aggiunte quando MVC viene aggiunto alla raccolta di servizi in `Startup.ConfigureServices` . Per un esempio completo, vedere [l'app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/).
 
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet1)]
 
@@ -468,7 +469,7 @@ Le route di pagina generate da ASP.NET Core possono essere personalizzate usando
 
 La `PageRouteTransformerConvention` convenzione del modello di route di pagina applica un trasformatore di parametri ai segmenti di cartella e nome file delle route di pagina generate automaticamente in un'app. Ad esempio, il Razor file di pagine in */pages/SubscriptionManagement/ViewAll.cshtml* avrebbe la route riscritta da `/SubscriptionManagement/ViewAll` a `/subscription-management/view-all` .
 
-`PageRouteTransformerConvention`trasforma solo i segmenti generati automaticamente di una route di pagina che provengono dalla Razor cartella pagine e dal nome file. Non trasforma i segmenti di route aggiunti con la `@page` direttiva. La convenzione non trasforma inoltre le route aggiunte da <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*> .
+`PageRouteTransformerConvention` trasforma solo i segmenti generati automaticamente di una route di pagina che provengono dalla Razor cartella pagine e dal nome file. Non trasforma i segmenti di route aggiunti con la `@page` direttiva. La convenzione non trasforma inoltre le route aggiunte da <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*> .
 
 Il `PageRouteTransformerConvention` è registrato come opzione in `Startup.ConfigureServices` :
 
@@ -556,7 +557,7 @@ Richiedere la pagina di informazioni dell'esempio in `localhost:5000/About` ed e
 
 **Configurare un filtro**
 
-<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*>Configura il filtro specificato da applicare. È possibile implementare una classe di filtro, ma l'app di esempio illustra come implementare un filtro in un'espressione lambda, che viene implementata in background come una factory che restituisce un filtro:
+<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> Configura il filtro specificato da applicare. È possibile implementare una classe di filtro, ma l'app di esempio illustra come implementare un filtro in un'espressione lambda, che viene implementata in background come una factory che restituisce un filtro:
 
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet8)]
 
@@ -570,7 +571,7 @@ Richiedere la pagina Page2 dell'esempio in `localhost:5000/OtherPages/Page2` ed 
 
 **Configurare una factory di filtro**
 
-<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*>Configura la factory specificata per applicare [filtri](xref:mvc/controllers/filters) a tutte le Razor pagine.
+<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> Configura la factory specificata per applicare [filtri](xref:mvc/controllers/filters) a tutte le Razor pagine.
 
 L'app di esempio illustra un esempio dell'uso di una [factory di filtro](xref:mvc/controllers/filters#ifilterfactory) aggiungendo un'intestazione, `FilterFactoryHeader`, con due valori per le pagine dell'app:
 
@@ -615,7 +616,7 @@ Sono disponibili parole riservate che non possono essere usate come segmenti di 
 | [Convenzioni per le azioni di route di pagina](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Aggiungere un modello di route alle pagine in una cartella e a una pagina singola. |
 | [Convenzioni per le azioni del modello di pagina](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (classe di filtro, espressione lambda o factory di filtro)</li></ul> | Aggiungere un'intestazione alle pagine in una cartella, aggiungere un'intestazione a una pagina singola e configurare una [factory di filtro](xref:mvc/controllers/filters#ifilterfactory) per aggiungere un'intestazione alle pagine di un'app. |
 
-RazorLe convenzioni di pagine vengono aggiunte e configurate mediante il <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.AddRazorPagesOptions*> metodo di estensione a nella <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*> raccolta di servizi nella `Startup` classe. Gli esempi di convenzione seguenti sono illustrati più avanti in questo argomento:
+Razor Le convenzioni di pagine vengono aggiunte e configurate mediante il <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.AddRazorPagesOptions*> metodo di estensione a nella <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*> raccolta di servizi nella `Startup` classe. Gli esempi di convenzione seguenti sono illustrati più avanti in questo argomento:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -658,7 +659,7 @@ L'elaborazione delle route viene stabilita per convenzione:
 
 Se possibile, evitare di basarsi su un ordine di elaborazione di Route definito. In genere, il routing seleziona la route corretta con l'URL corrispondente. Se è necessario impostare `Order` le proprietà della route in modo che le richieste vengano indirizzate correttamente, lo schema di routing dell'app è probabilmente confuso per i client ed è fragile da mantenere. Cercare di semplificare lo schema di routing dell'app. L'app di esempio richiede un ordine esplicito di elaborazione della route per illustrare diversi scenari di routing usando una singola app. Tuttavia, è consigliabile provare a evitare la procedura di impostazione della route `Order` nelle app di produzione.
 
-RazorIl routing di pagine e il routing del controller MVC condividono un'implementazione. Le informazioni sugli ordini di route negli argomenti di MVC sono disponibili in [routing alle azioni del controller: ordinamento delle route degli attributi](xref:mvc/controllers/routing#ordering-attribute-routes).
+Razor Il routing di pagine e il routing del controller MVC condividono un'implementazione. Le informazioni sugli ordini di route negli argomenti di MVC sono disponibili in [routing alle azioni del controller: ordinamento delle route degli attributi](xref:mvc/controllers/routing#ordering-attribute-routes).
 
 ## <a name="model-conventions"></a>Convenzioni del modello
 
@@ -680,7 +681,7 @@ La proprietà <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteMod
 
 Laddove possibile, non impostare `Order` , che restituisce `Order = 0` . Basarsi sul routing per selezionare la route corretta.
 
-RazorLe opzioni relative alle pagine, ad esempio l'aggiunta <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> , vengono aggiunte quando MVC viene aggiunto alla raccolta di servizi in `Startup.ConfigureServices` . Per un esempio completo, vedere [l'app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/).
+Razor Le opzioni relative alle pagine, ad esempio l'aggiunta <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> , vengono aggiunte quando MVC viene aggiunto alla raccolta di servizi in `Startup.ConfigureServices` . Per un esempio completo, vedere [l'app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/).
 
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet1)]
 
@@ -812,7 +813,7 @@ Richiedere la pagina di informazioni dell'esempio in `localhost:5000/About` ed e
 
 **Configurare un filtro**
 
-<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*>Configura il filtro specificato da applicare. È possibile implementare una classe di filtro, ma l'app di esempio illustra come implementare un filtro in un'espressione lambda, che viene implementata in background come una factory che restituisce un filtro:
+<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> Configura il filtro specificato da applicare. È possibile implementare una classe di filtro, ma l'app di esempio illustra come implementare un filtro in un'espressione lambda, che viene implementata in background come una factory che restituisce un filtro:
 
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet8)]
 
@@ -826,7 +827,7 @@ Richiedere la pagina Page2 dell'esempio in `localhost:5000/OtherPages/Page2` ed 
 
 **Configurare una factory di filtro**
 
-<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*>Configura la factory specificata per applicare [filtri](xref:mvc/controllers/filters) a tutte le Razor pagine.
+<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> Configura la factory specificata per applicare [filtri](xref:mvc/controllers/filters) a tutte le Razor pagine.
 
 L'app di esempio illustra un esempio dell'uso di una [factory di filtro](xref:mvc/controllers/filters#ifilterfactory) aggiungendo un'intestazione, `FilterFactoryHeader`, con due valori per le pagine dell'app:
 

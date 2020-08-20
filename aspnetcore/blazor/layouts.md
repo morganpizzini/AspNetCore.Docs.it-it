@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/23/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: 68fc4c9bd516948eeb2c46c67fdb5bde7cfeefca
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: f41b41194f597505d775c95f1e65960c2f827e3b
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014152"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628014"
 ---
 # <a name="aspnet-core-no-locblazor-layouts"></a>BlazorLayout ASP.NET Core
 
@@ -73,7 +74,7 @@ La specifica del layout direttamente in un componente sostituisce un set di *lay
 
 ## <a name="centralized-layout-selection"></a>Selezione layout centralizzata
 
-Ogni cartella di un'app può contenere facoltativamente un file modello denominato `_Imports.razor` . Il compilatore include le direttive specificate nel file Imports in tutti i Razor modelli nella stessa cartella e in modo ricorsivo in tutte le relative sottocartelle. Pertanto, un `_Imports.razor` file contenente `@layout MyCoolLayout` garantisce che tutti i componenti di una cartella usino `MyCoolLayout` . Non è necessario aggiungere ripetutamente `@layout MyCoolLayout` a tutti i file nella `.razor` cartella e nelle sottocartelle. `@using`le direttive vengono applicate anche ai componenti nello stesso modo.
+Ogni cartella di un'app può contenere facoltativamente un file modello denominato `_Imports.razor` . Il compilatore include le direttive specificate nel file Imports in tutti i Razor modelli nella stessa cartella e in modo ricorsivo in tutte le relative sottocartelle. Pertanto, un `_Imports.razor` file contenente `@layout MyCoolLayout` garantisce che tutti i componenti di una cartella usino `MyCoolLayout` . Non è necessario aggiungere ripetutamente `@layout MyCoolLayout` a tutti i file nella `.razor` cartella e nelle sottocartelle. `@using` le direttive vengono applicate anche ai componenti nello stesso modo.
 
 Le `_Imports.razor` importazioni di file seguenti:
 
@@ -98,11 +99,11 @@ Nell'esempio seguente viene illustrato come utilizzare layout annidati. Il `Epis
 
 [!code-razor[](layouts/sample_snapshot/3.x/EpisodesComponent.razor?highlight=1)]
 
-Il `MasterListLayout.razor` file fornisce il `MasterListLayout` . Il layout fa riferimento a un altro layout, `MasterLayout` , in cui viene eseguito il rendering. `EpisodesComponent`viene sottoposto a rendering quando `@Body` viene visualizzato:
+Il `MasterListLayout.razor` file fornisce il `MasterListLayout` . Il layout fa riferimento a un altro layout, `MasterLayout` , in cui viene eseguito il rendering. `EpisodesComponent` viene sottoposto a rendering quando `@Body` viene visualizzato:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterListLayout.razor?highlight=1,9)]
 
-Infine, `MasterLayout` in `MasterLayout.razor` contiene gli elementi di layout di primo livello, ad esempio l'intestazione, il menu principale e il piè di pagina. `MasterListLayout`con `EpisodesComponent` viene eseguito il rendering di quando viene `@Body` visualizzato:
+Infine, `MasterLayout` in `MasterLayout.razor` contiene gli elementi di layout di primo livello, ad esempio l'intestazione, il menu principale e il piè di pagina. `MasterListLayout` con `EpisodesComponent` viene eseguito il rendering di quando viene `@Body` visualizzato:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
 

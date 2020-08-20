@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/10/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/test
-ms.openlocfilehash: 30c5ead98c5da934c1e76577c5dc1a39c7224a79
-ms.sourcegitcommit: 4df445e7d49a99f81625430f728c28e5d6bf2107
+ms.openlocfilehash: 8a6fa8f25c8209584488fb2578c70e884877d666
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/15/2020
-ms.locfileid: "88253727"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625869"
 ---
 # <a name="test-components-in-aspnet-core-no-locblazor"></a>Componenti di test in ASP.NET Core Blazor
 
@@ -62,7 +63,7 @@ Il test di E2E comporta l'avvio di più processi, l'I/O su rete e su disco e alt
 
 Nella tabella seguente sono riepilogate le differenze tra i due approcci di testing.
 
-| Funzionalità                       | Unit test                     | Test di E2E                             |
+| Funzionalità                       | Testing unità                     | Test di E2E                             |
 | -------------------------------- | -------------------------------- | --------------------------------------- |
 | Ambito del test                       | Blazor solo componente ( Razor /c #) | Blazor componente ( Razor /c #) con CSS/JS |
 | Tempo di esecuzione del test              | Millisecondi                     | Secondi                                 |
@@ -76,8 +77,8 @@ Si consideri lo scenario in cui si sceglie il tipo di test da eseguire. Alcune c
 
 | Scenario | Approccio consigliato | Osservazioni |
 | -------- | ------------------ | ------- |
-| Componente senza logica di interoperabilità JS | Unit test | Quando non esiste alcuna dipendenza dall'interoperabilità JS in un Blazor componente, il componente può essere testato senza accedere a js o all'API DOM. In questo scenario, non vi sono svantaggi nella scelta del testing unità. |
-| Componente con logica di interoperabilità JS semplice | Unit test | È frequente che i componenti eseguono una query sul DOM o attivano le animazioni tramite l'interoperabilità JS. Il testing unità è in genere preferibile in questo scenario, poiché è semplice simulare l'interazione JS tramite l' <xref:Microsoft.JSInterop.IJSRuntime> interfaccia. |
+| Componente senza logica di interoperabilità JS | Testing unità | Quando non esiste alcuna dipendenza dall'interoperabilità JS in un Blazor componente, il componente può essere testato senza accedere a js o all'API DOM. In questo scenario, non vi sono svantaggi nella scelta del testing unità. |
+| Componente con logica di interoperabilità JS semplice | Testing unità | È frequente che i componenti eseguono una query sul DOM o attivano le animazioni tramite l'interoperabilità JS. Il testing unità è in genere preferibile in questo scenario, poiché è semplice simulare l'interazione JS tramite l' <xref:Microsoft.JSInterop.IJSRuntime> interfaccia. |
 | Componente che dipende dal codice JS complesso | Unit test e test JS distinti | Se un componente usa l'interoperabilità JS per chiamare una libreria JS grande o complessa, ma l'interazione tra il Blazor componente e la libreria JS è semplice, l'approccio migliore è probabilmente trattare il componente e la libreria JS o il codice come due parti separate e testarle singolarmente. Testare il Blazor componente con una libreria di unit test e testare js con una libreria di test js. |
 | Componente con logica che dipende dalla manipolazione JS del DOM del browser | Test di E2E | Quando la funzionalità di un componente dipende da JS e dalla relativa manipolazione del DOM, verificare sia il codice JS sia il Blazor codice insieme in un test di E2E. Si tratta dell'approccio Blazor adottato dagli sviluppatori del Framework con la Blazor logica di rendering del browser, che include codice C# e JS strettamente accoppiato. Il codice C# e JS deve collaborare per eseguire correttamente il rendering dei Blazor componenti in un browser.
 | Componente che dipende dalla libreria di componenti di terze parti con dipendenze difficili da simulare | Test di E2E | Quando la funzionalità di un componente dipende da una libreria di componenti di terze parti con dipendenze difficili da simulare, ad esempio l'interoperabilità JS, il test di E2E potrebbe essere l'unica opzione per testare il componente. |

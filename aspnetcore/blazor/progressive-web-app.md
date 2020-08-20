@@ -1,5 +1,5 @@
 ---
-title: Creazione di applicazioni Web progressive con ASP.NET CoreBlazor WebAssembly
+title: Creazione di applicazioni Web progressive con ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Informazioni su come creare un' Blazor applicazione Web progressiva basata su (PWA) che usa le funzionalità moderne del browser per comportarsi come un'app desktop.
 monikerRange: '>= aspnetcore-3.1'
@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 1c33a3abd2ebee60a4025d4598495d276663dc9b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 230b2a801a76e2d719fba8e2b97fddb0b32a9634
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014165"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627962"
 ---
-# <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>Creazione di applicazioni Web progressive con ASP.NET CoreBlazor WebAssembly
+# <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>Creazione di applicazioni Web progressive con ASP.NET Core Blazor WebAssembly
 
 Di [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-Un'applicazione Web progressiva (PWA) è in genere un'applicazione a pagina singola (SPA) che usa le API e le funzionalità moderne del browser per comportarsi come un'app desktop. Blazor WebAssemblyè una piattaforma di app Web lato client basata su standard, pertanto può usare qualsiasi API del browser, incluse le API di PWA richieste per le funzionalità seguenti:
+Un'applicazione Web progressiva (PWA) è in genere un'applicazione a pagina singola (SPA) che usa le API e le funzionalità moderne del browser per comportarsi come un'app desktop. Blazor WebAssembly è una piattaforma di app Web lato client basata su standard, pertanto può usare qualsiasi API del browser, incluse le API di PWA richieste per le funzionalità seguenti:
 
 * Lavorare offline e caricare immediatamente, indipendentemente dalla velocità di rete.
 * In esecuzione nella propria finestra dell'app, non solo in una finestra del browser.
@@ -161,8 +162,8 @@ Se i componenti dell'app Razor si basano sulla richiesta di dati dalle API back-
 
 Si consideri cosa accade quando l'utente accede per la prima volta a un URL, ad esempio `/counter` o qualsiasi altro collegamento profondo nell'app. In questi casi, non si vuole restituire contenuto memorizzato nella cache come `/counter` , ma è necessario il browser per caricare il contenuto memorizzato nella cache come `/index.html` per avviare l' Blazor WebAssembly app. Queste richieste iniziali sono note come richieste di *navigazione* , anziché:
 
-* `subresource`richieste per immagini, fogli di stile o altri file.
-* `fetch/XHR`richieste di dati dell'API.
+* `subresource` richieste per immagini, fogli di stile o altri file.
+* `fetch/XHR` richieste di dati dell'API.
 
 Il ruolo di lavoro del servizio predefinito contiene la logica speciale per le richieste di navigazione. Il ruolo di lavoro del servizio risolve le richieste restituendo il contenuto memorizzato nella cache per `/index.html` , indipendentemente dall'URL richiesto. Questa logica viene implementata nella `onFetch` funzione all'interno di `service-worker.published.js` .
 
@@ -295,8 +296,8 @@ L' [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) app di esempio
 
 * `OfflineAccountClaimsPrincipalFactory` (`Client/Data/OfflineAccountClaimsPrincipalFactory.cs`)
 * `LocalVehiclesStore` (`Client/Data/LocalVehiclesStore.cs`)
-* `LoginStatus`componente ( `Client/Shared/LoginStatus.razor` )
+* `LoginStatus` componente ( `Client/Shared/LoginStatus.razor` )
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [SignalRnegoziazione tra le origini per l'autenticazione](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
+* [SignalR negoziazione tra le origini per l'autenticazione](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)

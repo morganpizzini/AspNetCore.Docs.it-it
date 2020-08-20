@@ -1,5 +1,5 @@
 ---
-title: Ospitare e distribuire ASP.NET CoreBlazor
+title: Ospitare e distribuire ASP.NET Core Blazor
 author: guardrex
 description: Scopri come ospitare e distribuire le Blazor app.
 monikerRange: '>= aspnetcore-3.1'
@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/15/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/index
-ms.openlocfilehash: 8a5172db22a17138f7462d140fd97316586e5282
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7bde61b0ff1d122b449ccc9d7ea9629fc8fb6108
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014204"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628092"
 ---
-# <a name="host-and-deploy-aspnet-core-no-locblazor"></a>Ospitare e distribuire ASP.NET CoreBlazor
+# <a name="host-and-deploy-aspnet-core-no-locblazor"></a>Ospitare e distribuire ASP.NET Core Blazor
 
 Di [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com) e [Daniel Roth](https://github.com/danroth27)
 
@@ -36,7 +37,7 @@ Le app vengono pubblicate per la distribuzione nella configurazione per il rilas
 
 1. Selezionare **Compila**  >  **pubblicazione {applicazione}** dalla barra di spostamento.
 1. Selezionare la *destinazione di pubblicazione*. Per pubblicare in locale, selezionare **Cartella**.
-1. Accettare il percorso predefinito nel campo **Scegliere una cartella** oppure specificarne uno diverso. Selezionare il **`Publish`** pulsante.
+1. Accettare il percorso predefinito nel campo **Scegliere una cartella** oppure specificarne uno diverso. Selezionare il pulsante **`Publish`**.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
@@ -83,7 +84,7 @@ Per fornire la configurazione per il Blazor percorso di base dell'app `https://w
 <base href="/CoolApp/">
 ```
 
-Blazor Serverapp consente inoltre di impostare il percorso di base lato server chiamando <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> nella pipeline delle richieste dell'app di `Startup.Configure` :
+Blazor Server app consente inoltre di impostare il percorso di base lato server chiamando <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> nella pipeline delle richieste dell'app di `Startup.Configure` :
 
 ```csharp
 app.UsePathBase("/CoolApp");

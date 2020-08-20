@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/distributed
-ms.openlocfilehash: 64a4b6f606a4f5f8e73ef08f53cbb6e4003245aa
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a25cbaf9a4e7dc5f1bd3706d01f409208a39aaa3
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020678"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626727"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>Caching distribuito in ASP.NET Core
 
@@ -174,7 +175,7 @@ Quando si decide quale implementazione di <xref:Microsoft.Extensions.Caching.Dis
 
 * Infrastruttura esistente
 * Requisiti per le prestazioni
-* Costi
+* Cost
 * Esperienza del team
 
 Le soluzioni per la memorizzazione nella cache si basano in genere sull'archiviazione in memoria per consentire un rapido recupero dei dati memorizzati nella cache, ma la memoria è una risorsa limitata ed è dispendiosa per espanderla. Archiviare solo i dati utilizzati di frequente in una cache.
@@ -344,7 +345,7 @@ Quando si decide quale implementazione di <xref:Microsoft.Extensions.Caching.Dis
 
 * Infrastruttura esistente
 * Requisiti per le prestazioni
-* Costi
+* Cost
 * Esperienza del team
 
 Le soluzioni per la memorizzazione nella cache si basano in genere sull'archiviazione in memoria per consentire un rapido recupero dei dati memorizzati nella cache, ma la memoria è una risorsa limitata ed è dispendiosa per espanderla. Archiviare solo i dati utilizzati di frequente in una cache.
@@ -520,7 +521,7 @@ Quando si decide quale implementazione di <xref:Microsoft.Extensions.Caching.Dis
 
 * Infrastruttura esistente
 * Requisiti per le prestazioni
-* Costi
+* Cost
 * Esperienza del team
 
 Le soluzioni per la memorizzazione nella cache si basano in genere sull'archiviazione in memoria per consentire un rapido recupero dei dati memorizzati nella cache, ma la memoria è una risorsa limitata ed è dispendiosa per espanderla. Archiviare solo i dati utilizzati di frequente in una cache.

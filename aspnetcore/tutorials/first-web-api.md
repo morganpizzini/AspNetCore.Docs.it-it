@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/13/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: 15e5c838e6dae824a189f170b28730a63f8c3ea7
-ms.sourcegitcommit: 4df445e7d49a99f81625430f728c28e5d6bf2107
+ms.openlocfilehash: ce0dfdf1ce88b55790d33918a2d20bc19a09b288
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/15/2020
-ms.locfileid: "88253642"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626896"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Esercitazione: creare un'API Web con ASP.NET Core
 
@@ -48,10 +49,10 @@ Questa esercitazione consente di creare l'API seguente:
 
 |API | Descrizione | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
-|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
-|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
+|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | Nessuno | Matrice di elementi attività|
+|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
 |`POST /api/TodoItems` | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
-|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | nessuno |
+|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
 |`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
 
 Il diagramma seguente visualizza la struttura dell'app.
@@ -351,7 +352,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItem` . Ad esempio: `https://localhost:5001/api/TodoItem`.
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
 * Selezionare la scheda **Corpo**.
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)**.
@@ -364,7 +365,7 @@ Questa esercitazione usa Postman per testare l'API Web.
     }
     ```
 
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
   ![Postman con richiesta di creazione](first-web-api/_static/3/create.png)
 
@@ -377,7 +378,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Impostare il metodo HTTP su `GET`.
 * Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio: `https://localhost:5001/api/TodoItems/1`.
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 ## <a name="examine-the-get-methods"></a>Esaminare i metodi GET
 
@@ -386,7 +387,7 @@ Questi metodi implementano due metodi GET:
 * `GET /api/TodoItems`
 * `GET /api/TodoItems/{id}`
 
-Testare l'app chiamando i due endpoint da un browser o da Postman. Esempio:
+Testare l'app chiamando i due endpoint da un browser o da Postman. Ad esempio:
 
 * `https://localhost:5001/api/TodoItems`
 * `https://localhost:5001/api/TodoItems/1`
@@ -409,7 +410,7 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 * Impostare il metodo HTTP su **GET**.
 * Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 Questa app usa un database in memoria. Se l'app viene arrestata e avviata, la richiesta GET precedente non restituirà alcun dato. Se non vengono restituiti dati, eseguire [POST](#post) per pubblicare i dati nell'app.
 
@@ -477,7 +478,7 @@ Usare Postman per eliminare un elemento attività:
 
 * Impostare il metodo su `DELETE`.
 * Impostare l'URI dell'oggetto da eliminare (ad esempio `https://localhost:5001/api/TodoItems/1` ).
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 <a name="over-post"></a>
 
@@ -538,10 +539,10 @@ Questa esercitazione consente di creare l'API seguente:
 
 |API | Descrizione | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
-|GET /api/TodoItems | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
-|GET /api/TodoItems/{id} | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
+|GET /api/TodoItems | Ottiene tutti gli elementi attività | Nessuno | Matrice di elementi attività|
+|GET /api/TodoItems/{id} | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
 |POST /api/TodoItems | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
-|PUT /api/TodoItems/{id} | Aggiorna un elemento esistente &nbsp; | Elemento attività | nessuno |
+|PUT /api/TodoItems/{id} | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
 |Elimina/api/TodoItems/{id} &nbsp;&nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
 
 Il diagramma seguente visualizza la struttura dell'app.
@@ -743,7 +744,7 @@ Questi metodi implementano due metodi GET:
 
 Arrestare l'app se è ancora in esecuzione. Quindi eseguirla di nuovo per includere le modifiche più recenti.
 
-Testare l'app chiamando i due endpoint da un browser. Esempio:
+Testare l'app chiamando i due endpoint da un browser. Ad esempio:
 
 * `https://localhost:<port>/api/todo`
 * `https://localhost:<port>/api/todo/1`
@@ -810,7 +811,7 @@ Questa esercitazione usa Postman per testare l'API Web.
   * Impostare il metodo HTTP su **GET**.
   * Impostare l'URI della richiesta su `https://localhost:<port>/api/todo` . Ad esempio: `https://localhost:5001/api/todo`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 ![Postman con richiesta GET](first-web-api/_static/2pv.png)
 
@@ -847,7 +848,7 @@ Il metodo `CreatedAtAction`:
     }
     ```
 
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
   ![Postman con richiesta di creazione](first-web-api/_static/create.png)
 
@@ -862,7 +863,7 @@ Il metodo `CreatedAtAction`:
 
 * Impostare il metodo su GET.
 * Impostare l'URI su  `https://localhost:<port>/api/TodoItems/2` .Ad esempio,  `https://localhost:5001/api/TodoItems/2` .
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 ## <a name="add-a-puttodoitem-method"></a>Aggiungere un metodo PutTodoItem
 
@@ -906,7 +907,7 @@ Usare Postman per eliminare un elemento attività:
 
 * Impostare il metodo su `DELETE`.
 * Impostare l'URI dell'oggetto da eliminare (ad esempio, `https://localhost:5001/api/todo/1` ).
-* Selezionare**Send** (Invia).
+* Selezionare **Send** (Invia).
 
 L'app di esempio consente di eliminare tutti gli elementi. Quando viene eliminato l'ultimo elemento, tuttavia, ne viene creato uno nuovo dal costruttore della classe modello alla successiva chiamata dell'API.
 
