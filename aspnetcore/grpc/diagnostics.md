@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 09/23/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: bf8068375da81288f2fbfa2c1bfafe97c03c70fc
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 5c4c05e74a8223db3ade03b067bd66921439c99f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016180"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633266"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>Registrazione e diagnostica in gRPC in .NET
 
@@ -29,7 +30,7 @@ Di [James Newton-King](https://twitter.com/jamesnk)
 
 Questo articolo fornisce indicazioni per la raccolta di dati diagnostici da un'app gRPC per semplificare la risoluzione dei problemi. Gli argomenti trattati includono:
 
-* Log con struttura di **registrazione** scritti nella [registrazione di .NET Core](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger>viene usato dai Framework app per scrivere log e dagli utenti per la propria registrazione in un'app.
+* Log con struttura di **registrazione** scritti nella [registrazione di .NET Core](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> viene usato dai Framework app per scrivere log e dagli utenti per la propria registrazione in un'app.
 * **Traccia** : eventi correlati a un'operazione scritta utilizzando `DiaganosticSource` e `Activity` . Le tracce dall'origine di diagnostica vengono in genere usate per raccogliere dati di telemetria delle app da librerie quali [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) e [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
 * **Metriche** : rappresentazione delle misure dei dati in intervalli temporali, ad esempio richieste al secondo. Le metriche vengono emesse usando `EventCounter` e possono essere osservate usando lo strumento da riga di comando [DotNet-contatori](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) o con [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters).
 
@@ -162,7 +163,7 @@ Il modo più semplice per usare `DiagnosticSource` consiste nel configurare una 
 
 La traccia può essere visualizzata in un servizio gestito, ad esempio Application Insights, oppure è possibile scegliere di eseguire il proprio sistema di traccia distribuita. OpenTelemetry supporta l'esportazione dei dati di traccia in [Jaeger](https://www.jaegertracing.io/) e [Zipkin](https://zipkin.io/).
 
-`DiagnosticSource`può utilizzare gli eventi di traccia nel codice utilizzando `DiagnosticListener` . Per informazioni sull'ascolto di un'origine diagnostica con codice, vedere il [manuale dell'utente di DiagnosticSource](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md#consuming-data-with-diagnosticlistener).
+`DiagnosticSource` può utilizzare gli eventi di traccia nel codice utilizzando `DiagnosticListener` . Per informazioni sull'ascolto di un'origine diagnostica con codice, vedere il [manuale dell'utente di DiagnosticSource](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md#consuming-data-with-diagnosticlistener).
 
 > [!NOTE]
 > Attualmente le librerie di telemetria non acquisiscono dati di `Grpc.Net.Client.GrpcOut` telemetria specifici per gRPC. Il lavoro per migliorare le librerie di telemetrie che acquisiscono questa traccia è in corso.

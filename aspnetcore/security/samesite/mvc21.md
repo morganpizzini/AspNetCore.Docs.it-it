@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/03/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: 4285432d48ba11b5069d109c5667192a99fe115e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 0a719ae48199f7854ded534446045eb304d4d9f0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021783"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632356"
 ---
 # <a name="aspnet-core-21-mvc-samesite-no-loccookie-sample"></a>Esempio navigava sullostesso sito 2,1 MVC ASP.NET Core cookie
 
@@ -56,7 +57,7 @@ Response.Cookies.Append(CookieName, "cookieValue", cookieOptions);
 
 ## <a name="setting-no-loccookie-authentication-and-session-state-no-loccookies"></a>Impostazione dell' Cookie autenticazione e dello stato della sessione cookie
 
-Cookiel'autenticazione, lo stato della sessione e [vari altri componenti](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) impostano le opzioni di navigava sullostesso sito tramite Cookie Opzioni, ad esempio
+Cookie l'autenticazione, lo stato della sessione e [vari altri componenti](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) impostano le opzioni di navigava sullostesso sito tramite Cookie Opzioni, ad esempio
 
 ```c#
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -153,7 +154,7 @@ Funzione helper `CheckSameSite(HttpContext, CookieOptions)` :
 * Viene chiamato quando cookie vengono aggiunti alla richiesta o eliminati dalla richiesta.
 * Verifica se la `SameSite` proprietà è impostata su `None` .
 * Se `SameSite` è impostato su `None` e l'agente utente corrente non supporta il valore dell'attributo None. Il controllo viene eseguito usando la classe [SameSiteSupport](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/samesite/sample/snippets/SameSiteSupport.cs) :
-  * Imposta `SameSite` per non creare il valore impostando la proprietà su`(SameSiteMode)(-1)`
+  * Imposta `SameSite` per non creare il valore impostando la proprietà su `(SameSiteMode)(-1)`
 
 ## <a name="targeting-net-framework"></a>.NET Framework di destinazione
 

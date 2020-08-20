@@ -6,6 +6,7 @@ ms.author: casoper
 ms.custom: devx-track-csharp, mvc
 ms.date: 01/21/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: ccd3868c4b3294098e692f7a20e06d59ba482e7c
-ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
+ms.openlocfilehash: a1bac04944d9671df3f804a9724c9f0fd6f1fb27
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88130522"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633630"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticazione cloud con Azure Active Directory B2C in ASP.NET Core
 
@@ -63,7 +64,7 @@ Usare i valori seguenti:
 | **Includi app Web/API Web** | Sì                       |                                                                                                                                                                                                    |
 | **Consenti il flusso implicito**       | Sì                       |                                                                                                                                                                                                    |
 | **URL di risposta**                 | `https://localhost:44300/signin-oidc` | Gli URL di risposta sono gli endpoint a cui Azure AD B2C restituisce eventuali token richiesti dall'app. Visual Studio fornisce l'URL di risposta da usare. Per il momento, immettere `https://localhost:44300/signin-oidc` per completare il modulo. |
-| **URI ID app**                | Lasciare vuoto il campo               | Non richiesto per questa esercitazione.                                                                                                                                                                    |
+| **URI ID app**                | Lasciare vuoto               | Non richiesto per questa esercitazione.                                                                                                                                                                    |
 | **Includi client nativo**     | No                        |                                                                                                                                                                                                    |
 
 > [!WARNING]
@@ -98,7 +99,7 @@ In Visual Studio:
     | **Percorso di callback**             | *&lt;Usa il valore predefinito&gt;*                       |
     | **Criteri di iscrizione o di accesso** | `B2C_1_SiUpIn`                                        |
     | **Reimposta criteri password**     | `B2C_1_SSPR`                                          |
-    | **Modificare i criteri del profilo**       | *&lt;lasciare vuoto&gt;*                                 |
+    | **Modificare i criteri del profilo**       | *&lt;lascia vuoto&gt;*                                 |
     
     Selezionare il collegamento **copia** accanto a **URI di risposta** per copiare l'URI di risposta negli Appunti. Selezionare **OK** per chiudere la finestra di dialogo **Modifica autenticazione** . Selezionare **OK** per creare l'app Web.
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/middleware
-ms.openlocfilehash: 7e1463671323cddd2b95c03de994d497449d7884
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 43b0ef1dcbf6d0137b14be9e58eb056f06ae093d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019092"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633448"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>Middleware di memorizzazione nella cache delle risposte in ASP.NET Core
 
@@ -47,7 +48,7 @@ Configurare l'app per l'uso del middleware con il <xref:Microsoft.AspNetCore.Bui
 [!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=17)]
 
 > [!WARNING]
-> <xref:Owin.CorsExtensions.UseCors%2A>deve essere chiamato prima <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> quando si usa il [middleware CORS](xref:security/cors).
+> <xref:Owin.CorsExtensions.UseCors%2A> deve essere chiamato prima <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> quando si usa il [middleware CORS](xref:security/cors).
 
 L'app di esempio aggiunge intestazioni per controllare la memorizzazione nella cache nelle richieste successive:
 
@@ -149,10 +150,10 @@ Durante il test e la risoluzione dei problemi relativi al comportamento di Cachi
 * Il metodo di richiesta deve essere GET o HEAD.
 * In `Startup.Configure` il middleware di memorizzazione nella cache delle risposte deve essere inserito prima del middleware che richiede la memorizzazione nella cache. Per altre informazioni, vedere <xref:fundamentals/middleware/index>.
 * L' `Authorization` intestazione non deve essere presente.
-* `Cache-Control`i parametri di intestazione devono essere validi e la risposta deve essere contrassegnata `public` e non contrassegnata `private` .
+* `Cache-Control` i parametri di intestazione devono essere validi e la risposta deve essere contrassegnata `public` e non contrassegnata `private` .
 * L'intestazione `Pragma: no-cache` non deve essere presente se l' `Cache-Control` intestazione non è presente, in quanto l'intestazione `Cache-Control` sostituisce l'intestazione `Pragma` quando è presente.
 * L' `Set-Cookie` intestazione non deve essere presente.
-* `Vary`i parametri di intestazione devono essere validi e non uguali a `*` .
+* `Vary` i parametri di intestazione devono essere validi e non uguali a `*` .
 * Il `Content-Length` valore dell'intestazione (se impostato) deve corrispondere alla dimensione del corpo della risposta.
 * <xref:Microsoft.AspNetCore.Http.Features.IHttpSendFileFeature>Non viene utilizzato.
 * La risposta non deve essere obsoleta come specificato dall' `Expires` intestazione e dalle `max-age` `s-maxage` direttive della cache e.
@@ -293,10 +294,10 @@ Durante il test e la risoluzione dei problemi relativi al comportamento di Cachi
 * Il metodo di richiesta deve essere GET o HEAD.
 * In `Startup.Configure` il middleware di memorizzazione nella cache delle risposte deve essere inserito prima del middleware che richiede la memorizzazione nella cache. Per altre informazioni, vedere <xref:fundamentals/middleware/index>.
 * L' `Authorization` intestazione non deve essere presente.
-* `Cache-Control`i parametri di intestazione devono essere validi e la risposta deve essere contrassegnata `public` e non contrassegnata `private` .
+* `Cache-Control` i parametri di intestazione devono essere validi e la risposta deve essere contrassegnata `public` e non contrassegnata `private` .
 * L'intestazione `Pragma: no-cache` non deve essere presente se l' `Cache-Control` intestazione non è presente, in quanto l'intestazione `Cache-Control` sostituisce l'intestazione `Pragma` quando è presente.
 * L' `Set-Cookie` intestazione non deve essere presente.
-* `Vary`i parametri di intestazione devono essere validi e non uguali a `*` .
+* `Vary` i parametri di intestazione devono essere validi e non uguali a `*` .
 * Il `Content-Length` valore dell'intestazione (se impostato) deve corrispondere alla dimensione del corpo della risposta.
 * <xref:Microsoft.AspNetCore.Http.Features.IHttpSendFileFeature>Non viene utilizzato.
 * La risposta non deve essere obsoleta come specificato dall' `Expires` intestazione e dalle `max-age` `s-maxage` direttive della cache e.

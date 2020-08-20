@@ -7,6 +7,7 @@ ms.author: ravipal
 ms.custom: mvc
 ms.date: 03/28/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-compose-https
-ms.openlocfilehash: c3b627cdc74f1b40611d84bc3419e678e2dfbba4
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 75a205c1eb21394ed36c00359f0dc4ca7e6d09e0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022459"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631641"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-compose-over-https"></a>Hosting di immagini ASP.NET Core con Docker Compose su HTTPS
 
@@ -41,7 +42,7 @@ Per alcune istruzioni di questo documento è necessario [.NET Core 2,2 SDK](http
 
 ## <a name="certificates"></a>Certificati
 
-Un certificato di un' [autorità di certificazione](https://wikipedia.org/wiki/Certificate_authority) è necessario per l' [hosting di produzione](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) per un dominio. [Let's Encrypt](https://letsencrypt.org/)è un'autorità di certificazione che offre certificati gratuiti.
+Un certificato di un' [autorità di certificazione](https://wikipedia.org/wiki/Certificate_authority) è necessario per l' [hosting di produzione](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) per un dominio. [Let's Encrypt](https://letsencrypt.org/) è un'autorità di certificazione che offre certificati gratuiti.
 
 Questo documento usa [certificati di sviluppo autofirmati](https://wikipedia.org/wiki/Self-signed_certificate) per l'hosting di immagini predefinite rispetto a `localhost` . Le istruzioni sono simili all'uso dei certificati di produzione.
 
@@ -107,7 +108,7 @@ dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password her
 dotnet dev-certs https --trust
 ```
 
-`dotnet dev-certs https --trust`è supportato solo in macOS e Windows. È necessario considerare attendibili i certificati in Linux nel modo supportato dalla distribuzione. È probabile che sia necessario considerare attendibile il certificato nel browser.
+`dotnet dev-certs https --trust` è supportato solo in macOS e Windows. È necessario considerare attendibili i certificati in Linux nel modo supportato dalla distribuzione. È probabile che sia necessario considerare attendibile il certificato nel browser.
 
 Nei comandi precedenti sostituire `{ password here }` con una password.
 

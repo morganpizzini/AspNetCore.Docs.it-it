@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/06/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/app-state
-ms.openlocfilehash: c05129c0f239fb28c83ab1c561dd910305eeb54b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 95035ec372ab6adb5bafb40f2b939c549ac6f839
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017636"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633812"
 ---
 # <a name="session-and-state-management-in-aspnet-core"></a>Gestione di sessioni e stato in ASP.NET Core
 
@@ -128,7 +129,7 @@ Per eseguire l'override delle impostazioni predefinite della sessione, usare <xr
 
 | Opzione | Descrizione |
 | ------ | ----------- |
-| <xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie> | Determina le impostazioni utilizzate per creare l'oggetto cookie . <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name>il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName?displayProperty=nameWithType> ( `.AspNetCore.Session` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.Path>il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath?displayProperty=nameWithType> ( `/` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite>il valore predefinito è <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType> ( `1` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly>il valore predefinito è `true` . <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential>il valore predefinito è `false` . |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie> | Determina le impostazioni utilizzate per creare l'oggetto cookie . <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name> il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName?displayProperty=nameWithType> ( `.AspNetCore.Session` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.Path> il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath?displayProperty=nameWithType> ( `/` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite> il valore predefinito è <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType> ( `1` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> il valore predefinito è `true` . <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> il valore predefinito è `false` . |
 | <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> | Il valore `IdleTimeout` indica quanto tempo la sessione può rimanere inattiva prima che il relativo contenuto venga abbandonato. Ogni accesso alla sessione reimposta il timeout. Questa impostazione si applica solo al contenuto della sessione, non a cookie . Il valore predefinito è 20 minuti. |
 | <xref:Microsoft.AspNetCore.Builder.SessionOptions.IOTimeout> | L'intervallo di tempo massimo consentito per caricare una sessione dall'archivio o per eseguirne il commit nell'archivio. Questa impostazione può essere applicabile solo alle operazioni asincrone. Questo timeout può essere disabilitato utilizzando <xref:System.Threading.Timeout.InfiniteTimeSpan> . Il valore predefinito è 1 minuto. |
 
@@ -239,7 +240,7 @@ Per abilitare il provider TempData basato sulla sessione, usare il <xref:Microso
 
 È possibile passare una quantità limitata di dati da una richiesta a un'altra aggiungendo i dati alla stringa di query della nuova richiesta. Questo è utile per l'acquisizione dello stato con una modalità persistente, che consente la condivisione dei collegamenti con stato incorporato tramite posta elettronica o social network. Poiché le stringhe di query dell'URL sono pubbliche, non usare mai le stringhe di query per i dati sensibili.
 
-Oltre alla condivisione non intenzionale, i dati nelle stringhe di query possono esporre l'app a attacchi di [richiesta intersito falsa (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) . Qualsiasi stato della sessione mantenuto deve proteggersi dagli attacchi CSRF. Per altre informazioni, vedere [Prevenire attacchi tramite richieste intersito false (XSRF/CSRF)](xref:security/anti-request-forgery).
+Oltre alla condivisione non intenzionale, i dati nelle stringhe di query possono esporre l'app a attacchi di [richiesta intersito falsa (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) . Qualsiasi stato della sessione mantenuto deve proteggersi dagli attacchi CSRF. Per altre informazioni, vedere <xref:security/anti-request-forgery>.
 
 ## <a name="hidden-fields"></a>Campi nascosti
 
@@ -284,11 +285,11 @@ Se il middleware della sessione non è in grado di salvare in modo permanente un
 
 Il middleware della sessione può non riuscire a salvare in modo permanente una sessione se l'archivio di backup non è disponibile. Ad esempio, un utente archivia un carrello acquisti nella sessione. L'utente aggiunge un articolo al carrello ma il commit ha esito negativo. L'app non riconosce l'errore e segnala all'utente che l'articolo è stato aggiunto al carrello anche se non è vero.
 
-L'approccio consigliato per verificare la presenza di errori consiste nel chiamare `await feature.Session.CommitAsync` quando l'app esegue la scrittura nella sessione. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> genera un'eccezione se l'archivio di backup non è disponibile. Se `CommitAsync` ha esito negativo, l'app è in grado di elaborare l'eccezione. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*>genera un'eccezione quando l'archivio dati non è disponibile.
+L'approccio consigliato per verificare la presenza di errori consiste nel chiamare `await feature.Session.CommitAsync` quando l'app esegue la scrittura nella sessione. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> genera un'eccezione se l'archivio di backup non è disponibile. Se `CommitAsync` ha esito negativo, l'app è in grado di elaborare l'eccezione. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*> genera un'eccezione quando l'archivio dati non è disponibile.
   
-## <a name="no-locsignalr-and-session-state"></a>SignalRe stato sessione
+## <a name="no-locsignalr-and-session-state"></a>SignalR e stato sessione
 
-SignalRle app non devono usare lo stato della sessione per archiviare le informazioni. SignalRle app possono archiviare lo stato per connessione in `Context.Items` nell'hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
+SignalR le app non devono usare lo stato della sessione per archiviare le informazioni. SignalR le app possono archiviare lo stato per connessione in `Context.Items` nell'hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -370,7 +371,7 @@ Il codice seguente indica come configurare il provider della sessione in memoria
 
 L'ordine del middleware è importante. Nell'esempio precedente si verifica un'eccezione `InvalidOperationException` se `UseSession` viene chiamata dopo `UseMvc`. Per altre informazioni, vedere la sezione relativa all'[ordine del middleware](xref:fundamentals/middleware/index#order).
 
-<xref:Microsoft.AspNetCore.Http.HttpContext.Session?displayProperty=nameWithType>è disponibile dopo la configurazione dello stato della sessione.
+<xref:Microsoft.AspNetCore.Http.HttpContext.Session?displayProperty=nameWithType> è disponibile dopo la configurazione dello stato della sessione.
 
 Non è possibile accedere a `HttpContext.Session` prima di chiamare `UseSession`.
 
@@ -388,7 +389,7 @@ Per eseguire l'override delle impostazioni predefinite della sessione, usare <xr
 
 | Opzione | Descrizione |
 | ------ | ----------- |
-| <xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie> | Determina le impostazioni utilizzate per creare l'oggetto cookie . <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name>il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName?displayProperty=nameWithType> ( `.AspNetCore.Session` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.Path>il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath?displayProperty=nameWithType> ( `/` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite>il valore predefinito è <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType> ( `1` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly>il valore predefinito è `true` . <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential>il valore predefinito è `false` . |
+| <xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie> | Determina le impostazioni utilizzate per creare l'oggetto cookie . <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name> il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookieName?displayProperty=nameWithType> ( `.AspNetCore.Session` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.Path> il valore predefinito è <xref:Microsoft.AspNetCore.Session.SessionDefaults.CookiePath?displayProperty=nameWithType> ( `/` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite> il valore predefinito è <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType> ( `1` ). <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> il valore predefinito è `true` . <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> il valore predefinito è `false` . |
 | <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> | Il valore `IdleTimeout` indica quanto tempo la sessione può rimanere inattiva prima che il relativo contenuto venga abbandonato. Ogni accesso alla sessione reimposta il timeout. Questa impostazione si applica solo al contenuto della sessione, non a cookie . Il valore predefinito è 20 minuti. |
 | <xref:Microsoft.AspNetCore.Builder.SessionOptions.IOTimeout> | L'intervallo di tempo massimo consentito per caricare una sessione dall'archivio o per eseguirne il commit nell'archivio. Questa impostazione può essere applicabile solo alle operazioni asincrone. Questo timeout può essere disabilitato utilizzando <xref:System.Threading.Timeout.InfiniteTimeSpan> . Il valore predefinito è 1 minuto. |
 
@@ -444,7 +445,7 @@ L'esempio seguente illustra come impostare e ottenere un oggetto serializzabile 
 
 ## <a name="tempdata"></a>TempData
 
-ASP.NET Core espone le Razor pagine [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) o controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData> . Questa proprietà archivia i dati finché non viene letta in un'altra richiesta. È possibile utilizzare i metodi [Keep (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) e [Peek (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) per esaminare i dati senza eliminarli alla fine della richiesta. [Keep ()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) contrassegna tutti gli elementi nel dizionario per la memorizzazione. `TempData`è particolarmente utile per il reindirizzamento quando i dati sono necessari per più di una singola richiesta. `TempData`viene implementato dai `TempData` provider che usano cookie o lo stato della sessione.
+ASP.NET Core espone le Razor pagine [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) o controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData> . Questa proprietà archivia i dati finché non viene letta in un'altra richiesta. È possibile utilizzare i metodi [Keep (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) e [Peek (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) per esaminare i dati senza eliminarli alla fine della richiesta. [Keep ()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) contrassegna tutti gli elementi nel dizionario per la memorizzazione. `TempData` è particolarmente utile per il reindirizzamento quando i dati sono necessari per più di una singola richiesta. `TempData` viene implementato dai `TempData` provider che usano cookie o lo stato della sessione.
 
 ## <a name="tempdata-samples"></a>Esempi di TempData
 
@@ -502,7 +503,7 @@ L'ordine del middleware è importante. Nell'esempio precedente si verifica un'ec
 
 È possibile passare una quantità limitata di dati da una richiesta a un'altra aggiungendo i dati alla stringa di query della nuova richiesta. Questo è utile per l'acquisizione dello stato con una modalità persistente, che consente la condivisione dei collegamenti con stato incorporato tramite posta elettronica o social network. Poiché le stringhe di query dell'URL sono pubbliche, non usare mai le stringhe di query per i dati sensibili.
 
-OItre alle condivisioni involontarie, i dati presenti nelle stringhe di query possono essere oggetto di attacchi di [falsificazione della richiesta tra siti (CSRF, Cross-Site Request Forgery)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)), che ingannano gli utenti autenticati invitandoli a visitare siti pericolosi. Gli utenti malintenzionati possono quindi sottrarre dati utente dall'app o eseguire azioni dannose per conto dell'utente. Qualsiasi stato dell'app o della sessione mantenuto deve garantire la protezione dagli attacchi CSRF. Per altre informazioni, vedere [Prevenire attacchi tramite richieste intersito false (XSRF/CSRF)](xref:security/anti-request-forgery).
+OItre alle condivisioni involontarie, i dati presenti nelle stringhe di query possono essere oggetto di attacchi di [falsificazione della richiesta tra siti (CSRF, Cross-Site Request Forgery)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)), che ingannano gli utenti autenticati invitandoli a visitare siti pericolosi. Gli utenti malintenzionati possono quindi sottrarre dati utente dall'app o eseguire azioni dannose per conto dell'utente. Qualsiasi stato dell'app o della sessione mantenuto deve garantire la protezione dagli attacchi CSRF. Per altre informazioni, vedere <xref:security/anti-request-forgery>.
 
 ## <a name="hidden-fields"></a>Campi nascosti
 
@@ -597,9 +598,9 @@ Usare [Dependency Injection](xref:fundamentals/dependency-injection) (Inseriment
 
   L'approccio consigliato per verificare la presenza di errori è chiamare `await feature.Session.CommitAsync();` dal codice dell'app quando l'app termina di scrivere nella sessione. `CommitAsync` genera un'eccezione se l'archivio di backup non è disponibile. Se `CommitAsync` ha esito negativo, l'app è in grado di elaborare l'eccezione. `LoadAsync` viene generata nelle stesse condizioni in cui l'archivio dati non è disponibile.
   
-## <a name="no-locsignalr-and-session-state"></a>SignalRe stato sessione
+## <a name="no-locsignalr-and-session-state"></a>SignalR e stato sessione
 
-SignalRle app non devono usare lo stato della sessione per archiviare le informazioni. SignalRle app possono archiviare lo stato per connessione in `Context.Items` nell'hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
+SignalR le app non devono usare lo stato della sessione per archiviare le informazioni. SignalR le app possono archiviare lo stato per connessione in `Context.Items` nell'hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

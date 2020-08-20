@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/1/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 06c4f215c1c8d970cdfe41e395f39d4215b693f7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: cf450385db3c7327de233357d4c13d556ee44bad
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016856"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633669"
 ---
 # <a name="routing-in-aspnet-core"></a>Routing in ASP.NET Core
 
@@ -35,7 +36,7 @@ Il routing è responsabile della corrispondenza delle richieste HTTP in ingresso
 Le app possono configurare il routing tramite:
 
 - Controllers
-- RazorPagine
+- Razor Pagine
 - SignalR
 - Servizi gRPC
 - [Middleware](xref:fundamentals/middleware/index) abilitato per gli endpoint, ad esempio i [controlli di integrità](xref:host-and-deploy/health-checks).
@@ -65,14 +66,14 @@ Il codice seguente illustra un esempio di routing di base:
 
 Il routing utilizza una coppia di middleware, registrata da <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> e <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> :
 
-* `UseRouting`aggiunge la corrispondenza della route alla pipeline middleware. Questo middleware esamina il set di endpoint definiti nell'app e seleziona la [migliore corrispondenza](#urlm) in base alla richiesta.
-* `UseEndpoints`aggiunge l'esecuzione dell'endpoint alla pipeline middleware. Esegue il delegato associato all'endpoint selezionato.
+* `UseRouting` aggiunge la corrispondenza della route alla pipeline middleware. Questo middleware esamina il set di endpoint definiti nell'app e seleziona la [migliore corrispondenza](#urlm) in base alla richiesta.
+* `UseEndpoints` aggiunge l'esecuzione dell'endpoint alla pipeline middleware. Esegue il delegato associato all'endpoint selezionato.
 
 L'esempio precedente include una singola *Route per l'endpoint di codice* usando il metodo [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*) :
 
 * Quando `GET` viene inviata una richiesta HTTP all'URL radice `/` :
   * Il delegato della richiesta visualizzato viene eseguito.
-  * `Hello World!`viene scritto nella risposta HTTP. Per impostazione predefinita, l'URL radice `/` è `https://localhost:5001/` .
+  * `Hello World!` viene scritto nella risposta HTTP. Per impostazione predefinita, l'URL radice `/` è `https://localhost:5001/` .
 * Se il metodo di richiesta non è `GET` o se l'URL radice non è `/` , non viene restituita alcuna corrispondenza e viene restituito un http 404.
 
 ### <a name="endpoint"></a>Endpoint
@@ -88,7 +89,7 @@ Gli endpoint che possono essere confrontati ed eseguiti dall'app sono configurat
 Per connettere ASP.NET Core funzionalità del Framework al sistema di routing, è possibile utilizzare metodi aggiuntivi:
 - [Mappare Razor pagine per le Razor pagine](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
 - [MapControllers per i controller](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
-- [MapHub \<THub> perSignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
+- [MapHub \<THub> per SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
 - [MapGrpcService \<TService> per gRPC](xref:grpc/aspnetcore)
 
 Nell'esempio seguente viene illustrato il routing con un modello di route più sofisticato:
@@ -97,8 +98,8 @@ Nell'esempio seguente viene illustrato il routing con un modello di route più s
 
 La stringa `/hello/{name:alpha}` è un **modello di route**. Viene usato per configurare la corrispondenza con l'endpoint. In questo caso, il modello corrisponde a:
 
-* Un URL come`/hello/Ryan`
-* Qualsiasi percorso URL che inizia con `/hello/` seguito da una sequenza di caratteri alfabetici.  `:alpha`applica un vincolo di route che corrisponde solo ai caratteri alfabetici. I [vincoli di route](#route-constraint-reference) vengono illustrati più avanti in questo documento.
+* Un URL come `/hello/Ryan`
+* Qualsiasi percorso URL che inizia con `/hello/` seguito da una sequenza di caratteri alfabetici.  `:alpha` applica un vincolo di route che corrisponde solo ai caratteri alfabetici. I [vincoli di route](#route-constraint-reference) vengono illustrati più avanti in questo documento.
 
 Il secondo segmento del percorso URL, `{name:alpha}` :
 
@@ -153,7 +154,7 @@ Il codice seguente illustra come recuperare e controllare l'endpoint che corrisp
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/EndpointInspectorStartup.cs?name=snippet)]
 
-L'endpoint, se selezionato, può essere recuperato da `HttpContext` . Le proprietà possono essere controllate. Gli oggetti endpoint non sono modificabili e non possono essere modificati dopo la creazione. Il tipo più comune di endpoint è <xref:Microsoft.AspNetCore.Routing.RouteEndpoint> . `RouteEndpoint`include informazioni che ne consentono la selezione da parte del sistema di routing.
+L'endpoint, se selezionato, può essere recuperato da `HttpContext` . Le proprietà possono essere controllate. Gli oggetti endpoint non sono modificabili e non possono essere modificati dopo la creazione. Il tipo più comune di endpoint è <xref:Microsoft.AspNetCore.Routing.RouteEndpoint> . `RouteEndpoint` include informazioni che ne consentono la selezione da parte del sistema di routing.
 
 Nel codice precedente, [app. Usare](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*) configura un [middleware](xref:fundamentals/middleware/index)inline.
 
@@ -263,7 +264,7 @@ Il middleware terminale esistente che si integra con [Map](xref:fundamentals/mid
 * Scrivere un metodo di estensione in <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> .
 * Creare una pipeline middleware annidata usando <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.CreateApplicationBuilder*> .
 * Alleghi il middleware alla nuova pipeline. In questo caso, <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*>.
-* <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Build*>pipeline middleware in un oggetto <xref:Microsoft.AspNetCore.Http.RequestDelegate> .
+* <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Build*> pipeline middleware in un oggetto <xref:Microsoft.AspNetCore.Http.RequestDelegate> .
 * Chiamare `Map` e fornire la nuova pipeline middleware.
 * Restituisce l'oggetto generatore fornito da `Map` dal metodo di estensione.
 
@@ -319,7 +320,7 @@ Tutti gli endpoint corrispondenti vengono elaborati in ogni fase fino a quando n
 La precedenza della route viene calcolata in base a un modello di route **più specifico** a cui viene assegnata una priorità più alta. Si considerino, ad esempio, i modelli `/hello` e `/{message}` :
 
 * Entrambe corrispondono al percorso URL `/hello` .
-* `/hello`è più specifico e pertanto con una priorità più elevata.
+* `/hello`  è più specifico e pertanto con una priorità più elevata.
 
 In generale, la precedenza della route consente di scegliere la migliore corrispondenza per i tipi di schemi URL usati in pratica. Utilizzare <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order> solo quando necessario per evitare ambiguità.
 
@@ -332,7 +333,7 @@ A causa dei tipi di estendibilità offerti dal routing, non è possibile che il 
 
 > [!WARNING]
 >
-> L'ordine delle operazioni all'interno di <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> non influisce sul comportamento del routing, con un'eccezione. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>e <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> assegna automaticamente un valore di ordine ai rispettivi endpoint in base all'ordine in cui vengono richiamati. Questo simula il comportamento a lungo termine dei controller senza che il sistema di routing fornisca le stesse garanzie delle implementazioni di routing precedenti.
+> L'ordine delle operazioni all'interno di <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> non influisce sul comportamento del routing, con un'eccezione. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> e <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> assegna automaticamente un valore di ordine ai rispettivi endpoint in base all'ordine in cui vengono richiamati. Questo simula il comportamento a lungo termine dei controller senza che il sistema di routing fornisca le stesse garanzie delle implementazioni di routing precedenti.
 >
 > Nell'implementazione legacy del routing, è possibile implementare l'estendibilità del routing che dipende dall'ordine in cui vengono elaborate le route. Routing degli endpoint in ASP.NET Core 3,0 e versioni successive:
 > 
@@ -371,7 +372,7 @@ Generazione URL:
 * È il processo mediante il quale il routing può creare un percorso URL basato su un set di valori di route.
 * Consente una separazione logica tra gli endpoint e gli URL che vi accedono.
 
-Il routing degli endpoint include l' <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API. `LinkGenerator`è un servizio singleton disponibile in [di](xref:fundamentals/dependency-injection). L' `LinkGenerator` API può essere usata al di fuori del contesto di una richiesta in esecuzione. [MVC. IUrlHelper](xref:Microsoft.AspNetCore.Mvc.IUrlHelper) e gli scenari basati su <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> , ad esempio gli [Helper Tag](xref:mvc/views/tag-helpers/intro), gli helper HTML e [i risultati dell'azione](xref:mvc/controllers/actions), usano l' `LinkGenerator` API internamente per fornire funzionalità di generazione dei collegamenti.
+Il routing degli endpoint include l' <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API. `LinkGenerator` è un servizio singleton disponibile in [di](xref:fundamentals/dependency-injection). L' `LinkGenerator` API può essere usata al di fuori del contesto di una richiesta in esecuzione. [MVC. IUrlHelper](xref:Microsoft.AspNetCore.Mvc.IUrlHelper) e gli scenari basati su <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> , ad esempio gli [Helper Tag](xref:mvc/views/tag-helpers/intro), gli helper HTML e [i risultati dell'azione](xref:mvc/controllers/actions), usano l' `LinkGenerator` API internamente per fornire funzionalità di generazione dei collegamenti.
 
 Il generatore di collegamenti si basa sui concetti di **indirizzo** e di **schemi di indirizzi**. Lo schema di indirizzi consente di determinare gli endpoint che devono essere considerati per la generazione dei collegamenti. Ad esempio, gli scenari relativi al nome della route e ai valori di route molti utenti hanno familiarità con i controller e le Razor pagine vengono implementati come uno schema di indirizzi.
 
@@ -437,7 +438,7 @@ I modelli di URL che tentano di acquisire un nome file con un'estensione facolta
 * `/files/myFile.txt`
 * `/files/myFile`
 
-I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio, `id?` La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
+I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio: `id?`. La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
 
 * Un parametro di route con un valore predefinito produce sempre un valore.
 * Un parametro facoltativo ha un valore solo quando un valore viene fornito dall'URL della richiesta.
@@ -456,7 +457,7 @@ La tabella seguente illustra i modelli di route di esempio e il relativo comport
 | `{Page=Home}`                            | `/`                     | Verifica la corrispondenza e imposta `Page` su `Home`.                                         |
 | `{Page=Home}`                            | `/Contact`              | Verifica la corrispondenza e imposta `Page` su `Contact`.                                      |
 | `{controller}/{action}/{id?}`            | `/Products/List`        | Esegue il mapping al controller `Products` e all'azione `List`.                       |
-| `{controller}/{action}/{id?}`            | `/Products/Details/123` | Esegue il mapping al `Products` controller e all' `Details` azione con `id` impostato su 123. |
+| `{controller}/{action}/{id?}`            | `/Products/Details/123` | Esegue il mapping al `Products` controller e all'  `Details` azione con `id` impostato su 123. |
 | `{controller=Home}/{action=Index}/{id?}` | `/`                     | Esegue il mapping al `Home` controller e al `Index` metodo. `id` viene ignorato.        |
 | `{controller=Home}/{action=Index}/{id?}` | `/Products`         | Esegue il mapping al `Products` controller e al `Index` metodo. `id` viene ignorato.        |
 
@@ -651,13 +652,13 @@ Con il modello di route precedente, l'azione `SubscriptionManagementController.G
 ASP.NET Core fornisce le convenzioni API per l'uso di trasformatori di parametri con route generate:
 
 * La <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention?displayProperty=fullName> convenzione MVC applica un trasformatore di parametro specificato a tutte le route di attributi nell'app. Il trasformatore di parametro trasforma i token di route di attributi man mano che vengono sostituiti. Per altre informazioni vedere [Use a parameter transformer to customize token replacement](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement) (Usare un trasformatore di parametro per personalizzare la sostituzione di token).
-* RazorPages usa la <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> convenzione API. Questa convenzione applica un trasformatore di parametro specificato a tutte le pagine individuate automaticamente Razor . Il trasformatore di parametri trasforma la cartella e i segmenti dei nomi di file delle Razor Route di pagine. Per altre informazioni, vedere [Use a parameter transformer to customize page routes](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes) (Usare un trasformatore di parametro per personalizzare route di pagine).
+* Razor Pages usa la <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> convenzione API. Questa convenzione applica un trasformatore di parametro specificato a tutte le pagine individuate automaticamente Razor . Il trasformatore di parametri trasforma la cartella e i segmenti dei nomi di file delle Razor Route di pagine. Per altre informazioni, vedere [Use a parameter transformer to customize page routes](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes) (Usare un trasformatore di parametro per personalizzare route di pagine).
 
 <a name="ugr"></a>
 
 ## <a name="url-generation-reference"></a>Riferimento per la generazione di URL
 
-Questa sezione contiene un riferimento per l'algoritmo implementato dalla generazione di URL. In pratica, gli esempi più complessi di generazione di URL utilizzano controller o Razor pagine. Per ulteriori informazioni, vedere [routing nei controller](xref:mvc/controllers/routing) .
+Questa sezione contiene un riferimento per l'algoritmo implementato dalla generazione di URL. In pratica, gli esempi più complessi di generazione di URL utilizzano controller o Razor pagine. Per ulteriori informazioni, vedere  [routing nei controller](xref:mvc/controllers/routing) .
 
 Il processo di generazione dell'URL inizia con una chiamata a [LinkGenerator. GetPathByAddress](xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*) o a un metodo simile. Il metodo viene fornito con un indirizzo, un set di valori di route e, facoltativamente, informazioni sulla richiesta corrente da `HttpContext` .
 
@@ -667,7 +668,7 @@ Una volta che il set di candidati è stato trovato dallo schema degli indirizzi,
 
 ### <a name="troubleshooting-url-generation-with-logging"></a>Risoluzione dei problemi di generazione URL con registrazione
 
-Il primo passaggio nella risoluzione dei problemi di generazione degli URL consiste nell'impostazione del livello di registrazione di `Microsoft.AspNetCore.Routing` su `TRACE` . `LinkGenerator`registra molti dettagli sull'elaborazione che possono essere utili per la risoluzione dei problemi.
+Il primo passaggio nella risoluzione dei problemi di generazione degli URL consiste nell'impostazione del livello di registrazione di `Microsoft.AspNetCore.Routing` su `TRACE` . `LinkGenerator` registra molti dettagli sull'elaborazione che possono essere utili per la risoluzione dei problemi.
 
 Per informazioni dettagliate sulla generazione di URL, vedere riferimento per la [generazione di URL](#ugr) .
 
@@ -712,7 +713,7 @@ Il codice seguente non fornisce valori di ambiente e valori espliciti: `{ contro
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet2)]
 
-Il metodo precedente restituisce`/Home/Subscribe/17`
+Il metodo precedente restituisce `/Home/Subscribe/17`
 
 Il codice seguente nell'oggetto `WidgetController` restituisce `/Widget/Subscribe/17` :
 
@@ -724,8 +725,8 @@ Il codice seguente fornisce al controller i valori di ambiente nella richiesta c
 
 Nel codice precedente:
 
-* `/Gadget/Edit/17`viene restituito.
-* <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Url>Ottiene l'oggetto <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> .
+* `/Gadget/Edit/17` viene restituito.
+* <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Url> Ottiene l'oggetto <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> .
 * <xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*>   
 genera un URL con un percorso assoluto per un metodo di azione. L'URL contiene il `action` nome e i `route` valori specificati.
 
@@ -733,7 +734,7 @@ Il codice seguente fornisce valori di ambiente dalla richiesta corrente e valori
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Pages/Index.cshtml.cs?name=snippet)]
 
-Il codice precedente imposta `url` su `/Edit/17` quando la pagina di modifica Razor contiene la direttiva della pagina seguente:
+Il codice precedente imposta `url` su  `/Edit/17` quando la pagina di modifica Razor contiene la direttiva della pagina seguente:
 
  `@page "{id:int}"`
 
@@ -741,10 +742,10 @@ Se la pagina di modifica non contiene il `"{id:int}"` modello di route, `url` è
 
 Il comportamento di MVC <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> aggiunge un livello di complessità oltre alle regole descritte di seguito:
 
-* `IUrlHelper`fornisce sempre i valori di route della richiesta corrente come valori di ambiente.
+* `IUrlHelper` fornisce sempre i valori di route della richiesta corrente come valori di ambiente.
 * [IUrlHelper. Action](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*) copia sempre i `action` `controller` valori di route e correnti come valori espliciti a meno che non vengano sostituiti dallo sviluppatore.
 * [IUrlHelper. Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page*) copia sempre il `page` valore di route corrente come valore esplicito a meno che non venga sottoposto a override. <!--by the user-->
-* `IUrlHelper.Page`esegue sempre l'override del `handler` valore di route corrente con `null` come valori espliciti a meno che non venga sottoposto a override.
+* `IUrlHelper.Page` esegue sempre l'override del `handler` valore di route corrente con `null` come valori espliciti a meno che non venga sottoposto a override.
 
 Spesso gli utenti sono sorpresi dai dettagli comportamentali dei valori di ambiente, perché MVC non sembra rispettare le proprie regole. Per motivi cronologici e di compatibilità, determinati valori di route, ad esempio `action` ,, `controller` `page` e `handler` hanno il proprio comportamento speciale.
 
@@ -770,7 +771,7 @@ Le chiamate a `LinkGenerator` o `IUrlHelper` che restituiscono `null` sono in ge
 
 L'invalidamento del valore di route si basa sul presupposto che lo schema dell'URL dell'app sia gerarchico, con una gerarchia formata da sinistra verso destra. Si consideri il modello di route del controller `{controller}/{action}/{id?}` di base per ottenere un senso intuitivo di come funziona in pratica. Una **modifica** a un valore **invalida** tutti i valori di route visualizzati a destra. Ciò riflette il presupposto della gerarchia. Se l'app ha un valore di ambiente per `id` e l'operazione specifica un valore diverso per `controller` :
 
-* `id`non verrà riutilizzato perché `{controller}` è a sinistra di `{id?}` .
+* `id` non verrà riutilizzato perché `{controller}` è a sinistra di `{id?}` .
 
 Di seguito sono riportati alcuni esempi che illustrano questo principio:
 
@@ -844,7 +845,7 @@ I collegamenti seguenti forniscono informazioni sulla configurazione dei metadat
 
 ## <a name="host-matching-in-routes-with-requirehost"></a>Corrispondenza host nelle route con RequireHost
 
-<xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.RequireHost*>applica un vincolo alla route che richiede l'host specificato. Il `RequireHost` parametro o [[host]](xref:Microsoft.AspNetCore.Routing.HostAttribute) può essere:
+<xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.RequireHost*> applica un vincolo alla route che richiede l'host specificato. Il `RequireHost` parametro o [[host]](xref:Microsoft.AspNetCore.Routing.HostAttribute) può essere:
 
 * Host: `www.domain.com` , corrisponde `www.domain.com` a qualsiasi porta.
 * Host con carattere jolly: `*.domain.com` , `www.domain.com` corrisponde `subdomain.domain.com` a, `www.subdomain.domain.com` o su qualsiasi porta.
@@ -945,7 +946,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-**Prendere in considerazione** la scrittura <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> . `EndpointDataSource`è la primitiva di basso livello per la dichiarazione e l'aggiornamento di una raccolta di endpoint. `EndpointDataSource`è un'API potente utilizzata dai controller e dalle Razor pagine.
+**Prendere in considerazione** la scrittura <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> . `EndpointDataSource` è la primitiva di basso livello per la dichiarazione e l'aggiornamento di una raccolta di endpoint. `EndpointDataSource` è un'API potente utilizzata dai controller e dalle Razor pagine.
 
 I test di routing hanno un [esempio di base](https://github.com/aspnet/AspNetCore/blob/master/src/Http/Routing/test/testassets/RoutingSandbox/Framework/FrameworkEndpointDataSource.cs#L17) di un'origine dati che non esegue l'aggiornamento.
 
@@ -1042,7 +1043,7 @@ Gli sviluppatori aggiungono in genere Route concise aggiuntive a aree con traffi
 
 Le API Web devono usare il routing degli attributi per modellare le funzionalità dell'app come set di risorse in cui le operazioni sono rappresentate da verbi HTTP. Ciò significa che molte operazioni, ad esempio GET e POST, sulla stessa risorsa logica utilizzano lo stesso URL. Il routing degli attributi offre un livello di controllo necessario per progettare con attenzione il layout dell'endpoint pubblico di un'API.
 
-RazorLe app di pagine usano il routing convenzionale predefinito per gestire le risorse denominate nella cartella *pagine* di un'app. Sono disponibili convenzioni aggiuntive che consentono di personalizzare il Razor comportamento di routing delle pagine. Per altre informazioni, vedere <xref:razor-pages/index> e <xref:razor-pages/razor-pages-conventions>.
+Razor Le app di pagine usano il routing convenzionale predefinito per gestire le risorse denominate nella cartella *pagine* di un'app. Sono disponibili convenzioni aggiuntive che consentono di personalizzare il Razor comportamento di routing delle pagine. Per altre informazioni, vedere <xref:razor-pages/index> e <xref:razor-pages/razor-pages-conventions>.
 
 Il supporto della generazione di URL consente di sviluppare l'app senza URL hardcoded per collegare l'app. Il supporto consente di iniziare con una configurazione di routing di base e di modificare le route dopo aver determinato il layout delle risorse dell'app.
 
@@ -1090,7 +1091,7 @@ Quando viene eseguito il delegato dell'endpoint, le proprietà di [RouteContext.
 
 La generazione di URL è il processo con cui il routing crea un percorso URL basato su un set di valori di route. Questo consente di avere una separazione logica tra gli endpoint e gli URL che vi accedono.
 
-Il routing di endpoint include l'API del generatore di collegamenti (<xref:Microsoft.AspNetCore.Routing.LinkGenerator>). <xref:Microsoft.AspNetCore.Routing.LinkGenerator>è un servizio singleton che può essere recuperato da [di](xref:fundamentals/dependency-injection). L'API può essere usata all'esterno del contesto di una richiesta in esecuzione. <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> e gli scenari di MVC basati su <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, ad esempio [helper tag](xref:mvc/views/tag-helpers/intro), helper HTML e [risultati delle azioni](xref:mvc/controllers/actions), usano il generatore di collegamenti per offrire le funzionalità di generazione di collegamenti.
+Il routing di endpoint include l'API del generatore di collegamenti (<xref:Microsoft.AspNetCore.Routing.LinkGenerator>). <xref:Microsoft.AspNetCore.Routing.LinkGenerator> è un servizio singleton che può essere recuperato da [di](xref:fundamentals/dependency-injection). L'API può essere usata all'esterno del contesto di una richiesta in esecuzione. <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> e gli scenari di MVC basati su <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, ad esempio [helper tag](xref:mvc/views/tag-helpers/intro), helper HTML e [risultati delle azioni](xref:mvc/controllers/actions), usano il generatore di collegamenti per offrire le funzionalità di generazione di collegamenti.
 
 Il generatore di collegamenti si basa sui concetti di *indirizzo* e di *schemi di indirizzi*. Lo schema di indirizzi consente di determinare gli endpoint che devono essere considerati per la generazione dei collegamenti. Ad esempio, gli scenari relativi al nome della route e ai valori di route molti utenti hanno familiarità con MVC/ Razor pages sono implementati come uno schema di indirizzi.
 
@@ -1557,7 +1558,7 @@ Con la route precedente, l'azione `SubscriptionManagementController.GetAll` vien
 ASP.NET Core offre convenzioni API per l'uso di trasformatori di parametro con le route generate:
 
 * ASP.NET Core MVC include la convenzione API `Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention`. Questa convenzione applica un trasformatore di parametro specifico a tutte le route di attributi nell'app. Il trasformatore di parametro trasforma i token di route di attributi man mano che vengono sostituiti. Per altre informazioni vedere [Use a parameter transformer to customize token replacement](/aspnet/core/mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement) (Usare un trasformatore di parametro per personalizzare la sostituzione di token).
-* RazorLe pagine hanno la `Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention` convenzione API. Questa convenzione applica un trasformatore di parametro specificato a tutte le pagine individuate automaticamente Razor . Il trasformatore di parametri trasforma la cartella e i segmenti dei nomi di file delle Razor Route di pagine. Per altre informazioni, vedere [Use a parameter transformer to customize page routes](/aspnet/core/razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes) (Usare un trasformatore di parametro per personalizzare route di pagine).
+* Razor Le pagine hanno la `Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention` convenzione API. Questa convenzione applica un trasformatore di parametro specificato a tutte le pagine individuate automaticamente Razor . Il trasformatore di parametri trasforma la cartella e i segmenti dei nomi di file delle Razor Route di pagine. Per altre informazioni, vedere [Use a parameter transformer to customize page routes](/aspnet/core/razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes) (Usare un trasformatore di parametro per personalizzare route di pagine).
 
 ## <a name="url-generation-reference"></a>Riferimento per la generazione di URL
 
@@ -1624,7 +1625,7 @@ Gli sviluppatori solitamente aggiungono ulteriori route brevi nelle aree a traff
 
 Le API Web devono usare il routing degli attributi per modellare le funzionalità dell'app come set di risorse in cui le operazioni sono rappresentate da verbi HTTP. Questo significa che molte operazioni (ad esempio, GET, POST) sulla stessa risorsa logica useranno lo stesso URL. Il routing degli attributi offre un livello di controllo necessario per progettare con attenzione il layout dell'endpoint pubblico di un'API.
 
-RazorLe app di pagine usano il routing convenzionale predefinito per gestire le risorse denominate nella cartella *pagine* di un'app. Sono disponibili convenzioni aggiuntive che consentono di personalizzare il Razor comportamento di routing delle pagine. Per altre informazioni, vedere <xref:razor-pages/index> e <xref:razor-pages/razor-pages-conventions>.
+Razor Le app di pagine usano il routing convenzionale predefinito per gestire le risorse denominate nella cartella *pagine* di un'app. Sono disponibili convenzioni aggiuntive che consentono di personalizzare il Razor comportamento di routing delle pagine. Per altre informazioni, vedere <xref:razor-pages/index> e <xref:razor-pages/razor-pages-conventions>.
 
 Il supporto della generazione di URL consente di sviluppare l'app senza URL hardcoded per collegare l'app. Il supporto consente di iniziare con una configurazione di routing di base e di modificare le route dopo aver determinato il layout delle risorse dell'app.
 

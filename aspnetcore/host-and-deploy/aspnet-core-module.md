@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: c5c26c72af8103167b421cfa4aa06c23c242c1d7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 9197f8509141b30dffcc2ccc11979f8853b37d39
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015907"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633136"
 ---
 # <a name="aspnet-core-module"></a>Modulo ASP.NET Core
 
@@ -202,7 +203,7 @@ Per informazioni sulla configurazione delle applicazioni secondarie IIS, vedere 
 
 È possibile specificare le variabili di ambiente per il processo nell'attributo `processPath`. Specificare una variabile di ambiente con l'elemento figlio `<environmentVariable>` di un elemento della raccolta `<environmentVariables>`. Le variabili di ambiente impostate in questa sezione hanno la precedenza sulle variabili di ambiente di sistema.
 
-Nell'esempio seguente vengono impostate due variabili di ambiente in *web.config*. `ASPNETCORE_ENVIRONMENT`Configura l'ambiente dell'app in `Development` . Uno sviluppatore può impostare temporaneamente questo valore nel file *web.config* per forzare il caricamento della [pagina delle eccezioni per gli sviluppatori](xref:fundamentals/error-handling) durante il debug di un'eccezione dell'app. `CONFIG_DIR` è un esempio di variabile di ambiente definita dall'utente, in cui lo sviluppatore ha scritto il codice che legge il valore all'avvio in modo da formare un percorso per il caricamento del file di configurazione dell'app.
+Nell'esempio seguente vengono impostate due variabili di ambiente in *web.config*. `ASPNETCORE_ENVIRONMENT` Configura l'ambiente dell'app in `Development` . Uno sviluppatore può impostare temporaneamente questo valore nel file *web.config* per forzare il caricamento della [pagina delle eccezioni per gli sviluppatori](xref:fundamentals/error-handling) durante il debug di un'eccezione dell'app. `CONFIG_DIR` è un esempio di variabile di ambiente definita dall'utente, in cui lo sviluppatore ha scritto il codice che legge il valore all'avvio in modo da formare un percorso per il caricamento del file di configurazione dell'app.
 
 ```xml
 <aspNetCore processPath="dotnet"

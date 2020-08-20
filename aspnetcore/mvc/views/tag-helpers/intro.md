@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 03/18/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 067698687268ac072d8944fd5d9ae47c49fd4a24
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 42a7231b529dd9f8ecbce4f8116111e1c96c830d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015011"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633097"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Helper tag in ASP.NET Core
 
@@ -37,7 +38,7 @@ Gli helper tag consentono al codice lato server di partecipare alla creazione e 
 
 **Un ambiente IntelliSense avanzato per la creazione di HTML e Razor markup** è in contrasto acuto con gli helper HTML, l'approccio precedente alla creazione lato server del markup nelle Razor visualizzazioni. Nella sezione [Helper tag e helper HTML a confronto](#tag-helpers-compared-to-html-helpers) vengono illustrate le differenze in modo più dettagliato. Nella sezione [Supporto IntelliSense per gli helper tag](#intellisense-support-for-tag-helpers) viene illustrato l'ambiente IntelliSense. Anche gli sviluppatori esperti con la Razor sintassi c# sono più produttivi usando gli helper Tag rispetto alla scrittura di Razor markup c#.
 
-**Possibilità di aumentare la produttività e la capacità di produrre codice più solido, affidabile e gestibile usando le informazioni disponibili solo nel server**: storicamente il mantra a proposito dell'aggiornamento delle immagini, ad esempio, era quello di cambiare il nome dell'immagine quando l'immagine veniva modificata. Per motivi di prestazioni, le immagini devono essere memorizzate nella cache e, a meno che il nome dell'immagine non venga cambiato, si rischia che i client ricevano una copia non aggiornata. Dopo che un'immagine era stata modificata, il nome doveva essere sempre cambiato e ogni riferimento all'immagine nell'app Web doveva essere aggiornato. Non solo questa operazione richiede molto lavoro, ma è anche soggetta a errori (è possibile perdere un riferimento, immettere accidentalmente la stringa sbagliata e così via). `ImageTagHelper`Questa operazione può essere eseguita automaticamente. `ImageTagHelper` è in grado di aggiungere un numero di versione al nome dell'immagine in modo che quando l'immagine viene modificata il server generi automaticamente una nuova versione univoca dell'immagine. I client riceveranno sicuramente l'immagine corrente. Grazie all'uso di `ImageTagHelper`, efficienza e risparmio di energie sono essenzialmente gratuiti.
+**Possibilità di aumentare la produttività e la capacità di produrre codice più solido, affidabile e gestibile usando le informazioni disponibili solo nel server**: storicamente il mantra a proposito dell'aggiornamento delle immagini, ad esempio, era quello di cambiare il nome dell'immagine quando l'immagine veniva modificata. Per motivi di prestazioni, le immagini devono essere memorizzate nella cache e, a meno che il nome dell'immagine non venga cambiato, si rischia che i client ricevano una copia non aggiornata. Dopo che un'immagine era stata modificata, il nome doveva essere sempre cambiato e ogni riferimento all'immagine nell'app Web doveva essere aggiornato. Non solo questa operazione richiede molto lavoro, ma è anche soggetta a errori (è possibile perdere un riferimento, immettere accidentalmente la stringa sbagliata e così via). `ImageTagHelper` Questa operazione può essere eseguita automaticamente. `ImageTagHelper` è in grado di aggiungere un numero di versione al nome dell'immagine in modo che quando l'immagine viene modificata il server generi automaticamente una nuova versione univoca dell'immagine. I client riceveranno sicuramente l'immagine corrente. Grazie all'uso di `ImageTagHelper`, efficienza e risparmio di energie sono essenzialmente gratuiti.
 
 La maggior parte degli helper tag predefiniti usano come destinazione elementi HTML standard e specificano attributi sul lato server per l'elemento. Ad esempio, l'elemento `<input>` usato in molte visualizzazioni nella cartella *Views/Account* (Visualizzazioni/Account) contiene l'attributo `asp-for`. Questo attributo consente di estrarre il nome della proprietà del modello specificato nel codice HTML visualizzabile. Si consideri una Razor vista con il modello seguente:
 

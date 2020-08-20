@@ -5,6 +5,7 @@ description: Scopri gli articoli in base ai progetti ASP.NET Core creati con sin
 ms.author: riande
 ms.date: 12/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/individual
-ms.openlocfilehash: 6b72612c12d52cfc1736c141bdad95ace6c84546
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 0cbde7cf0be830dab9dd094df6d102d81f9f0949
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022290"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632616"
 ---
 # <a name="articles-based-on-aspnet-core-projects-created-with-individual-user-accounts"></a>Articoli basati su progetti ASP.NET Core creati con account utente singoli
 
@@ -73,7 +74,7 @@ La tabella seguente illustra le opzioni di autenticazione disponibili per le nuo
 
 | Opzione | Tipo di autenticazione | Collegamento per altre informazioni |
  | ----------------- | ------------ | ---------- |
-| nessuno            |  Nessuna autenticazione | | 
+| Nessuno            |  Nessuna autenticazione | | 
 | Utenti      |  Autenticazione singola | <xref:security/authentication/identity>
 | IndividualB2C   |  Autenticazione Single ospitata nel cloud con Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
 | SingleOrg       |  Autenticazione organizzativa per un singolo tenant | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
@@ -86,7 +87,7 @@ La tabella seguente illustra le opzioni di autenticazione disponibili quando si 
 
 | Opzione | Tipo di autenticazione | Collegamento per altre informazioni |
  | ----------------- | ------------ | ---------- |
-| nessuno            |  Nessuna autenticazione | | 
+| Nessuno            |  Nessuna autenticazione | | 
 | Account utente singoli/archivia account utente in-app |  Autenticazione singola | <xref:security/authentication/identity> |
 | Singoli account utente/connettersi a un archivio utente esistente nel cloud |  Autenticazione Single ospitata nel cloud con Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
 | Cloud aziendale o dell'Istituto di istruzione/organizzazione singola  |  Autenticazione organizzativa per un singolo tenant | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |

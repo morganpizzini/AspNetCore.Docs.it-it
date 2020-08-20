@@ -5,6 +5,7 @@ description: ''
 ms.author: riande
 ms.date: 12/07/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 92672b2d05ee6bbdfcf0255ae14529a5c28c41b7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8be09171991964540cd41a1324fb87503591151f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014984"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632174"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Eseguire la migrazione di gestori e moduli HTTP a ASP.NET Core middleware
 
@@ -169,7 +170,7 @@ Una soluzione consiste nell'eseguire il branching della pipeline per le richiest
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=27-34)]
 
-`MapWhen`accetta i parametri seguenti:
+`MapWhen` accetta i parametri seguenti:
 
 1. Espressione lambda che accetta l'oggetto `HttpContext` e restituisce `true` se la richiesta deve andare al di sotto del ramo. Ciò significa che è possibile creare branch richieste non solo in base alla relativa estensione, ma anche su intestazioni di richiesta, parametri della stringa di query e così via.
 
@@ -257,7 +258,7 @@ Si è visto in precedenza che il `Invoke` metodo nel middleware accetta un param
 public async Task Invoke(HttpContext context)
 ```
 
-`HttpContext`è stato modificato in modo significativo in ASP.NET Core. In questa sezione viene illustrato come tradurre le proprietà più comunemente utilizzate di [System. Web. HttpContext](/dotnet/api/system.web.httpcontext) nel nuovo oggetto `Microsoft.AspNetCore.Http.HttpContext` .
+`HttpContext` è stato modificato in modo significativo in ASP.NET Core. In questa sezione viene illustrato come tradurre le proprietà più comunemente utilizzate di [System. Web. HttpContext](/dotnet/api/system.web.httpcontext) nel nuovo oggetto `Microsoft.AspNetCore.Http.HttpContext` .
 
 ### <a name="httpcontext"></a>HttpContext
 

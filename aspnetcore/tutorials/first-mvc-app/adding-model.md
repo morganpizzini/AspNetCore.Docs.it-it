@@ -5,6 +5,7 @@ description: Parte 4 della serie di esercitazioni su ASP.NET Core MVC.
 ms.author: riande
 ms.date: 01/13/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: cc9c0447dc032ff0a88d379cd9d542e3406777bf
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ddd517ef8fbf8cb4bb8765cb3caab4724c0205f0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021965"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631966"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Parte 4: aggiungere un modello a un'app MVC ASP.NET Core
 
@@ -192,7 +193,7 @@ Completare la finestra di dialogo **Aggiungi controller**:
 Visual Studio crea:
 
 * Un controller di film (*Controllers/MoviesController.cs*)
-* RazorVisualizza file per le pagine create, DELETE, Details, Edit e index (*views/Movies/ \* . cshtml*)
+* Razor Visualizza file per le pagine create, DELETE, Details, Edit e index (*views/Movies/ \* . cshtml*)
 
 La creazione automatica di questi file è nota come *scaffolding*.
 
@@ -336,7 +337,7 @@ Il costruttore usa l'[inserimento dipendenze](xref:fundamentals/dependency-injec
 
 ### <a name="use-sqlite-for-development-sql-server-for-production"></a>Usare SQLite per lo sviluppo, SQL Server per la produzione
 
-Quando si seleziona SQLite, il codice generato dal modello è pronto per lo sviluppo. Il codice seguente illustra come inserire all' <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> avvio. `IWebHostEnvironment`viene inserito in modo `ConfigureServices` che possa usare SQLite per lo sviluppo e la SQL Server nell'ambiente di produzione.
+Quando si seleziona SQLite, il codice generato dal modello è pronto per lo sviluppo. Il codice seguente illustra come inserire all' <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> avvio. `IWebHostEnvironment` viene inserito in modo `ConfigureServices` che possa usare SQLite per lo sviluppo e la SQL Server nell'ambiente di produzione.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=5,10,16-28)]
 
@@ -470,7 +471,7 @@ Visual Studio crea:
 
 * Una [classe del contesto di database](xref:data/ef-mvc/intro#create-the-database-context) Entity Framework Core (*Data/MvcMovieContext.cs*)
 * Un controller di film (*Controllers/MoviesController.cs*)
-* RazorVisualizza file per le pagine create, DELETE, Details, Edit e index (*views/Movies/ \* . cshtml*)
+* Razor Visualizza file per le pagine create, DELETE, Details, Edit e index (*views/Movies/ \* . cshtml*)
 
 La creazione automatica del contesto di database e di viste e metodi di azione [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, delete) è nota come *scaffolding*.
 
@@ -642,7 +643,7 @@ Esaminare la classe `Startup`:
 Il codice evidenziato riportato in precedenza mostra il contesto del database dei film che viene aggiunto al contenitore di [inserimento dipendenze](xref:fundamentals/dependency-injection):
 
 * `services.AddDbContext<MvcMovieContext>(options =>` specifica il database da usare e la stringa di connessione.
-* `=>`è un [operatore lambda](/dotnet/articles/csharp/language-reference/operators/lambda-operator)
+* `=>` è un [operatore lambda](/dotnet/articles/csharp/language-reference/operators/lambda-operator)
 
 Aprire il file *Controllers/MoviesController.cs* ed esaminare il costruttore:
 

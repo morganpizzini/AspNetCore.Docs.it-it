@@ -5,6 +5,7 @@ description: Informazioni sui dettagli di implementazione di ASP.NET Core intest
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/context-headers
-ms.openlocfilehash: 572f930dbf78aaef1ed47d1a154b5ba56633b4f1
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2f07db4b7d8bca9f64aee5d60e88fc92dc8965eb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018819"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633708"
 ---
 # <a name="context-headers-in-aspnet-core"></a>Intestazioni di contesto nel ASP.NET Core
 
@@ -95,15 +96,15 @@ DB 6F D4 79 11 84 B9 96 09 2E E1 20 2F 36 E8 60
 
 Questa intestazione del contesto è l'identificazione personale della coppia di algoritmi di crittografia autenticata (la convalida AES-192-CBC Encryption + HMACSHA256). I componenti, come descritto in [precedenza](xref:security/data-protection/implementation/context-headers#data-protection-implementation-context-headers-cbc-components) , sono i seguenti:
 
-* marcatore`(00 00)`
+* marcatore `(00 00)`
 
-* lunghezza della chiave di crittografia a blocchi`(00 00 00 18)`
+* lunghezza della chiave di crittografia a blocchi `(00 00 00 18)`
 
-* Dimensioni blocco crittografico blocco`(00 00 00 10)`
+* Dimensioni blocco crittografico blocco `(00 00 00 10)`
 
-* lunghezza della chiave HMAC`(00 00 00 20)`
+* lunghezza della chiave HMAC `(00 00 00 20)`
 
-* dimensioni del digest HMAC`(00 00 00 20)`
+* dimensioni del digest HMAC `(00 00 00 20)`
 
 * output della crittografia a blocchi `(F4 74 - DB 6F)` e
 
@@ -140,15 +141,15 @@ Questa operazione produce l'intestazione del contesto completo che rappresenta u
 
 I componenti si suddividono come segue:
 
-* marcatore`(00 00)`
+* marcatore `(00 00)`
 
-* lunghezza della chiave di crittografia a blocchi`(00 00 00 18)`
+* lunghezza della chiave di crittografia a blocchi `(00 00 00 18)`
 
-* Dimensioni blocco crittografico blocco`(00 00 00 08)`
+* Dimensioni blocco crittografico blocco `(00 00 00 08)`
 
-* lunghezza della chiave HMAC`(00 00 00 14)`
+* lunghezza della chiave HMAC `(00 00 00 14)`
 
-* dimensioni del digest HMAC`(00 00 00 14)`
+* dimensioni del digest HMAC `(00 00 00 14)`
 
 * output della crittografia a blocchi `(AB B1 - E1 0E)` e
 
@@ -170,7 +171,7 @@ L'intestazione del contesto è costituita dai componenti seguenti:
 
 * [bit 128] Tag di `Enc_GCM (K_E, nonce, "")` , ovvero l'output dell'algoritmo di crittografia a blocchi simmetrico dato un input di stringa vuoto e dove nonce è un vettore all-zero a 96 bit.
 
-`K_E`viene derivato utilizzando lo stesso meccanismo dello scenario di autenticazione CBC Encryption + HMAC. Tuttavia, poiché non è presente `K_H` in questa sezione, abbiamo essenzialmente `| K_H | = 0` e l'algoritmo viene compresso nel formato seguente.
+`K_E` viene derivato utilizzando lo stesso meccanismo dello scenario di autenticazione CBC Encryption + HMAC. Tuttavia, poiché non è presente `K_H` in questa sezione, abbiamo essenzialmente `| K_H | = 0` e l'algoritmo viene compresso nel formato seguente.
 
 `K_E = SP800_108_CTR(prf = HMACSHA512, key = "", label = "", context = "")`
 
@@ -194,13 +195,13 @@ BE 45
 
 I componenti si suddividono come segue:
 
-* marcatore`(00 01)`
+* marcatore `(00 01)`
 
-* lunghezza della chiave di crittografia a blocchi`(00 00 00 20)`
+* lunghezza della chiave di crittografia a blocchi `(00 00 00 20)`
 
-* dimensioni del parametro nonce`(00 00 00 0C)`
+* dimensioni del parametro nonce `(00 00 00 0C)`
 
-* Dimensioni blocco crittografico blocco`(00 00 00 10)`
+* Dimensioni blocco crittografico blocco `(00 00 00 10)`
 
 * dimensioni del tag `(00 00 00 10)` di autenticazione e
 

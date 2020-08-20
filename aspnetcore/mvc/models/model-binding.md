@@ -6,6 +6,7 @@ ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 12/18/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 6ec531a04a220f75f5793cb2c7b5232908dbd883
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ec36ff6d646e0554550a4372389aed89aa267b1f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019157"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633981"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Associazione di modelli in ASP.NET Core
 
@@ -65,7 +66,7 @@ Il framework chiama quindi il metodo `GetById`, passando 2 per il parametro `id`
 
 Nell'esempio precedente le destinazioni dell'associazione di modelli sono parametri di metodo che sono tipi semplici. Le destinazioni possono essere anche le proprietà di un tipo complesso. Dopo l'associazione di ogni proprietà, viene eseguita la [convalida dei modelli](xref:mvc/models/validation) per la proprietà. Il record dei dati associati al modello e di eventuali errori di associazione o convalida viene archiviato in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) oppure [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). Per scoprire se questo processo ha esito positivo, l'app controlla il flag [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid).
 
-## <a name="targets"></a>Destinazioni
+## <a name="targets"></a>Server di destinazione
 
 L'associazione di modelli cerca di trovare i valori per i tipi di destinazioni seguenti:
 
@@ -108,11 +109,11 @@ Per ogni parametro o proprietà di destinazione, le origini vengono analizzate n
 
 Se l'origine predefinita non è corretta, usare uno degli attributi seguenti per specificare l'origine:
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)-Ottiene i valori dalla stringa di query. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)-Ottiene i valori dai dati della route.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)-Ottiene i valori dai campi del modulo inviati.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)-Ottiene i valori dal corpo della richiesta.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)-Ottiene i valori dalle intestazioni HTTP.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) -Ottiene i valori dalla stringa di query. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) -Ottiene i valori dai dati della route.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) -Ottiene i valori dai campi del modulo inviati.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) -Ottiene i valori dal corpo della richiesta.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) -Ottiene i valori dalle intestazioni HTTP.
 
 Questi attributi:
 
@@ -208,8 +209,8 @@ I tipi semplici in cui lo strumento di associazione di modelli può convertire l
 * [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimale](xref:System.ComponentModel.DecimalConverter)
-* [Doppio](xref:System.ComponentModel.DoubleConverter)
-* [Enumerazione](xref:System.ComponentModel.EnumConverter)
+* [Double](xref:System.ComponentModel.DoubleConverter)
+* [Enum](xref:System.ComponentModel.EnumConverter)
 * [GUID](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Singolo](xref:System.ComponentModel.SingleConverter)
@@ -273,30 +274,16 @@ L'associazione di modelli cerca prima di tutto la chiave `Instructor.ID` nelle o
 
 Sono disponibili vari attributi predefiniti per controllare l'associazione di modelli di tipi complessi:
 
+* `[Bind]`
 * `[BindRequired]`
 * `[BindNever]`
-* `[Bind]`
 
-> [!NOTE]
-> Questi attributi influiscono sul modello di associazione quando i dati di modulo inviati sono l'origine dei valori. Non influiscono sui formattatori di input, che elaborano corpi di richieste JSON e XML inviati. I formattatori di input sono descritti [più avanti in questo articolo](#input-formatters).
->
-> Vedere anche la discussione relativa all'attributo `[Required]` in [Convalida del modello](xref:mvc/models/validation#required-attribute).
-
-### <a name="bindrequired-attribute"></a>Attributo [BindRequired]
-
-Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Con questo attributo l'associazione di modelli aggiunge un errore di stato del modello se non è possibile eseguire l'associazione per una proprietà del modello. Ecco un esempio:
-
-[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
-
-### <a name="bindnever-attribute"></a>Attributo [BindNever]
-
-Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Impedisce all'associazione di modelli di impostare una proprietà del modello. Ecco un esempio:
-
-[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
+> [!WARNING]
+> Questi attributi influiscono sul modello di associazione quando i dati di modulo inviati sono l'origine dei valori. ***Non influiscono sui*** formattatori di input, che elaborano i corpi delle richieste JSON e XML. I formattatori di input sono descritti [più avanti in questo articolo](#input-formatters).
 
 ### <a name="bind-attribute"></a>Attributo [Bind]
 
-Può essere applicato a una classe o a un parametro di metodo. Specifica quali proprietà di un modello devono essere incluse nell'associazione di modelli.
+Può essere applicato a una classe o a un parametro di metodo. Specifica quali proprietà di un modello devono essere incluse nell'associazione di modelli. `[Bind]` non ***influisce sui*** formattatori di input.
 
 Nell'esempio seguente vengono associate solo le proprietà specificate del modello `Instructor` quando viene chiamato qualsiasi gestore o metodo di azione:
 
@@ -313,6 +300,20 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 ```
 
 L'attributo `[Bind]` può essere usato per evitare l'overposting negli scenari di *creazione*. Non funziona bene negli scenari di modifica perché le proprietà escluse vengono impostate su Null o su un valore predefinito anziché rimanere inalterate. Per difendersi dall'overposting, sono consigliati i modelli di visualizzazione anziché l'attributo `[Bind]`. Per altre informazioni, vedere [Nota sulla sicurezza relativa all'overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+
+### <a name="bindrequired-attribute"></a>Attributo [BindRequired]
+
+Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Con questo attributo l'associazione di modelli aggiunge un errore di stato del modello se non è possibile eseguire l'associazione per una proprietà del modello. Ecco un esempio:
+
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
+
+Vedere anche la discussione relativa all'attributo `[Required]` in [Convalida del modello](xref:mvc/models/validation#required-attribute).
+
+### <a name="bindnever-attribute"></a>Attributo [BindNever]
+
+Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Impedisce all'associazione di modelli di impostare una proprietà del modello. Ecco un esempio:
+
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
 ## <a name="collections"></a>Raccolte
 
@@ -494,7 +495,7 @@ L'associazione di modelli può essere richiamata manualmente usando il metodo <x
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
-<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>USA i provider di valori per ottenere i dati dal corpo del form, dalla stringa di query e dai dati della route. `TryUpdateModelAsync`è in genere: 
+<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>  USA i provider di valori per ottenere i dati dal corpo del form, dalla stringa di query e dai dati della route. `TryUpdateModelAsync` è in genere: 
 
 * Usato con le Razor pagine e le app MVC che usano i controller e le visualizzazioni per impedire l'overposting.
 * Non utilizzato con un'API Web, a meno che non venga utilizzato da dati del modulo, stringhe di query e dati di route. Gli endpoint dell'API Web che utilizzano JSON utilizzano [formattatori di input](#input-formatters) per deserializzare il corpo della richiesta in un oggetto.
@@ -551,7 +552,7 @@ Il framework chiama quindi il metodo `GetById`, passando 2 per il parametro `id`
 
 Nell'esempio precedente le destinazioni dell'associazione di modelli sono parametri di metodo che sono tipi semplici. Le destinazioni possono essere anche le proprietà di un tipo complesso. Dopo l'associazione di ogni proprietà, viene eseguita la [convalida dei modelli](xref:mvc/models/validation) per la proprietà. Il record dei dati associati al modello e di eventuali errori di associazione o convalida viene archiviato in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) oppure [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). Per scoprire se questo processo ha esito positivo, l'app controlla il flag [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid).
 
-## <a name="targets"></a>Destinazioni
+## <a name="targets"></a>Server di destinazione
 
 L'associazione di modelli cerca di trovare i valori per i tipi di destinazioni seguenti:
 
@@ -594,11 +595,11 @@ Per ogni parametro o proprietà di destinazione, le origini vengono analizzate n
 
 Se l'origine predefinita non è corretta, usare uno degli attributi seguenti per specificare l'origine:
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)-Ottiene i valori dalla stringa di query. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)-Ottiene i valori dai dati della route.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)-Ottiene i valori dai campi del modulo inviati.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)-Ottiene i valori dal corpo della richiesta.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)-Ottiene i valori dalle intestazioni HTTP.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) -Ottiene i valori dalla stringa di query. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) -Ottiene i valori dai dati della route.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) -Ottiene i valori dai campi del modulo inviati.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) -Ottiene i valori dal corpo della richiesta.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) -Ottiene i valori dalle intestazioni HTTP.
 
 Questi attributi:
 
@@ -694,8 +695,8 @@ I tipi semplici in cui lo strumento di associazione di modelli può convertire l
 * [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimale](xref:System.ComponentModel.DecimalConverter)
-* [Doppio](xref:System.ComponentModel.DoubleConverter)
-* [Enumerazione](xref:System.ComponentModel.EnumConverter)
+* [Double](xref:System.ComponentModel.DoubleConverter)
+* [Enum](xref:System.ComponentModel.EnumConverter)
 * [GUID](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Singolo](xref:System.ComponentModel.SingleConverter)

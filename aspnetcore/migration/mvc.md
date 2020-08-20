@@ -5,6 +5,7 @@ description: Informazioni su come iniziare a migrare un progetto MVC ASP.NET a A
 ms.author: wpickett
 ms.date: 06/18/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/mvc
-ms.openlocfilehash: 17f2a2532c58c3796835328260231d63f8fb2e40
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: cd1a7ff57d911f96f0adfe4b548fa80ec844886d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015049"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632239"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Eseguire la migrazione da ASP.NET MVC ad ASP.NET Core MVC
 
@@ -47,7 +48,7 @@ Creare un esempio di progetto MVC ASP.NET in Visual Studio per eseguire la migra
 
 1. Scegliere **Nuovo** > **Progetto** dal menu **File**.
 1. Selezionare **applicazione Web ASP.NET (.NET Framework)** e quindi fare clic su **Avanti**.
-1. Denominare il progetto *app Web 1* in modo che lo spazio dei nomi corrisponda al progetto ASP.NET Core creato nel passaggio successivo. Selezionare **Crea**.
+1. Denominare il progetto *app Web 1* in modo che lo spazio dei nomi corrisponda al progetto ASP.NET Core creato nel passaggio successivo. Selezionare **Create** (Crea).
 1. Selezionare **MVC**, quindi fare clic su **Crea**.
 
 ## <a name="create-the-aspnet-core-project"></a>Creare il progetto di ASP.NET Core
@@ -58,7 +59,7 @@ Crea una nuova soluzione con un nuovo progetto di ASP.NET Core di cui eseguire l
 1. Scegliere **Nuovo** > **Progetto** dal menu **File**.
 1. Selezionare **applicazione web ASP.NET Web Core** e quindi fare clic su **Avanti**.
 1. Nella finestra di dialogo **Configura nuovo progetto** assegnare al progetto il nome *app Web 1*.
-1. Impostare il percorso su una directory diversa da quella del progetto precedente per usare lo stesso nome di progetto. L'utilizzo dello stesso spazio dei nomi rende più semplice la copia di codice tra i due progetti. Selezionare **Crea**.
+1. Impostare il percorso su una directory diversa da quella del progetto precedente per usare lo stesso nome di progetto. L'utilizzo dello stesso spazio dei nomi rende più semplice la copia di codice tra i due progetti. Selezionare **Create** (Crea).
 1. Nella finestra di dialogo **Crea una nuova applicazione Web ASP.NET Core** verificare che siano selezionati **.net Core** e **ASP.NET Core 3,1** . Selezionare il modello di progetto **applicazione Web (modello-vista-controller)** e selezionare **Crea**.
 
 ## <a name="configure-the-aspnet-core-site-to-use-mvc"></a>Configurare il sito di ASP.NET Core per l'uso di MVC
@@ -108,7 +109,7 @@ Per altre informazioni, vedere <xref:mvc/controllers/actions> e <xref:mvc/views/
 Ogni endpoint controller può essere testato, tuttavia, il layout e gli stili vengono trattati più avanti nel documento.
 
 1. Eseguire l'app ASP.NET Core.
-1. Richiamare le visualizzazioni sottoposte a rendering dal browser nell'app ASP.NET Core in esecuzione sostituendo il numero di porta corrente con il numero di porta usato nel progetto ASP.NET Core. Ad esempio, `https://localhost:44375/home/about`
+1. Richiamare le visualizzazioni sottoposte a rendering dal browser nell'app ASP.NET Core in esecuzione sostituendo il numero di porta corrente con il numero di porta usato nel progetto ASP.NET Core. Ad esempio: `https://localhost:44375/home/about`.
 
 ## <a name="migrate-static-content"></a>Migrare contenuto statico
 
@@ -230,7 +231,7 @@ Creare una nuova app Web ASP.NET Core *vuota* con lo stesso nome del progetto pr
 
 * Quando la destinazione è .NET Core, per impostazione predefinita viene fatto riferimento al [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) . Questo pacchetto contiene i pacchetti usati comunemente dalle app MVC. Se la destinazione è .NET Framework, i riferimenti ai pacchetti devono essere elencati singolarmente nel file di progetto.
 
-`Microsoft.AspNetCore.Mvc`è il Framework di MVC ASP.NET Core. `Microsoft.AspNetCore.StaticFiles`è il gestore di file statici. ASP.NET Core le app scelgono esplicitamente il middleware, ad esempio per la conservazione dei file statici. Per altre informazioni, vedere [File statici](xref:fundamentals/static-files).
+`Microsoft.AspNetCore.Mvc` è il Framework di MVC ASP.NET Core. `Microsoft.AspNetCore.StaticFiles` è il gestore di file statici. ASP.NET Core le app scelgono esplicitamente il middleware, ad esempio per la conservazione dei file statici. Per altre informazioni, vedere [File statici](xref:fundamentals/static-files).
 
 * Aprire il file *Startup.cs* e modificare il codice in modo che corrisponda a quanto segue:
 
@@ -290,7 +291,7 @@ Le funzionalità seguenti richiedono la migrazione dal progetto MVC ASP.NET di e
 
 ## <a name="controllers-and-views"></a>Controller e visualizzazioni
 
-* Copiare tutti i metodi da ASP.NET MVC `HomeController` al nuovo `HomeController` . In ASP.NET MVC, il tipo restituito del metodo di azione del controller del modello predefinito è [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); in ASP.NET Core MVC i metodi di azione restituiscono `IActionResult` invece. `ActionResult`implementa `IActionResult` , quindi non è necessario modificare il tipo restituito dei metodi di azione.
+* Copiare tutti i metodi da ASP.NET MVC `HomeController` al nuovo `HomeController` . In ASP.NET MVC, il tipo restituito del metodo di azione del controller del modello predefinito è [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); in ASP.NET Core MVC i metodi di azione restituiscono `IActionResult` invece. `ActionResult` implementa `IActionResult` , quindi non è necessario modificare il tipo restituito dei metodi di azione.
 
 * Copiare i file *di visualizzazione About. cshtml*, *Contact. cshtml*e *index. cshtml* Razor dal progetto MVC ASP.NET al progetto ASP.NET Core.
 
@@ -416,7 +417,7 @@ Creare una nuova app Web ASP.NET Core *vuota* con lo stesso nome del progetto pr
 
 * Quando la destinazione è .NET Core, per impostazione predefinita viene fatto riferimento al [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) . Questo pacchetto contiene i pacchetti usati comunemente dalle app MVC. Se la destinazione è .NET Framework, i riferimenti ai pacchetti devono essere elencati singolarmente nel file di progetto.
 
-`Microsoft.AspNetCore.Mvc`è il Framework di MVC ASP.NET Core. `Microsoft.AspNetCore.StaticFiles`è il gestore di file statici. ASP.NET Core le app scelgono esplicitamente il middleware, ad esempio per la conservazione dei file statici. Per altre informazioni, vedere [File statici](xref:fundamentals/static-files).
+`Microsoft.AspNetCore.Mvc` è il Framework di MVC ASP.NET Core. `Microsoft.AspNetCore.StaticFiles` è il gestore di file statici. ASP.NET Core le app scelgono esplicitamente il middleware, ad esempio per la conservazione dei file statici. Per altre informazioni, vedere [File statici](xref:fundamentals/static-files).
 
 * Aprire il file *Startup.cs* e modificare il codice in modo che corrisponda a quanto segue:
 
@@ -476,7 +477,7 @@ Le funzionalità seguenti richiedono la migrazione dal progetto MVC ASP.NET di e
 
 ## <a name="controllers-and-views"></a>Controller e visualizzazioni
 
-* Copiare tutti i metodi da ASP.NET MVC `HomeController` al nuovo `HomeController` . In ASP.NET MVC, il tipo restituito del metodo di azione del controller del modello predefinito è [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); in ASP.NET Core MVC i metodi di azione restituiscono `IActionResult` invece. `ActionResult`implementa `IActionResult` , quindi non è necessario modificare il tipo restituito dei metodi di azione.
+* Copiare tutti i metodi da ASP.NET MVC `HomeController` al nuovo `HomeController` . In ASP.NET MVC, il tipo restituito del metodo di azione del controller del modello predefinito è [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); in ASP.NET Core MVC i metodi di azione restituiscono `IActionResult` invece. `ActionResult` implementa `IActionResult` , quindi non è necessario modificare il tipo restituito dei metodi di azione.
 
 * Copiare i file *di visualizzazione About. cshtml*, *Contact. cshtml*e *index. cshtml* Razor dal progetto MVC ASP.NET al progetto ASP.NET Core.
 

@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/09/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,22 +18,22 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/http-requests
-ms.openlocfilehash: ef6ed0911c2615ea543b1c2cea31a9a453f0c604
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ca52b6cf8646bced3a228341717f8ccb1edff582
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017233"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634202"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Effettuare richieste HTTP usando IHttpClientFactory in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Di [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak), [Steve Gordon](https://github.com/stevejgordon), [Rick Anderson](https://twitter.com/RickAndMSFT)e [Kirk Larkin](https://github.com/serpent5)
+Di [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak),  [Steve Gordon](https://github.com/stevejgordon), [Rick Anderson](https://twitter.com/RickAndMSFT)e [Kirk Larkin](https://github.com/serpent5)
 
-È possibile registrare e usare un'interfaccia <xref:System.Net.Http.IHttpClientFactory> per configurare e creare istanze di <xref:System.Net.Http.HttpClient> in un'app. `IHttpClientFactory`offre i vantaggi seguenti:
+È possibile registrare e usare un'interfaccia <xref:System.Net.Http.IHttpClientFactory> per configurare e creare istanze di <xref:System.Net.Http.HttpClient> in un'app. `IHttpClientFactory` offre i vantaggi seguenti:
 
-* Offre una posizione centrale per la denominazione e la configurazione di istanze di `HttpClient` logiche. Ad esempio, un client denominato *GitHub* potrebbe essere registrato e configurato per accedere a [GitHub](https://github.com/). Un client predefinito può essere registrato per l'accesso generale.
+* Offre una posizione centrale per la denominazione e la configurazione di istanze di `HttpClient` logiche. Ad esempio, un client denominato  *GitHub* potrebbe essere registrato e configurato per accedere a [GitHub](https://github.com/). Un client predefinito può essere registrato per l'accesso generale.
 * Codifica il concetto di middleware in uscita tramite la delega dei gestori in `HttpClient` . Fornisce le estensioni per il middleware basato su Polly per sfruttare i vantaggi delegare i gestori in `HttpClient` .
 * Gestisce il pool e la durata delle istanze sottostanti `HttpClientMessageHandler` . La gestione automatica evita i problemi comuni di DNS (Domain Name System) che si verificano quando si gestiscono manualmente le `HttpClient` durate.
 * Aggiunge un'esperienza di registrazione configurabile, tramite `ILogger`, per tutte le richieste inviate attraverso i client creati dalla factory.
@@ -54,7 +55,7 @@ L'approccio migliore dipende dai requisiti dell'app.
 
 ### <a name="basic-usage"></a>Uso di base
 
-`IHttpClientFactory`può essere registrato chiamando `AddHttpClient` :
+`IHttpClientFactory` può essere registrato chiamando `AddHttpClient` :
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1)]
 
@@ -141,7 +142,7 @@ Nel codice precedente, l'oggetto `HttpClient` viene archiviato in un campo priva
 
 ### <a name="generated-clients"></a>Client generati
 
-`IHttpClientFactory`può essere usato in combinazione con librerie di terze parti, ad esempio il [refitting](https://github.com/paulcbetts/refit). Refit è una libreria REST per .NET. Converte le API REST in interfacce live. Un'implementazione dell'interfaccia viene generata dinamicamente da `RestService`, usando `HttpClient` per effettuare le chiamate HTTP esterne.
+`IHttpClientFactory` può essere usato in combinazione con librerie di terze parti, ad esempio il [refitting](https://github.com/paulcbetts/refit). Refit è una libreria REST per .NET. Converte le API REST in interfacce live. Un'implementazione dell'interfaccia viene generata dinamicamente da `RestService`, usando `HttpClient` per effettuare le chiamate HTTP esterne.
 
 Per rappresentare l'API esterna e la relativa risposta vengono definite un'interfaccia e una risposta:
 
@@ -196,7 +197,7 @@ public class ValuesController : ControllerBase
 
 ## <a name="make-post-put-and-delete-requests"></a>Creare richieste POST, PUT e DELETE
 
-Negli esempi precedenti, tutte le richieste HTTP usano il verbo GET HTTP. `HttpClient`supporta anche altri verbi HTTP, tra cui:
+Negli esempi precedenti, tutte le richieste HTTP usano il verbo GET HTTP. `HttpClient` supporta anche altri verbi HTTP, tra cui:
 
 * POST
 * PUT
@@ -216,7 +217,7 @@ Nel codice precedente, il `CreateItemAsync` Metodo:
 * Chiama <xref:System.Net.Http.HttpClient.PostAsync%2A> per inviare il contenuto JSON all'URL specificato. Si tratta di un URL relativo che viene aggiunto a [HttpClient. BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress).
 * Chiama <xref:System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode%2A> per generare un'eccezione se il codice di stato della risposta non indica esito positivo.
 
-`HttpClient`supporta anche altri tipi di contenuto. Ad esempio, <xref:System.Net.Http.MultipartContent> e <xref:System.Net.Http.StreamContent>. Per un elenco completo dei contenuti supportati, vedere <xref:System.Net.Http.HttpContent> .
+`HttpClient` supporta anche altri tipi di contenuto. Ad esempio, <xref:System.Net.Http.MultipartContent> e <xref:System.Net.Http.StreamContent>. Per un elenco completo dei contenuti supportati, vedere <xref:System.Net.Http.HttpContent> .
 
 Nell'esempio seguente viene illustrata una richiesta HTTP PUT:
 
@@ -234,7 +235,7 @@ Per ulteriori informazioni sull'utilizzo di verbi HTTP diversi con `HttpClient` 
 
 ## <a name="outgoing-request-middleware"></a>Middleware per richieste in uscita
 
-`HttpClient`ha il concetto di delegare i gestori che possono essere collegati insieme per le richieste HTTP in uscita. `IHttpClientFactory`:
+`HttpClient` ha il concetto di delegare i gestori che possono essere collegati insieme per le richieste HTTP in uscita. `IHttpClientFactory`:
 
 * Semplifica la definizione dei gestori da applicare per ogni client denominato.
 * Supporta la registrazione e il concatenamento di più gestori per compilare una pipeline middleware per le richieste in uscita. Ognuno di questi gestori è in grado di eseguire operazioni prima e dopo la richiesta in uscita. Questo modello:
@@ -276,19 +277,19 @@ Usare uno degli approcci seguenti per condividere lo stato in base alla richiest
 
 ## <a name="use-polly-based-handlers"></a>Usare gestori basati su Polly
 
-`IHttpClientFactory`si integra con la libreria di terze parti [Polly](https://github.com/App-vNext/Polly). Polly è una libreria di gestione degli errori temporanei e di resilienza completa per .NET. Consente agli sviluppatori di esprimere criteri quali Retry, Circuit Breaker, Timeout, Bulkhead Isolation e Fallback in modo fluido e thread-safe.
+`IHttpClientFactory` si integra con la libreria di terze parti [Polly](https://github.com/App-vNext/Polly). Polly è una libreria di gestione degli errori temporanei e di resilienza completa per .NET. Consente agli sviluppatori di esprimere criteri quali Retry, Circuit Breaker, Timeout, Bulkhead Isolation e Fallback in modo fluido e thread-safe.
 
 Per consentire l'uso dei criteri Polly con le istanze configurate di `HttpClient` sono disponibili metodi di estensione. Le estensioni di Polly supportano l'aggiunta di gestori basati su Polly ai client. Polly richiede il pacchetto NuGet [Microsoft. Extensions. http. Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) .
 
 ### <a name="handle-transient-faults"></a>Gestire gli errori temporanei
 
-Gli errori si verificano in genere quando le chiamate HTTP esterne sono temporanee. <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*>consente di definire un criterio per gestire gli errori temporanei. I criteri configurati con `AddTransientHttpErrorPolicy` gestiscono le risposte seguenti:
+Gli errori si verificano in genere quando le chiamate HTTP esterne sono temporanee. <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*> consente di definire un criterio per gestire gli errori temporanei. I criteri configurati con `AddTransientHttpErrorPolicy` gestiscono le risposte seguenti:
 
 * <xref:System.Net.Http.HttpRequestException>
 * HTTP 5xx
 * HTTP 408
 
-`AddTransientHttpErrorPolicy`consente di accedere a un `PolicyBuilder` oggetto configurato per gestire gli errori che rappresentano un possibile errore temporaneo:
+`AddTransientHttpErrorPolicy` consente di accedere a un `PolicyBuilder` oggetto configurato per gestire gli errori che rappresentano un possibile errore temporaneo:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup3.cs?name=snippet1)]
 
@@ -321,7 +322,7 @@ Un approccio alla gestione dei criteri usati di frequente consiste nel definirli
 Nel codice seguente:
 
 * Vengono aggiunti i criteri "regular" e "Long".
-* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry*>aggiunge i criteri "regular" e "Long" dal registro di sistema.
+* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry*> aggiunge i criteri "regular" e "Long" dal registro di sistema.
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs?name=snippet1)]
 
@@ -339,7 +340,7 @@ La durata del gestore predefinito è di due minuti. È possibile eseguire l'over
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup5.cs?name=snippet1)]
 
-`HttpClient`le istanze possono in genere essere considerate come oggetti .NET che **non** richiedono l'eliminazione. L'eliminazione annulla le richieste in uscita e garantisce che l'istanza di `HttpClient` specificata non possa essere usata dopo la chiamata a <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` tiene traccia ed elimina le risorse usate dalle istanze di `HttpClient`.
+`HttpClient` le istanze possono in genere essere considerate come oggetti .NET che **non** richiedono l'eliminazione. L'eliminazione annulla le richieste in uscita e garantisce che l'istanza di `HttpClient` specificata non possa essere usata dopo la chiamata a <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` tiene traccia ed elimina le risorse usate dalle istanze di `HttpClient`.
 
 Mantenere una sola istanza di `HttpClient` attiva per un lungo periodo di tempo è un modello comune usato prima dell'avvento di `IHttpClientFactory`. Questo modello non è più necessario dopo la migrazione a `IHttpClientFactory`.
 
@@ -366,7 +367,7 @@ Gli approcci precedenti risolvono i problemi di gestione delle risorse che vengo
 Le `HttpMessageHandler` istanze in pool generano `CookieContainer` oggetti condivisi. La `CookieContainer` condivisione di oggetti imprevista spesso genera codice errato. Per le app che richiedono cookie s, prendere in considerazione quanto segue:
 
  - Disabilitazione della cookie gestione automatica
- - Evitando`IHttpClientFactory`
+ - Evitando `IHttpClientFactory`
 
 Chiamare <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> per disabilitare la cookie gestione automatica:
 
@@ -684,7 +685,7 @@ Gli approcci precedenti risolvono i problemi di gestione delle risorse che vengo
 Le `HttpMessageHandler` istanze in pool generano `CookieContainer` oggetti condivisi. La `CookieContainer` condivisione di oggetti imprevista spesso genera codice errato. Per le app che richiedono cookie s, prendere in considerazione quanto segue:
 
  - Disabilitazione della cookie gestione automatica
- - Evitando`IHttpClientFactory`
+ - Evitando `IHttpClientFactory`
 
 Chiamare <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> per disabilitare la cookie gestione automatica:
 
@@ -992,7 +993,7 @@ Gli approcci precedenti risolvono i problemi di gestione delle risorse che vengo
 Le `HttpMessageHandler` istanze in pool generano `CookieContainer` oggetti condivisi. La `CookieContainer` condivisione di oggetti imprevista spesso genera codice errato. Per le app che richiedono cookie s, prendere in considerazione quanto segue:
 
  - Disabilitazione della cookie gestione automatica
- - Evitando`IHttpClientFactory`
+ - Evitando `IHttpClientFactory`
 
 Chiamare <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> per disabilitare la cookie gestione automatica:
 

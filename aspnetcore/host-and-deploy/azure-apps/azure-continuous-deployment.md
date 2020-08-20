@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: devx-track-csharp, mvc
 ms.date: 12/06/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
-ms.openlocfilehash: 0def05f73fd5264b1fb01e0a2ae4fd8d70588d9c
-ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
+ms.openlocfilehash: 1f3fca62b39125d9f23042c5929de829ab243865
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88130561"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633175"
 ---
 # <a name="continuous-deployment-to-azure-with-visual-studio-and-git-with-aspnet-core"></a>Distribuzione continua in Azure con Visual Studio e Git con ASP.NET Core
 
@@ -92,7 +93,7 @@ Eseguire i passaggi seguenti per creare un'app Web nel portale di Azure:
 
    Anche nel pannello **App Web**, selezionare una **Posizione/piano di servizio App** o crearne uno nuovo. Se si crea un nuovo piano, selezionare il piano tariffario, la posizione e altre opzioni. Per altre informazioni sui piani di Servizio app, vedere [Panoramica di approfondimento dei piani del Servizio App di Azure](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview).
 
-1. Selezionare **Crea**. Azure eseguirà il provisioning e avvierà l'app Web.
+1. Selezionare **Create** (Crea). Azure eseguirà il provisioning e avvierà l'app Web.
 
    ![Portale di Azure: campione di pannello di Essentials Demo 01 di App Web](azure-continuous-deployment/_static/07-azure-webappblade.png)
 

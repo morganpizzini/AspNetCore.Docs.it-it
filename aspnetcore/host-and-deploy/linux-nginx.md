@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/09/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: f6a777ab796da42402fae4f77ecc028efa2d6039
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 63227f068926c4158ac8162fdc1ac11399fd65cb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015543"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633786"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Hosting di ASP.NET Core in Linux con Nginx
 
@@ -399,7 +400,7 @@ Aggiungere il file di configurazione */etc/nginx/proxy.conf*. L'esempio contiene
 [!code-nginx[](linux-nginx/nginx.conf?highlight=2)]
 
 > [!NOTE]
-> Blazor WebAssemblyle app richiedono un `burst` valore di parametro maggiore per contenere il numero maggiore di richieste effettuate da un'app. Per altre informazioni, vedere <xref:blazor/host-and-deploy/webassembly#nginx>.
+> Blazor WebAssembly le app richiedono un `burst` valore di parametro maggiore per contenere il numero maggiore di richieste effettuate da un'app. Per altre informazioni, vedere <xref:blazor/host-and-deploy/webassembly#nginx>.
 
 #### <a name="secure-nginx-from-clickjacking"></a>Proteggere Nginx dal clickjacking
 

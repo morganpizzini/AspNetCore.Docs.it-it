@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,16 +17,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/index
-ms.openlocfilehash: ead5863f0656e182d395fc1e0deaf63ff66034cb
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 0378fd06b5cae5b8911e8a2f41937b28d5444538
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021367"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632863"
 ---
 # <a name="overview-of-aspnet-core-security"></a>Panoramica sulla sicurezza di ASP.NET Core
 
-ASP.NET Core consente agli sviluppatori di configurare e gestire facilmente la sicurezza per le proprie app. ASP.NET Core contiene funzionalità per gestire l'autenticazione, l'autorizzazione, la protezione dei dati, l'applicazione di HTTPS, i segreti dell'app, la protezione dalla falsificazione delle richieste e la gestione di CORS. Queste funzionalità di sicurezza consentono di compilare app ASP.NET Core solide e sicure.
+ASP.NET Core consente agli sviluppatori di configurare e gestire facilmente la sicurezza per le proprie app. ASP.NET Core contiene le funzionalità per gestire l'autenticazione, l'autorizzazione, la protezione dei dati, l'imposizione HTTPS, i segreti delle app, la prevenzione di XSRF/CSRF e la gestione di CORS. Queste funzionalità di sicurezza consentono di compilare app ASP.NET Core solide e sicure.
 
 ## <a name="aspnet-core-security-features"></a>Funzionalità di sicurezza di ASP.NET Core
 
@@ -41,9 +42,9 @@ L'autenticazione è un processo in cui un utente fornisce le credenziali che ven
 
 ASP.NET Core ed Entity Framework contengono funzionalità che consentono di proteggere le app e impedire violazioni della sicurezza. L'elenco di collegamenti seguente offre documentazione in cui sono descritte le tecniche per evitare le vulnerabilità della sicurezza più comuni nelle app Web:
 
-* [Attacchi di tipo cross-site scripting (XSS)](xref:security/cross-site-scripting)
+* [Attacchi XSS (cross-site scripting)](xref:security/cross-site-scripting)
 * [Attacchi SQL injection](/ef/core/querying/raw-sql)
-* [Richieste intersito false](xref:security/anti-request-forgery)
+* [Attacchi di richiesta intersito falsa (XSRF/CSRF)](xref:security/anti-request-forgery)
 * [Attacchi di reindirizzamento aperti](xref:security/preventing-open-redirects)
 
 Esistono altre vulnerabilità di cui è necessario essere consapevoli. Per ulteriori informazioni, vedere gli altri articoli nella sezione **sicurezza e Identity ** contenuto del sommario.

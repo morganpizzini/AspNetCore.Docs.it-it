@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,20 +17,20 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.0
-ms.openlocfilehash: 1ec51bf054f1f0d60ed27ee280f436e6d4c8c4b0
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 9d8c33ef10825baa212466fe683d4c1dc582f7eb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021196"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632460"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Novità di ASP.NET Core 2.0
 
 Questo articolo evidenzia le modifiche più significative apportate ad ASP.NET Core 2.0, con collegamenti alla relativa documentazione.
 
-## <a name="no-locrazor-pages"></a>RazorPagine
+## <a name="no-locrazor-pages"></a>Razor Pagine
 
-RazorPages è una nuova funzionalità di ASP.NET Core MVC che rende più semplice e più produttivo gli scenari di codifica della pagina.
+Razor Pages è una nuova funzionalità di ASP.NET Core MVC che rende più semplice e più produttivo gli scenari di codifica della pagina.
 
 Per altre informazioni, vedere l'introduzione e l'esercitazione:
 
@@ -130,15 +131,15 @@ Per informazioni sullo stato della documentazione prevista, vedere l'[argomento 
 
 ASP.NET Core ha sempre agevolato la codifica HTML del contenuto per impostazione predefinita, ma con la nuova versione è stato fatto un passo avanti nella prevenzione degli attacchi basati sulla falsificazione della richiesta tra siti (XSRF). ASP.NET Core ora genera token antifalsificazione per impostazione predefinita e li convalida per le pagine e le azioni POST dei form senza configurazione aggiuntiva.
 
-Per altre informazioni, vedere [Prevenire attacchi tramite richieste intersito false (XSRF/CSRF)](xref:security/anti-request-forgery).
+Per altre informazioni, vedere <xref:security/anti-request-forgery>.
 
 ## <a name="automatic-precompilation"></a>Precompilazione automatica
 
-Razorper impostazione predefinita, la pre-compilazione viene abilitata durante la pubblicazione, riducendo le dimensioni dell'output di pubblicazione e l'ora di avvio dell'applicazione.
+Razor per impostazione predefinita, la pre-compilazione viene abilitata durante la pubblicazione, riducendo le dimensioni dell'output di pubblicazione e l'ora di avvio dell'applicazione.
 
 Per ulteriori informazioni, vedere la pagina relativa [ Razor alla visualizzazione della compilazione e della precompilazione in ASP.NET Core](xref:mvc/views/view-compilation).
 
-## <a name="no-locrazor-support-for-c-71"></a>Razorsupporto per C# 7,1
+## <a name="no-locrazor-support-for-c-71"></a>Razor supporto per C# 7,1
 
 Il Razor motore di visualizzazione è stato aggiornato per funzionare con il nuovo compilatore Roslyn. Questo include il supporto per funzionalità di C# 7.1 tra cui le espressioni predefinite, i nomi di tupla dedotti e i criteri di ricerca con i generics. Per usare C# 7.1 nel progetto, aggiungere la proprietà seguente nel file di progetto e quindi ricaricare la soluzione:
 

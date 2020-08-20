@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 7740774cad33418489fc1d94240574167f84fae6
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 11362f677da3e55df4267cf3d6ca8097c24c218f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015361"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633942"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Ospitare ASP.NET Core in un servizio Windows
 
@@ -50,7 +51,7 @@ Il modello di servizio di ruolo di lavoro di ASP.NET Core rappresenta un punto d
 
 L'app richiede un riferimento al pacchetto per [Microsoft. Extensions. Hosting. WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices).
 
-`IHostBuilder.UseWindowsService`viene chiamato durante la compilazione dell'host. Se l'app è in esecuzione come servizio di Windows, il metodo:
+`IHostBuilder.UseWindowsService` viene chiamato durante la compilazione dell'host. Se l'app è in esecuzione come servizio di Windows, il metodo:
 
 * Imposta la durata dell'host su `WindowsServiceLifetime`.
 * Imposta la [radice del contenuto](xref:fundamentals/index#content-root) su [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory). Per altre informazioni, vedere la sezione [Directory corrente e radice del contenuto](#current-directory-and-content-root).

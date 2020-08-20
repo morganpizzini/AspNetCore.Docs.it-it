@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/middleware
-ms.openlocfilehash: 235010c95cdd0c7ce1368b4abd91e75d81ae094b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ed0925259bf3d4fee6c903ff55cdf1dae2355af7
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021900"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631901"
 ---
 # <a name="test-aspnet-core-middleware"></a>Test del middleware ASP.NET Core
 
@@ -123,7 +124,7 @@ public async Task TestMiddleware_ExpectedResponse()
 }
 ```
 
-<xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A>consente la configurazione diretta di un <xref:Microsoft.AspNetCore.Http.HttpContext> oggetto anziché l'utilizzo delle <xref:System.Net.Http.HttpClient> astrazioni. Usare <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> per modificare le strutture disponibili solo sul server, ad esempio [HttpContext. Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) o [HttpContext. Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
+<xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> consente la configurazione diretta di un <xref:Microsoft.AspNetCore.Http.HttpContext> oggetto anziché l'utilizzo delle <xref:System.Net.Http.HttpClient> astrazioni. Usare <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> per modificare le strutture disponibili solo sul server, ad esempio [HttpContext. Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) o [HttpContext. Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
 
 Come per l'esempio precedente che ha testato una risposta *404 non trovata* , controllare l'opposto per ogni `Assert` istruzione del test precedente. Il controllo conferma che il test ha esito negativo correttamente quando il middleware funziona normalmente. Dopo aver verificato il funzionamento del test falso positivo, impostare le istruzioni finali `Assert` per le condizioni e i valori previsti per il test. Eseguirlo di nuovo per verificare che il test venga superato.
 

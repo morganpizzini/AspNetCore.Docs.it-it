@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: devx-track-csharp, mvc
 ms.date: 07/10/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/publish-to-azure-webapp-using-vs
-ms.openlocfilehash: 1fced12700fcd5910c1484ebb9190c7652b2646e
-ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
+ms.openlocfilehash: 380e18d1826159fa0780909aba58fe8334ede8bb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88130704"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631940"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a>Pubblicare un'app ASP.NET Core in Azure con Visual Studio
 
@@ -37,7 +38,7 @@ Vedere [pubblicare un'app Web nel servizio app Azure usando Visual Studio per Ma
 
 Per risolvere un problema di distribuzione del Servizio app di Azure, vedere <xref:test/troubleshoot-azure-iis>.
 
-## <a name="set-up"></a>Configurazione
+## <a name="set-up"></a>Configurare
 
 * Aprire un [account Azure gratuito](https://azure.microsoft.com/free/dotnet/) se non è già disponibile un account. 
 
@@ -117,7 +118,7 @@ Nella finestra di dialogo **pubblica** selezionare **Crea un nuovo servizio app 
 Viene visualizzata la finestra di dialogo **Crea servizio app** :
 
 * I campi di immissione **Nome dell'app**, **Gruppo di risorse** e **Piano di servizio app** vengono popolati automaticamente. È possibile mantenere questi nomi o modificarli.
-* Selezionare **Crea**.
+* Selezionare **Create** (Crea).
 
 ![Finestra di dialogo Crea servizio app](publish-to-azure-webapp-using-vs/_static/newrg1.png)
 
@@ -147,7 +148,7 @@ Viene visualizzato il **database SQL di Azure per creare** :
 
 * Il **nome del database**, il **gruppo di risorse**, il **server di database** e i campi di immissione del **piano di servizio app** sono popolati Questi valori possono essere conservati o modificati.
 * Immettere il **nome utente dell'amministratore** di database e la **password di amministratore** del database per il **server di database** selezionato (si noti che l'account usato deve avere le autorizzazioni necessarie per creare il nuovo database SQL di Azure)
-* Selezionare **Crea**.
+* Selezionare **Create** (Crea).
 
 ![Finestra di dialogo nuovo database SQL di Azure](publish-to-azure-webapp-using-vs/_static/sql_create.png)
 

@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 7d2d563eef60cb8eead95c6792bcac2cda16a859
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 9516410399ce69f1d69b09781b2530d052a11e7a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021341"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631875"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Memorizzazione nella cache delle risposte in ASP.NET Core
 
@@ -41,10 +42,10 @@ La [specifica di Caching HTTP 1,1](https://tools.ietf.org/html/rfc7234) descrive
 
 `Cache-Control`Le direttive comuni sono illustrate nella tabella seguente.
 
-| Direttiva                                                       | Action |
+| Direttiva                                                       | Azione |
 | --------------------------------------------------------------- | ------ |
 | [public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Una cache può archiviare la risposta. |
-| [private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | La risposta non deve essere archiviata da una cache condivisa. Una cache privata può archiviare e riutilizzare la risposta. |
+| [privata](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | La risposta non deve essere archiviata da una cache condivisa. Una cache privata può archiviare e riutilizzare la risposta. |
 | [validità massima](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | Il client non accetta una risposta la cui età è superiore al numero di secondi specificato. Esempi: `max-age=60` (60 secondi), `max-age=2592000` (1 mese) |
 | [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **Sulle richieste**: una cache non deve usare una risposta archiviata per soddisfare la richiesta. Il server di origine rigenera la risposta per il client e il middleware aggiorna la risposta archiviata nella cache.<br><br>**In**risposta: non è necessario usare la risposta per una richiesta successiva senza convalida nel server di origine. |
 | [Nessun archivio](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Sulle richieste**: una cache non deve archiviare la richiesta.<br><br>**Nelle risposte**: una cache non deve archiviare alcuna parte della risposta. |
@@ -99,7 +100,7 @@ Per altre informazioni, vedere <xref:mvc/views/tag-helpers/builtin-th/distribute
 > [!WARNING]
 > Disabilitare la memorizzazione nella cache per il contenuto che contiene informazioni per i client autenticati. La memorizzazione nella cache deve essere abilitata solo per il contenuto che non cambia in base all'identità di un utente o se un utente ha eseguito l'accesso.
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys>varia la risposta memorizzata in base ai valori dell'elenco specificato di chiavi di query. Quando viene specificato un singolo valore `*` , il middleware varia le risposte in base a tutti i parametri della stringa di query della richiesta.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> varia la risposta memorizzata in base ai valori dell'elenco specificato di chiavi di query. Quando viene specificato un singolo valore `*` , il middleware varia le risposte in base a tutti i parametri della stringa di query della richiesta.
 
 Il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) deve essere abilitato per impostare la <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> Proprietà. In caso contrario, viene generata un'eccezione in fase di esecuzione. Non esiste un'intestazione HTTP corrispondente per la <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> Proprietà. La proprietà è una funzionalità HTTP gestita dal middleware di memorizzazione nella cache delle risposte. Affinché il middleware possa gestire una risposta memorizzata nella cache, la stringa di query e il valore della stringa di query devono corrispondere a una richiesta precedente. Si consideri, ad esempio, la sequenza di richieste e i risultati mostrati nella tabella seguente.
 
@@ -132,14 +133,14 @@ Vary: User-Agent
 
 ### <a name="nostore-and-locationnone"></a>NoStore e location. None
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>esegue l'override della maggior parte delle altre proprietà. Quando questa proprietà è impostata su `true` , l' `Cache-Control` intestazione viene impostata su `no-store` . Se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> è impostato su `None` :
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> esegue l'override della maggior parte delle altre proprietà. Quando questa proprietà è impostata su `true` , l' `Cache-Control` intestazione viene impostata su `no-store` . Se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> è impostato su `None` :
 
 * `Cache-Control` è impostato su `no-store,no-cache`.
 * `Pragma` è impostato su `no-cache`.
 
 Se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> è `false` e <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> è `None` , `Cache-Control` e `Pragma` sono impostati su `no-cache` .
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>viene in genere impostato su `true` per le pagine di errore. La pagina cache2 nell'app di esempio genera intestazioni di risposta che indicano al client di non archiviare la risposta.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> viene in genere impostato su `true` per le pagine di errore. La pagina cache2 nell'app di esempio genera intestazioni di risposta che indicano al client di non archiviare la risposta.
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache2.cshtml.cs?name=snippet)]
 
@@ -156,9 +157,9 @@ Per abilitare la memorizzazione nella cache, <xref:Microsoft.AspNetCore.Mvc.Cach
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>le opzioni di `Any` e vengono `Client` convertite in `Cache-Control` valori di intestazione `public` rispettivamente di e `private` . Come indicato nella sezione [NoStore e location. None](#nostore-and-locationnone) , l'impostazione <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> di su `None` imposta entrambe `Cache-Control` le `Pragma` intestazioni e su `no-cache` .
 
-`Location.Any`( `Cache-Control` impostato su `public` ) indica che il *client o qualsiasi proxy intermedio* può memorizzare nella cache il valore, incluso il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware).
+`Location.Any` ( `Cache-Control` impostato su `public` ) indica che il *client o qualsiasi proxy intermedio* può memorizzare nella cache il valore, incluso il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware).
 
-`Location.Client`( `Cache-Control` impostato su `private` ) indica che *solo il client* può memorizzare nella cache il valore. Nessuna cache intermedia deve memorizzare nella cache il valore, incluso il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware).
+`Location.Client` ( `Cache-Control` impostato su `private` ) indica che *solo il client* può memorizzare nella cache il valore. Nessuna cache intermedia deve memorizzare nella cache il valore, incluso il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware).
 
 Le intestazioni di controllo della cache forniscono semplicemente indicazioni ai client e ai proxy intermedi quando e come memorizzare nella cache le risposte. Non vi è alcuna garanzia che i client e i proxy soddisfino la [specifica HTTP 1,1 Caching](https://tools.ietf.org/html/rfc7234). Il [middleware di memorizzazione nella cache delle risposte](xref:performance/caching/middleware) segue sempre le regole di memorizzazione nella cache definite dalla specifica.
 
@@ -196,7 +197,7 @@ Il modello di pagina Cache4 dell'app di esempio fa riferimento al `Default30` pr
 
 Il <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> può essere applicato a:
 
-* RazorPagine: gli attributi non possono essere applicati ai metodi del gestore.
+* Razor Pagine: gli attributi non possono essere applicati ai metodi del gestore.
 * Controller MVC.
 * Metodi di azione MVC: gli attributi a livello di metodo eseguono l'override delle impostazioni specificate negli attributi a livello di classe.
 

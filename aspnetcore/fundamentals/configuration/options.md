@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/20/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/options
-ms.openlocfilehash: dc03e0820bc332f29e48edb73b57faf5cfd83754
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a6af5a7b1b4bc066a563c7cac59274fd39594cf6
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017623"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632590"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Modello di opzioni in ASP.NET Core
 
@@ -86,8 +87,8 @@ Usando <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> , le opzioni ven
 
 La differenza tra `IOptionsMonitor` e `IOptionsSnapshot` è che:
 
-* `IOptionsMonitor`è un [servizio singleton](xref:fundamentals/dependency-injection#singleton) che recupera i valori correnti delle opzioni in qualsiasi momento, operazione particolarmente utile nelle dipendenze singleton.
-* `IOptionsSnapshot`è un [servizio con ambito](xref:fundamentals/dependency-injection#scoped) e fornisce uno snapshot delle opzioni nel momento in cui `IOptionsSnapshot<T>` viene costruito l'oggetto. Gli snapshot delle opzioni sono progettati per l'uso con dipendenze temporanee e con ambito.
+* `IOptionsMonitor` è un [servizio singleton](xref:fundamentals/dependency-injection#singleton) che recupera i valori correnti delle opzioni in qualsiasi momento, operazione particolarmente utile nelle dipendenze singleton.
+* `IOptionsSnapshot` è un [servizio con ambito](xref:fundamentals/dependency-injection#scoped) e fornisce uno snapshot delle opzioni nel momento in cui `IOptionsSnapshot<T>` viene costruito l'oggetto. Gli snapshot delle opzioni sono progettati per l'uso con dipendenze temporanee e con ambito.
 
 Il codice seguente usa <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> .
 
@@ -136,19 +137,19 @@ Il codice seguente consente di visualizzare le opzioni denominate:
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Pages/TestNO.cshtml.cs?name=snippet)]
 
-Tutte le opzioni sono istanze denominate. <xref:Microsoft.Extensions.Options.IConfigureOptions%601>le istanze vengono considerate come destinazione dell' `Options.DefaultName` istanza, ovvero `string.Empty` . <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> implementa anche <xref:Microsoft.Extensions.Options.IConfigureOptions%601>. L'implementazione predefinita di <xref:Microsoft.Extensions.Options.IOptionsFactory%601> include la logica per usarle in modo appropriato. L' `null` opzione denominata viene utilizzata per fare riferimento a tutte le istanze denominate anziché a un'istanza denominata specifica. <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*>e <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> usano questa convenzione.
+Tutte le opzioni sono istanze denominate. <xref:Microsoft.Extensions.Options.IConfigureOptions%601> le istanze vengono considerate come destinazione dell' `Options.DefaultName` istanza, ovvero `string.Empty` . <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> implementa anche <xref:Microsoft.Extensions.Options.IConfigureOptions%601>. L'implementazione predefinita di <xref:Microsoft.Extensions.Options.IOptionsFactory%601> include la logica per usarle in modo appropriato. L' `null` opzione denominata viene utilizzata per fare riferimento a tutte le istanze denominate anziché a un'istanza denominata specifica. <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> e <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> usano questa convenzione.
 
 ## <a name="optionsbuilder-api"></a>API OptionsBuilder
 
 <xref:Microsoft.Extensions.Options.OptionsBuilder%601> viene usata per configurare le istanze di `TOptions`. `OptionsBuilder` semplifica la creazione di opzioni denominate perché è costituita da un singolo parametro nella chiamata iniziale ad `AddOptions<TOptions>(string optionsName)` invece di essere visualizzata in tutte le chiamate successive. La convalida delle opzioni e gli overload `ConfigureOptions` che accettano le dipendenze dei servizi sono disponibili solo tramite `OptionsBuilder`.
 
-`OptionsBuilder`viene usato nella sezione [convalida opzioni](#val) .
+`OptionsBuilder` viene usato nella sezione [convalida opzioni](#val) .
 
 ## <a name="use-di-services-to-configure-options"></a>Usare i servizi di inserimento delle dipendenze per configurare le opzioni
 
 È possibile accedere ai servizi dall'inserimento delle dipendenze durante la configurazione delle opzioni in due modi:
 
-* Passare un delegato di configurazione da [configurare](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) in [OptionsBuilder \<TOptions> ](xref:Microsoft.Extensions.Options.OptionsBuilder`1). `OptionsBuilder<TOptions>`fornisce overload di [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) che consentono l'uso di un massimo di cinque servizi per configurare le opzioni:
+* Passare un delegato di configurazione da [configurare](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) in [OptionsBuilder \<TOptions> ](xref:Microsoft.Extensions.Options.OptionsBuilder`1). `OptionsBuilder<TOptions>` fornisce overload di [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) che consentono l'uso di un massimo di cinque servizi per configurare le opzioni:
 
   ```csharp
   services.AddOptions<MyOptions>("optionalName")
@@ -198,7 +199,7 @@ La classe seguente implementa <xref:Microsoft.Extensions.Options.IValidateOption
 
 [!code-csharp[](options/samples/3.x/OptionsValidationSample/Configuration/MyConfigValidation.cs?name=snippet)]
 
-`IValidateOptions`consente di trasferire il codice di convalida da `StartUp` e in una classe.
+`IValidateOptions` consente di trasferire il codice di convalida da `StartUp` e in una classe.
 
 Utilizzando il codice precedente, la convalida è abilitata in `Startup.ConfigureServices` con il codice seguente:
 
@@ -275,7 +276,7 @@ Non usare <xref:Microsoft.Extensions.Options.IOptions%601> oppure <xref:Microsof
 
 ## <a name="optionsconfigurationextensions-nuget-package"></a>Options.Configpacchetto NuGet urationExtensions
 
-Il pacchetto [urationExtensionsMicrosoft.Extensions.Options.Config](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) viene fatto riferimento in modo implicito nelle app ASP.NET Core.
+Il pacchetto [ urationExtensionsMicrosoft.Extensions.Options.Config](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) viene fatto riferimento in modo implicito nelle app ASP.NET Core.
 
 ::: moniker-end
 
@@ -456,8 +457,8 @@ Usando <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> , le opzioni ven
 
 La differenza tra `IOptionsMonitor` e `IOptionsSnapshot` è che:
 
-* `IOptionsMonitor`è un [servizio singleton](xref:fundamentals/dependency-injection#singleton) che recupera i valori correnti delle opzioni in qualsiasi momento, operazione particolarmente utile nelle dipendenze singleton.
-* `IOptionsSnapshot`è un [servizio con ambito](xref:fundamentals/dependency-injection#scoped) e fornisce uno snapshot delle opzioni nel momento in cui `IOptionsSnapshot<T>` viene costruito l'oggetto. Gli snapshot delle opzioni sono progettati per l'uso con dipendenze temporanee e con ambito.
+* `IOptionsMonitor` è un [servizio singleton](xref:fundamentals/dependency-injection#singleton) che recupera i valori correnti delle opzioni in qualsiasi momento, operazione particolarmente utile nelle dipendenze singleton.
+* `IOptionsSnapshot` è un [servizio con ambito](xref:fundamentals/dependency-injection#scoped) e fornisce uno snapshot delle opzioni nel momento in cui `IOptionsSnapshot<T>` viene costruito l'oggetto. Gli snapshot delle opzioni sono progettati per l'uso con dipendenze temporanee e con ambito.
 
 L'esempio seguente illustra la creazione di un nuovo <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> dopo le modifiche ad *appsettings.json* (*Pages/Index.cshtml.cs*). Più richieste al server restituiscono valori costanti forniti dal file *appsettings.json* fino a quando il file non viene modificato e la configurazione non viene ricaricata.
 
@@ -611,7 +612,7 @@ public interface IValidateOptions<TOptions> where TOptions : class
 }
 ```
 
-La convalida basata sull'annotazione dei dati è disponibile dal pacchetto [Microsoft. Extensions. Options. DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) chiamando il <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> metodo su `OptionsBuilder<TOptions>` . `Microsoft.Extensions.Options.DataAnnotations`è incluso nel [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
+La convalida basata sull'annotazione dei dati è disponibile dal pacchetto [Microsoft. Extensions. Options. DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) chiamando il <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> metodo su `OptionsBuilder<TOptions>` . `Microsoft.Extensions.Options.DataAnnotations` è incluso nel [metapacchetto Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;

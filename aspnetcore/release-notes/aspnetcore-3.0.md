@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: 10741cfc701bf261484b9e6c73a2347e2dd7083d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a53ba22c301b04aafa1eeb53d91f82f90dab0bad
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019835"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631550"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Novità di ASP.NET Core 3,0
 
@@ -29,13 +30,13 @@ In questo articolo vengono evidenziate le modifiche più significative in ASP.NE
 
 ## Blazor
 
-Blazorè un nuovo Framework in ASP.NET Core per la creazione di un'interfaccia utente Web interattiva sul lato client con .NET:
+Blazor è un nuovo Framework in ASP.NET Core per la creazione di un'interfaccia utente Web interattiva sul lato client con .NET:
 
 * Creare interfacce utente interattive avanzate con C# invece di JavaScript.
 * Condividere la logica dell'app scritta in .NET sul lato client e sul lato server.
 * Eseguire il rendering dell'interfaccia utente come HTML e CSS per un ampio supporto dei browser, inclusi i browser per dispositivi mobili.
 
-Blazorscenari supportati dal Framework:
+Blazor scenari supportati dal Framework:
 
 * Componenti dell'interfaccia utente riutilizzabili ( Razor componenti)
 * Routing lato client
@@ -49,17 +50,17 @@ Per altre informazioni, vedere <xref:blazor/index>.
 
 ### Blazor Server
 
-Blazorsepara la logica di rendering dei componenti dal modo in cui vengono applicati gli aggiornamenti dell'interfaccia utente. Blazor Serverfornisce supporto per l'hosting di Razor componenti nel server in un'app ASP.NET Core. Gli aggiornamenti dell'interfaccia utente vengono gestiti tramite una SignalR connessione. Blazor Serverè supportato in ASP.NET Core 3,0.
+Blazor separa la logica di rendering dei componenti dal modo in cui vengono applicati gli aggiornamenti dell'interfaccia utente. Blazor Server fornisce supporto per l'hosting di Razor componenti nel server in un'app ASP.NET Core. Gli aggiornamenti dell'interfaccia utente vengono gestiti tramite una SignalR connessione. Blazor Server è supportato in ASP.NET Core 3,0.
 
 ### <a name="no-locblazor-webassembly-preview"></a>Blazor WebAssembly (anteprima)
 
-Blazorle app possono essere eseguite anche direttamente nel browser usando un Runtime .NET basato su webassembly. Blazor WebAssemblyè in anteprima e *non* è supportato in ASP.NET Core 3,0. Blazor WebAssemblyverrà supportato in una versione futura di ASP.NET Core.
+Blazor le app possono essere eseguite anche direttamente nel browser usando un Runtime .NET basato su webassembly. Blazor WebAssembly è in anteprima e *non* è supportato in ASP.NET Core 3,0. Blazor WebAssembly verrà supportato in una versione futura di ASP.NET Core.
 
 ### <a name="no-locrazor-components"></a>Componenti di Razor
 
-Blazorle app sono compilate da componenti. I componenti sono blocchi autonomi dell'interfaccia utente (UI), ad esempio una pagina, una finestra di dialogo o un form. I componenti sono classi .NET normali che definiscono la logica di rendering dell'interfaccia utente e i gestori eventi sul lato client. È possibile creare app Web interattive avanzate senza JavaScript.
+Blazor le app sono compilate da componenti. I componenti sono blocchi autonomi dell'interfaccia utente (UI), ad esempio una pagina, una finestra di dialogo o un form. I componenti sono classi .NET normali che definiscono la logica di rendering dell'interfaccia utente e i gestori eventi sul lato client. È possibile creare app Web interattive avanzate senza JavaScript.
 
-I componenti in Blazor vengono in genere creati usando Razor la sintassi, una combinazione naturale di HTML e C#. Razori componenti sono simili alle Razor pagine e alle visualizzazioni MVC in quanto entrambi usano Razor . Diversamente dalle pagine e dalle viste, basate su un modello di richiesta-risposta, i componenti vengono usati in modo specifico per la gestione della composizione dell'interfaccia utente.
+I componenti in Blazor vengono in genere creati usando Razor la sintassi, una combinazione naturale di HTML e C#. Razor i componenti sono simili alle Razor pagine e alle visualizzazioni MVC in quanto entrambi usano Razor . Diversamente dalle pagine e dalle viste, basate su un modello di richiesta-risposta, i componenti vengono usati in modo specifico per la gestione della composizione dell'interfaccia utente.
 
 ## <a name="grpc"></a>gRPC
 
@@ -74,7 +75,7 @@ I componenti in Blazor vengono in genere creati usando Razor la sintassi, una co
   * Formato di serializzazione binario.
 * Fornisce funzionalità come:
 
-  * Autenticazione
+  * Authentication
   * Flusso bidirezionale e controllo di flusso.
   * Annullamento e timeout.
 
@@ -88,7 +89,7 @@ Per altre informazioni, vedere <xref:grpc/index>.
 
 ## SignalR
 
-Per istruzioni sulla migrazione, vedere [aggiornare il SignalR codice](xref:migration/22-to-30#signalr) . SignalRUSA ora `System.Text.Json` per serializzare/deserializzare i messaggi JSON. Per istruzioni su come ripristinare il serializzatore basato su, vedere [passare a Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson) `Newtonsoft.Json` .
+Per istruzioni sulla migrazione, vedere [aggiornare il SignalR codice](xref:migration/22-to-30#signalr) . SignalR USA ora `System.Text.Json` per serializzare/deserializzare i messaggi JSON. Per istruzioni su come ripristinare il serializzatore basato su, vedere [passare a Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson) `Newtonsoft.Json` .
 
 Nei client JavaScript e .NET per SignalR è stato aggiunto il supporto per la riconnessione automatica. Per impostazione predefinita, il client tenta di riconnettersi immediatamente e riprovare dopo 2, 10 e 30 secondi, se necessario. Se il client si riconnette correttamente, riceve un nuovo ID connessione. La riconnessione automatica è esplicita:
 
@@ -142,7 +143,7 @@ connection.onreconnected((connectionId) => {
 });
 ```
 
-SignalR3,0 e versioni successive fornisce una risorsa personalizzata ai gestori di autorizzazione quando un metodo Hub richiede l'autorizzazione. La risorsa è un'istanza di `HubInvocationContext` . `HubInvocationContext`Include:
+SignalR 3,0 e versioni successive fornisce una risorsa personalizzata ai gestori di autorizzazione quando un metodo Hub richiede l'autorizzazione. La risorsa è un'istanza di `HubInvocationContext` . `HubInvocationContext`Include:
 
 * `HubCallerContext`
 * Nome del metodo Hub richiamato.
@@ -232,7 +233,7 @@ services
     });
 ```
 
-SignalRgli hub usano il [routing degli endpoint](xref:fundamentals/routing). SignalRla connessione hub è stata eseguita in precedenza in modo esplicito:
+SignalR gli hub usano il [routing degli endpoint](xref:fundamentals/routing). SignalR la connessione hub è stata eseguita in precedenza in modo esplicito:
 
 ```csharp
 app.UseSignalR(routes =>
@@ -255,7 +256,7 @@ app.UseRouting(routes =>
 });
 ```
 
-SignalR3,0 hub possono essere indirizzati tramite il routing degli endpoint. Con il routing degli endpoint, in genere tutti i routing possono essere configurati in `UseRouting` :
+SignalR 3,0 hub possono essere indirizzati tramite il routing degli endpoint. Con il routing degli endpoint, in genere tutti i routing possono essere configurati in `UseRouting` :
 
 ```csharp
 app.UseRouting(routes =>
@@ -326,12 +327,12 @@ Per aggiungere Json.NET a ASP.NET Core 3,0, vedere [aggiungere Newtonsoft.Jssupp
 
 L'elenco seguente contiene le nuove Razor direttive:
 
-* [`@attribute`](xref:mvc/views/razor#attribute): La `@attribute` direttiva applica l'attributo specificato alla classe della pagina o della visualizzazione generata. Ad esempio, `@attribute [Authorize]`
-* [`@implements`](xref:mvc/views/razor#implements): La `@implements` direttiva implementa un'interfaccia per la classe generata. Ad esempio, `@implements IDisposable`
+* [`@attribute`](xref:mvc/views/razor#attribute): La `@attribute` direttiva applica l'attributo specificato alla classe della pagina o della visualizzazione generata. Ad esempio: `@attribute [Authorize]`.
+* [`@implements`](xref:mvc/views/razor#implements): La `@implements` direttiva implementa un'interfaccia per la classe generata. Ad esempio: `@implements IDisposable`.
 
 ## <a name="no-locidentityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>IdentityServer4 supporta l'autenticazione e l'autorizzazione per le API Web e le Spa
 
-ASP.NET Core 3,0 offre l'autenticazione in app a pagina singola (Spa) usando il supporto per l'autorizzazione dell'API Web. ASP.NET Core Identity per l'autenticazione e l'archiviazione degli utenti è combinato con [ Identity Server4](https://identityserver.io/) per l'implementazione di OpenID Connect.
+ASP.NET Core 3,0 offre l'autenticazione in app a pagina singola (Spa) usando il supporto per l'autorizzazione dell'API Web. ASP.NET Core Identityper l'autenticazione e l'archiviazione degli utenti è combinato con [ Identity Server4](https://identityserver.io/) per l'implementazione di OpenID Connect.
 
 IdentityServer4 è un Framework di OpenID Connect e OAuth 2,0 per ASP.NET Core 3,0. Consente le seguenti funzionalità di sicurezza:
 
@@ -487,7 +488,7 @@ Per altre informazioni, vedere gli articoli seguenti:
 
 ## <a name="pipes-on-httpcontext"></a>Pipe in HttpContext
 
-È ora possibile leggere il corpo della richiesta e scrivere il corpo della risposta usando l' <xref:System.IO.Pipelines> API. Il valore di <!-- <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader> --> `HttpRequest.BodyReader`Proprietà che fornisce un oggetto <xref:System.IO.Pipelines.PipeReader> che può essere utilizzato per leggere il corpo della richiesta. Il valore di <!-- <xref:Microsoft.AspNetCore.Http.> --> `HttpResponse.BodyWriter`Proprietà che fornisce un oggetto <xref:System.IO.Pipelines.PipeWriter> che può essere utilizzato per scrivere il corpo della risposta. `HttpRequest.BodyReader`è un analogo del `HttpRequest.Body` flusso. `HttpResponse.BodyWriter`è un analogo del `HttpResponse.Body` flusso.
+È ora possibile leggere il corpo della richiesta e scrivere il corpo della risposta usando l' <xref:System.IO.Pipelines> API. Alla classe <!-- <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader> --> `HttpRequest.BodyReader` Proprietà che fornisce un oggetto <xref:System.IO.Pipelines.PipeReader> che può essere utilizzato per leggere il corpo della richiesta. Alla classe <!-- <xref:Microsoft.AspNetCore.Http.> --> `HttpResponse.BodyWriter` Proprietà che fornisce un oggetto <xref:System.IO.Pipelines.PipeWriter> che può essere utilizzato per scrivere il corpo della risposta. `HttpRequest.BodyReader` è un analogo del `HttpRequest.Body` flusso. `HttpResponse.BodyWriter` è un analogo del `HttpResponse.Body` flusso.
 
 <!-- indirectly related, https://github.com/dotnet/docs/pull/14414 won't be published by 9/23  -->
 
@@ -507,11 +508,11 @@ Per altre informazioni, vedere:
 
 ## <a name="forwarded-headers-middleware-improvements"></a>Miglioramenti del middleware per intestazioni con inoltri
 
-Nelle versioni precedenti di ASP.NET Core, la chiamata di <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> e <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> risultava problematica quando veniva distribuita in un Linux di Azure o dietro qualsiasi proxy inverso diverso da IIS. La correzione per le versioni precedenti è documentata in [inoltro dello schema per i proxy inversi di Linux e non IIS](xref:host-and-deploy/proxy-load-balancer#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
+Nelle versioni precedenti di ASP.NET Core, la chiamata di <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> e  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> risultava problematica quando veniva distribuita in un Linux di Azure o dietro qualsiasi proxy inverso diverso da IIS. La correzione per le versioni precedenti è documentata in [inoltro dello schema per i proxy inversi di Linux e non IIS](xref:host-and-deploy/proxy-load-balancer#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
 
-Questo scenario è stato risolto in ASP.NET Core 3,0. L'host Abilita il [middleware delle intestazioni con inoltri](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) quando la `ASPNETCORE_FORWARDEDHEADERS_ENABLED` variabile di ambiente è impostata su `true` . `ASPNETCORE_FORWARDEDHEADERS_ENABLED`viene impostato su `true` nelle immagini del contenitore.
+Questo scenario è stato risolto in ASP.NET Core 3,0. L'host Abilita il [middleware delle intestazioni con inoltri](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) quando la `ASPNETCORE_FORWARDEDHEADERS_ENABLED` variabile di ambiente è impostata su `true` . `ASPNETCORE_FORWARDEDHEADERS_ENABLED` viene impostato su `true` nelle immagini del contenitore.
 
-## <a name="performance-improvements"></a>Miglioramenti alle prestazioni
+## <a name="performance-improvements"></a>Miglioramenti delle prestazioni
 
 ASP.NET Core 3,0 include numerosi miglioramenti che consentono di ridurre l'utilizzo della memoria e migliorare la velocità effettiva:
 

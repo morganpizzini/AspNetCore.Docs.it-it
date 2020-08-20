@@ -1,5 +1,5 @@
 ---
-title: Usare il flusso in ASP.NET CoreSignalR
+title: Usare il flusso in ASP.NET Core SignalR
 author: bradygaster
 description: Informazioni su come trasmettere i dati tra il client e il server.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/streaming
-ms.openlocfilehash: e0eabe711fd69e42bd9bfa5e03a92e1df780e4db
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 29748ebe24fea03415b5a01b21300433e3fbc0f0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022511"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634215"
 ---
-# <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>Usare il flusso in ASP.NET CoreSignalR
+# <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>Usare il flusso in ASP.NET Core SignalR
 
 Di [Brennan Conroy](https://github.com/BrennanConroy)
 
@@ -269,7 +270,7 @@ I client JavaScript chiamano i metodi di streaming da server a client negli hub 
 * Nome del metodo dell'hub. Nell'esempio seguente il nome del metodo dell'hub è `Counter` .
 * Argomenti definiti nel metodo dell'hub. Nell'esempio seguente gli argomenti sono un conteggio per il numero di elementi del flusso da ricevere e il ritardo tra gli elementi del flusso.
 
-`connection.stream`Restituisce un oggetto `IStreamResult` che contiene un `subscribe` metodo. Passare un oggetto `IStreamSubscriber` a `subscribe` e impostare `next` i `error` callback, e `complete` per ricevere notifiche dalla `stream` chiamata.
+`connection.stream` Restituisce un oggetto `IStreamResult` che contiene un `subscribe` metodo. Passare un oggetto `IStreamSubscriber` a `subscribe` e impostare `next` i `error` callback, e `complete` per ricevere notifiche dalla `stream` chiamata.
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -303,7 +304,7 @@ Per terminare il flusso, chiamare `subject.complete()` .
 
 ### <a name="server-to-client-streaming"></a>Streaming da server a client
 
-Il SignalR client Java usa il `stream` metodo per richiamare i metodi di streaming. `stream`accetta tre o più argomenti:
+Il SignalR client Java usa il `stream` metodo per richiamare i metodi di streaming. `stream` accetta tre o più argomenti:
 
 * Tipo previsto degli elementi del flusso.
 * Nome del metodo dell'hub.
@@ -326,4 +327,4 @@ Il `stream` metodo su `HubConnection` restituisce un oggetto osservabile del tip
 * [Hub](xref:signalr/hubs)
 * [Client .NET](xref:signalr/dotnet-client)
 * [Client JavaScript](xref:signalr/javascript-client)
-* [Eseguire la pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
+* [Pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)

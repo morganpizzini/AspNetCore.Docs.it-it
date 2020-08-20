@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/16/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/ws-federation
-ms.openlocfilehash: e303679190a7d7f42d8525541cec031ba090fd7a
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8a593efd799e900483d0337a06e02c3558b63bfb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022303"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634085"
 ---
 # <a name="authenticate-users-with-ws-federation-in-aspnet-core"></a>Autenticare gli utenti con WS-Federation in ASP.NET Core
 
@@ -86,11 +87,11 @@ Per impostazione predefinita, il nuovo middleware:
 
 ![Azure Active Directory: endpoint](ws-federation/_static/AadFederationMetadataDocument.png)
 
-* Passare alla registrazione della nuova app. Fare clic su **esporre un'API**. Fare clic su ID applicazione URI **set**  >  **Save**. Prendere nota dell' **URI dell'ID applicazione**. Si tratta del middleware WS-Federation `Wtrealm` :
+* Passare alla registrazione della nuova app. Fare clic su **esporre un'API**. Fare clic su ID applicazione URI **set**  >  **Save**. Prendere nota dell'  **URI dell'ID applicazione**. Si tratta del middleware WS-Federation `Wtrealm` :
 
 ![Azure Active Directory: Proprietà registrazione app](ws-federation/_static/AadAppIdUri.png)
 
-## <a name="use-ws-federation-without-aspnet-core-no-locidentity"></a>Usare WS-Federation senza ASP.NET CoreIdentity
+## <a name="use-ws-federation-without-no-locaspnet-core-identity"></a>Usare WS-Federation senza ASP.NET Core Identity
 
 Il middleware WS-Federation può essere utilizzato senza Identity . Ad esempio:
 ::: moniker range=">= aspnetcore-3.0"
@@ -101,7 +102,7 @@ Il middleware WS-Federation può essere utilizzato senza Identity . Ad esempio:
 [!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
 ::: moniker-end
 
-## <a name="add-ws-federation-as-an-external-login-provider-for-aspnet-core-no-locidentity"></a>Aggiungere WS-Federation come provider di accesso esterno per ASP.NET CoreIdentity
+## <a name="add-ws-federation-as-an-external-login-provider-for-no-locaspnet-core-identity"></a>Aggiungere WS-Federation come provider di accesso esterno per ASP.NET Core Identity
 
 * Aggiungere una dipendenza da [Microsoft. AspNetCore. Authentication. WSFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) al progetto.
 * Aggiungi WS-Federation a `Startup.ConfigureServices` :

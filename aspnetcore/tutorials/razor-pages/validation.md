@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: dad2e667cb6fa3ace7cb5e5dcb982511357ed49b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 86c523c69d3ee85f56bf1a51719a0bd93cbe97fc
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021523"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633552"
 ---
 # <a name="part-8-add-validation-to-an-aspnet-core-no-locrazor-page"></a>Parte 8: aggiungere la convalida a una Razor pagina ASP.NET Core
 
@@ -31,7 +32,7 @@ In questa sezione la logica di convalida viene aggiunta al modello `Movie`. Le r
 
 ## <a name="validation"></a>Convalida
 
-Un concetto di base dello sviluppo del software si chiama [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("**D**on't **R**epeat **Y**ourself", Non ripeterti). RazorLe pagine favoriscono lo sviluppo in cui la funzionalità è specificata una sola volta e viene riflessa nell'intera app. DRY contribuisce a:
+Un concetto di base dello sviluppo del software si chiama [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("**D**on't **R**epeat **Y**ourself", Non ripeterti). Razor Le pagine favoriscono lo sviluppo in cui la funzionalità è specificata una sola volta e viene riflessa nell'intera app. DRY contribuisce a:
 
 * Ridurre la quantità di codice in un'app.
 * Rendere il codice meno soggetto ad errori e più facile da testare e gestire.
@@ -217,7 +218,7 @@ Non sono necessarie migrazioni per SQLite.
 
 ---
 
-### <a name="publish-to-azure"></a>Eseguire la pubblicazione in Azure
+### <a name="publish-to-azure"></a>Pubblicazione in Azure
 
 Per informazioni sulla distribuzione in Azure, vedere [esercitazione: compilare un'app ASP.NET Core in Azure con il database SQL](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
 

@@ -1,10 +1,11 @@
 ---
-title: Autenticazione di Facebook, Google e del provider esterno senza ASP.NET CoreIdentity
+title: Autenticazione di Facebook, Google e del provider esterno senza ASP.NET Core Identity
 author: rick-anderson
-description: Spiegazione dell'uso dell'autenticazione utente per l'account Facebook, Google, Twitter e così via, senza ASP.NET Core Identity .
+description: Spiegazione dell'uso di Facebook, Google, Twitter e così via. autenticazione utente dell'account senza ASP.NET Core Identity .
 ms.author: riande
 ms.date: 12/10/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,20 +16,20 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/social-without-identity
-ms.openlocfilehash: 73055a262ac69c0fd6a7f59e77d23121e71ea3dd
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a91a2f2fb7873e5a672c624e9cf863ae720c8005
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021666"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634228"
 ---
-# <a name="use-social-sign-in-provider-authentication-without-aspnet-core-no-locidentity"></a>Usa l'autenticazione del provider di accesso di social networking senza ASP.NET CoreIdentity
+# <a name="use-social-sign-in-provider-authentication-without-no-locaspnet-core-identity"></a>Usare l'autenticazione del provider di accesso sociale senza ASP.NET Core Identity
 
 Di [Kirk Larkin](https://twitter.com/serpent5) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<xref:security/authentication/social/index>viene descritto come consentire agli utenti di eseguire l'accesso utilizzando OAuth 2,0 con le credenziali dei provider di autenticazione esterni. L'approccio descritto in questo argomento include ASP.NET Core Identity come provider di autenticazione.
+<xref:security/authentication/social/index> viene descritto come consentire agli utenti di eseguire l'accesso utilizzando OAuth 2,0 con le credenziali dei provider di autenticazione esterni. L'approccio descritto in questo argomento include ASP.NET Core Identity come provider di autenticazione.
 
 In questo esempio viene illustrato come utilizzare un provider di autenticazione esterno **senza** ASP.NET Core Identity . Questa operazione è utile per le app che non richiedono tutte le funzionalità di ASP.NET Core Identity , ma richiedono comunque l'integrazione con un provider di autenticazione esterno attendibile.
 
@@ -53,7 +54,7 @@ La chiamata a <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServi
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*>
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*>
 
-Impostando l'app `DefaultScheme` su [ Cookie AuthenticationDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) (" Cookie s"), l'app viene configurata in modo da usare Cookie s come schema predefinito per questi metodi di estensione. Impostando l'app <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> su [GoogleDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), l'app viene configurata per l'uso di Google come schema predefinito per le chiamate a `ChallengeAsync` . `DefaultChallengeScheme`esegue l'override di `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Per altre proprietà che eseguono l'override di `DefaultScheme` , vedere se impostate.
+Impostando l'app `DefaultScheme` su [ Cookie AuthenticationDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) (" Cookie s"), l'app viene configurata in modo da usare Cookie s come schema predefinito per questi metodi di estensione. Impostando l'app <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> su [GoogleDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), l'app viene configurata per l'uso di Google come schema predefinito per le chiamate a `ChallengeAsync` . `DefaultChallengeScheme` esegue l'override di `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Per altre proprietà che eseguono l'override di `DefaultScheme` , vedere se impostate.
 
 In `Startup.Configure` , chiamare `UseAuthentication` e `UseAuthorization` tra la chiamata a `UseRouting` e `UseEndpoints` . Viene impostata la `HttpContext.User` proprietà ed eseguito il middleware di autorizzazione per le richieste:
 
@@ -83,7 +84,7 @@ Si noti che la chiamata a `SignOutAsync` non specifica uno schema di autenticazi
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
 
-<xref:security/authentication/social/index>viene descritto come consentire agli utenti di eseguire l'accesso utilizzando OAuth 2,0 con le credenziali dei provider di autenticazione esterni. L'approccio descritto in questo argomento include ASP.NET Core Identity come provider di autenticazione.
+<xref:security/authentication/social/index> viene descritto come consentire agli utenti di eseguire l'accesso utilizzando OAuth 2,0 con le credenziali dei provider di autenticazione esterni. L'approccio descritto in questo argomento include ASP.NET Core Identity come provider di autenticazione.
 
 In questo esempio viene illustrato come utilizzare un provider di autenticazione esterno **senza** ASP.NET Core Identity . Questa operazione è utile per le app che non richiedono tutte le funzionalità di ASP.NET Core Identity , ma richiedono comunque l'integrazione con un provider di autenticazione esterno attendibile.
 
@@ -108,7 +109,7 @@ La chiamata a [AddAuthentication](/dotnet/api/microsoft.extensions.dependencyinj
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*>
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*>
 
-Impostando l'app `DefaultScheme` su [ Cookie AuthenticationDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) (" Cookie s"), l'app viene configurata in modo da usare Cookie s come schema predefinito per questi metodi di estensione. Impostando l'app <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> su [GoogleDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), l'app viene configurata per l'uso di Google come schema predefinito per le chiamate a `ChallengeAsync` . `DefaultChallengeScheme`esegue l'override di `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Per altre proprietà che eseguono l'override di `DefaultScheme` , vedere se impostate.
+Impostando l'app `DefaultScheme` su [ Cookie AuthenticationDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) (" Cookie s"), l'app viene configurata in modo da usare Cookie s come schema predefinito per questi metodi di estensione. Impostando l'app <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme> su [GoogleDefaults. AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google"), l'app viene configurata per l'uso di Google come schema predefinito per le chiamate a `ChallengeAsync` . `DefaultChallengeScheme` esegue l'override di `DefaultScheme` . <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>Per altre proprietà che eseguono l'override di `DefaultScheme` , vedere se impostate.
 
 Nel `Configure` metodo chiamare il `UseAuthentication` metodo per richiamare il middleware di autenticazione che imposta la `HttpContext.User` Proprietà. Chiamare il `UseAuthentication` metodo prima di chiamare `UseMvcWithDefaultRoute` o `UseMvc` :
 

@@ -6,6 +6,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/client-features
-ms.openlocfilehash: 4f5fa2f4ff1ac3d00b04845aedc26fb0118b9991
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: df0084411134167df31506a01362a0520821e577
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021471"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631758"
 ---
 # <a name="aspnet-core-no-locsignalr-clients"></a>Client di ASP.NET Core SignalR
 
 ## <a name="versioning-support-and-compatibility"></a>Controllo delle versioni, supporto e compatibilità
 
-I SignalR client vengono forniti insieme ai componenti server e vengono sottolineati con la versione corrispondente. Qualsiasi client supportato può connettersi in modo sicuro a qualsiasi server supportato e gli eventuali problemi di compatibilità sarebbero considerati bug da correggere. SignalRi client sono supportati nello stesso ciclo di vita del supporto come il resto di .NET Core. Per informazioni dettagliate, vedere [i criteri di supporto di .NET Core](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) .
+I SignalR client vengono forniti insieme ai componenti server e vengono sottolineati con la versione corrispondente. Qualsiasi client supportato può connettersi in modo sicuro a qualsiasi server supportato e gli eventuali problemi di compatibilità sarebbero considerati bug da correggere. SignalR i client sono supportati nello stesso ciclo di vita del supporto come il resto di .NET Core. Per informazioni dettagliate, vedere [i criteri di supporto di .NET Core](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) .
 
 Molte funzionalità richiedono un client **e** un server compatibili. Per una tabella che mostra le versioni minime per le varie funzionalità, vedere di seguito.
 

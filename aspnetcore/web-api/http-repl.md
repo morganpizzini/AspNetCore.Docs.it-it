@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 05/20/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: 0fb19aa19703e68812b83f0631f029dd66a3d64e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e6263f19cdb7f9957fa8360f9e782e622589ea18
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021328"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633318"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testare le API Web con il ciclo Read-Eval-Print (REPL) HTTP
 
@@ -998,7 +999,7 @@ Se si esegue spesso lo stesso set di comandi del ciclo Read-Eval-Print HTTP, pu√
     https://localhost:5001/~ run C:\http-repl-scripts\people-script.txt
     ```
 
-    Compare l'output seguente:
+    Viene visualizzato l'output seguente:
 
     ```console
     https://localhost:5001/~ set base https://localhost:5001

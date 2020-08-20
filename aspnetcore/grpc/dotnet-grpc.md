@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 10/17/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/dotnet-grpc
-ms.openlocfilehash: d41958d586f54d5944af187933f2b0248f763171
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 18d504d7a130aeaa9f8ab6cca6c92dab5febfae6
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016129"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633240"
 ---
 # <a name="manage-protobuf-references-with-dotnet-grpc"></a>Gestire i riferimenti Protobuf con dotnet-grpc
 
 A cura di [John Luo](https://github.com/juntaoluo)
 
-`dotnet-grpc`è uno strumento globale .NET Core per la gestione dei riferimenti [protobuf (*. proto*)](xref:grpc/basics#proto-file) in un progetto .NET gRPC. Lo strumento può essere usato per aggiungere, aggiornare, rimuovere ed elencare i riferimenti a protobuf.
+`dotnet-grpc` è uno strumento globale .NET Core per la gestione dei riferimenti [protobuf (*. proto*)](xref:grpc/basics#proto-file) in un progetto .NET gRPC. Lo strumento può essere usato per aggiungere, aggiornare, rimuovere ed elencare i riferimenti a protobuf.
 
 ## <a name="installation"></a>Installazione
 
@@ -39,7 +40,7 @@ dotnet tool install -g dotnet-grpc
 
 ## <a name="add-references"></a>Aggiungere riferimenti
 
-`dotnet-grpc`può essere usato per aggiungere riferimenti protobuf come `<Protobuf />` elementi al file con *estensione csproj* :
+`dotnet-grpc` può essere usato per aggiungere riferimenti protobuf come `<Protobuf />` elementi al file con *estensione csproj* :
 
 ```xml
 <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
@@ -51,7 +52,7 @@ I riferimenti protobuf vengono usati per generare il client C# e/o le risorse de
 * Creare un riferimento protobuf da un file remoto specificato da un URL.
 * Verificare che al progetto siano state aggiunte le dipendenze del pacchetto gRPC corrette.
 
-Ad esempio, il `Grpc.AspNetCore` pacchetto viene aggiunto a un'app Web. `Grpc.AspNetCore`contiene le librerie client e server gRPC e il supporto degli strumenti. In alternativa, i `Grpc.Net.Client` `Grpc.Tools` pacchetti e, `Google.Protobuf` che contengono solo le librerie client e il supporto per gli strumenti di gRPC, vengono aggiunti a un'app console.
+Ad esempio, il `Grpc.AspNetCore` pacchetto viene aggiunto a un'app Web. `Grpc.AspNetCore` contiene le librerie client e server gRPC e il supporto degli strumenti. In alternativa, i `Grpc.Net.Client` `Grpc.Tools` pacchetti e, `Google.Protobuf` che contengono solo le librerie client e il supporto per gli strumenti di gRPC, vengono aggiunti a un'app console.
 
 ### <a name="add-file"></a>Aggiungere file
 

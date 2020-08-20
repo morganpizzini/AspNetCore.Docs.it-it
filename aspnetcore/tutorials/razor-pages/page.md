@@ -5,6 +5,7 @@ description: Parte 3 della serie di esercitazioni sulle Razor pagine.
 ms.author: riande
 ms.date: 08/17/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: f8942e52b3b438817e3d1041a2c6b568eb662469
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 9fc44d228a31b8ae6c78dc12988392806dd95823
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020392"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633435"
 ---
 # <a name="part-3-scaffolded-no-locrazor-pages-in-aspnet-core"></a>Parte 3, Razor pagine con impalcatura in ASP.NET Core
 
@@ -38,7 +39,7 @@ Esaminare il modello di pagina *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs)]
 
-RazorLe pagine sono derivate da `PageModel` . Per convenzione, la classe derivata `PageModel` viene denominata `<PageName>Model`. Il costruttore usa l'[inserimento delle dipendenze](xref:fundamentals/dependency-injection) per aggiungere `RazorPagesMovieContext` alla pagina. Tutte le pagine create tramite scaffolding seguono questo schema. Vedere [Codice asincrono](xref:data/ef-rp/intro#asynchronous-code) per altre informazioni sulla programmazione asincrona con Entity Framework.
+Razor Le pagine sono derivate da `PageModel` . Per convenzione, la classe derivata `PageModel` viene denominata `<PageName>Model`. Il costruttore usa l'[inserimento delle dipendenze](xref:fundamentals/dependency-injection) per aggiungere `RazorPagesMovieContext` alla pagina. Tutte le pagine create tramite scaffolding seguono questo schema. Vedere [Codice asincrono](xref:data/ef-rp/intro#asynchronous-code) per altre informazioni sulla programmazione asincrona con Entity Framework.
 
 Quando viene effettuata una richiesta per la pagina, il `OnGetAsync` metodo restituisce un elenco di filmati alla Razor pagina. `OnGetAsync``OnGet`viene chiamato o per inizializzare lo stato della pagina. In questo caso, `OnGetAsync` ottiene un elenco di filmati e li visualizza.
 
@@ -46,15 +47,15 @@ Quando `OnGet` restituisce `void` o `OnGetAsync` restituisce `Task` , non viene 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
-<a name="index"></a>Esaminare la pagina *pages/movies/index. cshtml* Razor :
+<a name="index"></a> Esaminare la pagina *pages/movies/index. cshtml* Razor :
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml)]
 
-Razorconsente di eseguire la transizione da HTML a C# o a un Razor markup specifico. Quando un `@` simbolo è seguito da una [ Razor parola chiave riservata](xref:mvc/views/razor#razor-reserved-keywords), esegue la transizione in un Razor markup specifico, in caso contrario passa a C#.
+Razor consente di eseguire la transizione da HTML a C# o a un Razor markup specifico. Quando un `@` simbolo è seguito da una [ Razor parola chiave riservata](xref:mvc/views/razor#razor-reserved-keywords), esegue la transizione in un Razor markup specifico, in caso contrario passa a C#.
 
 ### <a name="the-page-directive"></a>La direttiva @page
 
-La `@page` Razor direttiva rende il file un'azione MVC, il che significa che può gestire le richieste. `@page`deve essere la prima Razor direttiva in una pagina. `@page`è un esempio di transizione di Razor markup specifico a. Per ulteriori informazioni, vedere la [ Razor sintassi](xref:mvc/views/razor#razor-syntax) .
+La `@page` Razor direttiva rende il file un'azione MVC, il che significa che può gestire le richieste. `@page` deve essere la prima Razor direttiva in una pagina. `@page` è un esempio di transizione di Razor markup specifico a. Per ulteriori informazioni, vedere la [ Razor sintassi](xref:mvc/views/razor#razor-syntax) .
 
 Esaminare l'espressione lambda usata nell'helper HTML seguente:
 
@@ -231,21 +232,21 @@ Esaminare il modello di pagina *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs)]
 
-RazorLe pagine sono derivate da `PageModel` . Per convenzione, la classe derivata `PageModel` viene denominata `<PageName>Model`. Il costruttore usa l'[inserimento delle dipendenze](xref:fundamentals/dependency-injection) per aggiungere `RazorPagesMovieContext` alla pagina. Tutte le pagine create tramite scaffolding seguono questo schema. Vedere [Codice asincrono](xref:data/ef-rp/intro#asynchronous-code) per altre informazioni sulla programmazione asincrona con Entity Framework.
+Razor Le pagine sono derivate da `PageModel` . Per convenzione, la classe derivata `PageModel` viene denominata `<PageName>Model`. Il costruttore usa l'[inserimento delle dipendenze](xref:fundamentals/dependency-injection) per aggiungere `RazorPagesMovieContext` alla pagina. Tutte le pagine create tramite scaffolding seguono questo schema. Vedere [Codice asincrono](xref:data/ef-rp/intro#asynchronous-code) per altre informazioni sulla programmazione asincrona con Entity Framework.
 
-Quando viene effettuata una richiesta per la pagina, il `OnGetAsync` metodo restituisce un elenco di filmati alla Razor pagina. `OnGetAsync`o `OnGet` viene chiamato su una Razor pagina per inizializzare lo stato della pagina. In questo caso, `OnGetAsync` ottiene un elenco di filmati e li visualizza.
+Quando viene effettuata una richiesta per la pagina, il `OnGetAsync` metodo restituisce un elenco di filmati alla Razor pagina. `OnGetAsync` o `OnGet` viene chiamato su una Razor pagina per inizializzare lo stato della pagina. In questo caso, `OnGetAsync` ottiene un elenco di filmati e li visualizza.
 
 Quando `OnGet` restituisce `void` o `OnGetAsync` restituisce`Task`, non viene usato alcun metodo restituito. Quando il tipo restituito è `IActionResult` o `Task<IActionResult>`, è necessario specificare un'istruzione return. Ad esempio, il metodo *Pages/Movies/Create.cshtml.cs* `OnPostAsync`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
-<a name="index"></a>Esaminare la pagina *pages/movies/index. cshtml* Razor :
+<a name="index"></a> Esaminare la pagina *pages/movies/index. cshtml* Razor :
 
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml)]
 
-Razorconsente di eseguire la transizione da HTML a C# o a un Razor markup specifico. Quando un `@` simbolo è seguito da una [ Razor parola chiave riservata](xref:mvc/views/razor#razor-reserved-keywords), esegue la transizione in un Razor markup specifico, in caso contrario passa a C#.
+Razor consente di eseguire la transizione da HTML a C# o a un Razor markup specifico. Quando un `@` simbolo è seguito da una [ Razor parola chiave riservata](xref:mvc/views/razor#razor-reserved-keywords), esegue la transizione in un Razor markup specifico, in caso contrario passa a C#.
 
-La `@page` Razor direttiva trasforma il file in un'azione MVC, il che significa che può gestire le richieste. `@page`deve essere la prima Razor direttiva in una pagina. `@page`è un esempio di transizione di Razor markup specifico a. Per ulteriori informazioni, vedere la [ Razor sintassi](xref:mvc/views/razor#razor-syntax) .
+La `@page` Razor direttiva trasforma il file in un'azione MVC, il che significa che può gestire le richieste. `@page` deve essere la prima Razor direttiva in una pagina. `@page` è un esempio di transizione di Razor markup specifico a. Per ulteriori informazioni, vedere la [ Razor sintassi](xref:mvc/views/razor#razor-syntax) .
 
 Esaminare l'espressione lambda usata nell'helper HTML seguente:
 

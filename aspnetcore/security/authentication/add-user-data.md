@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 03/26/2020
 ms.custom: mvc, seodec18
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: d65974e9ff8e2f5be52ab79b063ed9d2dca557ea
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a71395e82ed15dae753888a438471495208a14da
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020860"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631849"
 ---
 # <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a>Aggiungere, scaricare ed eliminare dati utente personalizzati Identity in un progetto ASP.NET Core
 
@@ -90,7 +91,7 @@ dotnet new webapp -o WebApp1
 * Da **Esplora soluzioni**, fare clic con il pulsante destro del mouse sul progetto > **Aggiungi**  >  **nuovo elemento con impalcatura**.
 * Dal riquadro sinistro della finestra di dialogo **Aggiungi impalcatura** selezionare **Identity**  >  **Aggiungi**.
 * Nella finestra di dialogo **Aggiungi Identity ** sono disponibili le opzioni seguenti:
-  * Selezionare il file di layout esistente *~/Pages/Shared/_Layout. cshtml*
+  * Selezionare il file di layout esistente  *~/Pages/Shared/_Layout. cshtml*
   * Selezionare i seguenti file di cui eseguire l'override:
     * **Account/registro**
     * **Account/Gestione/indice**
@@ -244,7 +245,7 @@ Eseguire il test dell'app:
 > [!NOTE]
 > Questa sezione non è un'estensione dell'esercitazione precedente. Per applicare i passaggi seguenti all'app compilata con l'esercitazione, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/18797).
 
-È possibile aggiungere attestazioni aggiuntive a ASP.NET Core Identity usando l' `IUserClaimsPrincipalFactory<T>` interfaccia. Questa classe può essere aggiunta all'app nel `Startup.ConfigureServices` metodo. Aggiungere l'implementazione personalizzata della classe come indicato di seguito:
+È possibile aggiungere attestazioni aggiuntive a utilizzando ASP.NET Core Identity l' `IUserClaimsPrincipalFactory<T>` interfaccia. Questa classe può essere aggiunta all'app nel `Startup.ConfigureServices` metodo. Aggiungere l'implementazione personalizzata della classe come indicato di seguito:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

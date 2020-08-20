@@ -5,6 +5,7 @@ description: Informazioni sul framework avanzato di ASP.NET Core MVC per la crea
 ms.author: riande
 ms.date: 02/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/overview
-ms.openlocfilehash: 64bee1966eff40e9057166adfafbf78d0cc5b6aa
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 29701506d9f6c1ff90081a548d524bc0deb65cda
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021445"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633617"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Panoramica di ASP.NET MVC
 
@@ -77,7 +78,7 @@ ASP.NET Core MVC include:
 * [Aree](#areas)
 * [API Web](#web-apis)
 * [Testabilità](#testability)
-* [Razormotore di visualizzazione](#razor-view-engine)
+* [Razor motore di visualizzazione](#razor-view-engine)
 * [Visualizzazioni fortemente tipizzate](#strongly-typed-views)
 * [Helper per i tag](#tag-helpers)
 * [Visualizza componenti](#view-components)
@@ -196,9 +197,9 @@ Usare la generazione di collegamenti per abilitare il supporto per l'ipermedia. 
 
 L'uso delle interfacce e dell'inserimento di dipendenze rende il framework adatto al testing unità. Il framework include inoltre funzionalità come TestHost e il provider InMemory per Entity Framework grazie alle quali i [test di integrazione](xref:test/integration-tests) risultano semplici e veloci. Per altre informazioni, vedere [Test della logica dei controller](controllers/testing.md).
 
-### <a name="no-locrazor-view-engine"></a>Razormotore di visualizzazione
+### <a name="no-locrazor-view-engine"></a>Razor motore di visualizzazione
 
-[ASP.NET Core visualizzazioni MVC](views/overview.md) usano il [ Razor motore di visualizzazione](views/razor.md) per eseguire il rendering delle visualizzazioni. Razorè un linguaggio di markup modello compatto, espressivo e fluido per la definizione di visualizzazioni con codice C# incorporato. Razorviene utilizzato per generare dinamicamente contenuto Web nel server. È possibile combinare correttamente il codice server con il contenuto e il codice sul lato client.
+[ASP.NET Core visualizzazioni MVC](views/overview.md) usano il [ Razor motore di visualizzazione](views/razor.md) per eseguire il rendering delle visualizzazioni. Razor è un linguaggio di markup modello compatto, espressivo e fluido per la definizione di visualizzazioni con codice C# incorporato. Razor viene utilizzato per generare dinamicamente contenuto Web nel server. È possibile combinare correttamente il codice server con il contenuto e il codice sul lato client.
 
 ```cshtml
 <ul>
@@ -212,7 +213,7 @@ Utilizzando il Razor motore di visualizzazione è possibile definire [layout](vi
 
 ### <a name="strongly-typed-views"></a>Visualizzazioni fortemente tipizzate
 
-Razorle visualizzazioni in MVC possono essere fortemente tipizzate in base al modello. I controller sono in grado di passare un modello fortemente tipizzato alle visualizzazioni abilitando per queste ultime il controllo del tipo e il supporto IntelliSense.
+Razor le visualizzazioni in MVC possono essere fortemente tipizzate in base al modello. I controller sono in grado di passare un modello fortemente tipizzato alle visualizzazioni abilitando per queste ultime il controllo del tipo e il supporto IntelliSense.
 
 La visualizzazione seguente, ad esempio, esegue il rendering di un modello di tipo `IEnumerable<Product>`:
 

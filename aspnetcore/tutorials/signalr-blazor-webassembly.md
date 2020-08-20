@@ -1,5 +1,5 @@
 ---
-title: Usare ASP.NET Core SignalR conBlazor WebAssembly
+title: Usare ASP.NET Core SignalR con Blazor WebAssembly
 author: guardrex
 description: Creare un'app di chat che usa ASP.NET Core SignalR con Blazor WebAssembly .
 monikerRange: '>= aspnetcore-3.1'
@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 3d7ae49142849c589a1a20c33d30e87747ad1935
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 4d33e99ceb8273487144447eae324469df67c9ff
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021627"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633383"
 ---
-# <a name="use-aspnet-core-no-locsignalr-with-no-locblazor-webassembly"></a>Usare ASP.NET Core SignalR conBlazor WebAssembly
+# <a name="use-aspnet-core-no-locsignalr-with-no-locblazor-webassembly"></a>Usare ASP.NET Core SignalR con Blazor WebAssembly
 
 Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
@@ -76,13 +77,13 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Selezionare ** Blazor app** e fare clic su **Next (avanti**).
 
-1. Digitare `BlazorSignalRApp` nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
+1. Digitare `BlazorSignalRApp` nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
 
 1. Scegliere il modello di ** Blazor WebAssembly app** .
 
 1. In **Avanzate**selezionare la casella di controllo **ASP.NET Core Hosted** .
 
-1. Selezionare **Crea**.
+1. Selezionare **Create** (Crea).
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -108,7 +109,7 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**. Selezionare la casella di controllo **ASP.NET Core Hosted** . Selezionare **Avanti**.
 
-1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Crea**.
+1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Create** (Crea).
 
    Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare. Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain.
 
@@ -290,4 +291,4 @@ Per altre informazioni sulla creazione di Blazor app, vedere la Blazor documenta
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:signalr/introduction>
-* [SignalRnegoziazione tra le origini per l'autenticazione](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
+* [SignalR negoziazione tra le origini per l'autenticazione](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)

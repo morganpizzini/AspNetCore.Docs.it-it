@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/index
-ms.openlocfilehash: b0258118e116b1686abbebf1c8d89135ae3cb1f6
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2511d68dd049ca47dea002d8960e7d2fd0207383
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019316"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632642"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Panoramica dell'autenticazione ASP.NET Core
 
@@ -51,7 +52,7 @@ Il `AddAuthentication` parametro `JwtBearerDefaults.AuthenticationScheme` è il 
 
 Se si utilizzano più schemi, i criteri di autorizzazione o gli attributi di autorizzazione possono [specificare lo schema di autenticazione (o gli schemi)](xref:security/authorization/limitingidentitybyscheme) da cui dipendono per autenticare l'utente. Nell'esempio precedente, lo cookie schema di autenticazione può essere usato specificandone il nome ( `CookieAuthenticationDefaults.AuthenticationScheme` per impostazione predefinita, ma è possibile specificare un nome diverso quando si chiama `AddCookie` ).
 
-In alcuni casi, la chiamata a `AddAuthentication` viene eseguita automaticamente da altri metodi di estensione. Ad esempio, quando si [Usa Identity ASP.NET Core ](xref:security/authentication/identity), `AddAuthentication` viene chiamato internamente.
+In alcuni casi, la chiamata a `AddAuthentication` viene eseguita automaticamente da altri metodi di estensione. Ad esempio, quando [ASP.NET Core Identity](xref:security/authentication/identity) si usa, `AddAuthentication` viene chiamato internamente.
 
 Il middleware di autenticazione viene aggiunto in chiamando `Startup.Configure` il <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> metodo di estensione nell'app `IApplicationBuilder` . La chiamata a `UseAuthentication` registra il middleware che utilizza gli schemi di autenticazione registrati in precedenza. Chiamare `UseAuthentication` prima di qualsiasi middleware che dipende da utenti autenticati. Quando si usa il routing degli endpoint, la chiamata a `UseAuthentication` deve essere:
 

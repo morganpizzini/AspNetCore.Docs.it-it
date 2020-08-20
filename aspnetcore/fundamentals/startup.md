@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/startup
-ms.openlocfilehash: 84b2aa6185654789b925dc4a9262f446de6c0a3c
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b10ddf52ea7d22ea98c295da61c09da8c87fc7a7
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016596"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633747"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Avvio dell'app in ASP.NET Core
 
@@ -72,7 +73,7 @@ Per altre informazioni sull'host, vedere [L'host](xref:fundamentals/index#host).
 
 Il metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> è:
 
-* facoltativo.
+* Facoltativa.
 * Chiamato dall'host prima del metodo `Configure` per configurare i servizi dell'app.
 * Dove le [opzioni di configurazione](xref:fundamentals/configuration/index) sono impostate per convenzione.
 
@@ -122,7 +123,7 @@ Per configurare i servizi e la pipeline di elaborazione delle richieste senza us
 
 Usare <xref:Microsoft.AspNetCore.Hosting.IStartupFilter> :
 
-* Per configurare middleware all'inizio o alla fine della pipeline di [configurazione](#the-configure-method) middleware di un'app senza una chiamata esplicita a `Use{Middleware}` . `IStartupFilter`viene usato da ASP.NET Core per aggiungere i valori predefiniti all'inizio della pipeline senza dover fare in modo che l'autore dell'app registri in modo esplicito il middleware predefinito. `IStartupFilter`consente di chiamare un componente diverso `Use{Middleware}` per conto dell'autore dell'app.
+* Per configurare middleware all'inizio o alla fine della pipeline di [configurazione](#the-configure-method) middleware di un'app senza una chiamata esplicita a `Use{Middleware}` . `IStartupFilter` viene usato da ASP.NET Core per aggiungere i valori predefiniti all'inizio della pipeline senza dover fare in modo che l'autore dell'app registri in modo esplicito il middleware predefinito. `IStartupFilter` consente di chiamare un componente diverso `Use{Middleware}` per conto dell'autore dell'app.
 * Per creare una pipeline di `Configure` metodi. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure*) può impostare un middleware da eseguire prima o dopo l'aggiunta del middleware dalle librerie.
 
 `IStartupFilter` implementa <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*>, che riceve e restituisce un `Action<IApplicationBuilder>`. <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> definisce una classe per configurare la pipeline delle richieste di un'app. Per altre informazioni, vedere [Creare una pipeline middleware con IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
@@ -204,7 +205,7 @@ Per altre informazioni sull'host, vedere [L'host](xref:fundamentals/index#host).
 
 Il metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> è:
 
-* facoltativo.
+* Facoltativa.
 * Chiamato dall'host prima del metodo `Configure` per configurare i servizi dell'app.
 * Dove le [opzioni di configurazione](xref:fundamentals/configuration/index) sono impostate per convenzione.
 
@@ -254,7 +255,7 @@ Per configurare i servizi e la pipeline di elaborazione delle richieste senza us
 
 Usare <xref:Microsoft.AspNetCore.Hosting.IStartupFilter> :
 
-* Per configurare middleware all'inizio o alla fine della pipeline di [configurazione](#the-configure-method) middleware di un'app senza una chiamata esplicita a `Use{Middleware}` . `IStartupFilter`viene usato da ASP.NET Core per aggiungere i valori predefiniti all'inizio della pipeline senza dover fare in modo che l'autore dell'app registri in modo esplicito il middleware predefinito. `IStartupFilter`consente di chiamare un componente diverso `Use{Middleware}` per conto dell'autore dell'app.
+* Per configurare middleware all'inizio o alla fine della pipeline di [configurazione](#the-configure-method) middleware di un'app senza una chiamata esplicita a `Use{Middleware}` . `IStartupFilter` viene usato da ASP.NET Core per aggiungere i valori predefiniti all'inizio della pipeline senza dover fare in modo che l'autore dell'app registri in modo esplicito il middleware predefinito. `IStartupFilter` consente di chiamare un componente diverso `Use{Middleware}` per conto dell'autore dell'app.
 * Per creare una pipeline di `Configure` metodi. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure*) può impostare un middleware da eseguire prima o dopo l'aggiunta del middleware dalle librerie.
 
 `IStartupFilter` implementa <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*>, che riceve e restituisce un `Action<IApplicationBuilder>`. <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> definisce una classe per configurare la pipeline delle richieste di un'app. Per altre informazioni, vedere [Creare una pipeline middleware con IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
