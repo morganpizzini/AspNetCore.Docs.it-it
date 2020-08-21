@@ -1152,7 +1152,7 @@
       uid: security/docker-compose-https
     - name: Supporto per il Regolamento generale sulla protezione dei dati (GDPR) dell'Unione Europea
       uid: security/gdpr
-    - name: Evitare la falsificazione di richieste
+    - name: Prevenire attacchi tramite richieste intersito false (XSRF/CSRF)
       uid: security/anti-request-forgery
     - name: Prevenire attacchi di reindirizzamento aperto
       uid: security/preventing-open-redirects
