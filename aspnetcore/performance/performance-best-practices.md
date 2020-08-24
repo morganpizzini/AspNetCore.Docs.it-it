@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 94ae9e52ed99c3fe8e7044f474cdf5b702dc5adf
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 587872b269d897d7c86eb77c110a4b6432218ed3
+ms.sourcegitcommit: dd0e87abf2bb50ee992d9185bb256ed79d48f545
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634462"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88746559"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Procedure consigliate per le prestazioni ASP.NET Core
 
@@ -57,6 +57,12 @@ Un problema di prestazioni comune nelle app ASP.NET Core consiste nel bloccare l
 * Rendere asincrone le azioni del controller o della Razor pagina. L'intero stack di chiamate è asincrono per trarre vantaggio dai modelli [Async/Await](/dotnet/csharp/programming-guide/concepts/async/) .
 
 Un profiler, ad esempio [PerfView](https://github.com/Microsoft/perfview), può essere usato per trovare i thread aggiunti di frequente al [pool di thread](/windows/desktop/procthread/thread-pools). L' `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` evento indica che un thread è stato aggiunto al pool di thread. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
+
+## <a name="return-ienumerablet-or-iasyncenumerablet"></a>Return IEnumerable \<T> o IAsyncEnumerable\<T>
+
+La restituzione `IEnumerable<T>` da un'azione comporta l'iterazione di una raccolta sincrona da parte del serializzatore. Il risultato è il blocco delle chiamate e un potenziale per l'inedia del pool di thread. Per evitare l'enumerazione sincrona, usare `ToListAsync` prima di restituire l'enumerabile.
+
+A partire da ASP.NET Core 3,0, `IAsyncEnumerable<T>` può essere usato come alternativa a `IEnumerable<T>` che enumera in modo asincrono. Per altre informazioni, vedere [tipi restituiti azione del controller](xref:web-api/action-return-types#return-ienumerablet-or-iasyncenumerablet).
 
 ## <a name="minimize-large-object-allocations"></a>Ridurre al minimo le allocazioni di oggetti di grandi dimensioni
 
@@ -111,7 +117,7 @@ Consigli:
 
 ## <a name="keep-common-code-paths-fast"></a>Mantieni rapidamente i percorsi di codice comuni
 
-Si vuole che tutto il codice sia veloce. I percorsi di codice comunemente chiamati sono i più importanti da ottimizzare. Queste includono:
+Si vuole che tutto il codice sia veloce. I percorsi di codice comunemente chiamati sono i più importanti da ottimizzare. Sono inclusi:
 
 * Componenti middleware nella pipeline di elaborazione delle richieste dell'app, in particolare il middleware viene eseguito all'inizio della pipeline. Questi componenti hanno un notevole effetto sulle prestazioni.
 * Codice eseguito per ogni richiesta o più volte per richiesta. Ad esempio, la registrazione personalizzata, i gestori di autorizzazione o l'inizializzazione di servizi temporanei.
@@ -357,3 +363,11 @@ Verifica se la risposta non è iniziata consente la registrazione di un callback
 ## <a name="do-not-call-next-if-you-have-already-started-writing-to-the-response-body"></a>Non chiamare Next () se è già stata avviata la scrittura nel corpo della risposta
 
 I componenti si aspettano di essere chiamati solo se è possibile gestire e modificare la risposta.
+
+## <a name="use-in-process-hosting-with-iis"></a>Usare l'hosting in-process con IIS
+
+Se si usa l'hosting in-process, un'app ASP.NET Core esegue lo stesso processo del processo di lavoro IIS. L'hosting in-process garantisce prestazioni migliori rispetto all'hosting out-of-process, perché le richieste non vengono inviate tramite proxy sulla scheda loopback. La scheda loopback è un'interfaccia di rete che restituisce il traffico di rete in uscita allo stesso computer. Per gestire il processo, IIS usa il [servizio Attivazione processo Windows (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+
+Per impostazione predefinita, i progetti sono basati sul modello di hosting in-process in ASP.NET Core 3,0 e versioni successive.
+
+Per ulteriori informazioni, vedere [ASP.NET Core host in Windows con IIS](xref:host-and-deploy/iis/index)

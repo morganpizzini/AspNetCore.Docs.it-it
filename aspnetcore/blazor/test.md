@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/test
-ms.openlocfilehash: 8a6fa8f25c8209584488fb2578c70e884877d666
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 572b9a293e2fd6f51431cd1de6ada737addf5efa
+ms.sourcegitcommit: dd0e87abf2bb50ee992d9185bb256ed79d48f545
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625869"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88746533"
 ---
 # <a name="test-components-in-aspnet-core-no-locblazor"></a>Componenti di test in ASP.NET Core Blazor
 
@@ -75,7 +75,7 @@ Nella tabella seguente sono riepilogate le differenze tra i due approcci di test
 
 Si consideri lo scenario in cui si sceglie il tipo di test da eseguire. Alcune considerazioni sono descritte nella tabella seguente.
 
-| Scenario | Approccio consigliato | Osservazioni |
+| Scenario | Approccio consigliato | Commenti |
 | -------- | ------------------ | ------- |
 | Componente senza logica di interoperabilità JS | Testing unità | Quando non esiste alcuna dipendenza dall'interoperabilità JS in un Blazor componente, il componente può essere testato senza accedere a js o all'API DOM. In questo scenario, non vi sono svantaggi nella scelta del testing unità. |
 | Componente con logica di interoperabilità JS semplice | Testing unità | È frequente che i componenti eseguono una query sul DOM o attivano le animazioni tramite l'interoperabilità JS. Il testing unità è in genere preferibile in questo scenario, poiché è semplice simulare l'interazione JS tramite l' <xref:Microsoft.JSInterop.IJSRuntime> interfaccia. |
@@ -127,7 +127,7 @@ Il test bUnit seguente verifica che il contatore del taglio venga incrementato c
 public void CounterShouldIncrementWhenSelected()
 {
     // Arrange
-    using var cxt = new TestContext();
+    using var ctx = new TestContext();
     var cut = ctx.RenderComponent<Counter>();
     var paraElm = cut.Find("p");
 
