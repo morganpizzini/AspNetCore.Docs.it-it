@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: e1f7e8b85537f0671451d9975487645a1c005e74
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 889e7b4736157b1bb563bd3e606c0d5d855c2226
+ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626285"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88876711"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor WebAssembly scenari di sicurezza aggiuntivi
 
@@ -357,93 +357,6 @@ if (tokenResult.TryGetToken(out var token))
 
 * `true` con l'oggetto `token` da usare.
 * `false` Se il token non viene recuperato.
-
-## <a name="httpclient-and-httprequestmessage-with-fetch-api-request-options"></a>`HttpClient` e `HttpRequestMessage` con le opzioni di richiesta dell'API fetch
-
-Quando è in esecuzione in un webassembly in un' Blazor WebAssembly app, [`HttpClient`](xref:fundamentals/http-requests) ([documentazione API](xref:System.Net.Http.HttpClient)) e <xref:System.Net.Http.HttpRequestMessage> può essere usato per personalizzare le richieste. Ad esempio, è possibile specificare il metodo HTTP e le intestazioni di richiesta. Il componente seguente effettua una `POST` richiesta a un endpoint API to do list nel server e Mostra il corpo della risposta:
-
-```razor
-@page "/todorequest"
-@using System.Net.Http
-@using System.Net.Http.Headers
-@using System.Net.Http.Json
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@inject HttpClient Http
-@inject IAccessTokenProvider TokenProvider
-
-<h1>ToDo Request</h1>
-
-<button @onclick="PostRequest">Submit POST request</button>
-
-<p>Response body returned by the server:</p>
-
-<p>@responseBody</p>
-
-@code {
-    private string responseBody;
-
-    private async Task PostRequest()
-    {
-        var requestMessage = new HttpRequestMessage()
-        {
-            Method = new HttpMethod("POST"),
-            RequestUri = new Uri("https://localhost:10000/api/TodoItems"),
-            Content =
-                JsonContent.Create(new TodoItem
-                {
-                    Name = "My New Todo Item",
-                    IsComplete = false
-                })
-        };
-
-        var tokenResult = await TokenProvider.RequestAccessToken();
-
-        if (tokenResult.TryGetToken(out var token))
-        {
-            requestMessage.Headers.Authorization =
-                new AuthenticationHeaderValue("Bearer", token.Value);
-
-            requestMessage.Content.Headers.TryAddWithoutValidation(
-                "x-custom-header", "value");
-
-            var response = await Http.SendAsync(requestMessage);
-            var responseStatusCode = response.StatusCode;
-
-            responseBody = await response.Content.ReadAsStringAsync();
-        }
-    }
-
-    public class TodoItem
-    {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public bool IsComplete { get; set; }
-    }
-}
-```
-
-L'implementazione di .NET webassembly <xref:System.Net.Http.HttpClient> Usa [WindowOrWorkerGlobalScope. fetch ()](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Il recupero consente la configurazione [di diverse opzioni specifiche della richiesta](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). 
-
-Le opzioni di richiesta di recupero HTTP possono essere configurate con <xref:System.Net.Http.HttpRequestMessage> i metodi di estensione illustrati nella tabella seguente.
-
-| Metodo di estensione | Recupera la proprietà della richiesta |
-| --- | --- |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> | [`credentials`](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCache%2A> | [`cache`](https://developer.mozilla.org/docs/Web/API/Request/cache) |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> | [`mode`](https://developer.mozilla.org/docs/Web/API/Request/mode) |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestIntegrity%2A> | [`integrity`](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
-
-È possibile impostare opzioni aggiuntive usando il metodo di <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestOption%2A> estensione più generico.
- 
-La risposta HTTP viene in genere memorizzata nel buffer in un' Blazor WebAssembly applicazione per abilitare il supporto per le letture della sincronizzazione sul contenuto della risposta. Per abilitare il supporto per il flusso di risposta, usare il <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> metodo di estensione nella richiesta.
-
-Per includere le credenziali in una richiesta tra più origini, usare il <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> metodo di estensione:
-
-```csharp
-requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
-```
-
-Per altre informazioni sulle opzioni di recupero delle API, vedere la pagina relativa alla [documentazione Web MDN: WindowOrWorkerGlobalScope. fetch ():P arameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
 
 ## <a name="cross-origin-resource-sharing-cors"></a>Condivisione di risorse tra le origini (CORS)
 
@@ -1128,3 +1041,7 @@ Server response: <strong>@serverResponse</strong>
 Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `BlazorSample` ). Per usare la `Status.DebugException` proprietà, usare [Grpc .NET. client](https://www.nuget.org/packages/Grpc.Net.Client) versione 2.30.0 o successiva.
 
 Per altre informazioni, vedere <xref:grpc/browser>.
+
+## <a name="additional-resources"></a>Risorse aggiuntive
+
+* [`HttpClient` e `HttpRequestMessage` con le opzioni di richiesta dell'API fetch](xref:blazor/call-web-api#httpclient-and-httprequestmessage-with-fetch-api-request-options)
