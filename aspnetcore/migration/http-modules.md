@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 8be09171991964540cd41a1324fb87503591151f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 213807634a2a6990e9025de7871295cf97a81faf
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632174"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865581"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Eseguire la migrazione di gestori e moduli HTTP a ASP.NET Core middleware
 
@@ -55,7 +55,7 @@ Prima di procedere con ASP.NET Core middleware, è necessario riepilogare il fun
 
 **L'ordine in cui i moduli elaborano le richieste in ingresso è determinato da:**
 
-1. Il [ciclo di vita dell'applicazione](https://msdn.microsoft.com/library/ms227673.aspx), ovvero eventi di serie generati da ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest)e così via. Ogni modulo può creare un gestore per uno o più eventi.
+1. <https://docs.microsoft.com/previous-versions/ms227673(v=vs.140)>, Ovvero eventi di serie generati da ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest)e così via. Ogni modulo può creare un gestore per uno o più eventi.
 
 2. Per lo stesso evento, l'ordine in cui sono configurati in *Web.config*.
 
@@ -92,7 +92,7 @@ Oltre ai moduli, è possibile aggiungere i gestori per gli eventi del ciclo di v
 
 **Il middleware e i moduli vengono elaborati in un ordine diverso:**
 
-* L'ordine del middleware si basa sull'ordine in cui vengono inseriti nella pipeline delle richieste, mentre l'ordine dei moduli è basato principalmente sugli eventi del [ciclo di vita dell'applicazione](https://msdn.microsoft.com/library/ms227673.aspx)
+* L'ordine del middleware si basa sull'ordine in cui vengono inseriti nella pipeline delle richieste, mentre l'ordine dei moduli è basato principalmente sugli <https://docs.microsoft.com/previous-versions/ms227673(v=vs.140)> eventi
 
 * L'ordine del middleware per le risposte è il contrario rispetto a quello per le richieste, mentre l'ordine dei moduli è lo stesso per le richieste e le risposte
 

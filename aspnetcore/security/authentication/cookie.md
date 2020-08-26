@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: 2e9eb58837d74343d8de6903372146570b43f330
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 48b9c41b468f04134164a9c499e7fadca107cab2
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627143"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865111"
 ---
 # <a name="use-no-loccookie-authentication-without-no-locaspnet-core-identity"></a>USA cookie autenticazione senza ASP.NET Core Identity
 
@@ -251,7 +251,7 @@ await HttpContext.SignInAsync(
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.NET Core Identity è un provider di autenticazione completo e completo per la creazione e la gestione degli account di accesso. Tuttavia, cookie è possibile usare un provider di autenticazione con autenticazione basata su senza ASP.NET Core Identity . Per altre informazioni, vedere <xref:security/authentication/identity>.
+ASP.NET Core Identity è un provider di autenticazione completo e completo per la creazione e la gestione degli account di accesso. Tuttavia, un cookie provider di autenticazione basato su senza ASP.NET Core Identity può essere utilizzato. Per altre informazioni, vedere <xref:security/authentication/identity>.
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 

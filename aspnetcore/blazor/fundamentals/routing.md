@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: 0c878a05a50e5a6879278ee737ada167669ee0ff
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: eb9e3cbddd2eaca8fef9a6782c28bbce4c029f58
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626480"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865324"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>BlazorRouting ASP.NET Core
 
@@ -169,13 +169,43 @@ Nelle Blazor Server app la route predefinita in `_Host.cshtml` è `/` ( `@page "
 
 Il `"/{**path}"` modello include:
 
-* Double-asterisco *catch-all* Syntax ( `**` ) per acquisire il percorso tra più limiti di cartelle senza codificare le barre ( `/` ).
+* Double-asterisco *catch-all* Syntax ( `**` ) per acquisire il percorso tra più limiti di cartella senza decodificare le barre ( `/` ).
 * `path` nome del parametro di route.
 
-> [!NOTE]
-> La sintassi dei parametri *catch-all* ( `*` / `**` ) **non** è supportata in Razor Components ( `.razor` ).
-
 Per altre informazioni, vedere <xref:fundamentals/routing>.
+
+## <a name="catch-all-route-parameters"></a>Parametri di route catch-all
+
+::: moniker range=">= aspnetcore-5.0"
+
+*Questa sezione si applica a .NET 5 Release Candidate 1 (RC1) o versione successiva, che verrà rilasciata a metà settembre.*
+
+I parametri di route catch-all, che acquisiscono percorsi tra più limiti di cartella, sono supportati nei componenti di. Il parametro della route catch-all deve essere:
+
+* Denominato in modo che corrisponda al nome del segmento di route. La denominazione non distingue tra maiuscole e minuscole.
+* Tipo `string`. Il Framework non fornisce il cast automatico.
+* Alla fine dell'URL.
+
+```razor
+@page "/page/{*pageRoute}"
+
+@code {
+    [Parameter]
+    public string PageRoute { get; set; }
+}
+```
+
+Per l'URL `/page/this/is/a/test` con un modello di route di `/page/{*pageRoute}` , il valore di `PageRoute` è impostato su `this/is/a/test` .
+
+Le barre e i segmenti del percorso acquisito vengono decodificati. Per un modello di route di `/page/{*pageRoute}` , l'URL `/page/this/is/a%2Ftest%2A` restituisce `this/is/a/test*` .
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+I parametri di route catch-all saranno supportati in .NET 5 Release Candidate 1 (RC1) o versioni successive, che verranno rilasciate a metà settembre. *
+
+::: moniker-end
 
 ## <a name="navlink-component"></a>Componente NavLink
 

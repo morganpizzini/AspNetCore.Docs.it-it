@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: b62fcb685b1c6d0c504c685c600d0316b32d7f57
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e42ee7a80475e784ea4791395d9b0665aca94a03
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632499"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865177"
 ---
 # <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>Razor informazioni di riferimento sulla sintassi per ASP.NET Core
 
@@ -687,7 +687,7 @@ Se la cartella *EvenMorePages* nell'esempio precedente ha un file di importazion
 
 La direttiva `@page` ha effetti diversi a seconda del tipo del file in cui viene visualizzata. La direttiva:
 
-* In in un file con *estensione cshtml* indica che il file è una Razor pagina. Per ulteriori informazioni, vedere [route personalizzate](xref:razor-pages/index#custom-routes) e <xref:razor-pages/index> .
+* In un file con *estensione cshtml* indica che il file è una Razor pagina. Per ulteriori informazioni, vedere [route personalizzate](xref:razor-pages/index#custom-routes) e <xref:razor-pages/index> .
 * Specifica che un Razor componente deve gestire direttamente le richieste. Per altre informazioni, vedere <xref:blazor/fundamentals/routing>.
 
 ::: moniker-end

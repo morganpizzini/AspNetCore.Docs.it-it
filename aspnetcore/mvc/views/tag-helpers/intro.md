@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 42a7231b529dd9f8ecbce4f8116111e1c96c830d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 345d20494111b808dac9678637de060169730a53
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633097"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865349"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Helper tag in ASP.NET Core
 
@@ -254,9 +254,9 @@ L'editor di Visual Studio agevola la scrittura di **tutto** il markup nell'appro
 
 ## <a name="tag-helpers-compared-to-web-server-controls"></a>Helper tag e controlli server Web a confronto
 
-* Gli helper tag non sono i proprietari dell'elemento a cui sono associati, ma partecipano semplicemente al rendering dell'elemento e del contenuto. I [controlli server Web](https://msdn.microsoft.com/library/7698y1f0.aspx) di ASP.NET vengono dichiarati e richiamati in una pagina.
+* Gli helper tag non sono i proprietari dell'elemento a cui sono associati, ma partecipano semplicemente al rendering dell'elemento e del contenuto. ASP.NET <https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/7698y1f0(v=vs.85)> vengono dichiarati e richiamati in una pagina.
 
-* I [controlli server Web](https://msdn.microsoft.com/library/zsyt68f1.aspx) hanno un ciclo di vita non semplice che può rendere difficili le attività di sviluppo e debug.
+* <https://docs.microsoft.com/previous-versions/zsyt68f1(v=vs.140)> hanno un ciclo di vita non banale che può rendere difficile lo sviluppo e il debug.
 
 * I controlli server Web consentono di aggiungere funzionalità agli elementi DOM (Document Object Model) del client tramite un controllo client. Gli helper tag non includono DOM.
 

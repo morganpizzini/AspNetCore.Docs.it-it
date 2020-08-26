@@ -5,7 +5,7 @@ description: Creare un' Blazor app dettagliata.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/30/2020
+ms.date: 08/22/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 769b3bda591252c51bec3ffd72a43eaa5929349e
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 7335b68ad06b9d2b8d7e056cfc1a6d8214119b21
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630835"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865419"
 ---
 # <a name="build-a-no-locblazor-todo-list-app"></a>Creare un' Blazor app elenco attività
 
@@ -51,7 +51,7 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
    dotnet new blazorserver -o TodoList
    ```
 
-   Il comando precedente crea una cartella denominata `TodoList` per ospitare l'app. Passare alla `TodoList` cartella con il comando seguente:
+   Il comando precedente crea una cartella denominata `TodoList` per ospitare l'app. La `TodoList` cartella è la *cartella radice* del progetto. Passare alla `TodoList` cartella con il comando seguente:
 
    ```dotnetcli
    cd TodoList
@@ -64,7 +64,7 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
    ```
 
    > [!IMPORTANT]
-   > Razor i nomi dei file di componente richiedono una prima lettera maiuscola, quindi verificare che il `Todo` nome del file del componente inizi con una lettera maiuscola `T` .
+   > Razor i nomi dei file di componente richiedono una prima lettera maiuscola. Aprire la `Pages` cartella e verificare che il `Todo` nome del file del componente inizi con una lettera maiuscola `T` . Il nome del file deve essere `Todo.razor` .
 
 1. In `Pages/Todo.razor` fornire il markup iniziale per il componente:
 
@@ -88,9 +88,9 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
    </li>
    ```
 
-1. Ricompilare ed eseguire l'app. Visitare la nuova pagina Todo per confermare che il collegamento al componente `Todo` funzioni correttamente.
+1. Compilare ed eseguire l'app eseguendo il `dotnet run` comando nella shell dei comandi dalla `TodoList` cartella. Visitare la nuova pagina Todo per confermare che il collegamento al componente `Todo` funzioni correttamente.
 
-1. Aggiungere un `TodoItem.cs` file alla radice del progetto per archiviare una classe che rappresenta un elemento todo. Usare il codice C# seguente per la classe `TodoItem`:
+1. Aggiungere un `TodoItem.cs` file alla radice del progetto (la `TodoList` cartella) in cui archiviare una classe che rappresenta un elemento todo. Usare il codice C# seguente per la classe `TodoItem`:
 
    [!code-csharp[](build-a-blazor-app/samples_snapshot/3.x/TodoItem.cs)]
 
@@ -105,7 +105,7 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo5.razor?highlight=12-13)]
 
-1. Ricompilare ed eseguire l'app. Quando il **`Add todo`** pulsante è selezionato, non accade nulla perché un gestore eventi non è cablato fino al pulsante.
+1. Arrestare l'app in esecuzione nella shell dei comandi. Molte shell dei comandi accettano il comando della tastiera <kbd>CTRL</kbd> + <kbd>c</kbd> per arrestare un'app. Ricompilare ed eseguire l'app con il `dotnet run` comando. Quando il **`Add todo`** pulsante è selezionato, non accade nulla perché un gestore eventi non è cablato fino al pulsante.
 
 1. Aggiungere un metodo `AddTodo` al componente `Todo` e registrarlo per le selezioni con pulsante con l'attributo `@onclick`. Il metodo C# `AddTodo` viene chiamato quando viene selezionato il pulsante:
 
@@ -123,7 +123,7 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo8.razor?highlight=19-26)]
 
-1. Ricompilare ed eseguire l'app. Aggiungere alcune voci todo all'elenco todo per testare il nuovo codice.
+1. Arrestare l'app in esecuzione nella shell dei comandi. Ricompilare ed eseguire l'app con il `dotnet run` comando. Aggiungere alcune voci todo all'elenco todo per testare il nuovo codice.
 
 1. Il testo del titolo per ogni elemento Todo può essere reso modificabile e una casella di controllo può consentire all'utente di tenere traccia degli elementi completati. Aggiungere un input casella di controllo per ogni elemento attività e associarne il valore alla proprietà `IsDone`. Modificare `@todo.Title` in un elemento `<input>` associato a `@todo.Title`:
 
@@ -139,7 +139,7 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/Todo.razor)]
 
-1. Ricompilare ed eseguire l'app. Aggiungere elementi attività per testare il nuovo codice.
+1. Arrestare l'app in esecuzione nella shell dei comandi. Ricompilare ed eseguire l'app con il `dotnet run` comando. Aggiungere elementi attività per testare il nuovo codice.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

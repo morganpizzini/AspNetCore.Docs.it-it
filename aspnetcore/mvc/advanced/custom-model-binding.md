@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: 4bef68fffbdfaff023f71964a27ead56863e4192
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 7e1151b04f39f637f889e690bccc97eb6f0c91ea
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630432"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865577"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>Associazione di modelli personalizzata in ASP.NET Core
 
@@ -127,7 +127,7 @@ Per usare un provider dello strumento di associazione di modelli personalizzato,
 
 [!code-csharp[](custom-model-binding/samples/3.x/CustomModelBindingSample/Startup.cs?name=snippet_ConfigureServices&highlight=5-8)]
 
-Durante la valutazione degli strumenti di associazione di modelli, la raccolta di provider viene esaminata in ordine. Viene usato il primo provider che restituisce uno strumento di associazione. Se il provider personalizzato viene aggiunto alla fine della raccolta, è possibile che uno strumento di associazione di modelli incorporato venga chiamato prima dello strumento di associazione di modelli personalizzato. In questo esempio il provider personalizzato viene aggiunto all'inizio della raccolta, per garantire che venga usato per gli argomenti dell'azione `Author`.
+Durante la valutazione degli strumenti di associazione di modelli, la raccolta di provider viene esaminata in ordine. Viene utilizzato il primo provider che restituisce uno strumento di associazione che corrisponde al modello di input. L'aggiunta del provider alla fine della raccolta può pertanto comportare la chiamata di uno strumento di associazione di modelli predefinito prima che il Binder personalizzato abbia la possibilità. In questo esempio, il provider personalizzato viene aggiunto all'inizio della raccolta per assicurarsi che venga sempre usato per gli `Author` argomenti dell'azione.
 
 ### <a name="polymorphic-model-binding"></a>Associazione di modelli polimorfici
 

@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Electron
 uid: security/samesite
-ms.openlocfilehash: c95952face8763dc9f2dd12312cab1a1bc07528a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 3ba033b4165b19131d11311e5ae9d64e6afe48ca
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632343"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865425"
 ---
 # <a name="work-with-samesite-no-loccookies-in-aspnet-core"></a>Usare navigava sullostesso sito cookie s in ASP.NET Core
 
@@ -73,11 +73,11 @@ Ogni componente ASP.NET Core che emette cookie s deve decidere se navigava sullo
 
 ## <a name="net-core-support-for-the-samesite-attribute"></a>Supporto di .NET Core per l'attributo navigava sullostesso sito
 
-.NET Core 2,2 supporta lo standard 2019 Draft per navigava sullostesso sito dal rilascio degli aggiornamenti nel 2019 dicembre. Gli sviluppatori sono in grado di controllare a livello di codice il valore dell'attributo navigava sullostesso sito usando la `HttpCookie.SameSite` Proprietà. Impostando la `SameSite` proprietà su Strict, LAX o None, i valori vengono scritti in rete con cookie . L'impostazione di un valore uguale a (SameSiteMode) (-1) indica che nella rete non deve essere incluso alcun attributo navigava sullostesso sito con cookie
+.NET Core 2,2 e versioni successive supportano lo standard 2019 Draft per navigava sullostesso sito dal rilascio degli aggiornamenti nel 2019 dicembre. Gli sviluppatori sono in grado di controllare a livello di codice il valore dell'attributo navigava sullostesso sito usando la `HttpCookie.SameSite` Proprietà. Impostando la `SameSite` proprietà su Strict, LAX o None, i valori vengono scritti in rete con cookie . L'impostazione di un valore uguale a `(SameSiteMode)(-1)` indica che non è necessario includere nella rete alcun attributo navigava sullostesso sito con cookie
 
 [!code-csharp[](samesite/snippets/Privacy.cshtml.cs?name=snippet)]
 
-.NET Core 3,0 supporta i valori navigava sullostesso sito aggiornati e aggiunge un valore enum aggiuntivo `SameSiteMode.Unspecified` all' `SameSiteMode` enumerazione.
+.NET Core 3,0 e versioni successive supportano i valori navigava sullostesso sito aggiornati e aggiunge un valore enum aggiuntivo `SameSiteMode.Unspecified` all' `SameSiteMode` enumerazione.
 Questo nuovo valore indica che non è necessario inviare navigava sullostesso sito con cookie .
 
 ::: moniker-end
@@ -100,7 +100,7 @@ Il valore predefinito di navigava sullostesso sito per l'autenticazione basata s
 
 Tutti i componenti ASP.NET Core che emettono cookie sostituiscono i valori predefiniti precedenti con le impostazioni appropriate per gli scenari. L'override dei valori predefiniti precedenti non è stato modificato.
 
-| Componente | cookie | Predefinito |
+| Componente | cookie | Impostazione predefinita |
 | ------------- | ------------- |
 | <xref:Microsoft.AspNetCore.Http.CookieBuilder> | <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite> | `Unspecified` |
 | <xref:Microsoft.AspNetCore.Http.HttpContext.Session>  | [SessionOptions.Cookie](xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie) |`Lax` |

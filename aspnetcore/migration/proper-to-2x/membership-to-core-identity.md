@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/membership-to-core-identity
-ms.openlocfilehash: de9d1e5f6f595269595212fbab60d12dfd5a29e4
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a9ec02381b156a6599042d8e504a476036246302
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633643"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865564"
 ---
 # <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-no-locidentity"></a>Eseguire la migrazione da ASP.NET Membership Authentication a ASP.NET Core 2,0 Identity
 
@@ -35,7 +35,7 @@ Questo articolo illustra la migrazione dello schema del database per le app ASP.
 
 ## <a name="review-of-membership-schema"></a>Revisione dello schema di appartenenza
 
-Prima di ASP.NET 2,0, gli sviluppatori avevano il compito di creare l'intero processo di autenticazione e autorizzazione per le proprie app. Con ASP.NET 2,0 è stata introdotta l'appartenenza, che fornisce una soluzione standard per la gestione della sicurezza nelle app ASP.NET. Gli sviluppatori sono ora in grado di eseguire il bootstrap di uno schema in un database di SQL Server con il comando [aspnet_regsql.exe](https://msdn.microsoft.com/library/ms229862.aspx) . Dopo aver eseguito questo comando, nel database sono state create le tabelle seguenti.
+Prima di ASP.NET 2,0, gli sviluppatori avevano il compito di creare l'intero processo di autenticazione e autorizzazione per le proprie app. Con ASP.NET 2,0 è stata introdotta l'appartenenza, che fornisce una soluzione standard per la gestione della sicurezza nelle app ASP.NET. Gli sviluppatori sono ora in grado di eseguire il bootstrap di uno schema in un database di SQL Server con il <https://docs.microsoft.com/previous-versions/ms229862(v=vs.140)> comando. Dopo aver eseguito questo comando, nel database sono state create le tabelle seguenti.
 
   ![Tabelle di appartenenza](identity/_static/membership-tables.png)
 
@@ -78,7 +78,7 @@ Esistono differenze minime nelle strutture e nei campi della tabella sia per l'a
 
 ### <a name="users"></a>Utenti
 
-|Identity<br>( `dbo.AspNetUsers` ) (colonna)  |Type     |Appartenenze<br>( `dbo.aspnet_Users`  /  `dbo.aspnet_Membership` ) (colonna)|Type      |
+|Identity<br>( `dbo.AspNetUsers` ) (colonna)  |Tipo     |Appartenenze<br>( `dbo.aspnet_Users`  /  `dbo.aspnet_Membership` ) (colonna)|Tipo      |
 |-------------------------------------------|-----------------------------------------------------------------------|
 | `Id`                            | `string`| `aspnet_Users.UserId`                                      | `string` |
 | `UserName`                      | `string`| `aspnet_Users.UserName`                                    | `string` |
@@ -93,7 +93,7 @@ Esistono differenze minime nelle strutture e nei campi della tabella sia per l'a
 
 ### <a name="roles"></a>Ruoli
 
-|Identity<br>( `dbo.AspNetRoles` ) (colonna)|Type|Appartenenze<br>( `dbo.aspnet_Roles` ) (colonna)|Type|
+|Identity<br>( `dbo.AspNetRoles` ) (colonna)|Tipo|Appartenenze<br>( `dbo.aspnet_Roles` ) (colonna)|Tipo|
 |----------------------------------------|-----------------------------------|
 |`Id`                           |`string`|`RoleId`         | `string`        |
 |`Name`                         |`string`|`RoleName`       | `string`        |
@@ -101,7 +101,7 @@ Esistono differenze minime nelle strutture e nei campi della tabella sia per l'a
 
 ### <a name="user-roles"></a>Ruoli utente
 
-|Identity<br>( `dbo.AspNetUserRoles` ) (colonna)|Type|Appartenenze<br>( `dbo.aspnet_UsersInRoles` ) (colonna)|Type|
+|Identity<br>( `dbo.AspNetUserRoles` ) (colonna)|Tipo|Appartenenze<br>( `dbo.aspnet_UsersInRoles` ) (colonna)|Tipo|
 |-------------------------|----------|--------------|---------------------------|
 |`RoleId`                 |`string`  |`RoleId`      |`string`                   |
 |`UserId`                 |`string`  |`UserId`      |`string`                   |
