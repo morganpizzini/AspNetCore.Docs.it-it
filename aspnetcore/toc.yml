@@ -94,6 +94,9 @@
         - name: Back-end per dispositivi mobili
           displayName: tutorial
           uid: mobile/native-mobile-backend
+        - name: Pubblicare in Gestione API di Azure
+          displayName: tutorial
+          uid: tutorials/publish-to-azure-api-management-using-vs
     - name: App Web in tempo reale
       items:
         - name: SignalR con JavaScript
@@ -177,7 +180,7 @@
         - name: Sicurezza delle app Web >>
           displayName: 'tutorial, identity'
           href: /learn/modules/secure-aspnet-core-identity/
-- name: Concetti fondamentali
+- name: Nozioni fondamentali
   items:
     - name: Panoramica
       uid: fundamentals/index
@@ -270,7 +273,7 @@
               uid: tutorials/first-mvc-app/validation
             - name: Esaminare i dettagli e i metodi di eliminazione
               uid: tutorials/first-mvc-app/details
-        - name: Viste
+        - name: Visualizzazioni
           uid: mvc/views/overview
         - name: Visualizzazioni parziali
           uid: mvc/views/partial
@@ -702,7 +705,11 @@
         - name: Introduzione all'uso di un servizio gRPC
           uid: tutorials/grpc/grpc-start
     - name: Servizi gRPC con C#
-      uid: grpc/basics
+      items:
+        - name: Panoramica
+          uid: grpc/basics
+        - name: Creare servizi gRPC
+          uid: grpc/services
     - name: Servizi gRPC con ASP.NET Core
       uid: grpc/aspnetcore
     - name: Chiamare servizi gRPC con il client .NET
@@ -711,6 +718,8 @@
       uid: grpc/clientfactory
     - name: Usare gRPC nelle app del browser
       uid: grpc/browser
+    - name: Comunicazione tra processi con gRPC
+      uid: grpc/interprocess
     - name: Configurazione
       uid: grpc/configuration
     - name: Autenticazione e autorizzazione
@@ -719,6 +728,8 @@
       uid: grpc/diagnostics
     - name: Considerazioni relative alla sicurezza
       uid: grpc/security
+    - name: Creare messaggi Protobuf
+      uid: grpc/protobuf
     - name: Procedure consigliate per le prestazioni
       uid: grpc/performance
     - name: Controllo delle versioni dei servizi gRPC
