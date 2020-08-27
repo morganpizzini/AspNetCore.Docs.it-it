@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: 04d2f0d289e2c9ec13aeb880df47240bec19d3ec
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: 24ba49828db08fdd67723c81ac0c8d9981ab3404
+ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876763"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88945415"
 ---
 # <a name="use-no-loccookie-authentication-without-no-locaspnet-core-identity"></a>USA cookie autenticazione senza ASP.NET Core Identity
 
@@ -117,7 +117,7 @@ Per disconnettersi dall'utente corrente ed eliminare il relativo cookie , chiama
 
 Se `CookieAuthenticationDefaults.AuthenticationScheme` (o " Cookie s") non viene usato come schema (ad esempio, "Contoso Cookie "), fornire lo schema usato durante la configurazione del provider di autenticazione. In caso contrario, verrà utilizzato lo schema predefinito.
 
-Il server non ha alcun controllo sul browser client. Se l'utente chiude il browser o la scheda, il server non è in grado di disconnettersi. Per implementare la firma dell'utente quando il browser viene chiuso, è necessario rilevarlo con JavaScript. Cercare "come rilevare l'evento di chiusura scheda della finestra del browser?".
+Quando il browser viene chiuso, Elimina automaticamente le istanze di basate su sessione cookie (non persistenti cookie ), ma nessuna viene cookie cancellata quando viene chiusa una singola scheda. Il server non riceve notifiche sugli eventi di chiusura di schede o browser.
 
 ## <a name="react-to-back-end-changes"></a>Reagire alle modifiche del back-end
 
