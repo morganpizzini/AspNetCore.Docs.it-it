@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 57607390e7d5e58df9f27437faecd57504ad64df
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d6ea37ceb83ffbaa94187e0c541c79428594e4b4
+ms.sourcegitcommit: 2039e60eb7b482da8298f82dcd5eda27cf747f32
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635372"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88906449"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Account confirmation and password recovery in ASP.NET Core (Conferma dell'account e recupero della password in ASP.NET Core)
 
@@ -160,7 +160,13 @@ Eseguire l'app Web e testare la conferma dell'account e il flusso di recupero de
 * Immettere il messaggio di posta elettronica usato per registrare l'account.
 * Viene inviato un messaggio di posta elettronica con un collegamento per reimpostare la password. Controllare la posta elettronica e fare clic sul collegamento per reimpostare la password. Dopo che la password è stata reimpostata, è possibile accedere con l'indirizzo di posta elettronica e la nuova password.
 
-## <a name="change-email-and-activity-timeout"></a>Modificare il timeout dell'attività e del messaggio di posta elettronica
+<a name="resend"></a>
+
+## <a name="resend-email-confirmation"></a>Invia di nuovo la conferma tramite posta elettronica
+
+In ASP.NET Core 5,0 e versioni successive selezionare il collegamento Invia di nuovo la **conferma tramite posta elettronica** nella pagina di **accesso** .
+
+### <a name="change-email-and-activity-timeout"></a>Modificare il timeout dell'attività e del messaggio di posta elettronica
 
 Il timeout di inattività predefinito è di 14 giorni. Il codice seguente imposta il timeout di inattività su 5 giorni:
 
@@ -185,10 +191,6 @@ Aggiungere un [DataProtectorTokenProvider \<TUser> ](/dotnet/api/microsoft.aspne
 Aggiungere il provider personalizzato al contenitore del servizio:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/StartupEmail.cs?name=snippet1&highlight=10-16)]
-
-### <a name="resend-email-confirmation"></a>Invia di nuovo la conferma tramite posta elettronica
-
-Vedere [il problema in GitHub](https://github.com/dotnet/AspNetCore/issues/5410).
 
 <a name="debug"></a>
 
