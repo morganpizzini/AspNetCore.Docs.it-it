@@ -1,5 +1,5 @@
 ---
-title: Procedure consigliate per le prestazioni in gRPC per ASP.NET Core
+title: Procedure consigliate per le prestazioni con gRPC
 author: jamesnk
 description: Informazioni sulle procedure consigliate per la creazione di servizi gRPC ad alte prestazioni.
 monikerRange: '>= aspnetcore-3.0'
@@ -17,24 +17,24 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/performance
-ms.openlocfilehash: f9cefa89ec6e533920b33223b34333f6ebe38428
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: 7d4d5732e6edb0d0a156fdcec5f59cc09a69d7de
+ms.sourcegitcommit: 111b4e451da2e275fb074cde5d8a84b26a81937d
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876724"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "89040879"
 ---
-# <a name="performance-best-practices-in-grpc-for-aspnet-core"></a>Procedure consigliate per le prestazioni in gRPC per ASP.NET Core
+# <a name="performance-best-practices-with-grpc"></a>Procedure consigliate per le prestazioni con gRPC
 
 Di [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC è progettato per servizi a prestazioni elevate. Questo documento illustra come ottenere le migliori prestazioni possibili da gRPC.
 
-## <a name="reuse-channel"></a>Riutilizza canale
+## <a name="reuse-grpc-channels"></a>Riutilizzo di canali gRPC
 
 Quando si effettuano chiamate gRPC è necessario riutilizzare un canale gRPC. Il riutilizzo di un canale consente il multiplexing delle chiamate tramite una connessione HTTP/2 esistente.
 
-Se viene creato un nuovo canale per ogni chiamata gRPC, la quantità di tempo necessaria per il completamento può aumentare in modo significativo. Per ogni chiamata sono necessari più round trip di rete tra il client e il server per creare una connessione HTTP/2:
+Se viene creato un nuovo canale per ogni chiamata gRPC, la quantità di tempo necessaria per il completamento può aumentare in modo significativo. Per ogni chiamata sono necessari più round trip di rete tra il client e il server per creare una nuova connessione HTTP/2:
 
 1. Apertura di un socket
 2. Creazione della connessione TCP
@@ -86,7 +86,45 @@ Esistono un paio di soluzioni alternative per le app .NET Core 3,1:
 > * Contesa di thread tra i flussi che tentano di scrivere nella connessione.
 > * La perdita di pacchetti di connessione causa il blocco di tutte le chiamate a livello TCP.
 
+## <a name="load-balancing"></a>Bilanciamento del carico
+
+Alcuni bilanciamenti del carico non funzionano in modo efficace con gRPC. I bilanciamenti del carico L4 (trasporto) operano a livello di connessione, distribuendo le connessioni TCP tra gli endpoint. Questo approccio funziona bene per il caricamento delle chiamate API di bilanciamento effettuate con HTTP/1.1. Le chiamate simultanee effettuate con HTTP/1.1 vengono inviate su connessioni diverse, consentendo il bilanciamento del carico delle chiamate tra gli endpoint.
+
+Poiché i bilanciamenti del carico L4 operano a livello di connessione, non funzionano bene con gRPC. gRPC Usa HTTP/2, che esegue il multiplexing di più chiamate su una singola connessione TCP. Tutte le chiamate gRPC sulla connessione passano a un endpoint.
+
+Per il bilanciamento del carico gRPC sono disponibili due opzioni:
+
+1. Bilanciamento del carico lato client
+2. Bilanciamento del carico del proxy L7 (applicazione)
+
+> [!NOTE]
+> Solo le chiamate gRPC possono essere sottoposte a bilanciamento del carico tra gli endpoint. Una volta stabilita una chiamata di streaming gRPC, tutti i messaggi inviati sul flusso passano a un endpoint.
+
+### <a name="client-side-load-balancing"></a>Bilanciamento del carico lato client
+
+Con il bilanciamento del carico lato client, il client conosce gli endpoint. Per ogni chiamata a gRPC viene selezionato un endpoint diverso a cui inviare la chiamata. Il bilanciamento del carico lato client è una scelta ottimale quando la latenza è importante. Non esiste alcun proxy tra il client e il servizio, quindi la chiamata viene inviata direttamente al servizio. Lo svantaggio del bilanciamento del carico lato client è che ogni client deve tenere traccia degli endpoint disponibili da usare.
+
+Il bilanciamento del carico del client lookaside è una tecnica in cui lo stato del bilanciamento del carico viene archiviato in una posizione centrale. I client eseguono periodicamente una query sulla posizione centrale per ottenere informazioni da usare quando si prendono decisioni di bilanciamento del carico.
+
+`Grpc.Net.Client` Attualmente non supporta il bilanciamento del carico lato client. [Grpc. Core](https://www.nuget.org/packages/Grpc.Core) è una scelta ottimale se il bilanciamento del carico lato client è necessario in .NET.
+
+### <a name="proxy-load-balancing"></a>Bilanciamento del carico del proxy
+
+Un proxy L7 (applicazione) funziona a un livello superiore rispetto a un proxy L4 (trasporto). I proxy L7 comprendono HTTP/2 e sono in grado di distribuire le chiamate gRPC multiplexing al proxy in una connessione HTTP/2 tra più endpoint. L'uso di un proxy è più semplice del bilanciamento del carico lato client, ma può aggiungere ulteriore latenza alle chiamate gRPC.
+
+Sono disponibili molti proxy L7. Di seguito sono riportate alcune opzioni:
+
+1. Proxy [inviato](https://www.envoyproxy.io/) : un proxy open source noto.
+2. [Linkerd](https://linkerd.io/) -mesh del servizio per Kubernetes.
+2. [YARP: proxy inverso](https://microsoft.github.io/reverse-proxy/) -un proxy open source di anteprima scritto in .NET.
+
 ::: moniker range=">= aspnetcore-5.0"
+
+## <a name="inter-process-communication"></a>Comunicazione tra processi
+
+le chiamate gRPC tra un client e un servizio vengono in genere inviate tramite socket TCP. TCP è ideale per la comunicazione attraverso una rete, ma la [comunicazione interprocesso (IPC)](https://wikipedia.org/wiki/Inter-process_communication) è più efficiente quando il client e il servizio si trovano nello stesso computer.
+
+Prendere in considerazione l'uso di un trasporto come i socket di dominio UNIX o named pipe per le chiamate gRPC tra processi nello stesso computer. Per altre informazioni, vedere <xref:grpc/interprocess>.
 
 ## <a name="keep-alive-pings"></a>Ping keep-alive
 
