@@ -180,7 +180,7 @@
         - name: Sicurezza delle app Web >>
           displayName: 'tutorial, identity'
           href: /learn/modules/secure-aspnet-core-identity/
-- name: Nozioni fondamentali
+- name: Concetti fondamentali
   items:
     - name: Panoramica
       uid: fundamentals/index
@@ -206,7 +206,7 @@
       uid: fundamentals/environments
     - name: Registrazione
       uid: fundamentals/logging/index
-    - name: Routing
+    - name: Routing.
       uid: fundamentals/routing
     - name: Gestire gli errori
       uid: fundamentals/error-handling
@@ -273,13 +273,13 @@
               uid: tutorials/first-mvc-app/validation
             - name: Esaminare i dettagli e i metodi di eliminazione
               uid: tutorials/first-mvc-app/details
-        - name: Visualizzazioni
+        - name: Viste
           uid: mvc/views/overview
         - name: Visualizzazioni parziali
           uid: mvc/views/partial
         - name: Controllers
           uid: mvc/controllers/actions
-        - name: Routing
+        - name: Routing.
           uid: mvc/controllers/routing
         - name: Inserimento di dipendenze - Controller
           uid: mvc/controllers/dependency-injection
@@ -710,6 +710,8 @@
           uid: grpc/basics
         - name: Creare servizi gRPC
           uid: grpc/services
+        - name: Creare messaggi Protobuf
+          uid: grpc/protobuf
     - name: Servizi gRPC con ASP.NET Core
       uid: grpc/aspnetcore
     - name: Chiamare servizi gRPC con il client .NET
@@ -728,8 +730,6 @@
       uid: grpc/diagnostics
     - name: Considerazioni relative alla sicurezza
       uid: grpc/security
-    - name: Creare messaggi Protobuf
-      uid: grpc/protobuf
     - name: Procedure consigliate per le prestazioni
       uid: grpc/performance
     - name: Controllo delle versioni dei servizi gRPC
