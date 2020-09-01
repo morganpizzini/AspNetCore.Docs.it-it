@@ -722,6 +722,8 @@
       uid: grpc/browser
     - name: Comunicazione tra processi con gRPC
       uid: grpc/interprocess
+    - name: Create API Web JSON da gRPC
+      uid: grpc/httpapi
     - name: Configurazione
       uid: grpc/configuration
     - name: Autenticazione e autorizzazione
