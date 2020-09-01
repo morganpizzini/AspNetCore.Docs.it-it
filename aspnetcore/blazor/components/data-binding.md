@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: 3b41aedcbd0d2c22b20d8fa3a21b8af97d1fbb2c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d88cad10314872271250cd43212a64698f485381
+ms.sourcegitcommit: 8ed9a413bdc2d665ad11add8828898d726ccb106
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628560"
+ms.lasthandoff: 09/01/2020
+ms.locfileid: "89280400"
 ---
 # <a name="aspnet-core-no-locblazor-data-binding"></a>ASP.NET Core Blazor Data Binding
 
@@ -79,27 +79,7 @@ Associare una proprietà o un campo ad altri eventi includendo anche un `@bind:e
 
 Diversamente da `onchange` , che viene attivato quando l'elemento perde lo stato attivo, `oninput` viene attivato quando viene modificato il valore della casella di testo.
 
-Utilizzare `@bind-{ATTRIBUTE}` con la `@bind-{ATTRIBUTE}:event` sintassi per associare attributi di elementi diversi da `value` . Nell'esempio seguente:
-
-* Lo stile del paragrafo è **rosso** quando il componente viene caricato ( `style="color:red"` ).
-* L'utente modifica il valore della casella di testo in modo da riflettere uno stile di colore CSS diverso e modifica lo stato attivo dell'elemento della pagina. Ad esempio, l'utente modifica il valore della casella di testo in `color:blue` e preme il tasto <kbd>Tab</kbd> sulla tastiera.
-* Quando viene modificato lo stato attivo dell'elemento:
-  * Il valore di `paragraphStyle` viene assegnato dal `<input>` valore dell'elemento.
-  * Lo stile del paragrafo viene aggiornato in modo da riflettere il nuovo stile in `paragraphStyle` . Se lo stile viene aggiornato a `color:blue` , il colore del testo diventa **blu**.
-
-```razor
-<p>
-    <input type="text" @bind="paragraphStyle" />
-</p>
-
-<p @bind-style="paragraphStyle" @bind-style:event="onchange">
-    Blazorify the app!
-</p>
-
-@code {
-    private string paragraphStyle = "color:red";
-}
-```
+<!-- Hold location for resolution of https://github.com/dotnet/AspNetCore.Docs/issues/19721 -->
 
 L'associazione di attributi distingue tra maiuscole e minuscole:
 
