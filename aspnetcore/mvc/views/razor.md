@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: e42ee7a80475e784ea4791395d9b0665aca94a03
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 9c2bbd2d463af8a2ea7db716d01bf1436338ea77
+ms.sourcegitcommit: cd861463faf44956855e3c4b3669483bbc4a7463
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865177"
+ms.lasthandoff: 08/29/2020
+ms.locfileid: "89101361"
 ---
 # <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>Razor informazioni di riferimento sulla sintassi per ASP.NET Core
 
@@ -131,17 +131,15 @@ Le espressioni C# che restituiscono una stringa sono codificate in HTML. Le espr
 @("<span>Hello World</span>")
 ```
 
-Il codice esegue il rendering dell'HTML seguente:
+Il codice precedente esegue il rendering del codice HTML seguente:
 
 ```html
 &lt;span&gt;Hello World&lt;/span&gt;
 ```
 
-Il codice HTML viene visualizzato nel browser come:
+Il codice HTML viene visualizzato nel browser come testo normale:
 
-```html
-<span>Hello World</span>
-```
+&lt;span &gt; Hello World &lt; /span&gt;
 
 L'output `HtmlHelper.Raw` non è codificato ma viene sottoposto a rendering come markup HTML.
 

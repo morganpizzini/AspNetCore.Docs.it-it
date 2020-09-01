@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: c409eaaf07109d363581ee7d61dc76521d6818d0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9bb055670b73c9a1ae04083bc326200a42151708
+ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630666"
+ms.lasthandoff: 08/29/2020
+ms.locfileid: "89102796"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Gestione della memoria e Garbage Collection (GC) in ASP.NET Core
 
@@ -235,7 +235,7 @@ La stessa perdita può verificarsi nel codice utente, in uno dei seguenti:
 
 ### <a name="large-objects-heap"></a>Heap oggetti grandi
 
-I cicli di allocazione di memoria/disponibili frequenti possono frammentare la memoria, soprattutto quando si allocano blocchi di memoria di grandi dimensioni. Gli oggetti vengono allocati in blocchi di memoria contigui. Per attenuare la frammentazione, quando il GC libera memoria, trys la deframmentazione. Questo processo è denominato **compattazione**. La compattazione comporta lo stato di trasferimento degli oggetti. Lo spostato di oggetti di grandi dimensioni impone una riduzione delle prestazioni. Per questo motivo il GC crea una zona di memoria speciale per oggetti di _grandi dimensioni_ , denominata [heap degli oggetti grandi](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Gli oggetti che sono maggiori di 85.000 byte (circa 83 KB) sono:
+I cicli di allocazione di memoria/disponibili frequenti possono frammentare la memoria, soprattutto quando si allocano blocchi di memoria di grandi dimensioni. Gli oggetti vengono allocati in blocchi di memoria contigui. Per attenuare la frammentazione, quando il Garbage Collector libera la memoria, tenta di deframmentare il Garbage Collector. Questo processo è denominato **compattazione**. La compattazione comporta lo stato di trasferimento degli oggetti. Lo spostato di oggetti di grandi dimensioni impone una riduzione delle prestazioni. Per questo motivo il GC crea una zona di memoria speciale per oggetti di _grandi dimensioni_ , denominata [heap degli oggetti grandi](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Gli oggetti che sono maggiori di 85.000 byte (circa 83 KB) sono:
 
 * Inserito nell'heap oggetti grandi.
 * Non compattato.
