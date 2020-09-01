@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 98c43eda002abc96fe3c2f031c429ccaa70cee3e
-ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
+ms.openlocfilehash: 2d002e075f9d57654589b540e522307c363d9660
+ms.sourcegitcommit: 4cce99cbd44372fd4575e8da8c0f4345949f4d9a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2020
-ms.locfileid: "89102783"
+ms.lasthandoff: 08/31/2020
+ms.locfileid: "89153545"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserimento delle dipendenze in ASP.NET Core
 
@@ -517,7 +517,7 @@ Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [Ad
   [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet)]
 
 * I servizi temporanei Disposable vengono acquisiti dal contenitore per l'eliminazione. Questa operazione può comportare una perdita di memoria se risolta dal contenitore di primo livello.
-* Abilitare la convalida dell'ambito per assicurarsi che l'app non disponga di servizi con ambito che acquisiscano i singleton. Per ulteriori informazioni, vedere [Convalida dell'ambito](#scope-validation).
+* Abilitare la convalida dell'ambito per assicurarsi che l'app non disponga di singleton che acquisiscono i servizi con ambito. Per ulteriori informazioni, vedere [Convalida dell'ambito](#scope-validation).
 
 È tuttavia possibile che in alcuni casi queste raccomandazioni debbano essere ignorate. Le eccezioni sono rari, soprattutto casi speciali all'interno del Framework stesso.
 
