@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/browser
-ms.openlocfilehash: fd4cae386b8c9654192cd0c66e095500290c4aa0
-ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
+ms.openlocfilehash: 5c9501b3e7cbdcbb02e3d78d67185a0a75ccba7c
+ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2020
-ms.locfileid: "89102692"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89379407"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Usare gRPC nelle app del browser
 
@@ -131,6 +131,30 @@ Il codice precedente:
 
 > [!IMPORTANT]
 > I client gRPC generati hanno metodi Sync e Async per la chiamata di metodi unaria. Ad esempio, `SayHello` è Sync ed `SayHelloAsync` è Async. La chiamata di un metodo di sincronizzazione in un'app provocherà la mancata Blazor WebAssembly risposta dell'app. I metodi asincroni devono sempre essere utilizzati in Blazor WebAssembly .
+
+### <a name="use-grpc-client-factory-with-grpc-web"></a>Usare la factory del client gRPC con gRPC-Web
+
+Un client .NET compatibile con gRPC può essere creato usando l'integrazione di gRPC con [HttpClientFactory](xref:System.Net.Http.IHttpClientFactory).
+
+Per usare gRPC-Web con client Factory:
+
+* Aggiungere i riferimenti ai pacchetti al file di progetto per i pacchetti seguenti:
+  * [Grpc .NET. client. Web](https://www.nuget.org/packages/Grpc.Net.Client.Web)
+  * [Grpc .NET. ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory)
+* Registrare un client gRPC con l'inserimento DI dipendenze usando il `AddGrpcClient` metodo di estensione generico. In un' Blazor WebAssembly app, i servizi vengono registrati con l'inserimento di `Program.cs` .
+* Configurare `GrpcWebHandler` usando il <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> metodo di estensione.
+
+```csharp
+builder.Services
+    .AddGrpcClient<Greet.GreeterClient>((services, options) =>
+    {
+        options.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigurePrimaryHttpMessageHandler(
+        () => new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler()));
+```
+
+Per altre informazioni, vedere <xref:grpc/clientfactory>.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

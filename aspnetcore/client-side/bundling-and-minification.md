@@ -4,7 +4,7 @@ author: scottaddie
 description: Informazioni su come ottimizzare le risorse statiche in un'applicazione Web ASP.NET Core applicando tecniche di aggregazione e minification.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/23/2020
+ms.date: 09/02/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: 84123464e8f01f8a3caa65035b3174cc04aea7cf
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f696df0b421e5aab6f50cfaec3ca8edac894cea9
+ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625856"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89379393"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Aggregare e minimizzare asset statici in ASP.NET Core
 
@@ -64,7 +64,7 @@ Originale | Ridenominazione
 
 Nella tabella seguente vengono descritte le differenze tra il caricamento individuale degli asset e l'utilizzo di bundle e minification:
 
-Azione | Con B/M | Senza B/M | Modifica
+Action | Con B/M | Senza B/M | Modifica
 --- | :---: | :---: | :---:
 Richieste di file  | 7   | 18     | 157%
 KB trasferiti | 156 | 264,68 | 70%
@@ -77,6 +77,9 @@ I browser sono piuttosto dettagliati rispetto alle intestazioni delle richieste 
 I modelli di Razor progetto MVC e Pages forniscono una soluzione per la creazione di bundle e minification costituiti da un file di configurazione JSON. Gli strumenti di terze parti, ad [esempio l'attività](xref:client-side/using-grunt) Runner, eseguono le stesse attività con una maggiore complessità. Uno strumento di terze parti è un'ottima soluzione quando il flusso di lavoro di sviluppo richiede l'elaborazione oltre la creazione di bundle e minification &mdash; , ad esempio l'ottimizzazione delle immagini e dei pelucchi. Con la creazione di bundle e minification in fase di progettazione, i file minimizzati vengono creati prima della distribuzione dell'app. La creazione di bundle e minimizzazione prima della distribuzione offre il vantaggio di ridurre il carico del server. Tuttavia, è importante riconoscere che la creazione di bundle in fase di progettazione e minification aumenta la complessità della compilazione e funziona solo con i file statici.
 
 ## <a name="configure-bundling-and-minification"></a>Configurare la creazione di bundle e minification
+
+> [!NOTE]
+> Per il corretto funzionamento di questo pacchetto NuGet [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier) è necessario aggiungerlo al progetto.
 
 ::: moniker range="<= aspnetcore-2.0"
 
