@@ -180,7 +180,7 @@
         - name: Sicurezza delle app Web >>
           displayName: 'tutorial, identity'
           href: /learn/modules/secure-aspnet-core-identity/
-- name: Concetti fondamentali
+- name: Nozioni fondamentali
   items:
     - name: Panoramica
       uid: fundamentals/index
@@ -720,8 +720,6 @@
       uid: grpc/clientfactory
     - name: Usare gRPC nelle app del browser
       uid: grpc/browser
-    - name: Comunicazione tra processi con gRPC
-      uid: grpc/interprocess
     - name: Create API Web JSON da gRPC
       uid: grpc/httpapi
     - name: Configurazione
