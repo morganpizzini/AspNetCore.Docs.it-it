@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/blazor-server-ef-core
-ms.openlocfilehash: 7627d6981fbee66ba19a7065cefb197e50a5fd25
-ms.sourcegitcommit: 4cce99cbd44372fd4575e8da8c0f4345949f4d9a
+ms.openlocfilehash: a1b295b2ce42bc5ee06b8b9579ea2c70d480580a
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2020
-ms.locfileid: "89153519"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009661"
 ---
 # <a name="aspnet-core-no-locblazor-server-with-entity-framework-core-efcore"></a>ASP.NET Core Blazor Server con Entity Framework Core (EFCore)
 
@@ -120,7 +120,7 @@ La factory viene inserita in componenti e usata per creare nuove istanze. Ad ese
 @inject IDbContextFactory<ContactContext> DbFactory
 ```
 
-L'app di esempio garantisce che il contatto venga eliminato quando il componente viene eliminato:
+L'app di esempio garantisce che il contesto venga eliminato quando il componente viene eliminato:
 
 [!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet1)]
 
@@ -227,7 +227,7 @@ La factory viene inserita in componenti e usata per creare nuove istanze. Ad ese
 @inject IDbContextFactory<ContactContext> DbFactory
 ```
 
-L'app di esempio garantisce che il contatto venga eliminato quando il componente viene eliminato:
+L'app di esempio garantisce che il contesto venga eliminato quando il componente viene eliminato:
 
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet1)]
 

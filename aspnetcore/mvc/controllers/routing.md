@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 83ddb49f60058ecc744163faa2f5c454abc7b42d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 08cd6396cca78488827dfa7c2cca62a35c500dbd
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630312"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009700"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing ad azioni del controller in ASP.NET Core
 
@@ -152,7 +152,7 @@ La maggior parte delle app dovrebbe scegliere uno schema di routing semplice e d
 
 * Supporta uno schema di routing semplice e descrittivo.
 * È un punto iniziale utile per le app basate su interfaccia utente.
-* È l'unico modello di route necessario per molte app dell'interfaccia utente Web. Per le app di interfaccia utente Web di dimensioni maggiori, un'altra route che usa le [aree](#areas) se di frequente è sufficiente.
+* È l'unico modello di route necessario per molte app dell'interfaccia utente Web. Per le app di interfaccia utente Web di dimensioni maggiori, un'altra route che usa le [aree](#areas) è spesso sufficiente.
 
 <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> e <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> :
 

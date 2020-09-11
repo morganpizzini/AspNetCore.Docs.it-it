@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 26e8239634c3edb99c7606ab2e250c69af4e746f
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: be1584e72fc1504ac9f8ca10a6b084c95a579b5b
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865291"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009622"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Creazione e utilizzo di Razor componenti ASP.NET Core
 
@@ -50,7 +50,7 @@ Quando si accede al contenuto sulla Razor sintassi, prestare particolare attenzi
 
 Il nome di un componente deve iniziare con un carattere maiuscolo. Ad esempio, `MyCoolComponent.razor` è valido e `myCoolComponent.razor` non è valido.
 
-### <a name="routing"></a>Routing
+### <a name="routing"></a>Routing.
 
 Il routing in Blazor viene effettuato fornendo un modello di route a ogni componente accessibile nell'app. Quando Razor viene compilato un file con una [`@page`][9] direttiva, alla classe generata viene assegnato un oggetto che <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifica il modello di route. In fase di esecuzione, il router cerca le classi di componenti con un oggetto <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> ed esegue il rendering di qualsiasi componente con un modello di route corrispondente all'URL richiesto. Per altre informazioni, vedere <xref:blazor/fundamentals/routing>.
 
@@ -266,7 +266,7 @@ Nell'esempio seguente dall'app di esempio, `ParentComponent` imposta il valore d
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
 > [!WARNING]
-> Non creare componenti che scrivono nei propri *parametri del componente* quando il contenuto del componente viene sottoposto a rendering con un <xref:Microsoft.AspNetCore.Components.RenderFragment> , utilizzare un campo privato. Per ulteriori informazioni, vedere la sezione [parametri sovrascritti `RenderFragment` con](#overwritten-parameters-with-renderfragment) .
+> Non creare componenti che scrivono nei propri *parametri del componente*, usare invece un campo privato. Per ulteriori informazioni, vedere la sezione [parametri sovrascritti](#overwritten-parameters) .
 
 ## <a name="child-content"></a>Contenuto figlio
 
@@ -625,14 +625,9 @@ In genere, è opportuno fornire uno dei seguenti tipi di valore per [`@key`][5] 
 
 Verificare che i valori usati per non siano in [`@key`][5] conflitto. Se vengono rilevati valori di conflitto nello stesso elemento padre, Blazor genera un'eccezione perché non è in grado di eseguire il mapping deterministico di elementi o componenti precedenti a nuovi elementi o componenti. Utilizzare solo valori distinti, ad esempio istanze di oggetti o valori di chiave primaria.
 
-## <a name="overwritten-parameters-with-renderfragment"></a>Parametri sovrascritti con `RenderFragment`
+## <a name="overwritten-parameters"></a>Parametri sovrascritti
 
-I parametri vengono sovrascritti nei casi seguenti:
-
-* Viene eseguito il rendering del contenuto di un componente figlio con un oggetto <xref:Microsoft.AspNetCore.Components.RenderFragment> .
-* <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> viene chiamato nel componente padre.
-
-I parametri vengono reimpostati perché il componente padre esegue nuovamente il rendering quando <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> viene chiamato il metodo e vengono specificati nuovi valori di parametro per il componente figlio.
+Vengono forniti nuovi valori di parametro, in genere sovrascrivendo quelli esistenti, quando viene eseguito il rendering del componente padre.
 
 Si consideri il `Expander` componente seguente:
 

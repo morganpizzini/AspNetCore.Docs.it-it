@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 117c777dc9ae1b8c6448f097132454b714a1b5dc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bc968489a35405c1be0a4ac2e52e6dff4c3af050
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632161"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009739"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Risolvere i problemi relativi a ASP.NET Core in app Azure servizio e IIS
 
@@ -167,7 +167,7 @@ Per correggere questo errore, riparare l'installazione del [bundle di hosting di
 
 ### <a name="50037-ancm-failed-to-start-within-startup-time-limit"></a>500.37 ANCM Failed to Start Within Startup Time Limit (500.37 Avvio del modulo ASP.NET Core non riuscito entro il limite di tempo stabilito)
 
-Il modulo ASP.NET Core non è stato avviato entro il limite di tempo specificato. Per impostazione predefinita, il timeout è di 120 secondi.
+MODULO ASP.NET Core non è stato avviato entro il limite di tempo di avvio specificato. Per impostazione predefinita, il timeout è di 120 secondi.
 
 Questo errore può verificarsi quando si avvia un numero elevato di app nello stesso computer. Controllare i picchi di utilizzo della CPU e della memoria nel server durante l'avvio. Può essere necessario scaglionare il processo di avvio di più app.
 

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: d88cad10314872271250cd43212a64698f485381
-ms.sourcegitcommit: 8ed9a413bdc2d665ad11add8828898d726ccb106
+ms.openlocfilehash: eef08d8236241d2930a1a1a45ca0181669f2432c
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/01/2020
-ms.locfileid: "89280400"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009648"
 ---
 # <a name="aspnet-core-no-locblazor-data-binding"></a>ASP.NET Core Blazor Data Binding
 
@@ -145,37 +145,22 @@ Non è consigliabile specificare un formato per il `date` tipo di campo perché 
 
 I parametri del componente consentono di associare proprietà e campi di un componente padre con la `@bind-{PROPERTY OR FIELD}` sintassi.
 
-Il `Child` componente seguente ( `Child.razor` ) ha un `Year` parametro del componente e un `YearChanged` callback:
+Il `Child` componente seguente ( `Shared/Child.razor` ) ha un `Year` parametro del componente e un `YearChanged` callback:
 
 ```razor
 <div class="card bg-light mt-3" style="width:18rem ">
     <div class="card-body">
         <h3 class="card-title">Child Component</h3>
         <p class="card-text">Child <code>Year</code>: @Year</p>
-        <p>
-            <button @onclick="UpdateYear">
-                Update Child <code>Year</code> and call 
-                <code>YearChanged.InvokeAsync(Year)</code>
-            </button>
-        </p>
     </div>
 </div>
 
 @code {
-    private Random r = new Random();
-
     [Parameter]
     public int Year { get; set; }
 
     [Parameter]
     public EventCallback<int> YearChanged { get; set; }
-
-    private Task UpdateYear()
-    {
-        Year = r.Next(10050, 12021);
-
-        return YearChanged.InvokeAsync(Year);
-    }
 }
 ```
 
@@ -196,7 +181,7 @@ Nel componente seguente `Parent` ( `Parent.razor` ) il `year` campo è associato
 
 @code {
     private Random r = new Random();
-    private int year = 1978;
+    private int year = 1979;
 
     private void UpdateYear()
     {
@@ -221,19 +206,19 @@ Un binding concatenato non può essere implementato con [`@bind`](xref:mvc/views
 
 Il `PasswordField` componente seguente ( `PasswordField.razor` ):
 
-* Imposta `<input>` il valore di un elemento su una `Password` Proprietà.
-* Espone le modifiche della `Password` proprietà a un componente padre con un oggetto [`EventCallback`](xref:blazor/components/event-handling#eventcallback) .
+* Imposta `<input>` il valore di un elemento su un `password` campo.
+* Espone le modifiche di una `Password` proprietà a un componente padre con un oggetto [`EventCallback`](xref:blazor/components/event-handling#eventcallback) che passa il valore corrente del campo figlio `password` come argomento.
 * Usa l' `onclick` evento per attivare il `ToggleShowPassword` metodo. Per altre informazioni, vedere <xref:blazor/components/event-handling>.
 
 ```razor
-<h1>Child Component</h1>
+<h1>Provide your password</h1>
 
 Password:
 
 <input @oninput="OnPasswordChanged" 
        required 
        type="@(showPassword ? "text" : "password")" 
-       value="@Password" />
+       value="@password" />
 
 <button class="btn btn-primary" @onclick="ToggleShowPassword">
     Show password
@@ -241,6 +226,7 @@ Password:
 
 @code {
     private bool showPassword;
+    private string password;
 
     [Parameter]
     public string Password { get; set; }
@@ -250,9 +236,9 @@ Password:
 
     private Task OnPasswordChanged(ChangeEventArgs e)
     {
-        Password = e.Value.ToString();
+        password = e.Value.ToString();
 
-        return PasswordChanged.InvokeAsync(Password);
+        return PasswordChanged.InvokeAsync(password);
     }
 
     private void ToggleShowPassword()
@@ -276,12 +262,7 @@ Il `PasswordField` componente viene usato in un altro componente:
 }
 ```
 
-Per eseguire controlli o intercettare gli errori sulla password nell'esempio precedente:
-
-* Creare un campo di supporto per `Password` ( `password` nell'esempio di codice seguente).
-* Eseguire i controlli o gli errori di trap nel `Password` Setter.
-
-Nell'esempio seguente viene fornito un feedback immediato all'utente se viene utilizzato uno spazio nel valore della password:
+Eseguire controlli o errori di trap nel metodo che richiama il delegato dell'associazione. Nell'esempio seguente viene fornito un feedback immediato all'utente se viene utilizzato uno spazio nel valore della password:
 
 ```razor
 <h1>Child Component</h1>
@@ -291,7 +272,7 @@ Password:
 <input @oninput="OnPasswordChanged" 
        required 
        type="@(showPassword ? "text" : "password")" 
-       value="@Password" />
+       value="@password" />
 
 <button class="btn btn-primary" @onclick="ToggleShowPassword">
     Show password
@@ -305,34 +286,25 @@ Password:
     private string validationMessage;
 
     [Parameter]
-    public string Password
-    {
-        get { return password ?? string.Empty; }
-        set
-        {
-            if (password != value)
-            {
-                if (value.Contains(' '))
-                {
-                    validationMessage = "Spaces not allowed!";
-                }
-                else
-                {
-                    password = value;
-                    validationMessage = string.Empty;
-                }
-            }
-        }
-    }
+    public string Password { get; set; }
 
     [Parameter]
     public EventCallback<string> PasswordChanged { get; set; }
 
     private Task OnPasswordChanged(ChangeEventArgs e)
     {
-        Password = e.Value.ToString();
+        if (password.Contains(' '))
+        {
+            validationMessage = "Spaces not allowed!";
 
-        return PasswordChanged.InvokeAsync(Password);
+            return Task.CompletedTask;
+        }
+        else
+        {
+            validationMessage = string.Empty;
+
+            return PasswordChanged.InvokeAsync(password);
+        }
     }
 
     private void ToggleShowPassword()

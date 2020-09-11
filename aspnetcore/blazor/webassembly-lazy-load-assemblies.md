@@ -5,7 +5,7 @@ description: Scopri come Lazy caricare gli assembly nelle Blazor WebAssembly app
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/25/2020
+ms.date: 09/09/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: 46f98080ad40f614f9cb1af2190f263d205c1016
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: f9b6766c2f46274e06cab18fd35b5e417e9bfa97
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865153"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009609"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>Assembly di caricamento lazy in ASP.NET Core Blazor WebAssembly
 
@@ -114,8 +114,11 @@ All'interno di `OnNavigateAsync` implementare la logica per determinare gli asse
 * Usa l'interoperabilità JS per recuperare assembly tramite una chiamata di rete.
 * Carica gli assembly nel runtime in esecuzione su webassembly nel browser.
 
-> [!NOTE]
-> L'implementazione del caricamento lazy del Framework supporta il prerendering sul server. Durante il prerendering, si presuppone che tutti gli assembly, inclusi quelli contrassegnati per il caricamento lazy, siano caricati.
+L'implementazione del caricamento lazy del Framework supporta il caricamento lazy con il prerendering in una soluzione ospitata Blazor . Durante il prerendering, si presuppone che tutti gli assembly, inclusi quelli contrassegnati per il caricamento lazy, siano caricati. Eseguire la registrazione manuale `LazyAssemblyLoader` nel metodo del progetto *Server* `Startup.ConfigureServices` ( `Startup.cs` ):
+
+```csharp
+services.AddSingleton<LazyAssemblyLoader>();
+```
 
 ### <a name="user-interaction-with-navigating-content"></a>Interazione dell'utente con il `<Navigating>` contenuto
 

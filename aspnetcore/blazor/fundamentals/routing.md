@@ -5,7 +5,7 @@ description: Informazioni su come instradare le richieste nelle app e sul compon
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/14/2020
+ms.date: 09/02/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: eb9e3cbddd2eaca8fef9a6782c28bbce4c029f58
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: fe67ebfefb463ab698e5ff1bb7d9b527a28a596e
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865324"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009583"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>BlazorRouting ASP.NET Core
 
@@ -161,16 +161,35 @@ Sono disponibili i vincoli di route indicati nella tabella seguente. Per ulterio
 
 ### <a name="routing-with-urls-that-contain-dots"></a>Routing con URL contenenti punti
 
-Nelle Blazor Server app la route predefinita in `_Host.cshtml` è `/` ( `@page "/"` ). Un URL di richiesta che contiene un punto ( `.` ) non corrisponde alla route predefinita perché l'URL viene visualizzato per richiedere un file. Un' Blazor app restituisce una risposta *404 non trovata* per un file statico che non esiste. Per usare le route che contengono un punto, configurare `_Host.cshtml` con il modello di route seguente:
+Per Blazor WebAssembly le app e ospitate Blazor Server , il modello di route predefinito sul lato server presuppone che se l'ultimo segmento di un URL della richiesta contiene un punto ( `.` ) richiesto da un file, ad esempio `https://localhost.com:5001/example/some.thing` . Senza alcuna configurazione aggiuntiva, un'app restituisce una risposta *404 non trovata* se questa era destinata al routing a un componente. Per usare una route con uno o più parametri che contengono un punto, l'app deve configurare la route con un modello personalizzato.
 
-```cshtml
-@page "/{**path}"
+Si consideri il `Example` componente seguente che può ricevere un parametro di route dall'ultimo segmento dell'URL:
+
+```razor
+@page "/example"
+@page "/example/{param}"
+
+<p>
+    Param: @Param
+</p>
+
+@code {
+    [Parameter]
+    public string Param { get; set; }
+}
 ```
 
-Il `"/{**path}"` modello include:
+Per consentire all'app *Server* di una soluzione ospitata Blazor WebAssembly di instradare la richiesta con un punto nel `param` parametro, aggiungere un modello di route per il file di fallback con il parametro facoltativo in `Startup.Configure` ( `Startup.cs` ):
 
-* Double-asterisco *catch-all* Syntax ( `**` ) per acquisire il percorso tra più limiti di cartella senza decodificare le barre ( `/` ).
-* `path` nome del parametro di route.
+```csharp
+endpoints.MapFallbackToFile("/example/{param?}", "index.html");
+```
+
+Per configurare un' Blazor Server app per instradare la richiesta con un punto nel `param` parametro, aggiungere un modello di route della pagina di fallback con il parametro facoltativo in `Startup.Configure` ( `Startup.cs` ):
+
+```csharp
+endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
+```
 
 Per altre informazioni, vedere <xref:fundamentals/routing>.
 
