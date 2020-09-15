@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: d933a677a063d50fbe708264106e3ce19400a270
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 82969bf92965bfdeb1d1474ab47ca74ecbe6dd97
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628573"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080303"
 ---
 # <a name="aspnet-core-no-locrazor-components-class-libraries"></a>RazorLibrerie di classi dei componenti ASP.NET Core
 
@@ -42,9 +42,9 @@ Così come i componenti sono tipi .NET normali, i componenti forniti da un RCL s
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Creare un nuovo progetto.
-1. Selezionare ** Razor libreria di classi**. Selezionare **Avanti**.
+1. Selezionare ** Razor libreria di classi**. Selezionare **Next** (Avanti).
 1. Nella finestra di dialogo **Crea una nuova Razor libreria di classi** Selezionare **Crea**.
-1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `ComponentLibrary` . Selezionare **Create** (Crea).
+1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `ComponentLibrary` . Selezionare **Crea**.
 1. Aggiungere RCL a una soluzione:
    1. Fare clic con il pulsante destro del mouse sulla soluzione. Selezionare **Aggiungi**  >  **progetto esistente**.
    1. Passare al file di progetto di RCL.
@@ -183,5 +183,16 @@ Caricare il pacchetto in NuGet usando il [`dotnet nuget push`](/dotnet/core/tool
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
+::: moniker range=">= aspnetcore-5.0"
+
 * <xref:razor-pages/ui-class>
-* [Aggiungere un file di configurazione del linker XML a una raccolta](xref:blazor/host-and-deploy/configure-linker#add-an-xml-linker-configuration-file-to-a-library)
+* [Aggiungere un file di configurazione del trimmer XML Intermediate Language (IL) a una raccolta](xref:blazor/host-and-deploy/configure-trimmer)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* <xref:razor-pages/ui-class>
+* [Aggiungere un file di configurazione del linker (IL) XML Intermediate Language (IL) a una raccolta](xref:blazor/host-and-deploy/configure-linker#add-an-xml-linker-configuration-file-to-a-library)
+
+::: moniker-end

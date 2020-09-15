@@ -16,13 +16,14 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
+- Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 3d83141b8b638a369b08b0fadafccd96c0b48214
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: ebce9f2f4992d83c6b28edb5c771cdfc8a7a0b6a
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876789"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080381"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Esercitazione: creare un'API Web con ASP.NET Core
 
@@ -117,7 +118,7 @@ Il diagramma seguente visualizza la struttura dell'app.
 
   ![Selezione modello API macOS](first-web-api-mac/_static/api_template.png)
 
-* Nella finestra di dialogo **Configura nuova ASP.NET Core API Web** selezionare il **Framework di destinazione**.NET Core 3. x più recente. Selezionare **Avanti**.
+* Nella finestra di dialogo **Configura nuova ASP.NET Core API Web** selezionare il **Framework di destinazione**.NET Core 3. x più recente. Selezionare **Next** (Avanti).
 
 * Immettere *TodoApi* in **Nome progetto**, quindi selezionare **Crea**.
 
@@ -197,25 +198,25 @@ Un *modello* è un set di classi che rappresentano i dati gestiti dall'app. Il m
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* In **Esplora soluzioni**fare clic con il pulsante destro del mouse sul progetto. Selezionare **Aggiungi**  >  **nuova cartella**. Assegnare il nome *Modelli* alla cartella.
+* In **Esplora soluzioni**fare clic con il pulsante destro del mouse sul progetto. Selezionare **Aggiungi**  >  **nuova cartella**. Assegnare un nome alla cartella *Models* .
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Models* e scegliere **Aggiungi** > **Classe**. Assegnare alla classe il nome *TodoItem* e selezionare **Aggiungi**.
+* Fare clic con il pulsante destro del mouse sulla *Models* cartella e scegliere **Aggiungi**  >  **classe**. Assegnare alla classe il nome *TodoItem* e selezionare **Aggiungi**.
 
 * Sostituire il codice del modello con il codice seguente:
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Aggiungere una cartella denominata *Modelli*.
+* Aggiungere una cartella denominata *Models* .
 
-* Aggiungere una classe `TodoItem` alla cartella *Models* con il codice seguente:
+* Aggiungere una `TodoItem` classe alla *Models* cartella con il codice seguente:
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Fare clic con il pulsante destro del mouse sul progetto. Selezionare **Aggiungi**  >  **nuova cartella**. Assegnare il nome *Modelli* alla cartella.
+* Fare clic con il pulsante destro del mouse sul progetto. Selezionare **Aggiungi**  >  **nuova cartella**. Assegnare un nome alla cartella *Models* .
 
   ![Nuova cartella](first-web-api-mac/_static/folder.png)
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Models* e selezionare **Aggiungi** > **Nuovo file** > **Generale** > **Classe vuota**.
+* Fare clic con il pulsante destro del mouse sulla *Models* cartella e scegliere **Aggiungi** > **nuovo file** > **generale** > **vuota classe**.
 
 * Assegnare alla classe il nome *TodoItem* e fare clic su **Nuovo**.
 
@@ -227,7 +228,7 @@ Un *modello* è un set di classi che rappresentano i dati gestiti dall'app. Il m
 
 La proprietà `Id` funziona come chiave univoca in un database relazionale.
 
-È possibile inserire le classi del modello in qualsiasi punto del progetto, ma per convenzione viene usata la cartella *Models*.
+Le classi di modelli possono essere inserite in qualsiasi punto del progetto, ma la *Models* cartella viene utilizzata per convenzione.
 
 ## <a name="add-a-database-context"></a>Aggiungere un contesto di database
 
@@ -247,11 +248,11 @@ Il *contesto di database* è la classe principale che coordina le funzionalità 
 
 ## <a name="add-the-todocontext-database-context"></a>Aggiungere il contesto del database TodoContext
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Models* e scegliere **Aggiungi** > **Classe**. Assegnare alla classe il nome *TodoContext* e fare clic su **Aggiungi**.
+* Fare clic con il pulsante destro del mouse sulla *Models* cartella e scegliere **Aggiungi**  >  **classe**. Assegnare alla classe il nome *TodoContext* e fare clic su **Aggiungi**.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Aggiungere una classe `TodoContext` alla cartella *Models*.
+* Aggiungere una `TodoContext` classe alla *Models* cartella.
 
 ---
 
@@ -282,8 +283,8 @@ Il codice precedente:
 * Selezionare **Controller API con azioni, che usa Entity Framework** e quindi selezionare **Aggiungi**.
 * Nella finestra di dialogo **Add API Controller with actions, using Entity Framework** (Aggiungi controller API con azioni, che usa Entity Framework):
 
-  * Selezionare **TodoItem (TodoApi. Models)** nella **classe del modello**.
-  * Selezionare **TodoContext (TodoApi. Models)** nella **classe del contesto dati**.
+  * Selezionare **TodoItem (TodoApi. Models )** nella **classe del modello**.
+  * Selezionare **TodoContext (TodoApi. Models )** nella **classe del contesto dati**.
   * Selezionare **Aggiungi**.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
@@ -352,7 +353,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
 * Selezionare la scheda **Corpo**.
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)**.
@@ -377,7 +378,7 @@ Questa esercitazione usa Postman per testare l'API Web.
   ![Scheda Headers (Intestazioni) della console Postman](first-web-api/_static/3/create.png)
 
 * Impostare il metodo HTTP su `GET`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio, `https://localhost:5001/api/TodoItems/1`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio: `https://localhost:5001/api/TodoItems/1`.
 * Selezionare **Send** (Invia).
 
 ## <a name="examine-the-get-methods"></a>Esaminare i metodi GET
@@ -387,7 +388,7 @@ Questi metodi implementano due metodi GET:
 * `GET /api/TodoItems`
 * `GET /api/TodoItems/{id}`
 
-Testare l'app chiamando i due endpoint da un browser o da Postman. Ad esempio:
+Testare l'app chiamando i due endpoint da un browser o da Postman. Esempio:
 
 * `https://localhost:5001/api/TodoItems`
 * `https://localhost:5001/api/TodoItems/1`
@@ -408,7 +409,7 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su **GET**.
-* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
+* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -599,7 +600,7 @@ Il diagramma seguente visualizza la struttura dell'app.
 
 * In Visual Studio per Mac precedente alla versione 8,6 Selezionare API **app .NET Core**  >  **App**  >  **API**  >  **Avanti**. Nella versione 8,6 o successive selezionare API **app Web e console**  >  **App**  >  **API**  >  **Avanti**.
   
-* Nella finestra di dialogo **Configura nuova ASP.NET Core API Web** selezionare il **Framework di destinazione**.NET Core 2. x più recente. Selezionare **Avanti**.
+* Nella finestra di dialogo **Configura nuova ASP.NET Core API Web** selezionare il **Framework di destinazione**.NET Core 2. x più recente. Selezionare **Next** (Avanti).
 
 * Immettere *TodoApi* in **Nome progetto**, quindi selezionare **Crea**.
 
@@ -639,25 +640,25 @@ Un *modello* è un set di classi che rappresentano i dati gestiti dall'app. Il m
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* In **Esplora soluzioni**fare clic con il pulsante destro del mouse sul progetto. Selezionare **Aggiungi**  >  **nuova cartella**. Assegnare il nome *Modelli* alla cartella.
+* In **Esplora soluzioni**fare clic con il pulsante destro del mouse sul progetto. Selezionare **Aggiungi**  >  **nuova cartella**. Assegnare un nome alla cartella *Models* .
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Models* e scegliere **Aggiungi** > **Classe**. Assegnare alla classe il nome *TodoItem* e selezionare **Aggiungi**.
+* Fare clic con il pulsante destro del mouse sulla *Models* cartella e scegliere **Aggiungi**  >  **classe**. Assegnare alla classe il nome *TodoItem* e selezionare **Aggiungi**.
 
 * Sostituire il codice del modello con il codice seguente:
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Aggiungere una cartella denominata *Modelli*.
+* Aggiungere una cartella denominata *Models* .
 
-* Aggiungere una classe `TodoItem` alla cartella *Models* con il codice seguente:
+* Aggiungere una `TodoItem` classe alla *Models* cartella con il codice seguente:
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Fare clic con il pulsante destro del mouse sul progetto. Selezionare **Aggiungi**  >  **nuova cartella**. Assegnare il nome *Modelli* alla cartella.
+* Fare clic con il pulsante destro del mouse sul progetto. Selezionare **Aggiungi**  >  **nuova cartella**. Assegnare un nome alla cartella *Models* .
 
   ![Nuova cartella](first-web-api-mac/_static/folder.png)
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Models* e selezionare **Aggiungi** > **Nuovo file** > **Generale** > **Classe vuota**.
+* Fare clic con il pulsante destro del mouse sulla *Models* cartella e scegliere **Aggiungi** > **nuovo file** > **generale** > **vuota classe**.
 
 * Assegnare alla classe il nome *TodoItem* e fare clic su **Nuovo**.
 
@@ -669,7 +670,7 @@ Un *modello* è un set di classi che rappresentano i dati gestiti dall'app. Il m
 
 La proprietà `Id` funziona come chiave univoca in un database relazionale.
 
-È possibile inserire le classi del modello in qualsiasi punto del progetto, ma per convenzione viene usata la cartella *Models*.
+Le classi di modelli possono essere inserite in qualsiasi punto del progetto, ma la *Models* cartella viene utilizzata per convenzione.
 
 ## <a name="add-a-database-context"></a>Aggiungere un contesto di database
 
@@ -677,11 +678,11 @@ Il *contesto di database* è la classe principale che coordina le funzionalità 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Models* e scegliere **Aggiungi** > **Classe**. Assegnare alla classe il nome *TodoContext* e fare clic su **Aggiungi**.
+* Fare clic con il pulsante destro del mouse sulla *Models* cartella e scegliere **Aggiungi**  >  **classe**. Assegnare alla classe il nome *TodoContext* e fare clic su **Aggiungi**.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Aggiungere una classe `TodoContext` alla cartella *Models*.
+* Aggiungere una `TodoContext` classe alla *Models* cartella.
 
 ---
 
@@ -744,7 +745,7 @@ Questi metodi implementano due metodi GET:
 
 Arrestare l'app se è ancora in esecuzione. Quindi eseguirla di nuovo per includere le modifiche più recenti.
 
-Testare l'app chiamando i due endpoint da un browser. Ad esempio:
+Testare l'app chiamando i due endpoint da un browser. Esempio:
 
 * `https://localhost:<port>/api/todo`
 * `https://localhost:<port>/api/todo/1`
@@ -809,7 +810,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
   * Impostare il metodo HTTP su **GET**.
-  * Impostare l'URI della richiesta su `https://localhost:<port>/api/todo` . Ad esempio, `https://localhost:5001/api/todo`
+  * Impostare l'URI della richiesta su `https://localhost:<port>/api/todo` . Ad esempio: `https://localhost:5001/api/todo`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -835,7 +836,7 @@ Il metodo `CreatedAtAction`:
 
 * Compilare il progetto.
 * In Postman impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItem` . Ad esempio, `https://localhost:5001/api/TodoItem`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItem` . Ad esempio: `https://localhost:5001/api/TodoItem`.
 * Selezionare la scheda **Corpo**.
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)**.

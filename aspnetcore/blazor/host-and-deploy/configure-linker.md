@@ -2,7 +2,7 @@
 title: Configurare il linker per ASP.NET Core Blazor
 author: guardrex
 description: Informazioni su come controllare il linker del linguaggio intermedio (IL) durante la compilazione di un' Blazor app.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 <= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/configure-linker
-ms.openlocfilehash: 27a7edf0de1acc107d324afe07db63624615e550
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f6b0412540f33aac7b0b35c7fc64ab110e68a340
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628131"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080290"
 ---
 # <a name="configure-the-linker-for-aspnet-core-no-locblazor"></a>Configurare il linker per ASP.NET Core Blazor
 
@@ -31,7 +31,7 @@ Di [Luke Latham](https://github.com/guardrex)
 
 Blazor WebAssembly esegue il collegamento del [linguaggio intermedio (il)](/dotnet/standard/managed-code#intermediate-language--execution) durante una compilazione per eliminare il il non necessario dagli assembly di output dell'app. Il linker è disabilitato durante la compilazione nella configurazione di debug. Per abilitare il linker, le app devono essere compilate in configurazione versione. Quando si distribuiscono le app, è consigliabile creare in versione Blazor WebAssembly . 
 
-Il collegamento di un'app ottimizza le dimensioni, ma può avere effetti negativi. Le app che usano la reflection o le funzionalità dinamiche correlate potrebbero interrompersi quando vengono tagliate perché il linker non è a conoscenza di questo comportamento dinamico e non può determinare in generale quali tipi sono necessari per la reflection in fase di esecuzione. Per tagliare tali app, il linker deve essere informato sui tipi necessari per la reflection nel codice e nei pacchetti o Framework da cui dipende l'app. 
+Il collegamento di un'app ottimizza le dimensioni, ma può avere effetti negativi. Le app che usano la reflection o le funzionalità dinamiche correlate potrebbero interrompersi quando vengono tagliate perché il linker non è a conoscenza di questo comportamento dinamico e non può determinare in generale quali tipi sono necessari per la reflection in fase di esecuzione. Per tagliare tali app, il linker deve essere informato sui tipi necessari per la reflection nel codice e nei pacchetti o Framework da cui dipende l'app.
 
 Per assicurarsi che l'app tagliata funzioni correttamente una volta distribuita, è importante testare le build di rilascio dell'app spesso durante lo sviluppo.
 

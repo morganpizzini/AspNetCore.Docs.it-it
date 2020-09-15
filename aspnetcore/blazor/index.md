@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: abebd5fde514975b1dcb642a3d378e33c3836fa9
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ace2285e3265e7bb2ec50c8afce2eb9c296fd524
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628066"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080342"
 ---
 # <a name="introduction-to-aspnet-core-no-locblazor"></a>Introduzione a ASP.NET Core Blazor
 
@@ -131,9 +131,21 @@ Quando un' Blazor WebAssembly app viene compilata ed eseguita in un browser:
 
 La dimensione dell'app pubblicata, ovvero la *dimensione del payload*, è un fattore cruciale per le prestazioni ai fini dell'usabilità dell'app. Un'app di grandi dimensioni impiega relativamente molto tempo a essere scaricata in un browser, influendo negativamente sull'esperienza utente. Blazor WebAssembly Ottimizza le dimensioni del payload per ridurre i tempi di download:
 
+::: moniker range=">= aspnetcore-5.0"
+
+* Il codice inutilizzato viene rimosso dall'app quando viene pubblicato dal [trimmer del linguaggio intermedio (il)](xref:blazor/host-and-deploy/configure-trimmer).
+* Le risposte HTTP vengono compresse.
+* Il runtime e gli assembly .NET vengono memorizzati nella cache nel browser.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * Il codice non usato viene rimosso dall'app quando questa viene pubblicata dal [linker del linguaggio intermedio](xref:blazor/host-and-deploy/configure-linker).
 * Le risposte HTTP vengono compresse.
 * Il runtime e gli assembly .NET vengono memorizzati nella cache nel browser.
+
+::: moniker-end
 
 ## Blazor Server
 

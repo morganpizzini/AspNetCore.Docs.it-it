@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 91d0eb7b4910d1cf19b179372546afa63cd3f9c1
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: 5d3cd1480dd37f437b2d6d5a89af0a842286be95
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009596"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080264"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>Blazor WebAssemblyProcedure consigliate per le prestazioni ASP.NET Core
 
@@ -141,9 +141,21 @@ Blazor WebAssembly offre due versioni aggiuntive di <xref:Microsoft.JSInterop.IJ
 
 ## <a name="reduce-app-size"></a>Ridurre le dimensioni dell'app
 
+::: moniker range=">= aspnetcore-5.0"
+
+### <a name="intermediate-language-il-trimming"></a>Troncamento del linguaggio intermedio (IL)
+
+Il [trimming degli assembly inutilizzati da un' Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-trimmer) consente di ridurre le dimensioni dell'app rimuovendo il codice inutilizzato nei file binari dell'app. Per impostazione predefinita, il trimmer viene eseguito durante la pubblicazione di un'applicazione. Per trarre vantaggio dal taglio, pubblicare l'app per la distribuzione usando il [`dotnet publish`](/dotnet/core/tools/dotnet-publish) comando con l'opzione [-c |--Configuration](/dotnet/core/tools/dotnet-publish#options) impostata su `Release` :
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ### <a name="intermediate-language-il-linking"></a>Collegamento del linguaggio intermedio (IL)
 
-Il [collegamento di un' Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-linker) consente di ridurre le dimensioni dell'app, ritagliando il codice inutilizzato nei file binari dell'app. Per impostazione predefinita, il linker viene abilitato solo quando si compila nella `Release` configurazione. Per trarre vantaggio da questo problema, pubblicare l'app per la distribuzione usando il [`dotnet publish`](/dotnet/core/tools/dotnet-publish) comando con l'opzione [-c |--Configuration](/dotnet/core/tools/dotnet-publish#options) impostata su `Release` :
+Il [collegamento di un' Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-linker) consente di ridurre le dimensioni dell'app, ritagliando il codice inutilizzato nei file binari dell'app. Per impostazione predefinita, il linker linguaggio intermedio (IL) viene abilitato solo quando si compila nella `Release` configurazione. Per trarre vantaggio da questo problema, pubblicare l'app per la distribuzione usando il [`dotnet publish`](/dotnet/core/tools/dotnet-publish) comando con l'opzione [-c |--Configuration](/dotnet/core/tools/dotnet-publish#options) impostata su `Release` :
+
+::: moniker-end
 
 ```dotnetcli
 dotnet publish -c Release
@@ -173,13 +185,14 @@ Blazor WebAssemblyil runtime di include le seguenti funzionalità .NET che posso
 
 ::: moniker range=">= aspnetcore-5.0"
 
-* Per impostazione predefinita, include Blazor WebAssembly le risorse di globalizzazione necessarie per visualizzare i valori, ad esempio le date e la valuta, nelle impostazioni cultura dell'utente. Se l'app non richiede la localizzazione, è possibile configurare l'app in modo che supporti la lingua inglese, che è basata sulle `en-US` impostazioni cultura:
+* Per impostazione predefinita, include Blazor WebAssembly le risorse di globalizzazione necessarie per visualizzare i valori, ad esempio le date e la valuta, nelle impostazioni cultura dell'utente. Se l'app non richiede la localizzazione, è possibile [configurare l'app in modo che supporti la lingua inglese](xref:blazor/globalization-localization), che è basata sulle `en-US` impostazioni cultura:
 
   ```xml
   <PropertyGroup>
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
   ```
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
