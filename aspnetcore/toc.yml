@@ -180,7 +180,7 @@
         - name: Sicurezza delle app Web >>
           displayName: 'tutorial, identity'
           href: /learn/modules/secure-aspnet-core-identity/
-- name: Nozioni fondamentali
+- name: Concetti fondamentali
   items:
     - name: Panoramica
       uid: fundamentals/index
@@ -447,6 +447,8 @@
               uid: blazor/host-and-deploy/server
             - name: Configurare il linker
               uid: blazor/host-and-deploy/configure-linker
+            - name: Configurare il trimmer
+              uid: blazor/host-and-deploy/configure-trimmer
         - name: Blazor Server e EF Core
           uid: blazor/blazor-server-ef-core
         - name: Scenari avanzati
@@ -506,7 +508,7 @@
               uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
             - name: Cache distribuita
               uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
-            - name: Environment
+            - name: Ambiente
               uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
             - name: Form
               href: mvc/views/working-with-forms.md#the-form-tag-helper
@@ -1326,5 +1328,5 @@
       uid: migration/logging-nonaspnetcore
 - name: Informazioni di riferimento sulle API
   href: /dotnet/api/?view=aspnetcore-2.2
-- name: Contribuire
+- name: Collaborazione
   href: 'https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md'
