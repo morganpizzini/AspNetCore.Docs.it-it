@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 889e7b4736157b1bb563bd3e606c0d5d855c2226
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: 2881b5d01f3b2e41659e3166a4e77b64a450f017
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876711"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90592919"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor WebAssembly scenari di sicurezza aggiuntivi
 
@@ -139,8 +139,6 @@ L'oggetto configurato <xref:System.Net.Http.HttpClient> viene usato per effettua
 
             examples = 
                 await client.GetFromJsonAsync<ExampleType[]>("ExampleAPIMethod");
-
-            ...
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -176,6 +174,128 @@ Per un' Blazor applicazione basata sul Blazor WebAssembly modello di progetto os
 
 * Oggetto <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> ( `new Uri(builder.HostEnvironment.BaseAddress)` ).
 * URL della `authorizedUrls` matrice.
+
+### <a name="graph-api-example"></a>Esempio di API Graph
+
+Nell'esempio seguente viene usato un oggetto denominato <xref:System.Net.Http.HttpClient> per API Graph per ottenere il numero di telefono cellulare di un utente per l'elaborazione di una chiamata. Dopo aver aggiunto l'autorizzazione Microsoft Graph API `User.Read` nell'area AAD della portale di Azure, l'ambito viene configurato per il client denominato nell'app autonoma o nell'app client di una soluzione ospitata Blazor .
+
+> [!NOTE]
+> Nell'esempio riportato in questa sezione vengono ottenuti API Graph dati per l'utente nel *codice componente*. Per creare attestazioni utente da API Graph, vedere le risorse seguenti:
+>
+> * [Personalizzare la sezione utente](#customize-the-user)
+> * <xref:blazor/security/webassembly/aad-groups-roles>
+
+`GraphAuthorizationMessageHandler.cs`:
+
+```csharp
+public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
+{
+    public GraphAPIAuthorizationMessageHandler(IAccessTokenProvider provider,
+        NavigationManager navigationManager)
+        : base(provider, navigationManager)
+    {
+        ConfigureHandler(
+            authorizedUrls: new[] { "https://graph.microsoft.com" },
+            scopes: new[] { "https://graph.microsoft.com/User.Read" });
+    }
+}
+```
+
+In `Program.Main` ( `Program.cs` ):
+
+```csharp
+builder.Services.AddScoped<GraphAPIAuthorizationMessageHandler>();
+
+builder.Services.AddHttpClient("GraphAPI",
+        client => client.BaseAddress = new Uri("https://graph.microsoft.com"))
+    .AddHttpMessageHandler<GraphAPIAuthorizationMessageHandler>();
+```
+
+In un Razor componente ( `Pages/CallUser.razor` ):
+
+```razor
+@page "/CallUser"
+@using System.ComponentModel.DataAnnotations
+@using System.Text.Json.Serialization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.Extensions.Logging
+@inject IAccessTokenProvider TokenProvider
+@inject IHttpClientFactory ClientFactory
+@inject ILogger<CallUser> Logger
+@inject ICallProcessor CallProcessor
+
+<h3>Call User</h3>
+
+<EditForm Model="@callInfo" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Message:
+            <InputTextArea @bind-Value="callInfo.Message" />
+        </label>
+    </p>
+
+    <button type="submit">Place call</button>
+
+    <p>
+        @formStatus
+    </p>
+</EditForm>
+
+@code {
+    private string formStatus;
+    private CallInfo callInfo = new CallInfo();
+
+    private async Task HandleValidSubmit()
+    {
+        var tokenResult = await TokenProvider.RequestAccessToken(
+            new AccessTokenRequestOptions
+            {
+                Scopes = new[] { "https://graph.microsoft.com/User.Read" }
+            });
+
+        if (tokenResult.TryGetToken(out var token))
+        {
+            var client = ClientFactory.CreateClient("GraphAPI");
+
+            var userInfo = await client.GetFromJsonAsync<UserInfo>("v1.0/me");
+
+            if (userInfo != null)
+            {
+                CallProcessor.Send(userInfo.MobilePhone, callInfo.Message);
+
+                formStatus = "Form successfully processed.";
+                Logger.LogInformation(
+                    $"Form successfully processed at {DateTime.UtcNow}. " +
+                    $"Mobile Phone: {userInfo.MobilePhone}");
+            }
+        }
+        else
+        {
+            formStatus = "There was a problem processing the form.";
+            Logger.LogError("Token failure");
+        }
+    }
+
+    private class CallInfo
+    {
+        [Required]
+        [StringLength(1000, ErrorMessage = "Message too long (1,000 char limit)")]
+        public string Message { get; set; }
+    }
+
+    private class UserInfo
+    {
+        [JsonPropertyName("mobilePhone")]
+        public string MobilePhone { get; set; }
+    }
+}
+```
+
+> [!NOTE]
+> Nell'esempio precedente, lo sviluppatore implementa la coda personalizzata `ICallProcessor` ( `CallProcessor` ) e quindi inserisce le chiamate automatiche.
 
 ## <a name="typed-httpclient"></a>Tipizzato `HttpClient`
 
@@ -312,9 +432,7 @@ Un approccio alternativo all'utilizzo di <xref:System.Net.Http.IHttpClientFactor
 
 ## <a name="request-additional-access-tokens"></a>Richiedere token di accesso aggiuntivi
 
-I token di accesso possono essere ottenuti manualmente chiamando `IAccessTokenProvider.RequestAccessToken` .
-
-Nell'esempio seguente sono necessari ulteriori Azure Active Directory (AAD) Microsoft Graph ambito dell'API da parte di un'app per leggere i dati utente e inviare messaggi di posta elettronica. Dopo aver aggiunto le autorizzazioni Microsoft Graph API nel portale di Azure AAD, gli ambiti aggiuntivi sono configurati nell'app client.
+I token di accesso possono essere ottenuti manualmente chiamando `IAccessTokenProvider.RequestAccessToken` . Nell'esempio seguente, un ambito aggiuntivo è richiesto da un'app per il valore predefinito <xref:System.Net.Http.HttpClient> . Nell'esempio Microsoft Authentication Library (MSAL) viene configurato l'ambito con `MsalProviderOptions` :
 
 `Program.Main` (`Program.cs`):
 
@@ -323,12 +441,12 @@ builder.Services.AddMsalAuthentication(options =>
 {
     ...
 
-    options.ProviderOptions.AdditionalScopesToConsent.Add(
-        "https://graph.microsoft.com/Mail.Send");
-    options.ProviderOptions.AdditionalScopesToConsent.Add(
-        "https://graph.microsoft.com/User.Read");
+    options.ProviderOptions.AdditionalScopesToConsent.Add("{CUSTOM SCOPE 1}");
+    options.ProviderOptions.AdditionalScopesToConsent.Add("{CUSTOM SCOPE 2}");
 }
 ```
+
+I `{CUSTOM SCOPE 1}` `{CUSTOM SCOPE 2}` segnaposto e nell'esempio precedente sono ambiti personalizzati.
 
 Il `IAccessTokenProvider.RequestToken` metodo fornisce un overload che consente a un'app di effettuare il provisioning di un token di accesso con un determinato set di ambiti.
 
@@ -343,8 +461,7 @@ In un Razor componente:
 var tokenResult = await TokenProvider.RequestAccessToken(
     new AccessTokenRequestOptions
     {
-        Scopes = new[] { "https://graph.microsoft.com/Mail.Send", 
-            "https://graph.microsoft.com/User.Read" }
+        Scopes = new[] { "{CUSTOM SCOPE 1}", "{CUSTOM SCOPE 2}" }
     });
 
 if (tokenResult.TryGetToken(out var token))
@@ -352,6 +469,8 @@ if (tokenResult.TryGetToken(out var token))
     ...
 }
 ```
+
+I `{CUSTOM SCOPE 1}` `{CUSTOM SCOPE 2}` segnaposto e nell'esempio precedente sono ambiti personalizzati.
 
 <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenResult.TryGetToken%2A?displayProperty=nameWithType> Restituisce
 
@@ -707,9 +826,13 @@ Se si sceglie di eseguire questa operazione, è possibile suddividere l'interfac
 
 ## <a name="customize-the-user"></a>Personalizzare l'utente
 
-Gli utenti associati all'app possono essere personalizzati. Nell'esempio seguente, tutti gli utenti autenticati ricevono un' `amr` attestazione per ognuno dei metodi di autenticazione dell'utente.
+Gli utenti associati all'app possono essere personalizzati.
 
-Creare una classe che estende la <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> classe:
+### <a name="customize-the-user-with-a-payload-claim"></a>Personalizzare l'utente con una richiesta di payload
+
+Nell'esempio seguente, gli utenti autenticati dell'app ricevono un' `amr` attestazione per ognuno dei metodi di autenticazione dell'utente. L' `amr` attestazione identifica la modalità di autenticazione dell'oggetto del token nelle Identity [attestazioni del payload](/azure/active-directory/develop/access-tokens#the-amr-claim)Microsoft Platform v 1.0. Nell'esempio viene utilizzata una classe di account utente personalizzata basata su <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> .
+
+Creare una classe che estende la <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> classe. Nell'esempio seguente la proprietà viene impostata sulla `AuthenticationMethod` matrice di valori di `amr` Proprietà JSON dell'utente. `AuthenticationMethod` viene popolato automaticamente dal framework quando l'utente viene autenticato.
 
 ```csharp
 using System.Text.Json.Serialization;
@@ -722,7 +845,7 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Creare una factory che estende <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory%601> :
+Creare una factory che <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory%601> si estende per creare attestazioni dai metodi di autenticazione dell'utente archiviati in `CustomUserAccount.AuthenticationMethod` :
 
 ```csharp
 using System.Security.Claims;
@@ -743,7 +866,7 @@ public class CustomAccountFactory
         CustomUserAccount account, RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);
-        
+
         if (initialUser.Identity.IsAuthenticated)
         {
             foreach (var value in account.AuthenticationMethod)
@@ -752,13 +875,13 @@ public class CustomAccountFactory
                     .AddClaim(new Claim("amr", value));
             }
         }
-           
+
         return initialUser;
     }
 }
 ```
 
-Registrare `CustomAccountFactory` per il provider di autenticazione in uso. Una delle seguenti registrazioni è valida: 
+Registrare `CustomAccountFactory` per il provider di autenticazione in uso. Una delle seguenti registrazioni è valida:
 
 * <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A>:
 
@@ -769,11 +892,11 @@ Registrare `CustomAccountFactory` per il provider di autenticazione in uso. Una 
 
   builder.Services.AddOidcAuthentication<RemoteAuthenticationState, 
       CustomUserAccount>(options =>
-  {
-      ...
-  })
-  .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
-      CustomUserAccount, CustomAccountFactory>();
+      {
+          ...
+      })
+      .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
+          CustomUserAccount, CustomAccountFactory>();
   ```
 
 * <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A>:
@@ -785,11 +908,11 @@ Registrare `CustomAccountFactory` per il provider di autenticazione in uso. Una 
 
   builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
       CustomUserAccount>(options =>
-  {
-      ...
-  })
-  .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
-      CustomUserAccount, CustomAccountFactory>();
+      {
+          ...
+      })
+      .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
+          CustomUserAccount, CustomAccountFactory>();
   ```
   
 * <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddApiAuthorization%2A>:
@@ -801,12 +924,144 @@ Registrare `CustomAccountFactory` per il provider di autenticazione in uso. Una 
 
   builder.Services.AddApiAuthorization<RemoteAuthenticationState, 
       CustomUserAccount>(options =>
-  {
-      ...
-  })
-  .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
-      CustomUserAccount, CustomAccountFactory>();
+      {
+          ...
+      })
+      .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
+          CustomUserAccount, CustomAccountFactory>();
   ```
+
+### <a name="customize-the-user-with-graph-api-claims"></a>Personalizzare l'utente con attestazioni API Graph
+
+Nell'esempio seguente l'app crea un'attestazione di numero di telefono cellulare per l'utente da API Graph usando <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> . L'app deve avere l' `User.Read` autorizzazione API Graph (ambito) configurata in AAD.
+
+`GraphAuthorizationMessageHandler.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
+{
+    public GraphAPIAuthorizationMessageHandler(IAccessTokenProvider provider,
+        NavigationManager navigationManager)
+        : base(provider, navigationManager)
+    {
+        ConfigureHandler(
+            authorizedUrls: new[] { "https://graph.microsoft.com" },
+            scopes: new[] { "https://graph.microsoft.com/User.Read" });
+    }
+}
+```
+
+Un oggetto denominato <xref:System.Net.Http.HttpClient> per API Graph viene creato in `Program.Main` ( `Program.cs` ) utilizzando `GraphAPIAuthorizationMessageHandler` :
+
+```csharp
+using System;
+
+...
+
+builder.Services.AddScoped<GraphAPIAuthorizationMessageHandler>();
+
+builder.Services.AddHttpClient("GraphAPI",
+        client => client.BaseAddress = new Uri("https://graph.microsoft.com"))
+    .AddHttpMessageHandler<GraphAPIAuthorizationMessageHandler>();
+```
+
+`Models/UserInfo.cs`:
+
+```csharp
+using System.Text.Json.Serialization;
+
+public class UserInfo
+{
+    [JsonPropertyName("mobilePhone")]
+    public string MobilePhone { get; set; }
+}
+```
+
+Nell'esempio seguente `CustomAccountFactory` `CustomAccountFactory.cs` , il Framework <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> rappresenta l'account dell'utente. Se l'app richiede una classe di account utente personalizzata che estende <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> , scambiare la classe di account utente personalizzata per <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> nel codice seguente:
+
+```csharp
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
+using Microsoft.Extensions.Logging;
+
+public class CustomAccountFactory
+    : AccountClaimsPrincipalFactory<RemoteUserAccount>
+{
+    private readonly ILogger<CustomAccountFactory> logger;
+    private readonly IHttpClientFactory clientFactory;
+
+    public CustomAccountFactory(IAccessTokenProviderAccessor accessor, 
+        IHttpClientFactory clientFactory, 
+        ILogger<CustomAccountFactory> logger)
+        : base(accessor)
+    {
+        this.clientFactory = clientFactory;
+        this.logger = logger;
+    }
+
+    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+        RemoteUserAccount account,
+        RemoteAuthenticationUserOptions options)
+    {
+        var initialUser = await base.CreateUserAsync(account, options);
+
+        if (initialUser.Identity.IsAuthenticated)
+        {
+            var userIdentity = (ClaimsIdentity)initialUser.Identity;
+
+            try
+            {
+                var client = clientFactory.CreateClient("GraphAPI");
+
+                var userInfo = await client.GetFromJsonAsync<UserInfo>("v1.0/me");
+
+                if (userInfo != null)
+                {
+                    userIdentity.AddClaim(new Claim("mobilephone", userInfo.MobilePhone));
+                }
+            }
+            catch (AccessTokenNotAvailableException exception)
+            {
+                logger.LogError("Graph API access token failure: {MESSAGE}",
+                    exception.Message);
+            }
+        }
+
+        return initialUser;
+    }
+}
+```
+
+In `Program.Main` ( `Program.cs` ) configurare l'app per l'uso della factory personalizzata. Se l'app usa una classe di account utente personalizzata che estende <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> , scambiare la classe di account utente personalizzata per <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> nel codice seguente:
+
+```csharp
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+...
+
+builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
+    RemoteUserAccount>(options =>
+    {
+        builder.Configuration.Bind("AzureAd", 
+            options.ProviderOptions.Authentication);
+    })
+    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, RemoteUserAccount, 
+        CustomAccountFactory>();
+```
+
+L'esempio precedente è per un'app che usa l'autenticazione di AAD con MSAL. Esistono modelli simili per OIDC e l'autenticazione API. Per ulteriori informazioni, vedere gli esempi alla fine della sezione [personalizzare l'utente con un'attestazione di payload](#customize-the-user-with-a-payload-claim) .
+
+### <a name="aad-security-groups-and-roles-with-a-custom-user-account-class"></a>Gruppi di sicurezza e ruoli di AAD con una classe di account utente personalizzata
+
+Per un esempio aggiuntivo che funziona con i gruppi di sicurezza AAD e i ruoli di amministratore di AAD e una classe di account utente personalizzata, vedere <xref:blazor/security/webassembly/aad-groups-roles> .
 
 ## <a name="support-prerendering-with-authentication"></a>Supporto del prerendering con autenticazione
 

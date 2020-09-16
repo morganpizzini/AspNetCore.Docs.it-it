@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: f9b6766c2f46274e06cab18fd35b5e417e9bfa97
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: eb4aaa2f3d412cdf650ed2daf7c12166991d92a1
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009609"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90592904"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>Assembly di caricamento lazy in ASP.NET Core Blazor WebAssembly
 
@@ -42,20 +42,9 @@ Contrassegnare gli assembly per il caricamento lazy nel file di progetto dell'ap
 
 ```xml
 <ItemGroup>
-  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls" />
+  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
 </ItemGroup>
 ```
-
-Solo gli assembly usati dall'app possono essere caricati in modalità differita. Il linker rimuove gli assembly inutilizzati dall'output pubblicato.
-
-> [!NOTE]
-> In .NET 5 Release Candidate 1 (RC1) o versione successiva, che verrà rilasciata a metà settembre, il nome dell'assembly richiederà l' `.dll` estensione:
->
-> ```xml
-> <ItemGroup>
->  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
-> </ItemGroup>
-> ```
 
 ## <a name="router-component"></a>Componente `Router`
 

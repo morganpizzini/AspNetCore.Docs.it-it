@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: b485a62c61d404a91134f49cf2a49134ec9f5123
-ms.sourcegitcommit: 8ed9a413bdc2d665ad11add8828898d726ccb106
+ms.openlocfilehash: 5efea1728a1460c728a0d90002fb1504fe5b3bbb
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/01/2020
-ms.locfileid: "89280387"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90593021"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>ASP.NET Core Blazor moduli e convalida
 
@@ -105,6 +105,9 @@ Nell'esempio precedente:
 | <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+
+> [!NOTE]
+> I `InputRadio` `InputRadioGroup` componenti e sono disponibili in ASP.NET Core 5,0 o versione successiva. Per ulteriori informazioni, selezionare una versione 5,0 o successiva di questo articolo.
 
 ::: moniker-end
 
@@ -275,7 +278,7 @@ Nell'esempio seguente:
 
 ## <a name="display-name-support"></a>Supporto del nome visualizzato
 
-*Questa sezione si applica a .NET 5 Release Candidate 1 (RC1) o versione successiva, che verrà rilasciata a metà settembre.*
+*Questa sezione si applica a ASP.NET Core in .NET 5 Release Candidate 1 (RC1) o versioni successive.*
 
 I seguenti componenti predefiniti supportano i nomi visualizzati con il `DisplayName` parametro:
 
@@ -390,7 +393,7 @@ Nell'esempio seguente:
 
 Quando i messaggi di convalida vengono impostati nel componente, vengono aggiunti ai validator <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> e mostrati in <xref:Microsoft.AspNetCore.Components.Forms.EditForm> :
 
-```csharp
+```razor
 @page "/FormsValidation"
 
 <h1>Starfleet Starship Database</h1>
@@ -581,7 +584,7 @@ Nel progetto client aggiungere il componente validator visualizzato nella sezion
 
 Nel progetto client, il modulo *database Starship astronave* viene aggiornato in modo da visualizzare gli errori di convalida del server con la guida del `CustomValidator` componente. Quando l'API del server restituisce i messaggi di convalida, vengono aggiunti al `CustomValidator` componente <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> . Gli errori sono disponibili nel formato per la <xref:Microsoft.AspNetCore.Components.Forms.EditContext> visualizzazione da parte del modulo <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> :
 
-```csharp
+```razor
 @page "/FormValidation"
 @using System.Net
 @using System.Net.Http.Json

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: 391a38e9af42b162fc74bac803e6aa3cf687e7d5
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e1af8f1de61edd934505a44e75ea07e0f09a67b5
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626064"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90592956"
 ---
 # <a name="secure-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core protetto Blazor WebAssembly
 
@@ -98,6 +98,13 @@ Applicare l' [ `[Authorize]` attributo](xref:blazor/security/index#authorize-att
 I token di aggiornamento non possono essere protetti sul lato client nelle Blazor WebAssembly app. Pertanto, i token di aggiornamento non devono essere inviati all'app per l'uso diretto.
 
 I token di aggiornamento possono essere gestiti e usati dall'app sul lato server in una soluzione ospitata Blazor WebAssembly per accedere alle API di terze parti. Per altre informazioni, vedere <xref:blazor/security/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>.
+
+## <a name="establish-claims-for-users"></a>Stabilire attestazioni per gli utenti
+
+Le app richiedono spesso attestazioni per gli utenti in base a una chiamata API Web a un server. Ad esempio, le attestazioni vengono spesso usate per [definire l'autorizzazione](xref:blazor/security/index#authorization) in un'app. In questi scenari, l'app richiede un token di accesso per accedere al servizio e usa il token per ottenere i dati utente per le attestazioni. Per esempi, vedere le risorse seguenti:
+
+* [Scenari aggiuntivi: personalizzare l'utente](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
+* <xref:blazor/security/webassembly/aad-groups-roles>
 
 ## <a name="implementation-guidance"></a>Indicazioni relative all'implementazione
 

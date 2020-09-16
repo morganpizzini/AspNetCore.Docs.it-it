@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/client
-ms.openlocfilehash: 28e4f372e301a673644bfa97763ebc930f2d0ad5
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9406c2a34126f3e5cd1406a55c3585e7a28f3dd9
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634332"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90593047"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>Chiamare servizi gRPC con il client .NET
 
@@ -85,7 +85,7 @@ Una chiamata gRPC viene avviata chiamando un metodo sul client. Il client gRPC g
 
 gRPC dispone di tipi diversi di metodi. Il modo in cui il client viene usato per effettuare una chiamata gRPC dipende dal tipo di metodo chiamato. I tipi di metodo gRPC sono:
 
-* Unaria
+* Unario
 * Streaming Server
 * Flusso client
 * Streaming bidirezionale
@@ -260,7 +260,18 @@ catch (RpcException ex)
 }
 ```
 
+## <a name="configure-deadline"></a>Configura scadenza
+
+È consigliabile configurare una scadenza della chiamata gRPC in quanto fornisce un limite massimo per quanto tempo è possibile eseguire una chiamata per. Si interrompe l'esecuzione di servizi non confunzionanti e l'esaurimento delle risorse del server. Le scadenze sono uno strumento utile per la creazione di app affidabili.
+
+Configurare `CallOptions.Deadline` per impostare una scadenza per una chiamata gRPC:
+
+[!code-csharp[](~/grpc/deadlines-cancellation/deadline-client.cs?highlight=7,12)]
+
+Per altre informazioni, vedere <xref:grpc/deadlines-cancellation#deadlines>.
+
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:grpc/clientfactory>
+* <xref:grpc/deadlines-cancellation>
 * <xref:grpc/basics>

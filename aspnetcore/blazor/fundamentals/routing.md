@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: fe67ebfefb463ab698e5ff1bb7d9b527a28a596e
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: 09e7ca9c03103de116c566352496174e97fbc3ce
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009583"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90593008"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>BlazorRouting ASP.NET Core
 
@@ -197,7 +197,7 @@ Per altre informazioni, vedere <xref:fundamentals/routing>.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-*Questa sezione si applica a .NET 5 Release Candidate 1 (RC1) o versione successiva, che verrà rilasciata a metà settembre.*
+*Questa sezione si applica a ASP.NET Core in .NET 5 Release Candidate 1 (RC1) o versioni successive.*
 
 I parametri di route catch-all, che acquisiscono percorsi tra più limiti di cartella, sono supportati nei componenti di. Il parametro della route catch-all deve essere:
 
@@ -222,7 +222,7 @@ Le barre e i segmenti del percorso acquisito vengono decodificati. Per un modell
 
 ::: moniker range="< aspnetcore-5.0"
 
-I parametri di route catch-all saranno supportati in .NET 5 Release Candidate 1 (RC1) o versioni successive, che verranno rilasciate a metà settembre. *
+I parametri di route catch-all sono supportati in ASP.NET Core in .NET 5 Release Candidate 1 (RC1) o versioni successive. *
 
 ::: moniker-end
 
