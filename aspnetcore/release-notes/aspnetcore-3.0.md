@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: a53ba22c301b04aafa1eeb53d91f82f90dab0bad
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a1cbd8f434214ce488fc3febe63d8aaf54db71a3
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631550"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722787"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Novità di ASP.NET Core 3,0
 
@@ -327,8 +327,8 @@ Per aggiungere Json.NET a ASP.NET Core 3,0, vedere [aggiungere Newtonsoft.Jssupp
 
 L'elenco seguente contiene le nuove Razor direttive:
 
-* [`@attribute`](xref:mvc/views/razor#attribute): La `@attribute` direttiva applica l'attributo specificato alla classe della pagina o della visualizzazione generata. Ad esempio: `@attribute [Authorize]`.
-* [`@implements`](xref:mvc/views/razor#implements): La `@implements` direttiva implementa un'interfaccia per la classe generata. Ad esempio: `@implements IDisposable`.
+* [`@attribute`](xref:mvc/views/razor#attribute): La `@attribute` direttiva applica l'attributo specificato alla classe della pagina o della visualizzazione generata. Ad esempio `@attribute [Authorize]`.
+* [`@implements`](xref:mvc/views/razor#implements): La `@implements` direttiva implementa un'interfaccia per la classe generata. Ad esempio `@implements IDisposable`.
 
 ## <a name="no-locidentityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>IdentityServer4 supporta l'autenticazione e l'autorizzazione per le API Web e le Spa
 
@@ -397,7 +397,7 @@ Requisiti host:
 * Gli host Windows devono disporre di [nomi di entità servizio](/windows/win32/ad/service-principal-names) (SPN) aggiunti all'account utente che ospita l'app.
 * I computer Linux e macOS devono essere aggiunti al dominio.
   * È necessario creare nomi SPN per il processo Web.
-  * [I file keytab](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) devono essere generati e configurati nel computer host.
+  * [I file keytab](/archive/blogs/pie/all-you-need-to-know-about-keytab-files) devono essere generati e configurati nel computer host.
 
 Per altre informazioni, vedere <xref:security/authentication/windowsauth>.
 
@@ -550,4 +550,3 @@ Per un elenco completo degli assembly rimossi dal Framework condiviso, vedere [a
 ## Additional information
 For the complete list of changes, see the [ASP.NET Core 3.0 Release Notes](WHERE IS THIS????).
 -->
- 

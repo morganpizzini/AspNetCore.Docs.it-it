@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: bba965e14058663c3ed9c0f15afc6a8d78997aea
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: 2bfe05748e6740043be7f1ccc6dbe22ad4b0ca44
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009752"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722566"
 ---
 # <a name="aspnet-core-no-locsignalr-hosting-and-scaling"></a>ASP.NET Core SignalR hosting e scalabilità
 
@@ -33,7 +33,7 @@ Questo articolo illustra le considerazioni di hosting e scalabilità per le app 
 
 ## <a name="sticky-sessions"></a>Sessioni permanenti
 
-SignalR richiede che tutte le richieste HTTP per una connessione specifica siano gestite dallo stesso processo server. Quando SignalR è in esecuzione in un server farm (più server), è necessario usare "sessioni permanenti". Le "sessioni permanenti" sono definite anche affinità di sessione da parte di alcuni bilanciamenti del carico. Il servizio app Azure usa [Application Request Routing](https://docs.microsoft.com/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) (arr) per indirizzare le richieste. L'abilitazione dell'impostazione "affinità ARR" nel servizio app Azure consentirà di "sessioni permanenti". Le uniche circostanze in cui non sono richieste sessioni permanenti sono:
+SignalR richiede che tutte le richieste HTTP per una connessione specifica siano gestite dallo stesso processo server. Quando SignalR è in esecuzione in un server farm (più server), è necessario usare "sessioni permanenti". Le "sessioni permanenti" sono definite anche affinità di sessione da parte di alcuni bilanciamenti del carico. Il servizio app Azure usa [Application Request Routing](/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) (arr) per indirizzare le richieste. L'abilitazione dell'impostazione "affinità ARR" nel servizio app Azure consentirà di "sessioni permanenti". Le uniche circostanze in cui non sono richieste sessioni permanenti sono:
 
 1. Quando si esegue l'hosting in un singolo server, in un singolo processo.
 1. Quando si usa il SignalR servizio di Azure.
@@ -51,7 +51,7 @@ Le connessioni permanenti utilizzano anche una quantità di memoria aggiuntiva p
 
 L'utilizzo intensivo delle risorse correlate alla connessione SignalR può influire su altre app Web ospitate nello stesso server. Quando SignalR si apre e contiene le ultime connessioni TCP disponibili, anche altre app Web nello stesso server non dispongono di altre connessioni disponibili.
 
-Se un server esaurisce le connessioni, verranno visualizzati gli errori di socket casuali e gli errori di reimpostazione della connessione. Ad esempio:
+Se un server esaurisce le connessioni, verranno visualizzati gli errori di socket casuali e gli errori di reimpostazione della connessione. Esempio:
 
 ```
 An attempt was made to access a socket in a way forbidden by its access permissions...

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/integration-tests
-ms.openlocfilehash: b06c06fb5e525a0bdc3df1de50236fa8f76daca9
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9b36a77730a43c7515fcd2c56621412453784c9d
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635112"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722540"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Test di integrazione in ASP.NET Core
 
@@ -388,7 +388,7 @@ SUT è un Razor sistema di messaggi di pagine con le seguenti caratteristiche:
 
 &#8224;argomento EF, [test con InMemory](/ef/core/miscellaneous/testing/in-memory), spiega come usare un database in memoria per i test con MSTest. In questo argomento viene usato il Framework di test di [xUnit](https://xunit.github.io/) . I concetti di test e le implementazioni di test in diversi framework di test sono simili, ma non identici.
 
-Anche se l'app non usa il modello di repository e non è un esempio efficace del [modello di unità di lavoro (UOW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), le Razor pagine supportano questi modelli di sviluppo. Per altre informazioni, vedere [progettazione del livello di persistenza dell'infrastruttura](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) e della [logica del controller di test](/aspnet/core/mvc/controllers/testing) (l'esempio implementa il modello di repository).
+Anche se l'app non usa il modello di repository e non è un esempio efficace del [modello di unità di lavoro (UOW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), le Razor pagine supportano questi modelli di sviluppo. Per altre informazioni, vedere [progettazione del livello di persistenza dell'infrastruttura](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) e della [logica del controller di test](../mvc/controllers/testing.md) (l'esempio implementa il modello di repository).
 
 ### <a name="test-app-organization"></a>Testare l'organizzazione dell'app
 
@@ -779,7 +779,7 @@ SUT è un Razor sistema di messaggi di pagine con le seguenti caratteristiche:
 
 &#8224;argomento EF, [test con InMemory](/ef/core/miscellaneous/testing/in-memory), spiega come usare un database in memoria per i test con MSTest. In questo argomento viene usato il Framework di test di [xUnit](https://xunit.github.io/) . I concetti di test e le implementazioni di test in diversi framework di test sono simili, ma non identici.
 
-Anche se l'app non usa il modello di repository e non è un esempio efficace del [modello di unità di lavoro (UOW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), le Razor pagine supportano questi modelli di sviluppo. Per altre informazioni, vedere [progettazione del livello di persistenza dell'infrastruttura](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) e della [logica del controller di test](/aspnet/core/mvc/controllers/testing) (l'esempio implementa il modello di repository).
+Anche se l'app non usa il modello di repository e non è un esempio efficace del [modello di unità di lavoro (UOW)](https://martinfowler.com/eaaCatalog/unitOfWork.html), le Razor pagine supportano questi modelli di sviluppo. Per altre informazioni, vedere [progettazione del livello di persistenza dell'infrastruttura](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) e della [logica del controller di test](../mvc/controllers/testing.md) (l'esempio implementa il modello di repository).
 
 ### <a name="test-app-organization"></a>Testare l'organizzazione dell'app
 

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/filter
-ms.openlocfilehash: b6d6585c0cbd52715c4192d4ab3bee756dbb41b3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 436d640130b378e2c770322186020c6e252872ef
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635047"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722514"
 ---
 # <a name="filter-methods-for-no-locrazor-pages-in-aspnet-core"></a>Metodi di filtro per le Razor pagine in ASP.NET Core
 
@@ -39,7 +39,7 @@ Razor Filtri di pagina:
 * Eseguono il codice dopo l'esecuzione del metodo del gestore.
 * Possono essere implementati in una pagina o a livello globale.
 * Non possono essere applicati a metodi del gestore pagina specifici.
-* Le dipendenze del costruttore possono essere popolate dall' [inserimento di dipendenze](xref:fundamentals/dependency-injection) . Per ulteriori informazioni, vedere [ServiceFilterAttribute](/aspnet/core/mvc/controllers/filters#servicefilterattribute) e [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute).
+* Le dipendenze del costruttore possono essere popolate dall' [inserimento di dipendenze](xref:fundamentals/dependency-injection) . Per ulteriori informazioni, vedere [ServiceFilterAttribute](../mvc/controllers/filters.md#servicefilterattribute) e [TypeFilterAttribute](../mvc/controllers/filters.md#typefilterattribute).
 
 Mentre i costruttori di pagina e il middleware abilitano l'esecuzione di codice personalizzato prima dell'esecuzione di un metodo del gestore, solo Razor i filtri di pagina consentono l'accesso a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext> e alla pagina. Il middleware ha accesso a `HttpContext` , ma non al "contesto di pagina". I filtri hanno un <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> parametro derivato, che fornisce l'accesso a `HttpContext` . Di seguito è riportato un esempio per un filtro di pagina: [implementare un attributo di filtro](#ifa) che aggiunge un'intestazione alla risposta, operazione che non può essere eseguita con i costruttori o il middleware. L'accesso al contesto della pagina, che include l'accesso alle istanze della pagina e del relativo modello, è disponibile solo quando si eseguono filtri, gestori o il corpo di una Razor pagina.
 

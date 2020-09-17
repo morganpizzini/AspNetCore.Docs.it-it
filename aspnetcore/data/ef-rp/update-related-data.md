@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: 603c5e7c9f095c380461f8c6e4ead783ad35abe2
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 17b200f0ba90035c417c96689798263af16551de
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630861"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722819"
 ---
 # <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Parte 7, Razor pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core
 
@@ -46,7 +46,7 @@ Creare un file *Pages/Courses/DepartmentNamePageModel.cs* con il codice seguente
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/DepartmentNamePageModel.cs)]
 
-Il codice precedente crea un oggetto [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0) in cui inserire l'elenco dei nomi dei dipartimenti. Se `selectedDepartment` è specificato, il dipartimento corrispondente viene selezionato in `SelectList`.
+Il codice precedente crea un oggetto [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist) in cui inserire l'elenco dei nomi dei dipartimenti. Se `selectedDepartment` è specificato, il dipartimento corrispondente viene selezionato in `SelectList`.
 
 Le classi modello delle pagine Create (Crea) ed Edit (Modifica) derivano da `DepartmentNamePageModel`.
 
@@ -111,7 +111,7 @@ La pagina contiene un campo nascosto (`<input type="hidden">`) per il numero del
 
 ## <a name="update-the-course-details-and-delete-pages"></a>Aggiornare le pagine Details e Delete per i corsi
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) può migliorare le prestazioni quando la registrazione non è necessaria.
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) può migliorare le prestazioni quando la registrazione non è necessaria.
 
 ### <a name="update-the-course-page-models"></a>Aggiornare i modelli di pagina per i corsi
 
@@ -263,7 +263,7 @@ La pagina di creazione e quella di modifica del corso hanno bisogno dell'elenco 
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/DepartmentNamePageModel.cshtml.cs?highlight=9,11,20-21)]
 
-Il codice precedente crea un oggetto [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0) in cui inserire l'elenco dei nomi dei dipartimenti. Se `selectedDepartment` è specificato, il dipartimento corrispondente viene selezionato in `SelectList`.
+Il codice precedente crea un oggetto [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist) in cui inserire l'elenco dei nomi dei dipartimenti. Se `selectedDepartment` è specificato, il dipartimento corrispondente viene selezionato in `SelectList`.
 
 Le classi modello delle pagine Create (Crea) ed Edit (Modifica) derivano da `DepartmentNamePageModel`.
 
@@ -328,7 +328,7 @@ Testare il codice aggiornato. Creare, modificare ed eliminare un corso.
 
 ## <a name="add-asnotracking-to-the-details-and-delete-page-models"></a>Aggiungere AsNoTracking ai modelli delle pagine Details (Dettagli) e Delete (Elimina)
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) può migliorare le prestazioni quando la registrazione non è necessaria. Aggiungere `AsNoTracking` alle pagine Delete (Elimina) e Details (Dettagli). Il codice seguente illustra il modello della pagina Delete (Elimina) aggiornato:
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) può migliorare le prestazioni quando la registrazione non è necessaria. Aggiungere `AsNoTracking` alle pagine Delete (Elimina) e Details (Dettagli). Il codice seguente illustra il modello della pagina Delete (Elimina) aggiornato:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 

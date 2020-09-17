@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: ed40800f3e363cc3fd6f57492d76a42095e5b97b
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: c6b77f20792c32a697fff8d1d78ef3c2536c5f8f
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712558"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722897"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configurazione in ASP.NET Core
 
@@ -230,7 +230,7 @@ dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
 Valore chiave:
 
 * Deve seguire `=` oppure la chiave deve avere un prefisso `--` o `/` quando il valore segue uno spazio.
-* Non è obbligatorio se `=` si usa. Ad esempio: `MySetting=`.
+* Non è obbligatorio se `=` si usa. Ad esempio `MySetting=`.
 
 All'interno dello stesso comando, non combinare coppie chiave-valore dell'argomento della riga di comando che usano `=` con coppie chiave-valore che usano uno spazio.
 
@@ -732,7 +732,7 @@ Prima che l'app venga configurata e avviata, viene configurato e avviato un *hos
 
 ## <a name="default-host-configuration"></a>Configurazione host predefinita
 
-Per informazioni dettagliate sulla configurazione predefinita quando viene usato l'[host Web](xref:fundamentals/host/web-host), vedere la [versione di questo argomento per ASP.NET Core 2.2](/aspnet/core/fundamentals/configuration/?view=aspnetcore-2.2).
+Per informazioni dettagliate sulla configurazione predefinita quando viene usato l'[host Web](xref:fundamentals/host/web-host), vedere la [versione di questo argomento per ASP.NET Core 2.2](?view=aspnetcore-2.2).
 
 * La configurazione dell'host viene specificata da:
   * Variabili di ambiente con prefisso `DOTNET_` (ad esempio, `DOTNET_ENVIRONMENT` ) utilizzando il [provider di configurazione delle variabili di ambiente](#environment-variables). Il prefisso (`DOTNET_`) viene rimosso al caricamento delle coppie chiave-valore della configurazione.
@@ -949,7 +949,7 @@ Le origini di configurazione vengono lette nell'ordine in cui vengono specificat
 Una sequenza tipica di provider di configurazione è:
 
 1. File (*appsettings.json*, *appSettings. { Environment}. JSON*, dove `{Environment}` è l'ambiente host corrente dell'app)
-1. [Azure Key Vault](xref:security/key-vault-configuration)
+1. [Insieme di credenziali chiave Azure](xref:security/key-vault-configuration)
 1. [Segreti utente (Secret Manager)](xref:security/app-secrets) (solo nell'ambiente di sviluppo)
 1. Variabili di ambiente
 1. Argomenti della riga di comando

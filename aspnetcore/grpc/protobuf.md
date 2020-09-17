@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/protobuf
-ms.openlocfilehash: 60af1add9ae2f8b2b94bc19b65667d7af91fb122
-ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
+ms.openlocfilehash: ea46e04bc4aa6269efbf8917d5f32194402a66ef
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2020
-ms.locfileid: "89102666"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722696"
 ---
 # <a name="create-protobuf-messages-for-net-apps"></a>Creare messaggi protobuf per le app .NET
 
@@ -85,6 +85,10 @@ Protobuf supporta un intervallo di tipi valore scalari nativi. La tabella seguen
 | `string`      | `string`     |
 | `bytes`       | `ByteString` |
 
+I valori scalari hanno sempre un valore predefinito e non possono essere impostati su `null` . Questo vincolo include `string` e `ByteString` che sono classi C#. `string` il valore predefinito è un valore stringa vuoto e il valore `ByteString` predefinito è un valore byte vuoti. Il tentativo di impostarli su `null` genera un errore.
+
+I [tipi di wrapper Nullable](#nullable-types) possono essere utilizzati per supportare i valori null.
+
 ### <a name="dates-and-times"></a>Date e ore
 
 I tipi scalari nativi non forniscono i valori di data e ora, equivalenti a. NET <xref:System.DateTimeOffset> , <xref:System.DateTime> e <xref:System.TimeSpan> . Questi tipi possono essere specificati usando alcune estensioni dei *tipi noti* di protobuf. Queste estensioni forniscono il supporto per la generazione di codice e il runtime per i tipi di campo complessi nelle piattaforme supportate.
@@ -145,19 +149,42 @@ message Person {
 }
 ```
 
-Protobuf utilizza i tipi nullable .NET, ad esempio, `int?` per la proprietà del messaggio generata.
+`wrappers.proto` i tipi non sono esposti nelle proprietà generate. Protobuf esegue automaticamente il mapping ai tipi nullable .NET appropriati nei messaggi C#. Un campo, ad esempio, `google.protobuf.Int32Value` genera una `int?` Proprietà. Le proprietà del tipo `string` di riferimento, ad esempio e, `ByteString` sono invariate tranne `null` che possono essere assegnate senza errori.
 
 La tabella seguente mostra l'elenco completo dei tipi di wrapper con il tipo C# equivalente:
 
-| Tipo C#   | Wrapper di tipi noti       |
-| --------- | ----------------------------- |
-| `bool?`   | `google.protobuf.BoolValue`   |
-| `double?` | `google.protobuf.DoubleValue` |
-| `float?`  | `google.protobuf.FloatValue`  |
-| `int?`    | `google.protobuf.Int32Value`  |
-| `long?`   | `google.protobuf.Int64Value`  |
-| `uint?`   | `google.protobuf.UInt32Value` |
-| `ulong?`  | `google.protobuf.UInt64Value` |
+| Tipo C#      | Wrapper di tipi noti       |
+| ------------ | ----------------------------- |
+| `bool?`      | `google.protobuf.BoolValue`   |
+| `double?`    | `google.protobuf.DoubleValue` |
+| `float?`     | `google.protobuf.FloatValue`  |
+| `int?`       | `google.protobuf.Int32Value`  |
+| `long?`      | `google.protobuf.Int64Value`  |
+| `uint?`      | `google.protobuf.UInt32Value` |
+| `ulong?`     | `google.protobuf.UInt64Value` |
+| `string`     | `google.protobuf.StringValue` |
+| `ByteString` | `google.protobuf.BytesValue`  |
+
+### <a name="bytes"></a>Byte
+
+I payload binari sono supportati in protobuf con il `bytes` tipo di valore scalare. Una proprietà generata in C# usa `ByteString` come tipo di proprietà.
+
+Utilizzare `ByteString.CopyFrom(byte[] data)` per creare una nuova istanza da una matrice di byte:
+
+```csharp
+var data = await File.ReadAllBytesAsync(path);
+
+var payload = new PayloadResponse();
+payload.Data = ByteString.CopyFrom(data);
+```
+
+`ByteString` è possibile accedere ai dati direttamente usando `ByteString.Span` o `ByteString.Memory` . In alternativa `ByteString.ToByteArray()` , chiamare per convertire nuovamente un'istanza in una matrice di byte:
+
+```csharp
+var payload = await client.GetPayload(new PayloadRequest());
+
+await File.WriteAllBytesAsync(path, payload.Data.ToByteArray());
+```
 
 ### <a name="decimals"></a>Decimali
 
@@ -359,7 +386,7 @@ switch (response.ResultCase)
 }
 ```
 
-### <a name="value"></a>valore
+### <a name="value"></a>Valore
 
 Il `Value` tipo rappresenta un valore tipizzato dinamicamente. Può essere `null` , un numero, una stringa, un valore booleano, un dizionario di valori ( `Struct` ) o un elenco di valori ( `ValueList` ). `Value` è un tipo noto protobuf che usa la funzionalità descritta in precedenza `oneof` . Per utilizzare il `Value` tipo, Import `struct.proto` .
 

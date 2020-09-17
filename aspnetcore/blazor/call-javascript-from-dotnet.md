@@ -5,7 +5,7 @@ description: Informazioni su come richiamare funzioni JavaScript da metodi .NET 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 09/17/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: e7f23a4b44a0adb1d0b97c88e1d17f96aa2d28bd
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a62462e3a0a2366a8662573ada5d2e7589c14c0d
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625388"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722475"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Chiamare funzioni JavaScript da metodi .NET in ASP.NET Core Blazor
 
@@ -109,6 +109,13 @@ Non inserire un `<script>` tag in un file di componente perché il `<script>` ta
 I metodi .NET interoperano con le funzioni JavaScript nel `exampleJsInterop.js` file chiamando <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> .
 
 L' <xref:Microsoft.JSInterop.IJSRuntime> astrazione è asincrona per consentire gli Blazor Server scenari. Se l'app è un' Blazor WebAssembly app e si vuole richiamare una funzione JavaScript in modo sincrono, <xref:Microsoft.JSInterop.IJSInProcessRuntime> abbandono e chiamano <xref:Microsoft.JSInterop.IJSInProcessRuntime.Invoke%2A> invece. È consigliabile che la maggior parte delle librerie di interoperabilità JS usi le API asincrone per assicurarsi che le librerie siano disponibili in tutti gli scenari.
+
+::: moniker range=">= aspnetcore-5.0"
+
+> [!NOTE]
+> Per abilitare l'isolamento JavaScript nei [moduli JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules)standard, vedere la sezione [ Blazor riferimenti a oggetti e isolamento JavaScript](#blazor-javascript-isolation-and-object-references) .
+
+::: moniker-end
 
 L'app di esempio include un componente per dimostrare l'interoperabilità JS. Il componente:
 
@@ -485,6 +492,43 @@ Per ulteriori informazioni, vedere i seguenti problemi:
 
 * [I riferimenti circolari non sono supportati, accettano due (DotNet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
 * [Proposta: aggiungere un meccanismo per gestire i riferimenti circolari durante la serializzazione (DotNet/Runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
+
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="no-locblazor-javascript-isolation-and-object-references"></a>Blazor Isolamento JavaScript e riferimenti a oggetti
+
+Blazor Abilita l'isolamento JavaScript nei [moduli JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules)standard. L'isolamento JavaScript offre i vantaggi seguenti:
+
+* Il codice JavaScript importato non inquina più lo spazio dei nomi globale.
+* I consumer di una libreria e i componenti non sono necessari per importare il codice JavaScript correlato.
+
+Il modulo JavaScript seguente, ad esempio, esporta una funzione JavaScript per visualizzare un prompt del browser:
+
+```javascript
+export function showPrompt(message) {
+  return prompt(message, 'Type anything here');
+}
+```
+
+Aggiungere il modulo JavaScript precedente a una libreria .NET come asset Web statico ( `wwwroot/exampleJsInterop.js` ) e quindi importare il modulo nel codice .NET usando il <xref:Microsoft.JSInterop.IJSRuntime> servizio. Il servizio viene inserito come `jsRuntime` (non visualizzato) per l'esempio seguente:
+
+```csharp
+var module = await jsRuntime.InvokeAsync<JSObjectReference>(
+    "import", "./_content/MyComponents/exampleJsInterop.js");
+```
+
+L' `import` identificatore nell'esempio precedente è un identificatore speciale usato in modo specifico per l'importazione di un modulo JavaScript. Specificare il modulo usando il percorso di asset Web statico stabile: `_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}` . Il segnaposto `{LIBRARY NAME}` è il nome della libreria. Il segnaposto `{PATH UNDER WWWROOT}` è il percorso dello script in `wwwroot` .
+
+<xref:Microsoft.JSInterop.IJSRuntime> importa il modulo come `JSObjectReference` , che rappresenta un riferimento a un oggetto JavaScript dal codice .NET. Usare `JSObjectReference` per richiamare le funzioni JavaScript esportate dal modulo:
+
+```csharp
+public async ValueTask<string> Prompt(string message)
+{
+    return await module.InvokeAsync<string>("showPrompt", message);
+}
+```
+
+::: moniker-end
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

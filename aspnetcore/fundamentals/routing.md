@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: cf450385db3c7327de233357d4c13d556ee44bad
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1b8ccb510927fbc8a40f7424ae1ca4a131799095
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633669"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722884"
 ---
 # <a name="routing-in-aspnet-core"></a>Routing in ASP.NET Core
 
@@ -50,7 +50,7 @@ In questo documento vengono illustrati i dettagli di basso livello del routing A
 Il sistema di routing degli endpoint descritto in questo documento si applica a ASP.NET Core 3,0 e versioni successive. Per informazioni sul sistema di routing precedente basato su <xref:Microsoft.AspNetCore.Routing.IRouter> , selezionare la versione ASP.NET Core 2,1 usando uno degli approcci seguenti:
 
 * Selettore di versione per una versione precedente.
-* Selezionare [ASP.NET Core 2,1 routing](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-2.1).
+* Selezionare [ASP.NET Core 2,1 routing](?view=aspnetcore-2.1).
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x) ([procedura per il download](xref:index#how-to-download-a-sample))
 
@@ -438,7 +438,7 @@ I modelli di URL che tentano di acquisire un nome file con un'estensione facolta
 * `/files/myFile.txt`
 * `/files/myFile`
 
-I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio: `id?`. La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
+I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio `id?`. La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
 
 * Un parametro di route con un valore predefinito produce sempre un valore.
 * Un parametro facoltativo ha un valore solo quando un valore viene fornito dall'URL della richiesta.
@@ -568,7 +568,7 @@ Per eseguire l'escape dei caratteri di delimitazione del parametro di routing,,,
 
 Le espressioni regolari utilizzate nel routing spesso iniziano con il `^` carattere e corrispondono alla posizione iniziale della stringa. Le espressioni terminano spesso con il `$` carattere e corrispondono alla fine della stringa. I `^` `$` caratteri e assicurano che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i `^` `$` caratteri e, l'espressione regolare trova la corrispondenza con qualsiasi sottostringa all'interno della stringa, che è spesso indesiderata. La tabella seguente fornisce esempi e spiega perché corrispondono o non riescono a corrispondere:
 
-| Expression   | string    | Corrispondenza | Commento               |
+| Expression   | string    | Corrispondente | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -589,7 +589,7 @@ I vincoli di Route personalizzati sono raramente necessari. Prima di implementar
 
 Nella cartella ASP.NET Core [Constraints](https://github.com/dotnet/aspnetcore/tree/master/src/Http/Routing/src/Constraints) sono disponibili ottimi esempi di creazione di vincoli. Ad esempio, [GuidRouteConstraint](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Constraints/GuidRouteConstraint.cs#L18).
 
-Per usare un oggetto personalizzato `IRouteConstraint` , il tipo di vincolo di route deve essere registrato con l'app <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> nel contenitore del servizio. `ConstraintMap` è un dizionario che esegue il mapping delle chiavi dei vincoli di route alle implementazioni di `IRouteConstraint` che convalidano tali vincoli. La proprietà `ConstraintMap` di un'app può essere aggiornata in `Startup.ConfigureServices` come parte di una chiamata [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) o configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> direttamente con `services.Configure<RouteOptions>`. Ad esempio:
+Per usare un oggetto personalizzato `IRouteConstraint` , il tipo di vincolo di route deve essere registrato con l'app <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> nel contenitore del servizio. `ConstraintMap` è un dizionario che esegue il mapping delle chiavi dei vincoli di route alle implementazioni di `IRouteConstraint` che convalidano tali vincoli. La proprietà `ConstraintMap` di un'app può essere aggiornata in `Startup.ConfigureServices` come parte di una chiamata [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) o configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> direttamente con `services.Configure<RouteOptions>`. Esempio:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet)]
 
@@ -1025,7 +1025,7 @@ services.AddMvc(options => options.EnableEndpointRouting = false)
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-Per altre informazioni sul routing basato su <xref:Microsoft.AspNetCore.Routing.IRouter>, vedere la [versione per ASP.NET Core 2.1 di questo argomento](/aspnet/core/fundamentals/routing?view=aspnetcore-2.1).
+Per altre informazioni sul routing basato su <xref:Microsoft.AspNetCore.Routing.IRouter>, vedere la [versione per ASP.NET Core 2.1 di questo argomento](?view=aspnetcore-2.1).
 
 > [!IMPORTANT]
 > Questo documento descrive il routing di basso livello di ASP.NET Core. Per informazioni sul routing di ASP.NET Core MVC, vedere <xref:mvc/controllers/routing>. Per informazioni sulle convenzioni di routing nelle Razor pagine, vedere <xref:razor-pages/razor-pages-conventions> .
@@ -1489,7 +1489,7 @@ Per eseguire l'escape dei caratteri di delimitazione del parametro di routing,,,
 
 Le espressioni regolari utilizzate nel routing spesso iniziano con il `^` carattere del punto di inserimento e corrispondono alla posizione iniziale della stringa. Le espressioni spesso terminano con il `$` carattere di segno di dollaro e la fine della corrispondenza della stringa. I caratteri `^` e `$` consentono di verificare che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i caratteri `^` e `$` l'espressione regolare corrisponde a qualsiasi sottostringa all'interno della stringa e spesso questo non è il risultato desiderato. La tabella seguente include alcuni esempi e descrive perché si verifica o non si verifica la corrispondenza.
 
-| Expression   | string    | Corrispondenza | Commento               |
+| Expression   | string    | Corrispondente | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -1506,7 +1506,7 @@ Per limitare un parametro a un set noto di valori possibili, usare un'espression
 
 Oltre ai vincoli di route predefiniti, è possibile creare vincoli di route personalizzati implementando l'interfaccia <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>. L'interfaccia <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> contiene un singolo metodo, `Match`, che restituisce `true` se il vincolo viene soddisfatto e `false` in caso contrario.
 
-Per usare un'interfaccia <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> personalizzata, il tipo di vincolo di route deve essere registrato con la proprietà <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> dell'app nel contenitore di servizi dell'app. <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> è un dizionario che esegue il mapping delle chiavi dei vincoli di route alle implementazioni di <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> che convalidano tali vincoli. La proprietà <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> di un'app può essere aggiornata in `Startup.ConfigureServices` come parte di una chiamata [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) o configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> direttamente con `services.Configure<RouteOptions>`. Ad esempio:
+Per usare un'interfaccia <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> personalizzata, il tipo di vincolo di route deve essere registrato con la proprietà <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> dell'app nel contenitore di servizi dell'app. <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> è un dizionario che esegue il mapping delle chiavi dei vincoli di route alle implementazioni di <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> che convalidano tali vincoli. La proprietà <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> di un'app può essere aggiornata in `Startup.ConfigureServices` come parte di una chiamata [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) o configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> direttamente con `services.Configure<RouteOptions>`. Esempio:
 
 ```csharp
 services.AddRouting(options =>
@@ -1515,7 +1515,7 @@ services.AddRouting(options =>
 });
 ```
 
-Il vincolo può quindi essere applicato alle route nel modo consueto, usando il nome specificato al momento della registrazione del tipo di vincolo. Ad esempio:
+Il vincolo può quindi essere applicato alle route nel modo consueto, usando il nome specificato al momento della registrazione del tipo di vincolo. Esempio:
 
 ```csharp
 [HttpGet("{id:customName}")]
@@ -1557,8 +1557,8 @@ Con la route precedente, l'azione `SubscriptionManagementController.GetAll` vien
 
 ASP.NET Core offre convenzioni API per l'uso di trasformatori di parametro con le route generate:
 
-* ASP.NET Core MVC include la convenzione API `Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention`. Questa convenzione applica un trasformatore di parametro specifico a tutte le route di attributi nell'app. Il trasformatore di parametro trasforma i token di route di attributi man mano che vengono sostituiti. Per altre informazioni vedere [Use a parameter transformer to customize token replacement](/aspnet/core/mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement) (Usare un trasformatore di parametro per personalizzare la sostituzione di token).
-* Razor Le pagine hanno la `Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention` convenzione API. Questa convenzione applica un trasformatore di parametro specificato a tutte le pagine individuate automaticamente Razor . Il trasformatore di parametri trasforma la cartella e i segmenti dei nomi di file delle Razor Route di pagine. Per altre informazioni, vedere [Use a parameter transformer to customize page routes](/aspnet/core/razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes) (Usare un trasformatore di parametro per personalizzare route di pagine).
+* ASP.NET Core MVC include la convenzione API `Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention`. Questa convenzione applica un trasformatore di parametro specifico a tutte le route di attributi nell'app. Il trasformatore di parametro trasforma i token di route di attributi man mano che vengono sostituiti. Per altre informazioni vedere [Use a parameter transformer to customize token replacement](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement) (Usare un trasformatore di parametro per personalizzare la sostituzione di token).
+* Razor Le pagine hanno la `Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention` convenzione API. Questa convenzione applica un trasformatore di parametro specificato a tutte le pagine individuate automaticamente Razor . Il trasformatore di parametri trasforma la cartella e i segmenti dei nomi di file delle Razor Route di pagine. Per altre informazioni, vedere [Use a parameter transformer to customize page routes](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes) (Usare un trasformatore di parametro per personalizzare route di pagine).
 
 ## <a name="url-generation-reference"></a>Riferimento per la generazione di URL
 
@@ -1933,7 +1933,7 @@ Le espressioni regolari usano delimitatori e token simili a quelli usati dal rou
 
 Le espressioni regolari usate nel routing spesso iniziano con l'accento circonflesso (`^`) e corrispondono alla posizione iniziale della stringa. Le espressioni spesso terminano con il segno di dollaro (`$`) e corrispondono alla fine della stringa. I caratteri `^` e `$` consentono di verificare che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i caratteri `^` e `$` l'espressione regolare corrisponde a qualsiasi sottostringa all'interno della stringa e spesso questo non è il risultato desiderato. La tabella seguente include alcuni esempi e descrive perché si verifica o non si verifica la corrispondenza.
 
-| Expression   | string    | Corrispondenza | Commento               |
+| Expression   | string    | Corrispondente | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -1950,7 +1950,7 @@ Per limitare un parametro a un set noto di valori possibili, usare un'espression
 
 Oltre ai vincoli di route predefiniti, è possibile creare vincoli di route personalizzati implementando l'interfaccia <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>. L'interfaccia <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> contiene un singolo metodo, `Match`, che restituisce `true` se il vincolo viene soddisfatto e `false` in caso contrario.
 
-Per usare un'interfaccia <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> personalizzata, il tipo di vincolo di route deve essere registrato con la proprietà <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> dell'app nel contenitore di servizi dell'app. <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> è un dizionario che esegue il mapping delle chiavi dei vincoli di route alle implementazioni di <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> che convalidano tali vincoli. La proprietà <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> di un'app può essere aggiornata in `Startup.ConfigureServices` come parte di una chiamata [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) o configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> direttamente con `services.Configure<RouteOptions>`. Ad esempio:
+Per usare un'interfaccia <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> personalizzata, il tipo di vincolo di route deve essere registrato con la proprietà <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> dell'app nel contenitore di servizi dell'app. <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> è un dizionario che esegue il mapping delle chiavi dei vincoli di route alle implementazioni di <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> che convalidano tali vincoli. La proprietà <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> di un'app può essere aggiornata in `Startup.ConfigureServices` come parte di una chiamata [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) o configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> direttamente con `services.Configure<RouteOptions>`. Esempio:
 
 ```csharp
 services.AddRouting(options =>
@@ -1959,7 +1959,7 @@ services.AddRouting(options =>
 });
 ```
 
-Il vincolo può quindi essere applicato alle route nel modo consueto, usando il nome specificato al momento della registrazione del tipo di vincolo. Ad esempio:
+Il vincolo può quindi essere applicato alle route nel modo consueto, usando il nome specificato al momento della registrazione del tipo di vincolo. Esempio:
 
 ```csharp
 [HttpGet("{id:customName}")]

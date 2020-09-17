@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: 82969bf92965bfdeb1d1474ab47ca74ecbe6dd97
-ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
+ms.openlocfilehash: afd1bfffae11520a5d9abccc1d2ee4cf3a46a4bf
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90080303"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722462"
 ---
 # <a name="aspnet-core-no-locrazor-components-class-libraries"></a>RazorLibrerie di classi dei componenti ASP.NET Core
 
@@ -42,9 +42,9 @@ Così come i componenti sono tipi .NET normali, i componenti forniti da un RCL s
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Creare un nuovo progetto.
-1. Selezionare ** Razor libreria di classi**. Selezionare **Next** (Avanti).
+1. Selezionare ** Razor libreria di classi**. Selezionare **Avanti**.
 1. Nella finestra di dialogo **Crea una nuova Razor libreria di classi** Selezionare **Crea**.
-1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `ComponentLibrary` . Selezionare **Crea**.
+1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `ComponentLibrary` . Selezionare **Create** (Crea).
 1. Aggiungere RCL a una soluzione:
    1. Fare clic con il pulsante destro del mouse sulla soluzione. Selezionare **Aggiungi**  >  **progetto esistente**.
    1. Passare al file di progetto di RCL.
@@ -170,6 +170,43 @@ Un RCL può includere asset statici. Gli asset statici sono disponibili per qual
 ## <a name="supply-components-and-static-assets-to-multiple-hosted-no-locblazor-apps"></a>Fornire componenti e risorse statiche a più app ospitate Blazor
 
 Per altre informazioni, vedere <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries>.
+
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="browser-compatibility-analyzer-for-no-locblazor-webassembly"></a>Analizzatore compatibilità browser per Blazor WebAssembly
+
+Blazor WebAssembly le app sono destinate alla superficie di attacco dell'API .NET completa, ma non tutte le API .NET sono supportate nel webassembly a causa dei vincoli del sandbox del browser. Le API non supportate vengono generate <xref:System.PlatformNotSupportedException> durante l'esecuzione su webassembly. Un analizzatore della compatibilità della piattaforma avvisa lo sviluppatore quando l'app usa API non supportate dalle piattaforme di destinazione dell'app. Per le Blazor WebAssembly app, questo significa verificare che le API siano supportate nei browser. L'annotazione delle API di .NET Framework per Compatibility Analyzer è un processo in corso, quindi non tutte le API .NET Framework sono attualmente annotate.
+
+Blazor WebAssembly e Razor i progetti libreria di classi abilitano *automaticamente* i controlli compatibilità del browser aggiungendo `browser` come piattaforma supportata con l' `SupportedPlatform` elemento MSBuild. Gli sviluppatori di librerie possono aggiungere manualmente l' `SupportedPlatform` elemento al file di progetto di una raccolta per abilitare la funzionalità:
+
+```xml
+<ItemGroup>
+  <SupportedPlatform Include="browser" />
+</ItemGroup>
+```
+
+Quando si crea una libreria, indicare che un'API specifica non è supportata nei browser specificando `browser` <xref:System.Runtime.Versioning.UnsupportedOSPlatformAttribute> :
+
+```csharp
+[UnsupportedOSPlatform("browser")]
+private static string GetLoggingDirectory()
+{
+    ...
+}
+```
+
+Per altre informazioni, vedere [annotazione delle API come non supportate in piattaforme specifiche (archivio GitHub DotNet/Designs](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms).
+
+## <a name="no-locblazor-javascript-isolation-and-object-references"></a>Blazor Isolamento JavaScript e riferimenti a oggetti
+
+Blazor Abilita l'isolamento JavaScript nei [moduli JavaScript](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules)standard. L'isolamento JavaScript offre i vantaggi seguenti:
+
+* Il codice JavaScript importato non inquina più lo spazio dei nomi globale.
+* I consumer della libreria e dei componenti non devono importare manualmente il codice JavaScript correlato.
+
+Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references>.
+
+::: moniker-end
 
 ## <a name="build-pack-and-ship-to-nuget"></a>Compilare, comprimere e spedire a NuGet
 

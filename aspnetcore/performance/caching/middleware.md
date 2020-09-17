@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/middleware
-ms.openlocfilehash: 43b0ef1dcbf6d0137b14be9e58eb056f06ae093d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 7fe9629e1c60a6156c69e546736049653a4229b7
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633448"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722644"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>Middleware di memorizzazione nella cache delle risposte in ASP.NET Core
 
@@ -59,7 +59,7 @@ L'app di esempio aggiunge intestazioni per controllare la memorizzazione nella c
 
 Le intestazioni precedenti non vengono scritte nella risposta e vengono sottoposte a override quando un controller, un'azione o una Razor pagina:
 
-* Dispone di un attributo [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) . Questo vale anche se una proprietà non è impostata. Se, ad esempio, si omette la proprietà [VaryByHeader](/aspnet/core/performance/caching/response#vary) , l'intestazione corrispondente verrà rimossa dalla risposta.
+* Dispone di un attributo [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) . Questo vale anche se una proprietà non è impostata. Se, ad esempio, si omette la proprietà [VaryByHeader](./response.md#vary) , l'intestazione corrispondente verrà rimossa dalla risposta.
 
 Il middleware di memorizzazione nella cache delle risposte memorizza nella cache solo le risposte del server che generano un codice di stato 200 (OK). Qualsiasi altra risposta, incluse le [pagine di errore](xref:fundamentals/error-handling), viene ignorata dal middleware.
 
@@ -203,7 +203,7 @@ L'app di esempio aggiunge intestazioni per controllare la memorizzazione nella c
 
 Le intestazioni precedenti non vengono scritte nella risposta e vengono sottoposte a override quando un controller, un'azione o una Razor pagina:
 
-* Dispone di un attributo [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) . Questo vale anche se una proprietà non è impostata. Se, ad esempio, si omette la proprietà [VaryByHeader](/aspnet/core/performance/caching/response#vary) , l'intestazione corrispondente verrà rimossa dalla risposta.
+* Dispone di un attributo [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) . Questo vale anche se una proprietà non è impostata. Se, ad esempio, si omette la proprietà [VaryByHeader](./response.md#vary) , l'intestazione corrispondente verrà rimossa dalla risposta.
 
 Il middleware di memorizzazione nella cache delle risposte memorizza nella cache solo le risposte del server che generano un codice di stato 200 (OK). Qualsiasi altra risposta, incluse le [pagine di errore](xref:fundamentals/error-handling), viene ignorata dal middleware.
 

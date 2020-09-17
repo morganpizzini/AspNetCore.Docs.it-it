@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/client
-ms.openlocfilehash: 9406c2a34126f3e5cd1406a55c3585e7a28f3dd9
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 6515e87845cc5aa101532c18711d175a73581bee
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90593047"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722709"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>Chiamare servizi gRPC con il client .NET
 
@@ -33,7 +33,7 @@ Una libreria client di .NET gRPC è disponibile nel pacchetto NuGet [.NET. clien
 
 ## <a name="configure-grpc-client"></a>Configurare il client gRPC
 
-i client gRPC sono tipi di client concreti [generati da file * \* . proto* ](xref:grpc/basics#generated-c-assets). Il client gRPC concreto dispone di metodi che vengono convertiti nel servizio gRPC nel file * \* . proto* .
+i client gRPC sono tipi di client concreti [generati da file * \* . proto* ](xref:grpc/basics#generated-c-assets). Il client gRPC concreto dispone di metodi che vengono convertiti nel servizio gRPC nel file * \* . proto* . Ad esempio, un servizio chiamato `Greeter` genera un `GreeterClient` tipo con i metodi per chiamare il servizio.
 
 Un client gRPC viene creato da un canale. Iniziare usando `GrpcChannel.ForAddress` per creare un canale e quindi usare il canale per creare un client gRPC:
 
@@ -57,7 +57,7 @@ var counterClient = new Count.CounterClient(channel);
 
 Un client gRPC deve usare la stessa sicurezza a livello di connessione del servizio chiamato. gRPC client Transport Layer Security (TLS) viene configurato quando viene creato il canale gRPC. Un client gRPC genera un errore quando chiama un servizio e la sicurezza a livello di connessione del canale e del servizio non corrispondono.
 
-Per configurare un canale gRPC per l'uso di TLS, assicurarsi che l'indirizzo del server inizi con `https` . Ad esempio, `GrpcChannel.ForAddress("https://localhost:5001")` Usa il protocollo HTTPS. Il canale gRPC negotates automaticamente una connessione protetta da TLS e usa una connessione sicura per effettuare chiamate gRPC.
+Per configurare un canale gRPC per l'uso di TLS, assicurarsi che l'indirizzo del server inizi con `https` . Ad esempio, `GrpcChannel.ForAddress("https://localhost:5001")` Usa il protocollo HTTPS. Il canale gRPC negozia automaticamente una connessione protetta da TLS e usa una connessione sicura per effettuare chiamate gRPC.
 
 > [!TIP]
 > gRPC supporta l'autenticazione dei certificati client su TLS. Per informazioni sulla configurazione dei certificati client con un canale gRPC, vedere <xref:grpc/authn-and-authz#client-certificate-authentication> .

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 1cb2c2d18b717dc99c6ef4dac9954fef149c6deb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b5260084c2fdd296168e918f06d8b54faf1865d5
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631563"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722657"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Applicare HTTPS in ASP.NET Core
 
@@ -109,7 +109,7 @@ Specificare la porta HTTPS usando uno degli approcci seguenti:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* Impostare l' `https_port` [impostazione host](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#https_port):
+* Impostare l' `https_port` [impostazione host](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#https_port):
 
   * Nella configurazione host.
   * Impostando la `ASPNETCORE_HTTPS_PORT` variabile di ambiente.
@@ -117,7 +117,7 @@ Specificare la porta HTTPS usando uno degli approcci seguenti:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
-* Indicare una porta con lo schema protetto usando la [variabile di ambiente ASPNETCORE_URLS](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#urls). La variabile di ambiente configura il server. Il middleware individua indirettamente la porta HTTPS tramite <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> . Questo approccio non funziona nelle distribuzioni di proxy inverso.
+* Indicare una porta con lo schema protetto usando la [variabile di ambiente ASPNETCORE_URLS](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#urls). La variabile di ambiente configura il server. Il middleware individua indirettamente la porta HTTPS tramite <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> . Questo approccio non funziona nelle distribuzioni di proxy inverso.
 
 ::: moniker-end
 
@@ -324,7 +324,7 @@ Deselezionare la casella **di controllo Configura per HTTPS** .
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli) 
 
-Usare l'opzione `--no-https`. Ad esempio:
+Usare l'opzione `--no-https`. Ad esempio
 
 ```dotnetcli
 dotnet new webapp --no-https
