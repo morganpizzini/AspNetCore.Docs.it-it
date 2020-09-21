@@ -338,7 +338,7 @@
                 - name: InputDate
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputFile
-                  href: blazor/file-uploads.md
+                  uid: blazor/file-uploads
                 - name: InputNumber
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputRadio
@@ -366,7 +366,7 @@
                 - name: Titolo
                   href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: Virtualize
-                  href: blazor/components/virtualization.md
+                  uid: blazor/components/virtualization
             - name: Valori e parametri a cascata
               uid: blazor/components/cascading-values-and-parameters
             - name: Associazione dati
@@ -681,7 +681,7 @@
     - name: Autenticazione e autorizzazione
       uid: signalr/authn-and-authz
       displayName: signalr
-    - name: Considerazioni relative alla sicurezza
+    - name: Considerazioni sulla sicurezza
       uid: signalr/security
       displayName: signalr
     - name: Protocollo hub MessagePack
