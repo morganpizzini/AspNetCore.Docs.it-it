@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr
-ms.openlocfilehash: e98cfc5e95233ce4d1001ab1225fc15e5fd23733
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b69d60e7d0e24f6d3c8032b391c98a6cd1589305
+ms.sourcegitcommit: 9c031530d2e652fe422e786bd43392bc500d622f
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634501"
+ms.lasthandoff: 09/18/2020
+ms.locfileid: "90770181"
 ---
 # <a name="tutorial-get-started-with-aspnet-core-no-locsignalr"></a>Esercitazione: Introduzione a ASP.NET Core SignalR
 
@@ -45,15 +45,15 @@ Al termine, si disporrà di un'app di chat funzionante:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
 ---
 
@@ -67,7 +67,7 @@ Al termine, si disporrà di un'app di chat funzionante:
 
 * Nella finestra di dialogo **Configura il nuovo progetto** denominare il progetto * SignalR chat*, quindi selezionare **Crea**.
 
-* Nella finestra di dialogo **Crea una nuova applicazione web ASP.NET Core** selezionare **.net Core** e **ASP.NET Core 3,0**. 
+* Nella finestra di dialogo **Crea una nuova applicazione web ASP.NET Core** selezionare **.net Core** e **ASP.NET Core 3,1**. 
 
 * Selezionare **applicazione Web** per creare un progetto che utilizza Razor pagine, quindi selezionare **Crea**.
 
@@ -90,7 +90,7 @@ Al termine, si disporrà di un'app di chat funzionante:
 
 * Selezionare **.NET Core > App > Applicazione Web** (Non selezionare **Applicazione Web (Model-View-Controller)**), quindi selezionare **Avanti**.
 
-* Assicurarsi che il **framework di destinazione** sia impostato su **.NET Core 3.0**, quindi selezionare **Avanti**.
+* Verificare che il **Framework di destinazione** sia impostato su **.NET Core 3,1**, quindi selezionare **Avanti**.
 
 * Denominare il progetto * SignalR chat*, quindi selezionare **Crea**.
 
@@ -98,7 +98,7 @@ Al termine, si disporrà di un'app di chat funzionante:
 
 ## <a name="add-the-no-locsignalr-client-library"></a>Aggiungere la SignalR libreria client
 
-La SignalR libreria server è inclusa nel Framework condiviso ASP.NET Core 3,0. La libreria client JavaScript non viene inclusa automaticamente nel progetto. Per questa esercitazione, usare Gestione librerie (LibMan) per ottenere la libreria client da *unpkg*. unpkg è una rete per la distribuzione di contenuti (CDN) che può fornire qualsiasi elemento disponibile in NPM, il Node.js gestione pacchetti.
+La SignalR libreria server è inclusa nel Framework condiviso ASP.NET Core 3,1. La libreria client JavaScript non viene inclusa automaticamente nel progetto. Per questa esercitazione, usare Gestione librerie (LibMan) per ottenere la libreria client da *unpkg*. unpkg è una rete per la distribuzione di contenuti (CDN) che può fornire qualsiasi elemento disponibile in NPM, il Node.js gestione pacchetti.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
 
