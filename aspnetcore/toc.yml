@@ -180,7 +180,7 @@
         - name: Sicurezza delle app Web >>
           displayName: 'tutorial, identity'
           href: /learn/modules/secure-aspnet-core-identity/
-- name: Concetti fondamentali
+- name: Nozioni fondamentali
   items:
     - name: Panoramica
       uid: fundamentals/index
@@ -206,7 +206,7 @@
       uid: fundamentals/environments
     - name: Registrazione
       uid: fundamentals/logging/index
-    - name: Routing.
+    - name: Routing
       uid: fundamentals/routing
     - name: Gestire gli errori
       uid: fundamentals/error-handling
@@ -279,7 +279,7 @@
           uid: mvc/views/partial
         - name: Controllers
           uid: mvc/controllers/actions
-        - name: Routing.
+        - name: Routing
           uid: mvc/controllers/routing
         - name: Inserimento di dipendenze - Controller
           uid: mvc/controllers/dependency-injection
@@ -337,6 +337,8 @@
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputDate
                   href: blazor/forms-validation.md#built-in-forms-components
+                - name: InputFile
+                  href: blazor/file-uploads.md
                 - name: InputNumber
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputRadio
@@ -363,6 +365,8 @@
                   href: blazor/fundamentals/routing.md#route-templates
                 - name: Titolo
                   href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
+                - name: Virtualize
+                  href: blazor/components/virtualization.md
             - name: Valori e parametri a cascata
               uid: blazor/components/cascading-values-and-parameters
             - name: Associazione dati
@@ -371,6 +375,8 @@
               uid: blazor/components/event-handling
             - name: Ciclo di vita
               uid: blazor/components/lifecycle
+            - name: Virtualizzazione di componenti
+              uid: blazor/components/virtualization
             - name: Componenti basati su modelli
               uid: blazor/components/templated-components
             - name: Integrare componenti
@@ -383,6 +389,8 @@
           uid: blazor/layouts
         - name: Moduli e convalida
           uid: blazor/forms-validation
+        - name: Caricamenti di file
+          uid: blazor/file-uploads
         - name: Chiamare JavaScript da .NET
           uid: blazor/call-javascript-from-dotnet
         - name: Chiamare .NET da JavaScript
@@ -714,16 +722,20 @@
           uid: grpc/services
         - name: Creare messaggi Protobuf
           uid: grpc/protobuf
+        - name: Controllo delle versioni dei servizi gRPC
+          uid: grpc/versioning
+    - name: Chiamare servizi gRPC con C#
+      items:
+        - name: Panoramica
+          uid: grpc/client
+        - name: Integrazione della factory client gRPC
+          uid: grpc/clientfactory
+        - name: Scadenze e annullamento
+          uid: grpc/deadlines-cancellation
     - name: Servizi gRPC con ASP.NET Core
       uid: grpc/aspnetcore
-    - name: Chiamare servizi gRPC con il client .NET
-      uid: grpc/client
-    - name: Integrazione della factory client gRPC
-      uid: grpc/clientfactory
     - name: Usare gRPC nelle app del browser
       uid: grpc/browser
-    - name: Scadenze e annullamento
-      uid: grpc/deadlines-cancellation
     - name: Configurazione
       uid: grpc/configuration
     - name: Autenticazione e autorizzazione
@@ -734,11 +746,13 @@
       uid: grpc/security
     - name: Procedure consigliate per le prestazioni
       uid: grpc/performance
-    - name: Controllo delle versioni dei servizi gRPC
-      uid: grpc/versioning
+    - name: Comunicazione tra processi
+      uid: grpc/interprocess
+    - name: Create API Web JSON da gRPC
+      uid: grpc/httpapi
     - name: Gestire i riferimenti Protobuf con dotnet-grpc
       uid: grpc/dotnet-grpc
-    - name: Testare i servizi con gli strumenti gRPC
+    - name: Testare i servizi gRPC con gRPCurl
       uid: grpc/test-tools
     - name: Eseguire la migrazione di servizi gRPC da C-core
       uid: grpc/migration
@@ -746,8 +760,6 @@
       uid: grpc/wcf
     - name: Confrontare servizi gRPC e API HTTP
       uid: grpc/comparison
-    - name: Create API Web JSON da gRPC
-      uid: grpc/httpapi
     - name: Esempi
       href: 'https://github.com/grpc/grpc-dotnet/tree/master/examples'
     - name: Risolvere problemi
