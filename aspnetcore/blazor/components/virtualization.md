@@ -5,7 +5,7 @@ description: Informazioni su come usare la virtualizzazione di componenti nelle 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/16/2020
+ms.date: 09/21/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/virtualization
-ms.openlocfilehash: c904a3f330531f80d1dc69bf63621c59790e1cb0
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 911eeeb445741aa1519e1464dd4a75e26f6f12ab
+ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722982"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847572"
 ---
 # <a name="aspnet-core-no-locblazor-component-virtualization"></a>BlazorVirtualizzazione componenti ASP.NET Core
 
@@ -169,3 +169,7 @@ Ad esempio, una griglia o un elenco che esegue il rendering di centinaia di righ
 * `FetchData` Component ( [`Pages/FetchData.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor) ): usa il `Virtualize` componente per visualizzare 25 righe di dati meteorologici alla volta.
 
 ::: moniker-end
+
+## <a name="state-changes"></a>Modifiche stato
+
+Quando si apportano modifiche agli elementi di cui è stato eseguito il rendering dal `Virtualize` componente, chiamare <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> per forzare nuovamente la valutazione e il rendering del componente.

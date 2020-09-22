@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: 41b2ce35a6910df7587af7ebabe8a4984cda6ae5
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: dd00b9d7faf467857ec1e47f4cfb0296d84e5d3f
+ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634969"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847702"
 ---
 # <a name="part-6-no-locrazor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Parte 6, Razor pagine con EF core nei dati correlati alla lettura ASP.NET Core
 
@@ -63,7 +63,7 @@ Esistono diversi modi con cui EF Core può caricare i dati correlati nelle propr
 
   ![Esempio di caricamento esplicito](read-related-data/_static/explicit-loading.png)
 
-* [Caricamento lazy](/ef/core/querying/related-data#lazy-loading). [Il caricamento lazy è stato aggiunto a EF Core nella versione 2.1](/ef/core/querying/related-data#lazy-loading). Quando un'entità viene letta per la prima volta, i dati correlati non vengono recuperati. La prima volta che si accede a una proprietà di navigazione, i dati necessari per quest'ultima vengono recuperati automaticamente. Ogni volta che si accede a una proprietà di navigazione per la prima volta, viene inviata una query al database.
+* [Caricamento lazy](/ef/core/querying/related-data#lazy-loading). Quando un'entità viene letta per la prima volta, i dati correlati non vengono recuperati. La prima volta che si accede a una proprietà di navigazione, i dati necessari per quest'ultima vengono recuperati automaticamente. Ogni volta che si accede a una proprietà di navigazione per la prima volta, viene inviata una query al database. Il caricamento lazy può influire negativamente sulle prestazioni, ad esempio quando gli sviluppatori usano modelli N + 1, caricando un elemento padre ed enumerando gli elementi figlio.
 
 ## <a name="create-course-pages"></a>Creare pagine Course
 
