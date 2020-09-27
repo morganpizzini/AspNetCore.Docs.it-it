@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: ec36ff6d646e0554550a4372389aed89aa267b1f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ca2f071ccb84fdb2eb06f533fc4d088ad1b1c785
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633981"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393886"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Associazione di modelli in ASP.NET Core
 
@@ -210,7 +210,7 @@ I tipi semplici in cui lo strumento di associazione di modelli può convertire l
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimale](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Enum](xref:System.ComponentModel.EnumConverter)
+* [Enumerazione](xref:System.ComponentModel.EnumConverter)
 * [GUID](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Singolo](xref:System.ComponentModel.SingleConverter)
@@ -393,6 +393,47 @@ Per le destinazioni `Dictionary`, l'associazione di modelli cerca le corrisponde
 
   * selectedCourses["1050"]="Chemistry"
   * selectedCourses["2000"]="Economics"
+  
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="constructor-binding-and-record-types"></a>Binding del costruttore e tipi di record
+
+Per l'associazione di modelli è necessario che i tipi complessi dispongano di un costruttore senza parametri. Entrambi `System.Text.Json` `Newtonsoft.Json` i formattatori di input basati su e supportano la deserializzazione delle classi che non dispongono di un costruttore senza parametri. 
+
+In C# 9 sono stati introdotti i tipi di record, un ottimo modo per rappresentare sinteticamente i dati in rete. ASP.NET Core aggiunge il supporto per l'associazione di modelli e la convalida dei tipi di record con un unico costruttore:
+
+```csharp
+public record Person([Required] string Name, [Range(0, 150)] int Age);
+
+public class PersonController
+{
+   public IActionResult Index() => View();
+
+   [HttpPost]
+   public IActionResult Index(Person person)
+   {
+       ...
+   }
+}
+```
+
+`Person/Index.cshtml`:
+
+```cshtml
+@model Person
+
+Name: <input asp-for="Name" />
+...
+Age: <input asp-for="Age" />
+```
+
+Quando si convalidano i tipi di record, il runtime cerca i metadati di convalida in modo specifico nei parametri anziché nelle proprietà.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 <a name="glob"></a>
 
@@ -512,6 +553,7 @@ Il nome di questo attributo segue il modello degli attributi di associazione di 
 * <xref:mvc/advanced/custom-model-binding>
 
 ::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 Questo articolo illustra cos'è l'associazione di modelli, come funziona e come personalizzarne il comportamento.
@@ -696,7 +738,7 @@ I tipi semplici in cui lo strumento di associazione di modelli può convertire l
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimale](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Enum](xref:System.ComponentModel.EnumConverter)
+* [Enumerazione](xref:System.ComponentModel.EnumConverter)
 * [GUID](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Singolo](xref:System.ComponentModel.SingleConverter)

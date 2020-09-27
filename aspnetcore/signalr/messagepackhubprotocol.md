@@ -5,7 +5,7 @@ description: Aggiungere il protocollo dell'hub MessagePack a ASP.NET Core Signal
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 04/13/2020
+ms.date: 09/24/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/messagepackhubprotocol
-ms.openlocfilehash: ab9bd11e37182f5b24db5595d5d050f4cc0e32da
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 15ae8911e2ffba43c7bb885efd153d8b6803bc2a
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626649"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393678"
 ---
 # <a name="use-messagepack-hub-protocol-in-no-locsignalr-for-aspnet-core"></a>Usare il protocollo dell'hub MessagePack in SignalR per ASP.NET Core
 
@@ -72,6 +72,9 @@ services.AddSignalR()
 Per abilitare MessagePack nel client .NET, installare il `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` pacchetto e chiamare il `AddMessagePackProtocol` `HubConnectionBuilder` .
 
 ```csharp
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
+
 var hubConnection = new HubConnectionBuilder()
                         .WithUrl("/chathub")
                         .AddMessagePackProtocol()
@@ -226,9 +229,11 @@ services.AddSignalR()
 ```
 
 > [!WARNING]
-> Si consiglia vivamente di esaminare [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf) e di applicare le patch consigliate. Ad esempio, impostando la `MessagePackSecurity.Active` proprietà statica su `MessagePackSecurity.UntrustedData` . L'impostazione `MessagePackSecurity.Active` di richiede l'installazione manuale [di una versione 1.9. x di MessagePack](https://www.nuget.org/packages/MessagePack/1.9.3). `MessagePack`L'installazione di 1.9. x aggiorna la versione SignalR utilizzata da. Quando `MessagePackSecurity.Active` non è impostato su `MessagePackSecurity.UntrustedData` , un client dannoso potrebbe causare un attacco Denial of Service. Impostare `MessagePackSecurity.Active` in `Program.Main` , come illustrato nel codice seguente:
+> Si consiglia vivamente di esaminare [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf) e di applicare le patch consigliate. Ad esempio, impostando la `MessagePackSecurity.Active` proprietà statica su `MessagePackSecurity.UntrustedData` . L'impostazione `MessagePackSecurity.Active` di richiede l'installazione manuale [di una versione 1.9. x di MessagePack](https://www.nuget.org/packages/MessagePack/1.9.3). `MessagePack`L'installazione di 1.9. x aggiorna la versione SignalR utilizzata da. `MessagePack` la versione 2. x ha introdotto modifiche di rilievo ed è incompatibile con le SignalR versioni 3,1 e precedenti. Quando `MessagePackSecurity.Active` non è impostato su `MessagePackSecurity.UntrustedData` , un client dannoso potrebbe causare un attacco Denial of Service. Impostare `MessagePackSecurity.Active` in `Program.Main` , come illustrato nel codice seguente:
 
 ```csharp
+using MessagePack;
+
 public static void Main(string[] args)
 {
   MessagePackSecurity.Active = MessagePackSecurity.UntrustedData;
@@ -247,6 +252,9 @@ public static void Main(string[] args)
 Per abilitare MessagePack nel client .NET, installare il `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` pacchetto e chiamare il `AddMessagePackProtocol` `HubConnectionBuilder` .
 
 ```csharp
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
+
 var hubConnection = new HubConnectionBuilder()
                         .WithUrl("/chathub")
                         .AddMessagePackProtocol()
@@ -404,6 +412,8 @@ services.AddSignalR()
 > Si consiglia vivamente di esaminare [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf) e di applicare le patch consigliate. Ad esempio, impostando la `MessagePackSecurity.Active` proprietà statica su `MessagePackSecurity.UntrustedData` . L'impostazione `MessagePackSecurity.Active` di richiede l'installazione manuale [di una versione 1.9. x di MessagePack](https://www.nuget.org/packages/MessagePack/1.9.3). `MessagePack`L'installazione di 1.9. x aggiorna la versione SignalR utilizzata da. Quando `MessagePackSecurity.Active` non è impostato su `MessagePackSecurity.UntrustedData` , un client dannoso potrebbe causare un attacco Denial of Service. Impostare `MessagePackSecurity.Active` in `Program.Main` , come illustrato nel codice seguente:
 
 ```csharp
+using MessagePack;
+
 public static void Main(string[] args)
 {
   MessagePackSecurity.Active = MessagePackSecurity.UntrustedData;
@@ -422,6 +432,9 @@ public static void Main(string[] args)
 Per abilitare MessagePack nel client .NET, installare il `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` pacchetto e chiamare il `AddMessagePackProtocol` `HubConnectionBuilder` .
 
 ```csharp
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
+
 var hubConnection = new HubConnectionBuilder()
                         .WithUrl("/chathub")
                         .AddMessagePackProtocol()

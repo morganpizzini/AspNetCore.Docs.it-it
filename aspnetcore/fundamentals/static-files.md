@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 24fda96dbe48945d172eb36e8a91af31f168ff7f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 36eeb3532ed5ea6f5f75c20cbe14331ed840a788
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627663"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393938"
 ---
 # <a name="static-files-in-aspnet-core"></a>File statici in ASP.NET Core
 
@@ -127,7 +127,7 @@ Un approccio alternativo per gestire i file in base all'autorizzazione:
 
 L'esplorazione directory consente l'elenco di directory nelle directory specificate.
 
-Per motivi di sicurezza, l'esplorazione directory è disabilitata per impostazione predefinita. Per ulteriori informazioni, vedere [considerazioni](#sc).
+Per motivi di sicurezza, l'esplorazione directory è disabilitata per impostazione predefinita. Per ulteriori informazioni, vedere [considerazioni](#considerations).
 
 Abilitare l'esplorazione directory con:
 
@@ -363,7 +363,7 @@ Il middleware dei file statici non offre controlli di autorizzazione. I file usa
 
 ## <a name="enable-directory-browsing"></a>Abilitare l'esplorazione directory
 
-L'esplorazione directory consente agli utenti dell'app Web di visualizzare un elenco di directory e i file all'interno di una directory specifica. Per motivi di sicurezza, l'esplorazione directory è disabilitata per impostazione predefinita (vedere [Considerazioni](#sc)). Abilitare l'esplorazione directory richiamando il <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A> metodo in `Startup.Configure` :
+L'esplorazione directory consente agli utenti dell'app Web di visualizzare un elenco di directory e i file all'interno di una directory specifica. Per motivi di sicurezza, l'esplorazione directory è disabilitata per impostazione predefinita (vedere [Considerazioni](#considerations)). Abilitare l'esplorazione directory richiamando il <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A> metodo in `Startup.Configure` :
 
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=12-17)]
 

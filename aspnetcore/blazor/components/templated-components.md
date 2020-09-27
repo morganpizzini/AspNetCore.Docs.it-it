@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/templated-components
-ms.openlocfilehash: 293154658e9d39166213c0a465bed1166ba39b54
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 74601905b7317ad8d9763fe0d747ba36bd0b1389
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628352"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393795"
 ---
 # <a name="aspnet-core-no-locblazor-templated-components"></a>ASP.NET Core Blazor componenti basati su modelli
 
@@ -34,11 +34,13 @@ I componenti basati su modelli sono componenti che accettano uno o più modelli 
 * Componente della tabella che consente a un utente di specificare i modelli per l'intestazione, le righe e il piè di pagina della tabella.
 * Componente di elenco che consente a un utente di specificare un modello per il rendering degli elementi in un elenco.
 
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
+
 ## <a name="template-parameters"></a>Parametri di modelli
 
 Un componente basato su modelli viene definito specificando uno o più parametri del componente di tipo <xref:Microsoft.AspNetCore.Components.RenderFragment> o <xref:Microsoft.AspNetCore.Components.RenderFragment%601> . Un frammento di rendering rappresenta un segmento di interfaccia utente di cui eseguire il rendering. <xref:Microsoft.AspNetCore.Components.RenderFragment%601> accetta un parametro di tipo che può essere specificato quando viene richiamato il frammento di rendering.
 
-`TableTemplate` componente
+`TableTemplate` componente ( `TableTemplate.razor` ):
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
 
@@ -55,6 +57,21 @@ Quando si usa un componente basato su modelli, i parametri del modello possono e
         <td>@context.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    private List<Pet> pets = new List<Pet>
+    {
+        new Pet { PetId = 2, Name = "Mr. Bigglesworth" },
+        new Pet { PetId = 4, Name = "Salem Saberhagen" },
+        new Pet { PetId = 7, Name = "K-9" }
+    };
+
+    private class Pet
+    {
+        public int PetId { get; set; }
+        public string Name { get; set; }
+    }
+}
 ```
 
 > [!NOTE]
@@ -75,6 +92,10 @@ Gli argomenti del componente di tipo <xref:Microsoft.AspNetCore.Components.Rende
         <td>@pet.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    ...
+}
 ```
 
 In alternativa, è possibile specificare l' `Context` attributo sull'elemento Component. L' `Context` attributo specificato si applica a tutti i parametri di modello specificati. Questa operazione può essere utile quando si desidera specificare il nome del parametro di contenuto per il contenuto figlio implicito (senza alcun elemento figlio di wrapping). Nell'esempio seguente l' `Context` attributo viene visualizzato nell' `TableTemplate` elemento e si applica a tutti i parametri del modello:
@@ -90,11 +111,15 @@ In alternativa, è possibile specificare l' `Context` attributo sull'elemento Co
         <td>@pet.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    ...
+}
 ```
 
 ## <a name="generic-typed-components"></a>Componenti tipizzati in modo generico
 
-I componenti basati su modelli spesso sono tipizzati in modo generico. È ad esempio `ListViewTemplate` possibile utilizzare un componente generico per eseguire il rendering `IEnumerable<T>` dei valori. Per definire un componente generico, usare la [`@typeparam`](xref:mvc/views/razor#typeparam) direttiva per specificare i parametri di tipo:
+I componenti basati su modelli spesso sono tipizzati in modo generico. È ad esempio `ListViewTemplate` possibile utilizzare un componente generico ( `ListViewTemplate.razor` ) per eseguire il rendering `IEnumerable<T>` dei valori. Per definire un componente generico, usare la [`@typeparam`](xref:mvc/views/razor#typeparam) direttiva per specificare i parametri di tipo:
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 
@@ -106,6 +131,20 @@ Quando si usano componenti tipizzati generici, il parametro di tipo viene dedott
         <li>@pet.Name</li>
     </ItemTemplate>
 </ListViewTemplate>
+
+@code {
+    private List<Pet> pets = new List<Pet>
+    {
+        new Pet { Name = "Mr. Bigglesworth" },
+        new Pet { Name = "Salem Saberhagen" },
+        new Pet { Name = "K-9" }
+    };
+
+    private class Pet
+    {
+        public string Name { get; set; }
+    }
+}
 ```
 
 In caso contrario, il parametro di tipo deve essere specificato in modo esplicito utilizzando un attributo che corrisponde al nome del parametro di tipo. Nell'esempio seguente viene `TItem="Pet"` specificato il tipo:
@@ -116,4 +155,8 @@ In caso contrario, il parametro di tipo deve essere specificato in modo esplicit
         <li>@pet.Name</li>
     </ItemTemplate>
 </ListViewTemplate>
+
+@code {
+    ...
+}
 ```

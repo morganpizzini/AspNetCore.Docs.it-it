@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/streaming
-ms.openlocfilehash: 29748ebe24fea03415b5a01b21300433e3fbc0f0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5a172818f8910a637b731dc1b1315965f448b2ba
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634215"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393574"
 ---
 # <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>Usare il flusso in ASP.NET Core SignalR
 
@@ -74,7 +74,7 @@ Nell'esempio seguente vengono illustrate le nozioni di base per il flusso di dat
 > [!NOTE]
 > Scrivere in `ChannelWriter<T>` in un thread in background e restituire il appena `ChannelReader` possibile. Altre chiamate all'hub vengono bloccate fino a quando non `ChannelReader` viene restituito un oggetto.
 >
-> Eseguire il wrapping della logica in un oggetto `try ... catch` . Per assicurarsi `Channel` `catch` `catch` che la chiamata al metodo hub sia stata completata correttamente, completare il in e all'esterno di.
+> Eseguire il wrapping della logica in un' [ `try ... catch` istruzione](/dotnet/csharp/language-reference/keywords/try-catch). Completare `Channel` in un [ `finally` blocco](/dotnet/csharp/language-reference/keywords/try-catch-finally). Se si vuole propagare un errore, acquisirlo all'interno del `catch` blocco e scriverlo nel `finally` blocco.
 
 ::: moniker range=">= aspnetcore-3.0"
 

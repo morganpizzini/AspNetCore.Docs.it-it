@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 7f684d96ee9fd640abdc750503bed1b2a836a459
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: 212d8a80bdc466479c34bc5fbd9c3261ca9d54c4
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847742"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393912"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Esercitazione: creare un'API Web con ASP.NET Core
 
@@ -80,7 +80,7 @@ Il diagramma seguente visualizza la struttura dell'app.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Scegliere **Nuovo** > **Progetto** dal menu **File**.
+* Scegliere **nuovo** progetto dal menu **file** > **Project**.
 * Selezionare il modello **Applicazione Web ASP.NET Core** e fare clic su **Avanti**.
 * Assegnare al progetto il nome *TodoApi* e fare clic su **Crea**.
 * Nella finestra di dialogo **Crea una nuova applicazione Web ASP.NET Core** verificare che siano selezionati **.net Core** e **ASP.NET Core 5,0** . Selezionare il modello **API** e fare clic su **Crea**.
@@ -606,7 +606,7 @@ Il diagramma seguente visualizza la struttura dell'app.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Scegliere **Nuovo** > **Progetto** dal menu **File**.
+* Scegliere **nuovo** progetto dal menu **file** > **Project**.
 * Selezionare il modello **Applicazione Web ASP.NET Core** e fare clic su **Avanti**.
 * Assegnare al progetto il nome *TodoApi* e fare clic su **Crea**.
 * Nella finestra di dialogo **Crea una nuova applicazione Web ASP.NET Core** verificare che siano selezionati **.net Core** e **ASP.NET Core 3,1** . Selezionare il modello **API** e fare clic su **Crea**.
@@ -983,7 +983,7 @@ Aggiornare l'attività con ID = 1 e impostarne il nome su "feed Fish":
 
 ```json
   {
-    "Id":1,
+    "id":1,
     "name":"feed fish",
     "isComplete":true
   }
@@ -1096,7 +1096,7 @@ Il diagramma seguente visualizza la struttura dell'app.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Scegliere **Nuovo** > **Progetto** dal menu **File**.
+* Scegliere **nuovo** progetto dal menu **file** > **Project**.
 * Selezionare il modello **Applicazione Web ASP.NET Core** e fare clic su **Avanti**.
 * Assegnare al progetto il nome *TodoApi* e fare clic su **Crea**.
 * Nella finestra di dialogo **Crea una nuova applicazione Web ASP.NET Core** verificare che siano selezionati **.NET Core** e **ASP.NET Core 2.2**. Selezionare il modello **API** e fare clic su **Crea**. **Non** selezionare **Abilita supporto Docker**.
@@ -1235,7 +1235,7 @@ Il codice precedente:
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Fare clic con il pulsante destro del mouse sulla cartella *Controllers*.
-* Scegliere **Aggiungi** > **Nuovo elemento**.
+* Selezionare **Aggiungi** > **nuovo elemento**.
 * Nella finestra di dialogo **Aggiungi nuovo elemento** selezionare il modello **API Controller Class** (Classe controller API).
 * Assegnare alla classe il nome *TodoController* e selezionare **Aggiungi**.
 
@@ -1410,7 +1410,7 @@ Aggiornare l'attività con ID = 1 e impostarne il nome su "feed Fish":
 
 ```json
   {
-    "Id":1,
+    "id":1,
     "name":"feed fish",
     "isComplete":true
   }

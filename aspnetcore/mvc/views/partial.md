@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 7a370042520adfe5b06784b76acf41a81eb2c72d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bb75d8b7d78c82c9c32605ac645b8895fdfb78e3
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630627"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393652"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Visualizzazioni parziali in ASP.NET Core
 
 Di [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT) e [Scott Sauber](https://twitter.com/scottsauber)
 
-Una visualizzazione parziale è un [Razor](xref:mvc/views/razor) file di markup (con*estensione cshtml*) che esegue il rendering dell'output HTML *all'interno* dell'output sottoposto a rendering di un altro file di markup.
+Una visualizzazione parziale è un [Razor](xref:mvc/views/razor) file di markup (con*estensione cshtml*) senza una [`@page`](xref:mvc/views/razor#page) direttiva che esegue il rendering dell'output HTML *all'interno* dell'output sottoposto a rendering di un altro file di markup.
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -57,7 +57,7 @@ Non usare una visualizzazione parziale in cui per il rendering del markup è nec
 
 ::: moniker range=">= aspnetcore-2.0"
 
-Una visualizzazione parziale è un file di markup con *estensione cshtml* gestito nella cartella *views* (MVC) o nella cartella *pages* ( Razor pagine).
+Una visualizzazione parziale è un file di markup con *estensione cshtml* senza una [`@page`](xref:mvc/views/razor#page) direttiva gestita nella cartella *views* (MVC) o nella cartella *pages* ( Razor pagine).
 
 In ASP.NET Core MVC, l'elemento <xref:Microsoft.AspNetCore.Mvc.ViewResult> di un controller è in grado di restituire una visualizzazione o una visualizzazione parziale. Nelle Razor pagine, un <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> può restituire una visualizzazione parziale rappresentata come un <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> oggetto. Il riferimento e il rendering delle visualizzazioni parziali sono descritti nella sezione [Riferimento a una visualizzazione parziale](#reference-a-partial-view).
 
