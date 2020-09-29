@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 54780e2d67c70d945fd875c41c8d6483aa358bbf
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 57d46e34993148943b1e9680a372405be9c80605
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627195"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424204"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurare l'autenticazione del certificato in ASP.NET Core
 
@@ -198,7 +198,7 @@ services.AddAuthentication(
             {
                 var validationService =
                     context.HttpContext.RequestServices
-                        .GetService<ICertificateValidationService>();
+                        .GetRequiredService<ICertificateValidationService>();
                 
                 if (validationService.ValidateCertificate(
                     context.ClientCertificate))

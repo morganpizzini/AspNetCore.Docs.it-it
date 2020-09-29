@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: eb4aaa2f3d412cdf650ed2daf7c12166991d92a1
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 92287c7205e67d7f2000b53506ec18475517325b
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90592904"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424087"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>Assembly di caricamento lazy in ASP.NET Core Blazor WebAssembly
 
@@ -106,7 +106,7 @@ All'interno di `OnNavigateAsync` implementare la logica per determinare gli asse
 L'implementazione del caricamento lazy del Framework supporta il caricamento lazy con il prerendering in una soluzione ospitata Blazor . Durante il prerendering, si presuppone che tutti gli assembly, inclusi quelli contrassegnati per il caricamento lazy, siano caricati. Eseguire la registrazione manuale `LazyAssemblyLoader` nel metodo del progetto *Server* `Startup.ConfigureServices` ( `Startup.cs` ):
 
 ```csharp
-services.AddSingleton<LazyAssemblyLoader>();
+services.AddScoped<LazyAssemblyLoader>();
 ```
 
 ### <a name="user-interaction-with-navigating-content"></a>Interazione dell'utente con il `<Navigating>` contenuto
