@@ -18,16 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/mfa
-ms.openlocfilehash: e224f947335ea8ea6ed8887dfadb52202bfd7866
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: 76a11aa7b89b3ce60ed11bd7553a7e5898f661f4
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009505"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606803"
 ---
 # <a name="multi-factor-authentication-in-aspnet-core"></a>Autenticazione a più fattori in ASP.NET Core
 
 Di [Damien Bowden](https://github.com/damienbod)
+
+[Visualizzare o scaricare il codice di esempio (repository GitHub damienbod/AspNetCoreHybridFlowWithApi)](https://github.com/damienbod/AspNetCoreHybridFlowWithApi)
 
 Multi-factor authentication è un processo in cui un utente viene richiesto durante un evento di accesso per ulteriori forme di identificazione. Questa richiesta può essere l'immissione di un codice da un cellulare, l'uso di una chiave FIDO2 o l'analisi di un'impronta digitale. Quando è necessaria una seconda forma di autenticazione, la sicurezza viene migliorata. Il fattore aggiuntivo non è facilmente ottenibile o duplicato da un utente malintenzionato.
 

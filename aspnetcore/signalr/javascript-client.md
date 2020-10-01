@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 359aa2b9e6b7f826d75f10645b7f2b565ab48b7a
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: 6fc586d144547585ef75d653bf54193def5c8b7f
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847689"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606685"
 ---
 # <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.NET Core SignalR client JavaScript
 
@@ -277,6 +277,46 @@ Il codice seguente illustra un tipico approccio di riconnessione manuale:
 [!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=30-40)]
 
 Un'implementazione reale utilizzerebbe un backup esponenziale o ritenterà un numero di volte specificato prima di rinunciare.
+
+## <a name="troubleshoot-websocket-handshake-errors"></a>Risolvere gli errori di handshake WebSocket
+
+Questa sezione fornisce informazioni sull'eccezione *"errore durante l'handshake di WebSocket"* che si verifica quando si tenta di stabilire una connessione all' SignalR Hub ASP.NET Core.
+
+### <a name="response-code-400-or-503"></a>Codice di risposta 400 o 503
+
+Per il seguente errore:
+
+```log
+WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 400
+
+Error: Failed to start the connection: Error: There was an error with the transport.
+```
+
+L'errore è in genere dovuto al fatto che il client usa solo il trasporto WebSocket ma il protocollo WebSockets non è abilitato nel server.
+
+### <a name="response-code-307"></a>Codice di risposta 307
+
+```log
+WebSocket connection to 'ws://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 307
+```
+
+Questa situazione si verifica spesso quando il SignalR server Hub:
+
+* È in ascolto e risponde tramite HTTP e HTTPS.
+* È configurato per applicare HTTPS chiamando `UseHttpsRedirection` in `Startup` o impone HTTPS tramite una regola di riscrittura URL.
+
+Questo errore può essere causato dalla specifica dell'URL HTTP sul lato client usando `.withUrl("http://xxx/HubName")` . La correzione per questo caso consiste nel modificare il codice per l'uso di un URL HTTPS.
+
+### <a name="response-code-404"></a>Codice di risposta 404
+
+```log
+WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 404
+```
+
+Se l'app funziona su localhost, ma restituisce questo errore dopo la pubblicazione nel server IIS:
+
+* Verificare che l' SignalR app ASP.NET Core sia ospitata come applicazione secondaria IIS.
+* Non impostare l'URL con il pathbase dell'applicazione secondaria sul SignalR lato client JavaScript `.withUrl("/SubAppName/HubName")` .
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

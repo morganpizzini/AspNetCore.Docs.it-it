@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 43794fad36efe44cad6fbb2f1a1cae293a2ddad1
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a74f056447839c4cf057948f26a9ece9b5799656
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625960"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606722"
 ---
 # <a name="aspnet-core-no-locblazor-state-management"></a>BlazorGestione dello stato ASP.NET Core
 
@@ -58,11 +58,12 @@ Un'app può solo salvare *lo stato dell'app*. Non è possibile rendere permanent
 
 ## <a name="where-to-persist-state"></a>Posizione in cui salvare lo stato
 
-Per lo stato permanente sono disponibili tre percorsi comuni:
+Esistono località comuni per lo stato permanente:
 
 * [Archiviazione sul lato server](#server-side-storage)
 * [URL](#url)
 * [Archiviazione del browser](#browser-storage)
+* [Servizio contenitore stato in memoria](#in-memory-state-container-service)
 
 ### <a name="server-side-storage"></a>Archiviazione sul lato server
 
@@ -119,6 +120,10 @@ In genere, `sessionStorage` è più sicuro da usare. `sessionStorage` evita il r
 > [!WARNING]
 > Gli utenti possono visualizzare o manomettere i dati archiviati in `localStorage` e `sessionStorage` .
 
+## <a name="in-memory-state-container-service"></a>Servizio contenitore stato in memoria
+
+[!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
+
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * [Salva lo stato dell'app prima di un'operazione di autenticazione](xref:blazor/security/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)
@@ -162,11 +167,12 @@ Un'app può solo salvare *lo stato dell'app*. Non è possibile rendere permanent
 
 ## <a name="where-to-persist-state"></a>Posizione in cui salvare lo stato
 
-Per lo stato permanente sono disponibili tre percorsi comuni:
+Esistono località comuni per lo stato permanente:
 
 * [Archiviazione sul lato server](#server-side-storage)
 * [URL](#url)
 * [Archiviazione del browser](#browser-storage)
+* [Servizio contenitore stato in memoria](#in-memory-state-container-service)
 
 ### <a name="server-side-storage"></a>Archiviazione sul lato server
 
@@ -701,5 +707,9 @@ In generale, è consigliabile usare il modello di *componente padre del provider
 Per salvare in modo permanente molti oggetti di stato diversi e utilizzare subset diversi di oggetti in posizioni diverse, è preferibile evitare di salvare in modo permanente lo stato a livello globale.
 
 ::: moniker-end
+
+## <a name="in-memory-state-container-service"></a>Servizio contenitore stato in memoria
+
+[!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
 
 ::: zone-end

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 63cda3348073418e95dd9a0cbdb62e0b5f606383
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 88c3ded79db65557d9426fde6f43aace4d9d8ae2
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90721801"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606673"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>ASP.NET Core Blazor moduli e convalida
 
@@ -1198,7 +1198,7 @@ Un effetto collaterale dell'approccio precedente è che un <xref:Microsoft.AspNe
 }
 ```
 
-## <a name="troubleshoot"></a>Risolvere problemi
+## <a name="troubleshoot"></a>Risoluzione dei problemi
 
 > InvalidOperationException: EditForm richiede un parametro di modello o un parametro EditContext, ma non entrambi.
 
@@ -1210,6 +1210,10 @@ Quando si assegna un <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model>
 private ExampleModel exampleModel = new ExampleModel();
 ```
 
+::: moniker range=">= aspnetcore-5.0"
+
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * <xref:blazor/file-uploads>
+
+::: moniker-end
