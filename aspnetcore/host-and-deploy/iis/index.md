@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 1338ecd6205a351b54a58522b1713a6d70e2d22a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f648837ce42bef4a828d7eda1a6abdfdd8ac07a2
+ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634748"
+ms.lasthandoff: 10/02/2020
+ms.locfileid: "91654036"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Host ASP.NET Core in Windows con IIS
 
@@ -549,24 +549,6 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 
 Per altre informazioni, vedere l'argomento [icacls](/windows-server/administration/windows-commands/icacls).
 
-## <a name="http2-support"></a>Supporto HTTP/2
-
-[HTTP/2](https://httpwg.org/specs/rfc7540.html) è supportato con ASP.NET Core negli scenari di distribuzione IIS seguenti:
-
-* In-Process
-  * Windows Server 2016/Windows 10 o versioni successive; IIS 10 o versioni successive
-  * Connessione TLS 1.2 o successiva
-* Out-of-process
-  * Windows Server 2016/Windows 10 o versioni successive; IIS 10 o versioni successive
-  * Le connessioni server perimetrali pubbliche usano HTTP/2, mentre la connessione con proxy inverso al [server Kestrel](xref:fundamentals/servers/kestrel) usa HTTP/1.1.
-  * Connessione TLS 1.2 o successiva
-
-Per una distribuzione In-Process, se viene stabilita una connessione HTTP/2, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) corrisponde a `HTTP/2`. Per una distribuzione out-of-process, se viene stabilita una connessione HTTP/2, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) corrisponde a `HTTP/1.1`.
-
-Per altre informazioni sui modelli di hosting in-process e out-of-process, vedere <xref:host-and-deploy/aspnet-core-module>.
-
-HTTP/2 è abilitato per impostazione predefinita. Se non viene stabilita una connessione HTTP/2, la connessione esegue il fallback a HTTP/1.1. Per altre informazioni sulla configurazione di HTTP/2 con le distribuzioni IIS, vedere [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis) (HTTP/2 in IIS).
-
 ## <a name="cors-preflight-requests"></a>Richieste preliminari CORS
 
 *Questa sezione si applica solo alle app ASP.NET Core destinate a .NET Framework.*
@@ -890,7 +872,7 @@ Installare il *bundle di hosting .NET Core* nel sistema di hosting. Il bundle in
 >
 > Se il bundle di hosting viene installato dopo l'installazione della versione a 64 bit (x64) di .NET Core, uno o più SDK potrebbero risultare mancanti ([Non sono stati rilevati .NET Core SDK](xref:test/troubleshoot#no-net-core-sdks-were-detected)). Per risolvere il problema, vedere <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
-### <a name="download"></a>Scarica
+### <a name="download"></a>Download
 
 1. Passare alla pagina [download di .NET Core](https://dotnet.microsoft.com/download/dotnet-core) .
 1. Selezionare la versione desiderata di .NET Core.
@@ -1458,7 +1440,7 @@ Installare il *bundle di hosting .NET Core* nel sistema di hosting. Il bundle in
 >
 > Se il bundle di hosting viene installato dopo l'installazione della versione a 64 bit (x64) di .NET Core, uno o più SDK potrebbero risultare mancanti ([Non sono stati rilevati .NET Core SDK](xref:test/troubleshoot#no-net-core-sdks-were-detected)). Per risolvere il problema, vedere <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
-### <a name="download"></a>Scarica
+### <a name="download"></a>Download
 
 1. Passare alla pagina [download di .NET Core](https://dotnet.microsoft.com/download/dotnet-core) .
 1. Selezionare la versione desiderata di .NET Core.
