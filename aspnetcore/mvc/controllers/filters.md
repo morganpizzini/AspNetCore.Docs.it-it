@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: c97e3afbbf94a4cb721c5d814a377eec3e26a03b
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: eeae167286e793ecd5a547cea0142cf7d8014ece
+ms.sourcegitcommit: c0a15ab8549cb729731a0fdf1d7da0b7feaa11ff
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865410"
+ms.lasthandoff: 10/02/2020
+ms.locfileid: "91671782"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtri in ASP.NET Core
 
@@ -221,7 +221,7 @@ Ad esempio, l'applicazione di `MySampleActionFilter` nell'esempio scaricato avvi
 
 <!-- test via  webBuilder.UseStartup<Startup>(); -->
 
-Passando a `https://localhost:5001/Test2/FilterTest2`, viene eseguito il codice seguente:
+Passando a `https://localhost:5001/Test/FilterTest2`, viene eseguito il codice seguente:
 
 * `TestController.OnActionExecuting`
   * `MySampleActionFilter.OnActionExecuting`
@@ -260,8 +260,8 @@ I 3 filtri vengono eseguiti nell'ordine seguente:
   * `MySampleActionFilter.OnActionExecuting`
     * `MyAction2FilterAttribute.OnActionExecuting`
       * `Test2Controller.FilterTest2`
-    * `MySampleActionFilter.OnActionExecuted`
-  * `MyAction2FilterAttribute.OnResultExecuting`
+    * `MyAction2FilterAttribute.OnResultExecuting`
+  * `MySampleActionFilter.OnActionExecuted`
 * `Test2Controller.OnActionExecuted`
 
 La proprietà `Order` ha la precedenza sull'ambito nel determinare l'ordine di esecuzione dei filtri. I filtri vengono ordinati prima in base all'ordine, poi viene usato l'ambito per interrompere i collegamenti. Tutti i filtri predefiniti implementano `IOrderedFilter` e impostano il valore predefinito di `Order` su 0. Come indicato in precedenza, i filtri a livello di controller impostano la proprietà [Order](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) su `int.MinValue` per i filtri incorporati, l'ambito determina l'ordine a meno che non `Order` sia impostato su un valore diverso da zero.
@@ -291,7 +291,7 @@ Pertanto il filtro `AddHeader` non viene mai eseguito per l'azione `SomeResource
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
 
-## <a name="dependency-injection"></a>Inserimento delle dipendenze
+## <a name="dependency-injection"></a>Inserimento di dipendenze
 
 È possibile aggiungere filtri per tipo o per istanza. Se viene aggiunta un'istanza, tale istanza viene usata per ogni richiesta. Se viene aggiunto un tipo, il filtro è attivato dal tipo. Un filtro attivato dal tipo comporta:
 
@@ -795,7 +795,7 @@ La proprietà `Order` può essere impostata con un parametro del costruttore:
 
 Prendere in considerazione gli stessi tre filtri di azione illustrati nell'esempio precedente. Se la proprietà `Order` del controller e dei filtri globali è impostata, rispettivamente, su 1 e su 2, l'ordine di esecuzione viene invertito.
 
-| Sequenza | Ambito del filtro | Proprietà `Order` | Metodo del filtro |
+| Sequenza | Ambito del filtro | Proprietà`Order` | Metodo del filtro |
 |:--------:|:------------:|:-----------------:|:-------------:|
 | 1 | Metodo | 0 | `OnActionExecuting` |
 | 2 | Controller | 1  | `OnActionExecuting` |
@@ -823,7 +823,7 @@ Pertanto il filtro `AddHeader` non viene mai eseguito per l'azione `SomeResource
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1,9)]
 
-## <a name="dependency-injection"></a>Inserimento delle dipendenze
+## <a name="dependency-injection"></a>Inserimento di dipendenze
 
 È possibile aggiungere filtri per tipo o per istanza. Se viene aggiunta un'istanza, tale istanza viene usata per ogni richiesta. Se viene aggiunto un tipo, il filtro è attivato dal tipo. Un filtro attivato dal tipo comporta:
 

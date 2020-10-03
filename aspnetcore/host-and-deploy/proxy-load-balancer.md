@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/proxy-load-balancer
-ms.openlocfilehash: 209f75edc2901422b94c619a505e0b8316aec699
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 2babfb33921412f5da20d2b5060766b7ee483392
+ms.sourcegitcommit: c0a15ab8549cb729731a0fdf1d7da0b7feaa11ff
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865389"
+ms.lasthandoff: 10/02/2020
+ms.locfileid: "91671756"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>Configurare ASP.NET Core per l'uso di server proxy e servizi di bilanciamento del carico
 
@@ -48,7 +48,7 @@ Per convenzione, i proxy inoltrano le informazioni nelle intestazioni HTTP.
 | X-Forwarded-Proto | Il valore dello schema di origine (HTTP/HTTPS). Il valore può essere anche un elenco di schemi, se la richiesta ha attraversato più proxy. |
 | X-Forwarded-Host | Il valore originale del campo dell'intestazione host. I proxy in genere non modificano l'intestazione host. Vedere l'[avviso di sicurezza Microsoft CVE-2018-0787](https://github.com/aspnet/Announcements/issues/295) per informazioni su una vulnerabilità di elevazione dei privilegi che interessa i sistemi in cui il proxy non convalida o limita le intestazioni host a valori di riferimento noti. |
 
-Il middleware delle intestazioni inoltrate, dal pacchetto [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/), legge le intestazioni e compila i campi associati in <xref:Microsoft.AspNetCore.Http.HttpContext>.
+Il middleware delle intestazioni inoltri ( <xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersMiddleware> ) legge queste intestazioni e compila i campi associati in <xref:Microsoft.AspNetCore.Http.HttpContext> .
 
 Il middleware aggiorna:
 
