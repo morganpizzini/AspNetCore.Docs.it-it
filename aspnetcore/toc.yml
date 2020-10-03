@@ -14,9 +14,9 @@
   uid: getting-started
 - name: Note sulla versione
   items:
-    - name: Novità nella versione 3.1
+    - name: Novità della versione 3.1
       uid: aspnetcore-3.1
-    - name: Novità nella versione 3.0
+    - name: Novità della versione 3.0
       uid: aspnetcore-3.0
     - name: Novità nella versione 2.2
       uid: aspnetcore-2.2
@@ -525,7 +525,7 @@
               href: mvc/views/working-with-forms.md#the-form-tag-helper
             - name: Azione modulo
               href: mvc/views/working-with-forms.md#the-form-action-tag-helper
-            - name: Immagine
+            - name: Image
               uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
             - name: Input
               href: mvc/views/working-with-forms.md#the-input-tag-helper
@@ -684,7 +684,7 @@
     - name: Autenticazione e autorizzazione
       uid: signalr/authn-and-authz
       displayName: signalr
-    - name: Considerazioni relative alla sicurezza
+    - name: Considerazioni sulla sicurezza
       uid: signalr/security
       displayName: signalr
     - name: Protocollo hub MessagePack
@@ -933,6 +933,9 @@
         - name: Trasformare web.config
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/transform-webconfig
+        - name: HTTP/2
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/protocols
     - name: Kestrel
       uid: fundamentals/servers/kestrel
       displayName: 'deploy, publish, server'
