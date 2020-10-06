@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/publish-to-iis
-ms.openlocfilehash: 34707def9728211b9c2aa36d255f2467d1e3d661
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 40c47da472257862414ba33be582eb19d3f0b29c
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627793"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754554"
 ---
 # <a name="publish-an-aspnet-core-app-to-iis"></a>Pubblicare un'app ASP.NET Core in IIS
 
@@ -60,15 +60,22 @@ Scaricare il programma di installazione mediante il collegamento seguente:
 
 1. Eseguire il programma di installazione nel server IIS.
 
-1. Riavviare il server o eseguire **net stop was /y** seguito da **net start w3svc** in una shell dei comandi.
+1. Riavviare il server o eseguire `net stop was /y` seguito da `net start w3svc` in una shell dei comandi.
 
 ## <a name="create-the-iis-site"></a>Creare il sito IIS
 
-1. Nel server IIS creare una cartella per contenere le cartelle e i file pubblicati dell'app. In un passaggio successivo, il percorso della cartella viene fornito a IIS come percorso fisico dell'app.
+1. Nel server IIS creare una cartella per contenere le cartelle e i file pubblicati dell'app. In un passaggio successivo, il percorso della cartella viene fornito a IIS come percorso fisico dell'app. Per altre informazioni sulla cartella di distribuzione e il layout dei file di un'app, vedere <xref:host-and-deploy/directory-structure>.
 
 1. In Gestione IIS aprire il nodo del server nel pannello **connessioni** . Fare clic con il pulsante destro del mouse sulla cartella **Siti**. Scegliere **Aggiungi sito Web** dal menu di scelta rapida.
 
 1. Specificare un **Nome del sito** e impostare il **Percorso fisico** per la cartella di distribuzione dell'app che è stata creata. Specificare la configurazione in **Binding** e creare il sito Web selezionando **OK**.
+
+   > [!WARNING]
+   > Le associazioni con caratteri jolly di livello superiore (`http://*:80/` e `http://+:80`) **non** devono essere usate, poiché possono introdurre vulnerabilità a livello di sicurezza nell'app. Questo concetto vale sia per i caratteri jolly sicuri che vulnerabili. Usare nomi host espliciti al posto di caratteri jolly. L'associazione con caratteri jolly del sottodominio (ad esempio, `*.mysub.com`) non costituisce un rischio per la sicurezza se viene controllato l'intero dominio padre (a differenza di `*.com`, che è vulnerabile). Vedere la [sezione 5.4 di RFC7230](https://tools.ietf.org/html/rfc7230#section-5.4) per altre informazioni.
+
+1. Confermare che l'identità del modello del processo disponga delle autorizzazioni appropriate.
+
+   Se l'identità predefinita del pool di app (**modello**  >  **Identity** di processo) viene modificata da `ApplicationPoolIdentity` a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
 
 ## <a name="create-an-aspnet-core-no-locrazor-pages-app"></a>Creare un'app di ASP.NET Core Razor pages
 
@@ -77,7 +84,7 @@ Seguire l' <xref:getting-started> esercitazione per creare un' Razor app pagine.
 ## <a name="publish-and-deploy-the-app"></a>Pubblicare e distribuire l'app
 
 *Pubblicare un'app* significa creare un'app compilata che può essere ospitata da un server. *Distribuire un'app* significa spostare l'app pubblicata in un sistema di hosting. Il passaggio di pubblicazione viene gestito da [.NET Core SDK](/dotnet/core/sdk), mentre la fase di distribuzione può essere gestita tramite vari approcci. Questa esercitazione adotta l'approccio di distribuzione tramite una *cartella*, in cui:
-
+ 
 * L'app viene pubblicata in una cartella.
 * Il contenuto della cartella viene spostato nella cartella del sito IIS, ovvero il **percorso fisico** del sito in Gestione IIS.
 
@@ -87,7 +94,7 @@ Seguire l' <xref:getting-started> esercitazione per creare un' Razor app pagine.
 1. Nella finestra di dialogo **Selezionare una destinazione di pubblicazione** selezionare l'opzione di pubblicazione **Cartella**.
 1. Impostare il percorso **Cartella o condivisione file**.
    * Se è stata creata una cartella per il sito IIS disponibile nel computer di sviluppo come una condivisione di rete, specificare il percorso della condivisione. L'utente corrente deve avere l'accesso in scrittura per la pubblicazione nella condivisione.
-   * Se non è possibile eseguire la distribuzione direttamente nella cartella del sito IIS nel server IIS, pubblicare in una cartella su un supporto rimovibile e spostare fisicamente l'app pubblicata nella cartella del sito IIS nel server, ovvero il **percorso fisico** del sito in Gestione IIS. Spostare il contenuto della cartella *bin/Release/{TARGET FRAMEWORK}/publish* nella cartella del sito IIS nel server, ovvero il **percorso fisico** del sito in Gestione IIS.
+   * Se non si è in grado di eseguire la distribuzione direttamente nella cartella del sito IIS nel server IIS, pubblicare in una cartella su supporti rimovibili e spostare fisicamente l'app pubblicata nella cartella del sito IIS nel server, ovvero il **percorso fisico** del sito in Gestione IIS. Spostare il contenuto della `bin/Release/{TARGET FRAMEWORK}/publish` cartella nella cartella del sito IIS sul server, ovvero il **percorso fisico** del sito in Gestione IIS.
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
@@ -97,14 +104,14 @@ Seguire l' <xref:getting-started> esercitazione per creare un' Razor app pagine.
    dotnet publish --configuration Release
    ```
 
-1. Spostare il contenuto della cartella *bin/Release/{TARGET FRAMEWORK}/publish* nella cartella del sito IIS nel server, ovvero il **percorso fisico** del sito in Gestione IIS.
+1. Spostare il contenuto della `bin/Release/{TARGET FRAMEWORK}/publish` cartella nella cartella del sito IIS sul server, ovvero il **percorso fisico** del sito in Gestione IIS.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
 1. Fare clic con il pulsante destro del mouse sul progetto in **Soluzione** e scegliere **Pubblica** > **Pubblica nella cartella**.
 1. Impostare il percorso in **Scegliere una cartella**.
    * Se è stata creata una cartella per il sito IIS disponibile nel computer di sviluppo come una condivisione di rete, specificare il percorso della condivisione. L'utente corrente deve avere l'accesso in scrittura per la pubblicazione nella condivisione.
-   * Se non è possibile eseguire la distribuzione direttamente nella cartella del sito IIS nel server IIS, pubblicare in una cartella su un supporto rimovibile e spostare fisicamente l'app pubblicata nella cartella del sito IIS nel server, ovvero il **percorso fisico** del sito in Gestione IIS. Spostare il contenuto della cartella *bin/Release/{TARGET FRAMEWORK}/publish* nella cartella del sito IIS nel server, ovvero il **percorso fisico** del sito in Gestione IIS.
+   * Se non è possibile eseguire la distribuzione direttamente nella cartella del sito IIS nel server IIS, pubblicare in una cartella su un supporto rimovibile e spostare fisicamente l'app pubblicata nella cartella del sito IIS nel server, ovvero il **percorso fisico** del sito in Gestione IIS. Spostare il contenuto della `bin/Release/{TARGET FRAMEWORK}/publish` cartella nella cartella del sito IIS sul server, ovvero il **percorso fisico** del sito in Gestione IIS.
 
 ---
 
@@ -151,3 +158,15 @@ Per altre informazioni sull'hosting di app ASP.NET Core in IIS, vedere la panora
 
 * [Il sito IIS ufficiale di Microsoft](https://www.iis.net/)
 * [Libreria di contenuti tecnici di Windows Server](/windows-server/windows-server)
+
+### <a name="deployment-resources-for-iis-administrators"></a>Risorse di distribuzione per amministratori IIS
+
+* [Documentazione di ISS](/iis)
+* [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8) (Introduzione a Gestione IIS in IIS)
+* [Distribuzione di applicazioni .NET Core](/dotnet/core/deploying/)
+* <xref:host-and-deploy/aspnet-core-module>
+* <xref:host-and-deploy/directory-structure>
+* <xref:host-and-deploy/iis/modules>
+* <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
+

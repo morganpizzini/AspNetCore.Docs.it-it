@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/inheritance
-ms.openlocfilehash: 34c4ea28103b9eb12601b383a46091084391f120
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: fabb0ed9c0f64a529b516d521d60a7d862e2654a
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847598"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754567"
 ---
 # <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Esercitazione: implementare l'ereditarietà-ASP.NET MVC con EF Core
 
@@ -64,7 +64,7 @@ Questo criterio di generazione di una struttura di ereditarietà delle entità d
 Un'alternativa consiste nel rendere il database più simile alla struttura di ereditarietà. È possibile, ad esempio, includere nella tabella Person solo i campi del nome e usare tabelle Instructor e Student separate con i campi della data.
 
 > [!WARNING]
-> La tabella per tipo (TPT) non è supportata da EF Core 3. x, ma è stata implementata in [EF Core 5,0](https://docs.microsoft.com/ef/core/what-is-new/ef-core-5.0/plan).
+> La tabella per tipo (TPT) non è supportata da EF Core 3. x, ma è stata implementata in [EF Core 5,0](/ef/core/what-is-new/ef-core-5.0/plan).
 
 ![Ereditarietà tabella per tipo](inheritance/_static/tpt.png)
 

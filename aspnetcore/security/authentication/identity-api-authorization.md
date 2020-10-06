@@ -18,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 913f8f1e43586ce71353c080e72be3b80f4c0573
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1e50fb2f2f5e3621b189f756c53e80a2dd64c8a6
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634267"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754528"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Autenticazione e autorizzazione per le ZPS
 
-ASP.NET Core 3,0 o versione successiva offre l'autenticazione in app a pagina singola (Spa) usando il supporto per l'autorizzazione dell'API. ASP.NET Core Identityper l'autenticazione e l'archiviazione degli utenti è combinato con [ Identity Server](https://identityserver.io/) per l'implementazione di OpenID Connect.
+I modelli ASP.NET Core 3,1 e versioni successive offrono l'autenticazione in app a pagina singola (Spa) usando il supporto per l'autorizzazione dell'API. ASP.NET Core Identityper l'autenticazione e l'archiviazione degli utenti è combinato con [ Identity Server](https://identityserver.io/) per l'implementazione di OpenID Connect.
 
 Un parametro di autenticazione è stato aggiunto ai modelli di progetto **angolari** e **React** , che è simile al parametro Authentication nei modelli di progetto **applicazione Web** (MVC) e **applicazione Web** ( Razor pagine). I valori dei parametri consentiti sono **None** e **individual**. Il modello di progetto **React.js e Redux** non supporta il parametro Authentication al momento.
 

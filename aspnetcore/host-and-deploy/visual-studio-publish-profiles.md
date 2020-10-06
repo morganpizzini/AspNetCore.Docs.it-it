@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/visual-studio-publish-profiles
-ms.openlocfilehash: a7bbc3f3a0a0d5a320bd290d325f0c01390828b4
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e86a648e2707e808452e3bc92d991058c8fde480
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634163"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754645"
 ---
 # <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>Profili di pubblicazione di Visual Studio (con estensione pubxml) per la distribuzione di app ASP.NET Core
 
@@ -119,7 +119,7 @@ Il comando `dotnet publish` chiama MSBuild che richiama la destinazione `Publish
 
 È possibile passare le proprietà di MSBuild usando uno dei formati seguenti:
 
-* `p:<NAME>=<VALUE>`
+* `-p:<NAME>=<VALUE>`
 * `/p:<NAME>=<VALUE>`
 
 Ad esempio, il comando seguente pubblica una build `Release` in una condivisione di rete. La condivisione di rete è specificata con le barre (*//r8/*) e funziona su tutte le piattaforme .NET Core supportate.
