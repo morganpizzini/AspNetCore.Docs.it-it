@@ -5,7 +5,7 @@ description: Informazioni sulle piattaforme supportate per ASP.NET Core Blazor .
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 10/01/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,43 +18,63 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/supported-platforms
-ms.openlocfilehash: 692ab63bb48dbfa29021d59cdf035e9549d3039c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1ffe98636ed200adbf00e89c2c3499eb69792d3f
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625947"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754541"
 ---
-# <a name="aspnet-core-no-locblazor-supported-platforms"></a><span data-ttu-id="1e8a9-103">BlazorPiattaforme supportate ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="1e8a9-103">ASP.NET Core Blazor supported platforms</span></span>
+# <a name="aspnet-core-no-locblazor-supported-platforms"></a><span data-ttu-id="d3ee1-103">BlazorPiattaforme supportate ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="d3ee1-103">ASP.NET Core Blazor supported platforms</span></span>
 
-<span data-ttu-id="1e8a9-104">Di [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="1e8a9-104">By [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="d3ee1-104">Di [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="d3ee1-104">By [Luke Latham](https://github.com/guardrex)</span></span>
 
-## <a name="browser-requirements"></a><span data-ttu-id="1e8a9-105">Requisiti del browser</span><span class="sxs-lookup"><span data-stu-id="1e8a9-105">Browser requirements</span></span>
+::: moniker range=">= aspnetcore-5.0"
 
-### Blazor WebAssembly
+<span data-ttu-id="d3ee1-105">Blazor WebAssembly e Blazor Server sono supportati nei browser indicati nella tabella seguente.</span><span class="sxs-lookup"><span data-stu-id="d3ee1-105">Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table.</span></span>
 
-| <span data-ttu-id="1e8a9-106">Browser</span><span class="sxs-lookup"><span data-stu-id="1e8a9-106">Browser</span></span>                          | <span data-ttu-id="1e8a9-107">Versione</span><span class="sxs-lookup"><span data-stu-id="1e8a9-107">Version</span></span>               |
-| -------------------------------- | :-------------------: |
-| <span data-ttu-id="1e8a9-108">Microsoft Edge</span><span class="sxs-lookup"><span data-stu-id="1e8a9-108">Microsoft Edge</span></span>                   | <span data-ttu-id="1e8a9-109">Corrente</span><span class="sxs-lookup"><span data-stu-id="1e8a9-109">Current</span></span>               |
-| <span data-ttu-id="1e8a9-110">Mozilla Firefox</span><span class="sxs-lookup"><span data-stu-id="1e8a9-110">Mozilla Firefox</span></span>                  | <span data-ttu-id="1e8a9-111">Corrente</span><span class="sxs-lookup"><span data-stu-id="1e8a9-111">Current</span></span>               |
-| <span data-ttu-id="1e8a9-112">Google Chrome, incluso Android</span><span class="sxs-lookup"><span data-stu-id="1e8a9-112">Google Chrome, including Android</span></span> | <span data-ttu-id="1e8a9-113">Corrente</span><span class="sxs-lookup"><span data-stu-id="1e8a9-113">Current</span></span>               |
-| <span data-ttu-id="1e8a9-114">Safari, incluso iOS</span><span class="sxs-lookup"><span data-stu-id="1e8a9-114">Safari, including iOS</span></span>            | <span data-ttu-id="1e8a9-115">Corrente</span><span class="sxs-lookup"><span data-stu-id="1e8a9-115">Current</span></span>               |
-| <span data-ttu-id="1e8a9-116">Microsoft Internet Explorer</span><span class="sxs-lookup"><span data-stu-id="1e8a9-116">Microsoft Internet Explorer</span></span>      | <span data-ttu-id="1e8a9-117">Non supportato&dagger;</span><span class="sxs-lookup"><span data-stu-id="1e8a9-117">Not Supported&dagger;</span></span> |
+| <span data-ttu-id="d3ee1-106">Browser</span><span class="sxs-lookup"><span data-stu-id="d3ee1-106">Browser</span></span>                          | <span data-ttu-id="d3ee1-107">Versione</span><span class="sxs-lookup"><span data-stu-id="d3ee1-107">Version</span></span>         |
+| -------------------------------- | --------------- |
+| <span data-ttu-id="d3ee1-108">Apple Safari, incluso iOS</span><span class="sxs-lookup"><span data-stu-id="d3ee1-108">Apple Safari, including iOS</span></span>      | <span data-ttu-id="d3ee1-109">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-109">Current&dagger;</span></span> |
+| <span data-ttu-id="d3ee1-110">Google Chrome, incluso Android</span><span class="sxs-lookup"><span data-stu-id="d3ee1-110">Google Chrome, including Android</span></span> | <span data-ttu-id="d3ee1-111">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-111">Current&dagger;</span></span> |
+| <span data-ttu-id="d3ee1-112">Microsoft Edge</span><span class="sxs-lookup"><span data-stu-id="d3ee1-112">Microsoft Edge</span></span>                   | <span data-ttu-id="d3ee1-113">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-113">Current&dagger;</span></span> |
+| <span data-ttu-id="d3ee1-114">Mozilla Firefox</span><span class="sxs-lookup"><span data-stu-id="d3ee1-114">Mozilla Firefox</span></span>                  | <span data-ttu-id="d3ee1-115">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-115">Current&dagger;</span></span> |  
 
-<span data-ttu-id="1e8a9-118">&dagger;Microsoft Internet Explorer non supporta [webassembly](https://webassembly.org).</span><span class="sxs-lookup"><span data-stu-id="1e8a9-118">&dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).</span></span>
+<span data-ttu-id="d3ee1-116">&dagger;*Current* si riferisce alla versione più recente del browser.</span><span class="sxs-lookup"><span data-stu-id="d3ee1-116">&dagger;*Current* refers to the latest version of the browser.</span></span>  
 
-### Blazor Server
+::: moniker-end
 
-| <span data-ttu-id="1e8a9-119">Browser</span><span class="sxs-lookup"><span data-stu-id="1e8a9-119">Browser</span></span>                          | <span data-ttu-id="1e8a9-120">Versione</span><span class="sxs-lookup"><span data-stu-id="1e8a9-120">Version</span></span>    |
-| -------------------------------- | :--------: |
-| <span data-ttu-id="1e8a9-121">Microsoft Edge</span><span class="sxs-lookup"><span data-stu-id="1e8a9-121">Microsoft Edge</span></span>                   | <span data-ttu-id="1e8a9-122">Corrente</span><span class="sxs-lookup"><span data-stu-id="1e8a9-122">Current</span></span>    |
-| <span data-ttu-id="1e8a9-123">Mozilla Firefox</span><span class="sxs-lookup"><span data-stu-id="1e8a9-123">Mozilla Firefox</span></span>                  | <span data-ttu-id="1e8a9-124">Corrente</span><span class="sxs-lookup"><span data-stu-id="1e8a9-124">Current</span></span>    |
-| <span data-ttu-id="1e8a9-125">Google Chrome, incluso Android</span><span class="sxs-lookup"><span data-stu-id="1e8a9-125">Google Chrome, including Android</span></span> | <span data-ttu-id="1e8a9-126">Corrente</span><span class="sxs-lookup"><span data-stu-id="1e8a9-126">Current</span></span>    |
-| <span data-ttu-id="1e8a9-127">Safari, incluso iOS</span><span class="sxs-lookup"><span data-stu-id="1e8a9-127">Safari, including iOS</span></span>            | <span data-ttu-id="1e8a9-128">Corrente</span><span class="sxs-lookup"><span data-stu-id="1e8a9-128">Current</span></span>    |
-| <span data-ttu-id="1e8a9-129">Microsoft Internet Explorer</span><span class="sxs-lookup"><span data-stu-id="1e8a9-129">Microsoft Internet Explorer</span></span>      | <span data-ttu-id="1e8a9-130">11&dagger;</span><span class="sxs-lookup"><span data-stu-id="1e8a9-130">11&dagger;</span></span> |
+::: moniker range="< aspnetcore-5.0"
 
-<span data-ttu-id="1e8a9-131">&dagger;Sono necessari altri riempimenti, ad esempio le promesse possono essere aggiunte tramite un [`Polyfill.io`](https://polyfill.io/v3/) bundle.</span><span class="sxs-lookup"><span data-stu-id="1e8a9-131">&dagger;Additional polyfills are required (for example, promises can be added via a [`Polyfill.io`](https://polyfill.io/v3/) bundle).</span></span>
+## Blazor WebAssembly
 
-## <a name="additional-resources"></a><span data-ttu-id="1e8a9-132">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="1e8a9-132">Additional resources</span></span>
+| <span data-ttu-id="d3ee1-117">Browser</span><span class="sxs-lookup"><span data-stu-id="d3ee1-117">Browser</span></span>                          | <span data-ttu-id="d3ee1-118">Versione</span><span class="sxs-lookup"><span data-stu-id="d3ee1-118">Version</span></span>               |
+| -------------------------------- | --------------------- |
+| <span data-ttu-id="d3ee1-119">Apple Safari, incluso iOS</span><span class="sxs-lookup"><span data-stu-id="d3ee1-119">Apple Safari, including iOS</span></span>      | <span data-ttu-id="d3ee1-120">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-120">Current&dagger;</span></span>       |
+| <span data-ttu-id="d3ee1-121">Google Chrome, incluso Android</span><span class="sxs-lookup"><span data-stu-id="d3ee1-121">Google Chrome, including Android</span></span> | <span data-ttu-id="d3ee1-122">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-122">Current&dagger;</span></span>       |
+| <span data-ttu-id="d3ee1-123">Microsoft Edge</span><span class="sxs-lookup"><span data-stu-id="d3ee1-123">Microsoft Edge</span></span>                   | <span data-ttu-id="d3ee1-124">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-124">Current&dagger;</span></span>       |
+| <span data-ttu-id="d3ee1-125">Microsoft Internet Explorer</span><span class="sxs-lookup"><span data-stu-id="d3ee1-125">Microsoft Internet Explorer</span></span>      | <span data-ttu-id="d3ee1-126">Non supportato&Dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-126">Not Supported&Dagger;</span></span> |
+| <span data-ttu-id="d3ee1-127">Mozilla Firefox</span><span class="sxs-lookup"><span data-stu-id="d3ee1-127">Mozilla Firefox</span></span>                  | <span data-ttu-id="d3ee1-128">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-128">Current&dagger;</span></span>       |  
+
+<span data-ttu-id="d3ee1-129">&dagger;*Current* si riferisce alla versione più recente del browser.</span><span class="sxs-lookup"><span data-stu-id="d3ee1-129">&dagger;*Current* refers to the latest version of the browser.</span></span>  
+<span data-ttu-id="d3ee1-130">&Dagger;Microsoft Internet Explorer non supporta [webassembly](https://webassembly.org).</span><span class="sxs-lookup"><span data-stu-id="d3ee1-130">&Dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).</span></span>
+
+## Blazor Server
+
+| <span data-ttu-id="d3ee1-131">Browser</span><span class="sxs-lookup"><span data-stu-id="d3ee1-131">Browser</span></span>                          | <span data-ttu-id="d3ee1-132">Versione</span><span class="sxs-lookup"><span data-stu-id="d3ee1-132">Version</span></span>         |
+| -------------------------------- | --------------- |
+| <span data-ttu-id="d3ee1-133">Apple Safari, incluso iOS</span><span class="sxs-lookup"><span data-stu-id="d3ee1-133">Apple Safari, including iOS</span></span>      | <span data-ttu-id="d3ee1-134">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-134">Current&dagger;</span></span> |
+| <span data-ttu-id="d3ee1-135">Google Chrome, incluso Android</span><span class="sxs-lookup"><span data-stu-id="d3ee1-135">Google Chrome, including Android</span></span> | <span data-ttu-id="d3ee1-136">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-136">Current&dagger;</span></span> |
+| <span data-ttu-id="d3ee1-137">Microsoft Edge</span><span class="sxs-lookup"><span data-stu-id="d3ee1-137">Microsoft Edge</span></span>                   | <span data-ttu-id="d3ee1-138">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-138">Current&dagger;</span></span> |
+| <span data-ttu-id="d3ee1-139">Microsoft Internet Explorer</span><span class="sxs-lookup"><span data-stu-id="d3ee1-139">Microsoft Internet Explorer</span></span>      | <span data-ttu-id="d3ee1-140">11&Dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-140">11&Dagger;</span></span>      |
+| <span data-ttu-id="d3ee1-141">Mozilla Firefox</span><span class="sxs-lookup"><span data-stu-id="d3ee1-141">Mozilla Firefox</span></span>                  | <span data-ttu-id="d3ee1-142">Corrente&dagger;</span><span class="sxs-lookup"><span data-stu-id="d3ee1-142">Current&dagger;</span></span> |
+
+<span data-ttu-id="d3ee1-143">&dagger;*Current* si riferisce alla versione più recente del browser.</span><span class="sxs-lookup"><span data-stu-id="d3ee1-143">&dagger;*Current* refers to the latest version of the browser.</span></span>  
+<span data-ttu-id="d3ee1-144">&Dagger;Sono necessarie altre ricompilazioni.</span><span class="sxs-lookup"><span data-stu-id="d3ee1-144">&Dagger;Additional polyfills are required.</span></span> <span data-ttu-id="d3ee1-145">Ad esempio, le promesse possono essere aggiunte tramite un [`Polyfill.io`](https://polyfill.io/v3/) bundle.</span><span class="sxs-lookup"><span data-stu-id="d3ee1-145">For example, promises can be added via a [`Polyfill.io`](https://polyfill.io/v3/) bundle.</span></span>
+
+::: moniker-end
+
+## <a name="additional-resources"></a><span data-ttu-id="d3ee1-146">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="d3ee1-146">Additional resources</span></span>
 
 * <xref:blazor/hosting-models>
+* <xref:signalr/supported-platforms>
