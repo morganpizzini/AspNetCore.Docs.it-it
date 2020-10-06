@@ -525,7 +525,7 @@
               href: mvc/views/working-with-forms.md#the-form-tag-helper
             - name: Azione modulo
               href: mvc/views/working-with-forms.md#the-form-action-tag-helper
-            - name: Image
+            - name: Immagine
               uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
             - name: Input
               href: mvc/views/working-with-forms.md#the-input-tag-helper
@@ -918,18 +918,36 @@
         - name: Modulo ASP.NET Core
           displayName: 'deploy, publish'
           uid: host-and-deploy/aspnet-core-module
+        - name: Hosting in-process
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/in-process-hosting
+        - name: Hosting out-of-process
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/out-of-process-hosting
+        - name: Bundle di Hosting
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/hosting-bundle
+        - name: File web.config
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/web-config
         - name: Supporto di IIS in Visual Studio
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/development-time-iis-support
         - name: Moduli IIS
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/modules
+        - name: Registrazione e diagnostica
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/logging-and-diagnostics
         - name: Risolvere problemi
           displayName: 'deploy, publish'
           uid: test/troubleshoot-azure-iis
         - name: Informazioni di riferimento sugli errori
           displayName: 'deploy, publish'
           uid: host-and-deploy/azure-iis-errors-reference
+        - name: Avanzato
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/advanced
         - name: Trasformare web.config
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/transform-webconfig
