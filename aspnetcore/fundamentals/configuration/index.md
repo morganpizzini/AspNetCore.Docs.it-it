@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: c6b77f20792c32a697fff8d1d78ef3c2536c5f8f
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 7565ede55acd936072fc1930918d46808548f287
+ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722897"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91762347"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configurazione in ASP.NET Core
 
@@ -41,6 +41,8 @@ La configurazione in ASP.NET Core viene eseguita utilizzando uno o più [provide
 * Provider personalizzati, installati o creati
 * File della directory
 * Oggetti .NET in memoria
+
+In questo argomento vengono fornite informazioni sulla configurazione di in ASP.NET Core. Per informazioni sull'uso della configurazione nelle app console, vedere [configurazione di .NET](/dotnet/core/extensions/configuration).
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 
@@ -230,7 +232,7 @@ dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
 Valore chiave:
 
 * Deve seguire `=` oppure la chiave deve avere un prefisso `--` o `/` quando il valore segue uno spazio.
-* Non è obbligatorio se `=` si usa. Ad esempio `MySetting=`.
+* Non è obbligatorio se `=` si usa. Ad esempio: `MySetting=`.
 
 All'interno dello stesso comando, non combinare coppie chiave-valore dell'argomento della riga di comando che usano `=` con coppie chiave-valore che usano uno spazio.
 
@@ -828,7 +830,7 @@ La configurazione seguente si applica alle app che usano l'[host Web](xref:funda
   * Variabili di ambiente che usano il [provider di configurazione delle variabili di ambiente](#environment-variables-configuration-provider).
   * Argomenti della riga di comando che usano il [provider di configurazione della riga di comando](#command-line-configuration-provider).
 
-## <a name="security"></a>Sicurezza
+## <a name="security"></a>Security
 
 Per proteggere i dati di configurazione sensibili, adottare le pratiche seguenti:
 

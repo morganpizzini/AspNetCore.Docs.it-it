@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 2d002e075f9d57654589b540e522307c363d9660
-ms.sourcegitcommit: 4cce99cbd44372fd4575e8da8c0f4345949f4d9a
+ms.openlocfilehash: 99e0109ea4c2526e9f91a8a4df23c4557e9be83a
+ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2020
-ms.locfileid: "89153545"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91762308"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserimento delle dipendenze in ASP.NET Core
 
@@ -34,6 +34,8 @@ ASP.NET Core supporta lo schema progettuale di software per l'inserimento di dip
 Per altre informazioni specifiche per l'inserimento delle dipendenze all'interno di controller MVC, vedere <xref:mvc/controllers/dependency-injection>.
 
 Per ulteriori informazioni sull'inserimento delle dipendenze delle opzioni, vedere <xref:fundamentals/configuration/options> .
+
+In questo argomento vengono fornite informazioni sull'inserimento delle dipendenze in ASP.NET Core. Per informazioni sull'uso dell'inserimento di dipendenze nelle app console, vedere [inserimento delle dipendenze in .NET](/dotnet/core/extensions/dependency-injection).
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 

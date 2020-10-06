@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/options
-ms.openlocfilehash: a6af5a7b1b4bc066a563c7cac59274fd39594cf6
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6eafad63bd4c49cee6a85108b37a8b61e1214bce
+ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632590"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91762334"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Modello di opzioni in ASP.NET Core
 
@@ -37,6 +37,8 @@ Il modello options usa le classi per fornire accesso fortemente tipizzato ai gru
 * [Separazione delle competenze (Separation of Concerns, SoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns): le impostazioni di parti diverse dell'app non sono dipendenti o accoppiate l'una con l'altra.
 
 Le opzioni offrono anche un meccanismo per convalidare i dati di configurazione. Per altre informazioni, vedere la sezione [Opzioni di convalida](#options-validation).
+
+In questo argomento vengono fornite informazioni sul modello di opzioni in ASP.NET Core. Per informazioni sull'uso del modello di opzioni nelle app console, vedere [modello di opzioni in .NET](/dotnet/core/extensions/options).
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([procedura per il download](xref:index#how-to-download-a-sample))
 

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: fb74fef2f87f150a9c7db9746a359fbf0a9900ad
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: d36140067ba6e75f2d00cb86ea488e40d28bd86f
+ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754489"
+ms.locfileid: "91762165"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Chiamare funzioni JavaScript da metodi .NET in ASP.NET Core Blazor
 
@@ -515,19 +515,41 @@ export function showPrompt(message) {
 Aggiungere il modulo JavaScript precedente a una libreria .NET come asset Web statico ( `wwwroot/exampleJsInterop.js` ) e quindi importare il modulo nel codice .NET usando il <xref:Microsoft.JSInterop.IJSRuntime> servizio. Il servizio viene inserito come `jsRuntime` (non visualizzato) per l'esempio seguente:
 
 ```csharp
-var module = await jsRuntime.InvokeAsync<JSObjectReference>(
+var module = await jsRuntime.InvokeAsync<IJSObjectReference>(
     "import", "./_content/MyComponents/exampleJsInterop.js");
 ```
 
 L' `import` identificatore nell'esempio precedente è un identificatore speciale usato in modo specifico per l'importazione di un modulo JavaScript. Specificare il modulo usando il percorso di asset Web statico stabile: `_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}` . Il segnaposto `{LIBRARY NAME}` è il nome della libreria. Il segnaposto `{PATH UNDER WWWROOT}` è il percorso dello script in `wwwroot` .
 
-<xref:Microsoft.JSInterop.IJSRuntime> importa il modulo come `JSObjectReference` , che rappresenta un riferimento a un oggetto JavaScript dal codice .NET. Usare `JSObjectReference` per richiamare le funzioni JavaScript esportate dal modulo:
+<xref:Microsoft.JSInterop.IJSRuntime> importa il modulo come `IJSObjectReference` , che rappresenta un riferimento a un oggetto JavaScript dal codice .NET. Usare `IJSObjectReference` per richiamare le funzioni JavaScript esportate dal modulo:
 
 ```csharp
 public async ValueTask<string> Prompt(string message)
 {
     return await module.InvokeAsync<string>("showPrompt", message);
 }
+```
+
+`IJSInProcessObjectReference` rappresenta un riferimento a un oggetto JavaScript le cui funzioni possono essere richiamate in modo sincrono.
+
+`IJSUnmarshalledObjectReference` rappresenta un riferimento a un oggetto JavaScript le cui funzioni possono essere richiamate senza l'overhead della serializzazione dei dati .NET. Questa operazione può essere utilizzata in Blazor WebAssembly quando le prestazioni sono fondamentali:
+
+```javascript
+window.unmarshalledInstance = {
+  helloWorld: function (personNamePointer) {
+    const personName = Blazor.platform.readStringField(value, 0);
+    return `Hello ${personName}`;
+  }
+};
+```
+
+```csharp
+var unmarshalledRuntime = (IJSUnmarshalledRuntime)jsRuntime;
+var jsUnmarshalledReference = unmarshalledRuntime
+    .InvokeUnmarshalled<IJSUnmarshalledObjectReference>("unmarshalledInstance");
+
+string helloWorldString = jsUnmarshalledReference.InvokeUnmarshalled<string, string>(
+    "helloWorld");
 ```
 
 ## <a name="use-of-javascript-libraries-that-render-ui-dom-elements"></a>Uso di librerie JavaScript che eseguono il rendering dell'interfaccia utente (elementi DOM)

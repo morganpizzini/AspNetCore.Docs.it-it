@@ -1,7 +1,7 @@
 ---
-title: Host generico .NET
+title: Host generico .NET in ASP.NET Core
 author: rick-anderson
-description: Informazioni sull'host generico .NET Core, che gestisce l'avvio e la durata delle app.
+description: Usare l'host generico di .NET Core nelle app ASP.NET Core.  L'host generico è responsabile della gestione dell'avvio e della durata delle app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
@@ -18,18 +18,20 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: 59cfae9ff619f8de894686c4b773d66e5cbe10ad
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: d3de81ce7248372279b423da865513ee5db73c79
+ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754736"
+ms.locfileid: "91762321"
 ---
-# <a name="net-generic-host"></a>Host generico .NET
+# <a name="net-generic-host-in-aspnet-core"></a>Host generico .NET in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-5.0"
 
 I modelli di ASP.NET Core creano un host generico .NET Core ( <xref:Microsoft.Extensions.Hosting.HostBuilder> ).
+
+In questo argomento vengono fornite informazioni sull'utilizzo di host generico .NET in ASP.NET Core. Per informazioni sull'uso di un host generico .NET nelle app console, vedere [.NET Generic Host](/dotnet/core/extensions/generic-host).
 
 ## <a name="host-definition"></a>Definizione host
 
@@ -529,6 +531,8 @@ public class Program
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 I modelli di ASP.NET Core creano un host generico .NET Core ( <xref:Microsoft.Extensions.Hosting.HostBuilder> ).
+
+In questo argomento vengono fornite informazioni sull'utilizzo di host generico .NET in ASP.NET Core. Per informazioni sull'uso di un host generico .NET nelle app console, vedere [.NET Generic Host](/dotnet/core/extensions/generic-host).
 
 ## <a name="host-definition"></a>Definizione host
 
