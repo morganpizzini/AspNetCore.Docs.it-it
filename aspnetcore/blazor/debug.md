@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: e12b0e6d1bf9eab751f6605b9a156f637f2b0c0f
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: d4fd0d501ff14e37bb55b78bb6493ad43f9e5a87
+ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393834"
+ms.lasthandoff: 10/07/2020
+ms.locfileid: "91805570"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debug Blazor WebAssembly
 
@@ -345,6 +345,9 @@ Se si verificano errori, è possibile che vengano visualizzati i suggerimenti se
 * Nella scheda **debugger** aprire gli strumenti di sviluppo nel browser. Nella console eseguire `localStorage.clear()` per rimuovere tutti i punti di interruzione.
 * Verificare di aver installato e considerato attendibile il certificato di sviluppo ASP.NET Core HTTPS. Per altre informazioni, vedere <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.
 * Visual Studio richiede l'opzione **Abilita debug JavaScript per ASP.NET (Chrome, Edge e IE)** in **strumenti**  >  **Opzioni**  >  **debug**  >  **generale**. Questa è l'impostazione predefinita per Visual Studio. Se il debug non funziona, verificare che sia selezionata l'opzione.
+* Se l'ambiente usa un proxy HTTP, assicurarsi che `localhost` sia incluso nelle impostazioni di bypass del proxy. Questa operazione può essere eseguita impostando la `NO_PROXY` variabile di ambiente in uno dei seguenti valori:
+  * `launchSettings.json`File per il progetto.
+  * A livello di utente o di variabili di ambiente di sistema per applicarlo a tutte le app. Quando si usa una variabile di ambiente, riavviare Visual Studio per rendere effettive le modifiche.
 
 ### <a name="breakpoints-in-oninitializedasync-not-hit"></a>Punti di interruzione in `OnInitialized{Async}` non riscontri
 
