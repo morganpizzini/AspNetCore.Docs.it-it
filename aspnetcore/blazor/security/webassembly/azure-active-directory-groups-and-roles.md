@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: 7a0c606d82dd625c179ec89e22b9313dfa5d18b4
-ms.sourcegitcommit: c026bf76a0e14a5ee68983519a63574c674e9ff7
+ms.openlocfilehash: ac666a4c7493140d4ae93047e18202c3d8314c7b
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91636777"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900700"
 ---
 # <a name="azure-active-directory-aad-groups-administrator-roles-and-user-defined-roles"></a>Gruppi di Azure Active Directory (AAD), ruoli di amministratore e ruoli definiti dall'utente
 
@@ -49,7 +49,7 @@ Le indicazioni fornite in questo articolo sono valide per gli Blazor WebAssembly
 
 È necessaria una chiamata [API Microsoft Graph](/graph/use-the-api) per qualsiasi utente dell'app con più di cinque appartenenze ai gruppi di sicurezza e ai ruoli di amministratore di AAD.
 
-Per consentire le chiamate di API Graph, assegnare all'app autonoma o client di una soluzione ospitata una Blazor delle seguenti [autorizzazioni di API Graph](/graph/permissions-reference) nel portale di Azure:
+Per consentire le chiamate di API Graph, assegnare all'app autonoma o *`Client`* di una soluzione ospitata una Blazor delle seguenti [autorizzazioni di API Graph](/graph/permissions-reference) nel portale di Azure:
 
 * `Directory.Read.All`
 * `Directory.ReadWrite.All`
@@ -88,7 +88,7 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Nell'app autonoma o nell'app client di una soluzione ospitata Blazor creare una <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> classe personalizzata. Utilizzare l'ambito corretto (autorizzazione) per le chiamate API Graph che ottengono informazioni sui ruoli e sui gruppi.
+Nell'app autonoma o nell' *`Client`* app di una soluzione ospitata Blazor creare una <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> classe personalizzata. Utilizzare l'ambito corretto (autorizzazione) per le chiamate API Graph che ottengono informazioni sui ruoli e sui gruppi.
 
 `GraphAPIAuthorizationMessageHandler.cs`:
 
@@ -250,7 +250,7 @@ Non è necessario fornire codice per rimuovere l' `groups` attestazione original
 >
 > Il code coverage generale per questo approccio è disponibile in questo <xref:blazor/security/webassembly/additional-scenarios#custom-authorizationmessagehandler-class> articolo.
 
-Registrare la factory in `Program.Main` ( `Program.cs` ) dell'app autonoma o dell'app client di una Blazor soluzione ospitata. Consenso all' `Directory.Read.All` ambito di autorizzazione come ambito aggiuntivo per l'app:
+Registrare la factory in `Program.Main` ( `Program.cs` ) dell'app autonoma o *`Client`* dell'app di una Blazor soluzione ospitata. Consenso all' `Directory.Read.All` ambito di autorizzazione come ambito aggiuntivo per l'app:
 
 ```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
@@ -651,9 +651,9 @@ Nell'esempio seguente si presuppone che un'app sia configurata con due ruoli:
 
 La singola `roles` attestazione inviata da AAD presenta i ruoli definiti dall'utente come `appRoles` `value` s in una matrice JSON. L'app deve convertire la matrice JSON dei ruoli in singole `role` attestazioni.
 
-Il `CustomUserFactory` illustrato nella sezione [gruppi definiti dall'utente e ruoli di amministratore di AAD](#user-defined-groups-and-administrator-roles) è configurato per agire su un' `roles` attestazione con un valore di matrice JSON. Aggiungere e registrare `CustomUserFactory` nell'app autonoma o client di una soluzione ospitata Blazor , come illustrato nella sezione [gruppi definiti dall'utente e ruoli di amministratore di AAD](#user-defined-groups-and-administrator-roles) . Non è necessario fornire codice per rimuovere l' `roles` attestazione originale perché viene automaticamente rimossa dal Framework.
+Il `CustomUserFactory` illustrato nella sezione [gruppi definiti dall'utente e ruoli di amministratore di AAD](#user-defined-groups-and-administrator-roles) è configurato per agire su un' `roles` attestazione con un valore di matrice JSON. Aggiungere e registrare `CustomUserFactory` nell'app autonoma o in *`Client`* un'app di una Blazor soluzione ospitata, come illustrato nella sezione [gruppi definiti dall'utente e ruoli di amministratore di AAD](#user-defined-groups-and-administrator-roles) . Non è necessario fornire codice per rimuovere l' `roles` attestazione originale perché viene automaticamente rimossa dal Framework.
 
-Nell'app `Program.Main` autonoma o nell'app client di una soluzione ospitata Blazor specificare l'attestazione denominata " `role` " come attestazione del ruolo:
+Nell'app `Program.Main` autonoma o *`Client`* app di una soluzione ospitata Blazor specificare l'attestazione denominata " `role` " come attestazione del ruolo:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>

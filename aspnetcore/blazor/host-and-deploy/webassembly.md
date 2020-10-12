@@ -5,7 +5,7 @@ description: Informazioni su come ospitare e distribuire un' Blazor app usando A
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/25/2020
+ms.date: 10/09/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 3436620123618ab32daa44c4a37057aaadb89563
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 63954bd2fbb8fdb2e347d552a10adc52263c3ad6
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393691"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900713"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor WebAssembly
 
@@ -867,3 +867,76 @@ Nel file di progetto, lo script viene eseguito dopo la pubblicazione dell'app:
 
 > [!NOTE]
 > Quando si rinominano e si caricano in modalità lazy gli stessi assembly, vedere le istruzioni in <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files> .
+
+## <a name="resolve-integrity-check-failures"></a>Risolvere gli errori di controllo dell'integrità
+
+Quando Blazor WebAssembly Scarica i file di avvio di un'app, indica al browser di eseguire controlli di integrità sulle risposte. Usa le informazioni nel `blazor.boot.json` file per specificare i valori hash SHA-256 previsti per `.dll` , `.wasm` e altri file. Questa operazione è utile per i motivi seguenti:
+
+* Garantisce che non si rischi il caricamento di un set di file incoerente, ad esempio se viene applicata una nuova distribuzione al server Web mentre è in corso il download dei file dell'applicazione. I file incoerenti possono causare un comportamento indefinito.
+* Garantisce che il browser dell'utente non memorizza mai nella cache le risposte incoerenti o non valide, che potrebbero impedire l'avvio dell'app anche se aggiornano manualmente la pagina.
+* Consente di memorizzare nella cache le risposte in modo sicuro e non di controllare le modifiche sul lato server fino a quando non si modificano gli hash SHA-256 previsti, quindi i carichi di pagina successivi coinvolgono un minor numero di richieste e vengono completate molto più velocemente.
+
+Se il server Web restituisce risposte non corrispondenti agli hash SHA-256 previsti, nella console per sviluppatori del browser verrà visualizzato un errore simile al seguente:
+
+```
+Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
+```
+
+Nella maggior parte dei casi, *non* si tratta di un problema con il controllo dell'integrità. Al contrario, significa che è presente un altro problema e che il controllo di integrità è in grado di avvisare dell'altro problema.
+
+### <a name="diagnosing-integrity-problems"></a>Diagnosi dei problemi di integrità
+
+Quando viene compilata un'app, il `blazor.boot.json` manifesto generato descrive gli hash SHA-256 delle risorse di avvio (ad esempio,, `.dll` `.wasm` e altri file) nel momento in cui viene generato l'output di compilazione. Il controllo di integrità passa a condizione che gli hash SHA-256 `blazor.boot.json` corrispondano ai file recapitati al browser.
+
+I motivi più comuni per cui questo errore sono:
+
+ * La risposta del server Web è un errore (ad esempio, *404-non trovato* o un *errore del server interno 500*) invece del file richiesto dal browser. Viene segnalato dal browser come un errore di controllo dell'integrità e non come un errore di risposta.
+ * Un elemento ha modificato il contenuto dei file tra la compilazione e il recapito dei file nel browser. Questo problema può verificarsi:
+   * Se gli strumenti di compilazione o di compilazione modificano manualmente l'output di compilazione.
+   * Se alcuni aspetti del processo di distribuzione hanno modificato i file. Se, ad esempio, si usa un meccanismo di distribuzione basato su git, tenere presente che git converte in modo trasparente le terminazioni riga di tipo Windows in terminazioni riga di tipo Unix se si esegue il commit di file in Windows e li si estrae in Linux. La modifica delle terminazioni di riga del file modifica gli hash SHA-256. Per evitare questo problema, considerare l' [utilizzo `.gitattributes` di per considerare gli artefatti di compilazione come `binary` file](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).
+   * Il server Web modifica il contenuto del file come parte del servizio. Ad esempio, alcune reti di distribuzione del contenuto (CDNs) tentano automaticamente di [minimizzare](xref:client-side/bundling-and-minification#minification) HTML, quindi la modifica. Potrebbe essere necessario disabilitare queste funzionalità.
+
+Per diagnosticare quali di queste condizioni si applicano nel caso:
+
+ 1. Si noti il file che sta attivando l'errore leggendo il messaggio di errore.
+ 1. Aprire gli strumenti di sviluppo del browser ed esaminare la scheda *rete* . Se necessario, ricaricare la pagina per visualizzare l'elenco di richieste e risposte. Individuare il file che sta attivando l'errore in tale elenco.
+ 1. Verificare il codice di stato HTTP nella risposta. Se il server restituisce un valore diverso da *200-OK* (o un altro codice di stato 2xx), è necessario un problema sul lato server da diagnosticare. Ad esempio, il codice di stato 403 indica che si è verificato un problema di autorizzazione, mentre il codice di stato 500 indica che il server ha esito negativo in modo non specificato. Consultare log lato server per diagnosticare e correggere l'app.
+ 1. Se il codice di stato è *200-OK* per la risorsa, esaminare il contenuto della risposta negli strumenti di sviluppo del browser e verificare che il contenuto corrisponda ai dati previsti. Un problema comune, ad esempio, è quello di configurare correttamente il routing, in modo che le richieste restituiscano i `index.html` dati anche per altri file. Assicurarsi che le risposte alle `.wasm` richieste siano file binari webassembly e che le risposte alle `.dll` richieste siano file binari dell'assembly .NET. In caso contrario, si disporrà di un problema di routing lato server da diagnosticare.
+
+Se si conferma che il server restituisce dati corretti in modo plausibile, è necessario modificare il contenuto tra la compilazione e il recapito del file. Per esaminare questa operazione:
+
+ * Esaminare il meccanismo di distribuzione e la combinazione di elementi di compilazione nel caso in cui modifichino i file dopo la compilazione dei file. Un esempio è quando git trasforma le terminazioni riga file, come descritto in precedenza.
+ * Esaminare la configurazione del server Web o della rete CDN nel caso in cui siano configurati per modificare dinamicamente le risposte, ad esempio provando a minimizzare HTML. Il server Web implementa la compressione HTTP (ad esempio, restituendo `content-encoding: br` o `content-encoding: gzip` ), perché questo non influisce sul risultato dopo la decompressione. Tuttavia, non è corretto per il server Web modificare i dati *non* compressi.
+
+### <a name="disable-integrity-checking-for-non-pwa-apps"></a>Disabilitare il controllo dell'integrità per le app non PWA
+
+Nella maggior parte dei casi, non disabilitare il controllo dell'integrità. La disabilitazione del controllo di integrità non risolve il problema sottostante che ha causato le risposte impreviste e comporta la perdita dei vantaggi elencati in precedenza.
+
+In alcuni casi non è possibile fare affidamento sul server Web per restituire risposte coerenti e non è possibile scegliere di disabilitare i controlli di integrità. Per disabilitare i controlli di integrità, aggiungere il codice seguente a un gruppo di proprietà nel Blazor WebAssembly file del progetto `.csproj` :
+
+```xml
+<BlazorCacheBootResources>false</BlazorCacheBootResources>
+```
+
+`BlazorCacheBootResources` Disabilita inoltre il Blazor comportamento predefinito di memorizzazione nella cache di `.dll` , `.wasm` e altri file basati sui rispettivi hash SHA-256, perché la proprietà indica che non è possibile fare affidamento sugli hash SHA-256 per correttezza. Anche con questa impostazione, la cache HTTP normale del browser può comunque memorizzare nella cache tali file, ma indipendentemente dalla configurazione del server Web e dalle `cache-control` intestazioni che svolge.
+
+> [!NOTE]
+> La `BlazorCacheBootResources` proprietà non Disabilita i controlli di integrità per [le applicazioni Web progressive (PWA)](xref:blazor/progressive-web-app). Per informazioni aggiuntive relative a PWA, vedere la sezione [disabilitare il controllo dell'integrità per PWA](#disable-integrity-checking-for-pwas) .
+
+### <a name="disable-integrity-checking-for-pwas"></a>Disabilitare il controllo dell'integrità per PWA
+
+Blazoril modello di applicazione Web progressiva (PWA) contiene un `service-worker.published.js` file suggerito che è responsabile del recupero e dell'archiviazione dei file dell'applicazione per l'uso offline. Si tratta di un processo separato dal meccanismo di avvio normale dell'app e ha una propria logica di controllo dell'integrità separata.
+
+All'interno del `service-worker.published.js` file è presente la riga seguente:
+
+```javascript
+.map(asset => new Request(asset.url, { integrity: asset.hash }));
+```
+
+Per disabilitare il controllo dell'integrità, rimuovere il `integrity` parametro cambiando la riga come indicato di seguito:
+
+```javascript
+.map(asset => new Request(asset.url));
+```
+
+Anche in questo caso, la disabilitazione del controllo dell'integrità comporta la perdita delle garanzie di sicurezza offerte dal controllo dell'integrità. Ad esempio, esiste il rischio che se il browser dell'utente memorizza nella cache l'app nel momento esatto in cui si distribuisce una nuova versione, potrebbe memorizzare nella cache alcuni file della distribuzione precedente e alcuni dalla nuova distribuzione. In tal caso, l'app si blocca in uno stato di interruzione finché non si distribuisce un altro aggiornamento.

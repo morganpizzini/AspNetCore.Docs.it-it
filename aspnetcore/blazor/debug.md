@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: d4fd0d501ff14e37bb55b78bb6493ad43f9e5a87
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: b8dd272d673e84b45a39272531385ebfd1d06175
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805570"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900986"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debug Blazor WebAssembly
 
@@ -93,7 +93,7 @@ Per eseguire il debug di un' Blazor WebAssembly app in Visual Studio:
    > [!NOTE]
    > **Avvia senza eseguire debug** (<kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
 
-1. Nell'app *client* , impostare un punto di interruzione nella `currentCount++;` riga in `Pages/Counter.razor` .
+1. Nell' `*Client*` app, impostare un punto di interruzione nella `currentCount++;` riga in `Pages/Counter.razor` .
 1. Nel browser passare alla `Counter` pagina e selezionare il pulsante **fare clic su me** per raggiungere il punto di interruzione.
 1. In Visual Studio, controllare il valore del `currentCount` campo nella finestra **variabili locali** .
 1. Premere <kbd>F5</kbd> per continuare l'esecuzione.
@@ -180,7 +180,7 @@ Per informazioni sull'uso di un percorso di base dell'app personalizzato per le 
 
 1. Viene avviata l'app autonoma e viene aperto un browser di debug.
 
-1. Nell'app *client* , impostare un punto di interruzione nella `currentCount++;` riga in `Pages/Counter.razor` .
+1. Nell' `*Client*` app, impostare un punto di interruzione nella `currentCount++;` riga in `Pages/Counter.razor` .
 
 1. Nel browser passare alla `Counter` pagina e selezionare il pulsante **fare clic su me** per raggiungere il punto di interruzione.
 
@@ -285,7 +285,7 @@ Per eseguire il debug di un' Blazor WebAssembly app in Visual Studio per Mac:
    > [!IMPORTANT]
    > Google Chrome o Microsoft Edge deve essere il browser selezionato per la sessione di debug.
 
-1. Nell'app *client* , impostare un punto di interruzione nella `currentCount++;` riga in `Pages/Counter.razor` .
+1. Nell' `*Client*` app, impostare un punto di interruzione nella `currentCount++;` riga in `Pages/Counter.razor` .
 1. Nel browser passare alla `Counter` pagina e selezionare il pulsante **fare clic su me** per raggiungere il punto di interruzione:
 1. In Visual Studio, controllare il valore del `currentCount` campo nella finestra **variabili locali** .
 1. Premere <kbd>&#8984;</kbd> + <kbd>&#8617;</kbd> per continuare l'esecuzione.

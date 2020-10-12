@@ -12,22 +12,22 @@ Un approccio che impedisce ai cookie e ai dati del sito di interferire con i tes
 
 * Configurare un browser
   * Utilizzare un browser per i test che è possibile configurare per eliminare tutti i cookie e i dati del sito ogni volta che il browser viene chiuso.
-  * Verificare che il browser sia chiuso manualmente o dall'IDE tra qualsiasi modifica apportata all'app, all'utente di test o alla configurazione del provider.
+  * Verificare che il browser sia chiuso manualmente o dall'IDE per qualsiasi modifica all'app, all'utente di test o alla configurazione del provider.
 * Usare un comando personalizzato per aprire un browser in modalità privata o in incognito in Visual Studio:
   * Aprire la finestra di dialogo **Sfoglia con** dal pulsante di **esecuzione** di Visual Studio.
   * Fare clic sul pulsante **Aggiungi**.
   * Consente di specificare il percorso del browser nel campo del **programma** . I percorsi eseguibili seguenti sono i percorsi di installazione tipici di Windows 10. Se il browser è installato in un percorso diverso o non si usa Windows 10, specificare il percorso del file eseguibile del browser.
-    * Microsoft Edge:`C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`
-    * Google Chrome:`C:\Program Files (x86)\Google\Chrome\Application\chrome.exe`
-    * Mozilla Firefox:`C:\Program Files\Mozilla Firefox\firefox.exe`
+    * Microsoft Edge: `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`
+    * Google Chrome: `C:\Program Files (x86)\Google\Chrome\Application\chrome.exe`
+    * Mozilla Firefox: `C:\Program Files\Mozilla Firefox\firefox.exe`
   * Nel campo **arguments (argomenti** ) specificare l'opzione della riga di comando utilizzata dal browser per aprire in modalità privata o in incognito. Alcuni browser richiedono l'URL dell'app.
-    * Microsoft Edge:`-inprivate`
-    * Google Chrome:`--incognito --new-window https://localhost:5001`
-    * Mozilla Firefox:`-private -url https://localhost:5001`
+    * Microsoft Edge: usare `-inprivate` .
+    * Google Chrome: usare `--incognito --new-window {URL}` , dove il segnaposto `{URL}` è l'URL da aprire, ad esempio `https://localhost:5001` .
+    * Mozilla Firefox: usare `-private -url {URL}` , dove il segnaposto `{URL}` è l'URL da aprire, ad esempio `https://localhost:5001` .
   * Specificare un nome nel campo **nome descrittivo** . Ad esempio: `Firefox Auth Testing`.
   * Selezionare il pulsante **OK** .
   * Per evitare di dover selezionare il profilo del browser per ogni iterazione del test con un'app, impostare il profilo come predefinito con il pulsante **Imposta come predefinito** .
-  * Verificare che il browser sia chiuso dall'IDE tra qualsiasi modifica apportata all'app, all'utente di test o alla configurazione del provider.
+  * Verificare che il browser sia chiuso dall'IDE per qualsiasi modifica all'app, all'utente di test o alla configurazione del provider.
 
 ### <a name="run-the-server-app"></a>Eseguire l'app Server
 

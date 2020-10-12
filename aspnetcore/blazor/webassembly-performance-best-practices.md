@@ -2,10 +2,10 @@
 title: Blazor WebAssemblyProcedure consigliate per le prestazioni ASP.NET Core
 author: pranavkm
 description: Suggerimenti per migliorare le prestazioni in ASP.NET Core Blazor WebAssembly app ed evitare problemi comuni relativi alle prestazioni.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/09/2020
+ms.date: 10/09/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,24 +18,48 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: d1ad646f82e5c9ba611a60fc9be8378bedef8dee
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: ea3f197e5bab82f4fb40238fe31cd5ce29ab62ad
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90721723"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900973"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>Blazor WebAssemblyProcedure consigliate per le prestazioni ASP.NET Core
 
-Di [il](https://github.com/pranavkm) suo
+Di [Pranav Krishnamoorthy](https://github.com/pranavkm) [Manuel e Steve Sanderson](https://github.com/SteveSandersonMS)
 
-Questo articolo fornisce linee guida per ASP.NET Core Blazor WebAssembly procedure consigliate per le prestazioni.
+Blazor WebAssembly viene accuratamente progettato e ottimizzato per garantire prestazioni elevate in scenari di interfaccia utente dell'applicazione più realistici. Tuttavia, la produzione dei migliori risultati dipende dagli sviluppatori che usano i modelli e le funzionalità corrette. Prendere in considerazione gli aspetti seguenti:
 
-## <a name="avoid-unnecessary-component-renders"></a>Evitare il rendering di componenti superflui
+* **Velocità effettiva di runtime**: il codice .NET viene eseguito in un interprete nel runtime di webassembly, quindi la velocità effettiva della CPU è limitata. In scenari complessi, l'app trae vantaggio dall' [ottimizzazione della velocità di rendering](#optimize-rendering-speed).
+* **Tempo di avvio**: l'app trasferisce un Runtime .NET al browser, quindi è importante usare le funzionalità che [riducono al minimo le dimensioni del download dell'applicazione](#minimize-app-download-size).
 
-Blazorl'algoritmo diffing evita di eseguire nuovamente il rendering di un componente quando l'algoritmo rileva che il componente non è stato modificato. Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A?displayProperty=nameWithType> per un controllo con granularità fine sul rendering dei componenti.
+## <a name="optimize-rendering-speed"></a>Ottimizzare la velocità di rendering
 
-Se la creazione di un componente di solo interfaccia utente che non cambia mai dopo il rendering iniziale, configurare <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> per restituire `false` :
+Le sezioni seguenti forniscono consigli per ridurre il carico di lavoro di rendering e migliorare la velocità di risposta dell'interfaccia utente. Seguendo questo Consiglio, è possibile eseguire facilmente un *miglioramento di dieci volte o superiore* nella velocità di rendering dell'interfaccia utente.
+
+### <a name="avoid-unnecessary-rendering-of-component-subtrees"></a>Evitare il rendering superfluo di sottoalberi dei componenti
+
+In fase di esecuzione, i componenti esistono come una gerarchia. Un componente radice contiene componenti figlio. A sua volta, i figli della radice hanno i propri componenti figlio e così via. Quando si verifica un evento, ad esempio un utente che seleziona un pulsante, questo è il modo Blazor in cui decide i componenti di cui eseguire il rendering:
+
+ 1. L'evento stesso viene inviato a qualsiasi componente di cui è stato eseguito il rendering del gestore dell'evento. Dopo l'esecuzione del gestore dell'evento, viene eseguito il rendering del componente.
+ 1. Ogni volta che viene eseguito il rendering di un componente, fornisce una nuova copia dei valori di parametro a ognuno dei relativi componenti figlio.
+ 1. Quando si riceve un nuovo set di valori di parametro, ogni componente sceglie se eseguire nuovamente il rendering. Per impostazione predefinita, i componenti eseguono il rendering se è possibile che i valori dei parametri siano stati modificati, ad esempio se sono oggetti modificabili.
+
+Gli ultimi due passaggi di questa sequenza continuano in modo ricorsivo la gerarchia dei componenti. In molti casi, viene eseguito il rendering dell'intero sottoalbero. Questo significa che gli eventi destinati a componenti di alto livello possono causare costosi processi di rirendering perché è necessario eseguire il rendering di tutti gli elementi al di sotto di tale punto.
+
+Se si desidera interrompere il processo e impedire il rendering della ricorsione in un sottoalbero particolare, è possibile eseguire una delle operazioni seguenti:
+
+ * Verificare che tutti i parametri di un determinato componente siano tipi non modificabili primitivi (ad esempio,,,, `string` `int` `bool` `DateTime` e altri). La logica predefinita per il rilevamento delle modifiche ignora automaticamente il rendering se nessuno di questi valori di parametro è stato modificato. Se si esegue il rendering di un componente figlio con `<Customer CustomerId="@item.CustomerId" />` , dove `CustomerId` è un `int` valore, non viene nuovamente eseguito il rendering tranne quando viene `item.CustomerId` modificato.
+ * Se è necessario accettare valori di parametro non primitivi, ad esempio tipi di modelli personalizzati, callback di eventi o <xref:Microsoft.AspNetCore.Components.RenderFragment> valori, è possibile eseguire l'override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> di per controllare la decisione relativa all'eventuale rendering, descritto nella sezione [utilizzo `ShouldRender` di](#use-of-shouldrender) .
+
+Ignorando il rendering di interi sottoalberi, potrebbe essere possibile rimuovere la maggior parte del costo di rendering quando si verifica un evento.
+
+È possibile scomporre i componenti figlio in modo specifico, in modo che sia possibile ignorare il rendering della parte dell'interfaccia utente. Si tratta di un modo valido per ridurre il costo di rendering di un componente padre.
+
+#### <a name="use-of-shouldrender"></a>Utilizzo di `ShouldRender`
+
+Se la creazione di un componente solo interfaccia utente che non cambia mai dopo il rendering iniziale (indipendentemente dai valori dei parametri), configurare <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> per restituire `false` :
 
 ```razor
 @code {
@@ -43,100 +67,498 @@ Se la creazione di un componente di solo interfaccia utente che non cambia mai d
 }
 ```
 
-La maggior parte delle app non richiede un controllo con granularità fine, ma <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> può essere usata per eseguire il rendering selettivo di un componente che risponde a un evento dell'interfaccia utente. L'utilizzo di <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> può essere importante anche negli scenari in cui viene eseguito il rendering di un numero elevato di componenti. Si consideri una griglia in cui l'utilizzo di <xref:Microsoft.AspNetCore.Components.EventCallback> in un componente di una cella della griglia chiama <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> sulla griglia. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>La chiamata a genera un nuovo rendering di ogni componente figlio. Se solo un numero ridotto di celle richiede il rirendering, utilizzare <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> per evitare la riduzione delle prestazioni dei rendering non necessari.
-
-Nell'esempio seguente:
-
-* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> viene sottoposto a override e impostato sul valore del <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> campo, che inizialmente si verifica `false` quando il componente viene caricato.
-* Quando il pulsante è selezionato, <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> viene impostato su `true` , che forza il rendering del componente con l'oggetto aggiornato `currentCount` .
-* Subito dopo il rendering, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> imposta il valore di <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> nuovo su `false` per impedire un ulteriore rendering fino alla successiva selezione del pulsante.
+Se il componente richiede solo il rirendering quando i valori dei parametri cambiano in modo particolare, è possibile usare campi privati per tenere traccia delle informazioni necessarie per rilevare le modifiche. Nell'esempio seguente, `shouldRender` si basa sul controllo di qualsiasi tipo di modifica o mutazione che dovrebbe richiedere un rirendering. `prevOutboundFlightId` e `prevInboundFlightId` tenere traccia delle informazioni per il prossimo aggiornamento potenziale:
 
 ```razor
-<p>Current count: @currentCount</p>
-
-<button @onclick="IncrementCount">Click me</button>
-
 @code {
-    private int currentCount = 0;
+    [Parameter]
+    public FlightInfo OutboundFlight { get; set; }
+    
+    [Parameter]
+    public FlightInfo InboundFlight { get; set; }
+
+    private int prevOutboundFlightId;
+    private int prevInboundFlightId;
     private bool shouldRender;
 
-    protected override bool ShouldRender() => shouldRender;
-
-    protected override void OnAfterRender(bool first)
+    protected override void OnParametersSet()
     {
-        shouldRender = false;
+        shouldRender = OutboundFlight.FlightId != prevOutboundFlightId
+            || InboundFlight.FlightId != prevInboundFlightId;
+
+        prevOutboundFlightId = OutboundFlight.FlightId;
+        prevInboundFlightId = InboundFlight.FlightId;
     }
 
-    private void IncrementCount()
+    protected override void ShouldRender() => shouldRender;
+
+    // Note that 
+}
+```
+
+Nel codice precedente, un gestore eventi può anche impostare `shouldRender` su in `true` modo che il componente venga nuovamente eseguito dopo l'evento.
+
+Per la maggior parte dei componenti, questo livello di controllo manuale non è necessario. È consigliabile ignorare il rendering di sottoalberi se tali sottoalberi sono particolarmente costosi per il rendering e causano un ritardo dell'interfaccia utente.
+
+Per altre informazioni, vedere <xref:blazor/components/lifecycle>.
+
+::: moniker range=">= aspnetcore-5.0"
+
+### <a name="virtualization"></a>Virtualizzazione
+
+Quando si esegue il rendering di grandi quantità di interfaccia utente all'interno di un ciclo, ad esempio un elenco o una griglia con migliaia di voci, la quantità totale di operazioni di rendering può causare un ritardo nel rendering dell'interfaccia utente e quindi un'esperienza utente insufficiente. Dato che l'utente può visualizzare solo un numero ridotto di elementi in una sola volta senza scorrere, sembra superfluo dedicare molto tempo al rendering degli elementi che attualmente non sono visibili.
+
+Per risolvere questo problema, Blazor fornisce un [ `<Virtualize>` componente](xref:blazor/components/virtualization) incorporato che crea l'aspetto e lo scorrimento dei comportamenti di un elenco di grandi dimensioni, ma esegue effettivamente solo il rendering degli elementi dell'elenco che si trovano all'interno del viewport di scorrimento corrente. Questo significa, ad esempio, che l'app può avere un elenco con 100.000 voci, ma paga solo il costo di rendering di 20 elementi visibili in un momento qualsiasi. L'uso del `<Virtualize>` componente può aumentare le prestazioni dell'interfaccia utente in base agli ordini di grandezza.
+
+`<Virtualize>` può essere usato nei casi seguenti:
+
+ * Rendering di un set di elementi di dati in un ciclo.
+ * La maggior parte degli elementi non è visibile a causa dello scorrimento.
+ * Gli elementi di cui è stato eseguito il rendering hanno esattamente le stesse dimensioni. Quando l'utente scorre fino a un punto arbitrario, il componente può calcolare gli elementi visibili da visualizzare.
+
+Di seguito viene illustrato un esempio di elenco non virtualizzato:
+
+```razor
+<div class="all-flights" style="height:500px;overflow-y:scroll">
+    @foreach (var flight in allFlights)
     {
-        currentCount++;
-        shouldRender = true;
+        <FlightSummary @key="flight.FlightId" Flight="@flight" />
+    }
+</div>
+```
+
+Se la `allFlights` raccolta include 10.000 elementi, crea un'istanza ed esegue il rendering delle `<FlightSummary>` istanze del componente 10.000. In confronto, di seguito viene illustrato un esempio di elenco virtualizzato:
+
+```razor
+<div class="all-flights" style="height:500px;overflow-y:scroll">
+    <Virtualize Items="@allFlights" Context="flight">
+        <FlightSummary @key="flight.FlightId" Flight="@flight" />
+    </Virtualize>
+</div>
+```
+
+Anche se l'interfaccia utente risultante sembra identica a un utente, dietro le quinte il componente crea solo un'istanza ed esegue il rendering di tutte le `<FlightSummary>` istanze necessarie per riempire l'area di scorrimento. Il set di `<FlightSummary>` istanze visualizzato viene ricalcolato e sottoposto a rendering quando l'utente scorre.
+
+`<Virtualize>` offre anche altri vantaggi. Ad esempio, quando un componente richiede dati da un'API esterna, `<Virtualize>` consente al componente di recuperare solo la sezione di record che corrispondono all'area visibile corrente, anziché scaricare tutti i dati dalla raccolta.
+
+Per altre informazioni, vedere <xref:blazor/components/virtualization>.
+
+::: moniker-end
+
+### <a name="create-lightweight-optimized-components"></a>Creazione di componenti semplici e ottimizzati
+
+La maggior parte dei Blazor componenti non richiede attività di ottimizzazione aggressive. Questo è dovuto al fatto che la maggior parte dei componenti non si ripete spesso nell'interfaccia utente e non viene eseguito il rendering a frequenza elevata. Ad esempio, `@page` componenti e componenti che rappresentano parti dell'interfaccia utente di alto livello come finestre di dialogo o moduli, molto probabilmente vengono visualizzati solo uno alla volta e ne viene eseguito il rendering solo in risposta a un movimento dell'utente. Questi componenti non creano un carico di lavoro di rendering elevato, quindi è possibile usare liberamente qualsiasi combinazione di funzionalità del Framework che si vuole senza preoccuparsi delle prestazioni di rendering.
+
+Tuttavia, esistono anche scenari comuni in cui si compilano componenti che devono essere ripetuti su larga scala. Ad esempio:
+
+ * I moduli annidati di grandi dimensioni possono avere centinaia di input singoli, etichette e altri elementi.
+ * Le griglie possono contenere migliaia di celle.
+ * I grafici a dispersione possono contenere milioni di punti dati.
+
+Se si modellano le singole unità come istanze di componenti separate, ne saranno presenti così tante che le prestazioni di rendering diventano critiche. In questa sezione vengono fornite indicazioni su come rendere tali componenti leggeri, in modo che l'interfaccia utente rimanga veloce e reattiva.
+
+#### <a name="avoid-thousands-of-component-instances"></a>Evitare migliaia di istanze di componenti
+
+Ogni componente è un'isola separata che può essere sottoposta a rendering indipendentemente dagli elementi padre e figlio. Scegliendo come suddividere l'interfaccia utente in una gerarchia di componenti, si sta assumendo il controllo della granularità del rendering dell'interfaccia utente. Questo può essere positivo o negativo per le prestazioni.
+
+ * Suddividendo l'interfaccia utente in più componenti, è possibile avere parti più piccole del rendering dell'interfaccia utente quando si verificano gli eventi. Ad esempio, quando un utente fa clic su un pulsante in una riga di tabella, è possibile che venga eseguito solo il rirendering di una singola riga anziché l'intera pagina o tabella.
+ * Tuttavia, ogni componente aggiuntivo comporta un sovraccarico di memoria e CPU aggiuntivo per gestire lo stato indipendente e il ciclo di vita di rendering.
+
+Quando si ottimizzano le prestazioni di Blazor WebAssembly in .NET 5, è stato misurato un sovraccarico di rendering di circa 0,06 ms per ogni istanza del componente. Si basa su un componente semplice che accetta tre parametri in esecuzione su un portatile tipico. Internamente, l'overhead è in gran parte dovuto al recupero dello stato per componente dai dizionari e al passaggio e alla ricezione di parametri. Per moltiplicazione, è possibile notare che l'aggiunta di 2.000 istanze di componenti aggiuntivi aggiungerà 0,12 secondi al tempo di rendering e l'interfaccia utente inizierà a rallentare gli utenti.
+
+È possibile rendere i componenti più leggeri, in modo da poterli avere più, ma spesso la tecnica più potente non deve avere così tanti componenti. Le sezioni seguenti descrivono due approcci.
+
+##### <a name="inline-child-components-into-their-parents"></a>Componenti figlio inline nei relativi elementi padre
+
+Si consideri il componente seguente che esegue il rendering di una sequenza di componenti figlio:
+
+```razor
+<div class="chat">
+    @foreach (var message in messages)
+    {
+        <ChatMessageDisplay Message="@message" />
+    }
+</div>
+```
+
+Per il codice di esempio precedente, il `<ChatMessageDisplay>` componente viene definito in un file `ChatMessageDisplay.razor` contenente:
+
+```razor
+<div class="chat-message">
+    <span class="author">@Message.Author</span>
+    <span class="text">@Message.Text</span>
+</div>
+
+@code {
+    [Parameter]
+    public ChatMessage Message { get; set; }
+}
+```
+
+L'esempio precedente funziona correttamente e viene eseguito correttamente a condizione che migliaia di messaggi non vengano visualizzati contemporaneamente. Per mostrare migliaia di messaggi contemporaneamente, provare a *non* scomporre il `ChatMessageDisplay` componente separato. Inline invece il rendering direttamente nell'elemento padre:
+
+```razor
+<div class="chat">
+    @foreach (var message in messages)
+    {
+        <div class="chat-message">
+            <span class="author">@message.Author</span>
+            <span class="text">@message.Text</span>
+        </div>
+    }
+</div>
+```
+
+In questo modo si evita l'overhead per componente per il rendering di un numero così elevato di componenti figlio, a scapito del fatto che non è possibile eseguire nuovamente il rendering di ognuno di essi in modo indipendente.
+
+##### <a name="define-reusable-renderfragments-in-code"></a>Definire riutilizzabile `RenderFragments` nel codice
+
+È possibile scomporre i componenti figlio esclusivamente come un modo per riutilizzare la logica di rendering. In tal caso, è comunque possibile riutilizzare la logica di rendering senza dichiarare i componenti effettivi. Nel blocco di un componente è `@code` possibile definire un <xref:Microsoft.AspNetCore.Components.RenderFragment> che genera l'interfaccia utente e può essere chiamato da qualsiasi posizione:
+
+```razor
+<h1>Hello, world!</h1>
+
+@RenderWelcomeInfo
+
+@code {
+    RenderFragment RenderWelcomeInfo = __builder =>
+    {
+        <div>
+            <p>Welcome to your new app!</p>
+
+            <SurveyPrompt Title="How is Blazor working for you?" />
+        </div>
+    };
+}
+```
+
+Come demonstated nell'esempio precedente, i componenti possono emettere markup dal codice all'interno del `@code` blocco e al di fuori di esso. Questo approccio definisce un <xref:Microsoft.AspNetCore.Components.RenderFragment> delegato di cui è possibile eseguire il rendering all'interno dell'output di rendering normale del componente, facoltativamente in più posizioni. È necessario che il delegato accetti un parametro denominato `__builder` di tipo <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> in modo che il Razor compilatore possa produrre istruzioni per il rendering.
+
+Se si desidera rendere questo oggetto riutilizzabile in più componenti, è consigliabile dichiararlo come `public static` membro:
+
+```razor
+public static RenderFragment SayHello = __builder =>
+{
+    <h1>Hello!</h1>
+};
+```
+
+Questo ora può essere richiamato da un componente non correlato. Questa tecnica è utile per la creazione di librerie di frammenti di markup riutilizzabili che eseguono il rendering senza alcun sovraccarico per componente.
+
+<xref:Microsoft.AspNetCore.Components.RenderFragment> i delegati possono anche accettare parametri. Per creare l'equivalente del `ChatMessageDisplay` componente dall'esempio precedente:
+
+```razor
+<div class="chat">
+    @foreach (var message in messages)
+    {
+        @DisplayChatMessage(message)
+    }
+</div>
+
+@code {
+    RenderFragment<ChatMessage> DisplayChatMessage = message => __builder =>
+    {
+        <div class="chat-message">
+            <span class="author">@message.Author</span>
+            <span class="text">@message.Text</span>
+        </div>
+    };
+}
+```
+
+Questo approccio offre il vantaggio di riutilizzare la logica di rendering senza overhead per componente. Tuttavia, non è in grado di aggiornare il sottoalbero dell'interfaccia utente in modo indipendente, né di ignorare il rendering del sottoalbero dell'interfaccia utente quando viene eseguito il rendering dell'elemento padre, dal momento che non esiste alcun limite per i componenti.
+
+#### <a name="dont-receive-too-many-parameters"></a>Non ricevere troppi parametri
+
+Se un componente si ripete molto spesso, ad esempio centinaia o migliaia di volte, tenere presente che l'overhead associato al passaggio e alla ricezione di ogni parametro viene compilato.
+
+È raro che troppi parametri limitino notevolmente le prestazioni, ma può essere un fattore. Per un `<TableCell>` componente che esegue il rendering di 1.000 volte all'interno di una griglia, ogni parametro aggiuntivo passato a esso potrebbe aggiungere circa 15 ms al costo totale di rendering. Se ogni cella accettava 10 parametri, il passaggio del parametro richiede circa 150 ms per ogni componente e, di conseguenza, 150.000 ms (150 secondi) e, di conseguenza, un'interfaccia utente ritardata.
+
+Per ridurre questo carico, è possibile raggruppare più parametri tramite classi personalizzate. È ad esempio possibile che un `<TableCell>` componente accetti:
+
+```razor
+@typeparam TItem
+
+...
+
+@code {
+    [Parameter]
+    public TItem Data { get; set; }
+    
+    [Parameter]
+    public GridOptions Options { get; set; }
+}
+```
+
+Nell'esempio precedente, `Data` è diverso per ogni cella, ma `Options` è comune in tutti gli elementi. Naturalmente, potrebbe trattarsi di un miglioramento per non avere un `<TableCell>` componente e inline la relativa logica nel componente padre.
+
+#### <a name="ensure-cascading-parameters-are-fixed"></a>Verificare che i parametri a catena siano corretti
+
+Il `<CascadingValue>` componente ha un parametro facoltativo denominato `IsFixed` .
+
+ * Se il `IsFixed` valore è `false` (impostazione predefinita), ogni destinatario del valore a cascata imposta una sottoscrizione per la ricezione delle notifiche di modifica. In questo caso ognuno di essi `[CascadingParameter]` è **sostanzialmente più costoso** di un normale `[Parameter]` a causa del rilevamento della sottoscrizione.
+ * Se il `IsFixed` valore è `true` (ad esempio, `<CascadingValue Value="@someValue" IsFixed="true">` ), destinatari riceverà il valore iniziale ma *non* configurarà alcuna sottoscrizione per la ricezione degli aggiornamenti. In questo caso, ogni `[CascadingParameter]` è leggero e **non è più costoso** di un normale `[Parameter]` .
+
+Quindi, laddove possibile, è consigliabile usare `IsFixed="true"` i valori a cascata. Questa operazione può essere eseguita ogni volta che il valore fornito non cambia nel tempo. Nel modello comune in cui un componente passa `this` come valore a catena, è necessario usare `IsFixed="true"` :
+
+```razor
+<CascadingValue Value="this" IsFixed="true">
+    <SomeOtherComponents>
+</CascadingValue>
+```
+
+Questo fa una grande differenza se è presente un numero elevato di altri componenti che ricevono il valore a cascata. Per altre informazioni, vedere <xref:blazor/components/cascading-values-and-parameters>.
+
+#### <a name="avoid-attribute-splatting-with-captureunmatchedvalues"></a>Evitare l'attributo splatting con `CaptureUnmatchedValues`
+
+I componenti possono scegliere di ricevere i valori di parametro "senza corrispondenza" utilizzando il <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> flag:
+
+```razor
+<div @attributes="OtherAttributes">...</div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IDictionary<string, object> OtherAttributes { get; set; }
+}
+```
+
+Questo approccio consente di passare gli attributi aggiuntivi arbitrari all'elemento. Tuttavia, è anche piuttosto costoso perché il renderer deve:
+
+* Corrisponde a tutti i parametri forniti rispetto al set di parametri noti per compilare un dizionario.
+* Tenere traccia della sovrascrittura di più copie dello stesso attributo.
+
+<xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues>È possibile utilizzare su componenti non critici per le prestazioni, ad esempio quelli che non vengono ripetuti spesso. Tuttavia, per i componenti che eseguono il rendering su larga scala, ad esempio ogni elemento in un elenco di grandi dimensioni o celle di una griglia, provare a evitare l'attributo splatting.
+
+Per altre informazioni, vedere <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.
+
+#### <a name="implement-setparametersasync-manually"></a>Implementare `SetParametersAsync` manualmente
+
+Uno degli aspetti principali del sovraccarico di rendering per componente consiste nel scrivere i valori dei parametri in ingresso nelle `[Parameter]` Proprietà. Per eseguire questa operazione, il renderer deve utilizzare la reflection. Anche se si tratta di un po' ottimizzato, l'assenza del supporto JIT nel runtime di webassembly impone limiti.
+
+In alcuni casi estremi, può essere utile evitare la reflection e implementare manualmente la logica di impostazione dei parametri. Questo può essere applicabile nei casi seguenti:
+
+ * Si dispone di un componente che esegue il rendering molto spesso (ad esempio, sono presenti centinaia o migliaia di copie dell'interfaccia utente).
+ * Accetta molti parametri.
+ * Si noterà che l'overhead della ricezione dei parametri ha un impatto osservabile sulla velocità di risposta dell'interfaccia utente.
+
+In questi casi, è possibile eseguire l'override del metodo virtuale del componente <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> e implementare la logica specifica del componente. Nell'esempio seguente vengono deliberatamente evitate le ricerche nel dizionario:
+
+```razor
+@code {
+    [Parameter]
+    public int MessageId { get; set; }
+
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public EventCallback<string> TextChanged { get; set; }
+
+    [Parameter]
+    public Theme CurrentTheme { get; set; }
+
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        foreach (var parameter in parameters)
+        {
+            switch (parameter.Name)
+            {
+                case nameof(MessageId):
+                    MessageId = (int)parameter.Value;
+                    break;
+                case nameof(Text):
+                    Text = (string)parameter.Value;
+                    break;
+                case nameof(TextChanged):
+                    TextChanged = (EventCallback<string>)parameter.Value;
+                    break;
+                case nameof(CurrentTheme):
+                    CurrentTheme = (Theme)parameter.Value;
+                    break;
+                default:
+                    throw new ArgumentException($"Unknown parameter: {parameter.Name}");
+            }
+        }
+
+        return base.SetParametersAsync(ParameterView.Empty);
     }
 }
 ```
 
-Per altre informazioni, vedere <xref:blazor/components/lifecycle#after-component-render>.
+Nel codice precedente, la restituzione della classe base <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> esegue i normali metodi del ciclo di vita senza assegnare nuovamente parametri.
 
-## <a name="virtualize-re-usable-fragments"></a>Virtualizza i frammenti riutilizzabili
+Come si può vedere nel codice precedente, l'override <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> e la fornitura di logica personalizzata sono complicate e laboriose, pertanto non è consigliabile usare questo approccio in generale. In casi estremi, può migliorare le prestazioni di rendering del 20-25%, ma è opportuno considerare questo approccio solo negli scenari elencati in precedenza.
 
-I componenti offrono un approccio pratico per produrre frammenti riutilizzabili di codice e markup. In generale, si consiglia di creare singoli componenti che meglio si allineano ai requisiti dell'app. Un avvertimento è che ogni componente figlio aggiuntivo contribuisce al tempo totale necessario per eseguire il rendering di un componente padre. Per la maggior parte delle app, l'overhead aggiuntivo è trascurabile. Le app che producono un numero elevato di componenti devono considerare l'uso di strategie per ridurre l'overhead di elaborazione, ad esempio limitando il numero di componenti sottoposti a rendering.
+### <a name="dont-trigger-events-too-rapidly"></a>Non attivare eventi troppo rapidamente
 
-Per altre informazioni, vedere <xref:blazor/components/virtualization>.
+Alcuni eventi del browser vengono attivati molto spesso, ad esempio `onmousemove` e `onscroll` , che possono essere attivati decine o centinaia di volte al secondo. Nella maggior parte dei casi, non è necessario eseguire gli aggiornamenti dell'interfaccia utente in modo frequente. Se si tenta di eseguire questa operazione, si potrebbe danneggiare la velocità di risposta dell'interfaccia utente o utilizzare un tempo di CPU eccessivo.
 
-## <a name="avoid-javascript-interop-to-marshal-data"></a>Evitare l'interoperabilità JavaScript per il marshalling dei dati
+Anziché usare eventi nativi `@onmousemove` o `@onscroll` , può essere preferibile usare l'interoperabilità js per registrare un callback che viene attivato meno di frequente. Ad esempio, il componente seguente ( `MyComponent.razor` ) Visualizza la posizione del mouse, ma solo gli aggiornamenti al massimo ogni 500 ms:
 
-In Blazor WebAssembly una chiamata di interoperabilità JavaScript (js) deve attraversare il limite webassembly-js. La serializzazione e la deserializzazione del contenuto tra i due contesti crea un sovraccarico di elaborazione per l'app. Le frequenti chiamate di interoperabilità JS spesso influiscono negativamente sulle prestazioni. Per ridurre il marshalling dei dati attraverso il limite, determinare se l'app può consolidare molti piccoli payload in un unico payload di grandi dimensioni per evitare il volume elevato di scambi di contesto tra webassembly e JS.
+```razor
+@inject IJSRuntime JS
+@implements IDisposable
 
-## <a name="use-systemtextjson"></a>USA System.Text.Js
+<h1>@message</h1>
 
-Blazorl'implementazione dell'interoperabilità JS di è basata su <xref:System.Text.Json> , ovvero una libreria di serializzazione JSON a prestazioni elevate con allocazione di memoria insufficiente. L'uso <xref:System.Text.Json> di non comporta dimensioni aggiuntive del payload dell'app rispetto all'aggiunta di una o più librerie JSON alternative.
+<div @ref="myMouseMoveElement" style="border:1px dashed red;height:200px;">
+    Move mouse here
+</div>
 
-Per informazioni aggiuntive sulla migrazione, vedere [come eseguire la migrazione da `Newtonsoft.Json` a `System.Text.Json` ](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
+@code {
+    ElementReference myMouseMoveElement;
+    DotNetObjectReference<MyComponent> selfReference;
+    private string message = "Move the mouse in the box";
 
-## <a name="use-synchronous-and-unmarshalled-js-interop-apis-where-appropriate"></a>Usare API di interoperabilità JS sincrone e non Marshall laddove appropriato
+    [JSInvokable]
+    public void HandleMouseMove(int x, int y)
+    {
+        message = $"Mouse move at {x}, {y}";
+        StateHasChanged();
+    }
 
-Blazor WebAssembly offre due versioni aggiuntive di <xref:Microsoft.JSInterop.IJSRuntime> rispetto alla versione singola disponibili per le Blazor Server app:
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            selfReference = DotNetObjectReference.Create(this);
+            var minInterval = 500; // Only notify every 500 ms
+            await JS.InvokeVoidAsync("onThrottledMouseMove", 
+                myMouseMoveElement, selfReference, minInterval);
+        }
+    }
 
-* <xref:Microsoft.JSInterop.IJSInProcessRuntime> consente di richiamare in modo sincrono le chiamate di interoperabilità JS, che hanno un sovraccarico minore rispetto alle versioni asincrone:
+    public void Dispose() => selfReference?.Dispose();
+}
+```
 
-  ```razor
-  @inject IJSRuntime JS
+Il codice JavaScript corrispondente, che può essere inserito nella `index.html` pagina o caricato come modulo ES6, registra il listener di eventi DOM effettivo. In questo esempio, il listener di eventi usa la [ `throttle` funzione di Lodash](https://lodash.com/docs/4.17.15#throttle) per limitare la frequenza delle chiamate:
 
-  @code {
-      protected override void OnInitialized()
-      {
-          var jsInProcess = (IJSInProcessRuntime)JS;
-
-          var value = jsInProcess.Invoke<string>("jsInteropCall");
-      }
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+<script>
+  function onThrottledMouseMove(elem, component, interval) {
+    elem.addEventListener('mousemove', _.throttle(e => {
+      component.invokeMethodAsync('HandleMouseMove', e.offsetX, e.offsetY);
+    }, interval));
   }
-  ```
+</script>
+```
 
-* <xref:Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime> consente le chiamate di interoperabilità JS non Marshall:
+Questa tecnica può essere ancora più importante per Blazor Server , perché ogni chiamata di evento comporta il recapito di un messaggio tramite la rete. È utile per Blazor WebAssembly perché può ridurre notevolmente la quantità di lavoro di rendering.
 
-  ```javascript
-  function jsInteropCall() {
+## <a name="optimize-javascript-interop-speed"></a>Ottimizza la velocità di interoperabilità JavaScript
+
+Le chiamate tra .NET e JavaScript comportano un sovraccarico aggiuntivo perché:
+
+ * Per impostazione predefinita, le chiamate sono asincrone.
+ * Per impostazione predefinita, i parametri e i valori restituiti sono serializzati in JSON. Questo consente di fornire un meccanismo di conversione di facile comprensione tra i tipi .NET e JavaScript.
+
+Inoltre Blazor Server , queste chiamate vengono passate attraverso la rete.
+
+### <a name="avoid-excessively-fine-grained-calls"></a>Evitare chiamate con granularità eccessiva
+
+Poiché ogni chiamata implica un sovraccarico, può essere utile ridurre il numero di chiamate. Si consideri il codice seguente, in cui viene archiviata una raccolta di elementi nell'archivio del browser `localStorage` :
+
+```csharp
+private async Task StoreAllInLocalStorage(IEnumerable<TodoItem> items)
+{
+    foreach (var item in items)
+    {
+        await JS.InvokeVoidAsync("localStorage.setItem", item.Id, 
+            JsonSerializer.Serialize(item));
+    }
+}
+```
+
+L'esempio precedente esegue una chiamata di interoperabilità JS separata per ogni elemento. Al contrario, l'approccio seguente riduce l'interoperabilità JS a una singola chiamata:
+
+```csharp
+private async Task StoreAllInLocalStorage(IEnumerable<TodoItem> items)
+{
+    await JS.InvokeVoidAsync("storeAllInLocalStorage", items);
+}
+```
+
+La funzione JavaScript corrispondente definita nel modo seguente:
+
+```javascript
+function storeAllInLocalStorage(items) {
+  items.forEach(item => {
+    localStorage.setItem(item.id, JSON.stringify(item));
+  });
+}
+```
+
+Per Blazor WebAssembly , questo è in genere importante solo se si sta effettuando un numero elevato di chiamate di interoperabilità js.
+
+### <a name="consider-making-synchronous-calls"></a>Prendere in considerazione l'esecuzione di chiamate sincrone
+
+Per impostazione predefinita, le chiamate di interoperabilità JavaScript sono asincrone, indipendentemente dal fatto che il codice chiamato sia sincrono o asincrono. Ciò consente di garantire che i componenti siano compatibili con Blazor WebAssembly e Blazor Server . In Blazor Server , tutte le chiamate di interoperabilità JavaScript devono essere asincrone perché vengono inviate tramite una connessione di rete.
+
+Se si è certi che l'app venga eseguita solo in Blazor WebAssembly , è possibile scegliere di eseguire chiamate di interoperabilità JavaScript sincrone. Questa operazione ha un sovraccarico leggermente inferiore rispetto all'esecuzione di chiamate asincrone e può comportare un minor numero di cicli di rendering perché non esiste alcuno stato intermedio durante l'attesa dei risultati.
+
+Per eseguire una chiamata sincrona da .NET a JavaScript, eseguire il cast <xref:Microsoft.JSInterop.IJSRuntime> a <xref:Microsoft.JSInterop.IJSInProcessRuntime> :
+
+```razor
+@inject IJSRuntime JS
+
+...
+
+@code {
+    protected override void HandleSomeEvent()
+    {
+        var jsInProcess = (IJSInProcessRuntime)JS;
+        var value = jsInProcess.Invoke<string>("javascriptFunctionIdentifier");
+    }
+}
+```
+
+::: moniker range=">= aspnetcore-5.0"
+
+Quando si utilizza `IJSObjectReference` , è possibile effettuare una chiamata sincrona eseguendo il cast a `IJSInProcessObjectReference` .
+
+::: moniker-end
+
+Per eseguire una chiamata sincrona da JavaScript a .NET, usare `DotNet.invokeMethod` anziché `DotNet.invokeMethodAsync` .
+
+Le chiamate sincrone funzionano se:
+
+* L'app è in esecuzione in Blazor WebAssembly , non Blazor Server .
+* La funzione chiamata restituisce un valore in modo sincrono (non è un `async` metodo e non restituisce .NET <xref:System.Threading.Tasks.Task> o JavaScript `Promise` ).
+
+Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet>.
+
+::: moniker range=">= aspnetcore-5.0"
+ 
+### <a name="consider-making-unmarshalled-calls"></a>Prendere in considerazione l'esecuzione di chiamate non Marshall
+
+Quando si esegue in Blazor WebAssembly , è possibile effettuare chiamate non Marshall da .NET a JavaScript. Si tratta di chiamate sincrone che non eseguono la serializzazione JSON di argomenti o valori restituiti. Tutti gli aspetti della gestione della memoria e delle traduzioni tra le rappresentazioni .NET e JavaScript vengono lasciati allo sviluppatore.
+
+> [!WARNING]
+> Quando `IJSUnmarshalledRuntime` si usa ha il minor sovraccarico degli approcci di interoperabilità js, le API JavaScript necessarie per interagire con queste API non sono attualmente documentate e sono soggette a modifiche di rilievo nelle versioni future.
+
+```javascript
+function jsInteropCall() {
     return BINDING.js_to_mono_obj("Hello world");
-  }
-  ```
+}
+```
 
-  ```razor
-  @inject IJSRuntime JS
+```razor
+@inject IJSRuntime JS
 
-  @code {
-      protected override void OnInitialized()
-      {
-          var jsInProcess = (WebAssemblyJSRuntime)JS;
+@code {
+    protected override void OnInitialized()
+    {
+        var unmarshalledJs = (IJSUnmarshalledRuntime)JS;
+        var value = unmarshalledJs.InvokeUnmarshalled<string>("jsInteropCall");
+    }
+}
+```
 
-          var value = jsInProcess.InvokeUnmarshalled<string>("jsInteropCall");
-      }
-  }
-  ```
+::: moniker-end
 
-  > [!WARNING]
-  > Quando <xref:Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime> si usa ha il minor sovraccarico degli approcci di interoperabilità js, le API JavaScript necessarie per interagire con queste API non sono attualmente documentate e sono soggette a modifiche di rilievo nelle versioni future.
-
-## <a name="reduce-app-size"></a>Ridurre le dimensioni dell'app
+## <a name="minimize-app-download-size"></a>Ridurre le dimensioni del download dell'app
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -157,6 +579,12 @@ Il [collegamento di un' Blazor WebAssembly app](xref:blazor/host-and-deploy/conf
 ```dotnetcli
 dotnet publish -c Release
 ```
+
+### <a name="use-systemtextjson"></a>USA System.Text.Js
+
+Blazorl'implementazione dell'interoperabilità JS di è basata su <xref:System.Text.Json> , ovvero una libreria di serializzazione JSON a prestazioni elevate con allocazione di memoria insufficiente. L'uso <xref:System.Text.Json> di non comporta dimensioni aggiuntive del payload dell'app rispetto all'aggiunta di una o più librerie JSON alternative.
+
+Per informazioni aggiuntive sulla migrazione, vedere [come eseguire la migrazione da `Newtonsoft.Json` a `System.Text.Json` ](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
 ### <a name="lazy-load-assemblies"></a>Assembly di caricamento lazy
 

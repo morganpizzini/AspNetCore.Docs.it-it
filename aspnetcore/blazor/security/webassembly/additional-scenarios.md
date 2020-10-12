@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 2881b5d01f3b2e41659e3166a4e77b64a450f017
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 50d455b37c51fdd6d3b52b10b3e819eb45526de4
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90592919"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900960"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor WebAssembly scenari di sicurezza aggiuntivi
 
@@ -177,7 +177,7 @@ Per un' Blazor applicazione basata sul Blazor WebAssembly modello di progetto os
 
 ### <a name="graph-api-example"></a>Esempio di API Graph
 
-Nell'esempio seguente viene usato un oggetto denominato <xref:System.Net.Http.HttpClient> per API Graph per ottenere il numero di telefono cellulare di un utente per l'elaborazione di una chiamata. Dopo aver aggiunto l'autorizzazione Microsoft Graph API `User.Read` nell'area AAD della portale di Azure, l'ambito viene configurato per il client denominato nell'app autonoma o nell'app client di una soluzione ospitata Blazor .
+Nell'esempio seguente viene usato un oggetto denominato <xref:System.Net.Http.HttpClient> per API Graph per ottenere il numero di telefono cellulare di un utente per l'elaborazione di una chiamata. Dopo aver aggiunto l'autorizzazione Microsoft Graph API `User.Read` nell'area AAD della portale di Azure, l'ambito viene configurato per il client denominato nell'app autonoma o nell' *`Client`* app di una soluzione ospitata Blazor .
 
 > [!NOTE]
 > Nell'esempio riportato in questa sezione vengono ottenuti API Graph dati per l'utente nel *codice componente*. Per creare attestazioni utente da API Graph, vedere le risorse seguenti:
@@ -1070,7 +1070,7 @@ Dopo aver seguito le indicazioni in uno degli argomenti dell'app ospitata Blazor
 * Esegue il prerendering dei percorsi per i quali non è necessaria l'autorizzazione.
 * Non esegue il prerendering dei percorsi per cui è richiesta l'autorizzazione.
 
-Nella `Program` classe () dell'app client `Program.cs` , fattorizzare le registrazioni del servizio comuni in un metodo separato, ad esempio `ConfigureCommonServices` :
+Nella *`Client`* `Program` classe () dell'app `Program.cs` , scomporre le registrazioni del servizio comuni in un metodo separato, ad esempio `ConfigureCommonServices` :
 
 ```csharp
 public class Program
@@ -1130,7 +1130,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-Nell'app Server creare una `Pages` cartella se non esiste. Creare una `_Host.cshtml` pagina all'interno della cartella dell'app Server `Pages` . Incollare il contenuto del file dell'app client `wwwroot/index.html` nel `Pages/_Host.cshtml` file. Aggiornare il contenuto del file:
+Nell'app Server creare una `Pages` cartella se non esiste. Creare una `_Host.cshtml` pagina all'interno della cartella dell'app Server `Pages` . Incollare il contenuto del *`Client`* file dell'app `wwwroot/index.html` nel `Pages/_Host.cshtml` file. Aggiornare il contenuto del file:
 
 * Aggiungere `@page "_Host"` all'inizio del file.
 * Sostituire il `<app>Loading...</app>` tag con il codice seguente:
