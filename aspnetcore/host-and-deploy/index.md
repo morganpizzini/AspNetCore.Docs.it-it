@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/index
-ms.openlocfilehash: 0111b7944bc95932937f0fd74524e3960c5fb681
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f8271d71f34487062484581ba6b3b8445a62439c
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634618"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113791"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hosting e distribuzione di ASP.NET Core
 
@@ -45,7 +45,7 @@ La cartella *publish* contiene uno o più file di assembly di app, le dipendenze
 
 È possibile pubblicare un'app .NET Core come *distribuzione indipendente* o come *distribuzione dipendente dal framework*. Se l'app è indipendente, i file di assembly che contengono il runtime .NET sono inclusi nella cartella *publish*. Se l'app è dipendente dal framework, i file di runtime .NET non sono inclusi, perché l'app contiene un riferimento a una versione di .NET installata nel server. Il modello di distribuzione predefinito è il modello dipendente dal framework. Per altre informazioni, vedere [Distribuzione di applicazioni .NET Core](/dotnet/core/deploying/).
 
-Oltre ai file con estensione *EXE* e *DLL* la cartella *publish* di un'app ASP.NET Core contiene in genere i file di configurazione, gli asset statici e le visualizzazioni MVC. Per altre informazioni, vedere <xref:host-and-deploy/directory-structure>.
+Oltre ai file con estensione *EXE* e *DLL* la cartella *publish* di un'app ASP.NET Core contiene in genere i file di configurazione, gli asset statici e le visualizzazioni MVC. Per ulteriori informazioni, vedere <xref:host-and-deploy/directory-structure>.
 
 ## <a name="set-up-a-process-manager"></a>Configurare un gestore processi
 
@@ -70,7 +70,7 @@ Potrebbero essere necessari interventi di configurazione aggiuntivi per le app o
 
 ## <a name="use-visual-studio-and-msbuild-to-automate-deployments"></a>Usare Visual Studio e MSBuild per automatizzare le distribuzioni
 
-In molti casi la distribuzione richiede attività aggiuntive oltre alla copia dell'output da [dotnet publish](/dotnet/core/tools/dotnet-publish) a un server. Ad esempio è possibile che nella cartella *publish* siano necessari file aggiuntivi o vengano esclusi uno o più file. Per la distribuzione Web, Visual Studio usa MSBuild, che può essere personalizzato per eseguire molte altre attività durante la distribuzione. Per altre informazioni, vedere <xref:host-and-deploy/visual-studio-publish-profiles> e il libro [Using MSBuild and Team Foundation Build](http://msbuildbook.com/) (Uso di MSBuild e Team Foundation Build).
+In molti casi la distribuzione richiede attività aggiuntive oltre alla copia dell'output da [dotnet publish](/dotnet/core/tools/dotnet-publish) a un server. Ad esempio è possibile che nella cartella *publish* siano necessari file aggiuntivi o vengano esclusi uno o più file. Visual Studio USA [MSBuild](/visualstudio/msbuild/msbuild) per la distribuzione Web e MSBuild può essere personalizzato per eseguire molte altre attività durante la distribuzione. Per altre informazioni, vedere <xref:host-and-deploy/visual-studio-publish-profiles> e il libro [Using MSBuild and Team Foundation Build](http://msbuildbook.com/) (Uso di MSBuild e Team Foundation Build).
 
 Mediante la [funzionalità Pubblica sito Web](xref:tutorials/publish-to-azure-webapp-using-vs) o il [supporto di Git incorporato](xref:host-and-deploy/azure-apps/azure-continuous-deployment) è possibile eseguire direttamente la distribuzione di app da Visual Studio al Servizio app di Azure. Azure DevOps Services supporta la [distribuzione continua al Servizio app di Azure](/azure/devops/pipelines/targets/webapp). Per altre informazioni, vedere [DevOps con ASP.NET Core e Azure](xref:azure/devops/index).
 
@@ -92,11 +92,11 @@ Per informazioni sulla configurazione per ospitare app ASP.NET Core in un ambien
 
 ## <a name="host-on-docker"></a>Host in Docker
 
-Per altre informazioni, vedere <xref:host-and-deploy/docker/index>.
+Per ulteriori informazioni, vedere <xref:host-and-deploy/docker/index>.
 
 ## <a name="perform-health-checks"></a>Eseguire controlli di integrità
 
-Usare il middleware di controllo integrità per eseguire controlli di integrità su un'app e le relative dipendenze. Per altre informazioni, vedere <xref:host-and-deploy/health-checks>.
+Usare il middleware di controllo integrità per eseguire controlli di integrità su un'app e le relative dipendenze. Per ulteriori informazioni, vedere <xref:host-and-deploy/health-checks>.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -123,7 +123,7 @@ La cartella *publish* contiene uno o più file di assembly di app, le dipendenze
 
 È possibile pubblicare un'app .NET Core come *distribuzione indipendente* o come *distribuzione dipendente dal framework*. Se l'app è indipendente, i file di assembly che contengono il runtime .NET sono inclusi nella cartella *publish*. Se l'app è dipendente dal framework, i file di runtime .NET non sono inclusi, perché l'app contiene un riferimento a una versione di .NET installata nel server. Il modello di distribuzione predefinito è il modello dipendente dal framework. Per altre informazioni, vedere [Distribuzione di applicazioni .NET Core](/dotnet/core/deploying/).
 
-Oltre ai file con estensione *EXE* e *DLL* la cartella *publish* di un'app ASP.NET Core contiene in genere i file di configurazione, gli asset statici e le visualizzazioni MVC. Per altre informazioni, vedere <xref:host-and-deploy/directory-structure>.
+Oltre ai file con estensione *EXE* e *DLL* la cartella *publish* di un'app ASP.NET Core contiene in genere i file di configurazione, gli asset statici e le visualizzazioni MVC. Per ulteriori informazioni, vedere <xref:host-and-deploy/directory-structure>.
 
 ## <a name="set-up-a-process-manager"></a>Configurare un gestore processi
 
@@ -170,7 +170,7 @@ Per informazioni sulla configurazione per ospitare app ASP.NET Core in un ambien
 
 ## <a name="host-on-docker"></a>Host in Docker
 
-Per altre informazioni, vedere <xref:host-and-deploy/docker/index>.
+Per ulteriori informazioni, vedere <xref:host-and-deploy/docker/index>.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: a0c53755bd56b6c169437ca9f0ea915e46ad79ec
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: 2a80a9c4848703802b15348a30f2564f9580a24b
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606744"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113881"
 ---
 # <a name="part-8-add-a-new-field-to-an-aspnet-core-mvc-app"></a>Parte 8: aggiungere un nuovo campo a un'app MVC ASP.NET Core
 
@@ -133,11 +133,16 @@ Se vengono eliminati tutti i record del database, il database viene inizializzat
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Eliminare il database e usare le migrazioni per ricreare il database. Per eliminare il database, eliminare il file di database *MvcMovie. DB* . Eseguire quindi il comando `ef database update`:
+Eliminare il database e la migrazione precedente e utilizzare le migrazioni per ricreare il database:
 
 ```dotnetcli
+dotnet ef migrations remove
+dotnet ef database drop
+dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
+
+`dotnet ef migrations remove` Rimuove l'ultima migrazione. Se è presente più di una migrazione, eliminare la cartella migrazioni.
 
 ---
 <!-- End of VS tabs -->

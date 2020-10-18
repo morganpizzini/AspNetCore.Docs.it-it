@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/services
-ms.openlocfilehash: 878792120d69bea9ca6f620a87a7e04da2ec1815
-ms.sourcegitcommit: 111b4e451da2e275fb074cde5d8a84b26a81937d
+ms.openlocfilehash: c4d37556a3345d275f45c537a40908c5966fe015
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "89040840"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113621"
 ---
 # <a name="create-grpc-services-and-methods"></a>Creare i servizi e i metodi di gRPC
 
@@ -87,7 +87,7 @@ Per impostazione predefinita, l'oggetto generato `GreeterBase` non esegue alcuna
 ```csharp
 public class GreeterService : GreeterBase
 {
-    public override Task<HelloReply> UnaryCall(HelloRequest request, ServerCallContext context)
+    public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
     {
         return Task.FromResult(new HelloRequest { Message = $"Hello {request.Name}" });
     }
@@ -109,7 +109,7 @@ Per altre informazioni, vedere <xref:grpc/aspnetcore>.
 
 Un servizio gRPC può disporre di tipi diversi di metodi. Il modo in cui i messaggi vengono inviati e ricevuti da un servizio dipende dal tipo di metodo definito. I tipi di metodo gRPC sono:
 
-* Unaria
+* Unario
 * Streaming Server
 * Flusso client
 * Streaming bidirezionale

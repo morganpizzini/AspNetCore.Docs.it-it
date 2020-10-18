@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 9d70b292a93a5d19cc25b2fc592ec88ce8262434
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 177112106d143a6826c1f927aac807da0aa9f2b4
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629990"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113829"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introduzione ad ASP.NET Core MVC
 
@@ -67,7 +67,7 @@ Al termine di queste operazioni si ottiene un'app che può gestire e visualizzar
 
 * Dal menu di Visual Studio selezionare **Crea un nuovo progetto**.
 
-* Selezionare **Applicazione Web ASP.NET Core** e quindi selezionare **Avanti**.
+* Selezionare **ASP.NET Core applicazione Web** > **Avanti**.
 
 ![nuova applicazione Web ASP.NET Core](start-mvc/_static/np_2.1.png)
 
@@ -75,7 +75,7 @@ Al termine di queste operazioni si ottiene un'app che può gestire e visualizzar
 
   ![nuova applicazione Web ASP.NET Core](start-mvc/_static/config.png)
 
-* Selezionare **Applicazione Web (MVC)** e quindi selezionare **Crea**.
+* Selezionare **applicazione Web (Model-View-Controller)**. Nelle caselle a discesa selezionare **.NET Core** e **ASP.NET Core 3,1**, quindi selezionare **Crea**.
 
 ![Finestra di dialogo Nuovo progetto, .NET Core nel riquadro sinistro, Web ASP.NET Core ](start-mvc/_static/new_project30.png)
 

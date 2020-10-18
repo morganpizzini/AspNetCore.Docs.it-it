@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: ce1786f644d1c0a70487f44ec3051de8189c5381
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 295e5dd025afc486be08ecadbf661bf765c2745f
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625323"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113608"
 ---
 # <a name="aspnet-core-no-locblazor-advanced-scenarios"></a>BlazorScenari ASP.NET Core avanzati
 
@@ -166,14 +166,14 @@ builder.AddContent(1, "Second");
 
 Quando il codice viene eseguito per la prima volta, se `someFlag` è `true` , il generatore riceve:
 
-| Sequenza | Type      | Data   |
+| Sequenza | Tipo      | Data   |
 | :------: | --------- | :----: |
 | 0        | Nodo testo | First (Primo)  |
 | 1        | Nodo testo | Second |
 
 Si supponga che `someFlag` diventi `false` e che venga eseguito nuovamente il rendering del markup. Questa volta, il generatore riceve:
 
-| Sequenza | Type       | Data   |
+| Sequenza | Tipo       | Data   |
 | :------: | ---------- | :----: |
 | 1        | Nodo testo  | Second |
 
@@ -198,14 +198,14 @@ builder.AddContent(seq++, "Second");
 
 A questo punto, il primo output è:
 
-| Sequenza | Type      | Data   |
+| Sequenza | Tipo      | Data   |
 | :------: | --------- | :----: |
 | 0        | Nodo testo | First (Primo)  |
 | 1        | Nodo testo | Second |
 
 Questo risultato è identico al caso precedente, pertanto non esistono problemi negativi. `someFlag` si trova `false` nel secondo rendering e l'output è:
 
-| Sequenza | Type      | Data   |
+| Sequenza | Tipo      | Data   |
 | :------: | --------- | ------ |
 | 0        | Nodo testo | Second |
 
@@ -225,281 +225,3 @@ Questo è un esempio semplice. Nei casi più realistici con strutture complesse 
 * Non scrivere blocchi lunghi di logica implementata manualmente <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> . Preferire i `.razor` file e consentire al compilatore di gestire i numeri di sequenza. Se non si è in grado di evitare <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> la logica manuale, suddividere i blocchi di codice lunghi in parti più piccole racchiuse tra le <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenRegion%2A> / <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseRegion%2A> chiamate. Ogni area ha il proprio spazio separato dei numeri di sequenza, quindi è possibile riavviare da zero (o qualsiasi altro numero arbitrario) all'interno di ogni area.
 * Se i numeri di sequenza sono hardcoded, l'algoritmo Diff richiede solo che i numeri di sequenza aumentino nel valore. Il valore iniziale e i gap sono irrilevanti. Una delle opzioni legittime consiste nell'usare il numero di riga del codice come numero di sequenza oppure iniziare da zero e aumentare di uno o di centinaia (o qualsiasi intervallo preferito). 
 * Blazor USA i numeri di sequenza, mentre altri Framework dell'interfaccia utente con differenze tra gli alberi non li usano. La diffing è molto più veloce quando si usano i numeri Blazor di sequenza e presenta il vantaggio di un passaggio di compilazione che gestisce automaticamente i numeri di sequenza per gli sviluppatori che creano `.razor` file.
-
-## <a name="perform-large-data-transfers-in-no-locblazor-server-apps"></a>Eseguire trasferimenti di dati di grandi dimensioni nelle Blazor Server app
-
-In alcuni scenari, è necessario trasferire grandi quantità di dati tra JavaScript e Blazor . Generalmente, i trasferimenti di dati di grandi dimensioni si verificano quando:
-
-* Le API del browser file system vengono usate per caricare o scaricare un file.
-* È necessaria l'interoperabilità con una libreria di terze parti.
-
-In Blazor Server è prevista una limitazione per impedire il passaggio di singoli messaggi di grandi dimensioni che possono causare problemi di prestazioni.
-
-Quando si sviluppa codice che trasferisce i dati tra JavaScript, tenere presenti le linee guida seguenti Blazor :
-
-* Sezionare i dati in parti più piccole e inviare i segmenti di dati in sequenza fino a quando non vengono ricevuti tutti i dati dal server.
-* Non allocare oggetti di grandi dimensioni in codice JavaScript e C#.
-* Non bloccare il thread principale dell'interfaccia utente per periodi prolungati durante l'invio o la ricezione di dati.
-* Liberare la memoria utilizzata quando il processo viene completato o annullato.
-* Per motivi di sicurezza, applicare i seguenti requisiti aggiuntivi:
-  * Dichiarare le dimensioni massime di file o dati che è possibile passare.
-  * Dichiarare la velocità di caricamento minima dal client al server.
-* Dopo la ricezione dei dati da parte del server, i dati possono essere:
-  * Archiviati temporaneamente in un buffer di memoria fino a quando non vengono raccolti tutti i segmenti.
-  * Utilizzato immediatamente. Ad esempio, i dati possono essere archiviati immediatamente in un database o scritti su disco durante la ricezione di ogni segmento.
-
-La classe del caricatore di file seguente gestisce l'interoperabilità JS con il client. La classe Uploader usa l'interoperabilità JS per:
-
-* Eseguire il polling del client per inviare un segmento di dati.
-* Interrompere la transazione se si verifica il timeout del polling.
-
-```csharp
-using System;
-using System.Buffers;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.JSInterop;
-
-public class FileUploader : IDisposable
-{
-    private readonly IJSRuntime jsRuntime;
-    private readonly int segmentSize = 6144;
-    private readonly int maxBase64SegmentSize = 8192;
-    private readonly DotNetObjectReference<FileUploader> thisReference;
-    private List<IMemoryOwner<byte>> uploadedSegments = 
-        new List<IMemoryOwner<byte>>();
-
-    public FileUploader(IJSRuntime jsRuntime)
-    {
-        this.jsRuntime = jsRuntime;
-    }
-
-    public async Task<Stream> ReceiveFile(string selector, int maxSize)
-    {
-        var fileSize = 
-            await jsRuntime.InvokeAsync<int>("getFileSize", selector);
-
-        if (fileSize > maxSize)
-        {
-            return null;
-        }
-
-        var numberOfSegments = Math.Floor(fileSize / (double)segmentSize) + 1;
-        var lastSegmentBytes = 0;
-        string base64EncodedSegment;
-
-        for (var i = 0; i < numberOfSegments; i++)
-        {
-            try
-            {
-                base64EncodedSegment = 
-                    await jsRuntime.InvokeAsync<string>(
-                        "receiveSegment", i, selector);
-
-                if (base64EncodedSegment.Length < maxBase64SegmentSize && 
-                    i < numberOfSegments - 1)
-                {
-                    return null;
-                }
-            }
-            catch
-            {
-                return null;
-            }
-
-          var current = MemoryPool<byte>.Shared.Rent(segmentSize);
-
-          if (!Convert.TryFromBase64String(base64EncodedSegment, 
-              current.Memory.Slice(0, segmentSize).Span, out lastSegmentBytes))
-          {
-              return null;
-          }
-
-          uploadedSegments.Add(current);
-        }
-
-        var segments = uploadedSegments;
-        uploadedSegments = null;
-
-        return new SegmentedStream(segments, segmentSize, lastSegmentBytes);
-    }
-
-    public void Dispose()
-    {
-        if (uploadedSegments != null)
-        {
-            foreach (var segment in uploadedSegments)
-            {
-                segment.Dispose();
-            }
-        }
-    }
-}
-```
-
-Nell'esempio precedente:
-
-* `maxBase64SegmentSize`È impostato su `8192` , che viene calcolato da `maxBase64SegmentSize = segmentSize * 4 / 3` .
-* Le API di gestione della memoria .NET Core di basso livello vengono usate per archiviare i segmenti di memoria nel server in `uploadedSegments` .
-* `ReceiveFile`Viene usato un metodo per gestire il caricamento tramite l'interoperabilità JS:
-  * Le dimensioni del file vengono determinate in byte tramite l'interoperabilità JS con `jsRuntime.InvokeAsync<FileInfo>('getFileSize', selector)` .
-  * Il numero di segmenti da ricevere viene calcolato e archiviato in `numberOfSegments` .
-  * I segmenti sono richiesti in un `for` ciclo tramite l'interoperabilità js con `jsRuntime.InvokeAsync<string>('receiveSegment', i, selector)` . Tutti i segmenti ma l'ultimo devono essere 8.192 byte prima della decodifica. Il client è forzato a inviare i dati in modo efficiente.
-  * Per ogni segmento ricevuto, i controlli vengono eseguiti prima della decodifica con <xref:System.Convert.TryFromBase64String%2A> .
-  * Un flusso con i dati viene restituito come nuovo <xref:System.IO.Stream> ( `SegmentedStream` ) dopo il completamento del caricamento.
-
-La classe Stream segmentata espone l'elenco di segmenti come ReadOnly non ricercabile <xref:System.IO.Stream> :
-
-```csharp
-using System;
-using System.Buffers;
-using System.Collections.Generic;
-using System.IO;
-
-public class SegmentedStream : Stream
-{
-    private readonly ReadOnlySequence<byte> sequence;
-    private long currentPosition = 0;
-
-    public SegmentedStream(IList<IMemoryOwner<byte>> segments, int segmentSize, 
-        int lastSegmentSize)
-    {
-        if (segments.Count == 1)
-        {
-            sequence = new ReadOnlySequence<byte>(
-                segments[0].Memory.Slice(0, lastSegmentSize));
-            return;
-        }
-
-        var sequenceSegment = new BufferSegment<byte>(
-            segments[0].Memory.Slice(0, segmentSize));
-        var lastSegment = sequenceSegment;
-
-        for (int i = 1; i < segments.Count; i++)
-        {
-            var isLastSegment = i + 1 == segments.Count;
-            lastSegment = lastSegment.Append(segments[i].Memory.Slice(
-                0, isLastSegment ? lastSegmentSize : segmentSize));
-        }
-
-        sequence = new ReadOnlySequence<byte>(
-            sequenceSegment, 0, lastSegment, lastSegmentSize);
-    }
-
-    public override long Position
-    {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
-    }
-
-    public override int Read(byte[] buffer, int offset, int count)
-    {
-        var bytesToWrite = (int)(currentPosition + count < sequence.Length ? 
-            count : sequence.Length - currentPosition);
-        var data = sequence.Slice(currentPosition, bytesToWrite);
-        data.CopyTo(buffer.AsSpan(offset, bytesToWrite));
-        currentPosition += bytesToWrite;
-
-        return bytesToWrite;
-    }
-
-    private class BufferSegment<T> : ReadOnlySequenceSegment<T>
-    {
-        public BufferSegment(ReadOnlyMemory<T> memory)
-        {
-            Memory = memory;
-        }
-
-        public BufferSegment<T> Append(ReadOnlyMemory<T> memory)
-        {
-            var segment = new BufferSegment<T>(memory)
-            {
-                RunningIndex = RunningIndex + Memory.Length
-            };
-
-            Next = segment;
-
-            return segment;
-        }
-    }
-
-    public override bool CanRead => true;
-
-    public override bool CanSeek => false;
-
-    public override bool CanWrite => false;
-
-    public override long Length => throw new NotImplementedException();
-
-    public override void Flush() => throw new NotImplementedException();
-
-    public override long Seek(long offset, SeekOrigin origin) => 
-        throw new NotImplementedException();
-
-    public override void SetLength(long value) => 
-        throw new NotImplementedException();
-
-    public override void Write(byte[] buffer, int offset, int count) => 
-        throw new NotImplementedException();
-}
-```
-
-Il codice seguente implementa le funzioni JavaScript per ricevere i dati:
-
-```javascript
-function getFileSize(selector) {
-  const file = getFile(selector);
-  return file.size;
-}
-
-async function receiveSegment(segmentNumber, selector) {
-  const file = getFile(selector);
-  var segments = getFileSegments(file);
-  var index = segmentNumber * 6144;
-  return await getNextChunk(file, index);
-}
-
-function getFile(selector) {
-  const element = document.querySelector(selector);
-  if (!element) {
-    throw new Error('Invalid selector');
-  }
-  const files = element.files;
-  if (!files || files.length === 0) {
-    throw new Error(`Element ${elementId} doesn't contain any files.`);
-  }
-  const file = files[0];
-  return file;
-}
-
-function getFileSegments(file) {
-  const segments = Math.floor(size % 6144 === 0 ? size / 6144 : 1 + size / 6144);
-  return segments;
-}
-
-async function getNextChunk(file, index) {
-  const length = file.size - index <= 6144 ? file.size - index : 6144;
-  const chunk = file.slice(index, index + length);
-  index += length;
-  const base64Chunk = await this.base64EncodeAsync(chunk);
-  return { base64Chunk, index };
-}
-
-async function base64EncodeAsync(chunk) {
-  const reader = new FileReader();
-  const result = new Promise((resolve, reject) => {
-    reader.addEventListener('load',
-      () => {
-        const base64Chunk = reader.result;
-        const cleanChunk = 
-          base64Chunk.replace('data:application/octet-stream;base64,', '');
-        resolve(cleanChunk);
-      },
-      false);
-    reader.addEventListener('error', reject);
-  });
-  reader.readAsDataURL(chunk);
-  return result;
-}
-```

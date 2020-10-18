@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/performance
-ms.openlocfilehash: 4d50698b8c55f7fb3ef9a2c3102e73e046a22a9c
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: b54d13bfd9207a7b8961c1c4fa9908d3d54a4270
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722845"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113855"
 ---
 # <a name="performance-best-practices-with-grpc"></a>Procedure consigliate per le prestazioni con gRPC
 
@@ -49,11 +49,11 @@ I canali possono essere condivisi e riutilizzati in modo sicuro tra le chiamate 
 * Un canale e i client creati dal canale possono essere usati in modo sicuro da più thread.
 * I client creati dal canale possono effettuare più chiamate simultanee.
 
-la factory client di gRPC offre un modo centralizzato per configurare i canali. Riutilizza automaticamente i canali sottostanti. Per altre informazioni, vedere <xref:grpc/clientfactory>.
+la factory client di gRPC offre un modo centralizzato per configurare i canali. Riutilizza automaticamente i canali sottostanti. Per ulteriori informazioni, vedere <xref:grpc/clientfactory>.
 
 ## <a name="connection-concurrency"></a>Concorrenza di connessione
 
-Le connessioni HTTP/2 in genere presentano un limite al numero [massimo di flussi simultanei (richieste HTTP attive)](https://http2.github.io/http2-spec/#rfc.section.5.1.2) in una connessione in una sola volta. Per impostazione predefinita, la maggior parte dei server imposta questo limite su 100 flussi simultanei.
+Le connessioni HTTP/2 in genere presentano un limite al numero [massimo di flussi simultanei (richieste HTTP attive)](https://httpwg.github.io/specs/rfc7540.html#rfc.section.5.1.2) in una connessione in una sola volta. Per impostazione predefinita, la maggior parte dei server imposta questo limite su 100 flussi simultanei.
 
 Un canale gRPC usa una singola connessione HTTP/2 e le chiamate simultanee vengono multiplexate su tale connessione. Quando il numero di chiamate attive raggiunge il limite del flusso di connessione, le chiamate aggiuntive vengono accodate nel client. Le chiamate in coda attendono il completamento delle chiamate attive prima di essere inviate. Le applicazioni con carico elevato, o chiamate gRPC di streaming con esecuzione prolungata, potrebbero riscontrare problemi di prestazioni causati dall'accodamento delle chiamate a causa di questo limite.
 
@@ -126,7 +126,7 @@ Sono disponibili molti proxy L7. Di seguito sono riportate alcune opzioni:
 
 le chiamate gRPC tra un client e un servizio vengono in genere inviate tramite socket TCP. TCP è ideale per la comunicazione attraverso una rete, ma la [comunicazione interprocesso (IPC)](https://wikipedia.org/wiki/Inter-process_communication) è più efficiente quando il client e il servizio si trovano nello stesso computer.
 
-Prendere in considerazione l'uso di un trasporto come i socket di dominio UNIX o named pipe per le chiamate gRPC tra processi nello stesso computer. Per altre informazioni, vedere <xref:grpc/interprocess>.
+Prendere in considerazione l'uso di un trasporto come i socket di dominio UNIX o named pipe per le chiamate gRPC tra processi nello stesso computer. Per ulteriori informazioni, vedere <xref:grpc/interprocess>.
 
 ## <a name="keep-alive-pings"></a>Ping keep-alive
 
