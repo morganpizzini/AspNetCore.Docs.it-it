@@ -177,13 +177,16 @@
             - name: Eseguire la distribuzione con GitHub Actions >>
               display: 'tutorial, kubernetes, aks, acr, docker, devops'
               href: /learn/modules/microservices-devops-aspnet-core/
+            - name: Log e monitoraggio >>
+              display: 'tutorial, kubernetes, aks, acr, docker, serilog'
+              href: /learn/modules/microservices-logging-aspnet-core/
         - name: Accesso ai dati >>
           displayName: 'tutorial, ef, entity framework'
           href: /learn/modules/persist-data-ef-core/
         - name: Sicurezza delle app Web >>
           displayName: 'tutorial, identity'
           href: /learn/modules/secure-aspnet-core-identity/
-- name: Concetti fondamentali
+- name: Nozioni fondamentali
   items:
     - name: Panoramica
       uid: fundamentals/index
@@ -684,7 +687,7 @@
     - name: Autenticazione e autorizzazione
       uid: signalr/authn-and-authz
       displayName: signalr
-    - name: Considerazioni sulla sicurezza
+    - name: Considerazioni relative alla sicurezza
       uid: signalr/security
       displayName: signalr
     - name: Protocollo hub MessagePack
@@ -1118,6 +1121,8 @@
           uid: security/authorization/policies
         - name: Provider di criteri di autorizzazione
           uid: security/authorization/iauthorizationpolicyprovider
+        - name: Personalizzare il comportamento di AuthorizationMiddleware
+          uid: security/authorization/authorizationmiddlewareresulthandler
         - name: Inserimento di dipendenze nei gestori di requisiti
           uid: security/authorization/dependencyinjection
         - name: Autorizzazione basata su risorse
