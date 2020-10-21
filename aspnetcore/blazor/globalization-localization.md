@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: be73b0c1e33a2cd15c9ff0dc51044f9bd48c43fe
-ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
+ms.openlocfilehash: 4345dd8525c2e72aaddc8e45a4fd4d9bfdd63040
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/16/2020
-ms.locfileid: "92113816"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326526"
 ---
 # <a name="aspnet-core-no-locblazor-globalization-and-localization"></a>BlazorGlobalizzazione e localizzazione ASP.NET Core
 
@@ -39,7 +39,7 @@ Sono attualmente supportati un set limitato di scenari di localizzazione di ASP.
 * <xref:Microsoft.Extensions.Localization.IStringLocalizer> e <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> *sono supportati* nelle Blazor app.
 * <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>la <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> localizzazione delle annotazioni dei dati, e è ASP.NET Core scenari MVC e **non è supportata** nelle Blazor app.
 
-Per ulteriori informazioni, vedere <xref:fundamentals/localization>.
+Per altre informazioni, vedere <xref:fundamentals/localization>.
 
 ## <a name="globalization"></a>Globalizzazione
 
@@ -84,6 +84,19 @@ Per impostazione predefinita, Blazor WebAssembly contiene risorse di globalizzaz
 </PropertyGroup>
 ```
 
+Blazor WebAssembly può anche essere configurato per avviare usando impostazioni cultura specifiche dell'applicazione usando le opzioni passate a `Blazor.start` . Ad esempio, l'esempio seguente mostra un'app configurata per l'avvio usando le `en-GB` impostazioni cultura:
+
+```html
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    applicationCulture: 'en-GB'
+  });
+</script>
+```
+
+Il valore per `applicationCulture` deve essere conforme al [formato di tag del linguaggio BCP-47](https://tools.ietf.org/html/bcp47).
+
 Se l'app non richiede la localizzazione, è possibile configurare l'app in modo che supporti la lingua inglese, che è basata sulle `en-US` impostazioni cultura:
 
 ```xml
@@ -96,7 +109,7 @@ Se l'app non richiede la localizzazione, è possibile configurare l'app in modo 
 
 ::: moniker range="< aspnetcore-5.0"
 
-Per impostazione predefinita, la configurazione del linker linguaggio intermedio (IL) per le Blazor WebAssembly app rimuove le informazioni di internazionalizzazione ad eccezione delle impostazioni locali richieste in modo esplicito. Per ulteriori informazioni, vedere <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
+Per impostazione predefinita, la configurazione del linker linguaggio intermedio (IL) per le Blazor WebAssembly app rimuove le informazioni di internazionalizzazione ad eccezione delle impostazioni locali richieste in modo esplicito. Per altre informazioni, vedere <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
 
 ::: moniker-end
 
@@ -180,7 +193,7 @@ public class CultureController : Controller
 ```
 
 > [!WARNING]
-> Usare il <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> risultato dell'azione per impedire gli attacchi di reindirizzamento aperti. Per ulteriori informazioni, vedere <xref:security/preventing-open-redirects>.
+> Usare il <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> risultato dell'azione per impedire gli attacchi di reindirizzamento aperti. Per altre informazioni, vedere <xref:security/preventing-open-redirects>.
 
 Se l'app non è configurata per l'elaborazione delle azioni del controller:
 

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: 579491cfe60a26593ca038a1691f9b52f0fb1d06
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 8851246dbaa076af1fdbc4e5e4f1ada0e4e3988a
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393873"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326585"
 ---
 # <a name="aspnet-core-no-locsignalr-configuration"></a>Configurazione di ASP.NET Core SignalR
 
@@ -233,7 +233,7 @@ Questa operazione può essere ignorata in modo sicuro.
 
 I trasporti utilizzati da SignalR possono essere configurati nella `WithUrl` chiamata ( `withUrl` in JavaScript). Un operatore OR bit per bit dei valori di `HttpTransportType` può essere utilizzato per limitare il client in modo che utilizzi solo i trasporti specificati. Tutti i trasporti sono abilitati per impostazione predefinita.
 
-Ad esempio, per disabilitare il trasporto degli eventi inviati dal server, ma consentire i WebSocket e le connessioni di polling lungo:
+Ad esempio, per disabilitare il trasporto eventi Server-Sent, ma consentire i WebSocket e le connessioni di polling lungo:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -264,7 +264,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 
 ### <a name="configure-bearer-authentication"></a>Configurare l'autenticazione della porta
 
-Per fornire i dati di autenticazione insieme alle SignalR richieste, usare l' `AccessTokenProvider` opzione ( `accessTokenFactory` in JavaScript) per specificare una funzione che restituisce il token di accesso desiderato. Nel client .NET questo token di accesso viene passato come token HTTP "Bearer Authentication" (usando l' `Authorization` intestazione con un tipo di `Bearer` ). Nel client JavaScript, il token di accesso viene usato come token di connessione, **ad eccezione** dei casi in cui le API del browser limitano la possibilità di applicare intestazioni (in particolare, nelle richieste di eventi inviati dal server e WebSocket). In questi casi, il token di accesso viene fornito come valore stringa di query `access_token` .
+Per fornire i dati di autenticazione insieme alle SignalR richieste, usare l' `AccessTokenProvider` opzione ( `accessTokenFactory` in JavaScript) per specificare una funzione che restituisce il token di accesso desiderato. Nel client .NET questo token di accesso viene passato come token HTTP "Bearer Authentication" (usando l' `Authorization` intestazione con un tipo di `Bearer` ). Nel client JavaScript, il token di accesso viene usato come token di connessione, **ad eccezione** dei casi in cui le API del browser limitano la possibilità di applicare intestazioni (in particolare, in Server-Sent di eventi e richieste WebSocket). In questi casi, il token di accesso viene fornito come valore stringa di query `access_token` .
 
 Nel client .NET `AccessTokenProvider` è possibile specificare l'opzione usando il delegato options in `WithUrl` :
 
@@ -358,6 +358,7 @@ Opzioni aggiuntive possono essere configurate `WithUrl` nel `withUrl` Metodo (in
 | Opzione JavaScript | Valore predefinito | Descrizione |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
+| `transport` | `null` | <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType>Valore che specifica il trasporto da utilizzare per la connessione. |
 | `headers` | `null` | Dizionario di intestazioni inviate con tutte le richieste HTTP. L'invio di intestazioni nel browser non funziona per WebSocket o per il <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType.ServerSentEvents> flusso. |
 | `logMessageContent` | `null` | Impostare su `true` per registrare i byte/caratteri dei messaggi inviati e ricevuti dal client. |
 | `skipNegotiation` | `false` | Impostare questa impostazione su `true` per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio di Azure SignalR . |
@@ -379,6 +380,8 @@ Nel client .NET queste opzioni possono essere modificate dal delegato options fo
 var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
+        options.SkipNegotiation = true;
+        options.Transports = HttpTransportType.WebSockets;
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
     })
@@ -390,8 +393,9 @@ Nel client JavaScript queste opzioni possono essere fornite in un oggetto JavaSc
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
     .withUrl("/chathub", {
-        skipNegotiation: true,
-        transport: signalR.HttpTransportType.WebSockets
+        // "Foo: Bar" will not be sent with WebSockets or Server-Sent Events requests
+        headers: { "Foo": "Bar" },
+        transport: signalR.HttpTransportType.LongPolling 
     })
     .build();
 ```
@@ -621,7 +625,7 @@ Questa operazione può essere ignorata in modo sicuro.
 
 I trasporti utilizzati da SignalR possono essere configurati nella `WithUrl` chiamata ( `withUrl` in JavaScript). Un operatore OR bit per bit dei valori di `HttpTransportType` può essere utilizzato per limitare il client in modo che utilizzi solo i trasporti specificati. Tutti i trasporti sono abilitati per impostazione predefinita.
 
-Ad esempio, per disabilitare il trasporto degli eventi inviati dal server, ma consentire i WebSocket e le connessioni di polling lungo:
+Ad esempio, per disabilitare il trasporto eventi Server-Sent, ma consentire i WebSocket e le connessioni di polling lungo:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -652,7 +656,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 
 ### <a name="configure-bearer-authentication"></a>Configurare l'autenticazione della porta
 
-Per fornire i dati di autenticazione insieme alle SignalR richieste, usare l' `AccessTokenProvider` opzione ( `accessTokenFactory` in JavaScript) per specificare una funzione che restituisce il token di accesso desiderato. Nel client .NET questo token di accesso viene passato come token HTTP "Bearer Authentication" (usando l' `Authorization` intestazione con un tipo di `Bearer` ). Nel client JavaScript, il token di accesso viene usato come token di connessione, **ad eccezione** dei casi in cui le API del browser limitano la possibilità di applicare intestazioni (in particolare, nelle richieste di eventi inviati dal server e WebSocket). In questi casi, il token di accesso viene fornito come valore stringa di query `access_token` .
+Per fornire i dati di autenticazione insieme alle SignalR richieste, usare l' `AccessTokenProvider` opzione ( `accessTokenFactory` in JavaScript) per specificare una funzione che restituisce il token di accesso desiderato. Nel client .NET questo token di accesso viene passato come token HTTP "Bearer Authentication" (usando l' `Authorization` intestazione con un tipo di `Bearer` ). Nel client JavaScript, il token di accesso viene usato come token di connessione, **ad eccezione** dei casi in cui le API del browser limitano la possibilità di applicare intestazioni (in particolare, in Server-Sent di eventi e richieste WebSocket). In questi casi, il token di accesso viene fornito come valore stringa di query `access_token` .
 
 Nel client .NET `AccessTokenProvider` è possibile specificare l'opzione usando il delegato options in `WithUrl` :
 
@@ -746,6 +750,7 @@ Opzioni aggiuntive possono essere configurate `WithUrl` nel `withUrl` Metodo (in
 | Opzione JavaScript | Valore predefinito | Descrizione |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
+| `transport` | `null` | <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType>Valore che specifica il trasporto da utilizzare per la connessione. |
 | `logMessageContent` | `null` | Impostare su `true` per registrare i byte/caratteri dei messaggi inviati e ricevuti dal client. |
 | `skipNegotiation` | `false` | Impostare questa impostazione su `true` per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio di Azure SignalR . |
 
@@ -1006,7 +1011,7 @@ Questa operazione può essere ignorata in modo sicuro.
 
 I trasporti utilizzati da SignalR possono essere configurati nella `WithUrl` chiamata ( `withUrl` in JavaScript). Un operatore OR bit per bit dei valori di `HttpTransportType` può essere utilizzato per limitare il client in modo che utilizzi solo i trasporti specificati. Tutti i trasporti sono abilitati per impostazione predefinita.
 
-Ad esempio, per disabilitare il trasporto degli eventi inviati dal server, ma consentire i WebSocket e le connessioni di polling lungo:
+Ad esempio, per disabilitare il trasporto eventi Server-Sent, ma consentire i WebSocket e le connessioni di polling lungo:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -1037,7 +1042,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 
 ### <a name="configure-bearer-authentication"></a>Configurare l'autenticazione della porta
 
-Per fornire i dati di autenticazione insieme alle SignalR richieste, usare l' `AccessTokenProvider` opzione ( `accessTokenFactory` in JavaScript) per specificare una funzione che restituisce il token di accesso desiderato. Nel client .NET questo token di accesso viene passato come token HTTP "Bearer Authentication" (usando l' `Authorization` intestazione con un tipo di `Bearer` ). Nel client JavaScript, il token di accesso viene usato come token di connessione, **ad eccezione** dei casi in cui le API del browser limitano la possibilità di applicare intestazioni (in particolare, nelle richieste di eventi inviati dal server e WebSocket). In questi casi, il token di accesso viene fornito come valore stringa di query `access_token` .
+Per fornire i dati di autenticazione insieme alle SignalR richieste, usare l' `AccessTokenProvider` opzione ( `accessTokenFactory` in JavaScript) per specificare una funzione che restituisce il token di accesso desiderato. Nel client .NET questo token di accesso viene passato come token HTTP "Bearer Authentication" (usando l' `Authorization` intestazione con un tipo di `Bearer` ). Nel client JavaScript, il token di accesso viene usato come token di connessione, **ad eccezione** dei casi in cui le API del browser limitano la possibilità di applicare intestazioni (in particolare, in Server-Sent di eventi e richieste WebSocket). In questi casi, il token di accesso viene fornito come valore stringa di query `access_token` .
 
 Nel client .NET `AccessTokenProvider` è possibile specificare l'opzione usando il delegato options in `WithUrl` :
 
@@ -1131,6 +1136,7 @@ Opzioni aggiuntive possono essere configurate `WithUrl` nel `withUrl` Metodo (in
 | Opzione JavaScript | Valore predefinito | Descrizione |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
+| `transport` | `null` | <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType>Valore che specifica il trasporto da utilizzare per la connessione. |
 | `logMessageContent` | `null` | Impostare su `true` per registrare i byte/caratteri dei messaggi inviati e ricevuti dal client. |
 | `skipNegotiation` | `false` | Impostare questa impostazione su `true` per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio di Azure SignalR . |
 
@@ -1366,7 +1372,7 @@ Questa operazione può essere ignorata in modo sicuro.
 
 I trasporti utilizzati da SignalR possono essere configurati nella `WithUrl` chiamata ( `withUrl` in JavaScript). Un operatore OR bit per bit dei valori di `HttpTransportType` può essere utilizzato per limitare il client in modo che utilizzi solo i trasporti specificati. Tutti i trasporti sono abilitati per impostazione predefinita.
 
-Ad esempio, per disabilitare il trasporto degli eventi inviati dal server, ma consentire i WebSocket e le connessioni di polling lungo:
+Ad esempio, per disabilitare il trasporto eventi Server-Sent, ma consentire i WebSocket e le connessioni di polling lungo:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -1386,7 +1392,7 @@ In questa versione dei WebSocket client Java è l'unico trasporto disponibile.
 
 ### <a name="configure-bearer-authentication"></a>Configurare l'autenticazione della porta
 
-Per fornire i dati di autenticazione insieme alle SignalR richieste, usare l' `AccessTokenProvider` opzione ( `accessTokenFactory` in JavaScript) per specificare una funzione che restituisce il token di accesso desiderato. Nel client .NET questo token di accesso viene passato come token HTTP "Bearer Authentication" (usando l' `Authorization` intestazione con un tipo di `Bearer` ). Nel client JavaScript, il token di accesso viene usato come token di connessione, **ad eccezione** dei casi in cui le API del browser limitano la possibilità di applicare intestazioni (in particolare, nelle richieste di eventi inviati dal server e WebSocket). In questi casi, il token di accesso viene fornito come valore stringa di query `access_token` .
+Per fornire i dati di autenticazione insieme alle SignalR richieste, usare l' `AccessTokenProvider` opzione ( `accessTokenFactory` in JavaScript) per specificare una funzione che restituisce il token di accesso desiderato. Nel client .NET questo token di accesso viene passato come token HTTP "Bearer Authentication" (usando l' `Authorization` intestazione con un tipo di `Bearer` ). Nel client JavaScript, il token di accesso viene usato come token di connessione, **ad eccezione** dei casi in cui le API del browser limitano la possibilità di applicare intestazioni (in particolare, in Server-Sent di eventi e richieste WebSocket). In questi casi, il token di accesso viene fornito come valore stringa di query `access_token` .
 
 Nel client .NET `AccessTokenProvider` è possibile specificare l'opzione usando il delegato options in `WithUrl` :
 
@@ -1480,6 +1486,7 @@ Opzioni aggiuntive possono essere configurate `WithUrl` nel `withUrl` Metodo (in
 | Opzione JavaScript | Valore predefinito | Descrizione |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
+| `transport` | `null` | <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType>Valore che specifica il trasporto da utilizzare per la connessione. |
 | `logMessageContent` | `null` | Impostare su `true` per registrare i byte/caratteri dei messaggi inviati e ricevuti dal client. |
 | `skipNegotiation` | `false` | Impostare questa impostazione su `true` per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio di Azure SignalR . |
 
@@ -1714,7 +1721,7 @@ Questa operazione può essere ignorata in modo sicuro.
 
 I trasporti utilizzati da SignalR possono essere configurati nella `WithUrl` chiamata ( `withUrl` in JavaScript). Un operatore OR bit per bit dei valori di `HttpTransportType` può essere utilizzato per limitare il client in modo che utilizzi solo i trasporti specificati. Tutti i trasporti sono abilitati per impostazione predefinita.
 
-Ad esempio, per disabilitare il trasporto degli eventi inviati dal server, ma consentire i WebSocket e le connessioni di polling lungo:
+Ad esempio, per disabilitare il trasporto eventi Server-Sent, ma consentire i WebSocket e le connessioni di polling lungo:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -1732,7 +1739,7 @@ let connection = new signalR.HubConnectionBuilder()
 
 ### <a name="configure-bearer-authentication"></a>Configurare l'autenticazione della porta
 
-Per fornire i dati di autenticazione insieme alle SignalR richieste, usare l' `AccessTokenProvider` opzione ( `accessTokenFactory` in JavaScript) per specificare una funzione che restituisce il token di accesso desiderato. Nel client .NET questo token di accesso viene passato come token HTTP "Bearer Authentication" (usando l' `Authorization` intestazione con un tipo di `Bearer` ). Nel client JavaScript, il token di accesso viene usato come token di connessione, **ad eccezione** dei casi in cui le API del browser limitano la possibilità di applicare intestazioni (in particolare, nelle richieste di eventi inviati dal server e WebSocket). In questi casi, il token di accesso viene fornito come valore stringa di query `access_token` .
+Per fornire i dati di autenticazione insieme alle SignalR richieste, usare l' `AccessTokenProvider` opzione ( `accessTokenFactory` in JavaScript) per specificare una funzione che restituisce il token di accesso desiderato. Nel client .NET questo token di accesso viene passato come token HTTP "Bearer Authentication" (usando l' `Authorization` intestazione con un tipo di `Bearer` ). Nel client JavaScript, il token di accesso viene usato come token di connessione, **ad eccezione** dei casi in cui le API del browser limitano la possibilità di applicare intestazioni (in particolare, in Server-Sent di eventi e richieste WebSocket). In questi casi, il token di accesso viene fornito come valore stringa di query `access_token` .
 
 Nel client .NET `AccessTokenProvider` è possibile specificare l'opzione usando il delegato options in `WithUrl` :
 
@@ -1823,6 +1830,7 @@ Opzioni aggiuntive possono essere configurate `WithUrl` nel `withUrl` Metodo (in
 | Opzione JavaScript | Valore predefinito | Descrizione |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Funzione che restituisce una stringa fornita come token di autenticazione di un portatore nelle richieste HTTP. |
+| `transport` | `null` | <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType>Valore che specifica il trasporto da utilizzare per la connessione. |
 | `logMessageContent` | `null` | Impostare su `true` per registrare i byte/caratteri dei messaggi inviati e ricevuti dal client. |
 | `skipNegotiation` | `false` | Impostare questa impostazione su `true` per ignorare il passaggio di negoziazione. **Supportato solo quando il trasporto WebSocket è l'unico trasporto abilitato**. Questa impostazione non può essere abilitata quando si usa il servizio di Azure SignalR . |
 

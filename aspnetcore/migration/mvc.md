@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/mvc
-ms.openlocfilehash: d615f67fc5cb23499ee7e14b747390a7a1b5a693
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 51228e59284b5edf0554e9929b16deafe08ea31e
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865127"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326631"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Eseguire la migrazione da ASP.NET MVC ad ASP.NET Core MVC
 
@@ -46,9 +46,9 @@ Per la migrazione della configurazione e del Identity codice, vedere eseguire la
 
 Creare un esempio di progetto MVC ASP.NET in Visual Studio per eseguire la migrazione:
 
-1. Scegliere **Nuovo** > **Progetto** dal menu **File**.
+1. Scegliere **nuovo** progetto dal menu **file** > **Project**.
 1. Selezionare **applicazione Web ASP.NET (.NET Framework)** e quindi fare clic su **Avanti**.
-1. Denominare il progetto *app Web 1* in modo che lo spazio dei nomi corrisponda al progetto ASP.NET Core creato nel passaggio successivo. Selezionare **Crea**.
+1. Denominare il progetto *app Web 1* in modo che lo spazio dei nomi corrisponda al progetto ASP.NET Core creato nel passaggio successivo. Selezionare **Create** (Crea).
 1. Selezionare **MVC**, quindi fare clic su **Crea**.
 
 ## <a name="create-the-aspnet-core-project"></a>Creare il progetto di ASP.NET Core
@@ -56,10 +56,10 @@ Creare un esempio di progetto MVC ASP.NET in Visual Studio per eseguire la migra
 Crea una nuova soluzione con un nuovo progetto di ASP.NET Core di cui eseguire la migrazione:
 
 1. Avviare una seconda istanza di Visual Studio.
-1. Scegliere **Nuovo** > **Progetto** dal menu **File**.
-1. Selezionare **applicazione web ASP.NET Web Core** e quindi fare clic su **Avanti**.
+1. Scegliere **nuovo** progetto dal menu **file** > **Project**.
+1. Selezionare **Applicazione Web ASP.NET Core** e quindi selezionare **Avanti**.
 1. Nella finestra di dialogo **Configura nuovo progetto** assegnare al progetto il nome *app Web 1*.
-1. Impostare il percorso su una directory diversa da quella del progetto precedente per usare lo stesso nome di progetto. L'utilizzo dello stesso spazio dei nomi rende più semplice la copia di codice tra i due progetti. Selezionare **Crea**.
+1. Impostare il percorso su una directory diversa da quella del progetto precedente per usare lo stesso nome di progetto. L'utilizzo dello stesso spazio dei nomi rende più semplice la copia di codice tra i due progetti. Selezionare **Create** (Crea).
 1. Nella finestra di dialogo **Crea una nuova applicazione Web ASP.NET Core** verificare che siano selezionati **.net Core** e **ASP.NET Core 3,1** . Selezionare il modello di progetto **applicazione Web (modello-vista-controller)** e selezionare **Crea**.
 
 ## <a name="configure-the-aspnet-core-site-to-use-mvc"></a>Configurare il sito di ASP.NET Core per l'uso di MVC

@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 213807634a2a6990e9025de7871295cf97a81faf
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 808215d103db9c5d63fe63b6875a222e6b0ba1fa
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865581"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326622"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Eseguire la migrazione di gestori e moduli HTTP a ASP.NET Core middleware
 
@@ -356,7 +356,7 @@ Anche **HttpContext. Response. ContentType** viene convertito in:
 
 **HttpContext. Response. TransmitFile**
 
-[Qui](../fundamentals/request-features.md#middleware-and-request-features)viene illustrato come servire un file.
+La funzione di un file è descritta in [funzionalità middleware e richiesta](xref:fundamentals/request-features#middleware-and-request-features).
 
 **HttpContext. Response. Headers**
 
@@ -396,6 +396,6 @@ Il `SetCookies` metodo di callback avrà un aspetto simile al seguente:
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * [Cenni preliminari sui gestori HTTP e sui moduli HTTP](/iis/configuration/system.webserver/)
-* [Configurazione](xref:fundamentals/configuration/index)
+* [Configuration](xref:fundamentals/configuration/index)
 * [Avvio dell'applicazione](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware/index)

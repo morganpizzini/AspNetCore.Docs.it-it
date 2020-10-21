@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 63954bd2fbb8fdb2e347d552a10adc52263c3ad6
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: c3f537ff3b55f295db478cb097bc99023cc71a87
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91900713"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326517"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor WebAssembly
 
@@ -450,7 +450,13 @@ Quando Blazor viene pubblicato un progetto, `web.config` viene creato un file co
   
 #### <a name="use-a-custom-webconfig"></a>Usare un web.config personalizzato
 
-Per usare un `web.config` file personalizzato, inserire il `web.config` file personalizzato nella radice della cartella del progetto e pubblicare il progetto.
+Per usare un `web.config` file personalizzato, inserire il `web.config` file personalizzato nella radice della cartella del progetto. Configurare il progetto per pubblicare asset specifici di IIS usando `PublishIISAssets` nel file di progetto dell'app e pubblicare il progetto:
+
+```xml
+<PropertyGroup>
+  <PublishIISAssets>true</PublishIISAssets>
+</PropertyGroup>
+```
 
 #### <a name="install-the-url-rewrite-module"></a>Installare URL Rewrite Module
 
