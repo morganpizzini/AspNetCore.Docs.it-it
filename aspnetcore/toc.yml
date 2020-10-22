@@ -532,7 +532,7 @@
               uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
             - name: Input
               href: mvc/views/working-with-forms.md#the-input-tag-helper
-            - name: Etichetta
+            - name: Label
               href: mvc/views/working-with-forms.md#the-label-tag-helper
             - name: Collegamento
               uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
@@ -705,6 +705,9 @@
     - name: Registrazione e diagnostica
       displayName: signalr
       uid: signalr/diagnostics
+    - name: Risoluzione dei problemi
+      displayName: signalr
+      uid: signalr/troubleshoot
     - name: Specifiche
       displayName: 'signalr, specs'
       items:
