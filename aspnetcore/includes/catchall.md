@@ -1,7 +1,9 @@
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
 > [!WARNING]
 > Un parametro **catch-all** può corrispondere erroneamente alle route a causa di un [bug](https://github.com/dotnet/aspnetcore/issues/18677) nel routing. Le app interessate da questo bug hanno le seguenti caratteristiche:
 >
-> * Una route catch-all, ad esempio`{**slug}"`
+> * Una route catch-all, ad esempio `{**slug}"`
 > * La route catch-all non riesce a trovare le richieste corrispondenti.
 > * La rimozione di altre route rende l'avvio del funzionamento della route catch-all.
 >
@@ -18,3 +20,5 @@
 >}
 >// Remaining code removed for brevity.
 >```
+
+::: moniker-end

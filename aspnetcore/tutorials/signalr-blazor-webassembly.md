@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: e4c77bd5bf5a26a11cdd23664ac24ae50986969b
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: 6086c422b2d0598af309bbf8b900b9e03a3fe147
+ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754710"
+ms.lasthandoff: 10/23/2020
+ms.locfileid: "92491587"
 ---
 # <a name="use-aspnet-core-no-locsignalr-with-no-locblazor-webassembly"></a>Usare ASP.NET Core SignalR con Blazor WebAssembly
 
@@ -380,6 +380,7 @@ Per altre informazioni sulla creazione di Blazor app, vedere la Blazor documenta
 
 > [!div class="nextstepaction"]
 > <xref:blazor/index>
+> [Autenticazione del token di porta con Identity Server, WebSocket ed eventi di Server-Sent](xref:signalr/authn-and-authz#bearer-token-authentication)
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

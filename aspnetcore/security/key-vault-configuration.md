@@ -4,7 +4,7 @@ author: rick-anderson
 description: Informazioni su come usare il provider di configurazione Azure Key Vault per configurare un'app usando coppie nome-valore caricate in fase di esecuzione.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, devx-track-azurecli
 ms.date: 02/07/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 32967e039671721852b8e421fe5a08763b23e418
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e3adbe127f618b8851b3a83025b27c066947e8b4
+ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629782"
+ms.lasthandoff: 10/23/2020
+ms.locfileid: "92491574"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Provider di configurazione di Azure Key Vault in ASP.NET Core
 
@@ -329,7 +329,7 @@ Esaminare la seguente configurazione del provider di registrazione [Serilog](htt
 
 La configurazione mostrata nel file JSON precedente viene archiviata in Azure Key Vault usando la notazione a doppio trattino ( `--` ) e i segmenti numerici:
 
-| Chiave | Valore |
+| Chiave | valore |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -656,7 +656,7 @@ Esaminare la seguente configurazione del provider di registrazione [Serilog](htt
 
 La configurazione mostrata nel file JSON precedente viene archiviata in Azure Key Vault usando la notazione a doppio trattino ( `--` ) e i segmenti numerici:
 
-| Chiave | Valore |
+| Chiave | valore |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |

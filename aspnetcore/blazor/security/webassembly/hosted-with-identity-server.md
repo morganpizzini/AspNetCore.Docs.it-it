@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 6ae8c55fcfc85dc725a7dd20a7dbecba063a13e9
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: 5d92d12a1fcd3797dcffb301998b529935751e8b
+ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91900785"
+ms.lasthandoff: 10/23/2020
+ms.locfileid: "92491483"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-no-locidentity-server"></a>Proteggere un' Blazor WebAssembly app ospitata ASP.NET Core Identity con server
 
@@ -56,7 +56,7 @@ dotnet new blazorwasm -au Individual -ho -o {APP NAME}
 | ------------ | -------------- |
 | `{APP NAME}` | `BlazorSample` |
 
-Il percorso di output specificato con l' `-o|--output` opzione Crea una cartella di progetto se non esiste e diventa parte del nome dell'app.
+Il percorso di output specificato con l'opzione `-o|--output` consente di creare una cartella di progetto se non esiste e viene incluso nel nome dell'app.
 
 Per ulteriori informazioni, vedere il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando nella Guida di .NET Core.
 
@@ -154,7 +154,7 @@ Per ottenere il controllo completo dello schema del database, ereditare da una d
 
 In `OidcConfigurationController` ( `Controllers/OidcConfigurationController.cs` ), viene eseguito il provisioning dell'endpoint client per gestire i parametri OIDC.
 
-### <a name="app-settings"></a>Impostazioni dell'app
+### <a name="app-settings"></a>Impostazioni delle app
 
 Nel file di impostazioni dell'app ( `appsettings.json` ) nella radice del progetto, la `IdentityServer` sezione descrive l'elenco dei client configurati. Nell'esempio seguente è presente un singolo client. Il nome del client corrisponde al nome dell'app e viene mappato per convenzione al `ClientId` parametro OAuth. Il profilo indica il tipo di app da configurare. Il profilo viene utilizzato internamente per guidare le convenzioni che semplificano il processo di configurazione per il server. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
@@ -418,7 +418,7 @@ public class ProfileService : IProfileService
     {
     }
 
-    public Task GetProfileDataAsync(ProfileDataRequestContext context)
+    public async Task GetProfileDataAsync(ProfileDataRequestContext context)
     {
         var nameClaim = context.Subject.FindAll(JwtClaimTypes.Name);
         context.IssuedClaims.AddRange(nameClaim);
@@ -426,12 +426,12 @@ public class ProfileService : IProfileService
         var roleClaims = context.Subject.FindAll(JwtClaimTypes.Role);
         context.IssuedClaims.AddRange(roleClaims);
 
-        return Task.CompletedTask;
+        await Task.CompletedTask;
     }
 
-    public Task IsActiveAsync(IsActiveContext context)
+    public async Task IsActiveAsync(IsActiveContext context)
     {
-        return Task.CompletedTask;
+        await Task.CompletedTask;
     }
 }
 ```
@@ -549,7 +549,7 @@ Per configurare un'app, app Azure servizio e Azure Key Vault per ospitare con un
 1. Selezionare il collegamento **modifica** sotto il nome del profilo di distribuzione nella parte superiore della finestra. Modificare l'URL di destinazione sull'URL del dominio personalizzato del sito, ad esempio `https://www.contoso.com` . Salvare le impostazioni.
 1. Pubblicare l'app. Visual Studio apre una finestra del browser e richiede il sito nel dominio personalizzato.
 
-La documentazione di Azure contiene ulteriori dettagli sull'uso di servizi di Azure e domini personalizzati con binding TLS nel servizio app, incluse informazioni sull'uso di record CNAME invece di record. Per altre informazioni, vedere le seguenti risorse:
+La documentazione di Azure contiene ulteriori dettagli sull'uso di servizi di Azure e domini personalizzati con binding TLS nel servizio app, incluse informazioni sull'uso di record CNAME invece di record. Per altre informazioni, vedere le risorse seguenti:
 
 * [Documentazione del servizio app](/azure/app-service/)
 * [Esercitazione: Eseguire il mapping di un nome DNS personalizzato esistente al Servizio app di Azure](/azure/app-service/app-service-web-tutorial-custom-domain)

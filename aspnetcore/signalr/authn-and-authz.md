@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/authn-and-authz
-ms.openlocfilehash: 3a2ae5c7bc4853bad7b94af0d26ad5cd0358688f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e16efa59a82d0f3cb1a2272ae0c07654ebec6a51
+ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628933"
+ms.lasthandoff: 10/23/2020
+ms.locfileid: "92491561"
 ---
 # <a name="authentication-and-authorization-in-aspnet-core-no-locsignalr"></a>Autenticazione e autorizzazione in ASP.NET Core SignalR
 
@@ -89,7 +89,7 @@ public void Configure(IApplicationBuilder app)
 
 ::: moniker-end
 
-### <a name="no-loccookie-authentication"></a>Cookie
+### <a name="no-loccookie-authentication"></a>Cookie e
 
 In un'app basata su browser, cookie l'autenticazione consente alle credenziali utente esistenti di eseguire automaticamente il flusso alle SignalR connessioni. Quando si usa il client browser, non è necessaria alcuna configurazione aggiuntiva. Se l'utente è connesso all'app, la SignalR connessione eredita automaticamente l'autenticazione.
 
@@ -98,8 +98,6 @@ Cookiesono un modo specifico del browser per inviare i token di accesso, ma i cl
 ### <a name="bearer-token-authentication"></a>Autenticazione del token di porta
 
 Il client può fornire un token di accesso anziché usare un oggetto cookie . Il server convalida il token e lo usa per identificare l'utente. Questa convalida viene eseguita solo quando viene stabilita la connessione. Durante il ciclo di vita della connessione, il server non viene riconvalidato automaticamente per verificare la revoca dei token.
-
-Nel server bearer token autenticazione viene configurata con il [middleware di JWT Bearer](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer).
 
 Nel client JavaScript il token può essere fornito con l'opzione [accessTokenFactory](xref:signalr/configuration#configure-bearer-authentication) .
 
@@ -119,14 +117,60 @@ var connection = new HubConnectionBuilder()
 > [!NOTE]
 > La funzione del token di accesso fornita viene chiamata prima di **ogni** richiesta HTTP effettuata da SignalR . Se è necessario rinnovare il token per mantenerla attiva (perché potrebbe scadere durante la connessione), eseguire questa operazione dall'interno di questa funzione e restituire il token aggiornato.
 
-Nelle API Web standard, i token di porta sono inviati in un'intestazione HTTP. Tuttavia, SignalR non è in grado di impostare queste intestazioni nei browser quando si utilizzano alcuni trasporti. Quando si usano WebSocket ed eventi inviati dal server, il token viene trasmesso come parametro della stringa di query. Per supportare questa operazione nel server, è necessaria una configurazione aggiuntiva:
+Nelle API Web standard, i token di porta sono inviati in un'intestazione HTTP. Tuttavia, SignalR non è in grado di impostare queste intestazioni nei browser quando si utilizzano alcuni trasporti. Quando si usano WebSocket e Server-Sent eventi, il token viene trasmesso come parametro della stringa di query. 
+
+#### <a name="built-in-jwt-authentication"></a>Autenticazione JWT incorporata
+
+Nel server bearer token autenticazione viene configurata con il [middleware di JWT Bearer](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?name=snippet)]
 
 [!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
 > [!NOTE]
-> La stringa di query viene usata nei browser quando ci si connette con WebSocket ed eventi inviati dal server a causa delle limitazioni dell'API del browser. Quando si usa HTTPS, i valori della stringa di query sono protetti dalla connessione TLS. Tuttavia, molti server registrano i valori della stringa di query. Per ulteriori informazioni, vedere [considerazioni sulla sicurezza in SignalR ASP.NET Core ](xref:signalr/security). SignalR Usa le intestazioni per trasmettere i token negli ambienti che li supportano, ad esempio i client .NET e Java.
+> La stringa di query viene usata nei browser quando ci si connette con WebSocket e Server-Sent eventi a causa delle limitazioni dell'API del browser. Quando si usa HTTPS, i valori della stringa di query sono protetti dalla connessione TLS. Tuttavia, molti server registrano i valori della stringa di query. Per ulteriori informazioni, vedere [considerazioni sulla sicurezza in SignalR ASP.NET Core ](xref:signalr/security). SignalR Usa le intestazioni per trasmettere i token negli ambienti che li supportano, ad esempio i client .NET e Java.
+
+#### <a name="no-locidentity-server-jwt-authentication"></a>Identity Autenticazione server JWT
+
+Quando Identity si usa il server, aggiungere un <xref:Microsoft.Extensions.Options.PostConfigureOptions%601> servizio al progetto:
+
+```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
+public class ConfigureJwtBearerOptions : IPostConfigureOptions<JwtBearerOptions>
+{
+    public void PostConfigure(string name, JwtBearerOptions options)
+    {
+        var originalOnMessageReceived = options.Events.OnMessageReceived;
+        options.Events.OnMessageReceived = async context =>
+        {
+            await originalOnMessageReceived(context);
+                
+            if (string.IsNullOrEmpty(context.Token))
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+                
+                if (!string.IsNullOrEmpty(accessToken) && 
+                    path.StartsWithSegments("/hubs"))
+                {
+                    context.Token = accessToken;
+                }
+            }
+        };
+    }
+}
+```
+
+Registrare il servizio in `Startup.ConfigureServices` dopo l'aggiunta di servizi per l'autenticazione ( <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> ) e il gestore di autenticazione per Identity Server ( <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> ):
+
+```csharp
+services.AddAuthentication()
+    .AddIdentityServerJwt();
+services.TryAddEnumerable(
+    ServiceDescriptor.Singleton<IPostConfigureOptions<JwtBearerOptions>, 
+        ConfigureJwtBearerOptions>());
+```
 
 ### <a name="no-loccookies-vs-bearer-tokens"></a>Cookies rispetto ai token di porta 
 

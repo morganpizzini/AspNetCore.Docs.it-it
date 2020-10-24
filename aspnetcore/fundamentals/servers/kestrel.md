@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/kestrel
-ms.openlocfilehash: 44558a0f2fdc61eb860223658f5bef1d0117ba87
-ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
+ms.openlocfilehash: 50bf2a60f14238c9b71fe90a64c284da202bff59
+ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/02/2020
-ms.locfileid: "91653946"
+ms.lasthandoff: 10/23/2020
+ms.locfileid: "92491600"
 ---
 # <a name="kestrel-web-server-implementation-in-aspnet-core"></a>Implementazione del server Web Kestrel in ASP.NET Core
 
@@ -354,6 +354,34 @@ webBuilder.ConfigureKestrel(serverOptions =>
 ```
 
 Il valore predefinito è 96 KB (98.304).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+### <a name="http2-keep-alive-ping-configuration"></a>Configurazione del ping keep alive HTTP/2
+
+Il gheppio può essere configurato per l'invio di ping HTTP/2 ai client connessi. I ping HTTP/2 servono più scopi:
+
+* Mantieni attive le connessioni inattive. Alcuni client e server proxy chiudono le connessioni inattive. I ping HTTP/2 sono considerati attività su una connessione e impediscono la chiusura della connessione come inattiva.
+* Chiudere le connessioni non integre. Le connessioni in cui il client non risponde al ping keep-alive nell'ora configurata vengono chiuse dal server.
+
+Sono disponibili due opzioni di configurazione correlate a HTTP/2 ping Keep-Alive:
+
+* `Http2.KeepAlivePingInterval` è un oggetto `TimeSpan` che configura il ping interno. Il server invia al client un ping Keep-Alive se non riceve frame per questo periodo di tempo. Quando questa opzione è impostata su, i ping Keep-Alive sono disabilitati `TimeSpan.MaxValue` . Il valore predefinito è `TimeSpan.MaxValue`.
+* `Http2.KeepAlivePingTimeout` è un oggetto `TimeSpan` che configura il timeout del ping. Se il server non riceve frame, ad esempio un ping di risposta, durante questo timeout la connessione viene chiusa. Quando questa opzione è impostata su, il timeout keep alive è disabilitato `TimeSpan.MaxValue` . Il valore predefinito è 20 secondi.
+
+```csharp
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.Http2.KeepAlivePingInterval = TimeSpan.FromSeconds(30);
+    serverOptions.Limits.Http2.KeepAlivePingTimeout = TimeSpan.FromSeconds(60);
+});
+```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 ### <a name="trailers"></a>Trailer
 
@@ -733,7 +761,7 @@ Restrizioni relative a TLS per HTTP/2:
 * Rinegoziazione disabilitata
 * Compressione disabilitata
 * Dimensioni minime per lo scambio di chiavi temporanee:
-  * Diffie-Hellman a curva ellittica (ECDHE) &lbrack; [RFC4492](https://www.ietf.org/rfc/rfc4492.txt) &rbrack; : minimo 224 bit
+  * Curva ellittica Diffie-Hellman (ECDHE) &lbrack; [RFC4492](https://www.ietf.org/rfc/rfc4492.txt) &rbrack; : minimo 224 bit
   * Diffie-Hellman campo finito (DHE) &lbrack; `TLS12` &rbrack; : minimo 2048 bit
 * Il pacchetto di crittografia non è consentito. 
 
@@ -1734,7 +1762,7 @@ Restrizioni relative a TLS per HTTP/2:
 * Rinegoziazione disabilitata
 * Compressione disabilitata
 * Dimensioni minime per lo scambio di chiavi temporanee:
-  * Diffie-Hellman a curva ellittica (ECDHE) &lbrack; [RFC4492](https://www.ietf.org/rfc/rfc4492.txt) &rbrack; : minimo 224 bit
+  * Curva ellittica Diffie-Hellman (ECDHE) &lbrack; [RFC4492](https://www.ietf.org/rfc/rfc4492.txt) &rbrack; : minimo 224 bit
   * Diffie-Hellman campo finito (DHE) &lbrack; `TLS12` &rbrack; : minimo 2048 bit
 * Pacchetto di crittografia non bloccato
 
