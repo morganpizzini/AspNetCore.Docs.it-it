@@ -4,7 +4,7 @@ author: bradygaster
 description: Informazioni su come trasmettere i dati tra il client e il server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
-ms.custom: mvc
+ms.custom: mvc, devx-track-js
 ms.date: 11/12/2019
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/streaming
-ms.openlocfilehash: 5a172818f8910a637b731dc1b1315965f448b2ba
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 732198cf07392bda008c9cc1c9768df2500852c0
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393574"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690629"
 ---
 # <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>Usare il flusso in ASP.NET Core SignalR
 
@@ -327,4 +327,4 @@ Il `stream` metodo su `HubConnection` restituisce un oggetto osservabile del tip
 * [Hub](xref:signalr/hubs)
 * [Client .NET](xref:signalr/dotnet-client)
 * [Client JavaScript](xref:signalr/javascript-client)
-* [Pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
+* [Pubblicare in Azure](xref:signalr/publish-to-azure-web-app)

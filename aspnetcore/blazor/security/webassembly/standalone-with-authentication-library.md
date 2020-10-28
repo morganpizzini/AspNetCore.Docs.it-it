@@ -5,7 +5,7 @@ description: Informazioni su come proteggere un' Blazor WebAssembly app autonoma
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/08/2020
+ms.date: 10/27/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: 03abaf0676860f50a3e4c1cba64039070910ff9d
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: 332bf73d21dfe36d2f79e4c016f7f8391c67a1f7
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91900876"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690357"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-the-authentication-library"></a>Proteggere un' Blazor WebAssembly app ASP.NET Core autonoma con la libreria di autenticazione
 
@@ -37,7 +37,7 @@ Per creare un' [ Blazor WebAssembly app autonoma](xref:blazor/hosting-models#bla
 
 Per creare un nuovo Blazor WebAssembly progetto con un meccanismo di autenticazione:
 
-1. Dopo aver scelto il modello ** Blazor WebAssembly app** nella finestra di dialogo **Crea un nuovo ASP.NET Core applicazione Web** , selezionare **Cambia** in **autenticazione**.
+1. Dopo aver scelto il modello **Blazor WebAssembly app** nella finestra di dialogo **Crea un nuovo ASP.NET Core applicazione Web** , selezionare **Cambia** in **autenticazione** .
 
 1. Selezionare **singoli account utente** con l'opzione **Archivia account utente in-app** per archiviare gli utenti all'interno dell'app usando il sistema di ASP.NET Core [Identity](xref:security/authentication/identity) .
 
@@ -53,7 +53,7 @@ dotnet new blazorwasm -au Individual -o {APP NAME}
 | ------------ | -------------- |
 | `{APP NAME}` | `BlazorSample` |
 
-Il percorso di output specificato con l' `-o|--output` opzione Crea una cartella di progetto se non esiste e diventa parte del nome dell'app.
+Il percorso di output specificato con l'opzione `-o|--output` consente di creare una cartella di progetto se non esiste e viene incluso nel nome dell'app.
 
 Per ulteriori informazioni, vedere il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando nella Guida di .NET Core.
 
@@ -120,8 +120,6 @@ builder.Services.AddOidcAuthentication(options =>
     options.ProviderOptions.DefaultScopes.Add("{SCOPE URI}");
 });
 ```
-
-[!INCLUDE[](~/includes/blazor-security/azure-scope-3x.md)]
 
 Per ulteriori informazioni, vedere le sezioni seguenti dell'articolo *scenari aggiuntivi* :
 

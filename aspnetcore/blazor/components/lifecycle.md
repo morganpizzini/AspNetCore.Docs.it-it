@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: 035de12d17b676aac6af42e706f3741937d90fb3
-ms.sourcegitcommit: b3ec60f7682e43211c2b40c60eab3d4e45a48ab1
+ms.openlocfilehash: bf528bb68af25a8c469a0c7710abc7c0b730fce2
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/17/2020
-ms.locfileid: "92153604"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690627"
 ---
 # <a name="aspnet-core-no-locblazor-lifecycle"></a>Ciclo di vita ASP.NET Core Blazor
 
@@ -181,7 +181,7 @@ protected override void OnAfterRender(bool firstRender)
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> e <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *non vengono chiamati durante il processo di prerendering sul server*. I metodi vengono chiamati quando il componente viene sottoposto a rendering interattivo dopo il completamento del rendering. Quando viene eseguito il rendering dell'app:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> e <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *non vengono chiamati durante il processo di prerendering sul server* . I metodi vengono chiamati quando il componente viene sottoposto a rendering interattivo dopo il completamento del rendering. Quando viene eseguito il rendering dell'app:
 
 1. Il componente viene eseguito sul server per produrre un markup HTML statico nella risposta HTTP. Durante questa fase, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> non viene chiamato.
 1. Quando `blazor.server.js` o `blazor.webassembly.js` si avvia nel browser, il componente viene riavviato in modalità di rendering interattiva. Dopo che un componente viene riavviato <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> e <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **viene** chiamato perché l'app non è più all'interno della fase di prerendering.
@@ -205,13 +205,13 @@ protected override bool ShouldRender()
 
 Anche se <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> viene sottoposto a override, il componente viene sempre sottoposto a rendering iniziale.
 
-Per ulteriori informazioni, vedere <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-component-renders>.
+Per altre informazioni, vedere <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
 
 ## <a name="state-changes"></a>Modifiche stato
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> notifica al componente che lo stato è stato modificato. Se applicabile, <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> la chiamata a comporta il rendering del componente.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> viene chiamato automaticamente per i <xref:Microsoft.AspNetCore.Components.EventCallback> metodi. Per ulteriori informazioni, vedere <xref:blazor/components/event-handling#eventcallback>.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> viene chiamato automaticamente per i <xref:Microsoft.AspNetCore.Components.EventCallback> metodi. Per altre informazioni, vedere <xref:blazor/components/event-handling#eventcallback>.
 
 ## <a name="handle-incomplete-async-actions-at-render"></a>Gestisci azioni asincrone incomplete durante il rendering
 
@@ -229,7 +229,7 @@ Per informazioni sulla gestione degli errori durante l'esecuzione del metodo del
 
 ## <a name="stateful-reconnection-after-prerendering"></a>Riconnessione con stato dopo il rendering preliminare
 
-In un' Blazor Server app quando <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> è <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> , il componente viene inizialmente sottoposto a rendering statico come parte della pagina. Quando il browser stabilisce una connessione al server, viene *nuovamente*eseguito il rendering del componente e il componente è ora interattivo. Se [`OnInitialized{Async}`](#component-initialization-methods) è presente il metodo del ciclo di vita per l'inizializzazione del componente, il metodo viene eseguito *due volte*:
+In un' Blazor Server app quando <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> è <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> , il componente viene inizialmente sottoposto a rendering statico come parte della pagina. Quando il browser stabilisce una connessione al server, viene *nuovamente* eseguito il rendering del componente e il componente è ora interattivo. Se [`OnInitialized{Async}`](#component-initialization-methods) è presente il metodo del ciclo di vita per l'inizializzazione del componente, il metodo viene eseguito *due volte* :
 
 * Quando il componente viene preeseguito in modo statico.
 * Una volta stabilita la connessione al server.

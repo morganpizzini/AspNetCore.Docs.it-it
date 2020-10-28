@@ -3,7 +3,7 @@ title: Impedisci gli attacchi di richiesta intersito falsa (XSRF/CSRF) in ASP.NE
 author: steve-smith
 description: Scopri come impedire gli attacchi contro le app Web in cui un sito Web dannoso può influenzare l'interazione tra un browser client e l'app.
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, devx-track-js
 ms.date: 12/05/2019
 no-loc:
 - ASP.NET Core Identity
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/anti-request-forgery
-ms.openlocfilehash: d0cce4f48151ab56774ab28eb6d89a687b3747af
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 201ffe692c1ded3661a5e1ac566f90b29d61ce9e
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635125"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690347"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>Impedisci gli attacchi di richiesta intersito falsa (XSRF/CSRF) in ASP.NET Core
 
@@ -90,7 +90,7 @@ Quando un utente esegue l'autenticazione usando il nome utente e la password, vi
 
 ### <a name="token-based-authentication"></a>Autenticazione basata su token
 
-Quando un utente viene autenticato, viene emesso un token (non un token antifalsificazione). Il token contiene informazioni sull'utente sotto forma di [attestazioni](/dotnet/framework/security/claims-based-identity-model) o un token di riferimento che punta l'app allo stato utente mantenuto nell'app. Quando un utente tenta di accedere a una risorsa che richiede l'autenticazione, il token viene inviato all'app con un'intestazione di autorizzazione aggiuntiva nel formato token di connessione. Questa operazione rende l'app senza stato. In ogni richiesta successiva il token viene passato nella richiesta di convalida lato server. Questo token non è *crittografato*; è *codificato*. Sul server, il token viene decodificato per accedere alle informazioni. Per inviare il token alle richieste successive, archiviare il token nella risorsa di archiviazione locale del browser. Non preoccuparsi della vulnerabilità CSRF se il token è archiviato nella risorsa di archiviazione locale del browser. CSRF rappresenta un problema quando il token viene archiviato in un oggetto cookie . Per ulteriori informazioni, vedere l'esempio di codice di GitHub Issue [Spa cookie aggiunge due](https://github.com/dotnet/AspNetCore.Docs/issues/13369).
+Quando un utente viene autenticato, viene emesso un token (non un token antifalsificazione). Il token contiene informazioni sull'utente sotto forma di [attestazioni](/dotnet/framework/security/claims-based-identity-model) o un token di riferimento che punta l'app allo stato utente mantenuto nell'app. Quando un utente tenta di accedere a una risorsa che richiede l'autenticazione, il token viene inviato all'app con un'intestazione di autorizzazione aggiuntiva nel formato token di connessione. Questa operazione rende l'app senza stato. In ogni richiesta successiva il token viene passato nella richiesta di convalida lato server. Questo token non è *crittografato* ; è *codificato* . Sul server, il token viene decodificato per accedere alle informazioni. Per inviare il token alle richieste successive, archiviare il token nella risorsa di archiviazione locale del browser. Non preoccuparsi della vulnerabilità CSRF se il token è archiviato nella risorsa di archiviazione locale del browser. CSRF rappresenta un problema quando il token viene archiviato in un oggetto cookie . Per ulteriori informazioni, vedere l'esempio di codice di GitHub Issue [Spa cookie aggiunge due](https://github.com/dotnet/AspNetCore.Docs/issues/13369).
 
 ### <a name="multiple-apps-hosted-at-one-domain"></a>Più app ospitate in un dominio
 

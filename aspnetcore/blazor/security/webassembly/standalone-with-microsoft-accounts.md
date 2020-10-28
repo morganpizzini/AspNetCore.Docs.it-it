@@ -5,7 +5,7 @@ description: Informazioni su come proteggere un' Blazor WebAssembly app autonoma
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/08/2020
+ms.date: 10/27/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-microsoft-accounts
-ms.openlocfilehash: ddcd199ceb1097f4ee440fd2a249d7c88a92c0b5
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: 6defd8c1ab7b99f69efe6e9ef3ba4da4e0e8d8fb
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91901012"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690391"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-microsoft-accounts"></a>Proteggere un' Blazor WebAssembly app ASP.NET Core autonoma con account Microsoft
 
@@ -37,39 +37,39 @@ Registrare un'app AAD nell'area **Azure Active Directory**  >  **registrazioni a
 
 ::: moniker range=">= aspnetcore-5.0"
 
-1. Specificare un **nome** per l'app (ad esempio, ** Blazor account Microsoft AAD autonomi**).
-1. In **tipi di account supportati**selezionare **account in qualsiasi directory dell'organizzazione**.
-1. Impostare l'elenco a discesa **URI di reindirizzamento** sull' **applicazione a pagina singola (Spa)** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione su gheppio è 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle proprietà dell'app nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un commento viene visualizzato più avanti in questo argomento per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
+1. Specificare un **nome** per l'app (ad esempio, **Blazor account Microsoft AAD autonomi** ).
+1. In **tipi di account supportati** selezionare **account in qualsiasi directory dell'organizzazione** .
+1. Impostare l'elenco a discesa **URI di reindirizzamento** sull' **applicazione a pagina singola (Spa)** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione in Kestrel è la 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle proprietà dell'app nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un commento viene visualizzato più avanti in questo argomento per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
 1. Deselezionare la **Permissions** > casella di controllo autorizzazioni **Concedi amministratore per OpenID e autorizzazioni offline_access** .
-1. Selezionare **Registra**.
+1. Selezionare **Registra** .
 
 Registrare l'ID dell'applicazione (client) (ad esempio, `41451fa7-82d9-4673-8fa5-69eff5a761fd` ).
 
-Nelle configurazioni della piattaforma di **autenticazione** > **Platform configurations** > **applicazione a pagina singola (Spa)**:
+Nelle configurazioni della piattaforma di **autenticazione** > **Platform configurations** > **applicazione a pagina singola (Spa)** :
 
 1. Verificare che l' **URI di reindirizzamento** di `https://localhost:{PORT}/authentication/login-callback` sia presente.
-1. Per **concessione implicita**, assicurarsi che le caselle di controllo per i **token di accesso** e i **token ID** **non** siano selezionate.
+1. Per **concessione implicita** , assicurarsi che le caselle di controllo per i **token di accesso** e i **token ID** **non** siano selezionate.
 1. Per questa esperienza sono accettabili le impostazioni predefinite rimanenti per l'app.
-1. Fare clic sul pulsante **Salva**.
+1. Fare clic sul pulsante **Salva** .
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-1. Specificare un **nome** per l'app (ad esempio, ** Blazor account Microsoft AAD autonomi**).
-1. In **tipi di account supportati**selezionare **account in qualsiasi directory dell'organizzazione**.
-1. Lasciare l'elenco a discesa **URI di reindirizzamento** impostato su **Web** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione su gheppio è 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle proprietà dell'app nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un commento viene visualizzato più avanti in questo argomento per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
+1. Specificare un **nome** per l'app (ad esempio, **Blazor account Microsoft AAD autonomi** ).
+1. In **tipi di account supportati** selezionare **account in qualsiasi directory dell'organizzazione** .
+1. Lasciare l'elenco a discesa **URI di reindirizzamento** impostato su **Web** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione in Kestrel è la 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle proprietà dell'app nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un commento viene visualizzato più avanti in questo argomento per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
 1. Deselezionare la **Permissions** > casella di controllo autorizzazioni **Concedi amministratore per OpenID e autorizzazioni offline_access** .
-1. Selezionare **Registra**.
+1. Selezionare **Registra** .
 
 Registrare l'ID dell'applicazione (client) (ad esempio, `41451fa7-82d9-4673-8fa5-69eff5a761fd` ).
 
-In **Authentication** > **configurazioni piattaforma** di autenticazione > **Web**:
+In **Authentication** > **configurazioni piattaforma** di autenticazione > **Web** :
 
 1. Verificare che l' **URI di reindirizzamento** di `https://localhost:{PORT}/authentication/login-callback` sia presente.
-1. Per **concessione implicita**, selezionare le caselle di controllo per i token di **accesso** e i **token ID**.
+1. Per **concessione implicita** , selezionare le caselle di controllo per i token di **accesso** e i **token ID** .
 1. Per questa esperienza sono accettabili le impostazioni predefinite rimanenti per l'app.
-1. Fare clic sul pulsante **Salva**.
+1. Fare clic sul pulsante **Salva** .
 
 ::: moniker-end
 
@@ -84,7 +84,7 @@ dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "commo
 | `{APP NAME}`  | &mdash;                 | `BlazorSample`                         |
 | `{CLIENT ID}` | ID applicazione (client) | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
 
-Il percorso di output specificato con l' `-o|--output` opzione Crea una cartella di progetto se non esiste e diventa parte del nome dell'app.
+Il percorso di output specificato con l'opzione `-o|--output` consente di creare una cartella di progetto se non esiste e viene incluso nel nome dell'app.
 
 > [!NOTE]
 > Nell'portale di Azure l' **URI di reindirizzamento** della configurazione della piattaforma dell'app è configurato per la porta 5001 per le app eseguite nel server gheppio con le impostazioni predefinite.

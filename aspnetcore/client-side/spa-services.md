@@ -4,7 +4,7 @@ author: scottaddie
 description: Informazioni sui vantaggi derivanti dall'uso dei servizi JavaScript per creare un'applicazione a pagina singola (SPA) supportata da ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
-ms.custom: H1Hack27Feb2017
+ms.custom: H1Hack27Feb2017, devx-track-js
 ms.date: 09/06/2019
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/spa-services
-ms.openlocfilehash: 379a8f52dab36d331bc42c1fee8d64b3971e9e91
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 33ae16c033142aa1c0f4cea53ca746e8a6aaf052
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625661"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690656"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>Usare i servizi JavaScript per creare applicazioni a pagina singola in ASP.NET Core
 
@@ -132,7 +132,7 @@ L'argomento received `UserName` viene serializzato usando il serializzatore JSON
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,38-52,79-)]
 
-I nomi delle proprietà passati negli Helper tag sono rappresentati con la notazione **PascalCase** . A differenza di JavaScript, in cui gli stessi nomi di proprietà sono rappresentati con **CamelCase**. La configurazione della serializzazione JSON predefinita è responsabile di questa differenza.
+I nomi delle proprietà passati negli Helper tag sono rappresentati con la notazione **PascalCase** . A differenza di JavaScript, in cui gli stessi nomi di proprietà sono rappresentati con **CamelCase** . La configurazione della serializzazione JSON predefinita è responsabile di questa differenza.
 
 Per espandersi sull'esempio di codice precedente, è possibile passare i dati dal server alla visualizzazione idratando la `globals` proprietà fornita alla `resolve` funzione:
 
@@ -252,10 +252,10 @@ dotnet new angular
 
 Esistono due modalità di configurazione di runtime primarie:
 
-* **Sviluppo**:
+* **Sviluppo** :
   * Include i mapping di origine per semplificare il debug.
   * Non ottimizza il codice lato client per le prestazioni.
-* **Produzione**:
+* **Produzione** :
   * Esclude i mapping di origine.
   * Ottimizza il codice lato client tramite la creazione di bundle e minification.
 

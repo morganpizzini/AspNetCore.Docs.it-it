@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 99e0109ea4c2526e9f91a8a4df23c4557e9be83a
-ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
+ms.openlocfilehash: 6f677cc4fc26eb9d50ab6e149b7363079ae756a9
+ms.sourcegitcommit: c06a5bf419541d17595af30e4cf6f2787c21855e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91762308"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92678569"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserimento delle dipendenze in ASP.NET Core
 
@@ -32,6 +32,8 @@ Di [Kirk Larkin](https://twitter.com/serpent5), [Steve Smith](https://ardalis.co
 ASP.NET Core supporta lo schema progettuale di software per l'inserimento di dipendenze, una tecnica per ottenere l'[IoC (Inversion of Control)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) tra le classi e le relative dipendenze.
 
 Per altre informazioni specifiche per l'inserimento delle dipendenze all'interno di controller MVC, vedere <xref:mvc/controllers/dependency-injection>.
+
+Per informazioni sull'uso dell'inserimento di dipendenze nelle app console, vedere [inserimento delle dipendenze in .NET](/dotnet/core/extensions/dependency-injection)
 
 Per ulteriori informazioni sull'inserimento delle dipendenze delle opzioni, vedere <xref:fundamentals/configuration/options> .
 
@@ -77,7 +79,7 @@ L'inserimento delle dipendenze consente di risolvere questi problemi tramite:
 
 * L'uso di un'interfaccia o di una classe di base per astrarre l'implementazione delle dipendenze.
 * La registrazione della dipendenza in un contenitore di servizi. ASP.NET Core offre il contenitore di servizi predefinito <xref:System.IServiceProvider>. I servizi vengono in genere registrati nel metodo dell'app `Startup.ConfigureServices` .
-* L'*inserimento* del servizio nel costruttore della classe in cui viene usato. Il framework si assume la responsabilità della creazione di un'istanza della dipendenza e della sua eliminazione quando non è più necessaria.
+* L' *inserimento* del servizio nel costruttore della classe in cui viene usato. Il framework si assume la responsabilità della creazione di un'istanza della dipendenza e della sua eliminazione quando non è più necessaria.
 
 Nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples), l' `IMyDependency` interfaccia definisce il `WriteMessage` Metodo:
 
@@ -110,7 +112,7 @@ Il `ConfigureServices` metodo aggiornato registra la nuova `IMyDependency` imple
 
 `MyDependency2` dipende da <xref:Microsoft.Extensions.Logging.ILogger%601> , che richiede nel costruttore. `ILogger<TCategoryName>` è un [servizio fornito dal Framework](#framework-provided-services).
 
-Non è insolito usare l'inserimento delle dipendenze in modo concatenato. Ogni dipendenza richiesta richiede a sua volta le proprie dipendenze. Il contenitore risolve le dipendenze nel grafico e restituisce il servizio completamente risolto. Il set di dipendenze che devono essere risolte viene generalmente chiamato *albero delle dipendenze* o *grafico dipendenze* o *grafico degli oggetti*.
+Non è insolito usare l'inserimento delle dipendenze in modo concatenato. Ogni dipendenza richiesta richiede a sua volta le proprie dipendenze. Il contenitore risolve le dipendenze nel grafico e restituisce il servizio completamente risolto. Il set di dipendenze che devono essere risolte viene generalmente chiamato *albero delle dipendenze* o *grafico dipendenze* o *grafico degli oggetti* .
 
 Il contenitore si risolve sfruttando `ILogger<TCategoryName>` i vantaggi dei [tipi aperti (generici)](/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types), eliminando la necessità di registrare tutti i tipi [costruiti (generici)](/dotnet/csharp/language-reference/language-specification/types#constructed-types).
 
@@ -180,9 +182,9 @@ Nelle app che elaborano le richieste, i servizi con ambito vengono eliminati all
 
 Quando si usa Entity Framework Core, il <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> metodo di estensione registra i `DbContext` tipi con una durata con ambito per impostazione predefinita.
 
-***Non*** risolvere un servizio con ambito da un singleton. Ciò potrebbe causare uno stato non corretto per il servizio durante l'elaborazione delle richieste successive. È bene:
+Do * **not** _ risolve un servizio con ambito da un singleton e prestare attenzione a non eseguire questa operazione indirettamente, ad esempio tramite un servizio temporaneo. Ciò potrebbe causare uno stato non corretto per il servizio durante l'elaborazione delle richieste successive. È bene:
 
-* Risolvere un servizio singleton da un servizio con ambito o temporaneo.
+_ Risolvere un servizio singleton da un servizio con ambito o temporaneo.
 * Risolvere un servizio con ambito da un altro servizio con ambito o temporaneo.
 
 Per impostazione predefinita, nell'ambiente di sviluppo la risoluzione di un servizio da un altro servizio con una durata più lunga genera un'eccezione. Per ulteriori informazioni, vedere [Convalida dell'ambito](#sv).
@@ -208,7 +210,7 @@ Registrare i servizi singleton con <xref:Microsoft.Extensions.DependencyInjectio
 Nelle app che elaborano le richieste, i servizi Singleton vengono eliminati quando il <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> viene eliminato alla chiusura dell'applicazione. Poiché la memoria non viene rilasciata fino a quando l'app non viene arrestata, prendere in considerazione l'uso della memoria con un servizio singleton.
 
 > [!WARNING]
-> ***Non*** risolvere un servizio con ambito da un singleton. Ciò potrebbe causare uno stato non corretto per il servizio durante l'elaborazione delle richieste successive. È possibile risolvere un servizio singleton da un servizio con ambito o temporaneo.
+> Do * **not** _ risolve un servizio con ambito da un singleton. Ciò potrebbe causare uno stato non corretto per il servizio durante l'elaborazione delle richieste successive. È possibile risolvere un servizio singleton da un servizio con ambito o temporaneo.
 
 ## <a name="service-registration-methods"></a>Metodi di registrazione del servizio
 
@@ -226,14 +228,46 @@ Il Framework fornisce metodi di estensione per la registrazione del servizio uti
 
 Per ulteriori informazioni sull'eliminazione dei tipi, vedere la sezione [Eliminazione dei servizi](#disposal-of-services). Quando si [simulano i tipi per il test](xref:test/integration-tests#inject-mock-services), è comune usare più implementazioni.
 
+La registrazione di un servizio con un solo tipo di implementazione equivale alla registrazione del servizio con lo stesso tipo di implementazione e di servizio. Questo è il motivo per cui non è possibile registrare più implementazioni di un servizio usando i metodi che non accettano un tipo di servizio esplicito. Questi metodi possono registrare più _instances * di un servizio, ma avranno tutti lo stesso tipo di *implementazione* .
+
+Uno qualsiasi dei metodi di registrazione del servizio sopra indicati può essere utilizzato per registrare più istanze del servizio dello stesso tipo di servizio. Nell'esempio seguente `AddSingleton` viene chiamato due volte con `IMyDependency` come tipo di servizio. La seconda chiamata a `AddSingleton` sostituisce quella precedente quando viene risolta come `IMyDependency` e aggiunge a quella precedente quando più servizi vengono risolti tramite `IEnumerable<IMyDependency>` . I servizi vengono visualizzati nell'ordine in cui sono stati registrati durante la risoluzione tramite `IEnumerable<{SERVICE}>` .
+
+```csharp
+services.AddSingleton<IMyDependency, MyDependency>();
+services.AddSingleton<IMyDependency, DifferentDependency>();
+
+public class MyService
+{
+    public MyService(IMyDependency myDependency, 
+       IEnumberable<IMyDependency> myDependencies)
+    {
+        Trace.Assert(myDependency is DifferentDependency);
+
+        var dependencyArray = myDependencies.ToArray();
+        Trace.Assert(dependencyArray[0] is MyDependency);
+        Trace.Assert(dependencyArray[1] is DifferentDependency);
+    }
+}
+```
+
 Il Framework fornisce anche `TryAdd{LIFETIME}` metodi di estensione, che registrano il servizio solo se non è già stata registrata un'implementazione.
 
-Nell'esempio seguente, la chiamata a `AddSingleton` Registra `MyDependency` come implementazione per `IMyDependency` . La chiamata a `TryAddSingleton` non ha alcun effetto perché `IMyDependency` dispone già di un'implementazione registrata:
+Nell'esempio seguente, la chiamata a `AddSingleton` Registra `MyDependency` come implementazione per `IMyDependency` . La chiamata a `TryAddSingleton` non ha alcun effetto perché `IMyDependency` dispone già di un'implementazione registrata.
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
 // The following line has no effect:
 services.TryAddSingleton<IMyDependency, DifferentDependency>();
+
+public class MyService
+{
+    public MyService(IMyDependency myDependency, 
+        IEnumberable<IMyDependency> myDependencies)
+    {
+        Trace.Assert(myDependency is MyDependency);
+        Trace.Assert(myDependencies.Single() is MyDependency);
+    }
+}
 ```
 
 Per altre informazioni, vedere:
@@ -243,7 +277,7 @@ Per altre informazioni, vedere:
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddScoped%2A>
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddSingleton%2A>
 
-I metodi [TryAddEnumerable (ServiceDescriptor)](xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable%2A) registrano il servizio solo se non esiste già un'implementazione *dello stesso tipo*. Più servizi vengono risolti tramite `IEnumerable<{SERVICE}>`. Quando si registrano i servizi, lo sviluppatore deve aggiungere un'istanza se uno degli stessi tipi non è già stato aggiunto. In genere, gli autori `TryAddEnumerable` di librerie utilizzano per evitare la registrazione di più copie di un'implementazione nel contenitore.
+I metodi [TryAddEnumerable (ServiceDescriptor)](xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable%2A) registrano il servizio solo se non esiste già un'implementazione *dello stesso tipo* . Più servizi vengono risolti tramite `IEnumerable<{SERVICE}>`. Quando si registrano i servizi, lo sviluppatore deve aggiungere un'istanza se uno degli stessi tipi non è già stato aggiunto. In genere, gli autori `TryAddEnumerable` di librerie utilizzano per evitare la registrazione di più copie di un'implementazione nel contenitore.
 
 Nell'esempio seguente, la prima chiamata a viene `TryAddEnumerable` registrata `MyDependency` come implementazione per `IMyDependency1` . La seconda chiamata esegue la registrazione `MyDependency` per `IMyDependency2` . La terza chiamata non ha alcun effetto perché `IMyDependency1` dispone già di un'implementazione registrata di `MyDependency` :
 
@@ -474,13 +508,13 @@ Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [Ad
 * Evitare di archiviare i dati e la configurazione direttamente nel contenitore del servizio. Ad esempio, il carrello acquisti di un utente non dovrebbe in genere essere aggiunto al contenitore del servizio. La configurazione deve usare il [modello di opzioni](xref:fundamentals/configuration/options). Allo stesso modo, evitare gli oggetti "titolare dei dati" che esistono solo per consentire l'accesso a un altro oggetto. È preferibile richiedere l'elemento effettivo tramite inserimento delle dipendenze.
 * Evitare l'accesso statico ai servizi. Ad esempio, evitare di acquisire [IApplicationBuilder. ApplicationServices](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices) come proprietà o campo statico da usare altrove.
 * Mantieni le fabbriche veloci e sincrone.
-* Evitare di usare il *modello di localizzatore del servizio*. Ad esempio, non richiamare <xref:System.IServiceProvider.GetService%2A> per ottenere un'istanza del servizio quando è invece possibile usare l'inserimento delle dipendenze:
+* Evitare di usare il *modello di localizzatore del servizio* . Ad esempio, non richiamare <xref:System.IServiceProvider.GetService%2A> per ottenere un'istanza del servizio quando è invece possibile usare l'inserimento delle dipendenze:
 
   **Non corretto:**
 
     ![Codice errato](dependency-injection/_static/bad.png)
 
-  **Corretto**:
+  **Corretto** :
 
   ```csharp
   public class MyClass
@@ -523,7 +557,7 @@ Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [Ad
 
 È tuttavia possibile che in alcuni casi queste raccomandazioni debbano essere ignorate. Le eccezioni sono rari, soprattutto casi speciali all'interno del Framework stesso.
 
-L'inserimento di dipendenze è un'*alternativa* ai modelli di accesso agli oggetti statici/globali. Se l'inserimento di dipendenze viene usato con l'accesso agli oggetti statico i vantaggi non saranno evidenti.
+L'inserimento di dipendenze è un' *alternativa* ai modelli di accesso agli oggetti statici/globali. Se l'inserimento di dipendenze viene usato con l'accesso agli oggetti statico i vantaggi non saranno evidenti.
 
 ## <a name="recommended-patterns-for-multi-tenancy-in-di"></a>Modelli consigliati per il multi-tenant in DI
 
@@ -627,7 +661,7 @@ L'inserimento delle dipendenze consente di risolvere questi problemi tramite:
 
 * L'uso di un'interfaccia o di una classe di base per astrarre l'implementazione delle dipendenze.
 * La registrazione della dipendenza in un contenitore di servizi. ASP.NET Core offre il contenitore di servizi predefinito <xref:System.IServiceProvider>. I servizi vengono registrati nel metodo `Startup.ConfigureServices` dell'app.
-* L'*inserimento* del servizio nel costruttore della classe in cui viene usato. Il framework si assume la responsabilità della creazione di un'istanza della dipendenza e della sua eliminazione quando non è più necessaria.
+* L' *inserimento* del servizio nel costruttore della classe in cui viene usato. Il framework si assume la responsabilità della creazione di un'istanza della dipendenza e della sua eliminazione quando non è più necessaria.
 
 Nell'[app di esempio](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples), l'interfaccia `IMyDependency` definisce un metodo che il servizio fornisce all'app:
 
@@ -637,7 +671,7 @@ Questa interfaccia viene implementata da un tipo concreto, `MyDependency`:
 
 [!code-csharp[](dependency-injection/samples/2.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet1)]
 
-`MyDependency` richiede <xref:Microsoft.Extensions.Logging.ILogger`1> nel costruttore. Non è insolito usare l'inserimento delle dipendenze in modo concatenato. Ogni dipendenza richiesta richiede a sua volta le proprie dipendenze. Il contenitore risolve le dipendenze nel grafico e restituisce il servizio completamente risolto. Il set di dipendenze che devono essere risolte viene generalmente chiamato *albero delle dipendenze* o *grafico dipendenze* o *grafico degli oggetti*.
+`MyDependency` richiede <xref:Microsoft.Extensions.Logging.ILogger`1> nel costruttore. Non è insolito usare l'inserimento delle dipendenze in modo concatenato. Ogni dipendenza richiesta richiede a sua volta le proprie dipendenze. Il contenitore risolve le dipendenze nel grafico e restituisce il servizio completamente risolto. Il set di dipendenze che devono essere risolte viene generalmente chiamato *albero delle dipendenze* o *grafico dipendenze* o *grafico degli oggetti* .
 
 `IMyDependency` e `ILogger<TCategoryName>` devono essere registrati nel contenitore di servizi. `IMyDependency` viene registrato in `Startup.ConfigureServices`. `ILogger<TCategoryName>` viene registrato dall'infrastruttura di registrazione delle astrazioni, pertanto si tratta di un [servizio fornito dal Framework](#framework-provided-services) registrato per impostazione predefinita dal Framework.
 
@@ -780,14 +814,46 @@ I metodi di estensione per la registrazione del servizio offrono overload che ri
 
 Per ulteriori informazioni sull'eliminazione dei tipi, vedere la sezione [Eliminazione dei servizi](#disposal-of-services). Uno scenario comune per più implementazioni è costituito dai [tipi di simulazioni per i test](xref:test/integration-tests#inject-mock-services).
 
-I metodi `TryAdd{LIFETIME}` registrano il servizio solo se esiste già un'implementazione registrata.
+La registrazione di un servizio con un solo tipo di implementazione equivale alla registrazione del servizio con lo stesso tipo di implementazione e di servizio. Questo è il motivo per cui non è possibile registrare più implementazioni di un servizio usando i metodi che non accettano un tipo di servizio esplicito. Questi metodi possono registrare più *istanze* di un servizio, ma avranno tutti lo stesso tipo di *implementazione* .
 
-Nell'esempio seguente, la prima riga registra `MyDependency` per `IMyDependency`. La seconda riga non ha alcun effetto perché `IMyDependency` dispone già di un'implementazione registrata:
+Uno qualsiasi dei metodi di registrazione del servizio sopra indicati può essere utilizzato per registrare più istanze del servizio dello stesso tipo di servizio. Nell'esempio seguente `AddSingleton` viene chiamato due volte con `IMyDependency` come tipo di servizio. La seconda chiamata a `AddSingleton` sostituisce quella precedente quando viene risolta come `IMyDependency` e aggiunge a quella precedente quando più servizi vengono risolti tramite `IEnumerable<IMyDependency>` . I servizi vengono visualizzati nell'ordine in cui sono stati registrati durante la risoluzione tramite `IEnumerable<{SERVICE}>` .
+
+```csharp
+services.AddSingleton<IMyDependency, MyDependency>();
+services.AddSingleton<IMyDependency, DifferentDependency>();
+
+public class MyService
+{
+    public MyService(IMyDependency myDependency, 
+       IEnumberable<IMyDependency> myDependencies)
+    {
+        Trace.Assert(myDependency is DifferentDependency);
+
+        var dependencyArray = myDependencies.ToArray();
+        Trace.Assert(dependencyArray[0] is MyDependency);
+        Trace.Assert(dependencyArray[1] is DifferentDependency);
+    }
+}
+```
+
+Il Framework fornisce anche `TryAdd{LIFETIME}` metodi di estensione, che registrano il servizio solo se non è già stata registrata un'implementazione.
+
+Nell'esempio seguente, la chiamata a `AddSingleton` Registra `MyDependency` come implementazione per `IMyDependency` . La chiamata a `TryAddSingleton` non ha alcun effetto perché `IMyDependency` dispone già di un'implementazione registrata.
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
 // The following line has no effect:
 services.TryAddSingleton<IMyDependency, DifferentDependency>();
+
+public class MyService
+{
+    public MyService(IMyDependency myDependency, 
+        IEnumberable<IMyDependency> myDependencies)
+    {
+        Trace.Assert(myDependency is MyDependency);
+        Trace.Assert(myDependencies.Single() is MyDependency);
+    }
+}
 ```
 
 Per altre informazioni, vedere:
@@ -797,7 +863,7 @@ Per altre informazioni, vedere:
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddScoped*>
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddSingleton*>
 
-I metodi [TryAddEnumerable(ServiceDescriptor)](xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable*) registrano il servizio solo se non esiste già un'implementazione *dello stesso tipo*. Più servizi vengono risolti tramite `IEnumerable<{SERVICE}>`. Durante la registrazione di servizi, lo sviluppatore desidera aggiungere un'istanza solo se non ne è già stata aggiunta una dello stesso tipo. In genere, questo metodo viene utilizzato dagli autori di librerie per evitare di registrare due copie di un'istanza nel contenitore.
+I metodi [TryAddEnumerable(ServiceDescriptor)](xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable*) registrano il servizio solo se non esiste già un'implementazione *dello stesso tipo* . Più servizi vengono risolti tramite `IEnumerable<{SERVICE}>`. Durante la registrazione di servizi, lo sviluppatore desidera aggiungere un'istanza solo se non ne è già stata aggiunta una dello stesso tipo. In genere, questo metodo viene utilizzato dagli autori di librerie per evitare di registrare due copie di un'istanza nel contenitore.
 
 Nell'esempio seguente, la prima riga registra `MyDep` per `IMyDep1`. La seconda riga registra `MyDep` per `IMyDep2`. La seconda riga non ha alcun effetto perché `IMyDep1` dispone già di un'implementazione registrata di `MyDep`:
 
@@ -1084,7 +1150,7 @@ Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [Ad
 * Evitare di archiviare i dati e la configurazione direttamente nel contenitore del servizio. Ad esempio, il carrello acquisti di un utente non dovrebbe in genere essere aggiunto al contenitore del servizio. La configurazione deve usare il [modello di opzioni](xref:fundamentals/configuration/options). Analogamente, evitare gli oggetti "contenitori di dati" che hanno la sola funzione di consentire l'accesso ad altri oggetti. È preferibile richiedere l'elemento effettivo tramite inserimento delle dipendenze.
 * Evitare l'accesso statico ai servizi. Ad esempio, evitare di digitare in modo statico [IApplicationBuilder. ApplicationServices](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices) per l'uso altrove.
 
-* Evitare di usare il *modello del localizzatore di servizi*, che combina [inversione delle strategie di controllo](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) .
+* Evitare di usare il *modello del localizzatore di servizi* , che combina [inversione delle strategie di controllo](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) .
   * Non richiamare <xref:System.IServiceProvider.GetService*> per ottenere un'istanza del servizio quando si può usare invece di:
 
     **Non corretto:**
@@ -1102,7 +1168,7 @@ Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [Ad
       }
       ```
    
-    **Corretto**:
+    **Corretto** :
 
     ```csharp
     public class MyClass
@@ -1128,7 +1194,7 @@ Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [Ad
 
 È tuttavia possibile che in alcuni casi queste raccomandazioni debbano essere ignorate. Le eccezioni sono rari, soprattutto casi speciali all'interno del Framework stesso.
 
-L'inserimento di dipendenze è un'*alternativa* ai modelli di accesso agli oggetti statici/globali. Se l'inserimento di dipendenze viene usato con l'accesso agli oggetti statico i vantaggi non saranno evidenti.
+L'inserimento di dipendenze è un' *alternativa* ai modelli di accesso agli oggetti statici/globali. Se l'inserimento di dipendenze viene usato con l'accesso agli oggetti statico i vantaggi non saranno evidenti.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

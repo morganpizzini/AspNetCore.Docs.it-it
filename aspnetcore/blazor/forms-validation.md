@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 88c3ded79db65557d9426fde6f43aace4d9d8ae2
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: ad244c29c8e8e904793745119366cd677389b12d
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606673"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690614"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>ASP.NET Core Blazor moduli e convalida
 
@@ -224,7 +224,7 @@ Il form seguente convalida l'input dell'utente utilizzando la convalida definita
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm>Crea un oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditContext> come [valore](xref:blazor/components/cascading-values-and-parameters) di propagazione che tiene traccia dei metadati relativi al processo di modifica, inclusi i campi modificati e i messaggi di convalida correnti.
 
-Assegnare **un** oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditContext> **o** <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> a un oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditForm> . L'assegnazione di entrambi non è supportata e genera un **errore di runtime**.
+Assegnare **un** oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditContext> **o** <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> a un oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditForm> . L'assegnazione di entrambi non è supportata e genera un **errore di runtime** .
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm>Fornisce gli eventi pratici per l'invio di form valido e non valido:
 
@@ -450,7 +450,7 @@ La convalida del server può essere eseguita con un [componente validator](#vali
 * Elaborare la convalida lato client nel form con il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente.
 * Quando il modulo passa la convalida lato client ( <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> viene chiamato), inviare <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> a un'API del server back-end per l'elaborazione del modulo.
 * Convalida del modello di processo sul server.
-* L'API server include sia la convalida delle annotazioni dei dati del Framework incorporata che la logica di convalida personalizzata fornita dallo sviluppatore. Se la convalida passa sul server, elaborare il modulo e restituire un codice di stato di esito positivo (*200-OK*). Se la convalida ha esito negativo, restituire un codice di stato di errore (*400-richiesta*non valida) e gli errori di convalida dei campi.
+* L'API server include sia la convalida delle annotazioni dei dati del Framework incorporata che la logica di convalida personalizzata fornita dallo sviluppatore. Se la convalida passa sul server, elaborare il modulo e restituire un codice di stato di esito positivo ( *200-OK* ). Se la convalida ha esito negativo, restituire un codice di stato di errore ( *400-richiesta* non valida) e gli errori di convalida dei campi.
 * Disabilitare il modulo in caso di esito positivo o visualizzare gli errori.
 
 L'esempio seguente è basato su:
@@ -519,7 +519,7 @@ namespace BlazorSample.Server.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError("Validation Error: {MESSAGE}", ex.Message);
+                logger.LogError("Validation Error: {Message}", ex.Message);
             }
 
             return BadRequest(ModelState);
@@ -706,7 +706,7 @@ Nel progetto client, il modulo *database Starship astronave* viene aggiornato in
         }
         catch (Exception ex)
         {
-            Logger.LogError("Form processing error: {MESSAGE}", ex.Message);
+            Logger.LogError("Form processing error: {Message}", ex.Message);
             disabled = true;
             messageStyles = "color:red";
             message = "There was an error processing the form.";
@@ -1029,7 +1029,7 @@ private class CustomValidator : ValidationAttribute
 ```
 
 > [!NOTE]
-> <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService%2A?displayProperty=nameWithType> è `null`. L'inserimento di servizi per la convalida nel `IsValid` metodo non è supportato.
+> <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService%2A?displayProperty=nameWithType> costruito in modo predefinito è `null`. L'inserimento di servizi per la convalida nel `IsValid` metodo non è supportato.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -1059,7 +1059,7 @@ private class MyFieldClassProvider : FieldCssClassProvider
 
 ### <a name="no-locblazor-data-annotations-validation-package"></a>Blazor pacchetto di convalida delle annotazioni dei dati
 
-[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation)È un pacchetto che colma i gap dell'esperienza di convalida usando il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente. Il pacchetto è attualmente *sperimentale*.
+[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation)È un pacchetto che colma i gap dell'esperienza di convalida usando il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente. Il pacchetto è attualmente *sperimentale* .
 
 > [!NOTE]
 > Il [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) pacchetto dispone di una versione più recente di *release candidate* in [NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). Continuare a usare il pacchetto *sperimentale* versione finale al momento. L'assembly del pacchetto potrebbe essere spostato nel Framework o nel runtime in una versione futura. Per ulteriori aggiornamenti, vedere il [repository GitHub degli annunci](https://github.com/aspnet/Announcements), il [repository GitHub DotNet/aspnetcore](https://github.com/dotnet/aspnetcore)o questa sezione dell'argomento.
@@ -1198,7 +1198,7 @@ Un effetto collaterale dell'approccio precedente è che un <xref:Microsoft.AspNe
 }
 ```
 
-## <a name="troubleshoot"></a>Risoluzione dei problemi
+## <a name="troubleshoot"></a>Risolvere problemi
 
 > InvalidOperationException: EditForm richiede un parametro di modello o un parametro EditContext, ma non entrambi.
 

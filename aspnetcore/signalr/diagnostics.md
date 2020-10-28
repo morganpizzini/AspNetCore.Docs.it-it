@@ -4,7 +4,7 @@ author: anurse
 description: Informazioni su come raccogliere dati diagnostici dall' SignalR app ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
-ms.custom: devx-track-csharp, signalr
+ms.custom: devx-track-csharp, signalr, devx-track-js
 ms.date: 06/12/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 649398a3868117b2e7f3358aa25544c99cc625b3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 890359c9e9f6c3c60f3105124f52c66b09a8a4fb
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631342"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690674"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Registrazione e diagnostica in ASP.NET Core SignalR
 
@@ -41,7 +41,7 @@ Poiché SignalR fa parte di ASP.NET Core, usa il sistema di registrazione ASP.NE
 SignalR USA due categorie di logger:
 
 * `Microsoft.AspNetCore.SignalR`: Per i log relativi ai protocolli Hub, attivazione di hub, richiamo di metodi e altre attività correlate all'hub.
-* `Microsoft.AspNetCore.Http.Connections`: Per i log relativi ai trasporti, ad esempio WebSocket, polling prolungato, eventi inviati dal server e infrastruttura di basso livello SignalR .
+* `Microsoft.AspNetCore.Http.Connections`: Per i log relativi ai trasporti, ad esempio WebSocket, polling prolungato, eventi Server-Sent e infrastruttura di basso livello SignalR .
 
 Per abilitare i log dettagliati da SignalR , configurare entrambi i prefissi precedenti al `Debug` livello del *appsettings.js* nel file aggiungendo gli elementi seguenti alla sottosezione `LogLevel` in `Logging` :
 
@@ -177,7 +177,7 @@ Sostituire `[interface]` con l'interfaccia di rete su cui si vuole eseguire l'ac
 
 Questo metodo funziona solo per le app basate su browser.
 
-La maggior parte del browser Strumenti di sviluppo dispone di una scheda di rete che consente di acquisire l'attività di rete tra il browser e il server. Tuttavia, queste tracce non includono messaggi di evento WebSocket e inviati dal server. Se si usano questi trasporti, un approccio migliore è quello di usare uno strumento come Fiddler o TcpDump (descritto di seguito).
+La maggior parte del browser Strumenti di sviluppo dispone di una scheda di rete che consente di acquisire l'attività di rete tra il browser e il server. Tuttavia, queste tracce non includono i messaggi di evento WebSocket e Server-Sent. Se si usano questi trasporti, un approccio migliore è quello di usare uno strumento come Fiddler o TcpDump (descritto di seguito).
 
 ### <a name="microsoft-edge-and-internet-explorer"></a>Microsoft Edge e Internet Explorer
 

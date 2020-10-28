@@ -4,7 +4,7 @@ author: bradygaster
 description: Panoramica di ASP.NET Core SignalR client JavaScript.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
-ms.custom: mvc
+ms.custom: mvc, devx-track-js
 ms.date: 04/08/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 6f611e56ec62ad7aea8a93e4761e1f67d0f76574
-ms.sourcegitcommit: fad0cd264c9d07a48a8c6ba1690807e0f8728898
+ms.openlocfilehash: be271272c952487fccc5136307c84fdf49391848
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/22/2020
-ms.locfileid: "92379459"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690649"
 ---
 # <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.NET Core SignalR client JavaScript
 
@@ -41,7 +41,7 @@ La SignalR libreria client JavaScript viene distribuita come pacchetto [NPM](htt
 
 ### <a name="install-with-npm"></a>Eseguire l'installazione con NPM
 
-Per Visual Studio, eseguire i comandi seguenti dalla **console di gestione pacchetti** nella cartella radice. Per Visual Studio Code, eseguire i comandi seguenti dal **terminale integrato**.
+Per Visual Studio, eseguire i comandi seguenti dalla **console di gestione pacchetti** nella cartella radice. Per Visual Studio Code, eseguire i comandi seguenti dal **terminale integrato** .
 
 ```bash
 npm init -y
@@ -50,7 +50,7 @@ npm install @microsoft/signalr
 
 NPM installa il contenuto del pacchetto nella *cartella \\ @microsoft\signalr\dist\browser node_modules* . Creare una nuova cartella denominata *SignalR* nella cartella *wwwroot \\ lib* . Copiare il file *signalr.js* nella cartella *wwwroot\lib\signalr* .
 
-Fare riferimento al SignalR client JavaScript nell' `<script>` elemento. Esempio:
+Fare riferimento al SignalR client JavaScript nell' `<script>` elemento. Ad esempio:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -58,7 +58,7 @@ Fare riferimento al SignalR client JavaScript nell' `<script>` elemento. Esempio
 
 ### <a name="use-a-content-delivery-network-cdn"></a>Usare una rete per la distribuzione di contenuti (CDN)
 
-Per usare la libreria client senza il prerequisito NPM, fare riferimento a una copia ospitata dalla rete CDN della libreria client. Esempio:
+Per usare la libreria client senza il prerequisito NPM, fare riferimento a una copia ospitata dalla rete CDN della libreria client. Ad esempio:
 
 [!code-html[](javascript-client/samples/3.x/SignalRChat/Pages/Index.cshtml?name=snippet_CDN)]
 
@@ -285,7 +285,7 @@ Un'implementazione reale utilizzerebbe un backup esponenziale o ritenterà un nu
 * [Esercitazione su Webpack e TypeScript](xref:tutorials/signalr-typescript-webpack)
 * [Hub](xref:signalr/hubs)
 * [Client .NET](xref:signalr/dotnet-client)
-* [Pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
+* [Pubblicare in Azure](xref:signalr/publish-to-azure-web-app)
 * [Richieste tra le origini (CORS)](xref:security/cors)
 * [Documentazione senza server per i servizi di Azure SignalR](/azure/azure-signalr/signalr-concept-serverless-development-config)
 * [Risolvere gli errori di connessione](xref:signalr/troubleshoot)
@@ -306,7 +306,7 @@ La SignalR libreria client JavaScript viene distribuita come pacchetto [NPM](htt
 
 ### <a name="install-with-npm"></a>Eseguire l'installazione con NPM
 
-Se si usa Visual Studio, eseguire i comandi seguenti dalla **console di gestione pacchetti** nella cartella radice. Per Visual Studio Code, eseguire i comandi seguenti dal **terminale integrato**.
+Se si usa Visual Studio, eseguire i comandi seguenti dalla **console di gestione pacchetti** nella cartella radice. Per Visual Studio Code, eseguire i comandi seguenti dal **terminale integrato** .
 
 ```bash
 npm init -y
@@ -315,7 +315,7 @@ npm install @aspnet/signalr
 
 NPM installa il contenuto del pacchetto nella *cartella \\ @aspnet\signalr\dist\browser node_modules* . Creare una nuova cartella denominata *SignalR* nella cartella *wwwroot \\ lib* . Copiare il file *signalr.js* nella cartella *wwwroot\lib\signalr* .
 
-Fare riferimento al SignalR client JavaScript nell' `<script>` elemento. Esempio:
+Fare riferimento al SignalR client JavaScript nell' `<script>` elemento. Ad esempio:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -323,7 +323,7 @@ Fare riferimento al SignalR client JavaScript nell' `<script>` elemento. Esempio
 
 ### <a name="use-a-content-delivery-network-cdn"></a>Usare una rete per la distribuzione di contenuti (CDN)
 
-Per usare la libreria client senza il prerequisito NPM, fare riferimento a una copia ospitata dalla rete CDN della libreria client. Esempio:
+Per usare la libreria client senza il prerequisito NPM, fare riferimento a una copia ospitata dalla rete CDN della libreria client. Ad esempio:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>
@@ -430,7 +430,7 @@ Un'implementazione reale utilizzerebbe un backup esponenziale o ritenterà un nu
 * [Esercitazione su Webpack e TypeScript](xref:tutorials/signalr-typescript-webpack)
 * [Hub](xref:signalr/hubs)
 * [Client .NET](xref:signalr/dotnet-client)
-* [Pubblicazione in Azure](xref:signalr/publish-to-azure-web-app)
+* [Pubblicare in Azure](xref:signalr/publish-to-azure-web-app)
 * [Richieste tra le origini (CORS)](xref:security/cors)
 * [Documentazione senza server per i servizi di Azure SignalR](/azure/azure-signalr/signalr-concept-serverless-development-config)
 

@@ -5,7 +5,7 @@ description: Introduzione all'uso di oggetti WebSocket in ASP.NET Core.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 11/1/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/websockets
-ms.openlocfilehash: 685e694a3d974a8a51255bdbb83d33459137a3d9
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 11cd1c266516c696859c4116c940400e90d09ab4
+ms.sourcegitcommit: c06a5bf419541d17595af30e4cf6f2787c21855e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629015"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92678535"
 ---
 # <a name="websockets-support-in-aspnet-core"></a>Supporto di WebSocket in ASP.NET Core
 
@@ -37,39 +37,25 @@ L'articolo contiene l'introduzione all'uso di oggetti WebSocket in ASP.NET Core.
 
 [ASP.NET Core SignalR ](xref:signalr/introduction) è una libreria che semplifica l'aggiunta di funzionalità Web in tempo reale alle app. Laddove possibile, usa oggetti WebSocket.
 
-Per la maggior parte delle applicazioni, è consigliabile usare SignalR WebSocket non elaborati. SignalR fornisce il fallback del trasporto per gli ambienti in cui WebSocket non è disponibile. Fornisce inoltre un modello di app Remote Procedure Call semplice. E nella maggior parte degli scenari, SignalR non ha un notevole svantaggio in merito alle prestazioni rispetto all'uso di WebSocket non elaborati.
+Per la maggior parte delle applicazioni, è consigliabile usare SignalR WebSocket non elaborati. SignalR fornisce il fallback del trasporto per gli ambienti in cui WebSocket non è disponibile. Fornisce anche un modello di app Remote Procedure Call. E nella maggior parte degli scenari, SignalR non ha un notevole svantaggio in merito alle prestazioni rispetto all'uso di WebSocket non elaborati.
+
+Per alcune app, [gRPC in .NET](xref:grpc/index) offre un'alternativa ai WebSocket.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-* ASP.NET Core 1.1 o versione successiva
-* Qualsiasi sistema operativo che supporta ASP.NET Core:
-  
+* Qualsiasi sistema operativo che supporta ASP.NET Core:  
   * Windows 7/Windows Server 2008 o versioni successive
   * Linux
-  * macOS
-  
+  * macOS  
 * Se l'app viene eseguita su Windows con IIS:
-
   * Windows 8/Windows Server 2012 o versioni successive
   * IIS 8/IIS 8 Express
-  * Gli oggetti WebSocket devono essere abilitati (vedere la sezione [Supporto di IIS/IIS Express](#iisiis-express-support)).
-  
+  * I WebSocket devono essere abilitati. Vedere la sezione [supporto per IIS/IIS Express](#iisiis-express-support) .  
 * Se l'app viene eseguita su [HTTP.sys](xref:fundamentals/servers/httpsys):
-
   * Windows 8/Windows Server 2012 o versioni successive
-
 * Per i browser supportati, vedere https://caniuse.com/#feat=websockets.
 
-::: moniker range="< aspnetcore-2.1"
-
-## <a name="nuget-package"></a>Pacchetto NuGet
-
-Installare il pacchetto [Microsoft.AspNetCore.WebSockets](https://www.nuget.org/packages/Microsoft.AspNetCore.WebSockets/).
-
-::: moniker-end
-
 ## <a name="configure-the-middleware"></a>Configurare il middleware
-
 
 Aggiungere il middleware degli oggetti WebSocket nel metodo `Configure` della classe `Startup`:
 
@@ -115,19 +101,11 @@ Object name: 'HttpResponseStream'.
 
 Se si sta usando un servizio in background per scrivere i dati in un oggetto WebSocket, assicurarsi di mantenere la pipeline middleware in esecuzione. A tale scopo, usare <xref:System.Threading.Tasks.TaskCompletionSource%601>. Passare `TaskCompletionSource` al servizio in background e fare in modo che chiami <xref:System.Threading.Tasks.TaskCompletionSource%601.TrySetResult%2A> al termine dell'uso dell'oggetto WebSocket. Quindi assegnare `await` alla proprietà <xref:System.Threading.Tasks.TaskCompletionSource%601.Task> durante la richiesta, come mostrato nell'esempio seguente:
 
-```csharp
-app.Use(async (context, next) => {
-    var socket = await context.WebSockets.AcceptWebSocketAsync();
-    var socketFinishedTcs = new TaskCompletionSource<object>();
+[!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup2.cs?name=AcceptWebSocket)]
 
-    BackgroundSocketProcessor.AddSocket(socket, socketFinishedTcs); 
+L'eccezione di WebSocket closed può verificarsi anche quando viene restituito troppo presto da un metodo di azione. Quando si accetta un socket in un metodo di azione, attendere il completamento del codice che usa il socket prima di restituire il metodo di azione.
 
-    await socketFinishedTcs.Task;
-});
-```
-L'eccezione di chiusura WebSocket può verificarsi anche se il ritorno da un metodo di azione avviene troppo presto. Se si accetta un socket in un metodo di azione, attendere che il codice che usa il socket sia stato completato prima di tornare dal metodo dell'azione.
-
-Per attendere il completamento del socket, non utilizzare mai `Task.Wait()`, `Task.Result` o chiamate di blocco simili perché ciò può provocare gravi problemi di threading. Usare sempre `await`.
+Per attendere il completamento del socket, non utilizzare mai `Task.Wait`, `Task.Result` o chiamate di blocco simili perché ciò può provocare gravi problemi di threading. Usare sempre `await`.
 
 ## <a name="send-and-receive-messages"></a>Inviare e ricevere messaggi
 
@@ -149,7 +127,7 @@ Se il client non invia messaggi con una certa frequenza e non si vuole impostare
 
 ## <a name="websocket-origin-restriction"></a>Restrizione per le origini WebSocket
 
-La protezione fornita da CORS non si applica agli oggetti WebSocket. I browser **non**:
+La protezione fornita da CORS non si applica agli oggetti WebSocket. I browser **non** :
 
 * Eseguono richieste CORS preventive.
 * Rispettano le restrizioni specificate nelle intestazioni `Access-Control` quando eseguono richieste WebSocket.
@@ -179,13 +157,13 @@ Per abilitare il supporto per il protocollo WebSocket in Windows Server 2012 o v
 > [!NOTE]
 > Questi passaggi non sono necessari quando si usa IIS Express
 
-1. Usare la procedura guidata **Aggiungi ruoli e funzionalità** accessibile tramite il menu **Gestisci** o il collegamento in **Server Manager**.
-1. Selezionare **Installazione basata su ruoli o basata su funzionalità**. Selezionare **Avanti**.
-1. Selezionare il server appropriato (il server locale è selezionato per impostazione predefinita). Selezionare **Avanti**.
-1. Espandere **Server Web (IIS)** nella struttura **Ruoli**, espandere **Server Web**, quindi **Sviluppo applicazioni**.
-1. Selezionare **Protocollo WebSocket**. Selezionare **Avanti**.
-1. Se non sono necessarie le funzionalità aggiuntive, selezionare **Avanti**.
-1. Selezionare **Installa**.
+1. Usare la procedura guidata **Aggiungi ruoli e funzionalità** accessibile tramite il menu **Gestisci** o il collegamento in **Server Manager** .
+1. Selezionare **Installazione basata su ruoli o basata su funzionalità** . Selezionare **Avanti** .
+1. Selezionare il server appropriato (il server locale è selezionato per impostazione predefinita). Selezionare **Avanti** .
+1. Espandere **Server Web (IIS)** nella struttura **Ruoli** , espandere **Server Web** , quindi **Sviluppo applicazioni** .
+1. Selezionare **Protocollo WebSocket** . Selezionare **Avanti** .
+1. Se non sono necessarie le funzionalità aggiuntive, selezionare **Avanti** .
+1. Selezionare **Installa** .
 1. Al termine dell'installazione, selezionare **Chiudi** per chiudere la procedura guidata.
 
 Per abilitare il supporto per il protocollo WebSocket in Windows 8 o versioni successive:
@@ -193,13 +171,13 @@ Per abilitare il supporto per il protocollo WebSocket in Windows 8 o versioni su
 > [!NOTE]
 > Questi passaggi non sono necessari quando si usa IIS Express
 
-1. Passare a **Pannello di controllo**  >  **programmi**programmi  >  **e funzionalità**  >  **attiva o disattiva funzionalità Windows** (lato sinistro dello schermo).
-1. Aprire i nodi seguenti: **Internet Information Services**  >  funzionalità di sviluppo di applicazioni**World Wide Web Services**  >  **Application Development Features**.
-1. Selezionare la funzionalità **Protocollo WebSocket**. Selezionare **OK**.
+1. Passare a **Pannello di controllo**  >  **programmi** programmi  >  **e funzionalità**  >  **attiva o disattiva funzionalità Windows** (lato sinistro dello schermo).
+1. Aprire i nodi seguenti: **Internet Information Services**  >  funzionalità di sviluppo di applicazioni **World Wide Web Services**  >  **Application Development Features** .
+1. Selezionare la funzionalità **Protocollo WebSocket** . Selezionare **OK** .
 
 ### <a name="disable-websocket-when-using-socketio-on-nodejs"></a>Disabilitare WebSocket quando si usa socket.io su node.js
 
-Se si usa il supporto WebSocket in [Socket.io](https://socket.io/) in [Node.js](https://nodejs.org/), disabilitare il modulo WebSocket IIS predefinito usando l' `webSocket` elemento in *web.config* o *applicationHost.config*. Se questo passaggio non viene eseguito, il modulo WebSocket di IIS tenta di gestire la comunicazione WebSocket anziché Node.js e l'app.
+Se si usa il supporto WebSocket in [Socket.io](https://socket.io/) in [Node.js](https://nodejs.org/), disabilitare il modulo WebSocket IIS predefinito usando l' `webSocket` elemento in *web.config* o *applicationHost.config* . Se questo passaggio non viene eseguito, il modulo WebSocket di IIS tenta di gestire la comunicazione WebSocket anziché Node.js e l'app.
 
 ```xml
 <system.webServer>

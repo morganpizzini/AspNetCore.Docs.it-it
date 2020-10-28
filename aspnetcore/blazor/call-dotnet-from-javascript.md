@@ -4,7 +4,7 @@ author: guardrex
 description: Informazioni su come richiamare i metodi .NET dalle funzioni JavaScript nelle Blazor app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, devx-track-js
 ms.date: 08/12/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 2a3685dbc654fb8be3420da73e5a62fe729092e6
-ms.sourcegitcommit: ad63e131224f3217bbafff4eb0e6fa1b25294460
+ms.openlocfilehash: 4a7c06ed985c290eb4b3ffca6d5ed74c6bc4e031
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/31/2020
-ms.locfileid: "89199693"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690292"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a>Chiamare i metodi .NET da funzioni JavaScript in ASP.NET Core Blazor
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Rudrawadi](http://wisne.co)e [Luke Latham](https://github.com/guardrex)
 
-Un' Blazor app può richiamare funzioni JavaScript da metodi .NET e metodi .NET da funzioni JavaScript. Questi scenari sono detti *interoperabilità JavaScript (interoperabilità* *JS*).
+Un' Blazor app può richiamare funzioni JavaScript da metodi .NET e metodi .NET da funzioni JavaScript. Questi scenari sono detti *interoperabilità JavaScript (interoperabilità* *JS* ).
 
 Questo articolo descrive come richiamare i metodi .NET da JavaScript. Per informazioni su come chiamare funzioni JavaScript da .NET, vedere <xref:blazor/call-javascript-from-dotnet> .
 
