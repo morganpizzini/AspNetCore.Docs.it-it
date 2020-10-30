@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: eeae167286e793ecd5a547cea0142cf7d8014ece
-ms.sourcegitcommit: c0a15ab8549cb729731a0fdf1d7da0b7feaa11ff
+ms.openlocfilehash: ecb4de3439656eb56507b920db704048d8f96759
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/02/2020
-ms.locfileid: "91671782"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058506"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtri in ASP.NET Core
 
@@ -48,7 +49,7 @@ Questo documento si applica a Razor pagine, controller API e controller con visu
 
 ## <a name="how-filters-work"></a>Funzionamento dei filtri
 
-I filtri vengono eseguiti all'interno della *pipeline di chiamata di azioni ASP.NET Core*, talvolta definita *pipeline di filtro*. La pipeline di filtro viene eseguita dopo che ASP.NET Core ha selezionato l'azione da eseguire.
+I filtri vengono eseguiti all'interno della *pipeline di chiamata di azioni ASP.NET Core* , talvolta definita *pipeline di filtro* . La pipeline di filtro viene eseguita dopo che ASP.NET Core ha selezionato l'azione da eseguire.
 
 ![La richiesta viene elaborata tramite altri middleware, middleware di routing, selezione dell'azione e pipeline di chiamata dell'azione. L'elaborazione della richiesta torna alla selezione azione, al middleware di routing e a diversi altri middleware prima di diventare la risposta che viene inviata al client.](filters/_static/filter-pipeline-1.png)
 
@@ -126,7 +127,7 @@ Il codice seguente implementa un oggetto `ActionFilterAttribute` che:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/MyActionFilterAttribute.cs?name=snippet)]
 
-Le opzioni di configurazione vengono fornite dal [sistema di configurazione](xref:fundamentals/configuration/index) usando il [modello di opzioni](xref:fundamentals/configuration/options). Ad esempio, dal *appsettings.jssu* file:
+Le opzioni di configurazione vengono fornite dal [sistema di configurazione](xref:fundamentals/configuration/index) usando il [modello di opzioni](xref:fundamentals/configuration/options). Ad esempio, dal *appsettings.json* file:
 
 [!code-json[](filters/3.1sample/FiltersSample/appsettings.json)]
 
@@ -145,7 +146,7 @@ Il codice seguente applica al `MyActionFilterAttribute` `Index2` Metodo:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet2&highlight=9)]
 
-In **intestazioni di risposta**, `author: Rick Anderson` e `Editor: Joe Smith` viene visualizzato quando `Sample/Index2` viene chiamato l'endpoint.
+In **intestazioni di risposta** , `author: Rick Anderson` e `Editor: Joe Smith` viene visualizzato quando `Sample/Index2` viene chiamato l'endpoint.
 
 Il codice seguente applica `MyActionFilterAttribute` e alla `AddHeaderAttribute` Razor pagina:
 
@@ -166,7 +167,7 @@ Attributi dei filtri:
 
 ## <a name="filter-scopes-and-order-of-execution"></a>Ambiti dei filtri e ordine di esecuzione
 
-È possibile aggiungere un filtro alla pipeline in uno dei tre *ambiti*:
+È possibile aggiungere un filtro alla pipeline in uno dei tre *ambiti* :
 
 * Uso di un attributo in un'azione del controller. Gli attributi di filtro non possono essere applicati ai Razor metodi del gestore di pagine.
 * Uso di un attributo in un controller o in una Razor pagina.
@@ -178,7 +179,7 @@ Attributi dei filtri:
 
 Quando sono presenti più filtri per una particolare fase della pipeline, l'ambito determina l'ordine di esecuzione predefinito dei filtri.  I filtri globali racchiudono i filtri di classe, che a loro volta racchiudono i filtri dei metodi.
 
-Come risultato dell'annidamento dei filtri, il codice *after* dei filtri viene eseguito in ordine inverso rispetto al codice *before*. Sequenza di filtro:
+Come risultato dell'annidamento dei filtri, il codice *after* dei filtri viene eseguito in ordine inverso rispetto al codice *before* . Sequenza di filtro:
 
 * Codice *before* dei filtri globali.
   * Codice *prima* dei filtri di pagina e controller Razor .
@@ -637,7 +638,7 @@ Questo documento si applica a Razor pagine, controller API e controller con visu
 
 ## <a name="how-filters-work"></a>Funzionamento dei filtri
 
-I filtri vengono eseguiti all'interno della *pipeline di chiamata di azioni ASP.NET Core*, talvolta definita *pipeline di filtro*.  La pipeline di filtro viene eseguita dopo che ASP.NET Core ha selezionato l'azione da eseguire.
+I filtri vengono eseguiti all'interno della *pipeline di chiamata di azioni ASP.NET Core* , talvolta definita *pipeline di filtro* .  La pipeline di filtro viene eseguita dopo che ASP.NET Core ha selezionato l'azione da eseguire.
 
 ![La richiesta viene elaborata tramite altro middleware, il middleware di routing, la selezione dell'azione e la pipeline di chiamata di azioni ASP.NET Core. L'elaborazione della richiesta torna alla selezione azione, al middleware di routing e a diversi altri middleware prima di diventare la risposta che viene inviata al client.](filters/_static/filter-pipeline-1.png)
 
@@ -710,7 +711,7 @@ Attributi dei filtri:
 
 ## <a name="filter-scopes-and-order-of-execution"></a>Ambiti dei filtri e ordine di esecuzione
 
-È possibile aggiungere un filtro alla pipeline in uno dei tre *ambiti*:
+È possibile aggiungere un filtro alla pipeline in uno dei tre *ambiti* :
 
 * Usando un attributo di un'azione.
 * Usando un attributo di un controller.
@@ -722,9 +723,9 @@ Il codice precedente aggiunge tre filtri a livello globale tramite la raccolta [
 
 ### <a name="default-order-of-execution"></a>Ordine di esecuzione predefinito
 
-Quando sono presenti più filtri *dello stesso tipo*, scope determina l'ordine predefinito di esecuzione del filtro.  Filtri globali circondano i filtri di classe. Filtri di classe filtri di metodo Racchiudi.
+Quando sono presenti più filtri *dello stesso tipo* , scope determina l'ordine predefinito di esecuzione del filtro.  Filtri globali circondano i filtri di classe. Filtri di classe filtri di metodo Racchiudi.
 
-Come risultato dell'annidamento dei filtri, il codice *after* dei filtri viene eseguito in ordine inverso rispetto al codice *before*. Sequenza di filtro:
+Come risultato dell'annidamento dei filtri, il codice *after* dei filtri viene eseguito in ordine inverso rispetto al codice *before* . Sequenza di filtro:
 
 * Codice *before* dei filtri globali.
   * Codice *before* dei filtri del controller.

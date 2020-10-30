@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 9516410399ce69f1d69b09781b2530d052a11e7a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 2864de5b9931ed255569cb087c67c71004c4df92
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631875"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059013"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Memorizzazione nella cache delle risposte in ASP.NET Core
 
@@ -38,28 +39,28 @@ Per la memorizzazione nella cache sul lato server che segue la specifica di Cach
 
 ## <a name="http-based-response-caching"></a>Memorizzazione nella cache delle risposte basata su HTTP
 
-La [specifica di Caching HTTP 1,1](https://tools.ietf.org/html/rfc7234) descrive il comportamento delle cache Internet. L'intestazione HTTP primaria utilizzata per la memorizzazione nella cache è [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2), che viene utilizzata per specificare le *direttive*della cache. Le direttive controllano il comportamento di memorizzazione nella cache come richieste da client a server e quando le risposte vengono riportate dai server ai client. Le richieste e le risposte passano attraverso i server proxy e i server proxy devono essere conformi anche alla specifica HTTP 1,1 Caching.
+La [specifica di Caching HTTP 1,1](https://tools.ietf.org/html/rfc7234) descrive il comportamento delle cache Internet. L'intestazione HTTP primaria utilizzata per la memorizzazione nella cache è [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2), che viene utilizzata per specificare le *direttive* della cache. Le direttive controllano il comportamento di memorizzazione nella cache come richieste da client a server e quando le risposte vengono riportate dai server ai client. Le richieste e le risposte passano attraverso i server proxy e i server proxy devono essere conformi anche alla specifica HTTP 1,1 Caching.
 
 `Cache-Control`Le direttive comuni sono illustrate nella tabella seguente.
 
 | Direttiva                                                       | Azione |
 | --------------------------------------------------------------- | ------ |
-| [public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Una cache può archiviare la risposta. |
+| [pubblico](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Una cache può archiviare la risposta. |
 | [privata](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | La risposta non deve essere archiviata da una cache condivisa. Una cache privata può archiviare e riutilizzare la risposta. |
 | [validità massima](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | Il client non accetta una risposta la cui età è superiore al numero di secondi specificato. Esempi: `max-age=60` (60 secondi), `max-age=2592000` (1 mese) |
-| [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **Sulle richieste**: una cache non deve usare una risposta archiviata per soddisfare la richiesta. Il server di origine rigenera la risposta per il client e il middleware aggiorna la risposta archiviata nella cache.<br><br>**In**risposta: non è necessario usare la risposta per una richiesta successiva senza convalida nel server di origine. |
-| [Nessun archivio](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Sulle richieste**: una cache non deve archiviare la richiesta.<br><br>**Nelle risposte**: una cache non deve archiviare alcuna parte della risposta. |
+| [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **Sulle richieste** : una cache non deve usare una risposta archiviata per soddisfare la richiesta. Il server di origine rigenera la risposta per il client e il middleware aggiorna la risposta archiviata nella cache.<br><br>**In** risposta: non è necessario usare la risposta per una richiesta successiva senza convalida nel server di origine. |
+| [Nessun archivio](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Sulle richieste** : una cache non deve archiviare la richiesta.<br><br>**Nelle risposte** : una cache non deve archiviare alcuna parte della risposta. |
 
 Nella tabella seguente sono illustrate le altre intestazioni della cache che svolgono un ruolo nella memorizzazione nella cache.
 
 | Intestazione                                                     | Funzione |
 | ---------------------------------------------------------- | -------- |
-| [Età](https://tools.ietf.org/html/rfc7234#section-5.1)     | Stima della quantità di tempo in secondi trascorsa dalla generazione della risposta o dalla convalida corretta nel server di origine. |
+| [Age](https://tools.ietf.org/html/rfc7234#section-5.1)     | Stima della quantità di tempo in secondi trascorsa dalla generazione della risposta o dalla convalida corretta nel server di origine. |
 | [Scadenza](https://tools.ietf.org/html/rfc7234#section-5.3) | Tempo trascorso il quale la risposta è considerata obsoleta. |
 | [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)  | Esiste per la compatibilità con le versioni precedenti con le cache HTTP/1.0 per l'impostazione del `no-cache` comportamento. Se l' `Cache-Control` intestazione è presente, l' `Pragma` intestazione viene ignorata. |
 | [Variare](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Specifica che una risposta memorizzata nella cache non deve essere inviata a meno che tutti i `Vary` campi di intestazione corrispondano sia nella richiesta originale della risposta memorizzata nella cache che nella nuova richiesta. |
 
-## <a name="http-based-caching-respects-request-cache-control-directives"></a>La memorizzazione nella cache basata su HTTP rispetta le direttive di controllo della cache delle richieste
+## <a name="http-based-caching-respects-request-cache-control-directives"></a>La memorizzazione nella cache basata su HTTP rispetta le direttive Cache-Control di richiesta
 
 La [specifica di Caching HTTP 1,1 per l'intestazione Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) richiede una cache per rispettare un' `Cache-Control` intestazione valida inviata dal client. Un client può effettuare richieste con un `no-cache` valore di intestazione e forzare il server a generare una nuova risposta per ogni richiesta.
 
@@ -71,7 +72,7 @@ Il comportamento di memorizzazione nella cache non è disponibile per gli svilup
 
 ### <a name="in-memory-caching"></a>Memorizzazione nella cache in memoria
 
-La memorizzazione nella cache in memoria usa la memoria del server per archiviare i dati memorizzati nella cache. Questo tipo di memorizzazione nella cache è adatto per un singolo server o più server che usano *sessioni permanenti*. Sessioni permanenti significa che le richieste provenienti da un client vengono sempre indirizzate allo stesso server per l'elaborazione.
+La memorizzazione nella cache in memoria usa la memoria del server per archiviare i dati memorizzati nella cache. Questo tipo di memorizzazione nella cache è adatto per un singolo server o più server che usano *sessioni permanenti* . Sessioni permanenti significa che le richieste provenienti da un client vengono sempre indirizzate allo stesso server per l'elaborazione.
 
 Per altre informazioni, vedere <xref:performance/caching/memory>.
 

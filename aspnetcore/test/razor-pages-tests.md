@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/22/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/razor-pages-tests
-ms.openlocfilehash: bb376412daafd49b307c3c13ea7c88f34628f1c3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 2486eb8c9fd0fc33ea77b0fedd99795218d7f4ca
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634839"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058038"
 ---
 # <a name="no-locrazor-pages-unit-tests-in-aspnet-core"></a>Razor Unit test di pagine in ASP.NET Core
 
@@ -61,10 +62,10 @@ dotnet test
 
 L'app Message è un Razor sistema di messaggi di pagine con le caratteristiche seguenti:
 
-* La pagina di indice dell'app (*pages/index. cshtml* e *pages/index. cshtml. cs*) fornisce i metodi di interfaccia utente e modello di pagina per controllare l'aggiunta, l'eliminazione e l'analisi dei messaggi (trovare il numero medio di parole per messaggio).
-* Un messaggio viene descritto dalla `Message` classe (*Data/Message. cs*) con due proprietà: `Id` (chiave) e `Text` (messaggio). La `Text` proprietà è obbligatoria e limitata a 200 caratteri.
+* La pagina di indice dell'app ( *pages/index. cshtml* e *pages/index. cshtml. cs* ) fornisce i metodi di interfaccia utente e modello di pagina per controllare l'aggiunta, l'eliminazione e l'analisi dei messaggi (trovare il numero medio di parole per messaggio).
+* Un messaggio viene descritto dalla `Message` classe ( *Data/Message. cs* ) con due proprietà: `Id` (chiave) e `Text` (messaggio). La `Text` proprietà è obbligatoria e limitata a 200 caratteri.
 * I messaggi vengono archiviati utilizzando&#8224; [di database in memoria di Entity Framework](/ef/core/providers/in-memory/) .
-* L'app contiene un DAL nella relativa classe del contesto di database, `AppDbContext` (*Data/AppDbContext. cs*). I metodi DAL sono contrassegnati `virtual` , che consente di simulare i metodi da usare nei test.
+* L'app contiene un DAL nella relativa classe del contesto di database, `AppDbContext` ( *Data/AppDbContext. cs* ). I metodi DAL sono contrassegnati `virtual` , che consente di simulare i metodi da usare nei test.
 * Se il database è vuoto all'avvio dell'app, l'archivio messaggi viene inizializzato con tre messaggi. Questi *messaggi con seeding* vengono usati anche nei test.
 
 &#8224;argomento EF, [test con InMemory](/ef/core/miscellaneous/testing/in-memory), spiega come usare un database in memoria per i test con MSTest. In questo argomento viene usato il Framework di test di [xUnit](https://xunit.github.io/) . I concetti di test e le implementazioni di test in diversi framework di test sono simili, ma non identici.
@@ -84,7 +85,7 @@ Il Framework di test è [xUnit](https://xunit.github.io/). Il Framework di simul
 
 ## <a name="unit-tests-of-the-data-access-layer-dal"></a>Unit test del livello di accesso ai dati (DAL)
 
-L'app Message dispone di un DAL con quattro metodi contenuti nella `AppDbContext` classe (*src/ Razor PagesTestSample/data/AppDbContext. cs*). Ogni metodo dispone di uno o due unit test nell'app di test.
+L'app Message dispone di un DAL con quattro metodi contenuti nella `AppDbContext` classe ( *src/ Razor PagesTestSample/data/AppDbContext. cs* ). Ogni metodo dispone di uno o due unit test nell'app di test.
 
 | DAL (metodo)               | Funzione                                                                   |
 | ------------------------ | -------------------------------------------------------------------------- |
@@ -105,7 +106,7 @@ using (var db = new AppDbContext(optionsBuilder.Options))
 }
 ```
 
-Il problema di questo approccio è che ogni test riceve il database nello stato in cui il test precedente lo ha lasciato. Questo può risultare problematico quando si tenta di scrivere unit test atomici che non interferiscono tra loro. Per forzare l' `AppDbContext` utilizzo di un nuovo contesto di database per ogni test, fornire un' `DbContextOptions` istanza di basata su un nuovo provider di servizi. L'app di test illustra come eseguire questa operazione usando il `Utilities` metodo della classe `TestDbContextOptions` (*test/ Razor PagesTestSample. tests/Utilities/Utilities. cs*):
+Il problema di questo approccio è che ogni test riceve il database nello stato in cui il test precedente lo ha lasciato. Questo può risultare problematico quando si tenta di scrivere unit test atomici che non interferiscono tra loro. Per forzare l' `AppDbContext` utilizzo di un nuovo contesto di database per ogni test, fornire un' `DbContextOptions` istanza di basata su un nuovo provider di servizi. L'app di test illustra come eseguire questa operazione usando il `Utilities` metodo della classe `TestDbContextOptions` ( *test/ Razor PagesTestSample. tests/Utilities/Utilities. cs* ):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs?name=snippet1)]
 
@@ -118,13 +119,13 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 }
 ```
 
-Ogni metodo di test nella `DataAccessLayerTest` classe (*UnitTests/DataAccessLayerTest. cs*) segue un modello di tipo Arrange-Act-Assert simile:
+Ogni metodo di test nella `DataAccessLayerTest` classe ( *UnitTests/DataAccessLayerTest. cs* ) segue un modello di tipo Arrange-Act-Assert simile:
 
 1. Arrange: il database è configurato per il test e/o il risultato previsto è definito.
 1. Act: il test viene eseguito.
 1. Assert: le asserzioni vengono effettuate per determinare se il risultato del test ha esito positivo.
 
-Ad esempio, il `DeleteMessageAsync` metodo è responsabile della rimozione di un singolo messaggio identificato da `Id` (*src/ Razor PagesTestSample/data/AppDbContext. cs*):
+Ad esempio, il `DeleteMessageAsync` metodo è responsabile della rimozione di un singolo messaggio identificato da `Id` ( *src/ Razor PagesTestSample/data/AppDbContext. cs* ):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/src/RazorPagesTestSample/Data/AppDbContext.cs?name=snippet4)]
 
@@ -155,7 +156,7 @@ Un metodo di test simile, `DeleteMessageAsync_NoMessageIsDeleted_WhenMessageIsNo
 
 ## <a name="unit-tests-of-the-page-model-methods"></a>Unit test dei metodi del modello di pagina
 
-Un altro set di unit test è responsabile per i test dei metodi del modello di pagina. Nell'app Message i modelli di pagina di indice si trovano nella `IndexModel` classe in *src/ Razor PagesTestSample/pages/index. cshtml. cs*.
+Un altro set di unit test è responsabile per i test dei metodi del modello di pagina. Nell'app Message i modelli di pagina di indice si trovano nella `IndexModel` classe in *src/ Razor PagesTestSample/pages/index. cshtml. cs* .
 
 | Metodo del modello di pagina | Funzione |
 | ----------------- | -------- |
@@ -165,7 +166,7 @@ Un altro set di unit test è responsabile per i test dei metodi del modello di p
 | `OnPostDeleteMessageAsync` | Esegue `DeleteMessageAsync` per eliminare un messaggio con l' `Id` oggetto specificato. |
 | `OnPostAnalyzeMessagesAsync` | Se uno o più messaggi si trovano nel database, calcola il numero medio di parole per messaggio. |
 
-I metodi del modello di pagina vengono testati con sette test nella `IndexPageTests` classe (*tests/ Razor PagesTestSample. tests/UnitTests/IndexPageTests. cs*). I test usano il noto modello Arrange-Assert-Act. Questi test sono incentrati su:
+I metodi del modello di pagina vengono testati con sette test nella `IndexPageTests` classe ( *tests/ Razor PagesTestSample. tests/UnitTests/IndexPageTests. cs* ). I test usano il noto modello Arrange-Assert-Act. Questi test sono incentrati su:
 
 * Determinare se i metodi seguono il comportamento corretto quando [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) non è valido.
 * Verificare che i metodi producano i corretti <xref:Microsoft.AspNetCore.Mvc.IActionResult> .
@@ -179,11 +180,11 @@ Il `OnGetAsync_PopulatesThePageModel_WithAListOfMessages` test Mostra come il `G
 
 Quando il `OnGetAsync` metodo viene eseguito nel passaggio Act, viene chiamato il metodo del modello di pagina `GetMessagesAsync` .
 
-Passaggio di Act unit test (*test/ Razor PagesTestSample. tests/UnitTests/IndexPageTests. cs*):
+Passaggio di Act unit test ( *test/ Razor PagesTestSample. tests/UnitTests/IndexPageTests. cs* ):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs?name=snippet2)]
 
-`IndexPage` Metodo del modello di pagina `OnGetAsync` (*src/ Razor PagesTestSample/pages/index. cshtml. cs*):
+`IndexPage` Metodo del modello di pagina `OnGetAsync` ( *src/ Razor PagesTestSample/pages/index. cshtml. cs* ):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/src/RazorPagesTestSample/Pages/Index.cshtml.cs?name=snippet1&highlight=3)]
 
@@ -245,10 +246,10 @@ dotnet test
 
 L'app Message è un Razor sistema di messaggi di pagine con le caratteristiche seguenti:
 
-* La pagina di indice dell'app (*pages/index. cshtml* e *pages/index. cshtml. cs*) fornisce i metodi di interfaccia utente e modello di pagina per controllare l'aggiunta, l'eliminazione e l'analisi dei messaggi (trovare il numero medio di parole per messaggio).
-* Un messaggio viene descritto dalla `Message` classe (*Data/Message. cs*) con due proprietà: `Id` (chiave) e `Text` (messaggio). La `Text` proprietà è obbligatoria e limitata a 200 caratteri.
+* La pagina di indice dell'app ( *pages/index. cshtml* e *pages/index. cshtml. cs* ) fornisce i metodi di interfaccia utente e modello di pagina per controllare l'aggiunta, l'eliminazione e l'analisi dei messaggi (trovare il numero medio di parole per messaggio).
+* Un messaggio viene descritto dalla `Message` classe ( *Data/Message. cs* ) con due proprietà: `Id` (chiave) e `Text` (messaggio). La `Text` proprietà è obbligatoria e limitata a 200 caratteri.
 * I messaggi vengono archiviati utilizzando&#8224; [di database in memoria di Entity Framework](/ef/core/providers/in-memory/) .
-* L'app contiene un DAL nella relativa classe del contesto di database, `AppDbContext` (*Data/AppDbContext. cs*). I metodi DAL sono contrassegnati `virtual` , che consente di simulare i metodi da usare nei test.
+* L'app contiene un DAL nella relativa classe del contesto di database, `AppDbContext` ( *Data/AppDbContext. cs* ). I metodi DAL sono contrassegnati `virtual` , che consente di simulare i metodi da usare nei test.
 * Se il database è vuoto all'avvio dell'app, l'archivio messaggi viene inizializzato con tre messaggi. Questi *messaggi con seeding* vengono usati anche nei test.
 
 &#8224;argomento EF, [test con InMemory](/ef/core/miscellaneous/testing/in-memory), spiega come usare un database in memoria per i test con MSTest. In questo argomento viene usato il Framework di test di [xUnit](https://xunit.github.io/) . I concetti di test e le implementazioni di test in diversi framework di test sono simili, ma non identici.
@@ -268,7 +269,7 @@ Il Framework di test è [xUnit](https://xunit.github.io/). Il Framework di simul
 
 ## <a name="unit-tests-of-the-data-access-layer-dal"></a>Unit test del livello di accesso ai dati (DAL)
 
-L'app Message dispone di un DAL con quattro metodi contenuti nella `AppDbContext` classe (*src/ Razor PagesTestSample/data/AppDbContext. cs*). Ogni metodo dispone di uno o due unit test nell'app di test.
+L'app Message dispone di un DAL con quattro metodi contenuti nella `AppDbContext` classe ( *src/ Razor PagesTestSample/data/AppDbContext. cs* ). Ogni metodo dispone di uno o due unit test nell'app di test.
 
 | DAL (metodo)               | Funzione                                                                   |
 | ------------------------ | -------------------------------------------------------------------------- |
@@ -289,7 +290,7 @@ using (var db = new AppDbContext(optionsBuilder.Options))
 }
 ```
 
-Il problema di questo approccio è che ogni test riceve il database nello stato in cui il test precedente lo ha lasciato. Questo può risultare problematico quando si tenta di scrivere unit test atomici che non interferiscono tra loro. Per forzare l' `AppDbContext` utilizzo di un nuovo contesto di database per ogni test, fornire un' `DbContextOptions` istanza di basata su un nuovo provider di servizi. L'app di test illustra come eseguire questa operazione usando il `Utilities` metodo della classe `TestDbContextOptions` (*test/ Razor PagesTestSample. tests/Utilities/Utilities. cs*):
+Il problema di questo approccio è che ogni test riceve il database nello stato in cui il test precedente lo ha lasciato. Questo può risultare problematico quando si tenta di scrivere unit test atomici che non interferiscono tra loro. Per forzare l' `AppDbContext` utilizzo di un nuovo contesto di database per ogni test, fornire un' `DbContextOptions` istanza di basata su un nuovo provider di servizi. L'app di test illustra come eseguire questa operazione usando il `Utilities` metodo della classe `TestDbContextOptions` ( *test/ Razor PagesTestSample. tests/Utilities/Utilities. cs* ):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs?name=snippet1)]
 
@@ -302,13 +303,13 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 }
 ```
 
-Ogni metodo di test nella `DataAccessLayerTest` classe (*UnitTests/DataAccessLayerTest. cs*) segue un modello di tipo Arrange-Act-Assert simile:
+Ogni metodo di test nella `DataAccessLayerTest` classe ( *UnitTests/DataAccessLayerTest. cs* ) segue un modello di tipo Arrange-Act-Assert simile:
 
 1. Arrange: il database è configurato per il test e/o il risultato previsto è definito.
 1. Act: il test viene eseguito.
 1. Assert: le asserzioni vengono effettuate per determinare se il risultato del test ha esito positivo.
 
-Ad esempio, il `DeleteMessageAsync` metodo è responsabile della rimozione di un singolo messaggio identificato da `Id` (*src/ Razor PagesTestSample/data/AppDbContext. cs*):
+Ad esempio, il `DeleteMessageAsync` metodo è responsabile della rimozione di un singolo messaggio identificato da `Id` ( *src/ Razor PagesTestSample/data/AppDbContext. cs* ):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/src/RazorPagesTestSample/Data/AppDbContext.cs?name=snippet4)]
 
@@ -339,7 +340,7 @@ Un metodo di test simile, `DeleteMessageAsync_NoMessageIsDeleted_WhenMessageIsNo
 
 ## <a name="unit-tests-of-the-page-model-methods"></a>Unit test dei metodi del modello di pagina
 
-Un altro set di unit test è responsabile per i test dei metodi del modello di pagina. Nell'app Message i modelli di pagina di indice si trovano nella `IndexModel` classe in *src/ Razor PagesTestSample/pages/index. cshtml. cs*.
+Un altro set di unit test è responsabile per i test dei metodi del modello di pagina. Nell'app Message i modelli di pagina di indice si trovano nella `IndexModel` classe in *src/ Razor PagesTestSample/pages/index. cshtml. cs* .
 
 | Metodo del modello di pagina | Funzione |
 | ----------------- | -------- |
@@ -349,7 +350,7 @@ Un altro set di unit test è responsabile per i test dei metodi del modello di p
 | `OnPostDeleteMessageAsync` | Esegue `DeleteMessageAsync` per eliminare un messaggio con l' `Id` oggetto specificato. |
 | `OnPostAnalyzeMessagesAsync` | Se uno o più messaggi si trovano nel database, calcola il numero medio di parole per messaggio. |
 
-I metodi del modello di pagina vengono testati con sette test nella `IndexPageTests` classe (*tests/ Razor PagesTestSample. tests/UnitTests/IndexPageTests. cs*). I test usano il noto modello Arrange-Assert-Act. Questi test sono incentrati su:
+I metodi del modello di pagina vengono testati con sette test nella `IndexPageTests` classe ( *tests/ Razor PagesTestSample. tests/UnitTests/IndexPageTests. cs* ). I test usano il noto modello Arrange-Assert-Act. Questi test sono incentrati su:
 
 * Determinare se i metodi seguono il comportamento corretto quando [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) non è valido.
 * Verificare che i metodi producano i corretti <xref:Microsoft.AspNetCore.Mvc.IActionResult> .
@@ -363,11 +364,11 @@ Il `OnGetAsync_PopulatesThePageModel_WithAListOfMessages` test Mostra come il `G
 
 Quando il `OnGetAsync` metodo viene eseguito nel passaggio Act, viene chiamato il metodo del modello di pagina `GetMessagesAsync` .
 
-Passaggio di Act unit test (*test/ Razor PagesTestSample. tests/UnitTests/IndexPageTests. cs*):
+Passaggio di Act unit test ( *test/ Razor PagesTestSample. tests/UnitTests/IndexPageTests. cs* ):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs?name=snippet2)]
 
-`IndexPage` Metodo del modello di pagina `OnGetAsync` (*src/ Razor PagesTestSample/pages/index. cshtml. cs*):
+`IndexPage` Metodo del modello di pagina `OnGetAsync` ( *src/ Razor PagesTestSample/pages/index. cshtml. cs* ):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/src/RazorPagesTestSample/Pages/Index.cshtml.cs?name=snippet1&highlight=3)]
 
@@ -392,6 +393,6 @@ Altri test in questo gruppo creano oggetti modello di pagina che includono <xref
 * [Introduzione a xUnit.net: uso di .NET Core con la riga di comando di .NET SDK](https://xunit.github.io/docs/getting-started-dotnet-core)
 * [MOQ](https://github.com/moq/moq4)
 * [Guida introduttiva di MOQ](https://github.com/Moq/moq4/wiki/Quickstart)
-* [JustMockLite](https://github.com/telerik/JustMockLite): Framework fittizio per sviluppatori .NET. (*Non mantenuto o supportato da Microsoft).*
+* [JustMockLite](https://github.com/telerik/JustMockLite): Framework fittizio per sviluppatori .NET. ( *Non mantenuto o supportato da Microsoft).*
 
 ::: moniker-end

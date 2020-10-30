@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 07/06/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/web-api-help-pages-using-swagger
-ms.openlocfilehash: c40aede044c78122a9057613f0eece9acf84df7b
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b4b27e6b845d960b4b92612b90938f0770f23170
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633994"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056673"
 ---
 # <a name="aspnet-core-web-api-help-pages-with-swagger--openapi"></a>Pagine della Guida dell'API Web ASP.NET Core con Swagger/OpenAPI
 
@@ -34,7 +35,7 @@ Questo articolo illustra le implementazioni .NET di Swagger [Swashbuckle.AspNetC
 
 * **Swashbuckle.AspNetCore** è un progetto open source per la generazione di documenti Swagger per le API Web di ASP.NET Core.
 
-* **NSwag** è un altro progetto open source per la generazione di documenti di Swagger e l'integrazione dell'[interfaccia utente di Swagger](https://swagger.io/swagger-ui/) o di [ReDoc](https://github.com/Rebilly/ReDoc) nelle API Web di ASP.NET Core. Inoltre, NSwag offre diversi modi per generare codice client C# e TypeScript per l'API.
+* **NSwag** è un altro progetto open source per la generazione di documenti di Swagger e l'integrazione dell' [interfaccia utente di Swagger](https://swagger.io/swagger-ui/) o di [ReDoc](https://github.com/Rebilly/ReDoc) nelle API Web di ASP.NET Core. Inoltre, NSwag offre diversi modi per generare codice client C# e TypeScript per l'API.
 
 ## <a name="what-is-swagger--openapi"></a>Che cos'è Swagger/OpenAPI?
 
@@ -42,7 +43,7 @@ Swagger è una specifica indipendente dal linguaggio per la descrizione delle AP
 
 ## <a name="openapi-specification-openapijson"></a>Specifica OpenAPI (openapi.js)
 
-Per impostazione predefinita, il nucleo del flusso OpenAPI è la specifica &mdash; , un documento denominato *openapi.json*. Viene generato dalla catena di strumenti OpenAPI (o implementazioni di terze parti) in base al servizio. Descrive le funzionalità dell'API e come accedervi mediante HTTP. Gestisce Swagger UI ed è usata dalla catena di strumenti per abilitare l'individuazione e la generazione del codice client. Di seguito è riportato un esempio di una specifica OpenAPI, ridotta per brevità:
+Per impostazione predefinita, il nucleo del flusso OpenAPI è la specifica &mdash; , un documento denominato *openapi.json* . Viene generato dalla catena di strumenti OpenAPI (o implementazioni di terze parti) in base al servizio. Descrive le funzionalità dell'API e come accedervi mediante HTTP. Gestisce Swagger UI ed è usata dalla catena di strumenti per abilitare l'individuazione e la generazione del codice client. Di seguito è riportato un esempio di una specifica OpenAPI, ridotta per brevità:
 
 ```json
 {
@@ -136,7 +137,7 @@ L' [interfaccia utente di spavalderia](https://swagger.io/swagger-ui/) offre un'
 
 ![Interfaccia utente di Swagger](web-api-help-pages-using-swagger/_static/swagger-ui.png)
 
-Ogni metodo di azione pubblico nei controller può essere testato dall'interfaccia utente. Fare clic su un nome di metodo per espandere la sezione. Aggiungere i parametri necessari e fare clic su **try it out**.
+Ogni metodo di azione pubblico nei controller può essere testato dall'interfaccia utente. Fare clic su un nome di metodo per espandere la sezione. Aggiungere i parametri necessari e fare clic su **try it out** .
 
 ![Esempio test GET di Swagger](web-api-help-pages-using-swagger/_static/get-try-it-out.png)
 

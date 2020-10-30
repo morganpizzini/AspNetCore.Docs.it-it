@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/response-compression
-ms.openlocfilehash: b8947e3c3c4f634fbd838c22ff60799257143480
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9327c98c22a4d42d31ea8ba1eb8337153040b5b5
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634995"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056972"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Compressione della risposta in ASP.NET Core
 
@@ -123,7 +124,7 @@ Inviare una richiesta all'app di esempio con l' `Accept-Encoding: br` intestazio
 
 ![Finestra Fiddler che mostra il risultato di una richiesta con l'intestazione Accept-Encoding e il valore br. Le intestazioni Vary e Content-Encoding vengono aggiunte alla risposta. La risposta è compressa.](response-compression/_static/request-compressed-br.png)
 
-## <a name="providers"></a>Provider
+## <a name="providers"></a>Providers
 
 ### <a name="brotli-compression-provider"></a>Provider di compressione Brotli
 
@@ -233,7 +234,7 @@ Il middleware specifica un set predefinito di tipi MIME per la compressione:
 * `text/plain`
 * `text/xml`
 
-Sostituire o aggiungere tipi MIME con le opzioni del middleware di compressione della risposta. Si noti che i tipi MIME con caratteri jolly, ad esempio, `text/*` non sono supportati. L'app di esempio aggiunge un tipo MIME per `image/svg+xml` e comprime e serve l'immagine del banner ASP.NET Core (*banner. svg*).
+Sostituire o aggiungere tipi MIME con le opzioni del middleware di compressione della risposta. Si noti che i tipi MIME con caratteri jolly, ad esempio, `text/*` non sono supportati. L'app di esempio aggiunge un tipo MIME per `image/svg+xml` e comprime e serve l'immagine del banner ASP.NET Core ( *banner. svg* ).
 
 [!code-csharp[](response-compression/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=8-10)]
 
@@ -253,7 +254,7 @@ Quando una richiesta viene sottoposta a proxy da nginx, l' `Accept-Encoding` int
 
 Se si dispone di un modulo di compressione dinamica IIS attivo configurato a livello di server che si desidera disabilitare per un'app, disabilitare il modulo con un'aggiunta al file *web.config* . Per altre informazioni, vedere [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules) (Disabilitazione di moduli IIS).
 
-## <a name="troubleshooting"></a>Risoluzione dei problemi
+## <a name="troubleshooting"></a>risoluzione dei problemi
 
 Usare uno strumento come [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)o [postazione](https://www.getpostman.com/), che consente di impostare l'intestazione della `Accept-Encoding` richiesta e studiare le intestazioni, le dimensioni e il corpo della risposta. Per impostazione predefinita, il middleware della compressione della risposta comprime le risposte che soddisfano le condizioni seguenti:
 
@@ -369,7 +370,7 @@ Inviare una richiesta all'app di esempio con l' `Accept-Encoding: br` intestazio
 
 ![Finestra Fiddler che mostra il risultato di una richiesta con l'intestazione Accept-Encoding e il valore br. Le intestazioni Vary e Content-Encoding vengono aggiunte alla risposta. La risposta è compressa.](response-compression/_static/request-compressed-br.png)
 
-## <a name="providers"></a>Provider
+## <a name="providers"></a>Providers
 
 ### <a name="brotli-compression-provider"></a>Provider di compressione Brotli
 
@@ -478,7 +479,7 @@ Il middleware specifica un set predefinito di tipi MIME per la compressione:
 * `text/plain`
 * `text/xml`
 
-Sostituire o aggiungere tipi MIME con le opzioni del middleware di compressione della risposta. Si noti che i tipi MIME con caratteri jolly, ad esempio, `text/*` non sono supportati. L'app di esempio aggiunge un tipo MIME per `image/svg+xml` e comprime e serve l'immagine del banner ASP.NET Core (*banner. svg*).
+Sostituire o aggiungere tipi MIME con le opzioni del middleware di compressione della risposta. Si noti che i tipi MIME con caratteri jolly, ad esempio, `text/*` non sono supportati. L'app di esempio aggiunge un tipo MIME per `image/svg+xml` e comprime e serve l'immagine del banner ASP.NET Core ( *banner. svg* ).
 
 [!code-csharp[](response-compression/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=8-10)]
 
@@ -498,7 +499,7 @@ Quando una richiesta viene sottoposta a proxy da nginx, l' `Accept-Encoding` int
 
 Se si dispone di un modulo di compressione dinamica IIS attivo configurato a livello di server che si desidera disabilitare per un'app, disabilitare il modulo con un'aggiunta al file *web.config* . Per altre informazioni, vedere [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules) (Disabilitazione di moduli IIS).
 
-## <a name="troubleshooting"></a>Risoluzione dei problemi
+## <a name="troubleshooting"></a>risoluzione dei problemi
 
 Usare uno strumento come [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)o [postazione](https://www.getpostman.com/), che consente di impostare l'intestazione della `Accept-Encoding` richiesta e studiare le intestazioni, le dimensioni e il corpo della risposta. Per impostazione predefinita, il middleware della compressione della risposta comprime le risposte che soddisfano le condizioni seguenti:
 
@@ -614,7 +615,7 @@ Inviare una richiesta all'app di esempio con l' `Accept-Encoding: gzip` intestaz
 
 ![Finestra Fiddler che mostra il risultato di una richiesta con l'intestazione Accept-Encoding e il valore gzip. Le intestazioni Vary e Content-Encoding vengono aggiunte alla risposta. La risposta è compressa.](response-compression/_static/request-compressed.png)
 
-## <a name="providers"></a>Provider
+## <a name="providers"></a>Providers
 
 ### <a name="gzip-compression-provider"></a>Provider di compressione gzip
 
@@ -683,7 +684,7 @@ Il middleware specifica un set predefinito di tipi MIME per la compressione:
 * `text/plain`
 * `text/xml`
 
-Sostituire o aggiungere tipi MIME con le opzioni del middleware di compressione della risposta. Si noti che i tipi MIME con caratteri jolly, ad esempio, `text/*` non sono supportati. L'app di esempio aggiunge un tipo MIME per `image/svg+xml` e comprime e serve l'immagine del banner ASP.NET Core (*banner. svg*).
+Sostituire o aggiungere tipi MIME con le opzioni del middleware di compressione della risposta. Si noti che i tipi MIME con caratteri jolly, ad esempio, `text/*` non sono supportati. L'app di esempio aggiunge un tipo MIME per `image/svg+xml` e comprime e serve l'immagine del banner ASP.NET Core ( *banner. svg* ).
 
 [!code-csharp[](response-compression/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=8-10)]
 
@@ -703,7 +704,7 @@ Quando una richiesta viene sottoposta a proxy da nginx, l' `Accept-Encoding` int
 
 Se si dispone di un modulo di compressione dinamica IIS attivo configurato a livello di server che si desidera disabilitare per un'app, disabilitare il modulo con un'aggiunta al file *web.config* . Per altre informazioni, vedere [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules) (Disabilitazione di moduli IIS).
 
-## <a name="troubleshooting"></a>Risoluzione dei problemi
+## <a name="troubleshooting"></a>risoluzione dei problemi
 
 Usare uno strumento come [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)o [postazione](https://www.getpostman.com/), che consente di impostare l'intestazione della `Accept-Encoding` richiesta e studiare le intestazioni, le dimensioni e il corpo della risposta. Per impostazione predefinita, il middleware della compressione della risposta comprime le risposte che soddisfano le condizioni seguenti:
 

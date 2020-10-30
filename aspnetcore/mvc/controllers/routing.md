@@ -5,6 +5,7 @@ description: Informazioni su come ASP.NET Core MVC usa middleware di routing per
 ms.author: riande
 ms.date: 3/25/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: e451d511ab7791a05024d88635d8005132ad4edd
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 9f64dd8f0ca026cec4b7ee4b5ea02523139eed4f
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393925"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057154"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing ad azioni del controller in ASP.NET Core
 
@@ -119,7 +120,7 @@ Il routing convenzionale viene usato con i controller e le visualizzazioni. La r
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet2)]
 
-è un esempio di *routing convenzionale*. Viene chiamato *routing convenzionale* perché stabilisce una *convenzione* per i percorsi URL:
+è un esempio di *routing convenzionale* . Viene chiamato *routing convenzionale* perché stabilisce una *convenzione* per i percorsi URL:
 
 * Il primo segmento di percorso, `{controller=Home}` , esegue il mapping al nome del controller.
 * Il secondo segmento, `{action=Index}` , esegue il mapping al nome dell' [azione](#action) .
@@ -132,7 +133,7 @@ Utilizzando questa `default` Route, il percorso dell'URL:
 
 Questo mapping:
 
-* Si basa **solo**sui nomi del controller e dell' [azione](#action) .
+* Si basa **solo** sui nomi del controller e dell' [azione](#action) .
 * Non è basato su spazi dei nomi, percorsi di file di origine o parametri del metodo.
 
 L'uso del routing convenzionale con la route predefinita consente di creare l'app senza dover ottenere un nuovo modello di URL per ogni azione. Per un'app con azioni di stile [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) , con coerenza per gli URL tra i controller:
@@ -177,7 +178,7 @@ Il [routing degli attributi](#ar) è illustrato più avanti in questo documento.
 
 <a name="dcr"></a>
 
-La `blog` Route nel codice precedente è una **Route convenzionale dedicata**. Viene chiamato Route convenzionale dedicata perché:
+La `blog` Route nel codice precedente è una **Route convenzionale dedicata** . Viene chiamato Route convenzionale dedicata perché:
 
 * Usa il [routing convenzionale](#cr).
 * È dedicata a un' [azione](#action)specifica.
@@ -196,7 +197,7 @@ L'esempio precedente:
 
 > [!WARNING]
 > In ASP.NET Core 3,0 e versioni successive, il routing non:
-> * Definire un concetto denominato *Route*. `UseRouting` aggiunge la corrispondenza della route alla pipeline middleware. Il `UseRouting` middleware esamina il set di endpoint definiti nell'app e seleziona la corrispondenza migliore per l'endpoint in base alla richiesta.
+> * Definire un concetto denominato *Route* . `UseRouting` aggiunge la corrispondenza della route alla pipeline middleware. Il `UseRouting` middleware esamina il set di endpoint definiti nell'app e seleziona la corrispondenza migliore per l'endpoint in base alla richiesta.
 > * Fornire garanzie sull'ordine di esecuzione dell'estensibilità <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> , ad esempio o <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> .
 >
 >Vedere [routing](xref:fundamentals/routing) per il materiale di riferimento sul routing.
@@ -259,7 +260,7 @@ Nomi di route:
 * Non hanno alcun effetto sulla corrispondenza degli URL o sulla gestione delle richieste.
 * Vengono usati solo per la generazione di URL.
 
-Il concetto di nome della route è rappresentato nel routing come [IEndpointNameMetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata). Il **nome della route** e il nome dell' **endpoint**:
+Il concetto di nome della route è rappresentato nel routing come [IEndpointNameMetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata). Il **nome della route** e il nome dell' **endpoint** :
 
 * Sono intercambiabili.
 * Quello usato nella documentazione e nel codice dipende dall'API descritta.
@@ -471,7 +472,7 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3& highlight=2)]
 
-Con il codice precedente, `/home` esegue l' `HomeController.Index` endpoint. Per ottenere l'oggetto `MyDemoController.MyIndex` , richiedere `/home/MyIndex` . **Nota**:
+Con il codice precedente, `/home` esegue l' `HomeController.Index` endpoint. Per ottenere l'oggetto `MyDemoController.MyIndex` , richiedere `/home/MyIndex` . **Nota** :
 
 * Il codice precedente è un esempio o una progettazione di routing insufficiente. È stato usato per illustrare la `Order` Proprietà.
 * La `Order` Proprietà risolve solo l'ambiguità e non è possibile trovare una corrispondenza per il modello. È preferibile rimuovere il `[Route("Home")]` modello.
@@ -667,7 +668,7 @@ Nell'esempio seguente l' `IUrlHelper` interfaccia viene utilizzata tramite la `C
 
 Se l'app usa la route convenzionale predefinita, il valore della `url` variabile è la stringa del percorso dell'URL `/UrlGeneration/Destination` . Questo percorso URL viene creato tramite il routing combinando:
 
-* Valori della route dalla richiesta corrente, denominati **valori di ambiente**.
+* Valori della route dalla richiesta corrente, denominati **valori di ambiente** .
 * I valori passati a `Url.Action` e sostituiscono tali valori nel modello di route:
 
 ``` text
@@ -716,7 +717,7 @@ Se il valore `{ d = Donovan }` viene aggiunto:
 * Il valore `{ d = David }` viene ignorato.
 * Il percorso dell'URL generato è `Alice/Bob/Carol/Donovan` .
 
-**Avviso**: i percorsi URL sono gerarchici. Nell'esempio precedente, se il valore `{ c = Cheryl }` viene aggiunto:
+**Avviso** : i percorsi URL sono gerarchici. Nell'esempio precedente, se il valore `{ c = Cheryl }` viene aggiunto:
 
 * Entrambi i valori `{ c = Carol, d = David }` vengono ignorati.
 * Non esiste più un valore per `d` e la generazione dell'URL ha esito negativo.
@@ -724,7 +725,7 @@ Se il valore `{ d = Donovan }` viene aggiunto:
 
 È possibile che si verifichi questo problema con la route predefinita `{controller}/{action}/{id?}` . Questo problema è raro in pratica perché `Url.Action` specifica sempre in modo esplicito un `controller` `action` valore e.
 
-Diversi overload di [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) accettano un oggetto dei valori di route per fornire valori per i parametri di route diversi da `controller` e `action` . L'oggetto valori di route viene spesso usato con `id` . Ad esempio: `Url.Action("Buy", "Products", new { id = 17 })`. Oggetto valori di route:
+Diversi overload di [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) accettano un oggetto dei valori di route per fornire valori per i parametri di route diversi da `controller` e `action` . L'oggetto valori di route viene spesso usato con `id` . Ad esempio `Url.Action("Buy", "Products", new { id = 17 })`. Oggetto valori di route:
 
 * Per convenzione è in genere un oggetto di tipo anonimo.
 * Può essere un oggetto `IDictionary<>` o un oggetto [poco](https://wikipedia.org/wiki/Plain_old_CLR_object)).
@@ -836,7 +837,7 @@ I primi due controller sono membri di aree e corrispondono solo quando viene spe
 
 <a name="aa"></a>
 
-In termini di corrispondenza con *nessun valore*, l'assenza del valore `area` è come se il valore per `area` fosse Null o la stringa vuota.
+In termini di corrispondenza con *nessun valore* , l'assenza del valore `area` è come se il valore per `area` fosse Null o la stringa vuota.
 
 Quando si esegue un'azione all'interno di un'area, il valore di route per `area` è disponibile come [valore di ambiente](#ambient) per il routing da usare per la generazione di URL. Ciò significa che per impostazione predefinita le aree funzionano *temporaneamente* per la generazione di URL, come illustrato nell'esempio seguente.
 
@@ -999,7 +1000,7 @@ app.UseMvc(routes =>
 });
 ```
 
-La route `blog` è una *route convenzionale dedicata*, vale a dire che usa il sistema di routing convenzionale, ma è dedicata a un'azione specifica. Poiché `controller` e `action` non appaiono nel modello di route come parametri, possono avere solo i valori predefiniti e quindi questa route eseguirà sempre il mapping all'azione `BlogController.Article`.
+La route `blog` è una *route convenzionale dedicata* , vale a dire che usa il sistema di routing convenzionale, ma è dedicata a un'azione specifica. Poiché `controller` e `action` non appaiono nel modello di route come parametri, possono avere solo i valori predefiniti e quindi questa route eseguirà sempre il mapping all'azione `BlogController.Article`.
 
 Le route sono ordinate nella raccolta di route e verranno elaborate nell'ordine in cui vengono aggiunte. Quindi in questo esempio la route `blog` viene tentata prima della route `default`.
 
@@ -1185,7 +1186,7 @@ public class ProductsApiController : Controller
 
 In questo esempio il percorso URL `/products` può corrispondere a `ProductsApi.ListProducts` e il percorso URL `/products/5` può corrispondere a `ProductsApi.GetProduct(int)`. Entrambe le azioni corrispondono solo a HTTP `GET` perché sono contrassegnate con `HttpGetAttribute` .
 
-I modelli di route applicati a un'azione che iniziano con `/` o `~/` non vengono combinati con i modelli di route applicati al controller. Questo esempio illustra la corrispondenza di un set di percorsi URL simile alla *route predefinita*.
+I modelli di route applicati a un'azione che iniziano con `/` o `~/` non vengono combinati con i modelli di route applicati al controller. Questo esempio illustra la corrispondenza di un set di percorsi URL simile alla *route predefinita* .
 
 ```csharp
 [Route("Home")]
@@ -1436,7 +1437,7 @@ result: /UrlGeneration/Destination
 
 Il valore di ogni parametro di route del modello di route viene sostituito attraverso la corrispondenza dei nomi con i valori e i valori di ambiente. Per un parametro di route senza un valore si può usare un valore predefinito, se ne esiste uno, oppure ignorare il parametro se è facoltativo (come nel caso di `id` in questo esempio). La generazione di URL avrà esito negativo se un parametro di route obbligatorio non ha un valore corrispondente. Se la generazione di URL non riesce per una route, viene tentata la route successiva finché non vengono tentate tutte le route o viene trovata una corrispondenza.
 
-Nell'esempio di `Url.Action` precedente si presuppone che il routing sia convenzionale, ma la generazione di URL funziona in modo analogo con il routing con attributi, sebbene i concetti siano differenti. Con il routing convenzionale i valori di route vengono usati per espandere un modello e i valori di route per `controller` e `action` in genere appaiono in quel modello. Questo procedimento funziona perché gli URL corrispondenti in base al routing rispettano una *convenzione*. Nel routing con attributi i valori di route per `controller` e `action` non possono essere visualizzati nel modello ma vengono usati per individuare il modello da usare.
+Nell'esempio di `Url.Action` precedente si presuppone che il routing sia convenzionale, ma la generazione di URL funziona in modo analogo con il routing con attributi, sebbene i concetti siano differenti. Con il routing convenzionale i valori di route vengono usati per espandere un modello e i valori di route per `controller` e `action` in genere appaiono in quel modello. Questo procedimento funziona perché gli URL corrispondenti in base al routing rispettano una *convenzione* . Nel routing con attributi i valori di route per `controller` e `action` non possono essere visualizzati nel modello ma vengono usati per individuare il modello da usare.
 
 Questo esempio usa il routing con attributi:
 
@@ -1451,14 +1452,14 @@ MVC compila una tabella di ricerca di tutte le azioni indirizzate con attributi 
 `Url.Action` (`IUrlHelper` . `Action`) e tutti gli overload correlati sono basati sull'idea che si voglia definire l'oggetto a cui ci si sta collegando specificando un nome di controller e un nome di azione.
 
 > [!NOTE]
-> Quando si usa `Url.Action`, i valori di route correnti per `controller` e `action` vengono specificati automaticamente: i valori di `controller` e `action` fanno parte sia dei *valori di ambiente* **sia dei ** *valori*. Il metodo `Url.Action`, usa sempre i valori correnti di `action` e `controller` e genererà un percorso URL che indirizza all'azione corrente.
+> Quando si usa `Url.Action`, i valori di route correnti per `controller` e `action` vengono specificati automaticamente: i valori di `controller` e `action` fanno parte sia dei *valori di ambiente* **sia dei** *valori* . Il metodo `Url.Action`, usa sempre i valori correnti di `action` e `controller` e genererà un percorso URL che indirizza all'azione corrente.
 
 Il routing tenta di usare i valori nei valori di ambiente per ottenere le informazioni non specificate durante la generazione di un URL. Usando una route come `{a}/{b}/{c}/{d}` e i valori di ambiente `{ a = Alice, b = Bob, c = Carol, d = David }`, il routing ha informazioni sufficienti per generare un URL senza valori aggiuntivi, poiché tutti i parametri di route hanno un valore. Se è stato aggiunto il valore `{ d = Donovan }`, il valore `{ d = David }` viene ignorato e il percorso URL generato è `Alice/Bob/Carol/Donovan`.
 
 > [!WARNING]
 > I percorsi URL sono gerarchici. Nell'esempio precedente, se è stato aggiunto il valore `{ c = Cheryl }`, entrambi i valori `{ c = Carol, d = David }` vengono ignorati. In questo caso non è più disponibile un valore per `d` e la generazione dell'URL avrà esito negativo. Sarà necessario specificare un valore per `c` e `d`.  In apparenza questo problema si può risolvere con la route predefinita (`{controller}/{action}/{id?}`), ma in realtà questo comportamento si verifica raramente perché `Url.Action` specifica sempre in modo esplicito un valore `controller` e `action`.
 
-Anche gli overload di `Url.Action` di maggiore durata accettano anche un oggetto *valori di route* aggiuntivo per specificare i valori per i parametri di route diversi da `controller` e `action`. In genere viene usato con `id` come `Url.Action("Buy", "Products", new { id = 17 })`. Per convenzione l'oggetto *valori di route* è in genere un oggetto di tipo anonimo, ma può anche essere un `IDictionary<>` o un *normale oggetto .NET*. I valori di route aggiuntivi che non corrispondono a parametri di route vengono inseriti nella stringa di query.
+Anche gli overload di `Url.Action` di maggiore durata accettano anche un oggetto *valori di route* aggiuntivo per specificare i valori per i parametri di route diversi da `controller` e `action`. In genere viene usato con `id` come `Url.Action("Buy", "Products", new { id = 17 })`. Per convenzione l'oggetto *valori di route* è in genere un oggetto di tipo anonimo, ma può anche essere un `IDictionary<>` o un *normale oggetto .NET* . I valori di route aggiuntivi che non corrispondono a parametri di route vengono inseriti nella stringa di query.
 
 [!code-csharp[](routing/samples/2.x/main/Controllers/TestController.cs)]
 
@@ -1509,7 +1510,7 @@ I metodi factory dei risultati delle azioni seguono un modello simile ai metodi 
 
 ### <a name="special-case-for-dedicated-conventional-routes"></a>Caso speciale per le route convenzionali dedicate
 
-Nel routing convenzionale è possibile usare un tipo speciale di definizione di route denominata *route convenzionale dedicata*. Nell'esempio seguente la route denominata `blog` è una route convenzionale dedicata.
+Nel routing convenzionale è possibile usare un tipo speciale di definizione di route denominata *route convenzionale dedicata* . Nell'esempio seguente la route denominata `blog` è una route convenzionale dedicata.
 
 ```csharp
 app.UseMvc(routes =>
@@ -1561,7 +1562,7 @@ Se si usa l'esempio precedente, i valori di route corrispondono all'azione segue
 I primi due controller sono membri di aree e corrispondono solo quando viene specificato il relativo nome di area dal valore di route `area`. Il terzo controller non è un membro di un'area e può corrispondere solo quando non vengono specificati valori per `area` dal routing.
 
 > [!NOTE]
-> In termini di corrispondenza con *nessun valore*, l'assenza del valore `area` è come se il valore per `area` fosse Null o la stringa vuota.
+> In termini di corrispondenza con *nessun valore* , l'assenza del valore `area` è come se il valore per `area` fosse Null o la stringa vuota.
 
 Quando si esegue un'azione all'interno di un'area, il valore di route per `area` sarà disponibile come *valore di ambiente* per il routing da usare per la generazione di URL. Ciò significa che per impostazione predefinita le aree funzionano *temporaneamente* per la generazione di URL, come illustrato nell'esempio seguente.
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet3)]
@@ -1591,7 +1592,7 @@ Se si usa la route convenzionale predefinita, il percorso URL `/Products/Edit` p
 
 Quando viene eseguito `HttpGetAttribute` indica che *Edit()* è una corrispondenza per *GET* e non è una corrispondenza per qualsiasi altro verbo HTTP. L'azione `Edit(...)` non ha tutti i vincoli definiti e quindi corrisponde a qualsiasi verbo HTTP. Presupponendo l'uso di un oggetto `POST`, corrisponde solo `Edit(...)`. Per un oggetto `GET` possono invece corrispondere entrambe le azioni, tuttavia un'azione con `IActionConstraint` viene sempre considerata *migliore* rispetto a un'azione senza tale oggetto. Quindi, dal momento che `Edit()` ha `[HttpGet]` è considerata più specifica e verrà selezionata se entrambe le azioni possono corrispondere.
 
-Concettualmente, `IActionConstraint` è una forma di *overload*, ma anziché sostituire i metodi con lo stesso nome, supporta l'overload tra le azioni che corrispondono allo stesso URL. Anche il routing con attributi usa `IActionConstraint` e può accadere che azioni di controller diversi vengano entrambe considerate candidati.
+Concettualmente, `IActionConstraint` è una forma di *overload* , ma anziché sostituire i metodi con lo stesso nome, supporta l'overload tra le azioni che corrispondono allo stesso URL. Anche il routing con attributi usa `IActionConstraint` e può accadere che azioni di controller diversi vengano entrambe considerate candidati.
 
 <a name="iactionconstraint-impl-ref-label"></a>
 

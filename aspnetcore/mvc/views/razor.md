@@ -5,6 +5,7 @@ description: Informazioni sulla Razor sintassi di markup per l'incorporamento di
 ms.author: riande
 ms.date: 02/12/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: 9c2bbd2d463af8a2ea7db716d01bf1436338ea77
-ms.sourcegitcommit: cd861463faf44956855e3c4b3669483bbc4a7463
+ms.openlocfilehash: c1278b0cd3e58814b1c06dca81efd662c3de0c54
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2020
-ms.locfileid: "89101361"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059195"
 ---
 # <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>Razor informazioni di riferimento sulla sintassi per ASP.NET Core
 
 Di [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen)e [Dan Vicarel](https://github.com/Rabadash8820)
 
-Razor è una sintassi di markup per l'incorporamento di codice basato su server in pagine Web. La Razor sintassi è costituita da Razor markup, C# e HTML. I file che contengono Razor in genere hanno un'estensione di file *. cshtml* . Razorsi trova anche nei file dei [ Razor componenti](xref:blazor/components/index) (*Razor*).
+Razor è una sintassi di markup per l'incorporamento di codice basato su server in pagine Web. La Razor sintassi è costituita da Razor markup, C# e HTML. I file che contengono Razor in genere hanno un'estensione di file *. cshtml* . Razorsi trova anche nei file dei [ Razor componenti](xref:blazor/components/index) ( *Razor* ).
 
 ## <a name="rendering-html"></a>Rendering di HTML
 
@@ -117,7 +118,7 @@ Il codice esegue il rendering dell'HTML seguente:
 
 Senza l'espressione esplicita, `<p>Age@joe.Age</p>` viene considerato come un indirizzo di posta elettronica e `<p>Age@joe.Age</p>` viene sottoposto a rendering. Se viene scritto come espressione esplicita, `<p>Age33</p>` viene sottoposto a rendering.
 
-È possibile usare le espressioni esplicite per eseguire il rendering dell'output da metodi generici in file con estensione *cshtml*. Il markup seguente illustra come correggere l'errore riportato in precedenza, causato dalle parentesi quadre di un oggetto generico C#. Il codice viene scritto come un'espressione esplicita:
+È possibile usare le espressioni esplicite per eseguire il rendering dell'output da metodi generici in file con estensione *cshtml* . Il markup seguente illustra come correggere l'errore riportato in precedenza, causato dalle parentesi quadre di un oggetto generico C#. Il codice viene scritto come un'espressione esplicita:
 
 ```cshtml
 <p>@(GenericMethod<int>())</p>
@@ -657,7 +658,7 @@ La direttiva `@namespace`:
 
 Per l' Razor esempio di pagine illustrato nella tabella seguente:
 
-* Ogni pagina importa *Pages/_ViewImports.cshtml*.
+* Ogni pagina importa *Pages/_ViewImports.cshtml* .
 * *Pages/_ViewImports.cshtml* contiene `@namespace Hello.World`.
 * Ogni pagina ha `Hello.World` come radice dello spazio dei nomi.
 
@@ -949,7 +950,7 @@ Si consideri la struttura di directory seguente in un progetto ASP.NET Core 2,1 
    Index.cshtml.cs
   ```
 
-La compilazione del progetto nella configurazione *Debug* produce la seguente directory *obj*:
+La compilazione del progetto nella configurazione *Debug* produce la seguente directory *obj* :
 
 ```
  obj/
@@ -968,7 +969,7 @@ La compilazione del progetto nella configurazione *Debug* produce la seguente di
            Index.g.cshtml.cs
 ```
 
-Per visualizzare la classe generata per *pages/index. cshtml*, aprire *obj/debug/netcoreapp 2.1/ Razor /pages/index.g.cshtml.cs*.
+Per visualizzare la classe generata per *pages/index. cshtml* , aprire *obj/debug/netcoreapp 2.1/ Razor /pages/index.g.cshtml.cs* .
 
 ::: moniker-end
 
@@ -993,8 +994,8 @@ Impostare un punto di interruzione per l'istruzione `return csharpDocument;` di 
 Il Razor motore di visualizzazione esegue ricerche con distinzione tra maiuscole e minuscole per le visualizzazioni. La ricerca effettiva è tuttavia determinata dal file system sottostante:
 
 * Origine basata su file:
-  * Nei sistemi operativi con file system che non fanno distinzione tra maiuscole e minuscole (ad esempio, Windows), le ricerche del provider di file fisici non eseguono la distinzione tra maiuscole e minuscole. Ad esempio, `return View("Test")` comporta corrispondenze per */Views/Home/Test.cshtml*, */Views/home/test.cshtml* e qualsiasi altra variante di maiuscole e minuscole.
-  * Nei file system che fanno distinzione tra maiuscole e minuscole (ad esempio Linux, OS x e con `EmbeddedFileProvider`), le ricerche eseguono la distinzione tra maiuscole e minuscole. Ad esempio, `return View("Test")` trova specificamente le corrispondenze per */Views/Home/Test.cshtml*.
+  * Nei sistemi operativi con file system che non fanno distinzione tra maiuscole e minuscole (ad esempio, Windows), le ricerche del provider di file fisici non eseguono la distinzione tra maiuscole e minuscole. Ad esempio, `return View("Test")` comporta corrispondenze per */Views/Home/Test.cshtml* , */Views/home/test.cshtml* e qualsiasi altra variante di maiuscole e minuscole.
+  * Nei file system che fanno distinzione tra maiuscole e minuscole (ad esempio Linux, OS x e con `EmbeddedFileProvider`), le ricerche eseguono la distinzione tra maiuscole e minuscole. Ad esempio, `return View("Test")` trova specificamente le corrispondenze per */Views/Home/Test.cshtml* .
 * Visualizzazioni precompilate: con ASP.NET Core 2.0 e versioni successive, la ricerca di visualizzazioni precompilate non esegue la distinzione tra maiuscole e minuscole in tutti i sistemi operativi. Questo comportamento è identico al comportamento del provider di file fisici in Windows. Se due visualizzazioni precompilate differiscono solo nelle lettere maiuscole e minuscole, il risultato di ricerca è non deterministico.
 
 Gli sviluppatori sono invitati a far corrispondere le maiuscole e minuscole dei nomi di file e directory per quanto riguarda le maiuscole e minuscole di:

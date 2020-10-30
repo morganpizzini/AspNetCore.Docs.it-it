@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, devx-track-js
 ms.date: 08/13/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 17f04dc9a0bdcf8ff016d83b915c017ff485cb36
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: fc41dd13e7d027d9630cd596162f9b5fd2ef9e2b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690699"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058493"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Esercitazione: creare un'API Web con ASP.NET Core
 
@@ -50,10 +51,10 @@ Questa esercitazione consente di creare l'API seguente:
 
 |API | Descrizione | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
-|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
-|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
+|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | Nessuno | Matrice di elementi attività|
+|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
 |`POST /api/TodoItems` | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
-|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | nessuno |
+|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
 |`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
 
 Il diagramma seguente visualizza la struttura dell'app.
@@ -388,7 +389,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio `https://localhost:5001/api/TodoItems`.
 * Selezionare la scheda **Corpo** .
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)** .
@@ -417,7 +418,7 @@ Per eseguire il test in un post:
   ![Scheda Headers (Intestazioni) della console Postman](first-web-api/_static/3/create.png)
 
 * Impostare il metodo HTTP su `GET`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio, `https://localhost:5001/api/TodoItems/1`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio `https://localhost:5001/api/TodoItems/1`.
 * Selezionare **Send** (Invia).
 
 ## <a name="examine-the-get-methods"></a>Esaminare i metodi GET
@@ -448,7 +449,7 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su **GET** .
-* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
+* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio `https://localhost:5001/api/TodoItems`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -576,10 +577,10 @@ Questa esercitazione consente di creare l'API seguente:
 
 |API | Descrizione | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
-|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
-|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
+|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | Nessuno | Matrice di elementi attività|
+|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
 |`POST /api/TodoItems` | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
-|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | nessuno |
+|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
 |`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
 
 Il diagramma seguente visualizza la struttura dell'app.
@@ -879,7 +880,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio `https://localhost:5001/api/TodoItems`.
 * Selezionare la scheda **Corpo** .
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)** .
@@ -904,7 +905,7 @@ Questa esercitazione usa Postman per testare l'API Web.
   ![Scheda Headers (Intestazioni) della console Postman](first-web-api/_static/3/create.png)
 
 * Impostare il metodo HTTP su `GET`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio, `https://localhost:5001/api/TodoItems/1`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio `https://localhost:5001/api/TodoItems/1`.
 * Selezionare **Send** (Invia).
 
 ## <a name="examine-the-get-methods"></a>Esaminare i metodi GET
@@ -935,7 +936,7 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su **GET** .
-* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
+* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio `https://localhost:5001/api/TodoItems`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -1067,10 +1068,10 @@ Questa esercitazione consente di creare l'API seguente:
 
 |API | Descrizione | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
-|GET /api/TodoItems | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
-|GET /api/TodoItems/{id} | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
+|GET /api/TodoItems | Ottiene tutti gli elementi attività | Nessuno | Matrice di elementi attività|
+|GET /api/TodoItems/{id} | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
 |POST /api/TodoItems | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
-|PUT /api/TodoItems/{id} | Aggiorna un elemento esistente &nbsp; | Elemento attività | nessuno |
+|PUT /api/TodoItems/{id} | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
 |Elimina/api/TodoItems/{id} &nbsp;&nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
 
 Il diagramma seguente visualizza la struttura dell'app.
@@ -1337,7 +1338,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
   * Impostare il metodo HTTP su **GET** .
-  * Impostare l'URI della richiesta su `https://localhost:<port>/api/todo` . Ad esempio, `https://localhost:5001/api/todo`
+  * Impostare l'URI della richiesta su `https://localhost:<port>/api/todo` . Ad esempio `https://localhost:5001/api/todo`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -1363,7 +1364,7 @@ Il metodo `CreatedAtAction`:
 
 * Compilare il progetto.
 * In Postman impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItem` . Ad esempio, `https://localhost:5001/api/TodoItem`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItem` . Ad esempio `https://localhost:5001/api/TodoItem`.
 * Selezionare la scheda **Corpo** .
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)** .
@@ -1390,7 +1391,7 @@ Il metodo `CreatedAtAction`:
   ![Scheda Headers (Intestazioni) della console Postman](first-web-api/_static/pmc2.png)
 
 * Impostare il metodo su GET.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems/2` . Ad esempio, `https://localhost:5001/api/TodoItems/2`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems/2` . Ad esempio `https://localhost:5001/api/TodoItems/2`.
 * Selezionare **Send** (Invia).
 
 ## <a name="add-a-puttodoitem-method-21"></a>Aggiungere un metodo PutTodoItem 2,1

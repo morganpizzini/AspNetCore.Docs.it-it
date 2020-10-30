@@ -5,6 +5,7 @@ description: Parte 4 della serie di esercitazioni sulle Razor pagine.
 ms.author: riande
 ms.date: 7/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: d2e18782411b1801c74fa33ba1b31bad9662f3b2
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d592cf7d8a96a7e4ec2e53418843a186488951be
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627117"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058155"
 ---
 # <a name="part-4-with-a-database-and-aspnet-core"></a>Parte 4 con un database e ASP.NET Core
 
@@ -31,7 +32,7 @@ Di [Rick Anderson](https://twitter.com/RickAndMSFT) e [Joe Audette](https://twit
 
 [!INCLUDE[](~/includes/rp/download.md)]
 
-L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs*:
+L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs* :
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -43,7 +44,7 @@ L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al databa
 
 ---
 
-Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal *appsettings.jssul* file.
+Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal *appsettings.json* file.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -70,7 +71,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
   ![Menu Visualizza](sql/_static/ssox.png)
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare**Progettazione viste**:
+* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare **Progettazione viste** :
 
   ![Menu di scelta rapida aperti per la tabella Movie](sql/_static/design.png)
 
@@ -78,7 +79,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
 Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, Entity Framework crea una proprietà denominata `ID` per la chiave primaria.
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare**Visualizza dati**:
+* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare **Visualizza dati** :
 
   ![Tabella Movie aperta con i dati della tabella](sql/_static/vd22.png)
 
@@ -130,7 +131,7 @@ Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente
 * Eliminare tutti i record nel database. Questa operazione può essere eseguita con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Forzare l'inizializzazione dell'app (chiamare i metodi nella classe `Startup`) in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. È possibile eseguire questa operazione adottando uno degli approcci seguenti:
 
-  * Fare clic con il pulsante destro del mouse sull'icona della barra di sistema IIS Express nell'area di notifica e toccare **Esci** o **Arresta sito**:
+  * Fare clic con il pulsante destro del mouse sull'icona della barra di sistema IIS Express nell'area di notifica e toccare **Esci** o **Arresta sito** :
 
     ![Icona dell'area di notifica di IIS Express](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
@@ -161,7 +162,7 @@ L'esercitazione successiva consentirà di migliorare la presentazione dei dati.
 
 [!INCLUDE[](~/includes/rp/download.md)]
 
-L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs*:
+L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs* :
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -178,7 +179,7 @@ Per altre informazioni sui metodi usati in `ConfigureServices`, vedere:
 * [Supporto per il Regolamento generale sulla protezione dei dati (GDPR) dell'Unione Europea in ASP.NET Core](xref:security/gdpr) per `CookiePolicyOptions`.
 * [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
-Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal *appsettings.jssul* file.
+Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal *appsettings.json* file.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -209,7 +210,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
   ![Menu Visualizza](sql/_static/ssox.png)
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare**Progettazione viste**:
+* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare **Progettazione viste** :
 
   ![Menu di scelta rapida aperto per la tabella Movie](sql/_static/design.png)
 
@@ -217,7 +218,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
 Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, Entity Framework crea una proprietà denominata `ID` per la chiave primaria.
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare**Visualizza dati**:
+* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare **Visualizza dati** :
 
   ![Tabella Movie aperta con i dati della tabella](sql/_static/vd22.png)
 
@@ -274,7 +275,7 @@ Accesso non riuscito per l'utente "nome-utente".
 * Eliminare tutti i record nel database. Questa operazione può essere eseguita con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Forzare l'inizializzazione dell'app (chiamare i metodi nella classe `Startup`) in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. È possibile eseguire questa operazione adottando uno degli approcci seguenti:
 
-  * Fare clic con il pulsante destro del mouse sull'icona dell'area di notifica di IIS Express e toccare **Esci** o **Arresta sito**:
+  * Fare clic con il pulsante destro del mouse sull'icona dell'area di notifica di IIS Express e toccare **Esci** o **Arresta sito** :
 
     ![Icona dell'area di notifica di IIS Express](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 

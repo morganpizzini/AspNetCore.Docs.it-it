@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: 6936071339786262fa8eeb669a59225a695d7488
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 47ba04f199f9b77cf6032de9f80f2410f5c69424
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722806"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057401"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>Moduli IIS con ASP.NET Core
 
@@ -59,7 +60,7 @@ La tabella indica i moduli di IIS nativi che funzionano con le app ASP.NET Core 
 | **Protocolli supportati**<br>`ProtocolSupportModule`                                                  | Sì | |
 | **Filtro richieste**<br>`RequestFilteringModule`                                                | Sì | [Middleware di riscrittura URL `IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
 | **Monitoraggio richieste**<br>`RequestMonitorModule`                                                    | Sì | |
-| **Riscrittura degli URL**&#8224;<br>`RewriteModule`                                                      | Sì | [Middleware di riscrittura URL](xref:fundamentals/url-rewriting) |
+| **Riscrittura degli URL** &#8224;<br>`RewriteModule`                                                      | Sì | [Middleware di riscrittura URL](xref:fundamentals/url-rewriting) |
 | **Inclusioni lato server**<br>`ServerSideIncludeModule`                                            | No  | |
 | **Compressione statica**<br>`StaticCompressionModule`                                              | No  | [Middleware di compressione delle risposte](xref:performance/response-compression) |
 | **Contenuto statico**<br>`StaticFileModule`                                                         | No  | [Middleware dei file statici](xref:fundamentals/static-files) |
@@ -72,7 +73,7 @@ La tabella indica i moduli di IIS nativi che funzionano con le app ASP.NET Core 
 
 ## <a name="managed-modules"></a>Moduli gestiti
 
-I moduli gestiti *non* funzionano con le app ASP.NET Core ospitate quando la versione CLR .NET del pool di app è impostata su **Nessun codice gestito**. In molti casi, ASP.NET Core offre alternative a livello di middleware.
+I moduli gestiti *non* funzionano con le app ASP.NET Core ospitate quando la versione CLR .NET del pool di app è impostata su **Nessun codice gestito** . In molti casi, ASP.NET Core offre alternative a livello di middleware.
 
 | Modulo                  | Opzione di ASP.NET Core |
 | ----------------------- | ------------------- |
@@ -92,7 +93,7 @@ I moduli gestiti *non* funzionano con le app ASP.NET Core ospitate quando la ver
 
 ## <a name="iis-manager-application-changes"></a>Modifiche dell'applicazione Gestione IIS
 
-Quando si usa Gestione IIS per configurare le impostazioni, il file *web.config* dell'app viene modificato. Se si distribuisce un'app e si include *web.config*, le eventuali modifiche apportate con Gestione IIS vengono sovrascritte dal file *web.config* distribuito. Se vengono apportate modifiche al file *web.config* sul server, copiare immediatamente il file *web.config* aggiornato sul server nel progetto locale.
+Quando si usa Gestione IIS per configurare le impostazioni, il file *web.config* dell'app viene modificato. Se si distribuisce un'app e si include *web.config* , le eventuali modifiche apportate con Gestione IIS vengono sovrascritte dal file *web.config* distribuito. Se vengono apportate modifiche al file *web.config* sul server, copiare immediatamente il file *web.config* aggiornato sul server nel progetto locale.
 
 ## <a name="disabling-iis-modules"></a>Disabilitazione dei moduli IIS
 
@@ -100,7 +101,7 @@ Se un modulo IIS configurato a livello di server deve essere disabilitato per un
 
 ### <a name="module-deactivation"></a>Disattivazione del modulo
 
-Molti moduli offrono un'impostazione di configurazione che consente di disabilitarli senza rimuovere il modulo dall'app. Questo è il modo più semplice e rapido per disattivare un modulo. Ad esempio, il modulo di reindirizzamento HTTP può essere disabilitato tramite l'elemento `<httpRedirect>` in *web.config*:
+Molti moduli offrono un'impostazione di configurazione che consente di disabilitarli senza rimuovere il modulo dall'app. Questo è il modo più semplice e rapido per disattivare un modulo. Ad esempio, il modulo di reindirizzamento HTTP può essere disabilitato tramite l'elemento `<httpRedirect>` in *web.config* :
 
 ```xml
 <configuration>
@@ -110,17 +111,17 @@ Molti moduli offrono un'impostazione di configurazione che consente di disabilit
 </configuration>
 ```
 
-Per ulteriori informazioni sulla disabilitazione dei moduli con le impostazioni di configurazione, seguire i collegamenti nella sezione *elementi figlio* di [IIS \<system.webServer> ](/iis/configuration/system.webServer/).
+Per ulteriori informazioni sulla disabilitazione dei moduli con le impostazioni di configurazione, seguire i collegamenti nella sezione *elementi figlio* di [IIS \<system.webServer>](/iis/configuration/system.webServer/).
 
 ### <a name="module-removal"></a>Rimozione dei moduli
 
-Se si sceglie di rimuovere un modulo con un'impostazione in *web.config*, sbloccare innanzitutto il modulo e la sezione `<modules>` di *web.config*:
+Se si sceglie di rimuovere un modulo con un'impostazione in *web.config* , sbloccare innanzitutto il modulo e la sezione `<modules>` di *web.config* :
 
-1. Sbloccare il modulo a livello di server. Selezionare il server IIS nella barra laterale **Connessioni** di Gestione IIS. Aprire **Moduli** nell'area **IIS**. Selezionare il modulo nell'elenco. Nella barra laterale **Azioni** sulla destra selezionare **Sblocca**. Se la voce di azione per il modulo viene visualizzata come **Blocca**, il modulo è già sbloccato e non è richiesta alcuna azione. Sbloccare tutti i moduli che si prevede di rimuovere da *web.config* in un secondo momento.
+1. Sbloccare il modulo a livello di server. Selezionare il server IIS nella barra laterale **Connessioni** di Gestione IIS. Aprire **Moduli** nell'area **IIS** . Selezionare il modulo nell'elenco. Nella barra laterale **Azioni** sulla destra selezionare **Sblocca** . Se la voce di azione per il modulo viene visualizzata come **Blocca** , il modulo è già sbloccato e non è richiesta alcuna azione. Sbloccare tutti i moduli che si prevede di rimuovere da *web.config* in un secondo momento.
 
-2. Distribuire l'app senza una `<modules>` sezione in *web.config*. Se un'app viene distribuita con un *web.config* contenente la `<modules>` sezione senza che sia stata sbloccata la sezione prima in Gestione IIS, il Configuration Manager genera un'eccezione durante il tentativo di sbloccare la sezione. Di conseguenza, distribuire l'app senza una sezione `<modules>`.
+2. Distribuire l'app senza una `<modules>` sezione in *web.config* . Se un'app viene distribuita con un *web.config* contenente la `<modules>` sezione senza che sia stata sbloccata la sezione prima in Gestione IIS, il Configuration Manager genera un'eccezione durante il tentativo di sbloccare la sezione. Di conseguenza, distribuire l'app senza una sezione `<modules>`.
 
-3. Sbloccare la `<modules>` sezione del *web.config*. Nella barra laterale **connessioni** selezionare il sito Web in **siti**. Nell'area **Gestione** aprire **Editor configurazione**. Usare i controlli di navigazione per selezionare la sezione `system.webServer/modules`. Nella barra laterale **Azioni** sulla destra selezionare **Sblocca** per la sezione. Se la voce di azione per la sezione del modulo viene visualizzata come **Blocca sezione**, la sezione del modulo è già sbloccata e non è richiesta alcuna azione.
+3. Sbloccare la `<modules>` sezione del *web.config* . Nella barra laterale **connessioni** selezionare il sito Web in **siti** . Nell'area **Gestione** aprire **Editor configurazione** . Usare i controlli di navigazione per selezionare la sezione `system.webServer/modules`. Nella barra laterale **Azioni** sulla destra selezionare **Sblocca** per la sezione. Se la voce di azione per la sezione del modulo viene visualizzata come **Blocca sezione** , la sezione del modulo è già sbloccata e non è richiesta alcuna azione.
 
 4. Aggiungere una sezione `<modules>` al file *web.config* locale dell'app con un elemento `<remove>` per rimuovere il modulo dall'app. Aggiungere più elementi `<remove>` per rimuovere più moduli. Se le modifiche a *web.config* vengono apportate sul server, apportare immediatamente le stesse modifiche al file *web.config* del progetto in locale. La rimozione di un modulo in questo modo non influisce sull'uso del modulo con le altre app nel server.
 
@@ -134,9 +135,9 @@ Se si sceglie di rimuovere un modulo con un'impostazione in *web.config*, sblocc
    </configuration>
    ```
 
-Per aggiungere o rimuovere i moduli per IIS Express con *web.config*, modificare *applicationHost.config* per sbloccare la sezione `<modules>`:
+Per aggiungere o rimuovere i moduli per IIS Express con *web.config* , modificare *applicationHost.config* per sbloccare la sezione `<modules>`:
 
-1. Aprire *{APPLICATION ROOT}\\.vs\config\applicationhost.config*.
+1. Aprire *{APPLICATION ROOT}\\.vs\config\applicationhost.config* .
 
 1. Individuare l'elemento `<section>` per i moduli IIS e modificare `overrideModeDefault` da `Deny` a `Allow`:
 
@@ -154,7 +155,7 @@ Per aggiungere o rimuovere i moduli per IIS Express con *web.config*, modificare
 
 1. Dopo aver sbloccato la sezione `<modules>` e i singoli moduli, è possibile aggiungere o rimuovere i moduli IIS con il file *web.config* dell'app per l'esecuzione dell'app in IIS Express.
 
-Un modulo IIS può anche essere rimosso con *Appcmd.exe*. Specificare `MODULE_NAME` e `APPLICATION_NAME` nel comando:
+Un modulo IIS può anche essere rimosso con *Appcmd.exe* . Specificare `MODULE_NAME` e `APPLICATION_NAME` nel comando:
 
 ```console
 Appcmd.exe delete module MODULE_NAME /app.name:APPLICATION_NAME

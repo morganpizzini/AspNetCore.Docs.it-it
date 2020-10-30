@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 09/24/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/metapackage-app
-ms.openlocfilehash: d9753a43bdc47b467dcf781c97069edfaa693a8f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 225bb1f55c099a476319191726c5a661f9a4893a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630510"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057804"
 ---
 # <a name="microsoftaspnetcoreapp-for-aspnet-core"></a>Microsoft. AspNetCore. app per ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
- Il Framework condiviso ASP.NET Core ( `Microsoft.AspNetCore.App` ) contiene gli assembly sviluppati e supportati da Microsoft. `Microsoft.AspNetCore.App` viene installato quando è installato [.NET Core 3,0 o versione successiva SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) . Il *Framework condiviso* è il set di assembly (file con*estensione dll* ) installato nel computer e include un componente di runtime e un Targeting Pack. Per altre informazioni, vedere [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Il framework condiviso).
+ Il Framework condiviso ASP.NET Core ( `Microsoft.AspNetCore.App` ) contiene gli assembly sviluppati e supportati da Microsoft. `Microsoft.AspNetCore.App` viene installato quando è installato [.NET Core 3,0 o versione successiva SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) . Il *Framework condiviso* è il set di assembly (file con *estensione dll* ) installato nel computer e include un componente di runtime e un Targeting Pack. Per altre informazioni, vedere [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Il framework condiviso).
 
 * I progetti destinati all' `Microsoft.NET.Sdk.Web` SDK fanno riferimento in modo implicito al `Microsoft.AspNetCore.App` Framework.
 
@@ -70,7 +71,7 @@ L'uso del metapacchetto `Microsoft.AspNetCore.App` implica restrizioni di versio
 * Altri pacchetti aggiunti all'app non possono modificare la versione dei pacchetti inclusi in `Microsoft.AspNetCore.App`.
 * La coerenza della versione garantisce un'esperienza affidabile. `Microsoft.AspNetCore.App` è stato progettato per impedire le combinazioni di versioni non testate di bit correlati usati contemporaneamente nella stessa applicazione.
 
-Le applicazioni che usano il metapacchetto `Microsoft.AspNetCore.App` sfruttano automaticamente il framework condiviso di ASP.NET Core. Quando si usa il metapacchetto `Microsoft.AspNetCore.App`, con l'applicazione **** non&mdash; vengono distribuiti asset dai pacchetti NuGet di riferimento di ASP.NET Core. Questi asset sono infatti inclusi nel framework condiviso di .NET Core. Gli asset contenuti nel framework condiviso sono precompilati per migliorare i tempi di avvio dell'applicazione. Per altre informazioni, vedere [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Il framework condiviso).
+Le applicazioni che usano il metapacchetto `Microsoft.AspNetCore.App` sfruttano automaticamente il framework condiviso di ASP.NET Core. Quando si usa il metapacchetto `Microsoft.AspNetCore.App`, con l'applicazione  non&mdash; vengono distribuiti asset dai pacchetti NuGet di riferimento di ASP.NET Core. Questi asset sono infatti inclusi nel framework condiviso di .NET Core. Gli asset contenuti nel framework condiviso sono precompilati per migliorare i tempi di avvio dell'applicazione. Per altre informazioni, vedere [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Il framework condiviso).
 
 Il file di progetto seguente fa riferimento al `Microsoft.AspNetCore.App` metapacchetto per ASP.NET Core e rappresenta un modello tipico ASP.NET Core 2,2:
 

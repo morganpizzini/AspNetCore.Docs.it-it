@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/publish-to-azure-web-app
-ms.openlocfilehash: b9d32e2f3c37f652be15c5857d14ac48f66695ad
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e00eea81788c9b335691b7e5ffe6a46534c3c492
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631927"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058220"
 ---
 # <a name="publish-an-aspnet-core-no-locsignalr-app-to-azure-app-service"></a>Pubblicare un' SignalR app ASP.NET Core in app Azure servizio
 
@@ -38,13 +39,13 @@ Il [servizio app Azure](/azure/app-service/app-service-web-overview) è un servi
 
 Questo articolo illustra la pubblicazione con gli strumenti di Visual Studio. Visual Studio Code utenti possono usare i comandi dell'interfaccia della riga di comando di [Azure](/cli/azure) per pubblicare app in Azure. Per altre informazioni, vedere [pubblicare un'app ASP.NET Core in Azure con gli strumenti da riga di comando](/azure/app-service/app-service-web-get-started-dotnet).
 
-1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Pubblica**.
+1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Pubblica** .
 
 1. Verificare che il **servizio app** e **Crea nuovo** siano selezionati nella finestra di dialogo **selezionare una destinazione di pubblicazione** .
 
 1. Selezionare **Crea profilo** dall'elenco a discesa pulsante **pubblica** .
 
-   Immettere le informazioni descritte nella tabella seguente nella finestra di dialogo **Crea servizio app** e selezionare **Crea**.
+   Immettere le informazioni descritte nella tabella seguente nella finestra di dialogo **Crea servizio app** e selezionare **Crea** .
 
    | Elemento               | Descrizione |
    | ------------------ | ----------- |
@@ -53,13 +54,13 @@ Questo articolo illustra la pubblicazione con gli strumenti di Visual Studio. Vi
    | **Gruppo di risorse** | Gruppo di risorse correlate a cui appartiene l'app. |
    | **Piano di hosting**   | Piano tariffario per l'app Web. |
 
-1. Selezionare il ** SignalR servizio di Azure** nell'elenco a discesa **dipendenze**  >  **Aggiungi** :
+1. Selezionare il **SignalR servizio di Azure** nell'elenco a discesa **dipendenze**  >  **Aggiungi** :
 
    ![Area dipendenze che mostra la selezione di Azure::: NO-LOC (SignalR)::: Service nell'elenco a discesa Aggiungi](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 
-1. Nella finestra di dialogo ** SignalR servizio di Azure** Selezionare **Crea una nuova SignalR istanza del servizio di Azure**.
+1. Nella finestra di dialogo **SignalR servizio di Azure** Selezionare **Crea una nuova SignalR istanza del servizio di Azure** .
 
-1. Specificare un **nome**, un **gruppo di risorse**e una **località**. Tornare alla finestra di dialogo ** SignalR servizio di Azure** e selezionare **Aggiungi**.
+1. Specificare un **nome** , un **gruppo di risorse** e una **località** . Tornare alla finestra di dialogo **SignalR servizio di Azure** e selezionare **Aggiungi** .
 
 Visual Studio completa le attività seguenti:
 
@@ -81,13 +82,13 @@ Se si verifica un errore di *Gateway HTTP 502,2-Bad* quando si distribuisce un'a
 
 Per le app ospitate senza il servizio di Azure SignalR , abilitare:
 
-* [Affinità ARR] ( https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity- cookie -(Arr- cookie ) -for-Azure-web-apps.html) per indirizzare le richieste da un utente alla stessa istanza del servizio app. L'impostazione predefinita è **on**.
-* [Web socket](xref:fundamentals/websockets) per consentire il funzionamento del trasporto di Web Socket. L'impostazione predefinita è **off**.
+* [Affinità ARR] ( https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity- cookie -(Arr- cookie ) -for-Azure-web-apps.html) per indirizzare le richieste da un utente alla stessa istanza del servizio app. L'impostazione predefinita è **on** .
+* [Web socket](xref:fundamentals/websockets) per consentire il funzionamento del trasporto di Web Socket. L'impostazione predefinita è **off** .
 
-1. Nella portale di Azure passare all'app Web in **Servizi app**.
-1. Aprire **Configuration**  >  **Impostazioni generali**configurazione.
-1. Impostare **Web socket** **su on**.
-1. Verificare che **affinità arr** sia impostato **su on**.
+1. Nella portale di Azure passare all'app Web in **Servizi app** .
+1. Aprire **Configuration**  >  **Impostazioni generali** configurazione.
+1. Impostare **Web socket** **su on** .
+1. Verificare che **affinità arr** sia impostato **su on** .
 
 ## <a name="app-service-plan-limits"></a>Limiti del piano di servizio app
 

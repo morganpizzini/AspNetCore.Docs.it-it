@@ -6,6 +6,7 @@ ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 12/18/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: ca2f071ccb84fdb2eb06f533fc4d088ad1b1c785
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: a3be22134246c76b0a809ddb97b33ff97ace9a5b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393886"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057505"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Associazione di modelli in ASP.NET Core
 
@@ -80,7 +81,7 @@ Può essere applicato a una proprietà pubblica di un controller o una classe `P
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=3-4)]
 
-### <a name="bindpropertiesattribute"></a>Attributo [BindProperties]
+### <a name="bindproperties-attribute"></a>Attributo [BindProperties]
 
 Disponibile in ASP.NET Core 2.1 e versioni successive.  Può essere applicato a un controller o una classe `PageModel` per indicare all'associazione del modello di usare tutte le proprietà pubbliche della classe come destinazione:
 
@@ -158,7 +159,7 @@ Non applicare `[FromBody]` a più di un parametro per ogni metodo di azione. Una
 
 ### <a name="additional-sources"></a>Origini aggiuntive
 
-I dati di origine vengono forniti al sistema di associazione di modelli dai *provider di valori*. È possibile scrivere e registrare i provider di valori personalizzati che recuperano i dati per l'associazione di modelli da altre origini. Ad esempio, è possibile che si desiderino i dati cookie dello stato della sessione o. Per ottenere dati da una nuova origine:
+I dati di origine vengono forniti al sistema di associazione di modelli dai *provider di valori* . È possibile scrivere e registrare i provider di valori personalizzati che recuperano i dati per l'associazione di modelli da altre origini. Ad esempio, è possibile che si desiderino i dati cookie dello stato della sessione o. Per ottenere dati da una nuova origine:
 
 * Creare una classe che implementi `IValueProvider`.
 * Creare una classe che implementi `IValueProviderFactory`.
@@ -279,11 +280,11 @@ Sono disponibili vari attributi predefiniti per controllare l'associazione di mo
 * `[BindNever]`
 
 > [!WARNING]
-> Questi attributi influiscono sul modello di associazione quando i dati di modulo inviati sono l'origine dei valori. ***Non influiscono sui*** formattatori di input, che elaborano i corpi delle richieste JSON e XML. I formattatori di input sono descritti [più avanti in questo articolo](#input-formatters).
+> Questi attributi influiscono sul modello di associazione quando i dati di modulo inviati sono l'origine dei valori. **Non hanno** effetti sui formattatori di input, che elaborano i corpi di richiesta JSON e XML. I formattatori di input sono descritti [più avanti in questo articolo](#input-formatters).
 
 ### <a name="bind-attribute"></a>Attributo [Bind]
 
-Può essere applicato a una classe o a un parametro di metodo. Specifica quali proprietà di un modello devono essere incluse nell'associazione di modelli. `[Bind]` non ***influisce sui*** formattatori di input.
+Può essere applicato a una classe o a un parametro di metodo. Specifica quali proprietà di un modello devono essere incluse nell'associazione di modelli. `[Bind]` non _*_influisce sui_*_ formattatori di input.
 
 Nell'esempio seguente vengono associate solo le proprietà specificate del modello `Instructor` quando viene chiamato qualsiasi gestore o metodo di azione:
 
@@ -299,7 +300,7 @@ Nell'esempio seguente vengono associate solo le proprietà specificate del model
 public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-L'attributo `[Bind]` può essere usato per evitare l'overposting negli scenari di *creazione*. Non funziona bene negli scenari di modifica perché le proprietà escluse vengono impostate su Null o su un valore predefinito anziché rimanere inalterate. Per difendersi dall'overposting, sono consigliati i modelli di visualizzazione anziché l'attributo `[Bind]`. Per altre informazioni, vedere [Nota sulla sicurezza relativa all'overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+L' `[Bind]` attributo può essere utilizzato per la protezione dall'overposting negli scenari _create *. Non funziona bene negli scenari di modifica perché le proprietà escluse vengono impostate su Null o su un valore predefinito anziché rimanere inalterate. Per difendersi dall'overposting, sono consigliati i modelli di visualizzazione anziché l'attributo `[Bind]`. Per altre informazioni, vedere [Nota sulla sicurezza relativa all'overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
 
 ### <a name="bindrequired-attribute"></a>Attributo [BindRequired]
 
@@ -317,7 +318,7 @@ Può essere applicato solo alle proprietà del modello e non ai parametri di met
 
 ## <a name="collections"></a>Raccolte
 
-Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà*. Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
+Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà* . Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
 
 * Si supponga che il parametro da associare sia una matrice denominata `selectedCourses`:
 
@@ -362,7 +363,7 @@ Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modell
 
 ## <a name="dictionaries"></a>Dizionari
 
-Per le destinazioni `Dictionary`, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà*. Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
+Per le destinazioni `Dictionary`, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà* . Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
 
 * Si supponga che il parametro di destinazione sia un elemento `Dictionary<int, string>` denominato `selectedCourses`:
 
@@ -608,7 +609,7 @@ Può essere applicato a una proprietà pubblica di un controller o una classe `P
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=3-4)]
 
-### <a name="bindpropertiesattribute"></a>Attributo [BindProperties]
+### <a name="bindproperties-attribute"></a>Attributo [BindProperties]
 
 Disponibile in ASP.NET Core 2.1 e versioni successive.  Può essere applicato a un controller o una classe `PageModel` per indicare all'associazione del modello di usare tutte le proprietà pubbliche della classe come destinazione:
 
@@ -686,7 +687,7 @@ Non applicare `[FromBody]` a più di un parametro per ogni metodo di azione. Una
 
 ### <a name="additional-sources"></a>Origini aggiuntive
 
-I dati di origine vengono forniti al sistema di associazione di modelli dai *provider di valori*. È possibile scrivere e registrare i provider di valori personalizzati che recuperano i dati per l'associazione di modelli da altre origini. Ad esempio, è possibile che si desiderino i dati cookie dello stato della sessione o. Per ottenere dati da una nuova origine:
+I dati di origine vengono forniti al sistema di associazione di modelli dai *provider di valori* . È possibile scrivere e registrare i provider di valori personalizzati che recuperano i dati per l'associazione di modelli da altre origini. Ad esempio, è possibile che si desiderino i dati cookie dello stato della sessione o. Per ottenere dati da una nuova origine:
 
 * Creare una classe che implementi `IValueProvider`.
 * Creare una classe che implementi `IValueProviderFactory`.
@@ -841,11 +842,11 @@ Nell'esempio seguente vengono associate solo le proprietà specificate del model
 public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-L'attributo `[Bind]` può essere usato per evitare l'overposting negli scenari di *creazione*. Non funziona bene negli scenari di modifica perché le proprietà escluse vengono impostate su Null o su un valore predefinito anziché rimanere inalterate. Per difendersi dall'overposting, sono consigliati i modelli di visualizzazione anziché l'attributo `[Bind]`. Per altre informazioni, vedere [Nota sulla sicurezza relativa all'overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+L'attributo `[Bind]` può essere usato per evitare l'overposting negli scenari di *creazione* . Non funziona bene negli scenari di modifica perché le proprietà escluse vengono impostate su Null o su un valore predefinito anziché rimanere inalterate. Per difendersi dall'overposting, sono consigliati i modelli di visualizzazione anziché l'attributo `[Bind]`. Per altre informazioni, vedere [Nota sulla sicurezza relativa all'overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
 
 ## <a name="collections"></a>Raccolte
 
-Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà*. Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
+Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà* . Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
 
 * Si supponga che il parametro da associare sia una matrice denominata `selectedCourses`:
 
@@ -890,7 +891,7 @@ Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modell
 
 ## <a name="dictionaries"></a>Dizionari
 
-Per le destinazioni `Dictionary`, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà*. Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
+Per le destinazioni `Dictionary`, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà* . Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
 
 * Si supponga che il parametro di destinazione sia un elemento `Dictionary<int, string>` denominato `selectedCourses`:
 

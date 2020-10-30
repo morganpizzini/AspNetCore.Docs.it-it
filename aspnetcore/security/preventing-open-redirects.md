@@ -5,6 +5,7 @@ description: Mostra come impedire gli attacchi di reindirizzamento aperti contro
 ms.author: riande
 ms.date: 07/07/2017
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/preventing-open-redirects
-ms.openlocfilehash: 5226e301960a56145b94b6128d0034c40b86bffd
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e546cd852367921c7c694db3639f7a233f606e75
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633461"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058389"
 ---
 # <a name="prevent-open-redirect-attacks-in-aspnet-core"></a>Impedisci attacchi di reindirizzamento aperti in ASP.NET Core
 
@@ -39,7 +40,7 @@ Poiché l'URL di destinazione è specificato nella stringa QueryString della ric
 
 Un utente malintenzionato può sviluppare un attacco progettato per consentire all'utente malintenzionato di accedere alle credenziali di un utente o alle informazioni riservate. Per iniziare l'attacco, l'utente malintenzionato convince l'utente a fare clic su un collegamento alla pagina di accesso del sito con un `returnUrl` valore QueryString aggiunto all'URL. Si consideri ad esempio un'app in `contoso.com` che include una pagina di accesso all'indirizzo `http://contoso.com/Account/LogOn?returnUrl=/Home/About` . L'attacco segue questa procedura:
 
-1. L'utente fa clic su un collegamento dannoso `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` (il secondo URL è "Contoso**1**. com", non "contoso.com").
+1. L'utente fa clic su un collegamento dannoso `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` (il secondo URL è "Contoso **1** . com", non "contoso.com").
 2. L'utente ha eseguito l'accesso.
 3. L'utente viene reindirizzato (dal sito) a `http://contoso1.com/Account/LogOn` (un sito dannoso simile al sito reale).
 4. L'utente accede nuovamente (assegnando loro le credenziali al sito dannoso) e viene reindirizzato di nuovo al sito reale.

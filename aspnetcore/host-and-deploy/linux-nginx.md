@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/09/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 63227f068926c4158ac8162fdc1ac11399fd65cb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 916bb1f761ce99b2296c84e1653e55fffa04f83c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633786"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057687"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Hosting di ASP.NET Core in Linux con Nginx
 
@@ -49,7 +50,7 @@ In questa guida:
 1. Installare il runtime .NET Core nel server.
    1. Visitare la [pagina di download di .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
    1. Selezionare la versione più recente di .NET Core non in anteprima.
-   1. Scaricare la versione più recente del runtime non di anteprima nella tabella in **Run Apps-Runtime**.
+   1. Scaricare la versione più recente del runtime non di anteprima nella tabella in **Run Apps-Runtime** .
    1. Selezionare il collegamento **istruzioni di gestione pacchetti** Linux e seguire le istruzioni di Ubuntu per la versione di Ubuntu.
 1. Un'app ASP.NET Core esistente.
 
@@ -62,9 +63,9 @@ Configurare l'app per una [distribuzione dipendente dal framework](/dotnet/core/
 Se l'app viene eseguita in locale e non è configurata per connessioni sicure (HTTPS), adottare uno degli approcci seguenti:
 
 * Configurare l'app per la gestione di connessioni locali sicure. Per altre informazioni, vedere la sezione [Configurazione HTTPS](#https-configuration).
-* Rimuovere `https://localhost:5001` (se presente) dalla proprietà `applicationUrl` nel file *Properties/launchSettings.json*.
+* Rimuovere `https://localhost:5001` (se presente) dalla proprietà `applicationUrl` nel file *Properties/launchSettings.json* .
 
-Eseguire [dotnet publish](/dotnet/core/tools/dotnet-publish) dall'ambiente di sviluppo per creare il pacchetto di un'app in una directory (ad esempio, *bin/Release/&lt;target_framework_moniker&gt;/publish*) che può essere eseguita nel server:
+Eseguire [dotnet publish](/dotnet/core/tools/dotnet-publish) dall'ambiente di sviluppo per creare il pacchetto di un'app in una directory (ad esempio, *bin/Release/&lt;target_framework_moniker&gt;/publish* ) che può essere eseguita nel server:
 
 ```dotnetcli
 dotnet publish --configuration Release
@@ -72,7 +73,7 @@ dotnet publish --configuration Release
 
 È anche possibile pubblicare l'app come [distribuzione completa](/dotnet/core/deploying/#self-contained-deployments-scd) se si preferisce non mantenere il runtime .NET Core nel server.
 
-Copiare l'app ASP.NET Core sul server usando uno strumento integrato nel flusso di lavoro dell'organizzazione, ad esempio SCP o FTP. Le app Web si trovano in genere nella directory *var*, ad esempio, *var/www/helloapp*.
+Copiare l'app ASP.NET Core sul server usando uno strumento integrato nel flusso di lavoro dell'organizzazione, ad esempio SCP o FTP. Le app Web si trovano in genere nella directory *var* , ad esempio, *var/www/helloapp* .
 
 > [!NOTE]
 > In uno scenario di distribuzione di produzione un flusso di lavoro di integrazione continua esegue le operazioni di pubblicazione dell'app e di copia degli asset nel server.
@@ -142,7 +143,7 @@ Verificare che un browser visualizzi la pagina di destinazione predefinita per N
 
 ### <a name="configure-nginx"></a>Configurare Nginx
 
-Per configurare Nginx come proxy inverso per inoltrare le richieste all'app ASP.NET Core, modificare */etc/nginx/sites-available/default*. Aprirlo in un editor di testo e sostituire il contenuto con quanto segue:
+Per configurare Nginx come proxy inverso per inoltrare le richieste all'app ASP.NET Core, modificare */etc/nginx/sites-available/default* . Aprirlo in un editor di testo e sostituire il contenuto con quanto segue:
 
 ```nginx
 server {
@@ -161,7 +162,7 @@ server {
 }
 ```
 
-Se l'app è un' Blazor Server app che si basa su SignalR WebSocket, vedere <xref:blazor/host-and-deploy/server#linux-with-nginx> per informazioni su come impostare l' `Connection` intestazione.
+Se l'app è un' SignalR Blazor Server app o <xref:signalr/scale#linux-with-nginx> , vedere <xref:blazor/host-and-deploy/server#linux-with-nginx> rispettivamente e per altre informazioni.
 
 Se nessun `server_name` corrisponde, Nginx usa il server predefinito. Se non è definito alcun server predefinito, il primo server nel file di configurazione è il server predefinito. Come procedura consigliata, aggiungere un server predefinito specifico che restituisce un codice di stato 444 nel file di configurazione. Un esempio di configurazione del server predefinito è il seguente:
 
@@ -225,14 +226,14 @@ WantedBy=multi-user.target
 
 Nell'esempio precedente, l'utente che gestisce il servizio viene specificato dall' `User` opzione. L'utente ( `www-data` ) deve esistere e avere la proprietà appropriata dei file dell'app.
 
-Usare `TimeoutStopSec` per configurare il tempo di attesa prima che l'app si arresti dopo aver ricevuto il segnale di interrupt iniziale. Se l'app non si arresta in questo periodo, viene emesso il comando SIGKILL per terminare l'app. Specificare il valore in secondi senza unità di misura (ad esempio, `150`), un valore per l'intervallo di tempo (ad esempio, `2min 30s`) o `infinity` per disabilitare il timeout. Per impostazione predefinita, il valore di `TimeoutStopSec` viene impostato sul valore di `DefaultTimeoutStopSec` nel file di configurazione del sistema di gestione (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf*, *user.conf.d*). Il timeout predefinito per la maggior parte delle distribuzioni è di 90 secondi.
+Usare `TimeoutStopSec` per configurare il tempo di attesa prima che l'app si arresti dopo aver ricevuto il segnale di interrupt iniziale. Se l'app non si arresta in questo periodo, viene emesso il comando SIGKILL per terminare l'app. Specificare il valore in secondi senza unità di misura (ad esempio, `150`), un valore per l'intervallo di tempo (ad esempio, `2min 30s`) o `infinity` per disabilitare il timeout. Per impostazione predefinita, il valore di `TimeoutStopSec` viene impostato sul valore di `DefaultTimeoutStopSec` nel file di configurazione del sistema di gestione ( *systemd-system.conf* , *system.conf.d* , *systemd-user.conf* , *user.conf.d* ). Il timeout predefinito per la maggior parte delle distribuzioni è di 90 secondi.
 
 ```
 # The default value is 90 seconds for most distributions.
 TimeoutStopSec=90
 ```
 
-Linux dispone di un file system con distinzione tra maiuscole e minuscole. L'impostazione di ASPNETCORE_ENVIRONMENT su "Production" determina la ricerca del file di configurazione *appsettings.Production.json*, non di *appsettings.production.json*.
+Linux dispone di un file system con distinzione tra maiuscole e minuscole. L'impostazione di ASPNETCORE_ENVIRONMENT su "Production" determina la ricerca del file di configurazione *appsettings.Production.json* , non di *appsettings.production.json* .
 
 Per alcuni valori (ad esempio, le stringhe di connessione SQL) è necessario usare caratteri di escape, in modo da consentire ai provider di configurazione di leggere le variabili di ambiente. Usare il comando seguente per generare un valore con caratteri di escape corretti per l'uso nel file di configurazione:
 
@@ -356,7 +357,7 @@ sudo ufw enable
 
 #### <a name="change-the-nginx-response-name"></a>Modificare il nome di risposta Nginx
 
-Modificare *src/http/ngx_http_header_filter_module.c*:
+Modificare *src/http/ngx_http_header_filter_module.c* :
 
 ```
 static char ngx_http_server_string[] = "Server: Web Server" CRLF;
@@ -375,7 +376,7 @@ Il comando [dotnet run](/dotnet/core/tools/dotnet-run) usa il file *Properties/l
 
 Configurare l'app per l'uso di un certificato nello sviluppo per il comando `dotnet run` o l'ambiente di sviluppo (F5 o CTRL+F5 in Visual Studio Code) usando uno degli approcci seguenti:
 
-* [Sostituire il certificato predefinito della configurazione](xref:fundamentals/servers/kestrel#configuration) (*consigliato*)
+* [Sostituire il certificato predefinito della configurazione](xref:fundamentals/servers/kestrel#configuration) ( *consigliato* )
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
 
 **Configurare il proxy inverso per connessioni client sicure (HTTPS)**
@@ -391,11 +392,11 @@ Configurare l'app per l'uso di un certificato nello sviluppo per il comando `dot
   * Non aggiungere l'intestazione HSTS.
   * Scegliere un `max-age` valore breve.
 
-Aggiungere il file di configurazione */etc/nginx/proxy.conf*:
+Aggiungere il file di configurazione */etc/nginx/proxy.conf* :
 
 [!code-nginx[](linux-nginx/proxy.conf)]
 
-Aggiungere il file di configurazione */etc/nginx/proxy.conf*. L'esempio contiene entrambe le sezioni `http` e `server` in un unico file di configurazione.
+Aggiungere il file di configurazione */etc/nginx/proxy.conf* . L'esempio contiene entrambe le sezioni `http` e `server` in un unico file di configurazione.
 
 [!code-nginx[](linux-nginx/nginx.conf?highlight=2)]
 
@@ -404,11 +405,11 @@ Aggiungere il file di configurazione */etc/nginx/proxy.conf*. L'esempio contiene
 
 #### <a name="secure-nginx-from-clickjacking"></a>Proteggere Nginx dal clickjacking
 
-Il [clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger), anche noto come *attacco UI Redress*, è un attacco dannoso in cui un visitatore di un sito Web viene indotto a fare clic su un collegamento o un pulsante in una pagina diversa da quella che sta attualmente visualizzando. Usare `X-FRAME-OPTIONS` per proteggere il sito.
+Il [clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger), anche noto come *attacco UI Redress* , è un attacco dannoso in cui un visitatore di un sito Web viene indotto a fare clic su un collegamento o un pulsante in una pagina diversa da quella che sta attualmente visualizzando. Usare `X-FRAME-OPTIONS` per proteggere il sito.
 
 Per contrastare gli attacchi di clickjacking:
 
-1. Modificare il file *nginx.conf*:
+1. Modificare il file *nginx.conf* :
 
    ```bash
    sudo nano /etc/nginx/nginx.conf
@@ -422,7 +423,7 @@ Per contrastare gli attacchi di clickjacking:
 
 Questa intestazione impedisce alla maggior parte dei browser di dedurre dall'analisi del tipo MIME un tipo di contenuto diverso da quello dichiarato, poiché l'intestazione indica al browser di non eseguire l'override del tipo di contenuto della risposta. Con l'opzione `nosniff`, se il server indica che il contenuto è "text/html", il browser ne esegue il rendering come "text/html".
 
-Modificare il file *nginx.conf*:
+Modificare il file *nginx.conf* :
 
 ```bash
 sudo nano /etc/nginx/nginx.conf

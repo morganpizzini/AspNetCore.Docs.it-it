@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 4/20/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/app-secrets
-ms.openlocfilehash: 74c9ae63ffbe39d6ba6e77aee8f6adcc8c8a157a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 174f831583c2ef6cb7f122a22fe855acc8fe3047
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634904"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056868"
 ---
 # <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Archiviazione sicura dei segreti delle app in fase di sviluppo in ASP.NET Core
 
@@ -38,7 +39,7 @@ Questo documento illustra le tecniche per l'archiviazione e il recupero di dati 
 
 Le variabili di ambiente vengono usate per evitare l'archiviazione di segreti dell'app nel codice o nei file di configurazione locali. Le variabili di ambiente sostituiscono i valori di configurazione per tutte le origini di configurazione precedentemente specificate.
 
-Si consideri un'app Web ASP.NET Core in cui è abilitata la sicurezza dei **singoli account utente** . Una stringa di connessione al database predefinita viene inclusa nel *appsettings.js* del progetto nel file con la chiave `DefaultConnection` . La stringa di connessione predefinita è per il database locale, che viene eseguito in modalità utente e non richiede una password. Durante la distribuzione dell'app, il `DefaultConnection` valore della chiave può essere sostituito con il valore di una variabile di ambiente. La variabile di ambiente può archiviare la stringa di connessione completa con credenziali riservate.
+Si consideri un'app Web ASP.NET Core in cui è abilitata la sicurezza dei **singoli account utente** . Una stringa di connessione al database predefinita viene inclusa nel file del progetto *appsettings.json* con la chiave `DefaultConnection` . La stringa di connessione predefinita è per il database locale, che viene eseguito in modalità utente e non richiede una password. Durante la distribuzione dell'app, il `DefaultConnection` valore della chiave può essere sostituito con il valore di una variabile di ambiente. La variabile di ambiente può archiviare la stringa di connessione completa con credenziali riservate.
 
 > [!WARNING]
 > Le variabili di ambiente vengono in genere archiviate in testo normale e non crittografato. Se il computer o il processo è compromesso, le variabili di ambiente possono essere accessibili da entità non attendibili. Potrebbero essere necessarie misure aggiuntive per impedire la divulgazione di segreti utente.
@@ -191,7 +192,7 @@ Un approccio più sicuro consiste nell'archiviare la password come segreto. Ad e
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Rimuovere la `Password` coppia chiave-valore dalla stringa di connessione in *appsettings.js*. Ad esempio:
+Rimuovere la `Password` coppia chiave-valore dalla stringa di connessione in *appsettings.json* . Ad esempio:
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
 
@@ -216,7 +217,7 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-Nell'esempio precedente, i due punti nei nomi delle chiavi indicano la gerarchia di oggetti all'interno *secrets.js*.
+Nell'esempio precedente, i due punti nei nomi delle chiavi indicano la gerarchia di oggetti all'interno *secrets.js* .
 
 ## <a name="remove-a-single-secret"></a>Rimuovere un singolo segreto
 
@@ -228,7 +229,7 @@ Eseguire il comando seguente dalla directory in cui è presente il file con *est
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
-Ilsecrets.jsdell'app * nel* file è stato modificato per rimuovere la coppia chiave-valore associata alla `MoviesConnectionString` chiave:
+Ilsecrets.jsdell'app *nel* file è stato modificato per rimuovere la coppia chiave-valore associata alla `MoviesConnectionString` chiave:
 
 ```json
 {
@@ -286,7 +287,7 @@ Questo documento illustra le tecniche per l'archiviazione e il recupero di dati 
 
 Le variabili di ambiente vengono usate per evitare l'archiviazione di segreti dell'app nel codice o nei file di configurazione locali. Le variabili di ambiente sostituiscono i valori di configurazione per tutte le origini di configurazione precedentemente specificate.
 
-Si consideri un'app Web ASP.NET Core in cui è abilitata la sicurezza dei **singoli account utente** . Una stringa di connessione al database predefinita viene inclusa nel *appsettings.js* del progetto nel file con la chiave `DefaultConnection` . La stringa di connessione predefinita è per il database locale, che viene eseguito in modalità utente e non richiede una password. Durante la distribuzione dell'app, il `DefaultConnection` valore della chiave può essere sostituito con il valore di una variabile di ambiente. La variabile di ambiente può archiviare la stringa di connessione completa con credenziali riservate.
+Si consideri un'app Web ASP.NET Core in cui è abilitata la sicurezza dei **singoli account utente** . Una stringa di connessione al database predefinita viene inclusa nel file del progetto *appsettings.json* con la chiave `DefaultConnection` . La stringa di connessione predefinita è per il database locale, che viene eseguito in modalità utente e non richiede una password. Durante la distribuzione dell'app, il `DefaultConnection` valore della chiave può essere sostituito con il valore di una variabile di ambiente. La variabile di ambiente può archiviare la stringa di connessione completa con credenziali riservate.
 
 > [!WARNING]
 > Le variabili di ambiente vengono in genere archiviate in testo normale e non crittografato. Se il computer o il processo è compromesso, le variabili di ambiente possono essere accessibili da entità non attendibili. Potrebbero essere necessarie misure aggiuntive per impedire la divulgazione di segreti utente.
@@ -436,7 +437,7 @@ Un approccio più sicuro consiste nell'archiviare la password come segreto. Ad e
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Rimuovere la `Password` coppia chiave-valore dalla stringa di connessione in *appsettings.js*. Ad esempio:
+Rimuovere la `Password` coppia chiave-valore dalla stringa di connessione in *appsettings.json* . Ad esempio:
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings.json?highlight=3)]
 
@@ -461,7 +462,7 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-Nell'esempio precedente, i due punti nei nomi delle chiavi indicano la gerarchia di oggetti all'interno *secrets.js*.
+Nell'esempio precedente, i due punti nei nomi delle chiavi indicano la gerarchia di oggetti all'interno *secrets.js* .
 
 ## <a name="remove-a-single-secret"></a>Rimuovere un singolo segreto
 
@@ -473,7 +474,7 @@ Eseguire il comando seguente dalla directory in cui è presente il file con *est
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
-Ilsecrets.jsdell'app * nel* file è stato modificato per rimuovere la coppia chiave-valore associata alla `MoviesConnectionString` chiave:
+Ilsecrets.jsdell'app *nel* file è stato modificato per rimuovere la coppia chiave-valore associata alla `MoviesConnectionString` chiave:
 
 ```json
 {

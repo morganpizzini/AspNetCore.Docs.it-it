@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/03/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: 11237c93832e095abb03d761773d213dfa336052
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b120aa4ab6922445f2c53f3b1cb3bd5c159d8a84
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633890"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057830"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>Servizi gRPC con ASP.NET Core
 
@@ -66,7 +67,7 @@ gRPC richiede il pacchetto [gRPC. AspNetCore](https://www.nuget.org/packages/Grp
 
 ### <a name="configure-grpc"></a>Configurare gRPC
 
-In *Startup.cs*:
+In *Startup.cs* :
 
 * gRPC è abilitato con il `AddGrpc` metodo.
 * Ogni servizio gRPC viene aggiunto alla pipeline di routing tramite il `MapGrpcService` metodo.
@@ -93,11 +94,11 @@ Gheppio [supporta http/2](xref:fundamentals/servers/kestrel#http2-support) nei s
 
 Gli endpoint gheppio usati per gRPC devono essere protetti con TLS. In fase di sviluppo, un endpoint protetto con TLS viene creato automaticamente in corrispondenza del momento in `https://localhost:5001` cui è presente il certificato di sviluppo ASP.NET Core. Non è richiesta alcuna configurazione. Un `https` prefisso verifica che l'endpoint gheppio stia usando TLS.
 
-In produzione, è necessario configurare in modo esplicito TLS. Nell' *appsettings.js* seguente, ad esempio, viene fornito un endpoint HTTP/2 protetto con TLS:
+In produzione, è necessario configurare in modo esplicito TLS. Nell'esempio seguente *appsettings.json* viene fornito un endpoint HTTP/2 protetto con TLS:
 
 [!code-json[](~/grpc/aspnetcore/sample/appsettings.json?highlight=4)]
 
-In alternativa, è possibile configurare gli endpoint gheppio in *Program.cs*:
+In alternativa, è possibile configurare gli endpoint gheppio in *Program.cs* :
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 

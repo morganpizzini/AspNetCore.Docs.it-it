@@ -6,6 +6,7 @@ ms.author: casoper
 ms.custom: devx-track-csharp, mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/next-steps
-ms.openlocfilehash: 59c6bba7e5d05bbb6ef7db65bbedf70c4524b092
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 35b0486611cc15f25b1c8b54584c264e4c1298c9
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625349"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056595"
 ---
 # <a name="next-steps"></a>Passaggi successivi
 
-In questa guida è stata creata una pipeline DevOps per un'app di esempio ASP.NET Core. Congratulazioni. Ci auguriamo che tu abbia goduto di imparare a pubblicare ASP.NET Core app Web per app Azure servizio e automatizzare l'integrazione continuativa delle modifiche.
+In questa guida è stata creata una pipeline DevOps per un'app di esempio ASP.NET Core. Congratulazioni! Ci auguriamo che tu abbia goduto di imparare a pubblicare ASP.NET Core app Web per app Azure servizio e automatizzare l'integrazione continuativa delle modifiche.
 
 Oltre all'hosting Web e a DevOps, Azure offre un'ampia gamma di servizi PaaS (Platform-as-a-Service) utili per ASP.NET Core gli sviluppatori. Questa sezione fornisce una breve panoramica di alcuni dei servizi usati più di frequente.
 
@@ -44,7 +45,7 @@ Il [database SQL di Azure](/azure/sql-database/) offre funzionalità di database
 
 [Azure Active Directory](/azure/active-directory/) e [Azure Active Directory B2C](/azure/active-directory-b2c/) sono entrambi servizi di identità. Azure Active Directory è progettato per gli scenari aziendali e consente la collaborazione Azure AD B2B (business to business), mentre Azure Active Directory B2C è concepita per gli scenari business-to-Customer, incluso l'accesso ai social network.
 
-## <a name="mobile"></a>Mobile
+## <a name="mobile"></a>Dispositivi mobili
 
 [Hub di notifica](/azure/notification-hubs/) è un motore di notifiche push multipiattaforma e scalabile che consente di inviare rapidamente milioni di messaggi alle app in esecuzione su diversi tipi di dispositivi.
 

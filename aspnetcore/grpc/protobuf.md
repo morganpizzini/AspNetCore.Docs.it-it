@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/23/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/protobuf
-ms.openlocfilehash: ea46e04bc4aa6269efbf8917d5f32194402a66ef
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: b70a5ee00405eecfce900b86dc631a54682dce1a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722696"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058896"
 ---
 # <a name="create-protobuf-messages-for-net-apps"></a>Creare messaggi protobuf per le app .NET
 
@@ -95,7 +96,7 @@ I tipi scalari nativi non forniscono i valori di data e ora, equivalenti a. NET 
 
 La tabella seguente illustra i tipi di data e ora:
 
-| Tipo .NET        | Tipo noto protobuf    |
+| Tipo .NET        | Tipo Well-Known protobuf    |
 | ---------------- | --------------------------- |
 | `DateTimeOffset` | `google.protobuf.Timestamp` |
 | `DateTime`       | `google.protobuf.Timestamp` |
@@ -136,7 +137,7 @@ var duration = meeting.Duration?.ToTimeSpan();
 
 La generazione di codice protobuf per C# usa i tipi nativi, ad esempio `int` per `int32` . Pertanto, i valori vengono sempre inclusi e non possono essere `null` .
 
-Per i valori che richiedono esplicito `null` , ad esempio l'uso `int?` di nel codice c#, i tipi noti di protobuf includono wrapper compilati in tipi c# Nullable. Per usarli, importare `wrappers.proto` nel `.proto` file, come nel codice seguente:
+Per i valori che richiedono esplicito `null` , ad esempio l'uso `int?` di nel codice c#, i tipi di Well-Known di protobuf includono wrapper compilati in tipi c# Nullable. Per usarli, importare `wrappers.proto` nel `.proto` file, come nel codice seguente:
 
 ```protobuf  
 syntax = "proto3"
@@ -153,7 +154,7 @@ message Person {
 
 La tabella seguente mostra l'elenco completo dei tipi di wrapper con il tipo C# equivalente:
 
-| Tipo C#      | Wrapper di tipi noti       |
+| Tipo C#      | Wrapper di tipo Well-Known       |
 | ------------ | ----------------------------- |
 | `bool?`      | `google.protobuf.BoolValue`   |
 | `double?`    | `google.protobuf.DoubleValue` |
@@ -188,7 +189,7 @@ await File.WriteAllBytesAsync(path, payload.Data.ToByteArray());
 
 ### <a name="decimals"></a>Decimali
 
-Protobuf non supporta in modo nativo il `decimal` tipo .NET, solo `double` e `float` . Nel progetto protobuf è presente una discussione continuativa sulla possibilità di aggiungere un tipo decimale standard ai tipi noti, con supporto della piattaforma per linguaggi e Framework che lo supportano. Non è stato ancora implementato alcun elemento.
+Protobuf non supporta in modo nativo il `decimal` tipo .NET, solo `double` e `float` . Nel progetto protobuf è presente una discussione continuativa sulla possibilità di aggiungere un tipo decimale standard ai tipi di Well-Known, con supporto della piattaforma per linguaggi e Framework che lo supportano. Non è stato ancora implementato alcun elemento.
 
 È possibile creare una definizione di messaggio per rappresentare il `decimal` tipo che funziona per la serializzazione sicura tra client e server .NET. Gli sviluppatori su altre piattaforme dovrebbero tuttavia comprendere il formato usato e implementare la propria gestione per l'it.
 
@@ -388,7 +389,7 @@ switch (response.ResultCase)
 
 ### <a name="value"></a>Valore
 
-Il `Value` tipo rappresenta un valore tipizzato dinamicamente. Può essere `null` , un numero, una stringa, un valore booleano, un dizionario di valori ( `Struct` ) o un elenco di valori ( `ValueList` ). `Value` è un tipo noto protobuf che usa la funzionalità descritta in precedenza `oneof` . Per utilizzare il `Value` tipo, Import `struct.proto` .
+Il `Value` tipo rappresenta un valore tipizzato dinamicamente. Può essere `null` , un numero, una stringa, un valore booleano, un dizionario di valori ( `Struct` ) o un elenco di valori ( `ValueList` ). `Value` è un tipo di Well-Known protobuf che utilizza la funzionalità descritta in precedenza `oneof` . Per utilizzare il `Value` tipo, Import `struct.proto` .
 
 ```protobuf
 import "google/protobuf/struct.proto";

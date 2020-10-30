@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: d4df10f9450ca956d7b1a4297caa63cdd0caf23e
-ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
+ms.openlocfilehash: 31a738e7aa8779171dfa09a5678d7240b8f62343
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/16/2020
-ms.locfileid: "92113751"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057232"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Ospitare ASP.NET Core in un servizio Windows
 
@@ -58,10 +59,10 @@ L'app richiede un riferimento al pacchetto per [Microsoft. Extensions. Hosting. 
 * Abilita la registrazione nel registro eventi:
   * Il nome dell'applicazione viene usato come nome di origine predefinito.
   * Il livello di registrazione predefinito è *avviso* o superiore per un'app basata su un modello di ASP.NET Core che chiama `CreateDefaultBuilder` per compilare l'host.
-  * Eseguire l'override del livello di registrazione predefinito con la `Logging:EventLog:LogLevel:Default` chiave in *appsettings.jssu* / *appSettings. { Environment}. JSON* o un altro provider di configurazione.
+  * Eseguire l'override del livello di registrazione predefinito con la `Logging:EventLog:LogLevel:Default` chiave in *appsettings.json* / *appSettings. { Environment}. JSON* o un altro provider di configurazione.
   * Solo gli amministratori possono creare nuove origini eventi. Quando non è possibile creare un'origine evento usando il nome dell'applicazione, viene registrato un avviso nell'origine *Applicazione* e i log eventi vengono disabilitati.
 
-In `CreateHostBuilder` di *Program.cs*:
+In `CreateHostBuilder` di *Program.cs* :
 
 ```csharp
 Host.CreateDefaultBuilder(args)
@@ -96,9 +97,9 @@ Se il servizio esegue solo attività in background, ad esempio [servizi ospitati
 
 ### <a name="framework-dependent-deployment-fdd"></a>Distribuzione dipendente dal framework
 
-La distribuzione dipendente dal framework si basa sulla presenza di una versione condivisa a livello di sistema di .NET Core nel sistema di destinazione. Quando lo scenario di distribuzione dipendente dal framework viene implementato in base alle indicazioni di questo articolo, l'SDK genera un file eseguibile (con estensione *exe*) detto *eseguibile dipendente dal framework*.
+La distribuzione dipendente dal framework si basa sulla presenza di una versione condivisa a livello di sistema di .NET Core nel sistema di destinazione. Quando lo scenario di distribuzione dipendente dal framework viene implementato in base alle indicazioni di questo articolo, l'SDK genera un file eseguibile (con estensione *exe* ) detto *eseguibile dipendente dal framework* .
 
-Se si usa l' [SDK Web](#sdk), un file di *web.config* , che in genere viene prodotto durante la pubblicazione di un'app ASP.NET Core, non è necessario per un'app dei servizi Windows. Per disabilitare la creazione del file *web.config*, aggiungere la proprietà `<IsTransformWebConfigDisabled>` impostata su `true`.
+Se si usa l' [SDK Web](#sdk), un file di *web.config* , che in genere viene prodotto durante la pubblicazione di un'app ASP.NET Core, non è necessario per un'app dei servizi Windows. Per disabilitare la creazione del file *web.config* , aggiungere la proprietà `<IsTransformWebConfigDisabled>` impostata su `true`.
 
 ```xml
 <PropertyGroup>
@@ -152,13 +153,13 @@ Un approccio alternativo per la gestione degli utenti quando si usa Active Direc
 
 Per stabilire i diritti *Accesso come servizio* per un account utente di servizio:
 
-1. Aprire l'editor Criteri di sicurezza locali eseguendo *secpol.msc*.
-1. Espandere il nodo **Criteri locali** e selezionare **Assegnazione diritti utente**.
-1. Aprire il criterio **Accesso come servizio**.
-1. Selezionare **Aggiungi utente o gruppo**.
+1. Aprire l'editor Criteri di sicurezza locali eseguendo *secpol.msc* .
+1. Espandere il nodo **Criteri locali** e selezionare **Assegnazione diritti utente** .
+1. Aprire il criterio **Accesso come servizio** .
+1. Selezionare **Aggiungi utente o gruppo** .
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova** . Selezionare l'account utente dall'elenco. Selezionare **OK** . Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows
@@ -227,7 +228,7 @@ Remove-Service -Name {SERVICE NAME}
 
 ## <a name="proxy-server-and-load-balancer-scenarios"></a>Scenari con server proxy e servizi di bilanciamento del carico
 
-I servizi che interagiscono con le richieste da Internet o da una rete aziendale e si trovano dietro un proxy o un servizio di bilanciamento del carico potrebbero richiedere una configurazione aggiuntiva. Per ulteriori informazioni, vedere <xref:host-and-deploy/proxy-load-balancer>.
+I servizi che interagiscono con le richieste da Internet o da una rete aziendale e si trovano dietro un proxy o un servizio di bilanciamento del carico potrebbero richiedere una configurazione aggiuntiva. Per altre informazioni, vedere <xref:host-and-deploy/proxy-load-balancer>.
 
 ## <a name="configure-endpoints"></a>Configurare gli endpoint
 
@@ -245,7 +246,7 @@ Le linee guida precedenti riguardano il supporto per gli endpoint HTTPS. Ad esem
 
 ## <a name="current-directory-and-content-root"></a>Directory corrente e radice del contenuto
 
-La directory di lavoro corrente restituita chiamando <xref:System.IO.Directory.GetCurrentDirectory*> per un servizio Windows è la cartella *C:\\WINDOWS\\system32*. La cartella *system32* non è un percorso appropriato per archiviare i file di un servizio, ad esempio i file di impostazioni. Usare uno degli approcci seguenti per gestire e accedere agli asset e ai file di impostazioni di un servizio.
+La directory di lavoro corrente restituita chiamando <xref:System.IO.Directory.GetCurrentDirectory*> per un servizio Windows è la cartella *C:\\WINDOWS\\system32* . La cartella *system32* non è un percorso appropriato per archiviare i file di un servizio, ad esempio i file di impostazioni. Usare uno degli approcci seguenti per gestire e accedere agli asset e ai file di impostazioni di un servizio.
 
 ### <a name="use-contentrootpath-or-contentrootfileprovider"></a>Usare ContentRootPath o ContentRootFileProvider
 
@@ -253,7 +254,7 @@ Usare [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHost
 
 Quando l'app viene eseguita come servizio, <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> imposta <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> su [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory).
 
-I file di impostazioni predefinite dell'app, *appsettings.jssu* e *appSettings. { Environment}. JSON*, viene caricato dalla radice del contenuto dell'app chiamando [CreateDefaultBuilder durante la costruzione dell'host](xref:fundamentals/host/generic-host#set-up-a-host).
+I file di impostazioni predefinite dell'app *appsettings.json* e *appSettings. { Environment}. JSON* , viene caricato dalla radice del contenuto dell'app chiamando [CreateDefaultBuilder durante la costruzione dell'host](xref:fundamentals/host/generic-host#set-up-a-host).
 
 Per gli altri file di impostazioni caricati dal codice Developer in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> , non è necessario chiamare <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> . Nell'esempio seguente, il *custom_settings.js* nel file è presente nella radice del contenuto dell'app e viene caricato senza impostare esplicitamente un percorso di base:
 
@@ -276,7 +277,7 @@ Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:tes
   * *bin/Release/{Target Framework}/Publish* (FDD)
   * *bin/Release/{Target Framework}/{Runtime Identifier}/Publish* (SCD)
 * Il servizio non è nello stato in esecuzione.
-* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c: \\ Windows \\ system32*.
+* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c: \\ Windows \\ system32* .
 * L'utente non dispone *di diritti di accesso come servizio* .
 * La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione del `New-Service` comando di PowerShell.
 * L'app richiede l'autenticazione ASP.NET Core ma non è configurata per le connessioni protette (HTTPS).
@@ -286,8 +287,8 @@ Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:tes
 
 Accedere ai registri eventi di sistema e dell'applicazione:
 
-1. Aprire il menu Start, cercare *Visualizzatore eventi*e selezionare l'app **Visualizzatore eventi** .
-1. In **Visualizzatore eventi** aprire il nodo **Registri di Windows**.
+1. Aprire il menu Start, cercare *Visualizzatore eventi* e selezionare l'app **Visualizzatore eventi** .
+1. In **Visualizzatore eventi** aprire il nodo **Registri di Windows** .
 1. Selezionare **sistema** per aprire il registro eventi di sistema. Selezionare **Applicazione** per aprire il log eventi dell'applicazione.
 1. Cercare gli errori associati all'app in cui si è verificato il problema.
 
@@ -299,7 +300,7 @@ Molti errori di avvio non producono informazioni utili nei log eventi. È possib
 
 Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del .NET Core SDK nel computer di sviluppo o la modifica delle versioni del pacchetto all'interno dell'app. In alcuni casi i pacchetti incoerenti possono interrompere un'app quando si eseguono aggiornamenti principali. La maggior parte di questi problemi può essere risolta attenendosi alle istruzioni seguenti:
 
-1. Eliminare le cartelle *bin* e *obj*.
+1. Eliminare le cartelle *bin* e *obj* .
 1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
    La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [nuget.exe](https://www.nuget.org/downloads) e l'esecuzione del comando `nuget locals all -clear` . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
@@ -372,7 +373,7 @@ Per eseguire test e debug durante l'esecuzione all'esterno di un servizio, aggiu
 
 Dato che il [provider di configurazione della riga di comando](xref:fundamentals/configuration/index#command-line-configuration-provider) richiede coppie nome-valore per gli argomenti della riga di comando, l'opzione `--console` viene rimossa dagli argomenti prima che <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> riceva gli argomenti.
 
-Per scrivere nel registro eventi di Windows, aggiungere il provider EventLog a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*>. Impostare il livello di registrazione con la chiave `Logging:LogLevel:Default` nel file *appsettings.Production.json*.
+Per scrivere nel registro eventi di Windows, aggiungere il provider EventLog a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*>. Impostare il livello di registrazione con la chiave `Logging:LogLevel:Default` nel file *appsettings.Production.json* .
 
 Nel seguente esempio dell'app di esempio, viene chiamato `RunAsCustomService` invece di <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostWindowsServiceExtensions.RunAsService*> per gestire gli eventi di durata all'interno dell'app. Per altre informazioni, vedere la sezione [Gestire gli eventi di avvio e arresto](#handle-starting-and-stopping-events).
 
@@ -398,11 +399,11 @@ Se il servizio esegue solo attività in background, ad esempio [servizi ospitati
 
 ### <a name="framework-dependent-deployment-fdd"></a>Distribuzione dipendente dal framework
 
-La distribuzione dipendente dal framework si basa sulla presenza di una versione condivisa a livello di sistema di .NET Core nel sistema di destinazione. Quando lo scenario di distribuzione dipendente dal framework viene implementato in base alle indicazioni di questo articolo, l'SDK genera un file eseguibile (con estensione *exe*) detto *eseguibile dipendente dal framework*.
+La distribuzione dipendente dal framework si basa sulla presenza di una versione condivisa a livello di sistema di .NET Core nel sistema di destinazione. Quando lo scenario di distribuzione dipendente dal framework viene implementato in base alle indicazioni di questo articolo, l'SDK genera un file eseguibile (con estensione *exe* ) detto *eseguibile dipendente dal framework* .
 
-L'identificatore di Windows [Runtime (RID)](/dotnet/core/rid-catalog) ( [\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier) ) contiene il Framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe*) per Windows e un'app che dipende dal framework .NET Core condiviso.
+L'identificatore di Windows [Runtime (RID)](/dotnet/core/rid-catalog) ( [\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier) ) contiene il Framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe* ) per Windows e un'app che dipende dal framework .NET Core condiviso.
 
-Un file *web.config*, che viene normalmente generato quando si pubblica un'app ASP.NET Core, non è necessario per un'app di servizi Windows. Per disabilitare la creazione del file *web.config*, aggiungere la proprietà `<IsTransformWebConfigDisabled>` impostata su `true`.
+Un file *web.config* , che viene normalmente generato quando si pubblica un'app ASP.NET Core, non è necessario per un'app di servizi Windows. Per disabilitare la creazione del file *web.config* , aggiungere la proprietà `<IsTransformWebConfigDisabled>` impostata su `true`.
 
 ```xml
 <PropertyGroup>
@@ -464,13 +465,13 @@ Un approccio alternativo per la gestione degli utenti quando si usa Active Direc
 
 Per stabilire i diritti *Accesso come servizio* per un account utente di servizio:
 
-1. Aprire l'editor Criteri di sicurezza locali eseguendo *secpol.msc*.
-1. Espandere il nodo **Criteri locali** e selezionare **Assegnazione diritti utente**.
-1. Aprire il criterio **Accesso come servizio**.
-1. Selezionare **Aggiungi utente o gruppo**.
+1. Aprire l'editor Criteri di sicurezza locali eseguendo *secpol.msc* .
+1. Espandere il nodo **Criteri locali** e selezionare **Assegnazione diritti utente** .
+1. Aprire il criterio **Accesso come servizio** .
+1. Selezionare **Aggiungi utente o gruppo** .
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova** . Selezionare l'account utente dall'elenco. Selezionare **OK** . Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows
@@ -559,7 +560,7 @@ Per gestire gli eventi <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHos
 
 ## <a name="proxy-server-and-load-balancer-scenarios"></a>Scenari con server proxy e servizi di bilanciamento del carico
 
-I servizi che interagiscono con le richieste da Internet o da una rete aziendale e si trovano dietro un proxy o un servizio di bilanciamento del carico potrebbero richiedere una configurazione aggiuntiva. Per ulteriori informazioni, vedere <xref:host-and-deploy/proxy-load-balancer>.
+I servizi che interagiscono con le richieste da Internet o da una rete aziendale e si trovano dietro un proxy o un servizio di bilanciamento del carico potrebbero richiedere una configurazione aggiuntiva. Per altre informazioni, vedere <xref:host-and-deploy/proxy-load-balancer>.
 
 ## <a name="configure-endpoints"></a>Configurare gli endpoint
 
@@ -577,7 +578,7 @@ Le linee guida precedenti riguardano il supporto per gli endpoint HTTPS. Ad esem
 
 ## <a name="current-directory-and-content-root"></a>Directory corrente e radice del contenuto
 
-La directory di lavoro corrente restituita chiamando <xref:System.IO.Directory.GetCurrentDirectory*> per un servizio Windows è la cartella *C:\\WINDOWS\\system32*. La cartella *system32* non è un percorso appropriato per archiviare i file di un servizio, ad esempio i file di impostazioni. Usare uno degli approcci seguenti per gestire e accedere agli asset e ai file di impostazioni di un servizio.
+La directory di lavoro corrente restituita chiamando <xref:System.IO.Directory.GetCurrentDirectory*> per un servizio Windows è la cartella *C:\\WINDOWS\\system32* . La cartella *system32* non è un percorso appropriato per archiviare i file di un servizio, ad esempio i file di impostazioni. Usare uno degli approcci seguenti per gestire e accedere agli asset e ai file di impostazioni di un servizio.
 
 ### <a name="set-the-content-root-path-to-the-apps-folder"></a>Impostare il percorso radice del contenuto sulla cartella dell'app
 
@@ -610,7 +611,7 @@ Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:tes
   * *bin/Release/{Target Framework}/Publish* (FDD)
   * *bin/Release/{Target Framework}/{Runtime Identifier}/Publish* (SCD)
 * Il servizio non è nello stato in esecuzione.
-* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c: \\ Windows \\ system32*.
+* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c: \\ Windows \\ system32* .
 * L'utente non dispone *di diritti di accesso come servizio* .
 * La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione del `New-Service` comando di PowerShell.
 * L'app richiede l'autenticazione ASP.NET Core ma non è configurata per le connessioni protette (HTTPS).
@@ -620,8 +621,8 @@ Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:tes
 
 Accedere ai registri eventi di sistema e dell'applicazione:
 
-1. Aprire il menu Start, cercare *Visualizzatore eventi*e selezionare l'app **Visualizzatore eventi** .
-1. In **Visualizzatore eventi** aprire il nodo **Registri di Windows**.
+1. Aprire il menu Start, cercare *Visualizzatore eventi* e selezionare l'app **Visualizzatore eventi** .
+1. In **Visualizzatore eventi** aprire il nodo **Registri di Windows** .
 1. Selezionare **sistema** per aprire il registro eventi di sistema. Selezionare **Applicazione** per aprire il log eventi dell'applicazione.
 1. Cercare gli errori associati all'app in cui si è verificato il problema.
 
@@ -633,7 +634,7 @@ Molti errori di avvio non producono informazioni utili nei log eventi. È possib
 
 Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del .NET Core SDK nel computer di sviluppo o la modifica delle versioni del pacchetto all'interno dell'app. In alcuni casi i pacchetti incoerenti possono interrompere un'app quando si eseguono aggiornamenti principali. La maggior parte di questi problemi può essere risolta attenendosi alle istruzioni seguenti:
 
-1. Eliminare le cartelle *bin* e *obj*.
+1. Eliminare le cartelle *bin* e *obj* .
 1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
    La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [nuget.exe](https://www.nuget.org/downloads) e l'esecuzione del comando `nuget locals all -clear` . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).
@@ -706,7 +707,7 @@ Per eseguire test e debug durante l'esecuzione all'esterno di un servizio, aggiu
 
 Dato che il [provider di configurazione della riga di comando](xref:fundamentals/configuration/index#command-line-configuration-provider) richiede coppie nome-valore per gli argomenti della riga di comando, l'opzione `--console` viene rimossa dagli argomenti prima che <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> riceva gli argomenti.
 
-Per scrivere nel registro eventi di Windows, aggiungere il provider EventLog a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*>. Impostare il livello di registrazione con la chiave `Logging:LogLevel:Default` nel file *appsettings.Production.json*.
+Per scrivere nel registro eventi di Windows, aggiungere il provider EventLog a <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*>. Impostare il livello di registrazione con la chiave `Logging:LogLevel:Default` nel file *appsettings.Production.json* .
 
 Nel seguente esempio dell'app di esempio, viene chiamato `RunAsCustomService` invece di <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostWindowsServiceExtensions.RunAsService*> per gestire gli eventi di durata all'interno dell'app. Per altre informazioni, vedere la sezione [Gestire gli eventi di avvio e arresto](#handle-starting-and-stopping-events).
 
@@ -732,13 +733,13 @@ Se il servizio esegue solo attività in background, ad esempio [servizi ospitati
 
 ### <a name="framework-dependent-deployment-fdd"></a>Distribuzione dipendente dal framework
 
-La distribuzione dipendente dal framework si basa sulla presenza di una versione condivisa a livello di sistema di .NET Core nel sistema di destinazione. Quando lo scenario di distribuzione dipendente dal framework viene implementato in base alle indicazioni di questo articolo, l'SDK genera un file eseguibile (con estensione *exe*) detto *eseguibile dipendente dal framework*.
+La distribuzione dipendente dal framework si basa sulla presenza di una versione condivisa a livello di sistema di .NET Core nel sistema di destinazione. Quando lo scenario di distribuzione dipendente dal framework viene implementato in base alle indicazioni di questo articolo, l'SDK genera un file eseguibile (con estensione *exe* ) detto *eseguibile dipendente dal framework* .
 
-L'identificatore di Windows [Runtime (RID)](/dotnet/core/rid-catalog) ( [\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier) ) contiene il Framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe*) per Windows e un'app che dipende dal framework .NET Core condiviso.
+L'identificatore di Windows [Runtime (RID)](/dotnet/core/rid-catalog) ( [\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier) ) contiene il Framework di destinazione. Nell'esempio seguente il RID è impostato su `win7-x64`. La proprietà `<SelfContained>` è impostata su `false`. Queste proprietà indicano all'SDK di generare un file eseguibile (con estensione *exe* ) per Windows e un'app che dipende dal framework .NET Core condiviso.
 
-La proprietà `<UseAppHost>` è impostata su `true`. Questa proprietà fornisce il servizio con un percorso di attivazione (un file eseguibile, *.exe*) per una distribuzione dipendente dal framework.
+La proprietà `<UseAppHost>` è impostata su `true`. Questa proprietà fornisce il servizio con un percorso di attivazione (un file eseguibile, *.exe* ) per una distribuzione dipendente dal framework.
 
-Un file *web.config*, che viene normalmente generato quando si pubblica un'app ASP.NET Core, non è necessario per un'app di servizi Windows. Per disabilitare la creazione del file *web.config*, aggiungere la proprietà `<IsTransformWebConfigDisabled>` impostata su `true`.
+Un file *web.config* , che viene normalmente generato quando si pubblica un'app ASP.NET Core, non è necessario per un'app di servizi Windows. Per disabilitare la creazione del file *web.config* , aggiungere la proprietà `<IsTransformWebConfigDisabled>` impostata su `true`.
 
 ```xml
 <PropertyGroup>
@@ -801,13 +802,13 @@ Un approccio alternativo per la gestione degli utenti quando si usa Active Direc
 
 Per stabilire i diritti *Accesso come servizio* per un account utente di servizio:
 
-1. Aprire l'editor Criteri di sicurezza locali eseguendo *secpol.msc*.
-1. Espandere il nodo **Criteri locali** e selezionare **Assegnazione diritti utente**.
-1. Aprire il criterio **Accesso come servizio**.
-1. Selezionare **Aggiungi utente o gruppo**.
+1. Aprire l'editor Criteri di sicurezza locali eseguendo *secpol.msc* .
+1. Espandere il nodo **Criteri locali** e selezionare **Assegnazione diritti utente** .
+1. Aprire il criterio **Accesso come servizio** .
+1. Selezionare **Aggiungi utente o gruppo** .
 1. Specificare il nome oggetto (account utente) in uno dei modi seguenti:
    1. Digitare l'account utente (`{DOMAIN OR COMPUTER NAME\USER}`) nel campo del nome oggetto e scegliere **OK** per aggiungere l'utente al criterio.
-   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova**. Selezionare l'account utente dall'elenco. Selezionare **OK**. Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
+   1. Fare clic su **Advanced** (Avanzate). Selezionare **Trova** . Selezionare l'account utente dall'elenco. Selezionare **OK** . Scegliere di nuovo **OK** per aggiungere l'utente al criterio.
 1. Scegliere **OK** o **Applica** per accettare le modifiche.
 
 ## <a name="create-and-manage-the-windows-service"></a>Creare e gestire il servizio di Windows
@@ -896,7 +897,7 @@ Per gestire gli eventi <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHos
 
 ## <a name="proxy-server-and-load-balancer-scenarios"></a>Scenari con server proxy e servizi di bilanciamento del carico
 
-I servizi che interagiscono con le richieste da Internet o da una rete aziendale e si trovano dietro un proxy o un servizio di bilanciamento del carico potrebbero richiedere una configurazione aggiuntiva. Per ulteriori informazioni, vedere <xref:host-and-deploy/proxy-load-balancer>.
+I servizi che interagiscono con le richieste da Internet o da una rete aziendale e si trovano dietro un proxy o un servizio di bilanciamento del carico potrebbero richiedere una configurazione aggiuntiva. Per altre informazioni, vedere <xref:host-and-deploy/proxy-load-balancer>.
 
 ## <a name="configure-endpoints"></a>Configurare gli endpoint
 
@@ -914,7 +915,7 @@ Le linee guida precedenti riguardano il supporto per gli endpoint HTTPS. Ad esem
 
 ## <a name="current-directory-and-content-root"></a>Directory corrente e radice del contenuto
 
-La directory di lavoro corrente restituita chiamando <xref:System.IO.Directory.GetCurrentDirectory*> per un servizio Windows è la cartella *C:\\WINDOWS\\system32*. La cartella *system32* non è un percorso appropriato per archiviare i file di un servizio, ad esempio i file di impostazioni. Usare uno degli approcci seguenti per gestire e accedere agli asset e ai file di impostazioni di un servizio.
+La directory di lavoro corrente restituita chiamando <xref:System.IO.Directory.GetCurrentDirectory*> per un servizio Windows è la cartella *C:\\WINDOWS\\system32* . La cartella *system32* non è un percorso appropriato per archiviare i file di un servizio, ad esempio i file di impostazioni. Usare uno degli approcci seguenti per gestire e accedere agli asset e ai file di impostazioni di un servizio.
 
 ### <a name="set-the-content-root-path-to-the-apps-folder"></a>Impostare il percorso radice del contenuto sulla cartella dell'app
 
@@ -947,7 +948,7 @@ Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:tes
   * *bin/Release/{Target Framework}/Publish* (FDD)
   * *bin/Release/{Target Framework}/{Runtime Identifier}/Publish* (SCD)
 * Il servizio non è nello stato in esecuzione.
-* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c: \\ Windows \\ system32*.
+* I percorsi delle risorse utilizzate dall'app, ad esempio i certificati, non sono corretti. Il percorso di base di un servizio Windows è *c: \\ Windows \\ system32* .
 * L'utente non dispone *di diritti di accesso come servizio* .
 * La password dell'utente è scaduta o non è stata passata correttamente durante l'esecuzione del `New-Service` comando di PowerShell.
 * L'app richiede l'autenticazione ASP.NET Core ma non è configurata per le connessioni protette (HTTPS).
@@ -957,8 +958,8 @@ Per risolvere i problemi relativi a un'app di servizio Windows, vedere <xref:tes
 
 Accedere ai registri eventi di sistema e dell'applicazione:
 
-1. Aprire il menu Start, cercare *Visualizzatore eventi*e selezionare l'app **Visualizzatore eventi** .
-1. In **Visualizzatore eventi** aprire il nodo **Registri di Windows**.
+1. Aprire il menu Start, cercare *Visualizzatore eventi* e selezionare l'app **Visualizzatore eventi** .
+1. In **Visualizzatore eventi** aprire il nodo **Registri di Windows** .
 1. Selezionare **sistema** per aprire il registro eventi di sistema. Selezionare **Applicazione** per aprire il log eventi dell'applicazione.
 1. Cercare gli errori associati all'app in cui si è verificato il problema.
 
@@ -970,7 +971,7 @@ Molti errori di avvio non producono informazioni utili nei log eventi. È possib
 
 Un'app funzionante potrebbe non riuscire immediatamente dopo l'aggiornamento del .NET Core SDK nel computer di sviluppo o la modifica delle versioni del pacchetto all'interno dell'app. In alcuni casi i pacchetti incoerenti possono interrompere un'app quando si eseguono aggiornamenti principali. La maggior parte di questi problemi può essere risolta attenendosi alle istruzioni seguenti:
 
-1. Eliminare le cartelle *bin* e *obj*.
+1. Eliminare le cartelle *bin* e *obj* .
 1. Cancellare le cache dei pacchetti eseguendo [le impostazioni locali di DotNet NuGet All--Clear](/dotnet/core/tools/dotnet-nuget-locals) da una shell dei comandi.
 
    La cancellazione delle cache dei pacchetti può essere eseguita anche con lo strumento [nuget.exe](https://www.nuget.org/downloads) e l'esecuzione del comando `nuget locals all -clear` . *nuget.exe* non è un'installazione inclusa con il sistema operativo desktop Windows e deve essere ottenuta separatamente dal [sito Web NuGet](https://www.nuget.org/downloads).

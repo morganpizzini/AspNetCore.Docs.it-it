@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc, devx-track-azurecli
 ms.date: 05/20/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: b12f4b10230f2631392011a6e443156bf9a2d843
-ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
+ms.openlocfilehash: efd2208044ad6392131216266afc34187d738b78
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/23/2020
-ms.locfileid: "92491444"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058974"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testare le API Web con il ciclo Read-Eval-Print (REPL) HTTP
 
@@ -565,7 +566,7 @@ Parametro di route, se presente, previsto dal metodo di azione del controller as
 
 Per inviare una richiesta HTTP PUT:
 
-1. *Facoltativo*: eseguire il `get` comando per visualizzare i dati prima di modificarli:
+1. *Facoltativo* : eseguire il `get` comando per visualizzare i dati prima di modificarli:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -627,7 +628,7 @@ Per inviare una richiesta HTTP PUT:
     Server: Kestrel
     ```
 
-1. *Facoltativo*: eseguire un `get` comando per visualizzare le modifiche. Ad esempio, se si digita "Cherry" nell'editor di testo, `get` restituisce quanto segue:
+1. *Facoltativo* : eseguire un `get` comando per visualizzare le modifiche. Ad esempio, se si digita "Cherry" nell'editor di testo, `get` restituisce quanto segue:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -678,7 +679,7 @@ Parametro di route, se presente, previsto dal metodo di azione del controller as
 
 Per inviare una richiesta HTTP DELETE:
 
-1. *Facoltativo*: eseguire il `get` comando per visualizzare i dati prima di modificarli:
+1. *Facoltativo* : eseguire il `get` comando per visualizzare i dati prima di modificarli:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -718,7 +719,7 @@ Per inviare una richiesta HTTP DELETE:
     Server: Kestrel
     ```
 
-1. *Facoltativo*: eseguire un `get` comando per visualizzare le modifiche. In questo esempio `get` restituisce quanto segue:
+1. *Facoltativo* : eseguire un `get` comando per visualizzare le modifiche. In questo esempio `get` restituisce quanto segue:
 
     ```console
     https://localhost:5001/fruits~ get

@@ -6,6 +6,7 @@ ms.author: casoper
 ms.custom: devx-track-csharp, mvc, seodec18
 ms.date: 07/10/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/monitor
-ms.openlocfilehash: d5d5189563760cb8a61c188436caa3838e75a31e
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 74e789828bf5d54e3457f235657f8ed7086df80d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626909"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056751"
 ---
 # <a name="monitor-and-debug"></a>Monitorare ed eseguire il debug
 
@@ -34,7 +35,7 @@ In questa sezione verranno completate le attività seguenti:
 * Informazioni su come monitoraggio di Azure fornisce un'occhiata più approfondita alle metriche in tutti i servizi di Azure
 * Connettere l'app Web con Application Insights per la profilatura dell'app
 * Attivare la registrazione e scoprire dove scaricare i log
-* Streaming dei log in tempo reale
+* Eseguire lo streaming dei log in tempo reale
 * Informazioni su dove configurare gli avvisi
 * Informazioni sul debug remoto app Azure le app Web del servizio.
 
@@ -42,17 +43,17 @@ In questa sezione verranno completate le attività seguenti:
 
 Le app Web del servizio app sono facilmente monitorate in tempo reale. Il portale di Azure esegue il rendering delle metriche in grafici e grafici di facile comprensione.
 
-1. Aprire il [portale di Azure](https://portal.azure.com), quindi passare al servizio app *MyWebApp \<unique_number\> * .
+1. Aprire il [portale di Azure](https://portal.azure.com), quindi passare al servizio app *MyWebApp \<unique_number\>* .
 
 1. Nella scheda **Panoramica** sono visualizzate informazioni utili, inclusi i grafici che visualizzano le metriche recenti.
 
     ![Screenshot che mostra il pannello Panoramica](./media/monitoring/overview.png)
 
-    * **Http 5xx**: numero di errori sul lato server, in genere eccezioni nel codice ASP.NET Core.
-    * **Dati in**: dati in ingresso nell'app Web.
-    * **Dati in uscita**: dati in uscita dall'app Web ai client.
-    * **Richieste**: numero di richieste HTTP.
-    * **Tempo medio di risposta**: tempo medio per l'app Web per rispondere alle richieste HTTP.
+    * **Http 5xx** : numero di errori sul lato server, in genere eccezioni nel codice ASP.NET Core.
+    * **Dati in** : dati in ingresso nell'app Web.
+    * **Dati in uscita** : dati in uscita dall'app Web ai client.
+    * **Richieste** : numero di richieste HTTP.
+    * **Tempo medio di risposta** : tempo medio per l'app Web per rispondere alle richieste HTTP.
 
     In questa pagina sono disponibili anche diversi strumenti self-service per la risoluzione dei problemi e l'ottimizzazione.
 
@@ -70,7 +71,7 @@ Le app Web del servizio app sono facilmente monitorate in tempo reale. Il portal
 
 [Application Insights](/azure/application-insights/app-insights-overview) è un servizio di Azure per analizzare le prestazioni e la stabilità delle app Web e il modo in cui gli utenti le usano. I dati di Application Insights sono più ampi e più profondi rispetto a quelli di monitoraggio di Azure. I dati possono fornire a sviluppatori e amministratori informazioni chiave per migliorare le app. Application Insights possono essere aggiunti a una risorsa del servizio app Azure senza modifiche al codice.
 
-1. Aprire il [portale di Azure](https://portal.azure.com), quindi passare al servizio app *MyWebApp \<unique_number\> * .
+1. Aprire il [portale di Azure](https://portal.azure.com), quindi passare al servizio app *MyWebApp \<unique_number\>* .
 1. Nella scheda **Panoramica** fare clic sul riquadro **Application Insights** .
 
     ![Riquadro Application Insights](./media/monitoring/app-insights.png)
@@ -79,8 +80,8 @@ Le app Web del servizio app sono facilmente monitorate in tempo reale. Il portal
 
     ![Installazione di Application Insights](./media/monitoring/new-app-insights.png)
 
-1. Per **Runtime/Framework**, selezionare **ASP.NET Core**. Accettare le impostazioni predefinite.
-1. Selezionare **OK**. Se viene richiesto di confermare, selezionare **continua**.
+1. Per **Runtime/Framework** , selezionare **ASP.NET Core** . Accettare le impostazioni predefinite.
+1. Selezionare **OK** . Se viene richiesto di confermare, selezionare **continua** .
 1. Dopo aver creato la risorsa, fare clic sul nome della risorsa Application Insights per passare direttamente alla pagina Application Insights.
 
     ![La nuova risorsa Application Insights è pronta](./media/monitoring/new-app-insights-done.png)
@@ -95,15 +96,15 @@ Application Insights fornisce informazioni utili sul lato server senza alcuna co
 
 Il server Web e i log delle app sono disabilitati per impostazione predefinita nel servizio app Azure. Abilitare i log con i passaggi seguenti:
 
-1. Aprire il [portale di Azure](https://portal.azure.com)e passare al servizio app *MyWebApp \<unique_number\> * .
-1. Nel menu a sinistra scorrere verso il basso fino alla sezione **monitoraggio** . Selezionare **log di diagnostica**.
+1. Aprire il [portale di Azure](https://portal.azure.com)e passare al servizio app *MyWebApp \<unique_number\>* .
+1. Nel menu a sinistra scorrere verso il basso fino alla sezione **monitoraggio** . Selezionare **log di diagnostica** .
 
     ![Collegamento log di diagnostica](./media/monitoring/logging.png)
 
-1. Attivare la **registrazione delle applicazioni (filesystem)**. Se richiesto, fare clic sulla casella per installare le estensioni per abilitare la registrazione delle app nell'app Web.
-1. Impostare la **registrazione del server Web** sul **file System**.
+1. Attivare la **registrazione delle applicazioni (filesystem)** . Se richiesto, fare clic sulla casella per installare le estensioni per abilitare la registrazione delle app nell'app Web.
+1. Impostare la **registrazione del server Web** sul **file System** .
 1. Immettere il **periodo di conservazione** in giorni. Ad esempio, 30.
-1. Fare clic su **Salva**.
+1. Fare clic su **Salva** .
 
 ASP.NET Core e i log del server Web (servizio app) vengono generati per l'app Web. Possono essere scaricati usando le informazioni FTP/FTPS visualizzate. La password è identica a quella delle credenziali di distribuzione create in precedenza in questa guida. I log possono essere [trasmessi direttamente al computer locale con PowerShell o l'interfaccia della riga di comando di Azure](/azure/app-service/web-sites-enable-diagnostic-log#download). I log possono essere [visualizzati anche in Application Insights](/azure/app-service/web-sites-enable-diagnostic-log#how-to-view-logs-in-application-insights).
 
@@ -111,8 +112,8 @@ ASP.NET Core e i log del server Web (servizio app) vengono generati per l'app We
 
 I log del server Web e dell'app possono essere trasmessi in tempo reale tramite il portale.
 
-1. Aprire il [portale di Azure](https://portal.azure.com)e passare al servizio app *MyWebApp \<unique_number\> * .
-1. Nel menu a sinistra scorrere verso il basso fino alla sezione **monitoraggio** e selezionare **flusso di registrazione**.
+1. Aprire il [portale di Azure](https://portal.azure.com)e passare al servizio app *MyWebApp \<unique_number\>* .
+1. Nel menu a sinistra scorrere verso il basso fino alla sezione **monitoraggio** e selezionare **flusso di registrazione** .
 
     ![Screenshot che mostra il collegamento al flusso di log](./media/monitoring/log-stream.png)
 
@@ -132,7 +133,7 @@ Il [servizio avvisi (versione classica)](/azure/monitoring-and-diagnostics/monit
 
 App Azure servizio può essere sottoposto [a debug in remoto con Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug) quando i log non forniscono informazioni sufficienti. Tuttavia, il debug remoto richiede che l'app venga compilata con i simboli di debug. Il debug non deve essere eseguito nell'ambiente di produzione, tranne che come ultima risorsa.
 
-## <a name="conclusion"></a>Conclusioni
+## <a name="conclusion"></a>Conclusione
 
 In questa sezione sono state completate le attività seguenti:
 
@@ -140,7 +141,7 @@ In questa sezione sono state completate le attività seguenti:
 * Informazioni su come monitoraggio di Azure fornisce un'occhiata più approfondita alle metriche in tutti i servizi di Azure
 * Connettere l'app Web con Application Insights per la profilatura dell'app
 * Attivare la registrazione e scoprire dove scaricare i log
-* Streaming dei log in tempo reale
+* Eseguire lo streaming dei log in tempo reale
 * Informazioni su dove configurare gli avvisi
 * Informazioni sul debug remoto app Azure le app Web del servizio.
 

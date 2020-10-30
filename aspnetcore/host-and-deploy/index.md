@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/index
-ms.openlocfilehash: f8271d71f34487062484581ba6b3b8445a62439c
-ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
+ms.openlocfilehash: 19e888859cea35624491a516404c57e30aa9db05
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/16/2020
-ms.locfileid: "92113791"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057219"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hosting e distribuzione di ASP.NET Core
 
@@ -37,15 +38,15 @@ In generale, per distribuire un'app ASP.NET Core in un ambiente host:
 
 ## <a name="publish-to-a-folder"></a>Pubblicare in una cartella
 
-Il comando [dotnet publish](/dotnet/core/tools/dotnet-publish) compila il codice dell'app e copia il file necessario per eseguire l'app in una cartella *publish*. Quando si esegue la distribuzione da Visual Studio, il passaggio `dotnet publish` viene eseguito automaticamente prima della copia dei file nella destinazione di distribuzione.
+Il comando [dotnet publish](/dotnet/core/tools/dotnet-publish) compila il codice dell'app e copia il file necessario per eseguire l'app in una cartella *publish* . Quando si esegue la distribuzione da Visual Studio, il passaggio `dotnet publish` viene eseguito automaticamente prima della copia dei file nella destinazione di distribuzione.
 
 ### <a name="folder-contents"></a>Contenuto cartelle
 
 La cartella *publish* contiene uno o più file di assembly di app, le dipendenze e facoltativamente il runtime di .NET.
 
-È possibile pubblicare un'app .NET Core come *distribuzione indipendente* o come *distribuzione dipendente dal framework*. Se l'app è indipendente, i file di assembly che contengono il runtime .NET sono inclusi nella cartella *publish*. Se l'app è dipendente dal framework, i file di runtime .NET non sono inclusi, perché l'app contiene un riferimento a una versione di .NET installata nel server. Il modello di distribuzione predefinito è il modello dipendente dal framework. Per altre informazioni, vedere [Distribuzione di applicazioni .NET Core](/dotnet/core/deploying/).
+È possibile pubblicare un'app .NET Core come *distribuzione indipendente* o come *distribuzione dipendente dal framework* . Se l'app è indipendente, i file di assembly che contengono il runtime .NET sono inclusi nella cartella *publish* . Se l'app è dipendente dal framework, i file di runtime .NET non sono inclusi, perché l'app contiene un riferimento a una versione di .NET installata nel server. Il modello di distribuzione predefinito è il modello dipendente dal framework. Per altre informazioni, vedere [Distribuzione di applicazioni .NET Core](/dotnet/core/deploying/).
 
-Oltre ai file con estensione *EXE* e *DLL* la cartella *publish* di un'app ASP.NET Core contiene in genere i file di configurazione, gli asset statici e le visualizzazioni MVC. Per ulteriori informazioni, vedere <xref:host-and-deploy/directory-structure>.
+Oltre ai file con estensione *EXE* e *DLL* la cartella *publish* di un'app ASP.NET Core contiene in genere i file di configurazione, gli asset statici e le visualizzazioni MVC. Per altre informazioni, vedere <xref:host-and-deploy/directory-structure>.
 
 ## <a name="set-up-a-process-manager"></a>Configurare un gestore processi
 
@@ -92,11 +93,11 @@ Per informazioni sulla configurazione per ospitare app ASP.NET Core in un ambien
 
 ## <a name="host-on-docker"></a>Host in Docker
 
-Per ulteriori informazioni, vedere <xref:host-and-deploy/docker/index>.
+Per altre informazioni, vedere <xref:host-and-deploy/docker/index>.
 
 ## <a name="perform-health-checks"></a>Eseguire controlli di integrità
 
-Usare il middleware di controllo integrità per eseguire controlli di integrità su un'app e le relative dipendenze. Per ulteriori informazioni, vedere <xref:host-and-deploy/health-checks>.
+Usare il middleware di controllo integrità per eseguire controlli di integrità su un'app e le relative dipendenze. Per altre informazioni, vedere <xref:host-and-deploy/health-checks>.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -115,15 +116,15 @@ In generale, per distribuire un'app ASP.NET Core in un ambiente host:
 
 ## <a name="publish-to-a-folder"></a>Pubblicare in una cartella
 
-Il comando [dotnet publish](/dotnet/core/tools/dotnet-publish) compila il codice dell'app e copia il file necessario per eseguire l'app in una cartella *publish*. Quando si esegue la distribuzione da Visual Studio, il passaggio `dotnet publish` viene eseguito automaticamente prima della copia dei file nella destinazione di distribuzione.
+Il comando [dotnet publish](/dotnet/core/tools/dotnet-publish) compila il codice dell'app e copia il file necessario per eseguire l'app in una cartella *publish* . Quando si esegue la distribuzione da Visual Studio, il passaggio `dotnet publish` viene eseguito automaticamente prima della copia dei file nella destinazione di distribuzione.
 
 ### <a name="folder-contents"></a>Contenuto cartelle
 
 La cartella *publish* contiene uno o più file di assembly di app, le dipendenze e facoltativamente il runtime di .NET.
 
-È possibile pubblicare un'app .NET Core come *distribuzione indipendente* o come *distribuzione dipendente dal framework*. Se l'app è indipendente, i file di assembly che contengono il runtime .NET sono inclusi nella cartella *publish*. Se l'app è dipendente dal framework, i file di runtime .NET non sono inclusi, perché l'app contiene un riferimento a una versione di .NET installata nel server. Il modello di distribuzione predefinito è il modello dipendente dal framework. Per altre informazioni, vedere [Distribuzione di applicazioni .NET Core](/dotnet/core/deploying/).
+È possibile pubblicare un'app .NET Core come *distribuzione indipendente* o come *distribuzione dipendente dal framework* . Se l'app è indipendente, i file di assembly che contengono il runtime .NET sono inclusi nella cartella *publish* . Se l'app è dipendente dal framework, i file di runtime .NET non sono inclusi, perché l'app contiene un riferimento a una versione di .NET installata nel server. Il modello di distribuzione predefinito è il modello dipendente dal framework. Per altre informazioni, vedere [Distribuzione di applicazioni .NET Core](/dotnet/core/deploying/).
 
-Oltre ai file con estensione *EXE* e *DLL* la cartella *publish* di un'app ASP.NET Core contiene in genere i file di configurazione, gli asset statici e le visualizzazioni MVC. Per ulteriori informazioni, vedere <xref:host-and-deploy/directory-structure>.
+Oltre ai file con estensione *EXE* e *DLL* la cartella *publish* di un'app ASP.NET Core contiene in genere i file di configurazione, gli asset statici e le visualizzazioni MVC. Per altre informazioni, vedere <xref:host-and-deploy/directory-structure>.
 
 ## <a name="set-up-a-process-manager"></a>Configurare un gestore processi
 
@@ -170,7 +171,7 @@ Per informazioni sulla configurazione per ospitare app ASP.NET Core in un ambien
 
 ## <a name="host-on-docker"></a>Host in Docker
 
-Per ulteriori informazioni, vedere <xref:host-and-deploy/docker/index>.
+Per altre informazioni, vedere <xref:host-and-deploy/docker/index>.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

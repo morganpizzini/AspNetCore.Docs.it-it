@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 06/26/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/get-started-with-swashbuckle
-ms.openlocfilehash: 84094dce306e10470ec7b7be3efe6da024470330
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9fbd4bc5e91d8f05afc99a4f04c706399f83a518
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628846"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057609"
 ---
 # <a name="get-started-with-swashbuckle-and-aspnet-core"></a>Introduzione a Swashbuckle e ad ASP.NET Core
 
@@ -44,7 +45,7 @@ Esistono tre componenti principali di Swashbuckle:
 
 ### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Dalla finestra **Console di Gestione pacchetti**:
+* Dalla finestra **Console di Gestione pacchetti** :
   * Passare a **Visualizza**  >  **altre**  >  **console di gestione pacchetti** di Windows
   * Passare alla directory che contiene il file *TodoApi.csproj*
   * Eseguire il comando seguente:
@@ -53,7 +54,7 @@ Esistono tre componenti principali di Swashbuckle:
     Install-Package Swashbuckle.AspNetCore -Version 5.5.0
     ```
 
-* Dalla finestra di dialogo **Gestisci pacchetti NuGet**:
+* Dalla finestra di dialogo **Gestisci pacchetti NuGet** :
   * Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**  >  **Gestisci pacchetti NuGet**
   * Impostare **Origine pacchetto** su "nuget.org"
   * Verificare che l'opzione "Includi versione preliminare" sia abilitata
@@ -70,7 +71,7 @@ Esistono tre componenti principali di Swashbuckle:
 
 ### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Eseguire il comando seguente da **Terminale integrato**:
+Eseguire il comando seguente da **Terminale integrato** :
 
 ```dotnetcli
 dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.5.0
@@ -136,7 +137,7 @@ L'interfaccia utente di Swagger è disponibile in `http://localhost:<port>/swagg
 >
 > [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup3.cs?name=snippet_UseSwaggerUI&highlight=4)]
 
-Se si usano le directory con ISS o il proxy inverso, impostare l'endpoint Swagger su un percorso relativo tramite il prefisso `./`. Ad esempio: `./swagger/v1/swagger.json`. L'uso di `/swagger/v1/swagger.json` indica all'app di cercare il file JSON nella vera radice dell'URL (con il prefisso della route, se usato). Usare, ad esempio, `http://localhost:<port>/<route_prefix>/swagger/v1/swagger.json` invece di `http://localhost:<port>/<virtual_directory>/<route_prefix>/swagger/v1/swagger.json`.
+Se si usano le directory con ISS o il proxy inverso, impostare l'endpoint Swagger su un percorso relativo tramite il prefisso `./`. Ad esempio `./swagger/v1/swagger.json`. L'uso di `/swagger/v1/swagger.json` indica all'app di cercare il file JSON nella vera radice dell'URL (con il prefisso della route, se usato). Usare, ad esempio, `http://localhost:<port>/<route_prefix>/swagger/v1/swagger.json` invece di `http://localhost:<port>/<virtual_directory>/<route_prefix>/swagger/v1/swagger.json`.
 
 > [!NOTE]
 > Per impostazione predefinita, Swashbuckle genera ed espone il codice JSON di spavalderia nella versione 3,0 della specifica, &mdash; denominata ufficialmente openapi Specification. Per supportare la compatibilità con le versioni precedenti, è invece possibile scegliere di esporre JSON in formato 2,0. Questo formato 2,0 è importante per le integrazioni, ad esempio Microsoft Power Apps e Microsoft Flow che attualmente supportano OpenAPI versione 2,0. Per acconsentire esplicitamente al formato 2,0, impostare la `SerializeAsV2` Proprietà in `Startup.Configure` :
@@ -179,8 +180,8 @@ I commenti XML possono essere abilitati con gli approcci seguenti:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-* Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Modifica <nome_progetto>.csproj**.
-* Aggiungere manualmente le righe evidenziate al file con estensione *csproj*:
+* Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Modifica <nome_progetto>.csproj** .
+* Aggiungere manualmente le righe evidenziate al file con estensione *csproj* :
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
 
@@ -188,7 +189,7 @@ I commenti XML possono essere abilitati con gli approcci seguenti:
 
 ::: moniker range="<= aspnetcore-1.1"
 
-* Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Proprietà**.
+* Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Proprietà** .
 * Controllare la casella **file di documentazione XML** nella sezione **output** della scheda **compilazione** .
 
 ::: moniker-end
@@ -197,8 +198,8 @@ I commenti XML possono essere abilitati con gli approcci seguenti:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-* Dal *riquadro della soluzione* premere **controllo** e fare clic sul nome del progetto. Passare a **strumenti**  >  **modifica file**.
-* Aggiungere manualmente le righe evidenziate al file con estensione *csproj*:
+* Dal *riquadro della soluzione* premere **controllo** e fare clic sul nome del progetto. Passare a **strumenti**  >  **modifica file** .
+* Aggiungere manualmente le righe evidenziate al file con estensione *csproj* :
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
 
@@ -206,14 +207,14 @@ I commenti XML possono essere abilitati con gli approcci seguenti:
 
 ::: moniker range="<= aspnetcore-1.1"
 
-* Aprire la finestra di dialogo **Opzioni progetto** > **Compila** > **Compilatore**.
+* Aprire la finestra di dialogo **Opzioni progetto** > **Compila** > **Compilatore** .
 * Selezionare la casella **Genera documentazione XML** nella sezione **Opzioni generali**
 
 ::: moniker-end
 
 #### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Aggiungere manualmente le righe evidenziate al file con estensione *csproj*:
+Aggiungere manualmente le righe evidenziate al file con estensione *csproj* :
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -229,7 +230,7 @@ Aggiungere manualmente le righe evidenziate al file con estensione *csproj*:
 
 #### <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-Aggiungere manualmente le righe evidenziate al file con estensione *csproj*:
+Aggiungere manualmente le righe evidenziate al file con estensione *csproj* :
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -408,7 +409,7 @@ La presenza di questo attributo modifica il comportamento dell'interfaccia utent
 },
 ```
 
-Aggiungere l'attributo `[Produces("application/json")]` al controller API. Il suo scopo consiste nel dichiarare che le azioni del controller supportano un tipo di contenuto della risposta di *application/json*:
+Aggiungere l'attributo `[Produces("application/json")]` al controller API. Il suo scopo consiste nel dichiarare che le azioni del controller supportano un tipo di contenuto della risposta di *application/json* :
 
 ::: moniker range="<= aspnetcore-2.0"
 
