@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: dd00b9d7faf467857ec1e47f4cfb0296d84e5d3f
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: e52e4aefc18b84f85bea28a9724894eed50ca54a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847702"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061067"
 ---
 # <a name="part-6-no-locrazor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Parte 6, Razor pagine con EF core nei dati correlati alla lettura ASP.NET Core
 
@@ -84,13 +85,13 @@ Per visualizzare il nome del dipartimento assegnato per un corso:
 
 * Seguire le istruzioni in [Scaffolding delle pagine Student](xref:data/ef-rp/intro#scaffold-student-pages) con le eccezioni seguenti:
 
-  * Creare una cartella *Pages/Courses*.
+  * Creare una cartella *Pages/Courses* .
   * Usare `Course` per la classe del modello.
   * Usare la classe di contesto esistente anziché crearne una nuova.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Creare una cartella *Pages/Courses*.
+* Creare una cartella *Pages/Courses* .
 
 * Eseguire il comando seguente per eseguire lo scaffolding delle pagine Course.
 
@@ -148,7 +149,7 @@ Il codice seguente carica dati correlati con il metodo `Select`:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=6)]
 
-Il codice precedente non restituisce tipi di entità, pertanto non viene eseguita alcuna verifica. Per altre informazioni sul rilevamento di EF, vedere [rilevamento e query senza rilevamento](/ef/core/querying/tracking).
+Il codice precedente non restituisce tipi di entità, pertanto non viene eseguita alcuna verifica. Per altre informazioni sul rilevamento di EF, vedere [rilevamento e query No-Tracking](/ef/core/querying/tracking).
 
 `CourseViewModel`:
 
@@ -183,13 +184,13 @@ Creare *SchoolViewModels/InstructorIndexData.cs* con il codice seguente:
 
 * Seguire le istruzioni in [Scaffolding delle pagine Student](xref:data/ef-rp/intro#scaffold-student-pages) con le eccezioni seguenti:
 
-  * Creare una cartella *Pages/Instructors*.
+  * Creare una cartella *Pages/Instructors* .
   * Usare `Instructor` per la classe del modello.
   * Usare la classe di contesto esistente anziché crearne una nuova.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Creare una cartella *Pages/Instructors*.
+* Creare una cartella *Pages/Instructors* .
 
 * Eseguire il comando seguente per eseguire lo scaffolding delle pagine Instructor.
 
@@ -215,7 +216,7 @@ Aggiornare *pages/Instructors/index. cshtml. cs* con il codice seguente:
 
 Il metodo `OnGetAsync` accetta i dati di route facoltativi per l'ID dell'insegnante selezionato.
 
-Esaminare la query nel file *Pages/Instructors/Index.cshtml.cs*:
+Esaminare la query nel file *Pages/Instructors/Index.cshtml.cs* :
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_EagerLoading)]
 
@@ -284,7 +285,7 @@ Il codice precedente apporta le modifiche seguenti:
   <tr class="@selectedRow">
   ```
 
-* Aggiunge un nuovo collegamento ipertestuale con etichetta **Select**. Questo collegamento invia l'ID dell'insegnante selezionato al metodo `Index` e imposta un colore di sfondo.
+* Aggiunge un nuovo collegamento ipertestuale con etichetta **Select** . Questo collegamento invia l'ID dell'insegnante selezionato al metodo `Index` e imposta un colore di sfondo.
 
   ```html
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
@@ -505,7 +506,7 @@ Sostituire *Pages/Instructors/Index.cshtml.cs* con il codice seguente:
 
 Il metodo `OnGetAsync` accetta i dati di route facoltativi per l'ID dell'insegnante selezionato.
 
-Esaminare la query nel file *Pages/Instructors/Index.cshtml.cs*:
+Esaminare la query nel file *Pages/Instructors/Index.cshtml.cs* :
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_ThenInclude)]
 
@@ -612,7 +613,7 @@ Aggiornare la query nel metodo `OnGetAsync` in *Pages/Instructors/Index.cshtml.c
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index.cshtml.cs?name=snippet_ThenInclude&highlight=6-9)]
 
-Aggiornare *Pages/Instructors/Index.cshtml*. Aggiungere il markup seguente alla fine del file:
+Aggiornare *Pages/Instructors/Index.cshtml* . Aggiungere il markup seguente alla fine del file:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=103-)]
 

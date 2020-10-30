@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/19/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/google-logins
-ms.openlocfilehash: a7a5260a2446ac3f3be00755ef051e56080a7485
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 111ea7c972778dfd5296d0401c16563aeaa36a63
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634293"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060313"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>Installazione di Google External login in ASP.NET Core
 
@@ -33,11 +34,11 @@ Questa esercitazione illustra come consentire agli utenti di accedere con il pro
 ## <a name="create-a-google-api-console-project-and-client-id"></a>Creare un progetto console e un ID client di Google API
 
 * Installare [Microsoft. AspNetCore. Authentication. Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google).
-* Passare all'articolo relativo all' [integrazione di Google Sign-in nell'app Web](https://developers.google.com/identity/sign-in/web/sign-in) e selezionare **configura un progetto**.
-* Nella finestra di dialogo **Configura client OAuth** selezionare **server Web**.
+* Passare a [integrare Google Sign-In nell'app Web](https://developers.google.com/identity/sign-in/web/sign-in) e selezionare **configura un progetto** .
+* Nella finestra di dialogo **Configura client OAuth** selezionare **server Web** .
 * Nella casella voce di testo **URI di reindirizzamento autorizzato** impostare l'URI di reindirizzamento. Ad esempio, usare `https://localhost:44312/signin-google`
-* Salvare l' **ID client** e il **segreto client**.
-* Quando si distribuisce il sito, registrare il nuovo URL pubblico dalla **console di Google**.
+* Salvare l' **ID client** e il **segreto client** .
+* Quando si distribuisce il sito, registrare il nuovo URL pubblico dalla **console di Google** .
 
 ## <a name="store-the-google-client-id-and-secret"></a>Archiviare l'ID e il segreto del client Google
 
@@ -65,7 +66,7 @@ Aggiungere il servizio Google a `Startup.ConfigureServices` :
 
 ## <a name="sign-in-with-google"></a>Accedere con Google
 
-* Eseguire l'app e fare clic su **Accedi**. Viene visualizzata un'opzione per accedere con Google.
+* Eseguire l'app e fare clic su **Accedi** . Viene visualizzata un'opzione per accedere con Google.
 * Fare clic sul pulsante **Google** , che reindirizza a Google per l'autenticazione.
 * Dopo aver immesso le credenziali Google, viene reindirizzato di nuovo al sito Web.
 
@@ -79,10 +80,10 @@ Aggiungere il servizio Google a `Startup.ConfigureServices` :
 
 Il segmento URI `/signin-google` viene impostato come callback predefinito del provider di autenticazione Google. È possibile modificare l'URI di callback predefinito durante la configurazione del middleware di autenticazione di Google tramite la proprietà [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) ereditata della classe [GoogleOptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) .
 
-## <a name="troubleshooting"></a>Risoluzione dei problemi
+## <a name="troubleshooting"></a>risoluzione dei problemi
 
 * Se l'accesso non funziona e non si ricevono errori, passare alla modalità di sviluppo per semplificare il debug del problema.
-* Se Identity non è configurato chiamando `services.AddIdentity` in `ConfigureServices` , il tentativo di autenticare i risultati in *ArgumentException: è necessario specificare l'opzione ' SignInScheme '*. Il modello di progetto usato in questa esercitazione garantisce che questa operazione venga eseguita.
+* Se Identity non è configurato chiamando `services.AddIdentity` in `ConfigureServices` , il tentativo di autenticare i risultati in *ArgumentException: è necessario specificare l'opzione ' SignInScheme '* . Il modello di progetto usato in questa esercitazione garantisce che questa operazione venga eseguita.
 * Se il database del sito non è stato creato applicando la migrazione iniziale, si ottiene *un'operazione di database non riuscita durante l'elaborazione dell'* errore di richiesta. Selezionare **applica migrazioni** per creare il database e aggiornare la pagina per continuare a superare l'errore.
 
 ## <a name="next-steps"></a>Passaggi successivi

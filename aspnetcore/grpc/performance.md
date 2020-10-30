@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/23/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/performance
-ms.openlocfilehash: b54d13bfd9207a7b8961c1c4fa9908d3d54a4270
-ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
+ms.openlocfilehash: 622c6ba042c5832f99bba379fadd9aba7d7163f2
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/16/2020
-ms.locfileid: "92113855"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060404"
 ---
 # <a name="performance-best-practices-with-grpc"></a>Procedure consigliate per le prestazioni con gRPC
 
@@ -49,7 +50,7 @@ I canali possono essere condivisi e riutilizzati in modo sicuro tra le chiamate 
 * Un canale e i client creati dal canale possono essere usati in modo sicuro da più thread.
 * I client creati dal canale possono effettuare più chiamate simultanee.
 
-la factory client di gRPC offre un modo centralizzato per configurare i canali. Riutilizza automaticamente i canali sottostanti. Per ulteriori informazioni, vedere <xref:grpc/clientfactory>.
+la factory client di gRPC offre un modo centralizzato per configurare i canali. Riutilizza automaticamente i canali sottostanti. Per altre informazioni, vedere <xref:grpc/clientfactory>.
 
 ## <a name="connection-concurrency"></a>Concorrenza di connessione
 
@@ -126,7 +127,7 @@ Sono disponibili molti proxy L7. Di seguito sono riportate alcune opzioni:
 
 le chiamate gRPC tra un client e un servizio vengono in genere inviate tramite socket TCP. TCP è ideale per la comunicazione attraverso una rete, ma la [comunicazione interprocesso (IPC)](https://wikipedia.org/wiki/Inter-process_communication) è più efficiente quando il client e il servizio si trovano nello stesso computer.
 
-Prendere in considerazione l'uso di un trasporto come i socket di dominio UNIX o named pipe per le chiamate gRPC tra processi nello stesso computer. Per ulteriori informazioni, vedere <xref:grpc/interprocess>.
+Prendere in considerazione l'uso di un trasporto come i socket di dominio UNIX o named pipe per le chiamate gRPC tra processi nello stesso computer. Per altre informazioni, vedere <xref:grpc/interprocess>.
 
 ## <a name="keep-alive-pings"></a>Ping keep-alive
 

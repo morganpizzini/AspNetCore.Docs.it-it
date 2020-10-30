@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 03/26/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/claimsprincipal-current
-ms.openlocfilehash: 426fd90374a460cb283d0d3ba921e1312fb17940
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 3aa0adb299789efbb071cdb934d43832a84cf540
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634072"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059767"
 ---
 # <a name="migrate-from-claimsprincipalcurrent"></a>Esegui la migrazione da ClaimsPrincipal. Current
 
@@ -36,10 +37,10 @@ Quando si usa ASP.NET Core, i valori di `ClaimsPrincipal.Current` e `Thread.Curr
 
 Sono disponibili diverse opzioni per recuperare l'utente autenticato corrente `ClaimsPrincipal` in ASP.NET Core al posto di `ClaimsPrincipal.Current` :
 
-* **ControllerBase. User**. I controller MVC possono accedere all'utente autenticato corrente con la relativa proprietà [utente](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.user) .
-* **HttpContext. User**. I componenti con accesso alla corrente `HttpContext` (ad esempio, middleware) possono ottenere l'utente corrente `ClaimsPrincipal` da [HttpContext. User](/dotnet/api/microsoft.aspnetcore.http.httpcontext.user).
-* **Passato dal chiamante**. Le librerie senza accesso all'oggetto corrente `HttpContext` vengono spesso chiamate da controller o componenti middleware e possono avere l'identità dell'utente corrente passata come argomento.
-* **IHttpContextAccessor**. Il progetto di cui è in corso la migrazione a ASP.NET Core può essere troppo grande per passare facilmente l'identità dell'utente corrente a tutte le posizioni necessarie. In questi casi, è possibile usare [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) come soluzione alternativa. `IHttpContextAccessor` è in grado di accedere all'oggetto corrente, `HttpContext` se esistente. Se si usa l'inserimento DI dipendenze, vedere <xref:fundamentals/httpcontext> . Una soluzione a breve termine che consente di ottenere l'identità dell'utente corrente nel codice che non è ancora stata aggiornata per lavorare con l'architettura basata su DI ASP.NET Core è:
+* **ControllerBase. User** . I controller MVC possono accedere all'utente autenticato corrente con la relativa proprietà [utente](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.user) .
+* **HttpContext. User** . I componenti con accesso alla corrente `HttpContext` (ad esempio, middleware) possono ottenere l'utente corrente `ClaimsPrincipal` da [HttpContext. User](/dotnet/api/microsoft.aspnetcore.http.httpcontext.user).
+* **Passato dal chiamante** . Le librerie senza accesso all'oggetto corrente `HttpContext` vengono spesso chiamate da controller o componenti middleware e possono avere l'identità dell'utente corrente passata come argomento.
+* **IHttpContextAccessor** . Il progetto di cui è in corso la migrazione a ASP.NET Core può essere troppo grande per passare facilmente l'identità dell'utente corrente a tutte le posizioni necessarie. In questi casi, è possibile usare [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) come soluzione alternativa. `IHttpContextAccessor` è in grado di accedere all'oggetto corrente, `HttpContext` se esistente. Se si usa l'inserimento DI dipendenze, vedere <xref:fundamentals/httpcontext> . Una soluzione a breve termine che consente di ottenere l'identità dell'utente corrente nel codice che non è ancora stata aggiornata per lavorare con l'architettura basata su DI ASP.NET Core è:
 
   * Rendere `IHttpContextAccessor` disponibile nel contenitore di inserimento delle dipendenze chiamando [AddHttpContextAccessor](https://github.com/aspnet/Hosting/issues/793) in `Startup.ConfigureServices` .
   * Ottenere un'istanza di `IHttpContextAccessor` durante l'avvio e archiviarla in una variabile statica. L'istanza viene resa disponibile al codice recuperato in precedenza dall'utente corrente da una proprietà statica.

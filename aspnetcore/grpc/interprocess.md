@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: jamesnk
 ms.date: 09/16/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/interprocess
-ms.openlocfilehash: 34876f31cbc51ba66a91ae32ea6a5213dc34a369
-ms.sourcegitcommit: 9c031530d2e652fe422e786bd43392bc500d622f
+ms.openlocfilehash: d806a340d8540fce8af6ccc6ff68325e4b733922
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/18/2020
-ms.locfileid: "90770155"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059884"
 ---
 # <a name="inter-process-communication-with-grpc"></a>Comunicazione tra processi con gRPC
 
@@ -32,7 +33,7 @@ le chiamate gRPC tra un client e un servizio vengono in genere inviate tramite s
 
 ## <a name="server-configuration"></a>Configurazione del server
 
-I trasporti personalizzati sono supportati da [gheppio](xref:fundamentals/servers/kestrel). Il gheppio è configurato in *Program.cs*:
+I trasporti personalizzati sono supportati da [gheppio](xref:fundamentals/servers/kestrel). Il gheppio è configurato in *Program.cs* :
 
 ```csharp
 public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");

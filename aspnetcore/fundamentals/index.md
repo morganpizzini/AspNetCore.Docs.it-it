@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/30/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/index
-ms.openlocfilehash: 8fa44f567906ecf36a9bbaa5076cd36c75c10781
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 25348f8486ec6ccb53ebf527ad4519638dd5f73e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634878"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059377"
 ---
 # <a name="aspnet-core-fundamentals"></a>Nozioni fondamentali su ASP.NET Core
 
@@ -78,7 +79,7 @@ Per altre informazioni, vedere <xref:fundamentals/middleware/index>.
 
 ## <a name="host"></a>Host
 
-All'avvio, un'app ASP.NET Core compila un *host*. L'host incapsula tutte le risorse dell'app, ad esempio:
+All'avvio, un'app ASP.NET Core compila un *host* . L'host incapsula tutte le risorse dell'app, ad esempio:
 
 * Un'implementazione del server HTTP
 * I componenti middleware
@@ -100,7 +101,7 @@ Nell'esempio seguente viene creato un host generico .NET:
 I `CreateDefaultBuilder` `ConfigureWebHostDefaults` metodi e configurano un host con un set di opzioni predefinite, ad esempio:
 
 * Usare [Kestrel](#servers) come server Web e abilitare l'integrazione IIS.
-* Caricare la configurazione da *appsettings.json*, *appsettings.[EnvironmentName].json*, variabili di ambiente, argomenti della riga di comando e altri origini di configurazione.
+* Caricare la configurazione da *appsettings.json* , *appSettings. { Nome ambiente}. JSON* , variabili di ambiente, argomenti della riga di comando e altre origini di configurazione.
 * Inviare l'output di registrazione alla console e ai provider di debug.
 
 Per altre informazioni, vedere <xref:fundamentals/host/generic-host>.
@@ -123,11 +124,11 @@ ASP.NET Core include le implementazioni server seguenti:
 
 # <a name="macos"></a>[macOS](#tab/macos)
 
-ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel*. In ASP.NET Core 2,0 o versioni successive, il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
+ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel* . In ASP.NET Core 2,0 o versioni successive, il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
 
 # <a name="linux"></a>[Linux](#tab/linux)
 
-ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel*. In ASP.NET Core 2,0 o versioni successive, il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
+ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel* . In ASP.NET Core 2,0 o versioni successive, il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
 
 ---
 
@@ -137,7 +138,7 @@ Per altre informazioni, vedere <xref:fundamentals/servers/index>.
 
 ASP.NET Core offre un framework di configurazione che ottiene le impostazioni, ad esempio coppie nome-valore, da un set ordinato di provider di configurazione. I provider di configurazione incorporati sono disponibili per un'ampia gamma di origini, ad esempio file *JSON* , file *XML* , variabili di ambiente e argomenti della riga di comando. Scrivere provider di configurazione personalizzati per supportare altre origini.
 
-Per [impostazione predefinita](xref:fundamentals/configuration/index#default), le app ASP.NET Core sono configurate per la lettura da *appsettings.js*, le variabili di ambiente, la riga di comando e altro ancora. Quando viene caricata la configurazione dell'app, i valori delle variabili di ambiente eseguono l'override dei valori di *appsettings.js*.
+Per [impostazione predefinita](xref:fundamentals/configuration/index#default), le app ASP.NET Core sono configurate per *appsettings.json* la lettura, le variabili di ambiente, la riga di comando e altro ancora. Quando viene caricata la configurazione dell'app, i valori delle variabili di ambiente eseguono l'override dei valori da *appsettings.json* .
 
 Il modo migliore per leggere i valori di configurazione correlati consiste nell'usare il [modello di opzioni](xref:fundamentals/configuration/options). Per altre informazioni, vedere [associare dati di configurazione gerarchici usando il modello di opzioni](xref:fundamentals/configuration/index#optpat).
 
@@ -175,7 +176,7 @@ I metodi di registrazione, ad esempio, `LogInformation` supportano un numero qua
 
 Per altre informazioni, vedere <xref:fundamentals/logging/index>.
 
-## <a name="routing"></a>Routing
+## <a name="routing"></a>Routing.
 
 Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore. Il gestore è in genere una Razor pagina, un metodo di azione in un controller MVC o un middleware. Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.
 
@@ -198,7 +199,7 @@ Un'implementazione di `IHttpClientFactory` è disponibile per la creazione di is
 
 * Offre una posizione centrale per la denominazione e la configurazione di istanze di `HttpClient` logiche. Ad esempio, registrare e configurare un client *GitHub* per l'accesso a github. Registrare e configurare un client predefinito per altri scopi.
 * Supporta la registrazione e il concatenamento di più gestori di delega per creare una pipeline di middleware per le richieste in uscita. Questo modello è simile alla pipeline middleware in ingresso ASP.NET Core. Il modello fornisce un meccanismo per gestire le problematiche trasversali per le richieste HTTP, ad esempio la memorizzazione nella cache, la gestione degli errori, la serializzazione e la registrazione.
-* Si integra con *Polly*, una famosa libreria di terze parti per la gestione degli errori temporanei.
+* Si integra con *Polly* , una famosa libreria di terze parti per la gestione degli errori temporanei.
 * Gestisce il pool e la durata delle istanze sottostanti `HttpClientHandler` per evitare problemi DNS comuni che si verificano quando si gestiscono le `HttpClient` durate manualmente.
 * Aggiunge un'esperienza di registrazione configurabile tramite <xref:Microsoft.Extensions.Logging.ILogger> per tutte le richieste inviate tramite client creati dalla factory.
 
@@ -208,12 +209,12 @@ Per altre informazioni, vedere <xref:fundamentals/http-requests>.
 
 La radice del contenuto è il percorso di base per:
 
-* Eseguibile che ospita l'app (*exe*).
-* Assembly compilati che costituiscono l'app (*. dll*).
+* Eseguibile che ospita l'app ( *exe* ).
+* Assembly compilati che costituiscono l'app ( *. dll* ).
 * File di contenuto usati dall'app, ad esempio:
-  * Razor file (*. cshtml*, *. Razor*)
-  * File di configurazione (con*estensione JSON*, *XML*)
-  * File di dati (*. DB*)
+  * Razor file ( *. cshtml* , *. Razor* )
+  * File di configurazione (con *estensione JSON* , *XML* )
+  * File di dati ( *. DB* )
 * La [radice Web](#web-root), in genere la cartella *wwwroot* .
 
 Durante lo sviluppo, il valore predefinito della radice del contenuto è la directory radice del progetto. Questa directory è anche il percorso di base per i file di contenuto dell'app e per la [radice Web](#web-root). Specificare una radice del contenuto diversa impostando il relativo percorso durante [la compilazione dell'host](#host). Per altre informazioni, vedere [Radice del contenuto](xref:fundamentals/host/generic-host#contentroot).
@@ -222,11 +223,11 @@ Durante lo sviluppo, il valore predefinito della radice del contenuto è la dire
 
 La radice Web è il percorso di base per i file di risorse statici pubblici, ad esempio:
 
-* Fogli di stile (*. CSS*)
-* JavaScript (*. js*)
-* Immagini (*. png*, *. jpg*)
+* Fogli di stile ( *. CSS* )
+* JavaScript ( *. js* )
+* Immagini ( *. png* , *. jpg* )
 
-Per impostazione predefinita, i file statici vengono serviti solo dalla directory radice Web e dalle relative sottodirectory. Per impostazione predefinita, il percorso radice Web è *{Content root}/wwwroot*. Specificare un'altra radice Web impostando il relativo percorso durante [la compilazione dell'host](#host). Per altre informazioni, vedere [Web root](xref:fundamentals/host/generic-host#webroot) (Radice Web).
+Per impostazione predefinita, i file statici vengono serviti solo dalla directory radice Web e dalle relative sottodirectory. Per impostazione predefinita, il percorso radice Web è *{Content root}/wwwroot* . Specificare un'altra radice Web impostando il relativo percorso durante [la compilazione dell'host](#host). Per altre informazioni, vedere [Web root](xref:fundamentals/host/generic-host#webroot) (Radice Web).
 
 Impedire la pubblicazione di file in *wwwroot* con l' [ \<Content> elemento del progetto](/visualstudio/msbuild/common-msbuild-project-items#content) nel file di progetto. Nell'esempio seguente viene impedita la pubblicazione di contenuto in *wwwroot/local* e nelle relative sottodirectory:
 
@@ -236,7 +237,7 @@ Impedire la pubblicazione di file in *wwwroot* con l' [ \<Content> elemento del 
 </ItemGroup>
 ```
 
-Nei Razor file con *estensione cshtml* , tilde-Slash ( `~/` ) punta alla radice Web. Un percorso che inizia con `~/` viene definito *percorso virtuale*.
+Nei Razor file con *estensione cshtml* , tilde-Slash ( `~/` ) punta alla radice Web. Un percorso che inizia con `~/` viene definito *percorso virtuale* .
 
 Per altre informazioni, vedere <xref:fundamentals/static-files>.
 
@@ -310,7 +311,7 @@ Il codice per creare un host si trova in `Program.Main`:
 Il metodo `CreateDefaultBuilder` configura un host con le opzioni usate comunemente, ad esempio:
 
 * Usare [Kestrel](#servers) come server Web e abilitare l'integrazione IIS.
-* Caricare la configurazione da *appsettings.json*, *appsettings.[EnvironmentName].json*, variabili di ambiente, argomenti della riga di comando e altri origini di configurazione.
+* Caricare la configurazione da *appsettings.json* , *appSettings. { Nome ambiente}. JSON* , variabili di ambiente, argomenti della riga di comando e altre origini di configurazione.
 * Inviare l'output di registrazione alla console e ai provider di debug.
 
 Per altre informazioni, vedere <xref:fundamentals/host/web-host>.
@@ -337,11 +338,11 @@ ASP.NET Core include le implementazioni server seguenti:
 
 # <a name="macos"></a>[macOS](#tab/macos)
 
-ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel*. Il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
+ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel* . Il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
 
 # <a name="linux"></a>[Linux](#tab/linux)
 
-ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel*. Il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
+ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel* . Il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
 
 ---
 
@@ -358,11 +359,11 @@ ASP.NET Core include le implementazioni server seguenti:
 
 # <a name="macos"></a>[macOS](#tab/macos)
 
-ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel*. Il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
+ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel* . Il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
 
 # <a name="linux"></a>[Linux](#tab/linux)
 
-ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel*. Il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
+ASP.NET Core fornisce l'implementazione del server multipiattaforma *Kestrel* . Il gheppio può essere eseguito come server perimetrale pubblico esposto direttamente a Internet. Kestrel viene spesso eseguito in una configurazione con proxy inverso con [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/).
 
 ---
 
@@ -374,9 +375,9 @@ Per altre informazioni, vedere <xref:fundamentals/servers/index>.
 
 ## <a name="configuration"></a>Configurazione
 
-ASP.NET Core offre un framework di configurazione che ottiene le impostazioni, ad esempio coppie nome-valore, da un set ordinato di provider di configurazione. Esistono provider di configurazione predefiniti per un'ampia gamma di origini, ad esempio file con estensione *JSON*, file con estensione *XML*, variabili di ambiente e argomenti della riga di comando. È anche possibile scrivere provider di configurazione personalizzati.
+ASP.NET Core offre un framework di configurazione che ottiene le impostazioni, ad esempio coppie nome-valore, da un set ordinato di provider di configurazione. Esistono provider di configurazione predefiniti per un'ampia gamma di origini, ad esempio file con estensione *JSON* , file con estensione *XML* , variabili di ambiente e argomenti della riga di comando. È anche possibile scrivere provider di configurazione personalizzati.
 
-Si potrebbe specificare, ad esempio, che la configurazione proviene da *appsettings.json* e da variabili di ambiente. Quindi, quando viene richiesto il valore di *ConnectionString*, il framework esaminerebbe per primo il file *appsettings.json*. Se il valore venisse trovato qui ma anche in una variabile di ambiente, il valore della variabile di ambiente avrebbe la precedenza.
+Ad esempio, è possibile specificare che la configurazione deriva dalle *appsettings.json* variabili di ambiente e. Quindi, quando viene richiesto il valore di *ConnectionString* , il Framework cerca prima nel *appsettings.json* file. Se il valore venisse trovato qui ma anche in una variabile di ambiente, il valore della variabile di ambiente avrebbe la precedenza.
 
 Per la gestione dei dati di configurazione riservati, ad esempio le password, ASP.NET Core offre uno [strumento Secret Manager](xref:security/app-secrets). Per i segreti di produzione, si consiglia di usare [Azure Key Vault](xref:security/key-vault-configuration).
 
@@ -394,7 +395,7 @@ Per altre informazioni, vedere <xref:fundamentals/configuration/options>.
 
 ## <a name="environments"></a>Ambienti
 
-Gli ambienti di esecuzione, ad esempio *Sviluppo*, *Staging* e *Produzione*, sono un concetto fondamentale in ASP.NET Core. È possibile specificare l'ambiente in cui viene eseguita un'app impostando la variabile di ambiente `ASPNETCORE_ENVIRONMENT`. ASP.NET Core legge tale variabile di ambiente all'avvio dell'app e ne archivia il valore in un'implementazione `IHostingEnvironment`. L'oggetto ambiente è disponibile in un punto qualsiasi dell'app tramite l'inserimento delle dipendenze.
+Gli ambienti di esecuzione, ad esempio *Sviluppo* , *Staging* e *Produzione* , sono un concetto fondamentale in ASP.NET Core. È possibile specificare l'ambiente in cui viene eseguita un'app impostando la variabile di ambiente `ASPNETCORE_ENVIRONMENT`. ASP.NET Core legge tale variabile di ambiente all'avvio dell'app e ne archivia il valore in un'implementazione `IHostingEnvironment`. L'oggetto ambiente è disponibile in un punto qualsiasi dell'app tramite l'inserimento delle dipendenze.
 
 Il seguente codice di esempio della classe `Startup` configura l'app in modo che fornisca informazioni dettagliate sull'errore solo quando viene eseguita nell'ambiente di sviluppo:
 
@@ -424,7 +425,7 @@ L'interfaccia `ILogger` consente di passare qualsiasi numero di campi al provide
 
 Per altre informazioni, vedere <xref:fundamentals/logging/index>.
 
-## <a name="routing"></a>Routing
+## <a name="routing"></a>Routing.
 
 Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore. Il gestore è in genere una Razor pagina, un metodo di azione in un controller MVC o un middleware. Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.
 
@@ -447,7 +448,7 @@ Un'implementazione di `IHttpClientFactory` è disponibile per la creazione di is
 
 * Offre una posizione centrale per la denominazione e la configurazione di istanze di `HttpClient` logiche. Ad esempio, un client *GitHub* può essere registrato e configurato per accedere a github. È possibile registrare un client predefinito per altri scopi.
 * Supporta la registrazione e il concatenamento di più gestori di delega per creare una pipeline di middleware per le richieste in uscita. Questo modello è simile alla pipeline di middleware in ingresso in ASP.NET Core. Il modello offre un meccanismo per gestire le problematiche trasversali relative alle richieste HTTP, tra cui memorizzazione nella cache, gestione degli errori, serializzazione e registrazione.
-* Si integra con *Polly*, una famosa libreria di terze parti per la gestione degli errori temporanei.
+* Si integra con *Polly* , una famosa libreria di terze parti per la gestione degli errori temporanei.
 * Gestisce il pooling e la durata delle istanze di `HttpClientHandler` sottostanti per evitare problemi DNS comuni che si verificano quando le durate di `HttpClient` vengono gestite manualmente.
 * Aggiunge un'esperienza di registrazione configurabile, tramite `ILogger`, per tutte le richieste inviate attraverso i client creati dalla factory.
 
@@ -457,12 +458,12 @@ Per altre informazioni, vedere <xref:fundamentals/http-requests>.
 
 La radice del contenuto è il percorso di base di:
 
-* Eseguibile che ospita l'app (*exe*).
-* Assembly compilati che costituiscono l'app (*. dll*).
+* Eseguibile che ospita l'app ( *exe* ).
+* Assembly compilati che costituiscono l'app ( *. dll* ).
 * File di contenuto non di codice usati dall'app, ad esempio:
-  * Razor file (*. cshtml*, *. Razor*)
-  * File di configurazione (con*estensione JSON*, *XML*)
-  * File di dati (*. DB*)
+  * Razor file ( *. cshtml* , *. Razor* )
+  * File di configurazione (con *estensione JSON* , *XML* )
+  * File di dati ( *. DB* )
 * [Radice Web](#web-root), in genere la cartella *wwwroot* pubblicata.
 
 Durante lo sviluppo:
@@ -478,13 +479,13 @@ Quando si [Compila l'host](#host), è possibile specificare un percorso radice d
 
 La radice Web è il percorso di base per i file di risorse pubblici, non di codice, statici, ad esempio:
 
-* Fogli di stile (*. CSS*)
-* JavaScript (*. js*)
-* Immagini (*. png*, *. jpg*)
+* Fogli di stile ( *. CSS* )
+* JavaScript ( *. js* )
+* Immagini ( *. png* , *. jpg* )
 
 I file statici vengono serviti per impostazione predefinita solo dalla directory radice Web (e dalle sottodirectory).
 
-Per impostazione predefinita, il percorso radice Web è *{Content root}/wwwroot*, ma è possibile specificare una radice Web diversa durante [la compilazione dell'host](#host). Per altre informazioni, vedere [Web root](xref:fundamentals/host/web-host#web-root) (Radice Web).
+Per impostazione predefinita, il percorso radice Web è *{Content root}/wwwroot* , ma è possibile specificare una radice Web diversa durante [la compilazione dell'host](#host). Per altre informazioni, vedere [Web root](xref:fundamentals/host/web-host#web-root) (Radice Web).
 
 Impedire la pubblicazione di file in *wwwroot* con l' [ \<Content> elemento del progetto](/visualstudio/msbuild/common-msbuild-project-items#content) nel file di progetto. Nell'esempio seguente viene impedita la pubblicazione di contenuto nella directory *wwwroot/locale* e nelle sottodirectory:
 
@@ -494,7 +495,7 @@ Impedire la pubblicazione di file in *wwwroot* con l' [ \<Content> elemento del 
 </ItemGroup>
 ```
 
-Nei Razor file (con*estensione cshtml*), la barra tilde ( `~/` ) punta alla radice Web. Un percorso che inizia con `~/` viene definito *percorso virtuale*.
+Nei Razor file (con *estensione cshtml* ), la barra tilde ( `~/` ) punta alla radice Web. Un percorso che inizia con `~/` viene definito *percorso virtuale* .
 
 Per altre informazioni, vedere <xref:fundamentals/static-files>.
 

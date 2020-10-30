@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: e01704cb10c88f3e9442e74034f5e5d39787f300
-ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
+ms.openlocfilehash: 51a1e2a90259898262ac655b7a0e8a55d766f0c7
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/02/2020
-ms.locfileid: "91653893"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061041"
 ---
 # <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Parte 3, Razor pagine con EF core in ASP.NET Core ordinamento, filtro, paging
 
@@ -61,7 +62,7 @@ Quando la pagina Index (Indice) viene richiesta dal collegamento **Students** (S
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_Ternary)]
 
-Il codice usa l' [operatore condizionale C#?:](/dotnet/csharp/language-reference/operators/conditional-operator). L' `?:` operatore è un operatore ternario, accetta tre operandi. La prima riga specifica che quando `sortOrder` è null o vuoto, `NameSort` è impostato su `name_desc` . Se `sortOrder`***non*** è Null o vuoto, `NameSort` è impostato su una stringa vuota.
+Il codice usa l' [operatore condizionale C#?:](/dotnet/csharp/language-reference/operators/conditional-operator). L' `?:` operatore è un operatore ternario, accetta tre operandi. La prima riga specifica che quando `sortOrder` è null o vuoto, `NameSort` è impostato su `name_desc` . Se `sortOrder` è * *_not_* _ null o Empty, `NameSort` viene impostato su una stringa vuota.
 
 Queste due istruzioni consentono alla pagina di impostare i collegamenti ipertestuali delle intestazioni di colonna come indicato di seguito:
 
@@ -84,7 +85,7 @@ Quando `IQueryable` viene creato o modificato un oggetto, nessuna query viene in
 
 ### <a name="add-column-heading-hyperlinks-to-the-student-index-page"></a>Aggiungere collegamenti ipertestuali delle intestazioni di colonna alla pagina Student Index (Indice degli studenti)
 
-Sostituire il codice in *Students/Index.cshtml* con il codice seguente. Le modifiche sono evidenziate.
+Sostituire il codice in _Students/index.cshtml *, con il codice seguente. Le modifiche sono evidenziate.
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml?highlight=5,8,17-19,22,25-27,33)]
 
@@ -150,7 +151,7 @@ Eseguire il test dell'app:
 
 * Selezionare la scheda **Students** (Studenti) e immettere una stringa di ricerca. Se si usa SQLite, il filtro non fa distinzione tra maiuscole e minuscole solo se è stato implementato il codice `ToUpper` facoltativo illustrato in precedenza.
 
-* Selezionare **Cerca**.
+* Selezionare **Cerca** .
 
 Si noti che l'URL contiene la stringa di ricerca. Ad esempio:
 
@@ -246,7 +247,7 @@ Questa sezione crea una pagina About (Informazioni) che visualizza il numero di 
 
 ### <a name="create-the-view-model"></a>Creare il modello di visualizzazione
 
-Creare una cartella *Models/SchoolViewModels*.
+Creare una cartella *Models/SchoolViewModels* .
 
 Creare *SchoolViewModels/EnrollmentDateGroup.cs* con il codice seguente:
 
@@ -340,7 +341,7 @@ Il metodo usa LINQ to Entities per specificare la colonna in base alla quale ese
 
 ### <a name="add-column-heading-hyperlinks-to-the-student-index-page"></a>Aggiungere collegamenti ipertestuali delle intestazioni di colonna alla pagina Student Index (Indice degli studenti)
 
-Sostituire il codice in *Students/Index.cshtml*, con il codice evidenziato seguente:
+Sostituire il codice in *Students/Index.cshtml* , con il codice evidenziato seguente:
 
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Index2.cshtml?highlight=17-19,25-27)]
 
@@ -405,7 +406,7 @@ Il codice precedente usa l' [helper tag](xref:mvc/views/tag-helpers/intro)`<form
 Eseguire il test dell'app:
 
 * Selezionare la scheda **Students** (Studenti) e immettere una stringa di ricerca.
-* Selezionare **Cerca**.
+* Selezionare **Cerca** .
 
 Si noti che l'URL contiene la stringa di ricerca.
 
@@ -433,7 +434,7 @@ Il metodo `CreateAsync` viene usato per creare l'elemento `PaginatedList<T>`. Un
 
 ## <a name="add-paging-functionality-to-the-index-method"></a>Aggiungere la funzionalità di suddivisione in pagine al metodo Index
 
-In *Students/Index.cshtml.cs*, aggiornare il tipo di `Student` da `IList<Student>` a `PaginatedList<Student>`:
+In *Students/Index.cshtml.cs* , aggiornare il tipo di `Student` da `IList<Student>` a `PaginatedList<Student>`:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPageType)]
 
@@ -474,7 +475,7 @@ I due punti interrogativi in `PaginatedList.CreateAsync` rappresentano l'[operat
 
 ## <a name="add-paging-links-to-the-student-no-locrazor-page"></a>Aggiungere collegamenti di paging alla Razor pagina Student
 
-Aggiornare il markup in *Students/Index.cshtml*. Le modifiche sono evidenziate:
+Aggiornare il markup in *Students/Index.cshtml* . Le modifiche sono evidenziate:
 
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-999)]
 
@@ -510,7 +511,7 @@ In questo passaggio, *Pages/About.cshtml* viene aggiornato per visualizzare il n
 
 ### <a name="create-the-view-model"></a>Creare il modello di visualizzazione
 
-Creare una cartella *SchoolViewModels* nella cartella *Models*.
+Creare una cartella *SchoolViewModels* nella cartella *Models* .
 
 Nella cartella *SchoolViewModels* aggiungere un elemento *EnrollmentDateGroup.cs* con il codice seguente:
 

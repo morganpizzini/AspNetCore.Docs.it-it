@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 03/26/2020
 ms.custom: mvc, seodec18
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: a71395e82ed15dae753888a438471495208a14da
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a4e1fd780947cfa5f09fb1e03964595fa09f0f18
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631849"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061418"
 ---
 # <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a>Aggiungere, scaricare ed eliminare dati utente personalizzati Identity in un progetto ASP.NET Core
 
@@ -57,7 +58,7 @@ Il progetto di esempio viene creato da un' Razor app Web di pagine, ma le istruz
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto**. Denominare il progetto **app Web 1** se si desidera che corrisponda allo spazio dei nomi del codice di [esempio di download](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) .
+* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto** . Denominare il progetto **app Web 1** se si desidera che corrisponda allo spazio dei nomi del codice di [esempio di download](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) .
 * Selezionare **ASP.NET Core applicazione Web** > **OK**
 * Selezionare **ASP.NET Core 3,0** nell'elenco a discesa
 * Selezionare l' **applicazione Web** > **OK**
@@ -67,7 +68,7 @@ Il progetto di esempio viene creato da un' Razor app Web di pagine, ma le istruz
 
 ::: moniker range="< aspnetcore-3.0"
 
-* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto**. Denominare il progetto **app Web 1** se si desidera che corrisponda allo spazio dei nomi del codice di [esempio di download](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) .
+* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto** . Denominare il progetto **app Web 1** se si desidera che corrisponda allo spazio dei nomi del codice di [esempio di download](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) .
 * Selezionare **ASP.NET Core applicazione Web** > **OK**
 * Selezionare **ASP.NET Core 2,2** nell'elenco a discesa
 * Selezionare l' **applicazione Web** > **OK**
@@ -88,16 +89,16 @@ dotnet new webapp -o WebApp1
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Da **Esplora soluzioni**, fare clic con il pulsante destro del mouse sul progetto > **Aggiungi**  >  **nuovo elemento con impalcatura**.
-* Dal riquadro sinistro della finestra di dialogo **Aggiungi impalcatura** selezionare **Identity**  >  **Aggiungi**.
-* Nella finestra di dialogo **Aggiungi Identity ** sono disponibili le opzioni seguenti:
+* Da **Esplora soluzioni** , fare clic con il pulsante destro del mouse sul progetto > **Aggiungi**  >  **nuovo elemento con impalcatura** .
+* Dal riquadro sinistro della finestra di dialogo **Aggiungi impalcatura** selezionare **Identity**  >  **Aggiungi** .
+* Nella finestra di dialogo **Aggiungi Identity** sono disponibili le opzioni seguenti:
   * Selezionare il file di layout esistente  *~/Pages/Shared/_Layout. cshtml*
   * Selezionare i seguenti file di cui eseguire l'override:
     * **Account/registro**
     * **Account/Gestione/indice**
-  * Selezionare il **+** pulsante per creare una nuova **classe del contesto dati**. Accettare il tipo (**app Web 1. Models. WebApp1Context** se il progetto è denominato **app Web 1**).
-  * Selezionare il **+** pulsante per creare una nuova **classe utente**. Accettare il tipo (**WebApp1User** se il progetto è denominato **app Web 1**) > **Aggiungi**.
-* Selezionare **Aggiungi**.
+  * Selezionare il **+** pulsante per creare una nuova **classe del contesto dati** . Accettare il tipo ( **app Web 1. Models. WebApp1Context** se il progetto è denominato **app Web 1** ).
+  * Selezionare il **+** pulsante per creare una nuova **classe utente** . Accettare il tipo ( **WebApp1User** se il progetto è denominato **app Web 1** ) > **Aggiungi** .
+* Selezionare **Aggiungi** .
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
@@ -142,7 +143,7 @@ Seguire le istruzioni in [Migrations, UseAuthentication e layout](xref:security/
 
 ## <a name="add-custom-user-data-to-the-no-locidentity-db"></a>Aggiungere dati utente personalizzati al Identity database
 
-Aggiornare la `IdentityUser` classe derivata con proprietà personalizzate. Se è stato denominato il progetto app Web 1, il file è denominato *aree/ Identity /Data/WebApp1User.cs*. Aggiornare il file con il codice seguente:
+Aggiornare la `IdentityUser` classe derivata con proprietà personalizzate. Se è stato denominato il progetto app Web 1, il file è denominato *aree/ Identity /Data/WebApp1User.cs* . Aggiornare il file con il codice seguente:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -216,7 +217,7 @@ Compilare il progetto.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Nella **console di gestione pacchetti**di Visual Studio:
+Nella **console di gestione pacchetti** di Visual Studio:
 
 ```powershell
 Add-Migration CustomUserData

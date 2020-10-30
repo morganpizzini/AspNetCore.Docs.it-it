@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 05/26/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: e3e46f8050ba87c3108885341675c9d2a2cb7847
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 320805c0d40bf06cee384e6d98caea5c420d45bc
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635164"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061470"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Eseguire la migrazione da API Web ASP.NET a ASP.NET Core
 
@@ -42,7 +43,7 @@ Un'API Web ASP.NET 4. x è un servizio HTTP che raggiunge un'ampia gamma di clie
 
 Questo articolo usa il progetto *ProductsApp* creato in [Introduzione con API Web ASP.NET 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api). In tale progetto, un progetto API Web ASP.NET 4. x di base viene configurato come segue.
 
-In *Global.asax.cs*viene effettuata una chiamata a `WebApiConfig.Register` :
+In *Global.asax.cs* viene effettuata una chiamata a `WebApiConfig.Register` :
 
 [!code-csharp[](webapi/sample/3.x/ProductsApp/Global.asax.cs?highlight=14)]
 
@@ -62,16 +63,16 @@ Le sezioni seguenti illustrano la migrazione del progetto API Web a ASP.NET Core
 
 Creare una nuova soluzione vuota in Visual Studio e aggiungere il progetto API Web ASP.NET 4. x da migrare:
 
-1. Scegliere **Nuovo** > **Progetto** dal menu **File**.
-1. Selezionare il modello di **soluzione vuota** e selezionare **Avanti**.
-1. Assegnare alla soluzione il nome *WebAPIMigration*. Selezionare **Create** (Crea).
+1. Scegliere **nuovo** progetto dal menu **file** > **Project** .
+1. Selezionare il modello di **soluzione vuota** e selezionare **Avanti** .
+1. Assegnare alla soluzione il nome *WebAPIMigration* . Selezionare **Crea** .
 1. Aggiungere il progetto *ProductsApp* esistente alla soluzione.
 
 Aggiungere un nuovo progetto API per la migrazione a:
 
 1. Aggiungere un nuovo progetto di **applicazione Web ASP.NET Core** alla soluzione.
-1. Nella finestra di dialogo **Configura il nuovo progetto** assegnare al progetto il nome *ProductsCore*e selezionare **Crea**.
-1. Nella finestra di dialogo **Crea una nuova applicazione Web ASP.NET Core** verificare che siano selezionati **.net Core** e **ASP.NET Core 3,1** . Selezionare il modello di progetto **API** e scegliere **Crea**.
+1. Nella finestra di dialogo **Configura il nuovo progetto** assegnare al progetto il nome *ProductsCore* e selezionare **Crea** .
+1. Nella finestra di dialogo **Crea una nuova applicazione Web ASP.NET Core** verificare che siano selezionati **.net Core** e **ASP.NET Core 3,1** . Selezionare il modello di progetto **API** e scegliere **Crea** .
 1. Rimuovere i file di esempio *weatherforecast.cs* e *Controllers/WeatherForecastController. cs* dal nuovo progetto *ProductsCore* .
 
 La soluzione ora contiene due progetti. Le sezioni seguenti illustrano come eseguire la migrazione del contenuto del progetto *ProductsApp* al progetto *ProductsCore* .
@@ -82,7 +83,7 @@ ASP.NET Core non utilizza la cartella *app_start* o il file *Global. asax* . Il 
 
 La classe `Startup`:
 
-* Sostituisce *Global. asax*.
+* Sostituisce *Global. asax* .
 * Gestisce tutte le attività di avvio dell'app.
 
 Per altre informazioni, vedere <xref:fundamentals/startup>.
@@ -164,7 +165,7 @@ Eseguire il progetto migrato e passare a `/api/products` . Viene visualizzato un
 
 Questo articolo usa il progetto *ProductsApp* creato in [Introduzione con API Web ASP.NET 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api). In tale progetto, un progetto API Web ASP.NET 4. x di base viene configurato come segue.
 
-In *Global.asax.cs*viene effettuata una chiamata a `WebApiConfig.Register` :
+In *Global.asax.cs* viene effettuata una chiamata a `WebApiConfig.Register` :
 
 [!code-csharp[](webapi/sample/2.x/ProductsApp/Global.asax.cs?highlight=14)]
 
@@ -180,9 +181,9 @@ Le sezioni seguenti illustrano la migrazione del progetto API Web a ASP.NET Core
 
 Completare i passaggi seguenti in Visual Studio:
 
-* Passare a **file**  >  **nuovo**  >  **progetto**  >  **altri tipi di progetto**  >  **soluzioni di Visual Studio**. Selezionare **soluzione vuota**e denominare la soluzione *WebAPIMigration*. Fare clic sul pulsante **OK** .
+* Passare a **file**  >  **nuovo**  >  **progetto**  >  **altri tipi di progetto**  >  **soluzioni di Visual Studio** . Selezionare **soluzione vuota** e denominare la soluzione *WebAPIMigration* . Fare clic sul pulsante **OK** .
 * Aggiungere il progetto *ProductsApp* esistente alla soluzione.
-* Aggiungere un nuovo progetto di **applicazione Web ASP.NET Core** alla soluzione. Selezionare **.NET Core** Target Framework dall'elenco a discesa e selezionare il modello di progetto **API** . Denominare il progetto *ProductsCore*e fare clic sul pulsante **OK** .
+* Aggiungere un nuovo progetto di **applicazione Web ASP.NET Core** alla soluzione. Selezionare **.NET Core** Target Framework dall'elenco a discesa e selezionare il modello di progetto **API** . Denominare il progetto *ProductsCore* e fare clic sul pulsante **OK** .
 
 La soluzione ora contiene due progetti. Le sezioni seguenti illustrano come eseguire la migrazione del contenuto del progetto *ProductsApp* al progetto *ProductsCore* .
 
@@ -195,7 +196,7 @@ ASP.NET Core non USA:
 
 La classe `Startup`:
 
-* Sostituisce *Global. asax*.
+* Sostituisce *Global. asax* .
 * Gestisce tutte le attività di avvio dell'app.
 
 Per altre informazioni, vedere <xref:fundamentals/startup>.

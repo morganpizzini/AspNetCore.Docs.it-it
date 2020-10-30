@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/get-started-with-nswag
-ms.openlocfilehash: 6dc1fe85298cae307f554cfc06c4129fabbe8ab4
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 78d58d4d544c33862cf502ce63e83560e8009c65
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633591"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060573"
 ---
 # <a name="get-started-with-nswag-and-aspnet-core"></a>Introduzione a NSwag e ad ASP.NET Core
 
@@ -60,7 +61,7 @@ Usare uno degli approcci seguenti per installare il pacchetto NuGet NSwag:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Dalla finestra **Console di Gestione pacchetti**:
+* Dalla finestra **Console di Gestione pacchetti** :
   * Passare a **Visualizza**  >  **altre**  >  **console di gestione pacchetti** di Windows
   * Passare alla directory che contiene il file *TodoApi.csproj*
   * Eseguire il comando seguente:
@@ -69,7 +70,7 @@ Usare uno degli approcci seguenti per installare il pacchetto NuGet NSwag:
     Install-Package NSwag.AspNetCore
     ```
 
-* Dalla finestra di dialogo **Gestisci pacchetti NuGet**:
+* Dalla finestra di dialogo **Gestisci pacchetti NuGet** :
   * Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni**  >  **Gestisci pacchetti NuGet**
   * Impostare **Origine pacchetto** su "nuget.org"
   * Immettere "NSwag.AspNetCore" nella casella di ricerca
@@ -121,13 +122,13 @@ Aggiungere e configurare Swagger nell'app ASP.NET Core eseguendo i passaggi segu
 ### <a name="generate-code-with-nswagstudio"></a>Generare il codice con NSwagStudio
 
 * Installare NSwagStudio seguendo le istruzioni riportate nel [repository di GitHub NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio). Nella pagina della versione NSwag è possibile scaricare una versione di XCOPY che può essere avviata senza privilegi di amministratore e di installazione.
-* Avviare NSwagStudio e immettere l'URL del file *swagger.json* nella casella di testo **Swagger Specification URL** (URL di specifica Swagger). ad esempio *http://localhost:44354/swagger/v1/swagger.json*.
+* Avviare NSwagStudio e immettere l'URL del file *swagger.json* nella casella di testo **Swagger Specification URL** (URL di specifica Swagger). ad esempio *http://localhost:44354/swagger/v1/swagger.json* .
 * Fare clic sul pulsante **Create local Copy** (Crea copia locale) per generare una rappresentazione JSON della specifica di Swagger.
 
   ![Creare una copia locale della specifica di Swagger](web-api-help-pages-using-swagger/_static/CreateLocalCopy-NSwagStudio.PNG)
 
 * Nell'area **Outputs** (Output) fare clic sulla casella di controllo **CSharp Client** (Client CSharp). A seconda del progetto, è anche possibile scegliere **TypeScript Client** (Client TypeScript) o **CSharp Web API Controller** (Controller API Web CSharp). Se si seleziona **CSharp Web API Controller** (Controller API Web CSharp), una specifica del servizio ricompila il servizio, fungendo da generazione inversa.
-* Fare clic su **Generate Outputs** (Genera output) per generare un'implementazione client completa C# del progetto *TodoApi.NSwag*. Per visualizzare il codice client generato, fare clic sulla scheda **CSharp Client** (Client CSharp):
+* Fare clic su **Generate Outputs** (Genera output) per generare un'implementazione client completa C# del progetto *TodoApi.NSwag* . Per visualizzare il codice client generato, fare clic sulla scheda **CSharp Client** (Client CSharp):
 
 ```csharp
 //----------------------
@@ -168,7 +169,7 @@ namespace MyNamespace
 ```
 
 > [!TIP]
-> Il codice client C# viene generato in base alle selezioni nella scheda **Impostazioni** . modificare le impostazioni per eseguire attività quali la ridenominazione predefinita dello spazio dei nomi e la generazione di un metodo sincrono.
+> Il codice client C# viene generato in base alle selezioni nella scheda **Impostazioni** . Modificare le impostazioni per eseguire attività come la ridenominazione predefinita dello spazio dei nomi e la generazione di un metodo sincrono.
 
 * Copiare il codice C# generato in un file nel progetto client che utilizzerà l'API.
 * Iniziare a usare l'API Web:
@@ -208,8 +209,8 @@ Per abilitare i commenti XML, seguire questa procedura:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-* Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Modifica <nome_progetto>.csproj**.
-* Aggiungere manualmente le righe evidenziate al file con estensione *csproj*:
+* Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Modifica <nome_progetto>.csproj** .
+* Aggiungere manualmente le righe evidenziate al file con estensione *csproj* :
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
 
@@ -226,8 +227,8 @@ Per abilitare i commenti XML, seguire questa procedura:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-* Dal *riquadro della soluzione* premere **controllo** e fare clic sul nome del progetto. Passare a **strumenti**  >  **modifica file**.
-* Aggiungere manualmente le righe evidenziate al file con estensione *csproj*:
+* Dal *riquadro della soluzione* premere **controllo** e fare clic sul nome del progetto. Passare a **strumenti**  >  **modifica file** .
+* Aggiungere manualmente le righe evidenziate al file con estensione *csproj* :
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
 
@@ -235,14 +236,14 @@ Per abilitare i commenti XML, seguire questa procedura:
 
 ::: moniker range="<= aspnetcore-1.1"
 
-* Aprire la finestra di dialogo **Opzioni progetto** > **Compila** > **Compilatore**.
+* Aprire la finestra di dialogo **Opzioni progetto** > **Compila** > **Compilatore** .
 * Selezionare la casella **Genera documentazione XML** nella sezione **Opzioni generali**
 
 ::: moniker-end
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-Aggiungere manualmente le righe evidenziate al file con estensione *csproj*:
+Aggiungere manualmente le righe evidenziate al file con estensione *csproj* :
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -264,7 +265,7 @@ Aggiungere manualmente le righe evidenziate al file con estensione *csproj*:
 
 Dato che NSwag usa la [reflection](/dotnet/csharp/programming-guide/concepts/reflection) e il tipo restituito consigliato per le azioni API Web è [IActionResult](xref:Microsoft.AspNetCore.Mvc.IActionResult), non è possibile dedurre cosa sta facendo l'azione e il risultato.
 
-Prendere in considerazione gli esempi seguenti:
+Si consideri l'esempio seguente:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
 
@@ -278,7 +279,7 @@ L'azione precedente restituisce `IActionResult`, ma all'interno dell'azione vien
 
 Poiché NSwag usa la [Reflection](/dotnet/csharp/programming-guide/concepts/reflection)e il tipo restituito consigliato per le azioni dell'API Web è [ActionResult \<T> ](xref:Microsoft.AspNetCore.Mvc.ActionResult%601), può solo dedurre il tipo restituito definito da `T` . Non è possibile dedurre automaticamente altri tipi restituiti possibili.
 
-Prendere in considerazione gli esempi seguenti:
+Si consideri l'esempio seguente:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
 

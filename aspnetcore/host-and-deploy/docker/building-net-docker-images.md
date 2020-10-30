@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/12/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: 6f94323873937d1428d6cfa1b0ef15e44611fd47
-ms.sourcegitcommit: b3ec60f7682e43211c2b40c60eab3d4e45a48ab1
+ms.openlocfilehash: 81daa1d4a996519f44e513b4f61c27cdf2b6ef5e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/17/2020
-ms.locfileid: "92153640"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059806"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Immagini Docker per ASP.NET Core
 
@@ -85,7 +86,7 @@ Il documento Dockerfile di esempio usa la [funzionalità di compilazione in più
 
 ## <a name="run-the-app-locally"></a>Eseguire l'app in locale
 
-* Passare alla cartella del progetto in *dotnet-docker/samples/aspnetapp/aspnetapp*.
+* Passare alla cartella del progetto in *dotnet-docker/samples/aspnetapp/aspnetapp* .
 
 * Eseguire il comando seguente per compilare ed eseguire l'app in locale:
 
@@ -101,7 +102,7 @@ Il documento Dockerfile di esempio usa la [funzionalità di compilazione in più
 
 * Nel client Docker [passare a contenitori Linux](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
-* Passare alla cartella di Dockerfile in *dotnet-docker/samples/aspnetapp*.
+* Passare alla cartella di Dockerfile in *dotnet-docker/samples/aspnetapp* .
 
 * Eseguire i comandi seguenti per compilare ed eseguire l'esempio in Docker:
 
@@ -157,7 +158,7 @@ Passare alla cartella di Dockerfile in `dotnet-docker/samples/aspnetapp`.
 
 In alcuni scenari è necessario distribuire un'app in un contenitore copiandovi i file dell'applicazione necessari in fase di esecuzione. Questa sezione mostra come eseguire manualmente la distribuzione.
 
-* Passare alla cartella del progetto in *dotnet-docker/samples/aspnetapp/aspnetapp*.
+* Passare alla cartella del progetto in *dotnet-docker/samples/aspnetapp/aspnetapp* .
 
 * Eseguire il comando [dotnet publish](/dotnet/core/tools/dotnet-publish):
 
@@ -167,7 +168,7 @@ In alcuni scenari è necessario distribuire un'app in un contenitore copiandovi 
 
   Gli argomenti del comando:
   * Compilano l'applicazione in modalità versione (quella predefinita è la modalità debug).
-  * Creano i file nella cartella *published*.
+  * Creano i file nella cartella *published* .
 
 * Eseguire l'applicazione.
 
@@ -255,7 +256,7 @@ COPY --from=build /app/aspnetapp/out ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
-Come indicato nel Dockerfile precedente, i `*.csproj` file vengono copiati e ripristinati come *livelli*distinti. Quando il `docker build` comando compila un'immagine, usa una cache predefinita. Se i `*.csproj` file non sono stati modificati dopo l'ultima esecuzione del `docker build` comando, `dotnet restore` non è necessario eseguire di nuovo il comando. Viene invece riutilizzata la cache predefinita per il `dotnet restore` livello corrispondente. Per ulteriori informazioni, vedere [procedure consigliate per la scrittura di dockerfile](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
+Come indicato nel Dockerfile precedente, i `*.csproj` file vengono copiati e ripristinati come *livelli* distinti. Quando il `docker build` comando compila un'immagine, usa una cache predefinita. Se i `*.csproj` file non sono stati modificati dopo l'ultima esecuzione del `docker build` comando, `dotnet restore` non è necessario eseguire di nuovo il comando. Viene invece riutilizzata la cache predefinita per il `dotnet restore` livello corrispondente. Per ulteriori informazioni, vedere [procedure consigliate per la scrittura di dockerfile](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
 
 ::: moniker-end
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/10/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: 04841eb4f6adfec76020d3fe61601037c3fc0733
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b8d6ec079ed39fb3a2c314816ebae6cea0847a36
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635346"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061080"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Attività in background con servizi ospitati in ASP.NET Core
 
@@ -31,7 +32,7 @@ Di [Jeow li Huan](https://github.com/huan086)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In ASP.NET Core le attività in background possono essere implementate come *servizi ospitati*. Un servizio ospitato è una classe con logica di attività in background che implementa l'interfaccia <xref:Microsoft.Extensions.Hosting.IHostedService>. In questo argomento vengono forniti tre esempi di servizio ospitato:
+In ASP.NET Core le attività in background possono essere implementate come *servizi ospitati* . Un servizio ospitato è una classe con logica di attività in background che implementa l'interfaccia <xref:Microsoft.Extensions.Hosting.IHostedService>. In questo argomento vengono forniti tre esempi di servizio ospitato:
 
 * Attività in background eseguita su un timer.
 * Servizio ospitato che attiva un [servizio con ambito](xref:fundamentals/dependency-injection#service-lifetimes). Il servizio con ambito può usare l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).
@@ -53,7 +54,7 @@ Per usare il modello come base per un'app di servizi ospitati:
 
 ## <a name="package"></a>Pacchetto
 
-Un'app basata sul modello del servizio Worker usa l' `Microsoft.NET.Sdk.Worker` SDK e contiene un riferimento esplicito al pacchetto per il pacchetto [Microsoft. Extensions. host](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) . Ad esempio, vedere il file di progetto dell'app di esempio (*BackgroundTasksSample. csproj*).
+Un'app basata sul modello del servizio Worker usa l' `Microsoft.NET.Sdk.Worker` SDK e contiene un riferimento esplicito al pacchetto per il pacchetto [Microsoft. Extensions. host](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) . Ad esempio, vedere il file di progetto dell'app di esempio ( *BackgroundTasksSample. csproj* ).
 
 Per le app Web che usano l' `Microsoft.NET.Sdk.Web` SDK, viene fatto riferimento in modo implicito al pacchetto [Microsoft. Extensions. host](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) dal Framework condiviso. Un riferimento esplicito al pacchetto nel file di progetto dell'app non è obbligatorio.
 
@@ -61,7 +62,7 @@ Per le app Web che usano l' `Microsoft.NET.Sdk.Web` SDK, viene fatto riferimento
 
 L' <xref:Microsoft.Extensions.Hosting.IHostedService> interfaccia definisce due metodi per gli oggetti gestiti dall'host:
 
-* [StartAsync (CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*): `StartAsync` contiene la logica per avviare l'attività in background. `StartAsync` viene chiamato *prima*di:
+* [StartAsync (CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*): `StartAsync` contiene la logica per avviare l'attività in background. `StartAsync` viene chiamato *prima* di:
 
   * La pipeline di elaborazione delle richieste dell'app è configurata ( `Startup.Configure` ).
   * Il server viene avviato e viene attivato [IApplicationLifetime. ApplicationStarted](xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted*) .
@@ -127,7 +128,7 @@ Un'attività programmata in background utilizza la classe [System.Threading.Time
 
 Il <xref:System.Threading.Timer> non attende il completamento delle esecuzioni precedenti di `DoWork` , pertanto l'approccio illustrato potrebbe non essere adatto per ogni scenario. [Interlocked. Increment](xref:System.Threading.Interlocked.Increment*) viene usato per incrementare il contatore di esecuzione come operazione atomica, in modo da garantire che più thread non vengano aggiornati `executionCount` contemporaneamente.
 
-Il servizio è registrato in `IHostBuilder.ConfigureServices` (*Program.cs*) con il `AddHostedService` metodo di estensione:
+Il servizio è registrato in `IHostBuilder.ConfigureServices` ( *Program.cs* ) con il `AddHostedService` metodo di estensione:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet1)]
 
@@ -146,7 +147,7 @@ Il servizio ospitato crea un ambito per risolvere il servizio attività in backg
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=19,22-35)]
 
-I servizi sono registrati in `IHostBuilder.ConfigureServices` (*Program.cs*). Il servizio ospitato viene registrato con il `AddHostedService` metodo di estensione:
+I servizi sono registrati in `IHostBuilder.ConfigureServices` ( *Program.cs* ). Il servizio ospitato viene registrato con il `AddHostedService` metodo di estensione:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet2)]
 
@@ -169,12 +170,12 @@ Un `MonitorLoop` servizio gestisce le attività di Accodamento per il servizio o
 * `IBackgroundTaskQueue`Viene inserito nel `MonitorLoop` servizio.
 * `IBackgroundTaskQueue.QueueBackgroundWorkItem` viene chiamato per accodare un elemento di lavoro.
 * L'elemento di lavoro simula un'attività in background con esecuzione prolungata:
-  * Vengono eseguiti tre ritardi di 5 secondi ( `Task.Delay` ).
+  * 3 5 secondi di ritardo vengono eseguiti ( `Task.Delay` ).
   * `try-catch` <xref:System.OperationCanceledException> Se l'attività viene annullata, viene intercettata un'istruzione.
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/MonitorLoop.cs?name=snippet_Monitor&highlight=7,33)]
 
-I servizi sono registrati in `IHostBuilder.ConfigureServices` (*Program.cs*). Il servizio ospitato viene registrato con il `AddHostedService` metodo di estensione:
+I servizi sono registrati in `IHostBuilder.ConfigureServices` ( *Program.cs* ). Il servizio ospitato viene registrato con il `AddHostedService` metodo di estensione:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
 
@@ -186,7 +187,7 @@ I servizi sono registrati in `IHostBuilder.ConfigureServices` (*Program.cs*). Il
 
 ::: moniker range="< aspnetcore-3.0"
 
-In ASP.NET Core le attività in background possono essere implementate come *servizi ospitati*. Un servizio ospitato è una classe con logica di attività in background che implementa l'interfaccia <xref:Microsoft.Extensions.Hosting.IHostedService>. In questo argomento vengono forniti tre esempi di servizio ospitato:
+In ASP.NET Core le attività in background possono essere implementate come *servizi ospitati* . Un servizio ospitato è una classe con logica di attività in background che implementa l'interfaccia <xref:Microsoft.Extensions.Hosting.IHostedService>. In questo argomento vengono forniti tre esempi di servizio ospitato:
 
 * Attività in background eseguita su un timer.
 * Servizio ospitato che attiva un [servizio con ambito](xref:fundamentals/dependency-injection#service-lifetimes). Il servizio con ambito può usare l' [inserimento di dipendenze](xref:fundamentals/dependency-injection)

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.2
-ms.openlocfilehash: 085a26d508af5bdce506ab923a3256046b3894ab
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 67581904c686b0f8b6736b751c8e3f1545f6a286
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722488"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059702"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>Novità di ASP.NET Core 2.2
 
@@ -32,7 +33,7 @@ Questo articolo evidenzia le modifiche più significative apportate ad ASP.NET C
 
 OpenAPI, chiamata in precedenza Swagger, è una specifica indipendente dal linguaggio per la descrizione delle API REST. L'ecosistema OpenAPI include strumenti che consentono di individuare, testare e produrre codice client usando la specifica. Il supporto per la generazione e la visualizzazione di documenti OpenAPI in ASP.NET Core MVC viene fornito tramite progetti basati sulla community, ad esempio [NSwag](https://github.com/RicoSuter/NSwag) e [Swashbuckle. AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). ASP.NET Core 2.2 offre strumenti ottimizzati e migliori esperienze con il runtime per la creazione di documenti OpenAPI.
 
-Per altre informazioni, vedere le seguenti risorse:
+Per altre informazioni, vedere le risorse seguenti:
 
 * <xref:web-api/advanced/analyzers>
 * <xref:web-api/advanced/conventions>
@@ -46,7 +47,7 @@ Con ASP.NET Core 2.1 è stata introdotta la classe `ProblemDetails`, basata sull
 
 ASP.NET Core 2.2 prevede un nuovo sistema di *routing di endpoint* che rende più efficace l'invio delle richieste. Le modifiche includono una nuova funzione di generazione dei collegamenti per i membri dell'API e l'aggiunta di trasformatori per i parametri di routing.
 
-Per altre informazioni, vedere le seguenti risorse:
+Per altre informazioni, vedere le risorse seguenti:
 
 * [Endpoint routing in 2.2](https://blogs.msdn.microsoft.com/webdev/2018/08/27/asp-net-core-2-2-0-preview1-endpoint-routing/) (Routing di endpoint in 2.2)
 * [Parameter transformers](https://www.hanselman.com/blog/ASPNETCore22ParameterTransformersForCleanURLGenerationAndSlugsInRazorPagesOrMVC.aspx) (Trasformatori dei parametri), sezione **Routing**
@@ -79,14 +80,14 @@ Per altre informazioni, vedere [Supporto per HTTP/2](xref:fundamentals/servers/i
 
 ## <a name="kestrel-configuration"></a>Configurazione di Kestrel
 
-Nelle versioni precedenti di ASP.NET Core, le opzioni di Kestrel venivano configurate chiamando `UseKestrel`. Nella versione 2.2, le opzioni di Kestrel sono configurate chiamando `ConfigureKestrel` nel generatore di host. Questa modifica risolve un problema legato all'ordine delle registrazioni `IServer` per l'hosting in-process. Per altre informazioni, vedere le seguenti risorse:
+Nelle versioni precedenti di ASP.NET Core, le opzioni di Kestrel venivano configurate chiamando `UseKestrel`. Nella versione 2.2, le opzioni di Kestrel sono configurate chiamando `ConfigureKestrel` nel generatore di host. Questa modifica risolve un problema legato all'ordine delle registrazioni `IServer` per l'hosting in-process. Per altre informazioni, vedere le risorse seguenti:
 
 * [Mitigate UseIIS conflict](https://github.com/aspnet/KestrelHttpServer/issues/2760) (Ridurre i conflitti UseIIS)
 * [Configurare le opzioni del server Kestrel con ConfigureKestrel](xref:fundamentals/servers/kestrel?view=aspnetcore-2.2#how-to-use-kestrel-in-aspnet-core-apps)
 
 ## <a name="iis-in-process-hosting"></a>Hosting in-process IIS
 
-Nelle versioni precedenti di ASP.NET Core, IIS funge da proxy inverso. Nella versione 2.2, il modulo ASP.NET Core può avviare CoreCLR e ospitare un'app all'interno del processo di lavoro IIS (*w3wp.exe*). Durante l'esecuzione con IIS, l'hosting in-process offre prestazioni e risultati di diagnostica migliori.
+Nelle versioni precedenti di ASP.NET Core, IIS funge da proxy inverso. Nella versione 2.2, il modulo ASP.NET Core può avviare CoreCLR e ospitare un'app all'interno del processo di lavoro IIS ( *w3wp.exe* ). Durante l'esecuzione con IIS, l'hosting in-process offre prestazioni e risultati di diagnostica migliori.
 
 Per altre informazioni, vedere [Hosting in-process per IIS](xref:host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
 

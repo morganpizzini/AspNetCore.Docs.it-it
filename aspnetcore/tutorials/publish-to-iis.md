@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/03/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/publish-to-iis
-ms.openlocfilehash: 40c47da472257862414ba33be582eb19d3f0b29c
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: b3c714ea8e741430df1f70b2df258f1e8f1c7ad5
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754554"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060508"
 ---
 # <a name="publish-an-aspnet-core-app-to-iis"></a>Pubblicare un'app ASP.NET Core in IIS
 
@@ -39,7 +40,7 @@ Questa esercitazione illustra le operazioni seguenti:
 ## <a name="prerequisites"></a>Prerequisiti
 
 * [.NET Core SDK](/dotnet/core/sdk) installato nel computer di sviluppo.
-* Windows Server configurato con il ruolo del server **Server Web (IIS)**. Se il server non è configurato per ospitare siti Web con IIS, seguire le istruzioni nella sezione *Configurazione di IIS* dell'articolo <xref:host-and-deploy/iis/index#iis-configuration> e quindi tornare a questa esercitazione.
+* Windows Server configurato con il ruolo del server **Server Web (IIS)** . Se il server non è configurato per ospitare siti Web con IIS, seguire le istruzioni nella sezione *Configurazione di IIS* dell'articolo <xref:host-and-deploy/iis/index#iis-configuration> e quindi tornare a questa esercitazione.
 
 > [!WARNING]
 > **La configurazione di IIS e la sicurezza del sito Web coinvolgono concetti non trattati in questa esercitazione.** Consultare le linee guida per IIS nella [documentazione di Microsoft IIS](https://www.iis.net/) e l'[articolo di ASP.NET Core sull'hosting con IIS](xref:host-and-deploy/iis/index) prima di ospitare app di produzione in IIS.
@@ -66,16 +67,16 @@ Scaricare il programma di installazione mediante il collegamento seguente:
 
 1. Nel server IIS creare una cartella per contenere le cartelle e i file pubblicati dell'app. In un passaggio successivo, il percorso della cartella viene fornito a IIS come percorso fisico dell'app. Per altre informazioni sulla cartella di distribuzione e il layout dei file di un'app, vedere <xref:host-and-deploy/directory-structure>.
 
-1. In Gestione IIS aprire il nodo del server nel pannello **connessioni** . Fare clic con il pulsante destro del mouse sulla cartella **Siti**. Scegliere **Aggiungi sito Web** dal menu di scelta rapida.
+1. In Gestione IIS aprire il nodo del server nel pannello **connessioni** . Fare clic con il pulsante destro del mouse sulla cartella **Siti** . Scegliere **Aggiungi sito Web** dal menu di scelta rapida.
 
-1. Specificare un **Nome del sito** e impostare il **Percorso fisico** per la cartella di distribuzione dell'app che è stata creata. Specificare la configurazione in **Binding** e creare il sito Web selezionando **OK**.
+1. Specificare un **Nome del sito** e impostare il **Percorso fisico** per la cartella di distribuzione dell'app che è stata creata. Specificare la configurazione in **Binding** e creare il sito Web selezionando **OK** .
 
    > [!WARNING]
    > Le associazioni con caratteri jolly di livello superiore (`http://*:80/` e `http://+:80`) **non** devono essere usate, poiché possono introdurre vulnerabilità a livello di sicurezza nell'app. Questo concetto vale sia per i caratteri jolly sicuri che vulnerabili. Usare nomi host espliciti al posto di caratteri jolly. L'associazione con caratteri jolly del sottodominio (ad esempio, `*.mysub.com`) non costituisce un rischio per la sicurezza se viene controllato l'intero dominio padre (a differenza di `*.com`, che è vulnerabile). Vedere la [sezione 5.4 di RFC7230](https://tools.ietf.org/html/rfc7230#section-5.4) per altre informazioni.
 
 1. Confermare che l'identità del modello del processo disponga delle autorizzazioni appropriate.
 
-   Se l'identità predefinita del pool di app (**modello**  >  **Identity** di processo) viene modificata da `ApplicationPoolIdentity` a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
+   Se l'identità predefinita del pool di app ( **modello**  >  **Identity** di processo) viene modificata da `ApplicationPoolIdentity` a un'altra identità, verificare che la nuova identità disponga delle autorizzazioni necessarie per accedere alla cartella dell'app, al database e ad altre risorse richieste. Ad esempio, il pool di applicazioni richiede l'accesso in lettura e scrittura alle cartelle in cui l'app legge e scrive i file.
 
 ## <a name="create-an-aspnet-core-no-locrazor-pages-app"></a>Creare un'app di ASP.NET Core Razor pages
 
@@ -83,16 +84,16 @@ Seguire l' <xref:getting-started> esercitazione per creare un' Razor app pagine.
 
 ## <a name="publish-and-deploy-the-app"></a>Pubblicare e distribuire l'app
 
-*Pubblicare un'app* significa creare un'app compilata che può essere ospitata da un server. *Distribuire un'app* significa spostare l'app pubblicata in un sistema di hosting. Il passaggio di pubblicazione viene gestito da [.NET Core SDK](/dotnet/core/sdk), mentre la fase di distribuzione può essere gestita tramite vari approcci. Questa esercitazione adotta l'approccio di distribuzione tramite una *cartella*, in cui:
+*Pubblicare un'app* significa creare un'app compilata che può essere ospitata da un server. *Distribuire un'app* significa spostare l'app pubblicata in un sistema di hosting. Il passaggio di pubblicazione viene gestito da [.NET Core SDK](/dotnet/core/sdk), mentre la fase di distribuzione può essere gestita tramite vari approcci. Questa esercitazione adotta l'approccio di distribuzione tramite una *cartella* , in cui:
  
 * L'app viene pubblicata in una cartella.
 * Il contenuto della cartella viene spostato nella cartella del sito IIS, ovvero il **percorso fisico** del sito in Gestione IIS.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Pubblica**.
-1. Nella finestra di dialogo **Selezionare una destinazione di pubblicazione** selezionare l'opzione di pubblicazione **Cartella**.
-1. Impostare il percorso **Cartella o condivisione file**.
+1. Fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Pubblica** .
+1. Nella finestra di dialogo **Selezionare una destinazione di pubblicazione** selezionare l'opzione di pubblicazione **Cartella** .
+1. Impostare il percorso **Cartella o condivisione file** .
    * Se è stata creata una cartella per il sito IIS disponibile nel computer di sviluppo come una condivisione di rete, specificare il percorso della condivisione. L'utente corrente deve avere l'accesso in scrittura per la pubblicazione nella condivisione.
    * Se non si è in grado di eseguire la distribuzione direttamente nella cartella del sito IIS nel server IIS, pubblicare in una cartella su supporti rimovibili e spostare fisicamente l'app pubblicata nella cartella del sito IIS nel server, ovvero il **percorso fisico** del sito in Gestione IIS. Spostare il contenuto della `bin/Release/{TARGET FRAMEWORK}/publish` cartella nella cartella del sito IIS sul server, ovvero il **percorso fisico** del sito in Gestione IIS.
 
@@ -108,8 +109,8 @@ Seguire l' <xref:getting-started> esercitazione per creare un' Razor app pagine.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-1. Fare clic con il pulsante destro del mouse sul progetto in **Soluzione** e scegliere **Pubblica** > **Pubblica nella cartella**.
-1. Impostare il percorso in **Scegliere una cartella**.
+1. Fare clic con il pulsante destro del mouse sul progetto in **Soluzione** e scegliere **Pubblica** > **Pubblica nella cartella** .
+1. Impostare il percorso in **Scegliere una cartella** .
    * Se è stata creata una cartella per il sito IIS disponibile nel computer di sviluppo come una condivisione di rete, specificare il percorso della condivisione. L'utente corrente deve avere l'accesso in scrittura per la pubblicazione nella condivisione.
    * Se non è possibile eseguire la distribuzione direttamente nella cartella del sito IIS nel server IIS, pubblicare in una cartella su un supporto rimovibile e spostare fisicamente l'app pubblicata nella cartella del sito IIS nel server, ovvero il **percorso fisico** del sito in Gestione IIS. Spostare il contenuto della `bin/Release/{TARGET FRAMEWORK}/publish` cartella nella cartella del sito IIS sul server, ovvero il **percorso fisico** del sito in Gestione IIS.
 

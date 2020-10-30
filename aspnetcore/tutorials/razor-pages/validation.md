@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 86c523c69d3ee85f56bf1a51719a0bd93cbe97fc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 991a0f29c0edc5a220dfde69bd22dc4ed758394d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633552"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060729"
 ---
 # <a name="part-8-add-validation-to-an-aspnet-core-no-locrazor-page"></a>Parte 8: aggiungere la convalida a una Razor pagina ASP.NET Core
 
@@ -32,7 +33,7 @@ In questa sezione la logica di convalida viene aggiunta al modello `Movie`. Le r
 
 ## <a name="validation"></a>Convalida
 
-Un concetto di base dello sviluppo del software si chiama [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("**D**on't **R**epeat **Y**ourself", Non ripeterti). Razor Le pagine favoriscono lo sviluppo in cui la funzionalità è specificata una sola volta e viene riflessa nell'intera app. DRY contribuisce a:
+Un concetto di base dello sviluppo del software si chiama [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) (" **D** on't **R** epeat **Y** ourself", Non ripeterti). Razor Le pagine favoriscono lo sviluppo in cui la funzionalità è specificata una sola volta e viene riflessa nell'intera app. DRY contribuisce a:
 
 * Ridurre la quantità di codice in un'app.
 * Rendere il codice meno soggetto ad errori e più facile da testare e gestire.
@@ -70,7 +71,7 @@ L'applicazione automatica di regole di convalida da ASP.NET Core è utile per re
 
 Eseguire l'app e passare a Pages/Movies.
 
-Selezionare il collegamento **Crea nuovo**. Completare il modulo con alcuni valori non validi. Quando la convalida del lato client jQuery rileva l'errore, viene visualizzato un messaggio di errore.
+Selezionare il collegamento **Crea nuovo** . Completare il modulo con alcuni valori non validi. Quando la convalida del lato client jQuery rileva l'errore, viene visualizzato un messaggio di errore.
 
 ![Il modulo di vista del film con più errori di convalida del lato client jQuery](validation/_static/val.png)
 
@@ -82,7 +83,7 @@ Un vantaggio significativo è che non c'era **nessuna** modifica del codice nece
 
 I dati del modulo non vengono registrati nel server fino a quando non sono presenti errori di convalida nel lato client. Verificare che i dati del modulo non siano stati registrati da uno o più degli approcci seguenti:
 
-* Inserire un punto di interruzione nel metodo `OnPostAsync`. Inviare il modulo (selezionare **Crea** o **Salva**). Il punto di interruzione non viene mai raggiunto.
+* Inserire un punto di interruzione nel metodo `OnPostAsync`. Inviare il modulo (selezionare **Crea** o **Salva** ). Il punto di interruzione non viene mai raggiunto.
 * Usare lo [Strumento Fiddler](https://www.telerik.com/fiddler).
 * Usare gli strumenti di sviluppo del browser per monitorare il traffico di rete.
 
@@ -186,7 +187,7 @@ CREATE TABLE [dbo].[Movie] (
 
 Le modifiche dello schema precedenti non determinano la generazione di un'eccezione da parte di EF. Tuttavia, creare una migrazione in modo che lo schema sia coerente con il modello.
 
-Dal menu **Strumenti** selezionare **Gestione pacchetti NuGet > Console di Gestione pacchetti**.
+Dal menu **Strumenti** selezionare **Gestione pacchetti NuGet > Console di Gestione pacchetti** .
 Nella Console di Gestione pacchetti immettere i comandi seguenti:
 
 ```powershell

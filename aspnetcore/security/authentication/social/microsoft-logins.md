@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/microsoft-logins
-ms.openlocfilehash: 36341a0e439be57d7da4f787aa6103b92c624e96
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: 3161e4f0f735294d69dd51634b424d1ed573e615
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847585"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060300"
 ---
 # <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>Configurazione dell'accesso esterno all'account Microsoft con ASP.NET Core
 
@@ -36,25 +37,25 @@ Questo esempio illustra come consentire agli utenti di accedere con il proprio l
 * Aggiungere il pacchetto NuGet [Microsoft. AspNetCore. Authentication. MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount/) al progetto.
 * Passare alla pagina [portale di Azure-registrazioni app](https://go.microsoft.com/fwlink/?linkid=2083908) e creare o accedere a un account Microsoft:
 
-Se non si dispone di un account Microsoft, selezionare **crearne uno**. Dopo aver eseguito l'accesso, si verrà reindirizzati alla pagina **registrazioni app** :
+Se non si dispone di un account Microsoft, selezionare **crearne uno** . Dopo aver eseguito l'accesso, si verrà reindirizzati alla pagina **registrazioni app** :
 
 * Seleziona **nuova registrazione**
-* Immettere un **Nome**.
-* Selezionare un'opzione per i **tipi di account supportati**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
+* Immettere un **Nome** .
+* Selezionare un'opzione per i **tipi di account supportati** .  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
   * Il `MicrosoftAccount` pacchetto supporta le registrazioni di app create usando le opzioni "account in qualsiasi directory organizzativa" o "account in qualsiasi directory organizzativa e account Microsoft" per impostazione predefinita.
   * Per usare altre opzioni, impostare `AuthorizationEndpoint` e `TokenEndpoint` i membri di `MicrosoftAccountOptions` usati per inizializzare l'autenticazione dell'account Microsoft sugli URL visualizzati nella pagina **endpoint** della registrazione dell'app dopo che è stata creata (disponibile facendo clic su endpoint nella pagina **Panoramica** ).
-* In **URI di reindirizzamento**immettere l'URL di sviluppo con `/signin-microsoft` accodato. Ad esempio: `https://localhost:5001/signin-microsoft`. Lo schema di autenticazione Microsoft configurato più avanti in questo esempio gestirà automaticamente le richieste in `/signin-microsoft` Route per implementare il flusso OAuth.
+* In **URI di reindirizzamento** immettere l'URL di sviluppo con `/signin-microsoft` accodato. Ad esempio `https://localhost:5001/signin-microsoft`. Lo schema di autenticazione Microsoft configurato più avanti in questo esempio gestirà automaticamente le richieste in `/signin-microsoft` Route per implementare il flusso OAuth.
 * Selezionare **Registra**
 
 ### <a name="create-client-secret"></a>Crea segreto client
 
-* Nel riquadro sinistro selezionare **Certificati e segreti**.
-* In **segreti client**selezionare **nuovo segreto client**
+* Nel riquadro sinistro selezionare **Certificati e segreti** .
+* In **segreti client** selezionare **nuovo segreto client**
 
   * Aggiungere una descrizione per il segreto client.
-  * Fare clic sul pulsante **Aggiungi**.
+  * Fare clic sul pulsante **Aggiungi** .
 
-* In **segreti client**copiare il valore del segreto client.
+* In **segreti client** copiare il valore del segreto client.
 
 Il segmento URI `/signin-microsoft` viene impostato come callback predefinito del provider di autenticazione Microsoft. È possibile modificare l'URI di callback predefinito durante la configurazione del middleware di autenticazione Microsoft tramite la proprietà [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) ereditata della classe [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) .
 
@@ -84,7 +85,7 @@ Per altre informazioni sulle opzioni di configurazione supportate dall'autentica
 
 ## <a name="sign-in-with-microsoft-account"></a>Account Accedi con Microsoft
 
-Eseguire l'app e fare clic su **Accedi**. Viene visualizzata un'opzione per accedere con Microsoft. Quando si fa clic su Microsoft, si viene reindirizzati a Microsoft per l'autenticazione. Dopo aver eseguito l'accesso con l'account Microsoft, verrà richiesto di consentire all'app di accedere alle informazioni:
+Eseguire l'app e fare clic su **Accedi** . Viene visualizzata un'opzione per accedere con Microsoft. Quando si fa clic su Microsoft, si viene reindirizzati a Microsoft per l'autenticazione. Dopo aver eseguito l'accesso con l'account Microsoft, verrà richiesto di consentire all'app di accedere alle informazioni:
 
 Toccare **Sì** e si verrà reindirizzati di nuovo al sito Web in cui è possibile impostare la posta elettronica.
 
@@ -94,12 +95,12 @@ A questo punto è stato effettuato l'accesso con le credenziali Microsoft:
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
-## <a name="troubleshooting"></a>Risoluzione dei problemi
+## <a name="troubleshooting"></a>risoluzione dei problemi
 
 * Se il provider di account Microsoft reindirizza l'utente a una pagina di errore di accesso, prendere nota dei parametri della stringa di query titolo e Descrizione dell'errore direttamente dopo l' `#` hashtag nell'URI.
 
   Anche se il messaggio di errore sembra indicare un problema con l'autenticazione Microsoft, la causa più comune è l'URI dell'applicazione che non corrisponde ad alcuno degli **URI di reindirizzamento** specificati per la piattaforma **Web** .
-* Se Identity non è configurato chiamando `services.AddIdentity` in `ConfigureServices` , il tentativo di eseguire l'autenticazione comporterà *l'eccezione ArgumentException: è necessario specificare l'opzione ' SignInScheme '*. Il modello di progetto utilizzato in questo esempio garantisce che questa operazione venga eseguita.
+* Se Identity non è configurato chiamando `services.AddIdentity` in `ConfigureServices` , il tentativo di eseguire l'autenticazione comporterà *l'eccezione ArgumentException: è necessario specificare l'opzione ' SignInScheme '* . Il modello di progetto utilizzato in questo esempio garantisce che questa operazione venga eseguita.
 * Se il database del sito non è stato creato applicando la migrazione iniziale, si otterrà *un'operazione di database non riuscita durante l'elaborazione dell'* errore di richiesta. Toccare **applica migrazioni** per creare il database e aggiornare per continuare a superare l'errore.
 
 ## <a name="next-steps"></a>Passaggi successivi

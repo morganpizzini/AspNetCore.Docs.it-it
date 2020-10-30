@@ -5,6 +5,7 @@ description: Informazioni su come eseguire la migrazione dell'autenticazione e d
 ms.author: riande
 ms.date: 3/22/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/identity
-ms.openlocfilehash: c8e6a1a8bf9ef06d98db0e7e0a6a0e5ff393e322
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 8ceff0596c069d815c38b9bb526477a9d1430951
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865531"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060651"
 ---
 # <a name="migrate-authentication-and-no-locidentity-to-aspnet-core"></a>Eseguire la migrazione dell'autenticazione e Identity a ASP.NET Core
 
@@ -31,7 +32,7 @@ Nell'articolo precedente è stata [eseguita la migrazione della configurazione d
 
 ## <a name="configure-no-locidentity-and-membership"></a>Configurare Identity e appartenere
 
-In ASP.NET MVC le funzionalità di autenticazione e identità vengono configurate usando ASP.NET Identity in *Startup.Auth.cs* e * Identity config.cs*, che si trova nella cartella *app_start* . In ASP.NET Core MVC queste funzionalità sono configurate in *Startup.cs*.
+In ASP.NET MVC le funzionalità di autenticazione e identità vengono configurate usando ASP.NET Identity in *Startup.Auth.cs* e *Identity config.cs* , che si trova nella cartella *app_start* . In ASP.NET Core MVC queste funzionalità sono configurate in *Startup.cs* .
 
 Installare i pacchetti NuGet seguenti:
 
@@ -39,7 +40,7 @@ Installare i pacchetti NuGet seguenti:
 * `Microsoft.AspNetCore.Authentication.Cookies`
 * `Microsoft.EntityFrameworkCore.SqlServer`
 
-In *Startup.cs*aggiornare il `Startup.ConfigureServices` metodo per usare Entity Framework e i Identity Servizi:
+In *Startup.cs* aggiornare il `Startup.ConfigureServices` metodo per usare Entity Framework e i Identity Servizi:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -56,9 +57,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-A questo punto, esistono due tipi a cui si fa riferimento nel codice precedente, di cui non è ancora stata eseguita la migrazione dal progetto MVC ASP.NET: `ApplicationDbContext` e `ApplicationUser` . Creare una nuova cartella *Models* nel progetto ASP.NET Core e aggiungere due classi alla classe corrispondente a questi tipi. Sono disponibili le versioni ASP.NET MVC di queste classi in */Models/ Identity Models.cs*, ma si userà un file per classe nel progetto migrato, perché questo è più chiaro.
+A questo punto, esistono due tipi a cui si fa riferimento nel codice precedente, di cui non è ancora stata eseguita la migrazione dal progetto MVC ASP.NET: `ApplicationDbContext` e `ApplicationUser` . Creare una nuova cartella *Models* nel progetto ASP.NET Core e aggiungere due classi alla classe corrispondente a questi tipi. Sono disponibili le versioni ASP.NET MVC di queste classi in */Models/ Identity Models.cs* , ma si userà un file per classe nel progetto migrato, perché questo è più chiaro.
 
-*ApplicationUser.cs*:
+*ApplicationUser.cs* :
 
 ```csharp
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -71,7 +72,7 @@ namespace NewMvcProject.Models
 }
 ```
 
-*ApplicationDbContext.cs*:
+*ApplicationDbContext.cs* :
 
 ```csharp
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -114,9 +115,9 @@ L'app è ora pronta per supportare l'autenticazione e i Identity servizi. È suf
 
 ## <a name="migrate-registration-and-login-logic"></a>Eseguire la migrazione della logica di registrazione e accesso
 
-Con Identity i servizi configurati per l'app e l'accesso ai dati configurati con Entity Framework e SQL Server, è possibile aggiungere il supporto per la registrazione e l'accesso all'app. Si ricordi che [in precedenza nel processo di migrazione](xref:migration/mvc#migrate-the-layout-file) è stato impostato come commento un riferimento a *_LoginPartial* in *_Layout. cshtml*. A questo punto è possibile tornare a tale codice, rimuovere il commento e aggiungere i controller e le visualizzazioni necessari per supportare la funzionalità di accesso.
+Con Identity i servizi configurati per l'app e l'accesso ai dati configurati con Entity Framework e SQL Server, è possibile aggiungere il supporto per la registrazione e l'accesso all'app. Si ricordi che [in precedenza nel processo di migrazione](xref:migration/mvc#migrate-the-layout-file) è stato impostato come commento un riferimento a *_LoginPartial* in *_Layout. cshtml* . A questo punto è possibile tornare a tale codice, rimuovere il commento e aggiungere i controller e le visualizzazioni necessari per supportare la funzionalità di accesso.
 
-Rimuovere il commento dalla `@Html.Partial` riga in *_Layout. cshtml*:
+Rimuovere il commento dalla `@Html.Partial` riga in *_Layout. cshtml* :
 
 ```cshtml
       <li>@Html.ActionLink("Contact", "Contact", "Home")</li>

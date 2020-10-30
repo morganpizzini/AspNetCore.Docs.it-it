@@ -5,6 +5,7 @@ description: ''
 ms.author: riande
 ms.date: 12/07/2016
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 808215d103db9c5d63fe63b6875a222e6b0ba1fa
-ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
+ms.openlocfilehash: 9664f49bd709d2c9e46130773211c339e391d1f6
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92326622"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060703"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Eseguire la migrazione di gestori e moduli HTTP a ASP.NET Core middleware
 
@@ -57,7 +58,7 @@ Prima di procedere con ASP.NET Core middleware, è necessario riepilogare il fun
 
 1. <https://docs.microsoft.com/previous-versions/ms227673(v=vs.140)>, Ovvero eventi di serie generati da ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest)e così via. Ogni modulo può creare un gestore per uno o più eventi.
 
-2. Per lo stesso evento, l'ordine in cui sono configurati in *Web.config*.
+2. Per lo stesso evento, l'ordine in cui sono configurati in *Web.config* .
 
 Oltre ai moduli, è possibile aggiungere i gestori per gli eventi del ciclo di vita al file *Global.asax.cs* . Questi gestori vengono eseguiti dopo i gestori nei moduli configurati.
 
@@ -65,7 +66,7 @@ Oltre ai moduli, è possibile aggiungere i gestori per gli eventi del ciclo di v
 
 **Il middleware è più semplice dei moduli e gestori HTTP:**
 
-* Moduli, gestori, *Global.asax.cs*, *Web.config* (eccetto la configurazione di IIS) e il ciclo di vita dell'applicazione sono finiti
+* Moduli, gestori, *Global.asax.cs* , *Web.config* (eccetto la configurazione di IIS) e il ciclo di vita dell'applicazione sono finiti
 
 * I ruoli di moduli e gestori sono stati rilevati dal middleware
 
@@ -132,7 +133,7 @@ Quando si esegue la migrazione della funzionalità del modulo al nuovo middlewar
 
 ## <a name="migrating-module-insertion-into-the-request-pipeline"></a>Migrazione dell'inserimento del modulo nella pipeline delle richieste
 
-I moduli HTTP vengono in genere aggiunti alla pipeline di richieste usando *Web.config*:
+I moduli HTTP vengono in genere aggiunti alla pipeline di richieste usando *Web.config* :
 
 [!code-xml[](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32-33,36,43,50,101)]
 
@@ -140,7 +141,7 @@ Per convertirlo, [aggiungere il nuovo middleware](xref:fundamentals/middleware/i
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=16)]
 
-Il punto esatto della pipeline in cui si inserisce il nuovo middleware dipende dall'evento gestito come modulo ( `BeginRequest` , e `EndRequest` così via) e dall'ordine nell'elenco dei moduli in *Web.config*.
+Il punto esatto della pipeline in cui si inserisce il nuovo middleware dipende dall'evento gestito come modulo ( `BeginRequest` , e `EndRequest` così via) e dall'ordine nell'elenco dei moduli in *Web.config* .
 
 Come indicato in precedenza, non esiste alcun ciclo di vita dell'applicazione in ASP.NET Core e l'ordine in cui le risposte vengono elaborate dal middleware differisce dall'ordine usato dai moduli. Questo potrebbe rendere più complessa la decisione di ordinamento.
 
@@ -180,7 +181,7 @@ Middleware aggiunto alla pipeline prima che il ramo venga richiamato in tutte le
 
 ## <a name="loading-middleware-options-using-the-options-pattern"></a>Caricamento delle opzioni del middleware usando il modello di opzioni
 
-Alcuni moduli e gestori hanno opzioni di configurazione archiviate in *Web.config*. Tuttavia, in ASP.NET Core viene usato un nuovo modello di configurazione al posto di *Web.config*.
+Alcuni moduli e gestori hanno opzioni di configurazione archiviate in *Web.config* . Tuttavia, in ASP.NET Core viene usato un nuovo modello di configurazione al posto di *Web.config* .
 
 Il nuovo [sistema di configurazione](xref:fundamentals/configuration/index) offre le opzioni seguenti per risolvere il problema:
 
@@ -194,7 +195,7 @@ Il nuovo [sistema di configurazione](xref:fundamentals/configuration/index) offr
 
 2. Archiviare i valori delle opzioni
 
-   Il sistema di configurazione consente di archiviare i valori delle opzioni ovunque si desideri. Tuttavia, la maggior parte dei siti USA *appsettings.json*, quindi prendiamo questo approccio:
+   Il sistema di configurazione consente di archiviare i valori delle opzioni ovunque si desideri. Tuttavia, la maggior parte dei siti USA *appsettings.json* , quindi prendiamo questo approccio:
 
    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
 
@@ -206,7 +207,7 @@ Il nuovo [sistema di configurazione](xref:fundamentals/configuration/index) offr
 
     Aggiornare la `Startup` classe:
 
-   1. Se si usa *appsettings.json*, aggiungerlo al generatore di configurazione nel `Startup` costruttore:
+   1. Se si usa *appsettings.json* , aggiungerlo al generatore di configurazione nel `Startup` costruttore:
 
       [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Ctor&highlight=5-6)]
 
@@ -234,9 +235,9 @@ Questa operazione si interrompe anche se si vuole usare lo stesso middleware due
 
 La soluzione consiste nell'ottenere gli oggetti Options con i valori effettivi delle opzioni nella `Startup` classe e passarli direttamente a ogni istanza del middleware.
 
-1. Aggiungi una seconda chiave alla *appsettings.js*
+1. Aggiungi una seconda chiave a *appsettings.json*
 
-   Per aggiungere un secondo set di opzioni all' *appsettings.jssu* file, usare una nuova chiave per identificarla in modo univoco:
+   Per aggiungere un secondo set di opzioni al *appsettings.json* file, usare una nuova chiave per identificarla in modo univoco:
 
    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
 
@@ -323,7 +324,7 @@ Fornisce un ID univoco per ogni richiesta. Molto utile da includere nei log.
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Form)]
 
 > [!WARNING]
-> Leggere i valori del modulo solo se il sottotipo di contenuto è *x-www-form-urlencoded* o *form-data*.
+> Leggere i valori del modulo solo se il sottotipo di contenuto è *x-www-form-urlencoded* o *form-data* .
 
 **HttpContext. Request. InputStream** viene convertito in:
 
@@ -379,7 +380,7 @@ Il `SetHeaders` metodo di callback avrà un aspetto simile al seguente:
 
 **HttpContext. Response. Cookie s**
 
-Cookies viene spostata nel browser in un'intestazione *set- Cookie * Response. Di conseguenza, l'invio di cookie richiede lo stesso callback utilizzato per inviare le intestazioni di risposta:
+Cookies viene spostata nel browser in un'intestazione *set- Cookie* Response. Di conseguenza, l'invio di cookie richiede lo stesso callback utilizzato per inviare le intestazioni di risposta:
 
 ```csharp
 public async Task Invoke(HttpContext httpContext)

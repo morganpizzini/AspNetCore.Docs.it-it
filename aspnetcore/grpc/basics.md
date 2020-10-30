@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 07/09/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/basics
-ms.openlocfilehash: aacaf9cca131d3fba1c3ae96cf42d51d3fdc17b6
-ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
+ms.openlocfilehash: 4968ac889cd3b4e0780ce73dc729d0107a416932
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88945428"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061015"
 ---
 # <a name="grpc-services-with-c"></a>Servizi gRPC con C\#
 
@@ -32,7 +33,7 @@ Questo documento illustra i concetti necessari per scrivere app [gRPC](https://g
 
 ## <a name="proto-file"></a>file proto
 
-gRPC usa un approccio basato sul contratto per lo sviluppo di API. I buffer di protocollo (protobuf) vengono usati per impostazione predefinita come IDL (Interface Definition Language). Il file con * \* estensione proto* contiene:
+gRPC usa un approccio basato sul contratto per lo sviluppo di API. I buffer di protocollo (protobuf) vengono usati per impostazione predefinita come IDL (Interface Definition Language). Il file con *\* estensione proto* contiene:
 
 * Definizione del servizio gRPC.
 * Messaggi inviati tra client e server.
@@ -50,7 +51,7 @@ Si consideri ad esempio il file *greet. proto* usato in [Introduzione al servizi
 
 ## <a name="add-a-proto-file-to-a-c-app"></a>Aggiungere un file. proto a un' \# app C
 
-Il file con * \* estensione proto* è incluso in un progetto aggiungendolo al `<Protobuf>` gruppo di elementi:
+Il file con *\* estensione proto* è incluso in un progetto aggiungendolo al `<Protobuf>` gruppo di elementi:
 
 [!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-9)]
 
@@ -63,7 +64,7 @@ Per impostazione predefinita, un `<Protobuf>` riferimento genera un client concr
 
 ## <a name="c-tooling-support-for-proto-files"></a>Supporto degli strumenti C# per i file. proto
 
-Il pacchetto di strumenti [Grpc. Tools](https://www.nuget.org/packages/Grpc.Tools/) è necessario per generare gli asset C# da file * \* . proto* . Asset generati (file):
+Il pacchetto di strumenti [Grpc. Tools](https://www.nuget.org/packages/Grpc.Tools/) è necessario per generare gli asset C# da file *\* . proto* . Asset generati (file):
 
 * Vengono generati ogni volta che il progetto viene compilato in base alle esigenze.
 * Non vengono aggiunti al progetto o archiviati nel controllo del codice sorgente.
@@ -79,7 +80,7 @@ I progetti client devono fare riferimento direttamente `Grpc.Tools` a insieme ag
 
 ## <a name="generated-c-assets"></a>Asset C# generati
 
-Il pacchetto di strumenti genera i tipi C# che rappresentano i messaggi definiti nei file con * \* estensione proto* inclusi.
+Il pacchetto di strumenti genera i tipi C# che rappresentano i messaggi definiti nei file con *\* estensione proto* inclusi.
 
 Per gli asset lato server, viene generato un tipo di base del servizio abstract. Il tipo di base contiene le definizioni di tutte le chiamate gRPC contenute nel file *. proto* . Creare un'implementazione del servizio concreta che deriva da questo tipo di base e implementa la logica per le chiamate gRPC. Per `greet.proto` , l'esempio descritto in precedenza, `GreeterBase` viene generato un tipo astratto che contiene un `SayHello` metodo virtuale. Un'implementazione concreta `GreeterService` esegue l'override del metodo e implementa la logica di gestione della chiamata gRPC.
 
@@ -89,7 +90,7 @@ Per gli asset lato client viene generato un tipo di client concreto. Le chiamate
 
 [!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet)]
 
-Per impostazione predefinita, gli asset server e client vengono generati per ogni file con * \* estensione proto* incluso nel `<Protobuf>` gruppo di elementi. Per assicurarsi che vengano generati solo gli asset server in un progetto server, l' `GrpcServices` attributo è impostato su `Server` .
+Per impostazione predefinita, gli asset server e client vengono generati per ogni file con *\* estensione proto* incluso nel `<Protobuf>` gruppo di elementi. Per assicurarsi che vengano generati solo gli asset server in un progetto server, l' `GrpcServices` attributo è impostato su `Server` .
 
 [!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-9)]
 

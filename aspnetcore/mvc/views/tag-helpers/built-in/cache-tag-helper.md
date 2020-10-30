@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: b1cab7ab8b491529ee4208d92fb30082be795eda
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a87f91255bd1f280b1567f522423a6f4e88a6dd8
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635060"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060885"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Helper tag di cache in ASP.NET Core MVC
 
@@ -110,7 +111,7 @@ Esempio:
 
 ### <a name="vary-by-header"></a>vary-by-header
 
-| Tipo di attributo | Esempi                                    |
+| Tipo di attributo | Esempio                                    |
 | -------------- | ------------------------------------------- |
 | string         | `User-Agent`, `User-Agent,content-encoding` |
 
@@ -126,7 +127,7 @@ L'esempio seguente esegue il monitoraggio del valore dell'intestazione `User-Age
 
 ### <a name="vary-by-query"></a>vary-by-query
 
-| Tipo di attributo | Esempi             |
+| Tipo di attributo | Esempio             |
 | -------------- | -------------------- |
 | string         | `Make`, `Make,Model` |
 
@@ -142,7 +143,7 @@ L'esempio seguente esegue il monitoraggio dei valori di `Make` e `Model`. L'esem
 
 ### <a name="vary-by-route"></a>vary-by-route
 
-| Tipo di attributo | Esempi             |
+| Tipo di attributo | Esempio             |
 | -------------- | -------------------- |
 | string         | `Make`, `Make,Model` |
 
@@ -150,7 +151,7 @@ L'esempio seguente esegue il monitoraggio dei valori di `Make` e `Model`. L'esem
 
 Esempio:
 
-*Startup.cs*:
+*Startup.cs* :
 
 ```csharp
 routes.MapRoute(
@@ -158,7 +159,7 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{Make?}/{Model?}");
 ```
 
-*Index. cshtml*:
+*Index. cshtml* :
 
 ```cshtml
 <cache vary-by-route="Make,Model">
@@ -168,7 +169,7 @@ routes.MapRoute(
 
 ### <a name="vary-by-no-loccookie"></a>variazione percookie
 
-| Tipo di attributo | Esempi                                                                         |
+| Tipo di attributo | Esempio                                                                         |
 | -------------- | -------------------------------------------------------------------------------- |
 | string         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
@@ -223,7 +224,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 }
 ```
 
-*Index. cshtml*:
+*Index. cshtml* :
 
 ```cshtml
 <cache vary-by="@Model">

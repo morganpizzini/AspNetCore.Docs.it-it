@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/razor-pages-authorization
-ms.openlocfilehash: b17717e7b3cbaa64d4ff00661f15439728f161d3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 69e1d639aeb55ae64cc54b1cda402ed6bcbb04ab
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634891"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060183"
 ---
 # <a name="no-locrazor-pages-authorization-conventions-in-aspnet-core"></a>Razor Convenzioni di autorizzazione per le pagine in ASP.NET Core
 
@@ -74,7 +75,7 @@ Utilizzare la <xref:Microsoft.Extensions.DependencyInjection.PageConventionColle
 options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts");
 ```
 
-Il nome della pagina è il percorso del file senza estensione rispetto alla directory radice delle pagine per l'area specificata. Ad esempio, il nome della pagina per le *aree file/ Identity /pages/Manage/accounts.cshtml* è */Manage/accounts*.
+Il nome della pagina è il percorso del file senza estensione rispetto alla directory radice delle pagine per l'area specificata. Ad esempio, il nome della pagina per le *aree file/ Identity /pages/Manage/accounts.cshtml* è */Manage/accounts* .
 
 Per specificare un [criterio di autorizzazione](xref:security/authorization/policies), usare un [Overload AuthorizeAreaPage](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage*):
 
@@ -90,7 +91,7 @@ Utilizzare la <xref:Microsoft.Extensions.DependencyInjection.PageConventionColle
 options.Conventions.AuthorizeAreaFolder("Identity", "/Manage");
 ```
 
-Il percorso della cartella è il percorso della cartella relativa alla directory radice delle pagine per l'area specificata. Il percorso della cartella per i file in *areas/ Identity /pages/manage/* , ad esempio, è */Manage*.
+Il percorso della cartella è il percorso della cartella relativa alla directory radice delle pagine per l'area specificata. Il percorso della cartella per i file in *areas/ Identity /pages/manage/* , ad esempio, è */Manage* .
 
 Per specificare un [criterio di autorizzazione](xref:security/authorization/policies), usare un [Overload AuthorizeAreaFolder](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaFolder*):
 
@@ -186,7 +187,7 @@ Utilizzare la <xref:Microsoft.Extensions.DependencyInjection.PageConventionColle
 options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts");
 ```
 
-Il nome della pagina è il percorso del file senza estensione rispetto alla directory radice delle pagine per l'area specificata. Ad esempio, il nome della pagina per le *aree file/ Identity /pages/Manage/accounts.cshtml* è */Manage/accounts*.
+Il nome della pagina è il percorso del file senza estensione rispetto alla directory radice delle pagine per l'area specificata. Ad esempio, il nome della pagina per le *aree file/ Identity /pages/Manage/accounts.cshtml* è */Manage/accounts* .
 
 Per specificare un [criterio di autorizzazione](xref:security/authorization/policies), usare un [Overload AuthorizeAreaPage](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage*):
 
@@ -202,7 +203,7 @@ Utilizzare la <xref:Microsoft.Extensions.DependencyInjection.PageConventionColle
 options.Conventions.AuthorizeAreaFolder("Identity", "/Manage");
 ```
 
-Il percorso della cartella è il percorso della cartella relativa alla directory radice delle pagine per l'area specificata. Il percorso della cartella per i file in *areas/ Identity /pages/manage/* , ad esempio, è */Manage*.
+Il percorso della cartella è il percorso della cartella relativa alla directory radice delle pagine per l'area specificata. Il percorso della cartella per i file in *areas/ Identity /pages/manage/* , ad esempio, è */Manage* .
 
 Per specificare un [criterio di autorizzazione](xref:security/authorization/policies), usare un [Overload AuthorizeAreaFolder](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaFolder*):
 

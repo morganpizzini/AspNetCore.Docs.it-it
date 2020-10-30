@@ -5,6 +5,7 @@ description: Questa serie di esercitazioni illustra come usare le Razor pagine i
 ms.author: riande
 ms.date: 11/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: db05b8243b91a936a6ed72b0445e0770d44df014
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ab890b956b1242f183054b7ab4575a59072b4f50
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634579"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060235"
 ---
 # <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>Esercitazione: Introduzione alle Razor pagine in ASP.NET Core
 
@@ -67,13 +68,13 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto**.
-* Creare una nuova applicazione Web ASP.NET Core e selezionare **Avanti**.
+* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto** .
+* Creare una nuova applicazione Web ASP.NET Core e selezionare **Avanti** .
   ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/np_2.1.png)
-* Denominare il progetto ** Razor PagesMovie**. È importante denominare il progetto * Razor PagesMovie* in modo che gli spazi dei nomi corrispondano quando si copia e incolla il codice.
+* Denominare il progetto **Razor PagesMovie** . È importante denominare il progetto *Razor PagesMovie* in modo che gli spazi dei nomi corrispondano quando si copia e incolla il codice.
   ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Selezionare **ASP.NET Core 3,1** nell'elenco a discesa, **applicazione Web**, quindi selezionare **Crea**.
+* Selezionare **ASP.NET Core 3,1** nell'elenco a discesa, **applicazione Web** , quindi selezionare **Crea** .
 
 ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/3/npx.png)
 
@@ -94,31 +95,31 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
   code -r RazorPagesMovie
   ```
 
-  * Il `dotnet new` comando crea un nuovo Razor progetto di pagine nella cartella * Razor PagesMovie* .
-  * Il `code` comando apre la cartella * Razor PagesMovie* nell'istanza corrente di Visual Studio Code.
+  * Il `dotnet new` comando crea un nuovo Razor progetto di pagine nella cartella *Razor PagesMovie* .
+  * Il `code` comando apre la cartella *Razor PagesMovie* nell'istanza corrente di Visual Studio Code.
 
-* Dopo che l'icona di OmniSharp Flame della barra di stato è verde, una finestra di dialogo richiede che le **risorse necessarie per la compilazione e il debug siano mancanti da' Razor PagesMovie '. Aggiungerli?** Selezionare **Sì**.
+* Dopo che l'icona di OmniSharp Flame della barra di stato è verde, una finestra di dialogo richiede che le **risorse necessarie per la compilazione e il debug siano mancanti da' Razor PagesMovie '. Aggiungerli?** Selezionare **Sì** .
 
   Una directory *.vscode* che contiene i file *launch.json* e *tasks.json* viene aggiunta alla directory radice del progetto.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Selezionare **File** > **Nuova soluzione**.
+* Selezionare **File** > **Nuova soluzione** .
 
   ![Nuova soluzione macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* In Visual Studio per Mac precedente alla versione 8,6 selezionare **.NET Core**  >  **App**  >  **applicazione Web**app .NET Core  >  **Avanti**. Nella versione 8,6 o successive selezionare applicazione Web **e**  >  **app**  >  **Web dell'** app console  >  **successiva**.
+* In Visual Studio per Mac precedente alla versione 8,6 selezionare **.NET Core**  >  **App**  >  **applicazione Web** app .NET Core  >  **Avanti** . Nella versione 8,6 o successive selezionare applicazione Web **e**  >  **app**  >  **Web dell'** app console  >  **successiva** .
 
   ![selezione del modello di app Web macOS](razor-pages-start/_static/web_app_template_vsmac.png)
 
 * Nella finestra di dialogo **Configura nuova applicazione Web** :
 
-  * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
-  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione**, selezionare la versione 3. x più recente.
+  * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione** .
+  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione** , selezionare la versione 3. x più recente.
 
-  Selezionare **Avanti**.
+  Selezionare **Avanti** .
 
-* Assegnare al progetto il nome ** Razor PagesMovie**e quindi selezionare **Crea**.
+* Assegnare al progetto il nome **Razor PagesMovie** e quindi selezionare **Crea** .
 
   ![macOS nome del progetto](razor-pages-start/_static/RazorPagesMovie.png)
 
@@ -211,17 +212,17 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto**.
+* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto** .
 
-* Creare una nuova applicazione Web ASP.NET Core e selezionare **Avanti**.
+* Creare una nuova applicazione Web ASP.NET Core e selezionare **Avanti** .
 
   ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/np_2.1.png)
 
-* Denominare il progetto ** Razor PagesMovie**. È importante denominare il progetto * Razor PagesMovie* in modo che gli spazi dei nomi corrispondano quando si copia e incolla il codice.
+* Denominare il progetto **Razor PagesMovie** . È importante denominare il progetto *Razor PagesMovie* in modo che gli spazi dei nomi corrispondano quando si copia e incolla il codice.
 
   ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Selezionare** ASP.NET Core 2.2** nell'elenco a discesa **Applicazione Web** e quindi selezionare **Crea**.
+* Selezionare **ASP.NET Core 2.2** nell'elenco a discesa **Applicazione Web** e quindi selezionare **Crea** .
 
 ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/np_2_2.2.png)
 
@@ -242,29 +243,29 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
   code -r RazorPagesMovie
   ```
 
-  * Il `dotnet new` comando crea un nuovo Razor progetto di pagine nella cartella * Razor PagesMovie* .
-  * Il `code` comando apre la cartella * Razor PagesMovie* nell'istanza corrente di Visual Studio Code.
+  * Il `dotnet new` comando crea un nuovo Razor progetto di pagine nella cartella *Razor PagesMovie* .
+  * Il `code` comando apre la cartella *Razor PagesMovie* nell'istanza corrente di Visual Studio Code.
 
-* Dopo che l'icona di OmniSharp Flame della barra di stato è verde, una finestra di dialogo richiede che le **risorse necessarie per la compilazione e il debug siano mancanti da' Razor PagesMovie '. Aggiungerli?** Selezionare **Sì**.
+* Dopo che l'icona di OmniSharp Flame della barra di stato è verde, una finestra di dialogo richiede che le **risorse necessarie per la compilazione e il debug siano mancanti da' Razor PagesMovie '. Aggiungerli?** Selezionare **Sì** .
 
   Una directory *.vscode* che contiene i file *launch.json* e *tasks.json* viene aggiunta alla directory radice del progetto.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Selezionare **File** > **Nuova soluzione**.
+* Selezionare **File** > **Nuova soluzione** .
 
 ![Nuova soluzione macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* In Visual Studio per Mac precedente alla versione 8,6 selezionare **.NET Core**  >  **App**  >  **applicazione Web**app .NET Core  >  **Avanti**. Nella versione 8,6 o successive selezionare applicazione Web **e**  >  **app**  >  **Web dell'** app console  >  **successiva**.
+* In Visual Studio per Mac precedente alla versione 8,6 selezionare **.NET Core**  >  **App**  >  **applicazione Web** app .NET Core  >  **Avanti** . Nella versione 8,6 o successive selezionare applicazione Web **e**  >  **app**  >  **Web dell'** app console  >  **successiva** .
 
 * Nella finestra di dialogo **Configura nuova applicazione Web** :
 
-  * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
-  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione**, selezionare la versione 2. x più recente.
+  * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione** .
+  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione** , selezionare la versione 2. x più recente.
 
-  Selezionare **Avanti**.
+  Selezionare **Avanti** .
 
-* Assegnare al progetto il nome ** Razor PagesMovie**e quindi selezionare **Crea**.
+* Assegnare al progetto il nome **Razor PagesMovie** e quindi selezionare **Crea** .
 
   ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/21/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 6ff78b26e8e2363cf6c54ebb2a392f390fb2995c
-ms.sourcegitcommit: cd412a44f26cb416ceb348fc0a1ccc9a6e9ca73e
+ms.openlocfilehash: 14561bace565c104d0a9c926cad3105c4865e72a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88720279"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061171"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Caricare file in ASP.NET Core
 
@@ -124,7 +125,7 @@ Il flusso di file di grandi dimensioni è trattato nella sezione [caricare file 
 
 Per caricare file di piccole dimensioni, usare un modulo multipart o creare una richiesta POST usando JavaScript.
 
-L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file (*pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
+L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file ( *pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -239,7 +240,7 @@ Affinché un `files` elemento input supporti il caricamento di più file, fornir
 >
 > Gli esempi forniti finora non prendono in considerazione le considerazioni sulla sicurezza. Le informazioni aggiuntive sono fornite nelle sezioni seguenti e nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Considerazioni relative alla sicurezza](#security-considerations)
+> * [Considerazioni sulla sicurezza](#security-considerations)
 > * [Convalida](#validation)
 
 Quando si caricano file usando l'associazione di modelli e <xref:Microsoft.AspNetCore.Http.IFormFile> , il metodo di azione può accettare:
@@ -410,7 +411,7 @@ L'esempio precedente è simile a uno scenario illustrato nell'app di esempio:
 >
 > Gli esempi forniti non prendono in considerazione le considerazioni sulla sicurezza. Le informazioni aggiuntive sono fornite nelle sezioni seguenti e nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Considerazioni relative alla sicurezza](#security-considerations)
+> * [Considerazioni sulla sicurezza](#security-considerations)
 > * [Convalida](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Caricare file di grandi dimensioni con flusso
@@ -435,7 +436,7 @@ Metodo completo `StreamingController.UploadDatabase` per lo streaming in un data
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` (*Utilities/MultipartRequestHelper. cs*):
+`MultipartRequestHelper` ( *Utilities/MultipartRequestHelper. cs* ):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -533,7 +534,7 @@ Molte implementazioni devono includere un controllo per verificare che il file e
 
 Limitare le dimensioni dei file caricati.
 
-Nell'app di esempio, le dimensioni del file sono limitate a 2 MB (indicate in byte). Il limite viene fornito tramite la [configurazione](xref:fundamentals/configuration/index) dal *appsettings.jsnel* file:
+Nell'app di esempio, le dimensioni del file sono limitate a 2 MB (indicate in byte). Il limite viene fornito tramite la [configurazione](xref:fundamentals/configuration/index) dal *appsettings.json* file:
 
 ```json
 {
@@ -848,7 +849,7 @@ Il flusso di file di grandi dimensioni è trattato nella sezione [caricare file 
 
 Per caricare file di piccole dimensioni, usare un modulo multipart o creare una richiesta POST usando JavaScript.
 
-L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file (*pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
+L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file ( *pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -963,7 +964,7 @@ Affinché un `files` elemento input supporti il caricamento di più file, fornir
 >
 > Gli esempi forniti finora non prendono in considerazione le considerazioni sulla sicurezza. Le informazioni aggiuntive sono fornite nelle sezioni seguenti e nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Considerazioni relative alla sicurezza](#security-considerations)
+> * [Considerazioni sulla sicurezza](#security-considerations)
 > * [Convalida](#validation)
 
 Quando si caricano file usando l'associazione di modelli e <xref:Microsoft.AspNetCore.Http.IFormFile> , il metodo di azione può accettare:
@@ -1134,7 +1135,7 @@ L'esempio precedente è simile a uno scenario illustrato nell'app di esempio:
 >
 > Gli esempi forniti non prendono in considerazione le considerazioni sulla sicurezza. Le informazioni aggiuntive sono fornite nelle sezioni seguenti e nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Considerazioni relative alla sicurezza](#security-considerations)
+> * [Considerazioni sulla sicurezza](#security-considerations)
 > * [Convalida](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Caricare file di grandi dimensioni con flusso
@@ -1159,7 +1160,7 @@ Metodo completo `StreamingController.UploadDatabase` per lo streaming in un data
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` (*Utilities/MultipartRequestHelper. cs*):
+`MultipartRequestHelper` ( *Utilities/MultipartRequestHelper. cs* ):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -1257,7 +1258,7 @@ Molte implementazioni devono includere un controllo per verificare che il file e
 
 Limitare le dimensioni dei file caricati.
 
-Nell'app di esempio, le dimensioni del file sono limitate a 2 MB (indicate in byte). Il limite viene fornito tramite la [configurazione](xref:fundamentals/configuration/index) dal *appsettings.jsnel* file:
+Nell'app di esempio, le dimensioni del file sono limitate a 2 MB (indicate in byte). Il limite viene fornito tramite la [configurazione](xref:fundamentals/configuration/index) dal *appsettings.json* file:
 
 ```json
 {
@@ -1583,7 +1584,7 @@ Il flusso di file di grandi dimensioni è trattato nella sezione [caricare file 
 
 Per caricare file di piccole dimensioni, usare un modulo multipart o creare una richiesta POST usando JavaScript.
 
-L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file (*pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
+L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file ( *pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -1698,7 +1699,7 @@ Affinché un `files` elemento input supporti il caricamento di più file, fornir
 >
 > Gli esempi forniti finora non prendono in considerazione le considerazioni sulla sicurezza. Le informazioni aggiuntive sono fornite nelle sezioni seguenti e nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Considerazioni relative alla sicurezza](#security-considerations)
+> * [Considerazioni sulla sicurezza](#security-considerations)
 > * [Convalida](#validation)
 
 Quando si caricano file usando l'associazione di modelli e <xref:Microsoft.AspNetCore.Http.IFormFile> , il metodo di azione può accettare:
@@ -1869,7 +1870,7 @@ L'esempio precedente è simile a uno scenario illustrato nell'app di esempio:
 >
 > Gli esempi forniti non prendono in considerazione le considerazioni sulla sicurezza. Le informazioni aggiuntive sono fornite nelle sezioni seguenti e nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Considerazioni relative alla sicurezza](#security-considerations)
+> * [Considerazioni sulla sicurezza](#security-considerations)
 > * [Convalida](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Caricare file di grandi dimensioni con flusso
@@ -1894,7 +1895,7 @@ Metodo completo `StreamingController.UploadDatabase` per lo streaming in un data
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` (*Utilities/MultipartRequestHelper. cs*):
+`MultipartRequestHelper` ( *Utilities/MultipartRequestHelper. cs* ):
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -1992,7 +1993,7 @@ Molte implementazioni devono includere un controllo per verificare che il file e
 
 Limitare le dimensioni dei file caricati.
 
-Nell'app di esempio, le dimensioni del file sono limitate a 2 MB (indicate in byte). Il limite viene fornito tramite la [configurazione](xref:fundamentals/configuration/index) dal *appsettings.jsnel* file:
+Nell'app di esempio, le dimensioni del file sono limitate a 2 MB (indicate in byte). Il limite viene fornito tramite la [configurazione](xref:fundamentals/configuration/index) dal *appsettings.json* file:
 
 ```json
 {

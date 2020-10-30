@@ -5,6 +5,7 @@ description: Scopri come abilitare la generazione di codice a matrice per le app
 ms.author: riande
 ms.date: 08/14/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-enable-qrcodes
-ms.openlocfilehash: e61aa925262fc9fe25c7bb2d37958cfaa308aeaf
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b778e7238911ec9966edf7f0f7becd113b1e197a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630796"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060833"
 ---
 # <a name="enable-qr-code-generation-for-totp-authenticator-apps-in-aspnet-core"></a>Abilitare la generazione di codice a matrice per le app TOTP Authenticator in ASP.NET Core
 
@@ -49,8 +50,8 @@ Queste istruzioni usano *qrcode.js* dal https://davidshimjs.github.io/qrcodejs/ 
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* Seguire le istruzioni riportate in [impalcatura Identity ](xref:security/authentication/scaffold-identity) per generare */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml*.
-* In */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml*individuare la `Scripts` sezione alla fine del file:
+* Seguire le istruzioni riportate in [impalcatura Identity](xref:security/authentication/scaffold-identity) per generare */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml* .
+* In */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml* individuare la `Scripts` sezione alla fine del file:
 
 ::: moniker-end
 
@@ -96,7 +97,7 @@ Eseguire l'app e verificare che sia possibile eseguire la scansione del codice a
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Il nome del sito nel codice a matrice viene ricavato dal nome del progetto scelto durante la creazione iniziale del progetto. È possibile modificarlo cercando il `GenerateQrCodeUri(string email, string unformattedKey)` metodo in */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml.cs*.
+Il nome del sito nel codice a matrice viene ricavato dal nome del progetto scelto durante la creazione iniziale del progetto. È possibile modificarlo cercando il `GenerateQrCodeUri(string email, string unformattedKey)` metodo in */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml.cs* .
 
 ::: moniker-end
 
@@ -134,6 +135,6 @@ L'URL correttamente formattato per il codice a matrice è disponibile in:
 
 ## <a name="totp-client-and-server-time-skew"></a>Sfasamento dell'ora del client e del server TOTP
 
-L'autenticazione TOTP (Time-based password monouso) dipende sia dal dispositivo server che dall'autenticatore che ha un'ora esatta. I token durano solo per 30 secondi. Se gli accessi 2FA di TOTP non riescono, verificare che l'ora del server sia accurata e preferibilmente sincronizzata con un servizio NTP accurato.
+L'autenticazione TOTP (basata sul tempo One-Time password) dipende sia dal dispositivo server che dall'autenticatore che ha un'ora esatta. I token durano solo per 30 secondi. Se gli accessi 2FA di TOTP non riescono, verificare che l'ora del server sia accurata e preferibilmente sincronizzata con un servizio NTP accurato.
 
 ::: moniker-end

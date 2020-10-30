@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: 140969c80191c9549bc19507b9c4818b88fed0d1
-ms.sourcegitcommit: c026bf76a0e14a5ee68983519a63574c674e9ff7
+ms.openlocfilehash: 286dc3bcc66b86a2a6b7d3cb7b6052bf7b474aff
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91636803"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060209"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Autorizzazione basata su criteri in ASP.NET Core
 
@@ -132,7 +133,7 @@ I criteri vengono applicati alle Razor pagine usando l' `[Authorize]` attributo 
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-I criteri ***non*** possono essere applicati a Razor livello di gestore di pagina, ma devono essere applicati alla pagina.
+I criteri **non** possono essere applicati a Razor livello di gestore di pagina, ma devono essere applicati alla pagina.
 
 I criteri possono essere applicati alle Razor pagine utilizzando una [convenzione di autorizzazione](xref:security/authorization/razor-pages-authorization).
 
@@ -142,7 +143,7 @@ Un requisito di autorizzazione è una raccolta di parametri dati che un criterio
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Requirements/MinimumAgeRequirement.cs?name=snippet_MinimumAgeRequirementClass)]
 
-Se un criterio di autorizzazione contiene più requisiti di autorizzazione, tutti i requisiti devono essere superati affinché la valutazione dei criteri abbia esito positivo. In altre parole, i requisiti di autorizzazione multipli aggiunti a un singolo criterio di autorizzazione vengono gestiti in base a **e** .
+Se un criterio di autorizzazione contiene più requisiti di autorizzazione, tutti i requisiti devono essere superati affinché la valutazione dei criteri abbia esito positivo. In altre parole, i requisiti di autorizzazione multipli aggiunti a un singolo criterio di autorizzazione vengono trattati in base a _ *e* *.
 
 > [!NOTE]
 > Un requisito non deve avere dati o proprietà.
@@ -202,7 +203,7 @@ Se un gestore chiama `context.Succeed` o `context.Fail` , tutti gli altri gestor
 
 ## <a name="why-would-i-want-multiple-handlers-for-a-requirement"></a>Perché si vogliono usare più gestori per un requisito?
 
-Nei casi in cui si desidera che la valutazione sia basata su **o** , implementare più gestori per un singolo requisito. Ad esempio, Microsoft dispone di porte che si aprono solo con le schede chiave. Se si lascia la scheda chiave a casa, il receptionist stampa un adesivo temporaneo e apre lo sportello. In questo scenario si avrà un singolo requisito, *BuildingEntry*, ma più gestori, ognuno di essi esaminando un singolo requisito.
+Nei casi in cui si desidera che la valutazione sia basata su **o** , implementare più gestori per un singolo requisito. Ad esempio, Microsoft dispone di porte che si aprono solo con le schede chiave. Se si lascia la scheda chiave a casa, il receptionist stampa un adesivo temporaneo e apre lo sportello. In questo scenario si avrà un singolo requisito, *BuildingEntry* , ma più gestori, ognuno di essi esaminando un singolo requisito.
 
 *BuildingEntryRequirement.cs*
 
@@ -436,7 +437,7 @@ Se un gestore chiama `context.Succeed` o `context.Fail` , tutti gli altri gestor
 
 ## <a name="why-would-i-want-multiple-handlers-for-a-requirement"></a>Perché si vogliono usare più gestori per un requisito?
 
-Nei casi in cui si desidera che la valutazione sia basata su **o** , implementare più gestori per un singolo requisito. Ad esempio, Microsoft dispone di porte che si aprono solo con le schede chiave. Se si lascia la scheda chiave a casa, il receptionist stampa un adesivo temporaneo e apre lo sportello. In questo scenario si avrà un singolo requisito, *BuildingEntry*, ma più gestori, ognuno di essi esaminando un singolo requisito.
+Nei casi in cui si desidera che la valutazione sia basata su **o** , implementare più gestori per un singolo requisito. Ad esempio, Microsoft dispone di porte che si aprono solo con le schede chiave. Se si lascia la scheda chiave a casa, il receptionist stampa un adesivo temporaneo e apre lo sportello. In questo scenario si avrà un singolo requisito, *BuildingEntry* , ma più gestori, ognuno di essi esaminando un singolo requisito.
 
 *BuildingEntryRequirement.cs*
 

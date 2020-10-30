@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 03/18/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 345d20494111b808dac9678637de060169730a53
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 781365d99c6d36d8abaec9681128ba712db8cb88
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865349"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060664"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Helper tag in ASP.NET Core
 
@@ -38,7 +39,7 @@ Gli helper tag consentono al codice lato server di partecipare alla creazione e 
 
 **Un ambiente IntelliSense avanzato per la creazione di HTML e Razor markup** è in contrasto acuto con gli helper HTML, l'approccio precedente alla creazione lato server del markup nelle Razor visualizzazioni. Nella sezione [Helper tag e helper HTML a confronto](#tag-helpers-compared-to-html-helpers) vengono illustrate le differenze in modo più dettagliato. Nella sezione [Supporto IntelliSense per gli helper tag](#intellisense-support-for-tag-helpers) viene illustrato l'ambiente IntelliSense. Anche gli sviluppatori esperti con la Razor sintassi c# sono più produttivi usando gli helper Tag rispetto alla scrittura di Razor markup c#.
 
-**Possibilità di aumentare la produttività e la capacità di produrre codice più solido, affidabile e gestibile usando le informazioni disponibili solo nel server**: storicamente il mantra a proposito dell'aggiornamento delle immagini, ad esempio, era quello di cambiare il nome dell'immagine quando l'immagine veniva modificata. Per motivi di prestazioni, le immagini devono essere memorizzate nella cache e, a meno che il nome dell'immagine non venga cambiato, si rischia che i client ricevano una copia non aggiornata. Dopo che un'immagine era stata modificata, il nome doveva essere sempre cambiato e ogni riferimento all'immagine nell'app Web doveva essere aggiornato. Non solo questa operazione richiede molto lavoro, ma è anche soggetta a errori (è possibile perdere un riferimento, immettere accidentalmente la stringa sbagliata e così via). `ImageTagHelper` Questa operazione può essere eseguita automaticamente. `ImageTagHelper` è in grado di aggiungere un numero di versione al nome dell'immagine in modo che quando l'immagine viene modificata il server generi automaticamente una nuova versione univoca dell'immagine. I client riceveranno sicuramente l'immagine corrente. Grazie all'uso di `ImageTagHelper`, efficienza e risparmio di energie sono essenzialmente gratuiti.
+**Possibilità di aumentare la produttività e la capacità di produrre codice più solido, affidabile e gestibile usando le informazioni disponibili solo nel server** : storicamente il mantra a proposito dell'aggiornamento delle immagini, ad esempio, era quello di cambiare il nome dell'immagine quando l'immagine veniva modificata. Per motivi di prestazioni, le immagini devono essere memorizzate nella cache e, a meno che il nome dell'immagine non venga cambiato, si rischia che i client ricevano una copia non aggiornata. Dopo che un'immagine era stata modificata, il nome doveva essere sempre cambiato e ogni riferimento all'immagine nell'app Web doveva essere aggiornato. Non solo questa operazione richiede molto lavoro, ma è anche soggetta a errori (è possibile perdere un riferimento, immettere accidentalmente la stringa sbagliata e così via). `ImageTagHelper` Questa operazione può essere eseguita automaticamente. `ImageTagHelper` è in grado di aggiungere un numero di versione al nome dell'immagine in modo che quando l'immagine viene modificata il server generi automaticamente una nuova versione univoca dell'immagine. I client riceveranno sicuramente l'immagine corrente. Grazie all'uso di `ImageTagHelper`, efficienza e risparmio di energie sono essenzialmente gratuiti.
 
 La maggior parte degli helper tag predefiniti usano come destinazione elementi HTML standard e specificano attributi sul lato server per l'elemento. Ad esempio, l'elemento `<input>` usato in molte visualizzazioni nella cartella *Views/Account* (Visualizzazioni/Account) contiene l'attributo `asp-for`. Questo attributo consente di estrarre il nome della proprietà del modello specificato nel codice HTML visualizzabile. Si consideri una Razor vista con il modello seguente:
 
@@ -75,13 +76,13 @@ L'ambito degli helper tag è controllato da una combinazione di `@addTagHelper`,
 
 ### <a name="addtaghelper-makes-tag-helpers-available"></a>`@addTagHelper` rende disponibili gli helper tag
 
-Se si crea una nuova app Web ASP.NET Core denominata *AuthoringTagHelpers*, al progetto verrà aggiunto il file *Views/_ViewImports.cshtml* seguente:
+Se si crea una nuova app Web ASP.NET Core denominata *AuthoringTagHelpers* , al progetto verrà aggiunto il file *Views/_ViewImports.cshtml* seguente:
 
 [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml?highlight=2&range=2-3)]
 
-La direttiva `@addTagHelper` rende gli helper tag disponibili per la visualizzazione. In questo caso, il file della visualizzazione è *Pages/_ViewImports.cshtml* che per impostazione predefinita viene ereditato da tutti i file nella cartella *Pages* e nelle sottocartelle, rendendo disponibili gli helper tag. Il codice precedente usa la sintassi con caratteri jolly (" \* ") per specificare che tutti gli helper tag nell'assembly specificato (*Microsoft. AspNetCore. Mvc. TagHelpers*) saranno disponibili per ogni file di visualizzazione nella directory *views* o nella sottodirectory. Il primo parametro dopo `@addTagHelper` specifica gli helper tag da caricare (viene usato "\*" per tutti gli helper tag) e il secondo parametro "Microsoft.AspNetCore.Mvc.TagHelpers" specifica l'assembly contenente gli helper tag. *Microsoft.AspNetCore.Mvc.TagHelpers* è l'assembly per gli helper tag predefiniti di ASP.NET Core.
+La direttiva `@addTagHelper` rende gli helper tag disponibili per la visualizzazione. In questo caso, il file della visualizzazione è *Pages/_ViewImports.cshtml* che per impostazione predefinita viene ereditato da tutti i file nella cartella *Pages* e nelle sottocartelle, rendendo disponibili gli helper tag. Il codice precedente usa la sintassi con caratteri jolly (" \* ") per specificare che tutti gli helper tag nell'assembly specificato ( *Microsoft. AspNetCore. Mvc. TagHelpers* ) saranno disponibili per ogni file di visualizzazione nella directory *views* o nella sottodirectory. Il primo parametro dopo `@addTagHelper` specifica gli helper tag da caricare (viene usato "\*" per tutti gli helper tag) e il secondo parametro "Microsoft.AspNetCore.Mvc.TagHelpers" specifica l'assembly contenente gli helper tag. *Microsoft.AspNetCore.Mvc.TagHelpers* è l'assembly per gli helper tag predefiniti di ASP.NET Core.
 
-Per esporre tutti gli helper tag di questo progetto, che crea un assembly denominato *AuthoringTagHelpers*, usare il codice seguente:
+Per esporre tutti gli helper tag di questo progetto, che crea un assembly denominato *AuthoringTagHelpers* , usare il codice seguente:
 
 [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml?highlight=3)]
 
@@ -93,7 +94,7 @@ Se il progetto contiene un `EmailTagHelper` con lo spazio dei nomi predefinito (
 @addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers
 ```
 
-Per aggiungere un helper tag a una visualizzazione usando un nome completo, aggiungere prima il nome completo (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`) e quindi il nome dell'assembly (*AuthoringTagHelpers*). La maggior parte degli sviluppatori preferisce usare la sintassi con caratteri jolly "\*". La sintassi con caratteri jolly consente di inserire il carattere jolly "\*" come suffisso di un nome completo. Le direttive seguenti, ad esempio, aggiungeranno `EmailTagHelper`:
+Per aggiungere un helper tag a una visualizzazione usando un nome completo, aggiungere prima il nome completo (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`) e quindi il nome dell'assembly ( *AuthoringTagHelpers* ). La maggior parte degli sviluppatori preferisce usare la sintassi con caratteri jolly "\*". La sintassi con caratteri jolly consente di inserire il carattere jolly "\*" come suffisso di un nome completo. Le direttive seguenti, ad esempio, aggiungeranno `EmailTagHelper`:
 
 ```cshtml
 @addTagHelper AuthoringTagHelpers.TagHelpers.E*, AuthoringTagHelpers
@@ -106,11 +107,11 @@ Come indicato in precedenza, l'aggiunta della `@addTagHelper` direttiva al file 
 
 ### <a name="removetaghelper-removes-tag-helpers"></a>`@removeTagHelper` rimuove gli helper tag
 
-`@removeTagHelper` contiene gli stessi due parametri di `@addTagHelper` e rimuove un helper tag che era stato precedentemente aggiunto. Se ad esempio si applica `@removeTagHelper` a una visualizzazione specifica, l'helper tag specificato viene rimosso dalla visualizzazione. L'uso di `@removeTagHelper` in un file *Views/Folder/_ViewImports.cshtml* comporta la rimozione dell'helper tag specificato da tutte le visualizzazioni in *Folder*.
+`@removeTagHelper` contiene gli stessi due parametri di `@addTagHelper` e rimuove un helper tag che era stato precedentemente aggiunto. Se ad esempio si applica `@removeTagHelper` a una visualizzazione specifica, l'helper tag specificato viene rimosso dalla visualizzazione. L'uso di `@removeTagHelper` in un file *Views/Folder/_ViewImports.cshtml* comporta la rimozione dell'helper tag specificato da tutte le visualizzazioni in *Folder* .
 
 ### <a name="controlling-tag-helper-scope-with-the-_viewimportscshtml-file"></a>Controllo dell'ambito dell'helper tag con il file *_ViewImports.cshtml*
 
-È possibile aggiungere un file *_ViewImports.cshtml* a una cartella di visualizzazione qualsiasi e il motore di visualizzazione applicherà le direttive di questo file e del file *Views/_ViewImports.cshtml*. L'aggiunta di un file *Views/Home/_ViewImports.cshtml* vuoto per le visualizzazioni *Home* non comporta modifiche perché il file *_ViewImports.cshtml* è additivo. Le direttive `@addTagHelper` aggiunte al file *Views/Home/_ViewImports.cshtml* (non presenti nel file *Views/_ViewImports.cshtml* predefinito) espongono questi helper tag alle visualizzazioni solo nella cartella *Home*.
+È possibile aggiungere un file *_ViewImports.cshtml* a una cartella di visualizzazione qualsiasi e il motore di visualizzazione applicherà le direttive di questo file e del file *Views/_ViewImports.cshtml* . L'aggiunta di un file *Views/Home/_ViewImports.cshtml* vuoto per le visualizzazioni *Home* non comporta modifiche perché il file *_ViewImports.cshtml* è additivo. Le direttive `@addTagHelper` aggiunte al file *Views/Home/_ViewImports.cshtml* (non presenti nel file *Views/_ViewImports.cshtml* predefinito) espongono questi helper tag alle visualizzazioni solo nella cartella *Home* .
 
 <a name="opt-out"></a>
 
@@ -128,7 +129,7 @@ Come indicato in precedenza, l'aggiunta della `@addTagHelper` direttiva al file 
 
 ### <a name="using-taghelperprefix-to-make-tag-helper-usage-explicit"></a>Uso di `@tagHelperPrefix` per rendere esplicito l'uso dell'helper tag
 
-La direttiva `@tagHelperPrefix` consente di specificare una stringa di prefisso del tag per abilitare il supporto dell'helper tag e renderne esplicito l'uso. È possibile, ad esempio, aggiungere il markup seguente al file *Views/_ViewImports.cshtml*:
+La direttiva `@tagHelperPrefix` consente di specificare una stringa di prefisso del tag per abilitare il supporto dell'helper tag e renderne esplicito l'uso. È possibile, ad esempio, aggiungere il markup seguente al file *Views/_ViewImports.cshtml* :
 
 ```cshtml
 @tagHelperPrefix th:
@@ -244,7 +245,7 @@ viene visualizzato con uno sfondo grigio. La maggior parte del markup nella visu
 
 Rispetto all'approccio con gli helper HTML, il markup è molto più chiaro e facile da leggere, modificare e gestire. Il codice C# è ridotto al numero minimo di elementi che il server deve conoscere. Nell'editor di Visual Studio il markup di destinazione di un helper tag viene visualizzato in un tipo di carattere distintivo.
 
-Si osservi il gruppo *Email*:
+Si osservi il gruppo *Email* :
 
 [!code-cshtml[](intro/sample/Register.cshtml?range=12-18)]
 
@@ -272,7 +273,7 @@ L'editor di Visual Studio agevola la scrittura di **tutto** il markup nell'appro
 
 ## <a name="customizing-the-tag-helper-element-font"></a>Personalizzazione del tipo di carattere dell'elemento helper tag
 
-È possibile personalizzare il tipo di carattere e la colorazione da **strumenti**  >  **Opzioni**  >  **ambiente**  >  **tipi di carattere e colori**:
+È possibile personalizzare il tipo di carattere e la colorazione da **strumenti**  >  **Opzioni**  >  **ambiente**  >  **tipi di carattere e colori** :
 
 ![image](intro/_static/fontoptions2.png)
 

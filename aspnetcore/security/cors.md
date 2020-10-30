@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/17/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cors
-ms.openlocfilehash: cebaa9ae65557ca5d938c5728882382830deca9d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 03008f40fc1c4b323535d08a1bb4c4007bc145f7
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629262"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060820"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Abilitare le richieste tra le origini (CORS) in ASP.NET Core
 
@@ -32,7 +33,7 @@ Di [Rick Anderson](https://twitter.com/RickAndMSFT) e [Kirk Larkin](https://twit
 
 Questo articolo illustra come abilitare CORS in un'app ASP.NET Core.
 
-La sicurezza del browser impedisce a una pagina Web di eseguire richieste a un dominio diverso da quello che ha gestito la pagina Web. Questa restrizione è detta *criterio della stessa origine*. Il criterio della stessa origine impedisce a un sito dannoso di leggere dati sensibili da un altro sito. In alcuni casi potrebbe essere necessario consentire ad altri siti di effettuare richieste tra le origini per l'app. Per altre informazioni, vedere l' [articolo relativo a Mozilla CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS).
+La sicurezza del browser impedisce a una pagina Web di eseguire richieste a un dominio diverso da quello che ha gestito la pagina Web. Questa restrizione è detta *criterio della stessa origine* . Il criterio della stessa origine impedisce a un sito dannoso di leggere dati sensibili da un altro sito. In alcuni casi potrebbe essere necessario consentire ad altri siti di effettuare richieste tra le origini per l'app. Per altre informazioni, vedere l' [articolo relativo a Mozilla CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS).
 
 [Condivisione risorse tra le origini](https://www.w3.org/TR/cors/) (CORS):
 
@@ -270,7 +271,7 @@ Le intestazioni di risposta disponibili per impostazione predefinita sono:
 * `Last-Modified`
 * `Pragma`
 
-La specifica CORS chiama queste intestazioni di *risposta semplici*. Per rendere disponibili altre intestazioni per l'app, chiamare <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*> :
+La specifica CORS chiama queste intestazioni di *risposta semplici* . Per rendere disponibili altre intestazioni per l'app, chiamare <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*> :
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet5)]
 ### <a name="credentials-in-cross-origin-requests"></a>Credenziali nelle richieste tra le origini
@@ -523,7 +524,7 @@ Sec-Fetch-Site: cross-site
 User-Agent: Mozilla/5.0
 ```
 
-Nelle intestazioni di **risposta**precedenti, il server imposta l'intestazione [Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) nella risposta. Il `https://cors1.azurewebsites.net` valore di questa intestazione corrisponde all' `Origin` intestazione della richiesta.
+Nelle intestazioni di **risposta** precedenti, il server imposta l'intestazione [Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) nella risposta. Il `https://cors1.azurewebsites.net` valore di questa intestazione corrisponde all' `Origin` intestazione della richiesta.
 
 Se <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin*> viene chiamato, `Access-Control-Allow-Origin: *` viene restituito il valore del carattere jolly. `AllowAnyOrigin` consente qualsiasi origine.
 
@@ -618,7 +619,7 @@ Di seguito `TodoItems2Controller` vengono forniti endpoint simili, ma è incluso
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet2)]
 
-Testare il codice precedente dalla [pagina di test](https://cors1.azurewebsites.net/test?number=2) dell'esempio distribuito. Nell'elenco a discesa **controller** selezionare **preliminare** e quindi **impostare controller**. Tutte le chiamate CORS agli `TodoItems2Controller` endpoint hanno esito positivo.
+Testare il codice precedente dalla [pagina di test](https://cors1.azurewebsites.net/test?number=2) dell'esempio distribuito. Nell'elenco a discesa **controller** selezionare **preliminare** e quindi **impostare controller** . Tutte le chiamate CORS agli `TodoItems2Controller` endpoint hanno esito positivo.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -633,7 +634,7 @@ Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Questo articolo illustra come abilitare CORS in un'app ASP.NET Core.
 
-La sicurezza del browser impedisce a una pagina Web di eseguire richieste a un dominio diverso da quello che ha gestito la pagina Web. Questa restrizione è detta *criterio della stessa origine*. Il criterio della stessa origine impedisce a un sito dannoso di leggere dati sensibili da un altro sito. In alcuni casi potrebbe essere necessario consentire ad altri siti di effettuare richieste tra le origini all'app. Per altre informazioni, vedere l' [articolo relativo a Mozilla CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS).
+La sicurezza del browser impedisce a una pagina Web di eseguire richieste a un dominio diverso da quello che ha gestito la pagina Web. Questa restrizione è detta *criterio della stessa origine* . Il criterio della stessa origine impedisce a un sito dannoso di leggere dati sensibili da un altro sito. In alcuni casi potrebbe essere necessario consentire ad altri siti di effettuare richieste tra le origini all'app. Per altre informazioni, vedere l' [articolo relativo a Mozilla CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS).
 
 [Condivisione risorse tra le origini](https://www.w3.org/TR/cors/) (CORS):
 
@@ -723,7 +724,7 @@ L' `[EnableCors]` attributo può essere applicato a:
 * Controller
 * Metodo di azione del controller
 
-È possibile applicare criteri diversi a controller/pagina-modello/azione con l'  `[EnableCors]` attributo. Quando l' `[EnableCors]` attributo viene applicato a un metodo di azione/modello di pagina, mentre CORS è abilitato nel middleware, vengono applicati **entrambi** i criteri. Si consiglia di **non** combinare i criteri. Usare l' `[EnableCors]` attributo o il middleware, **non entrambi**. Quando `[EnableCors]` si usa, **non** definire criteri predefiniti.
+È possibile applicare criteri diversi a controller/pagina-modello/azione con l'  `[EnableCors]` attributo. Quando l' `[EnableCors]` attributo viene applicato a un metodo di azione/modello di pagina, mentre CORS è abilitato nel middleware, vengono applicati **entrambi** i criteri. Si consiglia di **non** combinare i criteri. Usare l' `[EnableCors]` attributo o il middleware, **non entrambi** . Quando `[EnableCors]` si usa, **non** definire criteri predefiniti.
 
 Il codice seguente applica un criterio diverso a ogni metodo:
 
@@ -774,7 +775,7 @@ In questa sezione vengono descritte le varie opzioni che è possibile impostare 
 
 ### <a name="set-the-allowed-request-headers"></a>Impostare le intestazioni della richiesta consentita
 
-Per consentire l'invio di intestazioni specifiche in una richiesta CORS, denominate *intestazioni richiesta autore*, chiamare <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*> e specificare le intestazioni consentite:
+Per consentire l'invio di intestazioni specifiche in una richiesta CORS, denominate *intestazioni richiesta autore* , chiamare <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*> e specificare le intestazioni consentite:
 
 [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=55-60&highlight=5)]
 
@@ -816,7 +817,7 @@ Le intestazioni di risposta disponibili per impostazione predefinita sono:
 * `Last-Modified`
 * `Pragma`
 
-La specifica CORS chiama queste intestazioni di *risposta semplici*. Per rendere disponibili altre intestazioni per l'app, chiamare <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*> :
+La specifica CORS chiama queste intestazioni di *risposta semplici* . Per rendere disponibili altre intestazioni per l'app, chiamare <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*> :
 
 [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=73-78&highlight=5)]
 
@@ -867,7 +868,7 @@ La specifica CORS indica inoltre che l'impostazione delle origini su `"*"` (tutt
 
 ### <a name="preflight-requests"></a>Richieste preliminari
 
-Per alcune richieste CORS, il browser invia una richiesta aggiuntiva prima di effettuare la richiesta effettiva. Questa richiesta è detta *richiesta preliminare*. Il browser può ignorare la richiesta preliminare se vengono soddisfatte le condizioni seguenti:
+Per alcune richieste CORS, il browser invia una richiesta aggiuntiva prima di effettuare la richiesta effettiva. Questa richiesta è detta *richiesta preliminare* . Il browser può ignorare la richiesta preliminare se vengono soddisfatte le condizioni seguenti:
 
 * Il metodo di richiesta è GET, HEAD o POST.
 * L'app non imposta intestazioni di richiesta diverse da `Accept` , `Accept-Language` , `Content-Language` , `Content-Type` o `Last-Event-ID` .
@@ -876,7 +877,7 @@ Per alcune richieste CORS, il browser invia una richiesta aggiuntiva prima di ef
   * `multipart/form-data`
   * `text/plain`
 
-La regola sulle intestazioni di richiesta impostate per la richiesta del client si applica alle intestazioni impostate dall'app chiamando `setRequestHeader` sull' `XMLHttpRequest` oggetto. La specifica CORS chiama queste intestazioni di *richiesta autore*intestazioni. La regola non si applica alle intestazioni che il browser può impostare, ad esempio `User-Agent` , `Host` o `Content-Length` .
+La regola sulle intestazioni di richiesta impostate per la richiesta del client si applica alle intestazioni impostate dall'app chiamando `setRequestHeader` sull' `XMLHttpRequest` oggetto. La specifica CORS chiama queste intestazioni di *richiesta autore* intestazioni. La regola non si applica alle intestazioni che il browser può impostare, ad esempio `User-Agent` , `Host` o `Content-Length` .
 
 Di seguito è riportato un esempio di una richiesta preliminare:
 

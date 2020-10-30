@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/api-design
-ms.openlocfilehash: 4a838c3a051476bd3d281e133d08b643656ae3b7
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 87665a7950edbc70b664230d2f078598e9dbc0aa
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632902"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059650"
 ---
 # <a name="no-locsignalr-api-design-considerations"></a>SignalR Considerazioni sulla progettazione di API
 
@@ -33,7 +34,7 @@ Questo articolo fornisce informazioni aggiuntive per la creazione di SignalR API
 
 ## <a name="use-custom-object-parameters-to-ensure-backwards-compatibility"></a>Utilizzare parametri oggetto personalizzati per garantire la compatibilità con le versioni precedenti
 
-L'aggiunta di parametri a un SignalR Metodo Hub (sul client o sul server) è una *modifica di rilievo*. Ciò significa che client/server meno recenti riceveranno errori quando tenteranno di richiamare il metodo senza il numero appropriato di parametri. Tuttavia, l'aggiunta di proprietà a un parametro di oggetto personalizzato **non** è una modifica sostanziale. Questo può essere usato per progettare API compatibili con resilienza alle modifiche nel client o nel server.
+L'aggiunta di parametri a un SignalR Metodo Hub (sul client o sul server) è una *modifica di rilievo* . Ciò significa che client/server meno recenti riceveranno errori quando tenteranno di richiamare il metodo senza il numero appropriato di parametri. Tuttavia, l'aggiunta di proprietà a un parametro di oggetto personalizzato **non** è una modifica sostanziale. Questo può essere usato per progettare API compatibili con resilienza alle modifiche nel client o nel server.
 
 Si consideri, ad esempio, un'API sul lato server come la seguente:
 

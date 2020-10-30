@@ -5,6 +5,7 @@ description: Parte 4 di Razor pagine e Entity Framework serie di esercitazioni.
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/migrations
-ms.openlocfilehash: 78eb466fcfeb130e411df490f033114b3fdebeef
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: e6d1b9f041e892aaa37840c28fdb3153bf098b0d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722631"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061106"
 ---
 # <a name="part-4-no-locrazor-pages-with-ef-core-migrations-in-aspnet-core"></a>Parte 4, Razor pagine con migrazioni di EF core in ASP.NET Core
 
@@ -45,7 +46,7 @@ Anziché eliminare e ricreare il database quando il modello di dati viene modifi
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Usare **Esplora oggetti di SQL Server** (SSOX) per eliminare il database oppure eseguire il comando seguente nella **console di Gestione pacchetti**:
+Usare **Esplora oggetti di SQL Server** (SSOX) per eliminare il database oppure eseguire il comando seguente nella **console di Gestione pacchetti** :
 
 ```powershell
 Drop-Database
@@ -59,7 +60,7 @@ Drop-Database
   dotnet tool install --global dotnet-ef
   ```
 
-* Al prompt dei comandi passare alla cartella del progetto. La cartella del progetto contiene il file *ContosoUniversity.csproj*.
+* Al prompt dei comandi passare alla cartella del progetto. La cartella del progetto contiene il file *ContosoUniversity.csproj* .
 
 * Eliminare il file *CU.db* oppure eseguire il comando seguente:
 
@@ -113,7 +114,7 @@ Il parametro del nome della migrazione, nell'esempio "InitialCreate", viene usat
 
 ## <a name="the-data-model-snapshot"></a>Snapshot del modello di dati
 
-Le migrazioni creano uno *snapshot* del modello di dati corrente in *Migrations/SchoolContextModelSnapshot.cs*. Quando si aggiunge una migrazione, EF determina le modifiche apportate confrontando il modello di dati corrente con il file dello snapshot.
+Le migrazioni creano uno *snapshot* del modello di dati corrente in *Migrations/SchoolContextModelSnapshot.cs* . Quando si aggiunge una migrazione, EF determina le modifiche apportate confrontando il modello di dati corrente con il file dello snapshot.
 
 Poiché il file di snapshot tiene traccia dello stato del modello di dati, non è possibile eliminare una migrazione eliminando il file `<timestamp>_<migrationname>.cs`. Per eliminare la migrazione più recente, è necessario usare il comando `migrations remove`. Tale comando elimina la migrazione e garantisce che lo snapshot venga reimpostato correttamente. Per altre informazioni, vedere [migrazioni di DotNet EF Rimuovi](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
@@ -139,7 +140,7 @@ La migrazione del database deve essere eseguita come parte della distribuzione e
 * Uso delle migrazioni per creare script SQL e uso degli script SQL nella distribuzione.
 * Esecuzione di `dotnet ef database update` da un ambiente controllato.
 
-## <a name="troubleshooting"></a>Risoluzione dei problemi
+## <a name="troubleshooting"></a>risoluzione dei problemi
 
 Se l'app usa SQL Server Local DB e visualizza l'eccezione seguente:
 
@@ -199,7 +200,7 @@ Eseguire `Get-Help about_EntityFrameworkCore` dalla console di Gestione pacchett
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Aprire una finestra di comando e passare alla cartella del progetto. La cartella del progetto contiene il file *Startup.cs*.
+Aprire una finestra di comando e passare alla cartella del progetto. La cartella del progetto contiene il file *Startup.cs* .
 
 Digitare quanto segue nella finestra di comando:
 
@@ -250,7 +251,7 @@ Il database infatti non esiste in quanto è stato precedentemente eliminato, per
 
 ### <a name="the-data-model-snapshot"></a>Snapshot del modello di dati
 
-Le migrazioni creano uno *snapshot* dello schema del database corrente in *Migrations/SchoolContextModelSnapshot.cs*. Quando si aggiunge una migrazione, EF determina le modifiche apportate confrontando il modello di dati con il file dello snapshot.
+Le migrazioni creano uno *snapshot* dello schema del database corrente in *Migrations/SchoolContextModelSnapshot.cs* . Quando si aggiunge una migrazione, EF determina le modifiche apportate confrontando il modello di dati con il file dello snapshot.
 
 Per eliminare una migrazione, usare il comando seguente:
 
@@ -289,7 +290,7 @@ Eseguire l'app e verificare che il database venga inizializzato.
 
 ### <a name="inspect-the-database"></a>Esaminare il database
 
-Per controllare il database, usare **Esplora oggetti di SQL Server**. Si noti l'aggiunta di una tabella `__EFMigrationsHistory`. La tabella `__EFMigrationsHistory` tiene traccia di quali migrazioni sono state applicate al database. Visualizzare i dati nella tabella `__EFMigrationsHistory`: viene visualizzata una riga per la prima migrazione. Nell'ultimo log nell'esempio di output della CLI precedente viene visualizzata l'istruzione INSERT che crea tale riga.
+Per controllare il database, usare **Esplora oggetti di SQL Server** . Si noti l'aggiunta di una tabella `__EFMigrationsHistory`. La tabella `__EFMigrationsHistory` tiene traccia di quali migrazioni sono state applicate al database. Visualizzare i dati nella tabella `__EFMigrationsHistory`: viene visualizzata una riga per la prima migrazione. Nell'ultimo log nell'esempio di output della CLI precedente viene visualizzata l'istruzione INSERT che crea tale riga.
 
 Eseguire l'app e verificare che tutto funzioni.
 
@@ -304,7 +305,7 @@ La migrazione del database deve essere eseguita come parte della distribuzione e
 
 EF Core usa la tabella `__MigrationsHistory` per stabilire se è necessario eseguire migrazioni. Se il database è aggiornato, non viene eseguita alcuna migrazione.
 
-## <a name="troubleshooting"></a>Risoluzione dei problemi
+## <a name="troubleshooting"></a>risoluzione dei problemi
 
 Scaricare l'[app completa](
 https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/cu-part4-migrations).

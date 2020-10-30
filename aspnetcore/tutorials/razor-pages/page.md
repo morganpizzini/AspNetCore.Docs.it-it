@@ -5,6 +5,7 @@ description: Parte 3 della serie di esercitazioni sulle Razor pagine.
 ms.author: riande
 ms.date: 08/17/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: 03febbd71df19cd3524d26e229a8bd8798a874b5
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 7d0085e1d444de30ca124ef544668122ab350c93
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865120"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060053"
 ---
 # <a name="part-3-scaffolded-no-locrazor-pages-in-aspnet-core"></a>Parte 3, Razor pagine con impalcatura in ASP.NET Core
 
@@ -35,7 +36,7 @@ Questa esercitazione esamina le Razor pagine create dall'impalcatura nell' [eser
 
 ## <a name="the-create-delete-details-and-edit-pages"></a>Pagine di creazione, eliminazione, dettagli e modifica
 
-Esaminare il modello di pagina *Pages/Movies/Index.cshtml.cs*: 
+Esaminare il modello di pagina *Pages/Movies/Index.cshtml.cs* : 
 
 [!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs)]
 
@@ -75,7 +76,7 @@ La `@model` direttiva specifica il tipo del modello passato alla Razor pagina. N
 
 ### <a name="the-layout-page"></a>Pagina di layout
 
-Selezionare i collegamenti ai menu (** Razor PagesMovie**, **Home**e **privacy**). Ogni pagina mostra lo stesso layout di menu. Il layout di menu viene implementato nel file *Pages/Shared/_Layout.cshtml*. Aprire il file *Pages/Shared/_Layout.cshtml*.
+Selezionare i collegamenti ai menu ( **Razor PagesMovie** , **Home** e **privacy** ). Ogni pagina mostra lo stesso layout di menu. Il layout di menu viene implementato nel file *Pages/Shared/_Layout.cshtml* . Aprire il file *Pages/Shared/_Layout.cshtml* .
 
 I modelli [Layout](xref:mvc/views/layout) consentono di:
 
@@ -88,7 +89,7 @@ Trovare la riga `@RenderBody()`. `RenderBody` è un segnaposto dove tutte le vis
 
 ### <a name="viewdata-and-layout"></a>ViewData e layout
 
-Si consideri il markup seguente dal file *Pages/Movies/Index.cshtml*:
+Si consideri il markup seguente dal file *Pages/Movies/Index.cshtml* :
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
 
@@ -96,7 +97,7 @@ Il markup evidenziato sopra è un esempio di Razor transizione in C#. Tra i cara
 
 La `PageModel` classe base contiene una `ViewData` Proprietà Dictionary che può essere utilizzata per passare dati a una visualizzazione. Gli oggetti vengono aggiunti al dizionario `ViewData` usando uno schema chiave/valore. Nell'esempio precedente la proprietà `"Title"` viene aggiunta al dizionario `ViewData`.
 
-La proprietà `"Title"` viene usata nel file *Pages/Shared/_Layout.cshtml*. Il markup seguente illustra le prime righe del file *_Layout.cshtml*.
+La proprietà `"Title"` viene usata nel file *Pages/Shared/_Layout.cshtml* . Il markup seguente illustra le prime righe del file *_Layout.cshtml* .
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
 
@@ -106,11 +107,11 @@ La riga `@*Markup removed for brevity.*@` è un Razor commento. Diversamente dai
 
 ### <a name="update-the-layout"></a>Aggiornare il layout
 
-Modificare l' `<title>` elemento nel file *pages/Shared/_Layout. cshtml* per visualizzare il **film** anziché ** Razor PagesMovie**.
+Modificare l' `<title>` elemento nel file *pages/Shared/_Layout. cshtml* per visualizzare il **film** anziché **Razor PagesMovie** .
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
 
-Trovare l'elemento di ancoraggio seguente nel file *Pages/Shared/_Layout.cshtml*.
+Trovare l'elemento di ancoraggio seguente nel file *Pages/Shared/_Layout.cshtml* .
 
 ```cshtml
 <a class="navbar-brand" asp-area="" asp-page="/Index">RazorPagesMovie</a>
@@ -124,14 +125,14 @@ Sostituire l'elemento precedente con il markup seguente:
 
 L'elemento di ancoraggio precedente è un [helper tag](xref:mvc/views/tag-helpers/intro). In questo caso, si tratta dell'[helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper). L' `asp-page="/Movies/Index"` attributo e il valore dell'helper Tag creano un collegamento alla `/Movies/Index` Razor pagina. Poiché il valore dell'attributo `asp-area` è vuoto, l'area non viene usata nel collegamento. Per altre informazioni, vedere [Aree](xref:mvc/controllers/areas).
 
-Salvare le modifiche e testare l'app selezionando il collegamento **RpMovie**. In caso di problemi, vedere il file [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml) in GitHub.
+Salvare le modifiche e testare l'app selezionando il collegamento **RpMovie** . In caso di problemi, vedere il file [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml) in GitHub.
 
-Testare gli altri collegamenti (**Home**, **RpMovie**, **Create**, **Edit** e **Delete**). Ogni pagina imposta il titolo, che è possibile visualizzare nella scheda del browser. Quando si aggiunge un segnalibro a una pagina, il titolo viene usato per il segnalibro.
+Testare gli altri collegamenti ( **Home** , **RpMovie** , **Create** , **Edit** e **Delete** ). Ogni pagina imposta il titolo, che è possibile visualizzare nella scheda del browser. Quando si aggiunge un segnalibro a una pagina, il titolo viene usato per il segnalibro.
 
 > [!NOTE]
 > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per impostazioni locali diverse dall'inglese che usano la virgola (",") come separatore decimale e per formati di data diversi da quello dell'inglese degli Stati Uniti, è necessario eseguire alcuni passaggi per globalizzare l'app. Vedere questo [problema 4076 su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) per istruzioni sull'aggiunta della virgola decimale.
 
-La proprietà `Layout` viene impostata nel file *Pages/_ViewStart.cshtml*:
+La proprietà `Layout` viene impostata nel file *Pages/_ViewStart.cshtml* :
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/Pages/_ViewStart.cshtml)]
 
@@ -139,11 +140,11 @@ Il markup precedente imposta il file di layout su *pages/Shared/_Layout. cshtml*
 
 ### <a name="the-create-page-model"></a>Modello di pagina di creazione
 
-Esaminare il modello di pagina *Pages/Movies/Create.cshtml.cs*:
+Esaminare il modello di pagina *Pages/Movies/Create.cshtml.cs* :
 
 [!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
-Il metodo `OnGet` inizializza lo stato necessario per la pagina. La pagina di creazione non possiede uno stato da inizializzare. Viene restituito `Page`. Più avanti nell'esercitazione viene visualizzato un esempio di inizializzazione dello stato con `OnGet`. Il metodo `Page` crea un oggetto `PageResult` che esegue il rendering della pagina *Create.cshtml*.
+Il metodo `OnGet` inizializza lo stato necessario per la pagina. La pagina di creazione non possiede uno stato da inizializzare. Viene restituito `Page`. Più avanti nell'esercitazione viene visualizzato un esempio di inizializzazione dello stato con `OnGet`. Il metodo `Page` crea un oggetto `PageResult` che esegue il rendering della pagina *Create.cshtml* .
 
 La proprietà `Movie` usa l'attributo `[BindProperty]` per consentire l'[associazione di modelli](xref:mvc/models/model-binding). Dopo che il modulo di creazione registra i valori, il runtime di ASP.NET Core associa i valori registrati al modello `Movie`.
 
@@ -227,7 +228,7 @@ Questa esercitazione esamina le Razor pagine create dall'impalcatura nell' [eser
 
 ## <a name="the-create-delete-details-and-edit-pages"></a>Pagine di creazione, eliminazione, dettagli e modifica
 
-Esaminare il modello di pagina *Pages/Movies/Index.cshtml.cs*: 
+Esaminare il modello di pagina *Pages/Movies/Index.cshtml.cs* : 
 
 [!code-csharp[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs)]
 
@@ -265,15 +266,15 @@ La `@model` direttiva specifica il tipo del modello passato alla Razor pagina. N
 
 ### <a name="the-layout-page"></a>Pagina di layout
 
-Selezionare i collegamenti ai menu (** Razor PagesMovie**, **Home**e **privacy**). Ogni pagina mostra lo stesso layout di menu. Il layout di menu viene implementato nel file *Pages/Shared/_Layout.cshtml*. Aprire il file *Pages/Shared/_Layout.cshtml*.
+Selezionare i collegamenti ai menu ( **Razor PagesMovie** , **Home** e **privacy** ). Ogni pagina mostra lo stesso layout di menu. Il layout di menu viene implementato nel file *Pages/Shared/_Layout.cshtml* . Aprire il file *Pages/Shared/_Layout.cshtml* .
 
-I modelli di [layout](xref:mvc/views/layout) consentono di specificare il layout del contenitore HTML del sito in un'unica posizione e quindi di applicarlo in più pagine del sito. Trovare la riga `@RenderBody()`. `RenderBody` è un segnaposto dove tutte le visualizzazioni specifiche della pagina vengono presentate, *incapsulate* nella pagina di layout. Ad esempio, se si seleziona il collegamento **Privacy**, il rendering della visualizzazione **Pages/Privacy.cshtml** viene eseguito all'interno del metodo `RenderBody`.
+I modelli di [layout](xref:mvc/views/layout) consentono di specificare il layout del contenitore HTML del sito in un'unica posizione e quindi di applicarlo in più pagine del sito. Trovare la riga `@RenderBody()`. `RenderBody` è un segnaposto dove tutte le visualizzazioni specifiche della pagina vengono presentate, *incapsulate* nella pagina di layout. Ad esempio, se si seleziona il collegamento **Privacy** , il rendering della visualizzazione **Pages/Privacy.cshtml** viene eseguito all'interno del metodo `RenderBody`.
 
 <a name="vd"></a>
 
 ### <a name="viewdata-and-layout"></a>ViewData e layout
 
-Si consideri il seguente codice del file *Pages/Movies/Index.cshtml*:
+Si consideri il seguente codice del file *Pages/Movies/Index.cshtml* :
 
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
 
@@ -281,7 +282,7 @@ Il codice evidenziato precedente è un esempio di Razor transizione in C#. Tra i
 
 La classe di base `PageModel` ha una proprietà del dizionario `ViewData` che può essere usata per aggiungere i dati da passare a una visualizzazione. Gli oggetti vengono aggiunti al dizionario `ViewData` usando uno schema chiave/valore. Nell'esempio precedente la proprietà "Title" viene aggiunta al dizionario `ViewData`.
 
-La proprietà "Title" viene usata nel file *Pages/Shared/_Layout.cshtml*. Il markup seguente illustra le prime righe del file *_Layout.cshtml*.
+La proprietà "Title" viene usata nel file *Pages/Shared/_Layout.cshtml* . Il markup seguente illustra le prime righe del file *_Layout.cshtml* .
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
 
@@ -291,11 +292,11 @@ La riga `@*Markup removed for brevity.*@` è un Razor commento che non viene vis
 
 ### <a name="update-the-layout"></a>Aggiornare il layout
 
-Modificare l' `<title>` elemento nel file *pages/Shared/_Layout. cshtml* per visualizzare il **film** anziché ** Razor PagesMovie**.
+Modificare l' `<title>` elemento nel file *pages/Shared/_Layout. cshtml* per visualizzare il **film** anziché **Razor PagesMovie** .
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
 
-Trovare l'elemento di ancoraggio seguente nel file *Pages/Shared/_Layout.cshtml*.
+Trovare l'elemento di ancoraggio seguente nel file *Pages/Shared/_Layout.cshtml* .
 
 ```cshtml
 <a class="navbar-brand" asp-area="" asp-page="/Index">RazorPagesMovie</a>
@@ -309,14 +310,14 @@ Sostituire l'elemento precedente con il markup seguente.
 
 L'elemento di ancoraggio precedente è un [helper tag](xref:mvc/views/tag-helpers/intro). In questo caso, si tratta dell'[helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper). L' `asp-page="/Movies/Index"` attributo e il valore dell'helper Tag creano un collegamento alla `/Movies/Index` Razor pagina. Poiché il valore dell'attributo `asp-area` è vuoto, l'area non viene usata nel collegamento. Per altre informazioni, vedere [Aree](xref:mvc/controllers/areas).
 
-Salvare le modifiche e testare l'app selezionando il collegamento **RpMovie**. In caso di problemi, vedere il file [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml) in GitHub.
+Salvare le modifiche e testare l'app selezionando il collegamento **RpMovie** . In caso di problemi, vedere il file [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml) in GitHub.
 
-Testare gli altri collegamenti (**Home**, **RpMovie**, **Create**, **Edit** e **Delete**). Ogni pagina imposta il titolo, che è possibile visualizzare nella scheda del browser. Quando si aggiunge un segnalibro a una pagina, il titolo viene usato per il segnalibro.
+Testare gli altri collegamenti ( **Home** , **RpMovie** , **Create** , **Edit** e **Delete** ). Ogni pagina imposta il titolo, che è possibile visualizzare nella scheda del browser. Quando si aggiunge un segnalibro a una pagina, il titolo viene usato per il segnalibro.
 
 > [!NOTE]
 > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per impostazioni locali diverse dall'inglese che usano la virgola (",") come separatore decimale e per formati di data diversi da quello dell'inglese degli Stati Uniti, è necessario eseguire alcuni passaggi per globalizzare l'app. [Problema 4076 su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) per istruzioni sull'aggiunta della virgola decimale.
 
-La proprietà `Layout` viene impostata nel file *Pages/_ViewStart.cshtml*:
+La proprietà `Layout` viene impostata nel file *Pages/_ViewStart.cshtml* :
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/_ViewStart.cshtml)]
 
@@ -324,11 +325,11 @@ Il markup precedente imposta il file di layout su *pages/Shared/_Layout. cshtml*
 
 ### <a name="the-create-page-model"></a>Modello di pagina di creazione
 
-Esaminare il modello di pagina *Pages/Movies/Create.cshtml.cs*:
+Esaminare il modello di pagina *Pages/Movies/Create.cshtml.cs* :
 
 [!code-csharp[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
-Il metodo `OnGet` inizializza lo stato necessario per la pagina. La pagina di creazione non possiede uno stato da inizializzare. Viene restituito `Page`. Più avanti nell'esercitazione viene illustrato lo stato di inizializzazione del metodo `OnGet`. Il metodo `Page` crea un oggetto `PageResult` che esegue il rendering della pagina *Create.cshtml*.
+Il metodo `OnGet` inizializza lo stato necessario per la pagina. La pagina di creazione non possiede uno stato da inizializzare. Viene restituito `Page`. Più avanti nell'esercitazione viene illustrato lo stato di inizializzazione del metodo `OnGet`. Il metodo `Page` crea un oggetto `PageResult` che esegue il rendering della pagina *Create.cshtml* .
 
 La proprietà `Movie` usa l'attributo `[BindProperty]` per consentire l'[associazione di modelli](xref:mvc/models/model-binding). Dopo che il modulo di creazione registra i valori, il runtime di ASP.NET Core associa i valori registrati al modello `Movie`.
 

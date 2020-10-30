@@ -5,6 +5,7 @@ description: Informazioni su come inserire i gestori dei requisiti di autorizzaz
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,22 +17,22 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/dependencyinjection
-ms.openlocfilehash: 4bc7eb38262c8a94a84aacc978737a778bfd71a1
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6598a9c9cfd1e6597fffcc1aa0c53fa493532458
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632564"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060261"
 ---
 # <a name="dependency-injection-in-requirement-handlers-in-aspnet-core"></a>Inserimento delle dipendenze nei gestori di requisiti in ASP.NET Core
 
 <a name="security-authorization-di"></a>
 
-I [gestori di autorizzazione devono essere registrati](xref:security/authorization/policies#handler-registration) nella raccolta di servizi durante la configurazione (usando l' [inserimento di dipendenze](xref:fundamentals/dependency-injection)).
+I [gestori di autorizzazione devono essere registrati](xref:security/authorization/policies#handler-registration) nella raccolta di servizi durante la configurazione tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).
 
 Si supponga di avere un repository di regole che si desidera valutare all'interno di un gestore autorizzazioni e che il repository sia stato registrato nella raccolta di servizi. L'autorizzazione lo risolve e inserisce nel costruttore.
 
-Ad esempio, se si desidera utilizzare ASP. Infrastruttura di registrazione di NET che si vuole inserire `ILoggerFactory` nel gestore. Questo gestore potrebbe essere simile al seguente:
+Ad esempio, per utilizzare ASP. Infrastruttura di registrazione di NET, inserire `ILoggerFactory` nel gestore. Questo gestore potrebbe avere un aspetto simile al codice seguente:
 
 ```csharp
 public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
@@ -52,13 +53,13 @@ public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
    }
    ```
 
-Registrare il gestore con `services.AddSingleton()` :
+Il gestore precedente può essere registrato con qualsiasi [durata del servizio](/dotnet/core/extensions/dependency-injection#service-lifetimes). Il codice seguente usa `AddSingleton` per registrare il gestore precedente:
 
 ```csharp
 services.AddSingleton<IAuthorizationHandler, LoggingAuthorizationHandler>();
 ```
 
-Quando l'applicazione viene avviata, verrà creata un'istanza del gestore che inserisce il registrato `ILoggerFactory` nel costruttore.
+Quando l'app viene avviata, viene creata un'istanza del gestore che inserisce l'oggetto registrato `ILoggerFactory` nel costruttore.
 
 > [!NOTE]
 > I gestori che usano Entity Framework non devono essere registrati come singleton.

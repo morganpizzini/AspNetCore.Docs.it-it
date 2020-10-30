@@ -6,6 +6,7 @@ ms.author: casoper
 ms.custom: devx-track-csharp, mvc
 ms.date: 01/21/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: edacded5df4d5f4819b3657bc7eff99e6d96d394
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: f917bec8f2d929e62bf43494159a63458f135c5f
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712545"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061392"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticazione cloud con Azure Active Directory B2C in ASP.NET Core
 
@@ -86,7 +87,7 @@ In Visual Studio:
     
     ![Pulsante Modifica autenticazione](./azure-ad-b2c/_static/changeauth.png)
 
-4. Nella finestra di dialogo **Cambia autenticazione** selezionare **account utente singoli**, quindi selezionare **Connetti a un archivio utente esistente nel cloud** nell'elenco a discesa. 
+4. Nella finestra di dialogo **Cambia autenticazione** selezionare **account utente singoli** , quindi selezionare **Connetti a un archivio utente esistente nel cloud** nell'elenco a discesa. 
     
     ![Finestra di dialogo Cambia autenticazione](./azure-ad-b2c/_static/changeauthdialog.png)
 
@@ -99,7 +100,7 @@ In Visual Studio:
     | **Percorso di callback**             | *&lt;Usa il valore predefinito&gt;*                       |
     | **Criteri di iscrizione o di accesso** | `B2C_1_SiUpIn`                                        |
     | **Reimposta criteri password**     | `B2C_1_SSPR`                                          |
-    | **Modificare i criteri del profilo**       | *&lt;lascia vuoto&gt;*                                 |
+    | **Modificare i criteri del profilo**       | *&lt;lasciare vuoto&gt;*                                 |
     
     Selezionare il collegamento **copia** accanto a **URI di risposta** per copiare l'URI di risposta negli Appunti. Selezionare **OK** per chiudere la finestra di dialogo **Modifica autenticazione** . Selezionare **OK** per creare l'app Web.
 
@@ -108,14 +109,14 @@ In Visual Studio:
 Tornare alla finestra del browser con le proprietà dell'app B2C ancora aperte. Modificare l' **URL di risposta** temporaneo specificato in precedenza per il valore copiato da Visual Studio. Selezionare **Save (Salva** ) nella parte superiore della finestra.
 
 > [!TIP]
-> Se l'URL di risposta non è stato copiato, usare l'indirizzo HTTPS dalla scheda debug delle proprietà del progetto Web e aggiungere il valore **CallbackPath** da *appsettings.json*.
+> Se l'URL di risposta non è stato copiato, utilizzare l'indirizzo HTTPS dalla scheda debug delle proprietà del progetto Web e aggiungere il valore **CallbackPath** da *appsettings.json* .
 
 ## <a name="configure-policies"></a>Configurare i criteri
 
-Usare la procedura descritta nella documentazione di Azure AD B2C per [creare un criterio di iscrizione o di accesso](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), quindi [creare un criterio di reimpostazione della password](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Usare i valori di esempio forniti nella documentazione per i ** Identity provider**, **gli attributi di iscrizione**e le **attestazioni dell'applicazione**. Usare il pulsante **Esegui adesso** per testare i criteri come descritto nella documentazione è facoltativo.
+Usare la procedura descritta nella documentazione di Azure AD B2C per [creare un criterio di iscrizione o di accesso](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), quindi [creare un criterio di reimpostazione della password](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Usare i valori di esempio forniti nella documentazione per i **Identity provider** , **gli attributi di iscrizione** e le **attestazioni dell'applicazione** . Usare il pulsante **Esegui adesso** per testare i criteri come descritto nella documentazione è facoltativo.
 
 > [!WARNING]
-> Verificare che i nomi dei criteri siano esattamente come descritto nella documentazione, perché tali criteri sono stati usati nella finestra di dialogo **Cambia autenticazione** in Visual Studio. I nomi dei criteri possono essere verificati in *appsettings.js*.
+> Verificare che i nomi dei criteri siano esattamente come descritto nella documentazione, perché tali criteri sono stati usati nella finestra di dialogo **Cambia autenticazione** in Visual Studio. I nomi dei criteri possono essere verificati in *appsettings.json* .
 
 ## <a name="configure-the-underlying-openidconnectoptionsjwtbearerno-loccookie-options"></a>Configurare OpenIdConnectOptions/JwtBearer/opzioni sottostanti Cookie
 
@@ -143,7 +144,7 @@ services.Configure<JwtBearerOptions>(
 
 ## <a name="run-the-app"></a>Eseguire l'app
 
-In Visual Studio premere **F5** per compilare ed eseguire l'app. Dopo l'avvio dell'app Web, selezionare **Accept (accetta** ) per accettare l'uso di cookie s (se richiesto) e quindi selezionare **Sign in (accedi**).
+In Visual Studio premere **F5** per compilare ed eseguire l'app. Dopo l'avvio dell'app Web, selezionare **Accept (accetta** ) per accettare l'uso di cookie s (se richiesto) e quindi selezionare **Sign in (accedi** ).
 
 ![Accedi all'app](./azure-ad-b2c/_static/signin.png)
 

@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/08/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/views
-ms.openlocfilehash: 775ebdffe2b0753de18bf07d9ff1193235a45b17
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b3d6e595aa08208f2bf9e95d7070cf9c24802b62
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629886"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061327"
 ---
 # <a name="view-based-authorization-in-aspnet-core-mvc"></a>Autorizzazione basata sulla visualizzazione in ASP.NET Core MVC
 
@@ -57,4 +58,4 @@ In alcuni casi, la risorsa sarà il modello di visualizzazione. Richiama `Author
 Nel codice precedente, il modello viene passato come una risorsa che deve prendere in considerazione la valutazione dei criteri.
 
 > [!WARNING]
-> Non fare affidamento sulla visibilità degli elementi dell'interfaccia utente dell'app come unico controllo di autorizzazione. Nascondere un elemento dell'interfaccia utente potrebbe non impedire completamente l'accesso all'azione del controller associato. Si consideri ad esempio il pulsante nel frammento di codice precedente. Un utente può richiamare il `Edit` metodo di azione se sa che l'URL relativo della risorsa è */Document/Edit/1*. Per questo motivo, il `Edit` metodo di azione deve eseguire il proprio controllo di autorizzazione.
+> Non fare affidamento sulla visibilità degli elementi dell'interfaccia utente dell'app come unico controllo di autorizzazione. Nascondere un elemento dell'interfaccia utente potrebbe non impedire completamente l'accesso all'azione del controller associato. Si consideri ad esempio il pulsante nel frammento di codice precedente. Un utente può richiamare il `Edit` metodo di azione se sa che l'URL relativo della risorsa è */Document/Edit/1* . Per questo motivo, il `Edit` metodo di azione deve eseguire il proprio controllo di autorizzazione.

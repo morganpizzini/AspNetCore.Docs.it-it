@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 07/27/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/client
-ms.openlocfilehash: 6515e87845cc5aa101532c18711d175a73581bee
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 9322020083ce25b00b2979633ae8a692cfd4da4a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722709"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060963"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>Chiamare servizi gRPC con il client .NET
 
@@ -33,7 +34,7 @@ Una libreria client di .NET gRPC è disponibile nel pacchetto NuGet [.NET. clien
 
 ## <a name="configure-grpc-client"></a>Configurare il client gRPC
 
-i client gRPC sono tipi di client concreti [generati da file * \* . proto* ](xref:grpc/basics#generated-c-assets). Il client gRPC concreto dispone di metodi che vengono convertiti nel servizio gRPC nel file * \* . proto* . Ad esempio, un servizio chiamato `Greeter` genera un `GreeterClient` tipo con i metodi per chiamare il servizio.
+i client gRPC sono tipi di client concreti [generati da file *\* . proto*](xref:grpc/basics#generated-c-assets). Il client gRPC concreto dispone di metodi che vengono convertiti nel servizio gRPC nel file *\* . proto* . Ad esempio, un servizio chiamato `Greeter` genera un `GreeterClient` tipo con i metodi per chiamare il servizio.
 
 Un client gRPC viene creato da un canale. Iniziare usando `GrpcChannel.ForAddress` per creare un canale e quindi usare il canale per creare un client gRPC:
 
@@ -102,7 +103,7 @@ Console.WriteLine("Greeting: " + response.Message);
 // Greeting: Hello World
 ```
 
-Ogni metodo del servizio unario nel file * \* . proto* genererà due metodi .NET sul tipo di client gRPC concreto per chiamare il metodo: un metodo asincrono e un metodo di blocco. Ad esempio, in `GreeterClient` sono disponibili due modi per chiamare `SayHello` :
+Ogni metodo del servizio unario nel file *\* . proto* genererà due metodi .NET sul tipo di client gRPC concreto per chiamare il metodo: un metodo asincrono e un metodo di blocco. Ad esempio, in `GreeterClient` sono disponibili due modi per chiamare `SayHello` :
 
 * `GreeterClient.SayHelloAsync` : chiama il `Greeter.SayHello` servizio in modo asincrono. Può essere atteso.
 * `GreeterClient.SayHello` : chiama il `Greeter.SayHello` servizio e blocca fino al completamento. Non usare nel codice asincrono.

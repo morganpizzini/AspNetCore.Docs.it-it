@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 04/06/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 01575ec87d2d346da7367523ca5e257d53de4983
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: a3fc398569fafefc0b4634e80433a5d4e0e1b4ff
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722618"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061002"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Procedure consigliate per le prestazioni ASP.NET Core
 
@@ -50,7 +51,7 @@ Un problema di prestazioni comune nelle app ASP.NET Core consiste nel bloccare l
 * Acquisisci blocchi nei percorsi di codice comuni. Le app ASP.NET Core sono più efficienti quando vengono progettate per l'esecuzione di codice in parallelo.
 * Chiamare [Task. Run](/dotnet/api/system.threading.tasks.task.run) e attenderlo immediatamente. ASP.NET Core esegue già il codice dell'app nei thread del pool di thread normali, quindi la chiamata di Task. Run comporta solo la pianificazione di pool di thread superflui. Anche se il codice pianificato blocca un thread, Task. Run non lo impedisce.
 
-**Do**:
+**Do** :
 
 * Rendere asincroni i [percorsi di codice caldo](#understand-hot-code-paths) .
 * Chiamare le API di accesso ai dati, I/O e operazioni con esecuzione prolungata in modo asincrono se è disponibile un'API asincrona. Non **usare** [Task. Run](/dotnet/api/system.threading.tasks.task.run) per rendere asincrona un'API sincrona.
@@ -71,7 +72,7 @@ A partire da ASP.NET Core 3,0, `IAsyncEnumerable<T>` può essere usato come alte
 Consigli:
 
 * **Prendere in** considerazione la memorizzazione nella cache di oggetti di grandi dimensioni usati di frequente. La memorizzazione nella cache di oggetti di grandi dimensioni impedisce allocazioni costose.
-* **Eseguire** il pool di buffer usando un [ArrayPool \<T> ](/dotnet/api/system.buffers.arraypool-1) per archiviare matrici di grandi dimensioni.
+* **Eseguire** il pool di buffer usando un [ArrayPool \<T>](/dotnet/api/system.buffers.arraypool-1) per archiviare matrici di grandi dimensioni.
 * **Non** allocare molti oggetti di grandi dimensioni di breve durata nei [percorsi del codice a caldo](#understand-hot-code-paths).
 
 È possibile diagnosticare problemi di memoria, ad esempio quelli precedenti, esaminando le statistiche Garbage Collection (GC) in [PerfView](https://github.com/Microsoft/perfview) ed esaminando:

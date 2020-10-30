@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/28/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/httpapi
-ms.openlocfilehash: fa4e7489920338344b78874690e64d4080b5a719
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: 45e2a1a5e6a9f00294147db769454b78c5b866e5
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805583"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059936"
 ---
 # <a name="create-json-web-apis-from-grpc"></a>Create API Web JSON da gRPC
 
@@ -38,7 +39,7 @@ Di [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC è un modo moderno per comunicare tra le app. gRPC Usa HTTP/2, flusso, protobuf e contratti di messaggio per creare servizi in tempo reale ad alte prestazioni.
 
-Una limitazione di gRPC non è la piattaforma che può essere usata da tutte le piattaforme. I browser non supportano completamente HTTP/2, rendendo REST e JSON il modo principale per ottenere i dati nelle app del browser. Anche con i vantaggi offerti da gRPC, REST e JSON hanno un posto importante nelle app moderne. La compilazione di API Web gRPC ***e*** JSON aggiunge un sovraccarico indesiderato per lo sviluppo di app.
+Una limitazione di gRPC non è la piattaforma che può essere usata da tutte le piattaforme. I browser non supportano completamente HTTP/2, rendendo REST e JSON il modo principale per ottenere i dati nelle app del browser. Anche con i vantaggi offerti da gRPC, REST e JSON hanno un posto importante nelle app moderne. La compilazione di API Web gRPC * **e** _ JSON aggiunge un sovraccarico indesiderato per lo sviluppo di app.
 
 Questo documento illustra come creare API Web JSON usando i servizi gRPC.
 
@@ -46,13 +47,13 @@ Questo documento illustra come creare API Web JSON usando i servizi gRPC.
 
 l'API HTTP di gRPC è un'estensione sperimentale per ASP.NET Core che crea API JSON RESTful per i servizi gRPC. Una volta configurata, l'API HTTP gRPC consente alle app di chiamare i servizi gRPC con concetti HTTP noti:
 
-* Verbi HTTP
+_ Verbi HTTP
 * Binding parametro URL
 * Richieste/risposte JSON
 
 gRPC può comunque essere usato per chiamare i servizi.
 
-### <a name="usage"></a>Uso
+### <a name="usage"></a>Utilizzo
 
 1. Aggiungere un riferimento al pacchetto a [Microsoft. AspNetCore. Grpc. HttpApi](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi).
 1. Registrare i servizi in *Startup.cs* con `AddGrpcHttpApi` .

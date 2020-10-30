@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 10/17/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/dotnet-grpc
-ms.openlocfilehash: 18d504d7a130aeaa9f8ab6cca6c92dab5febfae6
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f34e1543d9695e138a85db3b79e013cf5fb6d138
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633240"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059910"
 ---
 # <a name="manage-protobuf-references-with-dotnet-grpc"></a>Gestire i riferimenti Protobuf con dotnet-grpc
 
 A cura di [John Luo](https://github.com/juntaoluo)
 
-`dotnet-grpc` è uno strumento globale .NET Core per la gestione dei riferimenti [protobuf (*. proto*)](xref:grpc/basics#proto-file) in un progetto .NET gRPC. Lo strumento può essere usato per aggiungere, aggiornare, rimuovere ed elencare i riferimenti a protobuf.
+`dotnet-grpc` è uno strumento globale .NET Core per la gestione dei riferimenti [protobuf ( *. proto* )](xref:grpc/basics#proto-file) in un progetto .NET gRPC. Lo strumento può essere usato per aggiungere, aggiornare, rimuovere ed elencare i riferimenti a protobuf.
 
 ## <a name="installation"></a>Installazione
 
@@ -167,7 +168,7 @@ dotnet-grpc refresh [options] [<references>...]
 
 Il `list` comando viene usato per visualizzare tutti i riferimenti protobuf nel file di progetto. Se tutti i valori di una colonna sono valori predefiniti, è possibile omettere la colonna.
 
-### <a name="usage"></a>Uso
+### <a name="usage"></a>Utilizzo
 
 ```dotnetcli
 dotnet-grpc list [options]

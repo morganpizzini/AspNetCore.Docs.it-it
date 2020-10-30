@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: 46fa3138e3fbcc4ed5e4497ec017a5873a4cdb13
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: b009cc61a94e618a48d96ecbd770ef6371308f6a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754658"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059845"
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Errori comuni di Servizio app di Azure e IIS con ASP.NET Core
 
@@ -39,8 +40,8 @@ Raccogliere le seguenti informazioni:
 * Voci del log eventi dell'applicazione
   * Servizio app Azure: vedere <xref:test/troubleshoot-azure-iis> .
   * IIS
-    1. Selezionare **Start** nel menu di **Windows**, digitare *Visualizzatore eventi* e premere **INVIO**.
-    1. Dopo l'apertura di **Visualizzatore eventi**, espandere **Registri di Windows** > **Applicazione** nella barra laterale.
+    1. Selezionare **Start** nel menu di **Windows** , digitare *Visualizzatore eventi* e premere **INVIO** .
+    1. Dopo l'apertura di **Visualizzatore eventi** , espandere **Registri di Windows** > **Applicazione** nella barra laterale.
 * Voci del log per debug e stdout di ASP.NET Core
   * Servizio app Azure: vedere <xref:test/troubleshoot-azure-iis> .
   * IIS: seguire le istruzioni riportate nelle sezioni [creazione e Reindirizzamento dei log](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) e [log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) dell'argomento ASP.NET Core Module.
@@ -53,7 +54,7 @@ L'elenco degli errori in questo argomento non è esaustivo. Se si verifica un er
 
 ## <a name="os-upgrade-removed-the-32-bit-aspnet-core-module"></a>L'aggiornamento del sistema operativo ha rimosso il modulo di ASP.NET Core a 32 bit
 
-**Registro dell'applicazione:** Il modulo DLL**C:\WINDOWS\system32\inetsrv\aspnetcore.dll** non è riuscito a caricare. L'errore è nei dati.
+**Registro dell'applicazione:** Il modulo DLL **C:\WINDOWS\system32\inetsrv\aspnetcore.dll** non è riuscito a caricare. L'errore è nei dati.
 
 Risoluzione dei problemi:
 
@@ -63,7 +64,7 @@ I file non appartenenti al sistema operativo presenti nella directory **C:\Windo
 
 *Si applica alle app ospitate da Servizi app di Azure.*
 
-* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore in-Process modulo ASP.NET Core
+* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore In-Process modulo ASP.NET Core
 
 * **Registro applicazioni:** La chiamata di hostfxr per trovare il gestore della richiesta di Inprocess non è riuscita senza trovare dipendenze native. Non è stato possibile trovare il gestore delle richieste In-Process. Output acquisito dalla chiamata a hostfxr: non è possibile trovare una versione di Framework compatibile. Impossibile trovare la versione del framework 'Microsoft.AspNetCore.App', version '{VERSION}-preview-\*' specificata. Impossibile avviare l'applicazione '/LM/W3SVC/1416782824/ROOT', ErrorCode '0x8000ffff'.
 
@@ -90,7 +91,7 @@ Per altre informazioni, vedere <xref:host-and-deploy/azure-apps/index#install-th
 
 ## <a name="an-x86-app-is-deployed-but-the-app-pool-isnt-enabled-for-32-bit-apps"></a>Un'app x86 viene distribuita, ma il pool di app non è abilitato per le app a 32 bit
 
-* **Browser:** Errore HTTP 500,30-errore di avvio in-Process modulo ASP.NET Core
+* **Browser:** Errore HTTP 500,30-modulo ASP.NET Core In-Process avvio non riuscito
 
 * **Registro applicazioni:** L'applicazione '/LM/W3SVC/5/ROOT ' con radice fisica ' {PATH}' ha raggiunto un'eccezione gestita imprevista, codice eccezione =' 0xe0434352'. Controllare i log stderr per altre informazioni. Applicazione '/LM/W3SVC/5/ROOT' con radice fisica '{PATH}'. Impossibile caricare clr e applicazione gestita. Chiusura prematura del thread di lavoro CLR
 
@@ -102,7 +103,7 @@ Questo scenario viene intercettato dall'SDK durante la pubblicazione di un'app a
 
 Risoluzione dei problemi:
 
-Per una distribuzione dipendente dal framework x86 (`<PlatformTarget>x86</PlatformTarget>`), abilitare il pool di app IIS per le app a 32 bit. In Gestione IIS aprire **Impostazioni avanzate** per il pool di app e impostare **Attiva applicazioni a 32 bit** su **True**.
+Per una distribuzione dipendente dal framework x86 (`<PlatformTarget>x86</PlatformTarget>`), abilitare il pool di app IIS per le app a 32 bit. In Gestione IIS aprire **Impostazioni avanzate** per il pool di app e impostare **Attiva applicazioni a 32 bit** su **True** .
 
 ## <a name="platform-conflicts-with-rid"></a>La piattaforma è in conflitto con RID
 
@@ -132,7 +133,7 @@ Risoluzione dei problemi:
 
 * Verificare che sia in uso l'endpoint URI corretto per l'app. Controllare i binding.
 
-* Verificare che il sito Web IIS non sia nello stato *In arresto*.
+* Verificare che il sito Web IIS non sia nello stato *In arresto* .
 
 ## <a name="corewebengine-or-w3svc-server-features-disabled"></a>Le funzionalità del server CoreWebEngine o W3SVC sono disabilitate
 
@@ -154,7 +155,7 @@ Verificare che il ruolo e le funzionalità appropriati siano abilitati. Vedere [
 
 Risoluzione dei problemi:
 
-Controllare il sito Web IIS **Impostazioni di base** e la cartella dell'app fisica. Verificare che l'app si trovi nella cartella nel sito Web IIS **Percorso fisico**.
+Controllare il sito Web IIS **Impostazioni di base** e la cartella dell'app fisica. Verificare che l'app si trovi nella cartella nel sito Web IIS **Percorso fisico** .
 
 ## <a name="incorrect-role-aspnet-core-module-not-installed-or-incorrect-permissions"></a>Ruolo non corretto, modulo ASP.NET Core non installato o autorizzazioni non corrette
 
@@ -170,13 +171,13 @@ Risoluzione dei problemi:
 
 * Verificare che il ruolo appropriato sia abilitato. Vedere [Configurazione di IIS](xref:host-and-deploy/iis/index#iis-configuration).
 
-* Aprire **Programmi e funzionalità** oppure **App e funzionalità** e verificare che sia installato **Windows Server Hosting**. Se **Windows Server Hosting** non è presente nell'elenco dei programmi installati, scaricare e installare il bundle di hosting .NET Core.
+* Aprire **Programmi e funzionalità** oppure **App e funzionalità** e verificare che sia installato **Windows Server Hosting** . Se **Windows Server Hosting** non è presente nell'elenco dei programmi installati, scaricare e installare il bundle di hosting .NET Core.
 
   [Programma di installazione del bundle di hosting .NET Core corrente (download diretto)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
   Per altre informazioni, vedere [Installare il bundle di hosting .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
-* Verificare che il **Application Pool** > **modello di processo** del pool > **Identity** di applicazioni sia impostato su **ApplicationPool Identity ** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
+* Verificare che il **Application Pool** > **modello di processo** del pool > **Identity** di applicazioni sia impostato su **ApplicationPool Identity** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
 
 * Se il bundle di hosting ASP.NET Core è stato disinstallato e quindi è stata installata una versione del bundle di hosting precedente, il file *applicationHost.config* non include una sezione per il modulo ASP.NET Core. Aprire *applicationHost.config* in *%windir%/System32/inetsrv/config* e trovare il gruppo di sezioni `<configuration><configSections><sectionGroup name="system.webServer">`. Se la sezione per il modulo ASP.NET Core non è presente nel gruppo di sezioni, aggiungere l'elemento della sezione:
 
@@ -188,7 +189,7 @@ Risoluzione dei problemi:
 
 ## <a name="incorrect-processpath-missing-path-variable-hosting-bundle-not-installed-systemiis-not-restarted-vc-redistributable-not-installed-or-dotnetexe-access-violation"></a>ProcessPath non corretto, variabile di percorso mancante, aggregazione di hosting non installata, sistema/IIS non riavviato, VC Redistributable non installato o violazione dell'accesso a dotnet.exe
 
-* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore in-Process modulo ASP.NET Core
+* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore In-Process modulo ASP.NET Core
 
 * **Registro applicazioni:** L'applicazione "MACHINE/WEBROOT/APPHOST/{ASSEMBLY}" con radice fisica "C: \{ path} \' non è riuscita ad avviare il processo con la riga di comando" "{...}" ', ErrorCode =' 0x80070002:0. Impossibile avviare l'applicazione '{PATH}'. Eseguibile non trovato in '{PATH}'. Impossibile avviare l'applicazione '/LM/W3SVC/2/ROOT', ErrorCode '0x8007023e'.
 
@@ -204,7 +205,7 @@ Risoluzione dei problemi:
 
 * Per una distribuzione dipendente dal framework, *dotnet.exe* potrebbe non essere accessibile tramite le impostazioni del percorso. Confermare che *C:\Programmi\dotnet\\* esiste nelle impostazioni PATH di sistema.
 
-* Per una distribuzione dipendente da framework, *dotnet.exe* potrebbe non essere accessibile per l'identità utente del pool di app. Confermare che l'identità dell'utente del pool di app abbia accesso alla directory *C:\Programmi\dotnet*. Verificare che non siano presenti regole di negazione configurate per l'identità dell'utente del pool di app in *C:\Programmi\dotnet* e nelle directory dell'app.
+* Per una distribuzione dipendente da framework, *dotnet.exe* potrebbe non essere accessibile per l'identità utente del pool di app. Confermare che l'identità dell'utente del pool di app abbia accesso alla directory *C:\Programmi\dotnet* . Verificare che non siano presenti regole di negazione configurate per l'identità dell'utente del pool di app in *C:\Programmi\dotnet* e nelle directory dell'app.
 
 * È possibile che sia stata eseguita una distribuzione FDD e che sia stato installato .NET Core senza riavviare IIS. Riavviare il server o riavviare IIS eseguendo **net stop was /y** seguito da **net start w3svc** da un prompt dei comandi.
 
@@ -218,7 +219,7 @@ Risoluzione dei problemi:
 
 ## <a name="incorrect-arguments-of-aspnetcore-element"></a>Argomenti non corretti dell' \<aspNetCore> elemento
 
-* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore in-Process modulo ASP.NET Core
+* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore In-Process modulo ASP.NET Core
 
 * **Registro applicazioni:** La chiamata di hostfxr per trovare il gestore della richiesta di Inprocess non è riuscita senza trovare dipendenze native. Questo errore probabilmente significa che l'app non è configurata correttamente. Controllare le versioni di Microsoft.NetCore.App e Microsoft.AspNetCore.App specificate come destinazione dall'applicazione e installate nel computer. Non è stato possibile trovare il gestore delle richieste In-Process. Output acquisito dalla chiamata a hostfxr: si intendeva eseguire i comandi di DotNet SDK? Installare dotnet SDK da: https://go.microsoft.com/fwlink/?LinkID=798306&clcid=0x409 non è stato possibile avviare l'applicazione '/LM/W3SVC/3/root ', ErrorCode ' 0x8000ffff '.
 
@@ -234,7 +235,7 @@ Risoluzione dei problemi:
 
 ## <a name="missing-net-core-shared-framework"></a>Framework condiviso di .NET Core mancante
 
-* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore in-Process modulo ASP.NET Core
+* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore In-Process modulo ASP.NET Core
 
 * **Registro applicazioni:** La chiamata di hostfxr per trovare il gestore della richiesta di Inprocess non è riuscita senza trovare dipendenze native. Questo errore probabilmente significa che l'app non è configurata correttamente. Controllare le versioni di Microsoft.NetCore.App e Microsoft.AspNetCore.App specificate come destinazione dall'applicazione e installate nel computer. Non è stato possibile trovare il gestore delle richieste In-Process. Output acquisito dalla chiamata a hostfxr: non è possibile trovare una versione di Framework compatibile. Impossibile trovare la versione del framework 'Microsoft.AspNetCore.App' specificata '{VERSION}'.
 
@@ -260,7 +261,7 @@ Per una distribuzione dipendente da framework (FDD), verificare che nel sistema 
 
 Risoluzione dei problemi:
 
-Confermare che il pool di applicazioni non sia nello stato *Arrestato*.
+Confermare che il pool di applicazioni non sia nello stato *Arrestato* .
 
 ## <a name="sub-application-includes-a-handlers-section"></a>L'applicazione secondaria include una \<handlers> sezione
 
@@ -296,7 +297,7 @@ Risoluzione dei problemi:
 
 ## <a name="application-configuration-general-issue"></a>Problema generale della configurazione dell'applicazione
 
-* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore in-Process modulo ASP.NET Core **--o--** errore HTTP 500,30-errore di avvio in-Process modulo ASP.NET Core
+* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore In-Process modulo ASP.NET Core **--o--** errore HTTP 500,30-modulo ASP.NET Core In-Process avvio non riuscito
 
 * **Registro applicazioni:** Variabile
 
@@ -308,7 +309,7 @@ Risoluzione dei problemi:
 
 non è stato possibile avviare il processo, molto probabilmente a causa di un problema di configurazione dell'app o di programmazione.
 
-Per altre informazioni, vedere gli argomenti seguenti:
+Per altre informazioni, vedere i seguenti argomenti:
 
 * <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>
@@ -327,8 +328,8 @@ Raccogliere le seguenti informazioni:
 * Voci del log eventi dell'applicazione
   * Servizio app Azure: vedere <xref:test/troubleshoot-azure-iis> .
   * IIS
-    1. Selezionare **Start** nel menu di **Windows**, digitare *Visualizzatore eventi* e premere **INVIO**.
-    1. Dopo l'apertura di **Visualizzatore eventi**, espandere **Registri di Windows** > **Applicazione** nella barra laterale.
+    1. Selezionare **Start** nel menu di **Windows** , digitare *Visualizzatore eventi* e premere **INVIO** .
+    1. Dopo l'apertura di **Visualizzatore eventi** , espandere **Registri di Windows** > **Applicazione** nella barra laterale.
 * Voci del log per debug e stdout di ASP.NET Core
   * Servizio app Azure: vedere <xref:test/troubleshoot-azure-iis> .
   * IIS: seguire le istruzioni riportate nelle sezioni [creazione e Reindirizzamento dei log](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) e [log di diagnostica avanzati](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) dell'argomento ASP.NET Core Module.
@@ -341,7 +342,7 @@ L'elenco degli errori in questo argomento non è esaustivo. Se si verifica un er
 
 ## <a name="os-upgrade-removed-the-32-bit-aspnet-core-module"></a>L'aggiornamento del sistema operativo ha rimosso il modulo di ASP.NET Core a 32 bit
 
-**Registro dell'applicazione:** Il modulo DLL**C:\WINDOWS\system32\inetsrv\aspnetcore.dll** non è riuscito a caricare. L'errore è nei dati.
+**Registro dell'applicazione:** Il modulo DLL **C:\WINDOWS\system32\inetsrv\aspnetcore.dll** non è riuscito a caricare. L'errore è nei dati.
 
 Risoluzione dei problemi:
 
@@ -351,7 +352,7 @@ I file non appartenenti al sistema operativo presenti nella directory **C:\Windo
 
 *Si applica alle app ospitate da Servizi app di Azure.*
 
-* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore in-Process modulo ASP.NET Core
+* **Browser:** Errore HTTP 500,0-errore di caricamento del gestore In-Process modulo ASP.NET Core
 
 * **Registro applicazioni:** La chiamata di hostfxr per trovare il gestore della richiesta di Inprocess non è riuscita senza trovare dipendenze native. Non è stato possibile trovare il gestore delle richieste In-Process. Output acquisito dalla chiamata a hostfxr: non è possibile trovare una versione di Framework compatibile. Impossibile trovare la versione del framework 'Microsoft.AspNetCore.App', version '{VERSION}-preview-\*' specificata. Impossibile avviare l'applicazione '/LM/W3SVC/1416782824/ROOT', ErrorCode '0x8000ffff'.
 
@@ -376,7 +377,7 @@ Per altre informazioni, vedere <xref:host-and-deploy/azure-apps/index#install-th
 
 ## <a name="an-x86-app-is-deployed-but-the-app-pool-isnt-enabled-for-32-bit-apps"></a>Un'app x86 viene distribuita, ma il pool di app non è abilitato per le app a 32 bit
 
-* **Browser:** Errore HTTP 500,30-errore di avvio in-Process modulo ASP.NET Core
+* **Browser:** Errore HTTP 500,30-modulo ASP.NET Core In-Process avvio non riuscito
 
 * **Registro applicazioni:** L'applicazione '/LM/W3SVC/5/ROOT ' con radice fisica ' {PATH}' ha raggiunto un'eccezione gestita imprevista, codice eccezione =' 0xe0434352'. Controllare i log stderr per altre informazioni. Applicazione '/LM/W3SVC/5/ROOT' con radice fisica '{PATH}'. Impossibile caricare clr e applicazione gestita. Chiusura prematura del thread di lavoro CLR
 
@@ -386,7 +387,7 @@ Questo scenario viene intercettato dall'SDK durante la pubblicazione di un'app a
 
 Risoluzione dei problemi:
 
-Per una distribuzione dipendente dal framework x86 (`<PlatformTarget>x86</PlatformTarget>`), abilitare il pool di app IIS per le app a 32 bit. In Gestione IIS aprire **Impostazioni avanzate** per il pool di app e impostare **Attiva applicazioni a 32 bit** su **True**.
+Per una distribuzione dipendente dal framework x86 (`<PlatformTarget>x86</PlatformTarget>`), abilitare il pool di app IIS per le app a 32 bit. In Gestione IIS aprire **Impostazioni avanzate** per il pool di app e impostare **Attiva applicazioni a 32 bit** su **True** .
 
 ## <a name="platform-conflicts-with-rid"></a>La piattaforma è in conflitto con RID
 
@@ -414,7 +415,7 @@ Risoluzione dei problemi:
 
 * Verificare che sia in uso l'endpoint URI corretto per l'app. Controllare i binding.
 
-* Verificare che il sito Web IIS non sia nello stato *In arresto*.
+* Verificare che il sito Web IIS non sia nello stato *In arresto* .
 
 ## <a name="corewebengine-or-w3svc-server-features-disabled"></a>Le funzionalità del server CoreWebEngine o W3SVC sono disabilitate
 
@@ -434,7 +435,7 @@ Verificare che il ruolo e le funzionalità appropriati siano abilitati. Vedere [
 
 Risoluzione dei problemi:
 
-Controllare il sito Web IIS **Impostazioni di base** e la cartella dell'app fisica. Verificare che l'app si trovi nella cartella nel sito Web IIS **Percorso fisico**.
+Controllare il sito Web IIS **Impostazioni di base** e la cartella dell'app fisica. Verificare che l'app si trovi nella cartella nel sito Web IIS **Percorso fisico** .
 
 ## <a name="incorrect-role-aspnet-core-module-not-installed-or-incorrect-permissions"></a>Ruolo non corretto, modulo ASP.NET Core non installato o autorizzazioni non corrette
 
@@ -448,13 +449,13 @@ Risoluzione dei problemi:
 
 * Verificare che il ruolo appropriato sia abilitato. Vedere [Configurazione di IIS](xref:host-and-deploy/iis/index#iis-configuration).
 
-* Aprire **Programmi e funzionalità** oppure **App e funzionalità** e verificare che sia installato **Windows Server Hosting**. Se **Windows Server Hosting** non è presente nell'elenco dei programmi installati, scaricare e installare il bundle di hosting .NET Core.
+* Aprire **Programmi e funzionalità** oppure **App e funzionalità** e verificare che sia installato **Windows Server Hosting** . Se **Windows Server Hosting** non è presente nell'elenco dei programmi installati, scaricare e installare il bundle di hosting .NET Core.
 
   [Programma di installazione del bundle di hosting .NET Core corrente (download diretto)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
   Per altre informazioni, vedere [Installare il bundle di hosting .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
-* Verificare che il **Application Pool** > **modello di processo** del pool > **Identity** di applicazioni sia impostato su **ApplicationPool Identity ** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
+* Verificare che il **Application Pool** > **modello di processo** del pool > **Identity** di applicazioni sia impostato su **ApplicationPool Identity** o che l'identità personalizzata disponga delle autorizzazioni corrette per accedere alla cartella di distribuzione dell'app.
 
 * Se il bundle di hosting ASP.NET Core è stato disinstallato e quindi è stata installata una versione del bundle di hosting precedente, il file *applicationHost.config* non include una sezione per il modulo ASP.NET Core. Aprire *applicationHost.config* in *%windir%/System32/inetsrv/config* e trovare il gruppo di sezioni `<configuration><configSections><sectionGroup name="system.webServer">`. Se la sezione per il modulo ASP.NET Core non è presente nel gruppo di sezioni, aggiungere l'elemento della sezione:
 
@@ -480,7 +481,7 @@ Risoluzione dei problemi:
 
 * Per una distribuzione dipendente dal framework, *dotnet.exe* potrebbe non essere accessibile tramite le impostazioni del percorso. Confermare che *C:\Programmi\dotnet\\* esiste nelle impostazioni PATH di sistema.
 
-* Per una distribuzione dipendente da framework, *dotnet.exe* potrebbe non essere accessibile per l'identità utente del pool di app. Confermare che l'identità dell'utente del pool di app abbia accesso alla directory *C:\Programmi\dotnet*. Verificare che non siano presenti regole di negazione configurate per l'identità dell'utente del pool di app in *C:\Programmi\dotnet* e nelle directory dell'app.
+* Per una distribuzione dipendente da framework, *dotnet.exe* potrebbe non essere accessibile per l'identità utente del pool di app. Confermare che l'identità dell'utente del pool di app abbia accesso alla directory *C:\Programmi\dotnet* . Verificare che non siano presenti regole di negazione configurate per l'identità dell'utente del pool di app in *C:\Programmi\dotnet* e nelle directory dell'app.
 
 * È possibile che sia stata eseguita una distribuzione FDD e che sia stato installato .NET Core senza riavviare IIS. Riavviare il server o riavviare IIS eseguendo **net stop was /y** seguito da **net start w3svc** da un prompt dei comandi.
 
@@ -520,7 +521,7 @@ Per una distribuzione dipendente da framework (FDD), verificare che nel sistema 
 
 Risoluzione dei problemi:
 
-Confermare che il pool di applicazioni non sia nello stato *Arrestato*.
+Confermare che il pool di applicazioni non sia nello stato *Arrestato* .
 
 ## <a name="sub-application-includes-a-handlers-section"></a>L'applicazione secondaria include una \<handlers> sezione
 
@@ -560,7 +561,7 @@ Risoluzione dei problemi:
 
 non è stato possibile avviare il processo, molto probabilmente a causa di un problema di configurazione dell'app o di programmazione.
 
-Per altre informazioni, vedere gli argomenti seguenti:
+Per altre informazioni, vedere i seguenti argomenti:
 
 * <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>

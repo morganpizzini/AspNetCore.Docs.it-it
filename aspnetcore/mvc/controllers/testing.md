@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/22/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/testing
-ms.openlocfilehash: d6c70d828d6c2f62f9e7b849a299df3077f2da32
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 962c1cf0be0f80ecd6c3adda7d22db7f16519a2a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635229"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060352"
 ---
 # <a name="unit-test-controller-logic-in-aspnet-core"></a>Logica unità test controller in ASP.NET Core
 
@@ -35,7 +36,7 @@ Gli [unit test](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) imp
 
 ## <a name="unit-testing-controllers"></a>Controller di unit test
 
-Configurare unit test delle azioni del controller per concentrare l'attenzione sul comportamento del controller. Uno unit test del controller evita scenari come [filtri](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing) e [associazione di modelli](xref:mvc/models/model-binding). I test che verificano le interazioni tra i componenti che collettivamente rispondono a una richiesta vengono gestiti dai *test di integrazione*. Per altre informazioni sui test di integrazione, vedere <xref:test/integration-tests>.
+Configurare unit test delle azioni del controller per concentrare l'attenzione sul comportamento del controller. Uno unit test del controller evita scenari come [filtri](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing) e [associazione di modelli](xref:mvc/models/model-binding). I test che verificano le interazioni tra i componenti che collettivamente rispondono a una richiesta vengono gestiti dai *test di integrazione* . Per altre informazioni sui test di integrazione, vedere <xref:test/integration-tests>.
 
 Se si scrivono route e filtri personalizzati, sottoporli a unit test in isolamento e non durante i test relativi a una determinata azione del controller.
 
@@ -68,7 +69,7 @@ Il metodo `HTTP GET Index` non dispone di cicli o rami e chiama un solo metodo. 
 
 Il metodo `HTTP POST Index` del controller Home verifica che:
 
-* Quando [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) è `false`, il metodo di azione restituisca un elemento * di tipo 400 - Richiesta non valida* <xref:Microsoft.AspNetCore.Mvc.ViewResult> con i dati appropriati.
+* Quando [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) è `false`, il metodo di azione restituisca un elemento *di tipo 400 - Richiesta non valida* <xref:Microsoft.AspNetCore.Mvc.ViewResult> con i dati appropriati.
 * Quando `ModelState.IsValid` è `true`:
   * Venga chiamato il metodo `Add` sul repository.
   * Venga restituito un <xref:Microsoft.AspNetCore.Mvc.RedirectToActionResult> con gli argomenti corretti.
@@ -89,7 +90,7 @@ Le chiamate fittizie che non vengono eseguite sono in genere ignorate, ma la chi
 > [!NOTE]
 > La libreria Moq usata in questo esempio consente la combinazione di simulazioni verificabili o "rigide" con simulazioni non verificabili (dette anche simulazioni "generiche" o stub "generici"). Altre informazioni sulla [personalizzazione del comportamento di simulazione con Moq](https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior).
 
-[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) nell'app di esempio visualizza informazioni correlate a una sessione di brainstorming specifica. Il controller include la logica per gestire i valori `id` non validi (nell'esempio seguente sono riportati due scenari `return` in proposito). L'istruzione finale `return` restituisce un nuovo elemento `StormSessionViewModel` alla vista (*Controllers/SessionController.cs*):
+[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) nell'app di esempio visualizza informazioni correlate a una sessione di brainstorming specifica. Il controller include la logica per gestire i valori `id` non validi (nell'esempio seguente sono riportati due scenari `return` in proposito). L'istruzione finale `return` restituisce un nuovo elemento `StormSessionViewModel` alla vista ( *Controllers/SessionController.cs* ):
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs?name=snippet_SessionController&highlight=12-16,18-22,31)]
 
@@ -202,7 +203,7 @@ I [controller](xref:mvc/controllers/actions) hanno un ruolo centrale in qualsias
 
 Gli [unit test](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) implicano l'esecuzione di test su una parte di un'app isolandola dall'infrastruttura e dalle dipendenze. Quando si sottopone a unit test la logica del controller, si verificano solo i contenuti di una singola azione e non il comportamento delle relative dipendenze o del framework.
 
-Configurare unit test delle azioni del controller per concentrare l'attenzione sul comportamento del controller. Uno unit test del controller evita scenari come [filtri](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing) e [associazione di modelli](xref:mvc/models/model-binding). I test che verificano le interazioni tra i componenti che collettivamente rispondono a una richiesta vengono gestiti dai *test di integrazione*. Per altre informazioni sui test di integrazione, vedere <xref:test/integration-tests>.
+Configurare unit test delle azioni del controller per concentrare l'attenzione sul comportamento del controller. Uno unit test del controller evita scenari come [filtri](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing) e [associazione di modelli](xref:mvc/models/model-binding). I test che verificano le interazioni tra i componenti che collettivamente rispondono a una richiesta vengono gestiti dai *test di integrazione* . Per altre informazioni sui test di integrazione, vedere <xref:test/integration-tests>.
 
 Se si scrivono route e filtri personalizzati, sottoporli a unit test in isolamento e non durante i test relativi a una determinata azione del controller.
 
@@ -231,7 +232,7 @@ Il metodo `HTTP GET Index` non dispone di cicli o rami e chiama un solo metodo. 
 
 Il metodo `HTTP POST Index` del controller Home verifica che:
 
-* Quando [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) è `false`, il metodo di azione restituisca un elemento * di tipo 400 - Richiesta non valida* <xref:Microsoft.AspNetCore.Mvc.ViewResult> con i dati appropriati.
+* Quando [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) è `false`, il metodo di azione restituisca un elemento *di tipo 400 - Richiesta non valida* <xref:Microsoft.AspNetCore.Mvc.ViewResult> con i dati appropriati.
 * Quando `ModelState.IsValid` è `true`:
   * Venga chiamato il metodo `Add` sul repository.
   * Venga restituito un <xref:Microsoft.AspNetCore.Mvc.RedirectToActionResult> con gli argomenti corretti.
@@ -252,7 +253,7 @@ Le chiamate fittizie che non vengono eseguite sono in genere ignorate, ma la chi
 > [!NOTE]
 > La libreria Moq usata in questo esempio consente la combinazione di simulazioni verificabili o "rigide" con simulazioni non verificabili (dette anche simulazioni "generiche" o stub "generici"). Altre informazioni sulla [personalizzazione del comportamento di simulazione con Moq](https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior).
 
-[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) nell'app di esempio visualizza informazioni correlate a una sessione di brainstorming specifica. Il controller include la logica per gestire i valori `id` non validi (nell'esempio seguente sono riportati due scenari `return` in proposito). L'istruzione finale `return` restituisce un nuovo elemento `StormSessionViewModel` alla vista (*Controllers/SessionController.cs*):
+[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) nell'app di esempio visualizza informazioni correlate a una sessione di brainstorming specifica. Il controller include la logica per gestire i valori `id` non validi (nell'esempio seguente sono riportati due scenari `return` in proposito). L'istruzione finale `return` restituisce un nuovo elemento `StormSessionViewModel` alla vista ( *Controllers/SessionController.cs* ):
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs?name=snippet_SessionController&highlight=12-16,18-22,31)]
 
@@ -359,6 +360,6 @@ Per un `id` di sessione valido, il test finale verifica che:
 
 * <xref:test/integration-tests>
 * [Creazione ed esecuzione di unit test con Visual Studio](/visualstudio/test/unit-test-your-code)
-* [Tested. AspNetCore. Mvc-libreria di test Fluent per ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): libreria di unit test fortemente tipizzata, che fornisce un'interfaccia Fluent per il test di app per le API Web e MVC. (*Non mantenuto o supportato da Microsoft).*
-* [JustMockLite](https://github.com/telerik/JustMockLite): Framework fittizio per sviluppatori .NET. (*Non mantenuto o supportato da Microsoft).*
+* [Tested. AspNetCore. Mvc-libreria di test Fluent per ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): libreria di unit test fortemente tipizzata, che fornisce un'interfaccia Fluent per il test di app per le API Web e MVC. ( *Non mantenuto o supportato da Microsoft).*
+* [JustMockLite](https://github.com/telerik/JustMockLite): Framework fittizio per sviluppatori .NET. ( *Non mantenuto o supportato da Microsoft).*
 

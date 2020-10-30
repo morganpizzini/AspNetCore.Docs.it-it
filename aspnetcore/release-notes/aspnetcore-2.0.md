@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.0
-ms.openlocfilehash: 9d8c33ef10825baa212466fe683d4c1dc582f7eb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f9fad5a63c76a3b21341a12fd40baafcdf2c9dac
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632460"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059728"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Novità di ASP.NET Core 2.0
 
@@ -63,7 +64,7 @@ Per informazioni sullo stato della documentazione prevista, vedere l'[argomento 
 
 ## <a name="logging-update"></a>Aggiornamento della registrazione
 
-In ASP.NET Core 2.0 la registrazione è incorporata nel sistema di inserimento delle dipendenze per impostazione predefinita. Si aggiungono i provider e si configurano i filtri nel file *Program.cs* anziché nel file *Startup.cs*. E l'oggetto `ILoggerFactory` predefinito supporta i filtri in modo tale da consentire l'uso di un unico approccio flessibile sia per il filtraggio tra provider, sia per il filtraggio di un provider specifico.
+In ASP.NET Core 2.0 la registrazione è incorporata nel sistema di inserimento delle dipendenze per impostazione predefinita. Si aggiungono i provider e si configurano i filtri nel file *Program.cs* anziché nel file *Startup.cs* . E l'oggetto `ILoggerFactory` predefinito supporta i filtri in modo tale da consentire l'uso di un unico approccio flessibile sia per il filtraggio tra provider, sia per il filtraggio di un provider specifico.
 
 Per altre informazioni, vedere l'[introduzione alla registrazione in ASP.NET Core](xref:fundamentals/logging/index).
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/1/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: e3dd7168e6974f63fa963d3732bc5df41814c70e
-ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
+ms.openlocfilehash: 5b07a2839daf190d99b2787db70998373d34cd44
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/23/2020
-ms.locfileid: "92491620"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060001"
 ---
 # <a name="routing-in-aspnet-core"></a>Routing in ASP.NET Core
 
@@ -80,7 +81,7 @@ L'esempio precedente include una singola *Route per l'endpoint di codice* usando
 
 <a name="endpoint"></a>
 
-Il `MapGet` metodo viene utilizzato per definire un **endpoint**. Un endpoint è un elemento che può essere:
+Il `MapGet` metodo viene utilizzato per definire un **endpoint** . Un endpoint è un elemento che può essere:
 
 * Selezionato, associando l'URL e il metodo HTTP.
 * Eseguita eseguendo il delegato.
@@ -96,7 +97,7 @@ Nell'esempio seguente viene illustrato il routing con un modello di route più s
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/RouteTemplateStartup.cs?name=snippet)]
 
-La stringa `/hello/{name:alpha}` è un **modello di route**. Viene usato per configurare la corrispondenza con l'endpoint. In questo caso, il modello corrisponde a:
+La stringa `/hello/{name:alpha}` è un **modello di route** . Viene usato per configurare la corrispondenza con l'endpoint. In questo caso, il modello corrisponde a:
 
 * Un URL come `/hello/Ryan`
 * Qualsiasi percorso URL che inizia con `/hello/` seguito da una sequenza di caratteri alfabetici.  `:alpha` applica un vincolo di route che corrisponde solo ai caratteri alfabetici. I [vincoli di route](#route-constraint-reference) vengono illustrati più avanti in questo documento.
@@ -130,7 +131,7 @@ Chiamare <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthenti
 
 ### <a name="endpoint-metadata"></a>Metadati dell'endpoint
 
-Nell'esempio precedente sono presenti due endpoint, ma solo l'endpoint di controllo integrità dispone di un criterio di autorizzazione collegato. Se la richiesta corrisponde all'endpoint di controllo integrità, `/healthz` viene eseguito un controllo di autorizzazione. Ciò dimostra che gli endpoint possono avere dati aggiuntivi collegati. Questi dati aggiuntivi sono detti **metadati**dell'endpoint:
+Nell'esempio precedente sono presenti due endpoint, ma solo l'endpoint di controllo integrità dispone di un criterio di autorizzazione collegato. Se la richiesta corrisponde all'endpoint di controllo integrità, `/healthz` viene eseguito un controllo di autorizzazione. Ciò dimostra che gli endpoint possono avere dati aggiuntivi collegati. Questi dati aggiuntivi sono detti **metadati** dell'endpoint:
 
 * I metadati possono essere elaborati dal middleware compatibile con il routing.
 * I metadati possono essere di qualsiasi tipo .NET.
@@ -209,12 +210,12 @@ Nell'esempio precedente vengono illustrati due concetti importanti:
 
 Il codice precedente mostra un esempio di middleware personalizzato che supporta i criteri per endpoint. Il middleware scrive un *log di controllo* di accesso ai dati sensibili nella console. Il middleware può essere configurato per *controllare* un endpoint con i `AuditPolicyAttribute` metadati. In questo esempio viene illustrato un modello *di consenso esplicito in* cui vengono controllati solo gli endpoint contrassegnati come sensibili. È possibile definire questa logica in senso inverso, ad esempio controllando tutti gli elementi che non sono contrassegnati come sicuri. Il sistema di metadati dell'endpoint è flessibile. Questa logica può essere progettata nel modo più adatto al caso d'uso.
 
-Il codice di esempio precedente ha lo scopo di illustrare i concetti di base degli endpoint. **L'esempio non è destinato all'uso in produzione**. Una versione più completa di un middleware di *log di controllo* :
+Il codice di esempio precedente ha lo scopo di illustrare i concetti di base degli endpoint. **L'esempio non è destinato all'uso in produzione** . Una versione più completa di un middleware di *log di controllo* :
 
 * Accedere a un file o a un database.
 * Includere i dettagli, ad esempio l'utente, l'indirizzo IP, il nome dell'endpoint sensibile e altro ancora.
 
-I metadati dei criteri `AuditPolicyAttribute` di controllo sono definiti come un `Attribute` per un uso più semplice con i Framework basati su classi quali i controller e SignalR . Quando si usa la *Route per il codice*:
+I metadati dei criteri `AuditPolicyAttribute` di controllo sono definiti come un `Attribute` per un uso più semplice con i Framework basati su classi quali i controller e SignalR . Quando si usa la *Route per il codice* :
 
 * I metadati sono collegati a un'API del generatore.
 * I Framework basati su classi includono tutti gli attributi nel metodo e nella classe corrispondenti durante la creazione degli endpoint.
@@ -229,7 +230,7 @@ L'esempio di codice seguente contrasta l'uso del middleware con l'uso del routin
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/TerminalMiddlewareStartup.cs?name=snippet)]
 
-Lo stile del middleware visualizzato con `Approach 1:` è **middleware terminale**. Viene chiamato middleware terminale perché esegue un'operazione di corrispondenza:
+Lo stile del middleware visualizzato con `Approach 1:` è **middleware terminale** . Viene chiamato middleware terminale perché esegue un'operazione di corrispondenza:
 
 * L'operazione di corrispondenza nell'esempio precedente è `Path == "/"` per il middleware e `Path == "/Movie"` per il routing.
 * Quando una corrispondenza ha esito positivo, vengono eseguite alcune funzionalità e viene restituito, anziché richiamare il `next` middleware.
@@ -372,7 +373,7 @@ Generazione URL:
 
 Il routing degli endpoint include l' <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API. `LinkGenerator` è un servizio singleton disponibile in [di](xref:fundamentals/dependency-injection). L' `LinkGenerator` API può essere usata al di fuori del contesto di una richiesta in esecuzione. [MVC. IUrlHelper](xref:Microsoft.AspNetCore.Mvc.IUrlHelper) e gli scenari basati su <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> , ad esempio gli [Helper Tag](xref:mvc/views/tag-helpers/intro), gli helper HTML e [i risultati dell'azione](xref:mvc/controllers/actions), usano l' `LinkGenerator` API internamente per fornire funzionalità di generazione dei collegamenti.
 
-Il generatore di collegamenti si basa sui concetti di **indirizzo** e di **schemi di indirizzi**. Lo schema di indirizzi consente di determinare gli endpoint che devono essere considerati per la generazione dei collegamenti. Ad esempio, gli scenari relativi al nome della route e ai valori di route molti utenti hanno familiarità con i controller e le Razor pagine vengono implementati come uno schema di indirizzi.
+Il generatore di collegamenti si basa sui concetti di **indirizzo** e di **schemi di indirizzi** . Lo schema di indirizzi consente di determinare gli endpoint che devono essere considerati per la generazione dei collegamenti. Ad esempio, gli scenari relativi al nome della route e ai valori di route molti utenti hanno familiarità con i controller e le Razor pagine vengono implementati come uno schema di indirizzi.
 
 Il generatore di collegamenti può collegarsi a controller e Razor pagine tramite i seguenti metodi di estensione:
 
@@ -436,7 +437,7 @@ I modelli di URL che tentano di acquisire un nome file con un'estensione facolta
 * `/files/myFile.txt`
 * `/files/myFile`
 
-I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio, `id?` La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
+I parametri di route possono avere **valori predefiniti** , definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio `id?`. La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
 
 * Un parametro di route con un valore predefinito produce sempre un valore.
 * Un parametro facoltativo ha un valore solo quando un valore viene fornito dall'URL della richiesta.
@@ -696,7 +697,7 @@ Il ruolo dello schema di indirizzi è quello di fare in modo che l'associazione 
 
 ### <a name="ambient-values-and-explicit-values"></a>Valori di ambiente e valori espliciti
 
-Dalla richiesta corrente, il routing accede ai valori della route della richiesta corrente `HttpContext.Request.RouteValues` . I valori associati alla richiesta corrente sono detti **valori di ambiente**. Per maggiore chiarezza, la documentazione fa riferimento ai valori di route passati ai metodi come **valori espliciti**.
+Dalla richiesta corrente, il routing accede ai valori della route della richiesta corrente `HttpContext.Request.RouteValues` . I valori associati alla richiesta corrente sono detti **valori di ambiente** . Per maggiore chiarezza, la documentazione fa riferimento ai valori di route passati ai metodi come **valori espliciti** .
 
 Nell'esempio seguente vengono illustrati i valori di ambiente e i valori espliciti. Fornisce valori di ambiente dalla richiesta corrente e valori espliciti: `{ id = 17, }` :
 
@@ -756,7 +757,7 @@ Una volta individuato il set di endpoint candidati, l'algoritmo di generazione d
 * Elabora gli endpoint in modo iterativo.
 * Restituisce il primo risultato riuscito.
 
-Il primo passaggio di questo processo è denominato **invalidamento del valore di route**.  L'invalidamento del valore di route è il processo mediante il quale il routing decide i valori di route dei valori di ambiente da utilizzare e che devono essere ignorati. Ogni valore di ambiente viene considerato e combinato con i valori espliciti o ignorati.
+Il primo passaggio di questo processo è denominato **invalidamento del valore di route** .  L'invalidamento del valore di route è il processo mediante il quale il routing decide i valori di route dei valori di ambiente da utilizzare e che devono essere ignorati. Ogni valore di ambiente viene considerato e combinato con i valori espliciti o ignorati.
 
 Il modo migliore per considerare il ruolo dei valori di ambiente è che tentano di salvare gli sviluppatori di applicazioni che digitano, in alcuni casi comuni. Tradizionalmente, gli scenari in cui i valori di ambiente sono utili sono correlati a MVC:
 
@@ -972,7 +973,7 @@ La dichiarazione di un tipo di metadati come interfaccia comporta l'aggiunta di 
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/ICoolMetadata.cs?name=snippet)]
 
-Il modo migliore per seguire queste linee guida consiste nell'evitare di definire i **metadati del marcatore**:
+Il modo migliore per seguire queste linee guida consiste nell'evitare di definire i **metadati del marcatore** :
 
 * Non solo cercare la presenza di un tipo di metadati.
 * Definire una proprietà nei metadati e controllare la proprietà.
@@ -1071,7 +1072,7 @@ Il routing è connesso alla pipeline [middleware](xref:fundamentals/middleware/i
 
 ### <a name="url-matching"></a>Corrispondenza URL
 
-La corrispondenza dell'URL è il processo con cui il routing invia una richiesta in ingresso a un *endpoint*. Questo processo si basa sui dati presenti nel percorso URL, ma può essere esteso in modo da prendere in considerazione tutti i dati della richiesta. La possibilità di inviare le richieste a gestori separati è fondamentale per ridurre le dimensioni e la complessità di un'app.
+La corrispondenza dell'URL è il processo con cui il routing invia una richiesta in ingresso a un *endpoint* . Questo processo si basa sui dati presenti nel percorso URL, ma può essere esteso in modo da prendere in considerazione tutti i dati della richiesta. La possibilità di inviare le richieste a gestori separati è fondamentale per ridurre le dimensioni e la complessità di un'app.
 
 Il sistema di routing nell'endpoint di routing è responsabile di tutte le decisioni relative all'invio. Poiché il middleware applica i criteri in base all'endpoint selezionato, è importante che qualsiasi decisione che può influire sull'invio o l'applicazione dei criteri di sicurezza venga effettuata all'interno del sistema di routing.
 
@@ -1091,7 +1092,7 @@ La generazione di URL è il processo con cui il routing crea un percorso URL bas
 
 Il routing di endpoint include l'API del generatore di collegamenti (<xref:Microsoft.AspNetCore.Routing.LinkGenerator>). <xref:Microsoft.AspNetCore.Routing.LinkGenerator> è un servizio singleton che può essere recuperato da [di](xref:fundamentals/dependency-injection). L'API può essere usata all'esterno del contesto di una richiesta in esecuzione. <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> e gli scenari di MVC basati su <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, ad esempio [helper tag](xref:mvc/views/tag-helpers/intro), helper HTML e [risultati delle azioni](xref:mvc/controllers/actions), usano il generatore di collegamenti per offrire le funzionalità di generazione di collegamenti.
 
-Il generatore di collegamenti si basa sui concetti di *indirizzo* e di *schemi di indirizzi*. Lo schema di indirizzi consente di determinare gli endpoint che devono essere considerati per la generazione dei collegamenti. Ad esempio, gli scenari relativi al nome della route e ai valori di route molti utenti hanno familiarità con MVC/ Razor pages sono implementati come uno schema di indirizzi.
+Il generatore di collegamenti si basa sui concetti di *indirizzo* e di *schemi di indirizzi* . Lo schema di indirizzi consente di determinare gli endpoint che devono essere considerati per la generazione dei collegamenti. Ad esempio, gli scenari relativi al nome della route e ai valori di route molti utenti hanno familiarità con MVC/ Razor pages sono implementati come uno schema di indirizzi.
 
 Il generatore di collegamenti può essere collegato a Razor pagine e azioni MVC/pagine tramite i metodi di estensione seguenti:
 
@@ -1171,20 +1172,20 @@ Tra il routing di endpoint in ASP.NET Core 2.2 o versioni successive e le versio
 
   Con il routing basato su `IRouter`, il risultato è sempre `/Blog/ReadPost/17`, anche se `BlogController` non è presente o non ha un metodo di azione `ReadPost`. Come previsto, il routing di endpoint in ASP.NET Core 2.2 o versioni successive produce `/Blog/ReadPost/17` se è presente il metodo di azione. *Tuttavia, il routing di endpoint produce una stringa vuota se l'azione non è presente.* Concettualmente, il routing di endpoint non presume che l'endpoint sia presente se l'azione non è presente.
 
-* L'*algoritmo di invalidamento dei valori di ambiente* della generazione di collegamenti ha un comportamento diverso quando viene usato con il routing di endpoint.
+* L' *algoritmo di invalidamento dei valori di ambiente* della generazione di collegamenti ha un comportamento diverso quando viene usato con il routing di endpoint.
 
-  L'*invalidamento dei valori di ambiente* è l'algoritmo che decide quali valori di route della richiesta in esecuzione (valori di ambiente) possono essere usati nelle operazioni di generazione di collegamenti. Il routing convenzionale ha sempre invalidato i valori di route aggiuntivi durante il collegamento a un'azione diversa. Prima del rilascio di ASP.NET Core 2.2, il routing degli attributi non aveva questo comportamento. Nelle versioni precedenti di ASP.NET Core i collegamenti a un'altra azione con gli stessi nomi di parametro di route causavano errori nella generazione dei collegamenti. In ASP.NET Core 2.2 o versioni successive entrambi i tipi di routing invalidano i valori in caso di collegamento a un'altra azione.
+  L' *invalidamento dei valori di ambiente* è l'algoritmo che decide quali valori di route della richiesta in esecuzione (valori di ambiente) possono essere usati nelle operazioni di generazione di collegamenti. Il routing convenzionale ha sempre invalidato i valori di route aggiuntivi durante il collegamento a un'azione diversa. Prima del rilascio di ASP.NET Core 2.2, il routing degli attributi non aveva questo comportamento. Nelle versioni precedenti di ASP.NET Core i collegamenti a un'altra azione con gli stessi nomi di parametro di route causavano errori nella generazione dei collegamenti. In ASP.NET Core 2.2 o versioni successive entrambi i tipi di routing invalidano i valori in caso di collegamento a un'altra azione.
 
   Esaminare l'esempio seguente in ASP.NET Core 2.1 o versioni precedenti. In caso di collegamento a un'altra azione o a un'altra pagina, i valori di route possono essere riutilizzati in modi indesiderati.
 
-  In */Pages/Store/Product.cshtml*:
+  In */Pages/Store/Product.cshtml* :
 
   ```cshtml
   @page "{id}"
   @Url.Page("/Login")
   ```
 
-  In */Pages/Login.cshtml*:
+  In */Pages/Login.cshtml* :
 
   ```cshtml
   @page "{id?}"
@@ -1390,11 +1391,11 @@ I modelli di URL che tentano di acquisire un nome file con un'estensione facolta
 * `/files/myFile.txt`
 * `/files/myFile`
 
-È possibile usare un asterisco (`*`) o un doppio asterisco (`**`) come prefisso per un parametro di route da associare alla parte rimanente dell'URI. Si tratta di parametri chiamati parametri *catch-all*. Ad esempio, `blog/{**slug}` corrisponde a qualsiasi URI che inizia con `/blog` seguito da qualsiasi valore, che viene assegnato al valore di route `slug`. I parametri catch-all possono anche corrispondere alla stringa vuota.
+È possibile usare un asterisco (`*`) o un doppio asterisco (`**`) come prefisso per un parametro di route da associare alla parte rimanente dell'URI. Si tratta di parametri chiamati parametri *catch-all* . Ad esempio, `blog/{**slug}` corrisponde a qualsiasi URI che inizia con `/blog` seguito da qualsiasi valore, che viene assegnato al valore di route `slug`. I parametri catch-all possono anche corrispondere alla stringa vuota.
 
 Il parametro catch-all esegue l'escape dei caratteri appropriati, incluso il separatore di percorso (`/`), quando la route viene usata per generare un URL. Ad esempio, la route `foo/{*path}` con i valori di route `{ path = "my/path" }` genera `foo/my%2Fpath`. Si noti la barra di escape. Per eseguire il round trip dei caratteri di separatore di percorso, usare il prefisso del parametro di route `**`. La route `foo/{**path}` con `{ path = "my/path" }` genera `foo/my/path`.
 
-I parametri di route possono avere *valori predefiniti*, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo (`?`) alla fine del nome del parametro, come in `id?`. La differenza tra parametri facoltativi e parametri di route predefiniti è che un parametro di route con un valore predefinito produce sempre un valore, mentre un parametro facoltativo ha un valore solo se ne viene specificato uno dall'URL della richiesta.
+I parametri di route possono avere *valori predefiniti* , definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo (`?`) alla fine del nome del parametro, come in `id?`. La differenza tra parametri facoltativi e parametri di route predefiniti è che un parametro di route con un valore predefinito produce sempre un valore, mentre un parametro facoltativo ha un valore solo se ne viene specificato uno dall'URL della richiesta.
 
 I parametri di route possono presentare dei vincoli che devono corrispondere al valore di route associato dall'URL. Aggiungendo due punti (`:`) e il nome del vincolo dopo il nome del parametro di route, si specifica un *vincolo inline* per un parametro di route. Se il vincolo richiede argomenti, vengono racchiusi tra parentesi (`(...)`) dopo il nome del vincolo. È possibile specificare più vincoli inline aggiungendo di nuovo i due punti (`:`) e il nome del vincolo.
 
@@ -1433,7 +1434,7 @@ Le parole chiave seguenti sono nomi riservati e non possono essere usate come no
 I vincoli di route vengono eseguiti quando si verifica una corrispondenza nell'URL in ingresso e il percorso URL viene suddiviso in valori di route in formato token. I vincoli di route in genere controllano il valore di route associato usando il modello di route e stabiliscono con una decisione Sì/No se il valore è accettabile o meno. Alcuni vincoli di route usano i dati all'esterno del valore di route per stabilire se la richiesta può essere instradata. Ad esempio, <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> può accettare o rifiutare una richiesta in base al relativo verbo HTTP. I vincoli vengono usati nelle richieste del routing e nella generazione di collegamenti.
 
 > [!WARNING]
-> Non usare i vincoli per la **convalida dell'input**. Se vengono usati vincoli per la **convalida dell'input**, un input non valido causa la visualizzazione di un errore di tipo *404 (Non trovato)* invece di un errore di tipo *400 - Richiesta non valida* con un messaggio di errore appropriato. I vincoli di route vengono usati per evitare **ambiguità** tra route simili, non per convalidare gli input per una route specifica.
+> Non usare i vincoli per la **convalida dell'input** . Se vengono usati vincoli per la **convalida dell'input** , un input non valido causa la visualizzazione di un errore di tipo *404 (Non trovato)* invece di un errore di tipo *400 - Richiesta non valida* con un messaggio di errore appropriato. I vincoli di route vengono usati per evitare **ambiguità** tra route simili, non per convalidare gli input per una route specifica.
 
 La tabella seguente illustra i vincoli di route di esempio e il relativo comportamento.
 
@@ -1566,7 +1567,7 @@ L'esempio seguente mostra come generare un collegamento a una route usando un di
 
 L'elemento <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath> generato alla fine dell'esempio precedente è `/package/create/123`. Il dizionario fornisce i valori di route `operation` e `id` del modello "Track Package Route", `package/{operation}/{id}`. Per informazioni dettagliate, vedere il codice di esempio nella sezione [Usare il middleware di routing](#use-routing-middleware) oppure l'[app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples).
 
-Il secondo parametro per il costruttore <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> è una raccolta di *valori di ambiente*. I valori di ambiente sono utili poiché limitano il numero di valori che uno sviluppatore deve specificare all'interno del contesto di una richiesta. I valori di route correnti della richiesta corrente sono considerati valori di ambiente per la generazione del collegamento. Nell'azione `About` di un'app ASP.NET Core MVC di `HomeController`, non è necessario specificare il valore di route del controller per collegarsi all'azione `Index`. Viene usato il valore di ambiente `Home`.
+Il secondo parametro per il costruttore <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> è una raccolta di *valori di ambiente* . I valori di ambiente sono utili poiché limitano il numero di valori che uno sviluppatore deve specificare all'interno del contesto di una richiesta. I valori di route correnti della richiesta corrente sono considerati valori di ambiente per la generazione del collegamento. Nell'azione `About` di un'app ASP.NET Core MVC di `HomeController`, non è necessario specificare il valore di route del controller per collegarsi all'azione `Index`. Viene usato il valore di ambiente `Home`.
 
 I valori di ambiente che non corrispondono a un parametro vengono ignorati. I valori di ambiente vengono ignorati anche quando un valore specificato in modo esplicito esegue l'override del valore di ambiente. La corrispondenza si verifica da sinistra a destra nell'URL.
 
@@ -1629,7 +1630,7 @@ Il supporto della generazione di URL consente di sviluppare l'app senza URL hard
 
 Il routing usa le implementazioni di route di <xref:Microsoft.AspNetCore.Routing.IRouter> a:
 
-* Eseguire il mapping di richieste in ingresso ai *gestori di route*.
+* Eseguire il mapping di richieste in ingresso ai *gestori di route* .
 * Generare gli URL usati nelle risposte.
 
 Per impostazione predefinita, un'app ha una sola raccolta di route. Quando arriva una richiesta, le route della raccolta vengono elaborate nell'ordine in cui si trovano nella raccolta. Il framework tenta di associare l'URL di una richiesta in ingresso a una route della raccolta chiamando il metodo <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> in ogni route della raccolta. Una risposta può usare il routing per generare gli URL, ad esempio per il reindirizzamento o i collegamenti, in base alle informazioni delle route. In questo modo si evita di impostare gli URL come hardcoded ottimizzando la manutenibilità.
@@ -1647,7 +1648,7 @@ Il routing è connesso alla pipeline [middleware](xref:fundamentals/middleware/i
 
 ### <a name="url-matching"></a>Corrispondenza URL
 
-La corrispondenza dell'URL è il processo con cui il routing invia una richiesta in ingresso a un *gestore*. Questo processo si basa sui dati presenti nel percorso URL, ma può essere esteso in modo da prendere in considerazione tutti i dati della richiesta. La possibilità di inviare le richieste a gestori separati è fondamentale per ridurre le dimensioni e la complessità di un'app.
+La corrispondenza dell'URL è il processo con cui il routing invia una richiesta in ingresso a un *gestore* . Questo processo si basa sui dati presenti nel percorso URL, ma può essere esteso in modo da prendere in considerazione tutti i dati della richiesta. La possibilità di inviare le richieste a gestori separati è fondamentale per ridurre le dimensioni e la complessità di un'app.
 
 Le richieste in ingresso immettono <xref:Microsoft.AspNetCore.Builder.RouterMiddleware>, che chiama il metodo <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> per ogni route della sequenza. L'istanza di <xref:Microsoft.AspNetCore.Routing.IRouter> sceglie se *gestire* la richiesta impostando [RouteContext.Handler](xref:Microsoft.AspNetCore.Routing.RouteContext.Handler*) su un valore <xref:Microsoft.AspNetCore.Http.RequestDelegate> non Null. Se una route imposta un gestore per la richiesta, l'elaborazione della route si interrompe e viene richiamato il gestore per elaborare la richiesta. Se non viene individuato alcun gestore di route per elaborare la richiesta, il middleware passa la richiesta al middleware successivo nella pipeline delle richieste.
 
@@ -1852,11 +1853,11 @@ I modelli di URL che tentano di acquisire un nome file con un'estensione facolta
 * `/files/myFile.txt`
 * `/files/myFile`
 
-È possibile usare l'asterisco (`*`) come prefisso per un parametro di route da associare alla parte rimanente dell'URI, ovvero un parametro *catch-all*. Ad esempio, `blog/{*slug}` corrisponde a qualsiasi URI che inizia con `/blog` seguito da qualsiasi valore, che viene assegnato al valore di route `slug`. I parametri catch-all possono anche corrispondere alla stringa vuota.
+È possibile usare l'asterisco (`*`) come prefisso per un parametro di route da associare alla parte rimanente dell'URI, ovvero un parametro *catch-all* . Ad esempio, `blog/{*slug}` corrisponde a qualsiasi URI che inizia con `/blog` seguito da qualsiasi valore, che viene assegnato al valore di route `slug`. I parametri catch-all possono anche corrispondere alla stringa vuota.
 
 Il parametro catch-all esegue l'escape dei caratteri appropriati, incluso il separatore di percorso (`/`), quando la route viene usata per generare un URL. Ad esempio, la route `foo/{*path}` con i valori di route `{ path = "my/path" }` genera `foo/my%2Fpath`. Si noti la barra di escape.
 
-I parametri di route possono avere *valori predefiniti*, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo (`?`) alla fine del nome del parametro, come in `id?`. La differenza tra parametri facoltativi e parametri di route predefiniti è che un parametro di route con un valore predefinito produce sempre un valore, mentre un parametro facoltativo ha un valore solo se ne viene specificato uno dall'URL della richiesta.
+I parametri di route possono avere *valori predefiniti* , definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo (`?`) alla fine del nome del parametro, come in `id?`. La differenza tra parametri facoltativi e parametri di route predefiniti è che un parametro di route con un valore predefinito produce sempre un valore, mentre un parametro facoltativo ha un valore solo se ne viene specificato uno dall'URL della richiesta.
 
 I parametri di route possono presentare dei vincoli che devono corrispondere al valore di route associato dall'URL. Aggiungendo due punti (`:`) e il nome del vincolo dopo il nome del parametro di route, si specifica un *vincolo inline* per un parametro di route. Se il vincolo richiede argomenti, vengono racchiusi tra parentesi (`(...)`) dopo il nome del vincolo. È possibile specificare più vincoli inline aggiungendo di nuovo i due punti (`:`) e il nome del vincolo.
 
@@ -1883,7 +1884,7 @@ L'uso di un modello è in genere l'approccio più semplice al routing. I vincoli
 I vincoli di route vengono eseguiti quando si verifica una corrispondenza nell'URL in ingresso e il percorso URL viene suddiviso in valori di route in formato token. I vincoli di route in genere controllano il valore di route associato usando il modello di route e stabiliscono con una decisione Sì/No se il valore è accettabile o meno. Alcuni vincoli di route usano i dati all'esterno del valore di route per stabilire se la richiesta può essere instradata. Ad esempio, <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> può accettare o rifiutare una richiesta in base al relativo verbo HTTP. I vincoli vengono usati nelle richieste del routing e nella generazione di collegamenti.
 
 > [!WARNING]
-> Non usare i vincoli per la **convalida dell'input**. Se vengono usati vincoli per la **convalida dell'input**, un input non valido causa la visualizzazione di un errore di tipo *404 (Non trovato)* invece di un errore di tipo *400 - Richiesta non valida* con un messaggio di errore appropriato. I vincoli di route vengono usati per evitare **ambiguità** tra route simili, non per convalidare gli input per una route specifica.
+> Non usare i vincoli per la **convalida dell'input** . Se vengono usati vincoli per la **convalida dell'input** , un input non valido causa la visualizzazione di un errore di tipo *404 (Non trovato)* invece di un errore di tipo *400 - Richiesta non valida* con un messaggio di errore appropriato. I vincoli di route vengono usati per evitare **ambiguità** tra route simili, non per convalidare gli input per una route specifica.
 
 La tabella seguente illustra i vincoli di route di esempio e il relativo comportamento.
 
@@ -1972,7 +1973,7 @@ L'esempio seguente mostra come generare un collegamento a una route usando un di
 
 L'elemento <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath> generato alla fine dell'esempio precedente è `/package/create/123`. Il dizionario fornisce i valori di route `operation` e `id` del modello "Track Package Route", `package/{operation}/{id}`. Per informazioni dettagliate, vedere il codice di esempio nella sezione [Usare il middleware di routing](#use-routing-middleware) oppure l'[app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples).
 
-Il secondo parametro per il costruttore <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> è una raccolta di *valori di ambiente*. I valori di ambiente sono utili poiché limitano il numero di valori che uno sviluppatore deve specificare all'interno del contesto di una richiesta. I valori di route correnti della richiesta corrente sono considerati valori di ambiente per la generazione del collegamento. Nell'azione `About` di un'app ASP.NET Core MVC di `HomeController`, non è necessario specificare il valore di route del controller per collegarsi all'azione `Index`. Viene usato il valore di ambiente `Home`.
+Il secondo parametro per il costruttore <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> è una raccolta di *valori di ambiente* . I valori di ambiente sono utili poiché limitano il numero di valori che uno sviluppatore deve specificare all'interno del contesto di una richiesta. I valori di route correnti della richiesta corrente sono considerati valori di ambiente per la generazione del collegamento. Nell'azione `About` di un'app ASP.NET Core MVC di `HomeController`, non è necessario specificare il valore di route del controller per collegarsi all'azione `Index`. Viene usato il valore di ambiente `Home`.
 
 I valori di ambiente che non corrispondono a un parametro vengono ignorati. I valori di ambiente vengono ignorati anche quando un valore specificato in modo esplicito esegue l'override del valore di ambiente. La corrispondenza si verifica da sinistra a destra nell'URL.
 

@@ -5,6 +5,7 @@ description: Informazioni su come le visualizzazioni gestiscono la presentazione
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/overview
-ms.openlocfilehash: 6afd69414f2dc0158f724c6e6f7b3a3e51c1e92c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 373b17377740441d3859e3b7d942017a22bc7a68
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630679"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060625"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Visualizzazioni in ASP.NET Core MVC
 
@@ -35,7 +36,7 @@ In ASP.NET Core MVC le visualizzazioni sono file con *estensione cshtml* che usa
 
 ![Cartella delle visualizzazioni aperta in Esplora soluzioni di Visual Studio con la cartella Home aperta per mostrare i file About.cshtml, Contact.cshtml e Index.cshtml](overview/_static/views_solution_explorer.png)
 
-Il controller *Home* è rappresentato da una cartella *Home* all'interno della cartella *Views*. La cartella *Home* contiene le visualizzazioni per le pagine Web *About*, *Contact* e *Index* (home page). Quando un utente richiede una di queste tre pagine Web, le azioni del controller nel controller *Home* determinano quale delle tre visualizzazioni verrà usata per compilare e restituire una pagina Web all'utente.
+Il controller *Home* è rappresentato da una cartella *Home* all'interno della cartella *Views* . La cartella *Home* contiene le visualizzazioni per le pagine Web *About* , *Contact* e *Index* (home page). Quando un utente richiede una di queste tre pagine Web, le azioni del controller nel controller *Home* determinano quale delle tre visualizzazioni verrà usata per compilare e restituire una pagina Web all'utente.
 
 Usare i [layout](xref:mvc/views/layout) per offrire sezioni di pagine Web coerenti e ridurre la ripetizione del codice. I layout spesso includono l'intestazione, elementi di navigazione e menu, nonché il piè di pagina. L'intestazione e il piè di pagina in genere contengono il markup boilerplate per molti elementi di metadati e i collegamenti alle risorse di script e stile. I layout consentono di evitare questo markup boilerplate nelle visualizzazioni.
 
@@ -54,7 +55,7 @@ Le visualizzazioni consentono di stabilire una [separazione dei concetti](/dotne
 
 ## <a name="creating-a-view"></a>Creazione di una visualizzazione
 
-Le visualizzazioni specifiche di un controller vengono create nella cartella *Views/[ControllerName]*. Le visualizzazioni condivise tra i controller vengono inserite nella cartella *Views/Shared*. Per creare una visualizzazione aggiungere un nuovo file e assegnargli lo stesso nome dell'azione del controller a essa associata con l'estensione *cshtml*. Per creare una visualizzazione che corrisponda all'azione *About* nel controller *Home*, creare un file *About.cshtml* nella cartella *Views/Home*:
+Le visualizzazioni specifiche di un controller vengono create nella cartella *Views/[ControllerName]* . Le visualizzazioni condivise tra i controller vengono inserite nella cartella *Views/Shared* . Per creare una visualizzazione aggiungere un nuovo file e assegnargli lo stesso nome dell'azione del controller a essa associata con l'estensione *cshtml* . Per creare una visualizzazione che corrisponda all'azione *About* nel controller *Home* , creare un file *About.cshtml* nella cartella *Views/Home* :
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
@@ -96,22 +97,22 @@ Il metodo helper `View` ha diversi overload. È possibile specificare:
 
 ### <a name="view-discovery"></a>Individuazione delle visualizzazioni
 
-Quando un'azione restituisce una visualizzazione viene eseguito un processo denominato *individuazione delle visualizzazioni*. Questo processo determina il file di visualizzazione che verrà usato in base al nome della visualizzazione. 
+Quando un'azione restituisce una visualizzazione viene eseguito un processo denominato *individuazione delle visualizzazioni* . Questo processo determina il file di visualizzazione che verrà usato in base al nome della visualizzazione. 
 
-In base al comportamento predefinito, il metodo `View` (`return View();`) restituisce una visualizzazione con lo stesso nome del metodo dell'azione dal quale viene chiamato. Nel caso di *About, ad esempio, il nome del metodo * `ActionResult` del controller viene usato per cercare un file di visualizzazione denominato *About.cshtml*. Il runtime cerca prima la visualizzazione nella cartella *Views/[ControllerName]*. Se la cartella non contiene una visualizzazione corrispondente, la ricerca passerà alla cartella *Shared*.
+In base al comportamento predefinito, il metodo `View` (`return View();`) restituisce una visualizzazione con lo stesso nome del metodo dell'azione dal quale viene chiamato. Nel caso di *About, ad esempio, il nome del metodo* `ActionResult` del controller viene usato per cercare un file di visualizzazione denominato *About.cshtml* . Il runtime cerca prima la visualizzazione nella cartella *Views/[ControllerName]* . Se la cartella non contiene una visualizzazione corrispondente, la ricerca passerà alla cartella *Shared* .
 
 La restituzione implicita di `ViewResult` con `return View();` o il passaggio esplicito del nome della visualizzazione al metodo `View` con `return View("<ViewName>");` non sono rilevanti. In entrambi i casi, l'individuazione delle visualizzazioni cercherà un file di visualizzazione corrispondente in quest'ordine:
 
    1. *Views/\[ControllerName]/\[ViewName].cshtml*
    1. *Views/Shared/\[ViewName].cshtml*
 
-È possibile fornire il percorso di un file di visualizzazione anziché il nome di una visualizzazione. Se si usa un percorso assoluto che inizia alla radice dell'app (che inizia facoltativamente con "/" o "~/") è necessario specificare l'estensione *cshtml*:
+È possibile fornire il percorso di un file di visualizzazione anziché il nome di una visualizzazione. Se si usa un percorso assoluto che inizia alla radice dell'app (che inizia facoltativamente con "/" o "~/") è necessario specificare l'estensione *cshtml* :
 
 ```csharp
 return View("Views/Home/About.cshtml");
 ```
 
-È anche possibile usare un percorso relativo per specificare le visualizzazioni presenti in directory diverse senza l'estensione *cshtml*. All'interno di `HomeController` è possibile restituire la visualizzazione *Index* delle visualizzazioni *Manage* con il percorso relativo:
+È anche possibile usare un percorso relativo per specificare le visualizzazioni presenti in directory diverse senza l'estensione *cshtml* . All'interno di `HomeController` è possibile restituire la visualizzazione *Index* delle visualizzazioni *Manage* con il percorso relativo:
 
 ```csharp
 return View("../Manage/Index");
@@ -142,9 +143,9 @@ Passare i dati alle visualizzazioni usando diversi approcci:
 
 ### <a name="strongly-typed-data-viewmodel"></a>Dati fortemente tipizzati: (viewmodel)
 
-L'approccio più efficace consiste nello specificare un tipo di [modello](xref:mvc/models/model-binding) nella visualizzazione. Questo modello è comunemente noto come *viewmodel*. Un'istanza del tipo viewmodel viene passato alla visualizzazione dall'azione.
+L'approccio più efficace consiste nello specificare un tipo di [modello](xref:mvc/models/model-binding) nella visualizzazione. Questo modello è comunemente noto come *viewmodel* . Un'istanza del tipo viewmodel viene passato alla visualizzazione dall'azione.
 
-L'uso di un viewmodel per passare i dati a una visualizzazione consente a quest'ultima di trarre vantaggio dal controllo con tipizzazione *forte*. L'espressione *tipizzazione forte* o *fortemente tipizzato* indica che ogni variabile e costante ha un tipo definito in modo esplicito, ad esempio `string`, `int` o `DateTime`. La validità dei tipi usati in una visualizzazione viene verificata in fase di compilazione.
+L'uso di un viewmodel per passare i dati a una visualizzazione consente a quest'ultima di trarre vantaggio dal controllo con tipizzazione *forte* . L'espressione *tipizzazione forte* o *fortemente tipizzato* indica che ogni variabile e costante ha un tipo definito in modo esplicito, ad esempio `string`, `int` o `DateTime`. La validità dei tipi usati in una visualizzazione viene verificata in fase di compilazione.
 
 In [Visual Studio](https://visualstudio.microsoft.com) e [Visual Studio Code](https://code.visualstudio.com/) i membri delle classi fortemente tipizzati vengono elencati usando una funzionalità denominata [IntelliSense](/visualstudio/ide/using-intellisense). Per visualizzare le proprietà di un elemento viewmodel, digitare il nome della variabile per l'elemento viewmodel seguito da un punto (`.`). Ciò consente di scrivere il codice più velocemente con un minor numero di errori.
 
@@ -181,7 +182,7 @@ public IActionResult Contact()
 }
 ```
 
-Non ci sono limitazioni ai tipi di modello che è possibile fornire a una visualizzazione. È consigliabile usare viewmodel Plain Old CLR Object (POCO) per i quali non siano stati definiti comportamenti (metodi) o ne siano stati definiti solo alcuni. Le classi viewmodel sono in genere archiviate nella cartella *Models* o in una cartella *ViewModels* separata alla radice dell'app. Il viewmodel *Address* usato nell'esempio precedente è un viewmodel POCO archiviato in un file denominato *Address.cs*:
+Non ci sono limitazioni ai tipi di modello che è possibile fornire a una visualizzazione. È consigliabile usare viewmodel Plain Old CLR Object (POCO) per i quali non siano stati definiti comportamenti (metodi) o ne siano stati definiti solo alcuni. Le classi viewmodel sono in genere archiviate nella cartella *Models* o in una cartella *ViewModels* separata alla radice dell'app. Il viewmodel *Address* usato nell'esempio precedente è un viewmodel POCO archiviato in un file denominato *Address.cs* :
 
 ```csharp
 namespace WebApplication1.ViewModels
@@ -205,7 +206,7 @@ Nulla impedisce di usare le stesse classi per i tipi viewmodel e i tipi del mode
 
 `ViewBag`*non è disponibile in Razor Pagine.*
 
-Oltre alle visualizzazioni fortemente tipizzate, le visualizzazioni hanno accesso a una raccolta di dati *con tipizzazione debole* o *debolmente tipizzati*. A differenza della tipizzazione forte, la *tipizzazione debole*, o l'espressione *debolmente tipizzato*, indica che il tipo di dati in uso non viene dichiarato in modo esplicito. È possibile usare la raccolta di dati con tipizzazione debole per passare piccole quantità di dati da e verso i controller e le visualizzazioni.
+Oltre alle visualizzazioni fortemente tipizzate, le visualizzazioni hanno accesso a una raccolta di dati *con tipizzazione debole* o *debolmente tipizzati* . A differenza della tipizzazione forte, la *tipizzazione debole* , o l'espressione *debolmente tipizzato* , indica che il tipo di dati in uso non viene dichiarato in modo esplicito. È possibile usare la raccolta di dati con tipizzazione debole per passare piccole quantità di dati da e verso i controller e le visualizzazioni.
 
 | Passaggio dei dati tra...                        | Esempio                                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -334,7 +335,7 @@ public IActionResult SomeAction()
 
 Dal momento che `ViewData` e `ViewBag` fanno riferimento alla stessa raccolta `ViewData` sottostante, è possibile usare `ViewData` e `ViewBag` e combinarle durante la lettura e la scrittura dei valori.
 
-Impostare il titolo usando `ViewBag` e la descrizione usando `ViewData` all'inizio di una visualizzazione *About.cshtml*:
+Impostare il titolo usando `ViewBag` e la descrizione usando `ViewData` all'inizio di una visualizzazione *About.cshtml* :
 
 ```cshtml
 @{

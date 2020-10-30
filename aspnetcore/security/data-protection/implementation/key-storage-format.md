@@ -5,6 +5,7 @@ description: Informazioni sui dettagli di implementazione del formato di archivi
 ms.author: riande
 ms.date: 04/08/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-format
-ms.openlocfilehash: daf86d3e3357d42ddad74d5e2f06e00e0e24db07
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 4a8503964c98d1828dc9d02640a7621b370e679c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631992"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060144"
 ---
 # <a name="key-storage-format-in-aspnet-core"></a>Formato di archiviazione delle chiavi in ASP.NET Core
 
@@ -34,7 +35,7 @@ Gli oggetti vengono archiviati in formato Rest nella rappresentazione XML. La di
 
 ## <a name="the-key-element"></a>Elemento \<key>
 
-Le chiavi esistono come oggetti di primo livello nel repository di chiavi. Per chiavi convenzione è presente la **chiave FileName-{GUID}. XML**, dove {GUID} è l'ID della chiave. Ogni file di questo tipo contiene una singola chiave. Il formato del file è il seguente.
+Le chiavi esistono come oggetti di primo livello nel repository di chiavi. Per chiavi convenzione è presente la **chiave FileName-{GUID}. XML** , dove {GUID} è l'ID della chiave. Ogni file di questo tipo contiene una singola chiave. Il formato del file è il seguente.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -77,7 +78,7 @@ Il formato specifico dell' \<descriptor> elemento dipende dall'implementazione d
 
 ## <a name="the-encryptedsecret-element"></a>Elemento \<encryptedSecret>
 
-È possibile che sia presente un elemento ** &lt; encryptedSecret &gt; ** che contiene il formato crittografato del materiale della chiave privata se la [crittografia dei segreti inattivi è abilitata](xref:security/data-protection/implementation/key-encryption-at-rest). L'attributo `decryptorType` è il nome qualificato dall'assembly di un tipo che implementa [IXmlDecryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmldecryptor). Questo tipo è responsabile della lettura dell'elemento ** &lt; EncryptedKey &gt; ** interno e della relativa decrittografia per recuperare il testo non crittografato originale.
+È possibile che sia presente un elemento **&lt; encryptedSecret &gt;** che contiene il formato crittografato del materiale della chiave privata se la [crittografia dei segreti inattivi è abilitata](xref:security/data-protection/implementation/key-encryption-at-rest). L'attributo `decryptorType` è il nome qualificato dall'assembly di un tipo che implementa [IXmlDecryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmldecryptor). Questo tipo è responsabile della lettura dell'elemento **&lt; EncryptedKey &gt;** interno e della relativa decrittografia per recuperare il testo non crittografato originale.
 
 Come con `<descriptor>` , il particolare formato dell'elemento dipende dal meccanismo di crittografia dei dati inattivi `<encryptedSecret>` in uso. Nell'esempio precedente, la chiave master viene crittografata utilizzando Windows DPAPI per il commento.
 

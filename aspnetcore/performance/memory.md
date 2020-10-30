@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: 7f1d20687f6dd588e125acf3815815c2bcf0cd04
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 6d2a89ec7c64728bc585ad235293f2277f9a66f7
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722683"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061483"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Gestione della memoria e Garbage Collection (GC) in ASP.NET Core
 
@@ -137,8 +138,8 @@ Il grafico precedente Mostra:
 
 Il Garbage Collector di .NET prevede due modalità diverse:
 
-* **GC workstation**: ottimizzato per il desktop.
-* **GC server**. GC predefinito per le app ASP.NET Core. Ottimizzato per il server.
+* **GC workstation** : ottimizzato per il desktop.
+* **GC server** . GC predefinito per le app ASP.NET Core. Ottimizzato per il server.
 
 La modalità GC può essere impostata in modo esplicito nel file di progetto o nel *runtimeconfig.js* file dell'app pubblicata. Il markup seguente mostra l'impostazione `ServerGarbageCollection` nel file di progetto:
 
@@ -235,7 +236,7 @@ La stessa perdita può verificarsi nel codice utente, in uno dei seguenti:
 
 ### <a name="large-objects-heap"></a>Heap oggetti grandi
 
-I cicli di allocazione di memoria/disponibili frequenti possono frammentare la memoria, soprattutto quando si allocano blocchi di memoria di grandi dimensioni. Gli oggetti vengono allocati in blocchi di memoria contigui. Per attenuare la frammentazione, quando il Garbage Collector libera la memoria, tenta di deframmentare il Garbage Collector. Questo processo è denominato **compattazione**. La compattazione comporta lo stato di trasferimento degli oggetti. Lo spostato di oggetti di grandi dimensioni impone una riduzione delle prestazioni. Per questo motivo il GC crea una zona di memoria speciale per oggetti di _grandi dimensioni_ , denominata [heap degli oggetti grandi](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Gli oggetti che sono maggiori di 85.000 byte (circa 83 KB) sono:
+I cicli di allocazione di memoria/disponibili frequenti possono frammentare la memoria, soprattutto quando si allocano blocchi di memoria di grandi dimensioni. Gli oggetti vengono allocati in blocchi di memoria contigui. Per attenuare la frammentazione, quando il Garbage Collector libera la memoria, tenta di deframmentare il Garbage Collector. Questo processo è denominato **compattazione** . La compattazione comporta lo stato di trasferimento degli oggetti. Lo spostato di oggetti di grandi dimensioni impone una riduzione delle prestazioni. Per questo motivo il GC crea una zona di memoria speciale per oggetti di _grandi dimensioni_ , denominata [heap degli oggetti grandi](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Gli oggetti che sono maggiori di 85.000 byte (circa 83 KB) sono:
 
 * Inserito nell'heap oggetti grandi.
 * Non compattato.
@@ -271,7 +272,7 @@ Il grafico seguente mostra il profilo di memoria della chiamata all' `/api/loh/8
 
 ![grafico precedente](memory/_static/loh1.png)
 
-Il grafico seguente mostra il profilo di memoria della chiamata all' `/api/loh/84976` endpoint, allocando *solo un byte*:
+Il grafico seguente mostra il profilo di memoria della chiamata all' `/api/loh/84976` endpoint, allocando *solo un byte* :
 
 ![grafico precedente](memory/_static/loh2.png)
 
