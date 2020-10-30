@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.date: 10/24/2018
 ms.custom: devx-track-csharp, mvc, seodec18
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/cicd
-ms.openlocfilehash: 3632f1c4bd419aae08105005de3d81fc2cb9e410
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: eddd7034bf1860fb35cf00eefb7a11a408869700
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625882"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052643"
 ---
 # <a name="continuous-integration-and-deployment"></a>Integrazione e distribuzione continua
 
@@ -42,14 +43,14 @@ In questa sezione verranno completate le attività seguenti:
 ## <a name="publish-the-apps-code-to-github"></a>Pubblicare il codice dell'app in GitHub
 
 1. Aprire una finestra del browser e passare a `https://github.com` .
-1. Fare clic sull' **+** elenco a discesa nell'intestazione e selezionare **nuovo repository**:
+1. Fare clic sull' **+** elenco a discesa nell'intestazione e selezionare **nuovo repository** :
 
     ![Opzione del nuovo repository GitHub](media/cicd/github-new-repo.png)
 
 1. Selezionare l'account nell'elenco a discesa **proprietario** e immettere *Simple-Feed-Reader* nella casella di testo **nome repository** .
 1. Fare clic sul pulsante **Crea repository** .
 1. Aprire la shell dei comandi del computer locale. Passare alla directory in cui è archiviato il repository git *Simple-Feed-Reader* .
-1. Rinominare l' *origine* esistente remote in *upstream*. Eseguire il comando seguente:
+1. Rinominare l' *origine* esistente remote in *upstream* . Eseguire il comando seguente:
 
     ```console
     git remote rename origin upstream
@@ -77,16 +78,16 @@ Rimuovere la distribuzione git locale con i passaggi seguenti. Azure Pipelines (
 
     ![termine di ricerca dell'app Web di staging](media/cicd/portal-search-box.png)
 
-1. Fare clic su **centro distribuzione**. Verrà visualizzato un nuovo pannello. Fare clic su **Disconnetti** per rimuovere la configurazione del controllo del codice sorgente git locale aggiunta nel capitolo precedente. Confermare l'operazione di rimozione facendo clic sul pulsante **Sì** .
+1. Fare clic su **centro distribuzione** . Verrà visualizzato un nuovo pannello. Fare clic su **Disconnetti** per rimuovere la configurazione del controllo del codice sorgente git locale aggiunta nel capitolo precedente. Confermare l'operazione di rimozione facendo clic sul pulsante **Sì** .
 1. Passare alla *<mywebapp unique_number>* servizio app. Come promemoria, è possibile usare la casella di ricerca del portale per individuare rapidamente il servizio app.
-1. Fare clic su **centro distribuzione**. Verrà visualizzato un nuovo pannello. Fare clic su **Disconnetti** per rimuovere la configurazione del controllo del codice sorgente git locale aggiunta nel capitolo precedente. Confermare l'operazione di rimozione facendo clic sul pulsante **Sì** .
+1. Fare clic su **centro distribuzione** . Verrà visualizzato un nuovo pannello. Fare clic su **Disconnetti** per rimuovere la configurazione del controllo del codice sorgente git locale aggiunta nel capitolo precedente. Confermare l'operazione di rimozione facendo clic sul pulsante **Sì** .
 
 ## <a name="create-an-azure-devops-organization"></a>Creare un'organizzazione Azure DevOps
 
 1. Aprire un browser e passare alla pagina di [creazione dell'organizzazione DevOps di Azure](https://go.microsoft.com/fwlink/?LinkId=307137).
 1. Digitare un nome univoco nella casella di testo **selezionare un nome memorabile** per creare l'URL per l'accesso all'organizzazione DevOps di Azure.
 1. Selezionare il pulsante di opzione **git** , perché il codice è ospitato in un repository GitHub.
-1. Fare clic sul pulsante **Continue** (Continue). Dopo una breve attesa, vengono creati un account e un progetto team, denominato *MyFirstProject*.
+1. Fare clic sul pulsante **Continue** (Continue). Dopo una breve attesa, vengono creati un account e un progetto team, denominato *MyFirstProject* .
 
     ![Pagina di creazione dell'organizzazione DevOps di Azure](media/cicd/vsts-account-creation.png)
 
@@ -94,7 +95,7 @@ Rimuovere la distribuzione git locale con i passaggi seguenti. Azure Pipelines (
 
     ![Pulsante Avvia progetto](media/cicd/vsts-start-project.png)
 
-1. Verrà aperto un browser a * \<account_name\> . VisualStudio.com*. Fare clic sul collegamento *MyFirstProject* per avviare la configurazione della pipeline DevOps del progetto.
+1. Verrà aperto un browser a *\<account_name\> . VisualStudio.com* . Fare clic sul collegamento *MyFirstProject* per avviare la configurazione della pipeline DevOps del progetto.
 
 ## <a name="configure-the-azure-pipelines-pipeline"></a>Configurare la pipeline di Azure Pipelines
 
@@ -116,7 +117,7 @@ Sono disponibili tre passaggi distinti per il completamento. Il completamento de
 
 1. Se l'autenticazione a due fattori è abilitata nell'account GitHub, è necessario un token di accesso personale. In tal caso, fare clic sul collegamento **autorizza con un token di accesso personale GitHub** . Vedere le istruzioni per la creazione di un [token di accesso personale GitHub ufficiale](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) per la guida. È necessario solo l'ambito del *repository* delle autorizzazioni. In caso contrario, fare clic sul pulsante **autorizza tramite OAuth** .
 1. Quando richiesto, accedere al proprio account GitHub. Selezionare quindi autorizza per concedere l'accesso all'organizzazione DevOps di Azure. Se l'esito è positivo, viene creato un nuovo endpoint del servizio.
-1. Fare clic sul pulsante con i puntini di sospensione accanto al pulsante **repository** . Selezionare il *<GitHub_username> repository/Simple-Feed-Reader* dall'elenco. Fare clic sul pulsante **Seleziona**.
+1. Fare clic sul pulsante con i puntini di sospensione accanto al pulsante **repository** . Selezionare il *<GitHub_username>repository/Simple-Feed-Reader* dall'elenco. Fare clic sul pulsante **Seleziona** .
 1. Selezionare il ramo *Master* dal **ramo predefinito per le compilazioni manuali e pianificate** a discesa. Fare clic sul pulsante **Continue** (Continue). Verrà visualizzata la pagina Selezione modello.
 
 ### <a name="create-the-build-definition"></a>Creare la definizione di compilazione
@@ -127,7 +128,7 @@ Sono disponibili tre passaggi distinti per il completamento. Il completamento de
 
 1. Verranno visualizzati i risultati della ricerca del modello. Passare il puntatore del mouse sul modello di **ASP.NET Core** , quindi fare clic sul pulsante **applica** .
 1. Verrà visualizzata la scheda **attività** della definizione di compilazione. Fare clic sulla scheda **trigger** .
-1. Selezionare la casella **Abilita integrazione continua** . Nella sezione **filtri ramo** verificare che l'elenco a discesa **tipo** sia impostato su *Includi*. Impostare l'elenco a discesa **specifica ramo** su *Master*.
+1. Selezionare la casella **Abilita integrazione continua** . Nella sezione **filtri ramo** verificare che l'elenco a discesa **tipo** sia impostato su *Includi* . Impostare l'elenco a discesa **specifica ramo** su *Master* .
 
     ![Abilita impostazioni di integrazione continua](media/cicd/vsts-enable-ci.png)
 
@@ -165,19 +166,19 @@ Sono disponibili tre passaggi distinti per il completamento. Il completamento de
 
 1. Selezionare il riquadro **Compila** dalla sezione **tipo di origine** . Questo tipo consente il collegamento della pipeline di rilascio alla definizione di compilazione.
 1. Selezionare *MyFirstProject* dall'elenco a discesa **progetto** .
-1. Selezionare il nome della definizione di compilazione, *MyFirstProject-ASP.NET Core-ci*, dall'elenco a discesa **origine (definizione di compilazione)** .
+1. Selezionare il nome della definizione di compilazione, *MyFirstProject-ASP.NET Core-ci* , dall'elenco a discesa **origine (definizione di compilazione)** .
 1. Selezionare *più recente* dall'elenco a discesa **versione predefinita** . Questa opzione Compila gli artefatti prodotti dall'ultima esecuzione della definizione di compilazione.
-1. Sostituire il testo nella casella di testo **alias di origine** con *Drop*.
+1. Sostituire il testo nella casella di testo **alias di origine** con *Drop* .
 1. Fare clic su **Add** . La sezione **artefatti** viene aggiornata per visualizzare le modifiche.
 1. Fare clic sull'icona del fulmine per abilitare le distribuzioni continue:
 
     ![Elementi della pipeline di rilascio-icona del fulmine](media/cicd/vsts-artifacts-lightning-bolt.png)
 
     Se questa opzione è abilitata, viene eseguita una distribuzione ogni volta che è disponibile una nuova compilazione.
-1. A destra viene visualizzato un pannello **trigger di distribuzione continua** . Per abilitare la funzionalità, fare clic sull'interruttore. Non è necessario abilitare il **trigger della richiesta pull**.
+1. A destra viene visualizzato un pannello **trigger di distribuzione continua** . Per abilitare la funzionalità, fare clic sull'interruttore. Non è necessario abilitare il **trigger della richiesta pull** .
 1. Fare clic sull'elenco a discesa **Aggiungi** nella sezione **filtri del ramo di compilazione** . Scegliere l'opzione relativa al **ramo predefinito della definizione di compilazione** . Questo filtro determina l'attivazione della versione solo per una compilazione dal ramo *Master* del repository GitHub.
 1. Fare clic sul pulsante **Salva** . Fare clic sul pulsante **OK** nella finestra di dialogo **Salva** modale risultante.
-1. Fare clic sulla casella **ambiente 1** . A destra viene visualizzato un pannello **dell'ambiente** . Modificare il testo dell' *ambiente 1* nella casella di testo **nome ambiente** in *produzione*.
+1. Fare clic sulla casella **ambiente 1** . A destra viene visualizzato un pannello **dell'ambiente** . Modificare il testo dell' *ambiente 1* nella casella di testo **nome ambiente** in *produzione* .
 
    ![Pipeline di rilascio-casella di testo nome ambiente](media/cicd/vsts-environment-name-textbox.png)
 
@@ -202,7 +203,7 @@ Sono disponibili tre passaggi distinti per il completamento. Il completamento de
 ## <a name="commit-changes-to-github-and-automatically-deploy-to-azure"></a>Eseguire il commit delle modifiche in GitHub e la distribuzione automatica in Azure
 
 1. Aprire *SimpleFeedReader. sln* in Visual Studio.
-1. In Esplora soluzioni aprire *Pages\Index.cshtml*. Cambiare `<h2>Simple Feed Reader - V3</h2>` in `<h2>Simple Feed Reader - V4</h2>`.
+1. In Esplora soluzioni aprire *Pages\Index.cshtml* . Cambiare `<h2>Simple Feed Reader - V3</h2>` in `<h2>Simple Feed Reader - V4</h2>`.
 1. Premere **CTRL** + **MAIUSC** + **B** per compilare l'app.
 1. Eseguire il commit del file nel repository GitHub. Utilizzare la pagina **modifiche** nella scheda *Team Explorer* di Visual Studio o eseguire le operazioni seguenti utilizzando la shell dei comandi del computer locale:
 
@@ -224,7 +225,7 @@ Sono disponibili tre passaggi distinti per il completamento. Il completamento de
 
     ![Abilita integrazione continua](media/cicd/enable-ci.png)
 
-1. Passare alla scheda in **coda** della **Azure Pipelines**  >  pagina**compilazioni** Azure Pipelines in Azure DevOps Services. La compilazione in coda Mostra il ramo e il commit che ha attivato la compilazione:
+1. Passare alla scheda in **coda** della **Azure Pipelines**  >  pagina **compilazioni** Azure Pipelines in Azure DevOps Services. La compilazione in coda Mostra il ramo e il commit che ha attivato la compilazione:
 
     ![compilazione in coda](media/cicd/build-queued.png)
 
@@ -236,7 +237,7 @@ Sono disponibili tre passaggi distinti per il completamento. Il completamento de
 
 ### <a name="build-definition"></a>Definizione di compilazione
 
-È stata creata una definizione di compilazione con il nome *MyFirstProject-ASP.NET Core-ci*. Al termine, la compilazione produce un file con *estensione zip* che include gli asset da pubblicare. La pipeline di rilascio distribuisce tali asset in Azure.
+È stata creata una definizione di compilazione con il nome *MyFirstProject-ASP.NET Core-ci* . Al termine, la compilazione produce un file con *estensione zip* che include gli asset da pubblicare. La pipeline di rilascio distribuisce tali asset in Azure.
 
 Nella scheda **attività** della definizione di compilazione sono elencati i singoli passaggi utilizzati. Sono disponibili cinque attività di compilazione.
 
@@ -247,10 +248,10 @@ Nella scheda **attività** della definizione di compilazione sono elencati i sin
 1. Esegui **test** &mdash; Esegue il `dotnet test --configuration release --logger trx --results-directory <local_path_on_build_agent>` comando per eseguire gli unit test dell'applicazione. Gli unit test vengono eseguiti in qualsiasi progetto C# corrispondente al `**/*Tests/*.csproj` modello glob. I risultati dei test vengono salvati in un file con *estensione TRX* nel percorso specificato dall' `--results-directory` opzione. Se i test hanno esito negativo, la compilazione non riesce e non viene distribuita.
 
     > [!NOTE]
-    > Per verificare il funzionamento degli unit test, modificare *SimpleFeedReader. Tests\Services\NewsServiceTests.cs* per interrompere intenzionalmente uno dei test. Modificare ad esempio `Assert.True(result.Count > 0);` `Assert.False(result.Count > 0);` in nel `Returns_News_Stories_Given_Valid_Uri` metodo. Eseguire il commit e il push della modifica in GitHub. La compilazione viene attivata e ha esito negativo. Lo stato della pipeline di compilazione diventa **non riuscito**. Ripristinare la modifica, il commit e il push. La compilazione ha esito positivo.
+    > Per verificare il funzionamento degli unit test, modificare *SimpleFeedReader. Tests\Services\NewsServiceTests.cs* per interrompere intenzionalmente uno dei test. Modificare ad esempio `Assert.True(result.Count > 0);` `Assert.False(result.Count > 0);` in nel `Returns_News_Stories_Given_Valid_Uri` metodo. Eseguire il commit e il push della modifica in GitHub. La compilazione viene attivata e ha esito negativo. Lo stato della pipeline di compilazione diventa **non riuscito** . Ripristinare la modifica, il commit e il push. La compilazione ha esito positivo.
 
-1. **Pubblica** &mdash; Esegue il `dotnet publish --configuration release --output <local_path_on_build_agent>` comando per produrre un file con *estensione zip* con gli elementi da distribuire. L' `--output` opzione specifica il percorso di pubblicazione del file con *estensione zip* . Tale percorso viene specificato passando una [variabile predefinita](/azure/devops/pipelines/build/variables) denominata `$(build.artifactstagingdirectory)` . Tale variabile si espande in un percorso locale, ad esempio *c:\agent \_ work\1\a*, nell'agente di compilazione.
-1. **Pubblica artefatto** &mdash; Pubblica il file *zip* prodotto dall'attività **Publish** . L'attività accetta il percorso del file con *estensione zip* come parametro, ovvero la variabile predefinita `$(build.artifactstagingdirectory)` . Il file *zip* viene pubblicato come cartella denominata *Drop*.
+1. **Pubblica** &mdash; Esegue il `dotnet publish --configuration release --output <local_path_on_build_agent>` comando per produrre un file con *estensione zip* con gli elementi da distribuire. L' `--output` opzione specifica il percorso di pubblicazione del file con *estensione zip* . Tale percorso viene specificato passando una [variabile predefinita](/azure/devops/pipelines/build/variables) denominata `$(build.artifactstagingdirectory)` . Tale variabile si espande in un percorso locale, ad esempio *c:\agent \_ work\1\a* , nell'agente di compilazione.
+1. **Pubblica artefatto** &mdash; Pubblica il file *zip* prodotto dall'attività **Publish** . L'attività accetta il percorso del file con *estensione zip* come parametro, ovvero la variabile predefinita `$(build.artifactstagingdirectory)` . Il file *zip* viene pubblicato come cartella denominata *Drop* .
 
 Fare clic sul collegamento **Riepilogo** definizione di compilazione per visualizzare una cronologia delle compilazioni con la definizione:
 
@@ -268,11 +269,11 @@ Usare i collegamenti **Scarica** ed **Esplora** per esaminare gli artefatti pubb
 
 ### <a name="release-pipeline"></a>Pipeline di versione
 
-È stata creata una pipeline di versione con il nome *MyFirstProject-ASP.NET Core-CD*:
+È stata creata una pipeline di versione con il nome *MyFirstProject-ASP.NET Core-CD* :
 
 ![Screenshot che mostra la panoramica della pipeline di rilascio](media/cicd/release-definition-overview.png)
 
-I due componenti principali della pipeline di rilascio sono gli **elementi** e gli **ambienti**. Facendo clic sulla casella nella sezione **elementi** viene riportato il pannello seguente:
+I due componenti principali della pipeline di rilascio sono gli **elementi** e gli **ambienti** . Facendo clic sulla casella nella sezione **elementi** viene riportato il pannello seguente:
 
 ![Screenshot che Mostra gli artefatti della pipeline di rilascio](media/cicd/release-definition-artifacts.png)
 
@@ -280,11 +281,11 @@ Il valore di **origine (definizione di compilazione)** rappresenta la definizion
 
 ![Screenshot che illustra le attività della pipeline di rilascio](media/cicd/release-definition-tasks.png)
 
-La pipeline di versione è costituita da due attività: *distribuisci app Azure servizio in slot* e *Gestisci app Azure scambio di slot di servizio*. Se si fa clic sulla prima attività, viene visualizzata la configurazione dell'attività seguente:
+La pipeline di versione è costituita da due attività: *distribuisci app Azure servizio in slot* e *Gestisci app Azure scambio di slot di servizio* . Se si fa clic sulla prima attività, viene visualizzata la configurazione dell'attività seguente:
 
 ![Screenshot che mostra l'attività di distribuzione della pipeline di rilascio](media/cicd/release-definition-task1.png)
 
-La sottoscrizione di Azure, il tipo di servizio, il nome dell'app Web, il gruppo di risorse e lo slot di distribuzione sono definiti nell'attività di distribuzione. La casella di testo **pacchetto o cartella** include il percorso del file con *estensione zip* da estrarre e distribuire nello slot di *staging* dell'app Web *MyWebApp \<unique_number\> * .
+La sottoscrizione di Azure, il tipo di servizio, il nome dell'app Web, il gruppo di risorse e lo slot di distribuzione sono definiti nell'attività di distribuzione. La casella di testo **pacchetto o cartella** include il percorso del file con *estensione zip* da estrarre e distribuire nello slot di *staging* dell'app Web *MyWebApp \<unique_number\>* .
 
 Se si fa clic sull'attività swap slot, viene visualizzata la configurazione dell'attività seguente:
 

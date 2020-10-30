@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/startup
-ms.openlocfilehash: b10ddf52ea7d22ea98c295da61c09da8c87fc7a7
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 747b13abb0ce3fed2d1dc018c6dbf82db1ae7130
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633747"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052240"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Avvio dell'app in ASP.NET Core
 
@@ -73,13 +74,13 @@ Per altre informazioni sull'host, vedere [L'host](xref:fundamentals/index#host).
 
 Il metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> è:
 
-* Facoltativa.
+* facoltativo.
 * Chiamato dall'host prima del metodo `Configure` per configurare i servizi dell'app.
 * Dove le [opzioni di configurazione](xref:fundamentals/configuration/index) sono impostate per convenzione.
 
 L'host può configurare alcuni servizi prima che vengano chiamati i metodi `Startup`. Per altre informazioni, vedere [L'host](xref:fundamentals/index#host).
 
-Per le funzionalità che richiedono l'installazione sostanziale, sono disponibili i metodi di estensione `Add{Service}` in <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. Ad esempio, **aggiungere**DbContext, **aggiungere**il valore predefinito Identity , **aggiungere**EntityFrameworkStores e **aggiungere** Razor pagine:
+Per le funzionalità che richiedono l'installazione sostanziale, sono disponibili i metodi di estensione `Add{Service}` in <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. Ad esempio, **aggiungere** DbContext, **aggiungere** il valore predefinito Identity , **aggiungere** EntityFrameworkStores e **aggiungere** Razor pagine:
 
 [!code-csharp[](startup/3.0_samples/StartupFilterSample/StartupIdentity.cs?name=snippet)]
 
@@ -205,13 +206,13 @@ Per altre informazioni sull'host, vedere [L'host](xref:fundamentals/index#host).
 
 Il metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> è:
 
-* Facoltativa.
+* facoltativo.
 * Chiamato dall'host prima del metodo `Configure` per configurare i servizi dell'app.
 * Dove le [opzioni di configurazione](xref:fundamentals/configuration/index) sono impostate per convenzione.
 
 L'host può configurare alcuni servizi prima che vengano chiamati i metodi `Startup`. Per altre informazioni, vedere [L'host](xref:fundamentals/index#host).
 
-Per le funzionalità che richiedono l'installazione sostanziale, sono disponibili i metodi di estensione `Add{Service}` in <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. Ad esempio, **aggiungere**DbContext, **aggiungere**il valore predefinito Identity , **aggiungere**EntityFrameworkStores e **aggiungere** Razor pagine:
+Per le funzionalità che richiedono l'installazione sostanziale, sono disponibili i metodi di estensione `Add{Service}` in <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. Ad esempio, **aggiungere** DbContext, **aggiungere** il valore predefinito Identity , **aggiungere** EntityFrameworkStores e **aggiungere** Razor pagine:
 
 [!code-csharp[](startup/sample_snapshot/Startup3.cs)]
 

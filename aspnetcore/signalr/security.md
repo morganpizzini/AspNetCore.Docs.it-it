@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/security
-ms.openlocfilehash: 12293c5cb3dc49d505225f1b44e824e9273cfffc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5ecbf07b1527e9c68443870f7fce77adc29a5416
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630991"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050836"
 ---
 # <a name="security-considerations-in-aspnet-core-no-locsignalr"></a>Considerazioni sulla sicurezza in ASP.NET Core SignalR
 
@@ -101,7 +102,7 @@ La protezione fornita da CORS non si applica agli oggetti WebSocket. Per la rest
 
 ::: moniker range="< aspnetcore-2.2"
 
-La protezione fornita da CORS non si applica agli oggetti WebSocket. I browser **non**:
+La protezione fornita da CORS non si applica agli oggetti WebSocket. I browser **non** :
 
 * Eseguono richieste CORS preventive.
 * Rispettano le restrizioni specificate nelle intestazioni `Access-Control` quando eseguono richieste WebSocket.
@@ -123,7 +124,7 @@ L'esposizione `ConnectionId` può causare la rappresentazione dannosa se la Sign
 
 ## <a name="access-token-logging"></a>Registrazione del token di accesso
 
-Quando si usano WebSocket o eventi inviati dal server, il client browser invia il token di accesso nella stringa di query. La ricezione del token di accesso tramite la stringa di query è in genere sicura come se si utilizzasse l' `Authorization` intestazione standard. Usare sempre HTTPS per garantire una connessione end-to-end sicura tra il client e il server. Molti server Web registrano l'URL per ogni richiesta, inclusa la stringa di query. La registrazione degli URL può registrare il token di accesso. Per impostazione predefinita, ASP.NET Core registra l'URL per ogni richiesta, che include la stringa di query. Ad esempio:
+Quando si usano WebSocket o eventi di Server-Sent, il client browser invia il token di accesso nella stringa di query. La ricezione del token di accesso tramite la stringa di query è in genere sicura come se si utilizzasse l' `Authorization` intestazione standard. Usare sempre HTTPS per garantire una connessione end-to-end sicura tra il client e il server. Molti server Web registrano l'URL per ogni richiesta, inclusa la stringa di query. La registrazione degli URL può registrare il token di accesso. Per impostazione predefinita, ASP.NET Core registra l'URL per ogni richiesta, che include la stringa di query. Ad esempio:
 
 ```
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]

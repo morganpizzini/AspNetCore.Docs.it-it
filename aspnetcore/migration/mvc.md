@@ -5,6 +5,7 @@ description: Informazioni su come iniziare a migrare un progetto MVC ASP.NET a A
 ms.author: wpickett
 ms.date: 06/18/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/mvc
-ms.openlocfilehash: 51228e59284b5edf0554e9929b16deafe08ea31e
-ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
+ms.openlocfilehash: 226ac6da508378c7b3c81779d38dd2e0840f1fed
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92326631"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051513"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Eseguire la migrazione da ASP.NET MVC ad ASP.NET Core MVC
 
@@ -46,21 +47,21 @@ Per la migrazione della configurazione e del Identity codice, vedere eseguire la
 
 Creare un esempio di progetto MVC ASP.NET in Visual Studio per eseguire la migrazione:
 
-1. Scegliere **nuovo** progetto dal menu **file** > **Project**.
-1. Selezionare **applicazione Web ASP.NET (.NET Framework)** e quindi fare clic su **Avanti**.
-1. Denominare il progetto *app Web 1* in modo che lo spazio dei nomi corrisponda al progetto ASP.NET Core creato nel passaggio successivo. Selezionare **Create** (Crea).
-1. Selezionare **MVC**, quindi fare clic su **Crea**.
+1. Scegliere **nuovo** progetto dal menu **file** > **Project** .
+1. Selezionare **applicazione Web ASP.NET (.NET Framework)** e quindi fare clic su **Avanti** .
+1. Denominare il progetto *app Web 1* in modo che lo spazio dei nomi corrisponda al progetto ASP.NET Core creato nel passaggio successivo. Selezionare **Crea** .
+1. Selezionare **MVC** , quindi fare clic su **Crea** .
 
 ## <a name="create-the-aspnet-core-project"></a>Creare il progetto di ASP.NET Core
 
 Crea una nuova soluzione con un nuovo progetto di ASP.NET Core di cui eseguire la migrazione:
 
 1. Avviare una seconda istanza di Visual Studio.
-1. Scegliere **nuovo** progetto dal menu **file** > **Project**.
-1. Selezionare **Applicazione Web ASP.NET Core** e quindi selezionare **Avanti**.
-1. Nella finestra di dialogo **Configura nuovo progetto** assegnare al progetto il nome *app Web 1*.
-1. Impostare il percorso su una directory diversa da quella del progetto precedente per usare lo stesso nome di progetto. L'utilizzo dello stesso spazio dei nomi rende più semplice la copia di codice tra i due progetti. Selezionare **Create** (Crea).
-1. Nella finestra di dialogo **Crea una nuova applicazione Web ASP.NET Core** verificare che siano selezionati **.net Core** e **ASP.NET Core 3,1** . Selezionare il modello di progetto **applicazione Web (modello-vista-controller)** e selezionare **Crea**.
+1. Scegliere **nuovo** progetto dal menu **file** > **Project** .
+1. Selezionare **Applicazione Web ASP.NET Core** e quindi selezionare **Avanti** .
+1. Nella finestra di dialogo **Configura nuovo progetto** assegnare al progetto il nome *app Web 1* .
+1. Impostare il percorso su una directory diversa da quella del progetto precedente per usare lo stesso nome di progetto. L'utilizzo dello stesso spazio dei nomi rende più semplice la copia di codice tra i due progetti. Selezionare **Crea** .
+1. Nella finestra di dialogo **Crea una nuova applicazione Web ASP.NET Core** verificare che siano selezionati **.net Core** e **ASP.NET Core 3,1** . Selezionare il modello di progetto **applicazione Web (modello-vista-controller)** e selezionare **Crea** .
 
 ## <a name="configure-the-aspnet-core-site-to-use-mvc"></a>Configurare il sito di ASP.NET Core per l'uso di MVC
 
@@ -74,7 +75,7 @@ Per ulteriori informazioni, vedere [riferimento a Framework](xref:migration/22-t
 
 In ASP.NET Core la `Startup` classe:
 
-* Sostituisce *Global. asax*.
+* Sostituisce *Global. asax* .
 * Gestisce tutte le attività di avvio dell'app.
 
 Per altre informazioni, vedere <xref:fundamentals/startup>.
@@ -98,9 +99,9 @@ Nel progetto ASP.NET Core verranno aggiunte una nuova classe controller vuota e 
 Il progetto *app web 1* ASP.NET Core include già un controller e una visualizzazione di esempio minimi con lo stesso nome del progetto MVC ASP.NET. Quindi, verranno usati come segnaposto per il controller e le visualizzazioni MVC ASP.NET di cui eseguire la migrazione dal progetto ASP.NET MVC *app Web 1* .
 
 1. Copiare i metodi da ASP.NET MVC `HomeController` per sostituire i nuovi metodi di ASP.NET Core `HomeController` . Non è necessario modificare il tipo restituito dei metodi di azione. Il tipo restituito del metodo di azione del controller del modello ASP.NET MVC incorporato è. <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> in ASP.NET Core MVC, i metodi di azione restituiscono `IActionResult` invece. `ActionResult` implementa `IActionResult`.
-1. Nel progetto ASP.NET Core fare clic con il pulsante destro del mouse sulla directory *views/Home* e scegliere **Aggiungi** > **elemento esistente**.
+1. Nel progetto ASP.NET Core fare clic con il pulsante destro del mouse sulla directory *views/Home* e scegliere **Aggiungi** > **elemento esistente** .
 1. Nella finestra di dialogo **Aggiungi elemento esistente** passare alla *Home* directory ASP.NET MVC *app Web 1* Project.
-1. Selezionare i file *di visualizzazione About. cshtml*, *Contact. cshtml*e *index. cshtml* Razor , quindi selezionare **Aggiungi**, sostituendo i file esistenti.
+1. Selezionare i file *di visualizzazione About. cshtml* , *Contact. cshtml* e *index. cshtml* Razor , quindi selezionare **Aggiungi** , sostituendo i file esistenti.
 
 Per altre informazioni, vedere <xref:mvc/controllers/actions> e <xref:mvc/views/overview>.
 
@@ -109,31 +110,31 @@ Per altre informazioni, vedere <xref:mvc/controllers/actions> e <xref:mvc/views/
 Ogni endpoint controller può essere testato, tuttavia, il layout e gli stili vengono trattati più avanti nel documento.
 
 1. Eseguire l'app ASP.NET Core.
-1. Richiamare le visualizzazioni sottoposte a rendering dal browser nell'app ASP.NET Core in esecuzione sostituendo il numero di porta corrente con il numero di porta usato nel progetto ASP.NET Core. Ad esempio: `https://localhost:44375/home/about`.
+1. Richiamare le visualizzazioni sottoposte a rendering dal browser nell'app ASP.NET Core in esecuzione sostituendo il numero di porta corrente con il numero di porta usato nel progetto ASP.NET Core. Ad esempio `https://localhost:44375/home/about`.
 
 ## <a name="migrate-static-content"></a>Migrare contenuto statico
 
-In ASP.NET MVC 5 e versioni precedenti, il contenuto statico era ospitato dalla directory radice del progetto Web ed era combinato con i file lato server. In ASP.NET Core i file statici vengono archiviati nella directory [radice Web](xref:fundamentals/index#web-root) del progetto. La directory predefinita è *{Content root}/wwwroot*, ma può essere modificata. Per altre informazioni, vedere [File statici in ASP.NET Core](xref:fundamentals/static-files#serve-static-files).
+In ASP.NET MVC 5 e versioni precedenti, il contenuto statico era ospitato dalla directory radice del progetto Web ed era combinato con i file lato server. In ASP.NET Core i file statici vengono archiviati nella directory [radice Web](xref:fundamentals/index#web-root) del progetto. La directory predefinita è *{Content root}/wwwroot* , ma può essere modificata. Per altre informazioni, vedere [File statici in ASP.NET Core](xref:fundamentals/static-files#serve-static-files).
 
 Copiare il contenuto statico dal progetto ASP.NET MVC *app Web 1* alla directory *wwwroot* nel progetto ASP.NET Core *app Web 1* :
 
-1. Nel progetto ASP.NET Core fare clic con il pulsante destro del mouse sulla directory *wwwroot* , quindi scegliere **Aggiungi** > **elemento esistente**.
+1. Nel progetto ASP.NET Core fare clic con il pulsante destro del mouse sulla directory *wwwroot* , quindi scegliere **Aggiungi** > **elemento esistente** .
 1. Nella finestra di dialogo **Aggiungi elemento esistente** passare al progetto ASP.NET MVC *app Web 1* .
-1. Selezionare il file *favicon. ico* , quindi selezionare **Aggiungi**, sostituendo il file esistente.
+1. Selezionare il file *favicon. ico* , quindi selezionare **Aggiungi** , sostituendo il file esistente.
 
 ## <a name="migrate-the-layout-files"></a>Migrare i file di layout
 
 Copiare i file di layout del progetto MVC ASP.NET nel progetto ASP.NET Core:
 
-1. Nel progetto ASP.NET Core fare clic con il pulsante destro del mouse sulla directory *views* , quindi scegliere **Aggiungi** > **elemento esistente**.
+1. Nel progetto ASP.NET Core fare clic con il pulsante destro del mouse sulla directory *views* , quindi scegliere **Aggiungi** > **elemento esistente** .
 1. Nella finestra di dialogo **Aggiungi elemento esistente** passare alla directory *Views* del progetto ASP.NET MVC *app Web 1* .
-1. Selezionare il file *_ViewStart. cshtml,* quindi selezionare **Aggiungi**.
+1. Selezionare il file *_ViewStart. cshtml,* quindi selezionare **Aggiungi** .
 
 Copiare i file di layout condiviso del progetto MVC ASP.NET nel progetto ASP.NET Core:
 
-1. Nel progetto ASP.NET Core fare clic con il pulsante destro del mouse sulla directory *Views/Shared* e scegliere **Aggiungi** > **elemento esistente**.
+1. Nel progetto ASP.NET Core fare clic con il pulsante destro del mouse sulla directory *Views/Shared* e scegliere **Aggiungi** > **elemento esistente** .
 1. Nella finestra di dialogo **Aggiungi elemento esistente** passare alla directory *viste/condivise* del progetto ASP.NET MVC *app Web 1* .
-1. Selezionare il file *_Layout. cshtml* , quindi selezionare **Aggiungi**, sostituendo il file esistente.
+1. Selezionare il file *_Layout. cshtml* , quindi selezionare **Aggiungi** , sostituendo il file esistente.
 
 Nel progetto ASP.NET Core aprire il file *_Layout. cshtml* . Apportare le seguenti modifiche in modo che corrispondano al codice completato riportato di seguito:
 
@@ -176,7 +177,7 @@ ASP.NET Core è compatibile con diverse soluzioni open source per la creazione d
 
 ## <a name="solve-http-500-errors"></a>Risolvere gli errori HTTP 500
 
-Ci sono molti problemi che possono causare un messaggio di errore HTTP 500 che non contiene informazioni sull'origine del problema. Se, ad esempio, il file *views/_ViewImports. cshtml* contiene uno spazio dei nomi che non esiste nel progetto, viene generato un errore HTTP 500. Per impostazione predefinita, nelle app ASP.NET Core, l' `UseDeveloperExceptionPage` estensione viene aggiunta a `IApplicationBuilder` ed eseguita quando l'ambiente è in *fase di sviluppo*. Questa operazione è descritta in dettaglio nel codice seguente:
+Ci sono molti problemi che possono causare un messaggio di errore HTTP 500 che non contiene informazioni sull'origine del problema. Se, ad esempio, il file *views/_ViewImports. cshtml* contiene uno spazio dei nomi che non esiste nel progetto, viene generato un errore HTTP 500. Per impostazione predefinita, nelle app ASP.NET Core, l' `UseDeveloperExceptionPage` estensione viene aggiunta a `IApplicationBuilder` ed eseguita quando l'ambiente è in *fase di sviluppo* . Questa operazione è descritta in dettaglio nel codice seguente:
 
 [!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=17-21&name=snippet)]
 
@@ -215,17 +216,17 @@ Per illustrare l'aggiornamento, si inizierà con la creazione di un'app MVC ASP.
 
 ![Finestra di dialogo nuova applicazione Web: modello di progetto MVC selezionato nel pannello modelli ASP.NET](mvc/_static/new-project-select-mvc-template.png)
 
-*Facoltativo:* Modificare il nome della soluzione da *app Web 1* a *Mvc5*. In Visual Studio viene visualizzato il nuovo nome della soluzione (*Mvc5*), che rende più semplice la creazione di questo progetto dal progetto successivo.
+*Facoltativo:* Modificare il nome della soluzione da *app Web 1* a *Mvc5* . In Visual Studio viene visualizzato il nuovo nome della soluzione ( *Mvc5* ), che rende più semplice la creazione di questo progetto dal progetto successivo.
 
 ## <a name="create-the-aspnet-core-project"></a>Creare il progetto di ASP.NET Core
 
-Creare una nuova app Web ASP.NET Core *vuota* con lo stesso nome del progetto precedente (*app Web 1*) in modo che gli spazi dei nomi nei due progetti corrispondano. La presenza dello stesso spazio dei nomi rende più semplice la copia di codice tra i due progetti. Creare il progetto in una directory diversa da quella del progetto precedente per usare lo stesso nome.
+Creare una nuova app Web ASP.NET Core *vuota* con lo stesso nome del progetto precedente ( *app Web 1* ) in modo che gli spazi dei nomi nei due progetti corrispondano. La presenza dello stesso spazio dei nomi rende più semplice la copia di codice tra i due progetti. Creare il progetto in una directory diversa da quella del progetto precedente per usare lo stesso nome.
 
 ![Finestra di dialogo Nuovo progetto](mvc/_static/new_core.png)
 
 ![Finestra di dialogo nuova applicazione Web ASP.NET: modello di progetto vuoto selezionato nel pannello modelli ASP.NET Core](mvc/_static/new-project-select-empty-aspnet5-template.png)
 
-* *Facoltativo:* Creare una nuova app ASP.NET Core usando il modello di progetto *applicazione Web* . Denominare il progetto *app Web 1*e selezionare un'opzione di autenticazione per **singoli account utente**. Rinominare l'app in *FullAspNetCore*. La creazione di questo progetto consente di risparmiare tempo nella conversione. Il risultato finale può essere visualizzato nel codice generato dal modello, il codice può essere copiato nel progetto di conversione o confrontato con il progetto generato dal modello.
+* *Facoltativo:* Creare una nuova app ASP.NET Core usando il modello di progetto *applicazione Web* . Denominare il progetto *app Web 1* e selezionare un'opzione di autenticazione per **singoli account utente** . Rinominare l'app in *FullAspNetCore* . La creazione di questo progetto consente di risparmiare tempo nella conversione. Il risultato finale può essere visualizzato nel codice generato dal modello, il codice può essere copiato nel progetto di conversione o confrontato con il progetto generato dal modello.
 
 ## <a name="configure-the-site-to-use-mvc"></a>Configurare il sito per l'uso di MVC
 
@@ -253,7 +254,7 @@ In questa sezione vengono aggiunti un controller e una visualizzazione minimi pe
 
 * Aggiungere una directory *views/Home* .
 
-* Aggiungere una ** Razor vista** denominata *index. cshtml* alla directory *views/Home* .
+* Aggiungere una **Razor vista** denominata *index. cshtml* alla directory *views/Home* .
 
 ![Finestra di dialogo Aggiungi nuovo elemento](mvc/_static/view.png)
 
@@ -293,7 +294,7 @@ Le funzionalità seguenti richiedono la migrazione dal progetto MVC ASP.NET di e
 
 * Copiare tutti i metodi da ASP.NET MVC `HomeController` al nuovo `HomeController` . In ASP.NET MVC il tipo restituito del metodo di azione del controller predefinito è <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> . in ASP.NET Core MVC i metodi di azione restituiscono `IActionResult` invece. `ActionResult` implementa `IActionResult` , quindi non è necessario modificare il tipo restituito dei metodi di azione.
 
-* Copiare i file *di visualizzazione About. cshtml*, *Contact. cshtml*e *index. cshtml* Razor dal progetto MVC ASP.NET al progetto ASP.NET Core.
+* Copiare i file *di visualizzazione About. cshtml* , *Contact. cshtml* e *index. cshtml* Razor dal progetto MVC ASP.NET al progetto ASP.NET Core.
 
 ## <a name="test-each-method"></a>Testare ogni metodo
 
@@ -311,7 +312,7 @@ In ASP.NET MVC 5 e versioni precedenti, il contenuto statico era ospitato dalla 
 
 * Copiare il file *favicon. ico* dal progetto MVC ASP.NET alla directory *wwwroot* nel progetto ASP.NET Core.
 
-Il progetto MVC ASP.NET usa [bootstrap](https://getbootstrap.com/) per lo stile e archivia i file bootstrap nelle directory *Content* e *Scripts* . Il modello, che ha generato il progetto MVC ASP.NET, fa riferimento a bootstrap nel file di layout (*Views/Shared/_Layout. cshtml*). È possibile copiare i file *bootstrap.js* e *bootstrap. CSS* dal progetto MVC ASP.NET alla directory *wwwroot* del nuovo progetto. Al contrario, questo documento aggiunge il supporto per bootstrap (e altre librerie lato client) usando CDNs nella sezione successiva.
+Il progetto MVC ASP.NET usa [bootstrap](https://getbootstrap.com/) per lo stile e archivia i file bootstrap nelle directory *Content* e *Scripts* . Il modello, che ha generato il progetto MVC ASP.NET, fa riferimento a bootstrap nel file di layout ( *Views/Shared/_Layout. cshtml* ). È possibile copiare i file *bootstrap.js* e *bootstrap. CSS* dal progetto MVC ASP.NET alla directory *wwwroot* del nuovo progetto. Al contrario, questo documento aggiunge il supporto per bootstrap (e altre librerie lato client) usando CDNs nella sezione successiva.
 
 ## <a name="migrate-the-layout-file"></a>Eseguire la migrazione del file di layout
 
@@ -366,7 +367,7 @@ Per informazioni su come configurare la creazione di bundle e minification, vede
 
 ## <a name="solve-http-500-errors"></a>Risolvere gli errori HTTP 500
 
-Ci sono molti problemi che possono causare un messaggio di errore HTTP 500 che non contengono informazioni sull'origine del problema. Se, ad esempio, il file *views/_ViewImports. cshtml* contiene uno spazio dei nomi che non esiste nel progetto, viene generato un errore HTTP 500. Per impostazione predefinita, nelle app ASP.NET Core, l' `UseDeveloperExceptionPage` estensione viene aggiunta a `IApplicationBuilder` ed eseguita quando la configurazione è in *fase di sviluppo*. Vedere un esempio nel codice seguente:
+Ci sono molti problemi che possono causare un messaggio di errore HTTP 500 che non contengono informazioni sull'origine del problema. Se, ad esempio, il file *views/_ViewImports. cshtml* contiene uno spazio dei nomi che non esiste nel progetto, viene generato un errore HTTP 500. Per impostazione predefinita, nelle app ASP.NET Core, l' `UseDeveloperExceptionPage` estensione viene aggiunta a `IApplicationBuilder` ed eseguita quando la configurazione è in *fase di sviluppo* . Vedere un esempio nel codice seguente:
 
 [!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
@@ -401,17 +402,17 @@ Per illustrare l'aggiornamento, si inizierà con la creazione di un'app MVC ASP.
 
 ![Finestra di dialogo nuova applicazione Web: modello di progetto MVC selezionato nel pannello modelli ASP.NET](mvc/_static/new-project-select-mvc-template.png)
 
-*Facoltativo:* Modificare il nome della soluzione da *app Web 1* a *Mvc5*. In Visual Studio viene visualizzato il nuovo nome della soluzione (*Mvc5*), che rende più semplice la creazione di questo progetto dal progetto successivo.
+*Facoltativo:* Modificare il nome della soluzione da *app Web 1* a *Mvc5* . In Visual Studio viene visualizzato il nuovo nome della soluzione ( *Mvc5* ), che rende più semplice la creazione di questo progetto dal progetto successivo.
 
 ## <a name="create-the-aspnet-core-project"></a>Creare il progetto di ASP.NET Core
 
-Creare una nuova app Web ASP.NET Core *vuota* con lo stesso nome del progetto precedente (*app Web 1*) in modo che gli spazi dei nomi nei due progetti corrispondano. La presenza dello stesso spazio dei nomi rende più semplice la copia di codice tra i due progetti. Creare il progetto in una directory diversa da quella del progetto precedente per usare lo stesso nome.
+Creare una nuova app Web ASP.NET Core *vuota* con lo stesso nome del progetto precedente ( *app Web 1* ) in modo che gli spazi dei nomi nei due progetti corrispondano. La presenza dello stesso spazio dei nomi rende più semplice la copia di codice tra i due progetti. Creare il progetto in una directory diversa da quella del progetto precedente per usare lo stesso nome.
 
 ![Finestra di dialogo Nuovo progetto](mvc/_static/new_core.png)
 
 ![Finestra di dialogo nuova applicazione Web ASP.NET: modello di progetto vuoto selezionato nel pannello modelli ASP.NET Core](mvc/_static/new-project-select-empty-aspnet5-template.png)
 
-* *Facoltativo:* Creare una nuova app ASP.NET Core usando il modello di progetto *applicazione Web* . Denominare il progetto *app Web 1*e selezionare un'opzione di autenticazione per **singoli account utente**. Rinominare l'app in *FullAspNetCore*. La creazione di questo progetto consente di risparmiare tempo nella conversione. Il risultato finale può essere visualizzato nel codice generato dal modello, il codice può essere copiato nel progetto di conversione o confrontato con il progetto generato dal modello.
+* *Facoltativo:* Creare una nuova app ASP.NET Core usando il modello di progetto *applicazione Web* . Denominare il progetto *app Web 1* e selezionare un'opzione di autenticazione per **singoli account utente** . Rinominare l'app in *FullAspNetCore* . La creazione di questo progetto consente di risparmiare tempo nella conversione. Il risultato finale può essere visualizzato nel codice generato dal modello, il codice può essere copiato nel progetto di conversione o confrontato con il progetto generato dal modello.
 
 ## <a name="configure-the-site-to-use-mvc"></a>Configurare il sito per l'uso di MVC
 
@@ -439,7 +440,7 @@ In questa sezione vengono aggiunti un controller e una visualizzazione minimi pe
 
 * Aggiungere una directory *views/Home* .
 
-* Aggiungere una ** Razor vista** denominata *index. cshtml* alla directory *views/Home* .
+* Aggiungere una **Razor vista** denominata *index. cshtml* alla directory *views/Home* .
 
 ![Finestra di dialogo Aggiungi nuovo elemento](mvc/_static/view.png)
 
@@ -479,7 +480,7 @@ Le funzionalità seguenti richiedono la migrazione dal progetto MVC ASP.NET di e
 
 * Copiare tutti i metodi da ASP.NET MVC `HomeController` al nuovo `HomeController` . In ASP.NET MVC il tipo restituito del metodo di azione del controller predefinito è <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> . in ASP.NET Core MVC i metodi di azione restituiscono `IActionResult` invece. `ActionResult` implementa `IActionResult` , quindi non è necessario modificare il tipo restituito dei metodi di azione.
 
-* Copiare i file *di visualizzazione About. cshtml*, *Contact. cshtml*e *index. cshtml* Razor dal progetto MVC ASP.NET al progetto ASP.NET Core.
+* Copiare i file *di visualizzazione About. cshtml* , *Contact. cshtml* e *index. cshtml* Razor dal progetto MVC ASP.NET al progetto ASP.NET Core.
 
 ## <a name="test-each-method"></a>Testare ogni metodo
 
@@ -497,7 +498,7 @@ In ASP.NET MVC 5 e versioni precedenti, il contenuto statico era ospitato dalla 
 
 * Copiare il file *favicon. ico* dal progetto MVC ASP.NET alla directory *wwwroot* nel progetto ASP.NET Core.
 
-Il progetto MVC ASP.NET usa [bootstrap](https://getbootstrap.com/) per lo stile e archivia i file bootstrap nelle directory *Content* e *Scripts* . Il modello, che ha generato il progetto MVC ASP.NET, fa riferimento a bootstrap nel file di layout (*Views/Shared/_Layout. cshtml*). È possibile copiare i file *bootstrap.js* e *bootstrap. CSS* dal progetto MVC ASP.NET alla directory *wwwroot* del nuovo progetto. Al contrario, questo documento aggiunge il supporto per bootstrap (e altre librerie lato client) usando CDNs nella sezione successiva.
+Il progetto MVC ASP.NET usa [bootstrap](https://getbootstrap.com/) per lo stile e archivia i file bootstrap nelle directory *Content* e *Scripts* . Il modello, che ha generato il progetto MVC ASP.NET, fa riferimento a bootstrap nel file di layout ( *Views/Shared/_Layout. cshtml* ). È possibile copiare i file *bootstrap.js* e *bootstrap. CSS* dal progetto MVC ASP.NET alla directory *wwwroot* del nuovo progetto. Al contrario, questo documento aggiunge il supporto per bootstrap (e altre librerie lato client) usando CDNs nella sezione successiva.
 
 ## <a name="migrate-the-layout-file"></a>Eseguire la migrazione del file di layout
 
@@ -552,7 +553,7 @@ Per informazioni su come configurare la creazione di bundle e minification, vede
 
 ## <a name="solve-http-500-errors"></a>Risolvere gli errori HTTP 500
 
-Ci sono molti problemi che possono causare un messaggio di errore HTTP 500 che non contengono informazioni sull'origine del problema. Se, ad esempio, il file *views/_ViewImports. cshtml* contiene uno spazio dei nomi che non esiste nel progetto, viene generato un errore HTTP 500. Per impostazione predefinita, nelle app ASP.NET Core, l' `UseDeveloperExceptionPage` estensione viene aggiunta a `IApplicationBuilder` ed eseguita quando la configurazione è in *fase di sviluppo*. Vedere un esempio nel codice seguente:
+Ci sono molti problemi che possono causare un messaggio di errore HTTP 500 che non contengono informazioni sull'origine del problema. Se, ad esempio, il file *views/_ViewImports. cshtml* contiene uno spazio dei nomi che non esiste nel progetto, viene generato un errore HTTP 500. Per impostazione predefinita, nelle app ASP.NET Core, l' `UseDeveloperExceptionPage` estensione viene aggiunta a `IApplicationBuilder` ed eseguita quando la configurazione è in *fase di sviluppo* . Vedere un esempio nel codice seguente:
 
 [!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
 

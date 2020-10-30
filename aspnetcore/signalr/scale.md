@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/17/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: 2bfe05748e6740043be7f1ccc6dbe22ad4b0ca44
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: d3e9cd23a55702bcf9b002dcce556428683afeca
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722566"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052773"
 ---
 # <a name="aspnet-core-no-locsignalr-hosting-and-scaling"></a>ASP.NET Core SignalR hosting e scalabilità
 
@@ -45,13 +46,13 @@ Per informazioni sulla configurazione del servizio app Azure per SignalR , veder
 
 ## <a name="tcp-connection-resources"></a>Risorse di connessione TCP
 
-Il numero di connessioni TCP simultanee che un server Web è in grado di supportare è limitato. I client HTTP standard *utilizzano connessioni* temporanee. Queste connessioni possono essere chiuse quando il client diventa inattivo e riaperto in un secondo momento. D'altra parte, una SignalR connessione è *persistente*. SignalR le connessioni resteranno aperte anche quando il client diventa inattivo. In un'app a traffico elevato che serve molti client, queste connessioni permanenti possono provocare il raggiungimento del numero massimo di connessioni da parte dei server.
+Il numero di connessioni TCP simultanee che un server Web è in grado di supportare è limitato. I client HTTP standard *utilizzano connessioni* temporanee. Queste connessioni possono essere chiuse quando il client diventa inattivo e riaperto in un secondo momento. D'altra parte, una SignalR connessione è *persistente* . SignalR le connessioni resteranno aperte anche quando il client diventa inattivo. In un'app a traffico elevato che serve molti client, queste connessioni permanenti possono provocare il raggiungimento del numero massimo di connessioni da parte dei server.
 
 Le connessioni permanenti utilizzano anche una quantità di memoria aggiuntiva per tenere traccia di ogni connessione.
 
 L'utilizzo intensivo delle risorse correlate alla connessione SignalR può influire su altre app Web ospitate nello stesso server. Quando SignalR si apre e contiene le ultime connessioni TCP disponibili, anche altre app Web nello stesso server non dispongono di altre connessioni disponibili.
 
-Se un server esaurisce le connessioni, verranno visualizzati gli errori di socket casuali e gli errori di reimpostazione della connessione. Esempio:
+Se un server esaurisce le connessioni, verranno visualizzati gli errori di socket casuali e gli errori di reimpostazione della connessione. Ad esempio:
 
 ```
 An attempt was made to access a socket in a way forbidden by its access permissions...
@@ -120,14 +121,85 @@ Le condizioni precedenti consentono di raggiungere il limite di 10 connessioni i
 
 ## <a name="linux-with-nginx"></a>Linux con Nginx
 
-Impostare le intestazioni e del proxy sul `Connection` `Upgrade` seguente per i SignalR WebSocket:
+Di seguito sono riportate le impostazioni minime obbligatorie per abilitare WebSockets, ServerSentEvents e LongPolling per SignalR :
 
 ```nginx
-proxy_set_header Upgrade $http_upgrade;
-proxy_set_header Connection $connection_upgrade;
+http {
+  map $http_connection $connection_upgrade {
+    "~*Upgrade" $http_connection;
+    default keep-alive;
+}
+
+  server {
+    listen 80;
+    server_name example.com *.example.com;
+
+    # Configure the SignalR Endpoint
+    location /hubroute {
+      # App server url
+      proxy_pass http://localhost:5000;
+
+      # Configuration for WebSockets
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection $connection_upgrade;
+      proxy_cache off;
+
+      # Configuration for ServerSentEvents
+      proxy_buffering off;
+
+      # Configuration for LongPolling or if your KeepAliveInterval is longer than 60 seconds
+      proxy_read_timeout 100s;
+
+      proxy_set_header Host $host;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+    }
+  }
+}
 ```
 
-Per altre informazioni, vedere [nginx come proxy WebSocket](https://www.nginx.com/blog/websocket-nginx/).
+Quando si utilizzano più server back-end, è necessario aggiungere sessioni permanenti per impedire che le SignalR connessioni cambino server durante la connessione. Sono disponibili diversi modi per aggiungere sessioni permanenti in nginx. Di seguito sono riportati due approcci, a seconda di ciò che è disponibile.
+
+Oltre alla configurazione precedente, viene aggiunto quanto segue. Negli esempi seguenti `backend` è il nome del gruppo di server.
+
+Con l' [Open Source nginx](https://nginx.org/en/), usare `ip_hash` per instradare le connessioni a un server in base all'indirizzo IP del client:
+
+```nginx
+http {
+  upstream backend {
+    # App server 1
+    server http://localhost:5000;
+    # App server 2
+    server http://localhost:5002;
+
+    ip_hash;
+  }
+}
+```
+
+Con [nginx Plus](https://www.nginx.com/products/nginx), usare `sticky` per aggiungere un cookie a richieste e aggiungere le richieste dell'utente a un server:
+
+```nginx
+http {
+  upstream backend {
+    # App server 1
+    server http://localhost:5000;
+    # App server 2
+    server http://localhost:5002;
+
+    sticky cookie srv_id expires=max domain=.example.com path=/ httponly;
+  }
+}
+```
+
+Infine, modificare `proxy_pass http://localhost:5000` la `server` sezione in `proxy_pass http://backend` .
+
+Per altre informazioni sui WebSocket su nginx, vedere [nginx come proxy WebSocket](https://www.nginx.com/blog/websocket-nginx).
+
+Per altre informazioni sul bilanciamento del carico e le sessioni permanenti, vedere [nginx Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/).
+
+Per ulteriori informazioni su ASP.NET Core con nginx, vedere l'articolo seguente:
+* <xref:host-and-deploy/linux-nginx>
 
 ## <a name="third-party-no-locsignalr-backplane-providers"></a>Provider backplane di terze parti SignalR
 

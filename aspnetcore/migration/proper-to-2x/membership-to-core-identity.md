@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/10/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/membership-to-core-identity
-ms.openlocfilehash: a9ec02381b156a6599042d8e504a476036246302
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: d981c424fd2d6cad95b9164420f093672325c347
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865564"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051356"
 ---
 # <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-no-locidentity"></a>Eseguire la migrazione da ASP.NET Membership Authentication a ASP.NET Core 2,0 Identity
 
@@ -48,15 +49,15 @@ ASP.NET Core 2,0 segue il [Identity](/aspnet/identity/index) principio introdott
 Il modo più rapido per visualizzare lo schema per ASP.NET Core 2,0 Identity consiste nel creare una nuova app ASP.NET Core 2,0. Seguire questa procedura in Visual Studio 2017:
 
 1. Selezionare **File** > **New** (Nuovo)  > **Project** (Progetto).
-1. Creare un nuovo progetto di **applicazione Web di ASP.NET Core** denominato *Core Identity Sample*.
-1. Selezionare **ASP.NET Core 2,0** nell'elenco a discesa, quindi selezionare **applicazione Web**. Questo modello genera un'app [ Razor pagine](xref:razor-pages/index) . Prima di fare clic su **OK**, fare clic su **Modifica autenticazione**.
-1. Scegliere gli **account utente singoli** per i Identity modelli. Infine, fare clic su **OK**, quindi su **OK**. Visual Studio crea un progetto usando il ASP.NET Core Identity modello.
-1. Selezionare **strumenti**gestione pacchetti  >  **NuGet**  >  **console di gestione** pacchetti per aprire la finestra **console di gestione pacchetti** (PMC).
+1. Creare un nuovo progetto di **applicazione Web di ASP.NET Core** denominato *Core Identity Sample* .
+1. Selezionare **ASP.NET Core 2,0** nell'elenco a discesa, quindi selezionare **applicazione Web** . Questo modello genera un'app [ Razor pagine](xref:razor-pages/index) . Prima di fare clic su **OK** , fare clic su **Modifica autenticazione** .
+1. Scegliere gli **account utente singoli** per i Identity modelli. Infine, fare clic su **OK** , quindi su **OK** . Visual Studio crea un progetto usando il ASP.NET Core Identity modello.
+1. Selezionare **strumenti** gestione pacchetti  >  **NuGet**  >  **console di gestione** pacchetti per aprire la finestra **console di gestione pacchetti** (PMC).
 1. Passare alla radice del progetto in PMC ed eseguire il comando [Entity Framework (EF) Core](/ef/core) `Update-Database` .
 
     ASP.NET Core 2,0 Identity utilizza EF core per interagire con il database che archivia i dati di autenticazione. Per consentire il funzionamento dell'app appena creata, è necessario che sia presente un database per archiviare questi dati. Dopo la creazione di una nuova app, il modo più rapido per esaminare lo schema in un ambiente di database consiste nel creare il database usando [migrazioni EF Core](/ef/core/managing-schemas/migrations/). Questo processo crea un database, localmente o altrove, che simula lo schema. Per ulteriori informazioni, consultare la documentazione precedente.
 
-    EF Core comandi utilizzano la stringa di connessione per il database specificato in *appsettings.jssu*. La stringa di connessione seguente è destinata a un database in *localhost* denominato *ASP-NET-Core-Identity*. In questa impostazione EF Core è configurato per l'utilizzo della `DefaultConnection` stringa di connessione.
+    EF Core comandi utilizzano la stringa di connessione per il database specificato in *appsettings.json* . La stringa di connessione seguente è destinata a un database in *localhost* denominato *ASP-NET-Core-Identity* . In questa impostazione EF Core è configurato per l'utilizzo della `DefaultConnection` stringa di connessione.
 
     ```json
     {
@@ -66,7 +67,7 @@ Il modo più rapido per visualizzare lo schema per ASP.NET Core 2,0 Identity con
     }
     ```
 
-1. Selezionare **Visualizza**  >  **Esplora oggetti di SQL Server**. Espandere il nodo corrispondente al nome del database specificato nella `ConnectionStrings:DefaultConnection` proprietà di *appsettings.json*.
+1. Selezionare **Visualizza**  >  **Esplora oggetti di SQL Server** . Espandere il nodo corrispondente al nome del database specificato nella `ConnectionStrings:DefaultConnection` proprietà di *appsettings.json* .
 
     Il `Update-Database` comando ha creato il database specificato con lo schema e tutti i dati necessari per l'inizializzazione dell'app. Nell'immagine seguente viene illustrata la struttura della tabella creata con i passaggi precedenti.
 
@@ -74,7 +75,7 @@ Il modo più rapido per visualizzare lo schema per ASP.NET Core 2,0 Identity con
 
 ## <a name="migrate-the-schema"></a>Migrazione dello schema
 
-Esistono differenze minime nelle strutture e nei campi della tabella sia per l'appartenenza che per ASP.NET Core Identity . Il modello è stato modificato in modo sostanziale per l'autenticazione/autorizzazione con ASP.NET e app ASP.NET Core. Gli oggetti chiave ancora utilizzati con Identity sono *utenti* e *ruoli*. Di seguito sono riportate le tabelle di mapping per *utenti*, *ruoli*e *UserRoles*.
+Esistono differenze minime nelle strutture e nei campi della tabella sia per l'appartenenza che per ASP.NET Core Identity . Il modello è stato modificato in modo sostanziale per l'autenticazione/autorizzazione con ASP.NET e app ASP.NET Core. Gli oggetti chiave ancora utilizzati con Identity sono *utenti* e *ruoli* . Di seguito sono riportate le tabelle di mapping per *utenti* , *ruoli* e *UserRoles* .
 
 ### <a name="users"></a>Utenti
 
@@ -106,7 +107,7 @@ Esistono differenze minime nelle strutture e nei campi della tabella sia per l'a
 |`RoleId`                 |`string`  |`RoleId`      |`string`                   |
 |`UserId`                 |`string`  |`UserId`      |`string`                   |
 
-Quando si crea uno script di migrazione per *utenti* e *ruoli*, fare riferimento alle tabelle di mapping precedenti. Nell'esempio seguente si presuppone che si disponga di due database in un server di database. Un database contiene i dati e lo schema di appartenenza ASP.NET esistente. L'altro database di * Identity esempio principale* è stato creato usando i passaggi descritti in precedenza. Per ulteriori informazioni, sono inclusi i commenti inline.
+Quando si crea uno script di migrazione per *utenti* e *ruoli* , fare riferimento alle tabelle di mapping precedenti. Nell'esempio seguente si presuppone che si disponga di due database in un server di database. Un database contiene i dati e lo schema di appartenenza ASP.NET esistente. L'altro database di *Identity esempio principale* è stato creato usando i passaggi descritti in precedenza. Per ulteriori informazioni, sono inclusi i commenti inline.
 
 ```sql
 -- THIS SCRIPT NEEDS TO RUN FROM THE CONTEXT OF THE MEMBERSHIP DB
@@ -200,7 +201,7 @@ Al termine dello script precedente, l' ASP.NET Core Identity app creata in prece
 > [!NOTE]
 > Se il sistema di appartenenze avesse utenti con nomi utente che non corrispondono all'indirizzo di posta elettronica, le modifiche sono necessarie per l'app creata in precedenza per soddisfare questo problema. Il modello predefinito prevede che `UserName` e `Email` siano uguali. Per le situazioni in cui sono diverse, è necessario modificare il processo di accesso per usare `UserName` anziché `Email` .
 
-Nella `PageModel` pagina di accesso di, che si trova in *Pages\Account\Login.cshtml.cs*, rimuovere l' `[EmailAddress]` attributo dalla proprietà *email* . Rinominare il *nome utente*. Questa operazione richiede una modifica ovunque `EmailAddress` sia indicato, nella *vista* e in *PageModel*. Il risultato è simile al seguente:
+Nella `PageModel` pagina di accesso di, che si trova in *Pages\Account\Login.cshtml.cs* , rimuovere l' `[EmailAddress]` attributo dalla proprietà *email* . Rinominare il *nome utente* . Questa operazione richiede una modifica ovunque `EmailAddress` sia indicato, nella *vista* e in *PageModel* . Il risultato è simile al seguente:
 
  ![Accesso fisso](identity/_static/fixed-login.png)
 

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: f5efb121b95d84876c9029cf06a96f827137e660
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 951a8ada57ae523f362313426c0279556eb8339b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631447"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050615"
 ---
 # <a name="part-7-add-a-new-field-to-a-no-locrazor-page-in-aspnet-core"></a>Parte 7, aggiungere un nuovo campo a una Razor pagina in ASP.NET Core
 
@@ -94,7 +95,7 @@ Compilare la soluzione.
 
 ### <a name="add-a-migration-for-the-rating-field"></a>Aggiungere una migrazione per il campo Rating
 
-Dal menu **Strumenti** selezionare **Gestione pacchetti NuGet > Console di Gestione pacchetti**.
+Dal menu **Strumenti** selezionare **Gestione pacchetti NuGet > Console di Gestione pacchetti** .
 Nella Console di Gestione pacchetti immettere i comandi seguenti:
 
 ```powershell
@@ -118,9 +119,9 @@ Se si eliminano tutti i record nel database, il database viene inizializzato e v
 Un'altra opzione è quella di eliminare il database e usare le migrazioni per ricreare il database. Per eliminare il database da SSOX:
 
 * Selezionare il database in SSOX.
-* Fare clic con il pulsante destro del mouse sul database e selezionare *Elimina*.
-* Selezionare **Chiudi connessioni esistenti**.
-* Selezionare **OK**.
+* Fare clic con il pulsante destro del mouse sul database e selezionare *Elimina* .
+* Selezionare **Chiudi connessioni esistenti** .
+* Selezionare **OK** .
 * In [PMC](xref:tutorials/razor-pages/new-field#pmc)aggiornare il database:
 
   ```powershell
@@ -219,7 +220,7 @@ Compilare la soluzione.
 
 ### <a name="add-a-migration-for-the-rating-field"></a>Aggiungere una migrazione per il campo Rating
 
-Dal menu **Strumenti** selezionare **Gestione pacchetti NuGet > Console di Gestione pacchetti**.
+Dal menu **Strumenti** selezionare **Gestione pacchetti NuGet > Console di Gestione pacchetti** .
 Nella Console di Gestione pacchetti immettere i comandi seguenti:
 
 ```powershell
@@ -243,9 +244,9 @@ Se si eliminano tutti i record nel database, il database viene inizializzato e v
 Un'altra opzione è quella di eliminare il database e usare le migrazioni per ricreare il database. Per eliminare il database da SSOX:
 
 * Selezionare il database in SSOX.
-* Fare clic con il pulsante destro del mouse sul database e selezionare *Elimina*.
-* Selezionare **Chiudi connessioni esistenti**.
-* Selezionare **OK**.
+* Fare clic con il pulsante destro del mouse sul database e selezionare *Elimina* .
+* Selezionare **Chiudi connessioni esistenti** .
+* Selezionare **OK** .
 * In [PMC](xref:tutorials/razor-pages/new-field#pmc)aggiornare il database:
 
   ```powershell
@@ -258,7 +259,7 @@ Un'altra opzione è quella di eliminare il database e usare le migrazioni per ri
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Eliminare il database e usare le migrazioni per ricreare il database. Per eliminare il database, eliminare il file di database (*MvcMovie.db*). Eseguire quindi il comando `ef database update`:
+Eliminare il database e usare le migrazioni per ricreare il database. Per eliminare il database, eliminare il file di database ( *MvcMovie.db* ). Eseguire quindi il comando `ef database update`:
 
 ```dotnetcli
 dotnet ef database update

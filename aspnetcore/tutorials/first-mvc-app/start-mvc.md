@@ -5,6 +5,7 @@ description: Informazioni introduttive su ASP.NET Core MVC.
 ms.author: riande
 ms.date: 10/16/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 177112106d143a6826c1f927aac807da0aa9f2b4
-ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
+ms.openlocfilehash: cf17aaf8eff342c378536d4f635e09b936459bee
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/16/2020
-ms.locfileid: "92113829"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052903"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introduzione ad ASP.NET Core MVC
 
@@ -65,17 +66,17 @@ Al termine di queste operazioni si ottiene un'app che può gestire e visualizzar
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Dal menu di Visual Studio selezionare **Crea un nuovo progetto**.
+* Dal menu di Visual Studio selezionare **Crea un nuovo progetto** .
 
-* Selezionare **ASP.NET Core applicazione Web** > **Avanti**.
+* Selezionare **ASP.NET Core applicazione Web** > **Avanti** .
 
 ![nuova applicazione Web ASP.NET Core](start-mvc/_static/np_2.1.png)
 
-* Assegnare al progetto il nome **MvcMovie** e selezionare **Crea**. È importante assegnare al progetto il nome **MvcMovie**, in modo che quando si copia il codice lo spazio dei nomi corrisponda.
+* Assegnare al progetto il nome **MvcMovie** e selezionare **Crea** . È importante assegnare al progetto il nome **MvcMovie** , in modo che quando si copia il codice lo spazio dei nomi corrisponda.
 
   ![nuova applicazione Web ASP.NET Core](start-mvc/_static/config.png)
 
-* Selezionare **applicazione Web (Model-View-Controller)**. Nelle caselle a discesa selezionare **.NET Core** e **ASP.NET Core 3,1**, quindi selezionare **Crea**.
+* Selezionare **applicazione Web (Model-View-Controller)** . Nelle caselle a discesa selezionare **.NET Core** e **ASP.NET Core 3,1** , quindi selezionare **Crea** .
 
 ![Finestra di dialogo Nuovo progetto, .NET Core nel riquadro sinistro, Web ASP.NET Core ](start-mvc/_static/new_project30.png)
 
@@ -96,27 +97,27 @@ Nell'esercitazione si presuppone una familarità con Visual Studio Code. Vedere 
 
   * Viene visualizzata una finestra di dialogo con le **risorse necessarie per la compilazione e il debug non è presente in ' MvcMovie '. Aggiungerli?**  Selezionare **Sì**
 
-  * `dotnet new mvc -o MvcMovie`: crea un nuovo progetto ASP.NET Core MVC nella cartella *MvcMovie*.
+  * `dotnet new mvc -o MvcMovie`: crea un nuovo progetto ASP.NET Core MVC nella cartella *MvcMovie* .
   * `code -r MvcMovie`: Carica il file di progetto *MvcMovie. csproj* in Visual Studio Code.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Selezionare **File** > **Nuova soluzione**.
+* Selezionare **File** > **Nuova soluzione** .
 
   ![Nuova soluzione macOS](start-mvc/_static/new_project_vsmac.png)
 
-* In Visual Studio per Mac precedente alla versione 8,6, selezionare applicazione Web **.NET Core**  >  **app**  >  **(Model-View-Controller)**  >  **Avanti**. Nella versione 8,6 o successive selezionare **Web e applicazione console**  >  **app**  >  **Web (Model-View-Controller)**  >  **Avanti**.
+* In Visual Studio per Mac precedente alla versione 8,6, selezionare applicazione Web **.NET Core**  >  **app**  >  **(Model-View-Controller)**  >  **Avanti** . Nella versione 8,6 o successive selezionare **Web e applicazione console**  >  **app**  >  **Web (Model-View-Controller)**  >  **Avanti** .
 
   ![selezione del modello di app Web macOS](start-mvc/_static/web_app_template_vsmac.png)
 
 * Nella finestra di dialogo **Configura nuova applicazione Web** :
 
-  * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
-  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione**, selezionare la versione 3. x più recente.
+  * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione** .
+  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione** , selezionare la versione 3. x più recente.
 
-  Selezionare **Avanti**.
+  Selezionare **Avanti** .
 
-* Denominare il progetto **MvcMovie**, quindi selezionare **Crea**.
+* Denominare il progetto **MvcMovie** , quindi selezionare **Crea** .
 
   ![macOS nome del progetto](start-mvc/_static/MvcMovie.png)
 
@@ -132,11 +133,11 @@ Selezionare **CTRL+F5** per eseguire l'app in modalità non di debug.
 
 * Visual Studio avvia [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) ed esegue l'app. Si noti che la barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, viene usata una porta casuale per il server Web.
 * Se si avvia l'app con CTRL+F5 (modalità non di debug) sarà possibile apportare modifiche al codice, salvare il file, aggiornare il browser e visualizzare le modifiche del codice. Molti sviluppatori preferiscono usare la modalità non di debug per avviare l'app rapidamente e visualizzare le modifiche.
-* È possibile scegliere se avviare l'app in modalità di debug o non di debug nella voce di menu **Debug**:
+* È possibile scegliere se avviare l'app in modalità di debug o non di debug nella voce di menu **Debug** :
 
   ![Menu Debug](start-mvc/_static/debug_menu.png)
 
-* È possibile eseguire il debug dell'app toccando il pulsante **IIS Express**.
+* È possibile eseguire il debug dell'app toccando il pulsante **IIS Express** .
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
@@ -163,7 +164,7 @@ Selezionare **Esegui**  >  **Avvia senza eseguire debug** per avviare l'app. Vis
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
 * La barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, viene usata una porta casuale per il server Web. Quando si esegue l'app verrà visualizzato un numero di porta diverso.
-* È possibile scegliere se avviare l'app in modalità di debug o non di dal menu **Esegui**.
+* È possibile scegliere se avviare l'app in modalità di debug o non di dal menu **Esegui** .
 
   La figura seguente mostra l'app:
 
@@ -217,18 +218,18 @@ Al termine di queste operazioni si ottiene un'app che può gestire e visualizzar
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Dal menu di Visual Studio selezionare **Crea un nuovo progetto**.
+* Dal menu di Visual Studio selezionare **Crea un nuovo progetto** .
 
-* Selezionare **Applicazione Web ASP.NET Core** e quindi selezionare **Avanti**.
+* Selezionare **Applicazione Web ASP.NET Core** e quindi selezionare **Avanti** .
 
 ![nuova applicazione Web ASP.NET Core](start-mvc/_static/np_2.1.png)
 
-* Assegnare al progetto il nome **MvcMovie** e selezionare **Crea**. È importante assegnare al progetto il nome **MvcMovie**, in modo che quando si copia il codice lo spazio dei nomi corrisponda.
+* Assegnare al progetto il nome **MvcMovie** e selezionare **Crea** . È importante assegnare al progetto il nome **MvcMovie** , in modo che quando si copia il codice lo spazio dei nomi corrisponda.
 
   ![nuova applicazione Web ASP.NET Core](start-mvc/_static/config.png)
 
 
-* Selezionare **Applicazione Web (MVC)** e quindi selezionare **Crea**.
+* Selezionare **Applicazione Web (MVC)** e quindi selezionare **Crea** .
 
 ![Finestra di dialogo Nuovo progetto, .NET Core nel riquadro sinistro, Web ASP.NET Core ](start-mvc/_static/new_project22-21.png)
 
@@ -249,25 +250,25 @@ Nell'esercitazione si presuppone una familarità con Visual Studio Code. Vedere 
 
   * Viene visualizzata una finestra di dialogo con le **risorse necessarie per la compilazione e il debug non è presente in ' MvcMovie '. Aggiungerli?**  Selezionare **Sì**
 
-  * `dotnet new mvc -o MvcMovie`: crea un nuovo progetto ASP.NET Core MVC nella cartella *MvcMovie*.
+  * `dotnet new mvc -o MvcMovie`: crea un nuovo progetto ASP.NET Core MVC nella cartella *MvcMovie* .
   * `code -r MvcMovie`: Carica il file di progetto *MvcMovie. csproj* in Visual Studio Code.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Selezionare **File** > **Nuova soluzione**.
+* Selezionare **File** > **Nuova soluzione** .
 
   ![Nuova soluzione macOS](./start-mvc/_static/new_project_vsmac.png)
 
-* In Visual Studio per Mac precedente alla versione 8,6, selezionare applicazione Web **.NET Core**  >  **app**  >  **(Model-View-Controller)**  >  **Avanti**. Nella versione 8,6 o successive selezionare **Web e applicazione console**  >  **app**  >  **Web (Model-View-Controller)**  >  **Avanti**.
+* In Visual Studio per Mac precedente alla versione 8,6, selezionare applicazione Web **.NET Core**  >  **app**  >  **(Model-View-Controller)**  >  **Avanti** . Nella versione 8,6 o successive selezionare **Web e applicazione console**  >  **app**  >  **Web (Model-View-Controller)**  >  **Avanti** .
 
 * Nella finestra di dialogo **Configura nuova applicazione Web** :
 
-  * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
-  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione**, selezionare la versione 2. x più recente.
+  * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione** .
+  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione** , selezionare la versione 2. x più recente.
 
-  Selezionare **Avanti**.
+  Selezionare **Avanti** .
 
-* Denominare il progetto **MvcMovie**, quindi selezionare **Crea**.
+* Denominare il progetto **MvcMovie** , quindi selezionare **Crea** .
 
 ---
 
@@ -281,11 +282,11 @@ Selezionare **CTRL+F5** per eseguire l'app in modalità non di debug.
 
 * Visual Studio avvia [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) ed esegue l'app. Si noti che la barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, viene usata una porta casuale per il server Web.
 * Se si avvia l'app con CTRL+F5 (modalità non di debug) sarà possibile apportare modifiche al codice, salvare il file, aggiornare il browser e visualizzare le modifiche del codice. Molti sviluppatori preferiscono usare la modalità non di debug per avviare l'app rapidamente e visualizzare le modifiche.
-* È possibile scegliere se avviare l'app in modalità di debug o non di debug nella voce di menu **Debug**:
+* È possibile scegliere se avviare l'app in modalità di debug o non di debug nella voce di menu **Debug** :
 
   ![Menu Debug](start-mvc/_static/debug_menu.png)
 
-* È possibile eseguire il debug dell'app toccando il pulsante **IIS Express**.
+* È possibile eseguire il debug dell'app toccando il pulsante **IIS Express** .
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
@@ -322,7 +323,7 @@ Selezionare **Esegui**  >  **Avvia senza eseguire debug** per avviare l'app. Vis
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
 * La barra degli indirizzi visualizza `localhost:port#` e non `example.com` o simili. Ciò accade perché `localhost` è il nome host standard per il computer locale. Quando Visual Studio crea un progetto Web, viene usata una porta casuale per il server Web. Quando si esegue l'app verrà visualizzato un numero di porta diverso.
-* È possibile scegliere se avviare l'app in modalità di debug o non di dal menu **Esegui**.
+* È possibile scegliere se avviare l'app in modalità di debug o non di dal menu **Esegui** .
 
 * Selezionare **Accetto** per acconsentire al rilevamento. Questa app non tiene traccia delle informazioni personali. Il codice generato del modello include asset che consentono di soddisfare il [Regolamento generale sulla protezione dei dati (GDPR)](xref:security/gdpr).
 

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: b5260084c2fdd296168e918f06d8b54faf1865d5
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: e473da9a7cbd91a601ad4af0c7c02c7f576f348c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722657"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051122"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Applicare HTTPS in ASP.NET Core
 
@@ -113,7 +114,7 @@ Specificare la porta HTTPS usando uno degli approcci seguenti:
 
   * Nella configurazione host.
   * Impostando la `ASPNETCORE_HTTPS_PORT` variabile di ambiente.
-  * Aggiungendo una voce di livello principale in *appsettings.js*in:
+  * Aggiungendo una voce di primo livello in *appsettings.json* :
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
@@ -127,7 +128,7 @@ Specificare la porta HTTPS usando uno degli approcci seguenti:
 
   * Nella configurazione host.
   * Impostando la `ASPNETCORE_HTTPS_PORT` variabile di ambiente.
-  * Aggiungendo una voce di livello principale in *appsettings.js*in:
+  * Aggiungendo una voce di primo livello in *appsettings.json* :
 
     [!code-json[](enforcing-ssl/sample-snapshot/2.x/appsettings.json?highlight=2)]
 
@@ -135,7 +136,7 @@ Specificare la porta HTTPS usando uno degli approcci seguenti:
 
 ::: moniker-end
 
-* In sviluppo impostare un URL HTTPS in *launchsettings.json*. Abilitare HTTPS quando viene usato IIS Express.
+* In sviluppo impostare un URL HTTPS in *launchsettings.json* . Abilitare HTTPS quando viene usato IIS Express.
 
 * Configurare un endpoint URL HTTPS per una distribuzione perimetrale pubblica del server [gheppio](xref:fundamentals/servers/kestrel) o del server [HTTP.sys](xref:fundamentals/servers/httpsys) . L'app usa solo **una porta HTTPS** . Il middleware individua la porta tramite <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
 
@@ -192,7 +193,7 @@ Per impostazione predefinita, il middleware Invia un [Status307TemporaryRedirect
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Quando si configurano i servizi in *Startup.cs*:
+Quando si configurano i servizi in *Startup.cs* :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -213,7 +214,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker range="<= aspnetcore-2.2"
 
-Quando si configurano i servizi in *Startup.cs*:
+Quando si configurano i servizi in *Startup.cs* :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -324,7 +325,7 @@ Deselezionare la casella **di controllo Configura per HTTPS** .
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli) 
 
-Usare l'opzione `--no-https`. Ad esempio
+Usare l'opzione `--no-https`. Ad esempio:
 
 ```dotnetcli
 dotnet new webapp --no-https
@@ -412,7 +413,7 @@ I comandi precedenti risolvono la maggior parte dei problemi di attendibilità d
 ### <a name="docker---certificate-not-trusted"></a>Docker: certificato non attendibile
 
 * Eliminare la cartella *C:\Users \{ utente} \AppData\Roaming\ASP.NET\Https*
-* Pulire la soluzione. Eliminare le cartelle *bin* e *obj*.
+* Pulire la soluzione. Eliminare le cartelle *bin* e *obj* .
 * Riavviare lo strumento di sviluppo. Ad esempio, Visual Studio, Visual Studio Code o Visual Studio per Mac.
 
 ### <a name="windows---certificate-not-trusted"></a>Windows: certificato non attendibile

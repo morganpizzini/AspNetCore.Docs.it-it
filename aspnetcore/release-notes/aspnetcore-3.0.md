@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: a1cbd8f434214ce488fc3febe63d8aaf54db71a3
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 235daac5c08248ca2052de6b44e66a8162ce23ad
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722787"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051239"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Novità di ASP.NET Core 3,0
 
@@ -218,7 +219,7 @@ public class ChatHub : Hub
 
 La creazione dei `DomainRestricted` criteri può implicare:
 
-* In *Startup.cs*aggiungere il nuovo criterio.
+* In *Startup.cs* aggiungere il nuovo criterio.
 * Fornire il `DomainRestrictedRequirement` requisito personalizzato come parametro.
 * Registrazione `DomainRestricted` con il middleware di autorizzazione.
 
@@ -512,7 +513,7 @@ Nelle versioni precedenti di ASP.NET Core, la chiamata di <xref:Microsoft.AspNet
 
 Questo scenario è stato risolto in ASP.NET Core 3,0. L'host Abilita il [middleware delle intestazioni con inoltri](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) quando la `ASPNETCORE_FORWARDEDHEADERS_ENABLED` variabile di ambiente è impostata su `true` . `ASPNETCORE_FORWARDEDHEADERS_ENABLED` viene impostato su `true` nelle immagini del contenitore.
 
-## <a name="performance-improvements"></a>Miglioramenti delle prestazioni
+## <a name="performance-improvements"></a>Miglioramenti alle prestazioni
 
 ASP.NET Core 3,0 include numerosi miglioramenti che consentono di ridurre l'utilizzo della memoria e migliorare la velocità effettiva:
 

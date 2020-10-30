@@ -5,6 +5,7 @@ description: Gli schemi dei criteri di autenticazione rendono più semplice aver
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/policyschemes
-ms.openlocfilehash: 60ac9914ef811a705c61ab3b2bec61643acc6ec0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 63d931c926c9660f5d68d5a2ce292bf57efdb49c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634982"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053228"
 ---
 # <a name="policy-schemes-in-aspnet-core"></a>Schemi di criteri in ASP.NET Core
 
@@ -37,7 +38,7 @@ Tutti gli schemi di autenticazione che usano Derived <xref:Microsoft.AspNetCore.
 
 [!code-csharp[sample](policyschemes/samples/AuthenticationSchemeOptions.cs?name=snippet)]
 
-## <a name="examples"></a>Esempi
+## <a name="examples"></a>Esempio
 
 Nell'esempio seguente viene illustrato uno schema di livello superiore che combina schemi di livello inferiore. Google Authentication viene usato per le richieste e cookie l'autenticazione viene usata per tutte le altre operazioni:
 

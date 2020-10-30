@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/gdpr
-ms.openlocfilehash: 35a12cb8d2a9617e51d886e798cff5ee60b0a8ad
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ec65a2c8362c15716bebd6b22f5639785ba74c98
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634709"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051005"
 ---
 # <a name="eu-general-data-protection-regulation-gdpr-support-in-aspnet-core"></a>Supporto per Regolamento generale sulla protezione dei dati UE (GDPR) in ASP.NET Core
 
@@ -46,7 +47,7 @@ Per abilitare la cookie funzionalità di consenso predefinita come quella dispon
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_Layout.cshtml?name=snippet&highlight=4)]
 
-* Aggiungere il file * \_ Cookie ConsentPartial. cshtml* al progetto:
+* Aggiungere il file *\_ Cookie ConsentPartial. cshtml* al progetto:
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_CookieConsentPartial.cshtml)]
 
@@ -71,8 +72,8 @@ L' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetco
 Razor Le pagine e i progetti MVC creati con i modelli di progetto includono il supporto GDPR seguente:
 
 * I [ Cookie criteri](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) [ Cookie PolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) e Use vengono impostati nella `Startup` classe.
-* [Visualizzazione parziale](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper) * \_ Cookie ConsentPartial. cshtml* . In questo file è incluso un pulsante **Accept** . Quando l'utente fa clic sul pulsante **Accept** , viene fornito il consenso per l'archiviazione cookie .
-* La pagina *pages/privacy. cshtml* o *views/Home/Privacy. cshtml* Visualizza una pagina che illustra in dettaglio l'informativa sulla privacy del sito. Il file * \_ Cookie ConsentPartial. cshtml* genera un collegamento alla pagina privacy.
+* [Visualizzazione parziale](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper) *\_ Cookie ConsentPartial. cshtml* . In questo file è incluso un pulsante **Accept** . Quando l'utente fa clic sul pulsante **Accept** , viene fornito il consenso per l'archiviazione cookie .
+* La pagina *pages/privacy. cshtml* o *views/Home/Privacy. cshtml* Visualizza una pagina che illustra in dettaglio l'informativa sulla privacy del sito. Il file *\_ Cookie ConsentPartial. cshtml* genera un collegamento alla pagina privacy.
 * Per le app create con singoli account utente, la pagina Gestisci fornisce collegamenti per scaricare ed eliminare [i dati utente personali](#pd).
 
 ### <a name="no-loccookiepolicyoptions-and-useno-loccookiepolicy"></a>CookiePolicyOptions e criteri di utilizzo Cookie
@@ -87,13 +88,13 @@ Razor Le pagine e i progetti MVC creati con i modelli di progetto includono il s
 
 ### <a name="_no-loccookieconsentpartialcshtml-partial-view"></a>\_CookieVisualizzazione parziale ConsentPartial. cshtml
 
-Visualizzazione parziale * \_ Cookie ConsentPartial. cshtml* :
+Visualizzazione parziale *\_ Cookie ConsentPartial. cshtml* :
 
 [!code-cshtml[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 Questa parte parziale:
 
-* Ottiene lo stato di rilevamento per l'utente. Se l'app è configurata in modo da richiedere il consenso, l'utente deve fornire il consenso prima di cookie poter tenere traccia di s. Se è necessario il consenso, il cookie Pannello di consenso viene fissato nella parte superiore della barra di spostamento creata dal file * \_ layout. cshtml* .
+* Ottiene lo stato di rilevamento per l'utente. Se l'app è configurata in modo da richiedere il consenso, l'utente deve fornire il consenso prima di cookie poter tenere traccia di s. Se è necessario il consenso, il cookie Pannello di consenso viene fissato nella parte superiore della barra di spostamento creata dal file *\_ layout. cshtml* .
 * Fornisce un `<p>` elemento HTML per riepilogare la privacy e i cookie criteri di utilizzo.
 * Fornisce un collegamento alla pagina privacy o alla visualizzazione in cui è possibile visualizzare i dettagli dell'informativa sulla privacy del sito.
 
@@ -121,7 +122,7 @@ Il [provider TempData](xref:fundamentals/app-state#tempdata) cookie non è essen
 
 ASP.NET Core app create con account utente singoli includono il codice per scaricare ed eliminare i dati personali.
 
-Selezionare il nome utente e quindi selezionare **dati personali**:
+Selezionare il nome utente e quindi selezionare **dati personali** :
 
 ![Pagina Gestisci dati personali](gdpr/_static/pd.png)
 

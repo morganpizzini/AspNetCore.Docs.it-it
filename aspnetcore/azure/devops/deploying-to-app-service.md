@@ -6,6 +6,7 @@ ms.author: casoper
 ms.custom: devx-track-csharp, mvc, seodec18, devx-track-azurecli
 ms.date: 10/24/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: e6d8b4bcbbbe909fde971a8c706287654fcc98ba
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: 52c4905ecb3a76f1dd10629f834b2b541b698774
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847624"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052357"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Distribuire un'app nel servizio app
 
@@ -120,13 +121,13 @@ Per distribuire l'app, è necessario creare un' [app Web](/azure/app-service/app
     az webapp deployment user set --user-name REPLACE_WITH_USER_NAME --password REPLACE_WITH_PASSWORD
     ```
 
-    f. Configurare l'app Web per accettare le distribuzioni da git locale e visualizzare l' *URL di distribuzione git*. **Si noti questo URL per il riferimento in un secondo momento**.
+    f. Configurare l'app Web per accettare le distribuzioni da git locale e visualizzare l' *URL di distribuzione git* . **Si noti questo URL per il riferimento in un secondo momento** .
 
     ```azurecli
     echo Git deployment URL: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --query url --output tsv)
     ```
 
-    g. Visualizzare l' *URL dell'app Web*. Passare a questo URL per visualizzare l'app Web vuota. **Si noti questo URL per il riferimento in un secondo momento**.
+    g. Visualizzare l' *URL dell'app Web* . Passare a questo URL per visualizzare l'app Web vuota. **Si noti questo URL per il riferimento in un secondo momento** .
 
     ```console
     echo Web app URL: http://$webappname.azurewebsites.net
@@ -157,14 +158,14 @@ Per distribuire l'app, è necessario creare un' [app Web](/azure/app-service/app
 L'app è già stata distribuita dalla shell dei comandi. Usare gli strumenti integrati di Visual Studio per distribuire un aggiornamento nell'app. In background, Visual Studio esegue la stessa operazione degli strumenti da riga di comando, ma all'interno dell'interfaccia utente familiare di Visual Studio.
 
 1. Aprire *SimpleFeedReader. sln* in Visual Studio.
-2. In Esplora soluzioni aprire *Pages\Index.cshtml*. Cambiare `<h2>Simple Feed Reader</h2>` in `<h2>Simple Feed Reader - V2</h2>`.
+2. In Esplora soluzioni aprire *Pages\Index.cshtml* . Cambiare `<h2>Simple Feed Reader</h2>` in `<h2>Simple Feed Reader - V2</h2>`.
 3. Premere **CTRL** + **MAIUSC** + **B** per compilare l'app.
-4. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto e scegliere **pubblica**.
+4. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto e scegliere **pubblica** .
 
     ![Screenshot che mostra il pulsante destro del mouse, pubblica](./media/deploying-to-app-service/publish.png)
-5. Visual Studio può creare una nuova risorsa del servizio app, ma questo aggiornamento verrà pubblicato sulla distribuzione esistente. Nella finestra di dialogo selezionare **una destinazione di pubblicazione** selezionare **servizio app** dall'elenco a sinistra e quindi selezionare **Seleziona esistente**. Fare clic su **Pubblica**.
+5. Visual Studio può creare una nuova risorsa del servizio app, ma questo aggiornamento verrà pubblicato sulla distribuzione esistente. Nella finestra di dialogo selezionare **una destinazione di pubblicazione** selezionare **servizio app** dall'elenco a sinistra e quindi selezionare **Seleziona esistente** . Fare clic su **Pubblica** .
 6. Nella finestra di dialogo **servizio app** confermare che l'account Microsoft o dell'organizzazione usato per creare la sottoscrizione di Azure sia visualizzato in alto a destra. In caso contrario, fare clic sull'elenco a discesa e aggiungerlo.
-7. Verificare che sia selezionata la **sottoscrizione** di Azure corretta. Per **Visualizza**, selezionare **gruppo di risorse**. Espandere il gruppo di risorse **AzureTutorial** , quindi selezionare l'app Web esistente. Fare clic su **OK**.
+7. Verificare che sia selezionata la **sottoscrizione** di Azure corretta. Per **Visualizza** , selezionare **gruppo di risorse** . Espandere il gruppo di risorse **AzureTutorial** , quindi selezionare l'app Web esistente. Fare clic su **OK** .
 
     ![Screenshot che mostra la finestra di dialogo Pubblica servizio app](./media/deploying-to-app-service/publish-dialog.png)
 
@@ -179,19 +180,19 @@ Gli slot di distribuzione supportano la gestione temporanea delle modifiche senz
 1. Accedere al [Azure cloud Shell](https://shell.azure.com/bash), se non è già stato effettuato l'accesso.
 2. Creare lo slot di staging.
 
-    a. Creare uno slot di distribuzione con il nome *staging*.
+    a. Creare uno slot di distribuzione con il nome *staging* .
 
     ```azurecli
     az webapp deployment slot create --name $webappname --resource-group AzureTutorial --slot staging
     ```
 
-    b. Configurare lo slot di staging per usare la distribuzione da git locale e ottenere l'URL di distribuzione di **gestione temporanea** . **Si noti questo URL per il riferimento in un secondo momento**.
+    b. Configurare lo slot di staging per usare la distribuzione da git locale e ottenere l'URL di distribuzione di **gestione temporanea** . **Si noti questo URL per il riferimento in un secondo momento** .
 
     ```azurecli
     echo Git deployment URL for staging: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --slot staging --query url --output tsv)
     ```
 
-    c. Visualizzare l'URL dello slot di gestione temporanea. Passare all'URL per visualizzare lo slot di gestione temporanea vuoto. **Si noti questo URL per il riferimento in un secondo momento**.
+    c. Visualizzare l'URL dello slot di gestione temporanea. Passare all'URL per visualizzare lo slot di gestione temporanea vuoto. **Si noti questo URL per il riferimento in un secondo momento** .
 
     ```console
     echo Staging web app URL: http://$webappname-staging.azurewebsites.net
@@ -254,4 +255,4 @@ Nella sezione successiva si apprenderà come creare una pipeline DevOps con Azur
 * [Panoramica di App Web](/azure/app-service/app-service-web-overview)
 * [Creare un'app Web .NET Core e database SQL nel Servizio app di Azure](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 * [Configurazione delle credenziali per la distribuzione del Servizio app di Azure](/azure/app-service/app-service-deployment-credentials)
-* [Configurare gli ambienti di gestione temporanea in Servizio app di Azure](/azure/app-service/web-sites-staged-publishing)
+* [Configurare gli ambienti di gestione temporanea nel servizio app di Azure](/azure/app-service/web-sites-staged-publishing)

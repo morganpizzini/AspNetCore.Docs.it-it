@@ -5,6 +5,7 @@ description: Informazioni su come creare un'app ASP.NET Core con la conferma del
 ms.author: riande
 ms.date: 03/11/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: d6ea37ceb83ffbaa94187e0c541c79428594e4b4
-ms.sourcegitcommit: 2039e60eb7b482da8298f82dcd5eda27cf747f32
+ms.openlocfilehash: 91148c67d5dc0bf97e2f926f50dcff5dd0708f4b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88906449"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052318"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Account confirmation and password recovery in ASP.NET Core (Conferma dell'account e recupero della password in ASP.NET Core)
 
@@ -53,10 +54,10 @@ dotnet run
 
 Eseguire l'app, selezionare il collegamento **Register** e registrare un utente. Una volta effettuata la registrazione, si verrà reindirizzati alla `/Identity/Account/RegisterConfirmation` pagina a contenente un collegamento per simulare la conferma della posta elettronica:
 
-* Selezionare il collegamento `Click here to confirm your account`.
+* Selezionare il `Click here to confirm your account` collegamento.
 * Selezionare il collegamento di **accesso** e accedere con le stesse credenziali.
 * Selezionare il `Hello YourEmail@provider.com!` collegamento per reindirizzare l'utente alla `/Identity/Account/Manage/PersonalData` pagina.
-* Selezionare la scheda **Personal Data (dati personali** ) a sinistra e quindi fare clic su **Delete (Elimina**).
+* Selezionare la scheda **Personal Data (dati personali** ) a sinistra e quindi fare clic su **Delete (Elimina** ).
 
 ### <a name="configure-an-email-provider"></a>Configurare un provider di posta elettronica
 
@@ -64,7 +65,7 @@ In questa esercitazione viene usato [SendGrid](https://sendgrid.com) per inviare
 
 L'account SendGrid può richiedere l' [aggiunta di un mittente](https://sendgrid.com/docs/ui/sending-email/senders/).
 
-Creare una classe per recuperare la chiave di posta elettronica sicura. Per questo esempio, creare *Servizi/AuthMessageSenderOptions. cs*:
+Creare una classe per recuperare la chiave di posta elettronica sicura. Per questo esempio, creare *Servizi/AuthMessageSenderOptions. cs* :
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
@@ -155,7 +156,7 @@ Eseguire l'app Web e testare la conferma dell'account e il flusso di recupero de
 
 ### <a name="test-password-reset"></a>Testare la reimpostazione della password
 
-* Se è stato eseguito l'accesso, selezionare **Disconnetti**.
+* Se è stato eseguito l'accesso, selezionare **Disconnetti** .
 * Selezionare il collegamento **Accedi** e selezionare il collegamento **password dimenticata?** .
 * Immettere il messaggio di posta elettronica usato per registrare l'account.
 * Viene inviato un messaggio di posta elettronica con un collegamento per reimpostare la password. Controllare la posta elettronica e fare clic sul collegamento per reimpostare la password. Dopo che la password è stata reimpostata, è possibile accedere con l'indirizzo di posta elettronica e la nuova password.
@@ -266,7 +267,7 @@ Eseguire l'app, selezionare il collegamento **Register** e registrare un utente.
 
 Si noti che il `EmailConfirmed` campo della tabella è `False` .
 
-Potrebbe essere necessario usare nuovamente questo messaggio di posta elettronica nel passaggio successivo quando l'app invia un messaggio di posta elettronica di conferma. Fare clic con il pulsante destro del mouse sulla riga e scegliere **Elimina**. L'eliminazione dell'alias di posta elettronica rende più semplice nei passaggi seguenti.
+Potrebbe essere necessario usare nuovamente questo messaggio di posta elettronica nel passaggio successivo quando l'app invia un messaggio di posta elettronica di conferma. Fare clic con il pulsante destro del mouse sulla riga e scegliere **Elimina** . L'eliminazione dell'alias di posta elettronica rende più semplice nei passaggi seguenti.
 
 <a name="prevent-login-at-registration"></a>
 
@@ -286,7 +287,7 @@ Aggiornamento `Startup.ConfigureServices`  per richiedere un messaggio di posta 
 
 In questa esercitazione viene usato [SendGrid](https://sendgrid.com) per inviare messaggi di posta elettronica. Per inviare messaggi di posta elettronica sono necessari un account e una chiave di SendGrid. È possibile usare altri provider di posta elettronica. ASP.NET Core 2. x include `System.Net.Mail` , che consente di inviare messaggi di posta elettronica dall'app. È consigliabile usare SendGrid o un altro servizio di posta elettronica per inviare messaggi di posta elettronica. SMTP è difficile da proteggere e configurare correttamente.
 
-Creare una classe per recuperare la chiave di posta elettronica sicura. Per questo esempio, creare *Servizi/AuthMessageSenderOptions. cs*:
+Creare una classe per recuperare la chiave di posta elettronica sicura. Per questo esempio, creare *Servizi/AuthMessageSenderOptions. cs* :
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
@@ -355,7 +356,7 @@ Aggiungere il codice seguente al `ConfigureServices` metodo nel file *Startup.cs
 
 ## <a name="enable-account-confirmation-and-password-recovery"></a>Abilitare la conferma dell'account e il recupero della password
 
-Il modello include il codice per la conferma dell'account e il recupero della password. Trovare il `OnPostAsync` metodo in *aree/ Identity /pages/account/Register.cshtml.cs*.
+Il modello include il codice per la conferma dell'account e il recupero della password. Trovare il `OnPostAsync` metodo in *aree/ Identity /pages/account/Register.cshtml.cs* .
 
 Impedire l'accesso automatico degli utenti appena registrati impostando come commento la riga seguente:
 
@@ -385,7 +386,7 @@ La pagina Gestisci viene visualizzata con la scheda **profilo** selezionata. Vie
 
 ### <a name="test-password-reset"></a>Testare la reimpostazione della password
 
-* Se è stato eseguito l'accesso, selezionare **Disconnetti**.
+* Se è stato eseguito l'accesso, selezionare **Disconnetti** .
 * Selezionare il collegamento **Accedi** e selezionare il collegamento **password dimenticata?** .
 * Immettere il messaggio di posta elettronica usato per registrare l'account.
 * Viene inviato un messaggio di posta elettronica con un collegamento per reimpostare la password. Controllare la posta elettronica e fare clic sul collegamento per reimpostare la password. Dopo che la password è stata reimpostata, è possibile accedere con l'indirizzo di posta elettronica e la nuova password.

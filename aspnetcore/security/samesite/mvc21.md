@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/03/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: 38e5f0d1a2ecf5b46f73bf8574f73934a070880f
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 61878af0f9af72284b43ffd46cca42b0cf043326
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722605"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051551"
 ---
 # <a name="aspnet-core-21-mvc-samesite-no-loccookie-sample"></a>Esempio navigava sullostesso sito 2,1 MVC ASP.NET Core cookie
 
@@ -90,7 +91,7 @@ Nell'immagine precedente è possibile vedere che l'oggetto cookie creato dall'es
 
 Per intercettare i cookie , per modificare il valore None in base al relativo supporto nell'agente browser dell'utente, è necessario usare il `CookiePolicy` middleware. Questa deve essere inserita nella pipeline di richieste HTTP **prima** di tutti i componenti che scrivono cookie e configurati in `ConfigureServices()` .
 
-Per inserirlo nell'uso della pipeline `app.UseCookiePolicy()` nel `Configure(IApplicationBuilder, IHostingEnvironment)` metodo in [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Esempio:
+Per inserirlo nell'uso della pipeline `app.UseCookiePolicy()` nel `Configure(IApplicationBuilder, IHostingEnvironment)` metodo in [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Ad esempio:
 
 ```c#
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -120,7 +121,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-Nel `ConfigureServices(IServiceCollection services)` configurare il cookie criterio per la chiamata a una classe helper quando cookie vengono aggiunti o eliminati. Esempio:
+Nel `ConfigureServices(IServiceCollection services)` configurare il cookie criterio per la chiamata a una classe helper quando cookie vengono aggiunti o eliminati. Ad esempio:
 
 ```c#
 public void ConfigureServices(IServiceCollection services)

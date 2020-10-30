@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 07/20/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/index
-ms.openlocfilehash: 594d3dcbf55ed0a3476bb580df8e122cedb1dcd3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 51f76bc33d2da6097d26c1ffe17b1c93046a7b88
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634371"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052461"
 ---
 # <a name="create-web-apis-with-aspnet-core"></a>Creare API Web con ASP.NET Core
 
@@ -423,7 +424,7 @@ public IActionResult CreateProduct(Product product)
 
 Nel codice precedente, l' `CreateProduct` azione specifica il tipo di contenuto `application/xml` . Le richieste indirizzate a questa azione devono specificare un' `Content-Type` intestazione `application/xml` . Le richieste che non specificano un' `Content-Type` intestazione di `application/xml` generano una risposta del [tipo di supporto 415 non supportato](https://developer.mozilla.org/docs/Web/HTTP/Status/415) .
 
-L' `[Consumes]` attributo consente anche a un'azione di influenzare la selezione in base al tipo di contenuto di una richiesta in ingresso applicando un vincolo di tipo. Prendere in considerazione gli esempi seguenti:
+L' `[Consumes]` attributo consente anche a un'azione di influenzare la selezione in base al tipo di contenuto di una richiesta in ingresso applicando un vincolo di tipo. Si consideri l'esempio seguente:
 
 [!code-csharp[](index/samples/3.x/Controllers/ConsumesController.cs?name=snippet_Class)]
 

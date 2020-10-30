@@ -5,6 +5,7 @@ description: Usare Identity con un'app ASP.NET Core. Informazioni su come impost
 ms.author: riande
 ms.date: 7/15/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 1d14a3668192a165ea5025ae0575a8e3d6dfd8e4
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bfcef860beb07ab81dda1a10a1648491ae187bef
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633253"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052019"
 ---
 # <a name="introduction-to-no-locidentity-on-aspnet-core"></a>Introduzione a Identity on ASP.NET Core
 
@@ -61,10 +62,10 @@ Creare un progetto di applicazione Web di ASP.NET Core con singoli account utent
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Selezionare **file** > **nuovo** > **progetto**.
-* Selezionare **Applicazione Web ASP.NET Core**. Denominare il progetto **app Web 1** in modo che abbia lo stesso spazio dei nomi del download del progetto. Fare clic su **OK**.
-* Selezionare un' **applicazione Web**ASP.NET Core, quindi selezionare **Modifica autenticazione**.
-* Selezionare **singoli account utente** e fare clic su **OK**.
+* Selezionare **file** > **nuovo** > **progetto** .
+* Selezionare **Applicazione Web ASP.NET Core** . Denominare il progetto **app Web 1** in modo che abbia lo stesso spazio dei nomi del download del progetto. Fare clic su **OK** .
+* Selezionare un' **applicazione Web** ASP.NET Core, quindi selezionare **Modifica autenticazione** .
+* Selezionare **singoli account utente** e fare clic su **OK** .
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
@@ -142,7 +143,7 @@ Aggiungere i `Register` `Login` file,, `LogOut` e `RegisterConfirmation` . Segui
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-Se il progetto è stato creato con il nome **app Web 1**, eseguire i comandi seguenti. In caso contrario, utilizzare lo spazio dei nomi corretto per `ApplicationDbContext` :
+Se il progetto è stato creato con il nome **app Web 1** , eseguire i comandi seguenti. In caso contrario, utilizzare lo spazio dei nomi corretto per `ApplicationDbContext` :
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -189,7 +190,7 @@ Nel codice precedente, il codice `return RedirectToPage();` deve essere un reind
 
 [SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) Cancella le attestazioni dell'utente archiviate in un oggetto cookie .
 
-Post viene specificato nelle *pagine/Shared/_LoginPartial. cshtml*:
+Post viene specificato nelle *pagine/Shared/_LoginPartial. cshtml* :
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
@@ -295,10 +296,10 @@ Creare un progetto di applicazione Web di ASP.NET Core con singoli account utent
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Selezionare **file** > **nuovo** > **progetto**.
-* Selezionare **Applicazione Web ASP.NET Core**. Denominare il progetto **app Web 1** in modo che abbia lo stesso spazio dei nomi del download del progetto. Fare clic su **OK**.
-* Selezionare un' **applicazione Web**ASP.NET Core, quindi selezionare **Modifica autenticazione**.
-* Selezionare **singoli account utente** e fare clic su **OK**.
+* Selezionare **file** > **nuovo** > **progetto** .
+* Selezionare **Applicazione Web ASP.NET Core** . Denominare il progetto **app Web 1** in modo che abbia lo stesso spazio dei nomi del download del progetto. Fare clic su **OK** .
+* Selezionare un' **applicazione Web** ASP.NET Core, quindi selezionare **Modifica autenticazione** .
+* Selezionare **singoli account utente** e fare clic su **OK** .
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
@@ -366,7 +367,7 @@ Aggiungere i file di registro, di accesso e di disconnessione.
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-Se il progetto è stato creato con il nome **app Web 1**, eseguire i comandi seguenti. In caso contrario, utilizzare lo spazio dei nomi corretto per `ApplicationDbContext` :
+Se il progetto è stato creato con il nome **app Web 1** , eseguire i comandi seguenti. In caso contrario, utilizzare lo spazio dei nomi corretto per `ApplicationDbContext` :
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -408,7 +409,7 @@ Il collegamento **Disconnetti** richiama l' `LogoutModel.OnPost` azione.
 
 [SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) Cancella le attestazioni dell'utente archiviate in un oggetto cookie .
 
-Post viene specificato nelle *pagine/Shared/_LoginPartial. cshtml*:
+Post viene specificato nelle *pagine/Shared/_LoginPartial. cshtml* :
 
 [!code-cshtml[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 

@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 7/18/2020
 ms.custom: mvc, seodec18
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: 5f86e514ee6339888171d83ab3117e9b3fcf107e
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: accfd46fa72c33976f8af2a39267c993447e036e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627819"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051941"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>Creare un'app Web di ASP.NET Core con i dati utente protetti dall'autorizzazione
 
@@ -127,11 +128,11 @@ Impostare i criteri di autenticazione di fallback per richiedere l'autenticazion
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
-Il codice evidenziato precedente imposta i [criteri di autenticazione di fallback](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). Per i criteri di autenticazione di fallback è necessario autenticare ***tutti*** gli utenti, ad eccezione di Razor pagine, controller o metodi di azione con un attributo di autenticazione. Ad esempio, Razor pagine, controller o metodi di azione con `[AllowAnonymous]` o `[Authorize(PolicyName="MyPolicy")]` utilizzano l'attributo di autenticazione applicato anziché i criteri di autenticazione di fallback.
+Il codice evidenziato precedente imposta i [criteri di autenticazione di fallback](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). I criteri di autenticazione di fallback richiedono che *_tutti_* gli utenti siano autenticati, ad eccezione di Razor pagine, controller o metodi di azione con un attributo di autenticazione. Ad esempio, Razor pagine, controller o metodi di azione con `[AllowAnonymous]` o `[Authorize(PolicyName="MyPolicy")]` utilizzano l'attributo di autenticazione applicato anziché i criteri di autenticazione di fallback.
 
 I criteri di autenticazione di fallback:
 
-* Viene applicato a tutte le richieste che non specificano in modo esplicito i criteri di autenticazione. Per le richieste gestite dal routing degli endpoint, questo includerebbe qualsiasi endpoint che non specifichi un attributo di autorizzazione. Per le richieste gestite da altri middleware dopo il middleware di autorizzazione, ad esempio [i file statici](xref:fundamentals/static-files), il criterio viene applicato a tutte le richieste.
+_ Viene applicato a tutte le richieste che non specificano in modo esplicito i criteri di autenticazione. Per le richieste gestite dal routing degli endpoint, questo includerebbe qualsiasi endpoint che non specifichi un attributo di autorizzazione. Per le richieste gestite da altri middleware dopo il middleware di autorizzazione, ad esempio [i file statici](xref:fundamentals/static-files), il criterio viene applicato a tutte le richieste.
 
 L'impostazione dei criteri di autenticazione di fallback per richiedere l'autenticazione degli utenti consente di proteggere le Razor pagine e i controller appena aggiunti. La necessità di eseguire l'autenticazione per impostazione predefinita è più sicura rispetto a quella di fare affidamento su nuovi controller e Razor pagine per includere l' `[Authorize]` attributo.
 
@@ -151,7 +152,7 @@ Aggiungere [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allow
 
 ### <a name="configure-the-test-account"></a>Configurare l'account di test
 
-La `SeedData` classe crea due account: Administrator e Manager. Utilizzare lo [strumento Gestione segreta](xref:security/app-secrets) per impostare una password per questi account. Impostare la password dalla directory del progetto (la directory contenente *Program.cs*):
+La `SeedData` classe crea due account: Administrator e Manager. Utilizzare lo [strumento Gestione segreta](xref:security/app-secrets) per impostare una password per questi account. Impostare la password dalla directory del progetto (la directory contenente *Program.cs* ):
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -342,7 +343,7 @@ Creare un contatto nel browser dell'amministratore. Copiare l'URL da eliminare e
 ## <a name="create-the-starter-app"></a>Creare l'app Starter
 
 * Creare un' Razor app per le pagine denominata "ContactManager"
-  * Creare l'app con **singoli account utente**.
+  * Creare l'app con **singoli account utente** .
   * Denominarlo "ContactManager" in modo che lo spazio dei nomi corrisponda allo spazio dei nomi usato nell'esempio.
   * `-uld` Specifica il database locale anziché SQLite
 
@@ -350,7 +351,7 @@ Creare un contatto nel browser dell'amministratore. Copiare l'URL da eliminare e
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Aggiungi *modelli/Contact. cs*:
+* Aggiungi *modelli/Contact. cs* :
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
@@ -487,7 +488,7 @@ Aggiungere [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allow
 
 ### <a name="configure-the-test-account"></a>Configurare l'account di test
 
-La `SeedData` classe crea due account: Administrator e Manager. Utilizzare lo [strumento Gestione segreta](xref:security/app-secrets) per impostare una password per questi account. Impostare la password dalla directory del progetto (la directory contenente *Program.cs*):
+La `SeedData` classe crea due account: Administrator e Manager. Utilizzare lo [strumento Gestione segreta](xref:security/app-secrets) per impostare una password per questi account. Impostare la password dalla directory del progetto (la directory contenente *Program.cs* ):
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -669,7 +670,7 @@ Creare un contatto nel browser dell'amministratore. Copiare l'URL da eliminare e
 ## <a name="create-the-starter-app"></a>Creare l'app Starter
 
 * Creare un' Razor app per le pagine denominata "ContactManager"
-  * Creare l'app con **singoli account utente**.
+  * Creare l'app con **singoli account utente** .
   * Denominarlo "ContactManager" in modo che lo spazio dei nomi corrisponda allo spazio dei nomi usato nell'esempio.
   * `-uld` Specifica il database locale anziché SQLite
 
@@ -677,7 +678,7 @@ Creare un contatto nel browser dell'amministratore. Copiare l'URL da eliminare e
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Aggiungi *modelli/Contact. cs*:
+* Aggiungi *modelli/Contact. cs* :
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 

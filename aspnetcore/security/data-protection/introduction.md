@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/introduction
-ms.openlocfilehash: 4f578e30a972b0d4ce5db08b2ec844e270c11406
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5fd5676b286e758f0648d78bf8cb4171e7a98f60
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630081"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051694"
 ---
 # <a name="aspnet-core-data-protection"></a>Protezione dei dati ASP.NET Core
 
@@ -74,7 +75,7 @@ Il sistema di protezione dei dati è suddiviso in cinque pacchetti principali. I
 
    "È necessario sostituire un intero componente all'interno del sistema perché sono presenti requisiti di comportamento realmente univoci. Sono intenzionato a imparare le parti non comuni della superficie dell'API per creare un plug-in che soddisfi i requisiti ".
 
-## <a name="package-layout"></a>Layout del pacchetto
+## <a name="package-layout"></a>Layout di pacchetto
 
 Lo stack di protezione dei dati è costituito da cinque pacchetti.
 

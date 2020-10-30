@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/04/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/kestrel
-ms.openlocfilehash: 50bf2a60f14238c9b71fe90a64c284da202bff59
-ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
+ms.openlocfilehash: 56ac6635639eed93a84f47fc915c7013c6ed2381
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/23/2020
-ms.locfileid: "92491600"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052331"
 ---
 # <a name="kestrel-web-server-implementation-in-aspnet-core"></a>Implementazione del server Web Kestrel in ASP.NET Core
 
@@ -66,7 +67,7 @@ HTTP/2 è disabilitato per impostazione predefinita. Per altre informazioni sull
 
 ## <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>Quando usare Kestrel con un proxy inverso
 
-È possibile usare Kestrel da solo o in combinazione con un *server proxy inverso*, ad esempio [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/). Il server proxy inverso riceve le richieste HTTP dalla rete e le inoltra a Kestrel.
+È possibile usare Kestrel da solo o in combinazione con un *server proxy inverso* , ad esempio [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/). Il server proxy inverso riceve le richieste HTTP dalla rete e le inoltra a Kestrel.
 
 Kestrel usato come server Web perimetrale (esposto a Internet):
 
@@ -94,7 +95,7 @@ Un proxy inverso:
 
 ## <a name="kestrel-in-aspnet-core-apps"></a>Gheppio nelle app ASP.NET Core
 
-I modelli di progetto ASP.NET Core usano Kestrel per impostazione predefinita. In *Program.cs*il <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> metodo chiama <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> :
+I modelli di progetto ASP.NET Core usano Kestrel per impostazione predefinita. In *Program.cs* il <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> metodo chiama <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> :
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_DefaultBuilder&highlight=8)]
 
@@ -127,7 +128,7 @@ Negli esempi seguenti viene usato lo spazio dei nomi <xref:Microsoft.AspNetCore.
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Negli esempi illustrati più avanti in questo articolo, le opzioni di gheppio sono configurate nel codice C#. È inoltre possibile impostare le opzioni di Gheppio utilizzando un [provider di configurazione](xref:fundamentals/configuration/index). Il [provider di configurazione file](xref:fundamentals/configuration/index#file-configuration-provider) , ad esempio, può caricare la configurazione di Gheppio da un *appsettings.jssu* o *appSettings. { File Environment}. JSON* :
+Negli esempi illustrati più avanti in questo articolo, le opzioni di gheppio sono configurate nel codice C#. È inoltre possibile impostare le opzioni di Gheppio utilizzando un [provider di configurazione](xref:fundamentals/configuration/index). Il [provider di configurazione file](xref:fundamentals/configuration/index#file-configuration-provider) , ad esempio, può caricare la configurazione di Gheppio da un oggetto *appsettings.json* o *appSettings. { File Environment}. JSON* :
 
 ```json
 {
@@ -178,7 +179,7 @@ Usare **uno** degli approcci seguenti:
 
 * Configurare il gheppio durante la compilazione dell'host:
 
-  In *Program.cs*caricare la `Kestrel` sezione della configurazione nella configurazione di Gheppio:
+  In *Program.cs* caricare la `Kestrel` sezione della configurazione nella configurazione di Gheppio:
 
   ```csharp
   // using Microsoft.Extensions.DependencyInjection;
@@ -257,7 +258,7 @@ La velocità minima predefinita è di 240 byte al secondo, con un periodo di tol
 
 Anche per la risposta è prevista una velocità minima. Il codice per impostare il limite della richiesta e della risposta è identico e varia solo per `RequestBody` o `Response` nei nomi di proprietà e di interfaccia.
 
-L'esempio seguente visualizza come configurare la velocità minima dei dati in *Program.cs*:
+L'esempio seguente visualizza come configurare la velocità minima dei dati in *Program.cs* :
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=6-11)]
 
@@ -527,10 +528,10 @@ Kestrel è in ascolto su `http://localhost:5000` e `https://localhost:5001` (se 
 
 `CreateDefaultBuilder` chiama `Configure(context.Configuration.GetSection("Kestrel"))` per impostazione predefinita per caricare la configurazione di Kestrel. È disponibile per Kestrel uno schema di configurazione delle impostazioni delle app HTTPS predefinito. Configurare più endpoint, inclusi gli URL e i certificati da usare, da un file su disco o da un archivio certificati.
 
-Nel file *appsettings.json* di esempio seguente:
+Nell'esempio seguente *appsettings.json* :
 
 * Impostare **AllowInvalid** su `true` per consentire l'uso di certificati non validi, come ad esempio i certificati autofirmati.
-* Tutti gli endpoint HTTPS che non specificano un certificato (**HttpsDefaultCert** nell'esempio che segue) usano il certificato definito in **Certificates** > **Default** o il certificato di sviluppo.
+* Tutti gli endpoint HTTPS che non specificano un certificato ( **HttpsDefaultCert** nell'esempio che segue) usano il certificato definito in **Certificates** > **Default** o il certificato di sviluppo.
 
 ```json
 {
@@ -889,7 +890,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 `CreateDefaultBuilder` chiama `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` per impostazione predefinita per caricare la configurazione di Kestrel.
 
-Il *appsettings.js* seguente nell'esempio stabilisce http/1.1 come protocollo di connessione predefinito per tutti gli endpoint:
+Nell' *appsettings.json* esempio seguente viene stabilito http/1.1 come protocollo di connessione predefinito per tutti gli endpoint:
 
 ```json
 {
@@ -901,7 +902,7 @@ Il *appsettings.js* seguente nell'esempio stabilisce http/1.1 come protocollo di
 }
 ```
 
-Nell' *appsettings.js* seguente viene stabilito il protocollo di connessione HTTP/1.1 per un endpoint specifico:
+Nell' *appsettings.json* esempio seguente viene stabilito il protocollo di connessione HTTP/1.1 per un endpoint specifico:
 
 ```json
 {
@@ -1001,9 +1002,9 @@ Come soluzione alternativa, usare il middleware di filtro host. Il middleware di
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definire una `AllowedHosts` chiave in *appsettings.jssu* / *appSettings. \<EnvironmentName> JSON*. Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
+Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definire una `AllowedHosts` chiave in *appsettings.json* / *appSettings. \<EnvironmentName> JSON* . Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
 
-*appsettings.js*:
+*appsettings.json* :
 
 ```json
 {
@@ -1055,7 +1056,7 @@ HTTP/2 è disabilitato per impostazione predefinita. Per altre informazioni sull
 
 ## <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>Quando usare Kestrel con un proxy inverso
 
-È possibile usare Kestrel da solo o in combinazione con un *server proxy inverso*, ad esempio [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/). Il server proxy inverso riceve le richieste HTTP dalla rete e le inoltra a Kestrel.
+È possibile usare Kestrel da solo o in combinazione con un *server proxy inverso* , ad esempio [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/). Il server proxy inverso riceve le richieste HTTP dalla rete e le inoltra a Kestrel.
 
 Kestrel usato come server Web perimetrale (esposto a Internet):
 
@@ -1135,7 +1136,7 @@ Negli esempi seguenti viene usato lo spazio dei nomi <xref:Microsoft.AspNetCore.
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Le opzioni gheppio, che sono configurate nel codice C# negli esempi seguenti, possono essere impostate anche usando un [provider di configurazione](xref:fundamentals/configuration/index). Il provider di configurazione file, ad esempio, può caricare la configurazione di Gheppio da un *appsettings.jssu* o *appSettings. { File Environment}. JSON* :
+Le opzioni gheppio, che sono configurate nel codice C# negli esempi seguenti, possono essere impostate anche usando un [provider di configurazione](xref:fundamentals/configuration/index). Il provider di configurazione file, ad esempio, può caricare la configurazione di Gheppio da un oggetto *appsettings.json* o *appSettings. { File Environment}. JSON* :
 
 ```json
 {
@@ -1182,7 +1183,7 @@ Usare **uno** degli approcci seguenti:
 
 * Configurare il gheppio durante la compilazione dell'host:
 
-  In *Program.cs*caricare la `Kestrel` sezione della configurazione nella configurazione di Gheppio:
+  In *Program.cs* caricare la `Kestrel` sezione della configurazione nella configurazione di Gheppio:
 
   ```csharp
   // using Microsoft.Extensions.DependencyInjection;
@@ -1258,7 +1259,7 @@ La velocità minima predefinita è di 240 byte al secondo, con un periodo di tol
 
 Anche per la risposta è prevista una velocità minima. Il codice per impostare il limite della richiesta e della risposta è identico e varia solo per `RequestBody` o `Response` nei nomi di proprietà e di interfaccia.
 
-L'esempio seguente visualizza come configurare la velocità minima dei dati in *Program.cs*:
+L'esempio seguente visualizza come configurare la velocità minima dei dati in *Program.cs* :
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=6-9)]
 
@@ -1515,10 +1516,10 @@ Kestrel è in ascolto su `http://localhost:5000` e `https://localhost:5001` (se 
 
 `CreateDefaultBuilder` chiama `Configure(context.Configuration.GetSection("Kestrel"))` per impostazione predefinita per caricare la configurazione di Kestrel. È disponibile per Kestrel uno schema di configurazione delle impostazioni delle app HTTPS predefinito. Configurare più endpoint, inclusi gli URL e i certificati da usare, da un file su disco o da un archivio certificati.
 
-Nel file *appsettings.json* di esempio seguente:
+Nell'esempio seguente *appsettings.json* :
 
 * Impostare **AllowInvalid** su `true` per consentire l'uso di certificati non validi, come ad esempio i certificati autofirmati.
-* Tutti gli endpoint HTTPS che non specificano un certificato (**HttpsDefaultCert** nell'esempio che segue) usano il certificato definito in **Certificates** > **Default** o il certificato di sviluppo.
+* Tutti gli endpoint HTTPS che non specificano un certificato ( **HttpsDefaultCert** nell'esempio che segue) usano il certificato definito in **Certificates** > **Default** o il certificato di sviluppo.
 
 ```json
 {
@@ -1838,7 +1839,7 @@ private class TlsFilterAdapter : IConnectionAdapter
 
 <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> chiama `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` per impostazione predefinita per caricare la configurazione di Kestrel.
 
-Nell'esempio *appsettings.json* seguente viene stabilito un protocollo di connessione predefinito (HTTP/1.1 e HTTP/2) per tutti gli endpoint Kestrel:
+Nell'esempio seguente *appsettings.json* viene stabilito un protocollo di connessione predefinito (http/1.1 e http/2) per tutti gli endpoint di Gheppio:
 
 ```json
 {
@@ -1952,9 +1953,9 @@ Come soluzione alternativa, usare il middleware di filtro host. Il middleware di
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definire una `AllowedHosts` chiave in *appsettings.jssu* / *appSettings. \<EnvironmentName> JSON*. Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
+Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definire una `AllowedHosts` chiave in *appsettings.json* / *appSettings. \<EnvironmentName> JSON* . Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
 
-*appsettings.js*:
+*appsettings.json* :
 
 ```json
 {
@@ -1985,7 +1986,7 @@ Kestrel è supportato in tutte le piattaforme e le versioni supportate da .NET C
 
 ## <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>Quando usare Kestrel con un proxy inverso
 
-È possibile usare Kestrel da solo o in combinazione con un *server proxy inverso*, ad esempio [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/). Il server proxy inverso riceve le richieste HTTP dalla rete e le inoltra a Kestrel.
+È possibile usare Kestrel da solo o in combinazione con un *server proxy inverso* , ad esempio [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](https://nginx.org) o [Apache](https://httpd.apache.org/). Il server proxy inverso riceve le richieste HTTP dalla rete e le inoltra a Kestrel.
 
 Kestrel usato come server Web perimetrale (esposto a Internet):
 
@@ -2043,7 +2044,7 @@ Negli esempi seguenti viene usato lo spazio dei nomi <xref:Microsoft.AspNetCore.
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Le opzioni gheppio, che sono configurate nel codice C# negli esempi seguenti, possono essere impostate anche usando un [provider di configurazione](xref:fundamentals/configuration/index). Il provider di configurazione file, ad esempio, può caricare la configurazione di Gheppio da un *appsettings.jssu* o *appSettings. { File Environment}. JSON* :
+Le opzioni gheppio, che sono configurate nel codice C# negli esempi seguenti, possono essere impostate anche usando un [provider di configurazione](xref:fundamentals/configuration/index). Il provider di configurazione file, ad esempio, può caricare la configurazione di Gheppio da un oggetto *appsettings.json* o *appSettings. { File Environment}. JSON* :
 
 ```json
 {
@@ -2090,7 +2091,7 @@ Usare **uno** degli approcci seguenti:
 
 * Configurare il gheppio durante la compilazione dell'host:
 
-  In *Program.cs*caricare la `Kestrel` sezione della configurazione nella configurazione di Gheppio:
+  In *Program.cs* caricare la `Kestrel` sezione della configurazione nella configurazione di Gheppio:
 
   ```csharp
   // using Microsoft.Extensions.DependencyInjection;
@@ -2198,7 +2199,7 @@ La velocità minima predefinita è di 240 byte al secondo, con un periodo di tol
 
 Anche per la risposta è prevista una velocità minima. Il codice per impostare il limite della richiesta e della risposta è identico e varia solo per `RequestBody` o `Response` nei nomi di proprietà e di interfaccia.
 
-L'esempio seguente visualizza come configurare la velocità minima dei dati in *Program.cs*:
+L'esempio seguente visualizza come configurare la velocità minima dei dati in *Program.cs* :
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -2379,10 +2380,10 @@ Kestrel è in ascolto su `http://localhost:5000` e `https://localhost:5001` (se 
 
 `CreateDefaultBuilder` chiama `Configure(context.Configuration.GetSection("Kestrel"))` per impostazione predefinita per caricare la configurazione di Kestrel. È disponibile per Kestrel uno schema di configurazione delle impostazioni delle app HTTPS predefinito. Configurare più endpoint, inclusi gli URL e i certificati da usare, da un file su disco o da un archivio certificati.
 
-Nel file *appsettings.json* di esempio seguente:
+Nell'esempio seguente *appsettings.json* :
 
 * Impostare **AllowInvalid** su `true` per consentire l'uso di certificati non validi, come ad esempio i certificati autofirmati.
-* Tutti gli endpoint HTTPS che non specificano un certificato (**HttpsDefaultCert** nell'esempio che segue) usano il certificato definito in **Certificates** > **Default** o il certificato di sviluppo.
+* Tutti gli endpoint HTTPS che non specificano un certificato ( **HttpsDefaultCert** nell'esempio che segue) usano il certificato definito in **Certificates** > **Default** o il certificato di sviluppo.
 
 ```json
 {
@@ -2742,9 +2743,9 @@ Come soluzione alternativa, usare il middleware di filtro host. Il middleware di
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definire una `AllowedHosts` chiave in *appsettings.jssu* / *appSettings. \<EnvironmentName> JSON*. Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
+Per impostazione predefinita, il middleware di filtro host è disabilitato per impostazione predefinita. Per abilitare il middleware, definire una `AllowedHosts` chiave in *appsettings.json* / *appSettings. \<EnvironmentName> JSON* . Il valore è un elenco con valori delimitati da punto e virgola di nomi host senza numeri di porta:
 
-*appsettings.js*:
+*appsettings.json* :
 
 ```json
 {

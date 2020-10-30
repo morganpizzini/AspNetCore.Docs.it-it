@@ -5,8 +5,9 @@ description: IdentityDa usare con un'app a singola pagina ospitata in un'app ASP
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/08/2019
+ms.date: 10/27/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,30 +19,30 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 1e50fb2f2f5e3621b189f756c53e80a2dd64c8a6
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: 8acc34c88bf62b3da1b920acc7318c94435c100e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754528"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051980"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Autenticazione e autorizzazione per le ZPS
 
 I modelli ASP.NET Core 3,1 e versioni successive offrono l'autenticazione in app a pagina singola (Spa) usando il supporto per l'autorizzazione dell'API. ASP.NET Core Identityper l'autenticazione e l'archiviazione degli utenti è combinato con [ Identity Server](https://identityserver.io/) per l'implementazione di OpenID Connect.
 
-Un parametro di autenticazione è stato aggiunto ai modelli di progetto **angolari** e **React** , che è simile al parametro Authentication nei modelli di progetto **applicazione Web** (MVC) e **applicazione Web** ( Razor pagine). I valori dei parametri consentiti sono **None** e **individual**. Il modello di progetto **React.js e Redux** non supporta il parametro Authentication al momento.
+Un parametro di autenticazione è stato aggiunto ai modelli di progetto **angolari** e **React** , che è simile al parametro Authentication nei modelli di progetto **applicazione Web** (MVC) e **applicazione Web** ( Razor pagine). I valori dei parametri consentiti sono **None** e **individual** . Il modello di progetto **React.js e Redux** non supporta il parametro Authentication al momento.
 
 ## <a name="create-an-app-with-api-authorization-support"></a>Creare un'app con supporto per l'autorizzazione API
 
 L'autenticazione e l'autorizzazione degli utenti possono essere usate sia con le ZPS angolari che React. Aprire una shell dei comandi ed eseguire il comando seguente:
 
-**Angolare**:
+**Angolare** :
 
 ```dotnetcli
 dotnet new angular -o <output_directory_name> -au Individual
 ```
 
-**Reagire**:
+**Reagire** :
 
 ```dotnetcli
 dotnet new react -o <output_directory_name> -au Individual
@@ -119,9 +120,9 @@ Per ottenere il controllo completo dello schema del database, ereditare da una d
 
 Nel file *Controllers\OidcConfigurationController.cs* , si noti l'endpoint di cui è stato effettuato il provisioning per gestire i parametri di OIDC che il client deve usare.
 
-### <a name="appsettingsjson"></a>appsettings.json
+### appsettings.json
 
-Nella *appsettings.jssul* file della radice del progetto è presente una nuova `IdentityServer` sezione che descrive l'elenco dei client configurati. Nell'esempio seguente è presente un singolo client. Il nome del client corrisponde al nome dell'app e viene mappato per convenzione al `ClientId` parametro OAuth. Il profilo indica il tipo di app da configurare. Viene usato internamente per guidare le convenzioni che semplificano il processo di configurazione per il server. Sono disponibili diversi profili, come illustrato nella sezione [profili applicazione](#application-profiles) .
+Nel *appsettings.json* file della radice del progetto è presente una nuova `IdentityServer` sezione che descrive l'elenco dei client configurati. Nell'esempio seguente è presente un singolo client. Il nome del client corrisponde al nome dell'app e viene mappato per convenzione al `ClientId` parametro OAuth. Il profilo indica il tipo di app da configurare. Viene usato internamente per guidare le convenzioni che semplificano il processo di configurazione per il server. Sono disponibili diversi profili, come illustrato nella sezione [profili applicazione](#application-profiles) .
 
 ```json
 "IdentityServer": {
@@ -150,9 +151,9 @@ Nella *appsettings.Development.jssul* file della radice del progetto è presente
 Il supporto per l'autenticazione e l'autorizzazione API nel modello angolare si trova nel proprio modulo angolare nella directory *ClientApp\src\api-Authorization* Il modulo è costituito dagli elementi seguenti:
 
 * 3 componenti:
-  * *login. Component. TS*: gestisce il flusso di accesso dell'app.
-  * *Logout. Component. TS*: gestisce il flusso di disconnessione dell'app.
-  * *login-menu. Component. TS*: widget che visualizza uno dei seguenti set di collegamenti:
+  * *login. Component. TS* : gestisce il flusso di accesso dell'app.
+  * *Logout. Component. TS* : gestisce il flusso di disconnessione dell'app.
+  * *login-menu. Component. TS* : widget che visualizza uno dei seguenti set di collegamenti:
     * Collegamenti di gestione dei profili utente e disconnessione quando l'utente viene autenticato.
     * Collegamenti per la registrazione e l'accesso quando l'utente non è autenticato.
 * Una protezione `AuthorizeGuard` della route che può essere aggiunta alle route e richiede che un utente venga autenticato prima di visitare la route.
@@ -165,12 +166,12 @@ Il supporto per l'autenticazione e l'autorizzazione API nel modello angolare si 
 Il supporto per l'autenticazione e l'autorizzazione API nel modello React risiede nella directory *ClientApp\src\components\api-Authorization* È costituito dagli elementi seguenti:
 
 * 4 componenti:
-  * *Login.js*: gestisce il flusso di accesso dell'app.
-  * *Logout.js*: gestisce il flusso di disconnessione dell'app.
-  * *LoginMenu.js*: widget che visualizza uno dei seguenti set di collegamenti:
+  * *Login.js* : gestisce il flusso di accesso dell'app.
+  * *Logout.js* : gestisce il flusso di disconnessione dell'app.
+  * *LoginMenu.js* : widget che visualizza uno dei seguenti set di collegamenti:
     * Collegamenti di gestione dei profili utente e disconnessione quando l'utente viene autenticato.
     * Collegamenti per la registrazione e l'accesso quando l'utente non è autenticato.
-  * *AuthorizeRoute.js*: componente di route che richiede l'autenticazione di un utente prima di eseguire il rendering del componente indicato nel `Component` parametro.
+  * *AuthorizeRoute.js* : componente di route che richiede l'autenticazione di un utente prima di eseguire il rendering del componente indicato nel `Component` parametro.
 * Istanza esportata `authService` della classe `AuthorizeService` che gestisce i dettagli di basso livello del processo di autenticazione ed espone le informazioni relative all'utente autenticato al resto dell'app per l'utilizzo.
 
 Ora che sono stati esaminati i componenti principali della soluzione, è possibile approfondire i singoli scenari per l'app.
@@ -282,11 +283,32 @@ Per distribuire l'app nell'ambiente di produzione, è necessario eseguire il pro
   * Può essere generato tramite strumenti standard come PowerShell o OpenSSL.
   * Può essere installata nell'archivio certificati nei computer di destinazione o distribuita come file con *estensione pfx* con una password complessa.
 
+### <a name="example-deploy-to-a-non-azure-web-hosting-provider"></a>Esempio: eseguire la distribuzione in un provider di hosting Web non di Azure
+
+Nel pannello hosting Web creare o caricare il certificato. Quindi, nel file dell'app *appsettings.json* , modificare la `IdentityServer` sezione in modo da includere i dettagli della chiave. Ad esempio:
+
+```json
+"IdentityServer": {
+  "Key": {
+    "Type": "Store",
+    "StoreName": "WebHosting",
+    "StoreLocation": "CurrentUser",
+    "Name": "CN=MyApplication"
+  }
+}
+```
+
+Nell'esempio precedente:
+
+* `StoreName` rappresenta il nome dell'archivio certificati in cui è archiviato il certificato. In questo caso, punta all'archivio di hosting Web.
+* `StoreLocation` rappresenta la posizione in cui caricare il certificato ( `CurrentUser` in questo caso).
+* `Name` corrisponde al soggetto distinto per il certificato.
+
 ### <a name="example-deploy-to-azure-app-service"></a>Esempio: eseguire la distribuzione nel servizio app Azure
 
 Questa sezione descrive come distribuire l'app nel servizio app Azure usando un certificato archiviato nell'archivio certificati. Per modificare l'app per caricare un certificato dall'archivio certificati, è necessario un piano di servizio di livello standard o superiore quando si configura l'app nel portale di Azure in un passaggio successivo.
 
-Nel file *appsettings.js* dell'app, modificare la sezione in `IdentityServer` modo da includere i dettagli della chiave:
+Nel file dell'app *appsettings.json* modificare la `IdentityServer` sezione in modo da includere i dettagli della chiave:
 
 ```json
 "IdentityServer": {
