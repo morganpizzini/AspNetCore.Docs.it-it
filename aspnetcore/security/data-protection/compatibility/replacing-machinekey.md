@@ -5,55 +5,56 @@ description: Scopri come sostituire machineKey in ASP.NET per consentire l'uso d
 ms.author: riande
 ms.date: 04/06/2019
 no-loc:
-- ASP.NET Core Identity
-- cookie
-- Cookie
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(appsettings.json):::'
+- ':::no-loc(ASP.NET Core Identity):::'
+- ':::no-loc(cookie):::'
+- ':::no-loc(Cookie):::'
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: security/data-protection/compatibility/replacing-machinekey
-ms.openlocfilehash: 8cae0b8f1c4582e272061ff87868b32568dfe595
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 7c6766fa20b0df021013da77b5d88fecefd40c62
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625570"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053059"
 ---
-# <a name="replace-the-aspnet-machinekey-in-aspnet-core"></a><span data-ttu-id="5d187-103">Sostituire ASP.NET machineKey in ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="5d187-103">Replace the ASP.NET machineKey in ASP.NET Core</span></span>
+# <a name="replace-the-aspnet-machinekey-in-aspnet-core"></a><span data-ttu-id="eeaeb-103">Sostituire ASP.NET machineKey in ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="eeaeb-103">Replace the ASP.NET machineKey in ASP.NET Core</span></span>
 
 <a name="compatibility-replacing-machinekey"></a>
 
-<span data-ttu-id="5d187-104">L'implementazione dell' `<machineKey>` elemento in ASP.NET [è sostituibile](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/).</span><span class="sxs-lookup"><span data-stu-id="5d187-104">The implementation of the `<machineKey>` element in ASP.NET [is replaceable](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/).</span></span> <span data-ttu-id="5d187-105">In questo modo è possibile indirizzare la maggior parte delle chiamate alle routine di crittografia ASP.NET tramite un meccanismo di protezione dei dati sostitutivo, incluso il nuovo sistema di protezione dei dati.</span><span class="sxs-lookup"><span data-stu-id="5d187-105">This allows most calls to ASP.NET cryptographic routines to be routed through a replacement data protection mechanism, including the new data protection system.</span></span>
+<span data-ttu-id="eeaeb-104">L'implementazione dell' `<machineKey>` elemento in ASP.NET [è sostituibile](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/).</span><span class="sxs-lookup"><span data-stu-id="eeaeb-104">The implementation of the `<machineKey>` element in ASP.NET [is replaceable](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/).</span></span> <span data-ttu-id="eeaeb-105">In questo modo è possibile indirizzare la maggior parte delle chiamate alle routine di crittografia ASP.NET tramite un meccanismo di protezione dei dati sostitutivo, incluso il nuovo sistema di protezione dei dati.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-105">This allows most calls to ASP.NET cryptographic routines to be routed through a replacement data protection mechanism, including the new data protection system.</span></span>
 
-## <a name="package-installation"></a><span data-ttu-id="5d187-106">Installazione del pacchetto</span><span class="sxs-lookup"><span data-stu-id="5d187-106">Package installation</span></span>
+## <a name="package-installation"></a><span data-ttu-id="eeaeb-106">Installazione del pacchetto</span><span class="sxs-lookup"><span data-stu-id="eeaeb-106">Package installation</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="5d187-107">Il nuovo sistema di protezione dei dati può essere installato solo in un'applicazione ASP.NET esistente destinata a .NET 4.5.1 o versione successiva.</span><span class="sxs-lookup"><span data-stu-id="5d187-107">The new data protection system can only be installed into an existing ASP.NET application targeting .NET 4.5.1 or later.</span></span> <span data-ttu-id="5d187-108">L'installazione avrà esito negativo se l'applicazione è destinata a .NET 4,5 o versioni precedenti.</span><span class="sxs-lookup"><span data-stu-id="5d187-108">Installation will fail if the application targets .NET 4.5 or lower.</span></span>
+> <span data-ttu-id="eeaeb-107">Il nuovo sistema di protezione dei dati può essere installato solo in un'applicazione ASP.NET esistente destinata a .NET 4.5.1 o versione successiva.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-107">The new data protection system can only be installed into an existing ASP.NET application targeting .NET 4.5.1 or later.</span></span> <span data-ttu-id="eeaeb-108">L'installazione avrà esito negativo se l'applicazione è destinata a .NET 4,5 o versioni precedenti.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-108">Installation will fail if the application targets .NET 4.5 or lower.</span></span>
 
-<span data-ttu-id="5d187-109">Per installare il nuovo sistema di protezione dei dati in un progetto ASP.NET 4.5.1 + esistente, installare il pacchetto Microsoft.AspNetCore.DataProtection.SystemWeb.</span><span class="sxs-lookup"><span data-stu-id="5d187-109">To install the new data protection system into an existing ASP.NET 4.5.1+ project, install the package Microsoft.AspNetCore.DataProtection.SystemWeb.</span></span> <span data-ttu-id="5d187-110">Verrà creata un'istanza del sistema di protezione dei dati usando le impostazioni di [configurazione predefinite](xref:security/data-protection/configuration/default-settings) .</span><span class="sxs-lookup"><span data-stu-id="5d187-110">This will instantiate the data protection system using the [default configuration](xref:security/data-protection/configuration/default-settings) settings.</span></span>
+<span data-ttu-id="eeaeb-109">Per installare il nuovo sistema di protezione dei dati in un progetto ASP.NET 4.5.1 + esistente, installare il pacchetto Microsoft.AspNetCore.DataProtection.SystemWeb.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-109">To install the new data protection system into an existing ASP.NET 4.5.1+ project, install the package Microsoft.AspNetCore.DataProtection.SystemWeb.</span></span> <span data-ttu-id="eeaeb-110">Verrà creata un'istanza del sistema di protezione dei dati usando le impostazioni di [configurazione predefinite](xref:security/data-protection/configuration/default-settings) .</span><span class="sxs-lookup"><span data-stu-id="eeaeb-110">This will instantiate the data protection system using the [default configuration](xref:security/data-protection/configuration/default-settings) settings.</span></span>
 
-<span data-ttu-id="5d187-111">Quando si installa il pacchetto, viene inserita una riga in *Web.config* che indica a ASP.NET di utilizzarla per [la maggior parte delle operazioni di crittografia](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/), tra cui l'autenticazione basata su form, lo stato di visualizzazione e le chiamate a machineKey. Protect.</span><span class="sxs-lookup"><span data-stu-id="5d187-111">When you install the package, it inserts a line into *Web.config* that tells ASP.NET to use it for [most cryptographic operations](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/), including forms authentication, view state, and calls to MachineKey.Protect.</span></span> <span data-ttu-id="5d187-112">La riga inserita viene letta come segue.</span><span class="sxs-lookup"><span data-stu-id="5d187-112">The line that's inserted reads as follows.</span></span>
+<span data-ttu-id="eeaeb-111">Quando si installa il pacchetto, viene inserita una riga in *Web.config* che indica a ASP.NET di utilizzarla per [la maggior parte delle operazioni di crittografia](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/), tra cui l'autenticazione basata su form, lo stato di visualizzazione e le chiamate a machineKey. Protect.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-111">When you install the package, it inserts a line into *Web.config* that tells ASP.NET to use it for [most cryptographic operations](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/), including forms authentication, view state, and calls to MachineKey.Protect.</span></span> <span data-ttu-id="eeaeb-112">La riga inserita viene letta come segue.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-112">The line that's inserted reads as follows.</span></span>
 
 ```xml
 <machineKey compatibilityMode="Framework45" dataProtectorType="..." />
 ```
 
 >[!TIP]
-> <span data-ttu-id="5d187-113">È possibile stabilire se il nuovo sistema di protezione dei dati è attivo controllando i campi come `__VIEWSTATE` , che dovrebbe iniziare con "CfDJ8", come nell'esempio riportato di seguito.</span><span class="sxs-lookup"><span data-stu-id="5d187-113">You can tell if the new data protection system is active by inspecting fields like `__VIEWSTATE`, which should begin with "CfDJ8" as in the example below.</span></span> <span data-ttu-id="5d187-114">"CfDJ8" è la rappresentazione Base64 dell'intestazione "09 F0 C9 F0" di Magic che identifica un payload protetto dal sistema di protezione dei dati.</span><span class="sxs-lookup"><span data-stu-id="5d187-114">"CfDJ8" is the base64 representation of the magic "09 F0 C9 F0" header that identifies a payload protected by the data protection system.</span></span>
+> <span data-ttu-id="eeaeb-113">È possibile stabilire se il nuovo sistema di protezione dei dati è attivo controllando i campi come `__VIEWSTATE` , che dovrebbe iniziare con "CfDJ8", come nell'esempio riportato di seguito.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-113">You can tell if the new data protection system is active by inspecting fields like `__VIEWSTATE`, which should begin with "CfDJ8" as in the example below.</span></span> <span data-ttu-id="eeaeb-114">"CfDJ8" è la rappresentazione Base64 dell'intestazione "09 F0 C9 F0" di Magic che identifica un payload protetto dal sistema di protezione dei dati.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-114">"CfDJ8" is the base64 representation of the magic "09 F0 C9 F0" header that identifies a payload protected by the data protection system.</span></span>
 
 ```html
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="CfDJ8AWPr2EQPTBGs3L2GCZOpk...">
 ```
 
-## <a name="package-configuration"></a><span data-ttu-id="5d187-115">Configurazione pacchetto</span><span class="sxs-lookup"><span data-stu-id="5d187-115">Package configuration</span></span>
+## <a name="package-configuration"></a><span data-ttu-id="eeaeb-115">Configurazione pacchetto</span><span class="sxs-lookup"><span data-stu-id="eeaeb-115">Package configuration</span></span>
 
-<span data-ttu-id="5d187-116">Viene creata un'istanza del sistema di protezione dei dati con una configurazione predefinita di installazione zero.</span><span class="sxs-lookup"><span data-stu-id="5d187-116">The data protection system is instantiated with a default zero-setup configuration.</span></span> <span data-ttu-id="5d187-117">Tuttavia, poiché per impostazione predefinita le chiavi vengono rese persistenti nella file system locale, questa operazione non funzionerà per le applicazioni distribuite in una farm.</span><span class="sxs-lookup"><span data-stu-id="5d187-117">However, since by default keys are persisted to the local file system, this won't work for applications which are deployed in a farm.</span></span> <span data-ttu-id="5d187-118">Per risolvere questo problema, è possibile fornire la configurazione creando un tipo che sottoclassi DataProtectionStartup ed esegue l'override del relativo metodo ConfigureServices.</span><span class="sxs-lookup"><span data-stu-id="5d187-118">To resolve this, you can provide configuration by creating a type which subclasses DataProtectionStartup and overrides its ConfigureServices method.</span></span>
+<span data-ttu-id="eeaeb-116">Viene creata un'istanza del sistema di protezione dei dati con una configurazione predefinita di installazione zero.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-116">The data protection system is instantiated with a default zero-setup configuration.</span></span> <span data-ttu-id="eeaeb-117">Tuttavia, poiché per impostazione predefinita le chiavi vengono rese persistenti nella file system locale, questa operazione non funzionerà per le applicazioni distribuite in una farm.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-117">However, since by default keys are persisted to the local file system, this won't work for applications which are deployed in a farm.</span></span> <span data-ttu-id="eeaeb-118">Per risolvere questo problema, è possibile fornire la configurazione creando un tipo che sottoclassi DataProtectionStartup ed esegue l'override del relativo metodo ConfigureServices.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-118">To resolve this, you can provide configuration by creating a type which subclasses DataProtectionStartup and overrides its ConfigureServices method.</span></span>
 
-<span data-ttu-id="5d187-119">Di seguito è riportato un esempio di un tipo di avvio per la protezione dei dati personalizzato che consente di configurare le chiavi in modo permanente e il modo in cui vengono crittografate.</span><span class="sxs-lookup"><span data-stu-id="5d187-119">Below is an example of a custom data protection startup type which configured both where keys are persisted and how they're encrypted at rest.</span></span> <span data-ttu-id="5d187-120">Esegue inoltre l'override dei criteri di isolamento delle app predefiniti fornendo il nome dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="5d187-120">It also overrides the default app isolation policy by providing its own application name.</span></span>
+<span data-ttu-id="eeaeb-119">Di seguito è riportato un esempio di un tipo di avvio per la protezione dei dati personalizzato che consente di configurare le chiavi in modo permanente e il modo in cui vengono crittografate.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-119">Below is an example of a custom data protection startup type which configured both where keys are persisted and how they're encrypted at rest.</span></span> <span data-ttu-id="eeaeb-120">Esegue inoltre l'override dei criteri di isolamento delle app predefiniti fornendo il nome dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-120">It also overrides the default app isolation policy by providing its own application name.</span></span>
 
 ```csharp
 using System;
@@ -78,9 +79,9 @@ namespace DataProtectionDemo
 ```
 
 >[!TIP]
-> <span data-ttu-id="5d187-121">È anche possibile usare `<machineKey applicationName="my-app" ... />` al posto di una chiamata esplicita a MyApplicationName.</span><span class="sxs-lookup"><span data-stu-id="5d187-121">You can also use `<machineKey applicationName="my-app" ... />` in place of an explicit call to SetApplicationName.</span></span> <span data-ttu-id="5d187-122">Si tratta di un meccanismo utile per evitare di forzare lo sviluppatore a creare un tipo derivato da DataProtectionStartup se si desidera configurare il nome dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="5d187-122">This is a convenience mechanism to avoid forcing the developer to create a DataProtectionStartup-derived type if all they wanted to configure was setting the application name.</span></span>
+> <span data-ttu-id="eeaeb-121">È anche possibile usare `<machineKey applicationName="my-app" ... />` al posto di una chiamata esplicita a MyApplicationName.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-121">You can also use `<machineKey applicationName="my-app" ... />` in place of an explicit call to SetApplicationName.</span></span> <span data-ttu-id="eeaeb-122">Si tratta di un meccanismo utile per evitare di forzare lo sviluppatore a creare un tipo derivato da DataProtectionStartup se si desidera configurare il nome dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-122">This is a convenience mechanism to avoid forcing the developer to create a DataProtectionStartup-derived type if all they wanted to configure was setting the application name.</span></span>
 
-<span data-ttu-id="5d187-123">Per abilitare questa configurazione personalizzata, tornare a Web.config e cercare l' `<appSettings>` elemento che l'installazione del pacchetto ha aggiunto al file di configurazione.</span><span class="sxs-lookup"><span data-stu-id="5d187-123">To enable this custom configuration, go back to Web.config and look for the `<appSettings>` element that the package install added to the config file.</span></span> <span data-ttu-id="5d187-124">Il markup sarà simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="5d187-124">It will look like the following markup:</span></span>
+<span data-ttu-id="eeaeb-123">Per abilitare questa configurazione personalizzata, tornare a Web.config e cercare l' `<appSettings>` elemento che l'installazione del pacchetto ha aggiunto al file di configurazione.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-123">To enable this custom configuration, go back to Web.config and look for the `<appSettings>` element that the package install added to the config file.</span></span> <span data-ttu-id="eeaeb-124">Il markup sarà simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="eeaeb-124">It will look like the following markup:</span></span>
 
 ```xml
 <appSettings>
@@ -93,11 +94,11 @@ namespace DataProtectionDemo
 </appSettings>
 ```
 
-<span data-ttu-id="5d187-125">Inserire il valore blank con il nome qualificato dall'assembly del tipo derivato da DataProtectionStartup appena creato.</span><span class="sxs-lookup"><span data-stu-id="5d187-125">Fill in the blank value with the assembly-qualified name of the DataProtectionStartup-derived type you just created.</span></span> <span data-ttu-id="5d187-126">Se il nome dell'applicazione è DataProtectionDemo, avrà un aspetto simile al seguente.</span><span class="sxs-lookup"><span data-stu-id="5d187-126">If the name of the application is DataProtectionDemo, this would look like the below.</span></span>
+<span data-ttu-id="eeaeb-125">Inserire il valore blank con il nome qualificato dall'assembly del tipo derivato da DataProtectionStartup appena creato.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-125">Fill in the blank value with the assembly-qualified name of the DataProtectionStartup-derived type you just created.</span></span> <span data-ttu-id="eeaeb-126">Se il nome dell'applicazione è DataProtectionDemo, avrà un aspetto simile al seguente.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-126">If the name of the application is DataProtectionDemo, this would look like the below.</span></span>
 
 ```xml
 <add key="aspnet:dataProtectionStartupType"
      value="DataProtectionDemo.MyDataProtectionStartup, DataProtectionDemo" />
 ```
 
-<span data-ttu-id="5d187-127">Il sistema di protezione dei dati appena configurato è ora pronto per l'uso all'interno dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="5d187-127">The newly-configured data protection system is now ready for use inside the application.</span></span>
+<span data-ttu-id="eeaeb-127">Il sistema di protezione dei dati appena configurato è ora pronto per l'uso all'interno dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="eeaeb-127">The newly-configured data protection system is now ready for use inside the application.</span></span>
