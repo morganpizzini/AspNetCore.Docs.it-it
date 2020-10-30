@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -19,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: d1626fe753782d524bf75c398c11235c3110633a
-ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
+ms.openlocfilehash: 500342ac979efdee824ac0d4b5757ca9804f3b30
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91762152"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054814"
 ---
 # <a name="tooling-for-aspnet-core-no-locblazor"></a>Strumenti per ASP.NET Core Blazor
 
@@ -36,11 +37,11 @@ Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.co
 
 1. Creare un nuovo progetto.
 
-1. Selezionare ** Blazor app**. Selezionare **Avanti**.
+1. Selezionare **Blazor app** . Selezionare **Avanti** .
 
-1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
+1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea** .
 
-1. Per un' Blazor WebAssembly esperienza, scegliere il modello ** Blazor WebAssembly app** . Per un' Blazor Server esperienza, scegliere il modello ** Blazor Server app** . Selezionare **Crea**.
+1. Per un' Blazor WebAssembly esperienza, scegliere il modello **Blazor WebAssembly app** . Per un' Blazor Server esperienza, scegliere il modello **Blazor Server app** . Selezionare **Crea** .
 
    Per informazioni sui due Blazor modelli di hosting *Blazor WebAssembly* e *Blazor Server* , vedere <xref:blazor/hosting-models> .
 
@@ -78,7 +79,7 @@ Per ulteriori informazioni su come considerare attendibile il certificato di svi
 
 1. Aprire la cartella `WebApplication1` in Visual Studio Code.
 
-1. Le richieste dell'IDE aggiungono risorse per compilare ed eseguire il debug del progetto. Selezionare **Sì**.
+1. Le richieste dell'IDE aggiungono risorse per compilare ed eseguire il debug del progetto. Selezionare **Sì** .
 
 1. Premere <kbd>CTRL</kbd> + <kbd>F5</kbd> per eseguire l'app.
 
@@ -98,19 +99,19 @@ Per ulteriori informazioni, vedere le indicazioni fornite dal produttore del bro
 
 1. Installare [Visual Studio per Mac](https://visualstudio.microsoft.com/vs/mac/).
 
-1. Selezionare **file**  >  **nuova soluzione** o creare un **nuovo** progetto dalla **finestra Start**.
+1. Selezionare **file**  >  **nuova soluzione** o creare un **nuovo** progetto dalla **finestra Start** .
 
-1. Nella barra laterale selezionare app **Web e console**  >  **App**.
+1. Nella barra laterale selezionare app **Web e console**  >  **App** .
 
-   Per un' Blazor WebAssembly esperienza, scegliere il modello ** Blazor WebAssembly app** . Per un' Blazor Server esperienza, scegliere il modello ** Blazor Server app** . Selezionare **Avanti**.
+   Per un' Blazor WebAssembly esperienza, scegliere il modello **Blazor WebAssembly app** . Per un' Blazor Server esperienza, scegliere il modello **Blazor Server app** . Selezionare **Avanti** .
 
    Per informazioni sui due Blazor modelli di hosting *Blazor WebAssembly* e *Blazor Server* , vedere <xref:blazor/hosting-models> .
 
-1. Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**. Selezionare **Avanti**.
+1. Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione** . Selezionare **Avanti** .
 
-1. Nel campo **nome progetto** assegnare un nome all'app `WebApplication1` . Selezionare **Crea**.
+1. Nel campo **nome progetto** assegnare un nome all'app `WebApplication1` . Selezionare **Crea** .
 
-1. Selezionare **Esegui**  >  **Avvia senza eseguire debug** per eseguire l'app *senza il debugger*. Eseguire l'app con **Esegui**  >  **debug Avvia debug** o il pulsante Esegui (&#9654;) per eseguire l'app *con il debugger*.
+1. Selezionare **Esegui**  >  **Avvia senza eseguire debug** per eseguire l'app *senza il debugger* . Eseguire l'app con **Esegui**  >  **debug Avvia debug** o il pulsante Esegui (&#9654;) per eseguire l'app *con il debugger* .
 
 Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare. Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain. Per ulteriori informazioni su come considerare attendibile il certificato di sviluppo HTTPS ASP.NET Core, vedere <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos> .
 

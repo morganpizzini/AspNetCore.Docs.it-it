@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 02/06/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: e081c13f9ffb33c1ff137cb0989e747d51571ea7
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 36d72e037087399c8893d5ecb4a6fffdca3a3608
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629197"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054242"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Esercitazione: Introduzione a EF Core in un'app Web MVC ASP.NET
 
@@ -60,7 +61,7 @@ In questa esercitazione:
   * **ASP.NET e carico di lavoro di sviluppo Web**
   * Carico di lavoro di **sviluppo multipiattaforma .NET Core**
 
-## <a name="troubleshooting"></a>Risoluzione dei problemi
+## <a name="troubleshooting"></a>risoluzione dei problemi
 
 Se si verifica un problema che non si sa come risolvere, è generalmente possibile trovare la soluzione confrontando il codice con il [progetto completato](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final). Per un elenco degli errori comuni e delle relative soluzioni, vedere [la sezione relativa alla risoluzione dei problemi nell'ultima esercitazione della serie](advanced.md#common-errors). Se non si trova la soluzione, è possibile inviare una domanda a StackOverflow.com per [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) o [Entity Framework Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
@@ -81,23 +82,23 @@ Gli utenti possono visualizzare e aggiornare le informazioni che riguardano stud
 
 * Aprire Visual Studio.
 
-* Scegliere **Nuovo > Progetto** dal menu **File**.
+* Scegliere **Nuovo > Progetto** dal menu **File** .
 
-* Nel riquadro sinistro selezionare **Installato > Visual C# > Web**.
+* Nel riquadro sinistro selezionare **Installato > Visual C# > Web** .
 
-* Selezionare il modello di progetto **Applicazione Web ASP.NET Core**.
+* Selezionare il modello di progetto **Applicazione Web ASP.NET Core** .
 
-* Immettere **ContosoUniversity** come nome e fare clic su **OK**.
+* Immettere **ContosoUniversity** come nome e fare clic su **OK** .
 
   ![Finestra di dialogo Nuovo progetto](intro/_static/new-project2.png)
 
-* Attendere che venga visualizzata la finestra di dialogo **Nuova applicazione Web ASP.NET Core**.
+* Attendere che venga visualizzata la finestra di dialogo **Nuova applicazione Web ASP.NET Core** .
 
-* Selezionare **.NET Core**, **ASP.NET Core 2.2** e il modello **Applicazione Web (MVC)**.
+* Selezionare **.NET Core** , **ASP.NET Core 2.2** e il modello **Applicazione Web (MVC)** .
 
-* Assicurarsi che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
+* Assicurarsi che **l'autenticazione** sia impostata su **Nessuna autenticazione** .
 
-* Selezionare **OK**.
+* Selezionare **OK** .
 
   ![Finestra di dialogo Nuovo progetto ASP.NET Core](intro/_static/new-aspnet2.png)
 
@@ -109,7 +110,7 @@ Aprire *Views/Shared/_Layout.cshtml* e apportare le modifiche seguenti:
 
 * Modificare tutte le occorrenze di "ContosoUniversity" in "Contoso University". Le occorrenze sono tre.
 
-* Aggiungere le voci di menu per **About** (Informazioni su), **Students** (Studenti), **Courses** (Corsi), **Instructors** (Insegnanti) e **Departments** (Dipartimenti) ed eliminare la voce di menu **Privacy**.
+* Aggiungere le voci di menu per **About** (Informazioni su), **Students** (Studenti), **Courses** (Corsi), **Instructors** (Insegnanti) e **Departments** (Dipartimenti) ed eliminare la voce di menu **Privacy** .
 
 Le modifiche sono evidenziate.
 
@@ -149,7 +150,7 @@ Nella cartella *Models* (Modelli) creare un file di classe denominato *Student.c
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
 
-La proprietà `ID` diventa la colonna di chiave primaria della tabella di database che corrisponde a questa classe. Per impostazione predefinita, Entity Framework interpreta una proprietà denominata `ID` o `classnameID` come chiave primaria.
+La proprietà `ID` diventa la colonna di chiave primaria della tabella di database che corrisponde a questa classe. Per impostazione predefinita, Entity Framework interpreta una proprietà denominata `ID` o `classnameID` come la chiave primaria.
 
 La proprietà `Enrollments` rappresenta una [proprietà di navigazione](/ef/core/modeling/relationships). Le proprietà di navigazione contengono altre entità correlate a questa entità. In questo caso la proprietà `Enrollments` di `Student entity` contiene tutte le entità `Enrollment` correlate all'entità `Student`. In altre parole, se una determinata riga Student (Studente) nel database contiene due righe Enrollment (Iscrizione) correlate (le righe che contengono il valore della chiave primaria dello studente nella colonna della chiave esterna StudentID), la proprietà di navigazione `Enrollments` dell'entità `Student` contiene quelle due entità `Enrollment`.
 
@@ -211,13 +212,13 @@ Per registrare `SchoolContext` come servizio, aprire *Startup.cs* e aggiungere l
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=9-10)]
 
-Il nome della stringa di connessione viene passato al contesto chiamando un metodo in un oggetto `DbContextOptionsBuilder`. Per lo sviluppo locale, il [sistema di configurazione di ASP.NET Core](xref:fundamentals/configuration/index) legge la stringa di connessione dal file *appsettings.json*.
+Il nome della stringa di connessione viene passato al contesto chiamando un metodo in un oggetto `DbContextOptionsBuilder`. Per lo sviluppo locale, il [sistema di configurazione ASP.NET Core](xref:fundamentals/configuration/index) legge la stringa di connessione dal *appsettings.json* file.
 
 Aggiungere le istruzioni `using` per gli spazi dei nomi `ContosoUniversity.Data` e `Microsoft.EntityFrameworkCore`, quindi compilare il progetto.
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_Usings)]
 
-Aprire il file *appsettings.json* e aggiungere una stringa di connessione come illustrato nel codice seguente.
+Aprire il *appsettings.json* file e aggiungere una stringa di connessione come illustrato nell'esempio seguente.
 
 [!code-json[](./intro/samples/cu/appsettings1.json?highlight=2-4)]
 
@@ -259,27 +260,27 @@ A questo punto viene usato il motore di scaffolding in Visual Studio per aggiung
 
 La creazione automatica di metodi di azione CRUD e di visualizzazioni è nota come scaffolding. Lo scaffolding differisce dalla generazione di codice in quanto il codice di scaffolding è un punto di partenza modificabile per essere adattato ai propri requisiti, mentre generalmente il codice generato non viene modificato. Quando è necessario personalizzare il codice generato, usare classi parziali oppure rigenerare il codice in caso di modifiche.
 
-* Fare clic con il pulsante destro del mouse sulla cartella **Controller** in **Esplora soluzioni** e scegliere **Aggiungi -> Nuovo elemento di scaffolding**.
+* Fare clic con il pulsante destro del mouse sulla cartella **Controller** in **Esplora soluzioni** e scegliere **Aggiungi -> Nuovo elemento di scaffolding** .
 
 * Nella finestra di dialogo **Aggiungi scaffolding** eseguire le operazioni seguenti:
 
-  * Selezionare **Controller MVC con visualizzazioni, che usa Entity Framework**.
+  * Selezionare **Controller MVC con visualizzazioni, che usa Entity Framework** .
 
-  * Fare clic su **Aggiungi**. Verrà visualizzata la finestra di dialogo **Aggiungi Controller MVC con visualizzazioni, che usa Entity Framework**.
+  * Scegliere **Aggiungi** . Verrà visualizzata la finestra di dialogo **Aggiungi Controller MVC con visualizzazioni, che usa Entity Framework** .
 
     ![Scaffolding di Student](intro/_static/scaffold-student2.png)
 
   * In **Classe modello** selezionare **Student** (Studente).
 
-  * In **Classe contesto di dati** selezionare **SchoolContext**.
+  * In **Classe contesto di dati** selezionare **SchoolContext** .
 
   * Accettare il valore predefinito **StudentsController** come nome.
 
-  * Fare clic su **Aggiungi**.
+  * Scegliere **Aggiungi** .
 
-  Quando si fa clic su **Aggiungi**, il motore di scaffolding di Visual Studio crea un file *StudentsController.cs* e un set di visualizzazioni (file con estensione *cshtml*) che vengono usate insieme al controller.
+  Quando si fa clic su **Aggiungi** , il motore di scaffolding di Visual Studio crea un file *StudentsController.cs* e un set di visualizzazioni (file con estensione *cshtml* ) che vengono usate insieme al controller.
 
-Il motore di scaffolding può anche creare il contesto del database se non è stato precedentemente creato in modo manuale, come all'inizio di questa esercitazione. È possibile specificare una nuova classe di contesto nella casella **Aggiungi controller** facendo clic sul segno + a destra della casella di **Classe contesto di dati**.  Visual Studio creerà quindi la classe `DbContext` nonché il controller e le visualizzazioni.
+Il motore di scaffolding può anche creare il contesto del database se non è stato precedentemente creato in modo manuale, come all'inizio di questa esercitazione. È possibile specificare una nuova classe di contesto nella casella **Aggiungi controller** facendo clic sul segno + a destra della casella di **Classe contesto di dati** .  Visual Studio creerà quindi la classe `DbContext` nonché il controller e le visualizzazioni.
 
 Si noti che il controller usa `SchoolContext` come parametro del costruttore.
 
@@ -307,13 +308,13 @@ Fare clic sulla scheda Students (Studenti) per visualizzare i dati di test inser
 
 ## <a name="view-the-database"></a>Visualizzare il database
 
-Dopo aver avviato l'applicazione, il metodo `DbInitializer.Initialize` chiama `EnsureCreated`. Entity Framework ha verificato che non esiste un database e ne ha pertanto creato uno. La parte restante di codice del metodo `Initialize` ha popolato il database con i dati. È possibile usare **Esplora oggetti di SQL Server ** per visualizzare il database in Visual Studio.
+Dopo aver avviato l'applicazione, il metodo `DbInitializer.Initialize` chiama `EnsureCreated`. Entity Framework ha verificato che non esiste un database e ne ha pertanto creato uno. La parte restante di codice del metodo `Initialize` ha popolato il database con i dati. È possibile usare **Esplora oggetti di SQL Server** per visualizzare il database in Visual Studio.
 
 Chiudere il browser.
 
 Se la finestra di Esplora oggetti di SQL Server non è già aperta, selezionarla dal menu **Visualizza** in Visual Studio.
 
-In Esplora oggetti di SQL Server fare clic su **(localdb) \MSSQLLocalDB > Database** e fare clic sulla voce che corrisponde al nome del database contenuto nella stringa di connessione nel file *appsettings.json*.
+In SSOX fare clic su (local DB **) \MSSQLLocalDB > database** , quindi fare clic sulla voce relativa al nome del database nella stringa di connessione nel *appsettings.json* file.
 
 Espandere il nodo **Tabelle** per visualizzare le tabelle nel database.
 
@@ -323,7 +324,7 @@ Fare clic con il pulsante destro del mouse sulla tabella **Student** (Studente) 
 
 ![Tabella Student (Studente) in Esplora oggetti di SQL Server](intro/_static/ssox-student-table.png)
 
-I file di database con estensione *mdf* e *ldf* sono contenuti nella cartella *C:\Utenti\\\<yourusername>*.
+I file di database con estensione *mdf* e *ldf* sono contenuti nella cartella *C:\Utenti\\\<yourusername>* .
 
 Poiché si sta chiamando `EnsureCreated` nel metodo di inizializzatore che viene eseguito all'avvio dell'app, è ora possibile modificare la classe `Student`, eliminare il database ed eseguire nuovamente l'applicazione. Il database sarà automaticamente ricreato e rispecchierà la modifica. Ad esempio, se si aggiunge una proprietà `EmailAddress` alla classe `Student`, una nuova colonna `EmailAddress` sarà visualizzata nella tabella ricreata.
 

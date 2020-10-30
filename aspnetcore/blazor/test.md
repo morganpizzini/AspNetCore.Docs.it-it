@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/10/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/test
-ms.openlocfilehash: 572b9a293e2fd6f51431cd1de6ada737addf5efa
-ms.sourcegitcommit: dd0e87abf2bb50ee992d9185bb256ed79d48f545
+ms.openlocfilehash: cd4aee66fd6df6cc0ce520d8ca66e0a2cf130eff
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88746533"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054866"
 ---
 # <a name="test-components-in-aspnet-core-no-locblazor"></a>Componenti di test in ASP.NET Core Blazor
 
@@ -41,7 +42,7 @@ Per testare un Blazor componente, il *componente* sottoposto a test (taglia) è:
 
 Due approcci comuni per i test dei Blazor componenti sono i test end-to-end (E2E) e gli unit test:
 
-* **Unit test**: gli [unit test](/dotnet/core/testing/) vengono scritti con una libreria di unit test che fornisce:
+* **Unit test** : gli [unit test](/dotnet/core/testing/) vengono scritti con una libreria di unit test che fornisce:
   * Rendering di componenti.
   * Ispezione dell'output e dello stato dei componenti.
   * Attivazione di gestori eventi e metodi del ciclo di vita.
@@ -49,7 +50,7 @@ Due approcci comuni per i test dei Blazor componenti sono i test end-to-end (E2E
 
   [bUnit](https://github.com/egil/bUnit) è un esempio di libreria che consente di eseguire Razor unit test dei componenti.
 
-* **Test di E2E**: un test runner esegue un' Blazor app che contiene il taglia e automatizza un'istanza del browser. Lo strumento di test esamina e interagisce con il taglio tramite il browser. [Selenium](https://github.com/SeleniumHQ/selenium) è un esempio di Framework di test E2E che può essere usato con le Blazor app.
+* **Test di E2E** : un test runner esegue un' Blazor app che contiene il taglia e automatizza un'istanza del browser. Lo strumento di test esamina e interagisce con il taglio tramite il browser. [Selenium](https://github.com/SeleniumHQ/selenium) è un esempio di Framework di test E2E che può essere usato con le Blazor app.
 
 Negli unit test Blazor viene richiesto solo il componente ( Razor /c #). Le dipendenze esterne, ad esempio servizi e interoperabilità JS, devono essere simulate. Nel test di E2E, il Blazor componente e l'intera infrastruttura ausiliaria fanno parte del test, tra cui CSS, js e le API DOM e browser.
 
@@ -142,11 +143,11 @@ public void CounterShouldIncrementWhenSelected()
 
 Le azioni seguenti si verificano a ogni passaggio del test:
 
-* *Arrange*: il `Counter` componente viene sottoposto a rendering usando bUnit `TestContext` . L'elemento Paragraph del taglio ( `<p>` ) viene trovato e assegnato a `paraElm` .
+* *Arrange* : il `Counter` componente viene sottoposto a rendering usando bUnit `TestContext` . L'elemento Paragraph del taglio ( `<p>` ) viene trovato e assegnato a `paraElm` .
 
-* *Act*: l'elemento del pulsante ( `<button>` ) viene individuato e quindi selezionato chiamando `Click` , che deve incrementare il contatore e aggiornare il contenuto del tag di paragrafo ( `<p>` ). Il contenuto di testo dell'elemento Paragraph viene ottenuto chiamando `TextContent` .
+* *Act* : l'elemento del pulsante ( `<button>` ) viene individuato e quindi selezionato chiamando `Click` , che deve incrementare il contatore e aggiornare il contenuto del tag di paragrafo ( `<p>` ). Il contenuto di testo dell'elemento Paragraph viene ottenuto chiamando `TextContent` .
 
-* *Assert*: `MarkupMatches` viene chiamato sul contenuto di testo per verificare che corrisponda alla stringa prevista, ovvero `Current count: 1` .
+* *Assert* : `MarkupMatches` viene chiamato sul contenuto di testo per verificare che corrisponda alla stringa prevista, ovvero `Current count: 1` .
 
 > [!NOTE]
 > Il `MarkupMatches` Metodo Assert è diverso da un'asserzione di confronto di stringhe normale (ad esempio, `Assert.Equal("Current count: 1", paraElmText);` ) `MarkupMatches` esegue un confronto semantico tra l'input e il markup HTML previsto. Un confronto semantico è consapevole della semantica HTML, il che significa che gli spazi vuoti non significativi vengono ignorati. Ciò comporta test più stabili. Per altre informazioni, vedere [personalizzazione del confronto tra HTML semantico](https://bunit.egilhansen.com/docs/verification/semantic-html-comparison).

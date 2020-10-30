@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/03/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization-extensibility
-ms.openlocfilehash: 2e1041ed4cce3c3919d75ff47e2bc24fc446e9c3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a6ef5a547e6ccba6771cdf892a9636f83d6796b1
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627611"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053735"
 ---
 # <a name="localization-extensibility"></a>Estendibilità della localizzazione
 
@@ -104,7 +105,7 @@ options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async 
 
 Si può creare una nuova implementazione di <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> che determina le informazioni sulle impostazioni cultura della richiesta da un'origine personalizzata. L'origine personalizzata, ad esempio, può essere un file o un database di configurazione.
 
-L'esempio seguente illustra `AppSettingsRequestCultureProvider`, che estende <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> per ottenere le informazioni sulle impostazioni cultura della richiesta da *appsettings.json*:
+Nell'esempio seguente viene illustrato `AppSettingsRequestCultureProvider` , che estende <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> per determinare le informazioni sulle impostazioni cultura della richiesta da *appsettings.json* :
 
 ```csharp
 public class AppSettingsRequestCultureProvider : RequestCultureProvider

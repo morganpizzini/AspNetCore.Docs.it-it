@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: 0f0f1a9c70a2d6725cbb68ac62850cf6aa332d36
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 573a509041bfb34faf50a227c451824db03f92ee
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90721840"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053995"
 ---
 # <a name="part-8-no-locrazor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Parte 8, Razor pagine con EF core in ASP.NET Core concorrenza
 
@@ -175,8 +176,8 @@ Compilare il progetto.
 
 Questo comando:
 
-* Creare il file di migrazione *Migrations/{timestamp}_RowVersion.cs*.
-* Aggiornano il file *Migrations/SchoolContextModelSnapshot.cs*. L'aggiornamento aggiunge al metodo `BuildModel` il codice evidenziato seguente:
+* Creare il file di migrazione *Migrations/{timestamp}_RowVersion.cs* .
+* Aggiornano il file *Migrations/SchoolContextModelSnapshot.cs* . L'aggiornamento aggiunge al metodo `BuildModel` il codice evidenziato seguente:
 
   [!code-csharp[](intro/samples/cu30/Migrations/SchoolContextModelSnapshot.cs?name=snippet_Department&highlight=15-17)]
 
@@ -215,13 +216,13 @@ Questo comando:
 
 * Seguire le istruzioni in [Scaffolding delle pagine Student](xref:data/ef-rp/intro#scaffold-student-pages) con le eccezioni seguenti:
 
-* Creare una cartella *Pages/Departments*.  
+* Creare una cartella *Pages/Departments* .  
 * Usare `Department` per la classe del modello.
   * Usare la classe di contesto esistente anziché crearne una nuova.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Creare una cartella *Pages/Departments*.
+* Creare una cartella *Pages/Departments* .
 
 * Eseguire il comando seguente per eseguire lo scaffolding delle pagine Department.
 
@@ -245,7 +246,7 @@ Compilare il progetto.
 
 Lo strumento di scaffolding crea una colonna `RowVersion` per la pagina Index, ma questo campo non verrebbe visualizzato in un'app in produzione. In questa esercitazione, l'ultimo byte di `RowVersion` viene visualizzato per illustrare in modo più chiaro come funziona la gestione della concorrenza. L'univocità dell'ultimo byte non è garantita.
 
-Aggiornare la pagina *Pages\Departments\Index.cshtml*:
+Aggiornare la pagina *Pages\Departments\Index.cshtml* :
 
 * Sostituire Index con Departments.
 * Modificare il codice che contiene `RowVersion` per visualizzare solo l'ultimo byte della matrice di byte.
@@ -303,12 +304,12 @@ Il codice precedente:
 Aprire due istanze di browser con la pagina Edit (Modifica) e il reparto English (Inglese):
 
 * Eseguire l'app e selezionare Departments (Reparti).
-* Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese) e selezionare **Apri in una nuova scheda**.
+* Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese) e selezionare **Apri in una nuova scheda** .
 * Nella prima scheda fare clic sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese).
 
 Le due schede del browser visualizzano le stesse informazioni.
 
-Modificare il nome nella prima scheda del browser e fare clic su **Salva**.
+Modificare il nome nella prima scheda del browser e fare clic su **Salva** .
 
 ![Pagina Department Edit (Modifica - Reparto) 1 dopo la modifica](concurrency/_static/edit-after-change-130.png)
 
@@ -318,13 +319,13 @@ Modificare un altro campo nella seconda scheda del browser.
 
 ![Pagina Department Edit (Modifica - Reparto) 2 dopo la modifica](concurrency/_static/edit-after-change-230.png)
 
-Fare clic su **Salva**. Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
+Fare clic su **Salva** . Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error30.png)
 
 Questa finestra del browser non prevedeva la modifica del campo Name (Nome). Copiare e incollare il valore corrente Languages (Lingue) nel campo Name (Nome). Tabulazione. La convalida lato client rimuove il messaggio di errore.
 
-Fare clic su **Salva**. Il valore immesso nella seconda scheda del browser viene salvato. I valori salvati vengono visualizzati nella pagina Index.
+Fare clic su **Salva** . Il valore immesso nella seconda scheda del browser viene salvato. I valori salvati vengono visualizzati nella pagina Index.
 
 ## <a name="update-the-delete-page-model"></a>Aggiornare il modello di pagina Elimina
 
@@ -359,12 +360,12 @@ Creare un reparto di test.
 Aprire due istanze del browser con la pagina Delete (Elimina):
 
 * Eseguire l'app e selezionare Departments (Reparti).
-* Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Delete** (Elimina) per il reparto di test e selezionare **Apri in una nuova scheda**.
-* Fare clic sul collegamento ipertestuale **Edit ** (Modifica) per il reparto di test.
+* Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Delete** (Elimina) per il reparto di test e selezionare **Apri in una nuova scheda** .
+* Fare clic sul collegamento ipertestuale **Edit** (Modifica) per il reparto di test.
 
 Le due schede del browser visualizzano le stesse informazioni.
 
-Modificare il budget nella prima scheda del browser e fare clic su **Salva**.
+Modificare il budget nella prima scheda del browser e fare clic su **Salva** .
 
 Il browser visualizza la pagina Index con il valore modificato e l'indicatore rowVersion aggiornato. Si noti l'indicatore rowVersion aggiornato, che è visualizzato sul secondo postback nell'altra scheda.
 
@@ -512,8 +513,8 @@ dotnet ef database update
 
 I comandi precedenti:
 
-* Aggiungono il file di migrazione *Migrations/{timestamp}_RowVersion.cs*.
-* Aggiornano il file *Migrations/SchoolContextModelSnapshot.cs*. L'aggiornamento aggiunge al metodo `BuildModel` il codice evidenziato seguente:
+* Aggiungono il file di migrazione *Migrations/{timestamp}_RowVersion.cs* .
+* Aggiornano il file *Migrations/SchoolContextModelSnapshot.cs* . L'aggiornamento aggiunge al metodo `BuildModel` il codice evidenziato seguente:
 
   [!code-csharp[](intro/samples/cu/Migrations/SchoolContextModelSnapshot.cs?name=snippet_Department&highlight=14-16)]
 
@@ -599,12 +600,12 @@ Il markup precedente:
 Aprire due istanze di browser con la pagina Edit (Modifica) e il reparto English (Inglese):
 
 * Eseguire l'app e selezionare Departments (Reparti).
-* Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese) e selezionare **Apri in una nuova scheda**.
+* Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese) e selezionare **Apri in una nuova scheda** .
 * Nella prima scheda fare clic sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese).
 
 Le due schede del browser visualizzano le stesse informazioni.
 
-Modificare il nome nella prima scheda del browser e fare clic su **Salva**.
+Modificare il nome nella prima scheda del browser e fare clic su **Salva** .
 
 ![Pagina Department Edit (Modifica - Reparto) 1 dopo la modifica](concurrency/_static/edit-after-change-1.png)
 
@@ -614,7 +615,7 @@ Modificare un altro campo nella seconda scheda del browser.
 
 ![Pagina Department Edit (Modifica - Reparto) 2 dopo la modifica](concurrency/_static/edit-after-change-2.png)
 
-Fare clic su **Salva**. Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
+Fare clic su **Salva** . Vengono visualizzati messaggi di errore per tutti i campi che non corrispondono ai valori del database:
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error.png)
 
@@ -622,7 +623,7 @@ Questa finestra del browser non prevedeva la modifica del campo Name (Nome). Cop
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/cv.png)
 
-Fare clic su **Salva**. Il valore immesso nella seconda scheda del browser viene salvato. I valori salvati vengono visualizzati nella pagina Index.
+Fare clic su **Salva** . Il valore immesso nella seconda scheda del browser viene salvato. I valori salvati vengono visualizzati nella pagina Index.
 
 ## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
@@ -657,12 +658,12 @@ Creare un reparto di test.
 Aprire due istanze del browser con la pagina Delete (Elimina):
 
 * Eseguire l'app e selezionare Departments (Reparti).
-* Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Delete** (Elimina) per il reparto di test e selezionare **Apri in una nuova scheda**.
-* Fare clic sul collegamento ipertestuale **Edit ** (Modifica) per il reparto di test.
+* Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Delete** (Elimina) per il reparto di test e selezionare **Apri in una nuova scheda** .
+* Fare clic sul collegamento ipertestuale **Edit** (Modifica) per il reparto di test.
 
 Le due schede del browser visualizzano le stesse informazioni.
 
-Modificare il budget nella prima scheda del browser e fare clic su **Salva**.
+Modificare il budget nella prima scheda del browser e fare clic su **Salva** .
 
 Il browser visualizza la pagina Index con il valore modificato e l'indicatore rowVersion aggiornato. Si noti l'indicatore rowVersion aggiornato, che è visualizzato sul secondo postback nell'altra scheda.
 

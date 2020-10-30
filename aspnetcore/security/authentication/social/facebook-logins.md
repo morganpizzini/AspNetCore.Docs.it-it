@@ -7,6 +7,7 @@ ms.custom: seoapril2019, mvc, seodec18
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/facebook-logins
-ms.openlocfilehash: ce0e7ad30c137562b74dc9fe5c53235e3599e575
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: be0b655645fd2bd0eab9f9c30a65485f386cead3
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634358"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053358"
 ---
 # <a name="facebook-external-login-setup-in-aspnet-core"></a>Configurazione dell'accesso esterno a Facebook in ASP.NET Core
 
@@ -48,7 +49,7 @@ Questa esercitazione con esempi di codice Mostra come consentire agli utenti di 
 
   ![Creare un nuovo modulo ID app](index/_static/FBNewAppId.png)
 
-* Nella scheda nuova app selezionare **Aggiungi un prodotto**.  Nella scheda di **accesso di Facebook** fare clic su **Configura** 
+* Nella scheda nuova app selezionare **Aggiungi un prodotto** .  Nella scheda di **accesso di Facebook** fare clic su **Configura** 
 
   ![Pagina impostazione prodotto](index/_static/FBProductSetup.png)
 
@@ -65,9 +66,9 @@ Questa esercitazione con esempi di codice Mostra come consentire agli utenti di 
 > [!NOTE]
 > L'URI */SignIn-Facebook* viene impostato come callback predefinito del provider di autenticazione di Facebook. È possibile modificare l'URI di callback predefinito durante la configurazione del middleware di autenticazione di Facebook tramite la proprietà [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) ereditata della classe [FacebookOptions](/dotnet/api/microsoft.aspnetcore.authentication.facebook.facebookoptions) .
 
-* Fare clic su **Salva modifiche**.
+* Fare clic su **Salva modifiche** .
 
-* Fare clic sul collegamento **Impostazioni**  >  di**base** nella finestra di spostamento a sinistra.
+* Fare clic sul collegamento **Impostazioni**  >  di **base** nella finestra di spostamento a sinistra.
 
   In questa pagina prendere nota del `App ID` e del `App Secret` . Si aggiungeranno entrambi nell'applicazione ASP.NET Core nella sezione successiva:
 
@@ -103,8 +104,8 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 
 ## <a name="sign-in-with-facebook"></a>Accedi con Facebook
 
-* Eseguire l'app e selezionare **Accedi**. 
-* In **usare un altro servizio per accedere**selezionare Facebook.
+* Eseguire l'app e selezionare **Accedi** . 
+* In **usare un altro servizio per accedere** selezionare Facebook.
 * Si viene reindirizzati a **Facebook** per l'autenticazione.
 * Immettere le credenziali di Facebook.
 * Si viene reindirizzati di nuovo al sito in cui è possibile impostare la posta elettronica.
@@ -132,7 +133,7 @@ Il codice seguente imposta `AccessDeniedPath` su `"/AccessDeniedPathInfo"` :
 * Passare a [Facebook.com](https://www.facebook.com/)
 * Se è stato eseguito l'accesso, è necessario disconnettersi.
 * Eseguire l'app e selezionare l'accesso a Facebook.
-* Selezionare **non ora**. Si verrà reindirizzati alla `AccessDeniedPath` pagina specificata.
+* Selezionare **non ora** . Si verrà reindirizzati alla `AccessDeniedPath` pagina specificata.
 
 <!-- End of React  -->
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
@@ -144,9 +145,9 @@ Vedere le informazioni di riferimento sull'API [FacebookOptions](/dotnet/api/mic
 * Richiedere informazioni diverse sull'utente.
 * Aggiungere gli argomenti della stringa di query per personalizzare l'esperienza di accesso.
 
-## <a name="troubleshooting"></a>Risoluzione dei problemi
+## <a name="troubleshooting"></a>risoluzione dei problemi
 
-* **Solo ASP.NET Core 2. x:** Se Identity non è configurato chiamando `services.AddIdentity` in `ConfigureServices` , il tentativo di eseguire l'autenticazione comporterà *l'eccezione ArgumentException: è necessario specificare l'opzione ' SignInScheme '*. Il modello di progetto usato in questa esercitazione garantisce che questa operazione venga eseguita.
+* **Solo ASP.NET Core 2. x:** Se Identity non è configurato chiamando `services.AddIdentity` in `ConfigureServices` , il tentativo di eseguire l'autenticazione comporterà *l'eccezione ArgumentException: è necessario specificare l'opzione ' SignInScheme '* . Il modello di progetto usato in questa esercitazione garantisce che questa operazione venga eseguita.
 * Se il database del sito non è stato creato applicando la migrazione iniziale, si ottiene *un'operazione di database non riuscita durante l'elaborazione dell'* errore di richiesta. Toccare **applica migrazioni** per creare il database e aggiornare per continuare a superare l'errore.
 
 ## <a name="next-steps"></a>Passaggi successivi

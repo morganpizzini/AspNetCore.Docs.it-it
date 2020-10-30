@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/23/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/index
-ms.openlocfilehash: da025cb8dced8ac8a6ecf559d4de7795c9797f71
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1f7c8cd0716f1ada3517add0d37a09e419f38774
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634280"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053306"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticazione dei provider Facebook, Google ed esterni in ASP.NET Core
 
@@ -44,11 +45,11 @@ Per degli esempi di come gli account di accesso ai social possano risultare util
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Creare un nuovo progetto.
-* Selezionare **Applicazione Web ASP.NET Core** e **Avanti**.
-* Specificare un **Nome progetto** e confermare o modificare il **Percorso**. Selezionare **Create** (Crea).
-* Selezionare la versione più recente di ASP.NET Core nell'elenco a discesa (**ASP.NET Core {X. Y}**), quindi selezionare **applicazione Web**.
-* In **Autenticazione** selezionare **Modifica** e impostare l'autenticazione su **Account utente individuali**. Selezionare **OK**.
-* Nella finestra **Crea una nuova applicazione Web ASP.NET Core** selezionare **Crea**.
+* Selezionare **Applicazione Web ASP.NET Core** e **Avanti** .
+* Specificare un **Nome progetto** e confermare o modificare il **Percorso** . Selezionare **Crea** .
+* Selezionare la versione più recente di ASP.NET Core nell'elenco a discesa ( **ASP.NET Core {X. Y}** ), quindi selezionare **applicazione Web** .
+* In **Autenticazione** selezionare **Modifica** e impostare l'autenticazione su **Account utente individuali** . Selezionare **OK** .
+* Nella finestra **Crea una nuova applicazione Web ASP.NET Core** selezionare **Crea** .
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -77,15 +78,15 @@ Per degli esempi di come gli account di accesso ai social possano risultare util
 
 ## <a name="apply-migrations"></a>Applicare le migrazioni
 
-* Eseguire l'app e selezionare il collegamento **Registra**.
-* Immettere l'indirizzo di posta elettronica e la password per il nuovo account, quindi selezionare **Registra**.
+* Eseguire l'app e selezionare il collegamento **Registra** .
+* Immettere l'indirizzo di posta elettronica e la password per il nuovo account, quindi selezionare **Registra** .
 * Seguire le istruzioni per applicare le migrazioni.
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 ## <a name="use-secretmanager-to-store-tokens-assigned-by-login-providers"></a>Usare SecretManager per archiviare i token assegnati dai provider di accesso
 
-I provider di accesso ai social assegnano i token **ID applicazione** e **Segreto dell'applicazione** durante il processo di registrazione. La denominazione esatta dei token varia a seconda del provider. Questi token rappresentano le credenziali usate dall'app per accedere alle API. I token costituiscono i "segreti" che è possibile collegare alla configurazione dell'app usando [Secret Manager](xref:security/app-secrets#secret-manager). Secret Manager è un'alternativa che offre maggior sicurezza rispetto alla memorizzazione dei token in un file di configurazione, ad esempio *appsettings.json*.
+I provider di accesso ai social assegnano i token **ID applicazione** e **Segreto dell'applicazione** durante il processo di registrazione. La denominazione esatta dei token varia a seconda del provider. Questi token rappresentano le credenziali usate dall'app per accedere alle API. I token costituiscono i "segreti" che è possibile collegare alla configurazione dell'app usando [Secret Manager](xref:security/app-secrets#secret-manager). Secret Manager è un'alternativa più sicura per archiviare i token in un file di configurazione, ad esempio *appsettings.json* .
 
 > [!IMPORTANT]
 > Secret Manager è progettato esclusivamente per lo sviluppo. È possibile memorizzare e proteggere i segreti relativi al test e alla produzione di Azure usando il [provider di configurazione di Azure Key Vault](xref:security/key-vault-configuration).
@@ -110,7 +111,7 @@ Quando ci si registra con un provider di accesso esterno, non si dispone di una 
 
 Per creare una password e accedere usando la posta elettronica impostata durante il processo di accesso con provider esterni:
 
-* Selezionare il collegamento **Salve &lt;alias di posta elettronica&gt;** nell'angolo superiore destro per passare alla vista **Gestione**.
+* Selezionare il collegamento **Salve &lt;alias di posta elettronica&gt;** nell'angolo superiore destro per passare alla vista **Gestione** .
 
 ![Vista Gestione dell'applicazione Web](index/_static/pass1a.png)
 

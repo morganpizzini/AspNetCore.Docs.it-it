@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: f198cef0cf990dcc2806d3967130db64af47c1d0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6110f51eb5d5ee40d6ce5a5d49ddda3329d1f033
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627832"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055542"
 ---
 # <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>BlazorAutenticazione e autorizzazione ASP.NET Core
 
@@ -47,7 +48,7 @@ Le [ Razor convenzioni di autorizzazione pagine](xref:security/authorization/raz
 
 Blazor USA i meccanismi di autenticazione ASP.NET Core esistenti per stabilire l'identità dell'utente. Il meccanismo esatto dipende dalla modalità di Blazor hosting dell'app o da Blazor WebAssembly Blazor Server .
 
-### <a name="no-locblazor-webassembly-authentication"></a>Blazor WebAssembly
+### <a name="no-locblazor-webassembly-authentication"></a>Blazor WebAssembly e
 
 Nelle Blazor WebAssembly app, i controlli di autenticazione possono essere ignorati perché tutto il codice lato client può essere modificato dagli utenti. Lo stesso vale per tutte le tecnologie per app sul lato client, tra cui i framework JavaScript SPA o le app native per qualsiasi sistema operativo.
 
@@ -60,7 +61,7 @@ Per gestire l'autenticazione, l'uso di un servizio incorporato o personalizzato 
 
 Per ulteriori informazioni sulla creazione di app e configurazione, vedere <xref:blazor/security/webassembly/index> .
 
-### <a name="no-locblazor-server-authentication"></a>Blazor Server
+### <a name="no-locblazor-server-authentication"></a>Blazor Server e
 
 Blazor Server le app funzionano in una connessione in tempo reale creata con SignalR . L' [autenticazione in SignalR app basate su](xref:signalr/authn-and-authz) viene gestita quando viene stabilita la connessione. L'autenticazione può essere basata su un cookie o su altri Bearer token.
 
@@ -246,8 +247,8 @@ Dopo l'autenticazione di un utente, vengono applicate le regole di *autorizzazio
 L'accesso viene in genere concesso o negato in base alle condizioni seguenti:
 
 * L'utente è autenticato (ha eseguito l'accesso).
-* L'utente è incluso in un *ruolo*.
-* L'utente ha un'*attestazione*.
+* L'utente è incluso in un *ruolo* .
+* L'utente ha un' *attestazione* .
 * I *criteri* sono soddisfatti.
 
 Ognuno di questi concetti è identico a quello di un'app ASP.NET Core MVC o Razor pages. Per ulteriori informazioni sulla sicurezza ASP.NET Core, vedere gli articoli in [sicurezza ASP.NET Core e Identity ](xref:security/index).
@@ -293,7 +294,7 @@ Se non sono specificate condizioni di autorizzazione, <xref:Microsoft.AspNetCore
 
 ### <a name="role-based-and-policy-based-authorization"></a>Autorizzazione basata sui ruoli e basata sui criteri
 
-Il componente <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> supporta l'autorizzazione *basata sui ruoli* oppure *basata sui criteri*.
+Il componente <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> supporta l'autorizzazione *basata sui ruoli* oppure *basata sui criteri* .
 
 Per l'autorizzazione basata sui ruoli, usare il parametro <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles>:
 
@@ -321,7 +322,7 @@ Se non si specifica <xref:Microsoft.AspNetCore.Components.Authorization.Authoriz
 
 ### <a name="content-displayed-during-asynchronous-authentication"></a>Contenuto visualizzato durante l'autenticazione asincrona
 
-Blazor consente di determinare lo stato di autenticazione in *modo asincrono*. Lo scenario principale per questo approccio è nelle Blazor WebAssembly app che effettuano una richiesta a un endpoint esterno per l'autenticazione.
+Blazor consente di determinare lo stato di autenticazione in *modo asincrono* . Lo scenario principale per questo approccio è nelle Blazor WebAssembly app che effettuano una richiesta a un endpoint esterno per l'autenticazione.
 
 Mentre è in corso l'autenticazione <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> non visualizza alcun contenuto per impostazione predefinita. Per visualizzare il contenuto quando si verifica l'autenticazione, usare il `<Authorizing>` Tag:
 

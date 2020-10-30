@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/27/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,18 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: afd1bfffae11520a5d9abccc1d2ee4cf3a46a4bf
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: f8e36cbe905b5ec2e674123c0f2ab6db99683c7c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722462"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056413"
 ---
 # <a name="aspnet-core-no-locrazor-components-class-libraries"></a>RazorLibrerie di classi dei componenti ASP.NET Core
 
 Di [Simon Timms](https://github.com/stimms)
 
-I componenti possono essere condivisi in una [ Razor libreria di classi (RCL)](xref:razor-pages/ui-class) nei progetti. È possibile includere una * Razor libreria di classi Components* da:
+I componenti possono essere condivisi in una [ Razor libreria di classi (RCL)](xref:razor-pages/ui-class) nei progetti. È possibile includere una *Razor libreria di classi Components* da:
 
 * Un altro progetto nella soluzione.
 * Un pacchetto NuGet.
@@ -42,16 +43,16 @@ Così come i componenti sono tipi .NET normali, i componenti forniti da un RCL s
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Creare un nuovo progetto.
-1. Selezionare ** Razor libreria di classi**. Selezionare **Avanti**.
-1. Nella finestra di dialogo **Crea una nuova Razor libreria di classi** Selezionare **Crea**.
-1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `ComponentLibrary` . Selezionare **Create** (Crea).
+1. Selezionare **Razor libreria di classi** . Selezionare **Avanti** .
+1. Nella finestra di dialogo **Crea una nuova Razor libreria di classi** Selezionare **Crea** .
+1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Gli esempi in questo argomento usano il nome del progetto `ComponentLibrary` . Selezionare **Crea** .
 1. Aggiungere RCL a una soluzione:
-   1. Fare clic con il pulsante destro del mouse sulla soluzione. Selezionare **Aggiungi**  >  **progetto esistente**.
+   1. Fare clic con il pulsante destro del mouse sulla soluzione. Selezionare **Aggiungi**  >  **progetto esistente** .
    1. Passare al file di progetto di RCL.
    1. Selezionare il file di progetto di RCL ( `.csproj` ).
 1. Aggiungere un riferimento a RCL dall'app:
-   1. Fare clic con il pulsante destro del mouse sul progetto app. Selezionare **Aggiungi**  >  **riferimento**.
-   1. Selezionare il progetto RCL. Selezionare **OK**.
+   1. Fare clic con il pulsante destro del mouse sul progetto app. Selezionare **Aggiungi**  >  **riferimento** .
+   1. Selezionare il progetto RCL. Selezionare **OK** .
 
 > [!NOTE]
 > Se la casella di controllo **pagine e visualizzazioni di supporto** è selezionata durante la generazione del RCL dal modello, aggiungere anche un `_Imports.razor` file alla radice del progetto generato con il contenuto seguente per abilitare la Razor creazione dei componenti:
@@ -64,7 +65,7 @@ Così come i componenti sono tipi .NET normali, i componenti forniti da un RCL s
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-1. Usare il modello ** Razor libreria di classi** ( `razorclasslib` ) con il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando in una shell dei comandi. Nell'esempio seguente viene creato un RCL denominato `ComponentLibrary` . La cartella che include `ComponentLibrary` viene creata automaticamente quando si esegue il comando:
+1. Usare il modello **Razor libreria di classi** ( `razorclasslib` ) con il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando in una shell dei comandi. Nell'esempio seguente viene creato un RCL denominato `ComponentLibrary` . La cartella che include `ComponentLibrary` viene creata automaticamente quando si esegue il comando:
 
    ```dotnetcli
    dotnet new razorclasslib -o ComponentLibrary
@@ -120,9 +121,11 @@ Welcome to your new app.
 
 Facoltativamente, includere la `@using ComponentLibrary` direttiva nel file di primo livello `_Import.razor` per rendere disponibili i componenti della libreria a un intero progetto. Aggiungere la direttiva a un `_Import.razor` file a qualsiasi livello per applicare lo spazio dei nomi a un singolo componente o a un set di componenti all'interno di una cartella.
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker range=">= aspnetcore-5.0"
 
-Per specificare `Component1` la `my-component` classe CSS per il componente, collegarsi al foglio di stile della libreria usando il [ `Link` componente](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) del Framework in `Component1.razor` :
+To provide `Component1`'s `my-component` CSS class to the component, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) in `Component1.razor`:
 
 ```razor
 <div class="my-component">
@@ -134,7 +137,7 @@ Per specificare `Component1` la `my-component` classe CSS per il componente, col
 </div>
 ```
 
-Per fornire il foglio di stile nell'app, è possibile collegarsi in alternativa al foglio di stile della libreria nel `wwwroot/index.html` file ( Blazor WebAssembly ) o nel file dell'app `Pages/_Host.cshtml` ( Blazor Server ):
+To provide the stylesheet across the app, you can alternatively link to the library's stylesheet in the app's `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 
 ```html
 <head>
@@ -143,14 +146,16 @@ Per fornire il foglio di stile nell'app, è possibile collegarsi in alternativa 
 </head>
 ```
 
-Quando il `Link` componente viene usato in un componente figlio, l'asset collegato è disponibile anche per qualsiasi altro componente figlio del componente padre, purché venga eseguito il rendering dell'elemento figlio con il `Link` componente. La distinzione tra l'uso del `Link` componente in un componente figlio e l'inserimento di un `<link>` tag HTML in `wwwroot/index.html` o `Pages/_Host.cshtml` è che il tag HTML sottoposto a rendering di un componente del Framework:
+When the `Link` component is used in a child component, the linked asset is also available to any other child component of the parent component as long as the child with the `Link` component is rendered. The distinction between using the `Link` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
 
-* Può essere modificato in base allo stato dell'applicazione. Un `<link>` tag HTML hardcoded non può essere modificato in base allo stato dell'applicazione.
-* Viene rimosso dal codice HTML `<head>` quando il componente padre non viene più sottoposto a rendering.
+* Can be modified by application state. A hard-coded `<link>` HTML tag can't be modified by application state.
+* Is removed from the HTML `<head>` when the parent component is no longer rendered.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
+-->
 
 Per specificare `Component1` la `my-component` classe CSS, collegarsi al foglio di stile della libreria nel `wwwroot/index.html` file ( Blazor WebAssembly ) o nel file dell'app `Pages/_Host.cshtml` ( Blazor Server ):
 
@@ -161,7 +166,11 @@ Per specificare `Component1` la `my-component` classe CSS, collegarsi al foglio 
 </head>
 ```
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker-end
+
+-->
 
 ## <a name="create-a-no-locrazor-components-class-library-with-static-assets"></a>Creare una Razor libreria di classi di componenti con asset statici
 

@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 02/04/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/crud
-ms.openlocfilehash: c17461f8d1d43335230a967a4b62943c055c06b9
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 043fe513f370cf63637733b66ca195e7887faab0
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629210"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054294"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Esercitazione: implementare la funzionalità CRUD-ASP.NET MVC con EF Core
 
@@ -59,7 +60,7 @@ Il metodo `AsNoTracking` migliora le prestazioni negli scenari in cui le entità
 
 ### <a name="route-data"></a>Indirizzare i dati
 
-Il valore della chiave passato al metodo `Details` deriva dai *dati della route*. I dati della route sono i dati trovati dallo strumento di associazione di modelli in un segmento dell'URL. Ad esempio, la route predefinita specifica i segmenti del controller, dell'azione e dell'ID:
+Il valore della chiave passato al metodo `Details` deriva dai *dati della route* . I dati della route sono i dati trovati dallo strumento di associazione di modelli in un segmento dell'URL. Ad esempio, la route predefinita specifica i segmenti del controller, dell'azione e dell'ID:
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_Route&highlight=5)]
 
@@ -103,7 +104,7 @@ Per altre informazioni sugli helper tag, vedere <xref:mvc/views/tag-helpers/intr
 
 ### <a name="add-enrollments-to-the-details-view"></a>Aggiungere le registrazioni alla visualizzazione Details
 
-Aprire *Views/Students/Details.cshtml*. Ogni campo viene visualizzato usando gli helper `DisplayNameFor` e `DisplayFor`, come illustrato nell'esempio seguente:
+Aprire *Views/Students/Details.cshtml* . Ogni campo viene visualizzato usando gli helper `DisplayNameFor` e `DisplayFor`, come illustrato nell'esempio seguente:
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Details.cshtml?range=13-18&highlight=2,5)]
 
@@ -164,7 +165,7 @@ In alternativa, per impedire l'overposting numerosi sviluppatori usano i modelli
 
 Il codice in *views/students/create. cshtml* USA `label` , `input` e `span` (per i messaggi di convalida) gli helper tag per ogni campo.
 
-Eseguire l'app, selezionare la scheda **Students** e fare clic su **Crea nuovo**.
+Eseguire l'app, selezionare la scheda **Students** e fare clic su **Crea nuovo** .
 
 Immettere i nomi e una data. Provare a immettere una data non valida se il browser lo consente. Alcuni browser forzano l'uso di una selezione data. Fare quindi clic su **Crea** per visualizzare il messaggio di errore.
 
@@ -174,7 +175,7 @@ Questa è la convalida lato server che si ottiene per impostazione predefinita; 
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Create&highlight=8)]
 
-Modificare la data impostando un valore valido e fare clic su **Crea** per visualizzare il nuovo studente nella pagina **Index**.
+Modificare la data impostando un valore valido e fare clic su **Crea** per visualizzare il nuovo studente nella pagina **Index** .
 
 ## <a name="update-the-edit-page"></a>Aggiornare la pagina Edit (Modifica)
 
@@ -230,11 +231,11 @@ Se si vuole evitare l'approccio con lettura iniziale e si vuole anche che l'istr
 
 ### <a name="test-the-edit-page"></a>Testare la pagina Edit
 
-Eseguire l'app, selezionare la scheda **Students** e quindi fare clic su un collegamento ipertestuale **Modifica**.
+Eseguire l'app, selezionare la scheda **Students** e quindi fare clic su un collegamento ipertestuale **Modifica** .
 
 ![Pagina Edit (Students)](crud/_static/student-edit.png)
 
-Modificare alcuni dati e fare clic su **Salva**. Viene visualizzata la pagina **Index** con i dati modificati.
+Modificare alcuni dati e fare clic su **Salva** . Viene visualizzata la pagina **Index** con i dati modificati.
 
 ## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
@@ -272,11 +273,11 @@ In *Views/Student/Delete.cshtml* aggiungere un messaggio di errore tra l'intesta
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
 
-Eseguire l'app, selezionare la scheda **Students** e fare clic sul collegamento ipertestuale **Elimina**:
+Eseguire l'app, selezionare la scheda **Students** e fare clic sul collegamento ipertestuale **Elimina** :
 
 ![Pagina di conferma dell'eliminazione](crud/_static/student-delete.png)
 
-Fare clic su **Elimina**. Viene visualizzata la pagina Index senza lo studente eliminato. (L'esercitazione sulla concorrenza include un esempio di codice per la gestione degli errori).
+Fare clic su **Elimina** . Viene visualizzata la pagina Index senza lo studente eliminato. (L'esercitazione sulla concorrenza include un esempio di codice per la gestione degli errori).
 
 ## <a name="close-database-connections"></a>Chiudere le connessioni di database
 

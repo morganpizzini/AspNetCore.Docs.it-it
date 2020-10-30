@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: 8ed9ec3447205107194ffa5c329c0e5ae0fc5553
-ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
+ms.openlocfilehash: ca8aa126a44ea417017f0be0372e818a95ad8413
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/02/2020
-ms.locfileid: "91653971"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053748"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementazione del server Web HTTP.sys in ASP.NET Core
 
@@ -108,7 +109,7 @@ Le configurazioni aggiuntive di HTTP.sys vengono gestite tramite [impostazioni d
 | `RequestQueueMode` | Indica se il server è responsabile della creazione e della configurazione della coda di richieste o se deve connettersi a una coda esistente.<br>La maggior parte delle opzioni di configurazione esistenti non si applica quando ci si connette a una coda esistente. | `RequestQueueMode.Create` |
 | `RequestQueueName` | Nome della coda di richieste HTTP.sys. | `null` (Coda anonima) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se le scritture del corpo della risposta che hanno esito negativo a causa di disconnessioni del client devono generare eccezioni o vengono completate normalmente. | `false`<br>(completamento normale) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Espone la configurazione di <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> HTTP.sys, che può essere configurata anche nel Registro di sistema. Seguire i collegamenti API per altre informazioni su ogni impostazione, inclusi i valori predefiniti:<ul><li>[TimeoutManager. DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody): tempo consentito per l'API del server http per svuotare il corpo dell'entità in una connessione keep-alive.</li><li>[TimeoutManager. EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody): tempo consentito per l'arrivo del corpo dell'entità di richiesta.</li><li>[TimeoutManager. HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait): tempo consentito all'API del server http per analizzare l'intestazione della richiesta.</li><li>[TimeoutManager. IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection): tempo consentito per una connessione inattiva.</li><li>[TimeoutManager. MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond): frequenza di invio minima per la risposta.</li><li>[TimeoutManager. RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue): tempo consentito affinché la richiesta rimanga nella coda di richieste prima che l'app lo prelevi.</li></ul> |  |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Espone la configurazione di <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> HTTP.sys, che può essere configurata anche nel Registro di sistema. Seguire i collegamenti API per altre informazioni su ogni impostazione, inclusi i valori predefiniti:<ul><li>[TimeoutManager. DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody): tempo consentito per l'API del server http per svuotare il corpo dell'entità in una connessione Keep-Alive.</li><li>[TimeoutManager. EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody): tempo consentito per l'arrivo del corpo dell'entità di richiesta.</li><li>[TimeoutManager. HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait): tempo consentito all'API del server http per analizzare l'intestazione della richiesta.</li><li>[TimeoutManager. IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection): tempo consentito per una connessione inattiva.</li><li>[TimeoutManager. MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond): frequenza di invio minima per la risposta.</li><li>[TimeoutManager. RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue): tempo consentito affinché la richiesta rimanga nella coda di richieste prima che l'app lo prelevi.</li></ul> |  |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Specificare l'elemento <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> da registrare con HTTP.sys. Il più utile è il metodo [UrlPrefixCollection.Add](xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add*) usato per aggiungere un prefisso alla raccolta. Queste impostazioni possono essere modificate in qualsiasi momento prima dell'eliminazione del listener. |  |
 
 <a name="maxrequestbodysize"></a>
@@ -150,8 +151,8 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
 1. Se l'app è una [distribuzione dipendente dal framework](/dotnet/core/deploying/#framework-dependent-deployments-fdd), installare .NET Core, .NET Framework o entrambi (se l'app è un'app .NET Core destinata a .NET Framework).
 
-   * **.NET Core**: se l'app richiede .NET Core, ottenere ed eseguire il programma di installazione del **runtime di .NET Core** da [download di .NET Core](https://dotnet.microsoft.com/download). Non installare l'SDK completo nel server.
-   * **.NET Framework**: se l'app richiede .NET Framework, vedere la [Guida all'installazione di .NET Framework](/dotnet/framework/install/). Installare la versione di .NET Framework richiesta. Il programma di installazione per la versione più recente di .NET Framework è disponibile dalla pagina di [download per .NET Core](https://dotnet.microsoft.com/download).
+   * **.NET Core** : se l'app richiede .NET Core, ottenere ed eseguire il programma di installazione del **runtime di .NET Core** da [download di .NET Core](https://dotnet.microsoft.com/download). Non installare l'SDK completo nel server.
+   * **.NET Framework** : se l'app richiede .NET Framework, vedere la [Guida all'installazione di .NET Framework](/dotnet/framework/install/). Installare la versione di .NET Framework richiesta. Il programma di installazione per la versione più recente di .NET Framework è disponibile dalla pagina di [download per .NET Core](https://dotnet.microsoft.com/download).
 
    Se l'app è una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd) include il runtime nella distribuzione. Non è richiesta l'installazione di un framework nel server.
 
@@ -179,7 +180,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
 1. Pre-registrare i prefissi URL nel server.
 
-   Lo strumento predefinito per la configurazione di HTTP.sys è *netsh.exe*. *Netsh.exe* viene usato per riservare i prefissi URL e assegnare i certificati X.509. Per questo strumento sono necessari privilegi di amministratore.
+   Lo strumento predefinito per la configurazione di HTTP.sys è *netsh.exe* . *Netsh.exe* viene usato per riservare i prefissi URL e assegnare i certificati X.509. Per questo strumento sono necessari privilegi di amministratore.
 
    Usare lo strumento *netsh.exe* per registrare gli URL per l'app:
 
@@ -220,9 +221,9 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    A scopo di riferimento, archiviare il GUID nell'app come tag di pacchetto:
 
    * In Visual Studio:
-     * Aprire le proprietà del progetto dell'app facendo clic sull'app con il pulsante destro del mouse in **Esplora soluzioni** e scegliendo **Proprietà**.
-     * Selezionare la scheda **Pacchetto**.
-     * Immettere il GUID creato nel campo **Tag**.
+     * Aprire le proprietà del progetto dell'app facendo clic sull'app con il pulsante destro del mouse in **Esplora soluzioni** e scegliendo **Proprietà** .
+     * Selezionare la scheda **Pacchetto** .
+     * Immettere il GUID creato nel campo **Tag** .
    * Se non si usa Visual Studio:
      * Aprire il file di progetto dell'app.
      * Aggiungere una proprietà `<PackageTags>` a un `<PropertyGroup>` nuovo o esistente con il GUID creato:
@@ -253,7 +254,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Documentazione di riferimento per *netsh.exe*:
+   Documentazione di riferimento per *netsh.exe* :
 
    * [Comandi netsh per HTTP (Hypertext Transfer Protocol)](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings) (Stringhe UrlPrefix)
@@ -376,7 +377,7 @@ Le configurazioni aggiuntive di HTTP.sys vengono gestite tramite [impostazioni d
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Vedere la sezione <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30000000 byte<br>(~28,6 MB) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | Numero massimo di richieste che è possibile accodare. | 1000 |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se le scritture del corpo della risposta che hanno esito negativo a causa di disconnessioni del client devono generare eccezioni o vengono completate normalmente. | `false`<br>(completamento normale) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Espone la configurazione di <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> HTTP.sys, che può essere configurata anche nel Registro di sistema. Seguire i collegamenti API per altre informazioni su ogni impostazione, inclusi i valori predefiniti:<ul><li>[TimeoutManager. DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody): tempo consentito per l'API del server http per svuotare il corpo dell'entità in una connessione keep-alive.</li><li>[TimeoutManager. EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody): tempo consentito per l'arrivo del corpo dell'entità di richiesta.</li><li>[TimeoutManager. HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait): tempo consentito all'API del server http per analizzare l'intestazione della richiesta.</li><li>[TimeoutManager. IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection): tempo consentito per una connessione inattiva.</li><li>[TimeoutManager. MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond): frequenza di invio minima per la risposta.</li><li>[TimeoutManager. RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue): tempo consentito affinché la richiesta rimanga nella coda di richieste prima che l'app lo prelevi.</li></ul> |  |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Espone la configurazione di <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> HTTP.sys, che può essere configurata anche nel Registro di sistema. Seguire i collegamenti API per altre informazioni su ogni impostazione, inclusi i valori predefiniti:<ul><li>[TimeoutManager. DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody): tempo consentito per l'API del server http per svuotare il corpo dell'entità in una connessione Keep-Alive.</li><li>[TimeoutManager. EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody): tempo consentito per l'arrivo del corpo dell'entità di richiesta.</li><li>[TimeoutManager. HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait): tempo consentito all'API del server http per analizzare l'intestazione della richiesta.</li><li>[TimeoutManager. IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection): tempo consentito per una connessione inattiva.</li><li>[TimeoutManager. MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond): frequenza di invio minima per la risposta.</li><li>[TimeoutManager. RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue): tempo consentito affinché la richiesta rimanga nella coda di richieste prima che l'app lo prelevi.</li></ul> |  |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Specificare l'elemento <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> da registrare con HTTP.sys. Il più utile è il metodo [UrlPrefixCollection.Add](xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add*) usato per aggiungere un prefisso alla raccolta. Queste impostazioni possono essere modificate in qualsiasi momento prima dell'eliminazione del listener. |  |
 
 <a name="maxrequestbodysize"></a>
@@ -418,8 +419,8 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
 1. Se l'app è una [distribuzione dipendente dal framework](/dotnet/core/deploying/#framework-dependent-deployments-fdd), installare .NET Core, .NET Framework o entrambi (se l'app è un'app .NET Core destinata a .NET Framework).
 
-   * **.NET Core**: se l'app richiede .NET Core, ottenere ed eseguire il programma di installazione del **runtime di .NET Core** da [download di .NET Core](https://dotnet.microsoft.com/download). Non installare l'SDK completo nel server.
-   * **.NET Framework**: se l'app richiede .NET Framework, vedere la [Guida all'installazione di .NET Framework](/dotnet/framework/install/). Installare la versione di .NET Framework richiesta. Il programma di installazione per la versione più recente di .NET Framework è disponibile dalla pagina di [download per .NET Core](https://dotnet.microsoft.com/download).
+   * **.NET Core** : se l'app richiede .NET Core, ottenere ed eseguire il programma di installazione del **runtime di .NET Core** da [download di .NET Core](https://dotnet.microsoft.com/download). Non installare l'SDK completo nel server.
+   * **.NET Framework** : se l'app richiede .NET Framework, vedere la [Guida all'installazione di .NET Framework](/dotnet/framework/install/). Installare la versione di .NET Framework richiesta. Il programma di installazione per la versione più recente di .NET Framework è disponibile dalla pagina di [download per .NET Core](https://dotnet.microsoft.com/download).
 
    Se l'app è una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd) include il runtime nella distribuzione. Non è richiesta l'installazione di un framework nel server.
 
@@ -447,7 +448,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
 1. Pre-registrare i prefissi URL nel server.
 
-   Lo strumento predefinito per la configurazione di HTTP.sys è *netsh.exe*. *Netsh.exe* viene usato per riservare i prefissi URL e assegnare i certificati X.509. Per questo strumento sono necessari privilegi di amministratore.
+   Lo strumento predefinito per la configurazione di HTTP.sys è *netsh.exe* . *Netsh.exe* viene usato per riservare i prefissi URL e assegnare i certificati X.509. Per questo strumento sono necessari privilegi di amministratore.
 
    Usare lo strumento *netsh.exe* per registrare gli URL per l'app:
 
@@ -488,9 +489,9 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    A scopo di riferimento, archiviare il GUID nell'app come tag di pacchetto:
 
    * In Visual Studio:
-     * Aprire le proprietà del progetto dell'app facendo clic sull'app con il pulsante destro del mouse in **Esplora soluzioni** e scegliendo **Proprietà**.
-     * Selezionare la scheda **Pacchetto**.
-     * Immettere il GUID creato nel campo **Tag**.
+     * Aprire le proprietà del progetto dell'app facendo clic sull'app con il pulsante destro del mouse in **Esplora soluzioni** e scegliendo **Proprietà** .
+     * Selezionare la scheda **Pacchetto** .
+     * Immettere il GUID creato nel campo **Tag** .
    * Se non si usa Visual Studio:
      * Aprire il file di progetto dell'app.
      * Aggiungere una proprietà `<PackageTags>` a un `<PropertyGroup>` nuovo o esistente con il GUID creato:
@@ -521,7 +522,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Documentazione di riferimento per *netsh.exe*:
+   Documentazione di riferimento per *netsh.exe* :
 
    * [Comandi netsh per HTTP (Hypertext Transfer Protocol)](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings) (Stringhe UrlPrefix)
@@ -629,7 +630,7 @@ Le configurazioni aggiuntive di HTTP.sys vengono gestite tramite [impostazioni d
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Vedere la sezione <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30000000 byte<br>(~28,6 MB) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | Numero massimo di richieste che è possibile accodare. | 1000 |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se le scritture del corpo della risposta che hanno esito negativo a causa di disconnessioni del client devono generare eccezioni o vengono completate normalmente. | `false`<br>(completamento normale) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Espone la configurazione di <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> HTTP.sys, che può essere configurata anche nel Registro di sistema. Seguire i collegamenti API per altre informazioni su ogni impostazione, inclusi i valori predefiniti:<ul><li>[TimeoutManager. DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody): tempo consentito per l'API del server http per svuotare il corpo dell'entità in una connessione keep-alive.</li><li>[TimeoutManager. EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody): tempo consentito per l'arrivo del corpo dell'entità di richiesta.</li><li>[TimeoutManager. HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait): tempo consentito all'API del server http per analizzare l'intestazione della richiesta.</li><li>[TimeoutManager. IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection): tempo consentito per una connessione inattiva.</li><li>[TimeoutManager. MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond): frequenza di invio minima per la risposta.</li><li>[TimeoutManager. RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue): tempo consentito affinché la richiesta rimanga nella coda di richieste prima che l'app lo prelevi.</li></ul> |  |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Espone la configurazione di <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> HTTP.sys, che può essere configurata anche nel Registro di sistema. Seguire i collegamenti API per altre informazioni su ogni impostazione, inclusi i valori predefiniti:<ul><li>[TimeoutManager. DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody): tempo consentito per l'API del server http per svuotare il corpo dell'entità in una connessione Keep-Alive.</li><li>[TimeoutManager. EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody): tempo consentito per l'arrivo del corpo dell'entità di richiesta.</li><li>[TimeoutManager. HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait): tempo consentito all'API del server http per analizzare l'intestazione della richiesta.</li><li>[TimeoutManager. IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection): tempo consentito per una connessione inattiva.</li><li>[TimeoutManager. MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond): frequenza di invio minima per la risposta.</li><li>[TimeoutManager. RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue): tempo consentito affinché la richiesta rimanga nella coda di richieste prima che l'app lo prelevi.</li></ul> |  |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Specificare l'elemento <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> da registrare con HTTP.sys. Il più utile è il metodo [UrlPrefixCollection.Add](xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add*) usato per aggiungere un prefisso alla raccolta. Queste impostazioni possono essere modificate in qualsiasi momento prima dell'eliminazione del listener. |  |
 
 <a name="maxrequestbodysize"></a>
@@ -671,8 +672,8 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
 1. Se l'app è una [distribuzione dipendente dal framework](/dotnet/core/deploying/#framework-dependent-deployments-fdd), installare .NET Core, .NET Framework o entrambi (se l'app è un'app .NET Core destinata a .NET Framework).
 
-   * **.NET Core**: se l'app richiede .NET Core, ottenere ed eseguire il programma di installazione del **runtime di .NET Core** da [download di .NET Core](https://dotnet.microsoft.com/download). Non installare l'SDK completo nel server.
-   * **.NET Framework**: se l'app richiede .NET Framework, vedere la [Guida all'installazione di .NET Framework](/dotnet/framework/install/). Installare la versione di .NET Framework richiesta. Il programma di installazione per la versione più recente di .NET Framework è disponibile dalla pagina di [download per .NET Core](https://dotnet.microsoft.com/download).
+   * **.NET Core** : se l'app richiede .NET Core, ottenere ed eseguire il programma di installazione del **runtime di .NET Core** da [download di .NET Core](https://dotnet.microsoft.com/download). Non installare l'SDK completo nel server.
+   * **.NET Framework** : se l'app richiede .NET Framework, vedere la [Guida all'installazione di .NET Framework](/dotnet/framework/install/). Installare la versione di .NET Framework richiesta. Il programma di installazione per la versione più recente di .NET Framework è disponibile dalla pagina di [download per .NET Core](https://dotnet.microsoft.com/download).
 
    Se l'app è una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd) include il runtime nella distribuzione. Non è richiesta l'installazione di un framework nel server.
 
@@ -700,7 +701,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
 1. Pre-registrare i prefissi URL nel server.
 
-   Lo strumento predefinito per la configurazione di HTTP.sys è *netsh.exe*. *Netsh.exe* viene usato per riservare i prefissi URL e assegnare i certificati X.509. Per questo strumento sono necessari privilegi di amministratore.
+   Lo strumento predefinito per la configurazione di HTTP.sys è *netsh.exe* . *Netsh.exe* viene usato per riservare i prefissi URL e assegnare i certificati X.509. Per questo strumento sono necessari privilegi di amministratore.
 
    Usare lo strumento *netsh.exe* per registrare gli URL per l'app:
 
@@ -741,9 +742,9 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    A scopo di riferimento, archiviare il GUID nell'app come tag di pacchetto:
 
    * In Visual Studio:
-     * Aprire le proprietà del progetto dell'app facendo clic sull'app con il pulsante destro del mouse in **Esplora soluzioni** e scegliendo **Proprietà**.
-     * Selezionare la scheda **Pacchetto**.
-     * Immettere il GUID creato nel campo **Tag**.
+     * Aprire le proprietà del progetto dell'app facendo clic sull'app con il pulsante destro del mouse in **Esplora soluzioni** e scegliendo **Proprietà** .
+     * Selezionare la scheda **Pacchetto** .
+     * Immettere il GUID creato nel campo **Tag** .
    * Se non si usa Visual Studio:
      * Aprire il file di progetto dell'app.
      * Aggiungere una proprietà `<PackageTags>` a un `<PropertyGroup>` nuovo o esistente con il GUID creato:
@@ -774,7 +775,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Documentazione di riferimento per *netsh.exe*:
+   Documentazione di riferimento per *netsh.exe* :
 
    * [Comandi netsh per HTTP (Hypertext Transfer Protocol)](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings) (Stringhe UrlPrefix)
@@ -882,7 +883,7 @@ Le configurazioni aggiuntive di HTTP.sys vengono gestite tramite [impostazioni d
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Vedere la sezione <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30000000 byte<br>(~28,6 MB) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | Numero massimo di richieste che è possibile accodare. | 1000 |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se le scritture del corpo della risposta che hanno esito negativo a causa di disconnessioni del client devono generare eccezioni o vengono completate normalmente. | `false`<br>(completamento normale) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Espone la configurazione di <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> HTTP.sys, che può essere configurata anche nel Registro di sistema. Seguire i collegamenti API per altre informazioni su ogni impostazione, inclusi i valori predefiniti:<ul><li>[TimeoutManager. DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody): tempo consentito per l'API del server http per svuotare il corpo dell'entità in una connessione keep-alive.</li><li>[TimeoutManager. EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody): tempo consentito per l'arrivo del corpo dell'entità di richiesta.</li><li>[TimeoutManager. HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait): tempo consentito all'API del server http per analizzare l'intestazione della richiesta.</li><li>[TimeoutManager. IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection): tempo consentito per una connessione inattiva.</li><li>[TimeoutManager. MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond): frequenza di invio minima per la risposta.</li><li>[TimeoutManager. RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue): tempo consentito affinché la richiesta rimanga nella coda di richieste prima che l'app lo prelevi.</li></ul> |  |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Espone la configurazione di <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> HTTP.sys, che può essere configurata anche nel Registro di sistema. Seguire i collegamenti API per altre informazioni su ogni impostazione, inclusi i valori predefiniti:<ul><li>[TimeoutManager. DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody): tempo consentito per l'API del server http per svuotare il corpo dell'entità in una connessione Keep-Alive.</li><li>[TimeoutManager. EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody): tempo consentito per l'arrivo del corpo dell'entità di richiesta.</li><li>[TimeoutManager. HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait): tempo consentito all'API del server http per analizzare l'intestazione della richiesta.</li><li>[TimeoutManager. IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection): tempo consentito per una connessione inattiva.</li><li>[TimeoutManager. MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond): frequenza di invio minima per la risposta.</li><li>[TimeoutManager. RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue): tempo consentito affinché la richiesta rimanga nella coda di richieste prima che l'app lo prelevi.</li></ul> |  |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Specificare l'elemento <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> da registrare con HTTP.sys. Il più utile è il metodo [UrlPrefixCollection.Add](xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add*) usato per aggiungere un prefisso alla raccolta. Queste impostazioni possono essere modificate in qualsiasi momento prima dell'eliminazione del listener. |  |
 
 <a name="maxrequestbodysize"></a>
@@ -924,8 +925,8 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
 1. Se l'app è una [distribuzione dipendente dal framework](/dotnet/core/deploying/#framework-dependent-deployments-fdd), installare .NET Core, .NET Framework o entrambi (se l'app è un'app .NET Core destinata a .NET Framework).
 
-   * **.NET Core**: se l'app richiede .NET Core, ottenere ed eseguire il programma di installazione del **runtime di .NET Core** da [download di .NET Core](https://dotnet.microsoft.com/download). Non installare l'SDK completo nel server.
-   * **.NET Framework**: se l'app richiede .NET Framework, vedere la [Guida all'installazione di .NET Framework](/dotnet/framework/install/). Installare la versione di .NET Framework richiesta. Il programma di installazione per la versione più recente di .NET Framework è disponibile dalla pagina di [download per .NET Core](https://dotnet.microsoft.com/download).
+   * **.NET Core** : se l'app richiede .NET Core, ottenere ed eseguire il programma di installazione del **runtime di .NET Core** da [download di .NET Core](https://dotnet.microsoft.com/download). Non installare l'SDK completo nel server.
+   * **.NET Framework** : se l'app richiede .NET Framework, vedere la [Guida all'installazione di .NET Framework](/dotnet/framework/install/). Installare la versione di .NET Framework richiesta. Il programma di installazione per la versione più recente di .NET Framework è disponibile dalla pagina di [download per .NET Core](https://dotnet.microsoft.com/download).
 
    Se l'app è una [distribuzione autonoma](/dotnet/core/deploying/#self-contained-deployments-scd) include il runtime nella distribuzione. Non è richiesta l'installazione di un framework nel server.
 
@@ -953,7 +954,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
 
 1. Pre-registrare i prefissi URL nel server.
 
-   Lo strumento predefinito per la configurazione di HTTP.sys è *netsh.exe*. *Netsh.exe* viene usato per riservare i prefissi URL e assegnare i certificati X.509. Per questo strumento sono necessari privilegi di amministratore.
+   Lo strumento predefinito per la configurazione di HTTP.sys è *netsh.exe* . *Netsh.exe* viene usato per riservare i prefissi URL e assegnare i certificati X.509. Per questo strumento sono necessari privilegi di amministratore.
 
    Usare lo strumento *netsh.exe* per registrare gli URL per l'app:
 
@@ -994,9 +995,9 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    A scopo di riferimento, archiviare il GUID nell'app come tag di pacchetto:
 
    * In Visual Studio:
-     * Aprire le proprietà del progetto dell'app facendo clic sull'app con il pulsante destro del mouse in **Esplora soluzioni** e scegliendo **Proprietà**.
-     * Selezionare la scheda **Pacchetto**.
-     * Immettere il GUID creato nel campo **Tag**.
+     * Aprire le proprietà del progetto dell'app facendo clic sull'app con il pulsante destro del mouse in **Esplora soluzioni** e scegliendo **Proprietà** .
+     * Selezionare la scheda **Pacchetto** .
+     * Immettere il GUID creato nel campo **Tag** .
    * Se non si usa Visual Studio:
      * Aprire il file di progetto dell'app.
      * Aggiungere una proprietà `<PackageTags>` a un `<PropertyGroup>` nuovo o esistente con il GUID creato:
@@ -1027,7 +1028,7 @@ In Visual Studio il profilo di avvio predefinito è per IIS Express. Per eseguir
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Documentazione di riferimento per *netsh.exe*:
+   Documentazione di riferimento per *netsh.exe* :
 
    * [Comandi netsh per HTTP (Hypertext Transfer Protocol)](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings) (Stringhe UrlPrefix)

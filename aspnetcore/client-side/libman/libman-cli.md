@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/libman/libman-cli
-ms.openlocfilehash: 8b883269a82a1a6e55bf04bd40bfcbab28ae1fb3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: dad9136439b61ad98523061d181fe44d3bf1273d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625700"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054749"
 ---
 # <a name="use-the-libman-cli-with-aspnet-core"></a>Usare l'interfaccia della riga di comando di LibMan con ASP.NET Core
 
@@ -52,7 +53,7 @@ dotnet tool install -g Microsoft.Web.LibraryManager.Cli --version 1.0.94-g606058
 
 Nell'esempio precedente, uno strumento globale di .NET Core viene installato dal file *C:\Temp\Microsoft.Web.librarymanager.cli.1.0.94-g606058a278.nupkg* del computer Windows locale.
 
-## <a name="usage"></a>Uso
+## <a name="usage"></a>Utilizzo
 
 Una volta completata l'installazione dell'interfaccia della riga di comando, è possibile usare il comando seguente:
 
@@ -118,17 +119,17 @@ Per il comando `libman init` sono disponibili le opzioni seguenti:
 
 * `-d|--default-destination <PATH>`
 
-  Percorso relativo alla cartella corrente. Se non `destination` è stata definita alcuna proprietà per una libreria in *libman.json*, i file di libreria vengono installati in questo percorso. Il `<PATH>` valore viene scritto nella `defaultDestination` proprietà di *libman.jssu*.
+  Percorso relativo alla cartella corrente. Se non `destination` è stata definita alcuna proprietà per una libreria in *libman.json* , i file di libreria vengono installati in questo percorso. Il `<PATH>` valore viene scritto nella `defaultDestination` proprietà di *libman.jssu* .
 
 * `-p|--default-provider <PROVIDER>`
 
-  Provider da utilizzare se non è definito alcun provider per una determinata libreria. Il `<PROVIDER>` valore viene scritto nella `defaultProvider` proprietà di *libman.jssu*. Sostituire `<PROVIDER>` con uno dei valori seguenti:
+  Provider da utilizzare se non è definito alcun provider per una determinata libreria. Il `<PROVIDER>` valore viene scritto nella `defaultProvider` proprietà di *libman.jssu* . Sostituire `<PROVIDER>` con uno dei valori seguenti:
 
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempi
+### <a name="examples"></a>Esempio
 
 Per creare un *libman.jssu* file in un progetto ASP.NET Core:
 
@@ -178,7 +179,7 @@ Per il comando `libman install` sono disponibili le opzioni seguenti:
 
 * `-d|--destination <PATH>`
 
-  Percorso in cui installare la libreria. Se non specificato, viene utilizzato il percorso predefinito. Se non `defaultDestination` è specificata alcuna proprietà in *libman.json*, questa opzione è obbligatoria.
+  Percorso in cui installare la libreria. Se non specificato, viene utilizzato il percorso predefinito. Se non `defaultDestination` è specificata alcuna proprietà in *libman.json* , questa opzione è obbligatoria.
 
 * `--files <FILE>`
 
@@ -190,11 +191,11 @@ Per il comando `libman install` sono disponibili le opzioni seguenti:
   
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
-  Se non è specificato, `defaultProvider` viene utilizzata la proprietà in *libman.js* . Se non `defaultProvider` è specificata alcuna proprietà in *libman.json*, questa opzione è obbligatoria.
+  Se non è specificato, `defaultProvider` viene utilizzata la proprietà in *libman.js* . Se non `defaultProvider` è specificata alcuna proprietà in *libman.json* , questa opzione è obbligatoria.
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempi
+### <a name="examples"></a>Esempio
 
 Si considerino i *libman.jsseguenti nel* file:
 
@@ -230,7 +231,7 @@ Il *libman.jsnel* file è simile al seguente:
 }
 ```
 
-Per installare i file *calendar.js* e *Calendar. CSS* da *C: \\ temp \\ contosoCalendar \\ * usando il provider file System:
+Per installare i file *calendar.js* e *Calendar. CSS* da *C: \\ temp \\ contosoCalendar \\* usando il provider file System:
 
   ```console
   libman install C:\temp\contosoCalendar\ --provider filesystem --files calendar.js --files calendar.css
@@ -272,7 +273,7 @@ Dopo aver accettato la destinazione predefinita, il *libman.jsnel* file è simil
 
 ## <a name="restore-library-files"></a>Ripristinare i file di libreria
 
-Il `libman restore` comando installa i file di libreria definiti in *libman.json*. Sono applicabili le regole seguenti:
+Il `libman restore` comando installa i file di libreria definiti in *libman.json* . Sono applicabili le regole seguenti:
 
 * Se nella radice del progetto non è presente alcun *libman.js* nel file, viene restituito un errore.
 * Se una libreria specifica un provider, la `defaultProvider` Proprietà in *libman.js* in viene ignorata.
@@ -291,9 +292,9 @@ Per il comando `libman restore` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempi
+### <a name="examples"></a>Esempio
 
-Per ripristinare i file di libreria definiti in *libman.jsin*:
+Per ripristinare i file di libreria definiti in *libman.jsin* :
 
 ```console
 libman restore
@@ -316,7 +317,7 @@ Per il comando `libman clean` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempi
+### <a name="examples"></a>Esempio
 
 Per eliminare i file di libreria installati tramite LibMan:
 
@@ -328,8 +329,8 @@ libman clean
 
 Il `libman uninstall` comando:
 
-* Elimina tutti i file associati alla libreria specificata dalla destinazione nel *libman.js*.
-* Rimuove la configurazione della libreria associata dal *libman.js*.
+* Elimina tutti i file associati alla libreria specificata dalla destinazione nel *libman.js* .
+* Rimuove la configurazione della libreria associata dal *libman.js* .
 
 Si verifica un errore quando:
 
@@ -357,7 +358,7 @@ Per il comando `libman uninstall` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempi
+### <a name="examples"></a>Esempio
 
 Si considerino i *libman.jsseguenti nel* file:
 
@@ -417,7 +418,7 @@ Per il comando `libman update` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempi
+### <a name="examples"></a>Esempio
 
 * Per aggiornare jQuery alla versione più recente:
 
@@ -471,7 +472,7 @@ Per il comando `libman cache` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempi
+### <a name="examples"></a>Esempio
 
 * Per visualizzare i nomi delle librerie memorizzate nella cache per ogni provider, usare uno dei comandi seguenti:
 

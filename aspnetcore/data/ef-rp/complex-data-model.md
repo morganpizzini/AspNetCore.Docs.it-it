@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 55269c6985534b49cc2567b2d197e46d9b7b1fd7
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 1ac9d6303daac82f3973c5d027fe1f453dc32e02
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722527"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054099"
 ---
 # <a name="part-5-no-locrazor-pages-with-ef-core-in-aspnet-core---data-model"></a>Parte 5, Razor pagine con EF core in ASP.NET Core-modello di dati
 
@@ -70,7 +71,7 @@ Il codice precedente aggiunge una proprietà `FullName` e aggiunge gli attributi
 
 Per le date di iscrizione degli studenti, tutte le pagine visualizzano attualmente l'ora del giorno insieme alla data, anche se è pertinente solo la data. Mediante gli attributi di annotazione dei dati è possibile modificare il codice per correggere il formato di visualizzazione in tutte le pagine che visualizzano i dati. 
 
-L'attributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute) indica un tipo di dati più specifico rispetto al tipo intrinseco del database. In questo caso deve essere visualizzata solo la data e non la data e l'ora. L' [enumerazione DataType](/dotnet/api/system.componentmodel.dataannotations.datatype) fornisce per molti tipi di dati, ad esempio date, Time, PhoneNumber, Currency, EmailAddress e così via. L' `DataType` attributo può anche consentire all'app di fornire automaticamente funzionalità specifiche del tipo. Esempio:
+L'attributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute) indica un tipo di dati più specifico rispetto al tipo intrinseco del database. In questo caso deve essere visualizzata solo la data e non la data e l'ora. L' [enumerazione DataType](/dotnet/api/system.componentmodel.dataannotations.datatype) fornisce per molti tipi di dati, ad esempio date, Time, PhoneNumber, Currency, EmailAddress e così via. L' `DataType` attributo può anche consentire all'app di fornire automaticamente funzionalità specifiche del tipo. Ad esempio:
 
 * Il collegamento `mailto:` viene creato automaticamente per `DataType.EmailAddress`.
 * Il selettore data viene incluso per `DataType.Date` nella maggior parte dei browser.
@@ -221,7 +222,7 @@ SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
 
 Per questa esercitazione, il modo per superare questo errore consiste nell'eliminare e creare nuovamente la migrazione iniziale. Per altre informazioni, vedere la nota di avviso per SQLite all'inizio dell'[esercitazione sulle migrazioni](xref:data/ef-rp/migrations).
 
-* Eliminare la cartella *Migrations*.
+* Eliminare la cartella *Migrations* .
 * Eseguire i comandi seguenti per eliminare il database, creare una nuova migrazione iniziale e applicare la migrazione:
 
   ```dotnetcli
@@ -472,7 +473,7 @@ I modelli di dati iniziano come strutture semplici, quindi le loro dimensioni au
 
 ### <a name="composite-key"></a>Chiave composta
 
-Le due chiavi esterne in `CourseAssignment` (`InstructorID` e `CourseID`) identificano insieme in modo univoco ogni riga della tabella `CourseAssignment`. `CourseAssignment` non richiede una chiave primaria dedicata. Le proprietà `InstructorID` e `CourseID` funzionano come una chiave primaria composta. L'unico modo per specificare chiavi primarie composte in EF Core è l'*API Fluent*. La sezione successiva illustra come configurare la chiave primaria composta.
+Le due chiavi esterne in `CourseAssignment` (`InstructorID` e `CourseID`) identificano insieme in modo univoco ogni riga della tabella `CourseAssignment`. `CourseAssignment` non richiede una chiave primaria dedicata. Le proprietà `InstructorID` e `CourseID` funzionano come una chiave primaria composta. L'unico modo per specificare chiavi primarie composte in EF Core è l' *API Fluent* . La sezione successiva illustra come configurare la chiave primaria composta.
 
 La chiave composta garantisce che:
 
@@ -495,7 +496,7 @@ Questo codice aggiunge le nuove entità e configura la chiave primaria composta 
 
 ## <a name="fluent-api-alternative-to-attributes"></a>Alternativa API Fluent agli attributi
 
-Il metodo `OnModelCreating` nel codice precedente usa l'*API Fluent* per configurare il comportamento di EF Core. L'API è denominata "API Fluent" perché viene spesso usata unendo una serie di chiamate di metodi in un'unica istruzione. Il [codice seguente](/ef/core/modeling/#use-fluent-api-to-configure-a-model) è un esempio di API Fluent:
+Il metodo `OnModelCreating` nel codice precedente usa l' *API Fluent* per configurare il comportamento di EF Core. L'API è denominata "API Fluent" perché viene spesso usata unendo una serie di chiamate di metodi in un'unica istruzione. Il [codice seguente](/ef/core/modeling/#use-fluent-api-to-configure-a-model) è un esempio di API Fluent:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -537,7 +538,7 @@ Il diagramma precedente mostra quanto segue:
 
 ## <a name="seed-the-database"></a>Specificare il valore di inizializzazione del database
 
-Aggiornare il codice in *Data/DbInitializer.cs*:
+Aggiornare il codice in *Data/DbInitializer.cs* :
 
 [!code-csharp[](intro/samples/cu30/Data/DbInitializer.cs)]
 
@@ -590,7 +591,7 @@ Nella sezione successiva si vedrà come evitare questo errore.
 Ora che è disponibile un database esistente, è necessario preoccuparsi di come applicare eventuali modifiche. Questa esercitazione illustra due alternative:
 
 * [Eliminare e ricreare il database](#drop). Scegliere questa sezione se si usa SQLite.
-* [Applicare la migrazione al database esistente](#applyexisting). Le istruzioni riportate in questa sezione funzionano solo per SQL Server e **non per SQLite**. 
+* [Applicare la migrazione al database esistente](#applyexisting). Le istruzioni riportate in questa sezione funzionano solo per SQL Server e **non per SQLite** . 
 
 Entrambe le scelte funzionano per SQL Server. Anche se il metodo che prevede l'applicazione della migrazione è più complesso e richiede più tempo, si tratta dell'approccio consigliato per gli ambienti di produzione reali. 
 
@@ -619,7 +620,7 @@ Per forzare la creazione di un nuovo database da parte di EF Core, rimuovere e a
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Aprire una finestra di comando e passare alla cartella del progetto. La cartella del progetto contiene il file *ContosoUniversity.csproj*.
+* Aprire una finestra di comando e passare alla cartella del progetto. La cartella del progetto contiene il file *ContosoUniversity.csproj* .
 
 * Eseguire il comando seguente:
 
@@ -642,14 +643,14 @@ Eseguire l'app. Quando si esegue l'app viene eseguito il metodo `DbInitializer.I
 
 Aprire il database in SSOX:
 
-* Se SSOX è stato aperto in precedenza, fare clic sul pulsante **Aggiorna**.
-* Espandere il nodo **Tabelle**. Vengono visualizzate le tabelle create.
+* Se SSOX è stato aperto in precedenza, fare clic sul pulsante **Aggiorna** .
+* Espandere il nodo **Tabelle** . Vengono visualizzate le tabelle create.
 
   ![Tabelle in SSOX](complex-data-model/_static/ssox-tables.png)
 
-* Esaminare la tabella **CourseAssignment**:
+* Esaminare la tabella **CourseAssignment** :
 
-  * Fare clic con il pulsante destro del mouse sulla tabella **CourseAssignment** e selezionare **Visualizza dati**.
+  * Fare clic con il pulsante destro del mouse sulla tabella **CourseAssignment** e selezionare **Visualizza dati** .
   * Verificare che la tabella **CourseAssignment** contenga dati.
 
   ![Dati CourseAssignment in SSOX](complex-data-model/_static/ssox-ci-data.png)
@@ -659,7 +660,7 @@ Aprire il database in SSOX:
 Usare lo strumento SQLite per esaminare il database:
 
 * Nuove tabelle e colonne.
-* Dati definiti nelle tabelle, ad esempio la tabella **CourseAssignment**.
+* Dati definiti nelle tabelle, ad esempio la tabella **CourseAssignment** .
 
 ---
 
@@ -686,7 +687,7 @@ Per far sì che la migrazione `ComplexDataModel` funzioni con i dati esistenti:
 
 Nella classe della migrazione `ComplexDataModel` aggiornare il metodo `Up`:
 
-* Aprire il file *{timestamp}_ComplexDataModel.cs*.
+* Aprire il file *{timestamp}_ComplexDataModel.cs* .
 * Impostare come commento la riga di codice che aggiunge la colonna `DepartmentID` alla tabella `Course`.
 
 [!code-csharp[](intro/samples/cu30snapshots/5-complex/Migrations/ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
@@ -760,7 +761,7 @@ Aggiornare *Models/Student.cs* con il codice evidenziato seguente:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
-L'attributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute) indica un tipo di dati più specifico rispetto al tipo intrinseco del database. In questo caso deve essere visualizzata solo la data e non la data e l'ora. L' [enumerazione DataType](/dotnet/api/system.componentmodel.dataannotations.datatype) fornisce per molti tipi di dati, ad esempio date, Time, PhoneNumber, Currency, EmailAddress e così via. L' `DataType` attributo può anche consentire all'app di fornire automaticamente funzionalità specifiche del tipo. Esempio:
+L'attributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute) indica un tipo di dati più specifico rispetto al tipo intrinseco del database. In questo caso deve essere visualizzata solo la data e non la data e l'ora. L' [enumerazione DataType](/dotnet/api/system.componentmodel.dataannotations.datatype) fornisce per molti tipi di dati, ad esempio date, Time, PhoneNumber, Currency, EmailAddress e così via. L' `DataType` attributo può anche consentire all'app di fornire automaticamente funzionalità specifiche del tipo. Ad esempio:
 
 * Il collegamento `mailto:` viene creato automaticamente per `DataType.EmailAddress`.
 * Il selettore data viene incluso per `DataType.Date` nella maggior parte dei browser.
@@ -1180,7 +1181,7 @@ I modelli di dati iniziano come strutture semplici, quindi le loro dimensioni au
 
 ### <a name="composite-key"></a>Chiave composta
 
-Le chiavi esterne non sono nullable. Le due chiavi esterne in `CourseAssignment` (`InstructorID` e `CourseID`) identificano insieme in modo univoco ogni riga della tabella `CourseAssignment`. `CourseAssignment` non richiede una chiave primaria dedicata. Le proprietà `InstructorID` e `CourseID` funzionano come una chiave primaria composta. L'unico modo per specificare chiavi primarie composte in EF Core è l'*API Fluent*. La sezione successiva illustra come configurare la chiave primaria composta.
+Le chiavi esterne non sono nullable. Le due chiavi esterne in `CourseAssignment` (`InstructorID` e `CourseID`) identificano insieme in modo univoco ogni riga della tabella `CourseAssignment`. `CourseAssignment` non richiede una chiave primaria dedicata. Le proprietà `InstructorID` e `CourseID` funzionano come una chiave primaria composta. L'unico modo per specificare chiavi primarie composte in EF Core è l' *API Fluent* . La sezione successiva illustra come configurare la chiave primaria composta.
 
 La chiave composta garantisce quanto segue:
 
@@ -1195,7 +1196,7 @@ L'entità di join `Enrollment` definisce la propria chiave primaria, pertanto so
 
 ## <a name="update-the-db-context"></a>Aggiornare il contesto del database
 
-Aggiungere il codice evidenziato seguente al file *Data/SchoolContext.cs*:
+Aggiungere il codice evidenziato seguente al file *Data/SchoolContext.cs* :
 
 [!code-csharp[](intro/samples/cu21/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
 
@@ -1203,7 +1204,7 @@ Questo codice aggiunge le nuove entità e configura la chiave primaria composta 
 
 ## <a name="fluent-api-alternative-to-attributes"></a>Alternativa API Fluent agli attributi
 
-Il metodo `OnModelCreating` nel codice precedente usa l'*API Fluent* per configurare il comportamento di EF Core. L'API è denominata "API Fluent" perché viene spesso usata unendo una serie di chiamate di metodi in un'unica istruzione. Il [codice seguente](/ef/core/modeling/#use-fluent-api-to-configure-a-model) è un esempio di API Fluent:
+Il metodo `OnModelCreating` nel codice precedente usa l' *API Fluent* per configurare il comportamento di EF Core. L'API è denominata "API Fluent" perché viene spesso usata unendo una serie di chiamate di metodi in un'unica istruzione. Il [codice seguente](/ef/core/modeling/#use-fluent-api-to-configure-a-model) è un esempio di API Fluent:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -1245,7 +1246,7 @@ Il diagramma precedente mostra quanto segue:
 
 ## <a name="seed-the-db-with-test-data"></a>Inizializzare il database con dati di test
 
-Aggiornare il codice in *Data/DbInitializer.cs*:
+Aggiornare il codice in *Data/DbInitializer.cs* :
 
 [!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Final)]
 
@@ -1289,7 +1290,7 @@ database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 Ora che è disponibile un database esistente, è necessario preoccuparsi di come applicare eventuali modifiche future. Questa esercitazione illustra due approcci:
 
 * [Elimina e ricrea il database](#drop)
-* [Applicare la migrazione al database esistente](#applyexisting). Anche se questo metodo è più complesso e richiede più tempo, è l'approccio consigliato per gli ambienti di produzione reali. **Nota**: questa è una sezione facoltativa dell'esercitazione. È possibile eseguire i passaggi di eliminazione e ricreazione e ignorare questa sezione. Se si vuole seguire la procedura descritta in questa sezione, non eseguire i passaggi di eliminazione e ricreazione. 
+* [Applicare la migrazione al database esistente](#applyexisting). Anche se questo metodo è più complesso e richiede più tempo, è l'approccio consigliato per gli ambienti di produzione reali. **Nota** : questa è una sezione facoltativa dell'esercitazione. È possibile eseguire i passaggi di eliminazione e ricreazione e ignorare questa sezione. Se si vuole seguire la procedura descritta in questa sezione, non eseguire i passaggi di eliminazione e ricreazione. 
 
 <a name="drop"></a>
 
@@ -1310,7 +1311,7 @@ Eseguire `Get-Help about_EntityFrameworkCore` dalla console di Gestione pacchett
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Aprire una finestra di comando e passare alla cartella del progetto. La cartella del progetto contiene il file *Startup.cs*.
+Aprire una finestra di comando e passare alla cartella del progetto. La cartella del progetto contiene il file *Startup.cs* .
 
 Digitare quanto segue nella finestra di comando:
 
@@ -1325,14 +1326,14 @@ Eseguire l'app. Quando si esegue l'app viene eseguito il metodo `DbInitializer.I
 
 Aprire il database in SSOX:
 
-* Se SSOX è stato aperto in precedenza, fare clic sul pulsante **Aggiorna**.
-* Espandere il nodo **Tabelle**. Vengono visualizzate le tabelle create.
+* Se SSOX è stato aperto in precedenza, fare clic sul pulsante **Aggiorna** .
+* Espandere il nodo **Tabelle** . Vengono visualizzate le tabelle create.
 
 ![Tabelle in SSOX](complex-data-model/_static/ssox-tables.png)
 
-Esaminare la tabella **CourseAssignment**:
+Esaminare la tabella **CourseAssignment** :
 
-* Fare clic con il pulsante destro del mouse sulla tabella **CourseAssignment** e selezionare **Visualizza dati**.
+* Fare clic con il pulsante destro del mouse sulla tabella **CourseAssignment** e selezionare **Visualizza dati** .
 * Verificare che la tabella **CourseAssignment** contenga dati.
 
 ![Dati CourseAssignment in SSOX](complex-data-model/_static/ssox-ci-data.png)
@@ -1360,7 +1361,7 @@ Per far sì che la migrazione `ComplexDataModel` funzioni con i dati esistenti:
 
 Aggiornare il metodo `Up` delle classi `ComplexDataModel`:
 
-* Aprire il file *{timestamp}_ComplexDataModel.cs*.
+* Aprire il file *{timestamp}_ComplexDataModel.cs* .
 * Impostare come commento la riga di codice che aggiunge la colonna `DepartmentID` alla tabella `Course`.
 
 [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/22/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: fd337a6fb54c418ff08af18014073a6b3f07bb8c
-ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
+ms.openlocfilehash: f1730ed366fc81444ffe54e88bcd33147efb0aa7
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/23/2020
-ms.locfileid: "92491464"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056296"
 ---
 # <a name="aspnet-core-no-locblazor-data-binding"></a>ASP.NET Core Blazor Data Binding
 
@@ -331,8 +332,8 @@ Per altre informazioni su <xref:Microsoft.AspNetCore.Components.EventCallback%60
 
 È possibile eseguire l'associazione tramite un numero qualsiasi di componenti annidati, ma è necessario rispettare il flusso unidirezionale dei dati:
 
-* Le notifiche *delle modifiche scorrono verso l'alto nella gerarchia*.
-* I nuovi valori dei parametri *scorrono verso il basso nella gerarchia*.
+* Le notifiche *delle modifiche scorrono verso l'alto nella gerarchia* .
+* I nuovi valori dei parametri *scorrono verso il basso nella gerarchia* .
 
 Un approccio comune e consigliato consiste nel memorizzare solo i dati sottostanti nel componente padre, per evitare confusione sullo stato che deve essere aggiornato.
 

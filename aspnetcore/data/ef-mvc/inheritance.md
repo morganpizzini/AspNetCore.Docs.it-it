@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/inheritance
-ms.openlocfilehash: fabb0ed9c0f64a529b516d521d60a7d862e2654a
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: 581a31bad4069523699fbbac63862c9dff12034d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754567"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054216"
 ---
 # <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Esercitazione: implementare l'ereditarietà-ASP.NET MVC con EF Core
 
@@ -91,13 +92,13 @@ In *Instructor.cs* derivare la classe Instructor dalla classe Person e rimuovere
 
 [!code-csharp[](intro/samples/cu/Models/Instructor.cs?name=snippet_AfterInheritance&highlight=8)]
 
-Apportare le stesse modifiche in *Student.cs*.
+Apportare le stesse modifiche in *Student.cs* .
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_AfterInheritance&highlight=8)]
 
 ## <a name="add-person-to-the-model"></a>Aggiungere Person al modello
 
-Aggiungere il tipo di entità Person a *SchoolContext.cs*. Le nuove righe sono evidenziate.
+Aggiungere il tipo di entità Person a *SchoolContext.cs* . Le nuove righe sono evidenziate.
 
 [!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_AfterInheritance&highlight=19,30)]
 
@@ -154,7 +155,7 @@ In un sistema di produzione verrebbero apportate modifiche corrispondenti al met
 
 Eseguire l'app e provare diverse pagine. Tutto funziona come in precedenza.
 
-In **Esplora oggetti di SQL Server** espandere **Connessioni dati/SchoolContext** e quindi **Tabelle**. Si osserverà che le tabelle Student e Instructor sono state sostituite da una tabella Person. Dopo aver aperto la tabella Person in Progettazione tabelle si noterà che contiene tutte le colonne che in precedenza erano presenti nelle tabelle Student e Instructor.
+In **Esplora oggetti di SQL Server** espandere **Connessioni dati/SchoolContext** e quindi **Tabelle** . Si osserverà che le tabelle Student e Instructor sono state sostituite da una tabella Person. Dopo aver aperto la tabella Person in Progettazione tabelle si noterà che contiene tutte le colonne che in precedenza erano presenti nelle tabelle Student e Instructor.
 
 ![Tabella Person in SSOX](inheritance/_static/ssox-person-table.png)
 

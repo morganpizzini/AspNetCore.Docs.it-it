@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 4f184a1264614b16ce98ba5474aacd60f175bd8a
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: c8ff2fc0f2f4d4e75f535f379ec94ea9de2e3ecb
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865216"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055698"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>Creazione di applicazioni Web progressive con ASP.NET Core Blazor WebAssembly
 
@@ -46,7 +47,7 @@ La parola *progressive* viene usata per descrivere tali app perché:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Quando si crea una nuova ** Blazor WebAssembly app** nella finestra di dialogo **Crea un nuovo progetto** , selezionare la casella di controllo **applicazione Web progressiva** :
+Quando si crea una nuova **Blazor WebAssembly app** nella finestra di dialogo **Crea un nuovo progetto** , selezionare la casella di controllo **applicazione Web progressiva** :
 
 ![La casella di controllo ' applicazione Web progressiva ' è selezionata nella finestra di dialogo nuovo progetto di Visual Studio.](progressive-web-app/_static/image1.png)
 
@@ -74,7 +75,7 @@ Quando si visita un'app creata usando il modello di PWA, gli utenti hanno la pos
 
 ![La finestra di dialogo di conferma in Google Chrome visualizza un pulsante di installazione all'utente per l'app ' My::: NO-LOC (Blazer):::P WA '.](progressive-web-app/_static/image2.png)
 
-In iOS i visitatori possono installare il PWA usando il pulsante di **condivisione** di Safari e l'opzione **Aggiungi a homescreen** . In Chrome per Android, gli utenti devono selezionare il pulsante di **menu** nell'angolo in alto a destra, seguito da **Aggiungi alla schermata iniziale**.
+In iOS i visitatori possono installare il PWA usando il pulsante di **condivisione** di Safari e l'opzione **Aggiungi a homescreen** . In Chrome per Android, gli utenti devono selezionare il pulsante di **menu** nell'angolo in alto a destra, seguito da **Aggiungi alla schermata iniziale** .
 
 Una volta installato, l'app viene visualizzata nella propria finestra senza una barra degli indirizzi:
 
@@ -144,7 +145,7 @@ Come modello mentale, è possibile pensare a un PWA offline-First come si compor
 
 Il Blazor modello di PWA genera app che tentano automaticamente di aggiornarsi in background ogni volta che l'utente visita e ha una connessione di rete funzionante. Il funzionamento di questo approccio è il seguente:
 
-* Durante la compilazione, il progetto genera un manifesto delle risorse del ruolo di *lavoro del servizio*. Per impostazione predefinita, viene chiamato il metodo `service-worker-assets.js` . Il manifesto elenca tutte le risorse statiche richieste dall'app per funzionare offline, ad esempio assembly .NET, file JavaScript e CSS, inclusi gli hash del contenuto. L'elenco di risorse viene caricato dal ruolo di lavoro del servizio in modo da sapere quali risorse memorizzare nella cache.
+* Durante la compilazione, il progetto genera un manifesto delle risorse del ruolo di *lavoro del servizio* . Per impostazione predefinita, viene chiamato il metodo `service-worker-assets.js` . Il manifesto elenca tutte le risorse statiche richieste dall'app per funzionare offline, ad esempio assembly .NET, file JavaScript e CSS, inclusi gli hash del contenuto. L'elenco di risorse viene caricato dal ruolo di lavoro del servizio in modo da sapere quali risorse memorizzare nella cache.
 * Ogni volta che l'utente visita l'app, il browser richiede nuovamente `service-worker.js` e `service-worker-assets.js` in background. I file vengono confrontati byte per byte con il ruolo di lavoro del servizio installato esistente. Se il server restituisce contenuto modificato per uno di questi file, il ruolo di lavoro del servizio tenta di installare una nuova versione di se stessa.
 * Quando si installa una nuova versione di se stessa, il ruolo di lavoro del servizio crea una nuova cache separata per le risorse offline e inizia a popolare la cache con le risorse elencate in `service-worker-assets.js` . Questa logica viene implementata nella `onInstall` funzione all'interno di `service-worker.published.js` .
 * Il processo viene completato correttamente quando tutte le risorse vengono caricate senza errori e tutti gli hash di contenuto corrispondono. In caso di esito positivo, il nuovo ruolo di lavoro del servizio entra *in attesa dello stato di attivazione* . Non appena l'utente chiude l'app (nessuna scheda o Windows dell'app rimanente), il nuovo Worker del servizio diventa *attivo* e viene usato per le visite successive all'app. Il servizio di lavoro precedente e la relativa cache vengono eliminati.
@@ -167,7 +168,7 @@ Si consideri cosa accade quando l'utente accede per la prima volta a un URL, ad 
 
 Il ruolo di lavoro del servizio predefinito contiene la logica speciale per le richieste di navigazione. Il ruolo di lavoro del servizio risolve le richieste restituendo il contenuto memorizzato nella cache per `/index.html` , indipendentemente dall'URL richiesto. Questa logica viene implementata nella `onFetch` funzione all'interno di `service-worker.published.js` .
 
-Se l'app dispone di determinati URL che devono restituire codice HTML sottoposto a rendering del server e non `/index.html` vengono usati dalla cache, è necessario modificare la logica nel ruolo di lavoro del servizio. Se tutti gli URL che contengono `/Identity/` devono essere gestiti come richieste normali solo in linea al server, modificare la `service-worker.published.js` `onFetch` logica. Trovare il codice seguente:
+Se l'app dispone di determinati URL che devono restituire codice HTML sottoposto a rendering del server e non `/index.html` vengono usati dalla cache, è necessario modificare la logica nel ruolo di lavoro del servizio. Se tutti gli URL che contengono `/Identity/` devono essere gestiti come richieste normali solo in linea al server, modificare la `service-worker.published.js` `onFetch` logica. Individuare il codice seguente:
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate';

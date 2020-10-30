@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 03/07/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: spa/react
-ms.openlocfilehash: 0ace8f358b509634c86dfa29c3f943626797ed69
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6c3539d96329489189f49a3af0c718791824be6b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628750"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054450"
 ---
 # <a name="use-the-react-project-template-with-aspnet-core"></a>Usare il modello di progetto per React con ASP.NET Core
 
@@ -62,7 +63,7 @@ Eseguire [dotnet run](/dotnet/core/tools/dotnet-run) per avviare l'app.
 
 ---
 
-Il modello di progetto crea un'app ASP.NET Core e un'app React. L'app ASP.NET Core è destinata all'uso per l'accesso ai dati, l'autorizzazione e altri elementi sul lato server. L'app React, disponibile nella sottodirectory *ClientApp*, è destinata all'uso per tutti gli aspetti relativi all'interfaccia utente.
+Il modello di progetto crea un'app ASP.NET Core e un'app React. L'app ASP.NET Core è destinata all'uso per l'accesso ai dati, l'autorizzazione e altri elementi sul lato server. L'app React, disponibile nella sottodirectory *ClientApp* , è destinata all'uso per tutti gli aspetti relativi all'interfaccia utente.
 
 ## <a name="add-pages-images-styles-modules-etc"></a>Aggiungere pagine, immagini, stili, moduli e così via.
 
@@ -72,7 +73,7 @@ Vi sono piccole differenze tra l'app React creata tramite questo modello e quell
 
 ## <a name="install-npm-packages"></a>Installa nuovi pacchetti npm
 
-Per installare i pacchetti npm di terze parti, usare un prompt dei comandi nella sottodirectory *ClientApp*. Ad esempio:
+Per installare i pacchetti npm di terze parti, usare un prompt dei comandi nella sottodirectory *ClientApp* . Ad esempio:
 
 ```console
 cd ClientApp

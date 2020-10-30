@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/23/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/handle-errors
-ms.openlocfilehash: dfe6f1ac79732d158e31fb5250645d4ff98d1c0b
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: c789928252417ef1cf95c60deb7edef24d58126e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628339"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055997"
 ---
 # <a name="handle-errors-in-aspnet-core-no-locblazor-apps"></a>Gestione degli errori nelle Blazor app ASP.NET Core
 
@@ -90,7 +91,7 @@ L' `blazor-error-ui` elemento è nascosto dagli stili inclusi nei Blazor modelli
 
 ## <a name="how-a-no-locblazor-server-app-reacts-to-unhandled-exceptions"></a>Blazor ServerReazione di un'app alle eccezioni non gestite
 
-Blazor Server è un Framework con stato. Mentre gli utenti interagiscono con un'app, mantengono una connessione al server noto come *circuito*. Il circuito include istanze di componenti attive, oltre a molti altri aspetti dello stato, ad esempio:
+Blazor Server è un Framework con stato. Mentre gli utenti interagiscono con un'app, mantengono una connessione al server noto come *circuito* . Il circuito include istanze di componenti attive, oltre a molti altri aspetti dello stato, ad esempio:
 
 * Output più recente sottoposto a rendering dei componenti.
 * Set corrente di delegati di gestione degli eventi che possono essere attivati da eventi lato client.

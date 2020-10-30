@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/06/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: d6d0f6f859dbaef98c6c8a9c53fe9858705cdc0a
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: 108fb3a8a24295cad43fd8c83303abd95a7ecd33
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805505"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055477"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Proteggere le Blazor Server app ASP.NET Core
 
@@ -39,12 +40,12 @@ Il Blazor Server modello di progetto può essere configurato per l'autenticazion
 
 Seguire le istruzioni di Visual Studio in <xref:blazor/tooling> per creare un nuovo Blazor Server progetto con un meccanismo di autenticazione.
 
-Dopo aver scelto il modello ** Blazor Server app** nella finestra di dialogo **Crea un nuovo ASP.NET Core applicazione Web** , selezionare **Cambia** in **autenticazione**.
+Dopo aver scelto il modello **Blazor Server app** nella finestra di dialogo **Crea un nuovo ASP.NET Core applicazione Web** , selezionare **Cambia** in **autenticazione** .
 
 Viene visualizzata una finestra di dialogo che offre lo stesso set di meccanismi di autenticazione disponibili per altri progetti ASP.NET Core:
 
 * **Nessuna autenticazione**
-* **Account utente singoli**: è possibile archiviare gli account utente:
+* **Account utente singoli** : è possibile archiviare gli account utente:
   * All'interno dell'app usando il [Identity](xref:security/authentication/identity) sistema di ASP.NET Core.
   * Con [Azure AD B2C](xref:security/authentication/azure-ad-b2c).
 * **Account aziendali o dell'Istituto di istruzione**

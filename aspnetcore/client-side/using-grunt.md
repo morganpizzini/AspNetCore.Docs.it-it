@@ -5,6 +5,7 @@ description: USA Grugnio in ASP.NET Core
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/using-grunt
-ms.openlocfilehash: e8e4459f7fe496135d6cfd7f4ff52511a5e1c064
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 374c23f440dcf301b3a1e1e9e6684dd050f218c6
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628027"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054554"
 ---
 # <a name="use-grunt-in-aspnet-core"></a>USA Grugnio in ASP.NET Core
 
@@ -31,17 +32,17 @@ Questo esempio usa un progetto di ASP.NET Core vuoto come punto di partenza, per
 
 L'esempio completato pulisce la directory di distribuzione di destinazione, combina i file JavaScript, controlla la qualità del codice, condensa il contenuto del file JavaScript e lo distribuisce nella radice dell'applicazione Web. Si useranno i pacchetti seguenti:
 
-* **grugnito**: il pacchetto di attività Runner.
+* **grugnito** : il pacchetto di attività Runner.
 
-* **grugnito-contrib-clean**: un plug-in che rimuove file o directory.
+* **grugnito-contrib-clean** : un plug-in che rimuove file o directory.
 
-* **grugnito-contrib-jshint**: un plug-in che esamina la qualità del codice JavaScript.
+* **grugnito-contrib-jshint** : un plug-in che esamina la qualità del codice JavaScript.
 
-* **grugnito-contrib-Concat**: un plug-in che unisce i file in un singolo file.
+* **grugnito-contrib-Concat** : un plug-in che unisce i file in un singolo file.
 
-* **grugnito-contrib-uglify**: un plug-in che minimizza JavaScript per ridurre le dimensioni.
+* **grugnito-contrib-uglify** : un plug-in che minimizza JavaScript per ridurre le dimensioni.
 
-* **grugnito-contrib-Watch**: un plug-in che controlla l'attività del file.
+* **grugnito-contrib-Watch** : un plug-in che controlla l'attività del file.
 
 ## <a name="preparing-the-application"></a>Preparazione dell'applicazione
 
@@ -57,7 +58,7 @@ Per iniziare, impostare una nuova applicazione Web vuota e aggiungere i file di 
 
 4. Aggiungere una nuova cartella denominata `TypeScript` alla directory del progetto.
 
-5. Prima di aggiungere i file, assicurarsi che in Visual Studio sia selezionata l'opzione ' compila al salvataggio ' per i file TypeScript. Passare a **strumenti**  >  **Opzioni**  >  **editor di testo**  >  **typescript**  >  **progetto**:
+5. Prima di aggiungere i file, assicurarsi che in Visual Studio sia selezionata l'opzione ' compila al salvataggio ' per i file TypeScript. Passare a **strumenti**  >  **Opzioni**  >  **editor di testo**  >  **typescript**  >  **progetto** :
 
     ![opzioni di impostazione della compilazione automatica dei file TypeScript](using-grunt/_static/typescript-options.png)
 
@@ -98,7 +99,7 @@ Per iniziare, impostare una nuova applicazione Web vuota e aggiungere i file di 
 
 Successivamente, configurare NPM per scaricare le attività grugnite e grugnito.
 
-1. Nel Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto e scegliere **aggiungi > nuovo elemento** dal menu di scelta rapida. Selezionare l'elemento del **file di configurazione NPM** , lasciare il nome predefinito *package.jsin*e fare clic sul pulsante **Aggiungi** .
+1. Nel Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto e scegliere **aggiungi > nuovo elemento** dal menu di scelta rapida. Selezionare l'elemento del **file di configurazione NPM** , lasciare il nome predefinito *package.jsin* e fare clic sul pulsante **Aggiungi** .
 
 2. Nella *package.jssu* file, all'interno delle `devDependencies` parentesi graffe dell'oggetto, immettere "grugnito". Selezionare `grunt` dall'elenco IntelliSense e premere il tasto INVIO. In Visual Studio viene citato il nome del pacchetto grugnito e vengono aggiunti i due punti. A destra dei due punti, selezionare la versione stabile più recente del pacchetto dalla parte superiore dell'elenco IntelliSense (premere `Ctrl-Space` Se IntelliSense non viene visualizzato).
 
@@ -107,7 +108,7 @@ Successivamente, configurare NPM per scaricare le attività grugnite e grugnito.
     > [!NOTE]
     > NPM usa il [controllo delle versioni semantico](https://semver.org/) per organizzare le dipendenze. Il controllo delle versioni semantico, noto anche come SemVer, identifica i pacchetti con lo schema di numerazione \<major> . \<minor> . \<patch> . IntelliSense semplifica la versione semantica visualizzando solo alcune opzioni comuni. Il primo elemento dell'elenco IntelliSense (0.4.5 nell'esempio precedente) viene considerato la versione stabile più recente del pacchetto. Il simbolo del cursore (^) corrisponde alla versione principale più recente e la tilde (~) corrisponde alla versione secondaria più recente. Vedere la Guida di [riferimento al parser della versione NPM semver](https://www.npmjs.com/package/semver) come guida alla completa espressività fornita da semver.
 
-3. Aggiungere altre dipendenze per caricare i pacchetti grugnito-contrib \* per *Clean*, *jshint*, *Concat*, *uglify*e *Watch* come illustrato nell'esempio riportato di seguito. Non è necessario che le versioni corrispondano all'esempio.
+3. Aggiungere altre dipendenze per caricare i pacchetti grugnito-contrib \* per *Clean* , *jshint* , *Concat* , *uglify* e *Watch* come illustrato nell'esempio riportato di seguito. Non è necessario che le versioni corrispondano all'esempio.
 
     ```json
     "devDependencies": {
@@ -120,9 +121,9 @@ Successivamente, configurare NPM per scaricare le attività grugnite e grugnito.
     }
     ```
 
-4. Salvare il file *package.json*.
+4. Salvare il file *package.json* .
 
-I pacchetti per ogni `devDependencies` elemento vengono scaricati insieme a tutti i file necessari per ogni pacchetto. È possibile trovare i file del pacchetto nella directory *node_modules* abilitando il pulsante **Mostra tutti i file** in **Esplora soluzioni**.
+I pacchetti per ogni `devDependencies` elemento vengono scaricati insieme a tutti i file necessari per ogni pacchetto. È possibile trovare i file del pacchetto nella directory *node_modules* abilitando il pulsante **Mostra tutti i file** in **Esplora soluzioni** .
 
 ![node_modules grugnito](using-grunt/_static/node-modules.png)
 
@@ -135,9 +136,9 @@ I pacchetti per ogni `devDependencies` elemento vengono scaricati insieme a tutt
 
 Il grugnito viene configurato usando un manifesto denominato *Gruntfile.js* che definisce, carica e registra le attività che possono essere eseguite manualmente o configurate per essere eseguite automaticamente in base agli eventi in Visual Studio.
 
-1. Fare clic con il pulsante destro del mouse sul progetto e scegliere **Aggiungi**  >  **nuovo elemento**. Selezionare il modello di elemento **file JavaScript** , modificare il nome in *Gruntfile.js*, quindi fare clic sul pulsante **Aggiungi** .
+1. Fare clic con il pulsante destro del mouse sul progetto e scegliere **Aggiungi**  >  **nuovo elemento** . Selezionare il modello di elemento **file JavaScript** , modificare il nome in *Gruntfile.js* , quindi fare clic sul pulsante **Aggiungi** .
 
-1. Aggiungere il codice seguente per *Gruntfile.js*. La `initConfig` funzione imposta le opzioni per ogni pacchetto e il resto del modulo carica e registra le attività.
+1. Aggiungere il codice seguente per *Gruntfile.js* . La `initConfig` funzione imposta le opzioni per ogni pacchetto e il resto del modulo carica e registra le attività.
 
    ```javascript
    module.exports = function (grunt) {
@@ -162,7 +163,7 @@ Il grugnito viene configurato usando un manifesto denominato *Gruntfile.js* che 
     grunt.loadNpmTasks("grunt-contrib-clean");
     ```
 
-1. Salva *Gruntfile.js*. Il file dovrebbe avere un aspetto simile a quello riportato nella schermata seguente.
+1. Salva *Gruntfile.js* . Il file dovrebbe avere un aspetto simile a quello riportato nella schermata seguente.
 
     ![gruntfile iniziale](using-grunt/_static/gruntfile-js-initial.png)
 
@@ -170,7 +171,7 @@ Il grugnito viene configurato usando un manifesto denominato *Gruntfile.js* che 
 
     ![menu Esplora attività](using-grunt/_static/task-runner-explorer-menu.png)
 
-1. Verificare che venga `clean` visualizzato sotto **attività** in **Esplora attività**.
+1. Verificare che venga `clean` visualizzato sotto **attività** in **Esplora attività** .
 
     ![Elenco attività di Esplora attività](using-grunt/_static/task-runner-explorer-tasks.png)
 
@@ -215,7 +216,7 @@ Il grugnito viene configurato usando un manifesto denominato *Gruntfile.js* che 
 
 1. Aggiungere l' `uglify` attività usando il codice seguente.
 
-    L'attività minimizza il file di *combined.js* trovato nella directory Temp e crea il file dei risultati in wwwroot/lib seguendo la convenzione di denominazione standard * \<file name\>.min.js*.
+    L'attività minimizza il file di *combined.js* trovato nella directory Temp e crea il file dei risultati in wwwroot/lib seguendo la convenzione di denominazione standard *\<file name\>.min.js* .
 
     ```javascript
     uglify: {
@@ -234,15 +235,15 @@ Il grugnito viene configurato usando un manifesto denominato *Gruntfile.js* che 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     ```
 
-1. Salva *Gruntfile.js*. Il file dovrebbe avere un aspetto simile all'esempio seguente.
+1. Salva *Gruntfile.js* . Il file dovrebbe avere un aspetto simile all'esempio seguente.
 
     ![esempio di file grugnito completo](using-grunt/_static/gruntfile-js-complete.png)
 
-1. Si noti che nell'elenco attività di **Esplora attività** sono incluse le `clean` `concat` attività, `jshint` e `uglify` . Eseguire ogni attività nell'ordine e osservare i risultati in **Esplora soluzioni**. Ogni attività deve essere eseguita senza errori.
+1. Si noti che nell'elenco attività di **Esplora attività** sono incluse le `clean` `concat` attività, `jshint` e `uglify` . Eseguire ogni attività nell'ordine e osservare i risultati in **Esplora soluzioni** . Ogni attività deve essere eseguita senza errori.
 
     ![esecuzione di ogni attività in Esplora esecuzioni](using-grunt/_static/task-runner-explorer-run-each-task.png)
 
-    L'attività Concat crea un nuovo file di *combined.js* e lo inserisce nella directory Temp. L' `jshint` attività viene semplicemente eseguita e non produce output. L' `uglify` attività crea un nuovo file di *combined.min.js* e lo inserisce in *wwwroot/lib*. Al termine, la soluzione dovrebbe avere un aspetto simile alla schermata seguente:
+    L'attività Concat crea un nuovo file di *combined.js* e lo inserisce nella directory Temp. L' `jshint` attività viene semplicemente eseguita e non produce output. L' `uglify` attività crea un nuovo file di *combined.min.js* e lo inserisce in *wwwroot/lib* . Al termine, la soluzione dovrebbe avere un aspetto simile alla schermata seguente:
 
     ![Esplora soluzioni dopo tutte le attività](using-grunt/_static/solution-explorer-after-all-tasks.png)
 
@@ -284,7 +285,7 @@ Fare clic con il pulsante destro del mouse sull'attività Watch in Esplora attiv
 
 ## <a name="binding-to-visual-studio-events"></a>Associazione agli eventi di Visual Studio
 
-A meno che non si desideri avviare manualmente le attività ogni volta che si lavora in Visual Studio, associare le attività a **prima della compilazione**, **dopo la compilazione**, la **pulizia**e il progetto degli eventi **aperti** .
+A meno che non si desideri avviare manualmente le attività ogni volta che si lavora in Visual Studio, associare le attività a **prima della compilazione** , **dopo la compilazione** , la **pulizia** e il progetto degli eventi **aperti** .
 
 `watch`Eseguire l'associazione in modo che venga eseguita ogni volta che si apre Visual Studio. In Task Runner Explorer fare clic con il pulsante destro del mouse sull'attività Watch e scegliere **bindings**  >  **progetto Open** dal menu di scelta rapida.
 

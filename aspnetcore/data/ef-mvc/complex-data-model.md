@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: 07f5e910236f78105c039e462ab51d6e62b09439
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: cee9e9eb4c5435f3f63f7d1d04f131d88effe9f6
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626935"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054476"
 ---
 # <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Esercitazione: creare un modello di dati complesso-ASP.NET MVC con EF Core
 
@@ -117,7 +118,7 @@ dotnet ef migrations add MaxLengthOnNames
 dotnet ef database update
 ```
 
-Il comando `migrations add` segnala che può verificarsi la perdita di dati, perché la modifica riduce la lunghezza massima per due colonne.  Migrations crea un file denominato * \<timeStamp> _MaxLengthOnNames. cs*. Il metodo `Up` di questo file contiene codice che aggiorna il database per adattarlo al modello di dati corrente. Il comando `database update` ha eseguito tale codice.
+Il comando `migrations add` segnala che può verificarsi la perdita di dati, perché la modifica riduce la lunghezza massima per due colonne.  Migrations crea un file denominato *\<timeStamp> _MaxLengthOnNames. cs* . Il metodo `Up` di questo file contiene codice che aggiorna il database per adattarlo al modello di dati corrente. Il comando `database update` ha eseguito tale codice.
 
 Il timestamp che precede il nome del file delle migrazioni viene usato da Entity Framework per ordinare le migrazioni. È possibile creare più migrazioni prima di eseguire il comando update-database, dopodiché tutte le migrazioni vengono applicate nell'ordine in cui sono state create.
 
@@ -401,7 +402,7 @@ La chiave composta garantisce che anche se è possibile avere più righe per un 
 
 ## <a name="update-the-database-context"></a>Aggiornare il contesto di database
 
-Aggiungere il codice evidenziato di seguito al file *Data/SchoolContext.cs*:
+Aggiungere il codice evidenziato di seguito al file *Data/SchoolContext.cs* :
 
 [!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
 
@@ -409,7 +410,7 @@ Questo codice aggiunge le nuove entità e configura la chiave primaria composta 
 
 ## <a name="about-a-fluent-api-alternative"></a>Informazioni su un'alternativa API Fluent
 
-Il codice nel metodo `OnModelCreating` della classe `DbContext` usa l'*API Fluent* per configurare il comportamento di Entity Framework. L'API è denominata "API Fluent" perché viene spesso usata unendo una serie di chiamate di metodi in un'unica istruzione, come in questo esempio tratto dalla [documentazione di EF Core](/ef/core/modeling/#use-fluent-api-to-configure-a-model):
+Il codice nel metodo `OnModelCreating` della classe `DbContext` usa l' *API Fluent* per configurare il comportamento di Entity Framework. L'API è denominata "API Fluent" perché viene spesso usata unendo una serie di chiamate di metodi in un'unica istruzione, come in questo esempio tratto dalla [documentazione di EF Core](/ef/core/modeling/#use-fluent-api-to-configure-a-model):
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -465,7 +466,7 @@ In determinati casi, quando si eseguono migrazioni con dati esistenti è necessa
 
 Per fare in modo che questa migrazione funzioni con i dati esistenti, è necessario modificare il codice per dare alla nuova colonna un valore predefinito e creare un reparto stub denominato "Temp" che svolga la funzione di reparto predefinito. Di conseguenza, dopo l'esecuzione del metodo `Up` tutte le righe Course esistenti saranno correlate al reparto "Temp".
 
-* Aprire il file *{timestamp}_ComplexDataModel.cs*.
+* Aprire il file *{timestamp}_ComplexDataModel.cs* .
 
 * Impostare come commento la riga di codice che aggiunge la colonna DepartmentID alla tabella Course.
 
@@ -481,7 +482,7 @@ Salvare le modifiche e compilare il progetto.
 
 ## <a name="change-the-connection-string"></a>Modificare la stringa di connessione
 
-Ora la classe `DbInitializer` include nuovo codice che aggiunge dati di inizializzazione per le nuove entità a un database vuoto. Per fare in modo che EF crei un nuovo database vuoto, cambiare il nome del database nella stringa di connessione *appsettings.json* digitando ContosoUniversity3 o un altro nome non ancora adottato nel computer in uso.
+Ora la classe `DbInitializer` include nuovo codice che aggiunge dati di inizializzazione per le nuove entità a un database vuoto. Per fare in modo che EF crei un nuovo database vuoto, modificare il nome del database nella stringa di connessione in *appsettings.json* ContosoUniversity3 o un altro nome che non è stato usato nel computer che si sta usando.
 
 ```json
 {
@@ -490,7 +491,7 @@ Ora la classe `DbInitializer` include nuovo codice che aggiunge dati di iniziali
   },
 ```
 
-Salvare le modifiche apportate ad *appsettings.json*.
+Salvare la modifica in *appsettings.json* .
 
 > [!NOTE]
 > In alternativa alla modifica del nome del database, è possibile eliminare il database. Usare **Esplora oggetti di SQL Server** (SSOX) o il comando CLI `database drop`:
@@ -509,7 +510,7 @@ dotnet ef database update
 
 Eseguire l'app per far sì che il metodo `DbInitializer.Initialize` venga eseguito e popoli il nuovo database.
 
-Aprire il database in SSOX come in precedenza, quindi espandere il nodo **Tabelle** per visualizzare tutte le tabelle che sono state create. Se SSOX è ancora aperto dall'operazione precedente, fare clic sul pulsante **Aggiorna**.
+Aprire il database in SSOX come in precedenza, quindi espandere il nodo **Tabelle** per visualizzare tutte le tabelle che sono state create. Se SSOX è ancora aperto dall'operazione precedente, fare clic sul pulsante **Aggiorna** .
 
 ![Tabelle in SSOX](complex-data-model/_static/ssox-tables.png)
 

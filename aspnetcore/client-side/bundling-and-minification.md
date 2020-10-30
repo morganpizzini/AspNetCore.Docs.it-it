@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/02/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: f696df0b421e5aab6f50cfaec3ca8edac894cea9
-ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
+ms.openlocfilehash: 7dd11ceb7a7c01ce1042f50595013b7fe7f1cd5c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89379393"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054840"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Aggregare e minimizzare asset statici in ASP.NET Core
 
@@ -64,7 +65,7 @@ Originale | Ridenominazione
 
 Nella tabella seguente vengono descritte le differenze tra il caricamento individuale degli asset e l'utilizzo di bundle e minification:
 
-Action | Con B/M | Senza B/M | Modifica
+Azione | Con B/M | Senza B/M | Modifica
 --- | :---: | :---: | :---:
 Richieste di file  | 7   | 18     | 157%
 KB trasferiti | 156 | 264,68 | 70%
@@ -89,25 +90,25 @@ In ASP.NET Core 2,0 o versioni precedenti, i modelli di progetto MVC e Razor pag
 
 ::: moniker range=">= aspnetcore-2.1"
 
-In ASP.NET Core 2,1 o versioni successive aggiungere un nuovo file JSON, denominato *bundleconfig.json*, alla radice del progetto MVC o Razor pages. Includere nel file il codice JSON seguente come punto di partenza:
+In ASP.NET Core 2,1 o versioni successive aggiungere un nuovo file JSON, denominato *bundleconfig.json* , alla radice del progetto MVC o Razor pages. Includere nel file il codice JSON seguente come punto di partenza:
 
 ::: moniker-end
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig.json)]
 
-Il *bundleconfig.jsnel* file definisce le opzioni per ogni bundle. Nell'esempio precedente viene definita una singola configurazione di bundle per i file JavaScript (*wwwroot/JS/site.js*) e StyleSheet (*wwwroot/CSS/site. CSS*) personalizzati.
+Il *bundleconfig.jsnel* file definisce le opzioni per ogni bundle. Nell'esempio precedente viene definita una singola configurazione di bundle per i file JavaScript ( *wwwroot/JS/site.js* ) e StyleSheet ( *wwwroot/CSS/site. CSS* ) personalizzati.
 
 Le opzioni di configurazione possibili sono:
 
 * `outputFileName`: Nome del file di bundle da restituire. Può contenere un percorso relativo dal *bundleconfig.jssul* file. **Obbligatorio**
-* `inputFiles`: Matrice di file da raggruppare. Si tratta di percorsi relativi del file di configurazione. **facoltativo**, * un valore vuoto restituisce un file di output vuoto. sono supportati i modelli [glob](https://www.tldp.org/LDP/abs/html/globbingref.html) .
-* `minify`: Opzioni minification per il tipo di output. **facoltativo**, *valore predefinito `minify: { enabled: true }` -*
+* `inputFiles`: Matrice di file da raggruppare. Si tratta di percorsi relativi del file di configurazione. **facoltativo** , * un valore vuoto restituisce un file di output vuoto. sono supportati i modelli [glob](https://www.tldp.org/LDP/abs/html/globbingref.html) .
+* `minify`: Opzioni minification per il tipo di output. **facoltativo** , *valore predefinito `minify: { enabled: true }` -*
   * Le opzioni di configurazione sono disponibili per ogni tipo di file di output.
     * [Minifier CSS](https://github.com/madskristensen/BundlerMinifier/wiki/cssminifier)
     * [Minifier JavaScript](https://github.com/madskristensen/BundlerMinifier/wiki/JavaScript-Minifier-settings)
     * [Minifier HTML](https://github.com/madskristensen/BundlerMinifier/wiki)
-* `includeInProject`: Flag che indica se aggiungere i file generati al file di progetto. **facoltativo**, *valore predefinito-false*
-* `sourceMap`: Flag che indica se generare una mappa di origine per il file in bundle. **facoltativo**, *valore predefinito-false*
+* `includeInProject`: Flag che indica se aggiungere i file generati al file di progetto. **facoltativo** , *valore predefinito-false*
+* `sourceMap`: Flag che indica se generare una mappa di origine per il file in bundle. **facoltativo** , *valore predefinito-false*
 * `sourceMapRootPath`: Percorso radice per l'archiviazione del file di mapping di origine generato.
 
 ## <a name="add-files-to-workflow"></a>Aggiunta di file al flusso di lavoro
@@ -116,7 +117,7 @@ Si consideri un esempio in cui viene aggiunto un file *CSS personalizzato* aggiu
 
 [!code-css[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/css/custom.css)]
 
-Per minimizzare *Custom. CSS* e aggregarlo con *site. CSS* in un file *site. min. CSS* , aggiungere il percorso relativo *bundleconfig.jsin*:
+Per minimizzare *Custom. CSS* e aggregarlo con *site. CSS* in un file *site. min. CSS* , aggiungere il percorso relativo *bundleconfig.jsin* :
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig2.json?highlight=6)]
 
@@ -178,7 +179,7 @@ Aggiungere un *package.jsnel* file, con il codice seguente `devDependencies` , a
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/package.json?range=5-13)]
 
-Installare le dipendenze eseguendo il comando seguente allo stesso livello di *package.jsin*:
+Installare le dipendenze eseguendo il comando seguente allo stesso livello di *package.jsin* :
 
 ```bash
 npm i

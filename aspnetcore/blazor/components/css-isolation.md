@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/20/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/css-isolation
-ms.openlocfilehash: c154e746c4c88fc919b2c0dddaea5fd585427a82
-ms.sourcegitcommit: d84a225ec3381355c343460deed50f2fa5722f60
+ms.openlocfilehash: 628e7dc897912beaae0df792b82958517ac70ca4
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/22/2020
-ms.locfileid: "92431840"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056322"
 ---
 # <a name="aspnet-core-no-locblazor-css-isolation"></a>BlazorIsolamento ASP.NET Core CSS
 
@@ -33,7 +34,7 @@ L'isolamento CSS semplifica l'impronta CSS di un'app impedendo le dipendenze sug
 
 ## <a name="enable-css-isolation"></a>Abilita isolamento CSS 
 
-Per definire stili specifici del componente, creare un `razor.css` file corrispondente al nome del `.razor` file per il componente. Questo `razor.css` file è un *file CSS con ambito*. 
+Per definire stili specifici del componente, creare un `razor.css` file corrispondente al nome del `.razor` file per il componente. Questo `razor.css` file è un *file CSS con ambito* . 
 
 Per un `MyComponent` componente con un `MyComponent.razor` file, creare un file insieme al componente denominato `MyComponent.razor.css` . Il `MyComponent` valore nel `razor.css` nome file **non** fa distinzione tra maiuscole e minuscole.
 

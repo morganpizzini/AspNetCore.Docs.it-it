@@ -5,6 +5,7 @@ description: Questo articolo presenta i file degli oggetti portabili e descrive 
 ms.author: scaddie
 ms.date: 09/26/2017
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/portable-object-localization
-ms.openlocfilehash: f471c5b7511434cf42717e52ef271663c2e36647
-ms.sourcegitcommit: 6ecdc481d5b9a10d2c6e091217f017b36bdba957
+ms.openlocfilehash: 2e28ebaf1962ebd834c43f1cfbc28929b1937c40
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90456049"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053722"
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>Configurare la localizzazione degli oggetti portabili in ASP.NET Core
 
@@ -39,7 +40,7 @@ Questo articolo descrive i passaggi per l'uso dei file degli oggetti portabili (
 
 I file PO sono distribuiti come file di testo contenenti le stringhe tradotte per una determinata lingua. Alcuni dei vantaggi offerti dall'uso dei file PO al posto dei file *.resx* sono i seguenti:
 - Pluralizzazione del supporto dei file PO; i file *.resx* non supportano la pluralizzazione.
-- I file PO non vengono compilati come i file *.resx*. Di conseguenza, non sono richiesti strumenti e passaggi di compilazione specifici.
+- I file PO non vengono compilati come i file *.resx* . Di conseguenza, non sono richiesti strumenti e passaggi di compilazione specifici.
 - I file PO funzionano perfettamente con gli strumenti di modifica online di collaborazione.
 
 ### <a name="example"></a>Esempio
@@ -88,15 +89,15 @@ Il file *.csproj* contiene ora una riga simile alla seguente (il numero di versi
 
 ### <a name="registering-the-service"></a>Registrazione del servizio
 
-Aggiungere i servizi necessari al metodo `ConfigureServices` di *Startup.cs*:
+Aggiungere i servizi necessari al metodo `ConfigureServices` di *Startup.cs* :
 
 [!code-csharp[](localization/sample/3.x/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-21)]
 
-Aggiungere il middleware necessario al metodo `Configure` di *Startup.cs*:
+Aggiungere il middleware necessario al metodo `Configure` di *Startup.cs* :
 
 [!code-csharp[](localization/sample/3.x/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
 
-Aggiungere il codice seguente alla propria Razor visualizzazione scelta. In questo esempio viene usata *About.cshtml*.
+Aggiungere il codice seguente alla propria Razor visualizzazione scelta. In questo esempio viene usata *About.cshtml* .
 
 [!code-cshtml[](localization/sample/3.x/POLocalization/Views/Home/About.cshtml)]
 
@@ -104,7 +105,7 @@ Viene inserita un'istanza `IViewLocalizer` che viene usata per tradurre il testo
 
 ### <a name="creating-a-po-file"></a>Creazione di un file PO
 
-Creare un file denominato * \<culture code> . po* nella cartella radice dell'applicazione. In questo esempio il nome file è *fr.po* poiché viene usata la lingua francese:
+Creare un file denominato *\<culture code> . po* nella cartella radice dell'applicazione. In questo esempio il nome file è *fr.po* poiché viene usata la lingua francese:
 
 [!code-text[](localization/sample/3.x/POLocalization/fr.po)]
 
@@ -214,7 +215,7 @@ msgstr "Bonjour le monde!"
 
 Con `msgctxt` impostato in questo modo, la traduzione del testo si verifica quando si passa a `/Home/About?culture=fr-FR`. La traduzione non si verifica quando si passa a `/Home/Contact?culture=fr-FR`.
 
-Quando nessuna voce corrisponde al contesto di file specificato, il meccanismo di fallback di Orchard Core cerca un file PO appropriato senza contesto. Presupponendo che non sia stato definito alcun contesto di file specifico per *Views/Home/Contact.cshtml*, il passaggio a `/Home/Contact?culture=fr-FR` carica un file PO come:
+Quando nessuna voce corrisponde al contesto di file specificato, il meccanismo di fallback di Orchard Core cerca un file PO appropriato senza contesto. Presupponendo che non sia stato definito alcun contesto di file specifico per *Views/Home/Contact.cshtml* , il passaggio a `/Home/Contact?culture=fr-FR` carica un file PO come:
 
 [!code-text[](localization/sample/3.x/POLocalization/fr.po)]
 
@@ -226,7 +227,7 @@ La posizione predefinita dei file PO può essere modificata in `ConfigureService
 services.AddPortableObjectLocalization(options => options.ResourcesPath = "Localization");
 ```
 
-In questo esempio i file PO vengono caricati dalla cartella *Localization*.
+In questo esempio i file PO vengono caricati dalla cartella *Localization* .
 
 ### <a name="implementing-a-custom-logic-for-finding-localization-files"></a>Implementazione di una logica personalizzata per la ricerca dei file di localizzazione
 
@@ -254,7 +255,7 @@ Questo articolo descrive i passaggi per l'uso dei file degli oggetti portabili (
 
 I file PO sono distribuiti come file di testo contenenti le stringhe tradotte per una determinata lingua. Alcuni dei vantaggi offerti dall'uso dei file PO al posto dei file *.resx* sono i seguenti:
 - Pluralizzazione del supporto dei file PO; i file *.resx* non supportano la pluralizzazione.
-- I file PO non vengono compilati come i file *.resx*. Di conseguenza, non sono richiesti strumenti e passaggi di compilazione specifici.
+- I file PO non vengono compilati come i file *.resx* . Di conseguenza, non sono richiesti strumenti e passaggi di compilazione specifici.
 - I file PO funzionano perfettamente con gli strumenti di modifica online di collaborazione.
 
 ### <a name="example"></a>Esempio
@@ -303,15 +304,15 @@ Il file *.csproj* contiene ora una riga simile alla seguente (il numero di versi
 
 ### <a name="registering-the-service"></a>Registrazione del servizio
 
-Aggiungere i servizi necessari al metodo `ConfigureServices` di *Startup.cs*:
+Aggiungere i servizi necessari al metodo `ConfigureServices` di *Startup.cs* :
 
 [!code-csharp[](localization/sample/2.x/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-21)]
 
-Aggiungere il middleware necessario al metodo `Configure` di *Startup.cs*:
+Aggiungere il middleware necessario al metodo `Configure` di *Startup.cs* :
 
 [!code-csharp[](localization/sample/2.x/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
 
-Aggiungere il codice seguente alla propria Razor visualizzazione scelta. In questo esempio viene usata *About.cshtml*.
+Aggiungere il codice seguente alla propria Razor visualizzazione scelta. In questo esempio viene usata *About.cshtml* .
 
 [!code-cshtml[](localization/sample/2.x/POLocalization/Views/Home/About.cshtml)]
 
@@ -319,7 +320,7 @@ Viene inserita un'istanza `IViewLocalizer` che viene usata per tradurre il testo
 
 ### <a name="creating-a-po-file"></a>Creazione di un file PO
 
-Creare un file denominato * \<culture code> . po* nella cartella radice dell'applicazione. In questo esempio il nome file è *fr.po* poiché viene usata la lingua francese:
+Creare un file denominato *\<culture code> . po* nella cartella radice dell'applicazione. In questo esempio il nome file è *fr.po* poiché viene usata la lingua francese:
 
 [!code-text[](localization/sample/2.x/POLocalization/fr.po)]
 
@@ -429,7 +430,7 @@ msgstr "Bonjour le monde!"
 
 Con `msgctxt` impostato in questo modo, la traduzione del testo si verifica quando si passa a `/Home/About?culture=fr-FR`. La traduzione non si verifica quando si passa a `/Home/Contact?culture=fr-FR`.
 
-Quando nessuna voce corrisponde al contesto di file specificato, il meccanismo di fallback di Orchard Core cerca un file PO appropriato senza contesto. Presupponendo che non sia stato definito alcun contesto di file specifico per *Views/Home/Contact.cshtml*, il passaggio a `/Home/Contact?culture=fr-FR` carica un file PO come:
+Quando nessuna voce corrisponde al contesto di file specificato, il meccanismo di fallback di Orchard Core cerca un file PO appropriato senza contesto. Presupponendo che non sia stato definito alcun contesto di file specifico per *Views/Home/Contact.cshtml* , il passaggio a `/Home/Contact?culture=fr-FR` carica un file PO come:
 
 [!code-text[](localization/sample/2.x/POLocalization/fr.po)]
 
@@ -441,7 +442,7 @@ La posizione predefinita dei file PO può essere modificata in `ConfigureService
 services.AddPortableObjectLocalization(options => options.ResourcesPath = "Localization");
 ```
 
-In questo esempio i file PO vengono caricati dalla cartella *Localization*.
+In questo esempio i file PO vengono caricati dalla cartella *Localization* .
 
 ### <a name="implementing-a-custom-logic-for-finding-localization-files"></a>Implementazione di una logica personalizzata per la ricerca dei file di localizzazione
 

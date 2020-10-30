@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/23/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: f41b41194f597505d775c95f1e65960c2f827e3b
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e61c76b5d53ad7646961632d00b047ecd2d9e477
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628014"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055607"
 ---
 # <a name="aspnet-core-no-locblazor-layouts"></a>BlazorLayout ASP.NET Core
 
@@ -33,7 +34,7 @@ Alcuni elementi dell'app, ad esempio i menu, i messaggi di copyright e i logo az
 
 Tecnicamente, un layout è semplicemente un altro componente. Un layout è definito in un Razor modello o nel codice C# e può usare [Data Binding](xref:blazor/components/data-binding), l' [inserimento delle dipendenze](xref:blazor/fundamentals/dependency-injection)e altri scenari di componenti.
 
-Per trasformare un *componente* in un *layout*, il componente:
+Per trasformare un *componente* in un *layout* , il componente:
 
 * Eredita da <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> , che definisce una <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> proprietà per il contenuto di cui è stato eseguito il rendering all'interno del layout.
 * Usa la Razor sintassi `@Body` per specificare il percorso nel markup di layout in cui viene eseguito il rendering del contenuto.
@@ -86,7 +87,7 @@ Le `_Imports.razor` importazioni di file seguenti:
 
 Il `_Imports.razor` file è simile al [file _ViewImports. cshtml per le Razor visualizzazioni e le pagine,](xref:mvc/views/layout#importing-shared-directives) ma viene applicato in modo specifico ai Razor file del componente.
 
-La specifica di un layout in `_Imports.razor` sostituisce un layout specificato come *layout predefinito*del router.
+La specifica di un layout in `_Imports.razor` sostituisce un layout specificato come *layout predefinito* del router.
 
 > [!WARNING]
 > **Non** aggiungere una Razor `@layout` direttiva al `_Imports.razor` file radice, il che comporta un ciclo infinito di layout nell'app. Per controllare il layout predefinito dell'app, specificare il layout nel `Router` componente. Per ulteriori informazioni, vedere la sezione [layout predefinito](#default-layout) .

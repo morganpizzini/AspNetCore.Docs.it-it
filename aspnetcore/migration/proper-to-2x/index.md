@@ -5,6 +5,7 @@ description: Indicazioni sulla migrazione di app ASP.NET MVC o Web API esistenti
 ms.author: scaddie
 ms.date: 10/18/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: f1a5af60f8dce83d9622ed9d2c6bcb4b8fc22b73
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: 059ddc18d0c531efaba8aab916ddbb27b42b5e2c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712493"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053553"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Eseguire la migrazione da ASP.NET ad ASP.NET Core
 
@@ -61,11 +62,11 @@ Il formato di file *CSPROJ* è stato semplificato in ASP.NET Core. Alcune modifi
 
 ## <a name="globalasax-file-replacement"></a>Sostituzione di file Global.asax
 
-In ASP.NET Core è stato introdotto un nuovo meccanismo per l'avvio automatico delle app. Il punto di ingresso per le applicazioni ASP.NET è il file *Global.asax*. Attività quali la configurazione della route e le registrazioni di area e filtro vengono gestite nel file *Global.asax*.
+In ASP.NET Core è stato introdotto un nuovo meccanismo per l'avvio automatico delle app. Il punto di ingresso per le applicazioni ASP.NET è il file *Global.asax* . Attività quali la configurazione della route e le registrazioni di area e filtro vengono gestite nel file *Global.asax* .
 
 [!code-csharp[](samples/globalasax-sample.cs)]
 
-Con questo approccio l'applicazione e il server a cui viene distribuita vengono accoppiati in un modo che interferisce con l'implementazione. Al fine di disaccoppiare gli elementi, è stata introdotta la funzionalità [OWIN](https://owin.org/) che offre un modo più semplice di usare più framework insieme. OWIN offre una pipeline per aggiungere solo i moduli necessari. L'ambiente host accetta una funzione di [avvio](xref:fundamentals/startup) per configurare i servizi e la pipeline delle richieste dell'applicazione. `Startup` registra un set di middleware con l'applicazione. Per ogni richiesta, l'applicazione chiama ognuno dei componenti middleware con il puntatore iniziale di un elenco collegato a un set esistente di gestori. Ogni componente middleware può aggiungere uno o più gestori alla pipeline di gestione delle richieste. Questa operazione viene eseguita restituendo un riferimento al gestore che rappresenta il nuovo inizio dell'elenco. Ogni gestore è responsabile della memorizzazione e della chiamata del gestore successivo nell'elenco. Con ASP.NET Core, il punto di ingresso a un'applicazione è `Startup` e non esiste più una dipendenza da *Global.asax*. Quando si usa OWIN con .NET Framework, usare una pipeline simile alla seguente:
+Con questo approccio l'applicazione e il server a cui viene distribuita vengono accoppiati in un modo che interferisce con l'implementazione. Al fine di disaccoppiare gli elementi, è stata introdotta la funzionalità [OWIN](https://owin.org/) che offre un modo più semplice di usare più framework insieme. OWIN offre una pipeline per aggiungere solo i moduli necessari. L'ambiente host accetta una funzione di [avvio](xref:fundamentals/startup) per configurare i servizi e la pipeline delle richieste dell'applicazione. `Startup` registra un set di middleware con l'applicazione. Per ogni richiesta, l'applicazione chiama ognuno dei componenti middleware con il puntatore iniziale di un elenco collegato a un set esistente di gestori. Ogni componente middleware può aggiungere uno o più gestori alla pipeline di gestione delle richieste. Questa operazione viene eseguita restituendo un riferimento al gestore che rappresenta il nuovo inizio dell'elenco. Ogni gestore è responsabile della memorizzazione e della chiamata del gestore successivo nell'elenco. Con ASP.NET Core, il punto di ingresso a un'applicazione è `Startup` e non esiste più una dipendenza da *Global.asax* . Quando si usa OWIN con .NET Framework, usare una pipeline simile alla seguente:
 
 [!code-csharp[](samples/webapi-owin.cs)]
 
@@ -91,7 +92,7 @@ L'host e applicazione sono stati disaccoppiati e questo offre la possibilità di
 
 ## <a name="store-configurations"></a>Configurazioni di archiviazione
 
-ASP.NET supporta le impostazioni di archiviazione. Tali impostazioni vengono usate, ad esempio, per supportare l'ambiente in cui vengono distribuite le applicazioni. Una prassi comune era archiviare tutte le coppie chiave-valore personalizzate nella sezione `<appSettings>` del file *Web.config*:
+ASP.NET supporta le impostazioni di archiviazione. Tali impostazioni vengono usate, ad esempio, per supportare l'ambiente in cui vengono distribuite le applicazioni. Una prassi comune era archiviare tutte le coppie chiave-valore personalizzate nella sezione `<appSettings>` del file *Web.config* :
 
 [!code-xml[](samples/webconfig-sample.xml)]
 
@@ -99,11 +100,11 @@ Le applicazioni leggono queste impostazioni usando la raccolta `ConfigurationMan
 
 [!code-csharp[](samples/read-webconfig.cs)]
 
-ASP.NET Core è in grado di archiviare i dati di configurazione per l'applicazione in tutti i file e di caricarli come parte dell'avvio automatico del middleware. Il file predefinito usato nei modelli di progetto è *appSettings.json*:
+ASP.NET Core è in grado di archiviare i dati di configurazione per l'applicazione in tutti i file e di caricarli come parte dell'avvio automatico del middleware. Il file predefinito usato nei modelli di progetto è il seguente *appsettings.json* :
 
 [!code-json[](samples/appsettings-sample.json)]
 
-Il caricamento del file in un'istanza di `IConfiguration` all'interno dell'applicazione viene eseguito in *Startup.cs*:
+Il caricamento del file in un'istanza di `IConfiguration` all'interno dell'applicazione viene eseguito in *Startup.cs* :
 
 [!code-csharp[](samples/startup-builder.cs)]
 
@@ -139,7 +140,7 @@ Inserire `IProductRepository` dove necessario:
 
 [!code-csharp[](samples/sample5.cs)]
 
-Poiché l'inserimento delle dipendenze fa parte di ASP.NET Core, è possibile aggiungere il servizio nel metodo `ConfigureServices` di *Startup.cs*:
+Poiché l'inserimento delle dipendenze fa parte di ASP.NET Core, è possibile aggiungere il servizio nel metodo `ConfigureServices` di *Startup.cs* :
 
 [!code-csharp[](samples/configure-services.cs)]
 
@@ -154,7 +155,7 @@ Una parte importante dello sviluppo Web è la possibilità di distribuire asset 
 
 In ASP.NET i file statici vengono archiviati in directory diverse e viene fatto riferimento ai file nelle viste.
 
-In ASP.NET Core i file statici vengono archiviati nella radice Web (* &lt; &gt; /wwwroot radice del contenuto*), a meno che non sia configurato diversamente. I file vengono caricati nella pipeline delle richieste chiamando il metodo di estensione `UseStaticFiles` da `Startup.Configure`:
+In ASP.NET Core i file statici vengono archiviati nella radice Web ( *&lt; &gt; /wwwroot radice del contenuto* ), a meno che non sia configurato diversamente. I file vengono caricati nella pipeline delle richieste chiamando il metodo di estensione `UseStaticFiles` da `Startup.Configure`:
 
 [!code-csharp[](../../fundamentals/static-files/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
@@ -197,8 +198,8 @@ Struttura di directory:
 ```
 .
 ├── MainSite
-│   ├── ...
-│   └── Web.config
+│   ├── ...
+│   └── Web.config
 └── NetCoreApi
     ├── ...
     └── web.config

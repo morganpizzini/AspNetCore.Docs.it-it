@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/09/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: c3f537ff3b55f295db478cb097bc99023cc71a87
-ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
+ms.openlocfilehash: 0912b3fbcd0b891deb4985eaa18841c22f4f3264
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92326517"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055750"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor WebAssembly
 
@@ -114,7 +115,7 @@ Quando viene richiesto il documento predefinito dell'app usando la barra degli i
 
 Nella pagina principale, selezionando il collegamento al `About` componente funziona sul client perché il Blazor router interrompe il browser per effettuare una richiesta su Internet per `www.contoso.com` e serve il componente di cui è stato `About` eseguito il rendering `About` . Tutte le richieste per gli endpoint interni *all'interno dell' Blazor WebAssembly app* funzionano allo stesso modo: le richieste non attivano richieste basate su browser a risorse ospitate su server su Internet. Le richieste vengono gestite internamente dal router.
 
-Se una richiesta viene effettuata usando la barra degli indirizzi del browser per `www.contoso.com/About`, la richiesta ha esito negativo. La risorsa non esiste nell'host Internet dell'app, quindi viene restituita la risposta *404 non trovato*.
+Se una richiesta viene effettuata usando la barra degli indirizzi del browser per `www.contoso.com/About`, la richiesta ha esito negativo. La risorsa non esiste nell'host Internet dell'app, quindi viene restituita la risposta *404 non trovato* .
 
 Poiché i browser effettuano richieste a host basati su Internet per le pagine lato client, i server Web e i servizi di hosting devono riscrivere tutte le richieste di risorse non fisicamente presenti sul server nella `index.html` pagina. Quando `index.html` viene restituito, il router dell'app Blazor accetta e risponde con la risorsa corretta.
 
@@ -124,7 +125,7 @@ Quando si esegue la distribuzione in un server IIS, è possibile usare il modulo
 
 Una *distribuzione ospitata* serve all' Blazor WebAssembly app per i browser da un' [app ASP.NET Core](xref:index) eseguita in un server Web.
 
-L' Blazor WebAssembly app client viene pubblicata nella `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` cartella dell'app Server, insieme a qualsiasi altra risorsa Web statica dell'app Server. Le due app vengono distribuite insieme. È necessario un server Web in grado di ospitare un'app ASP.NET Core. Per una distribuzione ospitata, Visual Studio include il modello di progetto ** Blazor WebAssembly app** ( `blazorwasm` modello quando si usa il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando) con l' **`Hosted`** opzione selezionata ( `-ho|--hosted` quando si usa il `dotnet new` comando).
+L' Blazor WebAssembly app client viene pubblicata nella `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` cartella dell'app Server, insieme a qualsiasi altra risorsa Web statica dell'app Server. Le due app vengono distribuite insieme. È necessario un server Web in grado di ospitare un'app ASP.NET Core. Per una distribuzione ospitata, Visual Studio include il modello di progetto **Blazor WebAssembly app** ( `blazorwasm` modello quando si usa il [`dotnet new`](/dotnet/core/tools/dotnet-new) comando) con l' **`Hosted`** opzione selezionata ( `-ho|--hosted` quando si usa il `dotnet new` comando).
 
 Per altre informazioni su hosting e distribuzione di app ASP.NET Core, vedere <xref:host-and-deploy/index>.
 
@@ -289,22 +290,30 @@ Usare gli approcci seguenti per gli asset statici:
   <img alt="..." src="_content/{LIBRARY NAME}/{ASSET FILE NAME}" />
   ```
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker range=">= aspnetcore-5.0"
 
-Per i componenti forniti a un'app client da una libreria di classi viene fatto riferimento normalmente. Se i componenti richiedono fogli di stile o file JavaScript, usare uno degli approcci seguenti per ottenere gli asset statici:
+Components provided to a client app by a class library are referenced normally. If any components require stylesheets or JavaScript files, use either of the following approaches to obtain the static assets:
 
-* Il file dell'app client `wwwroot/index.html` può collegare ( `<link>` ) agli asset statici.
-* Il componente può usare il [ `Link` componente](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) del Framework per ottenere gli asset statici.
+* The client app's `wwwroot/index.html` file can link (`<link>`) to the static assets.
+* The component can use the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) to obtain the static assets.
 
-Gli approcci precedenti sono illustrati negli esempi seguenti.
+The preceding approaches are demonstrated in the following examples.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
+-->
+
 Per i componenti forniti a un'app client da una libreria di classi viene fatto riferimento normalmente. Se i componenti richiedono fogli di stile o file JavaScript, il file dell'app client `wwwroot/index.html` deve includere i collegamenti statici corretti. Questi approcci sono illustrati negli esempi seguenti.
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker-end
+
+-->
 
 Aggiungere il `Jeep` componente seguente a una delle app client. Il `Jeep` componente USA:
 
@@ -338,9 +347,11 @@ Aggiungere il `Jeep` componente seguente a una delle app client. Il `Jeep` compo
 > [!WARNING]
 > **Non** pubblicare le immagini dei veicoli pubblicamente, a meno che non si possiedano le immagini. In caso contrario, si rischia di violare il copyright.
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker range=">= aspnetcore-5.0"
 
-È `jeep-yj.png` possibile aggiungere l'immagine della libreria anche al componente della libreria `Component1` ( `Component1.razor` ). Per fornire la `my-component` classe CSS alla pagina dell'app client, eseguire il collegamento al foglio di stile della libreria usando il [ `Link` componente](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements)del Framework:
+The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements):
 
 ```razor
 <div class="my-component">
@@ -358,7 +369,7 @@ Aggiungere il `Jeep` componente seguente a una delle app client. Il `Jeep` compo
 </div>
 ```
 
-Un'alternativa all'utilizzo del [ `Link` componente](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) consiste nel caricare il foglio di stile dal file dell'app client `wwwroot/index.html` . Questo approccio rende disponibile il foglio di stile per tutti i componenti dell'app client:
+An alternative to using the [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) is to load the stylesheet from the client app's `wwwroot/index.html` file. This approach makes the stylesheet available to all of the components in the client app:
 
 ```html
 <head>
@@ -370,6 +381,8 @@ Un'alternativa all'utilizzo del [ `Link` componente](xref:blazor/fundamentals/ad
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
+-->
 
 È `jeep-yj.png` possibile aggiungere l'immagine della libreria anche al componente della libreria `Component1` ( `Component1.razor` ):
 
@@ -396,7 +409,11 @@ Il file dell'app client `wwwroot/index.html` richiede il foglio di stile della l
 </head>
 ```
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker-end
+
+-->
 
 Aggiungere la navigazione al `Jeep` componente nel componente dell'app client `NavMenu` ( `Shared/NavMenu.razor` ):
 
@@ -508,7 +525,7 @@ La rimozione del gestore o la disabilitazione dell'ereditarietà viene eseguita 
 
 IIS può essere configurato tramite `web.config` per gestire asset Brotli o gzip compressi Blazor . Per una configurazione di esempio, vedere [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true) .
 
-#### <a name="troubleshooting"></a>Risoluzione dei problemi
+#### <a name="troubleshooting"></a>risoluzione dei problemi
 
 Se si riceve un *errore interno del server 500* e Gestione IIS genera errori durante il tentativo di accedere alla configurazione del sito Web, verificare che sia installato URL Rewrite Module. Quando il modulo non è installato, il `web.config` file non può essere analizzato da IIS. In questo modo si impedisce al gestore IIS di caricare la configurazione del sito Web e il sito Web dai Blazor file statici del servizio.
 
@@ -521,7 +538,7 @@ L'hosting di file statici di [archiviazione di Azure](/azure/storage/) consente 
 Quando il servizio BLOB è abilitato per l'hosting di siti Web statici in un account di archiviazione:
 
 * Impostare **Nome del documento di indice** su `index.html`.
-* Impostare **Percorso del documento di errore** su `index.html`. Razor i componenti e altri endpoint non di file non si trovano in percorsi fisici nel contenuto statico archiviato dal servizio BLOB. Quando viene ricevuta una richiesta per una di queste risorse che il Blazor router deve gestire, l'errore *404 non trovato* generato dal servizio BLOB instrada la richiesta al **percorso del documento di errore**. `index.html`Viene restituito il BLOB e il Blazor router carica ed elabora il percorso.
+* Impostare **Percorso del documento di errore** su `index.html`. Razor i componenti e altri endpoint non di file non si trovano in percorsi fisici nel contenuto statico archiviato dal servizio BLOB. Quando viene ricevuta una richiesta per una di queste risorse che il Blazor router deve gestire, l'errore *404 non trovato* generato dal servizio BLOB instrada la richiesta al **percorso del documento di errore** . `index.html`Viene restituito il BLOB e il Blazor router carica ed elabora il percorso.
 
 Se i file non vengono caricati in fase di esecuzione a causa di tipi MIME non appropriati nelle intestazioni dei file `Content-Type` , eseguire una delle azioni seguenti:
 
@@ -530,7 +547,7 @@ Se i file non vengono caricati in fase di esecuzione a causa di tipi MIME non ap
 
   In Storage Explorer (portale di Azure) per ogni file:
   
-  1. Fare clic con il pulsante destro del mouse sul file e scegliere **Proprietà**.
+  1. Fare clic con il pulsante destro del mouse sul file e scegliere **Proprietà** .
   1. Impostare **ContentType** e selezionare il pulsante **Salva** .
 
 Per altre informazioni, vedere [Hosting di siti Web statici in Archiviazione di Azure](/azure/storage/blobs/storage-blob-static-website).
@@ -665,7 +682,7 @@ L' `--contentroot` argomento imposta il percorso assoluto della directory che co
   "commandLineArgs": "--contentroot=/content-root-path"
   ```
 
-* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione**. L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
+* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione** . L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
 
   ```console
   --contentroot=/content-root-path
@@ -690,7 +707,7 @@ L' `--pathbase` argomento imposta il percorso di base dell'app per un'app esegui
   "commandLineArgs": "--pathbase=/relative-URL-path"
   ```
 
-* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione**. L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
+* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione** . L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
 
   ```console
   --pathbase=/relative-URL-path
@@ -712,7 +729,7 @@ L'argomento `--urls` imposta gli indirizzi IP o gli indirizzi host con le porte 
   "commandLineArgs": "--urls=http://127.0.0.1:0"
   ```
 
-* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione**. L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
+* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione** . L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
 
   ```console
   --urls=http://127.0.0.1:0
@@ -896,7 +913,7 @@ Quando viene compilata un'app, il `blazor.boot.json` manifesto generato descrive
 
 I motivi più comuni per cui questo errore sono:
 
- * La risposta del server Web è un errore (ad esempio, *404-non trovato* o un *errore del server interno 500*) invece del file richiesto dal browser. Viene segnalato dal browser come un errore di controllo dell'integrità e non come un errore di risposta.
+ * La risposta del server Web è un errore (ad esempio, *404-non trovato* o un *errore del server interno 500* ) invece del file richiesto dal browser. Viene segnalato dal browser come un errore di controllo dell'integrità e non come un errore di risposta.
  * Un elemento ha modificato il contenuto dei file tra la compilazione e il recapito dei file nel browser. Questo problema può verificarsi:
    * Se gli strumenti di compilazione o di compilazione modificano manualmente l'output di compilazione.
    * Se alcuni aspetti del processo di distribuzione hanno modificato i file. Se, ad esempio, si usa un meccanismo di distribuzione basato su git, tenere presente che git converte in modo trasparente le terminazioni riga di tipo Windows in terminazioni riga di tipo Unix se si esegue il commit di file in Windows e li si estrae in Linux. La modifica delle terminazioni di riga del file modifica gli hash SHA-256. Per evitare questo problema, considerare l' [utilizzo `.gitattributes` di per considerare gli artefatti di compilazione come `binary` file](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).

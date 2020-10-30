@@ -5,6 +5,7 @@ description: Parte 2 delle Razor pagine e della serie di esercitazioni Entity Fr
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 083214c01dbec6c6f44d6b82f5b514a029e57cbe
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: c5b9be64ea30cce7a3178bfbb244ef893e9639d2
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606735"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053865"
 ---
 # <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>Parte 2, Razor pagine con EF core in ASP.NET Core-CRUD
 
@@ -90,7 +91,7 @@ Il codice precedente crea un oggetto Student e quindi usa i campi del modulo pub
 
 * Usa i valori del modulo pubblicati dalla proprietà [PageContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) in [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel).
 * Aggiorna solo le proprietà elencate (`s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
-* Cerca i campi del modulo con il prefisso "student". Ad esempio: `Student.FirstMidName`. Non viene fatta distinzione tra maiuscole e minuscole.
+* Cerca i campi del modulo con il prefisso "student". Ad esempio `Student.FirstMidName`. Non viene fatta distinzione tra maiuscole e minuscole.
 * Usa il sistema di [associazione di modelli](xref:mvc/models/model-binding) per convertire i valori dei moduli da stringa ai tipi nel modello `Student`. Ad esempio, `EnrollmentDate` viene convertito in `DateTime` .
 
 Eseguire l'app e creare un'entità Student per testare la pagina Create.
@@ -183,7 +184,7 @@ Il metodo `OnPostAsync` recupera l'entità selezionata, quindi chiama il metodo 
 * Viene rilevata l'eccezione del database.
 * Il metodo `OnGetAsync` delle pagine Delete viene chiamato con `saveChangesError=true`.
 
-Aggiungere un messaggio di errore a *pages/students/Delete. cshtml*:
+Aggiungere un messaggio di errore a *pages/students/Delete. cshtml* :
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -258,7 +259,7 @@ Il codice precedente crea un oggetto Student e quindi usa i campi del modulo pub
 
 * Usa i valori del modulo pubblicati dalla proprietà [PageContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) in [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel).
 * Aggiorna solo le proprietà elencate (`s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
-* Cerca i campi del modulo con il prefisso "student". Ad esempio: `Student.FirstMidName`. Non viene fatta distinzione tra maiuscole e minuscole.
+* Cerca i campi del modulo con il prefisso "student". Ad esempio `Student.FirstMidName`. Non viene fatta distinzione tra maiuscole e minuscole.
 * Usa il sistema di [associazione di modelli](xref:mvc/models/model-binding) per convertire i valori dei moduli da stringa ai tipi nel modello `Student`. Ad esempio, `EnrollmentDate` deve essere convertito in DateTime.
 
 Eseguire l'app e creare un'entità Student per testare la pagina Create.
@@ -346,7 +347,7 @@ Il metodo `OnPostAsync` recupera l'entità selezionata, quindi chiama il metodo 
 * Viene rilevata l'eccezione del database.
 * Il metodo `OnGetAsync` delle pagine Delete viene chiamato con `saveChangesError=true`.
 
-Aggiungere un messaggio di errore alla Razor pagina Delete (*pages/students/Delete. cshtml*):
+Aggiungere un messaggio di errore alla Razor pagina Delete ( *pages/students/Delete. cshtml* ):
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -404,11 +405,11 @@ Se si vuole usare `Include` per includere altre entità, l'uso di `FindAsync` no
 
 ## <a name="customize-the-details-page"></a>Personalizzare la pagina Details
 
-Passare alla pagina `Pages/Students`. I collegamenti **Edit**, **Details** e **Delete** vengono generati dall'[helper del tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) nel file *Pages/Students/Index.cshtml*.
+Passare alla pagina `Pages/Students`. I collegamenti **Edit** , **Details** e **Delete** vengono generati dall' [helper del tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) nel file *Pages/Students/Index.cshtml* .
 
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Index1.cshtml?name=snippet)]
 
-Eseguire l'app e selezionare un collegamento **Details**. L'URL è nel formato `http://localhost:5000/Students/Details?id=2`. L'ID studente viene passato tramite una stringa di query (`?id=2`).
+Eseguire l'app e selezionare un collegamento **Details** . L'URL è nel formato `http://localhost:5000/Students/Details?id=2`. L'ID studente viene passato tramite una stringa di query (`?id=2`).
 
 Aggiornare le pagine modifica, dettagli ed Elimina Razor per usare il `"{id:int}"` modello di route. Modificare la direttiva page per ognuna di queste pagine da `@page` a `@page "{id:int}"`.
 
@@ -438,7 +439,7 @@ Il metodo [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframewo
 
 ### <a name="display-related-enrollments-on-the-details-page"></a>Visualizzare le registrazioni correlate nella pagina Details
 
-Aprire *Pages/Students/Details.cshtml*. Per visualizzare un elenco delle registrazioni, aggiungere il codice evidenziato seguente:
+Aprire *Pages/Students/Details.cshtml* . Per visualizzare un elenco delle registrazioni, aggiungere il codice evidenziato seguente:
 
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Details.cshtml?highlight=32-53)]
 

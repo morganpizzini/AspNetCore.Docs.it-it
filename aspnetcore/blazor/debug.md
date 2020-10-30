@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/26/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: b8dd272d673e84b45a39272531385ebfd1d06175
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: 669ebaf6dcd05561340aefda4a75b6fe1068d207
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91900986"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056192"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debug Blazor WebAssembly
 
@@ -44,7 +45,7 @@ Gli scenari disponibili includono:
 * Nella finestra variabili *locali* osservare i valori delle variabili locali.
 * Vedere lo stack di chiamate, incluse le catene di chiamate tra JavaScript e .NET.
 
-Per il momento *non è possibile*:
+Per il momento *non è possibile* :
 
 * Interrompi in corrispondenza di eccezioni non gestite.
 * Premere i punti di interruzione durante l'avvio dell'app prima che il proxy di debug sia in esecuzione. Sono inclusi i punti di interruzione in `Program.Main` ( `Program.cs` ) e i punti di interruzione nei [ `OnInitialized{Async}` Metodi](xref:blazor/components/lifecycle#component-initialization-methods) dei componenti caricati dalla prima pagina richiesta dall'app.
@@ -91,7 +92,7 @@ Per eseguire il debug di un' Blazor WebAssembly app in Visual Studio:
 1. Premere <kbd>F5</kbd> per eseguire l'app nel debugger.
 
    > [!NOTE]
-   > **Avvia senza eseguire debug** (<kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
+   > **Avvia senza eseguire debug** ( <kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
 
 1. Nell' `*Client*` app, impostare un punto di interruzione nella `currentCount++;` riga in `Pages/Counter.razor` .
 1. Nel browser passare alla `Counter` pagina e selezionare il pulsante **fare clic su me** per raggiungere il punto di interruzione.
@@ -168,15 +169,15 @@ Per informazioni sull'uso di un percorso di base dell'app personalizzato per le 
    Se si riceve la notifica:
 
    * Verificare che sia installata la versione più recente [di C# per Visual Studio Code estensione](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) . Per esaminare le estensioni installate, aprire **View**  >  **Extensions** dalla barra dei menu o selezionare l'icona **Extensions** nella barra laterale **Activity** .
-   * Verificare che l'anteprima JavaScript sia abilitata. Aprire le impostazioni dalla barra dei menu (**File**  >  **Preferences**  >  **Impostazioni**preferenze file). Eseguire la ricerca usando le parole chiave `debug preview` . Nei risultati della ricerca verificare che la casella di controllo per **Debug > JavaScript: USA anteprima** sia selezionata. Se l'opzione per abilitare il debug in anteprima non è presente, eseguire l'aggiornamento alla versione più recente di VS Code o installare l' [estensione del debugger JavaScript](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code versioni 1,46 o precedenti).
+   * Verificare che l'anteprima JavaScript sia abilitata. Aprire le impostazioni dalla barra dei menu ( **File**  >  **Preferences**  >  **Impostazioni** preferenze file). Eseguire la ricerca usando le parole chiave `debug preview` . Nei risultati della ricerca verificare che la casella di controllo per **Debug > JavaScript: USA anteprima** sia selezionata. Se l'opzione per abilitare il debug in anteprima non è presente, eseguire l'aggiornamento alla versione più recente di VS Code o installare l' [estensione del debugger JavaScript](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code versioni 1,46 o precedenti).
    * Ricaricare la finestra.
 
 1. Avviare il debug usando il tasto di scelta rapida <kbd>F5</kbd> o la voce di menu.
 
    > [!NOTE]
-   > **Avvia senza eseguire debug** (<kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
+   > **Avvia senza eseguire debug** ( <kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
 
-1. Quando richiesto, selezionare l'opzione ** Blazor WebAssembly debug** per avviare il debug.
+1. Quando richiesto, selezionare l'opzione **Blazor WebAssembly debug** per avviare il debug.
 
 1. Viene avviata l'app autonoma e viene aperto un browser di debug.
 
@@ -191,7 +192,7 @@ Per informazioni sull'uso di un percorso di base dell'app personalizzato per le 
 
 1. Aprire la cartella della soluzione dell'app ospitata Blazor WebAssembly in vs code.
 
-1. Se non è impostata alcuna configurazione di avvio per il progetto, viene visualizzata la notifica seguente. Selezionare **Sì**.
+1. Se non è impostata alcuna configurazione di avvio per il progetto, viene visualizzata la notifica seguente. Selezionare **Sì** .
 
    > Gli asset necessari per la compilazione e il debug non sono presenti in ' {nome applicazione}'. e se si vuole aggiungerle.
 
@@ -280,7 +281,7 @@ Per eseguire il debug di un' Blazor WebAssembly app in Visual Studio per Mac:
 1. Premere <kbd>&#8984;</kbd> + <kbd>&#8617;</kbd> per eseguire l'applicazione nel debugger.
 
    > [!NOTE]
-   > **Avvia senza eseguire debug** (<kbd>&#8997;</kbd> + <kbd>&#8984;</kbd> + <kbd>&#8617;</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
+   > **Avvia senza eseguire debug** ( <kbd>&#8997;</kbd> + <kbd>&#8984;</kbd> + <kbd>&#8617;</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
 
    > [!IMPORTANT]
    > Google Chrome o Microsoft Edge deve essere il browser selezionato per la sessione di debug.
@@ -344,7 +345,7 @@ Se si verificano errori, è possibile che vengano visualizzati i suggerimenti se
 
 * Nella scheda **debugger** aprire gli strumenti di sviluppo nel browser. Nella console eseguire `localStorage.clear()` per rimuovere tutti i punti di interruzione.
 * Verificare di aver installato e considerato attendibile il certificato di sviluppo ASP.NET Core HTTPS. Per altre informazioni, vedere <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.
-* Visual Studio richiede l'opzione **Abilita debug JavaScript per ASP.NET (Chrome, Edge e IE)** in **strumenti**  >  **Opzioni**  >  **debug**  >  **generale**. Questa è l'impostazione predefinita per Visual Studio. Se il debug non funziona, verificare che sia selezionata l'opzione.
+* Visual Studio richiede l'opzione **Abilita debug JavaScript per ASP.NET (Chrome, Edge e IE)** in **strumenti**  >  **Opzioni**  >  **debug**  >  **generale** . Questa è l'impostazione predefinita per Visual Studio. Se il debug non funziona, verificare che sia selezionata l'opzione.
 * Se l'ambiente usa un proxy HTTP, assicurarsi che `localhost` sia incluso nelle impostazioni di bypass del proxy. Questa operazione può essere eseguita impostando la `NO_PROXY` variabile di ambiente in uno dei seguenti valori:
   * `launchSettings.json`File per il progetto.
   * A livello di utente o di variabili di ambiente di sistema per applicarlo a tutte le app. Quando si usa una variabile di ambiente, riavviare Visual Studio per rendere effettive le modifiche.

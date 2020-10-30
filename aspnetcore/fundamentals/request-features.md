@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/20/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/request-features
-ms.openlocfilehash: 879b775ba2998ee803708ebf231b5fcd363b811c
-ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
+ms.openlocfilehash: d906474b0fd291cc4a68390f390b2bf538e21eff
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92326435"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053709"
 ---
 # <a name="request-features-in-aspnet-core"></a>Funzionalità di richiesta in ASP.NET Core
 
 Di [Steve Smith](https://ardalis.com/)
 
-L' `HttpContext` API usata dalle applicazioni e dal middleware per elaborare le richieste ha un livello di astrazione undernieth denominato *interfacce di funzionalità*. Ogni interfaccia della funzionalità fornisce un subset granulare delle funzionalità esposte da `HttpContext` . Queste interfacce possono essere aggiunte, modificate, sottoposto a Wrapped, sostituite o addirittura rimosse dal server o dal middleware, perché la richiesta viene elaborata senza dover implementare nuovamente l'intero `HttpContext` . Possono anche essere usati per simulare le funzionalità durante i test.
+L' `HttpContext` API usata dalle applicazioni e dal middleware per elaborare le richieste ha un livello di astrazione undernieth denominato *interfacce di funzionalità* . Ogni interfaccia della funzionalità fornisce un subset granulare delle funzionalità esposte da `HttpContext` . Queste interfacce possono essere aggiunte, modificate, sottoposto a Wrapped, sostituite o addirittura rimosse dal server o dal middleware, perché la richiesta viene elaborata senza dover implementare nuovamente l'intero `HttpContext` . Possono anche essere usati per simulare le funzionalità durante i test.
 
 ## <a name="feature-collections"></a>Raccolte di funzionalità
 

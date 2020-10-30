@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/16/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/ws-federation
-ms.openlocfilehash: 8a593efd799e900483d0337a06e02c3558b63bfb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ed78923a2bdd1ed683a72c0a6f34337a38350035
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634085"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053371"
 ---
 # <a name="authenticate-users-with-ws-federation-in-aspnet-core"></a>Autenticare gli utenti con WS-Federation in ASP.NET Core
 
-Questa esercitazione illustra come consentire agli utenti di accedere con un provider di autenticazione WS-Federation, ad esempio Active Directory Federation Services (ADFS) o [Azure Active Directory](/azure/active-directory/) (AAD). Usa l'app di esempio ASP.NET Core descritta in [Facebook, Google e l'autenticazione del provider esterno](xref:security/authentication/social/index).
+Questa esercitazione illustra come consentire agli utenti di accedere con un provider di autenticazione WS-Federation come Active Directory Federation Services (ADFS) o [Azure Active Directory](/azure/active-directory/) (AAD). Usa l'app di esempio ASP.NET Core descritta in [Facebook, Google e l'autenticazione del provider esterno](xref:security/authentication/social/index).
 
-Per le app ASP.NET Core, il supporto di WS-Federation viene fornito da [Microsoft. AspNetCore. Authentication. WSFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). Questo componente viene trasferito da [Microsoft. Owin. Security. WSFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) e condivide molti dei meccanismi di tale componente. Tuttavia, i componenti differiscono in un paio di modi importanti.
+Per le app ASP.NET Core, WS-Federation supporto viene fornito da [Microsoft. AspNetCore. Authentication. WSFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). Questo componente viene trasferito da [Microsoft. Owin. Security. WSFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) e condivide molti dei meccanismi di tale componente. Tuttavia, i componenti differiscono in un paio di modi importanti.
 
 Per impostazione predefinita, il nuovo middleware:
 
@@ -53,7 +54,7 @@ Per impostazione predefinita, il nuovo middleware:
 
 ![Aggiunta guidata trust della relying party: configurare il certificato](ws-federation/_static/AdfsConfigureCert.png)
 
-* Abilitare il supporto per il protocollo passivo WS-Federation usando l'URL dell'app. Verificare che la porta sia corretta per l'app:
+* Abilitare il supporto per WS-Federation protocollo passivo, usando l'URL dell'app. Verificare che la porta sia corretta per l'app:
 
 ![Aggiunta guidata attendibilità relying party: Configura URL](ws-federation/_static/AdfsConfigureUrl.png)
 
@@ -66,7 +67,7 @@ Per impostazione predefinita, il nuovo middleware:
 
 ![Modifica regole attestazione](ws-federation/_static/EditClaimRules.png)
 
-* Nella **procedura guidata Aggiungi regola attestazione di trasformazione**lasciare selezionata l'opzione predefinita **Invia attributi LDAP come modello di attestazioni** e fare clic su **Avanti**. Aggiungere una regola mapping dell'attributo LDAP **SAM-account-name** all'attestazione in uscita **ID nome** :
+* Nella **procedura guidata Aggiungi regola attestazione di trasformazione** lasciare selezionata l'opzione predefinita **Invia attributi LDAP come modello di attestazioni** e fare clic su **Avanti** . Aggiungere una regola mapping dell'attributo LDAP **SAM-account-name** all'attestazione in uscita **ID nome** :
 
 ![Aggiunta guidata regola attestazione di trasformazione: Configura regola attestazione](ws-federation/_static/AddTransformClaimRule.png)
 
@@ -74,12 +75,12 @@ Per impostazione predefinita, il nuovo middleware:
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
 
-* Passare al pannello registrazioni per l'app del tenant AAD. Fare clic su **registrazione nuova applicazione**:
+* Passare al pannello registrazioni per l'app del tenant AAD. Fare clic su **registrazione nuova applicazione** :
 
 ![Azure Active Directory: Registrazioni app](ws-federation/_static/AadNewAppRegistration.png)
 
 * Immettere un nome per la registrazione dell'app. Questa operazione non è importante per l'app ASP.NET Core.
-* Immettere l'URL su cui è in ascolto l'app come **URL di accesso**:
+* Immettere l'URL su cui è in ascolto l'app come **URL di accesso** :
 
 ![Azure Active Directory: creare la registrazione dell'app](ws-federation/_static/AadCreateAppRegistration.png)
 
@@ -87,13 +88,13 @@ Per impostazione predefinita, il nuovo middleware:
 
 ![Azure Active Directory: endpoint](ws-federation/_static/AadFederationMetadataDocument.png)
 
-* Passare alla registrazione della nuova app. Fare clic su **esporre un'API**. Fare clic su ID applicazione URI **set**  >  **Save**. Prendere nota dell'  **URI dell'ID applicazione**. Si tratta del middleware WS-Federation `Wtrealm` :
+* Passare alla registrazione della nuova app. Fare clic su **esporre un'API** . Fare clic su ID applicazione URI **set**  >  **Save** . Prendere nota dell'  **URI dell'ID applicazione** . Si tratta del middleware WS-Federation `Wtrealm` :
 
 ![Azure Active Directory: Proprietà registrazione app](ws-federation/_static/AadAppIdUri.png)
 
-## <a name="use-ws-federation-without-no-locaspnet-core-identity"></a>Usare WS-Federation senza ASP.NET Core Identity
+## <a name="use-ws-federation-without-no-locaspnet-core-identity"></a>USA WS-Federation senza ASP.NET Core Identity
 
-Il middleware WS-Federation può essere utilizzato senza Identity . Ad esempio:
+Il middleware WS-Federation può essere usato senza Identity . Ad esempio:
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
 ::: moniker-end
@@ -117,7 +118,7 @@ Il middleware WS-Federation può essere utilizzato senza Identity . Ad esempio:
 
 [!INCLUDE [default settings configuration](social/includes/default-settings.md)]
 
-### <a name="log-in-with-ws-federation"></a>Accedere con WS-Federation
+### <a name="log-in-with-ws-federation"></a>Accedi con WS-Federation
 
 Passare all'app e fare clic sul collegamento **Accedi** nell'intestazione NAV. È disponibile un'opzione per l'accesso con WsFederation: ![ pagina di accesso](ws-federation/_static/WsFederationButton.png)
 

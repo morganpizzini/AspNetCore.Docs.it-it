@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 09/28/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: f2b4fd9fb1e328882583536b704d516955343417
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 610a9e9b0007fb468ea9cdae6fadd2e756de4290
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629457"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054060"
 ---
 # <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: leggere dati correlati-MVC ASP.NET con EF Core
 
@@ -222,7 +223,7 @@ Eseguire l'app e selezionare la scheda **Instructors (insegnanti** ). La pagina 
 
 ![Pagina di indice degli insegnanti con nessuna selezione](read-related-data/_static/instructors-index-no-selection.png)
 
-Nel file *Views/Instructors/Index.cshtml*, dopo l'elemento di chiusura della tabella (alla fine del file), aggiungere il codice seguente. Quando è selezionato un insegnante, Questo codice visualizza un elenco dei corsi correlati all'insegnante stesso.
+Nel file *Views/Instructors/Index.cshtml* , dopo l'elemento di chiusura della tabella (alla fine del file), aggiungere il codice seguente. Quando è selezionato un insegnante, Questo codice visualizza un elenco dei corsi correlati all'insegnante stesso.
 
 [!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=66-101)]
 
@@ -244,7 +245,7 @@ Aggiornare di nuovo la pagina e selezionare un insegnante. Selezionare quindi un
 
 ## <a name="about-explicit-loading"></a>Informazioni sul caricamento esplicito
 
-Quando è stato recuperato l'elenco degli insegnanti in *InstructorsController.cs*, per la proprietà di navigazione `CourseAssignments` è stato specificato il caricamento eager.
+Quando è stato recuperato l'elenco degli insegnanti in *InstructorsController.cs* , per la proprietà di navigazione `CourseAssignments` è stato specificato il caricamento eager.
 
 Si supponga che gli utenti vogliano visualizzare solo raramente le iscrizioni per un corso e un insegnante selezionati. In tal caso, è consigliabile caricare i dati delle iscrizioni solo se richiesti. Per vedere un esempio di come eseguire il caricamento esplicito, sostituire il metodo `Index` con il codice seguente, che rimuove il caricamento eager per Enrollments e carica questa proprietà in modo esplicito. Le modifiche al codice sono evidenziate.
 
