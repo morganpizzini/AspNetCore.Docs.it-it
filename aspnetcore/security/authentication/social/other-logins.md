@@ -6,55 +6,56 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/11/2018
 no-loc:
-- ASP.NET Core Identity
-- cookie
-- Cookie
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(appsettings.json):::'
+- ':::no-loc(ASP.NET Core Identity):::'
+- ':::no-loc(cookie):::'
+- ':::no-loc(Cookie):::'
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: security/authentication/otherlogins
-ms.openlocfilehash: f410f9ade34c3ffb19dc9f6e5409f44d0a6e5d32
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 11f770b752a6654ffe73b4fe005c09711515ac74
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634241"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053267"
 ---
-# <a name="external-oauth-authentication-providers"></a><span data-ttu-id="54abb-103">Provider di autenticazione OAuth esterni</span><span class="sxs-lookup"><span data-stu-id="54abb-103">External OAuth authentication providers</span></span>
+# <a name="external-oauth-authentication-providers"></a><span data-ttu-id="5bcd0-103">Provider di autenticazione OAuth esterni</span><span class="sxs-lookup"><span data-stu-id="5bcd0-103">External OAuth authentication providers</span></span>
 
-<span data-ttu-id="54abb-104">Di [Rick Anderson](https://twitter.com/RickAndMSFT), [Rastogi](https://github.com/rustd)e [Valeriy Novytskyy](https://github.com/01binary)</span><span class="sxs-lookup"><span data-stu-id="54abb-104">By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd), and [Valeriy Novytskyy](https://github.com/01binary)</span></span>
+<span data-ttu-id="5bcd0-104">Di [Rick Anderson](https://twitter.com/RickAndMSFT), [Rastogi](https://github.com/rustd)e [Valeriy Novytskyy](https://github.com/01binary)</span><span class="sxs-lookup"><span data-stu-id="5bcd0-104">By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd), and [Valeriy Novytskyy](https://github.com/01binary)</span></span>
 
-<span data-ttu-id="54abb-105">L'elenco seguente include i provider di autenticazione OAuth esterni comuni che funzionano con ASP.NET Core app.</span><span class="sxs-lookup"><span data-stu-id="54abb-105">The following list includes common external OAuth authentication providers that work with ASP.NET Core apps.</span></span> <span data-ttu-id="54abb-106">I pacchetti NuGet di terze parti, ad esempio quelli gestiti da [ASPNET-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth), possono essere usati per integrare i provider di autenticazione implementati dal team di ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="54abb-106">Third-party NuGet packages, such as the ones maintained by [aspnet-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth), can be used to complement the authentication providers implemented by the ASP.NET Core team.</span></span>
+<span data-ttu-id="5bcd0-105">L'elenco seguente include i provider di autenticazione OAuth esterni comuni che funzionano con ASP.NET Core app.</span><span class="sxs-lookup"><span data-stu-id="5bcd0-105">The following list includes common external OAuth authentication providers that work with ASP.NET Core apps.</span></span> <span data-ttu-id="5bcd0-106">I pacchetti NuGet di terze parti, ad esempio quelli gestiti da [ASPNET-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth), possono essere usati per integrare i provider di autenticazione implementati dal team di ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="5bcd0-106">Third-party NuGet packages, such as the ones maintained by [aspnet-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth), can be used to complement the authentication providers implemented by the ASP.NET Core team.</span></span>
 
-* <span data-ttu-id="54abb-107">[LinkedIn](https://www.linkedin.com/developer/apps) ([istruzioni](https://developer.linkedin.com/docs/oauth2))</span><span class="sxs-lookup"><span data-stu-id="54abb-107">[LinkedIn](https://www.linkedin.com/developer/apps) ([Instructions](https://developer.linkedin.com/docs/oauth2))</span></span>
+* <span data-ttu-id="5bcd0-107">[LinkedIn](https://www.linkedin.com/developer/apps) ([istruzioni](https://developer.linkedin.com/docs/oauth2))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-107">[LinkedIn](https://www.linkedin.com/developer/apps) ([Instructions](https://developer.linkedin.com/docs/oauth2))</span></span>
 
-* <span data-ttu-id="54abb-108">[Instagram](https://www.instagram.com/developer/register/) ([istruzioni](https://www.instagram.com/developer/authentication/))</span><span class="sxs-lookup"><span data-stu-id="54abb-108">[Instagram](https://www.instagram.com/developer/register/) ([Instructions](https://www.instagram.com/developer/authentication/))</span></span>
+* <span data-ttu-id="5bcd0-108">[Instagram](https://www.instagram.com/developer/register/) ([istruzioni](https://www.instagram.com/developer/authentication/))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-108">[Instagram](https://www.instagram.com/developer/register/) ([Instructions](https://www.instagram.com/developer/authentication/))</span></span>
 
-* <span data-ttu-id="54abb-109">[Reddit](https://www.reddit.com/login?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps) ([istruzioni](https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example))</span><span class="sxs-lookup"><span data-stu-id="54abb-109">[Reddit](https://www.reddit.com/login?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps) ([Instructions](https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example))</span></span>
+* <span data-ttu-id="5bcd0-109">[Reddit](https://www.reddit.com/login?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps) ([istruzioni](https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-109">[Reddit](https://www.reddit.com/login?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps) ([Instructions](https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example))</span></span>
 
-* <span data-ttu-id="54abb-110">[GitHub](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fapplications%2Fnew) ([istruzioni](https://developer.github.com/v3/oauth/))</span><span class="sxs-lookup"><span data-stu-id="54abb-110">[Github](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fapplications%2Fnew) ([Instructions](https://developer.github.com/v3/oauth/))</span></span>
+* <span data-ttu-id="5bcd0-110">[GitHub](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fapplications%2Fnew) ([istruzioni](https://developer.github.com/v3/oauth/))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-110">[Github](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fapplications%2Fnew) ([Instructions](https://developer.github.com/v3/oauth/))</span></span>
 
-* <span data-ttu-id="54abb-111">[Yahoo](https://login.yahoo.com/config/login?src=devnet&.done=http%3A%2F%2Fdeveloper.yahoo.com%2Fapps%2Fcreate%2F) ([istruzioni](https://developer.yahoo.com/bbauth/user.html))</span><span class="sxs-lookup"><span data-stu-id="54abb-111">[Yahoo](https://login.yahoo.com/config/login?src=devnet&.done=http%3A%2F%2Fdeveloper.yahoo.com%2Fapps%2Fcreate%2F) ([Instructions](https://developer.yahoo.com/bbauth/user.html))</span></span>
+* <span data-ttu-id="5bcd0-111">[Yahoo](https://login.yahoo.com/config/login?src=devnet&.done=http%3A%2F%2Fdeveloper.yahoo.com%2Fapps%2Fcreate%2F) ([istruzioni](https://developer.yahoo.com/bbauth/user.html))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-111">[Yahoo](https://login.yahoo.com/config/login?src=devnet&.done=http%3A%2F%2Fdeveloper.yahoo.com%2Fapps%2Fcreate%2F) ([Instructions](https://developer.yahoo.com/bbauth/user.html))</span></span>
 
-* <span data-ttu-id="54abb-112">[Tumblr](https://www.tumblr.com/oauth/apps) ([istruzioni](https://www.tumblr.com/docs/api/v2#auth))</span><span class="sxs-lookup"><span data-stu-id="54abb-112">[Tumblr](https://www.tumblr.com/oauth/apps) ([Instructions](https://www.tumblr.com/docs/api/v2#auth))</span></span>
+* <span data-ttu-id="5bcd0-112">[Tumblr](https://www.tumblr.com/oauth/apps) ([istruzioni](https://www.tumblr.com/docs/api/v2#auth))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-112">[Tumblr](https://www.tumblr.com/oauth/apps) ([Instructions](https://www.tumblr.com/docs/api/v2#auth))</span></span>
 
-* <span data-ttu-id="54abb-113">[Pinterest](https://www.pinterest.com/login/?next=http%3A%2F%2Fdevsite%2Fapps%2F) ([istruzioni](https://developers.pinterest.com/docs/api/overview/?))</span><span class="sxs-lookup"><span data-stu-id="54abb-113">[Pinterest](https://www.pinterest.com/login/?next=http%3A%2F%2Fdevsite%2Fapps%2F) ([Instructions](https://developers.pinterest.com/docs/api/overview/?))</span></span>
+* <span data-ttu-id="5bcd0-113">[Pinterest](https://www.pinterest.com/login/?next=http%3A%2F%2Fdevsite%2Fapps%2F) ([istruzioni](https://developers.pinterest.com/docs/api/overview/?))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-113">[Pinterest](https://www.pinterest.com/login/?next=http%3A%2F%2Fdevsite%2Fapps%2F) ([Instructions](https://developers.pinterest.com/docs/api/overview/?))</span></span>
 
-* <span data-ttu-id="54abb-114">[Pocket](https://getpocket.com/developer/apps/new) ([istruzioni](https://getpocket.com/developer/docs/authentication))</span><span class="sxs-lookup"><span data-stu-id="54abb-114">[Pocket](https://getpocket.com/developer/apps/new) ([Instructions](https://getpocket.com/developer/docs/authentication))</span></span>
+* <span data-ttu-id="5bcd0-114">[Pocket](https://getpocket.com/developer/apps/new) ([istruzioni](https://getpocket.com/developer/docs/authentication))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-114">[Pocket](https://getpocket.com/developer/apps/new) ([Instructions](https://getpocket.com/developer/docs/authentication))</span></span>
 
-* <span data-ttu-id="54abb-115">[Flickr](https://www.flickr.com/services/apps/create) ([istruzioni](https://www.flickr.com/services/api/auth.oauth.html))</span><span class="sxs-lookup"><span data-stu-id="54abb-115">[Flickr](https://www.flickr.com/services/apps/create) ([Instructions](https://www.flickr.com/services/api/auth.oauth.html))</span></span>
+* <span data-ttu-id="5bcd0-115">[Flickr](https://www.flickr.com/services/apps/create) ([istruzioni](https://www.flickr.com/services/api/auth.oauth.html))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-115">[Flickr](https://www.flickr.com/services/apps/create) ([Instructions](https://www.flickr.com/services/api/auth.oauth.html))</span></span>
 
-* <span data-ttu-id="54abb-116">[Dribbling](https://dribbble.com/signup) ([istruzioni](https://developer.dribbble.com/v1/oauth/))</span><span class="sxs-lookup"><span data-stu-id="54abb-116">[Dribble](https://dribbble.com/signup) ([Instructions](https://developer.dribbble.com/v1/oauth/))</span></span>
+* <span data-ttu-id="5bcd0-116">[Dribbling](https://dribbble.com/signup) ([istruzioni](https://developer.dribbble.com/v1/oauth/))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-116">[Dribble](https://dribbble.com/signup) ([Instructions](https://developer.dribbble.com/v1/oauth/))</span></span>
 
-* <span data-ttu-id="54abb-117">[Vimeo](https://vimeo.com/join) ([istruzioni](https://developer.vimeo.com/api/authentication))</span><span class="sxs-lookup"><span data-stu-id="54abb-117">[Vimeo](https://vimeo.com/join) ([Instructions](https://developer.vimeo.com/api/authentication))</span></span>
+* <span data-ttu-id="5bcd0-117">[Vimeo](https://vimeo.com/join) ([istruzioni](https://developer.vimeo.com/api/authentication))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-117">[Vimeo](https://vimeo.com/join) ([Instructions](https://developer.vimeo.com/api/authentication))</span></span>
 
-* <span data-ttu-id="54abb-118">[SoundCloud](https://soundcloud.com/you/apps/new) ([istruzioni](https://developers.soundcloud.com/blog/we-love-oauth-2))</span><span class="sxs-lookup"><span data-stu-id="54abb-118">[SoundCloud](https://soundcloud.com/you/apps/new) ([Instructions](https://developers.soundcloud.com/blog/we-love-oauth-2))</span></span>
+* <span data-ttu-id="5bcd0-118">[SoundCloud](https://soundcloud.com/you/apps/new) ([istruzioni](https://developers.soundcloud.com/blog/we-love-oauth-2))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-118">[SoundCloud](https://soundcloud.com/you/apps/new) ([Instructions](https://developers.soundcloud.com/blog/we-love-oauth-2))</span></span>
 
-* <span data-ttu-id="54abb-119">[VK](https://vk.com/apps?act=manage) ([istruzioni](https://vk.com/pages?oid=-17680044&p=Authorizing_Sites))</span><span class="sxs-lookup"><span data-stu-id="54abb-119">[VK](https://vk.com/apps?act=manage) ([Instructions](https://vk.com/pages?oid=-17680044&p=Authorizing_Sites))</span></span>
+* <span data-ttu-id="5bcd0-119">[VK](https://vk.com/apps?act=manage) ([istruzioni](https://vk.com/pages?oid=-17680044&p=Authorizing_Sites))</span><span class="sxs-lookup"><span data-stu-id="5bcd0-119">[VK](https://vk.com/apps?act=manage) ([Instructions](https://vk.com/pages?oid=-17680044&p=Authorizing_Sites))</span></span>
 
 [!INCLUDE[Multiple authentication providers](includes/chain-auth-providers.md)]
 
