@@ -5,7 +5,7 @@ description: Informazioni su come creare attestazioni e token aggiuntivi da prov
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 10/30/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/additional-claims
-ms.openlocfilehash: 733afec8d3253ec58a7edf6d7fcf35e303a7fe57
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 4503291ff887f79b1ad6eacd4e56943ce23335bc
+ms.sourcegitcommit: 5156eab2118584405eb663e1fcd82f8bd7764504
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060326"
+ms.lasthandoff: 10/31/2020
+ms.locfileid: "93141508"
 ---
 # <a name="persist-additional-claims-and-tokens-from-external-providers-in-aspnet-core"></a>Mantieni attestazioni e token aggiuntivi da provider esterni in ASP.NET Core
 
@@ -60,11 +60,11 @@ Specificare l'elenco di autorizzazioni da recuperare dal provider specificando <
 | Provider  | Ambito                                                            |
 | --------- | ---------------------------------------------------------------- |
 | Facebook  | `https://www.facebook.com/dialog/oauth`                          |
-| Google    | `https://www.googleapis.com/auth/userinfo.profile`               |
+| Google    | `profile`, `email`, `openid`                                     |
 | Microsoft | `https://login.microsoftonline.com/common/oauth2/v2.0/authorize` |
 | Twitter   | `https://api.twitter.com/oauth/authenticate`                     |
 
-Nell'app di esempio, `userinfo.profile` l'ambito di Google viene aggiunto automaticamente dal framework quando <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle*> viene chiamato su <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder> . Se l'app richiede ambiti aggiuntivi, aggiungerli alle opzioni. Nell'esempio seguente `https://www.googleapis.com/auth/user.birthday.read` viene aggiunto l'ambito Google per recuperare il compleanno di un utente:
+Nell'app di esempio gli `profile` ambiti di Google, `email` e `openid` vengono aggiunti automaticamente dal framework quando <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle%2A> viene chiamato su <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder> . Se l'app richiede ambiti aggiuntivi, aggiungerli alle opzioni. Nell'esempio seguente `https://www.googleapis.com/auth/user.birthday.read` viene aggiunto l'ambito Google per recuperare il compleanno di un utente:
 
 ```csharp
 options.Scope.Add("https://www.googleapis.com/auth/user.birthday.read");
