@@ -12,8 +12,10 @@
       href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Introduzione
   uid: getting-started
-- name: Note sulla versione
+- name: Novità
   items:
+    - name: Novità nella versione 5.0
+      uid: aspnetcore-5.0
     - name: Novità della versione 3.1
       uid: aspnetcore-3.1
     - name: Novità della versione 3.0
@@ -212,7 +214,7 @@
       uid: fundamentals/environments
     - name: Registrazione
       uid: fundamentals/logging/index
-    - name: Routing
+    - name: Routing.
       uid: fundamentals/routing
     - name: Gestire gli errori
       uid: fundamentals/error-handling
@@ -285,7 +287,7 @@
           uid: mvc/views/partial
         - name: Controllers
           uid: mvc/controllers/actions
-        - name: Routing
+        - name: Routing.
           uid: mvc/controllers/routing
         - name: Inserimento di dipendenze - Controller
           uid: mvc/controllers/dependency-injection
@@ -357,20 +359,14 @@
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputTextArea
                   href: blazor/forms-validation.md#built-in-forms-components
-                - name: Collegamento
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: MainLayout
                   href: blazor/layouts.md#mainlayout-component
-                - name: Meta
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: NavLink
                   href: blazor/fundamentals/routing.md#navlink-component
                 - name: NavMenu
                   href: blazor/fundamentals/routing.md#navlink-component
                 - name: Router
                   href: blazor/fundamentals/routing.md#route-templates
-                - name: Titolo
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: Virtualize
                   uid: blazor/components/virtualization
             - name: Valori e parametri a cascata
@@ -544,7 +540,7 @@
               uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
             - name: Script
               uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
-            - name: Seleziona
+            - name: Select
               href: mvc/views/working-with-forms.md#the-select-tag-helper
             - name: Area di testo
               href: mvc/views/working-with-forms.md#the-textarea-tag-helper
