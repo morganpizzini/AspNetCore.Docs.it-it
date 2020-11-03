@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 217918fb946df966d45bba130606c8101d163aaf
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 17d6087b884775a8bfcb41fe23296f508467e924
+ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056608"
+ms.lasthandoff: 11/03/2020
+ms.locfileid: "93234452"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Chiamare funzioni JavaScript da metodi .NET in ASP.NET Core Blazor
 
@@ -56,7 +56,7 @@ Il codice JavaScript, ad esempio il codice illustrato nell'esempio precedente, p
 
 Il componente seguente:
 
-* Richiama la `convertArray` funzione JavaScript usando `JSRuntime` quando viene selezionato un pulsante del componente ( **`Convert Array`** ).
+* Richiama la `convertArray` funzione JavaScript usando `JS` quando viene selezionato un pulsante del componente ( **`Convert Array`** ).
 * Dopo la chiamata della funzione JavaScript, la matrice passata viene convertita in una stringa. La stringa viene restituita al componente per la visualizzazione.
 
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/call-js-example.razor?highlight=2,34-35)]
@@ -77,7 +77,7 @@ Per usare l' <xref:Microsoft.JSInterop.IJSRuntime> astrazione, adottare uno degl
 
   [!code-csharp[](call-javascript-from-dotnet/samples_snapshot/inject-abstraction-class.cs?highlight=5)]
 
-  All'interno dell' `<head>` elemento di `wwwroot/index.html` ( Blazor WebAssembly ) o `Pages/_Host.cshtml` ( Blazor Server ) specificare una `handleTickerChanged` funzione JavaScript. La funzione viene chiamata con `JSRuntime.InvokeAsync` e restituisce un valore:
+  All'interno dell' `<head>` elemento di `wwwroot/index.html` ( Blazor WebAssembly ) o `Pages/_Host.cshtml` ( Blazor Server ) specificare una `handleTickerChanged` funzione JavaScript. La funzione viene chiamata con `JS.InvokeAsync` e restituisce un valore:
 
   [!code-html[](call-javascript-from-dotnet/samples_snapshot/index-script-handleTickerChanged2.html)]
 
@@ -85,7 +85,7 @@ Per usare l' <xref:Microsoft.JSInterop.IJSRuntime> astrazione, adottare uno degl
 
   ```razor
   [Inject]
-  IJSRuntime JSRuntime { get; set; }
+  IJSRuntime JS { get; set; }
   ```
 
 Nell'app di esempio lato client che accompagna questo argomento sono disponibili due funzioni JavaScript per l'app che interagiscono con il DOM per ricevere l'input dell'utente e visualizzare un messaggio di benvenuto:
@@ -131,7 +131,7 @@ L'app di esempio include un componente per dimostrare l'interoperabilità JS. Il
 ```razor
 @page "/JSInterop"
 @using {APP ASSEMBLY}.JsInteropClasses
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 
 <h1>JavaScript Interop</h1>
 
@@ -146,11 +146,11 @@ L'app di esempio include un componente per dimostrare l'interoperabilità JS. Il
 @code {
     public async Task TriggerJsPrompt()
     {
-        var name = await JSRuntime.InvokeAsync<string>(
+        var name = await JS.InvokeAsync<string>(
                 "exampleJsFunctions.showPrompt",
                 "What's your name?");
 
-        await JSRuntime.InvokeVoidAsync(
+        await JS.InvokeVoidAsync(
                 "exampleJsFunctions.displayWelcome",
                 $"Hello {name}! Welcome to Blazor!");
     }
@@ -236,10 +236,9 @@ Per usare un metodo di estensione, creare un metodo di estensione statico che ri
 
 ```csharp
 public static async Task TriggerClickEvent(this ElementReference elementRef, 
-    IJSRuntime jsRuntime)
+    IJSRuntime js)
 {
-    await jsRuntime.InvokeVoidAsync(
-        "interopFunctions.clickElement", elementRef);
+    await js.InvokeVoidAsync("interopFunctions.clickElement", elementRef);
 }
 ```
 
@@ -254,10 +253,9 @@ Quando si utilizzano tipi generici e si restituisce un valore, utilizzare <xref:
 
 ```csharp
 public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef, 
-    IJSRuntime jsRuntime)
+    IJSRuntime js)
 {
-    return jsRuntime.InvokeAsync<T>(
-        "exampleJsFunctions.doSomethingGeneric", elementRef);
+    return js.InvokeAsync<T>("exampleJsFunctions.doSomethingGeneric", elementRef);
 }
 ```
 
@@ -488,7 +486,7 @@ L'interoperabilità JS potrebbe non riuscire a causa di errori di rete e deve es
 * Per chiamata nel codice componente, una singola chiamata può specificare il timeout:
 
   ```csharp
-  var result = await JSRuntime.InvokeAsync<string>("MyJSOperation", 
+  var result = await JS.InvokeAsync<string>("MyJSOperation", 
       TimeSpan.FromSeconds({SECONDS}), new[] { "Arg1" });
   ```
 
@@ -525,10 +523,10 @@ export function showPrompt(message) {
 }
 ```
 
-Aggiungere il modulo JavaScript precedente a una libreria .NET come asset Web statico ( `wwwroot/exampleJsInterop.js` ) e quindi importare il modulo nel codice .NET usando il <xref:Microsoft.JSInterop.IJSRuntime> servizio. Il servizio viene inserito come `jsRuntime` (non visualizzato) per l'esempio seguente:
+Aggiungere il modulo JavaScript precedente a una libreria .NET come asset Web statico ( `wwwroot/exampleJsInterop.js` ) e quindi importare il modulo nel codice .NET usando il <xref:Microsoft.JSInterop.IJSRuntime> servizio. Il servizio viene inserito come `js` (non visualizzato) per l'esempio seguente:
 
 ```csharp
-var module = await jsRuntime.InvokeAsync<IJSObjectReference>(
+var module = await js.InvokeAsync<IJSObjectReference>(
     "import", "./_content/MyComponents/exampleJsInterop.js");
 ```
 
@@ -557,13 +555,15 @@ window.unmarshalledInstance = {
 ```
 
 ```csharp
-var unmarshalledRuntime = (IJSUnmarshalledRuntime)jsRuntime;
+var unmarshalledRuntime = (IJSUnmarshalledRuntime)js;
 var jsUnmarshalledReference = unmarshalledRuntime
     .InvokeUnmarshalled<IJSUnmarshalledObjectReference>("unmarshalledInstance");
 
 string helloWorldString = jsUnmarshalledReference.InvokeUnmarshalled<string, string>(
     "helloWorld");
 ```
+
+Nell'esempio precedente, il <xref:Microsoft.JSInterop.IJSRuntime> servizio viene inserito nella classe e assegnato a `js` (non illustrato).
 
 ## <a name="use-of-javascript-libraries-that-render-ui-dom-elements"></a>Uso di librerie JavaScript che eseguono il rendering dell'interfaccia utente (elementi DOM)
 

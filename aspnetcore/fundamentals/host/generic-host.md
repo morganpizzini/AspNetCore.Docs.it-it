@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: 3020734917fbf4d093420ad99114633d04e2a31b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 3e44932c302713132a37534b97fffdd91acce2c7
+ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060495"
+ms.lasthandoff: 11/03/2020
+ms.locfileid: "93234556"
 ---
 # <a name="net-generic-host-in-aspnet-core"></a>Host generico .NET in ASP.NET Core
 
@@ -126,7 +126,7 @@ Il metodo <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>:
   * EventLog (solo quando è in esecuzione su Windows)
 * Abilita la [convalida dell'ambito](xref:fundamentals/dependency-injection#scope-validation) e la [convalida delle dipendenze](xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild) quando l'ambiente è lo sviluppo.
 
-Il metodo `ConfigureWebHostDefaults`:
+Il metodo <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*>:
 
 * Carica la configurazione host dalle variabili di ambiente con prefisso `ASPNETCORE_` .
 * Imposta il server [Kestrel](xref:fundamentals/servers/kestrel) come server Web e lo configura usando i provider di configurazione dell'host dell'app. Per le opzioni predefinite del server Kestrel, vedere <xref:fundamentals/servers/kestrel#kestrel-options>.
@@ -197,7 +197,7 @@ Per altre informazioni, vedere [Configurazione in ASP.NET Core](xref:fundamental
 
 ## <a name="settings-for-all-app-types"></a>Impostazioni per tutti i tipi di app
 
-Questa sezione elenca le impostazioni dell'host che si applicano ai carichi di lavoro HTTP e non-HTTP. Per impostazione predefinita, le variabili di ambiente usate per configurare queste impostazioni possono avere un prefisso `DOTNET_` o `ASPNETCORE_`.
+Questa sezione elenca le impostazioni dell'host che si applicano ai carichi di lavoro HTTP e non-HTTP. Per impostazione predefinita, le variabili di ambiente usate per configurare queste impostazioni possono avere un prefisso `DOTNET_` o `ASPNETCORE_`. Per ulteriori informazioni, vedere la sezione [impostazioni predefinite del generatore](#default-builder-settings) .
 
 <!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
 
@@ -424,7 +424,7 @@ webBuilder.UseStartup<Startup>();
 
 ### <a name="urls"></a>URL
 
-Elenco delimitato da punto e virgola degli indirizzi IP o gli indirizzi host con le porte e protocolli su cui il server deve eseguire l'ascolto per le richieste. Ad esempio `http://localhost:123`. Usare "\*" per indicare che il server deve eseguire l'ascolto per le richieste su tutti gli indirizzi IP o nomi host usando la porta e il protocollo specificati (ad esempio, `http://*:5000`). Il protocollo (`http://` o `https://`) deve essere incluso con ogni URL. I formati supportati variano a seconda del server.
+Elenco delimitato da punto e virgola degli indirizzi IP o gli indirizzi host con le porte e protocolli su cui il server deve eseguire l'ascolto per le richieste. Ad esempio: `http://localhost:123`. Usare "\*" per indicare che il server deve eseguire l'ascolto per le richieste su tutti gli indirizzi IP o nomi host usando la porta e il protocollo specificati (ad esempio, `http://*:5000`). Il protocollo (`http://` o `https://`) deve essere incluso con ogni URL. I formati supportati variano a seconda del server.
 
 **Chiave** : `urls`  
 **Tipo** : `string`  
@@ -914,7 +914,7 @@ webBuilder.UseStartup<Startup>();
 
 ### <a name="urls"></a>URL
 
-Elenco delimitato da punto e virgola degli indirizzi IP o gli indirizzi host con le porte e protocolli su cui il server deve eseguire l'ascolto per le richieste. Ad esempio `http://localhost:123`. Usare "\*" per indicare che il server deve eseguire l'ascolto per le richieste su tutti gli indirizzi IP o nomi host usando la porta e il protocollo specificati (ad esempio, `http://*:5000`). Il protocollo (`http://` o `https://`) deve essere incluso con ogni URL. I formati supportati variano a seconda del server.
+Elenco delimitato da punto e virgola degli indirizzi IP o gli indirizzi host con le porte e protocolli su cui il server deve eseguire l'ascolto per le richieste. Ad esempio: `http://localhost:123`. Usare "\*" per indicare che il server deve eseguire l'ascolto per le richieste su tutti gli indirizzi IP o nomi host usando la porta e il protocollo specificati (ad esempio, `http://*:5000`). Il protocollo (`http://` o `https://`) deve essere incluso con ogni URL. I formati supportati variano a seconda del server.
 
 **Chiave** : `urls`  
 **Tipo** : `string`  
@@ -1120,7 +1120,7 @@ Se il percorso non esiste, l'host non verrà avviato.
 
 Per altre informazioni, vedere [nozioni fondamentali: radice del contenuto](xref:fundamentals/index#content-root).
 
-### <a name="environment"></a>Ambiente
+### <a name="environment"></a>Environment
 
 Imposta l' [ambiente](xref:fundamentals/environments)dell'app.
 
