@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/dependency-injection
-ms.openlocfilehash: a636498ee3fedbbf0fe021407a718f95a02f70c3
-ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
+ms.openlocfilehash: 32228cc98b4650d5871369511808e519a4f65be4
+ms.sourcegitcommit: 45aa1c24c3fdeb939121e856282b00bdcf00ea55
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/03/2020
-ms.locfileid: "93234166"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93343676"
 ---
 # <a name="aspnet-core-no-locblazor-dependency-injection"></a>BlazorInserimento di dipendenze ASP.NET Core
 
@@ -43,7 +43,7 @@ I servizi predefiniti vengono aggiunti automaticamente alla raccolta di servizi 
 
 | Servizio | Durata | Descrizione |
 | ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Con ambito | Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.<br><br>L'istanza di <xref:System.Net.Http.HttpClient> in un' Blazor WebAssembly applicazione utilizza il browser per gestire il traffico HTTP in background.<br><br>Blazor Server per impostazione predefinita, le app non includono un <xref:System.Net.Http.HttpClient> configurato come servizio. Fornire un <xref:System.Net.Http.HttpClient> a un' Blazor Server app.<br><br>Per altre informazioni, vedere <xref:blazor/call-web-api>. |
+| <xref:System.Net.Http.HttpClient> | Con ambito | Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.<br><br>L'istanza di <xref:System.Net.Http.HttpClient> in un' Blazor WebAssembly applicazione utilizza il browser per gestire il traffico HTTP in background.<br><br>Blazor Server per impostazione predefinita, le app non includono un <xref:System.Net.Http.HttpClient> configurato come servizio. Fornire un <xref:System.Net.Http.HttpClient> a un' Blazor Server app.<br><br>Per altre informazioni, vedere <xref:blazor/call-web-api>.<br><br>Un <xref:System.Net.Http.HttpClient> viene registrato come servizio con ambito, non come singleton. Per ulteriori informazioni, vedere la sezione [durata del servizio](#service-lifetime) . |
 | <xref:Microsoft.JSInterop.IJSRuntime> | Singleton ( Blazor WebAssembly )<br>Con ambito ( Blazor Server ) | Rappresenta un'istanza di un runtime JavaScript in cui vengono inviate le chiamate a JavaScript. Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet>. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager> | Singleton ( Blazor WebAssembly )<br>Con ambito ( Blazor Server ) | Contiene gli helper per lavorare con gli URI e lo stato di navigazione. Per ulteriori informazioni, vedere [URI e Helper dello stato di navigazione](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
 
@@ -166,7 +166,7 @@ I servizi possono essere configurati con le durate mostrate nella tabella seguen
 
 | Durata | Descrizione |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Blazor WebAssembly Attualmente le app non hanno un concetto di ambiti di. `Scoped`-i servizi registrati si comportano come `Singleton` servizi. Tuttavia, il Blazor Server modello di hosting supporta il `Scoped` ciclo di vita. Nelle Blazor Server app, la registrazione di un servizio con ambito ha come ambito la *connessione* . Per questo motivo, è preferibile usare i servizi con ambito per i servizi che devono avere come ambito l'utente corrente, anche se l'obiettivo corrente è eseguire sul lato client nel browser. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Blazor WebAssembly Attualmente le app non hanno un concetto di ambiti di. `Scoped`-i servizi registrati si comportano come `Singleton` servizi. Tuttavia, il Blazor Server modello di hosting supporta il `Scoped` ciclo di vita. Nelle Blazor Server app, la registrazione di un servizio con ambito ha come ambito la *connessione*. Per questo motivo, è preferibile usare i servizi con ambito per i servizi che devono avere come ambito l'utente corrente, anche se l'obiettivo corrente è eseguire sul lato client nel browser in un' Blazor WebAssembly app. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | La creazione di una *singola istanza* del servizio. Tutti i componenti che richiedono un `Singleton` servizio ricevono un'istanza dello stesso servizio. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Ogni volta che un componente ottiene un'istanza di un `Transient` servizio dal contenitore del servizio, riceve una *nuova istanza* del servizio. |
 
