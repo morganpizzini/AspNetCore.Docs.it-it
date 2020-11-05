@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: a3be22134246c76b0a809ddb97b33ff97ace9a5b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 49300d32096e577db9b13a0510cc310b91ddb51d
+ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93057505"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93365353"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Associazione di modelli in ASP.NET Core
 
@@ -159,7 +159,7 @@ Non applicare `[FromBody]` a più di un parametro per ogni metodo di azione. Una
 
 ### <a name="additional-sources"></a>Origini aggiuntive
 
-I dati di origine vengono forniti al sistema di associazione di modelli dai *provider di valori* . È possibile scrivere e registrare i provider di valori personalizzati che recuperano i dati per l'associazione di modelli da altre origini. Ad esempio, è possibile che si desiderino i dati cookie dello stato della sessione o. Per ottenere dati da una nuova origine:
+I dati di origine vengono forniti al sistema di associazione di modelli dai *provider di valori*. È possibile scrivere e registrare i provider di valori personalizzati che recuperano i dati per l'associazione di modelli da altre origini. Ad esempio, è possibile che si desiderino i dati cookie dello stato della sessione o. Per ottenere dati da una nuova origine:
 
 * Creare una classe che implementi `IValueProvider`.
 * Creare una classe che implementi `IValueProviderFactory`.
@@ -218,7 +218,7 @@ I tipi semplici in cui lo strumento di associazione di modelli può convertire l
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.UriTypeConverter)
-* [Version](xref:System.ComponentModel.VersionConverter)
+* [Versione](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>Tipi complessi
 
@@ -302,9 +302,30 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 L' `[Bind]` attributo può essere utilizzato per la protezione dall'overposting negli scenari _create *. Non funziona bene negli scenari di modifica perché le proprietà escluse vengono impostate su Null o su un valore predefinito anziché rimanere inalterate. Per difendersi dall'overposting, sono consigliati i modelli di visualizzazione anziché l'attributo `[Bind]`. Per altre informazioni, vedere [Nota sulla sicurezza relativa all'overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
 
+### <a name="modelbinder-attribute"></a>Attributo [ModelBinder]
+
+<xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute> può essere applicato a tipi, proprietà o parametri. Consente di specificare il tipo di strumento di associazione di modelli utilizzato per associare l'istanza o il tipo specifico. Ad esempio:
+
+```C#
+[HttpPost]
+public IActionResult OnPost([ModelBinder(typeof(MyInstructorModelBinder))] Instructor instructor)
+```
+
+L' `[ModelBinder]` attributo può essere usato anche per modificare il nome di una proprietà o di un parametro quando è associato a un modello:
+
+```C#
+public class Instructor
+{
+    [ModelBinder(Name = "instructor_id")]
+    public string Id { get; set; }
+    
+    public string Name { get; set; }
+}
+```
+
 ### <a name="bindrequired-attribute"></a>Attributo [BindRequired]
 
-Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Con questo attributo l'associazione di modelli aggiunge un errore di stato del modello se non è possibile eseguire l'associazione per una proprietà del modello. Ecco un esempio:
+Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Con questo attributo l'associazione di modelli aggiunge un errore di stato del modello se non è possibile eseguire l'associazione per una proprietà del modello. Ad esempio:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
 
@@ -312,13 +333,13 @@ Vedere anche la discussione relativa all'attributo `[Required]` in [Convalida de
 
 ### <a name="bindnever-attribute"></a>Attributo [BindNever]
 
-Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Impedisce all'associazione di modelli di impostare una proprietà del modello. Ecco un esempio:
+Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Impedisce all'associazione di modelli di impostare una proprietà del modello. Ad esempio:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
 ## <a name="collections"></a>Raccolte
 
-Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà* . Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
+Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà*. Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
 
 * Si supponga che il parametro da associare sia una matrice denominata `selectedCourses`:
 
@@ -363,7 +384,7 @@ Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modell
 
 ## <a name="dictionaries"></a>Dizionari
 
-Per le destinazioni `Dictionary`, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà* . Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
+Per le destinazioni `Dictionary`, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà*. Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
 
 * Si supponga che il parametro di destinazione sia un elemento `Dictionary<int, string>` denominato `selectedCourses`:
 
@@ -533,7 +554,7 @@ Per disabilitare la convalida per le proprietà di un tipo specificato, aggiunge
 
 ## <a name="manual-model-binding"></a>Associazione di modelli manuale 
 
-L'associazione di modelli può essere richiamata manualmente usando il metodo <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Il metodo è definito in entrambe le classi `ControllerBase` e `PageModel`. Gli overload del metodo consentono di specificare il prefisso e il provider di valori da usare. Il metodo restituisce `false` se l'associazione di modelli non riesce. Ecco un esempio:
+L'associazione di modelli può essere richiamata manualmente usando il metodo <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Il metodo è definito in entrambe le classi `ControllerBase` e `PageModel`. Gli overload del metodo consentono di specificare il prefisso e il provider di valori da usare. Il metodo restituisce `false` se l'associazione di modelli non riesce. Ad esempio:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
@@ -687,7 +708,7 @@ Non applicare `[FromBody]` a più di un parametro per ogni metodo di azione. Una
 
 ### <a name="additional-sources"></a>Origini aggiuntive
 
-I dati di origine vengono forniti al sistema di associazione di modelli dai *provider di valori* . È possibile scrivere e registrare i provider di valori personalizzati che recuperano i dati per l'associazione di modelli da altre origini. Ad esempio, è possibile che si desiderino i dati cookie dello stato della sessione o. Per ottenere dati da una nuova origine:
+I dati di origine vengono forniti al sistema di associazione di modelli dai *provider di valori*. È possibile scrivere e registrare i provider di valori personalizzati che recuperano i dati per l'associazione di modelli da altre origini. Ad esempio, è possibile che si desiderino i dati cookie dello stato della sessione o. Per ottenere dati da una nuova origine:
 
 * Creare una classe che implementi `IValueProvider`.
 * Creare una classe che implementi `IValueProviderFactory`.
@@ -746,7 +767,7 @@ I tipi semplici in cui lo strumento di associazione di modelli può convertire l
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.UriTypeConverter)
-* [Version](xref:System.ComponentModel.VersionConverter)
+* [Versione](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>Tipi complessi
 
@@ -814,13 +835,13 @@ Sono disponibili vari attributi predefiniti per controllare l'associazione di mo
 
 ### <a name="bindrequired-attribute"></a>Attributo [BindRequired]
 
-Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Con questo attributo l'associazione di modelli aggiunge un errore di stato del modello se non è possibile eseguire l'associazione per una proprietà del modello. Ecco un esempio:
+Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Con questo attributo l'associazione di modelli aggiunge un errore di stato del modello se non è possibile eseguire l'associazione per una proprietà del modello. Ad esempio:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
 
 ### <a name="bindnever-attribute"></a>Attributo [BindNever]
 
-Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Impedisce all'associazione di modelli di impostare una proprietà del modello. Ecco un esempio:
+Può essere applicato solo alle proprietà del modello e non ai parametri di metodo. Impedisce all'associazione di modelli di impostare una proprietà del modello. Ad esempio:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
@@ -842,11 +863,11 @@ Nell'esempio seguente vengono associate solo le proprietà specificate del model
 public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-L'attributo `[Bind]` può essere usato per evitare l'overposting negli scenari di *creazione* . Non funziona bene negli scenari di modifica perché le proprietà escluse vengono impostate su Null o su un valore predefinito anziché rimanere inalterate. Per difendersi dall'overposting, sono consigliati i modelli di visualizzazione anziché l'attributo `[Bind]`. Per altre informazioni, vedere [Nota sulla sicurezza relativa all'overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+L'attributo `[Bind]` può essere usato per evitare l'overposting negli scenari di *creazione*. Non funziona bene negli scenari di modifica perché le proprietà escluse vengono impostate su Null o su un valore predefinito anziché rimanere inalterate. Per difendersi dall'overposting, sono consigliati i modelli di visualizzazione anziché l'attributo `[Bind]`. Per altre informazioni, vedere [Nota sulla sicurezza relativa all'overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
 
 ## <a name="collections"></a>Raccolte
 
-Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà* . Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
+Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà*. Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
 
 * Si supponga che il parametro da associare sia una matrice denominata `selectedCourses`:
 
@@ -891,7 +912,7 @@ Per le destinazioni che sono raccolte di tipi semplici, l'associazione di modell
 
 ## <a name="dictionaries"></a>Dizionari
 
-Per le destinazioni `Dictionary`, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà* . Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
+Per le destinazioni `Dictionary`, l'associazione di modelli cerca le corrispondenze per *nome_parametro* oppure *nome_proprietà*. Se non viene trovata alcuna corrispondenza, viene cercato uno dei formati supportati senza il prefisso. Ad esempio:
 
 * Si supponga che il parametro di destinazione sia un elemento `Dictionary<int, string>` denominato `selectedCourses`:
 
@@ -1002,7 +1023,7 @@ Per disabilitare la convalida per le proprietà di un tipo specificato, aggiunge
 
 ## <a name="manual-model-binding"></a>Associazione di modelli manuale
 
-L'associazione di modelli può essere richiamata manualmente usando il metodo <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Il metodo è definito in entrambe le classi `ControllerBase` e `PageModel`. Gli overload del metodo consentono di specificare il prefisso e il provider di valori da usare. Il metodo restituisce `false` se l'associazione di modelli non riesce. Ecco un esempio:
+L'associazione di modelli può essere richiamata manualmente usando il metodo <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>. Il metodo è definito in entrambe le classi `ControllerBase` e `PageModel`. Gli overload del metodo consentono di specificare il prefisso e il provider di valori da usare. Il metodo restituisce `false` se l'associazione di modelli non riesce. Ad esempio:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 

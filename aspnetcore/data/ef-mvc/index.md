@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/index
-ms.openlocfilehash: d66cd7737b167db274bdb5e252e763190a46743b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 791787612c471e17a886ee05b38dddcabdcceff2
+ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054190"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93365334"
 ---
 # <a name="aspnet-core-mvc-with-ef-core---tutorial-series"></a>ASP.NET Core MVC con Entity Framework Core: serie di esercitazioni
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-Questa esercitazione **non** è stata aggiornata ad ASP.NET Core 3.0. La [ Razor versione delle pagine](xref:data/ef-rp/intro) è stata aggiornata. Per informazioni su quando questo potrebbe essere aggiornato, vedere [questo problema in GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
+Questa esercitazione **non** è stata aggiornata ad ASP.NET Core 3.0. La [ Razor versione delle pagine](xref:data/ef-rp/intro) è stata aggiornata.
 
 ::: moniker-end
 

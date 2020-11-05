@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: c4b4f2b89be2018857abaafb448f052c3848ec59
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 74f65b916c2d5b7de61ec29f4259a51584ee5989
+ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054073"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93365418"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pagine con Entity Framework Core in ASP.NET Core-esercitazione 1 di 8
 
@@ -57,7 +57,7 @@ Le istruzioni per Visual Studio Code usano [SQLite](https://www.sqlite.org/), un
 
 Se si sceglie di usare SQLite, scaricare e installare uno strumento di terze parti per la gestione e la visualizzazione di un database SQLite, ad esempio [DB Browser per SQLite](https://sqlitebrowser.org/).
 
-## <a name="troubleshooting"></a>risoluzione dei problemi
+## <a name="troubleshooting"></a>Risoluzione dei problemi
 
 Se si verifica un problema che non è possibile risolvere, confrontare il codice con il [progetto completato](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). Un buon metodo per ottenere assistenza è quello di pubblicare una domanda in StackOverflow.com con il [tag ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) o il [tag EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
@@ -119,10 +119,11 @@ To run the app after downloading the completed project:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto** .
-* Selezionare **Applicazione Web ASP.NET Core** .
-* Denominare il progetto *ContosoUniversity* . È importante usare questo nome esatto, incluse le maiuscole, in modo che gli spazi dei nomi corrispondano quando il codice viene copiato e incollato.
-* Selezionare **.NET Core** e **ASP.NET Core 5,0** negli elenchi a discesa, quindi selezionare **applicazione Web** .
+* Avviare Visual Studio e selezionare **Crea un nuovo progetto**.
+* Selezionare **ASP.NET Core applicazione Web** > **Avanti**.
+* Denominare il progetto *ContosoUniversity*. È importante usare questo nome esatto, incluse le maiuscole, in modo che gli spazi dei nomi corrispondano quando il codice viene copiato e incollato.
+* Selezionare **Crea**.
+* Selezionare **.NET Core** e **ASP.NET Core 5,0** negli elenchi a discesa, quindi selezionare **applicazione Web**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -144,7 +145,7 @@ Il file di layout imposta l'intestazione, il piè di pagina e il menu del sito. 
 
 * Ogni occorrenza di "ContosoUniversity" in "Contoso University". Le occorrenze sono tre.
 * Le voci del menu **Home** e **privacy** verranno eliminate.
-* Vengono aggiunte voci per **informazioni su** , **studenti** , **corsi** , **docenti** e **reparti** .
+* Vengono aggiunte voci per **informazioni su** , **studenti** , **corsi** , **docenti** e **reparti**.
 
 In *pages/index. cshtml* sostituire il contenuto del file con il codice seguente:
 
@@ -221,16 +222,16 @@ In questa sezione si userà lo strumento di scaffolding di ASP.NET Core per gene
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Creare una cartella *Pages/Students* .
-* In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Pages/Students* e quindi scegliere **Aggiungi** > **Nuovo elemento di scaffolding** .
+* Creare una cartella *Pages/Students*.
+* In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Pages/Students* e quindi scegliere **Aggiungi** > **Nuovo elemento di scaffolding**.
 * Nella finestra di dialogo **Aggiungi nuovo elemento di impalcatura** :
   * Nella scheda a sinistra selezionare **installato > Razor pagine comuni >**
-  * Selezionare **Razor pages using Entity Framework (CRUD)** > **Add** .
+  * Selezionare **Razor pages using Entity Framework (CRUD)** > **Add**.
 * Nella finestra di dialogo **Aggiungi Razor pagine con Entity Framework (CRUD)** :
-  * Nell'elenco a discesa **Classe modello** selezionare **Student (ContosoUniversity.Models)** .
-  * Nella riga **Classe contesto di dati** selezionare il segno più **+** .
+  * Nell'elenco a discesa **Classe modello** selezionare **Student (ContosoUniversity.Models)**.
+  * Nella riga **Classe contesto di dati** selezionare il segno più **+**.
     * Modificare il nome del contesto dati in modo `SchoolContext` che termini anziché `ContosoUniversityContext` . Nome del contesto aggiornato: `ContosoUniversity.Data.SchoolContext`
-   * Selezionare **Aggiungi** .
+   * Selezionare **Aggiungi**.
 
 Vengono installati automaticamente i pacchetti seguenti:
 
@@ -253,7 +254,7 @@ Vengono installati automaticamente i pacchetti seguenti:
 
    Per lo scaffolding è necessario il pacchetto Microsoft.VisualStudio.Web.CodeGeneration.Design. Sebbene l'app non usi SQL Server, lo strumento di scaffolding richiede il pacchetto di SQL Server.
 
-* Creare una cartella *Pages/Students* .
+* Creare una cartella *Pages/Students*.
 
 * Eseguire il comando seguente per installare lo [strumento di scaffolding aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
@@ -288,8 +289,8 @@ Il processo di scaffolding:
   * *Details.cshtml* e *Details.cshtml.cs*
   * *Edit.cshtml* e *Edit.cshtml.cs*
   * *Index.cshtml* e *Index.cshtml.cs*
-* Crea *Data/SchoolContext.cs* .
-* Aggiunge il contesto all'inserimento delle dipendenze in *Startup.cs* .
+* Crea *Data/SchoolContext.cs*.
+* Aggiunge il contesto all'inserimento delle dipendenze in *Startup.cs*.
 * Aggiunge una stringa di connessione al database a *appsettings.json* .
 
 ## <a name="database-connection-string"></a>Stringa di connessione al database
@@ -365,7 +366,7 @@ Il nome della stringa di connessione viene passato al contesto chiamando un meto
 
 ### <a name="add-the-database-exception-filter"></a>Aggiungere il filtro eccezioni del database
 
-Aggiungere `AddDatabaseDeveloperPageExceptionFilter` a `ConfigureServices` come illustrato nel codice seguente:
+Aggiungere <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> a `ConfigureServices` come illustrato nel codice seguente:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -373,10 +374,10 @@ Aggiungere `AddDatabaseDeveloperPageExceptionFilter` a `ConfigureServices` come 
 
 Aggiungere il pacchetto NuGet [Microsoft. AspNetCore. Diagnostics. EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) .
 
-In PMC immettere il comando seguente per aggiungere il pacchetto NuGet:
+In PMC immettere quanto segue per aggiungere il pacchetto NuGet:
 
 ```powershell
-Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.1.20451.17
+Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.2.20475.17
 ```
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
@@ -386,6 +387,8 @@ Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.
 ---
 
 Il `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` pacchetto NuGet fornisce ASP.NET Core middleware per Entity Framework Core pagine di errore. Questo middleware consente di rilevare e diagnosticare gli errori con Entity Framework Core migrazioni.
+
+`AddDatabaseDeveloperPageExceptionFilter`Fornisce informazioni utili sull'errore nell' [ambiente di sviluppo](xref:fundamentals/environments).
 
 ## <a name="create-the-database"></a>Creare il database
 
@@ -407,7 +410,7 @@ Più avanti nella serie di esercitazioni si vedrà come eliminare il database cr
 ### <a name="test-the-app"></a>Testare l'app
 
 * Eseguire l'app.
-* Selezionare il collegamento **Students** (Studenti) e quindi **Crea nuovo** .
+* Selezionare il collegamento **Students** (Studenti) e quindi **Crea nuovo**.
 * Eseguire il test dei collegamenti Edit (Modifica), Details (Dettagli) e Delete (Elimina).
 
 ## <a name="seed-the-database"></a>Specificare il valore di inizializzazione del database
@@ -439,7 +442,7 @@ Rispondere con `Y` per eliminare il database.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Arrestare l'app se è in esecuzione ed eliminare il file *CU.db* .
+* Arrestare l'app se è in esecuzione ed eliminare il file *CU.db*.
 
 ---
 
@@ -451,8 +454,8 @@ Rispondere con `Y` per eliminare il database.
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Aprire **Esplora oggetti di SQL Server** dal menu **Visualizza** in Visual Studio.
-* In Esplora oggetti di SQL Server selezionare **(localdb)\MSSQLLocalDB > Database > SchoolContext-{GUID}** . Il nome del database viene generato dal nome del contesto specificato in precedenza con l'aggiunta di un trattino e un GUID.
-* Espandere il nodo **Tabelle** .
+* In Esplora oggetti di SQL Server selezionare **(localdb)\MSSQLLocalDB > Database > SchoolContext-{GUID}**. Il nome del database viene generato dal nome del contesto specificato in precedenza con l'aggiunta di un trattino e un GUID.
+* Espandere il nodo **Tabelle**.
 * Fare clic con il pulsante destro del mouse sulla tabella **Student** (Studente) e fare clic su **Visualizza dati** per visualizzare le colonne create e le righe inserite nella tabella.
 * Fare clic con il pulsante destro del mouse sulla tabella **Student** e scegliere **Visualizza codice** per vedere il mapping tra il modello `Student` e lo schema della tabella `Student`.
 
@@ -544,7 +547,7 @@ Le istruzioni per Visual Studio Code usano [SQLite](https://www.sqlite.org/), un
 
 Se si sceglie di usare SQLite, scaricare e installare uno strumento di terze parti per la gestione e la visualizzazione di un database SQLite, ad esempio [DB Browser per SQLite](https://sqlitebrowser.org/).
 
-## <a name="troubleshooting"></a>risoluzione dei problemi
+## <a name="troubleshooting"></a>Risoluzione dei problemi
 
 Se si verifica un problema che non è possibile risolvere, confrontare il codice con il [progetto completato](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). Un buon metodo per ottenere assistenza è quello di pubblicare una domanda in StackOverflow.com con il [tag ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) o il [tag EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
@@ -558,7 +561,7 @@ L'applicazione compilata in queste esercitazioni è il sito Web di base di un'un
 
 Lo stile dell'interfaccia utente del sito è basato sui modelli di progetto predefiniti. L'obiettivo dell'esercitazione è quello di usare EF Core e non di personalizzare l'interfaccia utente.
 
-Seguire il collegamento nella parte superiore della pagina per ottenere il codice sorgente per il progetto completato. La cartella *cu30* contiene il codice per la versione di ASP.NET Core 3.0 dell'esercitazione. I file che riflettono lo stato del codice per le esercitazioni 1-7 si trovano nella cartella *cu30snapshots* .
+Seguire il collegamento nella parte superiore della pagina per ottenere il codice sorgente per il progetto completato. La cartella *cu30* contiene il codice per la versione di ASP.NET Core 3.0 dell'esercitazione. I file che riflettono lo stato del codice per le esercitazioni 1-7 si trovano nella cartella *cu30snapshots*.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -577,10 +580,10 @@ Per eseguire l'app dopo il download del progetto completato:
 
 Per eseguire l'app dopo il download del progetto completato:
 
-* Eliminare *ContosoUniversity.csproj* e rinominare *ContosoUniversitySQLite.csproj* in *ContosoUniversity.csproj* .
+* Eliminare *ContosoUniversity.csproj* e rinominare *ContosoUniversitySQLite.csproj* in *ContosoUniversity.csproj*.
 * In *Program.cs* , impostare come commento l' `#define Startup` `StartupSQLite` utilizzo di.
-* Eliminare *appSettings.json* e rinominare *appSettingsSQLite.json* in *appSettings.json* .
-* Eliminare la cartella *Migrations* e rinominare *MigrationsSQL* in *Migrations* .
+* Eliminare *appSettings.json* e rinominare *appSettingsSQLite.json* in *appSettings.json*.
+* Eliminare la cartella *Migrations* e rinominare *MigrationsSQL* in *Migrations*.
 * Eseguire una ricerca globale `#if SQLiteVersion` e rimuovere `#if SQLiteVersion` e l'istruzione associata `#endif` .
 * Compilare il progetto.
 * Al prompt dei comandi nella cartella del progetto eseguire i comandi seguenti:
@@ -605,10 +608,10 @@ Per eseguire l'app dopo il download del progetto completato:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto** .
-* Selezionare **Applicazione Web ASP.NET Core** .
-* Denominare il progetto *ContosoUniversity* . È importante usare questo nome esatto, incluse le maiuscole, in modo che gli spazi dei nomi corrispondano quando il codice viene copiato e incollato.
-* Selezionare **.NET Core** e **ASP.NET Core 3.0** nell'elenco a discesa, quindi selezionare **Applicazione Web** .
+* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto**.
+* Selezionare **Applicazione Web ASP.NET Core**.
+* Denominare il progetto *ContosoUniversity*. È importante usare questo nome esatto, incluse le maiuscole, in modo che gli spazi dei nomi corrispondano quando il codice viene copiato e incollato.
+* Selezionare **.NET Core** e **ASP.NET Core 3.0** nell'elenco a discesa, quindi selezionare **Applicazione Web**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -707,14 +710,14 @@ In questa sezione si userà lo strumento di scaffolding di ASP.NET Core per gene
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Creare una cartella *Students* nella cartella *Pages* .
-* In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Pages/Students* e quindi scegliere **Aggiungi** > **Nuovo elemento di scaffolding** .
-* Nella finestra di dialogo **Aggiungi impalcatura** selezionare **Razor pages using Entity Framework (CRUD)** > **Add** .
+* Creare una cartella *Students* nella cartella *Pages*.
+* In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Pages/Students* e quindi scegliere **Aggiungi** > **Nuovo elemento di scaffolding**.
+* Nella finestra di dialogo **Aggiungi impalcatura** selezionare **Razor pages using Entity Framework (CRUD)** > **Add**.
 * Nella finestra di dialogo **Aggiungi Razor pagine con Entity Framework (CRUD)** :
-  * Nell'elenco a discesa **Classe modello** selezionare **Student (ContosoUniversity.Models)** .
-  * Nella riga **Classe contesto di dati** selezionare il segno più **+** .
-  * Modificare il nome del contesto di dati da *ContosoUniversity.Models.ContosoUniversityContext* a *ContosoUniversity.Data.SchoolContext* .
-  * Selezionare **Aggiungi** .
+  * Nell'elenco a discesa **Classe modello** selezionare **Student (ContosoUniversity.Models)**.
+  * Nella riga **Classe contesto di dati** selezionare il segno più **+**.
+  * Modificare il nome del contesto di dati da *ContosoUniversity.Models.ContosoUniversityContext* a *ContosoUniversity.Data.SchoolContext*.
+  * Selezionare **Aggiungi**.
 
 Vengono installati automaticamente i pacchetti seguenti:
 
@@ -741,7 +744,7 @@ remove dotnet tool install --global  below
 
   Per lo scaffolding è necessario il pacchetto Microsoft.VisualStudio.Web.CodeGeneration.Design. Sebbene l'app non usi SQL Server, lo strumento di scaffolding richiede il pacchetto di SQL Server.
 
-* Creare una cartella *Pages/Students* .
+* Creare una cartella *Pages/Students*.
 
 * Eseguire il comando seguente per installare lo [strumento di scaffolding aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
@@ -775,8 +778,8 @@ Il processo di scaffolding:
   * *Details.cshtml* e *Details.cshtml.cs*
   * *Edit.cshtml* e *Edit.cshtml.cs*
   * *Index.cshtml* e *Index.cshtml.cs*
-* Crea *Data/SchoolContext.cs* .
-* Aggiunge il contesto all'inserimento delle dipendenze in *Startup.cs* .
+* Crea *Data/SchoolContext.cs*.
+* Aggiunge il contesto all'inserimento delle dipendenze in *Startup.cs*.
 * Aggiunge una stringa di connessione al database a *appsettings.json* .
 
 ## <a name="database-connection-string"></a>Stringa di connessione al database
@@ -858,7 +861,7 @@ Più avanti nella serie di esercitazioni si vedrà come eliminare il database cr
 ### <a name="test-the-app"></a>Testare l'app
 
 * Eseguire l'app.
-* Selezionare il collegamento **Students** (Studenti) e quindi **Crea nuovo** .
+* Selezionare il collegamento **Students** (Studenti) e quindi **Crea nuovo**.
 * Eseguire il test dei collegamenti Edit (Modifica), Details (Dettagli) e Delete (Elimina).
 
 ## <a name="seed-the-database"></a>Specificare il valore di inizializzazione del database
@@ -888,7 +891,7 @@ Drop-Database
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Arrestare l'app se è in esecuzione ed eliminare il file *CU.db* .
+* Arrestare l'app se è in esecuzione ed eliminare il file *CU.db*.
 
 ---
 
@@ -901,8 +904,8 @@ Drop-Database
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Aprire **Esplora oggetti di SQL Server** dal menu **Visualizza** in Visual Studio.
-* In Esplora oggetti di SQL Server selezionare **(localdb)\MSSQLLocalDB > Database > SchoolContext-{GUID}** . Il nome del database viene generato dal nome del contesto specificato in precedenza con l'aggiunta di un trattino e un GUID.
-* Espandere il nodo **Tabelle** .
+* In Esplora oggetti di SQL Server selezionare **(localdb)\MSSQLLocalDB > Database > SchoolContext-{GUID}**. Il nome del database viene generato dal nome del contesto specificato in precedenza con l'aggiunta di un trattino e un GUID.
+* Espandere il nodo **Tabelle**.
 * Fare clic con il pulsante destro del mouse sulla tabella **Student** (Studente) e fare clic su **Visualizza dati** per visualizzare le colonne create e le righe inserite nella tabella.
 * Fare clic con il pulsante destro del mouse sulla tabella **Student** e scegliere **Visualizza codice** per vedere il mapping tra il modello `Student` e lo schema della tabella `Student`.
 
@@ -973,7 +976,7 @@ L'app di esempio è un sito Web per una fittizia Contoso University. Include fun
 
 Familiarità con le [ Razor pagine](xref:razor-pages/index). Prima di iniziare questa serie, i nuovi programmatori dovranno completare l' [Introduzione alle Razor pagine](xref:tutorials/razor-pages/razor-pages-start) .
 
-## <a name="troubleshooting"></a>risoluzione dei problemi
+## <a name="troubleshooting"></a>Risoluzione dei problemi
 
 Se si verifica un problema che non si sa come risolvere, è generalmente possibile trovare la soluzione confrontando il codice con il [progetto completato](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). Un buon metodo per ottenere assistenza è quello di pubblicare una domanda in [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) per [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) o [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
@@ -993,9 +996,9 @@ Lo stile dell'interfaccia utente del sito è simile a quanto è stato generato t
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto** .
-* Creare una nuova applicazione Web ASP.NET Core. Denominare il progetto **ContosoUniversity** . È importante denominare il progetto *ContosoUniversity* in modo che gli spazi dei nomi corrispondano quando il codice viene copiato/incollato.
-* Selezionare **ASP.NET Core 2.1** nell'elenco a discesa, quindi selezionare **Applicazione Web** .
+* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto**.
+* Creare una nuova applicazione Web ASP.NET Core. Denominare il progetto **ContosoUniversity**. È importante denominare il progetto *ContosoUniversity* in modo che gli spazi dei nomi corrispondano quando il codice viene copiato/incollato.
+* Selezionare **ASP.NET Core 2.1** nell'elenco a discesa, quindi selezionare **Applicazione Web**.
 
 Per le immagini dei passaggi precedenti, vedere [creare un' Razor app Web](xref:tutorials/razor-pages/razor-pages-start#create-a-razor-pages-web-app).
 Eseguire l'app.
@@ -1085,19 +1088,19 @@ L'attributo `DatabaseGenerated` consente all'app di specificare la chiave primar
 In questa sezione viene eseguito lo scaffolding del modello Student (Studente). Lo strumento di scaffolding crea quindi le pagine per le operazioni CRUD (creazione, lettura, aggiornamento ed eliminazione) per il modello Student (Studente).
 
 * Compilare il progetto.
-* Creare la cartella *Pages/Students* .
+* Creare la cartella *Pages/Students*.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Pages/Students* > **Aggiungi** > **Nuovo elemento di scaffolding** .
-* Nella finestra di dialogo **Aggiungi impalcatura** selezionare **Razor pages using Entity Framework (CRUD)** > **Add** .
+* In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Pages/Students* > **Aggiungi** > **Nuovo elemento di scaffolding**.
+* Nella finestra di dialogo **Aggiungi impalcatura** selezionare **Razor pages using Entity Framework (CRUD)** > **Add**.
 
 Completare la finestra di dialogo **Aggiungi Razor pagine con Entity Framework (CRUD)** :
 
-* Nell'elenco a discesa **Classe modello** selezionare **Student (ContosoUniversity.Models)** .
-* Nella riga **Classe contesto di dati** selezionare il segno **+** (più) e modificare il nome generato in **ContosoUniversity.Models.SchoolContext** .
-* Nell'elenco a discesa **Classe contesto di dati** selezionare **ContosoUniversity.Models.SchoolContext** .
-* Selezionare **Aggiungi** .
+* Nell'elenco a discesa **Classe modello** selezionare **Student (ContosoUniversity.Models)**.
+* Nella riga **Classe contesto di dati** selezionare il segno **+** (più) e modificare il nome generato in **ContosoUniversity.Models.SchoolContext**.
+* Nell'elenco a discesa **Classe contesto di dati** selezionare **ContosoUniversity.Models.SchoolContext**.
+* Selezionare **Aggiungi**.
 
 ![Finestra di dialogo CRUD](intro/_static/s1.png)
 
@@ -1119,7 +1122,7 @@ Il processo di scaffolding ha creato e modificato i file seguenti:
 
 ### <a name="files-created"></a>File creati
 
-* Pagine Create (Crea), Delete (Elimina), Details (Dettagli), Edit (Modifica) e Index (Indice) di *Pages/Students* .
+* Pagine Create (Crea), Delete (Elimina), Details (Dettagli), Edit (Modifica) e Index (Indice) di *Pages/Students*.
 * *Data/SchoolContext.cs*
 
 ### <a name="file-updates"></a>Aggiornamenti dei file
@@ -1133,7 +1136,7 @@ ASP.NET Core viene compilato tramite [dependency injection](xref:fundamentals/de
 
 Lo strumento di scaffolding ha creato automaticamente un contesto del database e lo ha registrato con il contenitore di inserimento delle dipendenze.
 
-Esaminare il metodo `ConfigureServices` in *Startup.cs* . La riga evidenziata è stata aggiunta dallo scaffolder:
+Esaminare il metodo `ConfigureServices` in *Startup.cs*. La riga evidenziata è stata aggiunta dallo scaffolder:
 
 [!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=13-14)]
 
@@ -1166,7 +1169,7 @@ Il codice seguente illustra il file *Program.cs* aggiornato.
 
 Eseguire l'app e accettare i cookie criteri. Questa app non memorizza informazioni personali. Per informazioni sui criteri, vedere la pagina relativa cookie al [supporto per regolamento generale sulla protezione dei dati UE (GDPR)](xref:security/gdpr).
 
-* Selezionare il collegamento **Students** (Studenti) e quindi **Crea nuovo** .
+* Selezionare il collegamento **Students** (Studenti) e quindi **Crea nuovo**.
 * Eseguire il test dei collegamenti Edit (Modifica), Details (Dettagli) e Delete (Elimina).
 
 ## <a name="examine-the-schoolcontext-db-context"></a>Esaminare il contesto di database SchoolContext
@@ -1216,7 +1219,7 @@ Drop-Database
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Arrestare l'app se è in esecuzione ed eliminare il file *CU.db* .
+* Arrestare l'app se è in esecuzione ed eliminare il file *CU.db*.
 
 ---
 
@@ -1224,9 +1227,9 @@ Drop-Database
 
 Il nome del database viene generato dal nome del contesto specificato in precedenza con l'aggiunta di un trattino e un GUID. Di conseguenza, il nome del database sarà "SchoolContext-{GUID}". Il GUID sarà diverso per ogni utente.
 Aprire **Esplora oggetti di SQL Server** dal menu **Visualizza** in Visual Studio.
-In Esplora oggetti di SQL Server fare clic su **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GUID}** .
+In Esplora oggetti di SQL Server fare clic su **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GUID}**.
 
-Espandere il nodo **Tabelle** .
+Espandere il nodo **Tabelle**.
 
 Fare clic con il pulsante destro del mouse sulla tabella **Student** (Studente) e fare clic su **Visualizza dati** per visualizzare le colonne create e le righe inserite nella tabella.
 
