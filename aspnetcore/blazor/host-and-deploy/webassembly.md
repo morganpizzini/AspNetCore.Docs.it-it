@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 0912b3fbcd0b891deb4985eaa18841c22f4f3264
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 7ae462ff9abd06fe4ab4b3e00a71515b76b0ee7d
+ms.sourcegitcommit: bb475e69cb647f22cf6d2c6f93d0836c160080d7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055750"
+ms.lasthandoff: 11/06/2020
+ms.locfileid: "94339984"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor WebAssembly
 
@@ -115,7 +115,7 @@ Quando viene richiesto il documento predefinito dell'app usando la barra degli i
 
 Nella pagina principale, selezionando il collegamento al `About` componente funziona sul client perché il Blazor router interrompe il browser per effettuare una richiesta su Internet per `www.contoso.com` e serve il componente di cui è stato `About` eseguito il rendering `About` . Tutte le richieste per gli endpoint interni *all'interno dell' Blazor WebAssembly app* funzionano allo stesso modo: le richieste non attivano richieste basate su browser a risorse ospitate su server su Internet. Le richieste vengono gestite internamente dal router.
 
-Se una richiesta viene effettuata usando la barra degli indirizzi del browser per `www.contoso.com/About`, la richiesta ha esito negativo. La risorsa non esiste nell'host Internet dell'app, quindi viene restituita la risposta *404 non trovato* .
+Se una richiesta viene effettuata usando la barra degli indirizzi del browser per `www.contoso.com/About`, la richiesta ha esito negativo. La risorsa non esiste nell'host Internet dell'app, quindi viene restituita la risposta *404 non trovato*.
 
 Poiché i browser effettuano richieste a host basati su Internet per le pagine lato client, i server Web e i servizi di hosting devono riscrivere tutte le richieste di risorse non fisicamente presenti sul server nella `index.html` pagina. Quando `index.html` viene restituito, il router dell'app Blazor accetta e risponde con la risorsa corretta.
 
@@ -523,9 +523,18 @@ La rimozione del gestore o la disabilitazione dell'ereditarietà viene eseguita 
 
 #### <a name="brotli-and-gzip-compression"></a>Compressione Brotli e gzip
 
-IIS può essere configurato tramite `web.config` per gestire asset Brotli o gzip compressi Blazor . Per una configurazione di esempio, vedere [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true) .
+*Questa sezione si applica solo alle app autonome Blazor WebAssembly . Blazor le app ospitate usano un file di ASP.NET Core app predefinito `web.config` , non il file collegato in questa sezione.*
 
-#### <a name="troubleshooting"></a>risoluzione dei problemi
+IIS può essere configurato tramite `web.config` per gestire asset Brotli o gzip compressi Blazor per le Blazor WebAssembly app autonome. Per un esempio di file di configurazione, vedere [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true) .
+
+È possibile che sia necessaria una configurazione aggiuntiva del file di esempio `web.config` negli scenari seguenti:
+
+* La specifica dell'app chiama per uno dei seguenti elementi:
+  * Vengono serviti file compressi che non sono configurati dal file di esempio `web.config` .
+  * Conservazione dei file compressi configurati dal file di esempio `web.config` in un formato non compresso.
+* La configurazione IIS del server (ad esempio, `applicationHost.config` ) fornisce le impostazioni predefinite di IIS a livello di server. A seconda della configurazione a livello di server, è possibile che l'app richieda una configurazione IIS diversa rispetto a quella `web.config` contenuta nel file di esempio.
+
+#### <a name="troubleshooting"></a>Risoluzione dei problemi
 
 Se si riceve un *errore interno del server 500* e Gestione IIS genera errori durante il tentativo di accedere alla configurazione del sito Web, verificare che sia installato URL Rewrite Module. Quando il modulo non è installato, il `web.config` file non può essere analizzato da IIS. In questo modo si impedisce al gestore IIS di caricare la configurazione del sito Web e il sito Web dai Blazor file statici del servizio.
 
@@ -538,7 +547,7 @@ L'hosting di file statici di [archiviazione di Azure](/azure/storage/) consente 
 Quando il servizio BLOB è abilitato per l'hosting di siti Web statici in un account di archiviazione:
 
 * Impostare **Nome del documento di indice** su `index.html`.
-* Impostare **Percorso del documento di errore** su `index.html`. Razor i componenti e altri endpoint non di file non si trovano in percorsi fisici nel contenuto statico archiviato dal servizio BLOB. Quando viene ricevuta una richiesta per una di queste risorse che il Blazor router deve gestire, l'errore *404 non trovato* generato dal servizio BLOB instrada la richiesta al **percorso del documento di errore** . `index.html`Viene restituito il BLOB e il Blazor router carica ed elabora il percorso.
+* Impostare **Percorso del documento di errore** su `index.html`. Razor i componenti e altri endpoint non di file non si trovano in percorsi fisici nel contenuto statico archiviato dal servizio BLOB. Quando viene ricevuta una richiesta per una di queste risorse che il Blazor router deve gestire, l'errore *404 non trovato* generato dal servizio BLOB instrada la richiesta al **percorso del documento di errore**. `index.html`Viene restituito il BLOB e il Blazor router carica ed elabora il percorso.
 
 Se i file non vengono caricati in fase di esecuzione a causa di tipi MIME non appropriati nelle intestazioni dei file `Content-Type` , eseguire una delle azioni seguenti:
 
@@ -547,7 +556,7 @@ Se i file non vengono caricati in fase di esecuzione a causa di tipi MIME non ap
 
   In Storage Explorer (portale di Azure) per ogni file:
   
-  1. Fare clic con il pulsante destro del mouse sul file e scegliere **Proprietà** .
+  1. Fare clic con il pulsante destro del mouse sul file e scegliere **Proprietà**.
   1. Impostare **ContentType** e selezionare il pulsante **Salva** .
 
 Per altre informazioni, vedere [Hosting di siti Web statici in Archiviazione di Azure](/azure/storage/blobs/storage-blob-static-website).
@@ -682,7 +691,7 @@ L' `--contentroot` argomento imposta il percorso assoluto della directory che co
   "commandLineArgs": "--contentroot=/content-root-path"
   ```
 
-* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione** . L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
+* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione**. L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
 
   ```console
   --contentroot=/content-root-path
@@ -707,7 +716,7 @@ L' `--pathbase` argomento imposta il percorso di base dell'app per un'app esegui
   "commandLineArgs": "--pathbase=/relative-URL-path"
   ```
 
-* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione** . L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
+* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione**. L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
 
   ```console
   --pathbase=/relative-URL-path
@@ -729,7 +738,7 @@ L'argomento `--urls` imposta gli indirizzi IP o gli indirizzi host con le porte 
   "commandLineArgs": "--urls=http://127.0.0.1:0"
   ```
 
-* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione** . L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
+* In Visual Studio specificare l'argomento in **Proprietà**  >  **debug**  >  **argomenti dell'applicazione**. L'impostazione dell'argomento nella pagina delle proprietà di Visual Studio consente di aggiungere l'argomento al `launchSettings.json` file.
 
   ```console
   --urls=http://127.0.0.1:0

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 669ebaf6dcd05561340aefda4a75b6fe1068d207
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: b7e246c20bf12f8ddf07cff54864836cb535aa60
+ms.sourcegitcommit: bb475e69cb647f22cf6d2c6f93d0836c160080d7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056192"
+ms.lasthandoff: 11/06/2020
+ms.locfileid: "94339997"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debug Blazor WebAssembly
 
@@ -56,6 +56,8 @@ Il debug richiede uno dei seguenti browser:
 
 * Google Chrome (versione 70 o successiva) (impostazione predefinita)
 * Microsoft Edge (versione 80 o successiva)
+
+Assicurarsi che i firewall o i proxy non blocchino le comunicazioni con il proxy di debug ( `NodeJS` processo). Per ulteriori informazioni, vedere la sezione relativa alla [configurazione del firewall](#firewall-configuration) .
 
 Visual Studio per Mac richiede la versione 8,8 (Build 1532) o versioni successive:
 
@@ -192,7 +194,7 @@ Per informazioni sull'uso di un percorso di base dell'app personalizzato per le 
 
 1. Aprire la cartella della soluzione dell'app ospitata Blazor WebAssembly in vs code.
 
-1. Se non è impostata alcuna configurazione di avvio per il progetto, viene visualizzata la notifica seguente. Selezionare **Sì** .
+1. Se non è impostata alcuna configurazione di avvio per il progetto, viene visualizzata la notifica seguente. Selezionare **Sì**.
 
    > Gli asset necessari per la compilazione e il debug non sono presenti in ' {nome applicazione}'. e se si vuole aggiungerle.
 
@@ -339,16 +341,34 @@ Blazor fornisce un proxy di debug che implementa il [protocollo devtools di Chro
 
 Le mappe di origine del browser consentono al browser di eseguire il mapping dei file compilati ai file di origine originali e vengono comunemente usati per il debug sul lato client. Tuttavia, Blazor attualmente non esegue il mapping di C# direttamente a JavaScript/WASM. Al contrario, Blazor l'interpretazione il nel browser, quindi le mappe di origine non sono rilevanti.
 
+## <a name="firewall-configuration"></a>Configurazione del firewall
+
+Se un firewall blocca la comunicazione con il proxy di debug, creare una regola di eccezione del firewall che consenta la comunicazione tra il browser e il `NodeJS` processo.
+
+> [!WARNING]
+> La modifica di una configurazione del firewall deve essere eseguita con cautela per evitare la creazione di vulnerablities di sicurezza. Applicare con attenzione le linee guida per la sicurezza, attenersi alle procedure di sicurezza consigliate e rispettare gli avvisi emessi dal produttore del firewall.
+>
+> Consentire la comunicazione aperta con il `NodeJS` processo:
+>
+> * Apre il server del nodo a qualsiasi connessione, a seconda delle funzionalità e della configurazione del firewall.
+> * Potrebbe essere rischioso a seconda della rete.
+> * **È consigliato solo nei computer di sviluppo.**
+>
+> Se possibile, consentire la comunicazione aperta solo con il `NodeJS` processo **su reti private o attendibili**.
+
+Per informazioni aggiuntive sulla configurazione di [Windows Firewall](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) , vedere [creare una regola di servizio o programma in ingresso](/windows/security/threat-protection/windows-firewall/create-an-inbound-program-or-service-rule). Per ulteriori informazioni, vedere [Windows Defender Firewall con protezione avanzata](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) e articoli correlati nel set di documentazione Windows Firewall.
+
 ## <a name="troubleshoot"></a>Risolvere problemi
 
 Se si verificano errori, è possibile che vengano visualizzati i suggerimenti seguenti:
 
 * Nella scheda **debugger** aprire gli strumenti di sviluppo nel browser. Nella console eseguire `localStorage.clear()` per rimuovere tutti i punti di interruzione.
 * Verificare di aver installato e considerato attendibile il certificato di sviluppo ASP.NET Core HTTPS. Per altre informazioni, vedere <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.
-* Visual Studio richiede l'opzione **Abilita debug JavaScript per ASP.NET (Chrome, Edge e IE)** in **strumenti**  >  **Opzioni**  >  **debug**  >  **generale** . Questa è l'impostazione predefinita per Visual Studio. Se il debug non funziona, verificare che sia selezionata l'opzione.
+* Visual Studio richiede l'opzione **Abilita debug JavaScript per ASP.NET (Chrome, Edge e IE)** in **strumenti**  >  **Opzioni**  >  **debug**  >  **generale**. Questa è l'impostazione predefinita per Visual Studio. Se il debug non funziona, verificare che sia selezionata l'opzione.
 * Se l'ambiente usa un proxy HTTP, assicurarsi che `localhost` sia incluso nelle impostazioni di bypass del proxy. Questa operazione può essere eseguita impostando la `NO_PROXY` variabile di ambiente in uno dei seguenti valori:
   * `launchSettings.json`File per il progetto.
   * A livello di utente o di variabili di ambiente di sistema per applicarlo a tutte le app. Quando si usa una variabile di ambiente, riavviare Visual Studio per rendere effettive le modifiche.
+* Assicurarsi che i firewall o i proxy non blocchino le comunicazioni con il proxy di debug ( `NodeJS` processo). Per ulteriori informazioni, vedere la sezione relativa alla [configurazione del firewall](#firewall-configuration) .
 
 ### <a name="breakpoints-in-oninitializedasync-not-hit"></a>Punti di interruzione in `OnInitialized{Async}` non riscontri
 

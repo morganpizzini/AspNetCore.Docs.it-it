@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 74f65b916c2d5b7de61ec29f4259a51584ee5989
-ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
+ms.openlocfilehash: 5849f4bfb9d0355177ceb5c2f4236c6d39dd9e92
+ms.sourcegitcommit: bb475e69cb647f22cf6d2c6f93d0836c160080d7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/05/2020
-ms.locfileid: "93365418"
+ms.lasthandoff: 11/06/2020
+ms.locfileid: "94340036"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pagine con Entity Framework Core in ASP.NET Core-esercitazione 1 di 8
 
@@ -119,12 +119,16 @@ To run the app after downloading the completed project:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Avviare Visual Studio e selezionare **Crea un nuovo progetto**.
-* Selezionare **ASP.NET Core applicazione Web** > **Avanti**.
-* Denominare il progetto *ContosoUniversity*. È importante usare questo nome esatto, incluse le maiuscole, in modo che gli spazi dei nomi corrispondano quando il codice viene copiato e incollato.
-* Selezionare **Crea**.
-* Selezionare **.NET Core** e **ASP.NET Core 5,0** negli elenchi a discesa, quindi selezionare **applicazione Web**.
-
+1. Avviare Visual Studio e selezionare **Crea un nuovo progetto**.
+1. Nella finestra di dialogo **Crea un nuovo progetto** selezionare **ASP.NET Core applicazione Web** > **Avanti**.
+1. Nella finestra di dialogo **Configura nuovo progetto** immettere `ContosoUniversity` per **nome progetto**. È importante usare questo nome esatto, incluse le maiuscole, in modo che ogni `namespace` corrisponda al momento della copia del codice.
+1. Selezionare **Crea**.
+1. Nella finestra di dialogo **Crea una nuova applicazione web ASP.NET Core** selezionare:
+    1. **.NET Core** e **ASP.NET Core 5,0** negli elenchi a discesa.
+    1. **ASP.NET Core app Web (Model-View-Controller)**.
+    1. **Create** 
+       Crea ![ Finestra di dialogo nuovo progetto ASP.NET Core](~/data/ef-mvc/intro/_static/new-aspnet5.png)
+    
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * In un terminale passare alla cartella in cui deve essere creata la cartella del progetto.
