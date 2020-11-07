@@ -1,10 +1,13 @@
 ---
-title: Parte 4 con un database e ASP.NET Core
+title: Parte 4, utilizzo di un database
 author: rick-anderson
 description: Parte 4 della serie di esercitazioni sulle Razor pagine.
 ms.author: riande
-ms.date: 7/22/2019
+ms.date: 09/26/2020
 no-loc:
+- Index
+- Create
+- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -17,20 +20,20 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: d592cf7d8a96a7e4ec2e53418843a186488951be
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 3e78b5b6dab7145413ae8612bfeb352f328ec86a
+ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058155"
+ms.lasthandoff: 11/07/2020
+ms.locfileid: "94360739"
 ---
-# <a name="part-4-with-a-database-and-aspnet-core"></a>Parte 4 con un database e ASP.NET Core
+# <a name="part-4-work-with-a-database-and-aspnet-core"></a>Parte 4, utilizzo di un database e ASP.NET Core
 
 Di [Rick Anderson](https://twitter.com/RickAndMSFT) e [Joe Audette](https://twitter.com/joeaudette)
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-5.0"
 
-[!INCLUDE[](~/includes/rp/download.md)]
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([procedura per il download](xref:index#how-to-download-a-sample)).
 
 L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs* :
 
@@ -44,11 +47,11 @@ L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al databa
 
 ---
 
-Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal *appsettings.json* file.
+La chiave viene letta dal sistema di [configurazione](xref:fundamentals/configuration/index) ASP.NET Core `ConnectionString` . Per lo sviluppo locale, la configurazione ottiene la stringa di connessione dal *appsettings.json* file.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Il valore del nome per il database (`Database={Database name}`) sarà diverso per il codice generato. Il valore del nome è arbitrario.
+La stringa di connessione generata sarà simile alla seguente:
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json?highlight=10-12)]
 
@@ -58,7 +61,161 @@ Il valore del nome per il database (`Database={Database name}`) sarà diverso pe
 
 ---
 
-Quando l'app viene distribuita in un server di test o produzione, è possibile utilizzare una variabile di ambiente per impostare la stringa di connessione su un server di database reale. Per altre informazioni, vedere [Configurazione](xref:fundamentals/configuration/index).
+Quando l'app viene distribuita in un server di test o di produzione, è possibile usare una variabile di ambiente per impostare la stringa di connessione su un server di database di test o di produzione. Per ulteriori informazioni, vedere [configurazione](xref:fundamentals/configuration/index).
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
+
+Local DB è una versione leggera del motore di database di SQL Server Express appositamente pensato per lo sviluppo di programmi. Local DB viene avviato su richiesta ed eseguito in modalità utente; non richiede quindi una configurazione complessa. Per impostazione predefinita, Local DB crea file con estensione `*.mdf` nella directory `C:\Users\<user>\`.
+
+<a name="ssox"></a>
+1. Dal menu **Visualizzazione** aprire **Esplora oggetti di SQL Server** (SSOX).
+
+   ![Menu Visualizza](sql/_static/5/ssox.png)
+
+1. Fare clic con il pulsante destro del mouse sulla `Movie` tabella e scegliere **Visualizza finestra di progettazione** :
+
+   ![Menu di scelta rapida aperti per la tabella Movie](sql/_static/5/design.png)
+
+   ![Tabelle Movie aperte nella finestra di progettazione](sql/_static/dv.png)
+
+   Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, Entity Framework crea una proprietà denominata `ID` per la chiave primaria.
+
+1. Fare clic con il pulsante destro del mouse sulla `Movie` tabella e selezionare **Visualizza dati** :
+
+   ![Tabella Movie aperta con i dati della tabella](sql/_static/vd22.png)
+
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+
+## <a name="sqlite"></a>SQLite
+
+Nel sito Web di [SQLite](https://www.sqlite.org/) si dichiara:
+
+> SQLite è un motore di database SQL autonomo, a elevata affidabilità, incorporato, completo e di dominio pubblico. SQLite è il motore di database più usato in tutto il mondo.
+
+Sono disponibili molti strumenti di terze parti che è possibile scaricare per gestire e visualizzare un database SQLite. L'immagine seguente è stata tratta da [DB Browser per SQLite](https://sqlitebrowser.org/). Se si preferisce uno strumento SQLite in particolare, aggiungere un commento sui motivi della preferenza.
+
+![Browser DB per SQLite con database di film](~/tutorials/first-mvc-app-xplat/working-with-sql/_static/dbb.png)
+
+> [!NOTE]
+> Per questa esercitazione, viene usata la funzionalità *migrazioni* di Entity Framework Core, laddove possibile. Le migrazioni aggiornano lo schema del database in base alle modifiche nel modello di dati. Tuttavia, le migrazioni possono eseguire solo i tipi di modifiche supportate dal provider EF Core e le funzionalità del provider SQLite sono limitate. Ad esempio l'aggiunta di una colonna è supportata, ma la rimozione o la modifica di una colonna non è supportata. Se si crea una migrazione per rimuovere o modificare una colonna, il comando `ef migrations add` ha esito positivo, ma il comando `ef database update` ha esito negativo. A causa di queste limitazioni, in questa esercitazione non vengono usate le migrazioni per le modifiche dello schema di SQLite. Al contrario, quando lo schema viene modificato, il database viene eliminato e ricreato.
+>
+>La soluzione per ovviare alle limitazioni di SQLite consiste nello scrivere manualmente il codice delle migrazioni per eseguire una ricompilazione della tabella in caso di modifiche nella tabella. La ricompilazione della tabella comporta:
+>
+>* Creazione di una nuova tabella.
+>* Copia dei dati dalla vecchia tabella alla nuova tabella.
+>* Eliminazione della tabella precedente.
+>* Ridenominazione della nuova tabella.
+>
+>Per altre informazioni, vedere le risorse seguenti:
+> * [Limitazioni del provider di database SQLite per EF Core](/ef/core/providers/sqlite/limitations)
+> * [Personalizzare il codice di migrazione](/ef/core/managing-schemas/migrations/#customize-migration-code)
+> * [Seeding dei dati](/ef/core/modeling/data-seeding)
+> * [Istruzione ALTER TABLE di SQLite](https://sqlite.org/lang_altertable.html)
+
+---
+
+## <a name="seed-the-database"></a>Specificare il valore di inizializzazione del database
+
+Create nuova classe denominata `SeedData` nella cartella *Models* con il codice seguente:
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
+
+Se sono presenti film nel database, l'inizializzatore del valore di inizializzazione viene restituito e non viene aggiunto alcun film.
+
+```csharp
+if (context.Movie.Any())
+{
+    return;
+}
+```
+
+<a name="si"></a>
+
+### <a name="add-the-seed-initializer"></a>Aggiungere l'inizializzatore del valore di inizializzazione
+
+Sostituire il contenuto di *Program.cs* con il codice seguente:
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie50/Program.cs)]
+
+Nel codice precedente, il `Main` metodo è stato modificato per eseguire le operazioni seguenti:
+
+* Ottenere un'istanza del contesto di database dal contenitore di inserimento delle dipendenze.
+* Chiamare il `seedData.Initialize` metodo passando all'istanza del contesto di database.
+* Eliminare il contesto dopo che il metodo di inizializzazione è stato completato. L' [istruzione using](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement) garantisce che il contesto venga eliminato.
+
+Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente:
+
+> `SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
+> `Login failed for user 'user name'.`
+
+### <a name="test-the-app"></a>Testare l'app
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+1. Delete tutti i record del database. Usare i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+
+1. Forzare l'inizializzazione dell'app chiamando i metodi nella `Startup` classe, in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. Arrestare e riavviare IIS con uno degli approcci seguenti:
+
+   1. Fare clic con il pulsante destro del mouse sull'icona della barra di sistema IIS Express nell'area di notifica e selezionare **Esci** o **Arresta sito** :
+
+      ![Icona dell'area di notifica di IIS Express](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
+
+      ![Menu di scelta rapida](sql/_static/stopIIS.png)
+
+   1. Se l'app è in esecuzione in modalità non di debug, premere <kbd>F5</kbd> per l'esecuzione in modalità di debug.
+   1. Se l'app è in modalità di debug, arrestare il debugger e premere <kbd>F5</kbd>.
+
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+
+Delete tutti i record nel database, in modo che venga eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
+
+---
+
+L'app visualizza i dati sottoposti a seed:
+
+![Applicazione film aperta nel browser che mostra i dati dei film](sql/_static/5/m55.png)
+
+## <a name="additional-resources"></a>Risorse aggiuntive
+
+> [!div class="step-by-step"]
+> [Precedente: con ponteggi Razor Pagine](xref:tutorials/razor-pages/page) 
+>  [successive: aggiornare le pagine](xref:tutorials/razor-pages/da1)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
+
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30) ([procedura per il download](xref:index#how-to-download-a-sample)).
+
+L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs* :
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
+
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+
+---
+
+La chiave viene letta dal sistema di [configurazione](xref:fundamentals/configuration/index) ASP.NET Core `ConnectionString` . Per lo sviluppo locale, la configurazione ottiene la stringa di connessione dal *appsettings.json* file.
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+La stringa di connessione generata sarà simile alla seguente:
+
+[!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json?highlight=10-12)]
+
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
+
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
+
+---
+
+Quando l'app viene distribuita in un server di test o di produzione, è possibile usare una variabile di ambiente per impostare la stringa di connessione su un server di database di test o di produzione. Per altre informazioni, vedere [Configurazione](xref:fundamentals/configuration/index).
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -71,7 +228,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
   ![Menu Visualizza](sql/_static/ssox.png)
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare **Progettazione viste** :
+* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e scegliere **Visualizza finestra di progettazione** :
 
   ![Menu di scelta rapida aperti per la tabella Movie](sql/_static/design.png)
 
@@ -79,29 +236,52 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
 Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, Entity Framework crea una proprietà denominata `ID` per la chiave primaria.
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare **Visualizza dati** :
+* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e selezionare **Visualizza dati** :
 
   ![Tabella Movie aperta con i dati della tabella](sql/_static/vd22.png)
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!INCLUDE[](~/includes/rp/sqlite.md)]
-[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
+## <a name="sqlite"></a>SQLite
+
+Nel sito Web di [SQLite](https://www.sqlite.org/) si dichiara:
+
+> SQLite è un motore di database SQL autonomo, a elevata affidabilità, incorporato, completo e di dominio pubblico. SQLite è il motore di database più usato in tutto il mondo.
+
+Sono disponibili molti strumenti di terze parti che è possibile scaricare per gestire e visualizzare un database SQLite. L'immagine seguente è stata tratta da [DB Browser per SQLite](https://sqlitebrowser.org/). Se si preferisce uno strumento SQLite in particolare, aggiungere un commento sui motivi della preferenza.
+
+![Browser DB per SQLite con database di film](~/tutorials/first-mvc-app-xplat/working-with-sql/_static/dbb.png)
+
+> [!NOTE]
+> Per questa esercitazione, viene usata la funzionalità *migrazioni* di Entity Framework Core, laddove possibile. Le migrazioni aggiornano lo schema del database in base alle modifiche nel modello di dati. Tuttavia, le migrazioni possono eseguire solo i tipi di modifiche supportate dal provider EF Core e le funzionalità del provider SQLite sono limitate. Ad esempio l'aggiunta di una colonna è supportata, ma la rimozione o la modifica di una colonna non è supportata. Se si crea una migrazione per rimuovere o modificare una colonna, il comando `ef migrations add` ha esito positivo, ma il comando `ef database update` ha esito negativo. A causa di queste limitazioni, in questa esercitazione non vengono usate le migrazioni per le modifiche dello schema di SQLite. Al contrario, quando lo schema viene modificato, il database viene eliminato e ricreato.
+>
+>La soluzione per ovviare alle limitazioni di SQLite consiste nello scrivere manualmente il codice delle migrazioni per eseguire una ricompilazione della tabella in caso di modifiche nella tabella. La ricompilazione della tabella comporta:
+>
+>* Creazione di una nuova tabella.
+>* Copia dei dati dalla vecchia tabella alla nuova tabella.
+>* Eliminazione della tabella precedente.
+>* Ridenominazione della nuova tabella.
+>
+>Per altre informazioni, vedere le risorse seguenti:
+> * [Limitazioni del provider di database SQLite per EF Core](/ef/core/providers/sqlite/limitations)
+> * [Personalizzare il codice di migrazione](/ef/core/managing-schemas/migrations/#customize-migration-code)
+> * [Seeding dei dati](/ef/core/modeling/data-seeding)
+> * [Istruzione ALTER TABLE di SQLite](https://sqlite.org/lang_altertable.html)
 
 ---
 
 ## <a name="seed-the-database"></a>Specificare il valore di inizializzazione del database
 
-Creare una nuova classe denominata `SeedData` nella cartella *Models* usando il codice seguente:
+Create nuova classe denominata `SeedData` nella cartella *Models* con il codice seguente:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
-Se sono presenti eventuali film nel database, l'inizializzatore del valore di inizializzazione viene restituito e non vengono aggiunti film.
+Se sono presenti film nel database, l'inizializzatore del valore di inizializzazione viene restituito e non viene aggiunto alcun film.
 
 ```csharp
 if (context.Movie.Any())
 {
-    return;   // DB has been seeded.
+    return;
 }
 ```
 
@@ -109,15 +289,15 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Aggiungere l'inizializzatore del valore di inizializzazione
 
-In *Program.cs* modificare il metodo `Main` per eseguire le operazioni seguenti:
-
-* Ottenere un'istanza del contesto di database dal contenitore di inserimento delle dipendenze.
-* Chiamare il metodo di inizializzazione, passandolo al contesto.
-* Eliminare il contesto dopo che il metodo di inizializzazione è stato completato.
-
-Il codice seguente illustra il file *Program.cs* aggiornato.
+Sostituire il contenuto di *Program.cs* con il codice seguente:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
+
+Nel codice precedente, il `Main` metodo è stato modificato per eseguire le operazioni seguenti:
+
+* Ottenere un'istanza del contesto di database dal contenitore di inserimento delle dipendenze.
+* Chiamare il `seedData.Initialize` metodo passando all'istanza del contesto di database.
+* Eliminare il contesto dopo che il metodo di inizializzazione è stato completato. L' [istruzione using](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement) garantisce che il contesto venga eliminato.
 
 Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente:
 
@@ -128,39 +308,39 @@ Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Eliminare tutti i record nel database. Questa operazione può essere eseguita con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
-* Forzare l'inizializzazione dell'app (chiamare i metodi nella classe `Startup`) in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. È possibile eseguire questa operazione adottando uno degli approcci seguenti:
+* Delete tutti i record del database. Usare i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox).
+* Forzare l'inizializzazione dell'app chiamando i metodi nella `Startup` classe, in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. Arrestare e riavviare IIS con uno degli approcci seguenti:
 
-  * Fare clic con il pulsante destro del mouse sull'icona della barra di sistema IIS Express nell'area di notifica e toccare **Esci** o **Arresta sito** :
+  * Fare clic con il pulsante destro del mouse sull'icona dell'area di notifica di IIS Express e toccare **Esci** o **Arresta sito** :
 
     ![Icona dell'area di notifica di IIS Express](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
     ![Menu di scelta rapida](sql/_static/stopIIS.png)
 
-    * Se Visual Studio è in esecuzione in modalità non di debug, premere F5 per attivare la modalità di debug.
-    * Se Visual Studio è in esecuzione in modalità di debug, arrestare il debugger e premere F5.
+    * Se l'app è in esecuzione in modalità non di debug, premere <kbd>F5</kbd> per l'esecuzione in modalità di debug.
+    * Se l'app è in modalità di debug, arrestare il debugger e premere <kbd>F5</kbd>.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Eliminare tutti i record del database; verrà quindi eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
-
-L'app mostra i dati inizializzati.
+Delete tutti i record nel database, in modo che venga eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
 
 ---
 
-L'esercitazione successiva consentirà di migliorare la presentazione dei dati.
+L'app visualizza i dati sottoposti a seed:
+
+![App per i film aperta in Chrome con i dati sui film](sql/_static/m55https.png)
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 > [!div class="step-by-step"]
 > [Precedente: con ponteggi Razor Pagine](xref:tutorials/razor-pages/page) 
->  [successive: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
+>  [successive: aggiornare le pagine](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!INCLUDE[](~/includes/rp/download.md)]
+[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start) ([procedura per il download](xref:index#how-to-download-a-sample)).
 
 L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs* :
 
@@ -179,11 +359,11 @@ Per altre informazioni sui metodi usati in `ConfigureServices`, vedere:
 * [Supporto per il Regolamento generale sulla protezione dei dati (GDPR) dell'Unione Europea in ASP.NET Core](xref:security/gdpr) per `CookiePolicyOptions`.
 * [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
-Il sistema di [configurazione](xref:fundamentals/configuration/index) di ASP.NET Core legge la `ConnectionString`. Per lo sviluppo locale, ottiene la stringa di connessione dal *appsettings.json* file.
+La chiave viene letta dal sistema di [configurazione](xref:fundamentals/configuration/index) ASP.NET Core `ConnectionString` . Per lo sviluppo locale, la configurazione ottiene la stringa di connessione dal *appsettings.json* file.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Il valore del nome per il database (`Database={Database name}`) sarà diverso per il codice generato. Il valore del nome è arbitrario.
+La stringa di connessione generata sarà simile alla seguente:
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie22/appsettings.json)]
 
@@ -197,7 +377,7 @@ Il valore del nome per il database (`Database={Database name}`) sarà diverso pe
 
 ---
 
-Quando l'app viene distribuita in un server di test o produzione, è possibile utilizzare una variabile di ambiente per impostare la stringa di connessione su un server di database reale. Per altre informazioni, vedere [Configurazione](xref:fundamentals/configuration/index).
+Quando l'app viene distribuita in un server di test o di produzione, è possibile usare una variabile di ambiente per impostare la stringa di connessione su un server di database di test o di produzione. Per altre informazioni, vedere [Configurazione](xref:fundamentals/configuration/index).
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -210,7 +390,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
   ![Menu Visualizza](sql/_static/ssox.png)
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare **Progettazione viste** :
+* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e scegliere **Visualizza finestra di progettazione** :
 
   ![Menu di scelta rapida aperto per la tabella Movie](sql/_static/design.png)
 
@@ -218,7 +398,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
 Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, Entity Framework crea una proprietà denominata `ID` per la chiave primaria.
 
-* Fare clic con il pulsante destro del mouse sulla tabella `Movie` e selezionare **Visualizza dati** :
+* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e selezionare **Visualizza dati** :
 
   ![Tabella Movie aperta con i dati della tabella](sql/_static/vd22.png)
 
@@ -236,16 +416,16 @@ Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, 
 
 ## <a name="seed-the-database"></a>Specificare il valore di inizializzazione del database
 
-Creare una nuova classe denominata `SeedData` nella cartella *Models* usando il codice seguente:
+Create nuova classe denominata `SeedData` nella cartella *Models* con il codice seguente:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
 
-Se sono presenti eventuali film nel database, l'inizializzatore del valore di inizializzazione viene restituito e non vengono aggiunti film.
+Se sono presenti film nel database, l'inizializzatore del valore di inizializzazione viene restituito e non viene aggiunto alcun film.
 
 ```csharp
 if (context.Movie.Any())
 {
-    return;   // DB has been seeded.
+    return;
 }
 ```
 
@@ -253,15 +433,15 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Aggiungere l'inizializzatore del valore di inizializzazione
 
-In *Program.cs* modificare il metodo `Main` per eseguire le operazioni seguenti:
-
-* Ottenere un'istanza del contesto di database dal contenitore di inserimento delle dipendenze.
-* Chiamare il metodo di inizializzazione, passandolo al contesto.
-* Eliminare il contesto dopo che il metodo di inizializzazione è stato completato.
-
-Il codice seguente illustra il file *Program.cs* aggiornato.
+Sostituire il contenuto di *Program.cs* con il codice seguente:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Program.cs)]
+
+Nel codice precedente, il `Main` metodo è stato modificato per eseguire le operazioni seguenti:
+
+* Ottenere un'istanza del contesto di database dal contenitore di inserimento delle dipendenze.
+* Chiamare il `seedData.Initialize` metodo passando all'istanza del contesto di database.
+* Eliminare il contesto dopo che il metodo di inizializzazione è stato completato. L' [istruzione using](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement) garantisce che il contesto venga eliminato.
 
 Un'app di produzione non chiamerà `Database.Migrate`. Sarà aggiunto al codice precedente per evitare l'eccezione seguente quando `Update-Database` non è stato eseguito:
 
@@ -272,8 +452,8 @@ Accesso non riuscito per l'utente "nome-utente".
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Eliminare tutti i record nel database. Questa operazione può essere eseguita con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
-* Forzare l'inizializzazione dell'app (chiamare i metodi nella classe `Startup`) in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. È possibile eseguire questa operazione adottando uno degli approcci seguenti:
+* Delete tutti i record del database. Questa operazione può essere eseguita con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+* Forzare l'inizializzazione dell'app chiamando i metodi nella `Startup` classe, in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. È possibile eseguire questa operazione adottando uno degli approcci seguenti:
 
   * Fare clic con il pulsante destro del mouse sull'icona dell'area di notifica di IIS Express e toccare **Esci** o **Arresta sito** :
 
@@ -281,26 +461,22 @@ Accesso non riuscito per l'utente "nome-utente".
 
     ![Menu di scelta rapida](sql/_static/stopIIS.png)
 
-    * Se Visual Studio è in esecuzione in modalità non di debug, premere F5 per attivare la modalità di debug.
-    * Se Visual Studio è in esecuzione in modalità di debug, arrestare il debugger e premere F5.
+    * Se l'app è in esecuzione in modalità non di debug, premere <kbd>F5</kbd> per l'esecuzione in modalità di debug.
+    * Se l'app è in modalità di debug, arrestare il debugger e premere <kbd>F5</kbd>.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Eliminare tutti i record del database; verrà quindi eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
-
-L'app mostra i dati inizializzati.
+Delete tutti i record nel database, in modo che venga eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-Eliminare tutti i record del database; verrà quindi eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
-
-L'app mostra i dati inizializzati.
+Delete tutti i record nel database, in modo che venga eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
 
 ---
 
 L'app visualizza i dati sottoposti a seed:
 
-![App per i film aperta in Chrome con i dati sui film](sql/_static/m55.png)
+![App per i film aperta in Chrome con i dati sui film](sql/_static/m55https.png)
 
 L'esercitazione successiva consentirà di pulire la presentazione dei dati.
 
@@ -310,6 +486,6 @@ L'esercitazione successiva consentirà di pulire la presentazione dei dati.
 
 > [!div class="step-by-step"]
 > [Precedente: con ponteggi Razor Pagine](xref:tutorials/razor-pages/page) 
->  [successive: aggiornamento delle pagine](xref:tutorials/razor-pages/da1)
+>  [successive: aggiornare le pagine](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
