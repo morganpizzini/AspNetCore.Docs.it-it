@@ -1,24 +1,24 @@
 ---
 title: Parte 6, aggiungere la ricerca
 author: rick-anderson
-description: 'Parte 6 della serie di esercitazioni sulle :::no-loc(Razor)::: pagine.'
+description: 'Parte 6 della serie di esercitazioni sulle Razor pagine.'
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
-- ':::no-loc(Index):::'
-- ':::no-loc(Create):::'
-- ':::no-loc(Delete):::'
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'Index'
+- 'Create'
+- 'Delete'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: tutorials/razor-pages/search
 ms.openlocfilehash: 00c1be2704d92c7d4f868e6eaa346bd8e9901dbf
 ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
@@ -27,19 +27,19 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 11/07/2020
 ms.locfileid: "94360842"
 ---
-# <a name="part-6-add-search-to-aspnet-core-no-locrazor-pages"></a><span data-ttu-id="4029c-103">Parte 6, aggiungere la ricerca a :::no-loc(Razor)::: pagine ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="4029c-103">Part 6, add search to ASP.NET Core :::no-loc(Razor)::: Pages</span></span>
+# <a name="part-6-add-search-to-aspnet-core-no-locrazor-pages"></a><span data-ttu-id="4029c-103">Parte 6, aggiungere la ricerca a Razor pagine ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="4029c-103">Part 6, add search to ASP.NET Core Razor Pages</span></span>
 
 <span data-ttu-id="4029c-104">Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)</span><span class="sxs-lookup"><span data-stu-id="4029c-104">By [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
 
 ::: moniker range=">= aspnetcore-5.0"
 
-<span data-ttu-id="4029c-105">[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/:::no-loc(Razor):::PagesMovie50) ([procedura per il download](xref:index#how-to-download-a-sample)).</span><span class="sxs-lookup"><span data-stu-id="4029c-105">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/:::no-loc(Razor):::PagesMovie50) ([how to download](xref:index#how-to-download-a-sample)).</span></span>
+<span data-ttu-id="4029c-105">[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([procedura per il download](xref:index#how-to-download-a-sample)).</span><span class="sxs-lookup"><span data-stu-id="4029c-105">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:index#how-to-download-a-sample)).</span></span>
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
 
-<span data-ttu-id="4029c-106">[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30) ([procedura per il download](xref:index#how-to-download-a-sample)).</span><span class="sxs-lookup"><span data-stu-id="4029c-106">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30) ([how to download](xref:index#how-to-download-a-sample)).</span></span>
+<span data-ttu-id="4029c-106">[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30) ([procedura per il download](xref:index#how-to-download-a-sample)).</span><span class="sxs-lookup"><span data-stu-id="4029c-106">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30) ([how to download](xref:index#how-to-download-a-sample)).</span></span>
 
 ::: moniker-end
 
@@ -47,9 +47,9 @@ ms.locfileid: "94360842"
 
 <span data-ttu-id="4029c-107">Nelle sezioni seguenti viene aggiunta la funzionalità di ricerca di film in base al *genere* oppure al *nome*.</span><span class="sxs-lookup"><span data-stu-id="4029c-107">In the following sections, searching movies by *genre* or *name* is added.</span></span>
 
-<span data-ttu-id="4029c-108">Aggiungere le proprietà e l'istruzione using evidenziate seguenti a *pages/Movies/ :::no-loc(Index)::: . cshtml.cs* :</span><span class="sxs-lookup"><span data-stu-id="4029c-108">Add the following highlighted using statement and properties to *Pages/Movies/:::no-loc(Index):::.cshtml.cs* :</span></span>
+<span data-ttu-id="4029c-108">Aggiungere le proprietà e l'istruzione using evidenziate seguenti a *pages/Movies/ Index . cshtml.cs* :</span><span class="sxs-lookup"><span data-stu-id="4029c-108">Add the following highlighted using statement and properties to *Pages/Movies/Index.cshtml.cs* :</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_newProps&highlight=3,23,24,25,26,27)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=3,23,24,25,26,27)]
 
 <span data-ttu-id="4029c-109">Nel codice precedente:</span><span class="sxs-lookup"><span data-stu-id="4029c-109">In the previous code:</span></span>
 
@@ -60,9 +60,9 @@ ms.locfileid: "94360842"
 
 [!INCLUDE[](~/includes/bind-get.md)]
 
-<span data-ttu-id="4029c-120">Aggiornare il :::no-loc(Index)::: metodo della pagina `OnGetAsync` con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-120">Update the :::no-loc(Index)::: page's `OnGetAsync` method with the following code:</span></span>
+<span data-ttu-id="4029c-120">Aggiornare il Index metodo della pagina `OnGetAsync` con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-120">Update the Index page's `OnGetAsync` method with the following code:</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_1stSearch)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_1stSearch)]
 
 <span data-ttu-id="4029c-121">La prima riga del metodo `OnGetAsync` crea una query [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) per selezionare i film:</span><span class="sxs-lookup"><span data-stu-id="4029c-121">The first line of the `OnGetAsync` method creates a [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) query to select the movies:</span></span>
 
@@ -76,7 +76,7 @@ var movies = from m in _context.Movie
 
 <span data-ttu-id="4029c-123">Se la proprietà `SearchString` non è null o vuota, la query dei film viene modificata per filtrare gli elementi in base alla stringa di ricerca:</span><span class="sxs-lookup"><span data-stu-id="4029c-123">If the `SearchString` property is not null or empty, the movies query is modified to filter on the search string:</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_SearchNull)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
 
 <span data-ttu-id="4029c-124">Il codice `s => s.Title.Contains()` è un'[espressione lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions).</span><span class="sxs-lookup"><span data-stu-id="4029c-124">The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions).</span></span> <span data-ttu-id="4029c-125">Le espressioni lambda vengono usate nelle query [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) basate sul metodo come argomenti per i metodi degli operatori di query standard, ad esempio il metodo [where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) o `Contains` .</span><span class="sxs-lookup"><span data-stu-id="4029c-125">Lambdas are used in method-based [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) queries as arguments to standard query operator methods such as the [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) method or `Contains`.</span></span> <span data-ttu-id="4029c-126">Le query LINQ non vengono eseguite quando vengono definite o quando vengono modificate chiamando un metodo, ad esempio `Where` , `Contains` o `OrderBy` .</span><span class="sxs-lookup"><span data-stu-id="4029c-126">LINQ queries are not executed when they're defined or when they're modified by calling a method, such as `Where`, `Contains`, or `OrderBy`.</span></span> <span data-ttu-id="4029c-127">L'esecuzione della query viene invece posticipata.</span><span class="sxs-lookup"><span data-stu-id="4029c-127">Rather, query execution is deferred.</span></span> <span data-ttu-id="4029c-128">La valutazione di un'espressione viene posticipata fino a quando non viene eseguita l'iterazione del valore realizzato o `ToListAsync` viene chiamato il metodo.</span><span class="sxs-lookup"><span data-stu-id="4029c-128">The evaluation of an expression is delayed until its realized value is iterated over or the `ToListAsync` method is called.</span></span> <span data-ttu-id="4029c-129">Per altre informazioni, vedere [Esecuzione di query](/dotnet/framework/data/adonet/ef/language-reference/query-execution).</span><span class="sxs-lookup"><span data-stu-id="4029c-129">See [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution) for more information.</span></span>
 
@@ -87,7 +87,7 @@ var movies = from m in _context.Movie
 
 ![::: NO-LOC (index)::: View](search/_static/ghost.png)
 
-<span data-ttu-id="4029c-138">Se il modello di route seguente viene aggiunto alla :::no-loc(Index)::: pagina, la stringa di ricerca può essere passata come segmento URL.</span><span class="sxs-lookup"><span data-stu-id="4029c-138">If the following route template is added to the :::no-loc(Index)::: page, the search string can be passed as a URL segment.</span></span> <span data-ttu-id="4029c-139">Ad esempio, `https://localhost:5001/Movies/Ghost`</span><span class="sxs-lookup"><span data-stu-id="4029c-139">For example, `https://localhost:5001/Movies/Ghost`.</span></span>
+<span data-ttu-id="4029c-138">Se il modello di route seguente viene aggiunto alla Index pagina, la stringa di ricerca può essere passata come segmento URL.</span><span class="sxs-lookup"><span data-stu-id="4029c-138">If the following route template is added to the Index page, the search string can be passed as a URL segment.</span></span> <span data-ttu-id="4029c-139">Ad esempio, `https://localhost:5001/Movies/Ghost`</span><span class="sxs-lookup"><span data-stu-id="4029c-139">For example, `https://localhost:5001/Movies/Ghost`.</span></span>
 
 ```cshtml
 @page "{searchString?}"
@@ -101,13 +101,13 @@ var movies = from m in _context.Movie
 
 <span data-ttu-id="4029c-145">Tuttavia, non è previsto che gli utenti modifichino l'URL per cercare un film.</span><span class="sxs-lookup"><span data-stu-id="4029c-145">However, users cannot be expected to modify the URL to search for a movie.</span></span> <span data-ttu-id="4029c-146">In questo passaggio viene aggiunta l'interfaccia utente per filtrare i film.</span><span class="sxs-lookup"><span data-stu-id="4029c-146">In this step, UI is added to filter movies.</span></span> <span data-ttu-id="4029c-147">Rimuovere il vincolo di route `"{searchString?}"`, se è stato aggiunto.</span><span class="sxs-lookup"><span data-stu-id="4029c-147">If you added the route constraint `"{searchString?}"`, remove it.</span></span>
 
-<span data-ttu-id="4029c-148">Aprire il file _Pages/Movies/ :::no-loc(Index)::: . cshtml \* e aggiungere il markup evidenziato nel codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-148">Open the _Pages/Movies/:::no-loc(Index):::.cshtml\* file, and add the markup highlighted in the following code:</span></span>
+<span data-ttu-id="4029c-148">Aprire il file _Pages/Movies/ Index . cshtml \* e aggiungere il markup evidenziato nel codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-148">Open the _Pages/Movies/Index.cshtml\* file, and add the markup highlighted in the following code:</span></span>
 
-[!code-cshtml[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/SnapShots/:::no-loc(Index):::2.cshtml?highlight=14-19&range=1-22)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/Index2.cshtml?highlight=14-19&range=1-22)]
 
 <span data-ttu-id="4029c-149">Il tag HTML `<form>` usa gli [helper tag](xref:mvc/views/tag-helpers/intro) seguenti:</span><span class="sxs-lookup"><span data-stu-id="4029c-149">The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helpers/intro):</span></span>
 
-* <span data-ttu-id="4029c-150">[Helper tag di form](xref:mvc/views/working-with-forms#the-form-tag-helper).</span><span class="sxs-lookup"><span data-stu-id="4029c-150">[Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper).</span></span> <span data-ttu-id="4029c-151">Quando il modulo viene inviato, la stringa di filtro viene inviata a *pagine/filmati/ :::no-loc(Index):::* pagina tramite la stringa di query.</span><span class="sxs-lookup"><span data-stu-id="4029c-151">When the form is submitted, the filter string is sent to the *Pages/Movies/:::no-loc(Index):::* page via query string.</span></span>
+* <span data-ttu-id="4029c-150">[Helper tag di form](xref:mvc/views/working-with-forms#the-form-tag-helper).</span><span class="sxs-lookup"><span data-stu-id="4029c-150">[Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper).</span></span> <span data-ttu-id="4029c-151">Quando il modulo viene inviato, la stringa di filtro viene inviata a *pagine/filmati/ Index* pagina tramite la stringa di query.</span><span class="sxs-lookup"><span data-stu-id="4029c-151">When the form is submitted, the filter string is sent to the *Pages/Movies/Index* page via query string.</span></span>
 * [<span data-ttu-id="4029c-152">Helper tag di input</span><span class="sxs-lookup"><span data-stu-id="4029c-152">Input Tag Helper</span></span>](xref:mvc/views/working-with-forms#the-input-tag-helper)
 
 <span data-ttu-id="4029c-153">Salvare le modifiche e testare il filtro.</span><span class="sxs-lookup"><span data-stu-id="4029c-153">Save the changes and test the filter.</span></span>
@@ -116,23 +116,23 @@ var movies = from m in _context.Movie
 
 ## <a name="search-by-genre"></a><span data-ttu-id="4029c-155">Ricerca in base al genere</span><span class="sxs-lookup"><span data-stu-id="4029c-155">Search by genre</span></span>
 
-<span data-ttu-id="4029c-156">Aggiornare il :::no-loc(Index)::: metodo della pagina `OnGetAsync` con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-156">Update the :::no-loc(Index)::: page's `OnGetAsync` method with the following code:</span></span>
+<span data-ttu-id="4029c-156">Aggiornare il Index metodo della pagina `OnGetAsync` con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-156">Update the Index page's `OnGetAsync` method with the following code:</span></span>
 
-   [!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_SearchGenre)]
+   [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
 
 <span data-ttu-id="4029c-157">Il codice seguente è una query LINQ che recupera tutti i generi dal database.</span><span class="sxs-lookup"><span data-stu-id="4029c-157">The following code is a LINQ query that retrieves all the genres from the database.</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_LINQ)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_LINQ)]
 
 <span data-ttu-id="4029c-158">L'elenco `SelectList` di generi viene creato selezionando generi distinti.</span><span class="sxs-lookup"><span data-stu-id="4029c-158">The `SelectList` of genres is created by projecting the distinct genres.</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_SelectList)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-no-locrazor-page"></a><span data-ttu-id="4029c-159">Aggiungi la ricerca per genere alla :::no-loc(Razor)::: pagina</span><span class="sxs-lookup"><span data-stu-id="4029c-159">Add search by genre to the :::no-loc(Razor)::: Page</span></span>
+### <a name="add-search-by-genre-to-the-no-locrazor-page"></a><span data-ttu-id="4029c-159">Aggiungi la ricerca per genere alla Razor pagina</span><span class="sxs-lookup"><span data-stu-id="4029c-159">Add search by genre to the Razor Page</span></span>
 
-1. <span data-ttu-id="4029c-160">Aggiornare il *:::no-loc(Index)::: cshtml* [ `<form>` elemento] ( https://developer.mozilla.org/docs/Web/HTML/Element/form) come evidenziato nel markup seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-160">Update the *:::no-loc(Index):::.cshtml* [`<form>` element] (https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:</span></span>
+1. <span data-ttu-id="4029c-160">Aggiornare il *Index cshtml* [ `<form>` elemento] ( https://developer.mozilla.org/docs/Web/HTML/Element/form) come evidenziato nel markup seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-160">Update the *Index.cshtml* [`<form>` element] (https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:</span></span>
 
-   [!code-cshtml[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/SnapShots/:::no-loc(Index):::FormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
+   [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
 1. <span data-ttu-id="4029c-161">Eseguire il test dell'app effettuando una ricerca per genere, titolo del film e usando entrambi i filtri.</span><span class="sxs-lookup"><span data-stu-id="4029c-161">Test the app by searching by genre, by movie title, and by both.</span></span>
 
@@ -151,9 +151,9 @@ var movies = from m in _context.Movie
 
 <span data-ttu-id="4029c-165">Nelle sezioni seguenti viene aggiunta la funzionalità di ricerca di film in base al *genere* oppure al *nome*.</span><span class="sxs-lookup"><span data-stu-id="4029c-165">In the following sections, searching movies by *genre* or *name* is added.</span></span>
 
-<span data-ttu-id="4029c-166">Aggiungere le proprietà evidenziate seguenti a *pages/Movies/ :::no-loc(Index)::: . cshtml.cs* :</span><span class="sxs-lookup"><span data-stu-id="4029c-166">Add the following highlighted properties to *Pages/Movies/:::no-loc(Index):::.cshtml.cs* :</span></span>
+<span data-ttu-id="4029c-166">Aggiungere le proprietà evidenziate seguenti a *pages/Movies/ Index . cshtml.cs* :</span><span class="sxs-lookup"><span data-stu-id="4029c-166">Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs* :</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_newProps&highlight=11-999)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
 * <span data-ttu-id="4029c-167">`SearchString`: Contiene il testo immesso dagli utenti nella casella di testo di ricerca.</span><span class="sxs-lookup"><span data-stu-id="4029c-167">`SearchString`: Contains the text users enter in the search text box.</span></span> <span data-ttu-id="4029c-168">`SearchString` dispone dell' [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attributo.</span><span class="sxs-lookup"><span data-stu-id="4029c-168">`SearchString` has the [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute.</span></span> <span data-ttu-id="4029c-169">`[BindProperty]` associa i valori modulo e le stringhe di query al nome della proprietà.</span><span class="sxs-lookup"><span data-stu-id="4029c-169">`[BindProperty]` binds form values and query strings with the same name as the property.</span></span> <span data-ttu-id="4029c-170">`[BindProperty(SupportsGet = true)]` è necessario per l'associazione alle richieste HTTP GET.</span><span class="sxs-lookup"><span data-stu-id="4029c-170">`[BindProperty(SupportsGet = true)]` is required for binding on HTTP GET requests.</span></span>
 * <span data-ttu-id="4029c-171">`Genres`: Contiene l'elenco dei generi.</span><span class="sxs-lookup"><span data-stu-id="4029c-171">`Genres`: Contains the list of genres.</span></span> <span data-ttu-id="4029c-172">`Genres` consente all'utente di selezionare un genere dall'elenco.</span><span class="sxs-lookup"><span data-stu-id="4029c-172">`Genres` allows the user to select a genre from the list.</span></span> <span data-ttu-id="4029c-173">`SelectList` richiede `using Microsoft.AspNetCore.Mvc.Rendering;`</span><span class="sxs-lookup"><span data-stu-id="4029c-173">`SelectList` requires `using Microsoft.AspNetCore.Mvc.Rendering;`</span></span>
@@ -162,9 +162,9 @@ var movies = from m in _context.Movie
 
 [!INCLUDE[](~/includes/bind-get.md)]
 
-<span data-ttu-id="4029c-177">Aggiornare il :::no-loc(Index)::: metodo della pagina `OnGetAsync` con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-177">Update the :::no-loc(Index)::: page's `OnGetAsync` method with the following code:</span></span>
+<span data-ttu-id="4029c-177">Aggiornare il Index metodo della pagina `OnGetAsync` con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-177">Update the Index page's `OnGetAsync` method with the following code:</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_1stSearch)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_1stSearch)]
 
 <span data-ttu-id="4029c-178">La prima riga del metodo `OnGetAsync` crea una query [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) per selezionare i film:</span><span class="sxs-lookup"><span data-stu-id="4029c-178">The first line of the `OnGetAsync` method creates a [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) query to select the movies:</span></span>
 
@@ -178,7 +178,7 @@ var movies = from m in _context.Movie
 
 <span data-ttu-id="4029c-180">Se la proprietà `SearchString` non è null o vuota, la query dei film viene modificata per filtrare gli elementi in base alla stringa di ricerca:</span><span class="sxs-lookup"><span data-stu-id="4029c-180">If the `SearchString` property is not null or empty, the movies query is modified to filter on the search string:</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_SearchNull)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
 
 <span data-ttu-id="4029c-181">Il codice `s => s.Title.Contains()` è un'[espressione lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions).</span><span class="sxs-lookup"><span data-stu-id="4029c-181">The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions).</span></span> <span data-ttu-id="4029c-182">Le espressioni lambda vengono usate nelle query [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) basate sul metodo come argomenti per i metodi degli operatori di query standard, ad esempio il metodo [where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) o `Contains` .</span><span class="sxs-lookup"><span data-stu-id="4029c-182">Lambdas are used in method-based [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) queries as arguments to standard query operator methods such as the [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) method or `Contains`.</span></span> <span data-ttu-id="4029c-183">Le query LINQ non vengono eseguite quando vengono definite o quando vengono modificate chiamando un metodo, ad esempio `Where` `Contains`  o `OrderBy` .</span><span class="sxs-lookup"><span data-stu-id="4029c-183">LINQ queries are not executed when they're defined or when they're modified by calling a method, such as `Where`, `Contains`  or `OrderBy`.</span></span> <span data-ttu-id="4029c-184">L'esecuzione della query viene invece posticipata.</span><span class="sxs-lookup"><span data-stu-id="4029c-184">Rather, query execution is deferred.</span></span> <span data-ttu-id="4029c-185">La valutazione di un'espressione viene posticipata fino a quando non viene eseguita l'iterazione del valore realizzato o `ToListAsync` viene chiamato il metodo.</span><span class="sxs-lookup"><span data-stu-id="4029c-185">The evaluation of an expression is delayed until its realized value is iterated over or the `ToListAsync` method is called.</span></span> <span data-ttu-id="4029c-186">Per altre informazioni, vedere [Esecuzione di query](/dotnet/framework/data/adonet/ef/language-reference/query-execution).</span><span class="sxs-lookup"><span data-stu-id="4029c-186">See [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution) for more information.</span></span>
 
@@ -188,7 +188,7 @@ var movies = from m in _context.Movie
 
 ![::: NO-LOC (index)::: View](search/_static/ghost.png)
 
-<span data-ttu-id="4029c-195">Se il modello di route seguente viene aggiunto alla :::no-loc(Index)::: pagina, la stringa di ricerca può essere passata come segmento URL.</span><span class="sxs-lookup"><span data-stu-id="4029c-195">If the following route template is added to the :::no-loc(Index)::: page, the search string can be passed as a URL segment.</span></span> <span data-ttu-id="4029c-196">Ad esempio, `https://localhost:5001/Movies/Ghost`</span><span class="sxs-lookup"><span data-stu-id="4029c-196">For example, `https://localhost:5001/Movies/Ghost`.</span></span>
+<span data-ttu-id="4029c-195">Se il modello di route seguente viene aggiunto alla Index pagina, la stringa di ricerca può essere passata come segmento URL.</span><span class="sxs-lookup"><span data-stu-id="4029c-195">If the following route template is added to the Index page, the search string can be passed as a URL segment.</span></span> <span data-ttu-id="4029c-196">Ad esempio, `https://localhost:5001/Movies/Ghost`</span><span class="sxs-lookup"><span data-stu-id="4029c-196">For example, `https://localhost:5001/Movies/Ghost`.</span></span>
 
 ```cshtml
 @page "{searchString?}"
@@ -202,13 +202,13 @@ var movies = from m in _context.Movie
 
 <span data-ttu-id="4029c-202">Tuttavia, non è previsto che gli utenti modifichino l'URL per cercare un film.</span><span class="sxs-lookup"><span data-stu-id="4029c-202">However, users can't be expected to modify the URL to search for a movie.</span></span> <span data-ttu-id="4029c-203">In questo passaggio viene aggiunta l'interfaccia utente per filtrare i film.</span><span class="sxs-lookup"><span data-stu-id="4029c-203">In this step, UI is added to filter movies.</span></span> <span data-ttu-id="4029c-204">Rimuovere il vincolo di route `"{searchString?}"`, se è stato aggiunto.</span><span class="sxs-lookup"><span data-stu-id="4029c-204">If you added the route constraint `"{searchString?}"`, remove it.</span></span>
 
-<span data-ttu-id="4029c-205">Aprire il file _Pages/Movies/ :::no-loc(Index)::: . cshtml \* e aggiungere il `<form>` markup evidenziato nel codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-205">Open the _Pages/Movies/:::no-loc(Index):::.cshtml\* file, and add the `<form>` markup highlighted in the following code:</span></span>
+<span data-ttu-id="4029c-205">Aprire il file _Pages/Movies/ Index . cshtml \* e aggiungere il `<form>` markup evidenziato nel codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-205">Open the _Pages/Movies/Index.cshtml\* file, and add the `<form>` markup highlighted in the following code:</span></span>
 
-[!code-cshtml[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Pages/Movies/:::no-loc(Index):::2.cshtml?highlight=14-19&range=1-22)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index2.cshtml?highlight=14-19&range=1-22)]
 
 <span data-ttu-id="4029c-206">Il tag HTML `<form>` usa gli [helper tag](xref:mvc/views/tag-helpers/intro) seguenti:</span><span class="sxs-lookup"><span data-stu-id="4029c-206">The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helpers/intro):</span></span>
 
-* <span data-ttu-id="4029c-207">[Helper tag di form](xref:mvc/views/working-with-forms#the-form-tag-helper).</span><span class="sxs-lookup"><span data-stu-id="4029c-207">[Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper).</span></span> <span data-ttu-id="4029c-208">Quando il modulo viene inviato, la stringa di filtro viene inviata a *pagine/filmati/ :::no-loc(Index):::* pagina tramite la stringa di query.</span><span class="sxs-lookup"><span data-stu-id="4029c-208">When the form is submitted, the filter string is sent to the *Pages/Movies/:::no-loc(Index):::* page via query string.</span></span>
+* <span data-ttu-id="4029c-207">[Helper tag di form](xref:mvc/views/working-with-forms#the-form-tag-helper).</span><span class="sxs-lookup"><span data-stu-id="4029c-207">[Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper).</span></span> <span data-ttu-id="4029c-208">Quando il modulo viene inviato, la stringa di filtro viene inviata a *pagine/filmati/ Index* pagina tramite la stringa di query.</span><span class="sxs-lookup"><span data-stu-id="4029c-208">When the form is submitted, the filter string is sent to the *Pages/Movies/Index* page via query string.</span></span>
 * [<span data-ttu-id="4029c-209">Helper tag di input</span><span class="sxs-lookup"><span data-stu-id="4029c-209">Input Tag Helper</span></span>](xref:mvc/views/working-with-forms#the-input-tag-helper)
 
 <span data-ttu-id="4029c-210">Salvare le modifiche e testare il filtro.</span><span class="sxs-lookup"><span data-stu-id="4029c-210">Save the changes and test the filter.</span></span>
@@ -219,21 +219,21 @@ var movies = from m in _context.Movie
 
 <span data-ttu-id="4029c-213">Aggiornare il metodo `OnGetAsync` con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-213">Update the `OnGetAsync` method with the following code:</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_SearchGenre)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
 
 <span data-ttu-id="4029c-214">Il codice seguente è una query LINQ che recupera tutti i generi dal database.</span><span class="sxs-lookup"><span data-stu-id="4029c-214">The following code is a LINQ query that retrieves all the genres from the database.</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_LINQ)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_LINQ)]
 
 <span data-ttu-id="4029c-215">L'elenco `SelectList` di generi viene creato selezionando generi distinti.</span><span class="sxs-lookup"><span data-stu-id="4029c-215">The `SelectList` of genres is created by projecting the distinct genres.</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Pages/Movies/:::no-loc(Index):::.cshtml.cs?name=snippet_SelectList)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-no-locrazor-page"></a><span data-ttu-id="4029c-216">Aggiungi la ricerca per genere alla :::no-loc(Razor)::: pagina</span><span class="sxs-lookup"><span data-stu-id="4029c-216">Add search by genre to the :::no-loc(Razor)::: Page</span></span>
+### <a name="add-search-by-genre-to-the-no-locrazor-page"></a><span data-ttu-id="4029c-216">Aggiungi la ricerca per genere alla Razor pagina</span><span class="sxs-lookup"><span data-stu-id="4029c-216">Add search by genre to the Razor Page</span></span>
 
-<span data-ttu-id="4029c-217">Aggiornare il *:::no-loc(Index)::: cshtml* [ `<form>` elemento] ( https://developer.mozilla.org/docs/Web/HTML/Element/form) come evidenziato nel markup seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-217">Update the *:::no-loc(Index):::.cshtml* [`<form>` element] (https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:</span></span>
+<span data-ttu-id="4029c-217">Aggiornare il *Index cshtml* [ `<form>` elemento] ( https://developer.mozilla.org/docs/Web/HTML/Element/form) come evidenziato nel markup seguente:</span><span class="sxs-lookup"><span data-stu-id="4029c-217">Update the *Index.cshtml* [`<form>` element] (https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:</span></span>
 
-[!code-cshtml[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Pages/Movies/:::no-loc(Index):::FormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
 <span data-ttu-id="4029c-218">Eseguire il test dell'app effettuando una ricerca per genere, titolo del film e usando entrambi i filtri.</span><span class="sxs-lookup"><span data-stu-id="4029c-218">Test the app by searching by genre, by movie title, and by both.</span></span>
 <span data-ttu-id="4029c-219">Il codice precedente usa l'helper [tag SELECT](xref:mvc/views/working-with-forms#the-select-tag-helper) e l'helper tag option.</span><span class="sxs-lookup"><span data-stu-id="4029c-219">The preceding code uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper) and Option Tag Helper.</span></span>

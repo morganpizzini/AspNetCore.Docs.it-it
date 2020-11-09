@@ -5,17 +5,17 @@ description: Informazioni sulla gestione e la durata delle chiavi di protezione 
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/data-protection/configuration/default-settings
 ms.openlocfilehash: 1303c5c2c993f1d20383457666aebfa2a583e938
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -35,7 +35,7 @@ ms.locfileid: "93053007"
 1. <span data-ttu-id="cda41-107">Se l'app è ospitata in [app di Azure](https://azure.microsoft.com/services/app-service/), le chiavi vengono salvate in modo permanente nella cartella *%Home%\ASP.NET\DataProtection-Keys* .</span><span class="sxs-lookup"><span data-stu-id="cda41-107">If the app is hosted in [Azure Apps](https://azure.microsoft.com/services/app-service/), keys are persisted to the *%HOME%\ASP.NET\DataProtection-Keys* folder.</span></span> <span data-ttu-id="cda41-108">La cartella è associata all'archiviazione di rete e sincronizzata in tutti i computer che ospitano l'app.</span><span class="sxs-lookup"><span data-stu-id="cda41-108">This folder is backed by network storage and is synchronized across all machines hosting the app.</span></span>
    * <span data-ttu-id="cda41-109">Le chiavi non vengono protette quando sono inattive.</span><span class="sxs-lookup"><span data-stu-id="cda41-109">Keys aren't protected at rest.</span></span>
    * <span data-ttu-id="cda41-110">La cartella *DataProtection-Keys* fornisce l'anello chiave a tutte le istanze di un'app in un unico slot di distribuzione.</span><span class="sxs-lookup"><span data-stu-id="cda41-110">The *DataProtection-Keys* folder supplies the key ring to all instances of an app in a single deployment slot.</span></span>
-   * <span data-ttu-id="cda41-111">Gli slot di distribuzione separati, ad esempio gli slot di gestione temporanea e di produzione, non condividono un KeyRing.</span><span class="sxs-lookup"><span data-stu-id="cda41-111">Separate deployment slots, such as Staging and Production, don't share a key ring.</span></span> <span data-ttu-id="cda41-112">Quando si esegue lo scambio tra gli slot di distribuzione, ad esempio lo scambio di staging in produzione o l'uso di un test A/B, qualsiasi app che usa la protezione dei dati non sarà in grado di decrittografare i dati archiviati usando l'anello chiave all'interno dello slot precedente.</span><span class="sxs-lookup"><span data-stu-id="cda41-112">When you swap between deployment slots, for example swapping Staging to Production or using A/B testing, any app using Data Protection won't be able to decrypt stored data using the key ring inside the previous slot.</span></span> <span data-ttu-id="cda41-113">In questo modo gli utenti vengono disconnessi da un'app che usa l'autenticazione ASP.NET Core standard :::no-loc(cookie)::: , perché usa la protezione dei dati per proteggere i relativi :::no-loc(cookie)::: .</span><span class="sxs-lookup"><span data-stu-id="cda41-113">This leads to users being logged out of an app that uses the standard ASP.NET Core :::no-loc(cookie)::: authentication, as it uses Data Protection to protect its :::no-loc(cookie):::s.</span></span> <span data-ttu-id="cda41-114">Se si vuole che gli anelli chiave indipendenti dallo slot, usare un provider di anello chiave esterno, ad esempio archiviazione BLOB di Azure, Azure Key Vault, un archivio SQL o cache Redis.</span><span class="sxs-lookup"><span data-stu-id="cda41-114">If you desire slot-independent key rings, use an external key ring provider, such as Azure Blob Storage, Azure Key Vault, a SQL store, or Redis cache.</span></span>
+   * <span data-ttu-id="cda41-111">Gli slot di distribuzione separati, ad esempio gli slot di gestione temporanea e di produzione, non condividono un KeyRing.</span><span class="sxs-lookup"><span data-stu-id="cda41-111">Separate deployment slots, such as Staging and Production, don't share a key ring.</span></span> <span data-ttu-id="cda41-112">Quando si esegue lo scambio tra gli slot di distribuzione, ad esempio lo scambio di staging in produzione o l'uso di un test A/B, qualsiasi app che usa la protezione dei dati non sarà in grado di decrittografare i dati archiviati usando l'anello chiave all'interno dello slot precedente.</span><span class="sxs-lookup"><span data-stu-id="cda41-112">When you swap between deployment slots, for example swapping Staging to Production or using A/B testing, any app using Data Protection won't be able to decrypt stored data using the key ring inside the previous slot.</span></span> <span data-ttu-id="cda41-113">In questo modo gli utenti vengono disconnessi da un'app che usa l'autenticazione ASP.NET Core standard cookie , perché usa la protezione dei dati per proteggere i relativi cookie .</span><span class="sxs-lookup"><span data-stu-id="cda41-113">This leads to users being logged out of an app that uses the standard ASP.NET Core cookie authentication, as it uses Data Protection to protect its cookies.</span></span> <span data-ttu-id="cda41-114">Se si vuole che gli anelli chiave indipendenti dallo slot, usare un provider di anello chiave esterno, ad esempio archiviazione BLOB di Azure, Azure Key Vault, un archivio SQL o cache Redis.</span><span class="sxs-lookup"><span data-stu-id="cda41-114">If you desire slot-independent key rings, use an external key ring provider, such as Azure Blob Storage, Azure Key Vault, a SQL store, or Redis cache.</span></span>
 
 1. <span data-ttu-id="cda41-115">Se il profilo utente è disponibile, le chiavi vengono salvate in modo permanente nella cartella *%LocalAppData%\ASP.NET\DataProtection-Keys* .</span><span class="sxs-lookup"><span data-stu-id="cda41-115">If the user profile is available, keys are persisted to the *%LOCALAPPDATA%\ASP.NET\DataProtection-Keys* folder.</span></span> <span data-ttu-id="cda41-116">Se il sistema operativo è Windows, le chiavi vengono crittografate a riposo tramite DPAPI.</span><span class="sxs-lookup"><span data-stu-id="cda41-116">If the operating system is Windows, the keys are encrypted at rest using DPAPI.</span></span>
 

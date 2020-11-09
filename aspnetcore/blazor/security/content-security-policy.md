@@ -1,23 +1,23 @@
 ---
-title: 'Applicare un criterio di sicurezza del contenuto per ASP.NET Core :::no-loc(Blazor):::'
+title: 'Applicare un criterio di sicurezza del contenuto per ASP.NET Core Blazor'
 author: guardrex
-description: 'Informazioni su come usare un criterio di sicurezza del contenuto (CSP) con ASP.NET Core :::no-loc(Blazor)::: app per la protezione da attacchi XSS (cross-site scripting).'
+description: 'Informazioni su come usare un criterio di sicurezza del contenuto (CSP) con ASP.NET Core Blazor app per la protezione da attacchi XSS (cross-site scripting).'
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/security/content-security-policy
 ms.openlocfilehash: 66fd41abe4f85071797bacc0a5531bbab35bd227
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,7 +26,7 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93055594"
 ---
-# <a name="enforce-a-content-security-policy-for-aspnet-core-no-locblazor"></a><span data-ttu-id="093d3-103">Applicare un criterio di sicurezza del contenuto per ASP.NET Core :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="093d3-103">Enforce a Content Security Policy for ASP.NET Core :::no-loc(Blazor):::</span></span>
+# <a name="enforce-a-content-security-policy-for-aspnet-core-no-locblazor"></a><span data-ttu-id="093d3-103">Applicare un criterio di sicurezza del contenuto per ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="093d3-103">Enforce a Content Security Policy for ASP.NET Core Blazor</span></span>
 
 <span data-ttu-id="093d3-104">Di [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="093d3-104">By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)</span></span>
 
@@ -40,11 +40,11 @@ ms.locfileid: "93055594"
 
 <span data-ttu-id="093d3-111">I criteri vengono valutati dal browser durante il caricamento di una pagina.</span><span class="sxs-lookup"><span data-stu-id="093d3-111">Policies are evaluated by the browser while a page is loading.</span></span> <span data-ttu-id="093d3-112">Il browser controlla le origini della pagina e determina se soddisfano i requisiti delle direttive di sicurezza del contenuto.</span><span class="sxs-lookup"><span data-stu-id="093d3-112">The browser inspects the page's sources and determines if they meet the requirements of the content security directives.</span></span> <span data-ttu-id="093d3-113">Quando le direttive dei criteri non vengono soddisfatte per una risorsa, il browser non carica la risorsa.</span><span class="sxs-lookup"><span data-stu-id="093d3-113">When policy directives aren't met for a resource, the browser doesn't load the resource.</span></span> <span data-ttu-id="093d3-114">Si consideri, ad esempio, un criterio che non consente script di terze parti.</span><span class="sxs-lookup"><span data-stu-id="093d3-114">For example, consider a policy that doesn't allow third-party scripts.</span></span> <span data-ttu-id="093d3-115">Quando una pagina contiene un `<script>` tag con un'origine di terze parti nell' `src` attributo, il browser impedisce il caricamento dello script.</span><span class="sxs-lookup"><span data-stu-id="093d3-115">When a page contains a `<script>` tag with a third-party origin in the `src` attribute, the browser prevents the script from loading.</span></span>
 
-<span data-ttu-id="093d3-116">CSP è supportato nella maggior parte dei browser moderni per desktop e per dispositivi mobili, tra cui Chrome, Edge, Firefox, opera e Safari.</span><span class="sxs-lookup"><span data-stu-id="093d3-116">CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari.</span></span> <span data-ttu-id="093d3-117">CSP è consigliato per le :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="093d3-117">CSP is recommended for :::no-loc(Blazor)::: apps.</span></span>
+<span data-ttu-id="093d3-116">CSP è supportato nella maggior parte dei browser moderni per desktop e per dispositivi mobili, tra cui Chrome, Edge, Firefox, opera e Safari.</span><span class="sxs-lookup"><span data-stu-id="093d3-116">CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari.</span></span> <span data-ttu-id="093d3-117">CSP è consigliato per le Blazor app.</span><span class="sxs-lookup"><span data-stu-id="093d3-117">CSP is recommended for Blazor apps.</span></span>
 
 ## <a name="policy-directives"></a><span data-ttu-id="093d3-118">Direttive dei criteri</span><span class="sxs-lookup"><span data-stu-id="093d3-118">Policy directives</span></span>
 
-<span data-ttu-id="093d3-119">Specificare almeno le direttive e le origini seguenti per le :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="093d3-119">Minimally, specify the following directives and sources for :::no-loc(Blazor)::: apps.</span></span> <span data-ttu-id="093d3-120">Aggiungere altre direttive e origini in base alle esigenze.</span><span class="sxs-lookup"><span data-stu-id="093d3-120">Add additional directives and sources as needed.</span></span> <span data-ttu-id="093d3-121">Le direttive seguenti vengono usate nella sezione [applicare i criteri](#apply-the-policy) di questo articolo, in cui sono disponibili i criteri di sicurezza di esempio per :::no-loc(Blazor WebAssembly)::: e :::no-loc(Blazor Server)::: :</span><span class="sxs-lookup"><span data-stu-id="093d3-121">The following directives are used in the [Apply the policy](#apply-the-policy) section of this article, where example security policies for :::no-loc(Blazor WebAssembly)::: and :::no-loc(Blazor Server)::: are provided:</span></span>
+<span data-ttu-id="093d3-119">Specificare almeno le direttive e le origini seguenti per le Blazor app.</span><span class="sxs-lookup"><span data-stu-id="093d3-119">Minimally, specify the following directives and sources for Blazor apps.</span></span> <span data-ttu-id="093d3-120">Aggiungere altre direttive e origini in base alle esigenze.</span><span class="sxs-lookup"><span data-stu-id="093d3-120">Add additional directives and sources as needed.</span></span> <span data-ttu-id="093d3-121">Le direttive seguenti vengono usate nella sezione [applicare i criteri](#apply-the-policy) di questo articolo, in cui sono disponibili i criteri di sicurezza di esempio per Blazor WebAssembly e Blazor Server :</span><span class="sxs-lookup"><span data-stu-id="093d3-121">The following directives are used in the [Apply the policy](#apply-the-policy) section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:</span></span>
 
 * <span data-ttu-id="093d3-122">[URI di base](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): limita gli URL per il tag di una pagina `<base>` .</span><span class="sxs-lookup"><span data-stu-id="093d3-122">[base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag.</span></span> <span data-ttu-id="093d3-123">Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.</span><span class="sxs-lookup"><span data-stu-id="093d3-123">Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.</span></span>
 * <span data-ttu-id="093d3-124">[Block-All-Mixed-Content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): impedisce il caricamento di contenuto misto http e HTTPS.</span><span class="sxs-lookup"><span data-stu-id="093d3-124">[block-all-mixed-content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): Prevents loading mixed HTTP and HTTPS content.</span></span>
@@ -56,17 +56,17 @@ ms.locfileid: "93055594"
 * <span data-ttu-id="093d3-132">[script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): indica le origini valide per gli script.</span><span class="sxs-lookup"><span data-stu-id="093d3-132">[script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.</span></span>
   * <span data-ttu-id="093d3-133">Specificare l' `https://stackpath.bootstrapcdn.com/` origine host per gli script bootstrap.</span><span class="sxs-lookup"><span data-stu-id="093d3-133">Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap scripts.</span></span>
   * <span data-ttu-id="093d3-134">Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.</span><span class="sxs-lookup"><span data-stu-id="093d3-134">Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.</span></span>
-  * <span data-ttu-id="093d3-135">In un' :::no-loc(Blazor WebAssembly)::: app:</span><span class="sxs-lookup"><span data-stu-id="093d3-135">In a :::no-loc(Blazor WebAssembly)::: app:</span></span>
-    * <span data-ttu-id="093d3-136">Specificare gli hash seguenti per consentire il caricamento degli :::no-loc(Blazor WebAssembly)::: script inline necessari:</span><span class="sxs-lookup"><span data-stu-id="093d3-136">Specify the following hashes to permit the required :::no-loc(Blazor WebAssembly)::: inline scripts to load:</span></span>
+  * <span data-ttu-id="093d3-135">In un' Blazor WebAssembly app:</span><span class="sxs-lookup"><span data-stu-id="093d3-135">In a Blazor WebAssembly app:</span></span>
+    * <span data-ttu-id="093d3-136">Specificare gli hash seguenti per consentire il caricamento degli Blazor WebAssembly script inline necessari:</span><span class="sxs-lookup"><span data-stu-id="093d3-136">Specify the following hashes to permit the required Blazor WebAssembly inline scripts to load:</span></span>
       * `sha256-v8ZC9OgMhcnEQ/Me77/R9TlJfzOBqrMTW8e1KuqLaqc=`
       * `sha256-If//FtbPc03afjLezvWHnC3Nbu4fDM04IIzkPaf3pH0=`
       * `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=`
     * <span data-ttu-id="093d3-137">Specificare `unsafe-eval` per usare `eval()` i metodi e per la creazione di codice da stringhe.</span><span class="sxs-lookup"><span data-stu-id="093d3-137">Specify `unsafe-eval` to use `eval()` and methods for creating code from strings.</span></span>
-  * <span data-ttu-id="093d3-138">In un' :::no-loc(Blazor Server)::: app specificare l' `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` hash per lo script inline che esegue il rilevamento del fallback per i fogli di stile.</span><span class="sxs-lookup"><span data-stu-id="093d3-138">In a :::no-loc(Blazor Server)::: app, specify the `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` hash for the inline script that performs fallback detection for stylesheets.</span></span>
+  * <span data-ttu-id="093d3-138">In un' Blazor Server app specificare l' `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` hash per lo script inline che esegue il rilevamento del fallback per i fogli di stile.</span><span class="sxs-lookup"><span data-stu-id="093d3-138">In a Blazor Server app, specify the `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` hash for the inline script that performs fallback detection for stylesheets.</span></span>
 * <span data-ttu-id="093d3-139">[Style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): indica le origini valide per i fogli di stile.</span><span class="sxs-lookup"><span data-stu-id="093d3-139">[style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.</span></span>
   * <span data-ttu-id="093d3-140">Specificare l' `https://stackpath.bootstrapcdn.com/` origine host per i fogli di stile bootstrap.</span><span class="sxs-lookup"><span data-stu-id="093d3-140">Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap stylesheets.</span></span>
   * <span data-ttu-id="093d3-141">Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.</span><span class="sxs-lookup"><span data-stu-id="093d3-141">Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.</span></span>
-  * <span data-ttu-id="093d3-142">Specificare `unsafe-inline` per consentire l'utilizzo di stili inline.</span><span class="sxs-lookup"><span data-stu-id="093d3-142">Specify `unsafe-inline` to allow the use of inline styles.</span></span> <span data-ttu-id="093d3-143">La dichiarazione inline è necessaria per l'interfaccia utente nelle :::no-loc(Blazor Server)::: app per la riconnessione del client e del server dopo la richiesta iniziale.</span><span class="sxs-lookup"><span data-stu-id="093d3-143">The inline declaration is required for the UI in :::no-loc(Blazor Server)::: apps for reconnecting the client and server after the initial request.</span></span> <span data-ttu-id="093d3-144">In una versione futura, lo stile inline potrebbe essere rimosso in modo che `unsafe-inline` non sia più necessario.</span><span class="sxs-lookup"><span data-stu-id="093d3-144">In a future release, inline styling might be removed so that `unsafe-inline` is no longer required.</span></span>
+  * <span data-ttu-id="093d3-142">Specificare `unsafe-inline` per consentire l'utilizzo di stili inline.</span><span class="sxs-lookup"><span data-stu-id="093d3-142">Specify `unsafe-inline` to allow the use of inline styles.</span></span> <span data-ttu-id="093d3-143">La dichiarazione inline è necessaria per l'interfaccia utente nelle Blazor Server app per la riconnessione del client e del server dopo la richiesta iniziale.</span><span class="sxs-lookup"><span data-stu-id="093d3-143">The inline declaration is required for the UI in Blazor Server apps for reconnecting the client and server after the initial request.</span></span> <span data-ttu-id="093d3-144">In una versione futura, lo stile inline potrebbe essere rimosso in modo che `unsafe-inline` non sia più necessario.</span><span class="sxs-lookup"><span data-stu-id="093d3-144">In a future release, inline styling might be removed so that `unsafe-inline` is no longer required.</span></span>
 * <span data-ttu-id="093d3-145">[upgrade-unsecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): indica che gli URL del contenuto da origini non sicure (http) devono essere acquisiti in modo sicuro su HTTPS.</span><span class="sxs-lookup"><span data-stu-id="093d3-145">[upgrade-insecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.</span></span>
 
 <span data-ttu-id="093d3-146">Le direttive precedenti sono supportate da tutti i browser ad eccezione di Microsoft Internet Explorer.</span><span class="sxs-lookup"><span data-stu-id="093d3-146">The preceding directives are supported by all browsers except Microsoft Internet Explorer.</span></span>
@@ -87,9 +87,9 @@ ms.locfileid: "93055594"
 * <span data-ttu-id="093d3-157">Inserire le direttive nel `content` valore dell'attributo.</span><span class="sxs-lookup"><span data-stu-id="093d3-157">Place the directives in the `content` attribute value.</span></span> <span data-ttu-id="093d3-158">Separare le direttive con un punto e virgola ( `;` ).</span><span class="sxs-lookup"><span data-stu-id="093d3-158">Separate directives with a semicolon (`;`).</span></span>
 * <span data-ttu-id="093d3-159">Posizionare sempre il `meta` tag nel `<head>` contenuto.</span><span class="sxs-lookup"><span data-stu-id="093d3-159">Always place the `meta` tag in the `<head>` content.</span></span>
 
-<span data-ttu-id="093d3-160">Nelle sezioni seguenti vengono illustrati i criteri di esempio per :::no-loc(Blazor WebAssembly)::: e :::no-loc(Blazor Server)::: .</span><span class="sxs-lookup"><span data-stu-id="093d3-160">The following sections show example policies for :::no-loc(Blazor WebAssembly)::: and :::no-loc(Blazor Server):::.</span></span> <span data-ttu-id="093d3-161">Questi esempi sono disponibili in questo articolo per ogni versione di :::no-loc(Blazor)::: .</span><span class="sxs-lookup"><span data-stu-id="093d3-161">These examples are versioned with this article for each release of :::no-loc(Blazor):::.</span></span> <span data-ttu-id="093d3-162">Per usare una versione appropriata per il rilascio, selezionare la versione del documento con il selettore a discesa **versione** in questa pagina Web.</span><span class="sxs-lookup"><span data-stu-id="093d3-162">To use a version appropriate for your release, select the document version with the **Version** drop down selector on this webpage.</span></span>
+<span data-ttu-id="093d3-160">Nelle sezioni seguenti vengono illustrati i criteri di esempio per Blazor WebAssembly e Blazor Server .</span><span class="sxs-lookup"><span data-stu-id="093d3-160">The following sections show example policies for Blazor WebAssembly and Blazor Server.</span></span> <span data-ttu-id="093d3-161">Questi esempi sono disponibili in questo articolo per ogni versione di Blazor .</span><span class="sxs-lookup"><span data-stu-id="093d3-161">These examples are versioned with this article for each release of Blazor.</span></span> <span data-ttu-id="093d3-162">Per usare una versione appropriata per il rilascio, selezionare la versione del documento con il selettore a discesa **versione** in questa pagina Web.</span><span class="sxs-lookup"><span data-stu-id="093d3-162">To use a version appropriate for your release, select the document version with the **Version** drop down selector on this webpage.</span></span>
 
-### :::no-loc(Blazor WebAssembly):::
+### Blazor WebAssembly
 
 <span data-ttu-id="093d3-163">Nel `<head>` contenuto della `wwwroot/index.html` pagina host applicare le direttive descritte nella sezione [direttive dei criteri](#policy-directives) :</span><span class="sxs-lookup"><span data-stu-id="093d3-163">In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives) section:</span></span>
 
@@ -112,7 +112,7 @@ ms.locfileid: "93055594"
                upgrade-insecure-requests;">
 ```
 
-### :::no-loc(Blazor Server):::
+### Blazor Server
 
 <span data-ttu-id="093d3-164">Nel `<head>` contenuto della `Pages/_Host.cshtml` pagina host applicare le direttive descritte nella sezione [direttive dei criteri](#policy-directives) :</span><span class="sxs-lookup"><span data-stu-id="093d3-164">In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives) section:</span></span>
 

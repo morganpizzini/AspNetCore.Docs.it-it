@@ -1,23 +1,23 @@
 ---
-title: 'Integrare ASP.NET Core :::no-loc(Razor)::: componenti in :::no-loc(Razor)::: pagine e app MVC'
+title: 'Integrare ASP.NET Core Razor componenti in Razor pagine e app MVC'
 author: guardrex
-description: 'Informazioni sugli scenari di data binding per i componenti e gli elementi DOM nelle :::no-loc(Blazor)::: app.'
+description: 'Informazioni sugli scenari di data binding per i componenti e gli elementi DOM nelle Blazor app.'
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/25/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
 ms.openlocfilehash: e56a08be082cef4ba3a0a58fdfa9d3800d244f75
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,22 +26,22 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93056257"
 ---
-# <a name="integrate-aspnet-core-no-locrazor-components-into-no-locrazor-pages-and-mvc-apps"></a><span data-ttu-id="2e1c1-103">Integrare ASP.NET Core :::no-loc(Razor)::: componenti in :::no-loc(Razor)::: pagine e app MVC</span><span class="sxs-lookup"><span data-stu-id="2e1c1-103">Integrate ASP.NET Core :::no-loc(Razor)::: components into :::no-loc(Razor)::: Pages and MVC apps</span></span>
+# <a name="integrate-aspnet-core-no-locrazor-components-into-no-locrazor-pages-and-mvc-apps"></a><span data-ttu-id="2e1c1-103">Integrare ASP.NET Core Razor componenti in Razor pagine e app MVC</span><span class="sxs-lookup"><span data-stu-id="2e1c1-103">Integrate ASP.NET Core Razor components into Razor Pages and MVC apps</span></span>
 
 <span data-ttu-id="2e1c1-104">Di [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)</span><span class="sxs-lookup"><span data-stu-id="2e1c1-104">By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)</span></span>
 
-<span data-ttu-id="2e1c1-105">:::no-loc(Razor)::: i componenti possono essere integrati in :::no-loc(Razor)::: pagine e app MVC.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-105">:::no-loc(Razor)::: components can be integrated into :::no-loc(Razor)::: Pages and MVC apps.</span></span> <span data-ttu-id="2e1c1-106">Quando viene eseguito il rendering della pagina o della vista, è possibile eseguire il rendering dei componenti contemporaneamente.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-106">When the page or view is rendered, components can be prerendered at the same time.</span></span>
+<span data-ttu-id="2e1c1-105">Razor i componenti possono essere integrati in Razor pagine e app MVC.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-105">Razor components can be integrated into Razor Pages and MVC apps.</span></span> <span data-ttu-id="2e1c1-106">Quando viene eseguito il rendering della pagina o della vista, è possibile eseguire il rendering dei componenti contemporaneamente.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-106">When the page or view is rendered, components can be prerendered at the same time.</span></span>
 
 <span data-ttu-id="2e1c1-107">Dopo aver [preparato l'app](#prepare-the-app), usare le istruzioni riportate nelle sezioni seguenti a seconda dei requisiti dell'app:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-107">After [preparing the app](#prepare-the-app), use the guidance in the following sections depending on the app's requirements:</span></span>
 
 * <span data-ttu-id="2e1c1-108">Componenti instradabili: per i componenti che sono direttamente instradabili dalle richieste degli utenti.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-108">Routable components: For components that are directly routable from user requests.</span></span> <span data-ttu-id="2e1c1-109">Seguire queste linee guida quando i visitatori devono essere in grado di effettuare una richiesta HTTP nel browser per un componente con una [`@page`](xref:mvc/views/razor#page) direttiva.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-109">Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.</span></span>
-  * [<span data-ttu-id="2e1c1-110">Usare componenti instradabili in un' :::no-loc(Razor)::: app pagine</span><span class="sxs-lookup"><span data-stu-id="2e1c1-110">Use routable components in a :::no-loc(Razor)::: Pages app</span></span>](#use-routable-components-in-a-razor-pages-app)
+  * [<span data-ttu-id="2e1c1-110">Usare componenti instradabili in un' Razor app pagine</span><span class="sxs-lookup"><span data-stu-id="2e1c1-110">Use routable components in a Razor Pages app</span></span>](#use-routable-components-in-a-razor-pages-app)
   * [<span data-ttu-id="2e1c1-111">Usare componenti instradabili in un'app MVC</span><span class="sxs-lookup"><span data-stu-id="2e1c1-111">Use routable components in an MVC app</span></span>](#use-routable-components-in-an-mvc-app)
 * <span data-ttu-id="2e1c1-112">[Eseguire il rendering dei componenti da una pagina o vista](#render-components-from-a-page-or-view): per i componenti che non sono direttamente instradabili dalle richieste degli utenti.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-112">[Render components from a page or view](#render-components-from-a-page-or-view): For components that aren't directly routable from user requests.</span></span> <span data-ttu-id="2e1c1-113">Seguire queste linee guida quando l'app incorpora i componenti in pagine e visualizzazioni esistenti con l' [Helper tag dei componenti](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).</span><span class="sxs-lookup"><span data-stu-id="2e1c1-113">Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).</span></span>
 
 ## <a name="prepare-the-app"></a><span data-ttu-id="2e1c1-114">Preparare l'app</span><span class="sxs-lookup"><span data-stu-id="2e1c1-114">Prepare the app</span></span>
 
-<span data-ttu-id="2e1c1-115">Un' :::no-loc(Razor)::: app MVC o pagine esistente può integrare i :::no-loc(Razor)::: componenti in pagine e visualizzazioni:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-115">An existing :::no-loc(Razor)::: Pages or MVC app can integrate :::no-loc(Razor)::: components into pages and views:</span></span>
+<span data-ttu-id="2e1c1-115">Un' Razor app MVC o pagine esistente può integrare i Razor componenti in pagine e visualizzazioni:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-115">An existing Razor Pages or MVC app can integrate Razor components into pages and views:</span></span>
 
 1. <span data-ttu-id="2e1c1-116">Nel file di layout dell'app ( `_Layout.cshtml` ):</span><span class="sxs-lookup"><span data-stu-id="2e1c1-116">In the app's layout file (`_Layout.cshtml`):</span></span>
 
@@ -53,7 +53,7 @@ ms.locfileid: "93056257"
 
      <span data-ttu-id="2e1c1-118">Il `href` valore (il *percorso di base dell'app* ) nell'esempio precedente presuppone che l'app si trovi nel percorso URL radice ( `/` ).</span><span class="sxs-lookup"><span data-stu-id="2e1c1-118">The `href` value (the *app base path* ) in the preceding example assumes that the app resides at the root URL path (`/`).</span></span> <span data-ttu-id="2e1c1-119">Se l'app è un'applicazione secondaria, seguire le istruzioni nella sezione *percorso di base* dell'applicazione dell' <xref:blazor/host-and-deploy/index#app-base-path> articolo.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-119">If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.</span></span>
 
-     <span data-ttu-id="2e1c1-120">Il `_Layout.cshtml` file si trova nella cartella *pages/Shared* in un' :::no-loc(Razor)::: app Pages o in una cartella *condivisa* o in un'app MVC.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-120">The `_Layout.cshtml` file is located in the *Pages/Shared* folder in a :::no-loc(Razor)::: Pages app or *Views/Shared* folder in an MVC app.</span></span>
+     <span data-ttu-id="2e1c1-120">Il `_Layout.cshtml` file si trova nella cartella *pages/Shared* in un' Razor app Pages o in una cartella *condivisa* o in un'app MVC.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-120">The `_Layout.cshtml` file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.</span></span>
 
    * <span data-ttu-id="2e1c1-121">Aggiungere un `<script>` tag per lo script *blazor.server.js* immediatamente prima del tag di chiusura `</body>` :</span><span class="sxs-lookup"><span data-stu-id="2e1c1-121">Add a `<script>` tag for the *blazor.server.js* script immediately before the closing `</body>` tag:</span></span>
 
@@ -76,25 +76,25 @@ ms.locfileid: "93056257"
    @using MyAppNamespace
    ```
 
-1. <span data-ttu-id="2e1c1-125">In `Startup.ConfigureServices` registrare il :::no-loc(Blazor Server)::: servizio:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-125">In `Startup.ConfigureServices`, register the :::no-loc(Blazor Server)::: service:</span></span>
+1. <span data-ttu-id="2e1c1-125">In `Startup.ConfigureServices` registrare il Blazor Server servizio:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-125">In `Startup.ConfigureServices`, register the Blazor Server service:</span></span>
 
    ```csharp
-   services.AddServerSide:::no-loc(Blazor):::();
+   services.AddServerSideBlazor();
    ```
 
-1. <span data-ttu-id="2e1c1-126">In `Startup.Configure` aggiungere l' :::no-loc(Blazor)::: endpoint dell'hub a `app.UseEndpoints` :</span><span class="sxs-lookup"><span data-stu-id="2e1c1-126">In `Startup.Configure`, add the :::no-loc(Blazor)::: Hub endpoint to `app.UseEndpoints`:</span></span>
+1. <span data-ttu-id="2e1c1-126">In `Startup.Configure` aggiungere l' Blazor endpoint dell'hub a `app.UseEndpoints` :</span><span class="sxs-lookup"><span data-stu-id="2e1c1-126">In `Startup.Configure`, add the Blazor Hub endpoint to `app.UseEndpoints`:</span></span>
 
    ```csharp
-   endpoints.Map:::no-loc(Blazor):::Hub();
+   endpoints.MapBlazorHub();
    ```
 
 1. <span data-ttu-id="2e1c1-127">Integrare i componenti in qualsiasi pagina o visualizzazione.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-127">Integrate components into any page or view.</span></span> <span data-ttu-id="2e1c1-128">Per ulteriori informazioni, vedere la sezione [rendering dei componenti da una pagina o vista](#render-components-from-a-page-or-view) .</span><span class="sxs-lookup"><span data-stu-id="2e1c1-128">For more information, see the [Render components from a page or view](#render-components-from-a-page-or-view) section.</span></span>
 
-## <a name="use-routable-components-in-a-no-locrazor-pages-app"></a><span data-ttu-id="2e1c1-129">Usare componenti instradabili in un' :::no-loc(Razor)::: app pagine</span><span class="sxs-lookup"><span data-stu-id="2e1c1-129">Use routable components in a :::no-loc(Razor)::: Pages app</span></span>
+## <a name="use-routable-components-in-a-no-locrazor-pages-app"></a><span data-ttu-id="2e1c1-129">Usare componenti instradabili in un' Razor app pagine</span><span class="sxs-lookup"><span data-stu-id="2e1c1-129">Use routable components in a Razor Pages app</span></span>
 
 <span data-ttu-id="2e1c1-130">*Questa sezione riguarda l'aggiunta di componenti che sono direttamente instradabili dalle richieste degli utenti.*</span><span class="sxs-lookup"><span data-stu-id="2e1c1-130">*This section pertains to adding components that are directly routable from user requests.*</span></span>
 
-<span data-ttu-id="2e1c1-131">Per supportare componenti instradabili :::no-loc(Razor)::: nelle :::no-loc(Razor)::: app di pagine:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-131">To support routable :::no-loc(Razor)::: components in :::no-loc(Razor)::: Pages apps:</span></span>
+<span data-ttu-id="2e1c1-131">Per supportare componenti instradabili Razor nelle Razor app di pagine:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-131">To support routable Razor components in Razor Pages apps:</span></span>
 
 1. <span data-ttu-id="2e1c1-132">Seguire le istruzioni nella sezione [preparare l'app](#prepare-the-app) .</span><span class="sxs-lookup"><span data-stu-id="2e1c1-132">Follow the guidance in the [Prepare the app](#prepare-the-app) section.</span></span>
 
@@ -132,12 +132,12 @@ ms.locfileid: "93056257"
    <span data-ttu-id="2e1c1-136"><xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> Configura se il `App` componente:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-136"><xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:</span></span>
 
    * <span data-ttu-id="2e1c1-137">Viene preeseguito nella pagina.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-137">Is prerendered into the page.</span></span>
-   * <span data-ttu-id="2e1c1-138">Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' :::no-loc(Blazor)::: app dall'agente utente.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-138">Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a :::no-loc(Blazor)::: app from the user agent.</span></span>
+   * <span data-ttu-id="2e1c1-138">Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' Blazor app dall'agente utente.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-138">Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.</span></span>
 
    | <span data-ttu-id="2e1c1-139">Modalità di rendering</span><span class="sxs-lookup"><span data-stu-id="2e1c1-139">Render Mode</span></span> | <span data-ttu-id="2e1c1-140">Descrizione</span><span class="sxs-lookup"><span data-stu-id="2e1c1-140">Description</span></span> |
    | ----------- | ----------- |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="2e1c1-141">Esegue il rendering del `App` componente in HTML statico e include un marcatore per un' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-141">Renders the `App` component into static HTML and includes a marker for a :::no-loc(Blazor Server)::: app.</span></span> <span data-ttu-id="2e1c1-142">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-142">When the user-agent starts, this marker is used to bootstrap a :::no-loc(Blazor)::: app.</span></span> |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="2e1c1-143">Esegue il rendering di un marcatore per un' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-143">Renders a marker for a :::no-loc(Blazor Server)::: app.</span></span> <span data-ttu-id="2e1c1-144">L'output del `App` componente non è incluso.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-144">Output from the `App` component isn't included.</span></span> <span data-ttu-id="2e1c1-145">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-145">When the user-agent starts, this marker is used to bootstrap a :::no-loc(Blazor)::: app.</span></span> |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="2e1c1-141">Esegue il rendering del `App` componente in HTML statico e include un marcatore per un' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-141">Renders the `App` component into static HTML and includes a marker for a Blazor Server app.</span></span> <span data-ttu-id="2e1c1-142">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-142">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="2e1c1-143">Esegue il rendering di un marcatore per un' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-143">Renders a marker for a Blazor Server app.</span></span> <span data-ttu-id="2e1c1-144">L'output del `App` componente non è incluso.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-144">Output from the `App` component isn't included.</span></span> <span data-ttu-id="2e1c1-145">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-145">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
    | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | <span data-ttu-id="2e1c1-146">Esegue il rendering del `App` componente in HTML statico.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-146">Renders the `App` component into static HTML.</span></span> |
 
    <span data-ttu-id="2e1c1-147">Per ulteriori informazioni sull'helper tag dei componenti, vedere <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> .</span><span class="sxs-lookup"><span data-stu-id="2e1c1-147">For more information on the Component Tag Helper, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.</span></span>
@@ -169,7 +169,7 @@ ms.locfileid: "93056257"
 
 <span data-ttu-id="2e1c1-153">*Questa sezione riguarda l'aggiunta di componenti che sono direttamente instradabili dalle richieste degli utenti.*</span><span class="sxs-lookup"><span data-stu-id="2e1c1-153">*This section pertains to adding components that are directly routable from user requests.*</span></span>
 
-<span data-ttu-id="2e1c1-154">Per supportare componenti instradabili :::no-loc(Razor)::: nelle app MVC:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-154">To support routable :::no-loc(Razor)::: components in MVC apps:</span></span>
+<span data-ttu-id="2e1c1-154">Per supportare componenti instradabili Razor nelle app MVC:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-154">To support routable Razor components in MVC apps:</span></span>
 
 1. <span data-ttu-id="2e1c1-155">Seguire le istruzioni nella sezione [preparare l'app](#prepare-the-app) .</span><span class="sxs-lookup"><span data-stu-id="2e1c1-155">Follow the guidance in the [Prepare the app](#prepare-the-app) section.</span></span>
 
@@ -206,12 +206,12 @@ ms.locfileid: "93056257"
    <span data-ttu-id="2e1c1-159"><xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> Configura se il `App` componente:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-159"><xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:</span></span>
 
    * <span data-ttu-id="2e1c1-160">Viene preeseguito nella pagina.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-160">Is prerendered into the page.</span></span>
-   * <span data-ttu-id="2e1c1-161">Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' :::no-loc(Blazor)::: app dall'agente utente.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-161">Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a :::no-loc(Blazor)::: app from the user agent.</span></span>
+   * <span data-ttu-id="2e1c1-161">Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' Blazor app dall'agente utente.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-161">Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.</span></span>
 
    | <span data-ttu-id="2e1c1-162">Modalità di rendering</span><span class="sxs-lookup"><span data-stu-id="2e1c1-162">Render Mode</span></span> | <span data-ttu-id="2e1c1-163">Descrizione</span><span class="sxs-lookup"><span data-stu-id="2e1c1-163">Description</span></span> |
    | ----------- | ----------- |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="2e1c1-164">Esegue il rendering del `App` componente in HTML statico e include un marcatore per un' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-164">Renders the `App` component into static HTML and includes a marker for a :::no-loc(Blazor Server)::: app.</span></span> <span data-ttu-id="2e1c1-165">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-165">When the user-agent starts, this marker is used to bootstrap a :::no-loc(Blazor)::: app.</span></span> |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="2e1c1-166">Esegue il rendering di un marcatore per un' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-166">Renders a marker for a :::no-loc(Blazor Server)::: app.</span></span> <span data-ttu-id="2e1c1-167">L'output del `App` componente non è incluso.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-167">Output from the `App` component isn't included.</span></span> <span data-ttu-id="2e1c1-168">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-168">When the user-agent starts, this marker is used to bootstrap a :::no-loc(Blazor)::: app.</span></span> |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="2e1c1-164">Esegue il rendering del `App` componente in HTML statico e include un marcatore per un' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-164">Renders the `App` component into static HTML and includes a marker for a Blazor Server app.</span></span> <span data-ttu-id="2e1c1-165">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-165">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="2e1c1-166">Esegue il rendering di un marcatore per un' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-166">Renders a marker for a Blazor Server app.</span></span> <span data-ttu-id="2e1c1-167">L'output del `App` componente non è incluso.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-167">Output from the `App` component isn't included.</span></span> <span data-ttu-id="2e1c1-168">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-168">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
    | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | <span data-ttu-id="2e1c1-169">Esegue il rendering del `App` componente in HTML statico.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-169">Renders the `App` component into static HTML.</span></span> |
 
    <span data-ttu-id="2e1c1-170">Per ulteriori informazioni sull'helper tag dei componenti, vedere <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> .</span><span class="sxs-lookup"><span data-stu-id="2e1c1-170">For more information on the Component Tag Helper, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.</span></span>
@@ -219,7 +219,7 @@ ms.locfileid: "93056257"
 1. <span data-ttu-id="2e1c1-171">Aggiungere un'azione al controller Home:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-171">Add an action to the Home controller:</span></span>
 
    ```csharp
-   public IActionResult :::no-loc(Blazor):::()
+   public IActionResult Blazor()
    {
       return View("_Host");
    }
@@ -232,7 +232,7 @@ ms.locfileid: "93056257"
    {
        ...
 
-       endpoints.MapFallbackToController(":::no-loc(Blazor):::", "Home");
+       endpoints.MapFallbackToController("Blazor", "Home");
    });
    ```
 
@@ -256,18 +256,18 @@ ms.locfileid: "93056257"
 
 ### <a name="render-stateful-interactive-components"></a><span data-ttu-id="2e1c1-179">Eseguire il rendering di componenti interattivi con stato</span><span class="sxs-lookup"><span data-stu-id="2e1c1-179">Render stateful interactive components</span></span>
 
-<span data-ttu-id="2e1c1-180">I componenti interattivi con stato possono essere aggiunti a una :::no-loc(Razor)::: pagina o a una vista.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-180">Stateful interactive components can be added to a :::no-loc(Razor)::: page or view.</span></span>
+<span data-ttu-id="2e1c1-180">I componenti interattivi con stato possono essere aggiunti a una Razor pagina o a una vista.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-180">Stateful interactive components can be added to a Razor page or view.</span></span>
 
 <span data-ttu-id="2e1c1-181">Quando viene eseguito il rendering della pagina o della visualizzazione:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-181">When the page or view renders:</span></span>
 
 * <span data-ttu-id="2e1c1-182">Il componente viene preeseguito con la pagina o la visualizzazione.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-182">The component is prerendered with the page or view.</span></span>
 * <span data-ttu-id="2e1c1-183">Lo stato iniziale del componente utilizzato per il prerendering viene perso.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-183">The initial component state used for prerendering is lost.</span></span>
-* <span data-ttu-id="2e1c1-184">Quando viene stabilita la connessione, viene creato il nuovo stato del componente :::no-loc(SignalR)::: .</span><span class="sxs-lookup"><span data-stu-id="2e1c1-184">New component state is created when the :::no-loc(SignalR)::: connection is established.</span></span>
+* <span data-ttu-id="2e1c1-184">Quando viene stabilita la connessione, viene creato il nuovo stato del componente SignalR .</span><span class="sxs-lookup"><span data-stu-id="2e1c1-184">New component state is created when the SignalR connection is established.</span></span>
 
-<span data-ttu-id="2e1c1-185">Nella pagina seguente viene :::no-loc(Razor)::: eseguito il rendering di un `Counter` componente:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-185">The following :::no-loc(Razor)::: page renders a `Counter` component:</span></span>
+<span data-ttu-id="2e1c1-185">Nella pagina seguente viene Razor eseguito il rendering di un `Counter` componente:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-185">The following Razor page renders a `Counter` component:</span></span>
 
 ```cshtml
-<h1>My :::no-loc(Razor)::: Page</h1>
+<h1>My Razor Page</h1>
 
 <component type="typeof(Counter)" render-mode="ServerPrerendered" 
     param-InitialValue="InitialValue" />
@@ -282,10 +282,10 @@ ms.locfileid: "93056257"
 
 ### <a name="render-noninteractive-components"></a><span data-ttu-id="2e1c1-187">Eseguire il rendering di componenti non interattivi</span><span class="sxs-lookup"><span data-stu-id="2e1c1-187">Render noninteractive components</span></span>
 
-<span data-ttu-id="2e1c1-188">Nella pagina seguente :::no-loc(Razor)::: il componente viene sottoposto a `Counter` rendering statico con un valore iniziale specificato utilizzando un form.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-188">In the following :::no-loc(Razor)::: page, the `Counter` component is statically rendered with an initial value that's specified using a form.</span></span> <span data-ttu-id="2e1c1-189">Poiché il componente viene sottoposto a rendering statico, il componente non è interattivo:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-189">Since the component is statically rendered, the component isn't interactive:</span></span>
+<span data-ttu-id="2e1c1-188">Nella pagina seguente Razor il componente viene sottoposto a `Counter` rendering statico con un valore iniziale specificato utilizzando un form.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-188">In the following Razor page, the `Counter` component is statically rendered with an initial value that's specified using a form.</span></span> <span data-ttu-id="2e1c1-189">Poiché il componente viene sottoposto a rendering statico, il componente non è interattivo:</span><span class="sxs-lookup"><span data-stu-id="2e1c1-189">Since the component is statically rendered, the component isn't interactive:</span></span>
 
 ```cshtml
-<h1>My :::no-loc(Razor)::: Page</h1>
+<h1>My Razor Page</h1>
 
 <form>
     <input type="number" asp-for="InitialValue" />
@@ -314,6 +314,6 @@ ms.locfileid: "93056257"
 @using MyAppNamespace.Components
 ```
 
-<span data-ttu-id="2e1c1-196">Il `_ViewImports.cshtml` file si trova nella `Pages` cartella dell' :::no-loc(Razor)::: app pagine o nella `Views` cartella di un'app MVC.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-196">The `_ViewImports.cshtml` file is located in the `Pages` folder of a :::no-loc(Razor)::: Pages app or the `Views` folder of an MVC app.</span></span>
+<span data-ttu-id="2e1c1-196">Il `_ViewImports.cshtml` file si trova nella `Pages` cartella dell' Razor app pagine o nella `Views` cartella di un'app MVC.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-196">The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.</span></span>
 
 <span data-ttu-id="2e1c1-197">Per altre informazioni, vedere <xref:blazor/components/index#namespaces>.</span><span class="sxs-lookup"><span data-stu-id="2e1c1-197">For more information, see <xref:blazor/components/index#namespaces>.</span></span>

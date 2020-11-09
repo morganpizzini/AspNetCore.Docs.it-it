@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/07/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: getting-started
 ms.openlocfilehash: fef5ae525a7c01d0ea7733e990233f413aac61a7
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -35,7 +35,7 @@ ms.locfileid: "93057791"
 > * <span data-ttu-id="068ca-106">Creare un progetto di app Web.</span><span class="sxs-lookup"><span data-stu-id="068ca-106">Create a web app project.</span></span>
 > * <span data-ttu-id="068ca-107">Considerare attendibile il certificato di sviluppo.</span><span class="sxs-lookup"><span data-stu-id="068ca-107">Trust the development certificate.</span></span>
 > * <span data-ttu-id="068ca-108">Eseguire l'app.</span><span class="sxs-lookup"><span data-stu-id="068ca-108">Run the app.</span></span>
-> * <span data-ttu-id="068ca-109">Modificare una :::no-loc(Razor)::: pagina.</span><span class="sxs-lookup"><span data-stu-id="068ca-109">Edit a :::no-loc(Razor)::: page.</span></span>
+> * <span data-ttu-id="068ca-109">Modificare una Razor pagina.</span><span class="sxs-lookup"><span data-stu-id="068ca-109">Edit a Razor page.</span></span>
 
 <span data-ttu-id="068ca-110">Al termine, si avrà un'app Web funzionante che viene eseguita nel computer locale.</span><span class="sxs-lookup"><span data-stu-id="068ca-110">At the end, you'll have a working web app running on your local machine.</span></span>
 
@@ -105,7 +105,7 @@ dotnet watch run
 
 <span data-ttu-id="068ca-134">Dopo che la shell dei comandi indica che l'app è stata avviata, passare a `https://localhost:5001`.</span><span class="sxs-lookup"><span data-stu-id="068ca-134">After the command shell indicates that the app has started, browse to `https://localhost:5001`.</span></span>
 
-## <a name="edit-a-no-locrazor-page"></a><span data-ttu-id="068ca-135">Modificare una :::no-loc(Razor)::: pagina</span><span class="sxs-lookup"><span data-stu-id="068ca-135">Edit a :::no-loc(Razor)::: page</span></span>
+## <a name="edit-a-no-locrazor-page"></a><span data-ttu-id="068ca-135">Modificare una Razor pagina</span><span class="sxs-lookup"><span data-stu-id="068ca-135">Edit a Razor page</span></span>
 
 <span data-ttu-id="068ca-136">Aprire *pages/index. cshtml* e modificare e salvare la pagina con il markup evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="068ca-136">Open *Pages/Index.cshtml* and modify and save the page with the following highlighted markup:</span></span>
 

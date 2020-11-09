@@ -6,17 +6,17 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 04/06/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: performance/performance-best-practices
 ms.openlocfilehash: a3fc398569fafefc0b4634e80433a5d4e0e1b4ff
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -55,7 +55,7 @@ ms.locfileid: "93061002"
 
 * <span data-ttu-id="9263b-126">Rendere asincroni i [percorsi di codice caldo](#understand-hot-code-paths) .</span><span class="sxs-lookup"><span data-stu-id="9263b-126">Make [hot code paths](#understand-hot-code-paths) asynchronous.</span></span>
 * <span data-ttu-id="9263b-127">Chiamare le API di accesso ai dati, I/O e operazioni con esecuzione prolungata in modo asincrono se è disponibile un'API asincrona.</span><span class="sxs-lookup"><span data-stu-id="9263b-127">Call data access, I/O, and long-running operations APIs asynchronously if an asynchronous API is available.</span></span> <span data-ttu-id="9263b-128">Non **usare** [Task. Run](/dotnet/api/system.threading.tasks.task.run) per rendere asincrona un'API sincrona.</span><span class="sxs-lookup"><span data-stu-id="9263b-128">Do **not** use [Task.Run](/dotnet/api/system.threading.tasks.task.run) to make a synchronous API asynchronous.</span></span>
-* <span data-ttu-id="9263b-129">Rendere asincrone le azioni del controller o della :::no-loc(Razor)::: pagina.</span><span class="sxs-lookup"><span data-stu-id="9263b-129">Make controller/:::no-loc(Razor)::: Page actions asynchronous.</span></span> <span data-ttu-id="9263b-130">L'intero stack di chiamate è asincrono per trarre vantaggio dai modelli [Async/Await](/dotnet/csharp/programming-guide/concepts/async/) .</span><span class="sxs-lookup"><span data-stu-id="9263b-130">The entire call stack is asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.</span></span>
+* <span data-ttu-id="9263b-129">Rendere asincrone le azioni del controller o della Razor pagina.</span><span class="sxs-lookup"><span data-stu-id="9263b-129">Make controller/Razor Page actions asynchronous.</span></span> <span data-ttu-id="9263b-130">L'intero stack di chiamate è asincrono per trarre vantaggio dai modelli [Async/Await](/dotnet/csharp/programming-guide/concepts/async/) .</span><span class="sxs-lookup"><span data-stu-id="9263b-130">The entire call stack is asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.</span></span>
 
 <span data-ttu-id="9263b-131">Un profiler, ad esempio [PerfView](https://github.com/Microsoft/perfview), può essere usato per trovare i thread aggiunti di frequente al [pool di thread](/windows/desktop/procthread/thread-pools).</span><span class="sxs-lookup"><span data-stu-id="9263b-131">A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools).</span></span> <span data-ttu-id="9263b-132">L' `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` evento indica che un thread è stato aggiunto al pool di thread.</span><span class="sxs-lookup"><span data-stu-id="9263b-132">The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool.</span></span> <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
 
@@ -136,7 +136,7 @@ ms.locfileid: "93061002"
 
 * <span data-ttu-id="9263b-208">**Non attendere il** completamento delle attività con esecuzione prolungata come parte dell'elaborazione di una richiesta HTTP ordinata.</span><span class="sxs-lookup"><span data-stu-id="9263b-208">**Do not** wait for long-running tasks to complete as part of ordinary HTTP request processing.</span></span>
 * <span data-ttu-id="9263b-209">**Si** consiglia di gestire le richieste con esecuzione prolungata con [Servizi in background](xref:fundamentals/host/hosted-services) o out-of-process con una [funzione di Azure](/azure/azure-functions/).</span><span class="sxs-lookup"><span data-stu-id="9263b-209">**Do** consider handling long-running requests with [background services](xref:fundamentals/host/hosted-services) or out of process with an [Azure Function](/azure/azure-functions/).</span></span> <span data-ttu-id="9263b-210">Il completamento del lavoro out-of-process è particolarmente vantaggioso per le attività con utilizzo intensivo della CPU.</span><span class="sxs-lookup"><span data-stu-id="9263b-210">Completing work out-of-process is especially beneficial for CPU-intensive tasks.</span></span>
-* <span data-ttu-id="9263b-211">**Usare** le opzioni di comunicazione in tempo reale, ad esempio [:::no-loc(SignalR):::](xref:signalr/introduction) , per comunicare con i client in modo asincrono.</span><span class="sxs-lookup"><span data-stu-id="9263b-211">**Do** use real-time communication options, such as [:::no-loc(SignalR):::](xref:signalr/introduction), to communicate with clients asynchronously.</span></span>
+* <span data-ttu-id="9263b-211">**Usare** le opzioni di comunicazione in tempo reale, ad esempio [SignalR](xref:signalr/introduction) , per comunicare con i client in modo asincrono.</span><span class="sxs-lookup"><span data-stu-id="9263b-211">**Do** use real-time communication options, such as [SignalR](xref:signalr/introduction), to communicate with clients asynchronously.</span></span>
 
 ## <a name="minify-client-assets"></a><span data-ttu-id="9263b-212">Asset client di minimizzare</span><span class="sxs-lookup"><span data-stu-id="9263b-212">Minify client assets</span></span>
 

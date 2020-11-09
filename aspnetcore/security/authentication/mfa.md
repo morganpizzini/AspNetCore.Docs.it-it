@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/17/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authentication/mfa
 ms.openlocfilehash: 873f7d113df84c931ad7fbf2c72aa292e4e87c48
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -37,7 +37,7 @@ ms.locfileid: "93060391"
 <span data-ttu-id="7ad2a-110">In questo articolo vengono illustrate le aree seguenti:</span><span class="sxs-lookup"><span data-stu-id="7ad2a-110">This article covers the following areas:</span></span>
 
 * <span data-ttu-id="7ad2a-111">Che cos'è l'autenticazione a più fattori e i flussi di autenticazione a più fattori</span><span class="sxs-lookup"><span data-stu-id="7ad2a-111">What is MFA and what MFA flows are recommended</span></span>
-* <span data-ttu-id="7ad2a-112">Configurare l'autenticazione a più fattori per le pagine di amministrazione usando :::no-loc(ASP.NET Core Identity):::</span><span class="sxs-lookup"><span data-stu-id="7ad2a-112">Configure MFA for administration pages using :::no-loc(ASP.NET Core Identity):::</span></span>
+* <span data-ttu-id="7ad2a-112">Configurare l'autenticazione a più fattori per le pagine di amministrazione usando ASP.NET Core Identity</span><span class="sxs-lookup"><span data-stu-id="7ad2a-112">Configure MFA for administration pages using ASP.NET Core Identity</span></span>
 * <span data-ttu-id="7ad2a-113">Inviare il requisito di accesso a multi-factor authentication al server OpenID Connect</span><span class="sxs-lookup"><span data-stu-id="7ad2a-113">Send MFA sign-in requirement to OpenID Connect server</span></span>
 * <span data-ttu-id="7ad2a-114">Forza ASP.NET Core client OpenID Connect a richiedere l'autenticazione a più fattori</span><span class="sxs-lookup"><span data-stu-id="7ad2a-114">Force ASP.NET Core OpenID Connect client to require MFA</span></span>
 
@@ -49,7 +49,7 @@ ms.locfileid: "93060391"
 
 ### <a name="mfa-totp-time-based-one-time-password-algorithm"></a><span data-ttu-id="7ad2a-118">TOTP di autenticazione a più fattori (algoritmo monouso basato sul tempo)</span><span class="sxs-lookup"><span data-stu-id="7ad2a-118">MFA TOTP (Time-based One-time Password Algorithm)</span></span>
 
-<span data-ttu-id="7ad2a-119">L'autenticazione a più fattori con TOTP è un'implementazione supportata tramite :::no-loc(ASP.NET Core Identity)::: .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-119">MFA using TOTP is a supported implementation using :::no-loc(ASP.NET Core Identity):::.</span></span> <span data-ttu-id="7ad2a-120">Questo può essere usato insieme a qualsiasi app di autenticazione conforme, tra cui:</span><span class="sxs-lookup"><span data-stu-id="7ad2a-120">This can be used together with any compliant authenticator app, including:</span></span>
+<span data-ttu-id="7ad2a-119">L'autenticazione a più fattori con TOTP è un'implementazione supportata tramite ASP.NET Core Identity .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-119">MFA using TOTP is a supported implementation using ASP.NET Core Identity.</span></span> <span data-ttu-id="7ad2a-120">Questo può essere usato insieme a qualsiasi app di autenticazione conforme, tra cui:</span><span class="sxs-lookup"><span data-stu-id="7ad2a-120">This can be used together with any compliant authenticator app, including:</span></span>
 
 * <span data-ttu-id="7ad2a-121">App Microsoft Authenticator</span><span class="sxs-lookup"><span data-stu-id="7ad2a-121">Microsoft Authenticator App</span></span>
 * <span data-ttu-id="7ad2a-122">App Google Authenticator</span><span class="sxs-lookup"><span data-stu-id="7ad2a-122">Google Authenticator App</span></span>
@@ -75,13 +75,13 @@ ms.locfileid: "93060391"
 
 [<span data-ttu-id="7ad2a-137">Linee guida del NIST</span><span class="sxs-lookup"><span data-stu-id="7ad2a-137">NIST guidelines</span></span>](https://pages.nist.gov/800-63-3/sp800-63b.html)
 
-## <a name="configure-mfa-for-administration-pages-using-no-locaspnet-core-identity"></a><span data-ttu-id="7ad2a-138">Configurare l'autenticazione a più fattori per le pagine di amministrazione usando :::no-loc(ASP.NET Core Identity):::</span><span class="sxs-lookup"><span data-stu-id="7ad2a-138">Configure MFA for administration pages using :::no-loc(ASP.NET Core Identity):::</span></span>
+## <a name="configure-mfa-for-administration-pages-using-no-locaspnet-core-identity"></a><span data-ttu-id="7ad2a-138">Configurare l'autenticazione a più fattori per le pagine di amministrazione usando ASP.NET Core Identity</span><span class="sxs-lookup"><span data-stu-id="7ad2a-138">Configure MFA for administration pages using ASP.NET Core Identity</span></span>
 
-<span data-ttu-id="7ad2a-139">L'autenticazione a più fattori può essere forzata sugli utenti per accedere alle pagine sensibili all'interno di un' :::no-loc(ASP.NET Core Identity)::: app.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-139">MFA could be forced on users to access sensitive pages within an :::no-loc(ASP.NET Core Identity)::: app.</span></span> <span data-ttu-id="7ad2a-140">Questa operazione può essere utile per le app in cui esistono diversi livelli di accesso per le diverse identità.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-140">This could be useful for apps where different levels of access exist for the different identities.</span></span> <span data-ttu-id="7ad2a-141">Ad esempio, gli utenti potrebbero essere in grado di visualizzare i dati del profilo utilizzando un account di accesso con password, ma per accedere alle pagine amministrative è necessario un amministratore per utilizzare l'autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-141">For example, users might be able to view the profile data using a password login, but an administrator would be required to use MFA to access the administrative pages.</span></span>
+<span data-ttu-id="7ad2a-139">L'autenticazione a più fattori può essere forzata sugli utenti per accedere alle pagine sensibili all'interno di un' ASP.NET Core Identity app.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-139">MFA could be forced on users to access sensitive pages within an ASP.NET Core Identity app.</span></span> <span data-ttu-id="7ad2a-140">Questa operazione può essere utile per le app in cui esistono diversi livelli di accesso per le diverse identità.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-140">This could be useful for apps where different levels of access exist for the different identities.</span></span> <span data-ttu-id="7ad2a-141">Ad esempio, gli utenti potrebbero essere in grado di visualizzare i dati del profilo utilizzando un account di accesso con password, ma per accedere alle pagine amministrative è necessario un amministratore per utilizzare l'autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-141">For example, users might be able to view the profile data using a password login, but an administrator would be required to use MFA to access the administrative pages.</span></span>
 
 ### <a name="extend-the-login-with-an-mfa-claim"></a><span data-ttu-id="7ad2a-142">Estendere l'accesso con un'attestazione di autenticazione a più fattori</span><span class="sxs-lookup"><span data-stu-id="7ad2a-142">Extend the login with an MFA claim</span></span>
 
-<span data-ttu-id="7ad2a-143">Il codice demo viene configurato usando ASP.NET Core con :::no-loc(Identity)::: le :::no-loc(Razor)::: pagine e.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-143">The demo code is setup using ASP.NET Core with :::no-loc(Identity)::: and :::no-loc(Razor)::: Pages.</span></span> <span data-ttu-id="7ad2a-144">`Add:::no-loc(Identity):::`Viene utilizzato il metodo anziché `AddDefault:::no-loc(Identity):::` uno, pertanto è `IUserClaimsPrincipalFactory` possibile utilizzare un'implementazione per aggiungere attestazioni all'identità dopo un accesso riuscito.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-144">The `Add:::no-loc(Identity):::` method is used instead of `AddDefault:::no-loc(Identity):::` one, so an `IUserClaimsPrincipalFactory` implementation can be used to add claims to the identity after a successful login.</span></span>
+<span data-ttu-id="7ad2a-143">Il codice demo viene configurato usando ASP.NET Core con Identity le Razor pagine e.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-143">The demo code is setup using ASP.NET Core with Identity and Razor Pages.</span></span> <span data-ttu-id="7ad2a-144">`AddIdentity`Viene utilizzato il metodo anziché `AddDefaultIdentity` uno, pertanto è `IUserClaimsPrincipalFactory` possibile utilizzare un'implementazione per aggiungere attestazioni all'identità dopo un accesso riuscito.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-144">The `AddIdentity` method is used instead of `AddDefaultIdentity` one, so an `IUserClaimsPrincipalFactory` implementation can be used to add claims to the identity after a successful login.</span></span>
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -90,49 +90,49 @@ public void ConfigureServices(IServiceCollection services)
         options.UseSqlite(
             Configuration.GetConnectionString("DefaultConnection")));
     
-    services.Add:::no-loc(Identity):::<:::no-loc(Identity):::User, :::no-loc(Identity):::Role>(
+    services.AddIdentity<IdentityUser, IdentityRole>(
             options => options.SignIn.RequireConfirmedAccount = false)
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
 
     services.AddSingleton<IEmailSender, EmailSender>();
-    services.AddScoped<IUserClaimsPrincipalFactory<:::no-loc(Identity):::User>, 
+    services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, 
         AdditionalUserClaimsPrincipalFactory>();
 
     services.AddAuthorization(options =>
         options.AddPolicy("TwoFactorEnabled",
             x => x.RequireClaim("amr", "mfa")));
 
-    services.Add:::no-loc(Razor):::Pages();
+    services.AddRazorPages();
 }
 ```
 
 <span data-ttu-id="7ad2a-145">La `AdditionalUserClaimsPrincipalFactory` classe aggiunge l' `amr` attestazione alle attestazioni utente solo dopo un accesso riuscito.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-145">The `AdditionalUserClaimsPrincipalFactory` class adds the `amr` claim to the user claims only after a successful login.</span></span> <span data-ttu-id="7ad2a-146">Il valore dell'attestazione viene letto dal database.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-146">The claim's value is read from the database.</span></span> <span data-ttu-id="7ad2a-147">L'attestazione viene aggiunta qui perché l'utente deve accedere solo a una visualizzazione protetta superiore se l'identità si è connessa con l'autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-147">The claim is added here because the user should only access the higher protected view if the identity has logged in with MFA.</span></span> <span data-ttu-id="7ad2a-148">Se la vista di database viene letta direttamente dal database anziché usare l'attestazione, è possibile accedere alla visualizzazione senza autenticazione a più fattori direttamente dopo l'attivazione dell'autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-148">If the database view is read from the database directly instead of using the claim, it's possible to access the view without MFA directly after activating the MFA.</span></span>
 
 ```csharp
-using Microsoft.AspNetCore.:::no-loc(Identity):::;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace :::no-loc(Identity):::StandaloneMfa
+namespace IdentityStandaloneMfa
 {
     public class AdditionalUserClaimsPrincipalFactory : 
-        UserClaimsPrincipalFactory<:::no-loc(Identity):::User, :::no-loc(Identity):::Role>
+        UserClaimsPrincipalFactory<IdentityUser, IdentityRole>
     {
         public AdditionalUserClaimsPrincipalFactory( 
-            UserManager<:::no-loc(Identity):::User> userManager,
-            RoleManager<:::no-loc(Identity):::Role> roleManager, 
-            IOptions<:::no-loc(Identity):::Options> optionsAccessor) 
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager, 
+            IOptions<IdentityOptions> optionsAccessor) 
             : base(userManager, roleManager, optionsAccessor)
         {
         }
 
-        public async override Task<ClaimsPrincipal> CreateAsync(:::no-loc(Identity):::User user)
+        public async override Task<ClaimsPrincipal> CreateAsync(IdentityUser user)
         {
             var principal = await base.CreateAsync(user);
-            var identity = (Claims:::no-loc(Identity):::)principal.:::no-loc(Identity):::;
+            var identity = (ClaimsIdentity)principal.Identity;
 
             var claims = new List<Claim>();
 
@@ -152,7 +152,7 @@ namespace :::no-loc(Identity):::StandaloneMfa
 }
 ```
 
-<span data-ttu-id="7ad2a-149">Poiché l' :::no-loc(Identity)::: installazione del servizio è cambiata nella `Startup` classe, :::no-loc(Identity)::: è necessario aggiornare i layout di.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-149">Because the :::no-loc(Identity)::: service setup changed in the `Startup` class, the layouts of the :::no-loc(Identity)::: need to be updated.</span></span> <span data-ttu-id="7ad2a-150">Impalcature delle :::no-loc(Identity)::: pagine nell'app.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-150">Scaffold the :::no-loc(Identity)::: pages into the app.</span></span> <span data-ttu-id="7ad2a-151">Definire il layout nel file *:::no-loc(Identity)::: /account/Manage/_Layout. cshtml* .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-151">Define the layout in the *:::no-loc(Identity):::/Account/Manage/_Layout.cshtml* file.</span></span>
+<span data-ttu-id="7ad2a-149">Poiché l' Identity installazione del servizio è cambiata nella `Startup` classe, Identity è necessario aggiornare i layout di.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-149">Because the Identity service setup changed in the `Startup` class, the layouts of the Identity need to be updated.</span></span> <span data-ttu-id="7ad2a-150">Impalcature delle Identity pagine nell'app.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-150">Scaffold the Identity pages into the app.</span></span> <span data-ttu-id="7ad2a-151">Definire il layout nel file *Identity /account/Manage/_Layout. cshtml* .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-151">Define the layout in the *Identity/Account/Manage/_Layout.cshtml* file.</span></span>
 
 ```cshtml
 @{
@@ -160,7 +160,7 @@ namespace :::no-loc(Identity):::StandaloneMfa
 }
 ```
 
-<span data-ttu-id="7ad2a-152">Assegnare anche il layout per tutte le pagine Gestisci dalle :::no-loc(Identity)::: pagine:</span><span class="sxs-lookup"><span data-stu-id="7ad2a-152">Also assign the layout for all the manage pages from the :::no-loc(Identity)::: pages:</span></span>
+<span data-ttu-id="7ad2a-152">Assegnare anche il layout per tutte le pagine Gestisci dalle Identity pagine:</span><span class="sxs-lookup"><span data-stu-id="7ad2a-152">Also assign the layout for all the manage pages from the Identity pages:</span></span>
 
 ```cshtml
 @{
@@ -170,7 +170,7 @@ namespace :::no-loc(Identity):::StandaloneMfa
 
 ### <a name="validate-the-mfa-requirement-in-the-administration-page"></a><span data-ttu-id="7ad2a-153">Convalidare il requisito di autenticazione a più fattori nella pagina di amministrazione</span><span class="sxs-lookup"><span data-stu-id="7ad2a-153">Validate the MFA requirement in the administration page</span></span>
 
-<span data-ttu-id="7ad2a-154">La pagina di amministrazione verifica :::no-loc(Razor)::: che l'utente abbia eseguito l'accesso con l'autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-154">The administration :::no-loc(Razor)::: Page validates that the user has logged in using MFA.</span></span> <span data-ttu-id="7ad2a-155">Nel `OnGet` metodo, l'identità viene usata per accedere alle attestazioni utente.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-155">In the `OnGet` method, the identity is used to access the user claims.</span></span> <span data-ttu-id="7ad2a-156">L' `amr` attestazione viene verificata per il valore `mfa` .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-156">The `amr` claim is checked for the value `mfa`.</span></span> <span data-ttu-id="7ad2a-157">Se nell'identità manca questa attestazione o se è `false` , la pagina viene reindirizzata alla pagina Abilita autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-157">If the identity is missing this claim or is `false`, the page redirects to the Enable MFA page.</span></span> <span data-ttu-id="7ad2a-158">Questa operazione è possibile perché l'utente ha già eseguito l'accesso, ma senza autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-158">This is possible because the user has logged in already, but without MFA.</span></span>
+<span data-ttu-id="7ad2a-154">La pagina di amministrazione verifica Razor che l'utente abbia eseguito l'accesso con l'autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-154">The administration Razor Page validates that the user has logged in using MFA.</span></span> <span data-ttu-id="7ad2a-155">Nel `OnGet` metodo, l'identità viene usata per accedere alle attestazioni utente.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-155">In the `OnGet` method, the identity is used to access the user claims.</span></span> <span data-ttu-id="7ad2a-156">L' `amr` attestazione viene verificata per il valore `mfa` .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-156">The `amr` claim is checked for the value `mfa`.</span></span> <span data-ttu-id="7ad2a-157">Se nell'identità manca questa attestazione o se è `false` , la pagina viene reindirizzata alla pagina Abilita autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-157">If the identity is missing this claim or is `false`, the page redirects to the Enable MFA page.</span></span> <span data-ttu-id="7ad2a-158">Questa operazione è possibile perché l'utente ha già eseguito l'accesso, ma senza autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-158">This is possible because the user has logged in already, but without MFA.</span></span>
 
 ```csharp
 using System;
@@ -178,9 +178,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace :::no-loc(Identity):::StandaloneMfa
+namespace IdentityStandaloneMfa
 {
     public class AdminModel : PageModel
     {
@@ -197,7 +197,7 @@ namespace :::no-loc(Identity):::StandaloneMfa
             else
             {
                 return Redirect(
-                    "/:::no-loc(Identity):::/Account/Manage/TwoFactorAuthentication");
+                    "/Identity/Account/Manage/TwoFactorAuthentication");
             }
 
             return Page();
@@ -220,9 +220,9 @@ services.AddAuthorization(options =>
 
 ```cshtml
 @using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.:::no-loc(Identity):::
-@inject SignInManager<:::no-loc(Identity):::User> SignInManager
-@inject UserManager<:::no-loc(Identity):::User> UserManager
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @inject IAuthorizationService AuthorizationService
 ```
 
@@ -269,7 +269,7 @@ services.AddAuthorization(options =>
 
 ### <a name="openid-connect-aspnet-core-client"></a><span data-ttu-id="7ad2a-172">Client ASP.NET Core OpenID Connect</span><span class="sxs-lookup"><span data-stu-id="7ad2a-172">OpenID Connect ASP.NET Core client</span></span>
 
-<span data-ttu-id="7ad2a-173">L' :::no-loc(Razor)::: app client OpenID Connect per le pagine ASP.NET Core usa il `AddOpenIdConnect` metodo per accedere al server OpenID Connect.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-173">The ASP.NET Core :::no-loc(Razor)::: Pages OpenID Connect client app uses the `AddOpenIdConnect` method to login to the OpenID Connect server.</span></span> <span data-ttu-id="7ad2a-174">Il `acr_values` parametro viene impostato con il `mfa` valore e inviato con la richiesta di autenticazione.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-174">The `acr_values` parameter is set with the `mfa` value and sent with the authentication request.</span></span> <span data-ttu-id="7ad2a-175">`OpenIdConnectEvents`Viene usato per aggiungere questo oggetto.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-175">The `OpenIdConnectEvents` is used to add this.</span></span>
+<span data-ttu-id="7ad2a-173">L' Razor app client OpenID Connect per le pagine ASP.NET Core usa il `AddOpenIdConnect` metodo per accedere al server OpenID Connect.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-173">The ASP.NET Core Razor Pages OpenID Connect client app uses the `AddOpenIdConnect` method to login to the OpenID Connect server.</span></span> <span data-ttu-id="7ad2a-174">Il `acr_values` parametro viene impostato con il `mfa` valore e inviato con la richiesta di autenticazione.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-174">The `acr_values` parameter is set with the `mfa` value and sent with the authentication request.</span></span> <span data-ttu-id="7ad2a-175">`OpenIdConnectEvents`Viene usato per aggiungere questo oggetto.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-175">The `OpenIdConnectEvents` is used to add this.</span></span>
 
 <span data-ttu-id="7ad2a-176">Per `acr_values` i valori dei parametri consigliati, vedere [valori di riferimento del metodo di autenticazione](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08).</span><span class="sxs-lookup"><span data-stu-id="7ad2a-176">For recommended `acr_values` parameter values, see [Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08).</span></span>
 
@@ -279,15 +279,15 @@ public void ConfigureServices(IServiceCollection services)
     services.AddAuthentication(options =>
     {
         options.DefaultScheme =
-            :::no-loc(Cookie):::AuthenticationDefaults.AuthenticationScheme;
+            CookieAuthenticationDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme =
             OpenIdConnectDefaults.AuthenticationScheme;
     })
-    .Add:::no-loc(Cookie):::()
+    .AddCookie()
     .AddOpenIdConnect(options =>
     {
         options.SignInScheme =
-            :::no-loc(Cookie):::AuthenticationDefaults.AuthenticationScheme;
+            CookieAuthenticationDefaults.AuthenticationScheme;
         options.Authority = "<OpenID Connect server URL>";
         options.RequireHttpsMetadata = true;
         options.ClientId = "<OpenID Connect client ID>";
@@ -299,7 +299,7 @@ public void ConfigureServices(IServiceCollection services)
         options.SaveTokens = true;
         options.Events = new OpenIdConnectEvents
         {
-            OnRedirectTo:::no-loc(Identity):::Provider = context =>
+            OnRedirectToIdentityProvider = context =>
             {
                 context.ProtocolMessage.SetParameter("acr_values", "mfa");
                 return Task.FromResult(0);
@@ -308,11 +308,11 @@ public void ConfigureServices(IServiceCollection services)
     });
 ```
 
-### <a name="example-openid-connect-no-locidentityserver-4-server-with-no-locaspnet-core-identity"></a><span data-ttu-id="7ad2a-177">Esempio di OpenID Connect :::no-loc(Identity)::: Server 4 server con :::no-loc(ASP.NET Core Identity):::</span><span class="sxs-lookup"><span data-stu-id="7ad2a-177">Example OpenID Connect :::no-loc(Identity):::Server 4 server with :::no-loc(ASP.NET Core Identity):::</span></span>
+### <a name="example-openid-connect-no-locidentityserver-4-server-with-no-locaspnet-core-identity"></a><span data-ttu-id="7ad2a-177">Esempio di OpenID Connect Identity Server 4 server con ASP.NET Core Identity</span><span class="sxs-lookup"><span data-stu-id="7ad2a-177">Example OpenID Connect IdentityServer 4 server with ASP.NET Core Identity</span></span>
 
-<span data-ttu-id="7ad2a-178">Nel server OpenID Connect, implementato usando :::no-loc(ASP.NET Core Identity)::: con le visualizzazioni MVC, viene creata una nuova vista denominata *ErrorEnable2FA. cshtml* .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-178">On the OpenID Connect server, which is implemented using :::no-loc(ASP.NET Core Identity)::: with MVC views, a new view named *ErrorEnable2FA.cshtml* is created.</span></span> <span data-ttu-id="7ad2a-179">Visualizzazione:</span><span class="sxs-lookup"><span data-stu-id="7ad2a-179">The view:</span></span>
+<span data-ttu-id="7ad2a-178">Nel server OpenID Connect, implementato usando ASP.NET Core Identity con le visualizzazioni MVC, viene creata una nuova vista denominata *ErrorEnable2FA. cshtml* .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-178">On the OpenID Connect server, which is implemented using ASP.NET Core Identity with MVC views, a new view named *ErrorEnable2FA.cshtml* is created.</span></span> <span data-ttu-id="7ad2a-179">Visualizzazione:</span><span class="sxs-lookup"><span data-stu-id="7ad2a-179">The view:</span></span>
 
-* <span data-ttu-id="7ad2a-180">Visualizza se il :::no-loc(Identity)::: deriva da un'app che richiede l'autenticazione a più fattori, ma l'utente non ha attivato questa operazione in :::no-loc(Identity)::: .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-180">Displays if the :::no-loc(Identity)::: comes from an app that requires MFA but the user hasn't activated this in :::no-loc(Identity):::.</span></span>
+* <span data-ttu-id="7ad2a-180">Visualizza se il Identity deriva da un'app che richiede l'autenticazione a più fattori, ma l'utente non ha attivato questa operazione in Identity .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-180">Displays if the Identity comes from an app that requires MFA but the user hasn't activated this in Identity.</span></span>
 * <span data-ttu-id="7ad2a-181">Informa l'utente e aggiunge un collegamento per attivarlo.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-181">Informs the user and adds a link to activate this.</span></span>
 
 ```cshtml
@@ -331,9 +331,9 @@ You can enable MFA to login here:
 <a asp-controller="Manage" asp-action="TwoFactorAuthentication">Enable MFA</a>
 ```
 
-<span data-ttu-id="7ad2a-182">Nel `Login` metodo, l' `I:::no-loc(Identity):::ServerInteractionService` implementazione dell'interfaccia `_interaction` viene usata per accedere ai parametri della richiesta OpenID Connect.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-182">In the `Login` method, the `I:::no-loc(Identity):::ServerInteractionService` interface implementation `_interaction` is used to access the OpenID Connect request parameters.</span></span> <span data-ttu-id="7ad2a-183">`acr_values`È possibile accedere al parametro utilizzando la `AcrValues` Proprietà.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-183">The `acr_values` parameter is accessed using the `AcrValues` property.</span></span> <span data-ttu-id="7ad2a-184">Il client ha inviato questo oggetto con `mfa` set, quindi è possibile verificarlo.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-184">As the client sent this with `mfa` set, this can then be checked.</span></span>
+<span data-ttu-id="7ad2a-182">Nel `Login` metodo, l' `IIdentityServerInteractionService` implementazione dell'interfaccia `_interaction` viene usata per accedere ai parametri della richiesta OpenID Connect.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-182">In the `Login` method, the `IIdentityServerInteractionService` interface implementation `_interaction` is used to access the OpenID Connect request parameters.</span></span> <span data-ttu-id="7ad2a-183">`acr_values`È possibile accedere al parametro utilizzando la `AcrValues` Proprietà.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-183">The `acr_values` parameter is accessed using the `AcrValues` property.</span></span> <span data-ttu-id="7ad2a-184">Il client ha inviato questo oggetto con `mfa` set, quindi è possibile verificarlo.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-184">As the client sent this with `mfa` set, this can then be checked.</span></span>
 
-<span data-ttu-id="7ad2a-185">Se l'autenticazione a più fattori è obbligatoria e l'utente in ha l'autenticazione a più fattori :::no-loc(ASP.NET Core Identity)::: abilitata, l'accesso continua.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-185">If MFA is required, and the user in :::no-loc(ASP.NET Core Identity)::: has MFA enabled, then the login continues.</span></span> <span data-ttu-id="7ad2a-186">Quando l'utente non dispone di autenticazione a più fattori abilitata, l'utente viene reindirizzato alla visualizzazione personalizzata *ErrorEnable2FA. cshtml* .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-186">When the user has no MFA enabled, the user is redirected to the custom view *ErrorEnable2FA.cshtml* .</span></span> <span data-ttu-id="7ad2a-187">Quindi :::no-loc(ASP.NET Core Identity)::: firma l'utente in.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-187">Then :::no-loc(ASP.NET Core Identity)::: signs the user in.</span></span>
+<span data-ttu-id="7ad2a-185">Se l'autenticazione a più fattori è obbligatoria e l'utente in ha l'autenticazione a più fattori ASP.NET Core Identity abilitata, l'accesso continua.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-185">If MFA is required, and the user in ASP.NET Core Identity has MFA enabled, then the login continues.</span></span> <span data-ttu-id="7ad2a-186">Quando l'utente non dispone di autenticazione a più fattori abilitata, l'utente viene reindirizzato alla visualizzazione personalizzata *ErrorEnable2FA. cshtml* .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-186">When the user has no MFA enabled, the user is redirected to the custom view *ErrorEnable2FA.cshtml* .</span></span> <span data-ttu-id="7ad2a-187">Quindi ASP.NET Core Identity firma l'utente in.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-187">Then ASP.NET Core Identity signs the user in.</span></span>
 
 ```csharp
 //
@@ -358,7 +358,7 @@ public async Task<IActionResult> Login(LoginInputModel model)
     // code omitted for brevity
 ```
 
-<span data-ttu-id="7ad2a-188">Il `ExternalLoginCallback` metodo funziona come l' :::no-loc(Identity)::: account di accesso locale.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-188">The `ExternalLoginCallback` method works like the local :::no-loc(Identity)::: login.</span></span> <span data-ttu-id="7ad2a-189">`AcrValues`Viene verificata la proprietà per il `mfa` valore.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-189">The `AcrValues` property is checked for the `mfa` value.</span></span> <span data-ttu-id="7ad2a-190">Se il `mfa` valore è presente, l'autenticazione a più fattori viene forzata prima del completamento dell'accesso, ad esempio reindirizzato alla `ErrorEnable2FA` visualizzazione.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-190">If the `mfa` value is present, MFA is forced before the login completes (for example, redirected to the `ErrorEnable2FA` view).</span></span>
+<span data-ttu-id="7ad2a-188">Il `ExternalLoginCallback` metodo funziona come l' Identity account di accesso locale.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-188">The `ExternalLoginCallback` method works like the local Identity login.</span></span> <span data-ttu-id="7ad2a-189">`AcrValues`Viene verificata la proprietà per il `mfa` valore.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-189">The `AcrValues` property is checked for the `mfa` value.</span></span> <span data-ttu-id="7ad2a-190">Se il `mfa` valore è presente, l'autenticazione a più fattori viene forzata prima del completamento dell'accesso, ad esempio reindirizzato alla `ErrorEnable2FA` visualizzazione.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-190">If the `mfa` value is present, MFA is forced before the login completes (for example, redirected to the `ErrorEnable2FA` view).</span></span>
 
 ```csharp
 //
@@ -414,13 +414,13 @@ public async Task<IActionResult> ExternalLoginCallback(
 <span data-ttu-id="7ad2a-191">Se l'utente ha già eseguito l'accesso, l'app client:</span><span class="sxs-lookup"><span data-stu-id="7ad2a-191">If the user is already logged in, the client app:</span></span>
 
 * <span data-ttu-id="7ad2a-192">Convalida comunque l' `amr` attestazione.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-192">Still validates the `amr` claim.</span></span>
-* <span data-ttu-id="7ad2a-193">Consente di configurare l'autenticazione a più fattori con un collegamento alla :::no-loc(ASP.NET Core Identity)::: visualizzazione.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-193">Can set up the MFA with a link to the :::no-loc(ASP.NET Core Identity)::: view.</span></span>
+* <span data-ttu-id="7ad2a-193">Consente di configurare l'autenticazione a più fattori con un collegamento alla ASP.NET Core Identity visualizzazione.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-193">Can set up the MFA with a link to the ASP.NET Core Identity view.</span></span>
 
 ![acr_values-1](mfa/_static/acr_values-1.png)
 
 ## <a name="force-aspnet-core-openid-connect-client-to-require-mfa"></a><span data-ttu-id="7ad2a-195">Forza ASP.NET Core client OpenID Connect a richiedere l'autenticazione a più fattori</span><span class="sxs-lookup"><span data-stu-id="7ad2a-195">Force ASP.NET Core OpenID Connect client to require MFA</span></span>
 
-<span data-ttu-id="7ad2a-196">Questo esempio Mostra come un' :::no-loc(Razor)::: app ASP.NET Core pagina, che usa OpenID Connect per accedere, può richiedere l'autenticazione degli utenti con l'autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-196">This example shows how an ASP.NET Core :::no-loc(Razor)::: Page app, which uses OpenID Connect to sign in, can require that users have authenticated using MFA.</span></span>
+<span data-ttu-id="7ad2a-196">Questo esempio Mostra come un' Razor app ASP.NET Core pagina, che usa OpenID Connect per accedere, può richiedere l'autenticazione degli utenti con l'autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-196">This example shows how an ASP.NET Core Razor Page app, which uses OpenID Connect to sign in, can require that users have authenticated using MFA.</span></span>
 
 <span data-ttu-id="7ad2a-197">Per convalidare il requisito di autenticazione a più fattori, `IAuthorizationRequirement` viene creato un requisito.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-197">To validate the MFA requirement, an `IAuthorizationRequirement` requirement is created.</span></span> <span data-ttu-id="7ad2a-198">Questa operazione verrà aggiunta alle pagine usando criteri che richiedono l'autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-198">This will be added to the pages using a policy that requires MFA.</span></span>
 
@@ -437,7 +437,7 @@ namespace AspNetCoreRequireMfaOidc
 
 <span data-ttu-id="7ad2a-201">Il valore restituito dipende dal modo in cui l'identità è stata autenticata e dall'implementazione del server OpenID Connect.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-201">The returned value depends on how the identity authenticated and on the OpenID Connect server implementation.</span></span>
 
-<span data-ttu-id="7ad2a-202">`AuthorizationHandler`Usa il `RequireMfa` requisito e convalida l' `amr` attestazione.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-202">The `AuthorizationHandler` uses the `RequireMfa` requirement and validates the `amr` claim.</span></span> <span data-ttu-id="7ad2a-203">Il server OpenID Connect può essere implementato usando :::no-loc(Identity)::: Server4 con :::no-loc(ASP.NET Core Identity)::: .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-203">The OpenID Connect server can be implemented using :::no-loc(Identity):::Server4 with :::no-loc(ASP.NET Core Identity):::.</span></span> <span data-ttu-id="7ad2a-204">Quando un utente esegue l'accesso con TOTP, l' `amr` attestazione viene restituita con un valore di autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-204">When a user logs in using TOTP, the `amr` claim is returned with an MFA value.</span></span> <span data-ttu-id="7ad2a-205">Se si usa un'implementazione del server OpenID Connect diversa o un tipo di autenticazione a più fattori differente, l' `amr` attestazione sarà o può avere un valore diverso.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-205">If using a different OpenID Connect server implementation or a different MFA type, the `amr` claim will, or can, have a different value.</span></span> <span data-ttu-id="7ad2a-206">Il codice deve essere esteso per accettare anche questa operazione.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-206">The code must be extended to accept this as well.</span></span>
+<span data-ttu-id="7ad2a-202">`AuthorizationHandler`Usa il `RequireMfa` requisito e convalida l' `amr` attestazione.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-202">The `AuthorizationHandler` uses the `RequireMfa` requirement and validates the `amr` claim.</span></span> <span data-ttu-id="7ad2a-203">Il server OpenID Connect può essere implementato usando Identity Server4 con ASP.NET Core Identity .</span><span class="sxs-lookup"><span data-stu-id="7ad2a-203">The OpenID Connect server can be implemented using IdentityServer4 with ASP.NET Core Identity.</span></span> <span data-ttu-id="7ad2a-204">Quando un utente esegue l'accesso con TOTP, l' `amr` attestazione viene restituita con un valore di autenticazione a più fattori.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-204">When a user logs in using TOTP, the `amr` claim is returned with an MFA value.</span></span> <span data-ttu-id="7ad2a-205">Se si usa un'implementazione del server OpenID Connect diversa o un tipo di autenticazione a più fattori differente, l' `amr` attestazione sarà o può avere un valore diverso.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-205">If using a different OpenID Connect server implementation or a different MFA type, the `amr` claim will, or can, have a different value.</span></span> <span data-ttu-id="7ad2a-206">Il codice deve essere esteso per accettare anche questa operazione.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-206">The code must be extended to accept this as well.</span></span>
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -477,24 +477,24 @@ namespace AspNetCoreRequireMfaOidc
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    services.ConfigureApplication:::no-loc(Cookie):::(options =>
-        options.:::no-loc(Cookie):::.SecurePolicy =
-            :::no-loc(Cookie):::SecurePolicy.Always);
+    services.ConfigureApplicationCookie(options =>
+        options.Cookie.SecurePolicy =
+            CookieSecurePolicy.Always);
 
     services.AddSingleton<IAuthorizationHandler, RequireMfaHandler>();
 
     services.AddAuthentication(options =>
     {
         options.DefaultScheme =
-            :::no-loc(Cookie):::AuthenticationDefaults.AuthenticationScheme;
+            CookieAuthenticationDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme =
             OpenIdConnectDefaults.AuthenticationScheme;
     })
-    .Add:::no-loc(Cookie):::()
+    .AddCookie()
     .AddOpenIdConnect(options =>
     {
         options.SignInScheme =
-            :::no-loc(Cookie):::AuthenticationDefaults.AuthenticationScheme;
+            CookieAuthenticationDefaults.AuthenticationScheme;
         options.Authority = "https://localhost:44352";
         options.RequireHttpsMetadata = true;
         options.ClientId = "AspNetCoreRequireMfaOidc";
@@ -513,11 +513,11 @@ public void ConfigureServices(IServiceCollection services)
         });
     });
 
-    services.Add:::no-loc(Razor):::Pages();
+    services.AddRazorPages();
 }
 ```
 
-<span data-ttu-id="7ad2a-210">Questi criteri vengono quindi usati nella :::no-loc(Razor)::: pagina in modo obbligatorio.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-210">This policy is then used in the :::no-loc(Razor)::: page as required.</span></span> <span data-ttu-id="7ad2a-211">I criteri possono essere aggiunti a livello globale anche per l'intera app.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-211">The policy could be added globally for the entire app as well.</span></span>
+<span data-ttu-id="7ad2a-210">Questi criteri vengono quindi usati nella Razor pagina in modo obbligatorio.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-210">This policy is then used in the Razor page as required.</span></span> <span data-ttu-id="7ad2a-211">I criteri possono essere aggiunti a livello globale anche per l'intera app.</span><span class="sxs-lookup"><span data-stu-id="7ad2a-211">The policy could be added globally for the entire app as well.</span></span>
 
 ```csharp
 using System;
@@ -526,7 +526,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 namespace AspNetCoreRequireMfaOidc.Pages
@@ -577,7 +577,7 @@ You require MFA to login here
 
     ![require_mfa_oidc_03.png](mfa/_static/require_mfa_oidc_03.png)
 
-<span data-ttu-id="7ad2a-225">In alternativa, accedere usando OTP con :::no-loc(Identity)::: :</span><span class="sxs-lookup"><span data-stu-id="7ad2a-225">Alternatively, logging in using OTP with :::no-loc(Identity)::::</span></span>
+<span data-ttu-id="7ad2a-225">In alternativa, accedere usando OTP con Identity :</span><span class="sxs-lookup"><span data-stu-id="7ad2a-225">Alternatively, logging in using OTP with Identity:</span></span>
 
 ![require_mfa_oidc_01.png](mfa/_static/require_mfa_oidc_01.png)
 

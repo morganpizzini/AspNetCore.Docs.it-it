@@ -5,17 +5,17 @@ description: Informazioni su come creare un'app ASP.NET Core con la conferma del
 ms.author: riande
 ms.date: 03/11/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authentication/accconfirm
 ms.openlocfilehash: 91148c67d5dc0bf97e2f926f50dcff5dd0708f4b
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -52,11 +52,11 @@ cd WebPWrecover
 dotnet run
 ```
 
-<span data-ttu-id="e8af0-115">Eseguire l'app, selezionare il collegamento **Register** e registrare un utente.</span><span class="sxs-lookup"><span data-stu-id="e8af0-115">Run the app, select the **Register** link, and register a user.</span></span> <span data-ttu-id="e8af0-116">Una volta effettuata la registrazione, si verrà reindirizzati alla `/:::no-loc(Identity):::/Account/RegisterConfirmation` pagina a contenente un collegamento per simulare la conferma della posta elettronica:</span><span class="sxs-lookup"><span data-stu-id="e8af0-116">Once registered, you are redirected to the to `/:::no-loc(Identity):::/Account/RegisterConfirmation` page which contains a link to simulate email confirmation:</span></span>
+<span data-ttu-id="e8af0-115">Eseguire l'app, selezionare il collegamento **Register** e registrare un utente.</span><span class="sxs-lookup"><span data-stu-id="e8af0-115">Run the app, select the **Register** link, and register a user.</span></span> <span data-ttu-id="e8af0-116">Una volta effettuata la registrazione, si verrà reindirizzati alla `/Identity/Account/RegisterConfirmation` pagina a contenente un collegamento per simulare la conferma della posta elettronica:</span><span class="sxs-lookup"><span data-stu-id="e8af0-116">Once registered, you are redirected to the to `/Identity/Account/RegisterConfirmation` page which contains a link to simulate email confirmation:</span></span>
 
 * <span data-ttu-id="e8af0-117">Selezionare il `Click here to confirm your account` collegamento.</span><span class="sxs-lookup"><span data-stu-id="e8af0-117">Select the `Click here to confirm your account` link.</span></span>
 * <span data-ttu-id="e8af0-118">Selezionare il collegamento di **accesso** e accedere con le stesse credenziali.</span><span class="sxs-lookup"><span data-stu-id="e8af0-118">Select the **Login** link and sign-in with the same credentials.</span></span>
-* <span data-ttu-id="e8af0-119">Selezionare il `Hello YourEmail@provider.com!` collegamento per reindirizzare l'utente alla `/:::no-loc(Identity):::/Account/Manage/PersonalData` pagina.</span><span class="sxs-lookup"><span data-stu-id="e8af0-119">Select the `Hello YourEmail@provider.com!` link, which redirects you to the `/:::no-loc(Identity):::/Account/Manage/PersonalData` page.</span></span>
+* <span data-ttu-id="e8af0-119">Selezionare il `Hello YourEmail@provider.com!` collegamento per reindirizzare l'utente alla `/Identity/Account/Manage/PersonalData` pagina.</span><span class="sxs-lookup"><span data-stu-id="e8af0-119">Select the `Hello YourEmail@provider.com!` link, which redirects you to the `/Identity/Account/Manage/PersonalData` page.</span></span>
 * <span data-ttu-id="e8af0-120">Selezionare la scheda **Personal Data (dati personali** ) a sinistra e quindi fare clic su **Delete (Elimina** ).</span><span class="sxs-lookup"><span data-stu-id="e8af0-120">Select the **Personal data** tab on the left, and then select **Delete** .</span></span>
 
 ### <a name="configure-an-email-provider"></a><span data-ttu-id="e8af0-121">Configurare un provider di posta elettronica</span><span class="sxs-lookup"><span data-stu-id="e8af0-121">Configure an email provider</span></span>
@@ -136,10 +136,10 @@ dotnet add package SendGrid
 
 ## <a name="scaffold-registerconfirmation"></a><span data-ttu-id="e8af0-152">RegisterConfirmation ponteggi</span><span class="sxs-lookup"><span data-stu-id="e8af0-152">Scaffold RegisterConfirmation</span></span>
 
-<span data-ttu-id="e8af0-153">Seguire le istruzioni per [impalcature :::no-loc(Identity)::: ](xref:security/authentication/scaffold-identity) e impalcature `RegisterConfirmation` .</span><span class="sxs-lookup"><span data-stu-id="e8af0-153">Follow the instructions for [Scaffold :::no-loc(Identity):::](xref:security/authentication/scaffold-identity) and scaffold `RegisterConfirmation`.</span></span>
+<span data-ttu-id="e8af0-153">Seguire le istruzioni per [impalcature Identity ](xref:security/authentication/scaffold-identity) e impalcature `RegisterConfirmation` .</span><span class="sxs-lookup"><span data-stu-id="e8af0-153">Follow the instructions for [Scaffold Identity](xref:security/authentication/scaffold-identity) and scaffold `RegisterConfirmation`.</span></span>
 
 <!-- .NET 5 fixes this, see
-https://github.com/dotnet/aspnetcore/blob/master/src/:::no-loc(Identity):::/UI/src/Areas/:::no-loc(Identity):::/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
+https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
 -->
 
 [!INCLUDE[](~/includes/disableVer.md)]
@@ -171,7 +171,7 @@ https://github.com/dotnet/aspnetcore/blob/master/src/:::no-loc(Identity):::/UI/s
 
 <span data-ttu-id="e8af0-172">Il timeout di inattività predefinito è di 14 giorni.</span><span class="sxs-lookup"><span data-stu-id="e8af0-172">The default inactivity timeout is 14 days.</span></span> <span data-ttu-id="e8af0-173">Il codice seguente imposta il timeout di inattività su 5 giorni:</span><span class="sxs-lookup"><span data-stu-id="e8af0-173">The following code sets the inactivity timeout to 5 days:</span></span>
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/StartupApp:::no-loc(Cookie):::.cs?name=snippet1)]
+[!code-csharp[](accconfirm/sample/WebPWrecover30/StartupAppCookie.cs?name=snippet1)]
 
 ### <a name="change-all-data-protection-token-lifespans"></a><span data-ttu-id="e8af0-174">Modifica tutte le durate dei token di protezione dati</span><span class="sxs-lookup"><span data-stu-id="e8af0-174">Change all data protection token lifespans</span></span>
 
@@ -179,13 +179,13 @@ https://github.com/dotnet/aspnetcore/blob/master/src/:::no-loc(Identity):::/UI/s
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/StartupAllTokens.cs?name=snippet1&highlight=11-12)]
 
-<span data-ttu-id="e8af0-176">I :::no-loc(Identity)::: token utente predefiniti (vedere [AspNetCore/src/ :::no-loc(Identity)::: /Extensions.core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Extensions.Core/src/TokenOptions.cs) ) hanno un timeout di un [giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Core/src/DataProtectionTokenProviderOptions.cs).</span><span class="sxs-lookup"><span data-stu-id="e8af0-176">The built in :::no-loc(Identity)::: user tokens (see [AspNetCore/src/:::no-loc(Identity):::/Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Extensions.Core/src/TokenOptions.cs) )have a [one day timeout](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Core/src/DataProtectionTokenProviderOptions.cs).</span></span>
+<span data-ttu-id="e8af0-176">I Identity token utente predefiniti (vedere [AspNetCore/src/ Identity /Extensions.core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) hanno un timeout di un [giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).</span><span class="sxs-lookup"><span data-stu-id="e8af0-176">The built in Identity user tokens (see [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) )have a [one day timeout](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).</span></span>
 
 ### <a name="change-the-email-token-lifespan"></a><span data-ttu-id="e8af0-177">Modificare la durata del token di posta elettronica</span><span class="sxs-lookup"><span data-stu-id="e8af0-177">Change the email token lifespan</span></span>
 
-<span data-ttu-id="e8af0-178">La durata del token predefinita [dei :::no-loc(Identity)::: token utente](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Extensions.Core/src/TokenOptions.cs) è [un giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Core/src/DataProtectionTokenProviderOptions.cs).</span><span class="sxs-lookup"><span data-stu-id="e8af0-178">The default token lifespan of [the :::no-loc(Identity)::: user tokens](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Extensions.Core/src/TokenOptions.cs) is [one day](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Core/src/DataProtectionTokenProviderOptions.cs).</span></span> <span data-ttu-id="e8af0-179">Questa sezione illustra come modificare la durata del token di posta elettronica.</span><span class="sxs-lookup"><span data-stu-id="e8af0-179">This section shows how to change the email token lifespan.</span></span>
+<span data-ttu-id="e8af0-178">La durata del token predefinita [dei Identity token utente](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) è [un giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).</span><span class="sxs-lookup"><span data-stu-id="e8af0-178">The default token lifespan of [the Identity user tokens](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) is [one day](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).</span></span> <span data-ttu-id="e8af0-179">Questa sezione illustra come modificare la durata del token di posta elettronica.</span><span class="sxs-lookup"><span data-stu-id="e8af0-179">This section shows how to change the email token lifespan.</span></span>
 
-<span data-ttu-id="e8af0-180">Aggiungere un [DataProtectorTokenProvider \<TUser> ](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) personalizzato e <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.DataProtectionTokenProviderOptions> :</span><span class="sxs-lookup"><span data-stu-id="e8af0-180">Add a custom [DataProtectorTokenProvider\<TUser>](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) and <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.DataProtectionTokenProviderOptions>:</span></span>
+<span data-ttu-id="e8af0-180">Aggiungere un [DataProtectorTokenProvider \<TUser> ](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) personalizzato e <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> :</span><span class="sxs-lookup"><span data-stu-id="e8af0-180">Add a custom [DataProtectorTokenProvider\<TUser>](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:</span></span>
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
@@ -241,7 +241,7 @@ https://github.com/dotnet/aspnetcore/blob/master/src/:::no-loc(Identity):::/UI/s
 
 [<span data-ttu-id="e8af0-216">.NET Core 2,2 SDK o versione successiva</span><span class="sxs-lookup"><span data-stu-id="e8af0-216">.NET Core 2.2 SDK or later</span></span>](https://dotnet.microsoft.com/download/dotnet-core)
 
-## <a name="create-a-web--app-and-scaffold-no-locidentity"></a><span data-ttu-id="e8af0-217">Creare un'app Web e un patibolo :::no-loc(Identity):::</span><span class="sxs-lookup"><span data-stu-id="e8af0-217">Create a web  app and scaffold :::no-loc(Identity):::</span></span>
+## <a name="create-a-web--app-and-scaffold-no-locidentity"></a><span data-ttu-id="e8af0-217">Creare un'app Web e un patibolo Identity</span><span class="sxs-lookup"><span data-stu-id="e8af0-217">Create a web  app and scaffold Identity</span></span>
 
 <span data-ttu-id="e8af0-218">Eseguire i comandi seguenti per creare un'app Web con l'autenticazione di.</span><span class="sxs-lookup"><span data-stu-id="e8af0-218">Run the following commands to create a web app with authentication.</span></span>
 
@@ -257,7 +257,7 @@ dotnet run
 ```
 
 > [!NOTE]
-> <span data-ttu-id="e8af0-219">Se <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PasswordOptions> sono configurati in `Startup.ConfigureServices` , la configurazione degli [ `[StringLength]` attributi](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) potrebbe essere necessaria per la `Password` proprietà nelle pagine con impalcature :::no-loc(Identity)::: .</span><span class="sxs-lookup"><span data-stu-id="e8af0-219">If <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PasswordOptions> are configured in `Startup.ConfigureServices`, [`[StringLength]` attribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded :::no-loc(Identity)::: pages.</span></span> <span data-ttu-id="e8af0-220">Una `InputModel` `Password` proprietà viene trovata nel `Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml.cs` file dopo l'impalcatura :::no-loc(Identity)::: .</span><span class="sxs-lookup"><span data-stu-id="e8af0-220">An `InputModel` `Password` property is found in the `Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml.cs` file after scaffolding :::no-loc(Identity):::.</span></span>
+> <span data-ttu-id="e8af0-219">Se <xref:Microsoft.AspNetCore.Identity.PasswordOptions> sono configurati in `Startup.ConfigureServices` , la configurazione degli [ `[StringLength]` attributi](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) potrebbe essere necessaria per la `Password` proprietà nelle pagine con impalcature Identity .</span><span class="sxs-lookup"><span data-stu-id="e8af0-219">If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Startup.ConfigureServices`, [`[StringLength]` attribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded Identity pages.</span></span> <span data-ttu-id="e8af0-220">Una `InputModel` `Password` proprietà viene trovata nel `Areas/Identity/Pages/Account/Register.cshtml.cs` file dopo l'impalcatura Identity .</span><span class="sxs-lookup"><span data-stu-id="e8af0-220">An `InputModel` `Password` property is found in the `Areas/Identity/Pages/Account/Register.cshtml.cs` file after scaffolding Identity.</span></span>
 
 ## <a name="test-new-user-registration"></a><span data-ttu-id="e8af0-221">Testare la registrazione di un nuovo utente</span><span class="sxs-lookup"><span data-stu-id="e8af0-221">Test new user registration</span></span>
 
@@ -356,7 +356,7 @@ dotnet add package SendGrid
 
 ## <a name="enable-account-confirmation-and-password-recovery"></a><span data-ttu-id="e8af0-273">Abilitare la conferma dell'account e il recupero della password</span><span class="sxs-lookup"><span data-stu-id="e8af0-273">Enable account confirmation and password recovery</span></span>
 
-<span data-ttu-id="e8af0-274">Il modello include il codice per la conferma dell'account e il recupero della password.</span><span class="sxs-lookup"><span data-stu-id="e8af0-274">The template has the code for account confirmation and password recovery.</span></span> <span data-ttu-id="e8af0-275">Trovare il `OnPostAsync` metodo in *aree/ :::no-loc(Identity)::: /pages/account/Register.cshtml.cs* .</span><span class="sxs-lookup"><span data-stu-id="e8af0-275">Find the `OnPostAsync` method in *Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml.cs* .</span></span>
+<span data-ttu-id="e8af0-274">Il modello include il codice per la conferma dell'account e il recupero della password.</span><span class="sxs-lookup"><span data-stu-id="e8af0-274">The template has the code for account confirmation and password recovery.</span></span> <span data-ttu-id="e8af0-275">Trovare il `OnPostAsync` metodo in *aree/ Identity /pages/account/Register.cshtml.cs* .</span><span class="sxs-lookup"><span data-stu-id="e8af0-275">Find the `OnPostAsync` method in *Areas/Identity/Pages/Account/Register.cshtml.cs* .</span></span>
 
 <span data-ttu-id="e8af0-276">Impedire l'accesso automatico degli utenti appena registrati impostando come commento la riga seguente:</span><span class="sxs-lookup"><span data-stu-id="e8af0-276">Prevent newly registered users from being automatically signed in by commenting out the following line:</span></span>
 
@@ -366,7 +366,7 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 <span data-ttu-id="e8af0-277">Il metodo completo viene visualizzato con la riga modificata evidenziata:</span><span class="sxs-lookup"><span data-stu-id="e8af0-277">The complete method is shown with the changed line highlighted:</span></span>
 
-[!code-csharp[](accconfirm/sample/WebPWrecover22/Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml.cs?highlight=22&name=snippet_Register)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Areas/Identity/Pages/Account/Register.cshtml.cs?highlight=22&name=snippet_Register)]
 
 ## <a name="register-confirm-email-and-reset-password"></a><span data-ttu-id="e8af0-278">Registrare, confermare la posta elettronica e reimpostare la password</span><span class="sxs-lookup"><span data-stu-id="e8af0-278">Register, confirm email, and reset password</span></span>
 
@@ -395,7 +395,7 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 <span data-ttu-id="e8af0-298">Il timeout di inattività predefinito è di 14 giorni.</span><span class="sxs-lookup"><span data-stu-id="e8af0-298">The default inactivity timeout is 14 days.</span></span> <span data-ttu-id="e8af0-299">Il codice seguente imposta il timeout di inattività su 5 giorni:</span><span class="sxs-lookup"><span data-stu-id="e8af0-299">The following code sets the inactivity timeout to 5 days:</span></span>
 
-[!code-csharp[](accconfirm/sample/WebPWrecover22/StartupApp:::no-loc(Cookie):::.cs?name=snippet1)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAppCookie.cs?name=snippet1)]
 
 ### <a name="change-all-data-protection-token-lifespans"></a><span data-ttu-id="e8af0-300">Modifica tutte le durate dei token di protezione dati</span><span class="sxs-lookup"><span data-stu-id="e8af0-300">Change all data protection token lifespans</span></span>
 
@@ -403,13 +403,13 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAllTokens.cs?name=snippet1&highlight=15-16)]
 
-<span data-ttu-id="e8af0-302">I :::no-loc(Identity)::: token utente predefiniti (vedere [AspNetCore/src/ :::no-loc(Identity)::: /Extensions.core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Extensions.Core/src/TokenOptions.cs) ) hanno un timeout di un [giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Core/src/DataProtectionTokenProviderOptions.cs).</span><span class="sxs-lookup"><span data-stu-id="e8af0-302">The built in :::no-loc(Identity)::: user tokens (see [AspNetCore/src/:::no-loc(Identity):::/Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Extensions.Core/src/TokenOptions.cs) )have a [one day timeout](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Core/src/DataProtectionTokenProviderOptions.cs).</span></span>
+<span data-ttu-id="e8af0-302">I Identity token utente predefiniti (vedere [AspNetCore/src/ Identity /Extensions.core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) hanno un timeout di un [giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).</span><span class="sxs-lookup"><span data-stu-id="e8af0-302">The built in Identity user tokens (see [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) )have a [one day timeout](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).</span></span>
 
 ### <a name="change-the-email-token-lifespan"></a><span data-ttu-id="e8af0-303">Modificare la durata del token di posta elettronica</span><span class="sxs-lookup"><span data-stu-id="e8af0-303">Change the email token lifespan</span></span>
 
-<span data-ttu-id="e8af0-304">La durata del token predefinita [dei :::no-loc(Identity)::: token utente](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Extensions.Core/src/TokenOptions.cs) è [un giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Core/src/DataProtectionTokenProviderOptions.cs).</span><span class="sxs-lookup"><span data-stu-id="e8af0-304">The default token lifespan of [the :::no-loc(Identity)::: user tokens](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Extensions.Core/src/TokenOptions.cs) is [one day](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/:::no-loc(Identity):::/Core/src/DataProtectionTokenProviderOptions.cs).</span></span> <span data-ttu-id="e8af0-305">Questa sezione illustra come modificare la durata del token di posta elettronica.</span><span class="sxs-lookup"><span data-stu-id="e8af0-305">This section shows how to change the email token lifespan.</span></span>
+<span data-ttu-id="e8af0-304">La durata del token predefinita [dei Identity token utente](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) è [un giorno](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).</span><span class="sxs-lookup"><span data-stu-id="e8af0-304">The default token lifespan of [the Identity user tokens](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) is [one day](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).</span></span> <span data-ttu-id="e8af0-305">Questa sezione illustra come modificare la durata del token di posta elettronica.</span><span class="sxs-lookup"><span data-stu-id="e8af0-305">This section shows how to change the email token lifespan.</span></span>
 
-<span data-ttu-id="e8af0-306">Aggiungere un [DataProtectorTokenProvider \<TUser> ](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) personalizzato e <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.DataProtectionTokenProviderOptions> :</span><span class="sxs-lookup"><span data-stu-id="e8af0-306">Add a custom [DataProtectorTokenProvider\<TUser>](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) and <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.DataProtectionTokenProviderOptions>:</span></span>
+<span data-ttu-id="e8af0-306">Aggiungere un [DataProtectorTokenProvider \<TUser> ](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) personalizzato e <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> :</span><span class="sxs-lookup"><span data-stu-id="e8af0-306">Add a custom [DataProtectorTokenProvider\<TUser>](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:</span></span>
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 

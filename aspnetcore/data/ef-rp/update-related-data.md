@@ -1,21 +1,21 @@
 ---
-title: "Parte 7, :::no-loc(Razor)::: pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core"
+title: "Parte 7, Razor pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core"
 author: rick-anderson
-description: 'Parte 7 di :::no-loc(Razor)::: pagine e Entity Framework serie di esercitazioni.'
+description: 'Parte 7 di Razor pagine e Entity Framework serie di esercitazioni.'
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: data/ef-rp/update-related-data
 ms.openlocfilehash: 3ec88a862697c540a1a98e733c31d76922f81f7c
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -24,7 +24,7 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93060534"
 ---
-# <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a><span data-ttu-id="43ab2-103">Parte 7, :::no-loc(Razor)::: pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="43ab2-103">Part 7, :::no-loc(Razor)::: Pages with EF Core in ASP.NET Core - Update Related Data</span></span>
+# <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a><span data-ttu-id="43ab2-103">Parte 7, Razor pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="43ab2-103">Part 7, Razor Pages with EF Core in ASP.NET Core - Update Related Data</span></span>
 
 <span data-ttu-id="43ab2-104">Di [Tom Dykstra](https://github.com/tdykstra), e [Rick Anderson](https://twitter.com/RickAndMSFT)</span><span class="sxs-lookup"><span data-stu-id="43ab2-104">By [Tom Dykstra](https://github.com/tdykstra), and [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
 
@@ -68,9 +68,9 @@ ms.locfileid: "93060534"
 
 * <span data-ttu-id="43ab2-125">Classe derivata da `DepartmentNamePageModel`.</span><span class="sxs-lookup"><span data-stu-id="43ab2-125">Derives from `DepartmentNamePageModel`.</span></span>
 * <span data-ttu-id="43ab2-126">Usa `TryUpdateModelAsync` per evitare l'[overposting](xref:data/ef-rp/crud#overposting).</span><span class="sxs-lookup"><span data-stu-id="43ab2-126">Uses `TryUpdateModelAsync` to prevent [overposting](xref:data/ef-rp/crud#overposting).</span></span>
-* <span data-ttu-id="43ab2-127">Rimuove `ViewData["DepartmentID"]`.</span><span class="sxs-lookup"><span data-stu-id="43ab2-127">Removes `ViewData["DepartmentID"]`.</span></span> <span data-ttu-id="43ab2-128">`DepartmentNameSL` dalla classe base è un modello fortemente tipizzato e verrà usato dalla :::no-loc(Razor)::: pagina.</span><span class="sxs-lookup"><span data-stu-id="43ab2-128">`DepartmentNameSL` from the base class is a strongly typed model and will be used by the :::no-loc(Razor)::: page.</span></span> <span data-ttu-id="43ab2-129">I modelli fortemente tipizzati sono preferibili a quelli scarsamente tipizzati.</span><span class="sxs-lookup"><span data-stu-id="43ab2-129">Strongly typed models are preferred over weakly typed.</span></span> <span data-ttu-id="43ab2-130">Per altre informazioni, vedere [Dati con tipizzazione debole (ViewData e ViewBag)](xref:mvc/views/overview#VD_VB).</span><span class="sxs-lookup"><span data-stu-id="43ab2-130">For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).</span></span>
+* <span data-ttu-id="43ab2-127">Rimuove `ViewData["DepartmentID"]`.</span><span class="sxs-lookup"><span data-stu-id="43ab2-127">Removes `ViewData["DepartmentID"]`.</span></span> <span data-ttu-id="43ab2-128">`DepartmentNameSL` dalla classe base è un modello fortemente tipizzato e verrà usato dalla Razor pagina.</span><span class="sxs-lookup"><span data-stu-id="43ab2-128">`DepartmentNameSL` from the base class is a strongly typed model and will be used by the Razor page.</span></span> <span data-ttu-id="43ab2-129">I modelli fortemente tipizzati sono preferibili a quelli scarsamente tipizzati.</span><span class="sxs-lookup"><span data-stu-id="43ab2-129">Strongly typed models are preferred over weakly typed.</span></span> <span data-ttu-id="43ab2-130">Per altre informazioni, vedere [Dati con tipizzazione debole (ViewData e ViewBag)](xref:mvc/views/overview#VD_VB).</span><span class="sxs-lookup"><span data-stu-id="43ab2-130">For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).</span></span>
 
-### <a name="update-the-course-create-no-locrazor-page"></a><span data-ttu-id="43ab2-131">Aggiornare la pagina di creazione del corso :::no-loc(Razor):::</span><span class="sxs-lookup"><span data-stu-id="43ab2-131">Update the Course Create :::no-loc(Razor)::: page</span></span>
+### <a name="update-the-course-create-no-locrazor-page"></a><span data-ttu-id="43ab2-131">Aggiornare la pagina di creazione del corso Razor</span><span class="sxs-lookup"><span data-stu-id="43ab2-131">Update the Course Create Razor page</span></span>
 
 <span data-ttu-id="43ab2-132">Aggiornare *Pages/Courses/Create.cshtml* con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="43ab2-132">Update *Pages/Courses/Create.cshtml* with the following code:</span></span>
 
@@ -83,7 +83,7 @@ ms.locfileid: "93060534"
 * <span data-ttu-id="43ab2-136">Aggiunge l'opzione "Select Department" (Selezionare il dipartimento).</span><span class="sxs-lookup"><span data-stu-id="43ab2-136">Adds the "Select Department" option.</span></span> <span data-ttu-id="43ab2-137">Questa modifica esegue il rendering di "Select Department" nell'elenco a discesa quando non è ancora stato selezionato alcun dipartimento, anziché visualizzare il primo dipartimento.</span><span class="sxs-lookup"><span data-stu-id="43ab2-137">This change renders "Select Department" in the drop-down when no department has been selected yet, rather than the first department.</span></span>
 * <span data-ttu-id="43ab2-138">Aggiunge un messaggio di convalida quando il dipartimento non è selezionato.</span><span class="sxs-lookup"><span data-stu-id="43ab2-138">Adds a validation message when the department isn't selected.</span></span>
 
-<span data-ttu-id="43ab2-139">La :::no-loc(Razor)::: pagina usa l' [Helper tag SELECT](xref:mvc/views/working-with-forms#the-select-tag-helper):</span><span class="sxs-lookup"><span data-stu-id="43ab2-139">The :::no-loc(Razor)::: Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):</span></span>
+<span data-ttu-id="43ab2-139">La Razor pagina usa l' [Helper tag SELECT](xref:mvc/views/working-with-forms#the-select-tag-helper):</span><span class="sxs-lookup"><span data-stu-id="43ab2-139">The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):</span></span>
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -97,7 +97,7 @@ ms.locfileid: "93060534"
 
 <span data-ttu-id="43ab2-144">Le modifiche sono simili a quelle apportate nel modello della pagina Create (Crea).</span><span class="sxs-lookup"><span data-stu-id="43ab2-144">The changes are similar to those made in the Create page model.</span></span> <span data-ttu-id="43ab2-145">Nel codice precedente, `PopulateDepartmentsDropDownList` passa l'ID del dipartimento, che seleziona il dipartimento nell'elenco a discesa.</span><span class="sxs-lookup"><span data-stu-id="43ab2-145">In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which selects that department in the drop-down list.</span></span>
 
-### <a name="update-the-course-edit-no-locrazor-page"></a><span data-ttu-id="43ab2-146">Aggiornare la pagina di modifica del corso :::no-loc(Razor):::</span><span class="sxs-lookup"><span data-stu-id="43ab2-146">Update the Course Edit :::no-loc(Razor)::: page</span></span>
+### <a name="update-the-course-edit-no-locrazor-page"></a><span data-ttu-id="43ab2-146">Aggiornare la pagina di modifica del corso Razor</span><span class="sxs-lookup"><span data-stu-id="43ab2-146">Update the Course Edit Razor page</span></span>
 
 <span data-ttu-id="43ab2-147">Aggiornare *Pages/Courses/Edit.cshtml* con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="43ab2-147">Update *Pages/Courses/Edit.cshtml* with the following code:</span></span>
 
@@ -125,7 +125,7 @@ ms.locfileid: "93060534"
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=28)]
 
-### <a name="update-the-course-no-locrazor-pages"></a><span data-ttu-id="43ab2-163">Aggiornare le pagine del corso :::no-loc(Razor):::</span><span class="sxs-lookup"><span data-stu-id="43ab2-163">Update the Course :::no-loc(Razor)::: pages</span></span>
+### <a name="update-the-course-no-locrazor-pages"></a><span data-ttu-id="43ab2-163">Aggiornare le pagine del corso Razor</span><span class="sxs-lookup"><span data-stu-id="43ab2-163">Update the Course Razor pages</span></span>
 
 <span data-ttu-id="43ab2-164">Aggiornare *Pages/Courses/Delete.cshtml* con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="43ab2-164">Update *Pages/Courses/Delete.cshtml* with the following code:</span></span>
 
@@ -163,7 +163,7 @@ ms.locfileid: "93060534"
 
 <span data-ttu-id="43ab2-184">`InstructorCoursesPageModel` è la classe di base che verrà usata per i modelli delle pagine Edit (Modifica) e Create (Crea).</span><span class="sxs-lookup"><span data-stu-id="43ab2-184">The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models.</span></span> <span data-ttu-id="43ab2-185">`PopulateAssignedCourseData` legge tutte le entità `Course` per popolare `AssignedCourseDataList`.</span><span class="sxs-lookup"><span data-stu-id="43ab2-185">`PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`.</span></span> <span data-ttu-id="43ab2-186">Per ogni corso, il codice imposta `CourseID` e titolo, e stabilisce se l'insegnante è assegnato al corso.</span><span class="sxs-lookup"><span data-stu-id="43ab2-186">For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course.</span></span> <span data-ttu-id="43ab2-187">Viene usato un [HashSet](/dotnet/api/system.collections.generic.hashset-1) per ricerche efficienti.</span><span class="sxs-lookup"><span data-stu-id="43ab2-187">A [HashSet](/dotnet/api/system.collections.generic.hashset-1) is used for efficient lookups.</span></span>
 
-<span data-ttu-id="43ab2-188">Poiché la :::no-loc(Razor)::: pagina non include una raccolta di entità Course, lo strumento di associazione di modelli non può aggiornare automaticamente la `CourseAssignments` proprietà di navigazione.</span><span class="sxs-lookup"><span data-stu-id="43ab2-188">Since the :::no-loc(Razor)::: page doesn't have a collection of Course entities, the model binder can't automatically update the `CourseAssignments` navigation property.</span></span> <span data-ttu-id="43ab2-189">Anziché usare lo strumento di associazione di modelli per aggiornare la proprietà di navigazione `CourseAssignments`, questa operazione viene eseguita nel nuovo metodo `UpdateInstructorCourses`.</span><span class="sxs-lookup"><span data-stu-id="43ab2-189">Instead of using the model binder to update the `CourseAssignments` navigation property, you do that in the new `UpdateInstructorCourses` method.</span></span> <span data-ttu-id="43ab2-190">È pertanto necessario escludere la proprietà `CourseAssignments` dall'associazione di modelli.</span><span class="sxs-lookup"><span data-stu-id="43ab2-190">Therefore you need to exclude the `CourseAssignments` property from model binding.</span></span> <span data-ttu-id="43ab2-191">Questa operazione non richiede alcuna modifica al codice che chiama `TryUpdateModel` perché si sta usando l'overload con proprietà dichiarate e `CourseAssignments` non è incluso nell'elenco di inclusione.</span><span class="sxs-lookup"><span data-stu-id="43ab2-191">This doesn't require any change to the code that calls `TryUpdateModel` because you're using the overload with declared properties and `CourseAssignments` isn't in the include list.</span></span>
+<span data-ttu-id="43ab2-188">Poiché la Razor pagina non include una raccolta di entità Course, lo strumento di associazione di modelli non può aggiornare automaticamente la `CourseAssignments` proprietà di navigazione.</span><span class="sxs-lookup"><span data-stu-id="43ab2-188">Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `CourseAssignments` navigation property.</span></span> <span data-ttu-id="43ab2-189">Anziché usare lo strumento di associazione di modelli per aggiornare la proprietà di navigazione `CourseAssignments`, questa operazione viene eseguita nel nuovo metodo `UpdateInstructorCourses`.</span><span class="sxs-lookup"><span data-stu-id="43ab2-189">Instead of using the model binder to update the `CourseAssignments` navigation property, you do that in the new `UpdateInstructorCourses` method.</span></span> <span data-ttu-id="43ab2-190">È pertanto necessario escludere la proprietà `CourseAssignments` dall'associazione di modelli.</span><span class="sxs-lookup"><span data-stu-id="43ab2-190">Therefore you need to exclude the `CourseAssignments` property from model binding.</span></span> <span data-ttu-id="43ab2-191">Questa operazione non richiede alcuna modifica al codice che chiama `TryUpdateModel` perché si sta usando l'overload con proprietà dichiarate e `CourseAssignments` non è incluso nell'elenco di inclusione.</span><span class="sxs-lookup"><span data-stu-id="43ab2-191">This doesn't require any change to the code that calls `TryUpdateModel` because you're using the overload with declared properties and `CourseAssignments` isn't in the include list.</span></span>
 
 <span data-ttu-id="43ab2-192">Se nessuna casella di controllo è selezionata, il codice in `UpdateInstructorCourses` inizializza la proprietà di navigazione `CourseAssignments` con una raccolta vuota e torna:</span><span class="sxs-lookup"><span data-stu-id="43ab2-192">If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `CourseAssignments` navigation property with an empty collection and returns:</span></span>
 
@@ -202,7 +202,7 @@ ms.locfileid: "93060534"
 * <span data-ttu-id="43ab2-212">Chiama `UpdateInstructorCourses` in `OnPostAsync` per applicare le informazioni dalle caselle di controllo all'entità Instructor in corso di modifica.</span><span class="sxs-lookup"><span data-stu-id="43ab2-212">Calls `UpdateInstructorCourses` in `OnPostAsync` to apply information from the checkboxes to the Instructor entity being edited.</span></span>
 * <span data-ttu-id="43ab2-213">Chiama `PopulateAssignedCourseData` e `UpdateInstructorCourses` in `OnPostAsync` se `TryUpdateModel` ha esito negativo.</span><span class="sxs-lookup"><span data-stu-id="43ab2-213">Calls `PopulateAssignedCourseData` and `UpdateInstructorCourses` in `OnPostAsync` if `TryUpdateModel` fails.</span></span> <span data-ttu-id="43ab2-214">Queste chiamate di metodo ripristinano i dati dei corsi assegnati immessi nella pagina quando viene rivisualizzata con un messaggio di errore.</span><span class="sxs-lookup"><span data-stu-id="43ab2-214">These method calls restore the assigned course data entered on the page when it is redisplayed with an error message.</span></span>
 
-### <a name="update-the-instructor-edit-no-locrazor-page"></a><span data-ttu-id="43ab2-215">Aggiornare la pagina di modifica dell'insegnante :::no-loc(Razor):::</span><span class="sxs-lookup"><span data-stu-id="43ab2-215">Update the Instructor Edit :::no-loc(Razor)::: page</span></span>
+### <a name="update-the-instructor-edit-no-locrazor-page"></a><span data-ttu-id="43ab2-215">Aggiornare la pagina di modifica dell'insegnante Razor</span><span class="sxs-lookup"><span data-stu-id="43ab2-215">Update the Instructor Edit Razor page</span></span>
 
 <span data-ttu-id="43ab2-216">Aggiornare *Pages/Instructors/Edit.cshtml* con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="43ab2-216">Update *Pages/Instructors/Edit.cshtml* with the following code:</span></span>
 
@@ -218,7 +218,7 @@ ms.locfileid: "93060534"
 
 ### <a name="update-the-instructor-create-page"></a><span data-ttu-id="43ab2-229">Aggiornare la pagina Create per gli insegnanti</span><span class="sxs-lookup"><span data-stu-id="43ab2-229">Update the Instructor Create page</span></span>
 
-<span data-ttu-id="43ab2-230">Aggiornare la pagina e il modello di creazione pagina dell'insegnante :::no-loc(Razor)::: con codice simile a quello della pagina Edit (modifica):</span><span class="sxs-lookup"><span data-stu-id="43ab2-230">Update the Instructor Create page model and :::no-loc(Razor)::: page with code similar to the Edit page:</span></span>
+<span data-ttu-id="43ab2-230">Aggiornare la pagina e il modello di creazione pagina dell'insegnante Razor con codice simile a quello della pagina Edit (modifica):</span><span class="sxs-lookup"><span data-stu-id="43ab2-230">Update the Instructor Create page model and Razor page with code similar to the Edit page:</span></span>
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Create.cshtml.cs)]
 
@@ -302,7 +302,7 @@ ms.locfileid: "93060534"
 * <span data-ttu-id="43ab2-277">Aggiunge l'opzione "Select Department" (Selezionare il dipartimento).</span><span class="sxs-lookup"><span data-stu-id="43ab2-277">Adds the "Select Department" option.</span></span> <span data-ttu-id="43ab2-278">Questa modifica esegue il rendering di "Select Department" (Selezionare il dipartimento) anziché del primo dipartimento.</span><span class="sxs-lookup"><span data-stu-id="43ab2-278">This change renders "Select Department" rather than the first department.</span></span>
 * <span data-ttu-id="43ab2-279">Aggiunge un messaggio di convalida quando il dipartimento non è selezionato.</span><span class="sxs-lookup"><span data-stu-id="43ab2-279">Adds a validation message when the department isn't selected.</span></span>
 
-<span data-ttu-id="43ab2-280">La :::no-loc(Razor)::: pagina usa l' [Helper tag SELECT](xref:mvc/views/working-with-forms#the-select-tag-helper):</span><span class="sxs-lookup"><span data-stu-id="43ab2-280">The :::no-loc(Razor)::: Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):</span></span>
+<span data-ttu-id="43ab2-280">La Razor pagina usa l' [Helper tag SELECT](xref:mvc/views/working-with-forms#the-select-tag-helper):</span><span class="sxs-lookup"><span data-stu-id="43ab2-280">The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):</span></span>
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -342,7 +342,7 @@ ms.locfileid: "93060534"
 
 ### <a name="modify-the-delete-and-details-pages"></a><span data-ttu-id="43ab2-305">Modificare le pagine Delete (Elimina) e Details (Dettagli)</span><span class="sxs-lookup"><span data-stu-id="43ab2-305">Modify the Delete and Details pages</span></span>
 
-<span data-ttu-id="43ab2-306">Aggiornare la :::no-loc(Razor)::: pagina Delete con il markup seguente:</span><span class="sxs-lookup"><span data-stu-id="43ab2-306">Update the Delete :::no-loc(Razor)::: page with the following markup:</span></span>
+<span data-ttu-id="43ab2-306">Aggiornare la Razor pagina Delete con il markup seguente:</span><span class="sxs-lookup"><span data-stu-id="43ab2-306">Update the Delete Razor page with the following markup:</span></span>
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Delete.cshtml?highlight=15-20)]
 
@@ -417,7 +417,7 @@ ms.locfileid: "93060534"
 
 <span data-ttu-id="43ab2-353">Il codice precedente gestisce le modifiche alle assegnazioni di ufficio.</span><span class="sxs-lookup"><span data-stu-id="43ab2-353">The preceding code handles office assignment changes.</span></span>
 
-<span data-ttu-id="43ab2-354">Aggiornare la :::no-loc(Razor)::: visualizzazione Instructor:</span><span class="sxs-lookup"><span data-stu-id="43ab2-354">Update the instructor :::no-loc(Razor)::: View:</span></span>
+<span data-ttu-id="43ab2-354">Aggiornare la Razor visualizzazione Instructor:</span><span class="sxs-lookup"><span data-stu-id="43ab2-354">Update the instructor Razor View:</span></span>
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Edit.cshtml?highlight=34-59)]
 
@@ -441,7 +441,7 @@ ms.locfileid: "93060534"
 
 <span data-ttu-id="43ab2-375">Il codice precedente è simile al codice *Pages/Instructors/Edit.cshtml.cs* .</span><span class="sxs-lookup"><span data-stu-id="43ab2-375">The preceding code is similar to the *Pages/Instructors/Edit.cshtml.cs* code.</span></span>
 
-<span data-ttu-id="43ab2-376">Aggiornare la pagina di creazione dell'insegnante :::no-loc(Razor)::: con il markup seguente:</span><span class="sxs-lookup"><span data-stu-id="43ab2-376">Update the instructor Create :::no-loc(Razor)::: page with the following markup:</span></span>
+<span data-ttu-id="43ab2-376">Aggiornare la pagina di creazione dell'insegnante Razor con il markup seguente:</span><span class="sxs-lookup"><span data-stu-id="43ab2-376">Update the instructor Create Razor page with the following markup:</span></span>
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Create.cshtml?highlight=32-62)]
 

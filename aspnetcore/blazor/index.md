@@ -1,23 +1,23 @@
 ---
-title: 'Introduzione a ASP.NET Core :::no-loc(Blazor):::'
+title: 'Introduzione a ASP.NET Core Blazor'
 author: guardrex
-description: "Esplora ASP.NET Core :::no-loc(Blazor)::: , un modo per creare un'interfaccia utente Web interattiva sul lato client con .NET in un'app ASP.NET Core."
+description: "Esplora ASP.NET Core Blazor , un modo per creare un'interfaccia utente Web interattiva sul lato client con .NET in un'app ASP.NET Core."
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, seoapril2019, devx-track-js
 ms.date: 09/25/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/index
 ms.openlocfilehash: ecdf4f59aca0fe71bbfcfe61a99109127c8b92df
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,13 +26,13 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93055712"
 ---
-# <a name="introduction-to-aspnet-core-no-locblazor"></a><span data-ttu-id="7c13d-103">Introduzione a ASP.NET Core :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="7c13d-103">Introduction to ASP.NET Core :::no-loc(Blazor):::</span></span>
+# <a name="introduction-to-aspnet-core-no-locblazor"></a><span data-ttu-id="7c13d-103">Introduzione a ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="7c13d-103">Introduction to ASP.NET Core Blazor</span></span>
 
 <span data-ttu-id="7c13d-104">Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="7c13d-104">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="7c13d-105">*Benvenuti in :::no-loc(Blazor)::: .*</span><span class="sxs-lookup"><span data-stu-id="7c13d-105">*Welcome to :::no-loc(Blazor):::!*</span></span>
+<span data-ttu-id="7c13d-105">*Benvenuti in Blazor .*</span><span class="sxs-lookup"><span data-stu-id="7c13d-105">*Welcome to Blazor!*</span></span>
 
-<span data-ttu-id="7c13d-106">:::no-loc(Blazor)::: è un Framework per la creazione di un'interfaccia utente Web interattiva sul lato client con [.NET](/dotnet/standard/tour):</span><span class="sxs-lookup"><span data-stu-id="7c13d-106">:::no-loc(Blazor)::: is a framework for building interactive client-side web UI with [.NET](/dotnet/standard/tour):</span></span>
+<span data-ttu-id="7c13d-106">Blazor è un Framework per la creazione di un'interfaccia utente Web interattiva sul lato client con [.NET](/dotnet/standard/tour):</span><span class="sxs-lookup"><span data-stu-id="7c13d-106">Blazor is a framework for building interactive client-side web UI with [.NET](/dotnet/standard/tour):</span></span>
 
 * <span data-ttu-id="7c13d-107">Creare interfacce utente interattive avanzate usando [C#](/dotnet/csharp/) anziché [JavaScript](https://www.javascript.com).</span><span class="sxs-lookup"><span data-stu-id="7c13d-107">Create rich interactive UIs using [C#](/dotnet/csharp/) instead of [JavaScript](https://www.javascript.com).</span></span>
 * <span data-ttu-id="7c13d-108">Condividere la logica dell'app scritta in .NET sul lato client e sul lato server.</span><span class="sxs-lookup"><span data-stu-id="7c13d-108">Share server-side and client-side app logic written in .NET.</span></span>
@@ -50,18 +50,18 @@ ms.locfileid: "93055712"
 
 ## <a name="components"></a><span data-ttu-id="7c13d-118">Componenti</span><span class="sxs-lookup"><span data-stu-id="7c13d-118">Components</span></span>
 
-<span data-ttu-id="7c13d-119">:::no-loc(Blazor)::: le app sono basate su *componenti* .</span><span class="sxs-lookup"><span data-stu-id="7c13d-119">:::no-loc(Blazor)::: apps are based on *components* .</span></span> <span data-ttu-id="7c13d-120">Un componente :::no-loc(Blazor)::: di è un elemento dell'interfaccia utente, ad esempio una pagina, una finestra di dialogo o un form di immissione dati.</span><span class="sxs-lookup"><span data-stu-id="7c13d-120">A component in :::no-loc(Blazor)::: is an element of UI, such as a page, dialog, or data entry form.</span></span>
+<span data-ttu-id="7c13d-119">Blazor le app sono basate su *componenti* .</span><span class="sxs-lookup"><span data-stu-id="7c13d-119">Blazor apps are based on *components* .</span></span> <span data-ttu-id="7c13d-120">Un componente Blazor di è un elemento dell'interfaccia utente, ad esempio una pagina, una finestra di dialogo o un form di immissione dati.</span><span class="sxs-lookup"><span data-stu-id="7c13d-120">A component in Blazor is an element of UI, such as a page, dialog, or data entry form.</span></span>
 
 <span data-ttu-id="7c13d-121">I componenti sono classi .NET C# compilate in [assembly .NET](/dotnet/standard/assembly/) che:</span><span class="sxs-lookup"><span data-stu-id="7c13d-121">Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/) that:</span></span>
 
 * <span data-ttu-id="7c13d-122">Definiscono la logica di rendering dell'interfaccia utente flessibile.</span><span class="sxs-lookup"><span data-stu-id="7c13d-122">Define flexible UI rendering logic.</span></span>
 * <span data-ttu-id="7c13d-123">Gestiscono gli eventi utente.</span><span class="sxs-lookup"><span data-stu-id="7c13d-123">Handle user events.</span></span>
 * <span data-ttu-id="7c13d-124">Possono essere annidati e riutilizzati.</span><span class="sxs-lookup"><span data-stu-id="7c13d-124">Can be nested and reused.</span></span>
-* <span data-ttu-id="7c13d-125">Può essere condiviso e distribuito come [ :::no-loc(Razor)::: librerie di classi](xref:razor-pages/ui-class) o [pacchetti NuGet](/nuget/what-is-nuget).</span><span class="sxs-lookup"><span data-stu-id="7c13d-125">Can be shared and distributed as [:::no-loc(Razor)::: class libraries](xref:razor-pages/ui-class) or [NuGet packages](/nuget/what-is-nuget).</span></span>
+* <span data-ttu-id="7c13d-125">Può essere condiviso e distribuito come [ Razor librerie di classi](xref:razor-pages/ui-class) o [pacchetti NuGet](/nuget/what-is-nuget).</span><span class="sxs-lookup"><span data-stu-id="7c13d-125">Can be shared and distributed as [Razor class libraries](xref:razor-pages/ui-class) or [NuGet packages](/nuget/what-is-nuget).</span></span>
 
-<span data-ttu-id="7c13d-126">La classe Component viene in genere scritta sotto forma di [:::no-loc(Razor):::](xref:mvc/views/razor) pagina di markup con `.razor` estensione di file.</span><span class="sxs-lookup"><span data-stu-id="7c13d-126">The component class is usually written in the form of a [:::no-loc(Razor):::](xref:mvc/views/razor) markup page with a `.razor` file extension.</span></span> <span data-ttu-id="7c13d-127">I componenti di :::no-loc(Blazor)::: sono definiti formalmente come *:::no-loc(Razor)::: componenti* di.</span><span class="sxs-lookup"><span data-stu-id="7c13d-127">Components in :::no-loc(Blazor)::: are formally referred to as *:::no-loc(Razor)::: components* .</span></span> <span data-ttu-id="7c13d-128">:::no-loc(Razor)::: è una sintassi per combinare il markup HTML con il codice C# progettato per la produttività degli sviluppatori.</span><span class="sxs-lookup"><span data-stu-id="7c13d-128">:::no-loc(Razor)::: is a syntax for combining HTML markup with C# code designed for developer productivity.</span></span> <span data-ttu-id="7c13d-129">:::no-loc(Razor)::: consente di passare dal markup HTML al linguaggio C# e viceversa nello stesso file con supporto per la programmazione [IntelliSense](/visualstudio/ide/using-intellisense) in Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="7c13d-129">:::no-loc(Razor)::: allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) programming support in Visual Studio.</span></span> <span data-ttu-id="7c13d-130">:::no-loc(Razor)::: Anche le pagine e MVC usano :::no-loc(Razor)::: .</span><span class="sxs-lookup"><span data-stu-id="7c13d-130">:::no-loc(Razor)::: Pages and MVC also use :::no-loc(Razor):::.</span></span> <span data-ttu-id="7c13d-131">Diversamente dalle :::no-loc(Razor)::: pagine e da MVC, che sono basate su un modello di richiesta/risposta, i componenti vengono usati in modo specifico per la composizione e la logica dell'interfaccia utente lato client.</span><span class="sxs-lookup"><span data-stu-id="7c13d-131">Unlike :::no-loc(Razor)::: Pages and MVC, which are built around a request/response model, components are used specifically for client-side UI logic and composition.</span></span>
+<span data-ttu-id="7c13d-126">La classe Component viene in genere scritta sotto forma di [Razor](xref:mvc/views/razor) pagina di markup con `.razor` estensione di file.</span><span class="sxs-lookup"><span data-stu-id="7c13d-126">The component class is usually written in the form of a [Razor](xref:mvc/views/razor) markup page with a `.razor` file extension.</span></span> <span data-ttu-id="7c13d-127">I componenti di Blazor sono definiti formalmente come *Razor componenti* di.</span><span class="sxs-lookup"><span data-stu-id="7c13d-127">Components in Blazor are formally referred to as *Razor components* .</span></span> <span data-ttu-id="7c13d-128">Razor è una sintassi per combinare il markup HTML con il codice C# progettato per la produttività degli sviluppatori.</span><span class="sxs-lookup"><span data-stu-id="7c13d-128">Razor is a syntax for combining HTML markup with C# code designed for developer productivity.</span></span> <span data-ttu-id="7c13d-129">Razor consente di passare dal markup HTML al linguaggio C# e viceversa nello stesso file con supporto per la programmazione [IntelliSense](/visualstudio/ide/using-intellisense) in Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="7c13d-129">Razor allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) programming support in Visual Studio.</span></span> <span data-ttu-id="7c13d-130">Razor Anche le pagine e MVC usano Razor .</span><span class="sxs-lookup"><span data-stu-id="7c13d-130">Razor Pages and MVC also use Razor.</span></span> <span data-ttu-id="7c13d-131">Diversamente dalle Razor pagine e da MVC, che sono basate su un modello di richiesta/risposta, i componenti vengono usati in modo specifico per la composizione e la logica dell'interfaccia utente lato client.</span><span class="sxs-lookup"><span data-stu-id="7c13d-131">Unlike Razor Pages and MVC, which are built around a request/response model, components are used specifically for client-side UI logic and composition.</span></span>
 
-<span data-ttu-id="7c13d-132">:::no-loc(Blazor)::: Usa tag HTML naturali per la composizione dell'interfaccia utente.</span><span class="sxs-lookup"><span data-stu-id="7c13d-132">:::no-loc(Blazor)::: uses natural HTML tags for UI composition.</span></span> <span data-ttu-id="7c13d-133">Il :::no-loc(Razor)::: markup seguente illustra un componente ( `Dialog.razor` ) che visualizza una finestra di dialogo e elabora un evento quando l'utente seleziona un pulsante:</span><span class="sxs-lookup"><span data-stu-id="7c13d-133">The following :::no-loc(Razor)::: markup demonstrates a component (`Dialog.razor`) that displays a dialog and processes an event when the user selects a button:</span></span>
+<span data-ttu-id="7c13d-132">Blazor Usa tag HTML naturali per la composizione dell'interfaccia utente.</span><span class="sxs-lookup"><span data-stu-id="7c13d-132">Blazor uses natural HTML tags for UI composition.</span></span> <span data-ttu-id="7c13d-133">Il Razor markup seguente illustra un componente ( `Dialog.razor` ) che visualizza una finestra di dialogo e elabora un evento quando l'utente seleziona un pulsante:</span><span class="sxs-lookup"><span data-stu-id="7c13d-133">The following Razor markup demonstrates a component (`Dialog.razor`) that displays a dialog and processes an event when the user selects a button:</span></span>
 
 ```razor
 <div class="card" style="width:22rem">
@@ -100,7 +100,7 @@ ms.locfileid: "93055712"
 </p>
 
 <Dialog Title="Learn More">
-    Do you want to <i>learn more</i> about :::no-loc(Blazor):::?
+    Do you want to <i>learn more</i> about Blazor?
 </Dialog>
 ```
 
@@ -110,9 +110,9 @@ ms.locfileid: "93055712"
 
 <span data-ttu-id="7c13d-146">I componenti eseguono il rendering in una rappresentazione in memoria del Document Object Model del browser [(Dom)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) denominato *albero di rendering* , che viene usato per aggiornare l'interfaccia utente in modo flessibile ed efficiente.</span><span class="sxs-lookup"><span data-stu-id="7c13d-146">Components render into an in-memory representation of the browser's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) called a *render tree* , which is used to update the UI in a flexible and efficient way.</span></span>
 
-## :::no-loc(Blazor WebAssembly):::
+## Blazor WebAssembly
 
-<span data-ttu-id="7c13d-147">:::no-loc(Blazor WebAssembly)::: è un [Framework di app a singola pagina (Spa)](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) per la creazione di app Web interattive sul lato client con .NET.</span><span class="sxs-lookup"><span data-stu-id="7c13d-147">:::no-loc(Blazor WebAssembly)::: is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps with .NET.</span></span> <span data-ttu-id="7c13d-148">:::no-loc(Blazor WebAssembly)::: USA gli standard Web aperti senza plug-in o ricompilando il codice in altri linguaggi.</span><span class="sxs-lookup"><span data-stu-id="7c13d-148">:::no-loc(Blazor WebAssembly)::: uses open web standards without plugins or recompiling code into other languages.</span></span> <span data-ttu-id="7c13d-149">:::no-loc(Blazor WebAssembly)::: funziona in tutti i Web browser moderni, inclusi i browser per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="7c13d-149">:::no-loc(Blazor WebAssembly)::: works in all modern web browsers, including mobile browsers.</span></span>
+<span data-ttu-id="7c13d-147">Blazor WebAssembly è un [Framework di app a singola pagina (Spa)](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) per la creazione di app Web interattive sul lato client con .NET.</span><span class="sxs-lookup"><span data-stu-id="7c13d-147">Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps with .NET.</span></span> <span data-ttu-id="7c13d-148">Blazor WebAssembly USA gli standard Web aperti senza plug-in o ricompilando il codice in altri linguaggi.</span><span class="sxs-lookup"><span data-stu-id="7c13d-148">Blazor WebAssembly uses open web standards without plugins or recompiling code into other languages.</span></span> <span data-ttu-id="7c13d-149">Blazor WebAssembly funziona in tutti i Web browser moderni, inclusi i browser per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="7c13d-149">Blazor WebAssembly works in all modern web browsers, including mobile browsers.</span></span>
 
 <span data-ttu-id="7c13d-150">Il codice .NET in esecuzione all'interno di Web browser è reso possibile dal [webassembly](https://webassembly.org) (abbreviato `wasm` ).</span><span class="sxs-lookup"><span data-stu-id="7c13d-150">Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated `wasm`).</span></span> <span data-ttu-id="7c13d-151">WebAssembly è un formato bytecode compatto ottimizzato per il download veloce e la velocità massima di esecuzione.</span><span class="sxs-lookup"><span data-stu-id="7c13d-151">WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed.</span></span> <span data-ttu-id="7c13d-152">WebAssembly è un standard Web aperto ed è supportato nei Web browser senza plug-in.</span><span class="sxs-lookup"><span data-stu-id="7c13d-152">WebAssembly is an open web standard and supported in web browsers without plugins.</span></span>
 
@@ -120,13 +120,13 @@ ms.locfileid: "93055712"
 
 ![::: NO-LOC (webassembly Blazer)::: esegue il codice .NET nel browser con webassembly.](index/_static/blazor-webassembly.png)
 
-<span data-ttu-id="7c13d-156">Quando un' :::no-loc(Blazor WebAssembly)::: app viene compilata ed eseguita in un browser:</span><span class="sxs-lookup"><span data-stu-id="7c13d-156">When a :::no-loc(Blazor WebAssembly)::: app is built and run in a browser:</span></span>
+<span data-ttu-id="7c13d-156">Quando un' Blazor WebAssembly app viene compilata ed eseguita in un browser:</span><span class="sxs-lookup"><span data-stu-id="7c13d-156">When a Blazor WebAssembly app is built and run in a browser:</span></span>
 
-* <span data-ttu-id="7c13d-157">I file e i file di codice C# :::no-loc(Razor)::: vengono compilati in assembly .NET.</span><span class="sxs-lookup"><span data-stu-id="7c13d-157">C# code files and :::no-loc(Razor)::: files are compiled into .NET assemblies.</span></span>
+* <span data-ttu-id="7c13d-157">I file e i file di codice C# Razor vengono compilati in assembly .NET.</span><span class="sxs-lookup"><span data-stu-id="7c13d-157">C# code files and Razor files are compiled into .NET assemblies.</span></span>
 * <span data-ttu-id="7c13d-158">Gli assembly e il [Runtime .NET](/dotnet/framework/get-started/overview) vengono scaricati nel browser.</span><span class="sxs-lookup"><span data-stu-id="7c13d-158">The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.</span></span>
-* <span data-ttu-id="7c13d-159">:::no-loc(Blazor WebAssembly)::: avvia il Runtime .NET e configura il runtime per caricare gli assembly per l'app.</span><span class="sxs-lookup"><span data-stu-id="7c13d-159">:::no-loc(Blazor WebAssembly)::: bootstraps the .NET runtime and configures the runtime to load the assemblies for the app.</span></span> <span data-ttu-id="7c13d-160">Il :::no-loc(Blazor WebAssembly)::: Runtime usa l'interoperabilità JavaScript per gestire la manipolazione Dom e le chiamate API del browser.</span><span class="sxs-lookup"><span data-stu-id="7c13d-160">The :::no-loc(Blazor WebAssembly)::: runtime uses JavaScript interop to handle DOM manipulation and browser API calls.</span></span>
+* <span data-ttu-id="7c13d-159">Blazor WebAssembly avvia il Runtime .NET e configura il runtime per caricare gli assembly per l'app.</span><span class="sxs-lookup"><span data-stu-id="7c13d-159">Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app.</span></span> <span data-ttu-id="7c13d-160">Il Blazor WebAssembly Runtime usa l'interoperabilità JavaScript per gestire la manipolazione Dom e le chiamate API del browser.</span><span class="sxs-lookup"><span data-stu-id="7c13d-160">The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.</span></span>
 
-<span data-ttu-id="7c13d-161">La dimensione dell'app pubblicata, ovvero la *dimensione del payload* , è un fattore cruciale per le prestazioni ai fini dell'usabilità dell'app.</span><span class="sxs-lookup"><span data-stu-id="7c13d-161">The size of the published app, its *payload size* , is a critical performance factor for an app's useability.</span></span> <span data-ttu-id="7c13d-162">Un'app di grandi dimensioni impiega relativamente molto tempo a essere scaricata in un browser, influendo negativamente sull'esperienza utente.</span><span class="sxs-lookup"><span data-stu-id="7c13d-162">A large app takes a relatively long time to download to a browser, which diminishes the user experience.</span></span> <span data-ttu-id="7c13d-163">:::no-loc(Blazor WebAssembly)::: Ottimizza le dimensioni del payload per ridurre i tempi di download:</span><span class="sxs-lookup"><span data-stu-id="7c13d-163">:::no-loc(Blazor WebAssembly)::: optimizes payload size to reduce download times:</span></span>
+<span data-ttu-id="7c13d-161">La dimensione dell'app pubblicata, ovvero la *dimensione del payload* , è un fattore cruciale per le prestazioni ai fini dell'usabilità dell'app.</span><span class="sxs-lookup"><span data-stu-id="7c13d-161">The size of the published app, its *payload size* , is a critical performance factor for an app's useability.</span></span> <span data-ttu-id="7c13d-162">Un'app di grandi dimensioni impiega relativamente molto tempo a essere scaricata in un browser, influendo negativamente sull'esperienza utente.</span><span class="sxs-lookup"><span data-stu-id="7c13d-162">A large app takes a relatively long time to download to a browser, which diminishes the user experience.</span></span> <span data-ttu-id="7c13d-163">Blazor WebAssembly Ottimizza le dimensioni del payload per ridurre i tempi di download:</span><span class="sxs-lookup"><span data-stu-id="7c13d-163">Blazor WebAssembly optimizes payload size to reduce download times:</span></span>
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -144,16 +144,16 @@ ms.locfileid: "93055712"
 
 ::: moniker-end
 
-## :::no-loc(Blazor Server):::
+## Blazor Server
 
-<span data-ttu-id="7c13d-170">:::no-loc(Blazor)::: separa la logica di rendering dei componenti dal modo in cui vengono applicati gli aggiornamenti dell'interfaccia utente.</span><span class="sxs-lookup"><span data-stu-id="7c13d-170">:::no-loc(Blazor)::: decouples component rendering logic from how UI updates are applied.</span></span> <span data-ttu-id="7c13d-171">*:::no-loc(Blazor Server):::* fornisce supporto per l'hosting di :::no-loc(Razor)::: componenti nel server in un'app ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="7c13d-171">*:::no-loc(Blazor Server):::* provides support for hosting :::no-loc(Razor)::: components on the server in an ASP.NET Core app.</span></span> <span data-ttu-id="7c13d-172">Gli aggiornamenti dell'interfaccia utente vengono gestiti tramite una [:::no-loc(SignalR):::](xref:signalr/introduction) connessione.</span><span class="sxs-lookup"><span data-stu-id="7c13d-172">UI updates are handled over a [:::no-loc(SignalR):::](xref:signalr/introduction) connection.</span></span>
+<span data-ttu-id="7c13d-170">Blazor separa la logica di rendering dei componenti dal modo in cui vengono applicati gli aggiornamenti dell'interfaccia utente.</span><span class="sxs-lookup"><span data-stu-id="7c13d-170">Blazor decouples component rendering logic from how UI updates are applied.</span></span> <span data-ttu-id="7c13d-171">*Blazor Server* fornisce supporto per l'hosting di Razor componenti nel server in un'app ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="7c13d-171">*Blazor Server* provides support for hosting Razor components on the server in an ASP.NET Core app.</span></span> <span data-ttu-id="7c13d-172">Gli aggiornamenti dell'interfaccia utente vengono gestiti tramite una [SignalR](xref:signalr/introduction) connessione.</span><span class="sxs-lookup"><span data-stu-id="7c13d-172">UI updates are handled over a [SignalR](xref:signalr/introduction) connection.</span></span>
 
 <span data-ttu-id="7c13d-173">Il runtime gestisce:</span><span class="sxs-lookup"><span data-stu-id="7c13d-173">The runtime handles:</span></span>
 
 * <span data-ttu-id="7c13d-174">Invio di eventi dell'interfaccia utente dal browser al server.</span><span class="sxs-lookup"><span data-stu-id="7c13d-174">Sending UI events from the browser to the server.</span></span>
 * <span data-ttu-id="7c13d-175">Applicazione degli aggiornamenti dell'interfaccia utente al componente di cui è stato eseguito il rendering che vengono restituiti dal server.</span><span class="sxs-lookup"><span data-stu-id="7c13d-175">Applying UI updates to the rendered component that are sent back by the server.</span></span>
 
-<span data-ttu-id="7c13d-176">La connessione utilizzata da :::no-loc(Blazor Server)::: per comunicare con il browser viene utilizzata anche per gestire le chiamate di interoperabilità JavaScript.</span><span class="sxs-lookup"><span data-stu-id="7c13d-176">The connection used by :::no-loc(Blazor Server)::: to communicate with the browser is also used to handle JavaScript interop calls.</span></span>
+<span data-ttu-id="7c13d-176">La connessione utilizzata da Blazor Server per comunicare con il browser viene utilizzata anche per gestire le chiamate di interoperabilità JavaScript.</span><span class="sxs-lookup"><span data-stu-id="7c13d-176">The connection used by Blazor Server to communicate with the browser is also used to handle JavaScript interop calls.</span></span>
 
 ![::: NO-LOC (server Blazer)::: esegue il codice .NET sul server e interagisce con il Document Object Model sul client su un oggetto::: NO-LOC (SignalR)::: Connection](index/_static/blazor-server.png)
 
@@ -163,7 +163,7 @@ ms.locfileid: "93055712"
 
 ## <a name="code-sharing-and-net-standard"></a><span data-ttu-id="7c13d-182">Condivisione del codice e .NET Standard</span><span class="sxs-lookup"><span data-stu-id="7c13d-182">Code sharing and .NET Standard</span></span>
 
-<span data-ttu-id="7c13d-183">:::no-loc(Blazor)::: implementa l' [.NET standard](/dotnet/standard/net-standard), che consente :::no-loc(Blazor)::: ai progetti di fare riferimento a librerie conformi alle specifiche di .NET standard.</span><span class="sxs-lookup"><span data-stu-id="7c13d-183">:::no-loc(Blazor)::: implements the [.NET Standard](/dotnet/standard/net-standard), which enables :::no-loc(Blazor)::: projects to reference libraries that conform to .NET Standard specifications.</span></span> <span data-ttu-id="7c13d-184">.NET Standard è una specifica formale delle API .NET comuni tra le implementazioni di .NET.</span><span class="sxs-lookup"><span data-stu-id="7c13d-184">.NET Standard is a formal specification of .NET APIs that are common across .NET implementations.</span></span> <span data-ttu-id="7c13d-185">Le librerie di classi .NET Standard possono essere condivise tra diverse piattaforme .NET, ad esempio :::no-loc(Blazor)::: .NET Framework, .NET Core, Novell, mono e Unity.</span><span class="sxs-lookup"><span data-stu-id="7c13d-185">.NET Standard class libraries can be shared across different .NET platforms, such as :::no-loc(Blazor):::, .NET Framework, .NET Core, Xamarin, Mono, and Unity.</span></span>
+<span data-ttu-id="7c13d-183">Blazor implementa l' [.NET standard](/dotnet/standard/net-standard), che consente Blazor ai progetti di fare riferimento a librerie conformi alle specifiche di .NET standard.</span><span class="sxs-lookup"><span data-stu-id="7c13d-183">Blazor implements the [.NET Standard](/dotnet/standard/net-standard), which enables Blazor projects to reference libraries that conform to .NET Standard specifications.</span></span> <span data-ttu-id="7c13d-184">.NET Standard è una specifica formale delle API .NET comuni tra le implementazioni di .NET.</span><span class="sxs-lookup"><span data-stu-id="7c13d-184">.NET Standard is a formal specification of .NET APIs that are common across .NET implementations.</span></span> <span data-ttu-id="7c13d-185">Le librerie di classi .NET Standard possono essere condivise tra diverse piattaforme .NET, ad esempio Blazor .NET Framework, .NET Core, Novell, mono e Unity.</span><span class="sxs-lookup"><span data-stu-id="7c13d-185">.NET Standard class libraries can be shared across different .NET platforms, such as Blazor, .NET Framework, .NET Core, Xamarin, Mono, and Unity.</span></span>
 
 <span data-ttu-id="7c13d-186">Le API non valide all'interno di un Web browser (ad esempio per l'accesso al file system, l'apertura di un socket e la gestione dei thread) generano un'eccezione <xref:System.PlatformNotSupportedException>.</span><span class="sxs-lookup"><span data-stu-id="7c13d-186">APIs that aren't applicable inside of a web browser (for example, accessing the file system, opening a socket, and threading) throw a <xref:System.PlatformNotSupportedException>.</span></span>
 
@@ -177,4 +177,4 @@ ms.locfileid: "93055712"
 * [<span data-ttu-id="7c13d-189">Guida a C#</span><span class="sxs-lookup"><span data-stu-id="7c13d-189">C# Guide</span></span>](/dotnet/csharp/)
 * <xref:mvc/views/razor>
 * [<span data-ttu-id="7c13d-190">HTML</span><span class="sxs-lookup"><span data-stu-id="7c13d-190">HTML</span></span>](https://www.w3.org/html/)
-* <span data-ttu-id="7c13d-191">[Awesome :::no-loc(Blazor)::: ](https://github.com/AdrienTorris/awesome-blazor) collegamenti della community</span><span class="sxs-lookup"><span data-stu-id="7c13d-191">[Awesome :::no-loc(Blazor):::](https://github.com/AdrienTorris/awesome-blazor) community links</span></span>
+* <span data-ttu-id="7c13d-191">[Awesome Blazor ](https://github.com/AdrienTorris/awesome-blazor) collegamenti della community</span><span class="sxs-lookup"><span data-stu-id="7c13d-191">[Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) community links</span></span>

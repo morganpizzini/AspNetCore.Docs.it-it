@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/30/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: fundamentals/index
 ms.openlocfilehash: 25348f8486ec6ccb53ebf527ad4519638dd5f73e
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -55,7 +55,7 @@ ms.locfileid: "93059377"
 
 <span data-ttu-id="0c6a2-116">I servizi vengono in genere risolti da DI usando l'inserimento del costruttore.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-116">Services are typically resolved from DI using constructor injection.</span></span> <span data-ttu-id="0c6a2-117">Con l'inserimento del costruttore, una classe dichiara un parametro del costruttore del tipo richiesto o di un'interfaccia.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-117">With constructor injection, a class declares a constructor parameter of either the required type or an interface.</span></span> <span data-ttu-id="0c6a2-118">Il framework DI fornisce un'istanza di questo servizio in fase di esecuzione.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-118">The DI framework provides an instance of this service at runtime.</span></span>
 
-<span data-ttu-id="0c6a2-119">Nell'esempio seguente viene usato il costruttore Injection per risolvere un `:::no-loc(Razor):::PagesMovieContext` da di:</span><span class="sxs-lookup"><span data-stu-id="0c6a2-119">The following example uses constructor injection to resolve a `:::no-loc(Razor):::PagesMovieContext` from DI:</span></span>
+<span data-ttu-id="0c6a2-119">Nell'esempio seguente viene usato il costruttore Injection per risolvere un `RazorPagesMovieContext` da di:</span><span class="sxs-lookup"><span data-stu-id="0c6a2-119">The following example uses constructor injection to resolve a `RazorPagesMovieContext` from DI:</span></span>
 
 [!code-csharp[](index/samples_snapshot/3.x/Index.cshtml.cs?highlight=5)]
 
@@ -101,7 +101,7 @@ ms.locfileid: "93059377"
 <span data-ttu-id="0c6a2-145">I `CreateDefaultBuilder` `ConfigureWebHostDefaults` metodi e configurano un host con un set di opzioni predefinite, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="0c6a2-145">The `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods configure a host with a set of default options, such as:</span></span>
 
 * <span data-ttu-id="0c6a2-146">Usare [Kestrel](#servers) come server Web e abilitare l'integrazione IIS.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-146">Use [Kestrel](#servers) as the web server and enable IIS integration.</span></span>
-* <span data-ttu-id="0c6a2-147">Caricare la configurazione da *:::no-loc(appsettings.json):::* , *appSettings. { Nome ambiente}. JSON* , variabili di ambiente, argomenti della riga di comando e altre origini di configurazione.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-147">Load configuration from *:::no-loc(appsettings.json):::* , *appsettings.{Environment Name}.json* , environment variables, command line arguments, and other configuration sources.</span></span>
+* <span data-ttu-id="0c6a2-147">Caricare la configurazione da *appsettings.json* , *appSettings. { Nome ambiente}. JSON* , variabili di ambiente, argomenti della riga di comando e altre origini di configurazione.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-147">Load configuration from *appsettings.json* , *appsettings.{Environment Name}.json* , environment variables, command line arguments, and other configuration sources.</span></span>
 * <span data-ttu-id="0c6a2-148">Inviare l'output di registrazione alla console e ai provider di debug.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-148">Send logging output to the console and debug providers.</span></span>
 
 <span data-ttu-id="0c6a2-149">Per altre informazioni, vedere <xref:fundamentals/host/generic-host>.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-149">For more information, see <xref:fundamentals/host/generic-host>.</span></span>
@@ -138,7 +138,7 @@ ms.locfileid: "93059377"
 
 <span data-ttu-id="0c6a2-174">ASP.NET Core offre un framework di configurazione che ottiene le impostazioni, ad esempio coppie nome-valore, da un set ordinato di provider di configurazione.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-174">ASP.NET Core provides a configuration framework that gets settings as name-value pairs from an ordered set of configuration providers.</span></span> <span data-ttu-id="0c6a2-175">I provider di configurazione incorporati sono disponibili per un'ampia gamma di origini, ad esempio file *JSON* , file *XML* , variabili di ambiente e argomenti della riga di comando.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-175">Built-in configuration providers are available for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments.</span></span> <span data-ttu-id="0c6a2-176">Scrivere provider di configurazione personalizzati per supportare altre origini.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-176">Write custom configuration providers to support other sources.</span></span>
 
-<span data-ttu-id="0c6a2-177">Per [impostazione predefinita](xref:fundamentals/configuration/index#default), le app ASP.NET Core sono configurate per *:::no-loc(appsettings.json):::* la lettura, le variabili di ambiente, la riga di comando e altro ancora.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-177">By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from *:::no-loc(appsettings.json):::* , environment variables, the command line, and more.</span></span> <span data-ttu-id="0c6a2-178">Quando viene caricata la configurazione dell'app, i valori delle variabili di ambiente eseguono l'override dei valori da *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="0c6a2-178">When the app's configuration is loaded, values from environment variables override values from *:::no-loc(appsettings.json):::* .</span></span>
+<span data-ttu-id="0c6a2-177">Per [impostazione predefinita](xref:fundamentals/configuration/index#default), le app ASP.NET Core sono configurate per *appsettings.json* la lettura, le variabili di ambiente, la riga di comando e altro ancora.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-177">By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from *appsettings.json* , environment variables, the command line, and more.</span></span> <span data-ttu-id="0c6a2-178">Quando viene caricata la configurazione dell'app, i valori delle variabili di ambiente eseguono l'override dei valori da *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="0c6a2-178">When the app's configuration is loaded, values from environment variables override values from *appsettings.json* .</span></span>
 
 <span data-ttu-id="0c6a2-179">Il modo migliore per leggere i valori di configurazione correlati consiste nell'usare il [modello di opzioni](xref:fundamentals/configuration/options).</span><span class="sxs-lookup"><span data-stu-id="0c6a2-179">The preferred way to read related configuration values is using the [options pattern](xref:fundamentals/configuration/options).</span></span> <span data-ttu-id="0c6a2-180">Per altre informazioni, vedere [associare dati di configurazione gerarchici usando il modello di opzioni](xref:fundamentals/configuration/index#optpat).</span><span class="sxs-lookup"><span data-stu-id="0c6a2-180">For more information, see [Bind hierarchical configuration data using the options pattern](xref:fundamentals/configuration/index#optpat).</span></span>
 
@@ -178,7 +178,7 @@ ms.locfileid: "93059377"
 
 ## <a name="routing"></a><span data-ttu-id="0c6a2-207">Routing.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-207">Routing</span></span>
 
-<span data-ttu-id="0c6a2-208">Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-208">A *route* is a URL pattern that is mapped to a handler.</span></span> <span data-ttu-id="0c6a2-209">Il gestore è in genere una :::no-loc(Razor)::: pagina, un metodo di azione in un controller MVC o un middleware.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-209">The handler is typically a :::no-loc(Razor)::: page, an action method in an MVC controller, or a middleware.</span></span> <span data-ttu-id="0c6a2-210">Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-210">ASP.NET Core routing gives you control over the URLs used by your app.</span></span>
+<span data-ttu-id="0c6a2-208">Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-208">A *route* is a URL pattern that is mapped to a handler.</span></span> <span data-ttu-id="0c6a2-209">Il gestore è in genere una Razor pagina, un metodo di azione in un controller MVC o un middleware.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-209">The handler is typically a Razor page, an action method in an MVC controller, or a middleware.</span></span> <span data-ttu-id="0c6a2-210">Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-210">ASP.NET Core routing gives you control over the URLs used by your app.</span></span>
 
 <span data-ttu-id="0c6a2-211">Per altre informazioni, vedere <xref:fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-211">For more information, see <xref:fundamentals/routing>.</span></span>
 
@@ -212,7 +212,7 @@ ms.locfileid: "93059377"
 * <span data-ttu-id="0c6a2-234">Eseguibile che ospita l'app ( *exe* ).</span><span class="sxs-lookup"><span data-stu-id="0c6a2-234">The executable hosting the app ( *.exe* ).</span></span>
 * <span data-ttu-id="0c6a2-235">Assembly compilati che costituiscono l'app ( *. dll* ).</span><span class="sxs-lookup"><span data-stu-id="0c6a2-235">Compiled assemblies that make up the app ( *.dll* ).</span></span>
 * <span data-ttu-id="0c6a2-236">File di contenuto usati dall'app, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="0c6a2-236">Content files used by the app, such as:</span></span>
-  * <span data-ttu-id="0c6a2-237">:::no-loc(Razor)::: file ( *. cshtml* , *. Razor* )</span><span class="sxs-lookup"><span data-stu-id="0c6a2-237">:::no-loc(Razor)::: files ( *.cshtml* , *.razor* )</span></span>
+  * <span data-ttu-id="0c6a2-237">Razor file ( *. cshtml* , *. Razor* )</span><span class="sxs-lookup"><span data-stu-id="0c6a2-237">Razor files ( *.cshtml* , *.razor* )</span></span>
   * <span data-ttu-id="0c6a2-238">File di configurazione (con *estensione JSON* , *XML* )</span><span class="sxs-lookup"><span data-stu-id="0c6a2-238">Configuration files ( *.json* , *.xml* )</span></span>
   * <span data-ttu-id="0c6a2-239">File di dati ( *. DB* )</span><span class="sxs-lookup"><span data-stu-id="0c6a2-239">Data files ( *.db* )</span></span>
 * <span data-ttu-id="0c6a2-240">La [radice Web](#web-root), in genere la cartella *wwwroot* .</span><span class="sxs-lookup"><span data-stu-id="0c6a2-240">The [Web root](#web-root), typically the *wwwroot* folder.</span></span>
@@ -237,7 +237,7 @@ ms.locfileid: "93059377"
 </ItemGroup>
 ```
 
-<span data-ttu-id="0c6a2-256">Nei :::no-loc(Razor)::: file con *estensione cshtml* , tilde-Slash ( `~/` ) punta alla radice Web.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-256">In :::no-loc(Razor)::: *.cshtml* files, tilde-slash (`~/`) points to the web root.</span></span> <span data-ttu-id="0c6a2-257">Un percorso che inizia con `~/` viene definito *percorso virtuale* .</span><span class="sxs-lookup"><span data-stu-id="0c6a2-257">A path beginning with `~/` is referred to as a *virtual path* .</span></span>
+<span data-ttu-id="0c6a2-256">Nei Razor file con *estensione cshtml* , tilde-Slash ( `~/` ) punta alla radice Web.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-256">In Razor *.cshtml* files, tilde-slash (`~/`) points to the web root.</span></span> <span data-ttu-id="0c6a2-257">Un percorso che inizia con `~/` viene definito *percorso virtuale* .</span><span class="sxs-lookup"><span data-stu-id="0c6a2-257">A path beginning with `~/` is referred to as a *virtual path* .</span></span>
 
 <span data-ttu-id="0c6a2-258">Per altre informazioni, vedere <xref:fundamentals/static-files>.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-258">For more information, see <xref:fundamentals/static-files>.</span></span>
 
@@ -311,7 +311,7 @@ ms.locfileid: "93059377"
 <span data-ttu-id="0c6a2-302">Il metodo `CreateDefaultBuilder` configura un host con le opzioni usate comunemente, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="0c6a2-302">The `CreateDefaultBuilder` method configures a host with commonly used options, such as the following:</span></span>
 
 * <span data-ttu-id="0c6a2-303">Usare [Kestrel](#servers) come server Web e abilitare l'integrazione IIS.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-303">Use [Kestrel](#servers) as the web server and enable IIS integration.</span></span>
-* <span data-ttu-id="0c6a2-304">Caricare la configurazione da *:::no-loc(appsettings.json):::* , *appSettings. { Nome ambiente}. JSON* , variabili di ambiente, argomenti della riga di comando e altre origini di configurazione.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-304">Load configuration from *:::no-loc(appsettings.json):::* , *appsettings.{Environment Name}.json* , environment variables, command line arguments, and other configuration sources.</span></span>
+* <span data-ttu-id="0c6a2-304">Caricare la configurazione da *appsettings.json* , *appSettings. { Nome ambiente}. JSON* , variabili di ambiente, argomenti della riga di comando e altre origini di configurazione.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-304">Load configuration from *appsettings.json* , *appsettings.{Environment Name}.json* , environment variables, command line arguments, and other configuration sources.</span></span>
 * <span data-ttu-id="0c6a2-305">Inviare l'output di registrazione alla console e ai provider di debug.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-305">Send logging output to the console and debug providers.</span></span>
 
 <span data-ttu-id="0c6a2-306">Per altre informazioni, vedere <xref:fundamentals/host/web-host>.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-306">For more information, see <xref:fundamentals/host/web-host>.</span></span>
@@ -377,7 +377,7 @@ ms.locfileid: "93059377"
 
 <span data-ttu-id="0c6a2-345">ASP.NET Core offre un framework di configurazione che ottiene le impostazioni, ad esempio coppie nome-valore, da un set ordinato di provider di configurazione.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-345">ASP.NET Core provides a configuration framework that gets settings as name-value pairs from an ordered set of configuration providers.</span></span> <span data-ttu-id="0c6a2-346">Esistono provider di configurazione predefiniti per un'ampia gamma di origini, ad esempio file con estensione *JSON* , file con estensione *XML* , variabili di ambiente e argomenti della riga di comando.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-346">There are built-in configuration providers for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments.</span></span> <span data-ttu-id="0c6a2-347">È anche possibile scrivere provider di configurazione personalizzati.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-347">You can also write custom configuration providers.</span></span>
 
-<span data-ttu-id="0c6a2-348">Ad esempio, è possibile specificare che la configurazione deriva dalle *:::no-loc(appsettings.json):::* variabili di ambiente e.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-348">For example, you could specify that configuration comes from *:::no-loc(appsettings.json):::* and environment variables.</span></span> <span data-ttu-id="0c6a2-349">Quindi, quando viene richiesto il valore di *ConnectionString* , il Framework cerca prima nel *:::no-loc(appsettings.json):::* file.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-349">Then when the value of *ConnectionString* is requested, the framework looks first in the *:::no-loc(appsettings.json):::* file.</span></span> <span data-ttu-id="0c6a2-350">Se il valore venisse trovato qui ma anche in una variabile di ambiente, il valore della variabile di ambiente avrebbe la precedenza.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-350">If the value is found there but also in an environment variable, the value from the environment variable would take precedence.</span></span>
+<span data-ttu-id="0c6a2-348">Ad esempio, è possibile specificare che la configurazione deriva dalle *appsettings.json* variabili di ambiente e.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-348">For example, you could specify that configuration comes from *appsettings.json* and environment variables.</span></span> <span data-ttu-id="0c6a2-349">Quindi, quando viene richiesto il valore di *ConnectionString* , il Framework cerca prima nel *appsettings.json* file.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-349">Then when the value of *ConnectionString* is requested, the framework looks first in the *appsettings.json* file.</span></span> <span data-ttu-id="0c6a2-350">Se il valore venisse trovato qui ma anche in una variabile di ambiente, il valore della variabile di ambiente avrebbe la precedenza.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-350">If the value is found there but also in an environment variable, the value from the environment variable would take precedence.</span></span>
 
 <span data-ttu-id="0c6a2-351">Per la gestione dei dati di configurazione riservati, ad esempio le password, ASP.NET Core offre uno [strumento Secret Manager](xref:security/app-secrets).</span><span class="sxs-lookup"><span data-stu-id="0c6a2-351">For managing confidential configuration data such as passwords, ASP.NET Core provides a [Secret Manager tool](xref:security/app-secrets).</span></span> <span data-ttu-id="0c6a2-352">Per i segreti di produzione, si consiglia di usare [Azure Key Vault](xref:security/key-vault-configuration).</span><span class="sxs-lookup"><span data-stu-id="0c6a2-352">For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).</span></span>
 
@@ -427,7 +427,7 @@ ms.locfileid: "93059377"
 
 ## <a name="routing"></a><span data-ttu-id="0c6a2-382">Routing.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-382">Routing</span></span>
 
-<span data-ttu-id="0c6a2-383">Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-383">A *route* is a URL pattern that is mapped to a handler.</span></span> <span data-ttu-id="0c6a2-384">Il gestore è in genere una :::no-loc(Razor)::: pagina, un metodo di azione in un controller MVC o un middleware.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-384">The handler is typically a :::no-loc(Razor)::: page, an action method in an MVC controller, or a middleware.</span></span> <span data-ttu-id="0c6a2-385">Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-385">ASP.NET Core routing gives you control over the URLs used by your app.</span></span>
+<span data-ttu-id="0c6a2-383">Una *route* è un modello URL di cui è stato eseguito il mapping su un gestore.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-383">A *route* is a URL pattern that is mapped to a handler.</span></span> <span data-ttu-id="0c6a2-384">Il gestore è in genere una Razor pagina, un metodo di azione in un controller MVC o un middleware.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-384">The handler is typically a Razor page, an action method in an MVC controller, or a middleware.</span></span> <span data-ttu-id="0c6a2-385">Il routing di ASP.NET Core consente di controllare gli URL usati dall'app.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-385">ASP.NET Core routing gives you control over the URLs used by your app.</span></span>
 
 <span data-ttu-id="0c6a2-386">Per altre informazioni, vedere <xref:fundamentals/routing>.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-386">For more information, see <xref:fundamentals/routing>.</span></span>
 
@@ -461,7 +461,7 @@ ms.locfileid: "93059377"
 * <span data-ttu-id="0c6a2-409">Eseguibile che ospita l'app ( *exe* ).</span><span class="sxs-lookup"><span data-stu-id="0c6a2-409">Executable hosting the app ( *.exe* ).</span></span>
 * <span data-ttu-id="0c6a2-410">Assembly compilati che costituiscono l'app ( *. dll* ).</span><span class="sxs-lookup"><span data-stu-id="0c6a2-410">Compiled assemblies that make up the app ( *.dll* ).</span></span>
 * <span data-ttu-id="0c6a2-411">File di contenuto non di codice usati dall'app, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="0c6a2-411">Non-code content files used by the app, such as:</span></span>
-  * <span data-ttu-id="0c6a2-412">:::no-loc(Razor)::: file ( *. cshtml* , *. Razor* )</span><span class="sxs-lookup"><span data-stu-id="0c6a2-412">:::no-loc(Razor)::: files ( *.cshtml* , *.razor* )</span></span>
+  * <span data-ttu-id="0c6a2-412">Razor file ( *. cshtml* , *. Razor* )</span><span class="sxs-lookup"><span data-stu-id="0c6a2-412">Razor files ( *.cshtml* , *.razor* )</span></span>
   * <span data-ttu-id="0c6a2-413">File di configurazione (con *estensione JSON* , *XML* )</span><span class="sxs-lookup"><span data-stu-id="0c6a2-413">Configuration files ( *.json* , *.xml* )</span></span>
   * <span data-ttu-id="0c6a2-414">File di dati ( *. DB* )</span><span class="sxs-lookup"><span data-stu-id="0c6a2-414">Data files ( *.db* )</span></span>
 * <span data-ttu-id="0c6a2-415">[Radice Web](#web-root), in genere la cartella *wwwroot* pubblicata.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-415">[Web root](#web-root), typically the published *wwwroot* folder.</span></span>
@@ -495,7 +495,7 @@ ms.locfileid: "93059377"
 </ItemGroup>
 ```
 
-<span data-ttu-id="0c6a2-433">Nei :::no-loc(Razor)::: file (con *estensione cshtml* ), la barra tilde ( `~/` ) punta alla radice Web.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-433">In :::no-loc(Razor)::: ( *.cshtml* ) files, the tilde-slash (`~/`) points to the web root.</span></span> <span data-ttu-id="0c6a2-434">Un percorso che inizia con `~/` viene definito *percorso virtuale* .</span><span class="sxs-lookup"><span data-stu-id="0c6a2-434">A path beginning with `~/` is referred to as a *virtual path* .</span></span>
+<span data-ttu-id="0c6a2-433">Nei Razor file (con *estensione cshtml* ), la barra tilde ( `~/` ) punta alla radice Web.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-433">In Razor ( *.cshtml* ) files, the tilde-slash (`~/`) points to the web root.</span></span> <span data-ttu-id="0c6a2-434">Un percorso che inizia con `~/` viene definito *percorso virtuale* .</span><span class="sxs-lookup"><span data-stu-id="0c6a2-434">A path beginning with `~/` is referred to as a *virtual path* .</span></span>
 
 <span data-ttu-id="0c6a2-435">Per altre informazioni, vedere <xref:fundamentals/static-files>.</span><span class="sxs-lookup"><span data-stu-id="0c6a2-435">For more information, see <xref:fundamentals/static-files>.</span></span>
 

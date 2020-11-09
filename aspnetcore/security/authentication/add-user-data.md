@@ -1,22 +1,22 @@
 ---
-title: 'Aggiungere, scaricare ed eliminare dati utente :::no-loc(Identity)::: in un progetto ASP.NET Core'
+title: 'Aggiungere, scaricare ed eliminare dati utente Identity in un progetto ASP.NET Core'
 author: rick-anderson
-description: 'Informazioni su come aggiungere dati utente personalizzati a :::no-loc(Identity)::: in un progetto ASP.NET Core. Eliminare i dati per ogni GDPR.'
+description: 'Informazioni su come aggiungere dati utente personalizzati a Identity in un progetto ASP.NET Core. Eliminare i dati per ogni GDPR.'
 ms.author: riande
 ms.date: 03/26/2020
 ms.custom: mvc, seodec18
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authentication/add-user-data
 ms.openlocfilehash: a4e1fd780947cfa5f09fb1e03964595fa09f0f18
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -25,16 +25,16 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93061418"
 ---
-# <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a><span data-ttu-id="2d0a6-104">Aggiungere, scaricare ed eliminare dati utente personalizzati :::no-loc(Identity)::: in un progetto ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="2d0a6-104">Add, download, and delete custom user data to :::no-loc(Identity)::: in an ASP.NET Core project</span></span>
+# <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a><span data-ttu-id="2d0a6-104">Aggiungere, scaricare ed eliminare dati utente personalizzati Identity in un progetto ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="2d0a6-104">Add, download, and delete custom user data to Identity in an ASP.NET Core project</span></span>
 
 <span data-ttu-id="2d0a6-105">Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)</span><span class="sxs-lookup"><span data-stu-id="2d0a6-105">By [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
 
 <span data-ttu-id="2d0a6-106">Questo articolo illustra come:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-106">This article shows how to:</span></span>
 
 * <span data-ttu-id="2d0a6-107">Aggiungere dati utente personalizzati a un'app Web ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-107">Add custom user data to an ASP.NET Core web app.</span></span>
-* <span data-ttu-id="2d0a6-108">Contrassegnare il modello di dati utente personalizzato con l' <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PersonalDataAttribute> attributo in modo che sia disponibile automaticamente per il download e l'eliminazione.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-108">Mark the custom user data model with the <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.PersonalDataAttribute> attribute so it's automatically available for download and deletion.</span></span> <span data-ttu-id="2d0a6-109">La possibilità di scaricare ed eliminare i dati consente di soddisfare i requisiti di [GDPR](xref:security/gdpr) .</span><span class="sxs-lookup"><span data-stu-id="2d0a6-109">Making the data able to be downloaded and deleted helps meet [GDPR](xref:security/gdpr) requirements.</span></span>
+* <span data-ttu-id="2d0a6-108">Contrassegnare il modello di dati utente personalizzato con l' <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> attributo in modo che sia disponibile automaticamente per il download e l'eliminazione.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-108">Mark the custom user data model with the <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> attribute so it's automatically available for download and deletion.</span></span> <span data-ttu-id="2d0a6-109">La possibilità di scaricare ed eliminare i dati consente di soddisfare i requisiti di [GDPR](xref:security/gdpr) .</span><span class="sxs-lookup"><span data-stu-id="2d0a6-109">Making the data able to be downloaded and deleted helps meet [GDPR](xref:security/gdpr) requirements.</span></span>
 
-<span data-ttu-id="2d0a6-110">Il progetto di esempio viene creato da un' :::no-loc(Razor)::: app Web di pagine, ma le istruzioni sono simili per un'app Web MVC ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-110">The project sample is created from a :::no-loc(Razor)::: Pages web app, but the instructions are similar for a ASP.NET Core MVC web app.</span></span>
+<span data-ttu-id="2d0a6-110">Il progetto di esempio viene creato da un' Razor app Web di pagine, ma le istruzioni sono simili per un'app Web MVC ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-110">The project sample is created from a Razor Pages web app, but the instructions are similar for a ASP.NET Core MVC web app.</span></span>
 
 <span data-ttu-id="2d0a6-111">[Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/add-user-data) ([procedura per il download](xref:index#how-to-download-a-sample))</span><span class="sxs-lookup"><span data-stu-id="2d0a6-111">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/add-user-data) ([how to download](xref:index#how-to-download-a-sample))</span></span>
 
@@ -52,7 +52,7 @@ ms.locfileid: "93061418"
 
 ::: moniker-end
 
-## <a name="create-a-no-locrazor-web-app"></a><span data-ttu-id="2d0a6-113">Creare un' :::no-loc(Razor)::: app Web</span><span class="sxs-lookup"><span data-stu-id="2d0a6-113">Create a :::no-loc(Razor)::: web app</span></span>
+## <a name="create-a-no-locrazor-web-app"></a><span data-ttu-id="2d0a6-113">Creare un' Razor app Web</span><span class="sxs-lookup"><span data-stu-id="2d0a6-113">Create a Razor web app</span></span>
 
 # <a name="visual-studio"></a>[<span data-ttu-id="2d0a6-114">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="2d0a6-114">Visual Studio</span></span>](#tab/visual-studio)
 
@@ -85,13 +85,13 @@ dotnet new webapp -o WebApp1
 
 ---
 
-## <a name="run-the-no-locidentity-scaffolder"></a><span data-ttu-id="2d0a6-128">Eseguire l' :::no-loc(Identity)::: impalcatura</span><span class="sxs-lookup"><span data-stu-id="2d0a6-128">Run the :::no-loc(Identity)::: scaffolder</span></span>
+## <a name="run-the-no-locidentity-scaffolder"></a><span data-ttu-id="2d0a6-128">Eseguire l' Identity impalcatura</span><span class="sxs-lookup"><span data-stu-id="2d0a6-128">Run the Identity scaffolder</span></span>
 
 # <a name="visual-studio"></a>[<span data-ttu-id="2d0a6-129">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="2d0a6-129">Visual Studio</span></span>](#tab/visual-studio)
 
 * <span data-ttu-id="2d0a6-130">Da **Esplora soluzioni** , fare clic con il pulsante destro del mouse sul progetto > **Aggiungi**  >  **nuovo elemento con impalcatura** .</span><span class="sxs-lookup"><span data-stu-id="2d0a6-130">From **Solution Explorer** , right-click on the project > **Add** > **New Scaffolded Item** .</span></span>
-* <span data-ttu-id="2d0a6-131">Dal riquadro sinistro della finestra di dialogo **Aggiungi impalcatura** selezionare **:::no-loc(Identity):::**  >  **Aggiungi** .</span><span class="sxs-lookup"><span data-stu-id="2d0a6-131">From the left pane of the **Add Scaffold** dialog, select **:::no-loc(Identity):::** > **Add** .</span></span>
-* <span data-ttu-id="2d0a6-132">Nella finestra di dialogo **Aggiungi :::no-loc(Identity):::** sono disponibili le opzioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-132">In the **Add :::no-loc(Identity):::** dialog, the following options:</span></span>
+* <span data-ttu-id="2d0a6-131">Dal riquadro sinistro della finestra di dialogo **Aggiungi impalcatura** selezionare **Identity**  >  **Aggiungi** .</span><span class="sxs-lookup"><span data-stu-id="2d0a6-131">From the left pane of the **Add Scaffold** dialog, select **Identity** > **Add** .</span></span>
+* <span data-ttu-id="2d0a6-132">Nella finestra di dialogo **Aggiungi Identity** sono disponibili le opzioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-132">In the **Add Identity** dialog, the following options:</span></span>
   * <span data-ttu-id="2d0a6-133">Selezionare il file di layout esistente  *~/Pages/Shared/_Layout. cshtml*</span><span class="sxs-lookup"><span data-stu-id="2d0a6-133">Select the existing layout  file  *~/Pages/Shared/_Layout.cshtml*</span></span>
   * <span data-ttu-id="2d0a6-134">Selezionare i seguenti file di cui eseguire l'override:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-134">Select the following files to override:</span></span>
     * <span data-ttu-id="2d0a6-135">**Account/registro**</span><span class="sxs-lookup"><span data-stu-id="2d0a6-135">**Account/Register**</span></span>
@@ -115,13 +115,13 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 ```
 
-<span data-ttu-id="2d0a6-146">Eseguire il comando seguente per elencare le :::no-loc(Identity)::: Opzioni dell'impalcatura:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-146">Run the following command to list the :::no-loc(Identity)::: scaffolder options:</span></span>
+<span data-ttu-id="2d0a6-146">Eseguire il comando seguente per elencare le Identity Opzioni dell'impalcatura:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-146">Run the following command to list the Identity scaffolder options:</span></span>
 
 ```dotnetcli
 dotnet aspnet-codegenerator identity -h
 ```
 
-<span data-ttu-id="2d0a6-147">Nella cartella del progetto eseguire l' :::no-loc(Identity)::: impalcatura:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-147">In the project folder, run the :::no-loc(Identity)::: scaffolder:</span></span>
+<span data-ttu-id="2d0a6-147">Nella cartella del progetto eseguire l' Identity impalcatura:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-147">In the project folder, run the Identity scaffolder:</span></span>
 
 ```dotnetcli
 dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account.Manage.Index
@@ -141,72 +141,72 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
   * <span data-ttu-id="2d0a6-157">Selezionare il pulsante **download** ed esaminare il *PersonalData.jssu* file.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-157">Select the **Download** button and examined the *PersonalData.json* file.</span></span>
   * <span data-ttu-id="2d0a6-158">Testare il pulsante **Elimina per eliminare** l'utente che ha eseguito l'accesso.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-158">Test the **Delete** button, which deletes the logged on user.</span></span>
 
-## <a name="add-custom-user-data-to-the-no-locidentity-db"></a><span data-ttu-id="2d0a6-159">Aggiungere dati utente personalizzati al :::no-loc(Identity)::: database</span><span class="sxs-lookup"><span data-stu-id="2d0a6-159">Add custom user data to the :::no-loc(Identity)::: DB</span></span>
+## <a name="add-custom-user-data-to-the-no-locidentity-db"></a><span data-ttu-id="2d0a6-159">Aggiungere dati utente personalizzati al Identity database</span><span class="sxs-lookup"><span data-stu-id="2d0a6-159">Add custom user data to the Identity DB</span></span>
 
-<span data-ttu-id="2d0a6-160">Aggiornare la `:::no-loc(Identity):::User` classe derivata con proprietà personalizzate.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-160">Update the `:::no-loc(Identity):::User` derived class with custom properties.</span></span> <span data-ttu-id="2d0a6-161">Se è stato denominato il progetto app Web 1, il file è denominato *aree/ :::no-loc(Identity)::: /Data/WebApp1User.cs* .</span><span class="sxs-lookup"><span data-stu-id="2d0a6-161">If you named the project WebApp1, the file is named *Areas/:::no-loc(Identity):::/Data/WebApp1User.cs* .</span></span> <span data-ttu-id="2d0a6-162">Aggiornare il file con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-162">Update the file with the following code:</span></span>
+<span data-ttu-id="2d0a6-160">Aggiornare la `IdentityUser` classe derivata con proprietà personalizzate.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-160">Update the `IdentityUser` derived class with custom properties.</span></span> <span data-ttu-id="2d0a6-161">Se è stato denominato il progetto app Web 1, il file è denominato *aree/ Identity /Data/WebApp1User.cs* .</span><span class="sxs-lookup"><span data-stu-id="2d0a6-161">If you named the project WebApp1, the file is named *Areas/Identity/Data/WebApp1User.cs* .</span></span> <span data-ttu-id="2d0a6-162">Aggiornare il file con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-162">Update the file with the following code:</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/:::no-loc(Identity):::/Data/WebApp1User.cs)]
+[!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/:::no-loc(Identity):::/Data/WebApp1User.cs)]
+[!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
 ::: moniker-end
 
 <span data-ttu-id="2d0a6-163">Le proprietà con l'attributo [personaldata](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute) sono:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-163">Properties with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute) attribute are:</span></span>
 
-* <span data-ttu-id="2d0a6-164">Viene eliminato quando viene chiamata la pagina *aree/ :::no-loc(Identity)::: /pages/account/Manage/DeletePersonalData.cshtml* :::no-loc(Razor)::: `UserManager.Delete` .</span><span class="sxs-lookup"><span data-stu-id="2d0a6-164">Deleted when the *Areas/:::no-loc(Identity):::/Pages/Account/Manage/DeletePersonalData.cshtml* :::no-loc(Razor)::: Page calls `UserManager.Delete`.</span></span>
-* <span data-ttu-id="2d0a6-165">Incluso nei dati scaricati dalla pagina *aree/ :::no-loc(Identity)::: /pages/account/Manage/DownloadPersonalData.cshtml* :::no-loc(Razor)::: .</span><span class="sxs-lookup"><span data-stu-id="2d0a6-165">Included in the downloaded data by the *Areas/:::no-loc(Identity):::/Pages/Account/Manage/DownloadPersonalData.cshtml* :::no-loc(Razor)::: Page.</span></span>
+* <span data-ttu-id="2d0a6-164">Viene eliminato quando viene chiamata la pagina *aree/ Identity /pages/account/Manage/DeletePersonalData.cshtml* Razor `UserManager.Delete` .</span><span class="sxs-lookup"><span data-stu-id="2d0a6-164">Deleted when the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* Razor Page calls `UserManager.Delete`.</span></span>
+* <span data-ttu-id="2d0a6-165">Incluso nei dati scaricati dalla pagina *aree/ Identity /pages/account/Manage/DownloadPersonalData.cshtml* Razor .</span><span class="sxs-lookup"><span data-stu-id="2d0a6-165">Included in the downloaded data by the *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Page.</span></span>
 
 ### <a name="update-the-accountmanageindexcshtml-page"></a><span data-ttu-id="2d0a6-166">Aggiornare la pagina account/Manage/index. cshtml</span><span class="sxs-lookup"><span data-stu-id="2d0a6-166">Update the Account/Manage/Index.cshtml page</span></span>
 
-<span data-ttu-id="2d0a6-167">Aggiornare `InputModel` in *areas/ :::no-loc(Identity)::: /pages/account/Manage/index.cshtml.cs* con il codice evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-167">Update the `InputModel` in *Areas/:::no-loc(Identity):::/Pages/Account/Manage/Index.cshtml.cs* with the following highlighted code:</span></span>
+<span data-ttu-id="2d0a6-167">Aggiornare `InputModel` in *areas/ Identity /pages/account/Manage/index.cshtml.cs* con il codice evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-167">Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs* with the following highlighted code:</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/:::no-loc(Identity):::/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=24-32,48-49,96-104,106)]
+[!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=24-32,48-49,96-104,106)]
 
-<span data-ttu-id="2d0a6-168">Aggiornare le *aree/ :::no-loc(Identity)::: /pages/account/Manage/index.cshtml* con il markup evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-168">Update the *Areas/:::no-loc(Identity):::/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:</span></span>
+<span data-ttu-id="2d0a6-168">Aggiornare le *aree/ Identity /pages/account/Manage/index.cshtml* con il markup evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-168">Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:</span></span>
 
-[!code-cshtml[](add-user-data/samples/3.x/SampleApp/Areas/:::no-loc(Identity):::/Pages/Account/Manage/Index.cshtml?highlight=18-25)]
+[!code-cshtml[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/:::no-loc(Identity):::/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=28-36,63-64,98-106,119)]
+[!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=28-36,63-64,98-106,119)]
 
-<span data-ttu-id="2d0a6-169">Aggiornare le *aree/ :::no-loc(Identity)::: /pages/account/Manage/index.cshtml* con il markup evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-169">Update the *Areas/:::no-loc(Identity):::/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:</span></span>
+<span data-ttu-id="2d0a6-169">Aggiornare le *aree/ Identity /pages/account/Manage/index.cshtml* con il markup evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-169">Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:</span></span>
 
-[!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/:::no-loc(Identity):::/Pages/Account/Manage/Index.cshtml?highlight=35-42)]
+[!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=35-42)]
 
 ::: moniker-end
 
 ### <a name="update-the-accountregistercshtml-page"></a><span data-ttu-id="2d0a6-170">Aggiornare la pagina account/Register. cshtml</span><span class="sxs-lookup"><span data-stu-id="2d0a6-170">Update the Account/Register.cshtml page</span></span>
 
-<span data-ttu-id="2d0a6-171">Aggiornare `InputModel` in *areas/ :::no-loc(Identity)::: /pages/account/Register.cshtml.cs* con il codice evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-171">Update the `InputModel` in *Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml.cs* with the following highlighted code:</span></span>
+<span data-ttu-id="2d0a6-171">Aggiornare `InputModel` in *areas/ Identity /pages/account/Register.cshtml.cs* con il codice evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-171">Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* with the following highlighted code:</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml.cs?name=snippet&highlight=30-38,70-71)]
+[!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=30-38,70-71)]
 
-<span data-ttu-id="2d0a6-172">Aggiornare le *aree/ :::no-loc(Identity)::: /pages/account/Register.cshtml* con il markup evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-172">Update the *Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml* with the following highlighted markup:</span></span>
+<span data-ttu-id="2d0a6-172">Aggiornare le *aree/ Identity /pages/account/Register.cshtml* con il markup evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-172">Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:</span></span>
 
-[!code-cshtml[](add-user-data/samples/3.x/SampleApp/Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml?highlight=16-25)]
+[!code-cshtml[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml.cs?name=snippet&highlight=28-36,67,66)]
+[!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=28-36,67,66)]
 
-<span data-ttu-id="2d0a6-173">Aggiornare le *aree/ :::no-loc(Identity)::: /pages/account/Register.cshtml* con il markup evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-173">Update the *Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml* with the following highlighted markup:</span></span>
+<span data-ttu-id="2d0a6-173">Aggiornare le *aree/ Identity /pages/account/Register.cshtml* con il markup evidenziato seguente:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-173">Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:</span></span>
 
-[!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/:::no-loc(Identity):::/Pages/Account/Register.cshtml?highlight=16-25)]
+[!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
 ::: moniker-end
 
@@ -238,20 +238,20 @@ dotnet ef database update
 <span data-ttu-id="2d0a6-180">Eseguire il test dell'app:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-180">Test the app:</span></span>
 
 * <span data-ttu-id="2d0a6-181">Registrare un nuovo utente.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-181">Register a new user.</span></span>
-* <span data-ttu-id="2d0a6-182">Visualizzare i dati utente personalizzati nella `/:::no-loc(Identity):::/Account/Manage` pagina.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-182">View the custom user data on the `/:::no-loc(Identity):::/Account/Manage` page.</span></span>
-* <span data-ttu-id="2d0a6-183">Scaricare e visualizzare i dati personali degli utenti dalla `/:::no-loc(Identity):::/Account/Manage/PersonalData` pagina.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-183">Download and view the users personal data from the `/:::no-loc(Identity):::/Account/Manage/PersonalData` page.</span></span>
+* <span data-ttu-id="2d0a6-182">Visualizzare i dati utente personalizzati nella `/Identity/Account/Manage` pagina.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-182">View the custom user data on the `/Identity/Account/Manage` page.</span></span>
+* <span data-ttu-id="2d0a6-183">Scaricare e visualizzare i dati personali degli utenti dalla `/Identity/Account/Manage/PersonalData` pagina.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-183">Download and view the users personal data from the `/Identity/Account/Manage/PersonalData` page.</span></span>
 
-## <a name="add-claims-to-no-locidentity-using-iuserclaimsprincipalfactoryapplicationuser"></a><span data-ttu-id="2d0a6-184">Aggiungere attestazioni all' :::no-loc(Identity)::: uso di IUserClaimsPrincipalFactory<ApplicationUser></span><span class="sxs-lookup"><span data-stu-id="2d0a6-184">Add claims to :::no-loc(Identity)::: using IUserClaimsPrincipalFactory<ApplicationUser></span></span>
+## <a name="add-claims-to-no-locidentity-using-iuserclaimsprincipalfactoryapplicationuser"></a><span data-ttu-id="2d0a6-184">Aggiungere attestazioni all' Identity uso di IUserClaimsPrincipalFactory<ApplicationUser></span><span class="sxs-lookup"><span data-stu-id="2d0a6-184">Add claims to Identity using IUserClaimsPrincipalFactory<ApplicationUser></span></span>
 
 > [!NOTE]
 > <span data-ttu-id="2d0a6-185">Questa sezione non è un'estensione dell'esercitazione precedente.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-185">This section isn't an extension of the previous tutorial.</span></span> <span data-ttu-id="2d0a6-186">Per applicare i passaggi seguenti all'app compilata con l'esercitazione, vedere [questo problema di GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/18797).</span><span class="sxs-lookup"><span data-stu-id="2d0a6-186">To apply the following steps to the app built using the tutorial, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/18797).</span></span>
 
-<span data-ttu-id="2d0a6-187">È possibile aggiungere attestazioni aggiuntive a utilizzando :::no-loc(ASP.NET Core Identity)::: l' `IUserClaimsPrincipalFactory<T>` interfaccia.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-187">Additional claims can be added to :::no-loc(ASP.NET Core Identity)::: by using the `IUserClaimsPrincipalFactory<T>` interface.</span></span> <span data-ttu-id="2d0a6-188">Questa classe può essere aggiunta all'app nel `Startup.ConfigureServices` metodo.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-188">This class can be added to the app in the `Startup.ConfigureServices` method.</span></span> <span data-ttu-id="2d0a6-189">Aggiungere l'implementazione personalizzata della classe come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-189">Add the custom implementation of the class as follows:</span></span>
+<span data-ttu-id="2d0a6-187">È possibile aggiungere attestazioni aggiuntive a utilizzando ASP.NET Core Identity l' `IUserClaimsPrincipalFactory<T>` interfaccia.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-187">Additional claims can be added to ASP.NET Core Identity by using the `IUserClaimsPrincipalFactory<T>` interface.</span></span> <span data-ttu-id="2d0a6-188">Questa classe può essere aggiunta all'app nel `Startup.ConfigureServices` metodo.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-188">This class can be added to the app in the `Startup.ConfigureServices` method.</span></span> <span data-ttu-id="2d0a6-189">Aggiungere l'implementazione personalizzata della classe come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="2d0a6-189">Add the custom implementation of the class as follows:</span></span>
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    services.Add:::no-loc(Identity):::<ApplicationUser, :::no-loc(Identity):::Role>()
+    services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
 
@@ -262,7 +262,7 @@ public void ConfigureServices(IServiceCollection services)
 <span data-ttu-id="2d0a6-190">Il codice dimostrativo usa la `ApplicationUser` classe.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-190">The demo code uses the `ApplicationUser` class.</span></span> <span data-ttu-id="2d0a6-191">Questa classe aggiunge una `IsAdmin` proprietà che viene utilizzata per aggiungere l'attestazione aggiuntiva.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-191">This class adds an `IsAdmin` property which is used to add the additional claim.</span></span>
 
 ```csharp
-public class ApplicationUser : :::no-loc(Identity):::User
+public class ApplicationUser : IdentityUser
 {
     public bool IsAdmin { get; set; }
 }
@@ -272,19 +272,19 @@ public class ApplicationUser : :::no-loc(Identity):::User
 
 ```csharp
 public class AdditionalUserClaimsPrincipalFactory 
-        : UserClaimsPrincipalFactory<ApplicationUser, :::no-loc(Identity):::Role>
+        : UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>
 {
     public AdditionalUserClaimsPrincipalFactory( 
         UserManager<ApplicationUser> userManager,
-        RoleManager<:::no-loc(Identity):::Role> roleManager, 
-        IOptions<:::no-loc(Identity):::Options> optionsAccessor) 
+        RoleManager<IdentityRole> roleManager, 
+        IOptions<IdentityOptions> optionsAccessor) 
         : base(userManager, roleManager, optionsAccessor)
     {}
 
     public async override Task<ClaimsPrincipal> CreateAsync(ApplicationUser user)
     {
         var principal = await base.CreateAsync(user);
-        var identity = (Claims:::no-loc(Identity):::)principal.:::no-loc(Identity):::;
+        var identity = (ClaimsIdentity)principal.Identity;
 
         var claims = new List<Claim>();
         if (user.IsAdmin)
@@ -302,7 +302,7 @@ public class AdditionalUserClaimsPrincipalFactory
 }
 ```
 
-<span data-ttu-id="2d0a6-194">L'attestazione aggiuntiva può quindi essere usata nell'app.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-194">The additional claim can then be used in the app.</span></span> <span data-ttu-id="2d0a6-195">In una :::no-loc(Razor)::: pagina, l' `IAuthorizationService` istanza di può essere utilizzata per accedere al valore dell'attestazione.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-195">In a :::no-loc(Razor)::: Page, the `IAuthorizationService` instance can be used to access the claim value.</span></span>
+<span data-ttu-id="2d0a6-194">L'attestazione aggiuntiva può quindi essere usata nell'app.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-194">The additional claim can then be used in the app.</span></span> <span data-ttu-id="2d0a6-195">In una Razor pagina, l' `IAuthorizationService` istanza di può essere utilizzata per accedere al valore dell'attestazione.</span><span class="sxs-lookup"><span data-stu-id="2d0a6-195">In a Razor Page, the `IAuthorizationService` instance can be used to access the claim value.</span></span>
 
 ```cshtml
 @using Microsoft.AspNetCore.Authorization

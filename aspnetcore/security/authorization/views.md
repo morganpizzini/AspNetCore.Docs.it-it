@@ -1,22 +1,22 @@
 ---
 title: Autorizzazione basata sulla visualizzazione in ASP.NET Core MVC
 author: rick-anderson
-description: "In questo documento viene illustrato come inserire e utilizzare il servizio di autorizzazione all'interno di una :::no-loc(Razor)::: vista ASP.NET Core."
+description: "In questo documento viene illustrato come inserire e utilizzare il servizio di autorizzazione all'interno di una Razor vista ASP.NET Core."
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/08/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authorization/views
 ms.openlocfilehash: b3d6e595aa08208f2bf9e95d7070cf9c24802b62
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -27,7 +27,7 @@ ms.locfileid: "93061327"
 ---
 # <a name="view-based-authorization-in-aspnet-core-mvc"></a><span data-ttu-id="e0c66-103">Autorizzazione basata sulla visualizzazione in ASP.NET Core MVC</span><span class="sxs-lookup"><span data-stu-id="e0c66-103">View-based authorization in ASP.NET Core MVC</span></span>
 
-<span data-ttu-id="e0c66-104">Spesso uno sviluppatore desidera visualizzare, nascondere o modificare un'interfaccia utente in base all'identità dell'utente corrente.</span><span class="sxs-lookup"><span data-stu-id="e0c66-104">A developer often wants to show, hide, or otherwise modify a UI based on the current user identity.</span></span> <span data-ttu-id="e0c66-105">È possibile accedere al servizio di autorizzazione all'interno delle visualizzazioni MVC tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).</span><span class="sxs-lookup"><span data-stu-id="e0c66-105">You can access the authorization service within MVC views via [dependency injection](xref:fundamentals/dependency-injection).</span></span> <span data-ttu-id="e0c66-106">Per inserire il servizio di autorizzazione in una :::no-loc(Razor)::: vista, utilizzare la `@inject` direttiva:</span><span class="sxs-lookup"><span data-stu-id="e0c66-106">To inject the authorization service into a :::no-loc(Razor)::: view, use the `@inject` directive:</span></span>
+<span data-ttu-id="e0c66-104">Spesso uno sviluppatore desidera visualizzare, nascondere o modificare un'interfaccia utente in base all'identità dell'utente corrente.</span><span class="sxs-lookup"><span data-stu-id="e0c66-104">A developer often wants to show, hide, or otherwise modify a UI based on the current user identity.</span></span> <span data-ttu-id="e0c66-105">È possibile accedere al servizio di autorizzazione all'interno delle visualizzazioni MVC tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).</span><span class="sxs-lookup"><span data-stu-id="e0c66-105">You can access the authorization service within MVC views via [dependency injection](xref:fundamentals/dependency-injection).</span></span> <span data-ttu-id="e0c66-106">Per inserire il servizio di autorizzazione in una Razor vista, utilizzare la `@inject` direttiva:</span><span class="sxs-lookup"><span data-stu-id="e0c66-106">To inject the authorization service into a Razor view, use the `@inject` directive:</span></span>
 
 ```cshtml
 @using Microsoft.AspNetCore.Authorization

@@ -5,17 +5,17 @@ description: Indicazioni sulla migrazione di app ASP.NET MVC o Web API esistenti
 ms.author: scaddie
 ms.date: 10/18/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: migration/proper-to-2x/index
 ms.openlocfilehash: 059ddc18d0c531efaba8aab916ddbb27b42b5e2c
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -100,7 +100,7 @@ ms.locfileid: "93053553"
 
 [!code-csharp[](samples/read-webconfig.cs)]
 
-<span data-ttu-id="6b0f1-158">ASP.NET Core è in grado di archiviare i dati di configurazione per l'applicazione in tutti i file e di caricarli come parte dell'avvio automatico del middleware.</span><span class="sxs-lookup"><span data-stu-id="6b0f1-158">ASP.NET Core can store configuration data for the application in any file and load them as part of middleware bootstrapping.</span></span> <span data-ttu-id="6b0f1-159">Il file predefinito usato nei modelli di progetto è il seguente *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="6b0f1-159">The default file used in the project templates is *:::no-loc(appsettings.json):::* :</span></span>
+<span data-ttu-id="6b0f1-158">ASP.NET Core è in grado di archiviare i dati di configurazione per l'applicazione in tutti i file e di caricarli come parte dell'avvio automatico del middleware.</span><span class="sxs-lookup"><span data-stu-id="6b0f1-158">ASP.NET Core can store configuration data for the application in any file and load them as part of middleware bootstrapping.</span></span> <span data-ttu-id="6b0f1-159">Il file predefinito usato nei modelli di progetto è il seguente *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="6b0f1-159">The default file used in the project templates is *appsettings.json* :</span></span>
 
 [!code-json[](samples/appsettings-sample.json)]
 
@@ -167,9 +167,9 @@ services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"
 > [!NOTE]
 > <span data-ttu-id="6b0f1-186">Per informazioni più dettagliate sulla gestione dei file statici in ASP.NET Core, vedere [File statici](xref:fundamentals/static-files).</span><span class="sxs-lookup"><span data-stu-id="6b0f1-186">For a more in-depth reference to serving static files in ASP.NET Core, see [Static files](xref:fundamentals/static-files).</span></span>
 
-## <a name="multi-value-no-loccookies"></a><span data-ttu-id="6b0f1-187">S multivalore :::no-loc(cookie):::</span><span class="sxs-lookup"><span data-stu-id="6b0f1-187">Multi-value :::no-loc(cookie):::s</span></span>
+## <a name="multi-value-no-loccookies"></a><span data-ttu-id="6b0f1-187">S multivalore cookie</span><span class="sxs-lookup"><span data-stu-id="6b0f1-187">Multi-value cookies</span></span>
 
-<span data-ttu-id="6b0f1-188">Gli oggetti [multivalore :::no-loc(cookie)::: ](xref:System.Web.Http:::no-loc(Cookie):::.Values) non sono supportati in ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="6b0f1-188">[Multi-value :::no-loc(cookie):::s](xref:System.Web.Http:::no-loc(Cookie):::.Values) aren't supported in ASP.NET Core.</span></span> <span data-ttu-id="6b0f1-189">Crearne uno :::no-loc(cookie)::: per ogni valore.</span><span class="sxs-lookup"><span data-stu-id="6b0f1-189">Create one :::no-loc(cookie)::: per value.</span></span>
+<span data-ttu-id="6b0f1-188">Gli oggetti [multivalore cookie ](xref:System.Web.HttpCookie.Values) non sono supportati in ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="6b0f1-188">[Multi-value cookies](xref:System.Web.HttpCookie.Values) aren't supported in ASP.NET Core.</span></span> <span data-ttu-id="6b0f1-189">Crearne uno cookie per ogni valore.</span><span class="sxs-lookup"><span data-stu-id="6b0f1-189">Create one cookie per value.</span></span>
 
 ## <a name="partial-app-migration"></a><span data-ttu-id="6b0f1-190">Migrazione parziale delle app</span><span class="sxs-lookup"><span data-stu-id="6b0f1-190">Partial app migration</span></span>
 

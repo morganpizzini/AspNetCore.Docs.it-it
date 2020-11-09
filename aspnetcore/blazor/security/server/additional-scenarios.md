@@ -1,23 +1,23 @@
 ---
-title: 'ASP.NET Core :::no-loc(Blazor Server)::: scenari di sicurezza aggiuntivi'
+title: 'ASP.NET Core Blazor Server scenari di sicurezza aggiuntivi'
 author: guardrex
-description: 'Informazioni su come configurare :::no-loc(Blazor Server)::: per altri scenari di sicurezza.'
+description: 'Informazioni su come configurare Blazor Server per altri scenari di sicurezza.'
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/06/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/security/server/additional-scenarios
 ms.openlocfilehash: 56b226f8e4a10aa996b0344f10c76dad2ae32b51
 ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
@@ -26,21 +26,21 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 11/03/2020
 ms.locfileid: "93234436"
 ---
-# <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a><span data-ttu-id="23ba8-103">ASP.NET Core :::no-loc(Blazor Server)::: scenari di sicurezza aggiuntivi</span><span class="sxs-lookup"><span data-stu-id="23ba8-103">ASP.NET Core :::no-loc(Blazor Server)::: additional security scenarios</span></span>
+# <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a><span data-ttu-id="23ba8-103">ASP.NET Core Blazor Server scenari di sicurezza aggiuntivi</span><span class="sxs-lookup"><span data-stu-id="23ba8-103">ASP.NET Core Blazor Server additional security scenarios</span></span>
 
 <span data-ttu-id="23ba8-104">Di [Javier Calvarro Nelson](https://github.com/javiercn)</span><span class="sxs-lookup"><span data-stu-id="23ba8-104">By [Javier Calvarro Nelson](https://github.com/javiercn)</span></span>
 
 ::: moniker range=">= aspnetcore-5.0"
 
-<h2 id="pass-tokens-to-a-blazor-server-app"><span data-ttu-id="23ba8-105">Passare i token a un' :::no-loc(Blazor Server)::: app</span><span class="sxs-lookup"><span data-stu-id="23ba8-105">Pass tokens to a :::no-loc(Blazor Server)::: app</span></span></h2>
+<h2 id="pass-tokens-to-a-blazor-server-app"><span data-ttu-id="23ba8-105">Passare i token a un' Blazor Server app</span><span class="sxs-lookup"><span data-stu-id="23ba8-105">Pass tokens to a Blazor Server app</span></span></h2>
 
-<span data-ttu-id="23ba8-106">I token disponibili all'esterno dei :::no-loc(Razor)::: componenti di un' :::no-loc(Blazor Server)::: app possono essere passati ai componenti con l'approccio descritto in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="23ba8-106">Tokens available outside of the :::no-loc(Razor)::: components in a :::no-loc(Blazor Server)::: app can be passed to components with the approach described in this section.</span></span>
+<span data-ttu-id="23ba8-106">I token disponibili all'esterno dei Razor componenti di un' Blazor Server app possono essere passati ai componenti con l'approccio descritto in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="23ba8-106">Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section.</span></span>
 
-<span data-ttu-id="23ba8-107">Autenticare l' :::no-loc(Blazor Server)::: app come se si trattasse di un normale :::no-loc(Razor)::: sito o di un'app MVC.</span><span class="sxs-lookup"><span data-stu-id="23ba8-107">Authenticate the :::no-loc(Blazor Server)::: app as you would with a regular :::no-loc(Razor)::: Pages or MVC app.</span></span> <span data-ttu-id="23ba8-108">Eseguire il provisioning e salvare i token nell'autenticazione :::no-loc(cookie)::: .</span><span class="sxs-lookup"><span data-stu-id="23ba8-108">Provision and save the tokens to the authentication :::no-loc(cookie):::.</span></span> <span data-ttu-id="23ba8-109">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="23ba8-109">For example:</span></span>
+<span data-ttu-id="23ba8-107">Autenticare l' Blazor Server app come se si trattasse di un normale Razor sito o di un'app MVC.</span><span class="sxs-lookup"><span data-stu-id="23ba8-107">Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app.</span></span> <span data-ttu-id="23ba8-108">Eseguire il provisioning e salvare i token nell'autenticazione cookie .</span><span class="sxs-lookup"><span data-stu-id="23ba8-108">Provision and save the tokens to the authentication cookie.</span></span> <span data-ttu-id="23ba8-109">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="23ba8-109">For example:</span></span>
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.:::no-loc(Identity):::Model.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 ...
 
@@ -55,7 +55,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
 
 <span data-ttu-id="23ba8-110">Facoltativamente, viene aggiunto un ambito aggiuntivo con `options.Scope.Add("{SCOPE}");` , in cui il segnaposto `{SCOPE}` è l'ambito aggiuntivo da aggiungere.</span><span class="sxs-lookup"><span data-stu-id="23ba8-110">Optionally, additional scopes are added with `options.Scope.Add("{SCOPE}");`, where the placeholder `{SCOPE}` is the additional scope to add.</span></span>
 
-<span data-ttu-id="23ba8-111">Definire un servizio del provider di token con **ambito** che può essere usato nell' :::no-loc(Blazor)::: app per risolvere i token da [inserimento delle dipendenze](xref:blazor/fundamentals/dependency-injection):</span><span class="sxs-lookup"><span data-stu-id="23ba8-111">Define a **scoped** token provider service that can be used within the :::no-loc(Blazor)::: app to resolve the tokens from [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection):</span></span>
+<span data-ttu-id="23ba8-111">Definire un servizio del provider di token con **ambito** che può essere usato nell' Blazor app per risolvere i token da [inserimento delle dipendenze](xref:blazor/fundamentals/dependency-injection):</span><span class="sxs-lookup"><span data-stu-id="23ba8-111">Define a **scoped** token provider service that can be used within the Blazor app to resolve the tokens from [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection):</span></span>
 
 ```csharp
 public class TokenProvider
@@ -162,10 +162,10 @@ public class WeatherForecastService
 
 <h2 id="set-the-authentication-scheme"><span data-ttu-id="23ba8-118">Impostare lo schema di autenticazione</span><span class="sxs-lookup"><span data-stu-id="23ba8-118">Set the authentication scheme</span></span></h2>
 
-<span data-ttu-id="23ba8-119">Per un'app che usa più di un middleware di autenticazione e pertanto dispone di più di uno schema di autenticazione, lo schema :::no-loc(Blazor)::: usato da può essere impostato in modo esplicito nella configurazione dell'endpoint di `Startup.Configure` .</span><span class="sxs-lookup"><span data-stu-id="23ba8-119">For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that :::no-loc(Blazor)::: uses can be explicitly set in the endpoint configuration of `Startup.Configure`.</span></span> <span data-ttu-id="23ba8-120">Nell'esempio seguente viene impostato lo schema di Azure Active Directory:</span><span class="sxs-lookup"><span data-stu-id="23ba8-120">The following example sets the Azure Active Directory scheme:</span></span>
+<span data-ttu-id="23ba8-119">Per un'app che usa più di un middleware di autenticazione e pertanto dispone di più di uno schema di autenticazione, lo schema Blazor usato da può essere impostato in modo esplicito nella configurazione dell'endpoint di `Startup.Configure` .</span><span class="sxs-lookup"><span data-stu-id="23ba8-119">For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`.</span></span> <span data-ttu-id="23ba8-120">Nell'esempio seguente viene impostato lo schema di Azure Active Directory:</span><span class="sxs-lookup"><span data-stu-id="23ba8-120">The following example sets the Azure Active Directory scheme:</span></span>
 
 ```csharp
-endpoints.Map:::no-loc(Blazor):::Hub().RequireAuthorization(
+endpoints.MapBlazorHub().RequireAuthorization(
     new AuthorizeAttribute 
     {
         AuthenticationSchemes = AzureADDefaults.AuthenticationScheme
@@ -176,15 +176,15 @@ endpoints.Map:::no-loc(Blazor):::Hub().RequireAuthorization(
 
 ::: moniker range="< aspnetcore-5.0"
 
-<h2 id="pass-tokens-to-a-blazor-server-app"><span data-ttu-id="23ba8-121">Passare i token a un' :::no-loc(Blazor Server)::: app</span><span class="sxs-lookup"><span data-stu-id="23ba8-121">Pass tokens to a :::no-loc(Blazor Server)::: app</span></span></h2>
+<h2 id="pass-tokens-to-a-blazor-server-app"><span data-ttu-id="23ba8-121">Passare i token a un' Blazor Server app</span><span class="sxs-lookup"><span data-stu-id="23ba8-121">Pass tokens to a Blazor Server app</span></span></h2>
 
-<span data-ttu-id="23ba8-122">I token disponibili all'esterno dei :::no-loc(Razor)::: componenti di un' :::no-loc(Blazor Server)::: app possono essere passati ai componenti con l'approccio descritto in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="23ba8-122">Tokens available outside of the :::no-loc(Razor)::: components in a :::no-loc(Blazor Server)::: app can be passed to components with the approach described in this section.</span></span>
+<span data-ttu-id="23ba8-122">I token disponibili all'esterno dei Razor componenti di un' Blazor Server app possono essere passati ai componenti con l'approccio descritto in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="23ba8-122">Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section.</span></span>
 
-<span data-ttu-id="23ba8-123">Autenticare l' :::no-loc(Blazor Server)::: app come se si trattasse di un normale :::no-loc(Razor)::: sito o di un'app MVC.</span><span class="sxs-lookup"><span data-stu-id="23ba8-123">Authenticate the :::no-loc(Blazor Server)::: app as you would with a regular :::no-loc(Razor)::: Pages or MVC app.</span></span> <span data-ttu-id="23ba8-124">Eseguire il provisioning e salvare i token nell'autenticazione :::no-loc(cookie)::: .</span><span class="sxs-lookup"><span data-stu-id="23ba8-124">Provision and save the tokens to the authentication :::no-loc(cookie):::.</span></span> <span data-ttu-id="23ba8-125">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="23ba8-125">For example:</span></span>
+<span data-ttu-id="23ba8-123">Autenticare l' Blazor Server app come se si trattasse di un normale Razor sito o di un'app MVC.</span><span class="sxs-lookup"><span data-stu-id="23ba8-123">Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app.</span></span> <span data-ttu-id="23ba8-124">Eseguire il provisioning e salvare i token nell'autenticazione cookie .</span><span class="sxs-lookup"><span data-stu-id="23ba8-124">Provision and save the tokens to the authentication cookie.</span></span> <span data-ttu-id="23ba8-125">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="23ba8-125">For example:</span></span>
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.:::no-loc(Identity):::Model.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 ...
 
@@ -215,7 +215,7 @@ public class InitialApplicationState
 }
 ```
 
-<span data-ttu-id="23ba8-130">Definire un servizio del provider di token con **ambito** che può essere usato nell' :::no-loc(Blazor)::: app per risolvere i token da [inserimento delle dipendenze](xref:blazor/fundamentals/dependency-injection):</span><span class="sxs-lookup"><span data-stu-id="23ba8-130">Define a **scoped** token provider service that can be used within the :::no-loc(Blazor)::: app to resolve the tokens from [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection):</span></span>
+<span data-ttu-id="23ba8-130">Definire un servizio del provider di token con **ambito** che può essere usato nell' Blazor app per risolvere i token da [inserimento delle dipendenze](xref:blazor/fundamentals/dependency-injection):</span><span class="sxs-lookup"><span data-stu-id="23ba8-130">Define a **scoped** token provider service that can be used within the Blazor app to resolve the tokens from [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection):</span></span>
 
 ```csharp
 public class TokenProvider
@@ -314,10 +314,10 @@ public class WeatherForecastService
 
 <h2 id="set-the-authentication-scheme"><span data-ttu-id="23ba8-136">Impostare lo schema di autenticazione</span><span class="sxs-lookup"><span data-stu-id="23ba8-136">Set the authentication scheme</span></span></h2>
 
-<span data-ttu-id="23ba8-137">Per un'app che usa più di un middleware di autenticazione e pertanto dispone di più di uno schema di autenticazione, lo schema :::no-loc(Blazor)::: usato da può essere impostato in modo esplicito nella configurazione dell'endpoint di `Startup.Configure` .</span><span class="sxs-lookup"><span data-stu-id="23ba8-137">For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that :::no-loc(Blazor)::: uses can be explicitly set in the endpoint configuration of `Startup.Configure`.</span></span> <span data-ttu-id="23ba8-138">Nell'esempio seguente viene impostato lo schema di Azure Active Directory:</span><span class="sxs-lookup"><span data-stu-id="23ba8-138">The following example sets the Azure Active Directory scheme:</span></span>
+<span data-ttu-id="23ba8-137">Per un'app che usa più di un middleware di autenticazione e pertanto dispone di più di uno schema di autenticazione, lo schema Blazor usato da può essere impostato in modo esplicito nella configurazione dell'endpoint di `Startup.Configure` .</span><span class="sxs-lookup"><span data-stu-id="23ba8-137">For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`.</span></span> <span data-ttu-id="23ba8-138">Nell'esempio seguente viene impostato lo schema di Azure Active Directory:</span><span class="sxs-lookup"><span data-stu-id="23ba8-138">The following example sets the Azure Active Directory scheme:</span></span>
 
 ```csharp
-endpoints.Map:::no-loc(Blazor):::Hub().RequireAuthorization(
+endpoints.MapBlazorHub().RequireAuthorization(
     new AuthorizeAttribute 
     {
         AuthenticationSchemes = AzureADDefaults.AuthenticationScheme
@@ -326,7 +326,7 @@ endpoints.Map:::no-loc(Blazor):::Hub().RequireAuthorization(
 
 ## <a name="use-openid-connect-oidc-v20-endpoints"></a><span data-ttu-id="23ba8-139">Usare gli endpoint OpenID Connect (OIDC) v 2.0</span><span class="sxs-lookup"><span data-stu-id="23ba8-139">Use OpenID Connect (OIDC) v2.0 endpoints</span></span>
 
-<span data-ttu-id="23ba8-140">Nelle versioni di ASP.NET Core precedenti alla 5,0, i modelli e la libreria di autenticazione :::no-loc(Blazor)::: usano gli endpoint OpenID Connect (OIDC) v 1.0.</span><span class="sxs-lookup"><span data-stu-id="23ba8-140">In versions of ASP.NET Core prior to 5.0, the authentication library and :::no-loc(Blazor)::: templates use OpenID Connect (OIDC) v1.0 endpoints.</span></span> <span data-ttu-id="23ba8-141">Per usare un endpoint v 2.0 con versioni di ASP.NET Core precedenti alla 5,0, configurare l' <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> opzione nel <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> :</span><span class="sxs-lookup"><span data-stu-id="23ba8-141">To use a v2.0 endpoint with versions of ASP.NET Core prior to 5.0, configure the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> option in the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:</span></span>
+<span data-ttu-id="23ba8-140">Nelle versioni di ASP.NET Core precedenti alla 5,0, i modelli e la libreria di autenticazione Blazor usano gli endpoint OpenID Connect (OIDC) v 1.0.</span><span class="sxs-lookup"><span data-stu-id="23ba8-140">In versions of ASP.NET Core prior to 5.0, the authentication library and Blazor templates use OpenID Connect (OIDC) v1.0 endpoints.</span></span> <span data-ttu-id="23ba8-141">Per usare un endpoint v 2.0 con versioni di ASP.NET Core precedenti alla 5,0, configurare l' <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> opzione nel <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> :</span><span class="sxs-lookup"><span data-stu-id="23ba8-141">To use a v2.0 endpoint with versions of ASP.NET Core prior to 5.0, configure the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> option in the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:</span></span>
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, 
@@ -336,7 +336,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
     }
 ```
 
-<span data-ttu-id="23ba8-142">In alternativa, l'impostazione può essere eseguita nel file delle impostazioni dell'app ( `:::no-loc(appsettings.json):::` ):</span><span class="sxs-lookup"><span data-stu-id="23ba8-142">Alternatively, the setting can be made in the app settings (`:::no-loc(appsettings.json):::`) file:</span></span>
+<span data-ttu-id="23ba8-142">In alternativa, l'impostazione può essere eseguita nel file delle impostazioni dell'app ( `appsettings.json` ):</span><span class="sxs-lookup"><span data-stu-id="23ba8-142">Alternatively, the setting can be made in the app settings (`appsettings.json`) file:</span></span>
 
 ```json
 {
@@ -371,7 +371,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
 * <span data-ttu-id="23ba8-153">Tutti gli ambiti includono l'URI ID app come prefisso, mentre gli endpoint v 2.0 emettono token di accesso con l'URI ID app come destinatari.</span><span class="sxs-lookup"><span data-stu-id="23ba8-153">All scopes include the App ID URI as a prefix, and v2.0 endpoints emit access tokens with the App ID URI as the audience.</span></span>
 * <span data-ttu-id="23ba8-154">Quando si usano gli endpoint V 2.0, l'ID client configurato nell'API del server cambia dall'ID applicazione (ID client) dell'API all'URI ID app.</span><span class="sxs-lookup"><span data-stu-id="23ba8-154">When using V2.0 endpoints, the client ID configured in the Server API changes from the API Application ID (Client ID) to the App ID URI.</span></span>
 
-<span data-ttu-id="23ba8-155">`:::no-loc(appsettings.json):::`:</span><span class="sxs-lookup"><span data-stu-id="23ba8-155">`:::no-loc(appsettings.json):::`:</span></span>
+<span data-ttu-id="23ba8-155">`appsettings.json`:</span><span class="sxs-lookup"><span data-stu-id="23ba8-155">`appsettings.json`:</span></span>
 
 ```json
 {

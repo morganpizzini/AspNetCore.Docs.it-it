@@ -5,17 +5,17 @@ description: Scopri come abilitare la generazione di codice a matrice per le app
 ms.author: riande
 ms.date: 08/14/2018
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authentication/identity-enable-qrcodes
 ms.openlocfilehash: b778e7238911ec9966edf7f0f7becd113b1e197a
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -50,14 +50,14 @@ ms.locfileid: "93060833"
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* <span data-ttu-id="56460-120">Seguire le istruzioni riportate in [impalcatura :::no-loc(Identity):::](xref:security/authentication/scaffold-identity) per generare */areas/ :::no-loc(Identity)::: /pages/account/Manage/EnableAuthenticator.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="56460-120">Follow the instructions in [Scaffold :::no-loc(Identity):::](xref:security/authentication/scaffold-identity) to generate */Areas/:::no-loc(Identity):::/Pages/Account/Manage/EnableAuthenticator.cshtml* .</span></span>
-* <span data-ttu-id="56460-121">In */areas/ :::no-loc(Identity)::: /pages/account/Manage/EnableAuthenticator.cshtml* individuare la `Scripts` sezione alla fine del file:</span><span class="sxs-lookup"><span data-stu-id="56460-121">In */Areas/:::no-loc(Identity):::/Pages/Account/Manage/EnableAuthenticator.cshtml* , locate the `Scripts` section at the end of the file:</span></span>
+* <span data-ttu-id="56460-120">Seguire le istruzioni riportate in [impalcatura Identity](xref:security/authentication/scaffold-identity) per generare */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="56460-120">Follow the instructions in [Scaffold Identity](xref:security/authentication/scaffold-identity) to generate */Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml* .</span></span>
+* <span data-ttu-id="56460-121">In */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml* individuare la `Scripts` sezione alla fine del file:</span><span class="sxs-lookup"><span data-stu-id="56460-121">In */Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml* , locate the `Scripts` section at the end of the file:</span></span>
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-* <span data-ttu-id="56460-122">In *pages/account/Manage/EnableAuthenticator. cshtml* ( :::no-loc(Razor)::: pages) o *views/Manage/EnableAuthenticator. cshtml* (MVC) individuare la `Scripts` sezione alla fine del file:</span><span class="sxs-lookup"><span data-stu-id="56460-122">In *Pages/Account/Manage/EnableAuthenticator.cshtml* (:::no-loc(Razor)::: Pages) or *Views/Manage/EnableAuthenticator.cshtml* (MVC), locate the `Scripts` section at the end of the file:</span></span>
+* <span data-ttu-id="56460-122">In *pages/account/Manage/EnableAuthenticator. cshtml* ( Razor pages) o *views/Manage/EnableAuthenticator. cshtml* (MVC) individuare la `Scripts` sezione alla fine del file:</span><span class="sxs-lookup"><span data-stu-id="56460-122">In *Pages/Account/Manage/EnableAuthenticator.cshtml* (Razor Pages) or *Views/Manage/EnableAuthenticator.cshtml* (MVC), locate the `Scripts` section at the end of the file:</span></span>
 
 ::: moniker-end
 
@@ -97,13 +97,13 @@ ms.locfileid: "93060833"
 
 ::: moniker range=">= aspnetcore-2.1"
 
-<span data-ttu-id="56460-128">Il nome del sito nel codice a matrice viene ricavato dal nome del progetto scelto durante la creazione iniziale del progetto.</span><span class="sxs-lookup"><span data-stu-id="56460-128">The site name in the QR Code is taken from the project name you choose when initially creating your project.</span></span> <span data-ttu-id="56460-129">È possibile modificarlo cercando il `GenerateQrCodeUri(string email, string unformattedKey)` metodo in */areas/ :::no-loc(Identity)::: /pages/account/Manage/EnableAuthenticator.cshtml.cs* .</span><span class="sxs-lookup"><span data-stu-id="56460-129">You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in the */Areas/:::no-loc(Identity):::/Pages/Account/Manage/EnableAuthenticator.cshtml.cs* .</span></span>
+<span data-ttu-id="56460-128">Il nome del sito nel codice a matrice viene ricavato dal nome del progetto scelto durante la creazione iniziale del progetto.</span><span class="sxs-lookup"><span data-stu-id="56460-128">The site name in the QR Code is taken from the project name you choose when initially creating your project.</span></span> <span data-ttu-id="56460-129">È possibile modificarlo cercando il `GenerateQrCodeUri(string email, string unformattedKey)` metodo in */areas/ Identity /pages/account/Manage/EnableAuthenticator.cshtml.cs* .</span><span class="sxs-lookup"><span data-stu-id="56460-129">You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in the */Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml.cs* .</span></span>
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-<span data-ttu-id="56460-130">Il nome del sito nel codice a matrice viene ricavato dal nome del progetto scelto durante la creazione iniziale del progetto.</span><span class="sxs-lookup"><span data-stu-id="56460-130">The site name in the QR Code is taken from the project name you choose when initially creating your project.</span></span> <span data-ttu-id="56460-131">È possibile modificarlo cercando il `GenerateQrCodeUri(string email, string unformattedKey)` metodo nel file *pages/account/Manage/EnableAuthenticator. cshtml. cs* ( :::no-loc(Razor)::: pages) o nel file *Controllers/ManageController. cs* (MVC).</span><span class="sxs-lookup"><span data-stu-id="56460-131">You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in the *Pages/Account/Manage/EnableAuthenticator.cshtml.cs* (:::no-loc(Razor)::: Pages) file or the *Controllers/ManageController.cs* (MVC) file.</span></span>
+<span data-ttu-id="56460-130">Il nome del sito nel codice a matrice viene ricavato dal nome del progetto scelto durante la creazione iniziale del progetto.</span><span class="sxs-lookup"><span data-stu-id="56460-130">The site name in the QR Code is taken from the project name you choose when initially creating your project.</span></span> <span data-ttu-id="56460-131">È possibile modificarlo cercando il `GenerateQrCodeUri(string email, string unformattedKey)` metodo nel file *pages/account/Manage/EnableAuthenticator. cshtml. cs* ( Razor pages) o nel file *Controllers/ManageController. cs* (MVC).</span><span class="sxs-lookup"><span data-stu-id="56460-131">You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in the *Pages/Account/Manage/EnableAuthenticator.cshtml.cs* (Razor Pages) file or the *Controllers/ManageController.cs* (MVC) file.</span></span>
 
 ::: moniker-end
 
@@ -116,7 +116,7 @@ private string GenerateQrCodeUri(string email, string unformattedKey)
 {
     return string.Format(
         AuthenticatorUriFormat,
-        _urlEncoder.Encode(":::no-loc(Razor)::: Pages"),
+        _urlEncoder.Encode("Razor Pages"),
         _urlEncoder.Encode(email),
         unformattedKey);
 }

@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: mvc/views/tag-helpers/authoring
 ms.openlocfilehash: 306416db3d9ae0219f859c3cf459eb08a5b778cf
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -77,11 +77,11 @@ ms.locfileid: "93060924"
    public class Email : TagHelper
    ```
 
-1. <span data-ttu-id="49e94-134">Per rendere la `EmailTagHelper` classe disponibile a tutte le :::no-loc(Razor)::: Visualizzazioni, aggiungere la `addTagHelper` direttiva al file *views/_ViewImports. cshtml* :</span><span class="sxs-lookup"><span data-stu-id="49e94-134">To make the `EmailTagHelper` class available to all our :::no-loc(Razor)::: views, add the `addTagHelper` directive to the *Views/_ViewImports.cshtml* file:</span></span>
+1. <span data-ttu-id="49e94-134">Per rendere la `EmailTagHelper` classe disponibile a tutte le Razor Visualizzazioni, aggiungere la `addTagHelper` direttiva al file *views/_ViewImports. cshtml* :</span><span class="sxs-lookup"><span data-stu-id="49e94-134">To make the `EmailTagHelper` class available to all our Razor views, add the `addTagHelper` directive to the *Views/_ViewImports.cshtml* file:</span></span>
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml?highlight=2,3)]
 
-   <span data-ttu-id="49e94-135">Il codice qui sopra usa la sintassi con caratteri jolly per specificare che tutti gli helper tag in questo assembly saranno disponibili.</span><span class="sxs-lookup"><span data-stu-id="49e94-135">The code above uses the wildcard syntax to specify all the tag helpers in our assembly will be available.</span></span> <span data-ttu-id="49e94-136">La prima stringa dopo `@addTagHelper` specifica l'helper tag da caricare (usare "\*" per indicare tutti gli helper tag), e la seconda stringa "AuthoringTagHelpers" specifica l'assembly in cui si trova l'helper tag.</span><span class="sxs-lookup"><span data-stu-id="49e94-136">The first string after `@addTagHelper` specifies the tag helper to load (Use "\*" for all tag helpers), and the second string "AuthoringTagHelpers" specifies the assembly the tag helper is in.</span></span> <span data-ttu-id="49e94-137">Si noti anche che la seconda riga introduce gli helper tag di ASP.NET Core MVC usando la sintassi con caratteri jolly (gli helper sono descritti in [Introduzione agli helper Tag](intro.md)). Si tratta della `@addTagHelper` direttiva che rende l'helper tag disponibile per la :::no-loc(Razor)::: visualizzazione.</span><span class="sxs-lookup"><span data-stu-id="49e94-137">Also, note that the second line brings in the ASP.NET Core MVC tag helpers using the wildcard syntax (those helpers are discussed in [Introduction to Tag Helpers](intro.md).) It's the `@addTagHelper` directive that makes the tag helper available to the :::no-loc(Razor)::: view.</span></span> <span data-ttu-id="49e94-138">In alternativa, è possibile specificare il nome completo dell'helper tag, come illustrato di seguito:</span><span class="sxs-lookup"><span data-stu-id="49e94-138">Alternatively, you can provide the fully qualified name (FQN) of a tag helper as shown below:</span></span>
+   <span data-ttu-id="49e94-135">Il codice qui sopra usa la sintassi con caratteri jolly per specificare che tutti gli helper tag in questo assembly saranno disponibili.</span><span class="sxs-lookup"><span data-stu-id="49e94-135">The code above uses the wildcard syntax to specify all the tag helpers in our assembly will be available.</span></span> <span data-ttu-id="49e94-136">La prima stringa dopo `@addTagHelper` specifica l'helper tag da caricare (usare "\*" per indicare tutti gli helper tag), e la seconda stringa "AuthoringTagHelpers" specifica l'assembly in cui si trova l'helper tag.</span><span class="sxs-lookup"><span data-stu-id="49e94-136">The first string after `@addTagHelper` specifies the tag helper to load (Use "\*" for all tag helpers), and the second string "AuthoringTagHelpers" specifies the assembly the tag helper is in.</span></span> <span data-ttu-id="49e94-137">Si noti anche che la seconda riga introduce gli helper tag di ASP.NET Core MVC usando la sintassi con caratteri jolly (gli helper sono descritti in [Introduzione agli helper Tag](intro.md)). Si tratta della `@addTagHelper` direttiva che rende l'helper tag disponibile per la Razor visualizzazione.</span><span class="sxs-lookup"><span data-stu-id="49e94-137">Also, note that the second line brings in the ASP.NET Core MVC tag helpers using the wildcard syntax (those helpers are discussed in [Introduction to Tag Helpers](intro.md).) It's the `@addTagHelper` directive that makes the tag helper available to the Razor view.</span></span> <span data-ttu-id="49e94-138">In alternativa, è possibile specificare il nome completo dell'helper tag, come illustrato di seguito:</span><span class="sxs-lookup"><span data-stu-id="49e94-138">Alternatively, you can provide the fully qualified name (FQN) of a tag helper as shown below:</span></span>
 
 ```csharp
 @using AuthoringTagHelpers
@@ -104,7 +104,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 ## <a name="setattribute-and-setcontent"></a><span data-ttu-id="49e94-146">SetAttribute e SetContent</span><span class="sxs-lookup"><span data-stu-id="49e94-146">SetAttribute and SetContent</span></span>
 
-<span data-ttu-id="49e94-147">In questa sezione la classe `EmailTagHelper` verrà aggiornata in modo che crei un tag di ancoraggio valido per la posta elettronica.</span><span class="sxs-lookup"><span data-stu-id="49e94-147">In this section, we'll update the `EmailTagHelper` so that it will create a valid anchor tag for email.</span></span> <span data-ttu-id="49e94-148">Il modulo verrà aggiornato in modo da ottenere le informazioni da una :::no-loc(Razor)::: vista (sotto forma di `mail-to` attributo) e usarle per generare l'ancoraggio.</span><span class="sxs-lookup"><span data-stu-id="49e94-148">We'll update it to take information from a :::no-loc(Razor)::: view (in the form of a `mail-to` attribute) and use that in generating the anchor.</span></span>
+<span data-ttu-id="49e94-147">In questa sezione la classe `EmailTagHelper` verrà aggiornata in modo che crei un tag di ancoraggio valido per la posta elettronica.</span><span class="sxs-lookup"><span data-stu-id="49e94-147">In this section, we'll update the `EmailTagHelper` so that it will create a valid anchor tag for email.</span></span> <span data-ttu-id="49e94-148">Il modulo verrà aggiornato in modo da ottenere le informazioni da una Razor vista (sotto forma di `mail-to` attributo) e usarle per generare l'ancoraggio.</span><span class="sxs-lookup"><span data-stu-id="49e94-148">We'll update it to take information from a Razor view (in the form of a `mail-to` attribute) and use that in generating the anchor.</span></span>
 
 <span data-ttu-id="49e94-149">Aggiornare la classe `EmailTagHelper` con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="49e94-149">Update the `EmailTagHelper` class with the following:</span></span>
 
@@ -205,7 +205,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs)]
 
-   * <span data-ttu-id="49e94-196">Come affermato in precedenza, gli helper tag convertono i nomi delle relative classi e proprietà C#, definiti secondo la convenzione Pascal, in formato [kebab case](https://wiki.c2.com/?KebabCase).</span><span class="sxs-lookup"><span data-stu-id="49e94-196">As mentioned previously, tag helpers translates Pascal-cased C# class names and properties for tag helpers into [kebab case](https://wiki.c2.com/?KebabCase).</span></span> <span data-ttu-id="49e94-197">Pertanto, per utilizzare `WebsiteInformationTagHelper` in :::no-loc(Razor)::: , si scriverà `<website-information />` .</span><span class="sxs-lookup"><span data-stu-id="49e94-197">Therefore, to use the `WebsiteInformationTagHelper` in :::no-loc(Razor):::, you'll write `<website-information />`.</span></span>
+   * <span data-ttu-id="49e94-196">Come affermato in precedenza, gli helper tag convertono i nomi delle relative classi e proprietà C#, definiti secondo la convenzione Pascal, in formato [kebab case](https://wiki.c2.com/?KebabCase).</span><span class="sxs-lookup"><span data-stu-id="49e94-196">As mentioned previously, tag helpers translates Pascal-cased C# class names and properties for tag helpers into [kebab case](https://wiki.c2.com/?KebabCase).</span></span> <span data-ttu-id="49e94-197">Pertanto, per utilizzare `WebsiteInformationTagHelper` in Razor , si scriverà `<website-information />` .</span><span class="sxs-lookup"><span data-stu-id="49e94-197">Therefore, to use the `WebsiteInformationTagHelper` in Razor, you'll write `<website-information />`.</span></span>
 
    * <span data-ttu-id="49e94-198">Non si sta identificando in modo esplicito l'elemento di destinazione con l'attributo `[HtmlTargetElement]` e quindi verrà considerato come destinazione il valore predefinito di `website-information`.</span><span class="sxs-lookup"><span data-stu-id="49e94-198">You are not explicitly identifying the target element with the `[HtmlTargetElement]` attribute, so the default of `website-information` will be targeted.</span></span> <span data-ttu-id="49e94-199">Se è stato applicato l'attributo seguente (si noti che non è nel formato kebab case ma corrisponde al nome della classe):</span><span class="sxs-lookup"><span data-stu-id="49e94-199">If you applied the following attribute (note it's not kebab case but matches the class name):</span></span>
 
@@ -219,7 +219,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
    [HtmlTargetElement("Website-Information")]
    ```
 
-   * <span data-ttu-id="49e94-202">Gli elementi a chiusura automatica non hanno contenuto.</span><span class="sxs-lookup"><span data-stu-id="49e94-202">Elements that are self-closing have no content.</span></span> <span data-ttu-id="49e94-203">Per questo esempio, il :::no-loc(Razor)::: markup userà un tag di chiusura automatica, ma l'helper Tag creerà un elemento [Section](https://www.w3.org/TR/html5/sections.html#the-section-element) , che non è a chiusura automatica e si sta scrivendo contenuto all'interno dell' `section` elemento.</span><span class="sxs-lookup"><span data-stu-id="49e94-203">For this example, the :::no-loc(Razor)::: markup will use a self-closing tag, but the tag helper will be creating a [section](https://www.w3.org/TR/html5/sections.html#the-section-element) element (which isn't self-closing and you are writing content inside the `section` element).</span></span> <span data-ttu-id="49e94-204">Per scrivere output, è pertanto necessario impostare `TagMode` su `StartTagAndEndTag`.</span><span class="sxs-lookup"><span data-stu-id="49e94-204">Therefore, you need to set `TagMode` to `StartTagAndEndTag` to write output.</span></span> <span data-ttu-id="49e94-205">In alternativa, è possibile impostare come commento la riga che imposta `TagMode` e scrivere markup con un tag di chiusura.</span><span class="sxs-lookup"><span data-stu-id="49e94-205">Alternatively, you can comment out the line setting `TagMode` and write markup with a closing tag.</span></span> <span data-ttu-id="49e94-206">Del markup di esempio viene fornito più avanti in questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="49e94-206">(Example markup is provided later in this tutorial.)</span></span>
+   * <span data-ttu-id="49e94-202">Gli elementi a chiusura automatica non hanno contenuto.</span><span class="sxs-lookup"><span data-stu-id="49e94-202">Elements that are self-closing have no content.</span></span> <span data-ttu-id="49e94-203">Per questo esempio, il Razor markup userà un tag di chiusura automatica, ma l'helper Tag creerà un elemento [Section](https://www.w3.org/TR/html5/sections.html#the-section-element) , che non è a chiusura automatica e si sta scrivendo contenuto all'interno dell' `section` elemento.</span><span class="sxs-lookup"><span data-stu-id="49e94-203">For this example, the Razor markup will use a self-closing tag, but the tag helper will be creating a [section](https://www.w3.org/TR/html5/sections.html#the-section-element) element (which isn't self-closing and you are writing content inside the `section` element).</span></span> <span data-ttu-id="49e94-204">Per scrivere output, è pertanto necessario impostare `TagMode` su `StartTagAndEndTag`.</span><span class="sxs-lookup"><span data-stu-id="49e94-204">Therefore, you need to set `TagMode` to `StartTagAndEndTag` to write output.</span></span> <span data-ttu-id="49e94-205">In alternativa, è possibile impostare come commento la riga che imposta `TagMode` e scrivere markup con un tag di chiusura.</span><span class="sxs-lookup"><span data-stu-id="49e94-205">Alternatively, you can comment out the line setting `TagMode` and write markup with a closing tag.</span></span> <span data-ttu-id="49e94-206">Del markup di esempio viene fornito più avanti in questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="49e94-206">(Example markup is provided later in this tutorial.)</span></span>
 
    * <span data-ttu-id="49e94-207">Il simbolo `$` (segno di dollaro) nella riga seguente usa una [stringa interpolata](/dotnet/csharp/language-reference/keywords/interpolated-strings):</span><span class="sxs-lookup"><span data-stu-id="49e94-207">The `$` (dollar sign) in the following line uses an [interpolated string](/dotnet/csharp/language-reference/keywords/interpolated-strings):</span></span>
 
@@ -232,11 +232,11 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
    [!code-cshtml[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
 
    > [!NOTE]
-   > <span data-ttu-id="49e94-210">Nel :::no-loc(Razor)::: markup mostrato di seguito:</span><span class="sxs-lookup"><span data-stu-id="49e94-210">In the :::no-loc(Razor)::: markup shown below:</span></span>
+   > <span data-ttu-id="49e94-210">Nel Razor markup mostrato di seguito:</span><span class="sxs-lookup"><span data-stu-id="49e94-210">In the Razor markup shown below:</span></span>
    >
    > [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?range=18-18)]
    >
-   > <span data-ttu-id="49e94-211">:::no-loc(Razor)::: sa `info` che l'attributo è una classe, non una stringa, e si vuole scrivere il codice C#.</span><span class="sxs-lookup"><span data-stu-id="49e94-211">:::no-loc(Razor)::: knows the `info` attribute is a class, not a string, and you want to write C# code.</span></span> <span data-ttu-id="49e94-212">Qualsiasi attributo di helper tag non di tipo stringa deve essere scritto senza il carattere `@`.</span><span class="sxs-lookup"><span data-stu-id="49e94-212">Any non-string tag helper attribute should be written without the `@` character.</span></span>
+   > <span data-ttu-id="49e94-211">Razor sa `info` che l'attributo è una classe, non una stringa, e si vuole scrivere il codice C#.</span><span class="sxs-lookup"><span data-stu-id="49e94-211">Razor knows the `info` attribute is a class, not a string, and you want to write C# code.</span></span> <span data-ttu-id="49e94-212">Qualsiasi attributo di helper tag non di tipo stringa deve essere scritto senza il carattere `@`.</span><span class="sxs-lookup"><span data-stu-id="49e94-212">Any non-string tag helper attribute should be written without the `@` character.</span></span>
 
 1. <span data-ttu-id="49e94-213">Eseguire l'app e passare alla visualizzazione About per visualizzare le informazioni sul sito Web.</span><span class="sxs-lookup"><span data-stu-id="49e94-213">Run the app, and navigate to the About view to see the web site information.</span></span>
 

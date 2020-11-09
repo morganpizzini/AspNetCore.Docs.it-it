@@ -7,17 +7,17 @@ ms.author: riande
 ms.date: 09/22/2018
 ms.custom: mvc, seodec18
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authentication/2fa
 ms.openlocfilehash: 1ee9e656c2e631c9b5588149e0a75e07108baff1
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -106,7 +106,7 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 
 ### <a name="enable-two-factor-authentication"></a><span data-ttu-id="f7429-145">Abilitare l'autenticazione a due fattori</span><span class="sxs-lookup"><span data-stu-id="f7429-145">Enable two-factor authentication</span></span>
 
-<span data-ttu-id="f7429-146">Aprire il file di visualizzazione *views/Manage/index. cshtml* :::no-loc(Razor)::: e rimuovere i caratteri di commento, in modo che nessun markup sia impostato come commento.</span><span class="sxs-lookup"><span data-stu-id="f7429-146">Open the *Views/Manage/Index.cshtml* :::no-loc(Razor)::: view file and remove the comment characters (so no markup is commented out).</span></span>
+<span data-ttu-id="f7429-146">Aprire il file di visualizzazione *views/Manage/index. cshtml* Razor e rimuovere i caratteri di commento, in modo che nessun markup sia impostato come commento.</span><span class="sxs-lookup"><span data-stu-id="f7429-146">Open the *Views/Manage/Index.cshtml* Razor view file and remove the comment characters (so no markup is commented out).</span></span>
 
 ## <a name="log-in-with-two-factor-authentication"></a><span data-ttu-id="f7429-147">Eseguire l'accesso con l'autenticazione a due fattori</span><span class="sxs-lookup"><span data-stu-id="f7429-147">Log in with two-factor authentication</span></span>
 

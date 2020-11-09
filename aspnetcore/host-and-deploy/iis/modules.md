@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: host-and-deploy/iis/modules
 ms.openlocfilehash: 47ba04f199f9b77cf6032de9f80f2410f5c69424
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -66,7 +66,7 @@ ms.locfileid: "93057401"
 | <span data-ttu-id="929a6-179">**Contenuto statico**</span><span class="sxs-lookup"><span data-stu-id="929a6-179">**Static Content**</span></span><br>`StaticFileModule`                                                         | <span data-ttu-id="929a6-180">No</span><span class="sxs-lookup"><span data-stu-id="929a6-180">No</span></span>  | [<span data-ttu-id="929a6-181">Middleware dei file statici</span><span class="sxs-lookup"><span data-stu-id="929a6-181">Static File Middleware</span></span>](xref:fundamentals/static-files) |
 | <span data-ttu-id="929a6-182">**Memorizzazione di token nella cache**</span><span class="sxs-lookup"><span data-stu-id="929a6-182">**Token Caching**</span></span><br>`TokenCacheModule`                                                          | <span data-ttu-id="929a6-183">Sì</span><span class="sxs-lookup"><span data-stu-id="929a6-183">Yes</span></span> | |
 | <span data-ttu-id="929a6-184">**Memorizzazione nella cache degli URI**</span><span class="sxs-lookup"><span data-stu-id="929a6-184">**URI Caching**</span></span><br>`UriCacheModule`                                                              | <span data-ttu-id="929a6-185">Sì</span><span class="sxs-lookup"><span data-stu-id="929a6-185">Yes</span></span> | |
-| <span data-ttu-id="929a6-186">**Autorizzazione URL**</span><span class="sxs-lookup"><span data-stu-id="929a6-186">**URL Authorization**</span></span><br>`UrlAuthorizationModule`                                                | <span data-ttu-id="929a6-187">Sì</span><span class="sxs-lookup"><span data-stu-id="929a6-187">Yes</span></span> | [:::no-loc(ASP.NET Core Identity):::](xref:security/authentication/identity) |
+| <span data-ttu-id="929a6-186">**Autorizzazione URL**</span><span class="sxs-lookup"><span data-stu-id="929a6-186">**URL Authorization**</span></span><br>`UrlAuthorizationModule`                                                | <span data-ttu-id="929a6-187">Sì</span><span class="sxs-lookup"><span data-stu-id="929a6-187">Yes</span></span> | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | <span data-ttu-id="929a6-188">**Autenticazione di Windows**</span><span class="sxs-lookup"><span data-stu-id="929a6-188">**Windows Authentication**</span></span><br>`WindowsAuthenticationModule`                                      | <span data-ttu-id="929a6-189">Sì</span><span class="sxs-lookup"><span data-stu-id="929a6-189">Yes</span></span> | |
 
 <span data-ttu-id="929a6-190">&#8224;I tipi corrispondenti `isFile` e `isDirectory` di URL Rewrite Module non funzionano con le app ASP.NET Core a causa delle modifiche apportate alla [struttura di directory](xref:host-and-deploy/directory-structure).</span><span class="sxs-lookup"><span data-stu-id="929a6-190">&#8224;The URL Rewrite Module's `isFile` and `isDirectory` match types don't work with ASP.NET Core apps due to the changes in [directory structure](xref:host-and-deploy/directory-structure).</span></span>
@@ -80,7 +80,7 @@ ms.locfileid: "93057401"
 | <span data-ttu-id="929a6-196">AnonymousIdentification</span><span class="sxs-lookup"><span data-stu-id="929a6-196">AnonymousIdentification</span></span> | |
 | <span data-ttu-id="929a6-197">DefaultAuthentication</span><span class="sxs-lookup"><span data-stu-id="929a6-197">DefaultAuthentication</span></span>   | |
 | <span data-ttu-id="929a6-198">FileAuthorization</span><span class="sxs-lookup"><span data-stu-id="929a6-198">FileAuthorization</span></span>       | |
-| <span data-ttu-id="929a6-199">FormsAuthentication</span><span class="sxs-lookup"><span data-stu-id="929a6-199">FormsAuthentication</span></span>     | <span data-ttu-id="929a6-200">[:::no-loc(Cookie)::: Middleware di autenticazione](xref:security/authentication/:::no-loc(cookie):::)</span><span class="sxs-lookup"><span data-stu-id="929a6-200">[:::no-loc(Cookie)::: Authentication Middleware](xref:security/authentication/:::no-loc(cookie):::)</span></span> |
+| <span data-ttu-id="929a6-199">FormsAuthentication</span><span class="sxs-lookup"><span data-stu-id="929a6-199">FormsAuthentication</span></span>     | <span data-ttu-id="929a6-200">[Cookie Middleware di autenticazione](xref:security/authentication/cookie)</span><span class="sxs-lookup"><span data-stu-id="929a6-200">[Cookie Authentication Middleware](xref:security/authentication/cookie)</span></span> |
 | <span data-ttu-id="929a6-201">OutputCache</span><span class="sxs-lookup"><span data-stu-id="929a6-201">OutputCache</span></span>             | [<span data-ttu-id="929a6-202">Middleware di memorizzazione nella cache delle risposte</span><span class="sxs-lookup"><span data-stu-id="929a6-202">Response Caching Middleware</span></span>](xref:performance/caching/middleware) |
 | <span data-ttu-id="929a6-203">Profilo</span><span class="sxs-lookup"><span data-stu-id="929a6-203">Profile</span></span>                 | |
 | <span data-ttu-id="929a6-204">RoleManager</span><span class="sxs-lookup"><span data-stu-id="929a6-204">RoleManager</span></span>             | |
@@ -88,7 +88,7 @@ ms.locfileid: "93057401"
 | <span data-ttu-id="929a6-206">sessione</span><span class="sxs-lookup"><span data-stu-id="929a6-206">Session</span></span>                 | [<span data-ttu-id="929a6-207">Middleware di sessione</span><span class="sxs-lookup"><span data-stu-id="929a6-207">Session Middleware</span></span>](xref:fundamentals/app-state) |
 | <span data-ttu-id="929a6-208">UrlAuthorization</span><span class="sxs-lookup"><span data-stu-id="929a6-208">UrlAuthorization</span></span>        | |
 | <span data-ttu-id="929a6-209">UrlMappingsModule</span><span class="sxs-lookup"><span data-stu-id="929a6-209">UrlMappingsModule</span></span>       | [<span data-ttu-id="929a6-210">Middleware di riscrittura URL</span><span class="sxs-lookup"><span data-stu-id="929a6-210">URL Rewriting Middleware</span></span>](xref:fundamentals/url-rewriting) |
-| <span data-ttu-id="929a6-211">UrlRoutingModule-4.0</span><span class="sxs-lookup"><span data-stu-id="929a6-211">UrlRoutingModule-4.0</span></span>    | [:::no-loc(ASP.NET Core Identity):::](xref:security/authentication/identity) |
+| <span data-ttu-id="929a6-211">UrlRoutingModule-4.0</span><span class="sxs-lookup"><span data-stu-id="929a6-211">UrlRoutingModule-4.0</span></span>    | [ASP.NET Core Identity](xref:security/authentication/identity) |
 | <span data-ttu-id="929a6-212">WindowsAuthentication</span><span class="sxs-lookup"><span data-stu-id="929a6-212">WindowsAuthentication</span></span>   | |
 
 ## <a name="iis-manager-application-changes"></a><span data-ttu-id="929a6-213">Modifiche dell'applicazione Gestione IIS</span><span class="sxs-lookup"><span data-stu-id="929a6-213">IIS Manager application changes</span></span>

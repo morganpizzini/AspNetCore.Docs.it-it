@@ -1,23 +1,23 @@
 ---
-title: 'Usare ASP.NET Core :::no-loc(SignalR)::: con :::no-loc(Blazor WebAssembly):::'
+title: 'Usare ASP.NET Core SignalR con Blazor WebAssembly'
 author: guardrex
-description: "Creare un'app di chat che usa ASP.NET Core :::no-loc(SignalR)::: con :::no-loc(Blazor WebAssembly)::: ."
+description: "Creare un'app di chat che usa ASP.NET Core SignalR con Blazor WebAssembly ."
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/01/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: tutorials/signalr-blazor-webassembly
 ms.openlocfilehash: 81cbfb692ffbd0bb6335ccef6dd10ad6c20fb334
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,18 +26,18 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93052707"
 ---
-# <a name="use-aspnet-core-no-locsignalr-with-no-locblazor-webassembly"></a><span data-ttu-id="6a93f-103">Usare ASP.NET Core :::no-loc(SignalR)::: con :::no-loc(Blazor WebAssembly):::</span><span class="sxs-lookup"><span data-stu-id="6a93f-103">Use ASP.NET Core :::no-loc(SignalR)::: with :::no-loc(Blazor WebAssembly):::</span></span>
+# <a name="use-aspnet-core-no-locsignalr-with-no-locblazor-webassembly"></a><span data-ttu-id="6a93f-103">Usare ASP.NET Core SignalR con Blazor WebAssembly</span><span class="sxs-lookup"><span data-stu-id="6a93f-103">Use ASP.NET Core SignalR with Blazor WebAssembly</span></span>
 
 <span data-ttu-id="6a93f-104">Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="6a93f-104">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="6a93f-105">Questa esercitazione illustra le nozioni di base per la creazione di un'app in tempo reale usando :::no-loc(SignalR)::: con :::no-loc(Blazor WebAssembly)::: .</span><span class="sxs-lookup"><span data-stu-id="6a93f-105">This tutorial teaches the basics of building a real-time app using :::no-loc(SignalR)::: with :::no-loc(Blazor WebAssembly):::.</span></span> <span data-ttu-id="6a93f-106">Si apprenderà come:</span><span class="sxs-lookup"><span data-stu-id="6a93f-106">You learn how to:</span></span>
+<span data-ttu-id="6a93f-105">Questa esercitazione illustra le nozioni di base per la creazione di un'app in tempo reale usando SignalR con Blazor WebAssembly .</span><span class="sxs-lookup"><span data-stu-id="6a93f-105">This tutorial teaches the basics of building a real-time app using SignalR with Blazor WebAssembly.</span></span> <span data-ttu-id="6a93f-106">Si apprenderà come:</span><span class="sxs-lookup"><span data-stu-id="6a93f-106">You learn how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="6a93f-107">Creare un :::no-loc(Blazor WebAssembly)::: progetto di app ospitata</span><span class="sxs-lookup"><span data-stu-id="6a93f-107">Create a :::no-loc(Blazor WebAssembly)::: Hosted app project</span></span>
-> * <span data-ttu-id="6a93f-108">Aggiungere la :::no-loc(SignalR)::: libreria client</span><span class="sxs-lookup"><span data-stu-id="6a93f-108">Add the :::no-loc(SignalR)::: client library</span></span>
-> * <span data-ttu-id="6a93f-109">Aggiungere un :::no-loc(SignalR)::: Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-109">Add a :::no-loc(SignalR)::: hub</span></span>
-> * <span data-ttu-id="6a93f-110">Aggiungere :::no-loc(SignalR)::: Servizi e un endpoint per l' :::no-loc(SignalR)::: Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-110">Add :::no-loc(SignalR)::: services and an endpoint for the :::no-loc(SignalR)::: hub</span></span>
-> * <span data-ttu-id="6a93f-111">Aggiungi :::no-loc(Razor)::: codice componente per la chat</span><span class="sxs-lookup"><span data-stu-id="6a93f-111">Add :::no-loc(Razor)::: component code for chat</span></span>
+> * <span data-ttu-id="6a93f-107">Creare un Blazor WebAssembly progetto di app ospitata</span><span class="sxs-lookup"><span data-stu-id="6a93f-107">Create a Blazor WebAssembly Hosted app project</span></span>
+> * <span data-ttu-id="6a93f-108">Aggiungere la SignalR libreria client</span><span class="sxs-lookup"><span data-stu-id="6a93f-108">Add the SignalR client library</span></span>
+> * <span data-ttu-id="6a93f-109">Aggiungere un SignalR Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-109">Add a SignalR hub</span></span>
+> * <span data-ttu-id="6a93f-110">Aggiungere SignalR Servizi e un endpoint per l' SignalR Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-110">Add SignalR services and an endpoint for the SignalR hub</span></span>
+> * <span data-ttu-id="6a93f-111">Aggiungi Razor codice componente per la chat</span><span class="sxs-lookup"><span data-stu-id="6a93f-111">Add Razor component code for chat</span></span>
 
 <span data-ttu-id="6a93f-112">Al termine di questa esercitazione, si disporrà di un'app di chat funzionante.</span><span class="sxs-lookup"><span data-stu-id="6a93f-112">At the end of this tutorial, you'll have a working chat app.</span></span>
 
@@ -95,7 +95,7 @@ ms.locfileid: "93052707"
 
 ::: moniker-end
 
-## <a name="create-a-hosted-no-locblazor-webassembly-app-project"></a><span data-ttu-id="6a93f-127">Creare un progetto di app ospitata :::no-loc(Blazor WebAssembly):::</span><span class="sxs-lookup"><span data-stu-id="6a93f-127">Create a hosted :::no-loc(Blazor WebAssembly)::: app project</span></span>
+## <a name="create-a-hosted-no-locblazor-webassembly-app-project"></a><span data-ttu-id="6a93f-127">Creare un progetto di app ospitata Blazor WebAssembly</span><span class="sxs-lookup"><span data-stu-id="6a93f-127">Create a hosted Blazor WebAssembly app project</span></span>
 
 <span data-ttu-id="6a93f-128">Seguire le istruzioni per la scelta degli strumenti:</span><span class="sxs-lookup"><span data-stu-id="6a93f-128">Follow the guidance for your choice of tooling:</span></span>
 
@@ -117,11 +117,11 @@ ms.locfileid: "93052707"
 
 1. <span data-ttu-id="6a93f-132">Creare un nuovo progetto.</span><span class="sxs-lookup"><span data-stu-id="6a93f-132">Create a new project.</span></span>
 
-1. <span data-ttu-id="6a93f-133">Selezionare **:::no-loc(Blazor)::: app** e fare clic su **Next (avanti** ).</span><span class="sxs-lookup"><span data-stu-id="6a93f-133">Select **:::no-loc(Blazor)::: App** and select **Next** .</span></span>
+1. <span data-ttu-id="6a93f-133">Selezionare **Blazor app** e fare clic su **Next (avanti** ).</span><span class="sxs-lookup"><span data-stu-id="6a93f-133">Select **Blazor App** and select **Next** .</span></span>
 
-1. <span data-ttu-id="6a93f-134">Digitare `:::no-loc(Blazor)::::::no-loc(SignalR):::App` nel campo **nome progetto** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-134">Type `:::no-loc(Blazor)::::::no-loc(SignalR):::App` in the **Project name** field.</span></span> <span data-ttu-id="6a93f-135">Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto.</span><span class="sxs-lookup"><span data-stu-id="6a93f-135">Confirm the **Location** entry is correct or provide a location for the project.</span></span> <span data-ttu-id="6a93f-136">Selezionare **Crea** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-136">Select **Create** .</span></span>
+1. <span data-ttu-id="6a93f-134">Digitare `BlazorSignalRApp` nel campo **nome progetto** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-134">Type `BlazorSignalRApp` in the **Project name** field.</span></span> <span data-ttu-id="6a93f-135">Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto.</span><span class="sxs-lookup"><span data-stu-id="6a93f-135">Confirm the **Location** entry is correct or provide a location for the project.</span></span> <span data-ttu-id="6a93f-136">Selezionare **Crea** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-136">Select **Create** .</span></span>
 
-1. <span data-ttu-id="6a93f-137">Scegliere il modello di **:::no-loc(Blazor WebAssembly)::: app** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-137">Choose the **:::no-loc(Blazor WebAssembly)::: App** template.</span></span>
+1. <span data-ttu-id="6a93f-137">Scegliere il modello di **Blazor WebAssembly app** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-137">Choose the **Blazor WebAssembly App** template.</span></span>
 
 1. <span data-ttu-id="6a93f-138">In **Avanzate** selezionare la casella di controllo **ASP.NET Core Hosted** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-138">Under **Advanced** , select the **ASP.NET Core hosted** check box.</span></span>
 
@@ -132,7 +132,7 @@ ms.locfileid: "93052707"
 1. <span data-ttu-id="6a93f-141">In una shell dei comandi eseguire il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="6a93f-141">In a command shell, execute the following command:</span></span>
 
    ```dotnetcli
-   dotnet new blazorwasm --hosted --output :::no-loc(Blazor)::::::no-loc(SignalR):::App
+   dotnet new blazorwasm --hosted --output BlazorSignalRApp
    ```
 
 1. <span data-ttu-id="6a93f-142">In Visual Studio Code aprire la cartella del progetto dell'app.</span><span class="sxs-lookup"><span data-stu-id="6a93f-142">In Visual Studio Code, open the app's project folder.</span></span>
@@ -147,11 +147,11 @@ ms.locfileid: "93052707"
 
 1. <span data-ttu-id="6a93f-148">Nella barra laterale selezionare app **Web e console**  >  **App** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-148">In the sidebar, select **Web and Console** > **App** .</span></span>
 
-1. <span data-ttu-id="6a93f-149">Scegliere il modello di **:::no-loc(Blazor WebAssembly)::: app** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-149">Choose the **:::no-loc(Blazor WebAssembly)::: App** template.</span></span> <span data-ttu-id="6a93f-150">Selezionare **Avanti** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-150">Select **Next** .</span></span>
+1. <span data-ttu-id="6a93f-149">Scegliere il modello di **Blazor WebAssembly app** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-149">Choose the **Blazor WebAssembly App** template.</span></span> <span data-ttu-id="6a93f-150">Selezionare **Avanti** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-150">Select **Next** .</span></span>
 
 1. <span data-ttu-id="6a93f-151">Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-151">Confirm that **Authentication** is set to **No Authentication** .</span></span> <span data-ttu-id="6a93f-152">Selezionare la casella di controllo **ASP.NET Core Hosted** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-152">Select the **ASP.NET Core Hosted** check box.</span></span> <span data-ttu-id="6a93f-153">Selezionare **Avanti** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-153">Select **Next** .</span></span>
 
-1. <span data-ttu-id="6a93f-154">Nel campo **nome progetto** assegnare un nome all'app `:::no-loc(Blazor)::::::no-loc(SignalR):::App` .</span><span class="sxs-lookup"><span data-stu-id="6a93f-154">In the **Project Name** field, name the app `:::no-loc(Blazor)::::::no-loc(SignalR):::App`.</span></span> <span data-ttu-id="6a93f-155">Selezionare **Crea** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-155">Select **Create** .</span></span>
+1. <span data-ttu-id="6a93f-154">Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` .</span><span class="sxs-lookup"><span data-stu-id="6a93f-154">In the **Project Name** field, name the app `BlazorSignalRApp`.</span></span> <span data-ttu-id="6a93f-155">Selezionare **Crea** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-155">Select **Create** .</span></span>
 
    <span data-ttu-id="6a93f-156">Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare.</span><span class="sxs-lookup"><span data-stu-id="6a93f-156">If a prompt appears to trust the development certificate, trust the certificate and continue.</span></span> <span data-ttu-id="6a93f-157">Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain.</span><span class="sxs-lookup"><span data-stu-id="6a93f-157">The user and keychain passwords are required to trust the certificate.</span></span>
 
@@ -162,22 +162,22 @@ ms.locfileid: "93052707"
 <span data-ttu-id="6a93f-160">In una shell dei comandi eseguire il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="6a93f-160">In a command shell, execute the following command:</span></span>
 
 ```dotnetcli
-dotnet new blazorwasm --hosted --output :::no-loc(Blazor)::::::no-loc(SignalR):::App
+dotnet new blazorwasm --hosted --output BlazorSignalRApp
 ```
 
 ---
 
-## <a name="add-the-no-locsignalr-client-library"></a><span data-ttu-id="6a93f-161">Aggiungere la :::no-loc(SignalR)::: libreria client</span><span class="sxs-lookup"><span data-stu-id="6a93f-161">Add the :::no-loc(SignalR)::: client library</span></span>
+## <a name="add-the-no-locsignalr-client-library"></a><span data-ttu-id="6a93f-161">Aggiungere la SignalR libreria client</span><span class="sxs-lookup"><span data-stu-id="6a93f-161">Add the SignalR client library</span></span>
 
 # <a name="visual-studio"></a>[<span data-ttu-id="6a93f-162">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="6a93f-162">Visual Studio</span></span>](#tab/visual-studio/)
 
-1. <span data-ttu-id="6a93f-163">In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Client` progetto e scegliere **Gestisci pacchetti NuGet** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-163">In **Solution Explorer** , right-click the `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Client` project and select **Manage NuGet Packages** .</span></span>
+1. <span data-ttu-id="6a93f-163">In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul `BlazorSignalRApp.Client` progetto e scegliere **Gestisci pacchetti NuGet** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-163">In **Solution Explorer** , right-click the `BlazorSignalRApp.Client` project and select **Manage NuGet Packages** .</span></span>
 
 1. <span data-ttu-id="6a93f-164">Nella finestra di dialogo **Gestisci pacchetti NuGet** verificare che l' **origine del pacchetto** sia impostata su `nuget.org` .</span><span class="sxs-lookup"><span data-stu-id="6a93f-164">In the **Manage NuGet Packages** dialog, confirm that the **Package source** is set to `nuget.org`.</span></span>
 
-1. <span data-ttu-id="6a93f-165">Con **Sfoglia** selezionato, digitare `Microsoft.AspNetCore.:::no-loc(SignalR):::.Client` nella casella di ricerca.</span><span class="sxs-lookup"><span data-stu-id="6a93f-165">With **Browse** selected, type `Microsoft.AspNetCore.:::no-loc(SignalR):::.Client` in the search box.</span></span>
+1. <span data-ttu-id="6a93f-165">Con **Sfoglia** selezionato, digitare `Microsoft.AspNetCore.SignalR.Client` nella casella di ricerca.</span><span class="sxs-lookup"><span data-stu-id="6a93f-165">With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.</span></span>
 
-1. <span data-ttu-id="6a93f-166">Nei risultati della ricerca selezionare il [`Microsoft.AspNetCore.:::no-loc(SignalR):::.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.:::no-loc(SignalR):::.Client) pacchetto e selezionare **Installa** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-166">In the search results, select the [`Microsoft.AspNetCore.:::no-loc(SignalR):::.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.:::no-loc(SignalR):::.Client) package and select **Install** .</span></span>
+1. <span data-ttu-id="6a93f-166">Nei risultati della ricerca selezionare il [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) pacchetto e selezionare **Installa** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-166">In the search results, select the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package and select **Install** .</span></span>
 
 1. <span data-ttu-id="6a93f-167">Se viene visualizzata la finestra di dialogo **Anteprima modifiche** , selezionare **OK** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-167">If the **Preview Changes** dialog appears, select **OK** .</span></span>
 
@@ -188,18 +188,18 @@ dotnet new blazorwasm --hosted --output :::no-loc(Blazor)::::::no-loc(SignalR)::
 <span data-ttu-id="6a93f-170">Nel **terminale integrato** ( **visualizzare** il  >  **terminale** dalla barra degli strumenti) eseguire i comandi seguenti:</span><span class="sxs-lookup"><span data-stu-id="6a93f-170">In the **Integrated Terminal** ( **View** > **Terminal** from the toolbar), execute the following commands:</span></span>
 
 ```dotnetcli
-dotnet add Client package Microsoft.AspNetCore.:::no-loc(SignalR):::.Client
+dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 ```
 
 # <a name="visual-studio-for-mac"></a>[<span data-ttu-id="6a93f-171">Visual Studio per Mac</span><span class="sxs-lookup"><span data-stu-id="6a93f-171">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-1. <span data-ttu-id="6a93f-172">Nella barra laterale **soluzione** fare clic con il pulsante destro del mouse sul `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Client` progetto e scegliere **Gestisci pacchetti NuGet** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-172">In the **Solution** sidebar, right-click the `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Client` project and select **Manage NuGet Packages** .</span></span>
+1. <span data-ttu-id="6a93f-172">Nella barra laterale **soluzione** fare clic con il pulsante destro del mouse sul `BlazorSignalRApp.Client` progetto e scegliere **Gestisci pacchetti NuGet** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-172">In the **Solution** sidebar, right-click the `BlazorSignalRApp.Client` project and select **Manage NuGet Packages** .</span></span>
 
 1. <span data-ttu-id="6a93f-173">Nella finestra di dialogo **Gestisci pacchetti NuGet** verificare che l'elenco a discesa origine sia impostato su `nuget.org` .</span><span class="sxs-lookup"><span data-stu-id="6a93f-173">In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.</span></span>
 
-1. <span data-ttu-id="6a93f-174">Con **Sfoglia** selezionato, digitare `Microsoft.AspNetCore.:::no-loc(SignalR):::.Client` nella casella di ricerca.</span><span class="sxs-lookup"><span data-stu-id="6a93f-174">With **Browse** selected, type `Microsoft.AspNetCore.:::no-loc(SignalR):::.Client` in the search box.</span></span>
+1. <span data-ttu-id="6a93f-174">Con **Sfoglia** selezionato, digitare `Microsoft.AspNetCore.SignalR.Client` nella casella di ricerca.</span><span class="sxs-lookup"><span data-stu-id="6a93f-174">With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.</span></span>
 
-1. <span data-ttu-id="6a93f-175">Nei risultati della ricerca selezionare la casella di controllo accanto al [`Microsoft.AspNetCore.:::no-loc(SignalR):::.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.:::no-loc(SignalR):::.Client) pacchetto e selezionare **Aggiungi pacchetto** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-175">In the search results, select the check box next to the [`Microsoft.AspNetCore.:::no-loc(SignalR):::.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.:::no-loc(SignalR):::.Client) package and select **Add Package** .</span></span>
+1. <span data-ttu-id="6a93f-175">Nei risultati della ricerca selezionare la casella di controllo accanto al [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) pacchetto e selezionare **Aggiungi pacchetto** .</span><span class="sxs-lookup"><span data-stu-id="6a93f-175">In the search results, select the check box next to the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package and select **Add Package** .</span></span>
 
 1. <span data-ttu-id="6a93f-176">Se viene visualizzata la finestra di dialogo **accettazione della licenza** , selezionare **Accetto** se si accettano le condizioni di licenza.</span><span class="sxs-lookup"><span data-stu-id="6a93f-176">If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.</span></span>
 
@@ -208,49 +208,49 @@ dotnet add Client package Microsoft.AspNetCore.:::no-loc(SignalR):::.Client
 <span data-ttu-id="6a93f-178">In una shell dei comandi eseguire i comandi seguenti:</span><span class="sxs-lookup"><span data-stu-id="6a93f-178">In a command shell, execute the following commands:</span></span>
 
 ```dotnetcli
-cd :::no-loc(Blazor)::::::no-loc(SignalR):::App
-dotnet add Client package Microsoft.AspNetCore.:::no-loc(SignalR):::.Client
+cd BlazorSignalRApp
+dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 ```
 
 ---
 
-## <a name="add-a-no-locsignalr-hub"></a><span data-ttu-id="6a93f-179">Aggiungere un :::no-loc(SignalR)::: Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-179">Add a :::no-loc(SignalR)::: hub</span></span>
+## <a name="add-a-no-locsignalr-hub"></a><span data-ttu-id="6a93f-179">Aggiungere un SignalR Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-179">Add a SignalR hub</span></span>
 
-<span data-ttu-id="6a93f-180">Nel `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Server` progetto creare una `Hubs` cartella (plurale) e aggiungere la classe seguente `ChatHub` ( `Hubs/ChatHub.cs` ):</span><span class="sxs-lookup"><span data-stu-id="6a93f-180">In the `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):</span></span>
+<span data-ttu-id="6a93f-180">Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e aggiungere la classe seguente `ChatHub` ( `Hubs/ChatHub.cs` ):</span><span class="sxs-lookup"><span data-stu-id="6a93f-180">In the `BlazorSignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):</span></span>
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](signalr-blazor-webassembly/samples/5.x/:::no-loc(Blazor)::::::no-loc(SignalR):::App/Server/Hubs/ChatHub.cs)]
+[!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](signalr-blazor-webassembly/samples/3.x/:::no-loc(Blazor)::::::no-loc(SignalR):::App/Server/Hubs/ChatHub.cs)]
+[!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
 ::: moniker-end
 
-## <a name="add-services-and-an-endpoint-for-the-no-locsignalr-hub"></a><span data-ttu-id="6a93f-181">Aggiungere servizi e un endpoint per l' :::no-loc(SignalR)::: Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-181">Add services and an endpoint for the :::no-loc(SignalR)::: hub</span></span>
+## <a name="add-services-and-an-endpoint-for-the-no-locsignalr-hub"></a><span data-ttu-id="6a93f-181">Aggiungere servizi e un endpoint per l' SignalR Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-181">Add services and an endpoint for the SignalR hub</span></span>
 
-1. <span data-ttu-id="6a93f-182">Nel progetto `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Server` aprire il file `Startup.cs`.</span><span class="sxs-lookup"><span data-stu-id="6a93f-182">In the `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Server` project, open the `Startup.cs` file.</span></span>
+1. <span data-ttu-id="6a93f-182">Nel progetto `BlazorSignalRApp.Server` aprire il file `Startup.cs`.</span><span class="sxs-lookup"><span data-stu-id="6a93f-182">In the `BlazorSignalRApp.Server` project, open the `Startup.cs` file.</span></span>
 
 1. <span data-ttu-id="6a93f-183">Aggiungere lo spazio dei nomi per la `ChatHub` classe all'inizio del file:</span><span class="sxs-lookup"><span data-stu-id="6a93f-183">Add the namespace for the `ChatHub` class to the top of the file:</span></span>
 
    ```csharp
-   using :::no-loc(Blazor)::::::no-loc(SignalR):::App.Server.Hubs;
+   using BlazorSignalRApp.Server.Hubs;
    ```
 
-1. <span data-ttu-id="6a93f-184">Aggiungere :::no-loc(SignalR)::: e rispondere ai servizi middleware di compressione per `Startup.ConfigureServices` :</span><span class="sxs-lookup"><span data-stu-id="6a93f-184">Add :::no-loc(SignalR)::: and Response Compression Middleware services to `Startup.ConfigureServices`:</span></span>
+1. <span data-ttu-id="6a93f-184">Aggiungere SignalR e rispondere ai servizi middleware di compressione per `Startup.ConfigureServices` :</span><span class="sxs-lookup"><span data-stu-id="6a93f-184">Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:</span></span>
 
 ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/:::no-loc(Blazor)::::::no-loc(SignalR):::App/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/:::no-loc(Blazor)::::::no-loc(SignalR):::App/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
 
 ::: moniker-end
 
@@ -261,31 +261,31 @@ dotnet add Client package Microsoft.AspNetCore.:::no-loc(SignalR):::.Client
 
 ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/:::no-loc(Blazor)::::::no-loc(SignalR):::App/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/:::no-loc(Blazor)::::::no-loc(SignalR):::App/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
 
 ::: moniker-end
 
-## <a name="add-no-locrazor-component-code-for-chat"></a><span data-ttu-id="6a93f-188">Aggiungi :::no-loc(Razor)::: codice componente per la chat</span><span class="sxs-lookup"><span data-stu-id="6a93f-188">Add :::no-loc(Razor)::: component code for chat</span></span>
+## <a name="add-no-locrazor-component-code-for-chat"></a><span data-ttu-id="6a93f-188">Aggiungi Razor codice componente per la chat</span><span class="sxs-lookup"><span data-stu-id="6a93f-188">Add Razor component code for chat</span></span>
 
-1. <span data-ttu-id="6a93f-189">Nel progetto `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Client` aprire il file `Pages/Index.razor`.</span><span class="sxs-lookup"><span data-stu-id="6a93f-189">In the `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Client` project, open the `Pages/Index.razor` file.</span></span>
+1. <span data-ttu-id="6a93f-189">Nel progetto `BlazorSignalRApp.Client` aprire il file `Pages/Index.razor`.</span><span class="sxs-lookup"><span data-stu-id="6a93f-189">In the `BlazorSignalRApp.Client` project, open the `Pages/Index.razor` file.</span></span>
 
 1. <span data-ttu-id="6a93f-190">Sostituire il markup con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="6a93f-190">Replace the markup with the following code:</span></span>
 
 ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-razor[](signalr-blazor-webassembly/samples/5.x/:::no-loc(Blazor)::::::no-loc(SignalR):::App/Client/Pages/Index.razor)]
+   [!code-razor[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Client/Pages/Index.razor)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-   [!code-razor[](signalr-blazor-webassembly/samples/3.x/:::no-loc(Blazor)::::::no-loc(SignalR):::App/Client/Pages/Index.razor)]
+   [!code-razor[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Client/Pages/Index.razor)]
 
 ::: moniker-end
 
@@ -295,7 +295,7 @@ dotnet add Client package Microsoft.AspNetCore.:::no-loc(SignalR):::.Client
 
 # <a name="visual-studio"></a>[<span data-ttu-id="6a93f-193">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="6a93f-193">Visual Studio</span></span>](#tab/visual-studio)
 
-1. <span data-ttu-id="6a93f-194">In **Esplora soluzioni** selezionare il `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Server` progetto.</span><span class="sxs-lookup"><span data-stu-id="6a93f-194">In **Solution Explorer** , select the `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Server` project.</span></span> <span data-ttu-id="6a93f-195">Premere <kbd>F5</kbd> per eseguire l'app con il debug o <kbd>CTRL</kbd> + <kbd>F5</kbd> per eseguire l'app senza debug.</span><span class="sxs-lookup"><span data-stu-id="6a93f-195">Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.</span></span>
+1. <span data-ttu-id="6a93f-194">In **Esplora soluzioni** selezionare il `BlazorSignalRApp.Server` progetto.</span><span class="sxs-lookup"><span data-stu-id="6a93f-194">In **Solution Explorer** , select the `BlazorSignalRApp.Server` project.</span></span> <span data-ttu-id="6a93f-195">Premere <kbd>F5</kbd> per eseguire l'app con il debug o <kbd>CTRL</kbd> + <kbd>F5</kbd> per eseguire l'app senza debug.</span><span class="sxs-lookup"><span data-stu-id="6a93f-195">Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.</span></span>
 
 1. <span data-ttu-id="6a93f-196">Copiare l'URL dalla barra degli indirizzi, aprire un'altra istanza o scheda del browser e incollare l'URL nella barra degli indirizzi.</span><span class="sxs-lookup"><span data-stu-id="6a93f-196">Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.</span></span>
 
@@ -337,7 +337,7 @@ dotnet add Client package Microsoft.AspNetCore.:::no-loc(SignalR):::.Client
 
 # <a name="visual-studio-for-mac"></a>[<span data-ttu-id="6a93f-209">Visual Studio per Mac</span><span class="sxs-lookup"><span data-stu-id="6a93f-209">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-1. <span data-ttu-id="6a93f-210">Nella barra laterale della **soluzione** selezionare il `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Server` progetto.</span><span class="sxs-lookup"><span data-stu-id="6a93f-210">In the **Solution** sidebar, select the `:::no-loc(Blazor)::::::no-loc(SignalR):::App.Server` project.</span></span> <span data-ttu-id="6a93f-211">Premere <kbd>⌘</kbd> + <kbd>↩</kbd> per eseguire l'app con debug o <kbd>⌥</kbd> + <kbd>⌘</kbd> + <kbd>↩</kbd> per eseguire l'app senza debug.</span><span class="sxs-lookup"><span data-stu-id="6a93f-211">Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.</span></span>
+1. <span data-ttu-id="6a93f-210">Nella barra laterale della **soluzione** selezionare il `BlazorSignalRApp.Server` progetto.</span><span class="sxs-lookup"><span data-stu-id="6a93f-210">In the **Solution** sidebar, select the `BlazorSignalRApp.Server` project.</span></span> <span data-ttu-id="6a93f-211">Premere <kbd>⌘</kbd> + <kbd>↩</kbd> per eseguire l'app con debug o <kbd>⌥</kbd> + <kbd>⌘</kbd> + <kbd>↩</kbd> per eseguire l'app senza debug.</span><span class="sxs-lookup"><span data-stu-id="6a93f-211">Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.</span></span>
 
 1. <span data-ttu-id="6a93f-212">Copiare l'URL dalla barra degli indirizzi, aprire un'altra istanza o scheda del browser e incollare l'URL nella barra degli indirizzi.</span><span class="sxs-lookup"><span data-stu-id="6a93f-212">Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.</span></span>
 
@@ -371,20 +371,20 @@ dotnet add Client package Microsoft.AspNetCore.:::no-loc(SignalR):::.Client
 <span data-ttu-id="6a93f-225">In questa esercitazione sono state illustrate le procedure per:</span><span class="sxs-lookup"><span data-stu-id="6a93f-225">In this tutorial, you learned how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="6a93f-226">Creare un :::no-loc(Blazor WebAssembly)::: progetto di app ospitata</span><span class="sxs-lookup"><span data-stu-id="6a93f-226">Create a :::no-loc(Blazor WebAssembly)::: Hosted app project</span></span>
-> * <span data-ttu-id="6a93f-227">Aggiungere la :::no-loc(SignalR)::: libreria client</span><span class="sxs-lookup"><span data-stu-id="6a93f-227">Add the :::no-loc(SignalR)::: client library</span></span>
-> * <span data-ttu-id="6a93f-228">Aggiungere un :::no-loc(SignalR)::: Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-228">Add a :::no-loc(SignalR)::: hub</span></span>
-> * <span data-ttu-id="6a93f-229">Aggiungere :::no-loc(SignalR)::: Servizi e un endpoint per l' :::no-loc(SignalR)::: Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-229">Add :::no-loc(SignalR)::: services and an endpoint for the :::no-loc(SignalR)::: hub</span></span>
-> * <span data-ttu-id="6a93f-230">Aggiungi :::no-loc(Razor)::: codice componente per la chat</span><span class="sxs-lookup"><span data-stu-id="6a93f-230">Add :::no-loc(Razor)::: component code for chat</span></span>
+> * <span data-ttu-id="6a93f-226">Creare un Blazor WebAssembly progetto di app ospitata</span><span class="sxs-lookup"><span data-stu-id="6a93f-226">Create a Blazor WebAssembly Hosted app project</span></span>
+> * <span data-ttu-id="6a93f-227">Aggiungere la SignalR libreria client</span><span class="sxs-lookup"><span data-stu-id="6a93f-227">Add the SignalR client library</span></span>
+> * <span data-ttu-id="6a93f-228">Aggiungere un SignalR Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-228">Add a SignalR hub</span></span>
+> * <span data-ttu-id="6a93f-229">Aggiungere SignalR Servizi e un endpoint per l' SignalR Hub</span><span class="sxs-lookup"><span data-stu-id="6a93f-229">Add SignalR services and an endpoint for the SignalR hub</span></span>
+> * <span data-ttu-id="6a93f-230">Aggiungi Razor codice componente per la chat</span><span class="sxs-lookup"><span data-stu-id="6a93f-230">Add Razor component code for chat</span></span>
 
-<span data-ttu-id="6a93f-231">Per altre informazioni sulla creazione di :::no-loc(Blazor)::: app, vedere la :::no-loc(Blazor)::: documentazione:</span><span class="sxs-lookup"><span data-stu-id="6a93f-231">To learn more about building :::no-loc(Blazor)::: apps, see the :::no-loc(Blazor)::: documentation:</span></span>
+<span data-ttu-id="6a93f-231">Per altre informazioni sulla creazione di Blazor app, vedere la Blazor documentazione:</span><span class="sxs-lookup"><span data-stu-id="6a93f-231">To learn more about building Blazor apps, see the Blazor documentation:</span></span>
 
 > [!div class="nextstepaction"]
 > <span data-ttu-id="6a93f-232"><xref:blazor/index>
-> [Autenticazione del token di porta con :::no-loc(Identity)::: Server, WebSocket ed eventi di Server-Sent](xref:signalr/authn-and-authz#bearer-token-authentication)</span><span class="sxs-lookup"><span data-stu-id="6a93f-232"><xref:blazor/index>
-[Bearer token authentication with :::no-loc(Identity)::: Server, WebSockets, and Server-Sent Events](xref:signalr/authn-and-authz#bearer-token-authentication)</span></span>
+> [Autenticazione del token di porta con Identity Server, WebSocket ed eventi di Server-Sent](xref:signalr/authn-and-authz#bearer-token-authentication)</span><span class="sxs-lookup"><span data-stu-id="6a93f-232"><xref:blazor/index>
+[Bearer token authentication with Identity Server, WebSockets, and Server-Sent Events](xref:signalr/authn-and-authz#bearer-token-authentication)</span></span>
 
 ## <a name="additional-resources"></a><span data-ttu-id="6a93f-233">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="6a93f-233">Additional resources</span></span>
 
 * <xref:signalr/introduction>
-* [<span data-ttu-id="6a93f-234">:::no-loc(SignalR)::: negoziazione tra le origini per l'autenticazione</span><span class="sxs-lookup"><span data-stu-id="6a93f-234">:::no-loc(SignalR)::: cross-origin negotiation for authentication</span></span>](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
+* [<span data-ttu-id="6a93f-234">SignalR negoziazione tra le origini per l'autenticazione</span><span class="sxs-lookup"><span data-stu-id="6a93f-234">SignalR cross-origin negotiation for authentication</span></span>](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)

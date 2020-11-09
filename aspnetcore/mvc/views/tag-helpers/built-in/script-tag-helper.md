@@ -6,16 +6,16 @@ description: Individuare gli attributi degli helper tag di script ASP.NET Core e
 ms.custom: mvc
 ms.date: 12/02/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
 ms.openlocfilehash: f5856bf19681a42551f82bb15c769f192f338b4a
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -34,7 +34,7 @@ ms.locfileid: "93053501"
 
 <span data-ttu-id="b6fc4-107">L'helper tag script consente di specificare una rete CDN per il file di script e un fallback quando la rete CDN non è disponibile.</span><span class="sxs-lookup"><span data-stu-id="b6fc4-107">The Script Tag Helper allows you to specify a CDN for the script file and a fallback when the CDN is not available.</span></span> <span data-ttu-id="b6fc4-108">L'helper tag script offre il vantaggio in merito alle prestazioni di una rete CDN con l'affidabilità dell'hosting locale.</span><span class="sxs-lookup"><span data-stu-id="b6fc4-108">The Script Tag Helper provides the performance advantage of a CDN with the robustness of local hosting.</span></span>
 
-<span data-ttu-id="b6fc4-109">Il :::no-loc(Razor)::: markup seguente mostra un `script` elemento con un fallback:</span><span class="sxs-lookup"><span data-stu-id="b6fc4-109">The following :::no-loc(Razor)::: markup shows a `script` element with a fallback:</span></span>
+<span data-ttu-id="b6fc4-109">Il Razor markup seguente mostra un `script` elemento con un fallback:</span><span class="sxs-lookup"><span data-stu-id="b6fc4-109">The following Razor markup shows a `script` element with a fallback:</span></span>
 
 ```html
 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"

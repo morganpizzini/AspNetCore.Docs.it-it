@@ -7,17 +7,17 @@ ms.custom: mvc
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authentication/twitter-logins
 ms.openlocfilehash: 47926d12ac5f922f2937df164d38ff6eb63cacf1
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -42,7 +42,7 @@ ms.locfileid: "93053280"
 
 * <span data-ttu-id="12de3-112">Selezionare la casella accanto a **Abilita accesso con Twitter**</span><span class="sxs-lookup"><span data-stu-id="12de3-112">Check the box next to **Enable Sign in with Twitter**</span></span>
 
-* <span data-ttu-id="12de3-113">Microsoft. AspNetCore.:::no-loc(Identity):::</span><span class="sxs-lookup"><span data-stu-id="12de3-113">Microsoft.AspNetCore.:::no-loc(Identity):::</span></span> <span data-ttu-id="12de3-114">richiede che gli utenti dispongano di un indirizzo di posta elettronica per impostazione predefinita.</span><span class="sxs-lookup"><span data-stu-id="12de3-114">requires users to have an email address by default.</span></span> <span data-ttu-id="12de3-115">Passare alla scheda **autorizzazioni** , fare clic sul pulsante **modifica** e selezionare la casella accanto a **Richiedi indirizzo di posta elettronica dagli utenti** .</span><span class="sxs-lookup"><span data-stu-id="12de3-115">Go to the **Permissions** tab, click the **Edit** button and check the box next to **Request email address from users** .</span></span>
+* <span data-ttu-id="12de3-113">Microsoft. AspNetCore.Identity</span><span class="sxs-lookup"><span data-stu-id="12de3-113">Microsoft.AspNetCore.Identity</span></span> <span data-ttu-id="12de3-114">richiede che gli utenti dispongano di un indirizzo di posta elettronica per impostazione predefinita.</span><span class="sxs-lookup"><span data-stu-id="12de3-114">requires users to have an email address by default.</span></span> <span data-ttu-id="12de3-115">Passare alla scheda **autorizzazioni** , fare clic sul pulsante **modifica** e selezionare la casella accanto a **Richiedi indirizzo di posta elettronica dagli utenti** .</span><span class="sxs-lookup"><span data-stu-id="12de3-115">Go to the **Permissions** tab, click the **Edit** button and check the box next to **Request email address from users** .</span></span>
 
 * <span data-ttu-id="12de3-116">Immettere l'URI di sviluppo con `/signin-twitter` accodato nel campo **URL di callback** (ad esempio: `https://webapp128.azurewebsites.net/signin-twitter` ).</span><span class="sxs-lookup"><span data-stu-id="12de3-116">Enter your development URI with `/signin-twitter` appended into the **Callback URLs** field (for example: `https://webapp128.azurewebsites.net/signin-twitter`).</span></span> <span data-ttu-id="12de3-117">Lo schema di autenticazione di Twitter configurato più avanti in questo esempio gestirà automaticamente le richieste in `/signin-twitter` Route per implementare il flusso OAuth.</span><span class="sxs-lookup"><span data-stu-id="12de3-117">The Twitter authentication scheme configured later in this sample will automatically handle requests at `/signin-twitter` route to implement the OAuth flow.</span></span>
 
@@ -99,7 +99,7 @@ Rather in the twitter setup, you can provide an External sign-in homepage. The e
 
 ## <a name="troubleshooting"></a><span data-ttu-id="12de3-138">risoluzione dei problemi</span><span class="sxs-lookup"><span data-stu-id="12de3-138">Troubleshooting</span></span>
 
-* <span data-ttu-id="12de3-139">**Solo ASP.NET Core 2. x:** Se :::no-loc(Identity)::: non è configurato chiamando `services.Add:::no-loc(Identity):::` in `ConfigureServices` , il tentativo di eseguire l'autenticazione comporterà *l'eccezione ArgumentException: è necessario specificare l'opzione ' SignInScheme '* .</span><span class="sxs-lookup"><span data-stu-id="12de3-139">**ASP.NET Core 2.x only:** If :::no-loc(Identity)::: isn't configured by calling `services.Add:::no-loc(Identity):::` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided* .</span></span> <span data-ttu-id="12de3-140">Il modello di progetto utilizzato in questo esempio garantisce che questa operazione venga eseguita.</span><span class="sxs-lookup"><span data-stu-id="12de3-140">The project template used in this sample ensures that this is done.</span></span>
+* <span data-ttu-id="12de3-139">**Solo ASP.NET Core 2. x:** Se Identity non è configurato chiamando `services.AddIdentity` in `ConfigureServices` , il tentativo di eseguire l'autenticazione comporterà *l'eccezione ArgumentException: è necessario specificare l'opzione ' SignInScheme '* .</span><span class="sxs-lookup"><span data-stu-id="12de3-139">**ASP.NET Core 2.x only:** If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided* .</span></span> <span data-ttu-id="12de3-140">Il modello di progetto utilizzato in questo esempio garantisce che questa operazione venga eseguita.</span><span class="sxs-lookup"><span data-stu-id="12de3-140">The project template used in this sample ensures that this is done.</span></span>
 * <span data-ttu-id="12de3-141">Se il database del sito non è stato creato applicando la migrazione iniziale, si otterrà *un'operazione di database non riuscita durante l'elaborazione dell'* errore di richiesta.</span><span class="sxs-lookup"><span data-stu-id="12de3-141">If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error.</span></span> <span data-ttu-id="12de3-142">Toccare **applica migrazioni** per creare il database e aggiornare per continuare a superare l'errore.</span><span class="sxs-lookup"><span data-stu-id="12de3-142">Tap **Apply Migrations** to create the database and refresh to continue past the error.</span></span>
 
 ## <a name="next-steps"></a><span data-ttu-id="12de3-143">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="12de3-143">Next steps</span></span>

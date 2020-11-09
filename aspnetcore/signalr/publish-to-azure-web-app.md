@@ -1,23 +1,23 @@
 ---
-title: "Pubblicare un' :::no-loc(SignalR)::: app ASP.NET Core in app Azure servizio"
+title: "Pubblicare un' SignalR app ASP.NET Core in app Azure servizio"
 author: bradygaster
-description: "Informazioni su come pubblicare un' :::no-loc(SignalR)::: app ASP.NET Core in app Azure servizio."
+description: "Informazioni su come pubblicare un' SignalR app ASP.NET Core in app Azure servizio."
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/02/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: signalr/publish-to-azure-web-app
 ms.openlocfilehash: 8e6d36fe0b38486f94078b8f9cf12b852da7e0d9
 ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
@@ -26,14 +26,14 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 11/03/2020
 ms.locfileid: "93234510"
 ---
-# <a name="publish-an-aspnet-core-no-locsignalr-app-to-azure-app-service"></a><span data-ttu-id="379e1-103">Pubblicare un' :::no-loc(SignalR)::: app ASP.NET Core in app Azure servizio</span><span class="sxs-lookup"><span data-stu-id="379e1-103">Publish an ASP.NET Core :::no-loc(SignalR)::: app to Azure App Service</span></span>
+# <a name="publish-an-aspnet-core-no-locsignalr-app-to-azure-app-service"></a><span data-ttu-id="379e1-103">Pubblicare un' SignalR app ASP.NET Core in app Azure servizio</span><span class="sxs-lookup"><span data-stu-id="379e1-103">Publish an ASP.NET Core SignalR app to Azure App Service</span></span>
 
 <span data-ttu-id="379e1-104">Di [Brady Gaster](https://twitter.com/bradygaster)</span><span class="sxs-lookup"><span data-stu-id="379e1-104">By [Brady Gaster](https://twitter.com/bradygaster)</span></span>
 
 <span data-ttu-id="379e1-105">Il [servizio app Azure](/azure/app-service/app-service-web-overview) è un servizio della piattaforma [Microsoft Cloud Computing](https://azure.microsoft.com/) per l'hosting di app web, tra cui ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="379e1-105">[Azure App Service](/azure/app-service/app-service-web-overview) is a [Microsoft cloud computing](https://azure.microsoft.com/) platform service for hosting web apps, including ASP.NET Core.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="379e1-106">Questo articolo si riferisce alla pubblicazione di un' :::no-loc(SignalR)::: app ASP.NET Core da Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="379e1-106">This article refers to publishing an ASP.NET Core :::no-loc(SignalR)::: app from Visual Studio.</span></span> <span data-ttu-id="379e1-107">Per altre informazioni, vedere [ :::no-loc(SignalR)::: servizio per Azure](https://azure.microsoft.com/services/signalr-service).</span><span class="sxs-lookup"><span data-stu-id="379e1-107">For more information, see [:::no-loc(SignalR)::: service for Azure](https://azure.microsoft.com/services/signalr-service).</span></span>
+> <span data-ttu-id="379e1-106">Questo articolo si riferisce alla pubblicazione di un' SignalR app ASP.NET Core da Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="379e1-106">This article refers to publishing an ASP.NET Core SignalR app from Visual Studio.</span></span> <span data-ttu-id="379e1-107">Per altre informazioni, vedere [ SignalR servizio per Azure](https://azure.microsoft.com/services/signalr-service).</span><span class="sxs-lookup"><span data-stu-id="379e1-107">For more information, see [SignalR service for Azure](https://azure.microsoft.com/services/signalr-service).</span></span>
 
 ## <a name="publish-the-app"></a><span data-ttu-id="379e1-108">Pubblicare l'app</span><span class="sxs-lookup"><span data-stu-id="379e1-108">Publish the app</span></span>
 
@@ -54,13 +54,13 @@ ms.locfileid: "93234510"
    | <span data-ttu-id="379e1-122">**Gruppo di risorse**</span><span class="sxs-lookup"><span data-stu-id="379e1-122">**Resource Group**</span></span> | <span data-ttu-id="379e1-123">Gruppo di risorse correlate a cui appartiene l'app.</span><span class="sxs-lookup"><span data-stu-id="379e1-123">Group of related resources to which the app belongs.</span></span> |
    | <span data-ttu-id="379e1-124">**Piano di hosting**</span><span class="sxs-lookup"><span data-stu-id="379e1-124">**Hosting Plan**</span></span>   | <span data-ttu-id="379e1-125">Piano tariffario per l'app Web.</span><span class="sxs-lookup"><span data-stu-id="379e1-125">Pricing plan for the web app.</span></span> |
 
-1. <span data-ttu-id="379e1-126">Selezionare **:::no-loc(SignalR)::: servizio di Azure** nella sezione **dipendenze del servizio** .</span><span class="sxs-lookup"><span data-stu-id="379e1-126">Select **Azure :::no-loc(SignalR)::: Service** in the **Service Dependencies** section.</span></span> <span data-ttu-id="379e1-127">Selezionare il **+** pulsante:</span><span class="sxs-lookup"><span data-stu-id="379e1-127">Select the **+** button:</span></span>
+1. <span data-ttu-id="379e1-126">Selezionare **SignalR servizio di Azure** nella sezione **dipendenze del servizio** .</span><span class="sxs-lookup"><span data-stu-id="379e1-126">Select **Azure SignalR Service** in the **Service Dependencies** section.</span></span> <span data-ttu-id="379e1-127">Selezionare il **+** pulsante:</span><span class="sxs-lookup"><span data-stu-id="379e1-127">Select the **+** button:</span></span>
 
    ![Area dipendenze che mostra la selezione di Azure::: NO-LOC (SignalR)::: Service nell'elenco a discesa Aggiungi](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 
-1. <span data-ttu-id="379e1-129">Nella finestra di dialogo **:::no-loc(SignalR)::: servizio di Azure** Selezionare **Crea una nuova :::no-loc(SignalR)::: istanza del servizio di Azure** .</span><span class="sxs-lookup"><span data-stu-id="379e1-129">In the **Azure :::no-loc(SignalR)::: Service** dialog, select **Create a new Azure :::no-loc(SignalR)::: Service instance** .</span></span>
+1. <span data-ttu-id="379e1-129">Nella finestra di dialogo **SignalR servizio di Azure** Selezionare **Crea una nuova SignalR istanza del servizio di Azure** .</span><span class="sxs-lookup"><span data-stu-id="379e1-129">In the **Azure SignalR Service** dialog, select **Create a new Azure SignalR Service instance** .</span></span>
 
-1. <span data-ttu-id="379e1-130">Specificare un **nome** , un **gruppo di risorse** e una **località** .</span><span class="sxs-lookup"><span data-stu-id="379e1-130">Provide a **Name** , **Resource Group** , and **Location** .</span></span> <span data-ttu-id="379e1-131">Tornare alla finestra di dialogo **:::no-loc(SignalR)::: servizio di Azure** e selezionare **Aggiungi** .</span><span class="sxs-lookup"><span data-stu-id="379e1-131">Return to the **Azure :::no-loc(SignalR)::: Service** dialog and select **Add** .</span></span>
+1. <span data-ttu-id="379e1-130">Specificare un **nome** , un **gruppo di risorse** e una **località** .</span><span class="sxs-lookup"><span data-stu-id="379e1-130">Provide a **Name** , **Resource Group** , and **Location** .</span></span> <span data-ttu-id="379e1-131">Tornare alla finestra di dialogo **SignalR servizio di Azure** e selezionare **Aggiungi** .</span><span class="sxs-lookup"><span data-stu-id="379e1-131">Return to the **Azure SignalR Service** dialog and select **Add** .</span></span>
 
 <span data-ttu-id="379e1-132">Visual Studio completa le attività seguenti:</span><span class="sxs-lookup"><span data-stu-id="379e1-132">Visual Studio completes the following tasks:</span></span>
 
@@ -69,20 +69,20 @@ ms.locfileid: "93234510"
 * <span data-ttu-id="379e1-135">Pubblica l'app.</span><span class="sxs-lookup"><span data-stu-id="379e1-135">Publishes the app.</span></span>
 * <span data-ttu-id="379e1-136">Avvia un browser che carica l'app Web.</span><span class="sxs-lookup"><span data-stu-id="379e1-136">Launches a browser, which loads the web app.</span></span>
 
-<span data-ttu-id="379e1-137">Il formato dell'URL dell'app è `{APP SERVICE NAME}.azurewebsites.net` .</span><span class="sxs-lookup"><span data-stu-id="379e1-137">The format of the app's URL is `{APP SERVICE NAME}.azurewebsites.net`.</span></span> <span data-ttu-id="379e1-138">Ad esempio, un'app denominata `:::no-loc(SignalR):::ChatApp` ha un URL di `https://signalrchatapp.azurewebsites.net` .</span><span class="sxs-lookup"><span data-stu-id="379e1-138">For example, an app named `:::no-loc(SignalR):::ChatApp` has a URL of `https://signalrchatapp.azurewebsites.net`.</span></span>
+<span data-ttu-id="379e1-137">Il formato dell'URL dell'app è `{APP SERVICE NAME}.azurewebsites.net` .</span><span class="sxs-lookup"><span data-stu-id="379e1-137">The format of the app's URL is `{APP SERVICE NAME}.azurewebsites.net`.</span></span> <span data-ttu-id="379e1-138">Ad esempio, un'app denominata `SignalRChatApp` ha un URL di `https://signalrchatapp.azurewebsites.net` .</span><span class="sxs-lookup"><span data-stu-id="379e1-138">For example, an app named `SignalRChatApp` has a URL of `https://signalrchatapp.azurewebsites.net`.</span></span>
 
 <span data-ttu-id="379e1-139">Se si verifica un errore di *Gateway HTTP 502,2-Bad* quando si distribuisce un'app destinata a una versione di anteprima di .NET Core, vedere [distribuire ASP.NET Core versione di anteprima al servizio app Azure](xref:host-and-deploy/azure-apps/index#deploy-aspnet-core-preview-release-to-azure-app-service) per risolverlo.</span><span class="sxs-lookup"><span data-stu-id="379e1-139">If an HTTP *502.2 - Bad Gateway* error occurs when deploying an app that targets a preview .NET Core release, see [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/index#deploy-aspnet-core-preview-release-to-azure-app-service) to resolve it.</span></span>
 
 ## <a name="configure-the-app-in-azure-app-service"></a><span data-ttu-id="379e1-140">Configurare l'app nel servizio app Azure</span><span class="sxs-lookup"><span data-stu-id="379e1-140">Configure the app in Azure App Service</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="379e1-141">*Questa sezione si applica solo alle app che non usano il servizio di Azure :::no-loc(SignalR)::: .*</span><span class="sxs-lookup"><span data-stu-id="379e1-141">*This section only applies to apps not using the Azure :::no-loc(SignalR)::: Service.*</span></span>
+> <span data-ttu-id="379e1-141">*Questa sezione si applica solo alle app che non usano il servizio di Azure SignalR .*</span><span class="sxs-lookup"><span data-stu-id="379e1-141">*This section only applies to apps not using the Azure SignalR Service.*</span></span>
 >
-> <span data-ttu-id="379e1-142">Se l'app usa il servizio di Azure :::no-loc(SignalR)::: , il servizio app non richiede la configurazione dell'affinità di Application Request Routing (arr) e dei socket Web descritti in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="379e1-142">If the app uses the Azure :::no-loc(SignalR)::: Service, the App Service doesn't require the configuration of Application Request Routing (ARR) Affinity and Web Sockets described in this section.</span></span> <span data-ttu-id="379e1-143">I client connettono i socket Web al servizio di Azure :::no-loc(SignalR)::: , non direttamente all'app.</span><span class="sxs-lookup"><span data-stu-id="379e1-143">Clients connect their Web Sockets to the Azure :::no-loc(SignalR)::: Service, not directly to the app.</span></span>
+> <span data-ttu-id="379e1-142">Se l'app usa il servizio di Azure SignalR , il servizio app non richiede la configurazione dell'affinità di Application Request Routing (arr) e dei socket Web descritti in questa sezione.</span><span class="sxs-lookup"><span data-stu-id="379e1-142">If the app uses the Azure SignalR Service, the App Service doesn't require the configuration of Application Request Routing (ARR) Affinity and Web Sockets described in this section.</span></span> <span data-ttu-id="379e1-143">I client connettono i socket Web al servizio di Azure SignalR , non direttamente all'app.</span><span class="sxs-lookup"><span data-stu-id="379e1-143">Clients connect their Web Sockets to the Azure SignalR Service, not directly to the app.</span></span>
 
-<span data-ttu-id="379e1-144">Per le app ospitate senza il servizio di Azure :::no-loc(SignalR)::: , abilitare:</span><span class="sxs-lookup"><span data-stu-id="379e1-144">For apps hosted without the Azure :::no-loc(SignalR)::: Service, enable:</span></span>
+<span data-ttu-id="379e1-144">Per le app ospitate senza il servizio di Azure SignalR , abilitare:</span><span class="sxs-lookup"><span data-stu-id="379e1-144">For apps hosted without the Azure SignalR Service, enable:</span></span>
 
-* <span data-ttu-id="379e1-145">[Affinità ARR] ( https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity- :::no-loc(cookie)::: -(Arr- :::no-loc(cookie)::: ) -for-Azure-web-apps.html) per indirizzare le richieste da un utente alla stessa istanza del servizio app.</span><span class="sxs-lookup"><span data-stu-id="379e1-145">[ARR Affinity](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-:::no-loc(cookie):::-(ARR-:::no-loc(cookie):::)-for-Azure-web-apps.html) to route requests from a user back to the same App Service instance.</span></span> <span data-ttu-id="379e1-146">L'impostazione predefinita è **on** .</span><span class="sxs-lookup"><span data-stu-id="379e1-146">The default setting is **On** .</span></span>
+* <span data-ttu-id="379e1-145">[Affinità ARR] ( https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity- cookie -(Arr- cookie ) -for-Azure-web-apps.html) per indirizzare le richieste da un utente alla stessa istanza del servizio app.</span><span class="sxs-lookup"><span data-stu-id="379e1-145">[ARR Affinity](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html) to route requests from a user back to the same App Service instance.</span></span> <span data-ttu-id="379e1-146">L'impostazione predefinita è **on** .</span><span class="sxs-lookup"><span data-stu-id="379e1-146">The default setting is **On** .</span></span>
 * <span data-ttu-id="379e1-147">[Web socket](xref:fundamentals/websockets) per consentire il funzionamento del trasporto di Web Socket.</span><span class="sxs-lookup"><span data-stu-id="379e1-147">[Web Sockets](xref:fundamentals/websockets) to allow the Web Sockets transport to function.</span></span> <span data-ttu-id="379e1-148">L'impostazione predefinita è **off** .</span><span class="sxs-lookup"><span data-stu-id="379e1-148">The default setting is **Off** .</span></span>
 
 1. <span data-ttu-id="379e1-149">Nella portale di Azure passare all'app Web in **Servizi app** .</span><span class="sxs-lookup"><span data-stu-id="379e1-149">In the Azure portal, navigate to the web app in **App Services** .</span></span>
@@ -96,7 +96,7 @@ ms.locfileid: "93234510"
 
 ## <a name="additional-resources"></a><span data-ttu-id="379e1-156">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="379e1-156">Additional resources</span></span>
 
-* [<span data-ttu-id="379e1-157">Che cos'è il :::no-loc(SignalR)::: servizio Azure?</span><span class="sxs-lookup"><span data-stu-id="379e1-157">What is Azure :::no-loc(SignalR)::: Service?</span></span>](/azure/azure-signalr/signalr-overview)
+* [<span data-ttu-id="379e1-157">Che cos'è il SignalR servizio Azure?</span><span class="sxs-lookup"><span data-stu-id="379e1-157">What is Azure SignalR Service?</span></span>](/azure/azure-signalr/signalr-overview)
 * <xref:signalr/introduction>
 * <xref:host-and-deploy/index>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>

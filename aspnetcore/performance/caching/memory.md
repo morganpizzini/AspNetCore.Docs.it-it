@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: performance/caching/memory
 ms.openlocfilehash: 4d5f459d54a3c74a2eb23a50db6537eeaf8596b3
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -190,7 +190,7 @@ ms.locfileid: "93061444"
 * <span data-ttu-id="0eaf5-230">Quando viene utilizzata una voce della cache per crearne un'altra, l'elemento figlio copia i token di scadenza della voce padre e le impostazioni di scadenza basate sul tempo.</span><span class="sxs-lookup"><span data-stu-id="0eaf5-230">When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings.</span></span> <span data-ttu-id="0eaf5-231">L'elemento figlio non è scaduto dalla rimozione manuale o dall'aggiornamento della voce padre.</span><span class="sxs-lookup"><span data-stu-id="0eaf5-231">The child isn't expired by manual removal or updating of the parent entry.</span></span>
 
 * <span data-ttu-id="0eaf5-232">Utilizzare <xref:Microsoft.Extensions.Caching.Memory.ICacheEntry.PostEvictionCallbacks> per impostare i callback che verranno generati dopo la rimozione della voce della cache dalla cache.</span><span class="sxs-lookup"><span data-stu-id="0eaf5-232">Use <xref:Microsoft.Extensions.Caching.Memory.ICacheEntry.PostEvictionCallbacks> to set the callbacks that will be fired after the cache entry is evicted from the cache.</span></span>
-* <span data-ttu-id="0eaf5-233">Per la maggior parte delle app `IMemoryCache` è abilitato.</span><span class="sxs-lookup"><span data-stu-id="0eaf5-233">For most apps, `IMemoryCache` is enabled.</span></span> <span data-ttu-id="0eaf5-234">Ad esempio, chiamando `AddMvc` , `AddControllersWithViews` , `Add:::no-loc(Razor):::Pages` , `AddMvcCore().Add:::no-loc(Razor):::ViewEngine` e molti altri `Add{Service}` metodi in `ConfigureServices` , Abilita `IMemoryCache` .</span><span class="sxs-lookup"><span data-stu-id="0eaf5-234">For example, calling `AddMvc`, `AddControllersWithViews`, `Add:::no-loc(Razor):::Pages`, `AddMvcCore().Add:::no-loc(Razor):::ViewEngine`, and many other `Add{Service}` methods in `ConfigureServices`, enables `IMemoryCache`.</span></span> <span data-ttu-id="0eaf5-235">Per le app che non chiamano uno dei metodi precedenti `Add{Service}` , potrebbe essere necessario chiamare <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache*> in `ConfigureServices` .</span><span class="sxs-lookup"><span data-stu-id="0eaf5-235">For apps that are not calling one of the preceding `Add{Service}` methods, it may be necessary to call <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache*> in `ConfigureServices`.</span></span>
+* <span data-ttu-id="0eaf5-233">Per la maggior parte delle app `IMemoryCache` è abilitato.</span><span class="sxs-lookup"><span data-stu-id="0eaf5-233">For most apps, `IMemoryCache` is enabled.</span></span> <span data-ttu-id="0eaf5-234">Ad esempio, chiamando `AddMvc` , `AddControllersWithViews` , `AddRazorPages` , `AddMvcCore().AddRazorViewEngine` e molti altri `Add{Service}` metodi in `ConfigureServices` , Abilita `IMemoryCache` .</span><span class="sxs-lookup"><span data-stu-id="0eaf5-234">For example, calling `AddMvc`, `AddControllersWithViews`, `AddRazorPages`, `AddMvcCore().AddRazorViewEngine`, and many other `Add{Service}` methods in `ConfigureServices`, enables `IMemoryCache`.</span></span> <span data-ttu-id="0eaf5-235">Per le app che non chiamano uno dei metodi precedenti `Add{Service}` , potrebbe essere necessario chiamare <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache*> in `ConfigureServices` .</span><span class="sxs-lookup"><span data-stu-id="0eaf5-235">For apps that are not calling one of the preceding `Add{Service}` methods, it may be necessary to call <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache*> in `ConfigureServices`.</span></span>
 
 ## <a name="background-cache-update"></a><span data-ttu-id="0eaf5-236">Aggiornamento della cache in background</span><span class="sxs-lookup"><span data-stu-id="0eaf5-236">Background cache update</span></span>
 

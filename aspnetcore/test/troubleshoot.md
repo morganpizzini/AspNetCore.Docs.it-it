@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: test/troubleshoot
 ms.openlocfilehash: 8e6c640cd775e5d4cbe6e34c1cecc391baf57344
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -87,7 +87,7 @@ ms.locfileid: "93059572"
 
 * <span data-ttu-id="7676f-148">Richiesta: metodo, schema, host, pathbase, percorso, stringa di query, intestazioni</span><span class="sxs-lookup"><span data-stu-id="7676f-148">Request: Method, scheme, host, pathbase, path, query string, headers</span></span>
 * <span data-ttu-id="7676f-149">Connessione: indirizzo IP remoto, porta remota, indirizzo IP locale, porta locale, certificato client</span><span class="sxs-lookup"><span data-stu-id="7676f-149">Connection: Remote IP address, remote port, local IP address, local port, client certificate</span></span>
-* <span data-ttu-id="7676f-150">:::no-loc(Identity):::: Nome, nome visualizzato</span><span class="sxs-lookup"><span data-stu-id="7676f-150">:::no-loc(Identity):::: Name, display name</span></span>
+* <span data-ttu-id="7676f-150">Identity: Nome, nome visualizzato</span><span class="sxs-lookup"><span data-stu-id="7676f-150">Identity: Name, display name</span></span>
 * <span data-ttu-id="7676f-151">Impostazioni di configurazione</span><span class="sxs-lookup"><span data-stu-id="7676f-151">Configuration settings</span></span>
 * <span data-ttu-id="7676f-152">Variabili di ambiente</span><span class="sxs-lookup"><span data-stu-id="7676f-152">Environment variables</span></span>
 
@@ -129,8 +129,8 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env,
             sb.Append($"LocalPort: {context.Connection.LocalPort}{nl}");
             sb.Append($"ClientCert: {context.Connection.ClientCertificate}{nl}{nl}");
 
-            sb.Append($":::no-loc(Identity):::{rule}");
-            sb.Append($"User: {context.User.:::no-loc(Identity):::.Name}{nl}");
+            sb.Append($"Identity{rule}");
+            sb.Append($"User: {context.User.Identity.Name}{nl}");
             var scheme = await authSchemeProvider
                 .GetSchemeAsync(IISDefaults.AuthenticationScheme);
             sb.Append($"DisplayName: {scheme?.DisplayName}{nl}{nl}");

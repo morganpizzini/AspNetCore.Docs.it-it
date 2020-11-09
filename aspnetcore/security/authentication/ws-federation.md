@@ -6,17 +6,17 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/16/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authentication/ws-federation
 ms.openlocfilehash: ed78923a2bdd1ed683a72c0a6f34337a38350035
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -63,7 +63,7 @@ ms.locfileid: "93053371"
 
 * <span data-ttu-id="920f6-133">Fare clic su **Avanti** nel resto della procedura guidata e **chiudere** alla fine.</span><span class="sxs-lookup"><span data-stu-id="920f6-133">Click **Next** through the rest of the wizard and **Close** at the end.</span></span>
 
-* <span data-ttu-id="920f6-134">:::no-loc(ASP.NET Core Identity)::: richiede l'attestazione **ID nome** .</span><span class="sxs-lookup"><span data-stu-id="920f6-134">:::no-loc(ASP.NET Core Identity)::: requires a **Name ID** claim.</span></span> <span data-ttu-id="920f6-135">Aggiungerne uno dalla finestra di dialogo **modifica regole attestazione** :</span><span class="sxs-lookup"><span data-stu-id="920f6-135">Add one from the **Edit Claim Rules** dialog:</span></span>
+* <span data-ttu-id="920f6-134">ASP.NET Core Identity richiede l'attestazione **ID nome** .</span><span class="sxs-lookup"><span data-stu-id="920f6-134">ASP.NET Core Identity requires a **Name ID** claim.</span></span> <span data-ttu-id="920f6-135">Aggiungerne uno dalla finestra di dialogo **modifica regole attestazione** :</span><span class="sxs-lookup"><span data-stu-id="920f6-135">Add one from the **Edit Claim Rules** dialog:</span></span>
 
 ![Modifica regole attestazione](ws-federation/_static/EditClaimRules.png)
 
@@ -92,9 +92,9 @@ ms.locfileid: "93053371"
 
 ![Azure Active Directory: Proprietà registrazione app](ws-federation/_static/AadAppIdUri.png)
 
-## <a name="use-ws-federation-without-no-locaspnet-core-identity"></a><span data-ttu-id="920f6-158">USA WS-Federation senza :::no-loc(ASP.NET Core Identity):::</span><span class="sxs-lookup"><span data-stu-id="920f6-158">Use WS-Federation without :::no-loc(ASP.NET Core Identity):::</span></span>
+## <a name="use-ws-federation-without-no-locaspnet-core-identity"></a><span data-ttu-id="920f6-158">USA WS-Federation senza ASP.NET Core Identity</span><span class="sxs-lookup"><span data-stu-id="920f6-158">Use WS-Federation without ASP.NET Core Identity</span></span>
 
-<span data-ttu-id="920f6-159">Il middleware WS-Federation può essere usato senza :::no-loc(Identity)::: .</span><span class="sxs-lookup"><span data-stu-id="920f6-159">The WS-Federation middleware can be used without :::no-loc(Identity):::.</span></span> <span data-ttu-id="920f6-160">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="920f6-160">For example:</span></span>
+<span data-ttu-id="920f6-159">Il middleware WS-Federation può essere usato senza Identity .</span><span class="sxs-lookup"><span data-stu-id="920f6-159">The WS-Federation middleware can be used without Identity.</span></span> <span data-ttu-id="920f6-160">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="920f6-160">For example:</span></span>
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
 ::: moniker-end
@@ -103,7 +103,7 @@ ms.locfileid: "93053371"
 [!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
 ::: moniker-end
 
-## <a name="add-ws-federation-as-an-external-login-provider-for-no-locaspnet-core-identity"></a><span data-ttu-id="920f6-161">Aggiungere WS-Federation come provider di accesso esterno per :::no-loc(ASP.NET Core Identity):::</span><span class="sxs-lookup"><span data-stu-id="920f6-161">Add WS-Federation as an external login provider for :::no-loc(ASP.NET Core Identity):::</span></span>
+## <a name="add-ws-federation-as-an-external-login-provider-for-no-locaspnet-core-identity"></a><span data-ttu-id="920f6-161">Aggiungere WS-Federation come provider di accesso esterno per ASP.NET Core Identity</span><span class="sxs-lookup"><span data-stu-id="920f6-161">Add WS-Federation as an external login provider for ASP.NET Core Identity</span></span>
 
 * <span data-ttu-id="920f6-162">Aggiungere una dipendenza da [Microsoft. AspNetCore. Authentication. WSFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) al progetto.</span><span class="sxs-lookup"><span data-stu-id="920f6-162">Add a dependency on [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) to the project.</span></span>
 * <span data-ttu-id="920f6-163">Aggiungi WS-Federation a `Startup.ConfigureServices` :</span><span class="sxs-lookup"><span data-stu-id="920f6-163">Add WS-Federation to `Startup.ConfigureServices`:</span></span>

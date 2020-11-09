@@ -1,23 +1,23 @@
 ---
-title: :::no-loc(Blazor):::Configurazione del modello di hosting ASP.NET Core
+title: BlazorConfigurazione del modello di hosting ASP.NET Core
 author: guardrex
-description: 'Informazioni sugli scenari aggiuntivi per la :::no-loc(Blazor)::: configurazione del modello di hosting di ASP.NET Core.'
+description: 'Informazioni sugli scenari aggiuntivi per la Blazor configurazione del modello di hosting di ASP.NET Core.'
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/27/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/fundamentals/additional-scenarios
 ms.openlocfilehash: f8b6e65424948aaa7b28023497bbbf2a1ceb47dd
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,17 +26,17 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93056049"
 ---
-# <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a><span data-ttu-id="e4c17-103">:::no-loc(Blazor):::Configurazione del modello di hosting ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="e4c17-103">ASP.NET Core :::no-loc(Blazor)::: hosting model configuration</span></span>
+# <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a><span data-ttu-id="e4c17-103">BlazorConfigurazione del modello di hosting ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="e4c17-103">ASP.NET Core Blazor hosting model configuration</span></span>
 
 <span data-ttu-id="e4c17-104">Di [Daniel Roth](https://github.com/danroth27), [Marin Buck](https://github.com/MackinnonBuck)e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="e4c17-104">By [Daniel Roth](https://github.com/danroth27), [Mackinnon Buck](https://github.com/MackinnonBuck), and [Luke Latham](https://github.com/guardrex)</span></span>
 
 <span data-ttu-id="e4c17-105">Questo articolo illustra la configurazione del modello di hosting.</span><span class="sxs-lookup"><span data-stu-id="e4c17-105">This article covers hosting model configuration.</span></span>
 
-### <a name="no-locsignalr-cross-origin-negotiation-for-authentication"></a><span data-ttu-id="e4c17-106">:::no-loc(SignalR)::: negoziazione tra le origini per l'autenticazione</span><span class="sxs-lookup"><span data-stu-id="e4c17-106">:::no-loc(SignalR)::: cross-origin negotiation for authentication</span></span>
+### <a name="no-locsignalr-cross-origin-negotiation-for-authentication"></a><span data-ttu-id="e4c17-106">SignalR negoziazione tra le origini per l'autenticazione</span><span class="sxs-lookup"><span data-stu-id="e4c17-106">SignalR cross-origin negotiation for authentication</span></span>
 
-<span data-ttu-id="e4c17-107">*Questa sezione si applica a :::no-loc(Blazor WebAssembly)::: .*</span><span class="sxs-lookup"><span data-stu-id="e4c17-107">*This section applies to :::no-loc(Blazor WebAssembly):::.*</span></span>
+<span data-ttu-id="e4c17-107">*Questa sezione si applica a Blazor WebAssembly .*</span><span class="sxs-lookup"><span data-stu-id="e4c17-107">*This section applies to Blazor WebAssembly.*</span></span>
 
-<span data-ttu-id="e4c17-108">Per configurare :::no-loc(SignalR)::: il client sottostante per l'invio di credenziali, ad esempio le :::no-loc(cookie)::: intestazioni s o http Authentication:</span><span class="sxs-lookup"><span data-stu-id="e4c17-108">To configure :::no-loc(SignalR):::'s underlying client to send credentials, such as :::no-loc(cookie):::s or HTTP authentication headers:</span></span>
+<span data-ttu-id="e4c17-108">Per configurare SignalR il client sottostante per l'invio di credenziali, ad esempio le cookie intestazioni s o http Authentication:</span><span class="sxs-lookup"><span data-stu-id="e4c17-108">To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:</span></span>
 
 * <span data-ttu-id="e4c17-109">Usare <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> per impostare <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> le richieste tra origini [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) :</span><span class="sxs-lookup"><span data-stu-id="e4c17-109">Use <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> to set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> on cross-origin [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests:</span></span>
 
@@ -67,11 +67,11 @@ ms.locfileid: "93056049"
 
 ## <a name="reflect-the-connection-state-in-the-ui"></a><span data-ttu-id="e4c17-112">Riflette lo stato di connessione nell'interfaccia utente</span><span class="sxs-lookup"><span data-stu-id="e4c17-112">Reflect the connection state in the UI</span></span>
 
-<span data-ttu-id="e4c17-113">*Questa sezione si applica a :::no-loc(Blazor Server)::: .*</span><span class="sxs-lookup"><span data-stu-id="e4c17-113">*This section applies to :::no-loc(Blazor Server):::.*</span></span>
+<span data-ttu-id="e4c17-113">*Questa sezione si applica a Blazor Server .*</span><span class="sxs-lookup"><span data-stu-id="e4c17-113">*This section applies to Blazor Server.*</span></span>
 
 <span data-ttu-id="e4c17-114">Quando il client rileva che la connessione è stata persa, viene visualizzata un'interfaccia utente predefinita quando il client tenta di riconnettersi.</span><span class="sxs-lookup"><span data-stu-id="e4c17-114">When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect.</span></span> <span data-ttu-id="e4c17-115">Se la riconnessione non riesce, all'utente viene offerta l'opzione per riprovare.</span><span class="sxs-lookup"><span data-stu-id="e4c17-115">If reconnection fails, the user is provided the option to retry.</span></span>
 
-<span data-ttu-id="e4c17-116">Per personalizzare l'interfaccia utente, definire un elemento con un valore `id` di `components-reconnect-modal` nell'oggetto `<body>` della `_Host.cshtml` :::no-loc(Razor)::: pagina:</span><span class="sxs-lookup"><span data-stu-id="e4c17-116">To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Host.cshtml` :::no-loc(Razor)::: page:</span></span>
+<span data-ttu-id="e4c17-116">Per personalizzare l'interfaccia utente, definire un elemento con un valore `id` di `components-reconnect-modal` nell'oggetto `<body>` della `_Host.cshtml` Razor pagina:</span><span class="sxs-lookup"><span data-stu-id="e4c17-116">To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Host.cshtml` Razor page:</span></span>
 
 ```cshtml
 <div id="components-reconnect-modal">
@@ -97,14 +97,14 @@ ms.locfileid: "93056049"
 | ------------------------------- | ----------------- |
 | `components-reconnect-show`     | <span data-ttu-id="e4c17-121">Connessione persa.</span><span class="sxs-lookup"><span data-stu-id="e4c17-121">A lost connection.</span></span> <span data-ttu-id="e4c17-122">È in corso un tentativo di riconnessione del client.</span><span class="sxs-lookup"><span data-stu-id="e4c17-122">The client is attempting to reconnect.</span></span> <span data-ttu-id="e4c17-123">Mostra il modale.</span><span class="sxs-lookup"><span data-stu-id="e4c17-123">Show the modal.</span></span> |
 | `components-reconnect-hide`     | <span data-ttu-id="e4c17-124">Viene ristabilita una connessione attiva al server.</span><span class="sxs-lookup"><span data-stu-id="e4c17-124">An active connection is re-established to the server.</span></span> <span data-ttu-id="e4c17-125">Nascondere il modale.</span><span class="sxs-lookup"><span data-stu-id="e4c17-125">Hide the modal.</span></span> |
-| `components-reconnect-failed`   | <span data-ttu-id="e4c17-126">Riconnessione non riuscita. probabilmente a causa di un errore di rete.</span><span class="sxs-lookup"><span data-stu-id="e4c17-126">Reconnection failed, probably due to a network failure.</span></span> <span data-ttu-id="e4c17-127">Per tentare la riconnessione, chiamare `window.:::no-loc(Blazor):::.reconnect()` .</span><span class="sxs-lookup"><span data-stu-id="e4c17-127">To attempt reconnection, call `window.:::no-loc(Blazor):::.reconnect()`.</span></span> |
+| `components-reconnect-failed`   | <span data-ttu-id="e4c17-126">Riconnessione non riuscita. probabilmente a causa di un errore di rete.</span><span class="sxs-lookup"><span data-stu-id="e4c17-126">Reconnection failed, probably due to a network failure.</span></span> <span data-ttu-id="e4c17-127">Per tentare la riconnessione, chiamare `window.Blazor.reconnect()` .</span><span class="sxs-lookup"><span data-stu-id="e4c17-127">To attempt reconnection, call `window.Blazor.reconnect()`.</span></span> |
 | `components-reconnect-rejected` | <span data-ttu-id="e4c17-128">Riconnessione rifiutata.</span><span class="sxs-lookup"><span data-stu-id="e4c17-128">Reconnection rejected.</span></span> <span data-ttu-id="e4c17-129">Il server è stato raggiunto ma ha rifiutato la connessione e lo stato dell'utente nel server è andato perso.</span><span class="sxs-lookup"><span data-stu-id="e4c17-129">The server was reached but refused the connection, and the user's state on the server is lost.</span></span> <span data-ttu-id="e4c17-130">Per ricaricare l'app, chiamare `location.reload()` .</span><span class="sxs-lookup"><span data-stu-id="e4c17-130">To reload the app, call `location.reload()`.</span></span> <span data-ttu-id="e4c17-131">Questo stato di connessione può verificarsi nei casi seguenti:</span><span class="sxs-lookup"><span data-stu-id="e4c17-131">This connection state may result when:</span></span><ul><li><span data-ttu-id="e4c17-132">Si verifica un arresto anomalo del circuito sul lato server.</span><span class="sxs-lookup"><span data-stu-id="e4c17-132">A crash in the server-side circuit occurs.</span></span></li><li><span data-ttu-id="e4c17-133">Il client viene disconnesso abbastanza a lungo da consentire al server di eliminare lo stato dell'utente.</span><span class="sxs-lookup"><span data-stu-id="e4c17-133">The client is disconnected long enough for the server to drop the user's state.</span></span> <span data-ttu-id="e4c17-134">Le istanze dei componenti con cui l'utente interagisce sono state eliminate.</span><span class="sxs-lookup"><span data-stu-id="e4c17-134">Instances of the components that the user is interacting with are disposed.</span></span></li><li><span data-ttu-id="e4c17-135">Il server viene riavviato oppure il processo di lavoro dell'app viene riciclato.</span><span class="sxs-lookup"><span data-stu-id="e4c17-135">The server is restarted, or the app's worker process is recycled.</span></span></li></ul> |
 
 ## <a name="render-mode"></a><span data-ttu-id="e4c17-136">Modalità di rendering</span><span class="sxs-lookup"><span data-stu-id="e4c17-136">Render mode</span></span>
 
-<span data-ttu-id="e4c17-137">*Questa sezione si applica a :::no-loc(Blazor Server)::: .*</span><span class="sxs-lookup"><span data-stu-id="e4c17-137">*This section applies to :::no-loc(Blazor Server):::.*</span></span>
+<span data-ttu-id="e4c17-137">*Questa sezione si applica a Blazor Server .*</span><span class="sxs-lookup"><span data-stu-id="e4c17-137">*This section applies to Blazor Server.*</span></span>
 
-<span data-ttu-id="e4c17-138">:::no-loc(Blazor Server)::: per impostazione predefinita, le app sono configurate per eseguire il prerendering dell'interfaccia utente nel server prima che venga stabilita la connessione client al server.</span><span class="sxs-lookup"><span data-stu-id="e4c17-138">:::no-loc(Blazor Server)::: apps are set up by default to prerender the UI on the server before the client connection to the server is established.</span></span> <span data-ttu-id="e4c17-139">Questa impostazione è configurata nella `_Host.cshtml` :::no-loc(Razor)::: pagina:</span><span class="sxs-lookup"><span data-stu-id="e4c17-139">This is set up in the `_Host.cshtml` :::no-loc(Razor)::: page:</span></span>
+<span data-ttu-id="e4c17-138">Blazor Server per impostazione predefinita, le app sono configurate per eseguire il prerendering dell'interfaccia utente nel server prima che venga stabilita la connessione client al server.</span><span class="sxs-lookup"><span data-stu-id="e4c17-138">Blazor Server apps are set up by default to prerender the UI on the server before the client connection to the server is established.</span></span> <span data-ttu-id="e4c17-139">Questa impostazione è configurata nella `_Host.cshtml` Razor pagina:</span><span class="sxs-lookup"><span data-stu-id="e4c17-139">This is set up in the `_Host.cshtml` Razor page:</span></span>
 
 ```cshtml
 <body>
@@ -119,30 +119,30 @@ ms.locfileid: "93056049"
 <span data-ttu-id="e4c17-140"><xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> Configura se il componente:</span><span class="sxs-lookup"><span data-stu-id="e4c17-140"><xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> configures whether the component:</span></span>
 
 * <span data-ttu-id="e4c17-141">Viene preeseguito nella pagina.</span><span class="sxs-lookup"><span data-stu-id="e4c17-141">Is prerendered into the page.</span></span>
-* <span data-ttu-id="e4c17-142">Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' :::no-loc(Blazor)::: app dall'agente utente.</span><span class="sxs-lookup"><span data-stu-id="e4c17-142">Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a :::no-loc(Blazor)::: app from the user agent.</span></span>
+* <span data-ttu-id="e4c17-142">Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' Blazor app dall'agente utente.</span><span class="sxs-lookup"><span data-stu-id="e4c17-142">Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.</span></span>
 
 | <span data-ttu-id="e4c17-143">Modalità di rendering</span><span class="sxs-lookup"><span data-stu-id="e4c17-143">Render mode</span></span> | <span data-ttu-id="e4c17-144">Descrizione</span><span class="sxs-lookup"><span data-stu-id="e4c17-144">Description</span></span> |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="e4c17-145">Esegue il rendering del componente in HTML statico e include un marcatore per un' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="e4c17-145">Renders the component into static HTML and includes a marker for a :::no-loc(Blazor Server)::: app.</span></span> <span data-ttu-id="e4c17-146">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="e4c17-146">When the user-agent starts, this marker is used to bootstrap a :::no-loc(Blazor)::: app.</span></span> |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="e4c17-147">Esegue il rendering di un marcatore per un' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="e4c17-147">Renders a marker for a :::no-loc(Blazor Server)::: app.</span></span> <span data-ttu-id="e4c17-148">L'output del componente non è incluso.</span><span class="sxs-lookup"><span data-stu-id="e4c17-148">Output from the component isn't included.</span></span> <span data-ttu-id="e4c17-149">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="e4c17-149">When the user-agent starts, this marker is used to bootstrap a :::no-loc(Blazor)::: app.</span></span> |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="e4c17-145">Esegue il rendering del componente in HTML statico e include un marcatore per un' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="e4c17-145">Renders the component into static HTML and includes a marker for a Blazor Server app.</span></span> <span data-ttu-id="e4c17-146">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app.</span><span class="sxs-lookup"><span data-stu-id="e4c17-146">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="e4c17-147">Esegue il rendering di un marcatore per un' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="e4c17-147">Renders a marker for a Blazor Server app.</span></span> <span data-ttu-id="e4c17-148">L'output del componente non è incluso.</span><span class="sxs-lookup"><span data-stu-id="e4c17-148">Output from the component isn't included.</span></span> <span data-ttu-id="e4c17-149">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app.</span><span class="sxs-lookup"><span data-stu-id="e4c17-149">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | <span data-ttu-id="e4c17-150">Esegue il rendering del componente in HTML statico.</span><span class="sxs-lookup"><span data-stu-id="e4c17-150">Renders the component into static HTML.</span></span> |
 
 <span data-ttu-id="e4c17-151">Il rendering dei componenti server da una pagina HTML statica non è supportato.</span><span class="sxs-lookup"><span data-stu-id="e4c17-151">Rendering server components from a static HTML page isn't supported.</span></span>
 
-## <a name="initialize-the-no-locblazor-circuit"></a><span data-ttu-id="e4c17-152">Inizializzare il :::no-loc(Blazor)::: circuito</span><span class="sxs-lookup"><span data-stu-id="e4c17-152">Initialize the :::no-loc(Blazor)::: circuit</span></span>
+## <a name="initialize-the-no-locblazor-circuit"></a><span data-ttu-id="e4c17-152">Inizializzare il Blazor circuito</span><span class="sxs-lookup"><span data-stu-id="e4c17-152">Initialize the Blazor circuit</span></span>
 
-<span data-ttu-id="e4c17-153">*Questa sezione si applica a :::no-loc(Blazor Server)::: .*</span><span class="sxs-lookup"><span data-stu-id="e4c17-153">*This section applies to :::no-loc(Blazor Server):::.*</span></span>
+<span data-ttu-id="e4c17-153">*Questa sezione si applica a Blazor Server .*</span><span class="sxs-lookup"><span data-stu-id="e4c17-153">*This section applies to Blazor Server.*</span></span>
 
-<span data-ttu-id="e4c17-154">Configurare l'avvio manuale del :::no-loc(Blazor Server)::: [ :::no-loc(SignalR)::: circuito](xref:blazor/hosting-models#circuits) di un'app nel `Pages/_Host.cshtml` file:</span><span class="sxs-lookup"><span data-stu-id="e4c17-154">Configure the manual start of a :::no-loc(Blazor Server)::: app's [:::no-loc(SignalR)::: circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:</span></span>
+<span data-ttu-id="e4c17-154">Configurare l'avvio manuale del Blazor Server [ SignalR circuito](xref:blazor/hosting-models#circuits) di un'app nel `Pages/_Host.cshtml` file:</span><span class="sxs-lookup"><span data-stu-id="e4c17-154">Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:</span></span>
 
 * <span data-ttu-id="e4c17-155">Aggiungere un `autostart="false"` attributo al `<script>` tag per lo `blazor.server.js` script.</span><span class="sxs-lookup"><span data-stu-id="e4c17-155">Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.</span></span>
-* <span data-ttu-id="e4c17-156">Inserire uno script che chiama `:::no-loc(Blazor):::.start` dopo il `blazor.server.js` tag dello script e all'interno del `</body>` tag di chiusura.</span><span class="sxs-lookup"><span data-stu-id="e4c17-156">Place a script that calls `:::no-loc(Blazor):::.start` after the `blazor.server.js` script's tag and inside the closing `</body>` tag.</span></span>
+* <span data-ttu-id="e4c17-156">Inserire uno script che chiama `Blazor.start` dopo il `blazor.server.js` tag dello script e all'interno del `</body>` tag di chiusura.</span><span class="sxs-lookup"><span data-stu-id="e4c17-156">Place a script that calls `Blazor.start` after the `blazor.server.js` script's tag and inside the closing `</body>` tag.</span></span>
 
-<span data-ttu-id="e4c17-157">Quando `autostart` è disabilitato, qualsiasi aspetto dell'app che non dipende dal circuito funziona normalmente.</span><span class="sxs-lookup"><span data-stu-id="e4c17-157">When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally.</span></span> <span data-ttu-id="e4c17-158">Il routing lato client, ad esempio, è operativo.</span><span class="sxs-lookup"><span data-stu-id="e4c17-158">For example, client-side routing is operational.</span></span> <span data-ttu-id="e4c17-159">Tuttavia, qualsiasi aspetto che dipende dal circuito non è operativo fino a quando non `:::no-loc(Blazor):::.start` viene chiamato il metodo.</span><span class="sxs-lookup"><span data-stu-id="e4c17-159">However, any aspect that depends on the circuit isn't operational until `:::no-loc(Blazor):::.start` is called.</span></span> <span data-ttu-id="e4c17-160">Il comportamento dell'app è imprevedibile senza un circuito stabilito.</span><span class="sxs-lookup"><span data-stu-id="e4c17-160">App behavior is unpredictable without an established circuit.</span></span> <span data-ttu-id="e4c17-161">Ad esempio, i metodi dei componenti non vengono eseguiti mentre il circuito è disconnesso.</span><span class="sxs-lookup"><span data-stu-id="e4c17-161">For example, component methods fail to execute while the circuit is disconnected.</span></span>
+<span data-ttu-id="e4c17-157">Quando `autostart` è disabilitato, qualsiasi aspetto dell'app che non dipende dal circuito funziona normalmente.</span><span class="sxs-lookup"><span data-stu-id="e4c17-157">When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally.</span></span> <span data-ttu-id="e4c17-158">Il routing lato client, ad esempio, è operativo.</span><span class="sxs-lookup"><span data-stu-id="e4c17-158">For example, client-side routing is operational.</span></span> <span data-ttu-id="e4c17-159">Tuttavia, qualsiasi aspetto che dipende dal circuito non è operativo fino a quando non `Blazor.start` viene chiamato il metodo.</span><span class="sxs-lookup"><span data-stu-id="e4c17-159">However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called.</span></span> <span data-ttu-id="e4c17-160">Il comportamento dell'app è imprevedibile senza un circuito stabilito.</span><span class="sxs-lookup"><span data-stu-id="e4c17-160">App behavior is unpredictable without an established circuit.</span></span> <span data-ttu-id="e4c17-161">Ad esempio, i metodi dei componenti non vengono eseguiti mentre il circuito è disconnesso.</span><span class="sxs-lookup"><span data-stu-id="e4c17-161">For example, component methods fail to execute while the circuit is disconnected.</span></span>
 
-### <a name="initialize-no-locblazor-when-the-document-is-ready"></a><span data-ttu-id="e4c17-162">Inizializza :::no-loc(Blazor)::: quando il documento è pronto</span><span class="sxs-lookup"><span data-stu-id="e4c17-162">Initialize :::no-loc(Blazor)::: when the document is ready</span></span>
+### <a name="initialize-no-locblazor-when-the-document-is-ready"></a><span data-ttu-id="e4c17-162">Inizializza Blazor quando il documento è pronto</span><span class="sxs-lookup"><span data-stu-id="e4c17-162">Initialize Blazor when the document is ready</span></span>
 
-<span data-ttu-id="e4c17-163">Per inizializzare l' :::no-loc(Blazor)::: app quando il documento è pronto:</span><span class="sxs-lookup"><span data-stu-id="e4c17-163">To initialize the :::no-loc(Blazor)::: app when the document is ready:</span></span>
+<span data-ttu-id="e4c17-163">Per inizializzare l' Blazor app quando il documento è pronto:</span><span class="sxs-lookup"><span data-stu-id="e4c17-163">To initialize the Blazor app when the document is ready:</span></span>
 
 ```cshtml
 <body>
@@ -152,7 +152,7 @@ ms.locfileid: "93056049"
     <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
-        :::no-loc(Blazor):::.start();
+        Blazor.start();
       });
     </script>
 </body>
@@ -160,7 +160,7 @@ ms.locfileid: "93056049"
 
 ### <a name="chain-to-the-promise-that-results-from-a-manual-start"></a><span data-ttu-id="e4c17-164">Concatenare a `Promise` che risulta da un avvio manuale</span><span class="sxs-lookup"><span data-stu-id="e4c17-164">Chain to the `Promise` that results from a manual start</span></span>
 
-<span data-ttu-id="e4c17-165">Per eseguire attività aggiuntive, ad esempio l'inizializzazione dell'interoperabilità JS, usare `then` per concatenare a `Promise` che risulta da un'app manuale di :::no-loc(Blazor)::: avvio:</span><span class="sxs-lookup"><span data-stu-id="e4c17-165">To perform additional tasks, such as JS interop initialization, use `then` to chain to the `Promise` that results from a manual :::no-loc(Blazor)::: app start:</span></span>
+<span data-ttu-id="e4c17-165">Per eseguire attività aggiuntive, ad esempio l'inizializzazione dell'interoperabilità JS, usare `then` per concatenare a `Promise` che risulta da un'app manuale di Blazor avvio:</span><span class="sxs-lookup"><span data-stu-id="e4c17-165">To perform additional tasks, such as JS interop initialization, use `then` to chain to the `Promise` that results from a manual Blazor app start:</span></span>
 
 ```cshtml
 <body>
@@ -169,18 +169,18 @@ ms.locfileid: "93056049"
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
-      :::no-loc(Blazor):::.start().then(function () {
+      Blazor.start().then(function () {
         ...
       });
     </script>
 </body>
 ```
 
-### <a name="configure-the-no-locsignalr-client"></a><span data-ttu-id="e4c17-166">Configurare il :::no-loc(SignalR)::: client</span><span class="sxs-lookup"><span data-stu-id="e4c17-166">Configure the :::no-loc(SignalR)::: client</span></span>
+### <a name="configure-the-no-locsignalr-client"></a><span data-ttu-id="e4c17-166">Configurare il SignalR client</span><span class="sxs-lookup"><span data-stu-id="e4c17-166">Configure the SignalR client</span></span>
 
 #### <a name="logging"></a><span data-ttu-id="e4c17-167">Registrazione</span><span class="sxs-lookup"><span data-stu-id="e4c17-167">Logging</span></span>
 
-<span data-ttu-id="e4c17-168">Per configurare la :::no-loc(SignalR)::: registrazione client, passare un oggetto di configurazione ( `configure:::no-loc(SignalR):::` ) che chiama `configureLogging` con il livello di registrazione nel generatore client:</span><span class="sxs-lookup"><span data-stu-id="e4c17-168">To configure :::no-loc(SignalR)::: client logging, pass in a configuration object (`configure:::no-loc(SignalR):::`) that calls `configureLogging` with the log level on the client builder:</span></span>
+<span data-ttu-id="e4c17-168">Per configurare la SignalR registrazione client, passare un oggetto di configurazione ( `configureSignalR` ) che chiama `configureLogging` con il livello di registrazione nel generatore client:</span><span class="sxs-lookup"><span data-stu-id="e4c17-168">To configure SignalR client logging, pass in a configuration object (`configureSignalR`) that calls `configureLogging` with the log level on the client builder:</span></span>
 
 ```cshtml
 <body>
@@ -189,8 +189,8 @@ ms.locfileid: "93056049"
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
-      :::no-loc(Blazor):::.start({
-        configure:::no-loc(SignalR):::: function (builder) {
+      Blazor.start({
+        configureSignalR: function (builder) {
           builder.configureLogging("information");
         }
       });
@@ -221,7 +221,7 @@ ms.locfileid: "93056049"
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
-      :::no-loc(Blazor):::.start({
+      Blazor.start({
         reconnectionHandler: {
           onConnectionDown: (options, error) => console.error(error);
           onConnectionUp: () => console.log("Up, up, and away!");
@@ -242,7 +242,7 @@ ms.locfileid: "93056049"
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
-      :::no-loc(Blazor):::.start({
+      Blazor.start({
         reconnectionOptions: {
           maxRetries: 3,
           retryIntervalMilliseconds: 2000
@@ -264,10 +264,10 @@ ms.locfileid: "93056049"
     <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       window.addEventListener('beforeunload', function () {
-        :::no-loc(Blazor):::.defaultReconnectionHandler._reconnectionDisplay = {};
+        Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
       });
 
-      :::no-loc(Blazor):::.start();
+      Blazor.start();
     </script>
 </body>
 ```
@@ -275,7 +275,7 @@ ms.locfileid: "93056049"
 <span data-ttu-id="e4c17-182">Per sostituire la visualizzazione della riconnessione, impostare `_reconnectionDisplay` nell'esempio precedente sull'elemento per la visualizzazione:</span><span class="sxs-lookup"><span data-stu-id="e4c17-182">To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:</span></span>
 
 ```javascript
-:::no-loc(Blazor):::.defaultReconnectionHandler._reconnectionDisplay = 
+Blazor.defaultReconnectionHandler._reconnectionDisplay = 
   document.getElementById("{ELEMENT ID}");
 ```
 
@@ -291,13 +291,13 @@ ms.locfileid: "93056049"
 }
 ```
 
-## <a name="disconnect-the-no-locblazor-circuit-from-the-client"></a><span data-ttu-id="e4c17-186">Disconnettere il :::no-loc(Blazor)::: circuito dal client</span><span class="sxs-lookup"><span data-stu-id="e4c17-186">Disconnect the :::no-loc(Blazor)::: circuit from the client</span></span>
+## <a name="disconnect-the-no-locblazor-circuit-from-the-client"></a><span data-ttu-id="e4c17-186">Disconnettere il Blazor circuito dal client</span><span class="sxs-lookup"><span data-stu-id="e4c17-186">Disconnect the Blazor circuit from the client</span></span>
 
-<span data-ttu-id="e4c17-187">Per impostazione predefinita, un :::no-loc(Blazor)::: circuito viene disconnesso quando viene attivato l' [ `unload` evento della pagina](https://developer.mozilla.org/docs/Web/API/Window/unload_event) .</span><span class="sxs-lookup"><span data-stu-id="e4c17-187">By default, a :::no-loc(Blazor)::: circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered.</span></span> <span data-ttu-id="e4c17-188">Per disconnettere il circuito per altri scenari nel client, richiamare `:::no-loc(Blazor):::.disconnect` nel gestore eventi appropriato.</span><span class="sxs-lookup"><span data-stu-id="e4c17-188">To disconnect the circuit for other scenarios on the client, invoke `:::no-loc(Blazor):::.disconnect` in the appropriate event handler.</span></span> <span data-ttu-id="e4c17-189">Nell'esempio seguente il circuito viene disconnesso quando la pagina è nascosta ([ `pagehide` evento](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):</span><span class="sxs-lookup"><span data-stu-id="e4c17-189">In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):</span></span>
+<span data-ttu-id="e4c17-187">Per impostazione predefinita, un Blazor circuito viene disconnesso quando viene attivato l' [ `unload` evento della pagina](https://developer.mozilla.org/docs/Web/API/Window/unload_event) .</span><span class="sxs-lookup"><span data-stu-id="e4c17-187">By default, a Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered.</span></span> <span data-ttu-id="e4c17-188">Per disconnettere il circuito per altri scenari nel client, richiamare `Blazor.disconnect` nel gestore eventi appropriato.</span><span class="sxs-lookup"><span data-stu-id="e4c17-188">To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler.</span></span> <span data-ttu-id="e4c17-189">Nell'esempio seguente il circuito viene disconnesso quando la pagina è nascosta ([ `pagehide` evento](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):</span><span class="sxs-lookup"><span data-stu-id="e4c17-189">In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):</span></span>
 
 ```javascript
 window.addEventListener('pagehide', () => {
-  :::no-loc(Blazor):::.disconnect();
+  Blazor.disconnect();
 });
 ```
 
@@ -305,7 +305,7 @@ window.addEventListener('pagehide', () => {
 
 ## Influence HTML `<head>` tag elements
 
-*This section applies to the upcoming ASP.NET Core 5.0 release of :::no-loc(Blazor WebAssembly)::: and :::no-loc(Blazor Server):::.*
+*This section applies to the upcoming ASP.NET Core 5.0 release of Blazor WebAssembly and Blazor Server.*
 
 When rendered, the `Title`, `Link`, and `Meta` components add or update data in the HTML `<head>` tag elements:
 
@@ -317,7 +317,7 @@ When rendered, the `Title`, `Link`, and `Meta` components add or update data in 
 <Meta content="{DESCRIPTION}" name="description" />
 ```
 
-In the preceding example, placeholders for `{TITLE}`, `{URL}`, and `{DESCRIPTION}` are string values, :::no-loc(Razor)::: variables, or :::no-loc(Razor)::: expressions.
+In the preceding example, placeholders for `{TITLE}`, `{URL}`, and `{DESCRIPTION}` are string values, Razor variables, or Razor expressions.
 
 The following characteristics apply:
 
@@ -340,7 +340,7 @@ When one of the framework components is used in a child component, the rendered 
 
 ## <a name="static-files"></a><span data-ttu-id="e4c17-190">File statici</span><span class="sxs-lookup"><span data-stu-id="e4c17-190">Static files</span></span>
 
-<span data-ttu-id="e4c17-191">*Questa sezione si applica a :::no-loc(Blazor Server)::: .*</span><span class="sxs-lookup"><span data-stu-id="e4c17-191">*This section applies to :::no-loc(Blazor Server):::.*</span></span>
+<span data-ttu-id="e4c17-191">*Questa sezione si applica a Blazor Server .*</span><span class="sxs-lookup"><span data-stu-id="e4c17-191">*This section applies to Blazor Server.*</span></span>
 
 <span data-ttu-id="e4c17-192">Per creare altri mapping di file con <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> o configurare altri <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> , usare **uno** degli approcci seguenti.</span><span class="sxs-lookup"><span data-stu-id="e4c17-192">To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches.</span></span> <span data-ttu-id="e4c17-193">Negli esempi seguenti, il `{EXTENSION}` segnaposto è l'estensione di file e il `{CONTENT TYPE}` segnaposto è il tipo di contenuto.</span><span class="sxs-lookup"><span data-stu-id="e4c17-193">In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type.</span></span>
 
@@ -364,7 +364,7 @@ When one of the framework components is used in a child component, the rendered 
 
 * <span data-ttu-id="e4c17-197">Usare due chiamate a <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in `Startup.Configure` ( `Startup.cs` ):</span><span class="sxs-lookup"><span data-stu-id="e4c17-197">Use two calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in `Startup.Configure` (`Startup.cs`):</span></span>
   * <span data-ttu-id="e4c17-198">Configurare il provider di file personalizzato nella prima chiamata con <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> .</span><span class="sxs-lookup"><span data-stu-id="e4c17-198">Configure the custom file provider in the first call with <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>.</span></span>
-  * <span data-ttu-id="e4c17-199">Il secondo middleware serve `blazor.server.js` , che usa la configurazione predefinita dei file statici fornita dal :::no-loc(Blazor)::: Framework.</span><span class="sxs-lookup"><span data-stu-id="e4c17-199">The second middleware serves `blazor.server.js`, which uses the default static files configuration provided by the :::no-loc(Blazor)::: framework.</span></span>
+  * <span data-ttu-id="e4c17-199">Il secondo middleware serve `blazor.server.js` , che usa la configurazione predefinita dei file statici fornita dal Blazor Framework.</span><span class="sxs-lookup"><span data-stu-id="e4c17-199">The second middleware serves `blazor.server.js`, which uses the default static files configuration provided by the Blazor framework.</span></span>
 
   ```csharp
   using Microsoft.AspNetCore.StaticFiles;

@@ -6,17 +6,17 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 06/30/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: grpc/browser
 ms.openlocfilehash: 6456707620ae1c1f4d23f3562c78d1bf05d4844f
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -29,7 +29,7 @@ ms.locfileid: "93058909"
 
 <span data-ttu-id="d1e57-104">Di [James Newton-King](https://twitter.com/jamesnk)</span><span class="sxs-lookup"><span data-stu-id="d1e57-104">By [James Newton-King](https://twitter.com/jamesnk)</span></span>
 
- <span data-ttu-id="d1e57-105">Informazioni su come configurare un servizio di ASP.NET Core gRPC esistente da chiamare dalle app del browser, usando il protocollo [gRPC-Web](https://github.com/grpc/grpc/blob/2a388793792cc80944334535b7c729494d209a7e/doc/PROTOCOL-WEB.md) .</span><span class="sxs-lookup"><span data-stu-id="d1e57-105">Learn how to configure an existing ASP.NET Core gRPC service to be callable from browser apps, using the [gRPC-Web](https://github.com/grpc/grpc/blob/2a388793792cc80944334535b7c729494d209a7e/doc/PROTOCOL-WEB.md) protocol.</span></span> <span data-ttu-id="d1e57-106">gRPC-Web consente alle app e JavaScript del browser :::no-loc(Blazor)::: di chiamare i servizi gRPC.</span><span class="sxs-lookup"><span data-stu-id="d1e57-106">gRPC-Web allows browser JavaScript and :::no-loc(Blazor)::: apps to call gRPC services.</span></span> <span data-ttu-id="d1e57-107">Non è possibile chiamare un servizio HTTP/2 gRPC da un'app basata su browser.</span><span class="sxs-lookup"><span data-stu-id="d1e57-107">It's not possible to call an HTTP/2 gRPC service from a browser-based app.</span></span> <span data-ttu-id="d1e57-108">i servizi gRPC ospitati in ASP.NET Core possono essere configurati per supportare gRPC-Web insieme a HTTP/2 gRPC.</span><span class="sxs-lookup"><span data-stu-id="d1e57-108">gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC.</span></span>
+ <span data-ttu-id="d1e57-105">Informazioni su come configurare un servizio di ASP.NET Core gRPC esistente da chiamare dalle app del browser, usando il protocollo [gRPC-Web](https://github.com/grpc/grpc/blob/2a388793792cc80944334535b7c729494d209a7e/doc/PROTOCOL-WEB.md) .</span><span class="sxs-lookup"><span data-stu-id="d1e57-105">Learn how to configure an existing ASP.NET Core gRPC service to be callable from browser apps, using the [gRPC-Web](https://github.com/grpc/grpc/blob/2a388793792cc80944334535b7c729494d209a7e/doc/PROTOCOL-WEB.md) protocol.</span></span> <span data-ttu-id="d1e57-106">gRPC-Web consente alle app e JavaScript del browser Blazor di chiamare i servizi gRPC.</span><span class="sxs-lookup"><span data-stu-id="d1e57-106">gRPC-Web allows browser JavaScript and Blazor apps to call gRPC services.</span></span> <span data-ttu-id="d1e57-107">Non è possibile chiamare un servizio HTTP/2 gRPC da un'app basata su browser.</span><span class="sxs-lookup"><span data-stu-id="d1e57-107">It's not possible to call an HTTP/2 gRPC service from a browser-based app.</span></span> <span data-ttu-id="d1e57-108">i servizi gRPC ospitati in ASP.NET Core possono essere configurati per supportare gRPC-Web insieme a HTTP/2 gRPC.</span><span class="sxs-lookup"><span data-stu-id="d1e57-108">gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC.</span></span>
 
 
 <span data-ttu-id="d1e57-109">Per istruzioni sull'aggiunta di un servizio gRPC a un'app ASP.NET Core esistente, vedere [aggiungere servizi gRPC a un'app ASP.NET Core](xref:grpc/aspnetcore#add-grpc-services-to-an-aspnet-core-app).</span><span class="sxs-lookup"><span data-stu-id="d1e57-109">For instructions on adding a gRPC service to an existing ASP.NET Core app, see [Add gRPC services to an ASP.NET Core app](xref:grpc/aspnetcore#add-grpc-services-to-an-aspnet-core-app).</span></span>
@@ -107,7 +107,7 @@ ms.locfileid: "93058909"
 
 ### <a name="configure-grpc-web-with-the-net-grpc-client"></a><span data-ttu-id="d1e57-161">Configurare gRPC-Web con il client gRPC .NET</span><span class="sxs-lookup"><span data-stu-id="d1e57-161">Configure gRPC-Web with the .NET gRPC client</span></span>
 
-<span data-ttu-id="d1e57-162">Il client gRPC .NET può essere configurato per effettuare chiamate gRPC-Web.</span><span class="sxs-lookup"><span data-stu-id="d1e57-162">The .NET gRPC client can be configured to make gRPC-Web calls.</span></span> <span data-ttu-id="d1e57-163">Questa operazione è utile per [:::no-loc(Blazor WebAssembly):::](xref:blazor/index#blazor-webassembly) le app, che sono ospitate nel browser e hanno le stesse limitazioni http del codice JavaScript.</span><span class="sxs-lookup"><span data-stu-id="d1e57-163">This is useful for [:::no-loc(Blazor WebAssembly):::](xref:blazor/index#blazor-webassembly) apps, which are hosted in the browser and have the same HTTP limitations of JavaScript code.</span></span> <span data-ttu-id="d1e57-164">La chiamata di gRPC-Web con un client .NET equivale a [http/2 gRPC](xref:grpc/client).</span><span class="sxs-lookup"><span data-stu-id="d1e57-164">Calling gRPC-Web with a .NET client is [the same as HTTP/2 gRPC](xref:grpc/client).</span></span> <span data-ttu-id="d1e57-165">L'unica modifica è la modalità di creazione del canale.</span><span class="sxs-lookup"><span data-stu-id="d1e57-165">The only modification is how the channel is created.</span></span>
+<span data-ttu-id="d1e57-162">Il client gRPC .NET può essere configurato per effettuare chiamate gRPC-Web.</span><span class="sxs-lookup"><span data-stu-id="d1e57-162">The .NET gRPC client can be configured to make gRPC-Web calls.</span></span> <span data-ttu-id="d1e57-163">Questa operazione è utile per [Blazor WebAssembly](xref:blazor/index#blazor-webassembly) le app, che sono ospitate nel browser e hanno le stesse limitazioni http del codice JavaScript.</span><span class="sxs-lookup"><span data-stu-id="d1e57-163">This is useful for [Blazor WebAssembly](xref:blazor/index#blazor-webassembly) apps, which are hosted in the browser and have the same HTTP limitations of JavaScript code.</span></span> <span data-ttu-id="d1e57-164">La chiamata di gRPC-Web con un client .NET equivale a [http/2 gRPC](xref:grpc/client).</span><span class="sxs-lookup"><span data-stu-id="d1e57-164">Calling gRPC-Web with a .NET client is [the same as HTTP/2 gRPC](xref:grpc/client).</span></span> <span data-ttu-id="d1e57-165">L'unica modifica è la modalità di creazione del canale.</span><span class="sxs-lookup"><span data-stu-id="d1e57-165">The only modification is how the channel is created.</span></span>
 
 <span data-ttu-id="d1e57-166">Per usare gRPC-Web:</span><span class="sxs-lookup"><span data-stu-id="d1e57-166">To use gRPC-Web:</span></span>
 
@@ -131,7 +131,7 @@ ms.locfileid: "93058909"
 * <span data-ttu-id="d1e57-180">**HttpVersion** : protocollo http `Version` usato per impostare [HttpRequestMessage. Version](xref:System.Net.Http.HttpRequestMessage.Version) sulla richiesta http gRPC sottostante.</span><span class="sxs-lookup"><span data-stu-id="d1e57-180">**HttpVersion** : HTTP protocol `Version` used to set [HttpRequestMessage.Version](xref:System.Net.Http.HttpRequestMessage.Version) on the underlying gRPC HTTP request.</span></span> <span data-ttu-id="d1e57-181">gRPC-Web non richiede una versione specifica e non esegue l'override dell'impostazione predefinita, a meno che non sia specificato.</span><span class="sxs-lookup"><span data-stu-id="d1e57-181">gRPC-Web doesn't require a specific version and doesn't override the default unless specified.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="d1e57-182">I client gRPC generati hanno metodi Sync e Async per la chiamata di metodi unaria.</span><span class="sxs-lookup"><span data-stu-id="d1e57-182">Generated gRPC clients have sync and async methods for calling unary methods.</span></span> <span data-ttu-id="d1e57-183">Ad esempio, `SayHello` è Sync ed `SayHelloAsync` è Async.</span><span class="sxs-lookup"><span data-stu-id="d1e57-183">For example, `SayHello` is sync and `SayHelloAsync` is async.</span></span> <span data-ttu-id="d1e57-184">La chiamata di un metodo di sincronizzazione in un'app provocherà la mancata :::no-loc(Blazor WebAssembly)::: risposta dell'app.</span><span class="sxs-lookup"><span data-stu-id="d1e57-184">Calling a sync method in a :::no-loc(Blazor WebAssembly)::: app will cause the app to become unresponsive.</span></span> <span data-ttu-id="d1e57-185">I metodi asincroni devono sempre essere utilizzati in :::no-loc(Blazor WebAssembly)::: .</span><span class="sxs-lookup"><span data-stu-id="d1e57-185">Async methods must always be used in :::no-loc(Blazor WebAssembly):::.</span></span>
+> <span data-ttu-id="d1e57-182">I client gRPC generati hanno metodi Sync e Async per la chiamata di metodi unaria.</span><span class="sxs-lookup"><span data-stu-id="d1e57-182">Generated gRPC clients have sync and async methods for calling unary methods.</span></span> <span data-ttu-id="d1e57-183">Ad esempio, `SayHello` è Sync ed `SayHelloAsync` è Async.</span><span class="sxs-lookup"><span data-stu-id="d1e57-183">For example, `SayHello` is sync and `SayHelloAsync` is async.</span></span> <span data-ttu-id="d1e57-184">La chiamata di un metodo di sincronizzazione in un'app provocherà la mancata Blazor WebAssembly risposta dell'app.</span><span class="sxs-lookup"><span data-stu-id="d1e57-184">Calling a sync method in a Blazor WebAssembly app will cause the app to become unresponsive.</span></span> <span data-ttu-id="d1e57-185">I metodi asincroni devono sempre essere utilizzati in Blazor WebAssembly .</span><span class="sxs-lookup"><span data-stu-id="d1e57-185">Async methods must always be used in Blazor WebAssembly.</span></span>
 
 ### <a name="use-grpc-client-factory-with-grpc-web"></a><span data-ttu-id="d1e57-186">Usare la factory del client gRPC con gRPC-Web</span><span class="sxs-lookup"><span data-stu-id="d1e57-186">Use gRPC client factory with gRPC-Web</span></span>
 
@@ -142,7 +142,7 @@ ms.locfileid: "93058909"
 * <span data-ttu-id="d1e57-189">Aggiungere i riferimenti ai pacchetti al file di progetto per i pacchetti seguenti:</span><span class="sxs-lookup"><span data-stu-id="d1e57-189">Add package references to the project file for the following packages:</span></span>
   * [<span data-ttu-id="d1e57-190">Grpc .NET. client. Web</span><span class="sxs-lookup"><span data-stu-id="d1e57-190">Grpc.Net.Client.Web</span></span>](https://www.nuget.org/packages/Grpc.Net.Client.Web)
   * [<span data-ttu-id="d1e57-191">Grpc .NET. ClientFactory</span><span class="sxs-lookup"><span data-stu-id="d1e57-191">Grpc.Net.ClientFactory</span></span>](https://www.nuget.org/packages/Grpc.Net.ClientFactory)
-* <span data-ttu-id="d1e57-192">Registrare un client gRPC con l'inserimento DI dipendenze usando il `AddGrpcClient` metodo di estensione generico.</span><span class="sxs-lookup"><span data-stu-id="d1e57-192">Register a gRPC client with dependency injection (DI) using the generic `AddGrpcClient` extension method.</span></span> <span data-ttu-id="d1e57-193">In un' :::no-loc(Blazor WebAssembly)::: app, i servizi vengono registrati con l'inserimento di `Program.cs` .</span><span class="sxs-lookup"><span data-stu-id="d1e57-193">In a :::no-loc(Blazor WebAssembly)::: app, services are registered with DI in `Program.cs`.</span></span>
+* <span data-ttu-id="d1e57-192">Registrare un client gRPC con l'inserimento DI dipendenze usando il `AddGrpcClient` metodo di estensione generico.</span><span class="sxs-lookup"><span data-stu-id="d1e57-192">Register a gRPC client with dependency injection (DI) using the generic `AddGrpcClient` extension method.</span></span> <span data-ttu-id="d1e57-193">In un' Blazor WebAssembly app, i servizi vengono registrati con l'inserimento di `Program.cs` .</span><span class="sxs-lookup"><span data-stu-id="d1e57-193">In a Blazor WebAssembly app, services are registered with DI in `Program.cs`.</span></span>
 * <span data-ttu-id="d1e57-194">Configurare `GrpcWebHandler` usando il <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> metodo di estensione.</span><span class="sxs-lookup"><span data-stu-id="d1e57-194">Configure `GrpcWebHandler` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method.</span></span>
 
 ```csharp

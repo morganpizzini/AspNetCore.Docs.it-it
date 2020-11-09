@@ -6,17 +6,17 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 10/07/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: fundamentals/change-tokens
 ms.openlocfilehash: f20d44c7767b284f727ce19a46224dae0cf6a5e1
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -67,12 +67,12 @@ ms.locfileid: "93053774"
 
 ## <a name="monitor-for-configuration-changes"></a><span data-ttu-id="9c98d-133">Monitorare le modifiche di configurazione</span><span class="sxs-lookup"><span data-stu-id="9c98d-133">Monitor for configuration changes</span></span>
 
-<span data-ttu-id="9c98d-134">Per impostazione predefinita, i modelli di ASP.NET Core usano [file di configurazione JSON](xref:fundamentals/configuration/index#json-configuration-provider) ( *:::no-loc(appsettings.json):::* , *appsettings.Development.js* e *appsettings.Production.json* ) per caricare le impostazioni di configurazione dell'app.</span><span class="sxs-lookup"><span data-stu-id="9c98d-134">By default, ASP.NET Core templates use [JSON configuration files](xref:fundamentals/configuration/index#json-configuration-provider) ( *:::no-loc(appsettings.json):::* , *appsettings.Development.json* , and *appsettings.Production.json* ) to load app configuration settings.</span></span>
+<span data-ttu-id="9c98d-134">Per impostazione predefinita, i modelli di ASP.NET Core usano [file di configurazione JSON](xref:fundamentals/configuration/index#json-configuration-provider) ( *appsettings.json* , *appsettings.Development.js* e *appsettings.Production.json* ) per caricare le impostazioni di configurazione dell'app.</span><span class="sxs-lookup"><span data-stu-id="9c98d-134">By default, ASP.NET Core templates use [JSON configuration files](xref:fundamentals/configuration/index#json-configuration-provider) ( *appsettings.json* , *appsettings.Development.json* , and *appsettings.Production.json* ) to load app configuration settings.</span></span>
 
 <span data-ttu-id="9c98d-135">Questi file vengono configurati usando il metodo di estensione [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*) per <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> che accetta un parametro `reloadOnChange`.</span><span class="sxs-lookup"><span data-stu-id="9c98d-135">These files are configured using the [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*) extension method on <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> that accepts a `reloadOnChange` parameter.</span></span> <span data-ttu-id="9c98d-136">`reloadOnChange` indica se la configurazione deve essere ricaricata alla modifica del file.</span><span class="sxs-lookup"><span data-stu-id="9c98d-136">`reloadOnChange` indicates if configuration should be reloaded on file changes.</span></span> <span data-ttu-id="9c98d-137">Questa impostazione viene visualizzata nel metodo pratico <xref:Microsoft.Extensions.Hosting.Host><xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>:</span><span class="sxs-lookup"><span data-stu-id="9c98d-137">This setting appears in the <xref:Microsoft.Extensions.Hosting.Host> convenience method <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>:</span></span>
 
 ```csharp
-config.AddJsonFile(":::no-loc(appsettings.json):::", optional: true, reloadOnChange: true)
+config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
       .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, 
           reloadOnChange: true);
 ```
@@ -265,12 +265,12 @@ var compositeChangeToken =
 
 ## <a name="monitor-for-configuration-changes"></a><span data-ttu-id="9c98d-245">Monitorare le modifiche di configurazione</span><span class="sxs-lookup"><span data-stu-id="9c98d-245">Monitor for configuration changes</span></span>
 
-<span data-ttu-id="9c98d-246">Per impostazione predefinita, i modelli di ASP.NET Core usano [file di configurazione JSON](xref:fundamentals/configuration/index#json-configuration-provider) ( *:::no-loc(appsettings.json):::* , *appsettings.Development.js* e *appsettings.Production.json* ) per caricare le impostazioni di configurazione dell'app.</span><span class="sxs-lookup"><span data-stu-id="9c98d-246">By default, ASP.NET Core templates use [JSON configuration files](xref:fundamentals/configuration/index#json-configuration-provider) ( *:::no-loc(appsettings.json):::* , *appsettings.Development.json* , and *appsettings.Production.json* ) to load app configuration settings.</span></span>
+<span data-ttu-id="9c98d-246">Per impostazione predefinita, i modelli di ASP.NET Core usano [file di configurazione JSON](xref:fundamentals/configuration/index#json-configuration-provider) ( *appsettings.json* , *appsettings.Development.js* e *appsettings.Production.json* ) per caricare le impostazioni di configurazione dell'app.</span><span class="sxs-lookup"><span data-stu-id="9c98d-246">By default, ASP.NET Core templates use [JSON configuration files](xref:fundamentals/configuration/index#json-configuration-provider) ( *appsettings.json* , *appsettings.Development.json* , and *appsettings.Production.json* ) to load app configuration settings.</span></span>
 
 <span data-ttu-id="9c98d-247">Questi file vengono configurati usando il metodo di estensione [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*) per <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> che accetta un parametro `reloadOnChange`.</span><span class="sxs-lookup"><span data-stu-id="9c98d-247">These files are configured using the [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*) extension method on <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> that accepts a `reloadOnChange` parameter.</span></span> <span data-ttu-id="9c98d-248">`reloadOnChange` indica se la configurazione deve essere ricaricata alla modifica del file.</span><span class="sxs-lookup"><span data-stu-id="9c98d-248">`reloadOnChange` indicates if configuration should be reloaded on file changes.</span></span> <span data-ttu-id="9c98d-249">Questa impostazione viene visualizzata nel metodo pratico <xref:Microsoft.AspNetCore.WebHost><xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>:</span><span class="sxs-lookup"><span data-stu-id="9c98d-249">This setting appears in the <xref:Microsoft.AspNetCore.WebHost> convenience method <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>:</span></span>
 
 ```csharp
-config.AddJsonFile(":::no-loc(appsettings.json):::", optional: true, reloadOnChange: true)
+config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
       .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, 
           reloadOnChange: true);
 ```

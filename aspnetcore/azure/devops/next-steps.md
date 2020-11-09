@@ -6,17 +6,17 @@ ms.author: casoper
 ms.custom: devx-track-csharp, mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: azure/devops/next-steps
 ms.openlocfilehash: 35b0486611cc15f25b1c8b54584c264e4c1298c9
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -41,7 +41,7 @@ ms.locfileid: "93056595"
 
 <span data-ttu-id="9b7ff-115">[Cosmos DB](/azure/cosmos-db/) servizio di database NoSQL multimodello distribuito a livello globale.</span><span class="sxs-lookup"><span data-stu-id="9b7ff-115">[Cosmos DB](/azure/cosmos-db/) globally distributed, multi-model NoSQL database service.</span></span> <span data-ttu-id="9b7ff-116">Sono disponibili più API, tra cui l'API SQL (denominata in precedenza DocumentDB), Cassandra e MongoDB.</span><span class="sxs-lookup"><span data-stu-id="9b7ff-116">Multiple APIs are available, including SQL API (formerly called DocumentDB), Cassandra, and MongoDB.</span></span>
 
-## :::no-loc(Identity):::
+## Identity
 
 <span data-ttu-id="9b7ff-117">[Azure Active Directory](/azure/active-directory/) e [Azure Active Directory B2C](/azure/active-directory-b2c/) sono entrambi servizi di identità.</span><span class="sxs-lookup"><span data-stu-id="9b7ff-117">[Azure Active Directory](/azure/active-directory/) and [Azure Active Directory B2C](/azure/active-directory-b2c/) are both identity services.</span></span> <span data-ttu-id="9b7ff-118">Azure Active Directory è progettato per gli scenari aziendali e consente la collaborazione Azure AD B2B (business to business), mentre Azure Active Directory B2C è concepita per gli scenari business-to-Customer, incluso l'accesso ai social network.</span><span class="sxs-lookup"><span data-stu-id="9b7ff-118">Azure Active Directory is designed for enterprise scenarios and enables Azure AD B2B (business-to-business) collaboration, while Azure Active Directory B2C is intended business-to-customer scenarios, including social network sign-in.</span></span>
 

@@ -1,5 +1,5 @@
 ---
-title: :::no-loc(Blazor):::Parametri e valori di propagazione ASP.NET Core
+title: BlazorParametri e valori di propagazione ASP.NET Core
 author: guardrex
 description: Informazioni su come eseguire il flusso dei dati da un componente predecessore ai componenti discendenti.
 monikerRange: '>= aspnetcore-3.1'
@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/06/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/components/cascading-values-and-parameters
 ms.openlocfilehash: dec71f881dc815a26d62da6df92118926b1dcf06
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,7 +26,7 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93056426"
 ---
-# <a name="aspnet-core-no-locblazor-cascading-values-and-parameters"></a><span data-ttu-id="3b186-103">:::no-loc(Blazor):::Parametri e valori di propagazione ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="3b186-103">ASP.NET Core :::no-loc(Blazor)::: cascading values and parameters</span></span>
+# <a name="aspnet-core-no-locblazor-cascading-values-and-parameters"></a><span data-ttu-id="3b186-103">BlazorParametri e valori di propagazione ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="3b186-103">ASP.NET Core Blazor cascading values and parameters</span></span>
 
 <span data-ttu-id="3b186-104">Di [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)</span><span class="sxs-lookup"><span data-stu-id="3b186-104">By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)</span></span>
 
@@ -55,7 +55,7 @@ public class ThemeInfo
 
 ```razor
 @inherits LayoutComponentBase
-@using :::no-loc(Blazor):::Sample.UIThemeClasses
+@using BlazorSample.UIThemeClasses
 
 <div class="container-fluid">
     <div class="row">
@@ -86,7 +86,7 @@ public class ThemeInfo
 ```razor
 @page "/cascadingvaluesparameterstheme"
 @layout CascadingValuesParametersLayout
-@using :::no-loc(Blazor):::Sample.UIThemeClasses
+@using BlazorSample.UIThemeClasses
 
 <h1>Cascading Values & Parameters</h1>
 
@@ -156,7 +156,7 @@ public class ThemeInfo
 
 <span data-ttu-id="3b186-129">L'app di esempio ha un' `ITab` interfaccia implementata dalle schede:</span><span class="sxs-lookup"><span data-stu-id="3b186-129">The sample app has an `ITab` interface that tabs implement:</span></span>
 
-[!code-csharp[](../common/samples/3.x/:::no-loc(Blazor):::WebAssemblySample/UIInterfaces/ITab.cs)]
+[!code-csharp[](../common/samples/3.x/BlazorWebAssemblySample/UIInterfaces/ITab.cs)]
 
 <span data-ttu-id="3b186-130">Il `CascadingValuesParametersTabSet` componente usa il `TabSet` componente, che contiene diversi `Tab` componenti:</span><span class="sxs-lookup"><span data-stu-id="3b186-130">The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:</span></span>
 
@@ -194,10 +194,10 @@ public class ThemeInfo
 
 <span data-ttu-id="3b186-134">`TabSet` componente</span><span class="sxs-lookup"><span data-stu-id="3b186-134">`TabSet` component:</span></span>
 
-[!code-razor[](../common/samples/3.x/:::no-loc(Blazor):::WebAssemblySample/Components/TabSet.razor)]
+[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TabSet.razor)]
 
 <span data-ttu-id="3b186-135">I componenti discendenti `Tab` acquisiscono l'oggetto che contiene `TabSet` come parametro di propagazione, in modo `Tab` che i componenti si aggiungano alla `TabSet` coordinata e della scheda attiva.</span><span class="sxs-lookup"><span data-stu-id="3b186-135">The descendent `Tab` components capture the containing `TabSet` as a cascading parameter, so the `Tab` components add themselves to the `TabSet` and coordinate on which tab is active.</span></span>
 
 <span data-ttu-id="3b186-136">`Tab` componente</span><span class="sxs-lookup"><span data-stu-id="3b186-136">`Tab` component:</span></span>
 
-[!code-razor[](../common/samples/3.x/:::no-loc(Blazor):::WebAssemblySample/Components/Tab.razor)]
+[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/Tab.razor)]

@@ -6,17 +6,17 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: performance/caching/response
 ms.openlocfilehash: 2864de5b9931ed255569cb087c67c71004c4df92
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -84,13 +84,13 @@ ms.locfileid: "93059013"
 
 ### <a name="cache-tag-helper"></a><span data-ttu-id="ffaff-169">Helper per tag di cache</span><span class="sxs-lookup"><span data-stu-id="ffaff-169">Cache Tag Helper</span></span>
 
-<span data-ttu-id="ffaff-170">Memorizza nella cache il contenuto di una visualizzazione o :::no-loc(Razor)::: di una pagina MVC con l'helper tag di cache.</span><span class="sxs-lookup"><span data-stu-id="ffaff-170">Cache the content from an MVC view or :::no-loc(Razor)::: Page with the Cache Tag Helper.</span></span> <span data-ttu-id="ffaff-171">L'helper tag di cache usa la memorizzazione nella cache in memoria per archiviare i dati.</span><span class="sxs-lookup"><span data-stu-id="ffaff-171">The Cache Tag Helper uses in-memory caching to store data.</span></span>
+<span data-ttu-id="ffaff-170">Memorizza nella cache il contenuto di una visualizzazione o Razor di una pagina MVC con l'helper tag di cache.</span><span class="sxs-lookup"><span data-stu-id="ffaff-170">Cache the content from an MVC view or Razor Page with the Cache Tag Helper.</span></span> <span data-ttu-id="ffaff-171">L'helper tag di cache usa la memorizzazione nella cache in memoria per archiviare i dati.</span><span class="sxs-lookup"><span data-stu-id="ffaff-171">The Cache Tag Helper uses in-memory caching to store data.</span></span>
 
 <span data-ttu-id="ffaff-172">Per altre informazioni, vedere <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>.</span><span class="sxs-lookup"><span data-stu-id="ffaff-172">For more information, see <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>.</span></span>
 
 ### <a name="distributed-cache-tag-helper"></a><span data-ttu-id="ffaff-173">Helper tag di cache distribuita</span><span class="sxs-lookup"><span data-stu-id="ffaff-173">Distributed Cache Tag Helper</span></span>
 
-<span data-ttu-id="ffaff-174">Consente di memorizzare nella cache il contenuto di una visualizzazione o :::no-loc(Razor)::: di una pagina MVC negli scenari cloud distribuito o Web farm con l'helper tag di cache distribuita.</span><span class="sxs-lookup"><span data-stu-id="ffaff-174">Cache the content from an MVC view or :::no-loc(Razor)::: Page in distributed cloud or web farm scenarios with the Distributed Cache Tag Helper.</span></span> <span data-ttu-id="ffaff-175">L'helper tag di cache distribuita usa SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)o [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) per archiviare i dati.</span><span class="sxs-lookup"><span data-stu-id="ffaff-175">The Distributed Cache Tag Helper uses SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis), or [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) to store data.</span></span>
+<span data-ttu-id="ffaff-174">Consente di memorizzare nella cache il contenuto di una visualizzazione o Razor di una pagina MVC negli scenari cloud distribuito o Web farm con l'helper tag di cache distribuita.</span><span class="sxs-lookup"><span data-stu-id="ffaff-174">Cache the content from an MVC view or Razor Page in distributed cloud or web farm scenarios with the Distributed Cache Tag Helper.</span></span> <span data-ttu-id="ffaff-175">L'helper tag di cache distribuita usa SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)o [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) per archiviare i dati.</span><span class="sxs-lookup"><span data-stu-id="ffaff-175">The Distributed Cache Tag Helper uses SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis), or [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) to store data.</span></span>
 
 <span data-ttu-id="ffaff-176">Per altre informazioni, vedere <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>.</span><span class="sxs-lookup"><span data-stu-id="ffaff-176">For more information, see <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>.</span></span>
 
@@ -176,7 +176,7 @@ Cache-Control: public,max-age=10
 
 ### <a name="cache-profiles"></a><span data-ttu-id="ffaff-232">Profili cache</span><span class="sxs-lookup"><span data-stu-id="ffaff-232">Cache profiles</span></span>
 
-<span data-ttu-id="ffaff-233">Anziché duplicare le impostazioni della cache di risposta su molti attributi dell'azione del controller, è possibile configurare i profili della cache come opzioni durante la configurazione di MVC/ :::no-loc(Razor)::: pagine in `Startup.ConfigureServices` .</span><span class="sxs-lookup"><span data-stu-id="ffaff-233">Instead of duplicating response cache settings on many controller action attributes, cache profiles can be configured as options when setting up MVC/:::no-loc(Razor)::: Pages in `Startup.ConfigureServices`.</span></span> <span data-ttu-id="ffaff-234">I valori trovati in un profilo della cache a cui viene fatto riferimento vengono usati come valori predefiniti da <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> e vengono sottoposti a override da qualsiasi proprietà specificata nell'attributo.</span><span class="sxs-lookup"><span data-stu-id="ffaff-234">Values found in a referenced cache profile are used as the defaults by the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> and are overridden by any properties specified on the attribute.</span></span>
+<span data-ttu-id="ffaff-233">Anziché duplicare le impostazioni della cache di risposta su molti attributi dell'azione del controller, è possibile configurare i profili della cache come opzioni durante la configurazione di MVC/ Razor pagine in `Startup.ConfigureServices` .</span><span class="sxs-lookup"><span data-stu-id="ffaff-233">Instead of duplicating response cache settings on many controller action attributes, cache profiles can be configured as options when setting up MVC/Razor Pages in `Startup.ConfigureServices`.</span></span> <span data-ttu-id="ffaff-234">I valori trovati in un profilo della cache a cui viene fatto riferimento vengono usati come valori predefiniti da <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> e vengono sottoposti a override da qualsiasi proprietà specificata nell'attributo.</span><span class="sxs-lookup"><span data-stu-id="ffaff-234">Values found in a referenced cache profile are used as the defaults by the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> and are overridden by any properties specified on the attribute.</span></span>
 
 <span data-ttu-id="ffaff-235">Configurare un profilo della cache.</span><span class="sxs-lookup"><span data-stu-id="ffaff-235">Set up a cache profile.</span></span> <span data-ttu-id="ffaff-236">L'esempio seguente mostra un profilo della cache di 30 secondi nell'app di esempio `Startup.ConfigureServices` :</span><span class="sxs-lookup"><span data-stu-id="ffaff-236">The following example shows a 30 second cache profile in the sample app's `Startup.ConfigureServices`:</span></span>
 
@@ -198,7 +198,7 @@ Cache-Control: public,max-age=10
 
 <span data-ttu-id="ffaff-238">Il <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> può essere applicato a:</span><span class="sxs-lookup"><span data-stu-id="ffaff-238">The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> can be applied to:</span></span>
 
-* <span data-ttu-id="ffaff-239">:::no-loc(Razor)::: Pagine: gli attributi non possono essere applicati ai metodi del gestore.</span><span class="sxs-lookup"><span data-stu-id="ffaff-239">:::no-loc(Razor)::: Pages: Attributes can't be applied to handler methods.</span></span>
+* <span data-ttu-id="ffaff-239">Razor Pagine: gli attributi non possono essere applicati ai metodi del gestore.</span><span class="sxs-lookup"><span data-stu-id="ffaff-239">Razor Pages: Attributes can't be applied to handler methods.</span></span>
 * <span data-ttu-id="ffaff-240">Controller MVC.</span><span class="sxs-lookup"><span data-stu-id="ffaff-240">MVC controllers.</span></span>
 * <span data-ttu-id="ffaff-241">Metodi di azione MVC: gli attributi a livello di metodo eseguono l'override delle impostazioni specificate negli attributi a livello di classe.</span><span class="sxs-lookup"><span data-stu-id="ffaff-241">MVC action methods: Method-level attributes override the settings specified in class-level attributes.</span></span>
 

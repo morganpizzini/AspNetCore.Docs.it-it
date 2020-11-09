@@ -1,22 +1,22 @@
 ---
-title: 'Parte 3, :::no-loc(Razor)::: pagine con EF core in ASP.NET Core ordinamento, filtro, paging'
+title: 'Parte 3, Razor pagine con EF core in ASP.NET Core ordinamento, filtro, paging'
 author: rick-anderson
-description: 'Parte 3 di :::no-loc(Razor)::: pagine e Entity Framework serie di esercitazioni.'
+description: 'Parte 3 di Razor pagine e Entity Framework serie di esercitazioni.'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: data/ef-rp/sort-filter-page
 ms.openlocfilehash: 51a1e2a90259898262ac655b7a0e8a55d766f0c7
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -25,7 +25,7 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93061041"
 ---
-# <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a><span data-ttu-id="57c2a-103">Parte 3, :::no-loc(Razor)::: pagine con EF core in ASP.NET Core ordinamento, filtro, paging</span><span class="sxs-lookup"><span data-stu-id="57c2a-103">Part 3, :::no-loc(Razor)::: Pages with EF Core in ASP.NET Core - Sort, Filter, Paging</span></span>
+# <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a><span data-ttu-id="57c2a-103">Parte 3, Razor pagine con EF core in ASP.NET Core ordinamento, filtro, paging</span><span class="sxs-lookup"><span data-stu-id="57c2a-103">Part 3, Razor Pages with EF Core in ASP.NET Core - Sort, Filter, Paging</span></span>
 
 <span data-ttu-id="57c2a-104">Di [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT) e [Jon P Smith](https://twitter.com/thereformedprog)</span><span class="sxs-lookup"><span data-stu-id="57c2a-104">By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)</span></span>
 
@@ -58,7 +58,7 @@ ms.locfileid: "93061041"
 
 <span data-ttu-id="57c2a-122">Quando la pagina Index (Indice) viene richiesta dal collegamento **Students** (Studenti), non è presente alcuna stringa di query.</span><span class="sxs-lookup"><span data-stu-id="57c2a-122">When the Index page is requested from the **Students** link, there's no query string.</span></span> <span data-ttu-id="57c2a-123">Gli studenti vengono visualizzati in ordine crescente in base al cognome.</span><span class="sxs-lookup"><span data-stu-id="57c2a-123">The students are displayed in ascending order by last name.</span></span> <span data-ttu-id="57c2a-124">L'ordinamento crescente in base al cognome è l'oggetto `default` nell' `switch` istruzione.</span><span class="sxs-lookup"><span data-stu-id="57c2a-124">Ascending order by last name is the `default` in the `switch` statement.</span></span> <span data-ttu-id="57c2a-125">Quando l'utente fa clic sul collegamento di un'intestazione di colonna, nel valore della stringa di query viene specificato il valore `sortOrder` appropriato.</span><span class="sxs-lookup"><span data-stu-id="57c2a-125">When the user clicks a column heading link, the appropriate `sortOrder` value is provided in the query string value.</span></span>
 
-<span data-ttu-id="57c2a-126">`NameSort` e `DateSort` vengono usati dalla :::no-loc(Razor)::: pagina per configurare i collegamenti ipertestuali dell'intestazione di colonna con i valori della stringa di query appropriati:</span><span class="sxs-lookup"><span data-stu-id="57c2a-126">`NameSort` and `DateSort` are used by the :::no-loc(Razor)::: Page to configure the column heading hyperlinks with the appropriate query string values:</span></span>
+<span data-ttu-id="57c2a-126">`NameSort` e `DateSort` vengono usati dalla Razor pagina per configurare i collegamenti ipertestuali dell'intestazione di colonna con i valori della stringa di query appropriati:</span><span class="sxs-lookup"><span data-stu-id="57c2a-126">`NameSort` and `DateSort` are used by the Razor Page to configure the column heading hyperlinks with the appropriate query string values:</span></span>
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_Ternary)]
 
@@ -105,7 +105,7 @@ ms.locfileid: "93061041"
 
 <span data-ttu-id="57c2a-167">Per aggiungere un filtro alla pagina Students Index (Indice degli studenti):</span><span class="sxs-lookup"><span data-stu-id="57c2a-167">To add filtering to the Students Index page:</span></span>
 
-* <span data-ttu-id="57c2a-168">Alla pagina vengono aggiunti una casella di testo e un pulsante Submit :::no-loc(Razor)::: .</span><span class="sxs-lookup"><span data-stu-id="57c2a-168">A text box and a submit button is added to the :::no-loc(Razor)::: Page.</span></span> <span data-ttu-id="57c2a-169">La casella di testo specifica una stringa di ricerca sul nome o cognome.</span><span class="sxs-lookup"><span data-stu-id="57c2a-169">The text box supplies a search string on the first or last name.</span></span>
+* <span data-ttu-id="57c2a-168">Alla pagina vengono aggiunti una casella di testo e un pulsante Submit Razor .</span><span class="sxs-lookup"><span data-stu-id="57c2a-168">A text box and a submit button is added to the Razor Page.</span></span> <span data-ttu-id="57c2a-169">La casella di testo specifica una stringa di ricerca sul nome o cognome.</span><span class="sxs-lookup"><span data-stu-id="57c2a-169">The text box supplies a search string on the first or last name.</span></span>
 * <span data-ttu-id="57c2a-170">Il modello di pagina viene aggiornato in modo da usare il valore della casella di testo.</span><span class="sxs-lookup"><span data-stu-id="57c2a-170">The page model is updated to use the text box value.</span></span>
 
 ### <a name="update-the-ongetasync-method"></a><span data-ttu-id="57c2a-171">Aggiornare il metodo OnGetAsync</span><span class="sxs-lookup"><span data-stu-id="57c2a-171">Update the OnGetAsync method</span></span>
@@ -139,7 +139,7 @@ Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
 <span data-ttu-id="57c2a-199">Per altre informazioni, vedere [How to use case-insensitive query with Sqlite provider](https://github.com/aspnet/EntityFrameworkCore/issues/11414) (Come usare una query senza distinzione tra maiuscole e minuscole con il provider SQLite).</span><span class="sxs-lookup"><span data-stu-id="57c2a-199">For more information, see [How to use case-insensitive query with Sqlite provider](https://github.com/aspnet/EntityFrameworkCore/issues/11414).</span></span>
 
-### <a name="update-the-no-locrazor-page"></a><span data-ttu-id="57c2a-200">Aggiornare la :::no-loc(Razor)::: pagina</span><span class="sxs-lookup"><span data-stu-id="57c2a-200">Update the :::no-loc(Razor)::: page</span></span>
+### <a name="update-the-no-locrazor-page"></a><span data-ttu-id="57c2a-200">Aggiornare la Razor pagina</span><span class="sxs-lookup"><span data-stu-id="57c2a-200">Update the Razor page</span></span>
 
 <span data-ttu-id="57c2a-201">Sostituire il codice in *pages/students/index. cshtml* per aggiungere un pulsante **Search** .</span><span class="sxs-lookup"><span data-stu-id="57c2a-201">Replace the code in *Pages/Students/Index.cshtml* to add a **Search** button.</span></span>
 
@@ -201,9 +201,9 @@ https://localhost:5001/Students?SearchString=an
 
 <span data-ttu-id="57c2a-243">Se si seleziona un collegamento di suddivisione in pagine, la variabile dell'indice di pagina contiene il numero di pagina da visualizzare.</span><span class="sxs-lookup"><span data-stu-id="57c2a-243">When a paging link is clicked, the page index variable contains the page number to display.</span></span>
 
-<span data-ttu-id="57c2a-244">La `CurrentSort` proprietà fornisce la :::no-loc(Razor)::: pagina con l'ordinamento corrente.</span><span class="sxs-lookup"><span data-stu-id="57c2a-244">The `CurrentSort` property provides the :::no-loc(Razor)::: Page with the current sort order.</span></span> <span data-ttu-id="57c2a-245">L'ordinamento corrente deve essere incluso nei collegamenti di suddivisione in pagine per mantenere l'ordinamento nella suddivisione in pagine.</span><span class="sxs-lookup"><span data-stu-id="57c2a-245">The current sort order must be included in the paging links to keep the sort order while paging.</span></span>
+<span data-ttu-id="57c2a-244">La `CurrentSort` proprietà fornisce la Razor pagina con l'ordinamento corrente.</span><span class="sxs-lookup"><span data-stu-id="57c2a-244">The `CurrentSort` property provides the Razor Page with the current sort order.</span></span> <span data-ttu-id="57c2a-245">L'ordinamento corrente deve essere incluso nei collegamenti di suddivisione in pagine per mantenere l'ordinamento nella suddivisione in pagine.</span><span class="sxs-lookup"><span data-stu-id="57c2a-245">The current sort order must be included in the paging links to keep the sort order while paging.</span></span>
 
-<span data-ttu-id="57c2a-246">La `CurrentFilter` proprietà fornisce la :::no-loc(Razor)::: pagina con la stringa di filtro corrente.</span><span class="sxs-lookup"><span data-stu-id="57c2a-246">The `CurrentFilter` property provides the :::no-loc(Razor)::: Page with the current filter string.</span></span> <span data-ttu-id="57c2a-247">Il valore `CurrentFilter`:</span><span class="sxs-lookup"><span data-stu-id="57c2a-247">The `CurrentFilter` value:</span></span>
+<span data-ttu-id="57c2a-246">La `CurrentFilter` proprietà fornisce la Razor pagina con la stringa di filtro corrente.</span><span class="sxs-lookup"><span data-stu-id="57c2a-246">The `CurrentFilter` property provides the Razor Page with the current filter string.</span></span> <span data-ttu-id="57c2a-247">Il valore `CurrentFilter`:</span><span class="sxs-lookup"><span data-stu-id="57c2a-247">The `CurrentFilter` value:</span></span>
 
 * <span data-ttu-id="57c2a-248">Deve essere incluso nei collegamenti di suddivisione in pagine per mantenere le impostazioni di filtro nella suddivisione in pagine.</span><span class="sxs-lookup"><span data-stu-id="57c2a-248">Must be included in the paging links in order to maintain the filter settings during paging.</span></span>
 * <span data-ttu-id="57c2a-249">Deve essere ripristinato nella casella di testo quando viene nuovamente visualizzata la pagina.</span><span class="sxs-lookup"><span data-stu-id="57c2a-249">Must be restored to the text box when the page is redisplayed.</span></span>
@@ -213,11 +213,11 @@ https://localhost:5001/Students?SearchString=an
   * <span data-ttu-id="57c2a-253">La stringa di ricerca viene modificata.</span><span class="sxs-lookup"><span data-stu-id="57c2a-253">The search string is changed.</span></span>
   * <span data-ttu-id="57c2a-254">Il parametro `searchString` non è Null.</span><span class="sxs-lookup"><span data-stu-id="57c2a-254">The `searchString` parameter isn't null.</span></span>
 
-  <span data-ttu-id="57c2a-255">Il metodo `PaginatedList.CreateAsync` converte la query degli studenti in una pagina singola di studenti in un tipo di raccolta che supporta la suddivisione in pagine.</span><span class="sxs-lookup"><span data-stu-id="57c2a-255">The `PaginatedList.CreateAsync` method converts the student query to a single page of students in a collection type that supports paging.</span></span> <span data-ttu-id="57c2a-256">Questa singola pagina di studenti viene passata alla :::no-loc(Razor)::: pagina.</span><span class="sxs-lookup"><span data-stu-id="57c2a-256">That single page of students is passed to the :::no-loc(Razor)::: Page.</span></span>
+  <span data-ttu-id="57c2a-255">Il metodo `PaginatedList.CreateAsync` converte la query degli studenti in una pagina singola di studenti in un tipo di raccolta che supporta la suddivisione in pagine.</span><span class="sxs-lookup"><span data-stu-id="57c2a-255">The `PaginatedList.CreateAsync` method converts the student query to a single page of students in a collection type that supports paging.</span></span> <span data-ttu-id="57c2a-256">Questa singola pagina di studenti viene passata alla Razor pagina.</span><span class="sxs-lookup"><span data-stu-id="57c2a-256">That single page of students is passed to the Razor Page.</span></span>
 
   <span data-ttu-id="57c2a-257">I due punti interrogativi dopo `pageIndex` nella chiamata di `PaginatedList.CreateAsync` rappresentano l'[operatore null-coalescing](/dotnet/csharp/language-reference/operators/null-conditional-operator).</span><span class="sxs-lookup"><span data-stu-id="57c2a-257">The two question marks after `pageIndex` in the `PaginatedList.CreateAsync` call represent the [null-coalescing operator](/dotnet/csharp/language-reference/operators/null-conditional-operator).</span></span> <span data-ttu-id="57c2a-258">L'operatore null-coalescing definisce un valore predefinito per un tipo nullable.</span><span class="sxs-lookup"><span data-stu-id="57c2a-258">The null-coalescing operator defines a default value for a nullable type.</span></span> <span data-ttu-id="57c2a-259">L'espressione `pageIndex ?? 1` restituisce il valore di `pageIndex` se ha un valore; in caso contrario, restituisce 1.</span><span class="sxs-lookup"><span data-stu-id="57c2a-259">The expression `pageIndex ?? 1` returns the value of `pageIndex` if it has a value, otherwise, it returns 1.</span></span>
 
-### <a name="add-paging-links-to-the-no-locrazor-page"></a><span data-ttu-id="57c2a-260">Aggiungere collegamenti di paging alla :::no-loc(Razor)::: pagina</span><span class="sxs-lookup"><span data-stu-id="57c2a-260">Add paging links to the :::no-loc(Razor)::: Page</span></span>
+### <a name="add-paging-links-to-the-no-locrazor-page"></a><span data-ttu-id="57c2a-260">Aggiungere collegamenti di paging alla Razor pagina</span><span class="sxs-lookup"><span data-stu-id="57c2a-260">Add paging links to the Razor Page</span></span>
 
 <span data-ttu-id="57c2a-261">Sostituire il codice in *students/index. cshtml* con il codice seguente.</span><span class="sxs-lookup"><span data-stu-id="57c2a-261">Replace the code in *Students/Index.cshtml* with the following code.</span></span> <span data-ttu-id="57c2a-262">Le modifiche sono evidenziate:</span><span class="sxs-lookup"><span data-stu-id="57c2a-262">The changes are highlighted:</span></span>
 
@@ -253,7 +253,7 @@ https://localhost:5001/Students?SearchString=an
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### <a name="create-the-no-locrazor-page"></a><span data-ttu-id="57c2a-277">Creazione della :::no-loc(Razor)::: pagina</span><span class="sxs-lookup"><span data-stu-id="57c2a-277">Create the :::no-loc(Razor)::: Page</span></span>
+### <a name="create-the-no-locrazor-page"></a><span data-ttu-id="57c2a-277">Creazione della Razor pagina</span><span class="sxs-lookup"><span data-stu-id="57c2a-277">Create the Razor Page</span></span>
 
 <span data-ttu-id="57c2a-278">Aggiungere un file *Pages/About.cshtml* con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="57c2a-278">Create a *Pages/About.cshtml* file with the following code:</span></span>
 
@@ -310,7 +310,7 @@ https://localhost:5001/Students?SearchString=an
 
 <span data-ttu-id="57c2a-302">Quando la pagina Index (Indice) viene richiesta dal collegamento **Students** (Studenti), non è presente alcuna stringa di query.</span><span class="sxs-lookup"><span data-stu-id="57c2a-302">When the Index page is requested from the **Students** link, there's no query string.</span></span> <span data-ttu-id="57c2a-303">Gli studenti vengono visualizzati in ordine crescente in base al cognome.</span><span class="sxs-lookup"><span data-stu-id="57c2a-303">The students are displayed in ascending order by last name.</span></span> <span data-ttu-id="57c2a-304">L'ordine crescente in base al cognome è l'impostazione predefinita (caso di fallthrough) nell'istruzione `switch`.</span><span class="sxs-lookup"><span data-stu-id="57c2a-304">Ascending order by last name is the default (fall-through case) in the `switch` statement.</span></span> <span data-ttu-id="57c2a-305">Quando l'utente fa clic sul collegamento di un'intestazione di colonna, nel valore della stringa di query viene specificato il valore `sortOrder` appropriato.</span><span class="sxs-lookup"><span data-stu-id="57c2a-305">When the user clicks a column heading link, the appropriate `sortOrder` value is provided in the query string value.</span></span>
 
-<span data-ttu-id="57c2a-306">`NameSort` e `DateSort` vengono usati dalla :::no-loc(Razor)::: pagina per configurare i collegamenti ipertestuali dell'intestazione di colonna con i valori della stringa di query appropriati:</span><span class="sxs-lookup"><span data-stu-id="57c2a-306">`NameSort` and `DateSort` are used by the :::no-loc(Razor)::: Page to configure the column heading hyperlinks with the appropriate query string values:</span></span>
+<span data-ttu-id="57c2a-306">`NameSort` e `DateSort` vengono usati dalla Razor pagina per configurare i collegamenti ipertestuali dell'intestazione di colonna con i valori della stringa di query appropriati:</span><span class="sxs-lookup"><span data-stu-id="57c2a-306">`NameSort` and `DateSort` are used by the Razor Page to configure the column heading hyperlinks with the appropriate query string values:</span></span>
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=3-4)]
 
@@ -370,7 +370,7 @@ https://localhost:5001/Students?SearchString=an
 
 <span data-ttu-id="57c2a-349">Per aggiungere un filtro alla pagina Students Index (Indice degli studenti):</span><span class="sxs-lookup"><span data-stu-id="57c2a-349">To add filtering to the Students Index page:</span></span>
 
-* <span data-ttu-id="57c2a-350">Alla pagina vengono aggiunti una casella di testo e un pulsante Submit :::no-loc(Razor)::: .</span><span class="sxs-lookup"><span data-stu-id="57c2a-350">A text box and a submit button is added to the :::no-loc(Razor)::: Page.</span></span> <span data-ttu-id="57c2a-351">La casella di testo specifica una stringa di ricerca sul nome o cognome.</span><span class="sxs-lookup"><span data-stu-id="57c2a-351">The text box supplies a search string on the first or last name.</span></span>
+* <span data-ttu-id="57c2a-350">Alla pagina vengono aggiunti una casella di testo e un pulsante Submit Razor .</span><span class="sxs-lookup"><span data-stu-id="57c2a-350">A text box and a submit button is added to the Razor Page.</span></span> <span data-ttu-id="57c2a-351">La casella di testo specifica una stringa di ricerca sul nome o cognome.</span><span class="sxs-lookup"><span data-stu-id="57c2a-351">The text box supplies a search string on the first or last name.</span></span>
 * <span data-ttu-id="57c2a-352">Il modello di pagina viene aggiornato in modo da usare il valore della casella di testo.</span><span class="sxs-lookup"><span data-stu-id="57c2a-352">The page model is updated to use the text box value.</span></span>
 
 ### <a name="add-filtering-functionality-to-the-index-method"></a><span data-ttu-id="57c2a-353">Aggiungere la funzionalità di filtro al metodo Index</span><span class="sxs-lookup"><span data-stu-id="57c2a-353">Add filtering functionality to the Index method</span></span>
@@ -455,9 +455,9 @@ http://localhost:5000/Students?SearchString=an
 
 <span data-ttu-id="57c2a-413">Se si seleziona un collegamento di suddivisione in pagine, la variabile dell'indice di pagina contiene il numero di pagina da visualizzare.</span><span class="sxs-lookup"><span data-stu-id="57c2a-413">When a paging link is clicked, the page index variable contains the page number to display.</span></span>
 
-<span data-ttu-id="57c2a-414">`CurrentSort` fornisce la :::no-loc(Razor)::: pagina con l'ordinamento corrente.</span><span class="sxs-lookup"><span data-stu-id="57c2a-414">`CurrentSort` provides the :::no-loc(Razor)::: Page with the current sort order.</span></span> <span data-ttu-id="57c2a-415">L'ordinamento corrente deve essere incluso nei collegamenti di suddivisione in pagine per mantenere l'ordinamento nella suddivisione in pagine.</span><span class="sxs-lookup"><span data-stu-id="57c2a-415">The current sort order must be included in the paging links to keep the sort order while paging.</span></span>
+<span data-ttu-id="57c2a-414">`CurrentSort` fornisce la Razor pagina con l'ordinamento corrente.</span><span class="sxs-lookup"><span data-stu-id="57c2a-414">`CurrentSort` provides the Razor Page with the current sort order.</span></span> <span data-ttu-id="57c2a-415">L'ordinamento corrente deve essere incluso nei collegamenti di suddivisione in pagine per mantenere l'ordinamento nella suddivisione in pagine.</span><span class="sxs-lookup"><span data-stu-id="57c2a-415">The current sort order must be included in the paging links to keep the sort order while paging.</span></span>
 
-<span data-ttu-id="57c2a-416">`CurrentFilter` fornisce la :::no-loc(Razor)::: pagina con la stringa di filtro corrente.</span><span class="sxs-lookup"><span data-stu-id="57c2a-416">`CurrentFilter` provides the :::no-loc(Razor)::: Page with the current filter string.</span></span> <span data-ttu-id="57c2a-417">Il valore `CurrentFilter`:</span><span class="sxs-lookup"><span data-stu-id="57c2a-417">The `CurrentFilter` value:</span></span>
+<span data-ttu-id="57c2a-416">`CurrentFilter` fornisce la Razor pagina con la stringa di filtro corrente.</span><span class="sxs-lookup"><span data-stu-id="57c2a-416">`CurrentFilter` provides the Razor Page with the current filter string.</span></span> <span data-ttu-id="57c2a-417">Il valore `CurrentFilter`:</span><span class="sxs-lookup"><span data-stu-id="57c2a-417">The `CurrentFilter` value:</span></span>
 
 * <span data-ttu-id="57c2a-418">Deve essere incluso nei collegamenti di suddivisione in pagine per mantenere le impostazioni di filtro nella suddivisione in pagine.</span><span class="sxs-lookup"><span data-stu-id="57c2a-418">Must be included in the paging links in order to maintain the filter settings during paging.</span></span>
 * <span data-ttu-id="57c2a-419">Deve essere ripristinato nella casella di testo quando viene nuovamente visualizzata la pagina.</span><span class="sxs-lookup"><span data-stu-id="57c2a-419">Must be restored to the text box when the page is redisplayed.</span></span>
@@ -469,13 +469,13 @@ http://localhost:5000/Students?SearchString=an
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage3)]
 
-<span data-ttu-id="57c2a-425">Il metodo `PaginatedList.CreateAsync` converte la query degli studenti in una pagina singola di studenti in un tipo di raccolta che supporta la suddivisione in pagine.</span><span class="sxs-lookup"><span data-stu-id="57c2a-425">The `PaginatedList.CreateAsync` method converts the student query to a single page of students in a collection type that supports paging.</span></span> <span data-ttu-id="57c2a-426">Questa singola pagina di studenti viene passata alla :::no-loc(Razor)::: pagina.</span><span class="sxs-lookup"><span data-stu-id="57c2a-426">That single page of students is passed to the :::no-loc(Razor)::: Page.</span></span>
+<span data-ttu-id="57c2a-425">Il metodo `PaginatedList.CreateAsync` converte la query degli studenti in una pagina singola di studenti in un tipo di raccolta che supporta la suddivisione in pagine.</span><span class="sxs-lookup"><span data-stu-id="57c2a-425">The `PaginatedList.CreateAsync` method converts the student query to a single page of students in a collection type that supports paging.</span></span> <span data-ttu-id="57c2a-426">Questa singola pagina di studenti viene passata alla Razor pagina.</span><span class="sxs-lookup"><span data-stu-id="57c2a-426">That single page of students is passed to the Razor Page.</span></span>
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage4)]
 
 <span data-ttu-id="57c2a-427">I due punti interrogativi in `PaginatedList.CreateAsync` rappresentano l'[operatore null-coalescing](/dotnet/csharp/language-reference/operators/null-conditional-operator).</span><span class="sxs-lookup"><span data-stu-id="57c2a-427">The two question marks in `PaginatedList.CreateAsync` represent the [null-coalescing operator](/dotnet/csharp/language-reference/operators/null-conditional-operator).</span></span> <span data-ttu-id="57c2a-428">L'operatore null-coalescing definisce un valore predefinito per un tipo nullable.</span><span class="sxs-lookup"><span data-stu-id="57c2a-428">The null-coalescing operator defines a default value for a nullable type.</span></span> <span data-ttu-id="57c2a-429">L'espressione `(pageIndex ?? 1)` restituisce il valore di `pageIndex` se ha un valore.</span><span class="sxs-lookup"><span data-stu-id="57c2a-429">The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value.</span></span> <span data-ttu-id="57c2a-430">Se `pageIndex` non ha un valore, restituisce 1.</span><span class="sxs-lookup"><span data-stu-id="57c2a-430">If `pageIndex` doesn't have a value, return 1.</span></span>
 
-## <a name="add-paging-links-to-the-student-no-locrazor-page"></a><span data-ttu-id="57c2a-431">Aggiungere collegamenti di paging alla :::no-loc(Razor)::: pagina Student</span><span class="sxs-lookup"><span data-stu-id="57c2a-431">Add paging links to the student :::no-loc(Razor)::: Page</span></span>
+## <a name="add-paging-links-to-the-student-no-locrazor-page"></a><span data-ttu-id="57c2a-431">Aggiungere collegamenti di paging alla Razor pagina Student</span><span class="sxs-lookup"><span data-stu-id="57c2a-431">Add paging links to the student Razor Page</span></span>
 
 <span data-ttu-id="57c2a-432">Aggiornare il markup in *Students/Index.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="57c2a-432">Update the markup in *Students/Index.cshtml* .</span></span> <span data-ttu-id="57c2a-433">Le modifiche sono evidenziate:</span><span class="sxs-lookup"><span data-stu-id="57c2a-433">The changes are highlighted:</span></span>
 
@@ -521,7 +521,7 @@ http://localhost:5000/Students?SearchString=an
 
 ### <a name="update-the-about-page-model"></a><span data-ttu-id="57c2a-453">Aggiornare il modello di pagina About (Informazioni)</span><span class="sxs-lookup"><span data-stu-id="57c2a-453">Update the About page model</span></span>
 
-<span data-ttu-id="57c2a-454">I modelli Web in ASP.NET Core 2.2 non includono la pagina About (Informazioni).</span><span class="sxs-lookup"><span data-stu-id="57c2a-454">The web templates in ASP.NET Core 2.2 do not include the About page.</span></span> <span data-ttu-id="57c2a-455">Se si usa ASP.NET Core 2,2, creare la pagina informazioni su :::no-loc(Razor)::: .</span><span class="sxs-lookup"><span data-stu-id="57c2a-455">If you are using ASP.NET Core 2.2, create the About :::no-loc(Razor)::: Page.</span></span>
+<span data-ttu-id="57c2a-454">I modelli Web in ASP.NET Core 2.2 non includono la pagina About (Informazioni).</span><span class="sxs-lookup"><span data-stu-id="57c2a-454">The web templates in ASP.NET Core 2.2 do not include the About page.</span></span> <span data-ttu-id="57c2a-455">Se si usa ASP.NET Core 2,2, creare la pagina informazioni su Razor .</span><span class="sxs-lookup"><span data-stu-id="57c2a-455">If you are using ASP.NET Core 2.2, create the About Razor Page.</span></span>
 
 <span data-ttu-id="57c2a-456">Aggiornare il file *Pages/About.cshtml.cs* file con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="57c2a-456">Update the *Pages/About.cshtml.cs* file with the following code:</span></span>
 
@@ -529,7 +529,7 @@ http://localhost:5000/Students?SearchString=an
 
 <span data-ttu-id="57c2a-457">L'istruzione LINQ raggruppa le entità di studenti per data di registrazione, calcola il numero di entità in ogni gruppo e archivia i risultati in una raccolta di oggetti di modello della visualizzazione `EnrollmentDateGroup`.</span><span class="sxs-lookup"><span data-stu-id="57c2a-457">The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.</span></span>
 
-### <a name="modify-the-about-no-locrazor-page"></a><span data-ttu-id="57c2a-458">Modificare la pagina informazioni su :::no-loc(Razor):::</span><span class="sxs-lookup"><span data-stu-id="57c2a-458">Modify the About :::no-loc(Razor)::: Page</span></span>
+### <a name="modify-the-about-no-locrazor-page"></a><span data-ttu-id="57c2a-458">Modificare la pagina informazioni su Razor</span><span class="sxs-lookup"><span data-stu-id="57c2a-458">Modify the About Razor Page</span></span>
 
 <span data-ttu-id="57c2a-459">Sostituire il codice nel file *Pages/About.cshtml* con il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="57c2a-459">Replace the code in the *Pages/About.cshtml* file with the following code:</span></span>
 

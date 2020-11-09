@@ -1,23 +1,23 @@
 ---
 title: Introduzione all'autenticazione per le app a pagina singola in ASP.NET Core
 author: javiercn
-description: :::no-loc(Identity):::Da usare con un'app a singola pagina ospitata in un'app ASP.NET Core.
+description: IdentityDa usare con un'app a singola pagina ospitata in un'app ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/27/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authentication/identity/spa
 ms.openlocfilehash: 8acc34c88bf62b3da1b920acc7318c94435c100e
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -28,9 +28,9 @@ ms.locfileid: "93051980"
 ---
 # <a name="authentication-and-authorization-for-spas"></a><span data-ttu-id="3ae32-103">Autenticazione e autorizzazione per le ZPS</span><span class="sxs-lookup"><span data-stu-id="3ae32-103">Authentication and authorization for SPAs</span></span>
 
-<span data-ttu-id="3ae32-104">I modelli ASP.NET Core 3,1 e versioni successive offrono l'autenticazione in app a pagina singola (Spa) usando il supporto per l'autorizzazione dell'API.</span><span class="sxs-lookup"><span data-stu-id="3ae32-104">The ASP.NET Core 3.1 and later templates offer authentication in Single Page Apps (SPAs) using the support for API authorization.</span></span> <span data-ttu-id="3ae32-105">:::no-loc(ASP.NET Core Identity):::per l'autenticazione e l'archiviazione degli utenti è combinato con [ :::no-loc(Identity)::: Server](https://identityserver.io/) per l'implementazione di OpenID Connect.</span><span class="sxs-lookup"><span data-stu-id="3ae32-105">:::no-loc(ASP.NET Core Identity)::: for authenticating and storing users is combined with [:::no-loc(Identity):::Server](https://identityserver.io/) for implementing OpenID Connect.</span></span>
+<span data-ttu-id="3ae32-104">I modelli ASP.NET Core 3,1 e versioni successive offrono l'autenticazione in app a pagina singola (Spa) usando il supporto per l'autorizzazione dell'API.</span><span class="sxs-lookup"><span data-stu-id="3ae32-104">The ASP.NET Core 3.1 and later templates offer authentication in Single Page Apps (SPAs) using the support for API authorization.</span></span> <span data-ttu-id="3ae32-105">ASP.NET Core Identityper l'autenticazione e l'archiviazione degli utenti è combinato con [ Identity Server](https://identityserver.io/) per l'implementazione di OpenID Connect.</span><span class="sxs-lookup"><span data-stu-id="3ae32-105">ASP.NET Core Identity for authenticating and storing users is combined with [IdentityServer](https://identityserver.io/) for implementing OpenID Connect.</span></span>
 
-<span data-ttu-id="3ae32-106">Un parametro di autenticazione è stato aggiunto ai modelli di progetto **angolari** e **React** , che è simile al parametro Authentication nei modelli di progetto **applicazione Web** (MVC) e **applicazione Web** ( :::no-loc(Razor)::: pagine).</span><span class="sxs-lookup"><span data-stu-id="3ae32-106">An authentication parameter was added to the **Angular** and **React** project templates that is similar to the authentication parameter in the **Web Application (Model-View-Controller)** (MVC) and **Web Application** (:::no-loc(Razor)::: Pages) project templates.</span></span> <span data-ttu-id="3ae32-107">I valori dei parametri consentiti sono **None** e **individual** .</span><span class="sxs-lookup"><span data-stu-id="3ae32-107">The allowed parameter values are **None** and **Individual** .</span></span> <span data-ttu-id="3ae32-108">Il modello di progetto **React.js e Redux** non supporta il parametro Authentication al momento.</span><span class="sxs-lookup"><span data-stu-id="3ae32-108">The **React.js and Redux** project template doesn't support the authentication parameter at this time.</span></span>
+<span data-ttu-id="3ae32-106">Un parametro di autenticazione è stato aggiunto ai modelli di progetto **angolari** e **React** , che è simile al parametro Authentication nei modelli di progetto **applicazione Web** (MVC) e **applicazione Web** ( Razor pagine).</span><span class="sxs-lookup"><span data-stu-id="3ae32-106">An authentication parameter was added to the **Angular** and **React** project templates that is similar to the authentication parameter in the **Web Application (Model-View-Controller)** (MVC) and **Web Application** (Razor Pages) project templates.</span></span> <span data-ttu-id="3ae32-107">I valori dei parametri consentiti sono **None** e **individual** .</span><span class="sxs-lookup"><span data-stu-id="3ae32-107">The allowed parameter values are **None** and **Individual** .</span></span> <span data-ttu-id="3ae32-108">Il modello di progetto **React.js e Redux** non supporta il parametro Authentication al momento.</span><span class="sxs-lookup"><span data-stu-id="3ae32-108">The **React.js and Redux** project template doesn't support the authentication parameter at this time.</span></span>
 
 ## <a name="create-an-app-with-api-authorization-support"></a><span data-ttu-id="3ae32-109">Creare un'app con supporto per l'autorizzazione API</span><span class="sxs-lookup"><span data-stu-id="3ae32-109">Create an app with API authorization support</span></span>
 
@@ -56,33 +56,33 @@ dotnet new react -o <output_directory_name> -au Individual
 
 ### <a name="startup-class"></a><span data-ttu-id="3ae32-117">Classe di avvio</span><span class="sxs-lookup"><span data-stu-id="3ae32-117">Startup class</span></span>
 
-<span data-ttu-id="3ae32-118">Gli esempi di codice seguenti si basano su [Microsoft. AspNetCore. ApiAuthorization. :::no-loc(Identity)::: ](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.:::no-loc(Identity):::Server) Pacchetto NuGet del server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-118">The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.:::no-loc(Identity):::Server](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.:::no-loc(Identity):::Server) NuGet package.</span></span> <span data-ttu-id="3ae32-119">Gli esempi configurano l'autenticazione e l'autorizzazione dell'API usando i <xref:Microsoft.Extensions.DependencyInjection.:::no-loc(Identity):::ServerBuilderConfigurationExtensions.AddApiAuthorization%2A> <xref:Microsoft.AspNetCore.ApiAuthorization.:::no-loc(Identity):::Server.ApiResourceCollection.Add:::no-loc(Identity):::ServerJwt%2A> metodi di estensione e.</span><span class="sxs-lookup"><span data-stu-id="3ae32-119">The examples configure API authentication and authorization using the <xref:Microsoft.Extensions.DependencyInjection.:::no-loc(Identity):::ServerBuilderConfigurationExtensions.AddApiAuthorization%2A> and <xref:Microsoft.AspNetCore.ApiAuthorization.:::no-loc(Identity):::Server.ApiResourceCollection.Add:::no-loc(Identity):::ServerJwt%2A> extension methods.</span></span> <span data-ttu-id="3ae32-120">I progetti che usano i modelli di progetto REACT o unangolar SPA con autenticazione includono un riferimento a questo pacchetto.</span><span class="sxs-lookup"><span data-stu-id="3ae32-120">Projects using the React or Angular SPA project templates with authentication include a reference to this package.</span></span>
+<span data-ttu-id="3ae32-118">Gli esempi di codice seguenti si basano su [Microsoft. AspNetCore. ApiAuthorization. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) Pacchetto NuGet del server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-118">The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) NuGet package.</span></span> <span data-ttu-id="3ae32-119">Gli esempi configurano l'autenticazione e l'autorizzazione dell'API usando i <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> metodi di estensione e.</span><span class="sxs-lookup"><span data-stu-id="3ae32-119">The examples configure API authentication and authorization using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> and <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> extension methods.</span></span> <span data-ttu-id="3ae32-120">I progetti che usano i modelli di progetto REACT o unangolar SPA con autenticazione includono un riferimento a questo pacchetto.</span><span class="sxs-lookup"><span data-stu-id="3ae32-120">Projects using the React or Angular SPA project templates with authentication include a reference to this package.</span></span>
 
 <span data-ttu-id="3ae32-121">La `Startup` classe presenta le aggiunte seguenti:</span><span class="sxs-lookup"><span data-stu-id="3ae32-121">The `Startup` class has the following additions:</span></span>
 
 * <span data-ttu-id="3ae32-122">All'interno del `Startup.ConfigureServices` Metodo:</span><span class="sxs-lookup"><span data-stu-id="3ae32-122">Inside the `Startup.ConfigureServices` method:</span></span>
-  * <span data-ttu-id="3ae32-123">:::no-loc(Identity)::: con l'interfaccia utente predefinita:</span><span class="sxs-lookup"><span data-stu-id="3ae32-123">:::no-loc(Identity)::: with the default UI:</span></span>
+  * <span data-ttu-id="3ae32-123">Identity con l'interfaccia utente predefinita:</span><span class="sxs-lookup"><span data-stu-id="3ae32-123">Identity with the default UI:</span></span>
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
-    services.AddDefault:::no-loc(Identity):::<ApplicationUser>()
+    services.AddDefaultIdentity<ApplicationUser>()
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * <span data-ttu-id="3ae32-124">:::no-loc(Identity):::Server con un `AddApiAuthorization` metodo helper aggiuntivo che configura alcune convenzioni ASP.NET Core predefinite sul :::no-loc(Identity)::: Server:</span><span class="sxs-lookup"><span data-stu-id="3ae32-124">:::no-loc(Identity):::Server with an additional `AddApiAuthorization` helper method that sets up some default ASP.NET Core conventions on top of :::no-loc(Identity):::Server:</span></span>
+  * <span data-ttu-id="3ae32-124">IdentityServer con un `AddApiAuthorization` metodo helper aggiuntivo che configura alcune convenzioni ASP.NET Core predefinite sul Identity Server:</span><span class="sxs-lookup"><span data-stu-id="3ae32-124">IdentityServer with an additional `AddApiAuthorization` helper method that sets up some default ASP.NET Core conventions on top of IdentityServer:</span></span>
 
     ```csharp
-    services.Add:::no-loc(Identity):::Server()
+    services.AddIdentityServer()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * <span data-ttu-id="3ae32-125">Autenticazione con un `Add:::no-loc(Identity):::ServerJwt` metodo helper aggiuntivo che configura l'app per convalidare i token JWT prodotti dal :::no-loc(Identity)::: Server:</span><span class="sxs-lookup"><span data-stu-id="3ae32-125">Authentication with an additional `Add:::no-loc(Identity):::ServerJwt` helper method that configures the app to validate JWT tokens produced by :::no-loc(Identity):::Server:</span></span>
+  * <span data-ttu-id="3ae32-125">Autenticazione con un `AddIdentityServerJwt` metodo helper aggiuntivo che configura l'app per convalidare i token JWT prodotti dal Identity Server:</span><span class="sxs-lookup"><span data-stu-id="3ae32-125">Authentication with an additional `AddIdentityServerJwt` helper method that configures the app to validate JWT tokens produced by IdentityServer:</span></span>
 
     ```csharp
     services.AddAuthentication()
-        .Add:::no-loc(Identity):::ServerJwt();
+        .AddIdentityServerJwt();
     ```
 
 * <span data-ttu-id="3ae32-126">All'interno del `Startup.Configure` Metodo:</span><span class="sxs-lookup"><span data-stu-id="3ae32-126">Inside the `Startup.Configure` method:</span></span>
@@ -92,43 +92,43 @@ dotnet new react -o <output_directory_name> -au Individual
     app.UseAuthentication();
     ```
 
-  * <span data-ttu-id="3ae32-128">Il :::no-loc(Identity)::: middleware server che espone gli endpoint di OpenID Connect:</span><span class="sxs-lookup"><span data-stu-id="3ae32-128">The :::no-loc(Identity):::Server middleware that exposes the OpenID Connect endpoints:</span></span>
+  * <span data-ttu-id="3ae32-128">Il Identity middleware server che espone gli endpoint di OpenID Connect:</span><span class="sxs-lookup"><span data-stu-id="3ae32-128">The IdentityServer middleware that exposes the OpenID Connect endpoints:</span></span>
 
     ```csharp
-    app.Use:::no-loc(Identity):::Server();
+    app.UseIdentityServer();
     ```
 
 ### <a name="addapiauthorization"></a><span data-ttu-id="3ae32-129">AddApiAuthorization</span><span class="sxs-lookup"><span data-stu-id="3ae32-129">AddApiAuthorization</span></span>
 
-<span data-ttu-id="3ae32-130">Questo metodo helper configura il :::no-loc(Identity)::: Server per l'uso della configurazione supportata.</span><span class="sxs-lookup"><span data-stu-id="3ae32-130">This helper method configures :::no-loc(Identity):::Server to use our supported configuration.</span></span> <span data-ttu-id="3ae32-131">:::no-loc(Identity):::Server è un Framework potente ed estendibile per la gestione dei problemi di sicurezza delle app.</span><span class="sxs-lookup"><span data-stu-id="3ae32-131">:::no-loc(Identity):::Server is a powerful and extensible framework for handling app security concerns.</span></span> <span data-ttu-id="3ae32-132">Allo stesso tempo, che espone complessità superflua per gli scenari più comuni.</span><span class="sxs-lookup"><span data-stu-id="3ae32-132">At the same time, that exposes unnecessary complexity for the most common scenarios.</span></span> <span data-ttu-id="3ae32-133">Di conseguenza, viene fornito un set di convenzioni e opzioni di configurazione che sono considerati un valido punto di partenza.</span><span class="sxs-lookup"><span data-stu-id="3ae32-133">Consequently, a set of conventions and configuration options is provided to you that are considered a good starting point.</span></span> <span data-ttu-id="3ae32-134">Una volta che le esigenze di autenticazione cambiano, l'intera potenza del :::no-loc(Identity)::: Server è ancora disponibile per personalizzare l'autenticazione in base alle esigenze.</span><span class="sxs-lookup"><span data-stu-id="3ae32-134">Once your authentication needs change, the full power of :::no-loc(Identity):::Server is still available to customize authentication to suit your needs.</span></span>
+<span data-ttu-id="3ae32-130">Questo metodo helper configura il Identity Server per l'uso della configurazione supportata.</span><span class="sxs-lookup"><span data-stu-id="3ae32-130">This helper method configures IdentityServer to use our supported configuration.</span></span> <span data-ttu-id="3ae32-131">IdentityServer è un Framework potente ed estendibile per la gestione dei problemi di sicurezza delle app.</span><span class="sxs-lookup"><span data-stu-id="3ae32-131">IdentityServer is a powerful and extensible framework for handling app security concerns.</span></span> <span data-ttu-id="3ae32-132">Allo stesso tempo, che espone complessità superflua per gli scenari più comuni.</span><span class="sxs-lookup"><span data-stu-id="3ae32-132">At the same time, that exposes unnecessary complexity for the most common scenarios.</span></span> <span data-ttu-id="3ae32-133">Di conseguenza, viene fornito un set di convenzioni e opzioni di configurazione che sono considerati un valido punto di partenza.</span><span class="sxs-lookup"><span data-stu-id="3ae32-133">Consequently, a set of conventions and configuration options is provided to you that are considered a good starting point.</span></span> <span data-ttu-id="3ae32-134">Una volta che le esigenze di autenticazione cambiano, l'intera potenza del Identity Server è ancora disponibile per personalizzare l'autenticazione in base alle esigenze.</span><span class="sxs-lookup"><span data-stu-id="3ae32-134">Once your authentication needs change, the full power of IdentityServer is still available to customize authentication to suit your needs.</span></span>
 
-### <a name="addno-locidentityserverjwt"></a><span data-ttu-id="3ae32-135">Aggiungi :::no-loc(Identity)::: ServerJwt</span><span class="sxs-lookup"><span data-stu-id="3ae32-135">Add:::no-loc(Identity):::ServerJwt</span></span>
+### <a name="addno-locidentityserverjwt"></a><span data-ttu-id="3ae32-135">Aggiungi Identity ServerJwt</span><span class="sxs-lookup"><span data-stu-id="3ae32-135">AddIdentityServerJwt</span></span>
 
-<span data-ttu-id="3ae32-136">Questo metodo helper configura uno schema di criteri per l'app come gestore di autenticazione predefinito.</span><span class="sxs-lookup"><span data-stu-id="3ae32-136">This helper method configures a policy scheme for the app as the default authentication handler.</span></span> <span data-ttu-id="3ae32-137">Il criterio è configurato in modo da consentire la :::no-loc(Identity)::: gestione di tutte le richieste indirizzate a qualsiasi sottopercorso nello :::no-loc(Identity)::: spazio URL "/ :::no-loc(Identity)::: ".</span><span class="sxs-lookup"><span data-stu-id="3ae32-137">The policy is configured to let :::no-loc(Identity)::: handle all requests routed to any subpath in the :::no-loc(Identity)::: URL space "/:::no-loc(Identity):::".</span></span> <span data-ttu-id="3ae32-138">`JwtBearerHandler`Gestisce tutte le altre richieste.</span><span class="sxs-lookup"><span data-stu-id="3ae32-138">The `JwtBearerHandler` handles all other requests.</span></span> <span data-ttu-id="3ae32-139">Questo metodo registra inoltre una `<<ApplicationName>>API` risorsa API con :::no-loc(Identity)::: un server con un ambito predefinito `<<ApplicationName>>API` e configura il middleware del token di porta JWT per convalidare i token emessi dal :::no-loc(Identity)::: Server per l'app.</span><span class="sxs-lookup"><span data-stu-id="3ae32-139">Additionally, this method registers an `<<ApplicationName>>API` API resource with :::no-loc(Identity):::Server with a default scope of `<<ApplicationName>>API` and configures the JWT Bearer token middleware to validate tokens issued by :::no-loc(Identity):::Server for the app.</span></span>
+<span data-ttu-id="3ae32-136">Questo metodo helper configura uno schema di criteri per l'app come gestore di autenticazione predefinito.</span><span class="sxs-lookup"><span data-stu-id="3ae32-136">This helper method configures a policy scheme for the app as the default authentication handler.</span></span> <span data-ttu-id="3ae32-137">Il criterio è configurato in modo da consentire la Identity gestione di tutte le richieste indirizzate a qualsiasi sottopercorso nello Identity spazio URL "/ Identity ".</span><span class="sxs-lookup"><span data-stu-id="3ae32-137">The policy is configured to let Identity handle all requests routed to any subpath in the Identity URL space "/Identity".</span></span> <span data-ttu-id="3ae32-138">`JwtBearerHandler`Gestisce tutte le altre richieste.</span><span class="sxs-lookup"><span data-stu-id="3ae32-138">The `JwtBearerHandler` handles all other requests.</span></span> <span data-ttu-id="3ae32-139">Questo metodo registra inoltre una `<<ApplicationName>>API` risorsa API con Identity un server con un ambito predefinito `<<ApplicationName>>API` e configura il middleware del token di porta JWT per convalidare i token emessi dal Identity Server per l'app.</span><span class="sxs-lookup"><span data-stu-id="3ae32-139">Additionally, this method registers an `<<ApplicationName>>API` API resource with IdentityServer with a default scope of `<<ApplicationName>>API` and configures the JWT Bearer token middleware to validate tokens issued by IdentityServer for the app.</span></span>
 
 ### <a name="weatherforecastcontroller"></a><span data-ttu-id="3ae32-140">WeatherForecastController</span><span class="sxs-lookup"><span data-stu-id="3ae32-140">WeatherForecastController</span></span>
 
-<span data-ttu-id="3ae32-141">Nel file *Controllers\WeatherForecastController.cs* , si noti l' `[Authorize]` attributo applicato alla classe che indica che l'utente deve essere autorizzato in base ai criteri predefiniti per accedere alla risorsa.</span><span class="sxs-lookup"><span data-stu-id="3ae32-141">In the *Controllers\WeatherForecastController.cs* file, notice the `[Authorize]` attribute applied to the class that indicates that the user needs to be authorized based on the default policy to access the resource.</span></span> <span data-ttu-id="3ae32-142">I criteri di autorizzazione predefiniti vengono configurati per l'utilizzo dello schema di autenticazione predefinito, configurato da `Add:::no-loc(Identity):::ServerJwt` allo schema dei criteri menzionato in precedenza, rendendo `JwtBearerHandler` configurato da tale metodo helper il gestore predefinito per le richieste all'app.</span><span class="sxs-lookup"><span data-stu-id="3ae32-142">The default authorization policy happens to be configured to use the default authentication scheme, which is set up by `Add:::no-loc(Identity):::ServerJwt` to the policy scheme that was mentioned above, making the `JwtBearerHandler` configured by such helper method the default handler for requests to the app.</span></span>
+<span data-ttu-id="3ae32-141">Nel file *Controllers\WeatherForecastController.cs* , si noti l' `[Authorize]` attributo applicato alla classe che indica che l'utente deve essere autorizzato in base ai criteri predefiniti per accedere alla risorsa.</span><span class="sxs-lookup"><span data-stu-id="3ae32-141">In the *Controllers\WeatherForecastController.cs* file, notice the `[Authorize]` attribute applied to the class that indicates that the user needs to be authorized based on the default policy to access the resource.</span></span> <span data-ttu-id="3ae32-142">I criteri di autorizzazione predefiniti vengono configurati per l'utilizzo dello schema di autenticazione predefinito, configurato da `AddIdentityServerJwt` allo schema dei criteri menzionato in precedenza, rendendo `JwtBearerHandler` configurato da tale metodo helper il gestore predefinito per le richieste all'app.</span><span class="sxs-lookup"><span data-stu-id="3ae32-142">The default authorization policy happens to be configured to use the default authentication scheme, which is set up by `AddIdentityServerJwt` to the policy scheme that was mentioned above, making the `JwtBearerHandler` configured by such helper method the default handler for requests to the app.</span></span>
 
 ### <a name="applicationdbcontext"></a><span data-ttu-id="3ae32-143">ApplicationDbContext</span><span class="sxs-lookup"><span data-stu-id="3ae32-143">ApplicationDbContext</span></span>
 
-<span data-ttu-id="3ae32-144">Nel file *Data\ApplicationDbContext.cs* si noti che lo stesso `DbContext` viene usato in :::no-loc(Identity)::: con l'eccezione che estende `ApiAuthorizationDbContext` (una classe più derivata da `:::no-loc(Identity):::DbContext` ) per includere lo schema per il :::no-loc(Identity)::: Server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-144">In the *Data\ApplicationDbContext.cs* file, notice the same `DbContext` is used in :::no-loc(Identity)::: with the exception that it extends `ApiAuthorizationDbContext` (a more derived class from `:::no-loc(Identity):::DbContext`) to include the schema for :::no-loc(Identity):::Server.</span></span>
+<span data-ttu-id="3ae32-144">Nel file *Data\ApplicationDbContext.cs* si noti che lo stesso `DbContext` viene usato in Identity con l'eccezione che estende `ApiAuthorizationDbContext` (una classe più derivata da `IdentityDbContext` ) per includere lo schema per il Identity Server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-144">In the *Data\ApplicationDbContext.cs* file, notice the same `DbContext` is used in Identity with the exception that it extends `ApiAuthorizationDbContext` (a more derived class from `IdentityDbContext`) to include the schema for IdentityServer.</span></span>
 
-<span data-ttu-id="3ae32-145">Per ottenere il controllo completo dello schema del database, ereditare da una delle :::no-loc(Identity)::: `DbContext` classi disponibili e configurare il contesto per includere lo :::no-loc(Identity)::: schema chiamando `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` sul `OnModelCreating` metodo.</span><span class="sxs-lookup"><span data-stu-id="3ae32-145">To gain full control of the database schema, inherit from one of the available :::no-loc(Identity)::: `DbContext` classes and configure the context to include the :::no-loc(Identity)::: schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` on the `OnModelCreating` method.</span></span>
+<span data-ttu-id="3ae32-145">Per ottenere il controllo completo dello schema del database, ereditare da una delle Identity `DbContext` classi disponibili e configurare il contesto per includere lo Identity schema chiamando `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` sul `OnModelCreating` metodo.</span><span class="sxs-lookup"><span data-stu-id="3ae32-145">To gain full control of the database schema, inherit from one of the available Identity `DbContext` classes and configure the context to include the Identity schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` on the `OnModelCreating` method.</span></span>
 
 ### <a name="oidcconfigurationcontroller"></a><span data-ttu-id="3ae32-146">OidcConfigurationController</span><span class="sxs-lookup"><span data-stu-id="3ae32-146">OidcConfigurationController</span></span>
 
 <span data-ttu-id="3ae32-147">Nel file *Controllers\OidcConfigurationController.cs* , si noti l'endpoint di cui è stato effettuato il provisioning per gestire i parametri di OIDC che il client deve usare.</span><span class="sxs-lookup"><span data-stu-id="3ae32-147">In the *Controllers\OidcConfigurationController.cs* file, notice the endpoint that's provisioned to serve the OIDC parameters that the client needs to use.</span></span>
 
-### :::no-loc(appsettings.json):::
+### appsettings.json
 
-<span data-ttu-id="3ae32-148">Nel *:::no-loc(appsettings.json):::* file della radice del progetto è presente una nuova `:::no-loc(Identity):::Server` sezione che descrive l'elenco dei client configurati.</span><span class="sxs-lookup"><span data-stu-id="3ae32-148">In the *:::no-loc(appsettings.json):::* file of the project root, there's a new `:::no-loc(Identity):::Server` section that describes the list of configured clients.</span></span> <span data-ttu-id="3ae32-149">Nell'esempio seguente è presente un singolo client.</span><span class="sxs-lookup"><span data-stu-id="3ae32-149">In the following example, there's a single client.</span></span> <span data-ttu-id="3ae32-150">Il nome del client corrisponde al nome dell'app e viene mappato per convenzione al `ClientId` parametro OAuth.</span><span class="sxs-lookup"><span data-stu-id="3ae32-150">The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter.</span></span> <span data-ttu-id="3ae32-151">Il profilo indica il tipo di app da configurare.</span><span class="sxs-lookup"><span data-stu-id="3ae32-151">The profile indicates the app type being configured.</span></span> <span data-ttu-id="3ae32-152">Viene usato internamente per guidare le convenzioni che semplificano il processo di configurazione per il server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-152">It's used internally to drive conventions that simplify the configuration process for the server.</span></span> <span data-ttu-id="3ae32-153">Sono disponibili diversi profili, come illustrato nella sezione [profili applicazione](#application-profiles) .</span><span class="sxs-lookup"><span data-stu-id="3ae32-153">There are several profiles available, as explained in the [Application profiles](#application-profiles) section.</span></span>
+<span data-ttu-id="3ae32-148">Nel *appsettings.json* file della radice del progetto è presente una nuova `IdentityServer` sezione che descrive l'elenco dei client configurati.</span><span class="sxs-lookup"><span data-stu-id="3ae32-148">In the *appsettings.json* file of the project root, there's a new `IdentityServer` section that describes the list of configured clients.</span></span> <span data-ttu-id="3ae32-149">Nell'esempio seguente è presente un singolo client.</span><span class="sxs-lookup"><span data-stu-id="3ae32-149">In the following example, there's a single client.</span></span> <span data-ttu-id="3ae32-150">Il nome del client corrisponde al nome dell'app e viene mappato per convenzione al `ClientId` parametro OAuth.</span><span class="sxs-lookup"><span data-stu-id="3ae32-150">The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter.</span></span> <span data-ttu-id="3ae32-151">Il profilo indica il tipo di app da configurare.</span><span class="sxs-lookup"><span data-stu-id="3ae32-151">The profile indicates the app type being configured.</span></span> <span data-ttu-id="3ae32-152">Viene usato internamente per guidare le convenzioni che semplificano il processo di configurazione per il server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-152">It's used internally to drive conventions that simplify the configuration process for the server.</span></span> <span data-ttu-id="3ae32-153">Sono disponibili diversi profili, come illustrato nella sezione [profili applicazione](#application-profiles) .</span><span class="sxs-lookup"><span data-stu-id="3ae32-153">There are several profiles available, as explained in the [Application profiles](#application-profiles) section.</span></span>
 
 ```json
-":::no-loc(Identity):::Server": {
+"IdentityServer": {
   "Clients": {
     "angularindividualpreview3final": {
-      "Profile": ":::no-loc(Identity):::ServerSPA"
+      "Profile": "IdentityServerSPA"
     }
   }
 }
@@ -136,10 +136,10 @@ dotnet new react -o <output_directory_name> -au Individual
 
 ### <a name="appsettingsdevelopmentjson"></a><span data-ttu-id="3ae32-154">appsettings.Development.js</span><span class="sxs-lookup"><span data-stu-id="3ae32-154">appsettings.Development.json</span></span>
 
-<span data-ttu-id="3ae32-155">Nella *appsettings.Development.jssul* file della radice del progetto è presente una `:::no-loc(Identity):::Server` sezione che descrive la chiave usata per firmare i token.</span><span class="sxs-lookup"><span data-stu-id="3ae32-155">In the *appsettings.Development.json* file of the project root, there's an `:::no-loc(Identity):::Server` section that describes the key used to sign tokens.</span></span> <span data-ttu-id="3ae32-156">Quando si esegue la distribuzione nell'ambiente di produzione, è necessario eseguire il provisioning di una chiave e distribuirla insieme all'app, come illustrato nella sezione [Deploy to Production](#deploy-to-production) .</span><span class="sxs-lookup"><span data-stu-id="3ae32-156">When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section.</span></span>
+<span data-ttu-id="3ae32-155">Nella *appsettings.Development.jssul* file della radice del progetto è presente una `IdentityServer` sezione che descrive la chiave usata per firmare i token.</span><span class="sxs-lookup"><span data-stu-id="3ae32-155">In the *appsettings.Development.json* file of the project root, there's an `IdentityServer` section that describes the key used to sign tokens.</span></span> <span data-ttu-id="3ae32-156">Quando si esegue la distribuzione nell'ambiente di produzione, è necessario eseguire il provisioning di una chiave e distribuirla insieme all'app, come illustrato nella sezione [Deploy to Production](#deploy-to-production) .</span><span class="sxs-lookup"><span data-stu-id="3ae32-156">When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section.</span></span>
 
 ```json
-":::no-loc(Identity):::Server": {
+"IdentityServer": {
   "Key": {
     "Type": "Development"
   }
@@ -186,23 +186,23 @@ dotnet new react -o <output_directory_name> -au Individual
 
 ```csharp
 services.AddAuthentication()
-    .Add:::no-loc(Identity):::ServerJwt();
+    .AddIdentityServerJwt();
 
 services.Configure<JwtBearerOptions>(
-    :::no-loc(Identity):::ServerJwtConstants.:::no-loc(Identity):::ServerJwtBearerScheme,
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
     options =>
     {
         ...
     });
 ```
 
-<span data-ttu-id="3ae32-188">Il gestore JWT dell'API genera eventi che consentono di controllare il processo di autenticazione tramite `JwtBearerEvents` .</span><span class="sxs-lookup"><span data-stu-id="3ae32-188">The API's JWT handler raises events that enable control over the authentication process using `JwtBearerEvents`.</span></span> <span data-ttu-id="3ae32-189">Per fornire il supporto per l'autorizzazione dell'API, `Add:::no-loc(Identity):::ServerJwt` registra i relativi gestori eventi.</span><span class="sxs-lookup"><span data-stu-id="3ae32-189">To provide support for API authorization, `Add:::no-loc(Identity):::ServerJwt` registers its own event handlers.</span></span>
+<span data-ttu-id="3ae32-188">Il gestore JWT dell'API genera eventi che consentono di controllare il processo di autenticazione tramite `JwtBearerEvents` .</span><span class="sxs-lookup"><span data-stu-id="3ae32-188">The API's JWT handler raises events that enable control over the authentication process using `JwtBearerEvents`.</span></span> <span data-ttu-id="3ae32-189">Per fornire il supporto per l'autorizzazione dell'API, `AddIdentityServerJwt` registra i relativi gestori eventi.</span><span class="sxs-lookup"><span data-stu-id="3ae32-189">To provide support for API authorization, `AddIdentityServerJwt` registers its own event handlers.</span></span>
 
 <span data-ttu-id="3ae32-190">Per personalizzare la gestione di un evento, eseguire il wrapping del gestore eventi esistente con logica aggiuntiva, se necessario.</span><span class="sxs-lookup"><span data-stu-id="3ae32-190">To customize the handling of an event, wrap the existing event handler with additional logic as required.</span></span> <span data-ttu-id="3ae32-191">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="3ae32-191">For example:</span></span>
 
 ```csharp
 services.Configure<JwtBearerOptions>(
-    :::no-loc(Identity):::ServerJwtConstants.:::no-loc(Identity):::ServerJwtBearerScheme,
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
     options =>
     {
         var onTokenValidated = options.Events.OnTokenValidated;       
@@ -277,7 +277,7 @@ async populateWeatherData() {
 
 <span data-ttu-id="3ae32-215">Per distribuire l'app nell'ambiente di produzione, è necessario eseguire il provisioning delle risorse seguenti:</span><span class="sxs-lookup"><span data-stu-id="3ae32-215">To deploy the app to production, the following resources need to be provisioned:</span></span>
 
-* <span data-ttu-id="3ae32-216">Un database in cui archiviare gli :::no-loc(Identity)::: account utente e le :::no-loc(Identity)::: concessioni del server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-216">A database to store the :::no-loc(Identity)::: user accounts and the :::no-loc(Identity):::Server grants.</span></span>
+* <span data-ttu-id="3ae32-216">Un database in cui archiviare gli Identity account utente e le Identity concessioni del server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-216">A database to store the Identity user accounts and the IdentityServer grants.</span></span>
 * <span data-ttu-id="3ae32-217">Un certificato di produzione da usare per firmare i token.</span><span class="sxs-lookup"><span data-stu-id="3ae32-217">A production certificate to use for signing tokens.</span></span>
   * <span data-ttu-id="3ae32-218">Non sono previsti requisiti specifici per il certificato. può essere un certificato autofirmato o un certificato sottoposti a provisioning tramite un'autorità di certificazione.</span><span class="sxs-lookup"><span data-stu-id="3ae32-218">There are no specific requirements for this certificate; it can be a self-signed certificate or a certificate provisioned through a CA authority.</span></span>
   * <span data-ttu-id="3ae32-219">Può essere generato tramite strumenti standard come PowerShell o OpenSSL.</span><span class="sxs-lookup"><span data-stu-id="3ae32-219">It can be generated through standard tools like PowerShell or OpenSSL.</span></span>
@@ -285,10 +285,10 @@ async populateWeatherData() {
 
 ### <a name="example-deploy-to-a-non-azure-web-hosting-provider"></a><span data-ttu-id="3ae32-221">Esempio: eseguire la distribuzione in un provider di hosting Web non di Azure</span><span class="sxs-lookup"><span data-stu-id="3ae32-221">Example: Deploy to a non-Azure web hosting provider</span></span>
 
-<span data-ttu-id="3ae32-222">Nel pannello hosting Web creare o caricare il certificato.</span><span class="sxs-lookup"><span data-stu-id="3ae32-222">In your web hosting panel, create or load your certificate.</span></span> <span data-ttu-id="3ae32-223">Quindi, nel file dell'app *:::no-loc(appsettings.json):::* , modificare la `:::no-loc(Identity):::Server` sezione in modo da includere i dettagli della chiave.</span><span class="sxs-lookup"><span data-stu-id="3ae32-223">Then in the app's *:::no-loc(appsettings.json):::* file, modify the `:::no-loc(Identity):::Server` section to include the key details.</span></span> <span data-ttu-id="3ae32-224">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="3ae32-224">For example:</span></span>
+<span data-ttu-id="3ae32-222">Nel pannello hosting Web creare o caricare il certificato.</span><span class="sxs-lookup"><span data-stu-id="3ae32-222">In your web hosting panel, create or load your certificate.</span></span> <span data-ttu-id="3ae32-223">Quindi, nel file dell'app *appsettings.json* , modificare la `IdentityServer` sezione in modo da includere i dettagli della chiave.</span><span class="sxs-lookup"><span data-stu-id="3ae32-223">Then in the app's *appsettings.json* file, modify the `IdentityServer` section to include the key details.</span></span> <span data-ttu-id="3ae32-224">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="3ae32-224">For example:</span></span>
 
 ```json
-":::no-loc(Identity):::Server": {
+"IdentityServer": {
   "Key": {
     "Type": "Store",
     "StoreName": "WebHosting",
@@ -308,10 +308,10 @@ async populateWeatherData() {
 
 <span data-ttu-id="3ae32-231">Questa sezione descrive come distribuire l'app nel servizio app Azure usando un certificato archiviato nell'archivio certificati.</span><span class="sxs-lookup"><span data-stu-id="3ae32-231">This section describes deploying the app to Azure App Service using a certificate stored in the certificate store.</span></span> <span data-ttu-id="3ae32-232">Per modificare l'app per caricare un certificato dall'archivio certificati, è necessario un piano di servizio di livello standard o superiore quando si configura l'app nel portale di Azure in un passaggio successivo.</span><span class="sxs-lookup"><span data-stu-id="3ae32-232">To modify the app to load a certificate from the certificate store, a Standard tier service plan or better is required when you configure the app in the Azure portal in a later step.</span></span>
 
-<span data-ttu-id="3ae32-233">Nel file dell'app *:::no-loc(appsettings.json):::* modificare la `:::no-loc(Identity):::Server` sezione in modo da includere i dettagli della chiave:</span><span class="sxs-lookup"><span data-stu-id="3ae32-233">In the app's *:::no-loc(appsettings.json):::* file, modify the `:::no-loc(Identity):::Server` section to include the key details:</span></span>
+<span data-ttu-id="3ae32-233">Nel file dell'app *appsettings.json* modificare la `IdentityServer` sezione in modo da includere i dettagli della chiave:</span><span class="sxs-lookup"><span data-stu-id="3ae32-233">In the app's *appsettings.json* file, modify the `IdentityServer` section to include the key details:</span></span>
 
 ```json
-":::no-loc(Identity):::Server": {
+"IdentityServer": {
   "Key": {
     "Type": "Store",
     "StoreName": "My",
@@ -335,25 +335,25 @@ async populateWeatherData() {
 
 ## <a name="other-configuration-options"></a><span data-ttu-id="3ae32-244">Altre opzioni di configurazione</span><span class="sxs-lookup"><span data-stu-id="3ae32-244">Other configuration options</span></span>
 
-<span data-ttu-id="3ae32-245">Il supporto per l'autorizzazione API si basa su :::no-loc(Identity)::: server con un set di convenzioni, valori predefiniti e miglioramenti per semplificare l'esperienza per le Spa.</span><span class="sxs-lookup"><span data-stu-id="3ae32-245">The support for API authorization builds on top of :::no-loc(Identity):::Server with a set of conventions, default values, and enhancements to simplify the experience for SPAs.</span></span> <span data-ttu-id="3ae32-246">Inutile dire che la piena potenza del :::no-loc(Identity)::: Server è disponibile dietro le quinte se le integrazioni ASP.NET Core non coprono lo scenario.</span><span class="sxs-lookup"><span data-stu-id="3ae32-246">Needless to say, the full power of :::no-loc(Identity):::Server is available behind the scenes if the ASP.NET Core integrations don't cover your scenario.</span></span> <span data-ttu-id="3ae32-247">Il supporto ASP.NET Core si concentra sulle app "First-Party", in cui tutte le app vengono create e distribuite dall'organizzazione.</span><span class="sxs-lookup"><span data-stu-id="3ae32-247">The ASP.NET Core support is focused on "first-party" apps, where all the apps are created and deployed by our organization.</span></span> <span data-ttu-id="3ae32-248">Di conseguenza, il supporto non viene offerto per elementi come il consenso o la Federazione.</span><span class="sxs-lookup"><span data-stu-id="3ae32-248">As such, support isn't offered for things like consent or federation.</span></span> <span data-ttu-id="3ae32-249">Per questi scenari, usare :::no-loc(Identity)::: Server e seguire la relativa documentazione.</span><span class="sxs-lookup"><span data-stu-id="3ae32-249">For those scenarios, use :::no-loc(Identity):::Server and follow their documentation.</span></span>
+<span data-ttu-id="3ae32-245">Il supporto per l'autorizzazione API si basa su Identity server con un set di convenzioni, valori predefiniti e miglioramenti per semplificare l'esperienza per le Spa.</span><span class="sxs-lookup"><span data-stu-id="3ae32-245">The support for API authorization builds on top of IdentityServer with a set of conventions, default values, and enhancements to simplify the experience for SPAs.</span></span> <span data-ttu-id="3ae32-246">Inutile dire che la piena potenza del Identity Server è disponibile dietro le quinte se le integrazioni ASP.NET Core non coprono lo scenario.</span><span class="sxs-lookup"><span data-stu-id="3ae32-246">Needless to say, the full power of IdentityServer is available behind the scenes if the ASP.NET Core integrations don't cover your scenario.</span></span> <span data-ttu-id="3ae32-247">Il supporto ASP.NET Core si concentra sulle app "First-Party", in cui tutte le app vengono create e distribuite dall'organizzazione.</span><span class="sxs-lookup"><span data-stu-id="3ae32-247">The ASP.NET Core support is focused on "first-party" apps, where all the apps are created and deployed by our organization.</span></span> <span data-ttu-id="3ae32-248">Di conseguenza, il supporto non viene offerto per elementi come il consenso o la Federazione.</span><span class="sxs-lookup"><span data-stu-id="3ae32-248">As such, support isn't offered for things like consent or federation.</span></span> <span data-ttu-id="3ae32-249">Per questi scenari, usare Identity Server e seguire la relativa documentazione.</span><span class="sxs-lookup"><span data-stu-id="3ae32-249">For those scenarios, use IdentityServer and follow their documentation.</span></span>
 
 ### <a name="application-profiles"></a><span data-ttu-id="3ae32-250">Profili applicazione</span><span class="sxs-lookup"><span data-stu-id="3ae32-250">Application profiles</span></span>
 
 <span data-ttu-id="3ae32-251">I profili dell'applicazione sono configurazioni predefinite per le app che definiscono ulteriormente i parametri.</span><span class="sxs-lookup"><span data-stu-id="3ae32-251">Application profiles are predefined configurations for apps that further define their parameters.</span></span> <span data-ttu-id="3ae32-252">A questo punto sono supportati i profili seguenti:</span><span class="sxs-lookup"><span data-stu-id="3ae32-252">At this time, the following profiles are supported:</span></span>
 
-* <span data-ttu-id="3ae32-253">`:::no-loc(Identity):::ServerSPA`: Rappresenta una SPA ospitata insieme al :::no-loc(Identity)::: Server come singola unità.</span><span class="sxs-lookup"><span data-stu-id="3ae32-253">`:::no-loc(Identity):::ServerSPA`: Represents a SPA hosted alongside :::no-loc(Identity):::Server as a single unit.</span></span>
+* <span data-ttu-id="3ae32-253">`IdentityServerSPA`: Rappresenta una SPA ospitata insieme al Identity Server come singola unità.</span><span class="sxs-lookup"><span data-stu-id="3ae32-253">`IdentityServerSPA`: Represents a SPA hosted alongside IdentityServer as a single unit.</span></span>
   * <span data-ttu-id="3ae32-254">Il `redirect_uri` valore predefinito è `/authentication/login-callback` .</span><span class="sxs-lookup"><span data-stu-id="3ae32-254">The `redirect_uri` defaults to `/authentication/login-callback`.</span></span>
   * <span data-ttu-id="3ae32-255">Il `post_logout_redirect_uri` valore predefinito è `/authentication/logout-callback` .</span><span class="sxs-lookup"><span data-stu-id="3ae32-255">The `post_logout_redirect_uri` defaults to `/authentication/logout-callback`.</span></span>
   * <span data-ttu-id="3ae32-256">Il set di ambiti include `openid` , `profile` e ogni ambito definito per le API nell'app.</span><span class="sxs-lookup"><span data-stu-id="3ae32-256">The set of scopes includes the `openid`, `profile`, and every scope defined for the APIs in the app.</span></span>
   * <span data-ttu-id="3ae32-257">Il set di tipi di risposta OIDC consentiti è `id_token token` o singolarmente ( `id_token` , `token` ).</span><span class="sxs-lookup"><span data-stu-id="3ae32-257">The set of allowed OIDC response types is `id_token token` or each of them individually (`id_token`, `token`).</span></span>
   * <span data-ttu-id="3ae32-258">La modalità di risposta consentita è `fragment` .</span><span class="sxs-lookup"><span data-stu-id="3ae32-258">The allowed response mode is `fragment`.</span></span>
-* <span data-ttu-id="3ae32-259">`SPA`: Rappresenta una SPA non ospitata con il :::no-loc(Identity)::: Server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-259">`SPA`: Represents a SPA that isn't hosted with :::no-loc(Identity):::Server.</span></span>
+* <span data-ttu-id="3ae32-259">`SPA`: Rappresenta una SPA non ospitata con il Identity Server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-259">`SPA`: Represents a SPA that isn't hosted with IdentityServer.</span></span>
   * <span data-ttu-id="3ae32-260">Il set di ambiti include `openid` , `profile` e ogni ambito definito per le API nell'app.</span><span class="sxs-lookup"><span data-stu-id="3ae32-260">The set of scopes includes the `openid`, `profile`, and every scope defined for the APIs in the app.</span></span>
   * <span data-ttu-id="3ae32-261">Il set di tipi di risposta OIDC consentiti è `id_token token` o singolarmente ( `id_token` , `token` ).</span><span class="sxs-lookup"><span data-stu-id="3ae32-261">The set of allowed OIDC response types is `id_token token` or each of them individually (`id_token`, `token`).</span></span>
   * <span data-ttu-id="3ae32-262">La modalità di risposta consentita è `fragment` .</span><span class="sxs-lookup"><span data-stu-id="3ae32-262">The allowed response mode is `fragment`.</span></span>
-* <span data-ttu-id="3ae32-263">`:::no-loc(Identity):::ServerJwt`: Rappresenta un'API ospitata insieme al :::no-loc(Identity)::: Server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-263">`:::no-loc(Identity):::ServerJwt`: Represents an API that is hosted alongside with :::no-loc(Identity):::Server.</span></span>
+* <span data-ttu-id="3ae32-263">`IdentityServerJwt`: Rappresenta un'API ospitata insieme al Identity Server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-263">`IdentityServerJwt`: Represents an API that is hosted alongside with IdentityServer.</span></span>
   * <span data-ttu-id="3ae32-264">L'app è configurata in modo da avere un singolo ambito per impostazione predefinita sul nome dell'app.</span><span class="sxs-lookup"><span data-stu-id="3ae32-264">The app is configured to have a single scope that defaults to the app name.</span></span>
-* <span data-ttu-id="3ae32-265">`API`: Rappresenta un'API non ospitata con il :::no-loc(Identity)::: Server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-265">`API`: Represents an API that isn't hosted with :::no-loc(Identity):::Server.</span></span>
+* <span data-ttu-id="3ae32-265">`API`: Rappresenta un'API non ospitata con il Identity Server.</span><span class="sxs-lookup"><span data-stu-id="3ae32-265">`API`: Represents an API that isn't hosted with IdentityServer.</span></span>
   * <span data-ttu-id="3ae32-266">L'app è configurata in modo da avere un singolo ambito per impostazione predefinita sul nome dell'app.</span><span class="sxs-lookup"><span data-stu-id="3ae32-266">The app is configured to have a single scope that defaults to the app name.</span></span>
 
 ### <a name="configuration-through-appsettings"></a><span data-ttu-id="3ae32-267">Configurazione tramite AppSettings</span><span class="sxs-lookup"><span data-stu-id="3ae32-267">Configuration through AppSettings</span></span>
@@ -363,7 +363,7 @@ async populateWeatherData() {
 <span data-ttu-id="3ae32-269">Configurare `redirect_uri` la proprietà e di ogni client `post_logout_redirect_uri` , come illustrato nell'esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="3ae32-269">Configure each client's `redirect_uri` and `post_logout_redirect_uri` property, as shown in the following example:</span></span>
 
 ```json
-":::no-loc(Identity):::Server": {
+"IdentityServer": {
   "Clients": {
     "MySPA": {
       "Profile": "SPA",
@@ -377,7 +377,7 @@ async populateWeatherData() {
 <span data-ttu-id="3ae32-270">Quando si configurano le risorse, è possibile configurare gli ambiti per la risorsa come illustrato di seguito:</span><span class="sxs-lookup"><span data-stu-id="3ae32-270">When configuring resources, you can configure the scopes for the resource as shown below:</span></span>
 
 ```json
-":::no-loc(Identity):::Server": {
+"IdentityServer": {
   "Resources": {
     "MyExternalApi": {
       "Profile": "API",

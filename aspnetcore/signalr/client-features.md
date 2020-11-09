@@ -1,22 +1,22 @@
 ---
-title: 'Client di ASP.NET Core :::no-loc(SignalR):::'
+title: 'Client di ASP.NET Core SignalR'
 author: bradygaster
-description: 'Informazioni sulle funzionalità supportate dai vari client di ASP.NET Core :::no-loc(SignalR)::: .'
+description: 'Informazioni sulle funzionalità supportate dai vari client di ASP.NET Core SignalR .'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: signalr/client-features
 ms.openlocfilehash: 1d1778f95c53179ca05eaced3d1913f208220df4
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -25,21 +25,21 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93050979"
 ---
-# <a name="aspnet-core-no-locsignalr-clients"></a><span data-ttu-id="bcf18-103">Client di ASP.NET Core :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="bcf18-103">ASP.NET Core :::no-loc(SignalR)::: clients</span></span>
+# <a name="aspnet-core-no-locsignalr-clients"></a><span data-ttu-id="bcf18-103">Client di ASP.NET Core SignalR</span><span class="sxs-lookup"><span data-stu-id="bcf18-103">ASP.NET Core SignalR clients</span></span>
 
 ## <a name="versioning-support-and-compatibility"></a><span data-ttu-id="bcf18-104">Controllo delle versioni, supporto e compatibilità</span><span class="sxs-lookup"><span data-stu-id="bcf18-104">Versioning, support, and compatibility</span></span>
 
-<span data-ttu-id="bcf18-105">I :::no-loc(SignalR)::: client vengono forniti insieme ai componenti server e vengono sottolineati con la versione corrispondente.</span><span class="sxs-lookup"><span data-stu-id="bcf18-105">The :::no-loc(SignalR)::: clients ship alongside the server components and are versioned to match.</span></span> <span data-ttu-id="bcf18-106">Qualsiasi client supportato può connettersi in modo sicuro a qualsiasi server supportato e gli eventuali problemi di compatibilità sarebbero considerati bug da correggere.</span><span class="sxs-lookup"><span data-stu-id="bcf18-106">Any supported client can safely connect to any supported server, and any compatibility issues would be considered bugs to be fixed.</span></span> <span data-ttu-id="bcf18-107">:::no-loc(SignalR)::: i client sono supportati nello stesso ciclo di vita del supporto come il resto di .NET Core.</span><span class="sxs-lookup"><span data-stu-id="bcf18-107">:::no-loc(SignalR)::: clients are supported in the same support lifecycle as the rest of .NET Core.</span></span> <span data-ttu-id="bcf18-108">Per informazioni dettagliate, vedere [i criteri di supporto di .NET Core](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) .</span><span class="sxs-lookup"><span data-stu-id="bcf18-108">See [the .NET Core Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) for details.</span></span>
+<span data-ttu-id="bcf18-105">I SignalR client vengono forniti insieme ai componenti server e vengono sottolineati con la versione corrispondente.</span><span class="sxs-lookup"><span data-stu-id="bcf18-105">The SignalR clients ship alongside the server components and are versioned to match.</span></span> <span data-ttu-id="bcf18-106">Qualsiasi client supportato può connettersi in modo sicuro a qualsiasi server supportato e gli eventuali problemi di compatibilità sarebbero considerati bug da correggere.</span><span class="sxs-lookup"><span data-stu-id="bcf18-106">Any supported client can safely connect to any supported server, and any compatibility issues would be considered bugs to be fixed.</span></span> <span data-ttu-id="bcf18-107">SignalR i client sono supportati nello stesso ciclo di vita del supporto come il resto di .NET Core.</span><span class="sxs-lookup"><span data-stu-id="bcf18-107">SignalR clients are supported in the same support lifecycle as the rest of .NET Core.</span></span> <span data-ttu-id="bcf18-108">Per informazioni dettagliate, vedere [i criteri di supporto di .NET Core](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) .</span><span class="sxs-lookup"><span data-stu-id="bcf18-108">See [the .NET Core Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) for details.</span></span>
 
 <span data-ttu-id="bcf18-109">Molte funzionalità richiedono un client **e** un server compatibili.</span><span class="sxs-lookup"><span data-stu-id="bcf18-109">Many features require a compatible client **and** server.</span></span> <span data-ttu-id="bcf18-110">Per una tabella che mostra le versioni minime per le varie funzionalità, vedere di seguito.</span><span class="sxs-lookup"><span data-stu-id="bcf18-110">See below for a table showing the minimum versions for various features.</span></span>
 
-<span data-ttu-id="bcf18-111">Le versioni 1. x di :::no-loc(SignalR)::: sono mappate alle versioni di .NET Core 2,1 e 2,2 e hanno la stessa durata.</span><span class="sxs-lookup"><span data-stu-id="bcf18-111">The 1.x versions of :::no-loc(SignalR)::: map to the 2.1 and 2.2 .NET Core releases and have the same lifetime.</span></span> <span data-ttu-id="bcf18-112">Per la versione 3. x e versioni successive, la :::no-loc(SignalR)::: versione corrisponde esattamente al resto di .NET e ha lo stesso ciclo di vita del supporto.</span><span class="sxs-lookup"><span data-stu-id="bcf18-112">For version 3.x and above, the :::no-loc(SignalR)::: version exactly matches the rest of .NET and has the same support lifecycle.</span></span>
+<span data-ttu-id="bcf18-111">Le versioni 1. x di SignalR sono mappate alle versioni di .NET Core 2,1 e 2,2 e hanno la stessa durata.</span><span class="sxs-lookup"><span data-stu-id="bcf18-111">The 1.x versions of SignalR map to the 2.1 and 2.2 .NET Core releases and have the same lifetime.</span></span> <span data-ttu-id="bcf18-112">Per la versione 3. x e versioni successive, la SignalR versione corrisponde esattamente al resto di .NET e ha lo stesso ciclo di vita del supporto.</span><span class="sxs-lookup"><span data-stu-id="bcf18-112">For version 3.x and above, the SignalR version exactly matches the rest of .NET and has the same support lifecycle.</span></span>
 
-| <span data-ttu-id="bcf18-113">Versione di :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="bcf18-113">:::no-loc(SignalR)::: version</span></span> | <span data-ttu-id="bcf18-114">Versione di .NET Core</span><span class="sxs-lookup"><span data-stu-id="bcf18-114">.NET Core version</span></span> | <span data-ttu-id="bcf18-115">Livello di supporto</span><span class="sxs-lookup"><span data-stu-id="bcf18-115">Support level</span></span> | <span data-ttu-id="bcf18-116">Fine del supporto</span><span class="sxs-lookup"><span data-stu-id="bcf18-116">End of support</span></span> |
+| <span data-ttu-id="bcf18-113">Versione di SignalR</span><span class="sxs-lookup"><span data-stu-id="bcf18-113">SignalR version</span></span> | <span data-ttu-id="bcf18-114">Versione di .NET Core</span><span class="sxs-lookup"><span data-stu-id="bcf18-114">.NET Core version</span></span> | <span data-ttu-id="bcf18-115">Livello di supporto</span><span class="sxs-lookup"><span data-stu-id="bcf18-115">Support level</span></span> | <span data-ttu-id="bcf18-116">Fine del supporto</span><span class="sxs-lookup"><span data-stu-id="bcf18-116">End of support</span></span> |
 | - | - | - | - |
 | <span data-ttu-id="bcf18-117">1.0. x</span><span class="sxs-lookup"><span data-stu-id="bcf18-117">1.0.x</span></span> | <span data-ttu-id="bcf18-118">2.1.x</span><span class="sxs-lookup"><span data-stu-id="bcf18-118">2.1.x</span></span> | <span data-ttu-id="bcf18-119">Supporto a lungo termine</span><span class="sxs-lookup"><span data-stu-id="bcf18-119">Long Term Support</span></span> | <span data-ttu-id="bcf18-120">21 agosto 2021</span><span class="sxs-lookup"><span data-stu-id="bcf18-120">August 21, 2021</span></span> |
 | <span data-ttu-id="bcf18-121">1.1. x</span><span class="sxs-lookup"><span data-stu-id="bcf18-121">1.1.x</span></span> | <span data-ttu-id="bcf18-122">2.2. x</span><span class="sxs-lookup"><span data-stu-id="bcf18-122">2.2.x</span></span> | <span data-ttu-id="bcf18-123">Fine vita</span><span class="sxs-lookup"><span data-stu-id="bcf18-123">End Of Life</span></span> | <span data-ttu-id="bcf18-124">23 dicembre 2019</span><span class="sxs-lookup"><span data-stu-id="bcf18-124">December 23, 2019</span></span> |
-| <span data-ttu-id="bcf18-125">3. x o superiore</span><span class="sxs-lookup"><span data-stu-id="bcf18-125">3.x or higher</span></span> | <span data-ttu-id="bcf18-126">*uguale a :::no-loc(SignalR)::: Version*</span><span class="sxs-lookup"><span data-stu-id="bcf18-126">*same as :::no-loc(SignalR)::: version*</span></span> | <span data-ttu-id="bcf18-127">Vedere i [criteri di supporto di .NET Core](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)</span><span class="sxs-lookup"><span data-stu-id="bcf18-127">See the [the .NET Core Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)</span></span> |
+| <span data-ttu-id="bcf18-125">3. x o superiore</span><span class="sxs-lookup"><span data-stu-id="bcf18-125">3.x or higher</span></span> | <span data-ttu-id="bcf18-126">*uguale a SignalR Version*</span><span class="sxs-lookup"><span data-stu-id="bcf18-126">*same as SignalR version*</span></span> | <span data-ttu-id="bcf18-127">Vedere i [criteri di supporto di .NET Core](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)</span><span class="sxs-lookup"><span data-stu-id="bcf18-127">See the [the .NET Core Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)</span></span> |
 
 <span data-ttu-id="bcf18-128">**Nota:** In ASP.NET Core 3,0 il client JavaScript è stato *spostato* nel `@microsoft/signalr` pacchetto NPM.</span><span class="sxs-lookup"><span data-stu-id="bcf18-128">**NOTE:** In ASP.NET Core 3.0, the JavaScript client *moved* to the `@microsoft/signalr` npm package.</span></span>
 
@@ -49,7 +49,7 @@ ms.locfileid: "93050979"
 
 | <span data-ttu-id="bcf18-133">Funzionalità</span><span class="sxs-lookup"><span data-stu-id="bcf18-133">Feature</span></span> | <span data-ttu-id="bcf18-134">Server</span><span class="sxs-lookup"><span data-stu-id="bcf18-134">Server</span></span> | <span data-ttu-id="bcf18-135">Client .NET</span><span class="sxs-lookup"><span data-stu-id="bcf18-135">.NET client</span></span> | <span data-ttu-id="bcf18-136">Client JavaScript</span><span class="sxs-lookup"><span data-stu-id="bcf18-136">JavaScript client</span></span> | <span data-ttu-id="bcf18-137">Client Java</span><span class="sxs-lookup"><span data-stu-id="bcf18-137">Java client</span></span> |
 | ---- | :-: | :-: | :-: | :-: |
-| <span data-ttu-id="bcf18-138">Supporto per i servizi di Azure :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="bcf18-138">Azure :::no-loc(SignalR)::: Service Support</span></span> |<span data-ttu-id="bcf18-139">2.1.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-139">2.1.0</span></span>|<span data-ttu-id="bcf18-140">1.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-140">1.0.0</span></span>|<span data-ttu-id="bcf18-141">1.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-141">1.0.0</span></span>|<span data-ttu-id="bcf18-142">1.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-142">1.0.0</span></span>|
+| <span data-ttu-id="bcf18-138">Supporto per i servizi di Azure SignalR</span><span class="sxs-lookup"><span data-stu-id="bcf18-138">Azure SignalR Service Support</span></span> |<span data-ttu-id="bcf18-139">2.1.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-139">2.1.0</span></span>|<span data-ttu-id="bcf18-140">1.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-140">1.0.0</span></span>|<span data-ttu-id="bcf18-141">1.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-141">1.0.0</span></span>|<span data-ttu-id="bcf18-142">1.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-142">1.0.0</span></span>|
 | [<span data-ttu-id="bcf18-143">Streaming da server a client</span><span class="sxs-lookup"><span data-stu-id="bcf18-143">Server-to-client Streaming</span></span>](xref:signalr/streaming)          |<span data-ttu-id="bcf18-144">2.1.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-144">2.1.0</span></span>|<span data-ttu-id="bcf18-145">1.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-145">1.0.0</span></span>|<span data-ttu-id="bcf18-146">1.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-146">1.0.0</span></span>|<span data-ttu-id="bcf18-147">1.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-147">1.0.0</span></span>|
 | [<span data-ttu-id="bcf18-148">Streaming da client a server</span><span class="sxs-lookup"><span data-stu-id="bcf18-148">Client-to-server Streaming</span></span>](xref:signalr/streaming)          |<span data-ttu-id="bcf18-149">3.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-149">3.0.0</span></span>|<span data-ttu-id="bcf18-150">3.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-150">3.0.0</span></span>|<span data-ttu-id="bcf18-151">3.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-151">3.0.0</span></span>|<span data-ttu-id="bcf18-152">3.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-152">3.0.0</span></span>|
 | <span data-ttu-id="bcf18-153">Riconnessione automatica ([.NET](./dotnet-client.md?tabs=visual-studio&view=aspnetcore-3.0#handle-lost-connection), [JavaScript](./javascript-client.md?view=aspnetcore-3.0#reconnect-clients))</span><span class="sxs-lookup"><span data-stu-id="bcf18-153">Automatic Reconnection ([.NET](./dotnet-client.md?tabs=visual-studio&view=aspnetcore-3.0#handle-lost-connection), [JavaScript](./javascript-client.md?view=aspnetcore-3.0#reconnect-clients))</span></span>          |<span data-ttu-id="bcf18-154">3.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-154">3.0.0</span></span>|<span data-ttu-id="bcf18-155">3.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-155">3.0.0</span></span>|<span data-ttu-id="bcf18-156">3.0.0</span><span class="sxs-lookup"><span data-stu-id="bcf18-156">3.0.0</span></span>|❌|
@@ -63,7 +63,7 @@ ms.locfileid: "93050979"
 
 ## <a name="additional-resources"></a><span data-ttu-id="bcf18-181">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="bcf18-181">Additional resources</span></span>
 
-* [<span data-ttu-id="bcf18-182">Introduzione a :::no-loc(SignalR)::: per ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="bcf18-182">Get started with :::no-loc(SignalR)::: for ASP.NET Core</span></span>](xref:tutorials/signalr)
+* [<span data-ttu-id="bcf18-182">Introduzione a SignalR per ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="bcf18-182">Get started with SignalR for ASP.NET Core</span></span>](xref:tutorials/signalr)
 * [<span data-ttu-id="bcf18-183">Piattaforme supportate</span><span class="sxs-lookup"><span data-stu-id="bcf18-183">Supported platforms</span></span>](xref:signalr/supported-platforms)
 * [<span data-ttu-id="bcf18-184">Hub</span><span class="sxs-lookup"><span data-stu-id="bcf18-184">Hubs</span></span>](xref:signalr/hubs)
 * [<span data-ttu-id="bcf18-185">Client JavaScript</span><span class="sxs-lookup"><span data-stu-id="bcf18-185">JavaScript client</span></span>](xref:signalr/javascript-client)
