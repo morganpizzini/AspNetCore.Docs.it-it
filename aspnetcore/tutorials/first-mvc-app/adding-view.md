@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: 078329d1e5dfe41a7713b1e53894a9b09886752d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 56f39643ccd69c6508148374033208eb3b2f25ab
+ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052669"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94422717"
 ---
 # <a name="part-3-add-a-view-to-an-aspnet-core-mvc-app"></a>Parte 3: aggiungere una visualizzazione a un'app MVC ASP.NET Core
 
@@ -44,9 +44,9 @@ Il codice precedente chiama il metodo <xref:Microsoft.AspNetCore.Mvc.Controller.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Views* , quindi su **Aggiungi > Nuova cartella** e denominare la cartella *HelloWorld* .
+* Fare clic con il pulsante destro del mouse sulla cartella *Views* , quindi su **Aggiungi > Nuova cartella** e denominare la cartella *HelloWorld*.
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Views/HelloWorld* , quindi su **Aggiungi > Nuovo elemento** .
+* Fare clic con il pulsante destro del mouse sulla cartella *Views/HelloWorld* , quindi su **Aggiungi > Nuovo elemento**.
 
 * Nella finestra di dialogo **Aggiungi nuovo elemento - MvcMovie**
 
@@ -54,7 +54,7 @@ Il codice precedente chiama il metodo <xref:Microsoft.AspNetCore.Mvc.Controller.
 
   * Selezione **Razor visualizzazione**
 
-  * Mantenere il valore della casella **Nome** , *Index.cshtml* .
+  * Mantenere il valore della casella **Nome** , *Index.cshtml*.
 
   * Selezionare **Aggiungi**
 
@@ -64,19 +64,19 @@ Il codice precedente chiama il metodo <xref:Microsoft.AspNetCore.Mvc.Controller.
 
 Aggiungere una vista `Index` per `HelloWorldController`.
 
-* Aggiungere una nuova cartella denominata *Views/HelloWorld* .
-* Aggiungere un nuovo file al nome di cartella *Views/HelloWorld**Index.cshtml* .
+* Aggiungere una nuova cartella denominata *Views/HelloWorld*.
+* Aggiungere un nuovo file al nome di cartella *Views/HelloWorld**Index.cshtml*.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Views* , quindi su **Aggiungi > Nuova cartella** e denominare la cartella *HelloWorld* .
-* Fare clic con il pulsante destro del mouse sulla cartella *Views/HelloWorld* , quindi su **Aggiungi > Nuovo file** .
+* Fare clic con il pulsante destro del mouse sulla cartella *Views* , quindi su **Aggiungi > Nuova cartella** e denominare la cartella *HelloWorld*.
+* Fare clic con il pulsante destro del mouse sulla cartella *Views/HelloWorld* , quindi su **Aggiungi > Nuovo file**.
 * Nel finestra di dialogo **Nuovo file** :
 
   * Selezionare **ASP .NET Core** nel riquadro sinistro.
   * Selezionare la **pagina visualizzazione MVC** nel riquadro centrale.
   * Digitare *index* nella casella **nome** .
-  * Selezionare **Nuovo** .
+  * Selezionare **Nuovo**.
 
 ![Finestra di dialogo Aggiungi nuovo elemento](adding-view/_static/add_view_mac.png)
 
@@ -92,15 +92,27 @@ Accedere a `https://localhost:{PORT}/HelloWorld`. Il metodo `Index` in `HelloWor
 
 ## <a name="change-views-and-layout-pages"></a>Modificare le viste e le pagine di layout
 
-Selezionare i collegamenti di menu: **MvcMovie** , **Home** e **Privacy** . Ogni pagina mostra lo stesso layout di menu. Il layout di menu viene implementato nel file *Views/Shared/_Layout.cshtml* . Aprire il file *Views/Shared/_Layout.cshtml* .
+Selezionare i collegamenti di menu: **MvcMovie** , **Home** e **Privacy**. Ogni pagina mostra lo stesso layout di menu. Il layout di menu viene implementato nel file *Views/Shared/_Layout.cshtml*. Aprire il file *Views/Shared/_Layout.cshtml*.
 
 I modelli di [layout](xref:mvc/views/layout) consentono di specificare il layout del contenitore HTML del sito in un'unica posizione e quindi di applicarlo in più pagine del sito. Trovare la riga `@RenderBody()`. `RenderBody` è un segnaposto dove tutte le pagine specifiche della vista vengono presentate, *incapsulate* nella pagina di layout. Ad esempio, se si seleziona il collegamento **Privacy** , il rendering della vista **Views/Home/Privacy.cshtml** viene eseguito all'interno del metodo `RenderBody`.
 
 ## <a name="change-the-title-footer-and-menu-link-in-the-layout-file"></a>Modificare il titolo, il piè di pagina e il collegamento di menu nel file di layout
 
 Sostituire il contenuto del file *Views/Shared/_Layout. cshtml* con il markup seguente. Le modifiche sono evidenziate:
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 Il markup precedente ha apportato le modifiche seguenti:
 
@@ -111,11 +123,11 @@ Nel markup precedente, l'attributo `asp-area=""` [Helper Tag di ancoraggio](xref
 
 **Nota** : il `Movies` controller non è stato implementato. A questo punto, il collegamento `Movie App` non è funzionale.
 
-Salvare le modifiche e selezionare il collegamento **Privacy** . Si noti come il titolo sulla scheda del browser visualizzi **Privacy Policy - Movie App** anziché **Privacy Policy - Mvc Movie** :
+Salvare le modifiche e selezionare il collegamento **Privacy**. Si noti come il titolo sulla scheda del browser visualizzi **Privacy Policy - Movie App** anziché **Privacy Policy - Mvc Movie** :
 
 ![Scheda Privacy](~/tutorials/first-mvc-app/adding-view/_static/about2.png)
 
-Toccare il collegamento **Home** e notare che anche il titolo e il testo di ancoraggio visualizzano **Movie App** . La modifica è stata apportata una volta nel modello di layout e tutte le pagine nel sito riflettono il nuovo testo del collegamento e il nuovo titolo.
+Toccare il collegamento **Home** e notare che anche il titolo e il testo di ancoraggio visualizzano **Movie App**. La modifica è stata apportata una volta nel modello di layout e tutte le pagine nel sito riflettono il nuovo testo del collegamento e il nuovo titolo.
 
 Esaminare il file *Views/_ViewStart.cshtml* :
 
@@ -141,7 +153,7 @@ Il titolo e l'elemento `<h2>`sono leggermente diversi in modo da poter esaminare
 
 Salvare la modifica e passare a `https://localhost:{PORT}/HelloWorld`. Si noti che il titolo del browser, l'intestazione primaria e le intestazioni secondarie sono cambiati. Se le modifiche non sono visibili nel browser, è possibile che si stia visualizzando il contenuto memorizzato nella cache. Premere CTRL + F5 nel browser per forzare il caricamento della risposta dal server. Il titolo del browser viene creato con l' `ViewData["Title"]` impostazione nel modello di vista *index. cshtml* e l'aggiunta di "-Movie app" nel file di layout.
 
-Il contenuto del modello di vista *Index.cshtml* viene unito al modello di vista *Views/Shared/_Layout.cshtml* . Viene inviata una singola risposta HTML al browser. I modelli di layout rendono semplice apportare modifiche che si applicano a tutte le pagine di un'app. Per altre informazioni, vedere [layout](xref:mvc/views/layout).
+Il contenuto del modello di vista *Index.cshtml* viene unito al modello di vista *Views/Shared/_Layout.cshtml*. Viene inviata una singola risposta HTML al browser. I modelli di layout rendono semplice apportare modifiche che si applicano a tutte le pagine di un'app. Per altre informazioni, vedere [layout](xref:mvc/views/layout).
 
 ![Vista dell'elenco di film](~/tutorials/first-mvc-app/adding-view/_static/hell3.png)
 
@@ -161,7 +173,7 @@ In *HelloWorldController.cs* , modificare il metodo `Welcome` in modo da aggiung
 
 L'oggetto di dizionario `ViewData` contiene i dati che verranno passati alla vista.
 
-Creare un modello di vista Welcome denominato *Views/HelloWorld/Welcome.cshtml* .
+Creare un modello di vista Welcome denominato *Views/HelloWorld/Welcome.cshtml*.
 
 Si creerà un ciclo nel modello di vista *Welcome.cshtml* che visualizza la stringa "Hello" `NumTimes`. Sostituire il contenuto di *Views/HelloWorld/Welcome.cshtml* con quanto segue:
 
@@ -201,9 +213,9 @@ Il codice precedente chiama il metodo <xref:Microsoft.AspNetCore.Mvc.Controller.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Views* , quindi su **Aggiungi > Nuova cartella** e denominare la cartella *HelloWorld* .
+* Fare clic con il pulsante destro del mouse sulla cartella *Views* , quindi su **Aggiungi > Nuova cartella** e denominare la cartella *HelloWorld*.
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Views/HelloWorld* , quindi su **Aggiungi > Nuovo elemento** .
+* Fare clic con il pulsante destro del mouse sulla cartella *Views/HelloWorld* , quindi su **Aggiungi > Nuovo elemento**.
 
 * Nella finestra di dialogo **Aggiungi nuovo elemento - MvcMovie**
 
@@ -211,7 +223,7 @@ Il codice precedente chiama il metodo <xref:Microsoft.AspNetCore.Mvc.Controller.
 
   * Selezione **Razor visualizzazione**
 
-  * Mantenere il valore della casella **Nome** , *Index.cshtml* .
+  * Mantenere il valore della casella **Nome** , *Index.cshtml*.
 
   * Selezionare **Aggiungi**
 
@@ -221,19 +233,19 @@ Il codice precedente chiama il metodo <xref:Microsoft.AspNetCore.Mvc.Controller.
 
 Aggiungere una vista `Index` per `HelloWorldController`.
 
-* Aggiungere una nuova cartella denominata *Views/HelloWorld* .
-* Aggiungere un nuovo file al nome di cartella *Views/HelloWorld**Index.cshtml* .
+* Aggiungere una nuova cartella denominata *Views/HelloWorld*.
+* Aggiungere un nuovo file al nome di cartella *Views/HelloWorld**Index.cshtml*.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Fare clic con il pulsante destro del mouse sulla cartella *Views* , quindi su **Aggiungi > Nuova cartella** e denominare la cartella *HelloWorld* .
-* Fare clic con il pulsante destro del mouse sulla cartella *Views/HelloWorld* , quindi su **Aggiungi > Nuovo file** .
+* Fare clic con il pulsante destro del mouse sulla cartella *Views* , quindi su **Aggiungi > Nuova cartella** e denominare la cartella *HelloWorld*.
+* Fare clic con il pulsante destro del mouse sulla cartella *Views/HelloWorld* , quindi su **Aggiungi > Nuovo file**.
 * Nel finestra di dialogo **Nuovo file** :
 
   * Selezionare **Web** nel riquadro a sinistra.
   * Selezionare **File HTML vuoto** nel riquadro centrale.
-  * Digitare *Index.cshtml* nella casella **Nome** .
-  * Selezionare **Nuovo** .
+  * Digitare *Index.cshtml* nella casella **Nome**.
+  * Selezionare **Nuovo**.
 
 ![Finestra di dialogo Aggiungi nuovo elemento](adding-view/_static/add_view_mac.png)
 
@@ -243,13 +255,13 @@ Sostituire il contenuto del file di visualizzazione *views/HelloWorld/index. csh
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Accedere a `https://localhost:{PORT}/HelloWorld`. Il metodo `Index` in `HelloWorldController` non ha eseguito molte operazioni; ha eseguito l'istruzione `return View();` che ha specificato che il metodo deve usare un file di modello della vista per eseguire il rendering di una risposta al browser. Poiché non è stato specificato un nome di file di modello di visualizzazione, per impostazione predefinita MVC usa il file di visualizzazione predefinito. Il file di visualizzazione predefinito ha lo stesso nome del metodo (`Index`), quindi viene usato */Views/HelloWorld/Index.cshtml* . L'immagine seguente mostra la stringa "Hello from our View Template!" hardcoded nella vista.
+Accedere a `https://localhost:{PORT}/HelloWorld`. Il metodo `Index` in `HelloWorldController` non ha eseguito molte operazioni; ha eseguito l'istruzione `return View();` che ha specificato che il metodo deve usare un file di modello della vista per eseguire il rendering di una risposta al browser. Poiché non è stato specificato un nome di file di modello di visualizzazione, per impostazione predefinita MVC usa il file di visualizzazione predefinito. Il file di visualizzazione predefinito ha lo stesso nome del metodo (`Index`), quindi viene usato */Views/HelloWorld/Index.cshtml*. L'immagine seguente mostra la stringa "Hello from our View Template!" hardcoded nella vista.
 
 ![Finestra del browser](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
 ## <a name="change-views-and-layout-pages"></a>Modificare le viste e le pagine di layout
 
-Selezionare i collegamenti di menu: **MvcMovie** , **Home** e **Privacy** . Ogni pagina mostra lo stesso layout di menu. Il layout di menu viene implementato nel file *Views/Shared/_Layout.cshtml* . Aprire il file *Views/Shared/_Layout.cshtml* .
+Selezionare i collegamenti di menu: **MvcMovie** , **Home** e **Privacy**. Ogni pagina mostra lo stesso layout di menu. Il layout di menu viene implementato nel file *Views/Shared/_Layout.cshtml*. Aprire il file *Views/Shared/_Layout.cshtml*.
 
 I modelli di [layout](xref:mvc/views/layout) consentono di specificare il layout del contenitore HTML del sito in un'unica posizione e quindi di applicarlo in più pagine del sito. Trovare la riga `@RenderBody()`. `RenderBody` è un segnaposto dove tutte le pagine specifiche della vista vengono presentate, *incapsulate* nella pagina di layout. Ad esempio, se si seleziona il collegamento **Privacy** , il rendering della vista **Views/Home/Privacy.cshtml** viene eseguito all'interno del metodo `RenderBody`.
 
@@ -271,11 +283,11 @@ Nel markup precedente, l'attributo `asp-area` [Helper Tag di ancoraggio](xref:mv
 
 **Nota** : il `Movies` controller non è stato implementato. A questo punto, il collegamento `Movie App` non è funzionale.
 
-Salvare le modifiche e selezionare il collegamento **Privacy** . Si noti come il titolo sulla scheda del browser visualizzi **Privacy Policy - Movie App** anziché **Privacy Policy - Mvc Movie** :
+Salvare le modifiche e selezionare il collegamento **Privacy**. Si noti come il titolo sulla scheda del browser visualizzi **Privacy Policy - Movie App** anziché **Privacy Policy - Mvc Movie** :
 
 ![Scheda Privacy](~/tutorials/first-mvc-app/adding-view/_static/about2.png)
 
-Toccare il collegamento **Home** e notare che anche il titolo e il testo di ancoraggio visualizzano **Movie App** . La modifica è stata apportata una volta nel modello di layout e tutte le pagine nel sito riflettono il nuovo testo del collegamento e il nuovo titolo.
+Toccare il collegamento **Home** e notare che anche il titolo e il testo di ancoraggio visualizzano **Movie App**. La modifica è stata apportata una volta nel modello di layout e tutte le pagine nel sito riflettono il nuovo testo del collegamento e il nuovo titolo.
 
 Esaminare il file *Views/_ViewStart.cshtml* :
 
@@ -321,7 +333,7 @@ In *HelloWorldController.cs* , modificare il metodo `Welcome` in modo da aggiung
 
 L'oggetto di dizionario `ViewData` contiene i dati che verranno passati alla vista.
 
-Creare un modello di vista Welcome denominato *Views/HelloWorld/Welcome.cshtml* .
+Creare un modello di vista Welcome denominato *Views/HelloWorld/Welcome.cshtml*.
 
 Si creerà un ciclo nel modello di vista *Welcome.cshtml* che visualizza la stringa "Hello" `NumTimes`. Sostituire il contenuto di *Views/HelloWorld/Welcome.cshtml* con quanto segue:
 

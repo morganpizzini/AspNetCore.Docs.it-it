@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: 11832efa6715f96856665f174d65b094806d2810
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 1851a61441ed351442f86939022319ad59d10006
+ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061288"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94422619"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Parte 2, aggiungere un controller a un'app MVC ASP.NET Core
 
@@ -40,33 +40,33 @@ Il pattern architetturale Model-View-Controller (MVC) suddivide le app in tre co
 
 Il pattern MVC consente di creare app che separano i diversi aspetti dell'app (logica di input, logica di business e logica dell'interfaccia utente), fornendo un accoppiamento libero tra questi elementi. Il pattern specifica il punto in cui deve risiedere ogni tipo di logica nell'app. La logica dell'interfaccia utente risiede nella vista. La logica di input risiede nel controller. La logica di business risiede nel modello. Questa separazione semplifica la complessità in fase di compilazione di un'app perché consente di lavorare su un aspetto dell'implementazione alla volta senza conseguenze sul codice di un altro aspetto. Ad esempio, è possibile usare il codice della vista senza dipendere dal codice della logica di business.
 
-Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono come compilare un'app per i film. Il progetto MVC contiene le cartelle per i *controller* e le *viste* .
+Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono come compilare un'app per i film. Il progetto MVC contiene le cartelle per i *controller* e le *viste*.
 
 ## <a name="add-a-controller"></a>Aggiunta di un controller
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **controller > Aggiungi >** 
-   ![ menu contestuale](adding-controller/_static/add_controller.png)
+* Nella **Esplora soluzioni** fare clic con il pulsante destro del mouse su **controller > Aggiungi >** 
+   ![ Esplora soluzioni controller, fare clic con il pulsante destro del mouse su controller > Aggiungi controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllerCopy.png)
 
-* Nella finestra di dialogo **Aggiungi impalcatura** selezionare **classe controller-vuota**
+* Nella finestra di dialogo **Aggiungi scaffolding** , selezionare **Controller MVC - vuoto**
 
-  ![Aggiungere il controller MVC e assegnarli un nome](adding-controller/_static/ac.png)
+  ![Aggiungere il controller MVC e assegnarli un nome](~/tutorials/first-mvc-app/adding-controller/_static/acCopy.png)
 
-* Nella **finestra di dialogo Aggiungi Controller MVC vuoto** , immettere **HelloWorldController** e selezionare **AGGIUNGI** .
+* Nella **finestra di dialogo Aggiungi Controller MVC vuoto** , immettere **HelloWorldController** e selezionare **AGGIUNGI**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Selezionare l'icona **EXPLORER** e quindi fare CTRL+clic (clic con il pulsante destro del mouse) su **Controller > Nuovo File** e assegnare al nuovo file il nome *HelloWorldController.cs* .
+Selezionare l'icona **EXPLORER** e quindi fare CTRL+clic (clic con il pulsante destro del mouse) su **Controller > Nuovo File** e assegnare al nuovo file il nome *HelloWorldController.cs*.
 
   ![Menu di scelta rapida](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Controller > Aggiungi > Nuovo file** .
+In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Controller > Aggiungi > Nuovo file**.
 ![Menu di scelta rapida](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
-Selezionare **ASP.NET Core** e **classe controller** .
+Selezionare **ASP.NET Core** e **classe controller**.
 
 Assegnare il nome **HelloWorldController** al controller.
 
@@ -92,19 +92,19 @@ MVC richiama le classi controller, e i metodi di azione in esse contenute, in ba
 
 `/[Controller]/[ActionName]/[Parameters]`
 
-Il formato per il routing viene impostato nel metodo `Configure` nel file *Startup.cs* .
+Il formato per il routing viene impostato nel metodo `Configure` nel file *Startup.cs*.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
 Quando si sceglie l'app e non si forniscono i segmenti di URL, i valori predefiniti sono il controller "Home" e il metodo "Index" specificati nella riga del modello evidenziata sopra.
 
-Il primo segmento di URL determina la classe di controller da eseguire. `localhost:{PORT}/HelloWorld` esegue quindi il mapping alla classe di controller **HelloWorld** . La seconda parte del segmento URL determina il metodo di azione per la classe. Pertanto `localhost:{PORT}/HelloWorld/Index` causa l'esecuzione del metodo `Index` della classe `HelloWorldController`. Si noti che è necessario solo passare a `localhost:{PORT}/HelloWorld` e il metodo `Index` viene chiamato per impostazione predefinita. In questo modo `Index` è il metodo predefinito che verrà chiamato per un controller, se non viene specificato un nome di metodo in modo esplicito. La terza parte del segmento di URL ( `id`) è relativa ai dati di route. I dati della route vengono spiegati in seguito nell'esercitazione.
+Il primo segmento di URL determina la classe di controller da eseguire. `localhost:{PORT}/HelloWorld` esegue quindi il mapping alla classe di controller **HelloWorld**. La seconda parte del segmento URL determina il metodo di azione per la classe. Pertanto `localhost:{PORT}/HelloWorld/Index` causa l'esecuzione del metodo `Index` della classe `HelloWorldController`. Si noti che è necessario solo passare a `localhost:{PORT}/HelloWorld` e il metodo `Index` viene chiamato per impostazione predefinita. In questo modo `Index` è il metodo predefinito che verrà chiamato per un controller, se non viene specificato un nome di metodo in modo esplicito. La terza parte del segmento di URL ( `id`) è relativa ai dati di route. I dati della route vengono spiegati in seguito nell'esercitazione.
 
 Passare a `https://localhost:{PORT}/HelloWorld/Welcome`. Il metodo `Welcome` viene eseguito e restituisce la stringa `This is the Welcome action method...`. Per questo URL, il controller è `HelloWorld` e il metodo di azione è `Welcome`. Non è stata ancora usata la parte `[Parameters]` dell'URL.
 
 ![Finestra del browser con una risposta dell'applicazione, This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
-Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
+Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 
@@ -154,33 +154,33 @@ Il pattern architetturale Model-View-Controller (MVC) suddivide le app in tre co
 
 Il pattern MVC consente di creare app che separano i diversi aspetti dell'app (logica di input, logica di business e logica dell'interfaccia utente), fornendo un accoppiamento libero tra questi elementi. Il pattern specifica il punto in cui deve risiedere ogni tipo di logica nell'app. La logica dell'interfaccia utente risiede nella vista. La logica di input risiede nel controller. La logica di business risiede nel modello. Questa separazione semplifica la complessità in fase di compilazione di un'app perché consente di lavorare su un aspetto dell'implementazione alla volta senza conseguenze sul codice di un altro aspetto. Ad esempio, è possibile usare il codice della vista senza dipendere dal codice della logica di business.
 
-Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono come compilare un'app per i film. Il progetto MVC contiene le cartelle per i *controller* e le *viste* .
+Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono come compilare un'app per i film. Il progetto MVC contiene le cartelle per i *controller* e le *viste*.
 
 ## <a name="add-a-controller"></a>Aggiunta di un controller
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **controller > Aggiungi >** 
-   ![ menu contestuale](adding-controller/_static/add_controller.png)
+   ![ menu contestuale](~/tutorials/first-mvc-app/adding-controller/_static/add_controller.png)
 
 * Nella finestra di dialogo **Aggiungi scaffolding** , selezionare **Controller MVC - vuoto**
 
-  ![Aggiungere il controller MVC e assegnarli un nome](adding-controller/_static/ac.png)
+  ![Aggiungere il controller MVC e assegnarli un nome](~/tutorials/first-mvc-app/adding-controller/_static/ac.png)
 
-* Nella **finestra di dialogo Aggiungi Controller MVC vuoto** , immettere **HelloWorldController** e selezionare **AGGIUNGI** .
+* Nella **finestra di dialogo Aggiungi Controller MVC vuoto** , immettere **HelloWorldController** e selezionare **AGGIUNGI**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Selezionare l'icona **EXPLORER** e quindi fare CTRL+clic (clic con il pulsante destro del mouse) su **Controller > Nuovo File** e assegnare al nuovo file il nome *HelloWorldController.cs* .
+Selezionare l'icona **EXPLORER** e quindi fare CTRL+clic (clic con il pulsante destro del mouse) su **Controller > Nuovo File** e assegnare al nuovo file il nome *HelloWorldController.cs*.
 
   ![Menu di scelta rapida](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Controller > Aggiungi > Nuovo file** .
+In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Controller > Aggiungi > Nuovo file**.
 ![Menu di scelta rapida](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
-Selezionare **ASP.NET Core** e **Classe controller MVC** .
+Selezionare **ASP.NET Core** e **Classe controller MVC**.
 
 Assegnare il nome **HelloWorldController** al controller.
 
@@ -206,7 +206,7 @@ MVC richiama le classi controller, e i metodi di azione in esse contenute, in ba
 
 `/[Controller]/[ActionName]/[Parameters]`
 
-Il formato per il routing viene impostato nel metodo `Configure` nel file *Startup.cs* .
+Il formato per il routing viene impostato nel metodo `Configure` nel file *Startup.cs*.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
 
@@ -223,7 +223,7 @@ Passare a `https://localhost:{PORT}/HelloWorld/Welcome`. Il metodo `Welcome` vie
 
 ![Finestra del browser con una risposta dell'applicazione, This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
-Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
+Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 

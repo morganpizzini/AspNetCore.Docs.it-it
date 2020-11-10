@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Kestrel
 uid: aspnetcore-5.0
-ms.openlocfilehash: e9c74f7b45ebcdffc19a0483b4e98ad2f44d5747
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 1f377f3be54ed8837d2857aed64c2d055ed9f582
+ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061777"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94422587"
 ---
 # <a name="whats-new-in-aspnet-core-50"></a>Novità di ASP.NET Core 5,0
 
@@ -93,7 +93,7 @@ In ASP.NET Core 5,0, i modelli di API Web abilitano il supporto OpenAPI per impo
     ```dotnetcli
     dotnet new webapi --no-openapi true
     ```
-* Da Visual Studio: deselezionare **Abilita supporto openapi** .
+* Da Visual Studio: deselezionare **Abilita supporto openapi**.
 
 Tutti i file con *estensione csproj* creati per i progetti di API Web contengono il riferimento al pacchetto NuGet [Swashbuckle. AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) .
 
@@ -223,6 +223,8 @@ In [gRPC](https://grpc.io/)sono stati apportati numerosi miglioramenti alla conf
 Per ulteriori informazioni su gRPC, vedere <xref:grpc/index> .
 
 ## SignalR
+
+### <a name="no-locsignalr-hub-filters"></a>SignalR Filtri Hub
 
 SignalR I filtri Hub, detti pipeline dell'hub in ASP.NET SignalR , sono una funzionalità che consente l'esecuzione del codice prima e dopo la chiamata dei metodi dell'hub. L'esecuzione di codice prima e dopo la chiamata dei metodi dell'hub è simile al modo in cui middleware è in grado di eseguire il codice prima e dopo una richiesta HTTP. Gli utilizzi comuni includono la registrazione, la gestione degli errori e la convalida degli argomenti.
 
