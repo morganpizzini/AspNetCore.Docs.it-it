@@ -5,7 +5,7 @@ description: Informazioni su come configurare Nginx come proxy inverso in Ubuntu
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/09/2020
+ms.date: 10/30/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 916bb1f761ce99b2296c84e1653e55fffa04f83c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: c4e0d70b41221f272bb4b1fe82cfa531ec6fcf15
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93057687"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94431066"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Hosting di ASP.NET Core in Linux con Nginx
 
@@ -35,7 +35,7 @@ Questa guida descrive come configurare un ambiente ASP.NET Core pronto per la pr
 Per informazioni su altre distribuzioni Linux supportate da ASP.NET Core, vedere [Prerequisiti per .NET Core in Linux](/dotnet/core/linux-prerequisites).
 
 > [!NOTE]
-> Per Ubuntu 14.04, è consigliabile *supervisord* come soluzione per il monitoraggio del processo Kestrel. *systemd* non è disponibile in Ubuntu 14.04. Per le istruzioni per Ubuntu 14.04, vedere la [versione precedente di questo argomento](https://github.com/dotnet/AspNetCore.Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
+> Per Ubuntu 14,04, `supervisord` è consigliabile come soluzione per il monitoraggio del processo gheppio. `systemd` non è disponibile in Ubuntu 14,04. Per le istruzioni per Ubuntu 14.04, vedere la [versione precedente di questo argomento](https://github.com/dotnet/AspNetCore.Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
 
 In questa guida:
 
@@ -50,7 +50,7 @@ In questa guida:
 1. Installare il runtime .NET Core nel server.
    1. Visitare la [pagina di download di .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
    1. Selezionare la versione più recente di .NET Core non in anteprima.
-   1. Scaricare la versione più recente del runtime non di anteprima nella tabella in **Run Apps-Runtime** .
+   1. Scaricare la versione più recente del runtime non di anteprima nella tabella in **Run Apps-Runtime**.
    1. Selezionare il collegamento **istruzioni di gestione pacchetti** Linux e seguire le istruzioni di Ubuntu per la versione di Ubuntu.
 1. Un'app ASP.NET Core esistente.
 
@@ -63,9 +63,9 @@ Configurare l'app per una [distribuzione dipendente dal framework](/dotnet/core/
 Se l'app viene eseguita in locale e non è configurata per connessioni sicure (HTTPS), adottare uno degli approcci seguenti:
 
 * Configurare l'app per la gestione di connessioni locali sicure. Per altre informazioni, vedere la sezione [Configurazione HTTPS](#https-configuration).
-* Rimuovere `https://localhost:5001` (se presente) dalla proprietà `applicationUrl` nel file *Properties/launchSettings.json* .
+* Rimuovere `https://localhost:5001` , se presente, dalla `applicationUrl` proprietà nel `Properties/launchSettings.json` file.
 
-Eseguire [dotnet publish](/dotnet/core/tools/dotnet-publish) dall'ambiente di sviluppo per creare il pacchetto di un'app in una directory (ad esempio, *bin/Release/&lt;target_framework_moniker&gt;/publish* ) che può essere eseguita nel server:
+Eseguire [DotNet Publish](/dotnet/core/tools/dotnet-publish) dall'ambiente di sviluppo per creare un pacchetto di un'app in una directory (ad esempio, `bin/Release/{TARGET FRAMEWORK MONIKER}/publish` , dove il segnaposto `{TARGET FRAMEWORK MONIKER}` è il moniker del Framework di destinazione/TFM) che può essere eseguito nel server:
 
 ```dotnetcli
 dotnet publish --configuration Release
@@ -73,7 +73,7 @@ dotnet publish --configuration Release
 
 È anche possibile pubblicare l'app come [distribuzione completa](/dotnet/core/deploying/#self-contained-deployments-scd) se si preferisce non mantenere il runtime .NET Core nel server.
 
-Copiare l'app ASP.NET Core sul server usando uno strumento integrato nel flusso di lavoro dell'organizzazione, ad esempio SCP o FTP. Le app Web si trovano in genere nella directory *var* , ad esempio, *var/www/helloapp* .
+Copiare l'app ASP.NET Core nel server usando uno strumento che si integra con il flusso di lavoro dell'organizzazione, ad esempio `SCP` , `SFTP` . È comune individuare le app Web nella `var` Directory (ad esempio, `var/www/helloapp` ).
 
 > [!NOTE]
 > In uno scenario di distribuzione di produzione un flusso di lavoro di integrazione continua esegue le operazioni di pubblicazione dell'app e di copia degli asset nel server.
@@ -93,15 +93,16 @@ Kestrel funziona perfettamente per la gestione del contenuto dinamico da ASP.NET
 
 Ai fini di questa guida viene usata una singola istanza di Nginx. Viene eseguito sullo stesso server, insieme al server HTTP. In base ai requisiti, è possibile scegliere una configurazione diversa.
 
-Poiché le richieste vengono inviate dal proxy inverso, usare il [middleware delle intestazioni inoltro](xref:host-and-deploy/proxy-load-balancer) dal pacchetto [Microsoft. AspNetCore. HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) . Il middleware aggiorna `Request.Scheme` usando l'intestazione `X-Forwarded-Proto`, in modo che gli URI di reindirizzamento e altri criteri di sicurezza funzionino correttamente.
-
+Poiché le richieste vengono inviate dal proxy inverso, utilizzare il [middleware delle intestazioni inoltro](xref:host-and-deploy/proxy-load-balancer) dal [`Microsoft.AspNetCore.HttpOverrides`](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides) pacchetto. Il middleware aggiorna `Request.Scheme` usando l'intestazione `X-Forwarded-Proto`, in modo che gli URI di reindirizzamento e altri criteri di sicurezza funzionino correttamente.
 
 [!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
 Richiamare il <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> metodo all'inizio di `Startup.Configure` prima di chiamare altro middleware. Configurare il middleware per l'inoltro delle intestazioni `X-Forwarded-For` e `X-Forwarded-Proto`:
 
 ```csharp
-// using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.HttpOverrides;
+
+...
 
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
@@ -113,10 +114,12 @@ app.UseAuthentication();
 
 Se non vengono specificate opzioni <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> per il middleware, le intestazioni predefinite per l'inoltro sono `None`.
 
-I proxy in esecuzione su indirizzi di loopback (127.0.0.0/8, [::1]), incluso l'indirizzo localhost standard (127.0.0.1), sono considerati attendibili per impostazione predefinita. Se le richieste tra Internet e il server Web vengono gestite anche da altri proxy o reti attendibili all'interno dell'organizzazione, aggiungerli all'elenco di <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> o <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> con <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. L'esempio seguente aggiunge un server proxy attendibile all'indirizzo IP 10.0.0.100 nel middleware delle intestazioni inoltrate `KnownProxies` in `Startup.ConfigureServices`:
+I proxy eseguiti sugli indirizzi di loopback ( `127.0.0.0/8` , `[::1]` ), incluso l'indirizzo localhost standard ( `127.0.0.1` ), sono considerati attendibili per impostazione predefinita. Se le richieste tra Internet e il server Web vengono gestite anche da altri proxy o reti attendibili all'interno dell'organizzazione, aggiungerli all'elenco di <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> o <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> con <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. L'esempio seguente aggiunge un server proxy attendibile all'indirizzo IP 10.0.0.100 nel middleware delle intestazioni inoltrate `KnownProxies` in `Startup.ConfigureServices`:
 
 ```csharp
-// using System.Net;
+using System.Net;
+
+...
 
 services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -128,7 +131,7 @@ Per altre informazioni, vedere <xref:host-and-deploy/proxy-load-balancer>.
 
 ### <a name="install-nginx"></a>Installare Nginx
 
-Usare `apt-get` per installare Nginx. Il programma di installazione crea uno script di inizializzazione *systemd* che esegue Nginx come daemon all'avvio del sistema. Seguire le istruzioni di installazione per Ubuntu riportate nell'articolo [Nginx: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages) (Nginx: pacchetti Debian/Ubuntu ufficiali).
+Usare `apt-get` per installare Nginx. Il programma di installazione crea uno `systemd` script di inizializzazione che esegue nginx come daemon all'avvio del sistema. Seguire le istruzioni di installazione per Ubuntu riportate nell'articolo [Nginx: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages) (Nginx: pacchetti Debian/Ubuntu ufficiali).
 
 > [!NOTE]
 > Se sono richiesti moduli Nginx facoltativi, potrebbe essere necessario compilare Nginx dall'origine.
@@ -143,7 +146,7 @@ Verificare che un browser visualizzi la pagina di destinazione predefinita per N
 
 ### <a name="configure-nginx"></a>Configurare Nginx
 
-Per configurare Nginx come proxy inverso per inoltrare le richieste all'app ASP.NET Core, modificare */etc/nginx/sites-available/default* . Aprirlo in un editor di testo e sostituire il contenuto con quanto segue:
+Per configurare nginx come proxy inverso per l'inoltro delle richieste HTTP all'app ASP.NET Core, modificare `/etc/nginx/sites-available/default` . Aprirlo in un editor di testo e sostituire il contenuto con quanto segue:
 
 ```nginx
 server {
@@ -192,7 +195,7 @@ Dopo aver eseguito il test dell'app, arrestare l'app con `Ctrl+C` al prompt dei 
 
 ## <a name="monitor-the-app"></a>Monitorare l'app
 
-Il server è configurato in modo da inoltrare le richieste eseguite a `http://<serveraddress>:80` all'app ASP.NET Core eseguita in Kestrel all'indirizzo `http://127.0.0.1:5000`. Tuttavia, Nginx non è configurato per la gestione del processo Kestrel. È possibile usare *systemd* e creare un file del servizio per avviare e monitorare l'app Web sottostante. *systemd* è un sistema di inizializzazione che offre molte funzionalità potenti per l'avvio, l'arresto e la gestione dei processi. 
+Il server è configurato in modo da inoltrare le richieste eseguite a `http://<serveraddress>:80` all'app ASP.NET Core eseguita in Kestrel all'indirizzo `http://127.0.0.1:5000`. Tuttavia, Nginx non è configurato per la gestione del processo Kestrel. `systemd` può essere usato per creare un file di servizio per avviare e monitorare l'app Web sottostante. `systemd` è un sistema di inizializzazione che offre molte funzionalità potenti per l'avvio, l'arresto e la gestione dei processi. 
 
 ### <a name="create-the-service-file"></a>Creare il file del servizio
 
@@ -226,14 +229,14 @@ WantedBy=multi-user.target
 
 Nell'esempio precedente, l'utente che gestisce il servizio viene specificato dall' `User` opzione. L'utente ( `www-data` ) deve esistere e avere la proprietà appropriata dei file dell'app.
 
-Usare `TimeoutStopSec` per configurare il tempo di attesa prima che l'app si arresti dopo aver ricevuto il segnale di interrupt iniziale. Se l'app non si arresta in questo periodo, viene emesso il comando SIGKILL per terminare l'app. Specificare il valore in secondi senza unità di misura (ad esempio, `150`), un valore per l'intervallo di tempo (ad esempio, `2min 30s`) o `infinity` per disabilitare il timeout. Per impostazione predefinita, il valore di `TimeoutStopSec` viene impostato sul valore di `DefaultTimeoutStopSec` nel file di configurazione del sistema di gestione ( *systemd-system.conf* , *system.conf.d* , *systemd-user.conf* , *user.conf.d* ). Il timeout predefinito per la maggior parte delle distribuzioni è di 90 secondi.
+Usare `TimeoutStopSec` per configurare il tempo di attesa prima che l'app si arresti dopo aver ricevuto il segnale di interrupt iniziale. Se l'app non si arresta in questo periodo, viene emesso il comando SIGKILL per terminare l'app. Specificare il valore in secondi senza unità di misura (ad esempio, `150`), un valore per l'intervallo di tempo (ad esempio, `2min 30s`) o `infinity` per disabilitare il timeout. `TimeoutStopSec` il valore predefinito è il valore di `DefaultTimeoutStopSec` nel file di configurazione Manager ( `systemd-system.conf` ,, `system.conf.d` `systemd-user.conf` , `user.conf.d` ). Il timeout predefinito per la maggior parte delle distribuzioni è di 90 secondi.
 
 ```
 # The default value is 90 seconds for most distributions.
 TimeoutStopSec=90
 ```
 
-Linux dispone di un file system con distinzione tra maiuscole e minuscole. L'impostazione di ASPNETCORE_ENVIRONMENT su "Production" determina la ricerca del file di configurazione *appsettings.Production.json* , non di *appsettings.production.json* .
+Linux dispone di un file system con distinzione tra maiuscole e minuscole. Se `ASPNETCORE_ENVIRONMENT` si imposta su `Production` , la ricerca del file di configurazione non viene eseguita `appsettings.Production.json` `appsettings.production.json` .
 
 Per alcuni valori (ad esempio, le stringhe di connessione SQL) è necessario usare caratteri di escape, in modo da consentire ai provider di configurazione di leggere le variabili di ambiente. Usare il comando seguente per generare un valore con caratteri di escape corretti per l'uso nel file di configurazione:
 
@@ -276,7 +279,7 @@ Main PID: 9021 (dotnet)
             └─9021 /usr/local/bin/dotnet /var/www/helloapp/helloapp.dll
 ```
 
-Con il proxy inverso configurato e Kestrel gestito tramite systemd, l'app Web è completamente configurata ed è possibile accedervi da un browser nel computer locale all'indirizzo `http://localhost`. È anche possibile accedervi da un computer remoto, escludendo eventuali firewall che potrebbero impedirlo. Se si esaminano le intestazioni di risposta, l'intestazione `Server` indica che l'app ASP.NET Core è gestita da Kestrel.
+Con il proxy inverso configurato e il gheppio gestito tramite `systemd` , l'app Web è completamente configurata ed è accessibile da un browser nel computer locale all'indirizzo `http://localhost` . È anche possibile accedervi da un computer remoto, escludendo eventuali firewall che potrebbero impedirlo. Se si esaminano le intestazioni di risposta, l'intestazione `Server` indica che l'app ASP.NET Core è gestita da Kestrel.
 
 ```text
 HTTP/1.1 200 OK
@@ -301,7 +304,7 @@ Per filtrare ulteriormente, opzioni come `--since today`, `--until 1 hour ago` o
 sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-10-18 04:00"
 ```
 
-## <a name="data-protection"></a>Protezione dei dati
+## <a name="data-protection"></a>Protezione dati
 
 Lo [stack di protezione dei dati ASP.NET Core](xref:security/data-protection/introduction) viene usato da diversi [middleware](xref:fundamentals/middleware/index)di ASP.NET Core, tra cui il middleware di autenticazione (ad esempio, cookie middleware) e le protezioni di richiesta tra siti (CSRF). Anche se le DPAPI (Data Protection API) non vengono chiamate dal codice dell'utente, è consigliabile configurare la protezione dati per la creazione di un [archivio di chiavi](xref:security/data-protection/implementation/key-management) crittografiche permanente. Se non si configura la protezione dei dati, le chiavi vengono mantenute in memoria ed eliminate al riavvio dell'app.
 
@@ -357,7 +360,7 @@ sudo ufw enable
 
 #### <a name="change-the-nginx-response-name"></a>Modificare il nome di risposta Nginx
 
-Modificare *src/http/ngx_http_header_filter_module.c* :
+Modificare `src/http/ngx_http_header_filter_module.c`:
 
 ```
 static char ngx_http_server_string[] = "Server: Web Server" CRLF;
@@ -372,9 +375,9 @@ Configurare il server con moduli aggiuntivi obbligatori. Può essere utile usare
 
 **Configurare l'app per connessioni locali sicure (HTTPS)**
 
-Il comando [dotnet run](/dotnet/core/tools/dotnet-run) usa il file *Properties/launchSettings.json* dell'app, che configura l'app per l'ascolto negli URL specificati dalla proprietà `applicationUrl` , ad esempio `https://localhost:5001;http://localhost:5000`.
+Il comando [DotNet Run](/dotnet/core/tools/dotnet-run) usa il file dell'app `Properties/launchSettings.json` , che configura l'app in modo che sia in ascolto sugli URL forniti dalla `applicationUrl` Proprietà (ad esempio, `https://localhost:5001;http://localhost:5000` ).
 
-Configurare l'app per l'uso di un certificato nello sviluppo per il comando `dotnet run` o l'ambiente di sviluppo (F5 o CTRL+F5 in Visual Studio Code) usando uno degli approcci seguenti:
+Configurare l'app per l'uso di un certificato in fase di sviluppo per il `dotnet run` comando o l'ambiente di sviluppo (<kbd>F5</kbd> o <kbd>CTRL</kbd> + <kbd>F5</kbd> in Visual Studio Code) usando uno degli approcci seguenti:
 
 * [Sostituire il certificato predefinito della configurazione](xref:fundamentals/servers/kestrel#configuration) ( *consigliato* )
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
@@ -383,20 +386,25 @@ Configurare l'app per l'uso di un certificato nello sviluppo per il comando `dot
 
 * Configurare il server in modo che sia in ascolto del traffico HTTPS sulla porta `443` specificando un certificato valido emesso da un'autorità di certificazione attendibile.
 
-* Rafforzare la protezione adottando alcune delle procedure descritte nel file */etc/nginx/nginx.conf* che segue. Gli esempi includono la scelta di una crittografia più complessa e il reindirizzamento di tutto il traffico su HTTP a HTTPS.
+* Per rafforzare la sicurezza, è necessario adottare alcune delle procedure descritte nel file seguente `/etc/nginx/nginx.conf` . Gli esempi includono la scelta di una crittografia più complessa e il reindirizzamento di tutto il traffico su HTTP a HTTPS.
+
+  > [!NOTE]
+  > Per gli ambienti di sviluppo, è consigliabile usare reindirizzamenti temporanei (302) invece dei reindirizzamenti permanenti (301). La memorizzazione nella cache dei collegamenti può causare un comportamento instabile negli ambienti di sviluppo.
 
 * L'aggiunta di un'intestazione `HTTP Strict-Transport-Security` (HSTS) garantisce che tutte le richieste successive vengano effettuate dal client via HTTPS.
+
+  Per informazioni importanti su HSTS, vedere <xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts> .
 
 * Se HTTPS sarà disabilitato in futuro, usare uno degli approcci seguenti:
 
   * Non aggiungere l'intestazione HSTS.
   * Scegliere un `max-age` valore breve.
 
-Aggiungere il file di configurazione */etc/nginx/proxy.conf* :
+Aggiungere il `/etc/nginx/proxy.conf` file di configurazione:
 
 [!code-nginx[](linux-nginx/proxy.conf)]
 
-Aggiungere il file di configurazione */etc/nginx/proxy.conf* . L'esempio contiene entrambe le sezioni `http` e `server` in un unico file di configurazione.
+**Sostituire** il contenuto del `/etc/nginx/nginx.conf` file di configurazione con il file seguente. L'esempio contiene entrambe le sezioni `http` e `server` in un unico file di configurazione.
 
 [!code-nginx[](linux-nginx/nginx.conf?highlight=2)]
 
@@ -409,27 +417,31 @@ Il [clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a
 
 Per contrastare gli attacchi di clickjacking:
 
-1. Modificare il file *nginx.conf* :
+1. Modificare il `nginx.conf` file:
 
    ```bash
    sudo nano /etc/nginx/nginx.conf
    ```
 
-   Aggiungere la riga `add_header X-Frame-Options "SAMEORIGIN";`.
+   Aggiungere la riga: `add_header X-Frame-Options "SAMEORIGIN";`
+
 1. Salvare il file.
 1. Riavviare Nginx.
 
 #### <a name="mime-type-sniffing"></a>Analisi del tipo MIME
 
-Questa intestazione impedisce alla maggior parte dei browser di dedurre dall'analisi del tipo MIME un tipo di contenuto diverso da quello dichiarato, poiché l'intestazione indica al browser di non eseguire l'override del tipo di contenuto della risposta. Con l'opzione `nosniff`, se il server indica che il contenuto è "text/html", il browser ne esegue il rendering come "text/html".
+Questa intestazione impedisce alla maggior parte dei browser di dedurre dall'analisi del tipo MIME un tipo di contenuto diverso da quello dichiarato, poiché l'intestazione indica al browser di non eseguire l'override del tipo di contenuto della risposta. Con l' `nosniff` opzione, se il server indica che il contenuto è `text/html` , il browser ne esegue il rendering come `text/html` .
 
-Modificare il file *nginx.conf* :
+1. Modificare il `nginx.conf` file:
 
-```bash
-sudo nano /etc/nginx/nginx.conf
-```
+   ```bash
+   sudo nano /etc/nginx/nginx.conf
+   ```
 
-Aggiungere la riga `add_header X-Content-Type-Options "nosniff";` e salvare il file, quindi riavviare Nginx.
+   Aggiungere la riga: `add_header X-Content-Type-Options "nosniff";`
+
+1. Salvare il file.
+1. Riavviare Nginx.
 
 ## <a name="additional-nginx-suggestions"></a>Suggerimenti nginx aggiuntivi
 

@@ -5,7 +5,7 @@ description: Informazioni su come creare e usare Razor i componenti, tra cui la 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/19/2020
+ms.date: 11/09/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: d30f40945a3b2799dfc2d9391bba37eee1bfdc18
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 0f02bc3a92b9f62eb0e3efea0cd780ad6d09bef5
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056270"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94431004"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Creazione e utilizzo di Razor componenti ASP.NET Core
 
@@ -32,11 +32,11 @@ Di [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
 
-Blazor le app vengono compilate usando i *componenti* . Un componente è un blocco di interfaccia utente (UI) autonomo, ad esempio una pagina, una finestra di dialogo o un form. Un componente include il markup HTML e la logica di elaborazione necessaria per inserire i dati o rispondere agli eventi dell'interfaccia utente. I componenti sono flessibili e leggeri. Possono essere annidati, riutilizzati e condivisi tra i progetti.
+Blazor le app vengono compilate usando i *componenti*. Un componente è un blocco di interfaccia utente (UI) autonomo, ad esempio una pagina, una finestra di dialogo o un form. Un componente include il markup HTML e la logica di elaborazione necessaria per inserire i dati o rispondere agli eventi dell'interfaccia utente. I componenti sono flessibili e leggeri. Possono essere annidati, riutilizzati e condivisi tra i progetti.
 
 ## <a name="component-classes"></a>Classi di componenti
 
-I componenti sono implementati in [Razor](xref:mvc/views/razor) file componente ( `.razor` ) utilizzando una combinazione di markup C# e HTML. Un componente in Blazor viene definito formalmente come *Razor componente* .
+I componenti sono implementati in [Razor](xref:mvc/views/razor) file componente ( `.razor` ) utilizzando una combinazione di markup C# e HTML. Un componente in Blazor viene definito formalmente come *Razor componente*.
 
 ### <a name="no-locrazor-syntax"></a>Sintassi Razor
 
@@ -51,7 +51,7 @@ Quando si accede al contenuto sulla Razor sintassi, prestare particolare attenzi
 
 Il nome di un componente deve iniziare con un carattere maiuscolo. Ad esempio, `MyCoolComponent.razor` è valido e `myCoolComponent.razor` non è valido.
 
-### <a name="routing"></a>Routing.
+### <a name="routing"></a>Routing
 
 Il routing in Blazor viene effettuato fornendo un modello di route a ogni componente accessibile nell'app. Quando Razor viene compilato un file con una [`@page`][9] direttiva, alla classe generata viene assegnato un oggetto che <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifica il modello di route. In fase di esecuzione, il router cerca le classi di componenti con un oggetto <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> ed esegue il rendering di qualsiasi componente con un modello di route corrispondente all'URL richiesto. Per altre informazioni, vedere <xref:blazor/fundamentals/routing>.
 
@@ -556,7 +556,7 @@ Nell'esempio precedente `NotifierService` richiama il metodo del componente `OnN
 
 Quando si esegue il rendering di un elenco di elementi o componenti e gli elementi o i componenti cambiano successivamente, l' Blazor algoritmo diffing deve decidere quali elementi o componenti precedenti possono essere conservati e come eseguire il mapping degli oggetti modello. In genere, questo processo è automatico e può essere ignorato, ma in alcuni casi potrebbe essere necessario controllare il processo.
 
-Si consideri l'esempio seguente:
+Prendere in considerazione gli esempi seguenti:
 
 ```csharp
 @foreach (var person in People)
@@ -628,12 +628,26 @@ Verificare che i valori usati per non siano in [`@key`][5] conflitto. Se vengono
 
 ## <a name="overwritten-parameters"></a>Parametri sovrascritti
 
-Vengono forniti nuovi valori di parametro, in genere sovrascrivendo quelli esistenti, quando viene eseguito il rendering del componente padre.
+Il Blazor Framework impone in genere un'assegnazione di parametro sicura da padre a figlio:
 
-Si consideri il `Expander` componente seguente:
+* I parametri non vengono sovrascritti in modo imprevisto.
+* Gli effetti collaterali sono ridotti al minimo. Ad esempio, i rendering aggiuntivi vengono evitati perché possono creare cicli di rendering infiniti.
+
+Un componente figlio riceve nuovi valori di parametro che potrebbero sovrascrivere i valori esistenti quando il componente padre esegue nuovamente il rendering. Accidentale sovrascrivendo i valori dei parametri in un componente figlio spesso si verifica quando si sviluppa il componente con uno o più parametri associati a dati e lo sviluppatore scrive direttamente in un parametro nell'elemento figlio:
+
+* Il componente figlio viene sottoposto a rendering con uno o più valori di parametro dal componente padre.
+* Il figlio scrive direttamente nel valore di un parametro.
+* Il componente padre esegue nuovamente il rendering e sovrascrive il valore del parametro del figlio.
+
+La possibilità di sovrascrivere i valori del parametro si estende anche nei setter di proprietà del componente figlio.
+
+**Le linee guida generali non consentono di creare componenti che scrivono direttamente nei propri parametri.**
+
+Si consideri il `Expander` componente difettoso seguente che:
 
 * Esegue il rendering del contenuto figlio.
-* Consente di visualizzare o disabilitare il contenuto figlio con un parametro component.
+* Consente di visualizzare o disabilitare il contenuto figlio con un parametro component ( `Expanded` ).
+* Il componente scrive direttamente nel `Expanded` parametro, che illustra il problema con i parametri sovrascritti e deve essere evitato.
 
 ```razor
 <div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
@@ -685,7 +699,7 @@ Il componente modificato seguente `Expander` :
 
 * Accetta il `Expanded` valore del parametro component dall'elemento padre.
 * Assegna il valore del parametro component a un *campo privato* ( `expanded` ) nell' [evento OnInitialized](xref:blazor/components/lifecycle#component-initialization-methods).
-* Usa il campo privato per mantenere lo stato di attivazione/disattivo interno.
+* Usa il campo privato per mantenere lo stato di attivazione/disattivo interno, che dimostra come evitare la scrittura diretta in un parametro.
 
 ```razor
 <div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
@@ -719,6 +733,8 @@ Il componente modificato seguente `Expander` :
     }
 }
 ```
+
+Per ulteriori informazioni, vedere [ Blazor errore di associazione bidirezionale (DotNet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599). 
 
 ## <a name="apply-an-attribute"></a>Applicare un attributo
 

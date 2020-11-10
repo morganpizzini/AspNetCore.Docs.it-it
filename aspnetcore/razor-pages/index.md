@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/index
-ms.openlocfilehash: ff045b24c351c696566dee6046fc4b76f8f88e1a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 89e06d00e9312a428c4e164b0dc60527fe12d904
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059143"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430874"
 ---
 # <a name="introduction-to-no-locrazor-pages-in-aspnet-core"></a>Introduzione alle Razor pagine ASP.NET Core
 
@@ -91,7 +91,7 @@ Il modello di pagina *Pages/Index2.cshtml.cs* :
 
 [!code-csharp[](index/3.0sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
-Per convenzione, il `PageModel` file di classe ha lo stesso nome del Razor file di paging con l'aggiunta di *. cs* . La pagina precedente, ad esempio, Razor è *pages/index2. cshtml* . Il file che contiene la classe `PageModel` è denominato *Pages/Index2.cshtml.cs* .
+Per convenzione, il `PageModel` file di classe ha lo stesso nome del Razor file di paging con l'aggiunta di *. cs* . La pagina precedente, ad esempio, Razor è *pages/index2. cshtml*. Il file che contiene la classe `PageModel` è denominato *Pages/Index2.cshtml.cs*.
 
 Le associazioni dei percorsi URL alle pagine sono determinate dalla posizione della pagina nel file system. La tabella seguente mostra un Razor percorso di pagina e l'URL corrispondente:
 
@@ -224,7 +224,7 @@ Il file *index. cshtml* contiene il markup seguente:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=21)]
 
-L' `<a /a>` [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usato l' `asp-route-{value}` attributo per generare un collegamento alla pagina di modifica. Il collegamento contiene i dati della route con l'ID contatto. Ad esempio `https://localhost:5001/Edit/1`. Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file.
+L' `<a /a>` [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usato l' `asp-route-{value}` attributo per generare un collegamento alla pagina di modifica. Il collegamento contiene i dati della route con l'ID contatto. Ad esempio, `https://localhost:5001/Edit/1` Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file.
 
 Il file *index. cshtml* contiene il markup per la creazione di un pulsante Delete per ogni contatto del cliente:
 
@@ -374,19 +374,19 @@ La proprietà [Layout](xref:mvc/views/layout#specifying-a-layout) proprietà vie
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
-Il layout è nella cartella *Pages/Shared* . Le pagine cercano altre visualizzazioni (layout, modelli, righe parzialmente eseguite) in modo gerarchico, partendo dalla stessa cartella della pagina corrente. Un layout nella cartella pages */Shared* può essere utilizzato da qualsiasi Razor pagina nella cartella *pages* .
+Il layout è nella cartella *Pages/Shared*. Le pagine cercano altre visualizzazioni (layout, modelli, righe parzialmente eseguite) in modo gerarchico, partendo dalla stessa cartella della pagina corrente. Un layout nella cartella pages */Shared* può essere utilizzato da qualsiasi Razor pagina nella cartella *pages* .
 
-Il file di layout dovrebbe andare nella cartella *Pages/Shared* .
+Il file di layout dovrebbe andare nella cartella *Pages/Shared*.
 
-Si consiglia di **non** inserire il file di layout nella cartella *Views/Shared* . *Views/Shared* è un modello destinato alle visualizzazioni MVC. Razor Le pagine hanno lo scopo di basarsi sulla gerarchia di cartelle, non sulle convenzioni di percorso.
+Si consiglia di **non** inserire il file di layout nella cartella *Views/Shared*. *Views/Shared* è un modello destinato alle visualizzazioni MVC. Razor Le pagine hanno lo scopo di basarsi sulla gerarchia di cartelle, non sulle convenzioni di percorso.
 
-Visualizza la ricerca da una Razor pagina include la cartella *pagine* . I layout, i modelli e i parziali utilizzati con i controller MVC e le Razor visualizzazioni convenzionali *funzionano semplicemente* .
+Visualizza la ricerca da una Razor pagina include la cartella *pagine* . I layout, i modelli e i parziali utilizzati con i controller MVC e le Razor visualizzazioni convenzionali *funzionano semplicemente*.
 
 Aggiungere un file *Pages/_ViewImports.cshtml* :
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
-`@namespace` viene spiegato in seguito nell'esercitazione. La direttiva `@addTagHelper` inserisce gli [helper tag predefiniti](xref:mvc/views/tag-helpers/builtin-th/Index) in tutte le pagine presenti nella cartella *Pages* .
+`@namespace` viene spiegato in seguito nell'esercitazione. La direttiva `@addTagHelper` inserisce gli [helper tag predefiniti](xref:mvc/views/tag-helpers/builtin-th/Index) in tutte le pagine presenti nella cartella *Pages*.
 
 <a name="namespace"></a>
 
@@ -444,13 +444,13 @@ L'applicazione ha la struttura di file o cartella seguente:
     * *Edit.cshtml*
     * *Index.cshtml*
 
-Le pagine *pages/Customers/create. cshtml* e *pages/Customers/Edit. cshtml* reindirizza a *pages/Customers/index. cshtml* dopo l'esito positivo. La stringa `./Index` è un nome di pagina relativo usato per accedere alla pagina precedente. Viene usato per generare gli URL nella pagina *pages/Customers/index. cshtml* . Ad esempio:
+Le pagine *pages/Customers/create. cshtml* e *pages/Customers/Edit. cshtml* reindirizza a *pages/Customers/index. cshtml* dopo l'esito positivo. La stringa `./Index` è un nome di pagina relativo usato per accedere alla pagina precedente. Viene usato per generare gli URL nella pagina *pages/Customers/index. cshtml* . Esempio:
 
 * `Url.Page("./Index", ...)`
 * `<a asp-page="./Index">Customers Index Page</a>`
 * `RedirectToPage("./Index")`
 
-Il nome della pagina assoluta `/Index` viene usato per generare gli URL nella pagina *pages/index. cshtml* . Ad esempio:
+Il nome della pagina assoluta `/Index` viene usato per generare gli URL nella pagina *pages/index. cshtml* . Esempio:
 
 * `Url.Page("/Index", ...)`
 * `<a asp-page="/Index">Home Index Page</a>`
@@ -458,7 +458,7 @@ Il nome della pagina assoluta `/Index` viene usato per generare gli URL nella pa
 
 Il nome della pagina è il percorso alla pagina dalla cartella radice */Pages* , inclusa una barra iniziale `/`, ad esempio `/Index`. Gli esempi di generazione di URL precedenti offrono opzioni avanzate e funzionalità funzionali rispetto a un URL a livello di codice. La generazione di URL usa il [routing](xref:mvc/controllers/routing) ed è in grado di generare e codificare i parametri in base al modo in cui la route è definita nel percorso di destinazione.
 
-La generazione di URL per le pagine supporta i nomi relativi. Nella tabella seguente viene illustrata la pagina di indice selezionata utilizzando `RedirectToPage` parametri diversi in *pages/Customers/create. cshtml* .
+La generazione di URL per le pagine supporta i nomi relativi. Nella tabella seguente viene illustrata la pagina di indice selezionata utilizzando `RedirectToPage` parametri diversi in *pages/Customers/create. cshtml*.
 
 | RedirectToPage(x)| Pagina |
 | ----------------- | ------------ |
@@ -469,7 +469,7 @@ La generazione di URL per le pagine supporta i nomi relativi. Nella tabella segu
 
 <!-- Test via ~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Details.cshtml.cs -->
 
-`RedirectToPage("Index")`, `RedirectToPage("./Index")` e `RedirectToPage("../Index")` sono *nomi relativi* . Il parametro `RedirectToPage` è *combinato* con il percorso della pagina corrente per calcolare il nome della pagina di destinazione.
+`RedirectToPage("Index")`, `RedirectToPage("./Index")` e `RedirectToPage("../Index")` sono *nomi relativi*. Il parametro `RedirectToPage` è *combinato* con il percorso della pagina corrente per calcolare il nome della pagina di destinazione.
 
 Il collegamento dei nomi relativi è utile quando si compilano siti con una struttura complessa. Quando vengono usati nomi relativi per il collegamento tra le pagine in una cartella:
 
@@ -555,7 +555,7 @@ Il modello di pagina:
 
 [!code-csharp[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 
-Il codice precedente usa *metodi gestore denominati* . I metodi gestore denominati vengono creati usando il testo che nel nome segue `On<HTTP Verb>` e precede `Async` (se presente). Nell'esempio precedente i metodi della pagina sono OnPost **JoinList** Async e OnPost **JoinListUC** Async. Rimuovendo *OnPost* e *Async* , i nomi dei gestori sono `JoinList` e `JoinListUC`.
+Il codice precedente usa *metodi gestore denominati*. I metodi gestore denominati vengono creati usando il testo che nel nome segue `On<HTTP Verb>` e precede `Async` (se presente). Nell'esempio precedente i metodi della pagina sono OnPost **JoinList** Async e OnPost **JoinListUC** Async. Rimuovendo *OnPost* e *Async* , i nomi dei gestori sono `JoinList` e `JoinListUC`.
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
 
@@ -616,7 +616,7 @@ Aggiungere <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBu
 * <xref:razor-pages/razor-pages-conventions>
 * <xref:test/razor-pages-tests>
 * <xref:mvc/views/partial>
-* <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>
+* <xref:blazor/components/prerendering-and-integration>
 
 ::: moniker-end
 
@@ -686,7 +686,7 @@ Il modello di pagina *Pages/Index2.cshtml.cs* :
 
 [!code-csharp[](index/sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
-Per convenzione, il `PageModel` file di classe ha lo stesso nome del Razor file di paging con l'aggiunta di *. cs* . La pagina precedente, ad esempio, Razor è *pages/index2. cshtml* . Il file che contiene la classe `PageModel` è denominato *Pages/Index2.cshtml.cs* .
+Per convenzione, il `PageModel` file di classe ha lo stesso nome del Razor file di paging con l'aggiunta di *. cs* . La pagina precedente, ad esempio, Razor è *pages/index2. cshtml*. Il file che contiene la classe `PageModel` è denominato *Pages/Index2.cshtml.cs*.
 
 Le associazioni dei percorsi URL alle pagine sono determinate dalla posizione della pagina nel file system. La tabella seguente mostra un Razor percorso di pagina e l'URL corrispondente:
 
@@ -780,7 +780,7 @@ Il file *Index.cshtml* contiene il markup seguente per creare un collegamento di
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
-L' `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usato l' `asp-route-{value}` attributo per generare un collegamento alla pagina di modifica. Il collegamento contiene i dati della route con l'ID contatto. Ad esempio `https://localhost:5001/Edit/1`. Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file. Gli helper tag sono abilitati da `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+L' `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usato l' `asp-route-{value}` attributo per generare un collegamento alla pagina di modifica. Il collegamento contiene i dati della route con l'ID contatto. Ad esempio, `https://localhost:5001/Edit/1` Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file. Gli helper tag sono abilitati da `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 Il file *Pages/Edit.cshtml* :
 
@@ -854,7 +854,7 @@ services.AddMvc()
 
 I modelli predefiniti generano la chiamata `SetCompatibilityVersion` in ASP.NET Core 2.1 e 2.2. `SetCompatibilityVersion` imposta effettivamente l' Razor opzione Pages `AllowMappingHeadRequestsToGetHandler` su `true` .
 
-Anziché acconsentire esplicitamente a tutti i comportamenti con `SetCompatibilityVersion`, è possibile acconsentire a comportamenti *specifici* . Il codice seguente acconsente esplicitamente al mapping delle richieste `HEAD` al gestore `OnGet`:
+Anziché acconsentire esplicitamente a tutti i comportamenti con `SetCompatibilityVersion`, è possibile acconsentire a comportamenti *specifici*. Il codice seguente acconsente esplicitamente al mapping delle richieste `HEAD` al gestore `OnGet`:
 
 ```csharp
 services.AddMvc()
@@ -893,19 +893,19 @@ La proprietà [Layout](xref:mvc/views/layout#specifying-a-layout) proprietà vie
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
-Il layout è nella cartella *Pages/Shared* . Le pagine cercano altre visualizzazioni (layout, modelli, righe parzialmente eseguite) in modo gerarchico, partendo dalla stessa cartella della pagina corrente. Un layout nella cartella pages */Shared* può essere utilizzato da qualsiasi Razor pagina nella cartella *pages* .
+Il layout è nella cartella *Pages/Shared*. Le pagine cercano altre visualizzazioni (layout, modelli, righe parzialmente eseguite) in modo gerarchico, partendo dalla stessa cartella della pagina corrente. Un layout nella cartella pages */Shared* può essere utilizzato da qualsiasi Razor pagina nella cartella *pages* .
 
-Il file di layout dovrebbe andare nella cartella *Pages/Shared* .
+Il file di layout dovrebbe andare nella cartella *Pages/Shared*.
 
-Si consiglia di **non** inserire il file di layout nella cartella *Views/Shared* . *Views/Shared* è un modello destinato alle visualizzazioni MVC. Razor Le pagine hanno lo scopo di basarsi sulla gerarchia di cartelle, non sulle convenzioni di percorso.
+Si consiglia di **non** inserire il file di layout nella cartella *Views/Shared*. *Views/Shared* è un modello destinato alle visualizzazioni MVC. Razor Le pagine hanno lo scopo di basarsi sulla gerarchia di cartelle, non sulle convenzioni di percorso.
 
-Visualizza la ricerca da una Razor pagina include la cartella *pagine* . I layout, i modelli e i parziali utilizzati con i controller MVC e le Razor visualizzazioni convenzionali *funzionano semplicemente* .
+Visualizza la ricerca da una Razor pagina include la cartella *pagine* . I layout, i modelli e i parziali utilizzati con i controller MVC e le Razor visualizzazioni convenzionali *funzionano semplicemente*.
 
 Aggiungere un file *Pages/_ViewImports.cshtml* :
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
-`@namespace` viene spiegato in seguito nell'esercitazione. La direttiva `@addTagHelper` inserisce gli [helper tag predefiniti](xref:mvc/views/tag-helpers/builtin-th/Index) in tutte le pagine presenti nella cartella *Pages* .
+`@namespace` viene spiegato in seguito nell'esercitazione. La direttiva `@addTagHelper` inserisce gli [helper tag predefiniti](xref:mvc/views/tag-helpers/builtin-th/Index) in tutte le pagine presenti nella cartella *Pages*.
 
 <a name="namespace"></a>
 
@@ -960,7 +960,7 @@ L'applicazione ha la struttura di file o cartella seguente:
     * *Edit.cshtml*
     * *Index.cshtml*
 
-Le pagine *Pages/Customers/Create.cshtml* e *Pages/Customers/Edit.cshtml* reindirizzano a *Pages/Index.cshtml* dopo l'esecuzione. La stringa `/Index` fa parte dell'URI di accesso alla pagina precedente. La stringa `/Index` può essere usata per generare gli URI alla pagina *Pages/Index.cshtml* . Ad esempio:
+Le pagine *Pages/Customers/Create.cshtml* e *Pages/Customers/Edit.cshtml* reindirizzano a *Pages/Index.cshtml* dopo l'esecuzione. La stringa `/Index` fa parte dell'URI di accesso alla pagina precedente. La stringa `/Index` può essere usata per generare gli URI alla pagina *Pages/Index.cshtml*. Esempio:
 
 * `Url.Page("/Index", ...)`
 * `<a asp-page="/Index">My Index Page</a>`
@@ -977,7 +977,7 @@ La generazione di URL per le pagine supporta i nomi relativi. La tabella seguent
 | RedirectToPage("../Index") | *Pages/Index* |
 | RedirectToPage("Index")  | *Pages/Customers/Index* |
 
-`RedirectToPage("Index")`, `RedirectToPage("./Index")` e `RedirectToPage("../Index")`  sono *nomi relativi* . Il parametro `RedirectToPage` è *combinato* con il percorso della pagina corrente per calcolare il nome della pagina di destinazione.  <!-- Review: Original had The provided string is combined with the page name of the current page to compute the name of the destination page.  page name, not page path -->
+`RedirectToPage("Index")`, `RedirectToPage("./Index")` e `RedirectToPage("../Index")`  sono *nomi relativi*. Il parametro `RedirectToPage` è *combinato* con il percorso della pagina corrente per calcolare il nome della pagina di destinazione.  <!-- Review: Original had The provided string is combined with the page name of the current page to compute the name of the destination page.  page name, not page path -->
 
 Il collegamento dei nomi relativi è utile quando si compilano siti con una struttura complessa. Se si usano i nomi relativi per il collegamento tra le pagine in una cartella, è possibile rinominare tale cartella. Tutti i collegamenti continuano a funzionare perché non includono il nome della cartella.
 
@@ -1062,7 +1062,7 @@ Il modello di pagina:
 
 [!code-csharp[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 
-Il codice precedente usa *metodi gestore denominati* . I metodi gestore denominati vengono creati usando il testo che nel nome segue `On<HTTP Verb>` e precede `Async` (se presente). Nell'esempio precedente i metodi della pagina sono OnPost **JoinList** Async e OnPost **JoinListUC** Async. Rimuovendo *OnPost* e *Async* , i nomi dei gestori sono `JoinList` e `JoinListUC`.
+Il codice precedente usa *metodi gestore denominati*. I metodi gestore denominati vengono creati usando il testo che nel nome segue `On<HTTP Verb>` e precede `Async` (se presente). Nell'esempio precedente i metodi della pagina sono OnPost **JoinList** Async e OnPost **JoinListUC** Async. Rimuovendo *OnPost* e *Async* , i nomi dei gestori sono `JoinList` e `JoinListUC`.
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
 

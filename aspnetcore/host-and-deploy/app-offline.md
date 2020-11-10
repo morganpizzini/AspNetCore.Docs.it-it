@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/app-offline
-ms.openlocfilehash: 4d71b95680a9b160ebb25116e35096495a2eaf93
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 29f3fc5ecd18196d914a46629bc9eb50b183bf61
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058649"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94431030"
 ---
 # <a name="app-offline-file-app_offlinehtm"></a>File offline dell'app ( `app_offline.htm` )
 
@@ -47,11 +47,12 @@ I file nella cartella di distribuzione sono bloccati durante l'esecuzione dell'a
 ```powershell
 $pathToApp = '{PATH TO APP}'
 
-New-Item -Path $pathToApp app_offline.htm
+
+New-Item -Path $pathToApp -Name "app_offline.htm" -ItemType "file"
 
 # Provide script commands here to deploy the app
 
-Remove-Item -Path $pathToApp app_offline.htm
+Remove-Item -Path $pathToApp\app_offline.htm
 ```
 
 Nello script di PowerShell precedente:

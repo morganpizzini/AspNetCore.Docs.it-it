@@ -5,7 +5,7 @@ description: Informazioni su come ridurre le minacce per la sicurezza alle Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/05/2020
+ms.date: 11/09/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: 5c3a002a8e3df030d53c8625597342a68ca0d4b5
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 0e8b26110a970526b5f6306da236a92f52e64604
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055412"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430955"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-no-locblazor-server"></a>Linee guida per la mitigazione delle minacce per ASP.NET Core Blazor Server
 
@@ -61,7 +61,7 @@ Le risorse esterne al Blazor Framework, ad esempio i database e gli handle di fi
 
 L'esaurimento della CPU può verificarsi quando uno o più client forzano il server a eseguire un lavoro intensivo della CPU.
 
-Si consideri, ad esempio, un' Blazor Server app che calcola un *numero Fibonnacci* . Un numero Fibonnacci viene generato da una sequenza Fibonnacci, dove ogni numero nella sequenza corrisponde alla somma dei due numeri precedenti. La quantità di lavoro necessaria per raggiungere la risposta dipende dalla lunghezza della sequenza e dalle dimensioni del valore iniziale. Se l'app non inserisce limiti per la richiesta di un client, i calcoli con utilizzo intensivo della CPU possono dominare il tempo della CPU e diminuire le prestazioni di altre attività. Un utilizzo eccessivo delle risorse è un problema di sicurezza che influisca sulla disponibilità.
+Si consideri, ad esempio, un' Blazor Server app che calcola un *numero Fibonnacci*. Un numero Fibonnacci viene generato da una sequenza Fibonnacci, dove ogni numero nella sequenza corrisponde alla somma dei due numeri precedenti. La quantità di lavoro necessaria per raggiungere la risposta dipende dalla lunghezza della sequenza e dalle dimensioni del valore iniziale. Se l'app non inserisce limiti per la richiesta di un client, i calcoli con utilizzo intensivo della CPU possono dominare il tempo della CPU e diminuire le prestazioni di altre attività. Un utilizzo eccessivo delle risorse è un problema di sicurezza che influisca sulla disponibilità.
 
 L'esaurimento della CPU è un problema per tutte le app pubbliche. Nelle normali app Web, le richieste e le connessioni si assicurano come misure di sicurezza, ma Blazor Server le app non forniscono le stesse misure di sicurezza. Blazor Server le app devono includere i controlli e i limiti appropriati prima di eseguire potenzialmente un lavoro con utilizzo intensivo della CPU.
 
@@ -77,7 +77,7 @@ Si consideri lo scenario seguente per la gestione e la visualizzazione di un ele
 * Se per il rendering non viene utilizzato uno schema di paging, il server utilizza memoria aggiuntiva per gli oggetti che non sono visibili nell'interfaccia utente. Senza un limite al numero di elementi, le richieste di memoria potrebbero esaurire la memoria del server disponibile. Per evitare questo scenario, usare uno degli approcci seguenti:
   * Usare elenchi impaginati durante il rendering.
   * Visualizza solo i primi 100 e 1.000 elementi e richiede all'utente di immettere i criteri di ricerca per trovare gli elementi oltre gli elementi visualizzati.
-  * Per uno scenario di rendering più avanzato, implementare elenchi o griglie che supportano la *virtualizzazione* . Con la virtualizzazione, gli elenchi eseguono solo il rendering di un subset di elementi attualmente visibili all'utente. Quando l'utente interagisce con la barra di scorrimento nell'interfaccia utente, il componente esegue il rendering solo degli elementi necessari per la visualizzazione. Gli elementi che non sono attualmente necessari per la visualizzazione possono essere conservati nell'archiviazione secondaria, che è l'approccio ideale. Gli elementi non visualizzati possono anche essere mantenuti in memoria, il che è meno ideale.
+  * Per uno scenario di rendering più avanzato, implementare elenchi o griglie che supportano la *virtualizzazione*. Con la virtualizzazione, gli elenchi eseguono solo il rendering di un subset di elementi attualmente visibili all'utente. Quando l'utente interagisce con la barra di scorrimento nell'interfaccia utente, il componente esegue il rendering solo degli elementi necessari per la visualizzazione. Gli elementi che non sono attualmente necessari per la visualizzazione possono essere conservati nell'archiviazione secondaria, che è l'approccio ideale. Gli elementi non visualizzati possono anche essere mantenuti in memoria, il che è meno ideale.
 
 Blazor Server le app offrono un modello di programmazione simile ad altri Framework dell'interfaccia utente per le app con stato, ad esempio WPF, Windows Forms o Blazor WebAssembly . La differenza principale consiste nel fatto che in diversi framework dell'interfaccia utente la memoria utilizzata dall'app appartiene al client e ha effetto solo su tale client. Ad esempio, un' Blazor WebAssembly app viene eseguita interamente nel client e usa solo le risorse di memoria del client. Nello Blazor Server scenario, la memoria usata dall'app appartiene al server e viene condivisa tra i client nell'istanza del server.
 
@@ -101,7 +101,10 @@ Per impostazione predefinita, non esiste alcun limite al numero di connessioni p
     * Richiedere l'autenticazione per la connessione all'app e per tenere traccia delle sessioni attive per ogni utente.
     * Rifiutare le nuove sessioni al raggiungimento di un limite.
     * Connessioni WebSocket proxy a un'app tramite l'uso di un proxy, ad esempio il [ SignalR servizio di Azure](/azure/azure-signalr/signalr-overview) che multiplexerà le connessioni dai client a un'app. In questo modo si fornisce un'app con maggiore capacità di connessione rispetto a un singolo client che può stabilire, impedendo a un client di esaurire le connessioni al server.
-  * A livello di server: usare un proxy/gateway davanti all'app. Ad esempio, la [porta anteriore di Azure](/azure/frontdoor/front-door-overview) consente di definire, gestire e monitorare il routing globale del traffico Web a un'app.
+  * A livello di server: usare un proxy/gateway davanti all'app. Ad esempio, la [porta anteriore di Azure](/azure/frontdoor/front-door-overview) consente di definire, gestire e monitorare il routing globale del traffico Web a un'app e funziona quando le Blazor Server app sono configurate per l'uso del polling prolungato.
+  
+    > [!NOTE]
+    > Sebbene il polling prolungato sia supportato per Blazor Server le app, [WebSocket è il protocollo di trasporto consigliato](xref:blazor/host-and-deploy/server#azure-signalr-service). Il front-end di [Azure](/azure/frontdoor/front-door-overview) non supporta WebSocket in questo momento, ma il supporto per WebSocket è in considerazione per una versione futura del servizio.
 
 ## <a name="denial-of-service-dos-attacks"></a>Attacchi Denial of Service (DoS)
 
@@ -162,7 +165,7 @@ Non considerare attendibili le chiamate da JavaScript ai metodi .NET. Quando un 
 
 Gli eventi forniscono un punto di ingresso a un' Blazor Server app. Le stesse regole per la salvaguardia degli endpoint nelle app Web si applicano alla gestione degli eventi nelle Blazor Server app. Un client dannoso può inviare tutti i dati che desidera inviare come payload per un evento.
 
-Ad esempio:
+Esempio:
 
 * Un evento di modifica per un `<select>` può inviare un valore che non rientra nelle opzioni presentate dall'app al client.
 * Un oggetto `<input>` può inviare dati di testo al server, ignorando la convalida lato client.
