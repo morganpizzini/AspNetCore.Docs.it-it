@@ -1,5 +1,25 @@
 ## <a name="troubleshoot"></a>Risolvere problemi
 
+::: moniker range=">= aspnetcore-5.0"
+
+### <a name="common-errors"></a>Errori comuni
+
+* Client non autorizzato per AAD
+
+  > Info: autorizzazione Microsoft. AspNetCore. Authorization. DefaultAuthorizationService [2] non riuscita. Questi requisiti non sono soddisfatti: DenyAnonymousAuthorizationRequirement: richiede un utente autenticato.
+
+  Errore di callback di accesso da AAD:
+
+  * Errore: `unauthorized_client`
+  * Descrizione `AADB2C90058: The provided application is not configured to allow public clients.`
+
+  Per risolvere l'errore:
+
+  1. Nel portale di Azure accedere al manifesto dell' [app](/azure/active-directory/develop/reference-app-manifest).
+  1. Impostare l' [`allowPublicClient`](/azure/active-directory/develop/reference-app-manifest#allowpublicclient-attribute) attributo su `null` o su `true` .
+
+::: moniker-end
+
 ### <a name="cookies-and-site-data"></a>Cookie e dati del sito
 
 I cookie e i dati del sito possono essere mantenuti tra gli aggiornamenti delle app e interferiscono con i test e la risoluzione Quando si apportano modifiche al codice dell'app, si cancellano le modifiche dell'account utente con il provider o le modifiche alla configurazione dell'app provider:
@@ -24,7 +44,7 @@ Un approccio che impedisce ai cookie e ai dati del sito di interferire con i tes
     * Microsoft Edge: usare `-inprivate` .
     * Google Chrome: usare `--incognito --new-window {URL}` , dove il segnaposto `{URL}` è l'URL da aprire, ad esempio `https://localhost:5001` .
     * Mozilla Firefox: usare `-private -url {URL}` , dove il segnaposto `{URL}` è l'URL da aprire, ad esempio `https://localhost:5001` .
-  * Specificare un nome nel campo **nome descrittivo** . Ad esempio: `Firefox Auth Testing`.
+  * Specificare un nome nel campo **nome descrittivo** . Ad esempio, `Firefox Auth Testing`
   * Selezionare il pulsante **OK** .
   * Per evitare di dover selezionare il profilo del browser per ogni iterazione del test con un'app, impostare il profilo come predefinito con il pulsante **Imposta come predefinito** .
   * Verificare che il browser sia chiuso dall'IDE per qualsiasi modifica all'app, all'utente di test o alla configurazione del provider.

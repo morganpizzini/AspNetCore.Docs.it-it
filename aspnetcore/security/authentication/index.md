@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/index
-ms.openlocfilehash: eb8c5b3c66f9a0d845d6a1d58c69e6fddefa5b0b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: e9e4ca11d20557666c75b84e56af825d002df0f1
+ms.sourcegitcommit: fbd5427293d9ecccc388bd5fd305c2eb8ada7281
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053384"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94464003"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Panoramica dell'autenticazione ASP.NET Core
 
@@ -141,3 +141,4 @@ Vedere l'origine [Orchard Core](https://github.com/OrchardCMS/OrchardCore) per u
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
 * [Richiedi utenti autenticati a livello globale](xref:security/authorization/secure-data#rau)
+* [Problema di GitHub sull'uso di più schemi di autenticazione](https://github.com/dotnet/aspnetcore/issues/26002)
