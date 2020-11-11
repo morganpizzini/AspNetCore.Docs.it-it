@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: eef381367d7aa59dcc430c529746088d4488e700
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: fc2e81cf130732d515fb871227031493e297cf9f
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054931"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94507772"
 ---
 # <a name="aspnet-core-no-locblazor-templates"></a>Modelli di ASP.NET Core Blazor
 
@@ -48,12 +48,27 @@ dotnet new blazorserver --help
 
 I file e le cartelle seguenti costituiscono un' Blazor app generata da un Blazor modello di progetto:
 
+::: moniker range=">= aspnetcore-5.0"
+
 * `Program.cs`: Il punto di ingresso dell'app che configura:
 
   * [Host](xref:fundamentals/host/generic-host) ASP.NET Core ( Blazor Server )
   * Host webassembly ( Blazor WebAssembly ): il codice in questo file è univoco per le app create dal Blazor WebAssembly modello ( `blazorwasm` ).
-    * Il `App` componente è il componente radice dell'app. Il `App` componente viene specificato come `app` elemento DOM ( `<app>...</app>` ) nella raccolta di componenti radice ( `builder.RootComponents.Add<App>("app")` ).
+    * Il `App` componente è il componente radice dell'app. Il `App` componente viene specificato come `app` elemento DOM ( `<div id="app">Loading...</div>` in `wwwroot/index.html` ) per la raccolta di componenti radice ( `builder.RootComponents.Add<App>("#app")` ).
     * I [Servizi](xref:blazor/fundamentals/dependency-injection) vengono aggiunti e configurati, ad esempio `builder.Services.AddSingleton<IMyDependency, MyDependency>()` .
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* `Program.cs`: Il punto di ingresso dell'app che configura:
+
+  * [Host](xref:fundamentals/host/generic-host) ASP.NET Core ( Blazor Server )
+  * Host webassembly ( Blazor WebAssembly ): il codice in questo file è univoco per le app create dal Blazor WebAssembly modello ( `blazorwasm` ).
+    * Il `App` componente è il componente radice dell'app. Il `App` componente viene specificato come `app` elemento DOM ( `<app>Loading...</app>` in `wwwroot/index.html` ) per la raccolta di componenti radice ( `builder.RootComponents.Add<App>("app")` ).
+    * I [Servizi](xref:blazor/fundamentals/dependency-injection) vengono aggiunti e configurati, ad esempio `builder.Services.AddSingleton<IMyDependency, MyDependency>()` .
+
+::: moniker-end
 
 * `Startup.cs` ( Blazor Server ): Contiene la logica di avvio dell'app. La `Startup` classe definisce due metodi:
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: cd613b2b76b8e876786988fdcefc0e7275d3bf53
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: fe232b40a2255732dd375cc266937576d5b2d5d9
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056062"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94507824"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>ASP.NET Core Blazor moduli e convalida
 
@@ -71,7 +71,7 @@ Nell'esempio precedente:
 
 * Il modulo convalida l'input dell'utente nel `name` campo usando la convalida definita nel `ExampleModel` tipo. Il modello viene creato nel blocco del componente `@code` e viene mantenuto in un campo privato ( `exampleModel` ). Il campo viene assegnato all' `Model` attributo dell' `<EditForm>` elemento.
 * Le <xref:Microsoft.AspNetCore.Components.Forms.InputText> associazioni del componente `@bind-Value` :
-  * Proprietà del modello ( `exampleModel.Name` ) della <xref:Microsoft.AspNetCore.Components.Forms.InputText> proprietà del componente `Value` . Per ulteriori informazioni sull'associazione di proprietà, vedere <xref:blazor/components/data-binding#parent-to-child-binding-with-component-parameters> .
+  * Proprietà del modello ( `exampleModel.Name` ) della <xref:Microsoft.AspNetCore.Components.Forms.InputText> proprietà del componente `Value` . Per ulteriori informazioni sull'associazione di proprietà, vedere <xref:blazor/components/data-binding#binding-with-component-parameters> .
   * Delegato dell'evento di modifica alla <xref:Microsoft.AspNetCore.Components.Forms.InputText> proprietà del componente `ValueChanged` .
 * Il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> [componente validator](#validator-components) connette il supporto della convalida usando le annotazioni dei dati.
 * Il <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> componente riepiloga i messaggi di convalida.
@@ -225,7 +225,7 @@ Il form seguente convalida l'input dell'utente utilizzando la convalida definita
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm>Crea un oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditContext> come [valore](xref:blazor/components/cascading-values-and-parameters) di propagazione che tiene traccia dei metadati relativi al processo di modifica, inclusi i campi modificati e i messaggi di convalida correnti.
 
-Assegnare **un** oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditContext> **o** <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> a un oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditForm> . L'assegnazione di entrambi non è supportata e genera un **errore di runtime** .
+Assegnare **un** oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditContext> **o** <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> a un oggetto <xref:Microsoft.AspNetCore.Components.Forms.EditForm> . L'assegnazione di entrambi non è supportata e genera un **errore di runtime**.
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm>Fornisce gli eventi pratici per l'invio di form valido e non valido:
 
@@ -1060,7 +1060,7 @@ private class MyFieldClassProvider : FieldCssClassProvider
 
 ### <a name="no-locblazor-data-annotations-validation-package"></a>Blazor pacchetto di convalida delle annotazioni dei dati
 
-[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation)È un pacchetto che colma i gap dell'esperienza di convalida usando il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente. Il pacchetto è attualmente *sperimentale* .
+[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation)È un pacchetto che colma i gap dell'esperienza di convalida usando il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente. Il pacchetto è attualmente *sperimentale*.
 
 > [!NOTE]
 > Il [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) pacchetto dispone di una versione più recente di *release candidate* in [NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). Continuare a usare il pacchetto *sperimentale* versione finale al momento. L'assembly del pacchetto potrebbe essere spostato nel Framework o nel runtime in una versione futura. Per ulteriori aggiornamenti, vedere il [repository GitHub degli annunci](https://github.com/aspnet/Announcements), il [repository GitHub DotNet/aspnetcore](https://github.com/dotnet/aspnetcore)o questa sezione dell'argomento.
