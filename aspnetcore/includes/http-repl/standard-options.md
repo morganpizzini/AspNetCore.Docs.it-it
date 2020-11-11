@@ -9,17 +9,13 @@
   * `{header}={value}`
   * `{header}:{value}`
 
-* `--response`
-
-  Specifica un file in cui deve essere scritta l'intera risposta HTTP, incluse le intestazioni e il corpo. Ad esempio: `--response "C:\response.txt"`. Se il file non esiste, verrà creato.
-
 * `--response:body`
 
-  Specifica un file in cui deve essere scritto il corpo della risposta HTTP. Ad esempio: `--response:body "C:\response.json"`. Se il file non esiste, verrà creato.
+  Specifica un file in cui deve essere scritto il corpo della risposta HTTP. Ad esempio, `--response:body "C:\response.json"` Se il file non esiste, verrà creato.
 
 * `--response:headers`
 
-  Specifica un file in cui devono essere scritte le intestazioni della risposta HTTP. Ad esempio: `--response:headers "C:\response.txt"`. Se il file non esiste, verrà creato.
+  Specifica un file in cui devono essere scritte le intestazioni della risposta HTTP. Ad esempio, `--response:headers "C:\response.txt"` Se il file non esiste, verrà creato.
 
 * `-s|--streaming`
 
