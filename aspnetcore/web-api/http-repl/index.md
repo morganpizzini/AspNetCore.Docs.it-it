@@ -1,11 +1,11 @@
 ---
-title: Testare le API Web con il ciclo Read-Eval-Print (REPL) HTTP
+title: Testare le API Web con HttpRepl
 author: scottaddie
-description: Informazioni su come usare lo strumento globale REPL HTTP .NET Core per esplorare e testare un'API Web ASP.NET Core.
+description: Informazioni su come usare lo strumento globale di HttpRepl .NET Core per esplorare e testare un'API Web di ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc, devx-track-azurecli
-ms.date: 11/10/2020
+ms.date: 11/11/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: 81174b551c5b6d81e6ac80975f7f77ee6664059d
-ms.sourcegitcommit: fb72e9c1ae5b279817f1fb4b46a52170449b6f30
+ms.openlocfilehash: df2d4e63a18471b4c5f4f1c9434921303bb1da8a
+ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94502034"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94550621"
 ---
-# <a name="test-web-apis-with-the-http-repl"></a>Testare le API Web con il ciclo Read-Eval-Print (REPL) HTTP
+# <a name="test-web-apis-with-the-httprepl"></a>Testare le API Web con HttpRepl
 
 Di [Scott Addie](https://twitter.com/Scott_Addie)
 
@@ -54,7 +54,7 @@ Per continuare, [visualizzare o scaricare l'API Web ASP.NET Core di esempio](htt
 
 ## <a name="installation"></a>Installazione
 
-Per installare il ciclo Read-Eval-Print HTTP, eseguire il comando seguente:
+Per installare HttpRepl, eseguire il comando seguente:
 
 ```dotnetcli
 dotnet tool install -g Microsoft.dotnet-httprepl
@@ -62,15 +62,15 @@ dotnet tool install -g Microsoft.dotnet-httprepl
 
 Viene installato uno [strumento globale .NET Core](/dotnet/core/tools/global-tools#install-a-global-tool) dal pacchetto NuGet [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl).
 
-## <a name="usage"></a>Uso
+## <a name="usage"></a>Utilizzo
 
-Dopo aver completato l'installazione dello strumento, eseguire il comando seguente per avviare il ciclo Read-Eval-Print HTTP:
+Dopo aver completato l'installazione dello strumento, eseguire il comando seguente per avviare il HttpRepl:
 
 ```console
 httprepl
 ```
 
-Per visualizzare i comandi del ciclo Read-Eval-Print HTTP disponibili, eseguire uno dei comandi seguenti:
+Per visualizzare i comandi HttpRepl disponibili, eseguire uno dei comandi seguenti:
 
 ```console
 httprepl -h
@@ -135,7 +135,7 @@ Use `help <COMMAND>` for more detail on an individual command. e.g. `help get`.
 For detailed tool info, see https://aka.ms/http-repl-doc.
 ```
 
-Il ciclo Read-Eval-Print HTTP offre il completamento del comando. Premendo il tasto <kbd>TAB</kbd> è possibile scorrere l'elenco dei comandi che completano i caratteri o l'endpoint API digitato. Le sezioni seguenti descrivono i comandi dell'interfaccia della riga di comando disponibili.
+Il HttpRepl offre il completamento del comando. Premendo il tasto <kbd>TAB</kbd> è possibile scorrere l'elenco dei comandi che completano i caratteri o l'endpoint API digitato. Le sezioni seguenti descrivono i comandi dell'interfaccia della riga di comando disponibili.
 
 ## <a name="connect-to-the-web-api"></a>Connettersi all'API Web
 
@@ -151,7 +151,7 @@ httprepl <ROOT URI>
 httprepl https://localhost:5001
 ```
 
-In alternativa, eseguire il comando seguente in qualsiasi momento mentre è in esecuzione il ciclo Read-Eval-Print HTTP:
+In alternativa, eseguire il comando seguente in qualsiasi momento mentre il HttpRepl è in esecuzione:
 
 ```console
 connect <ROOT URI>
@@ -252,9 +252,9 @@ Nel percorso che segue il comando `cd` non viene fatta distinzione tra maiuscole
 https://localhost:5001/people>
 ```
 
-## <a name="customize-the-http-repl"></a>Personalizzare il ciclo Read-Eval-Print HTTP
+## <a name="customize-the-httprepl"></a>Personalizzare HttpRepl
 
-I [colori](#set-color-preferences) predefiniti del ciclo Read-Eval-Print HTTP possono essere personalizzati. È anche possibile definire un [editor di testo predefinito](#set-the-default-text-editor). Le preferenze del ciclo Read-Eval-Print HTTP vengono mantenute nella sessione corrente e nelle sessioni future. Dopo essere state modificate, le preferenze vengono archiviate nel file seguente:
+È possibile personalizzare i [colori](#set-color-preferences) predefiniti di HttpRepl. È anche possibile definire un [editor di testo predefinito](#set-the-default-text-editor). Le preferenze HttpRepl sono rese permanente nella sessione corrente e vengono rispettate in sessioni future. Dopo essere state modificate, le preferenze vengono archiviate nel file seguente:
 
 # <a name="linux"></a>[Linux](#tab/linux)
 
@@ -295,7 +295,7 @@ colors.status=BoldYellow
 
 ### <a name="set-color-preferences"></a>Impostare le preferenze colori
 
-La colorazione delle risposte è attualmente supportata solo per JSON. Per personalizzare la colorazione predefinita dello strumento del ciclo Read-Eval-Print, individuare la chiave corrispondente al colore da modificare. Per istruzioni su come trovare le chiavi, vedere la sezione [Visualizzare le impostazioni](#view-the-settings). Ad esempio, modificare il valore della chiave `colors.json` da `Green` a `White` come indicato di seguito:
+La colorazione delle risposte è attualmente supportata solo per JSON. Per personalizzare la colorazione predefinita dello strumento HttpRepl, individuare la chiave corrispondente al colore da modificare. Per istruzioni su come trovare le chiavi, vedere la sezione [Visualizzare le impostazioni](#view-the-settings). Ad esempio, modificare il valore della chiave `colors.json` da `Green` a `White` come indicato di seguito:
 
 ```console
 https://localhost:5001/people> pref set colors.json White
@@ -358,7 +358,7 @@ L'impostazione dei quattro spazi viene applicata alle risposte successive:
 
 ### <a name="set-the-default-text-editor"></a>Impostare l'editor di testo predefinito
 
-Per impostazione predefinita, il ciclo Read-Eval-Print HTTP non ha un editor di testo configurato per l'utilizzo. Per testare i metodi dell'API Web che richiedono un corpo della richiesta HTTP, è necessario impostare un editor di testo predefinito. Lo strumento del ciclo Read-Eval-Print HTTP avvia l'editor di testo configurato al solo scopo di comporre il corpo della richiesta. Eseguire il comando seguente per impostare l'editor di testo preferito come predefinito:
+Per impostazione predefinita, HttpRepl non dispone di un editor di testo configurato per l'utilizzo. Per testare i metodi dell'API Web che richiedono un corpo della richiesta HTTP, è necessario impostare un editor di testo predefinito. Lo strumento HttpRepl avvia l'editor di testo configurato al solo scopo di comporre il corpo della richiesta. Eseguire il comando seguente per impostare l'editor di testo preferito come predefinito:
 
 ```console
 pref set editor.command.default "<EXECUTABLE>"
@@ -386,7 +386,7 @@ pref set editor.command.default "C:\Program Files\Microsoft VS Code\Code.exe"
 
 ---
 
-Per avviare l'editor di testo predefinito con argomenti dell'interfaccia della riga di comando specifici, impostare la chiave `editor.command.default.arguments`. Si supponga, ad esempio, che Visual Studio Code sia l'editor di testo predefinito e che si voglia che il ciclo Read-Eval-Print apra sempre Visual Studio Code in una nuova sessione con le estensioni disabilitate. Eseguire il comando seguente:
+Per avviare l'editor di testo predefinito con argomenti dell'interfaccia della riga di comando specifici, impostare la chiave `editor.command.default.arguments`. Si supponga, ad esempio, che Visual Studio Code sia l'editor di testo predefinito e che si desideri sempre che HttpRepl apra Visual Studio Code in una nuova sessione con estensioni disabilitate. Eseguire il comando seguente:
 
 ```console
 pref set editor.command.default.arguments "--disable-extensions --new-window"
@@ -397,7 +397,7 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 
 ### <a name="set-the-openapi-description-search-paths"></a>Imposta i percorsi di ricerca della descrizione OpenAPI
 
-Per impostazione predefinita, il REPL HTTP ha un set di percorsi relativi che usa per trovare la descrizione di OpenAPI quando si esegue il `connect` comando senza l' `--openapi` opzione. Questi percorsi relativi vengono combinati con i percorsi radice e di base specificati nel comando `connect`. I percorsi relativi predefiniti sono i seguenti:
+Per impostazione predefinita, HttpRepl dispone di un set di percorsi relativi usato per trovare la descrizione di OpenAPI quando si esegue il `connect` comando senza l' `--openapi` opzione. Questi percorsi relativi vengono combinati con i percorsi radice e di base specificati nel comando `connect`. I percorsi relativi predefiniti sono i seguenti:
 
 - *swagger.js*
 - *spavalderia/V1/swagger.js*
@@ -864,7 +864,7 @@ Per impostare l'intestazione di una richiesta HTTP, usare uno degli approcci seg
 
 ## <a name="test-secured-endpoints"></a>Testare endpoint protetti
 
-Il REPL HTTP supporta il test degli endpoint protetti nei modi seguenti:
+HttpRepl supporta il test degli endpoint protetti nei modi seguenti:
 
 * Tramite le credenziali predefinite dell'utente connesso.
 * Tramite l'utilizzo delle intestazioni della richiesta HTTP.
@@ -907,7 +907,7 @@ Ad esempio, è possibile inviare un bearer token a un endpoint con il comando se
 set header Authorization "bearer <TOKEN VALUE>"
 ```
 
-Per accedere a un endpoint ospitato da Azure o per usare l' [API REST di Azure](/rest/api/azure/), è necessario un Bearer token. Usare la procedura seguente per ottenere un bearer token per la sottoscrizione di Azure tramite l'interfaccia della riga di comando di [Azure](/cli/azure/). Il REPL HTTP imposta la bearer token in un'intestazione della richiesta HTTP. Viene recuperato un elenco di app Azure app Web del servizio.
+Per accedere a un endpoint ospitato da Azure o per usare l' [API REST di Azure](/rest/api/azure/), è necessario un Bearer token. Usare la procedura seguente per ottenere un bearer token per la sottoscrizione di Azure tramite l'interfaccia della riga di comando di [Azure](/cli/azure/). HttpRepl imposta il bearer token in un'intestazione della richiesta HTTP. Viene recuperato un elenco di app Azure app Web del servizio.
 
 1. Accedere ad Azure:
 
@@ -933,7 +933,7 @@ Per accedere a un endpoint ospitato da Azure o per usare l' [API REST di Azure](
     az account get-access-token --query accessToken
     ```
 
-1. Connettersi all'API REST di Azure tramite il REPL HTTP:
+1. Connettersi all'API REST di Azure tramite HttpRepl:
 
     ```console
     httprepl https://management.azure.com
@@ -1041,7 +1041,7 @@ Request echoing is off
 
 ## <a name="run-a-script"></a>Esegui uno script
 
-Se si esegue spesso lo stesso set di comandi del ciclo Read-Eval-Print HTTP, può essere utile archiviarlo in un file di testo. I comandi nel file hanno lo stesso formato dei comandi eseguiti manualmente nella riga di comando. I comandi possono essere eseguiti in modalità batch usando il comando `run`. Ad esempio:
+Se si esegue spesso lo stesso set di comandi HttpRepl, è consigliabile archiviarli in un file di testo. I comandi nel file hanno lo stesso formato dei comandi eseguiti manualmente nella riga di comando. I comandi possono essere eseguiti in modalità batch usando il comando `run`. Ad esempio:
 
 1. Creare un file di testo contenente un set di comandi delimitati da una nuova riga. Si consideri ad esempio un file *people-script.txt* contenente i comandi seguenti:
 
@@ -1096,7 +1096,7 @@ Se si esegue spesso lo stesso set di comandi del ciclo Read-Eval-Print HTTP, pu�
 
 ## <a name="clear-the-output"></a>Cancellare l'output
 
-Per rimuovere l'intero output scritto nella shell dei comandi dallo strumento del ciclo Read-Eval-Print HTTP, eseguire il comando `clear` o `cls`. Si supponga ad esempio che la shell dei comandi includa l'output seguente:
+Per rimuovere tutti i risultati scritti nella shell dei comandi mediante lo strumento HttpRepl, eseguire `clear` il `cls` comando o. Si supponga ad esempio che la shell dei comandi includa l'output seguente:
 
 ```console
 httprepl https://localhost:5001
@@ -1126,4 +1126,4 @@ https://localhost:5001/>
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
 * [Richieste API REST](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
-* [Repository GitHub del ciclo Read-Eval-Print HTTP](https://github.com/dotnet/HttpRepl)
+* [Repository GitHub HttpRepl](https://github.com/dotnet/HttpRepl)

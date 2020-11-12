@@ -3,7 +3,7 @@ title: Parte 2, aggiungere un modello
 author: rick-anderson
 description: Parte 2 della serie di esercitazioni sulle Razor pagine. In questa sezione vengono aggiunte le classi del modello.
 ms.author: riande
-ms.date: 09/30/2020
+ms.date: 11/11/2020
 no-loc:
 - Index
 - Create
@@ -20,12 +20,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: ee1b7d77d8d209a11669ba29c8a951c59368180e
-ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
+ms.openlocfilehash: 6244ac8798fb470a88802389961968fb52bd3c0a
+ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/07/2020
-ms.locfileid: "94361080"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94550679"
 ---
 # <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a>Parte 2, aggiungere un modello a un' Razor app di pagine in ASP.NET Core
 
@@ -97,7 +97,7 @@ La classe `Movie` contiene:
 
 Aggiungere una stringa di connessione al *appsettings.json* file come illustrato nel codice evidenziato seguente:
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/appsettings_SQLite.json?highlight=10-12)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/appsettings_SQLite.json?highlight=10-12)]
 
 <a name="reg"></a>
 
@@ -112,7 +112,7 @@ Aggiungere una stringa di connessione al *appsettings.json* file come illustrato
 
 1. Registrare il contesto del database con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) in `Startup.ConfigureServices` :
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
@@ -477,7 +477,7 @@ using Microsoft.EntityFrameworkCore;
 
 Registrare il contesto del database con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) in `Startup.ConfigureServices`.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
@@ -834,7 +834,7 @@ Il codice precedente crea una proprietà `DbSet` per il set di entità. Nella te
 
 Aggiungere una stringa di connessione al *appsettings.json* file come illustrato nel codice evidenziato seguente:
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-9)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/appsettings_SQLite.json?highlight=8-10)]
 
 ### <a name="add-required-nuget-packages"></a>Aggiungere i pacchetti NuGet necessari
 

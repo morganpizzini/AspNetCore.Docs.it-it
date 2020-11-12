@@ -1,10 +1,10 @@
 ---
-title: Telemetria HTTP REPL
+title: Telemetria HttpRepl
 author: scottaddie
-description: Informazioni sui dati di telemetria raccolti da HTTP REPL.
+description: Informazioni sui dati di telemetria raccolti dal HttpRepl.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
-ms.date: 11/10/2020
+ms.date: 11/11/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,30 +18,32 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl/telemetry
-ms.openlocfilehash: 8590959e43c2dda69090acb358e740b271426a44
-ms.sourcegitcommit: fb72e9c1ae5b279817f1fb4b46a52170449b6f30
+ms.openlocfilehash: 5ff22753f566c494e51dae67c8c4f6371211be78
+ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94502031"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94550608"
 ---
-# <a name="http-repl-telemetry"></a>Telemetria HTTP REPL
+# <a name="httprepl-telemetry"></a>Telemetria HttpRepl
 
-Il [ciclo http Read-Eval-Print (REPL)](xref:web-api/http-repl) include una funzionalità di telemetria che raccoglie i dati di utilizzo. È importante che il team di REPL HTTP comprenda come viene usato lo strumento in modo che possa essere migliorato.
+Il [HttpRepl](xref:web-api/http-repl) include una funzionalità di telemetria che raccoglie i dati di utilizzo. È importante che il team di HttpRepl comprenda come viene usato lo strumento in modo che possa essere migliorato.
 
 ## <a name="how-to-opt-out"></a>Come rifiutare esplicitamente
 
-La funzionalità di telemetria HTTP REPL è abilitata per impostazione predefinita. Per rifiutare esplicitamente la funzionalità di telemetria, impostare la variabile di ambiente `DOTNET_HTTPREPL_TELEMETRY_OPTOUT` su `1` o `true`.
+La funzionalità di telemetria HttpRepl è abilitata per impostazione predefinita. Per rifiutare esplicitamente la funzionalità di telemetria, impostare la variabile di ambiente `DOTNET_HTTPREPL_TELEMETRY_OPTOUT` su `1` o `true`.
 
 ## <a name="disclosure"></a>Divulgazione
 
-HttpRepl Visualizza un testo simile al seguente quando si esegue lo strumento per la prima volta. Il testo può variare leggermente a seconda della versione dello strumento in esecuzione. Questa prima esperienza riguarda la modalità di notifica della raccolta dei dati da parte di Microsoft.
+Il HttpRepl Visualizza un testo simile al seguente quando si esegue lo strumento per la prima volta. Il testo può variare leggermente a seconda della versione dello strumento in esecuzione. Questa prima esperienza riguarda la modalità di notifica della raccolta dei dati da parte di Microsoft.
 
 ```console
 Telemetry
 ---------
-The .NET Core tools collect usage data in order to help us improve your experience. It is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_HTTPREPL_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
+The .NET tools collect usage data in order to help us improve your experience. It is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_HTTPREPL_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
 ```
+
+Per escludere il testo dell'esperienza "prima esecuzione", impostare la `DOTNET_HTTPREPL_SKIP_FIRST_TIME_EXPERIENCE` variabile di ambiente su `1` o `true` .
 
 ## <a name="data-points"></a>Punti dati
 
@@ -68,7 +70,7 @@ La funzionalità di telemetria raccoglie i dati seguenti.
 | >= 5,0        | Indica se lo strumento è in esecuzione in un contenitore. |
 | >= 5,0        | Indirizzo MAC (Media Access Control) con hash: un ID univoco e con hash crittografico (SHA256) per un computer. |
 | >= 5,0        | Versione del kernel. |
-| >= 5,0        | Versione HTTP REPL. |
+| >= 5,0        | Versione di HttpRepl. |
 | >= 5,0        | Indica se lo strumento è stato avviato con `help` `run` argomenti, o `connect` . I valori degli argomenti effettivi non vengono raccolti. |
 | >= 5,0        | Comando richiamato (ad esempio, `get` ) e se ha avuto esito positivo. |
 | >= 5,0        | Per il `connect` comando, se `root` `base` `openapi` sono stati specificati gli argomenti, o. I valori degli argomenti effettivi non vengono raccolti. |
