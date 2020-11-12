@@ -214,7 +214,7 @@
       uid: fundamentals/environments
     - name: Registrazione
       uid: fundamentals/logging/index
-    - name: Routing.
+    - name: Routing
       uid: fundamentals/routing
     - name: Gestire gli errori
       uid: fundamentals/error-handling
@@ -287,7 +287,7 @@
           uid: mvc/views/partial
         - name: Controllers
           uid: mvc/controllers/actions
-        - name: Routing.
+        - name: Routing
           uid: mvc/controllers/routing
         - name: Inserimento di dipendenze - Controller
           uid: mvc/controllers/dependency-injection
@@ -383,8 +383,8 @@
               uid: blazor/components/templated-components
             - name: Isolamento CSS
               uid: blazor/components/css-isolation
-            - name: Integrare componenti
-              uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
+            - name: Pre-rendering e integrazione dei componenti
+              uid: blazor/components/prerendering-and-integration
             - name: Librerie di componenti
               uid: blazor/components/class-libraries
         - name: Globalizzazione e localizzazione
@@ -604,8 +604,12 @@
       uid: web-api/advanced/conventions
     - name: Gestire gli errori
       uid: web-api/handle-errors
-    - name: Testare le API con HTTP REPL
-      uid: web-api/http-repl
+    - name: HTTP REPL
+      items:
+        - name: API di test
+          uid: web-api/http-repl
+        - name: Telemetria
+          uid: web-api/http-repl/telemetry
 - name: App in tempo reale
   displayName: signalr
   items:
