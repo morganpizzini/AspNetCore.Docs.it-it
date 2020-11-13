@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/content-security-policy
-ms.openlocfilehash: 66fd41abe4f85071797bacc0a5531bbab35bd227
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 744449240fabc3dae317d0d7bc9090311521c224
+ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055594"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94570120"
 ---
 # <a name="enforce-a-content-security-policy-for-aspnet-core-no-locblazor"></a>Applicare un criterio di sicurezza del contenuto per ASP.NET Core Blazor
 
@@ -57,12 +57,9 @@ Specificare almeno le direttive e le origini seguenti per le Blazor app. Aggiung
   * Specificare l' `https://stackpath.bootstrapcdn.com/` origine host per gli script bootstrap.
   * Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.
   * In un' Blazor WebAssembly app:
-    * Specificare gli hash seguenti per consentire il caricamento degli Blazor WebAssembly script inline necessari:
-      * `sha256-v8ZC9OgMhcnEQ/Me77/R9TlJfzOBqrMTW8e1KuqLaqc=`
-      * `sha256-If//FtbPc03afjLezvWHnC3Nbu4fDM04IIzkPaf3pH0=`
-      * `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=`
+    * Specificare gli hash per consentire il caricamento degli script necessari.
     * Specificare `unsafe-eval` per usare `eval()` i metodi e per la creazione di codice da stringhe.
-  * In un' Blazor Server app specificare l' `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` hash per lo script inline che esegue il rilevamento del fallback per i fogli di stile.
+  * In un' Blazor Server app specificare gli hash per consentire il caricamento degli script necessari.
 * [Style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): indica le origini valide per i fogli di stile.
   * Specificare l' `https://stackpath.bootstrapcdn.com/` origine host per i fogli di stile bootstrap.
   * Specificare `self` per indicare che l'origine dell'app, inclusi lo schema e il numero di porta, è un'origine valida.
@@ -93,6 +90,29 @@ Nelle sezioni seguenti vengono illustrati i criteri di esempio per Blazor WebAss
 
 Nel `<head>` contenuto della `wwwroot/index.html` pagina host applicare le direttive descritte nella sezione [direttive dei criteri](#policy-directives) :
 
+::: moniker range=">= aspnetcore-5.0"
+
+```html
+<meta http-equiv="Content-Security-Policy" 
+      content="base-uri 'self';
+               block-all-mixed-content;
+               default-src 'self';
+               img-src data: https:;
+               object-src 'none';
+               script-src https://stackpath.bootstrapcdn.com/ 
+                          'self' 
+                          'sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=' 
+                          'unsafe-eval';
+               style-src https://stackpath.bootstrapcdn.com/
+                         'self'
+                         'unsafe-inline';
+               upgrade-insecure-requests;">
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ```html
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
@@ -112,9 +132,38 @@ Nel `<head>` contenuto della `wwwroot/index.html` pagina host applicare le diret
                upgrade-insecure-requests;">
 ```
 
+::: moniker-end
+
+Aggiungere altri `script-src` `style-src` hash e come richiesto dall'app. Durante lo sviluppo, usare uno strumento online o strumenti di sviluppo del browser per calcolare automaticamente gli hash. Ad esempio, il seguente errore della console degli strumenti del browser segnala l'hash per uno script obbligatorio non coperto dal criterio:
+
+> Non è stato possibile eseguire lo script inline perché viola la seguente direttiva sui criteri di sicurezza del contenuto: "... ". Per abilitare l'esecuzione inline è necessario specificare la parola chiave ' unsafe-inline ', un hash (' SHA256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA =') o un parametro nonce (' nonce-...').
+
+Lo script specifico associato all'errore viene visualizzato nella console di accanto all'errore.
+
 ### Blazor Server
 
 Nel `<head>` contenuto della `Pages/_Host.cshtml` pagina host applicare le direttive descritte nella sezione [direttive dei criteri](#policy-directives) :
+
+::: moniker range=">= aspnetcore-5.0"
+
+```cshtml
+<meta http-equiv="Content-Security-Policy" 
+      content="base-uri 'self';
+               block-all-mixed-content;
+               default-src 'self';
+               img-src data: https:;
+               object-src 'none';
+               script-src https://stackpath.bootstrapcdn.com/ 
+                          'self';
+               style-src https://stackpath.bootstrapcdn.com/
+                         'self' 
+                         'unsafe-inline';
+               upgrade-insecure-requests;">
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
@@ -131,6 +180,14 @@ Nel `<head>` contenuto della `Pages/_Host.cshtml` pagina host applicare le diret
                          'unsafe-inline';
                upgrade-insecure-requests;">
 ```
+
+::: moniker-end
+
+Aggiungere altri `script-src` `style-src` hash e come richiesto dall'app. Durante lo sviluppo, usare uno strumento online o strumenti di sviluppo del browser per calcolare automaticamente gli hash. Ad esempio, il seguente errore della console degli strumenti del browser segnala l'hash per uno script obbligatorio non coperto dal criterio:
+
+> Non è stato possibile eseguire lo script inline perché viola la seguente direttiva sui criteri di sicurezza del contenuto: "... ". Per abilitare l'esecuzione inline è necessario specificare la parola chiave ' unsafe-inline ', un hash (' SHA256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA =') o un parametro nonce (' nonce-...').
+
+Lo script specifico associato all'errore viene visualizzato nella console di accanto all'errore.
 
 ## <a name="meta-tag-limitations"></a>Limitazioni tag meta
 

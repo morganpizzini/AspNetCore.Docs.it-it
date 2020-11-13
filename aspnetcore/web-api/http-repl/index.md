@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: df2d4e63a18471b4c5f4f1c9434921303bb1da8a
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.openlocfilehash: 8dd763d270a00c9a71913d68d6a039b2d98c3864
+ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 11/12/2020
-ms.locfileid: "94550621"
+ms.locfileid: "94570211"
 ---
 # <a name="test-web-apis-with-the-httprepl"></a>Testare le API Web con HttpRepl
 
@@ -204,7 +204,7 @@ The field 'paths' in 'document' object is REQUIRED [#/paths]
 Per visualizzare l'elenco dei diversi endpoint (controller) nel percorso corrente dell'indirizzo dell'API Web, eseguire il comando `ls` o `dir`:
 
 ```console
-https://localhot:5001/> ls
+https://localhost:5001/> ls
 ```
 
 Viene visualizzato il formato di output seguente:

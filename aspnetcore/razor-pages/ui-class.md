@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: e87e74533fe6900d8e0a73708ad24b765a968493
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 0bfdb1932d829ec00c9de1bd38b7920cb1f40c51
+ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056803"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94570172"
 ---
 # <a name="create-reusable-ui-using-the-no-locrazor-class-library-project-in-aspnet-core"></a>Creare un'interfaccia utente riutilizzabile usando il Razor progetto libreria di classi in ASP.NET Core
 
@@ -39,10 +39,10 @@ Razorle visualizzazioni, le pagine, i controller, i modelli di pagina, i [ Razor
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* In Visual Studio selezionare **Crea nuovo nuovo progetto** .
-* Selezionare **Razor libreria di classi** > **Avanti** .
-* Assegnare un nome alla libreria (ad esempio, " Razor CLASSLIB") > **creare** . Per evitare un conflitto di nomi di file con la libreria di visualizzazione generata, verificare che il nome della libreria non finisca per `.Views`.
-* Se è necessario supportare le visualizzazioni, selezionare **pagine e visualizzazioni di supporto** . Per impostazione predefinita, Razor sono supportate solo le pagine. Selezionare **Crea** .
+* In Visual Studio selezionare **Crea nuovo nuovo progetto**.
+* Selezionare **Razor libreria di classi** > **Avanti**.
+* Assegnare un nome alla libreria (ad esempio, " Razor CLASSLIB") > **creare**. Per evitare un conflitto di nomi di file con la libreria di visualizzazione generata, verificare che il nome della libreria non finisca per `.Views`.
+* Se è necessario supportare le visualizzazioni, selezionare **pagine e visualizzazioni di supporto** . Per impostazione predefinita, Razor sono supportate solo le pagine. Selezionare **Crea**.
 
 Per impostazione predefinita, il Razor modello libreria di classi (RCL) prevede Razor lo sviluppo di componenti. L'opzione **pagine e visualizzazioni di supporto** supporta pagine e viste.
 
@@ -69,7 +69,7 @@ I modelli di ASP.NET Core presuppongono che il contenuto RCL si trovi nella cart
 Il riferimento alla libreria di classi Razor può essere eseguito da:
 
 * Pacchetto NuGet. Vedere [Creazione di pacchetti NuGet](/nuget/create-packages/creating-a-package), [dotnet add package](/dotnet/core/tools/dotnet-add-package) e [Creare e pubblicare un pacchetto NuGet](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
-* *{ProjectName}.csproj* . Vedere [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
+* *{ProjectName}.csproj*. Vedere [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 
 ## <a name="override-views-partial-views-and-pages"></a>Eseguire l'override di visualizzazioni, visualizzazioni parziali e pagine
 
@@ -77,7 +77,7 @@ Quando si trova una visualizzazione, una visualizzazione parziale o una Razor pa
 
 Nel download di esempio, rinominare *WebApp1/aree/MyFeature2* in *WebApp1/aree/MyFeature* per testare la precedenza.
 
-Copiare la visualizzazione parziale *Razor UIClassLib/areas/la funzionalità/Pages/Shared/_Message. cshtml* in *app Web 1/areas/my feature/pages/Shared/_Message. cshtml* . Aggiornare il markup per indicare la nuova posizione. Compilare ed eseguire l'app per verificare quale versione del parziale sia in uso.
+Copiare la visualizzazione parziale *Razor UIClassLib/areas/la funzionalità/Pages/Shared/_Message. cshtml* in *app Web 1/areas/my feature/pages/Shared/_Message. cshtml*. Aggiornare il markup per indicare la nuova posizione. Compilare ed eseguire l'app per verificare quale versione del parziale sia in uso.
 
 ### <a name="rcl-pages-layout"></a>Layout di pagine RCL
 
@@ -86,7 +86,7 @@ Per fare riferimento al contenuto RCL come se facesse parte della cartella *pagi
 * *RazorUIClassLib/pagine*
 * *RazorUIClassLib/pagine/condiviso*
 
-Si supponga che *Razor UIClassLib/Pages/Shared* contenga due file parziali: *_Header. cshtml* e *_Footer. cshtml* . `<partial>`È possibile aggiungere i tag al file *_Layout. cshtml* :
+Si supponga che *Razor UIClassLib/Pages/Shared* contenga due file parziali: *_Header. cshtml* e *_Footer. cshtml*. `<partial>`È possibile aggiungere i tag al file *_Layout. cshtml* :
 
 ```cshtml
 <body>
@@ -206,11 +206,11 @@ Razorle visualizzazioni, le pagine, i controller, i modelli di pagina, i [ Razor
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto** .
-* Selezionare **Applicazione Web ASP.NET Core** .
-* Assegnare un nome alla libreria (ad esempio, " Razor CLASSLIB") > **OK** . Per evitare un conflitto di nomi di file con la libreria di visualizzazione generata, verificare che il nome della libreria non finisca per `.Views`.
+* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto**.
+* Selezionare **Applicazione Web ASP.NET Core**.
+* Assegnare un nome alla libreria (ad esempio, " Razor CLASSLIB") > **OK**. Per evitare un conflitto di nomi di file con la libreria di visualizzazione generata, verificare che il nome della libreria non finisca per `.Views`.
 * Verificare che sia selezionato **ASP.NET Core 2.1** o versioni successive.
-* Selezionare **Razor libreria di classi** > **OK** .
+* Selezionare **Razor libreria di classi** > **OK**.
 
 Un RCL ha il seguente file di progetto:
 
@@ -237,7 +237,7 @@ I modelli di ASP.NET Core presuppongono che il contenuto RCL si trovi nella cart
 Il riferimento alla libreria di classi Razor può essere eseguito da:
 
 * Pacchetto NuGet. Vedere [Creazione di pacchetti NuGet](/nuget/create-packages/creating-a-package), [dotnet add package](/dotnet/core/tools/dotnet-add-package) e [Creare e pubblicare un pacchetto NuGet](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
-* *{ProjectName}.csproj* . Vedere [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
+* *{ProjectName}.csproj*. Vedere [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 
 ## <a name="walkthrough-create-an-rcl-project-and-use-from-a-no-locrazor-pages-project"></a>Procedura dettagliata: creare un progetto RCL e usarlo da un Razor progetto Pages
 
@@ -277,12 +277,12 @@ In questa sezione viene creato un RCL. Razor i file vengono aggiunti a RCL.
 
 Creare il progetto di libreria di classi Razor:
 
-* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto** .
-* Selezionare **Applicazione Web ASP.NET Core** .
-* Denominare l'app **Razor UIClassLib** > **OK** .
+* Dal menu **File** di Visual Studio selezionare **Nuovo** > **Progetto**.
+* Selezionare **Applicazione Web ASP.NET Core**.
+* Denominare l'app **Razor UIClassLib** > **OK**.
 * Verificare che sia selezionato **ASP.NET Core 2.1** o versioni successive.
-* Selezionare **Razor libreria di classi** > **OK** .
-* Aggiungere un Razor file di visualizzazione parziale denominato *Razor UIClassLib/areas/la funzionalità/Pages/Shared/_Message. cshtml* .
+* Selezionare **Razor libreria di classi** > **OK**.
+* Aggiungere un Razor file di visualizzazione parziale denominato *Razor UIClassLib/areas/la funzionalità/Pages/Shared/_Message. cshtml*.
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
@@ -314,7 +314,7 @@ Il file *_ViewStart. cshtml* è necessario per usare il layout del Razor progett
 
   [!code-cshtml[](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml)]
 
-  `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` è necessario per usare la visualizzazione parziale (`<partial name="_Message" />`). Anziché includere la direttiva `@addTagHelper`, è possibile aggiungere un file *_ViewImports.cshtml* . Ad esempio:
+  `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` è necessario per usare la visualizzazione parziale (`<partial name="_Message" />`). Anziché includere la direttiva `@addTagHelper`, è possibile aggiungere un file *_ViewImports.cshtml*. Ad esempio:
 
   ```dotnetcli
   dotnet new viewimports -o RazorUIClassLib/Areas/MyFeature/Pages
@@ -328,7 +328,7 @@ Il file *_ViewStart. cshtml* è necessario per usare il layout del Razor progett
   dotnet build RazorUIClassLib
   ```
 
-L'output di compilazione contiene *RazorUIClassLib.dll* e *RazorUIClassLib.Views.dll* . *RazorUIClassLib.Views.dll* contiene il Razor contenuto compilato.
+L'output di compilazione contiene *RazorUIClassLib.dll* e *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* contiene il Razor contenuto compilato.
 
 ### <a name="use-the-no-locrazor-ui-library-from-a-no-locrazor-pages-project"></a>Usare la Razor libreria dell'interfaccia utente da un Razor progetto di pagine
 
@@ -336,17 +336,17 @@ L'output di compilazione contiene *RazorUIClassLib.dll* e *RazorUIClassLib.Views
 
 Creare l' Razor app Web Pages:
 
-* In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla soluzione > **Aggiungi** >  **Nuovo progetto** .
-* Selezionare **Applicazione Web ASP.NET Core** .
-* Denominare l'app **WebApp1** .
+* In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla soluzione > **Aggiungi** >  **Nuovo progetto**.
+* Selezionare **Applicazione Web ASP.NET Core**.
+* Denominare l'app **WebApp1**.
 * Verificare che sia selezionato **ASP.NET Core 2.1** o versioni successive.
-* Selezionare **Applicazione Web** > **OK** .
+* Selezionare **Applicazione Web** > **OK**.
 
-* In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **WebApp1** e selezionare **Imposta come progetto di avvio** .
-* In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **WebApp1** e selezionare **Dipendenze di compilazione** > **Dipendenze progetto** .
-* Controllare **Razor UIClassLib** come dipendenza di **app Web 1** .
-* In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **WebApp1** e scegliere **Aggiungi** > **Riferimento** .
-* Nella finestra di dialogo **Gestione riferimenti** selezionare **Razor UIClassLib** > **OK** .
+* In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **WebApp1** e selezionare **Imposta come progetto di avvio**.
+* In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **WebApp1** e selezionare **Dipendenze di compilazione** > **Dipendenze progetto**.
+* Controllare **Razor UIClassLib** come dipendenza di **app Web 1**.
+* In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **WebApp1** e scegliere **Aggiungi** > **Riferimento**.
+* Nella finestra di dialogo **Gestione riferimenti** selezionare **Razor UIClassLib** > **OK**.
 
 Eseguire l'app.
 
@@ -381,7 +381,7 @@ Quando si trova una visualizzazione, una visualizzazione parziale o una Razor pa
 
 Nel download di esempio, rinominare *WebApp1/aree/MyFeature2* in *WebApp1/aree/MyFeature* per testare la precedenza.
 
-Copiare la visualizzazione parziale *Razor UIClassLib/areas/la funzionalità/Pages/Shared/_Message. cshtml* in *app Web 1/areas/my feature/pages/Shared/_Message. cshtml* . Aggiornare il markup per indicare la nuova posizione. Compilare ed eseguire l'app per verificare quale versione del parziale sia in uso.
+Copiare la visualizzazione parziale *Razor UIClassLib/areas/la funzionalità/Pages/Shared/_Message. cshtml* in *app Web 1/areas/my feature/pages/Shared/_Message. cshtml*. Aggiornare il markup per indicare la nuova posizione. Compilare ed eseguire l'app per verificare quale versione del parziale sia in uso.
 
 ### <a name="rcl-pages-layout"></a>Layout di pagine RCL
 
@@ -390,7 +390,7 @@ Per fare riferimento al contenuto RCL come se facesse parte della cartella *pagi
 * *RazorUIClassLib/pagine*
 * *RazorUIClassLib/pagine/condiviso*
 
-Si supponga che *Razor UIClassLib/Pages/Shared* contenga due file parziali: *_Header. cshtml* e *_Footer. cshtml* . `<partial>`È possibile aggiungere i tag al file *_Layout. cshtml* :
+Si supponga che *Razor UIClassLib/Pages/Shared* contenga due file parziali: *_Header. cshtml* e *_Footer. cshtml*. `<partial>`È possibile aggiungere i tag al file *_Layout. cshtml* :
 
 ```cshtml
 <body>
@@ -404,4 +404,15 @@ Si supponga che *Razor UIClassLib/Pages/Shared* contenga due file parziali: *_He
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
+::: moniker range=">= aspnetcore-5.0"
+
 * <xref:blazor/components/class-libraries>
+* <xref:blazor/components/css-isolation#razor-class-library-rcl-support>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* <xref:blazor/components/class-libraries>
+
+::: moniker-end

@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 1769ddbb95c9ffe373e916c885e411adc3d4c65b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 7e79836e3dd1da175a62a84e11dfd30fee7b2f1b
+ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054996"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94570146"
 ---
 # <a name="aspnet-core-no-locblazor-state-management"></a>BlazorGestione dello stato ASP.NET Core
 
@@ -55,22 +55,22 @@ La persistenza dei dati è in genere necessaria solo per uno stato di valore ele
 * Web Form in più passaggi: è necessario che un utente immetta nuovamente i dati per diversi passaggi completati di un modulo Web in più passaggi se il relativo stato viene perso. Un utente perde lo stato in questo scenario se si allontana dal modulo e viene restituito in un secondo momento.
 * Carrelli acquisti: è possibile mantenere un componente commercialmente importante di un'app che rappresenti potenziali ricavi. Un utente che perde il proprio stato e quindi il carrello della spesa può acquistare un minor numero di prodotti o servizi quando ritornano al sito in un secondo momento.
 
-Un'app può solo salvare *lo stato dell'app* . Non è possibile rendere permanente le interfacce utente, ad esempio le istanze dei componenti e le relative strutture di rendering. I componenti e gli alberi di rendering non sono in genere serializzabili. Per salvare in modo permanente lo stato dell'interfaccia utente, ad esempio i nodi espansi di un controllo di visualizzazione albero, l'app deve usare codice personalizzato per modellare il comportamento dello stato dell'interfaccia utente come stato dell'app serializzabile.
+Un'app può solo salvare *lo stato dell'app*. Non è possibile rendere permanente le interfacce utente, ad esempio le istanze dei componenti e le relative strutture di rendering. I componenti e gli alberi di rendering non sono in genere serializzabili. Per salvare in modo permanente lo stato dell'interfaccia utente, ad esempio i nodi espansi di un controllo di visualizzazione albero, l'app deve usare codice personalizzato per modellare il comportamento dello stato dell'interfaccia utente come stato dell'app serializzabile.
 
 ## <a name="where-to-persist-state"></a>Posizione in cui salvare lo stato
 
 Esistono località comuni per lo stato permanente:
 
-* [Archiviazione sul lato server](#server-side-storage)
-* [URL](#url)
-* [Archiviazione del browser](#browser-storage)
-* [Servizio contenitore stato in memoria](#in-memory-state-container-service)
+* [Archiviazione sul lato server](#server-side-storage-wasm)
+* [URL](#url-wasm)
+* [Archiviazione del browser](#browser-storage-wasm)
+* [Servizio contenitore stato in memoria](#in-memory-state-container-service-wasm)
 
-### <a name="server-side-storage"></a>Archiviazione sul lato server
+<h2 id="server-side-storage-wasm">Archiviazione sul lato server</h2>
 
 Per la persistenza permanente dei dati che si estende su più utenti e dispositivi, l'app può usare l'archiviazione indipendente del lato server a cui si accede tramite un'API Web. Le opzioni includono:
 
-* Archiviazione BLOB
+* Archiviazione - BLOB
 * Archiviazione chiave-valore
 * Database relazionale
 * Archiviazione tabelle
@@ -90,7 +90,7 @@ Per ulteriori informazioni sulle opzioni di archiviazione dei dati di Azure, ved
 * [Database di Azure](https://azure.microsoft.com/product-categories/databases/)
 * [Documentazione di archiviazione di Azure](/azure/storage/)
 
-### <a name="url"></a>URL
+<h2 id="url-wasm">URL</h2>
 
 Per i dati temporanei che rappresentano lo stato di navigazione, modellare i dati come parte dell'URL. Esempi di stato utente modellati nell'URL includono:
 
@@ -101,7 +101,7 @@ Il contenuto della barra degli indirizzi del browser viene mantenuto se l'utente
 
 Per informazioni sulla definizione di modelli URL con la [`@page`](xref:mvc/views/razor#page) direttiva, vedere <xref:blazor/fundamentals/routing> .
 
-### <a name="browser-storage"></a>Archiviazione del browser
+<h2 id="browser-storage-wasm">Archiviazione del browser</h2>
 
 Per i dati temporanei che l'utente sta creando attivamente, un percorso di archiviazione di uso comune è costituito dalle [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) raccolte e del browser [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) :
 
@@ -121,7 +121,7 @@ In genere, `sessionStorage` è più sicuro da usare. `sessionStorage` evita il r
 > [!WARNING]
 > Gli utenti possono visualizzare o manomettere i dati archiviati in `localStorage` e `sessionStorage` .
 
-## <a name="in-memory-state-container-service"></a>Servizio contenitore stato in memoria
+<h2 id="in-memory-state-container-service-wasm">Servizio contenitore stato in memoria</h2>
 
 [!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
 
@@ -135,7 +135,7 @@ In genere, `sessionStorage` è più sicuro da usare. `sessionStorage` evita il r
 
 ::: zone pivot="server"
 
-Blazor Server è un Framework di app con stato. Nella maggior parte dei casi, l'app mantiene una connessione al server. Lo stato dell'utente viene mantenuto nella memoria del server in un *circuito* . 
+Blazor Server è un Framework di app con stato. Nella maggior parte dei casi, l'app mantiene una connessione al server. Lo stato dell'utente viene mantenuto nella memoria del server in un *circuito*. 
 
 Esempi di stato utente contenuti in un circuito includono:
 
@@ -164,22 +164,22 @@ La persistenza dei dati è in genere necessaria solo per uno stato di valore ele
 * Web Form in più passaggi: è necessario che un utente immetta nuovamente i dati per diversi passaggi completati di un modulo Web in più passaggi se il relativo stato viene perso. Un utente perde lo stato in questo scenario se si allontana dal modulo e viene restituito in un secondo momento.
 * Carrelli acquisti: è possibile mantenere un componente commercialmente importante di un'app che rappresenti potenziali ricavi. Un utente che perde il proprio stato e quindi il carrello della spesa può acquistare un minor numero di prodotti o servizi quando ritornano al sito in un secondo momento.
 
-Un'app può solo salvare *lo stato dell'app* . Non è possibile rendere permanente le interfacce utente, ad esempio le istanze dei componenti e le relative strutture di rendering. I componenti e gli alberi di rendering non sono in genere serializzabili. Per salvare in modo permanente lo stato dell'interfaccia utente, ad esempio i nodi espansi di un controllo di visualizzazione albero, l'app deve usare codice personalizzato per modellare il comportamento dello stato dell'interfaccia utente come stato dell'app serializzabile.
+Un'app può solo salvare *lo stato dell'app*. Non è possibile rendere permanente le interfacce utente, ad esempio le istanze dei componenti e le relative strutture di rendering. I componenti e gli alberi di rendering non sono in genere serializzabili. Per salvare in modo permanente lo stato dell'interfaccia utente, ad esempio i nodi espansi di un controllo di visualizzazione albero, l'app deve usare codice personalizzato per modellare il comportamento dello stato dell'interfaccia utente come stato dell'app serializzabile.
 
 ## <a name="where-to-persist-state"></a>Posizione in cui salvare lo stato
 
 Esistono località comuni per lo stato permanente:
 
-* [Archiviazione sul lato server](#server-side-storage)
-* [URL](#url)
-* [Archiviazione del browser](#browser-storage)
-* [Servizio contenitore stato in memoria](#in-memory-state-container-service)
+* [Archiviazione sul lato server](#server-side-storage-server)
+* [URL](#url-server)
+* [Archiviazione del browser](#browser-storage-server)
+* [Servizio contenitore stato in memoria](#in-memory-state-container-service-server)
 
-### <a name="server-side-storage"></a>Archiviazione sul lato server
+<h2 id="server-side-storage-server">Archiviazione sul lato server</h2>
 
 Per la persistenza permanente dei dati che si estende su più utenti e dispositivi, l'app può usare l'archiviazione sul lato server. Le opzioni includono:
 
-* Archiviazione BLOB
+* Archiviazione - BLOB
 * Archiviazione chiave-valore
 * Database relazionale
 * Archiviazione tabelle
@@ -191,7 +191,7 @@ Per ulteriori informazioni sulle opzioni di archiviazione dei dati di Azure, ved
 * [Database di Azure](https://azure.microsoft.com/product-categories/databases/)
 * [Documentazione di archiviazione di Azure](/azure/storage/)
 
-### <a name="url"></a>URL
+<h2 id="url-server">URL</h2>
 
 Per i dati temporanei che rappresentano lo stato di navigazione, modellare i dati come parte dell'URL. Esempi di stato utente modellati nell'URL includono:
 
@@ -205,7 +205,7 @@ Il contenuto della barra degli indirizzi del browser viene mantenuto:
 
 Per informazioni sulla definizione di modelli URL con la [`@page`](xref:mvc/views/razor#page) direttiva, vedere <xref:blazor/fundamentals/routing> .
 
-### <a name="browser-storage"></a>Archiviazione del browser
+<h2 id="browser-storage-server">Archiviazione del browser</h2>
 
 Per i dati temporanei che l'utente sta creando attivamente, un percorso di archiviazione di uso comune è costituito dalle [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) raccolte e del browser [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) :
 
@@ -226,7 +226,7 @@ Avvertenze per l'uso dell'archiviazione del browser:
 * L'archiviazione di alcuni kilobyte di dati è ragionevole per la permanenza per le Blazor Server app. Oltre alcuni kilobyte, è necessario considerare le implicazioni relative alle prestazioni perché i dati vengono caricati e salvati in rete.
 * Gli utenti possono visualizzare o manomettere i dati. [ASP.NET Core protezione dei dati](xref:security/data-protection/introduction) può ridurre il rischio. Ad esempio, [ASP.NET Core archiviazione del browser protetta](#aspnet-core-protected-browser-storage) utilizza ASP.NET Core la protezione dei dati.
 
-I pacchetti NuGet di terze parti forniscono le API per l'uso di `localStorage` e `sessionStorage` . Vale la pena considerare la scelta di un pacchetto che usa in modo trasparente [ASP.NET Core la protezione dei dati](xref:security/data-protection/introduction). La protezione dei dati consente di crittografare i dati archiviati e riduce il rischio potenziale di manomissione dei dati archiviati. Se i dati serializzati in JSON vengono archiviati in testo normale, gli utenti possono visualizzare i dati usando gli strumenti di sviluppo del browser e modificare anche i dati archiviati. La protezione dei dati non è sempre un problema perché i dati potrebbero essere di natura banale. Ad esempio, la lettura o la modifica del colore archiviato di un elemento dell'interfaccia utente non costituisce un rischio di sicurezza significativo per l'utente o l'organizzazione. Evitare di consentire agli utenti di ispezionare o manomettere *i dati sensibili* .
+I pacchetti NuGet di terze parti forniscono le API per l'uso di `localStorage` e `sessionStorage` . Vale la pena considerare la scelta di un pacchetto che usa in modo trasparente [ASP.NET Core la protezione dei dati](xref:security/data-protection/introduction). La protezione dei dati consente di crittografare i dati archiviati e riduce il rischio potenziale di manomissione dei dati archiviati. Se i dati serializzati in JSON vengono archiviati in testo normale, gli utenti possono visualizzare i dati usando gli strumenti di sviluppo del browser e modificare anche i dati archiviati. La protezione dei dati non è sempre un problema perché i dati potrebbero essere di natura banale. Ad esempio, la lettura o la modifica del colore archiviato di un elemento dell'interfaccia utente non costituisce un rischio di sicurezza significativo per l'utente o l'organizzazione. Evitare di consentire agli utenti di ispezionare o manomettere *i dati sensibili*.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -700,7 +700,7 @@ Per salvare in modo permanente molti oggetti di stato diversi e utilizzare subse
 
 ::: moniker-end
 
-## <a name="in-memory-state-container-service"></a>Servizio contenitore stato in memoria
+<h2 id="in-memory-state-container-service-server">Servizio contenitore stato in memoria</h2>
 
 [!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
 
