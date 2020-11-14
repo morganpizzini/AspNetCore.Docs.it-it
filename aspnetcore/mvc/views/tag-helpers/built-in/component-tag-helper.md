@@ -2,91 +2,101 @@
 title: Helper tag di componente in ASP.NET Core
 author: guardrex
 ms.author: riande
-description: "Informazioni su come usare l'helper Tag componente ASP.NET Core per eseguire il rendering dei Razor componenti in pagine e visualizzazioni."
+description: "Informazioni su come usare l'helper Tag componente ASP.NET Core per eseguire il rendering dei :::no-loc(Razor)::: componenti in pagine e visualizzazioni."
 ms.custom: mvc
 ms.date: 10/29/2020
 no-loc:
-- 'appsettings.json'
-- 'ASP.NET Core Identity'
-- 'cookie'
-- 'Cookie'
-- 'Blazor'
-- 'Blazor Server'
-- 'Blazor WebAssembly'
-- 'Identity'
-- "Let's Encrypt"
-- 'Razor'
-- 'SignalR'
+- ':::no-loc(appsettings.json):::'
+- ':::no-loc(ASP.NET Core Identity):::'
+- ':::no-loc(cookie):::'
+- ':::no-loc(Cookie):::'
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: 8e780de2367f66ad1f5197077d5243e0b85a41dd
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: 761c125e3c5f94157cf7bf4524374db2545610b1
+ms.sourcegitcommit: 98f92d766d4f343d7e717b542c1b08da29e789c1
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431043"
+ms.lasthandoff: 11/13/2020
+ms.locfileid: "94595454"
 ---
-# <a name="component-tag-helper-in-aspnet-core"></a><span data-ttu-id="498f6-103">Helper tag di componente in ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="498f6-103">Component Tag Helper in ASP.NET Core</span></span>
+# <a name="component-tag-helper-in-aspnet-core"></a><span data-ttu-id="872e5-103">Helper tag di componente in ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="872e5-103">Component Tag Helper in ASP.NET Core</span></span>
 
-<span data-ttu-id="498f6-104">Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="498f6-104">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="872e5-104">Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="872e5-104">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="498f6-105">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="498f6-105">Prerequisites</span></span>
-
-<span data-ttu-id="498f6-106">Seguire le istruzioni nella sezione di *configurazione* per:</span><span class="sxs-lookup"><span data-stu-id="498f6-106">Follow the guidance in the *Configuration* section for either:</span></span>
-
-* [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly)
-* [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server)
-
-## <a name="component-tag-helper"></a><span data-ttu-id="498f6-107">Helper Tag componente</span><span class="sxs-lookup"><span data-stu-id="498f6-107">Component Tag Helper</span></span>
-
-<span data-ttu-id="498f6-108">Per eseguire il rendering di un componente da una pagina o da una vista, usare l' [Helper Tag Component](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) ( `<component>` tag).</span><span class="sxs-lookup"><span data-stu-id="498f6-108">To render a component from a page or view, use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) (`<component>` tag).</span></span>
-
-> [!NOTE]
-> <span data-ttu-id="498f6-109">L'integrazione di Razor componenti in Razor pagine e app MVC in *un' Blazor WebAssembly app ospitata* è supportata in ASP.NET Core in .NET 5,0 o versioni successive.</span><span class="sxs-lookup"><span data-stu-id="498f6-109">Integrating Razor components into Razor Pages and MVC apps in a *hosted Blazor WebAssembly app* is supported in ASP.NET Core in .NET 5.0 or later.</span></span>
-
-<span data-ttu-id="498f6-110"><xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> Configura se il componente:</span><span class="sxs-lookup"><span data-stu-id="498f6-110"><xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the component:</span></span>
-
-* <span data-ttu-id="498f6-111">Viene preeseguito nella pagina.</span><span class="sxs-lookup"><span data-stu-id="498f6-111">Is prerendered into the page.</span></span>
-* <span data-ttu-id="498f6-112">Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' Blazor app dall'agente utente.</span><span class="sxs-lookup"><span data-stu-id="498f6-112">Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="872e5-105">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="872e5-105">Prerequisites</span></span>
 
 ::: moniker range=">= aspnetcore-5.0"
 
-<span data-ttu-id="498f6-113">Blazor WebAssembly nella tabella seguente sono illustrate le modalità di rendering dell'app.</span><span class="sxs-lookup"><span data-stu-id="498f6-113">Blazor WebAssembly app render modes are shown in the following table.</span></span>
+<span data-ttu-id="872e5-106">Seguire le istruzioni nella sezione di *configurazione* per:</span><span class="sxs-lookup"><span data-stu-id="872e5-106">Follow the guidance in the *Configuration* section for either:</span></span>
 
-| <span data-ttu-id="498f6-114">Modalità di rendering</span><span class="sxs-lookup"><span data-stu-id="498f6-114">Render Mode</span></span> | <span data-ttu-id="498f6-115">Descrizione</span><span class="sxs-lookup"><span data-stu-id="498f6-115">Description</span></span> |
-| ----------- | ----------- |
-| `WebAssembly` | <span data-ttu-id="498f6-116">Esegue il rendering di un marcatore per un' Blazor WebAssembly app da usare per includere un componente interattivo quando viene caricato nel browser.</span><span class="sxs-lookup"><span data-stu-id="498f6-116">Renders a marker for a Blazor WebAssembly app for use to include an interactive component when loaded in the browser.</span></span> <span data-ttu-id="498f6-117">Il componente non è preeseguito.</span><span class="sxs-lookup"><span data-stu-id="498f6-117">The component isn't prerendered.</span></span> <span data-ttu-id="498f6-118">Questa opzione rende più semplice il rendering di Blazor WebAssembly componenti diversi in pagine diverse.</span><span class="sxs-lookup"><span data-stu-id="498f6-118">This option makes it easier to render different Blazor WebAssembly components on different pages.</span></span> |
-| `WebAssemblyPrerendered` | <span data-ttu-id="498f6-119">Esegue il rendering del componente in HTML statico e include un marcatore per un'app da usare in un Blazor WebAssembly secondo momento per rendere il componente interattivo quando viene caricato nel browser.</span><span class="sxs-lookup"><span data-stu-id="498f6-119">Prerenders the component into static HTML and includes a marker for a Blazor WebAssembly app for later use to make the component interactive when loaded in the browser.</span></span> |
-
-<span data-ttu-id="498f6-120">Blazor Server nella tabella seguente sono illustrate le modalità di rendering dell'app.</span><span class="sxs-lookup"><span data-stu-id="498f6-120">Blazor Server app render modes are shown in the following table.</span></span>
-
-| <span data-ttu-id="498f6-121">Modalità di rendering</span><span class="sxs-lookup"><span data-stu-id="498f6-121">Render Mode</span></span> | <span data-ttu-id="498f6-122">Descrizione</span><span class="sxs-lookup"><span data-stu-id="498f6-122">Description</span></span> |
-| ----------- | ----------- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="498f6-123">Esegue il rendering del componente in HTML statico e include un marcatore per un' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="498f6-123">Renders the component into static HTML and includes a marker for a Blazor Server app.</span></span> <span data-ttu-id="498f6-124">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app.</span><span class="sxs-lookup"><span data-stu-id="498f6-124">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="498f6-125">Esegue il rendering di un marcatore per un' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="498f6-125">Renders a marker for a Blazor Server app.</span></span> <span data-ttu-id="498f6-126">L'output del componente non è incluso.</span><span class="sxs-lookup"><span data-stu-id="498f6-126">Output from the component isn't included.</span></span> <span data-ttu-id="498f6-127">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app.</span><span class="sxs-lookup"><span data-stu-id="498f6-127">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | <span data-ttu-id="498f6-128">Esegue il rendering del componente in HTML statico.</span><span class="sxs-lookup"><span data-stu-id="498f6-128">Renders the component into static HTML.</span></span> |
+* [:::no-loc(Blazor WebAssembly):::](xref:blazor/components/prerendering-and-integration?pivots=webassembly)
+* [:::no-loc(Blazor Server):::](xref:blazor/components/prerendering-and-integration?pivots=server)
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-<span data-ttu-id="498f6-129">Blazor Server nella tabella seguente sono illustrate le modalità di rendering dell'app.</span><span class="sxs-lookup"><span data-stu-id="498f6-129">Blazor Server app render modes are shown in the following table.</span></span>
-
-| <span data-ttu-id="498f6-130">Modalità di rendering</span><span class="sxs-lookup"><span data-stu-id="498f6-130">Render Mode</span></span> | <span data-ttu-id="498f6-131">Descrizione</span><span class="sxs-lookup"><span data-stu-id="498f6-131">Description</span></span> |
-| ----------- | ----------- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="498f6-132">Esegue il rendering del componente in HTML statico e include un marcatore per un' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="498f6-132">Renders the component into static HTML and includes a marker for a Blazor Server app.</span></span> <span data-ttu-id="498f6-133">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app.</span><span class="sxs-lookup"><span data-stu-id="498f6-133">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="498f6-134">Esegue il rendering di un marcatore per un' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="498f6-134">Renders a marker for a Blazor Server app.</span></span> <span data-ttu-id="498f6-135">L'output del componente non è incluso.</span><span class="sxs-lookup"><span data-stu-id="498f6-135">Output from the component isn't included.</span></span> <span data-ttu-id="498f6-136">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app.</span><span class="sxs-lookup"><span data-stu-id="498f6-136">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | <span data-ttu-id="498f6-137">Esegue il rendering del componente in HTML statico.</span><span class="sxs-lookup"><span data-stu-id="498f6-137">Renders the component into static HTML.</span></span> |
+<span data-ttu-id="872e5-107">Seguire le istruzioni riportate nella sezione *configurazione* dell' <xref:blazor/components/prerendering-and-integration?pivots=server> articolo.</span><span class="sxs-lookup"><span data-stu-id="872e5-107">Follow the guidance in the *Configuration* section of the <xref:blazor/components/prerendering-and-integration?pivots=server> article.</span></span>
 
 ::: moniker-end
 
-<span data-ttu-id="498f6-138">Le caratteristiche aggiuntive includono:</span><span class="sxs-lookup"><span data-stu-id="498f6-138">Additional characteristics include:</span></span>
+## <a name="component-tag-helper"></a><span data-ttu-id="872e5-108">Helper Tag componente</span><span class="sxs-lookup"><span data-stu-id="872e5-108">Component Tag Helper</span></span>
 
-* <span data-ttu-id="498f6-139">Sono consentiti più helper tag di componenti che rendono più Razor componenti.</span><span class="sxs-lookup"><span data-stu-id="498f6-139">Multiple Component Tag Helpers rendering multiple Razor components is allowed.</span></span>
-* <span data-ttu-id="498f6-140">Non è possibile eseguire il rendering dinamico dei componenti dopo l'avvio dell'app.</span><span class="sxs-lookup"><span data-stu-id="498f6-140">Components can't be dynamically rendered after the app has started.</span></span>
-* <span data-ttu-id="498f6-141">Mentre le pagine e le visualizzazioni possono usare i componenti, il contrario non è vero.</span><span class="sxs-lookup"><span data-stu-id="498f6-141">While pages and views can use components, the converse isn't true.</span></span> <span data-ttu-id="498f6-142">I componenti non possono utilizzare funzionalità specifiche di visualizzazione e pagina, ad esempio visualizzazioni parziali e sezioni.</span><span class="sxs-lookup"><span data-stu-id="498f6-142">Components can't use view- and page-specific features, such as partial views and sections.</span></span> <span data-ttu-id="498f6-143">Per usare la logica da una visualizzazione parziale in un componente, scomporre la logica di visualizzazione parziale in un componente.</span><span class="sxs-lookup"><span data-stu-id="498f6-143">To use logic from a partial view in a component, factor out the partial view logic into a component.</span></span>
-* <span data-ttu-id="498f6-144">Il rendering dei componenti server da una pagina HTML statica non è supportato.</span><span class="sxs-lookup"><span data-stu-id="498f6-144">Rendering server components from a static HTML page isn't supported.</span></span>
+<span data-ttu-id="872e5-109">Per eseguire il rendering di un componente da una pagina o da una vista, usare l' [Helper Tag Component](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) ( `<component>` tag).</span><span class="sxs-lookup"><span data-stu-id="872e5-109">To render a component from a page or view, use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) (`<component>` tag).</span></span>
 
-<span data-ttu-id="498f6-145">L'helper tag di componente seguente esegue il rendering del `Counter` componente in una pagina o in una vista di un' Blazor Server app con `ServerPrerendered` :</span><span class="sxs-lookup"><span data-stu-id="498f6-145">The following Component Tag Helper renders the `Counter` component in a page or view in a Blazor Server app with `ServerPrerendered`:</span></span>
+> [!NOTE]
+> <span data-ttu-id="872e5-110">L'integrazione di :::no-loc(Razor)::: componenti in :::no-loc(Razor)::: pagine e app MVC in *un' :::no-loc(Blazor WebAssembly)::: app ospitata* è supportata in ASP.NET Core in .NET 5,0 o versioni successive.</span><span class="sxs-lookup"><span data-stu-id="872e5-110">Integrating :::no-loc(Razor)::: components into :::no-loc(Razor)::: Pages and MVC apps in a *hosted :::no-loc(Blazor WebAssembly)::: app* is supported in ASP.NET Core in .NET 5.0 or later.</span></span>
+
+<span data-ttu-id="872e5-111"><xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> Configura se il componente:</span><span class="sxs-lookup"><span data-stu-id="872e5-111"><xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the component:</span></span>
+
+* <span data-ttu-id="872e5-112">Viene preeseguito nella pagina.</span><span class="sxs-lookup"><span data-stu-id="872e5-112">Is prerendered into the page.</span></span>
+* <span data-ttu-id="872e5-113">Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' :::no-loc(Blazor)::: app dall'agente utente.</span><span class="sxs-lookup"><span data-stu-id="872e5-113">Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a :::no-loc(Blazor)::: app from the user agent.</span></span>
+
+::: moniker range=">= aspnetcore-5.0"
+
+<span data-ttu-id="872e5-114">:::no-loc(Blazor WebAssembly)::: nella tabella seguente sono illustrate le modalità di rendering dell'app.</span><span class="sxs-lookup"><span data-stu-id="872e5-114">:::no-loc(Blazor WebAssembly)::: app render modes are shown in the following table.</span></span>
+
+| <span data-ttu-id="872e5-115">Modalità di rendering</span><span class="sxs-lookup"><span data-stu-id="872e5-115">Render Mode</span></span> | <span data-ttu-id="872e5-116">Descrizione</span><span class="sxs-lookup"><span data-stu-id="872e5-116">Description</span></span> |
+| ----------- | ----------- |
+| `WebAssembly` | <span data-ttu-id="872e5-117">Esegue il rendering di un marcatore per un' :::no-loc(Blazor WebAssembly)::: app da usare per includere un componente interattivo quando viene caricato nel browser.</span><span class="sxs-lookup"><span data-stu-id="872e5-117">Renders a marker for a :::no-loc(Blazor WebAssembly)::: app for use to include an interactive component when loaded in the browser.</span></span> <span data-ttu-id="872e5-118">Il componente non è preeseguito.</span><span class="sxs-lookup"><span data-stu-id="872e5-118">The component isn't prerendered.</span></span> <span data-ttu-id="872e5-119">Questa opzione rende più semplice il rendering di :::no-loc(Blazor WebAssembly)::: componenti diversi in pagine diverse.</span><span class="sxs-lookup"><span data-stu-id="872e5-119">This option makes it easier to render different :::no-loc(Blazor WebAssembly)::: components on different pages.</span></span> |
+| `WebAssemblyPrerendered` | <span data-ttu-id="872e5-120">Esegue il rendering del componente in HTML statico e include un marcatore per un'app da usare in un :::no-loc(Blazor WebAssembly)::: secondo momento per rendere il componente interattivo quando viene caricato nel browser.</span><span class="sxs-lookup"><span data-stu-id="872e5-120">Prerenders the component into static HTML and includes a marker for a :::no-loc(Blazor WebAssembly)::: app for later use to make the component interactive when loaded in the browser.</span></span> |
+
+<span data-ttu-id="872e5-121">:::no-loc(Blazor Server)::: nella tabella seguente sono illustrate le modalità di rendering dell'app.</span><span class="sxs-lookup"><span data-stu-id="872e5-121">:::no-loc(Blazor Server)::: app render modes are shown in the following table.</span></span>
+
+| <span data-ttu-id="872e5-122">Modalità di rendering</span><span class="sxs-lookup"><span data-stu-id="872e5-122">Render Mode</span></span> | <span data-ttu-id="872e5-123">Descrizione</span><span class="sxs-lookup"><span data-stu-id="872e5-123">Description</span></span> |
+| ----------- | ----------- |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="872e5-124">Esegue il rendering del componente in HTML statico e include un marcatore per un' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="872e5-124">Renders the component into static HTML and includes a marker for a :::no-loc(Blazor Server)::: app.</span></span> <span data-ttu-id="872e5-125">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="872e5-125">When the user-agent starts, this marker is used to bootstrap a :::no-loc(Blazor)::: app.</span></span> |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="872e5-126">Esegue il rendering di un marcatore per un' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="872e5-126">Renders a marker for a :::no-loc(Blazor Server)::: app.</span></span> <span data-ttu-id="872e5-127">L'output del componente non è incluso.</span><span class="sxs-lookup"><span data-stu-id="872e5-127">Output from the component isn't included.</span></span> <span data-ttu-id="872e5-128">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="872e5-128">When the user-agent starts, this marker is used to bootstrap a :::no-loc(Blazor)::: app.</span></span> |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | <span data-ttu-id="872e5-129">Esegue il rendering del componente in HTML statico.</span><span class="sxs-lookup"><span data-stu-id="872e5-129">Renders the component into static HTML.</span></span> |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+<span data-ttu-id="872e5-130">:::no-loc(Blazor Server)::: nella tabella seguente sono illustrate le modalità di rendering dell'app.</span><span class="sxs-lookup"><span data-stu-id="872e5-130">:::no-loc(Blazor Server)::: app render modes are shown in the following table.</span></span>
+
+| <span data-ttu-id="872e5-131">Modalità di rendering</span><span class="sxs-lookup"><span data-stu-id="872e5-131">Render Mode</span></span> | <span data-ttu-id="872e5-132">Descrizione</span><span class="sxs-lookup"><span data-stu-id="872e5-132">Description</span></span> |
+| ----------- | ----------- |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="872e5-133">Esegue il rendering del componente in HTML statico e include un marcatore per un' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="872e5-133">Renders the component into static HTML and includes a marker for a :::no-loc(Blazor Server)::: app.</span></span> <span data-ttu-id="872e5-134">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="872e5-134">When the user-agent starts, this marker is used to bootstrap a :::no-loc(Blazor)::: app.</span></span> |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="872e5-135">Esegue il rendering di un marcatore per un' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="872e5-135">Renders a marker for a :::no-loc(Blazor Server)::: app.</span></span> <span data-ttu-id="872e5-136">L'output del componente non è incluso.</span><span class="sxs-lookup"><span data-stu-id="872e5-136">Output from the component isn't included.</span></span> <span data-ttu-id="872e5-137">Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="872e5-137">When the user-agent starts, this marker is used to bootstrap a :::no-loc(Blazor)::: app.</span></span> |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | <span data-ttu-id="872e5-138">Esegue il rendering del componente in HTML statico.</span><span class="sxs-lookup"><span data-stu-id="872e5-138">Renders the component into static HTML.</span></span> |
+
+::: moniker-end
+
+<span data-ttu-id="872e5-139">Le caratteristiche aggiuntive includono:</span><span class="sxs-lookup"><span data-stu-id="872e5-139">Additional characteristics include:</span></span>
+
+* <span data-ttu-id="872e5-140">Sono consentiti più helper tag di componenti che rendono più :::no-loc(Razor)::: componenti.</span><span class="sxs-lookup"><span data-stu-id="872e5-140">Multiple Component Tag Helpers rendering multiple :::no-loc(Razor)::: components is allowed.</span></span>
+* <span data-ttu-id="872e5-141">Non è possibile eseguire il rendering dinamico dei componenti dopo l'avvio dell'app.</span><span class="sxs-lookup"><span data-stu-id="872e5-141">Components can't be dynamically rendered after the app has started.</span></span>
+* <span data-ttu-id="872e5-142">Mentre le pagine e le visualizzazioni possono usare i componenti, il contrario non è vero.</span><span class="sxs-lookup"><span data-stu-id="872e5-142">While pages and views can use components, the converse isn't true.</span></span> <span data-ttu-id="872e5-143">I componenti non possono utilizzare funzionalità specifiche di visualizzazione e pagina, ad esempio visualizzazioni parziali e sezioni.</span><span class="sxs-lookup"><span data-stu-id="872e5-143">Components can't use view- and page-specific features, such as partial views and sections.</span></span> <span data-ttu-id="872e5-144">Per usare la logica da una visualizzazione parziale in un componente, scomporre la logica di visualizzazione parziale in un componente.</span><span class="sxs-lookup"><span data-stu-id="872e5-144">To use logic from a partial view in a component, factor out the partial view logic into a component.</span></span>
+* <span data-ttu-id="872e5-145">Il rendering dei componenti server da una pagina HTML statica non è supportato.</span><span class="sxs-lookup"><span data-stu-id="872e5-145">Rendering server components from a static HTML page isn't supported.</span></span>
+
+<span data-ttu-id="872e5-146">L'helper tag di componente seguente esegue il rendering del `Counter` componente in una pagina o in una vista di un' :::no-loc(Blazor Server)::: app con `ServerPrerendered` :</span><span class="sxs-lookup"><span data-stu-id="872e5-146">The following Component Tag Helper renders the `Counter` component in a page or view in a :::no-loc(Blazor Server)::: app with `ServerPrerendered`:</span></span>
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -97,9 +107,9 @@ ms.locfileid: "94431043"
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-<span data-ttu-id="498f6-146">Nell'esempio precedente si presuppone che il `Counter` componente si trovi nella cartella *pages* dell'app.</span><span class="sxs-lookup"><span data-stu-id="498f6-146">The preceding example assumes that the `Counter` component is in the app's *Pages* folder.</span></span> <span data-ttu-id="498f6-147">Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app, ad esempio `@using BlazorSample.Pages` o `@using BlazorSample.Client.Pages` in una Blazor soluzione ospitata.</span><span class="sxs-lookup"><span data-stu-id="498f6-147">The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages` or `@using BlazorSample.Client.Pages` in a hosted Blazor solution).</span></span>
+<span data-ttu-id="872e5-147">Nell'esempio precedente si presuppone che il `Counter` componente si trovi nella cartella *pages* dell'app.</span><span class="sxs-lookup"><span data-stu-id="872e5-147">The preceding example assumes that the `Counter` component is in the app's *Pages* folder.</span></span> <span data-ttu-id="872e5-148">Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app, ad esempio `@using :::no-loc(Blazor):::Sample.Pages` o `@using :::no-loc(Blazor):::Sample.Client.Pages` in una :::no-loc(Blazor)::: soluzione ospitata.</span><span class="sxs-lookup"><span data-stu-id="872e5-148">The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using :::no-loc(Blazor):::Sample.Pages` or `@using :::no-loc(Blazor):::Sample.Client.Pages` in a hosted :::no-loc(Blazor)::: solution).</span></span>
 
-<span data-ttu-id="498f6-148">L'helper Tag Component può anche passare parametri ai componenti.</span><span class="sxs-lookup"><span data-stu-id="498f6-148">The Component Tag Helper can also pass parameters to components.</span></span> <span data-ttu-id="498f6-149">Si consideri il `ColorfulCheckbox` componente seguente che imposta il colore e le dimensioni dell'etichetta della casella di controllo:</span><span class="sxs-lookup"><span data-stu-id="498f6-149">Consider the following `ColorfulCheckbox` component that sets the check box label's color and size:</span></span>
+<span data-ttu-id="872e5-149">L'helper Tag Component può anche passare parametri ai componenti.</span><span class="sxs-lookup"><span data-stu-id="872e5-149">The Component Tag Helper can also pass parameters to components.</span></span> <span data-ttu-id="872e5-150">Si consideri il `ColorfulCheckbox` componente seguente che imposta il colore e le dimensioni dell'etichetta della casella di controllo:</span><span class="sxs-lookup"><span data-stu-id="872e5-150">Consider the following `ColorfulCheckbox` component that sets the check box label's color and size:</span></span>
 
 ```razor
 <label style="font-size:@(Size)px;color:@Color">
@@ -107,7 +117,7 @@ ms.locfileid: "94431043"
            id="survey" 
            name="blazor" 
            type="checkbox" />
-    Enjoying Blazor?
+    Enjoying :::no-loc(Blazor):::?
 </label>
 
 @code {
@@ -127,7 +137,7 @@ ms.locfileid: "94431043"
 }
 ```
 
-<span data-ttu-id="498f6-150">I `Size` `int` parametri del componente () e `Color` ( `string` ) possono essere impostati dall'helper tag dei componenti: [component parameters](xref:blazor/components/index#component-parameters)</span><span class="sxs-lookup"><span data-stu-id="498f6-150">The `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/components/index#component-parameters) can be set by the Component Tag Helper:</span></span>
+<span data-ttu-id="872e5-151">I `Size` `int` parametri del componente () e `Color` ( `string` ) possono essere impostati dall'helper tag dei componenti: [component parameters](xref:blazor/components/index#component-parameters)</span><span class="sxs-lookup"><span data-stu-id="872e5-151">The `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/components/index#component-parameters) can be set by the Component Tag Helper:</span></span>
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -139,31 +149,31 @@ ms.locfileid: "94431043"
     param-Size="14" param-Color="@("blue")" />
 ```
 
-<span data-ttu-id="498f6-151">Nell'esempio precedente si presuppone che il `ColorfulCheckbox` componente si trovi nella cartella *condivisa* dell'app.</span><span class="sxs-lookup"><span data-stu-id="498f6-151">The preceding example assumes that the `ColorfulCheckbox` component is in the app's *Shared* folder.</span></span> <span data-ttu-id="498f6-152">Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `@using BlazorSample.Shared` ).</span><span class="sxs-lookup"><span data-stu-id="498f6-152">The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Shared`).</span></span>
+<span data-ttu-id="872e5-152">Nell'esempio precedente si presuppone che il `ColorfulCheckbox` componente si trovi nella cartella *condivisa* dell'app.</span><span class="sxs-lookup"><span data-stu-id="872e5-152">The preceding example assumes that the `ColorfulCheckbox` component is in the app's *Shared* folder.</span></span> <span data-ttu-id="872e5-153">Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `@using :::no-loc(Blazor):::Sample.Shared` ).</span><span class="sxs-lookup"><span data-stu-id="872e5-153">The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using :::no-loc(Blazor):::Sample.Shared`).</span></span>
 
-<span data-ttu-id="498f6-153">Viene eseguito il rendering del codice HTML seguente nella pagina o nella visualizzazione:</span><span class="sxs-lookup"><span data-stu-id="498f6-153">The following HTML is rendered in the page or view:</span></span>
+<span data-ttu-id="872e5-154">Viene eseguito il rendering del codice HTML seguente nella pagina o nella visualizzazione:</span><span class="sxs-lookup"><span data-stu-id="872e5-154">The following HTML is rendered in the page or view:</span></span>
 
 ```html
 <label style="font-size:24px;color:blue">
     <input id="survey" name="blazor" type="checkbox">
-    Enjoying Blazor?
+    Enjoying :::no-loc(Blazor):::?
 </label>
 ```
 
-<span data-ttu-id="498f6-154">Il passaggio di una stringa racchiusa tra virgolette richiede un' [ Razor espressione esplicita](xref:mvc/views/razor#explicit-razor-expressions), come illustrato `param-Color` nell'esempio precedente.</span><span class="sxs-lookup"><span data-stu-id="498f6-154">Passing a quoted string requires an [explicit Razor expression](xref:mvc/views/razor#explicit-razor-expressions), as shown for `param-Color` in the preceding example.</span></span> <span data-ttu-id="498f6-155">Il Razor comportamento di analisi per un `string` valore di tipo non si applica a un `param-*` attributo perché l'attributo è di `object` tipo.</span><span class="sxs-lookup"><span data-stu-id="498f6-155">The Razor parsing behavior for a `string` type value doesn't apply to a `param-*` attribute because the attribute is an `object` type.</span></span>
+<span data-ttu-id="872e5-155">Il passaggio di una stringa racchiusa tra virgolette richiede un' [ :::no-loc(Razor)::: espressione esplicita](xref:mvc/views/razor#explicit-razor-expressions), come illustrato `param-Color` nell'esempio precedente.</span><span class="sxs-lookup"><span data-stu-id="872e5-155">Passing a quoted string requires an [explicit :::no-loc(Razor)::: expression](xref:mvc/views/razor#explicit-razor-expressions), as shown for `param-Color` in the preceding example.</span></span> <span data-ttu-id="872e5-156">Il :::no-loc(Razor)::: comportamento di analisi per un `string` valore di tipo non si applica a un `param-*` attributo perché l'attributo è di `object` tipo.</span><span class="sxs-lookup"><span data-stu-id="872e5-156">The :::no-loc(Razor)::: parsing behavior for a `string` type value doesn't apply to a `param-*` attribute because the attribute is an `object` type.</span></span>
 
-<span data-ttu-id="498f6-156">Sono supportati tutti i tipi di parametri, tranne:</span><span class="sxs-lookup"><span data-stu-id="498f6-156">All types of parameters are supported, except:</span></span>
+<span data-ttu-id="872e5-157">Sono supportati tutti i tipi di parametri, tranne:</span><span class="sxs-lookup"><span data-stu-id="872e5-157">All types of parameters are supported, except:</span></span>
 
-* <span data-ttu-id="498f6-157">Parametri generici.</span><span class="sxs-lookup"><span data-stu-id="498f6-157">Generic parameters.</span></span>
-* <span data-ttu-id="498f6-158">Parametri non serializzabili.</span><span class="sxs-lookup"><span data-stu-id="498f6-158">Non-serializable parameters.</span></span>
-* <span data-ttu-id="498f6-159">Ereditarietà nei parametri della raccolta.</span><span class="sxs-lookup"><span data-stu-id="498f6-159">Inheritance in collection parameters.</span></span>
-* <span data-ttu-id="498f6-160">Parametri il cui tipo è definito all'esterno dell' Blazor WebAssembly app o all'interno di un assembly caricato in modo differito.</span><span class="sxs-lookup"><span data-stu-id="498f6-160">Parameters whose type is defined outside of the Blazor WebAssembly app or within a lazily-loaded assembly.</span></span>
+* <span data-ttu-id="872e5-158">Parametri generici.</span><span class="sxs-lookup"><span data-stu-id="872e5-158">Generic parameters.</span></span>
+* <span data-ttu-id="872e5-159">Parametri non serializzabili.</span><span class="sxs-lookup"><span data-stu-id="872e5-159">Non-serializable parameters.</span></span>
+* <span data-ttu-id="872e5-160">Ereditarietà nei parametri della raccolta.</span><span class="sxs-lookup"><span data-stu-id="872e5-160">Inheritance in collection parameters.</span></span>
+* <span data-ttu-id="872e5-161">Parametri il cui tipo è definito all'esterno dell' :::no-loc(Blazor WebAssembly)::: app o all'interno di un assembly caricato in modo differito.</span><span class="sxs-lookup"><span data-stu-id="872e5-161">Parameters whose type is defined outside of the :::no-loc(Blazor WebAssembly)::: app or within a lazily-loaded assembly.</span></span>
 
-<span data-ttu-id="498f6-161">Il tipo di parametro deve essere serializzabile JSON, che in genere significa che il tipo deve avere un costruttore predefinito e le proprietà impostabili.</span><span class="sxs-lookup"><span data-stu-id="498f6-161">The parameter type must be JSON serializable, which typically means that the type must have a default constructor and settable properties.</span></span> <span data-ttu-id="498f6-162">Ad esempio, è possibile specificare un valore per `Size` e `Color` nell'esempio precedente perché i tipi di `Size` e `Color` sono tipi primitivi ( `int` e `string` ), che sono supportati dal serializzatore JSON.</span><span class="sxs-lookup"><span data-stu-id="498f6-162">For example, you can specify a value for `Size` and `Color` in the preceding example because the types of `Size` and `Color` are primitive types (`int` and `string`), which are supported by the JSON serializer.</span></span>
+<span data-ttu-id="872e5-162">Il tipo di parametro deve essere serializzabile JSON, che in genere significa che il tipo deve avere un costruttore predefinito e le proprietà impostabili.</span><span class="sxs-lookup"><span data-stu-id="872e5-162">The parameter type must be JSON serializable, which typically means that the type must have a default constructor and settable properties.</span></span> <span data-ttu-id="872e5-163">Ad esempio, è possibile specificare un valore per `Size` e `Color` nell'esempio precedente perché i tipi di `Size` e `Color` sono tipi primitivi ( `int` e `string` ), che sono supportati dal serializzatore JSON.</span><span class="sxs-lookup"><span data-stu-id="872e5-163">For example, you can specify a value for `Size` and `Color` in the preceding example because the types of `Size` and `Color` are primitive types (`int` and `string`), which are supported by the JSON serializer.</span></span>
 
-<span data-ttu-id="498f6-163">Nell'esempio seguente viene passato un oggetto classe al componente:</span><span class="sxs-lookup"><span data-stu-id="498f6-163">In the following example, a class object is passed to the component:</span></span>
+<span data-ttu-id="872e5-164">Nell'esempio seguente viene passato un oggetto classe al componente:</span><span class="sxs-lookup"><span data-stu-id="872e5-164">In the following example, a class object is passed to the component:</span></span>
 
-<span data-ttu-id="498f6-164">*MyClass.cs* :</span><span class="sxs-lookup"><span data-stu-id="498f6-164">*MyClass.cs* :</span></span>
+<span data-ttu-id="872e5-165">*MyClass.cs* :</span><span class="sxs-lookup"><span data-stu-id="872e5-165">*MyClass.cs* :</span></span>
 
 ```csharp
 public class MyClass
@@ -177,9 +187,9 @@ public class MyClass
 }
 ```
 
-<span data-ttu-id="498f6-165">**La classe deve avere un costruttore pubblico senza parametri.**</span><span class="sxs-lookup"><span data-stu-id="498f6-165">**The class must have a public parameterless constructor.**</span></span>
+<span data-ttu-id="872e5-166">**La classe deve avere un costruttore pubblico senza parametri.**</span><span class="sxs-lookup"><span data-stu-id="872e5-166">**The class must have a public parameterless constructor.**</span></span>
 
-<span data-ttu-id="498f6-166">*Shared/componente. Razor* :</span><span class="sxs-lookup"><span data-stu-id="498f6-166">*Shared/MyComponent.razor* :</span></span>
+<span data-ttu-id="872e5-167">*Shared/componente. Razor* :</span><span class="sxs-lookup"><span data-stu-id="872e5-167">*Shared/MyComponent.razor* :</span></span>
 
 ```razor
 <h2>MyComponent</h2>
@@ -194,7 +204,7 @@ public class MyClass
 }
 ```
 
-<span data-ttu-id="498f6-167">*Pagine/pagina. cshtml* :</span><span class="sxs-lookup"><span data-stu-id="498f6-167">*Pages/MyPage.cshtml* :</span></span>
+<span data-ttu-id="872e5-168">*Pagine/pagina. cshtml* :</span><span class="sxs-lookup"><span data-stu-id="872e5-168">*Pages/MyPage.cshtml* :</span></span>
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -213,9 +223,9 @@ public class MyClass
     param-MyObject="@myObject" />
 ```
 
-<span data-ttu-id="498f6-168">Nell'esempio precedente si presuppone che il `MyComponent` componente si trovi nella cartella *condivisa* dell'app.</span><span class="sxs-lookup"><span data-stu-id="498f6-168">The preceding example assumes that the `MyComponent` component is in the app's *Shared* folder.</span></span> <span data-ttu-id="498f6-169">Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app, ad esempio `@using BlazorSample` e `@using BlazorSample.Shared` .</span><span class="sxs-lookup"><span data-stu-id="498f6-169">The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample` and `@using BlazorSample.Shared`).</span></span> <span data-ttu-id="498f6-170">`MyClass` si trova nello spazio dei nomi dell'app.</span><span class="sxs-lookup"><span data-stu-id="498f6-170">`MyClass` is in the app's namespace.</span></span>
+<span data-ttu-id="872e5-169">Nell'esempio precedente si presuppone che il `MyComponent` componente si trovi nella cartella *condivisa* dell'app.</span><span class="sxs-lookup"><span data-stu-id="872e5-169">The preceding example assumes that the `MyComponent` component is in the app's *Shared* folder.</span></span> <span data-ttu-id="872e5-170">Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app, ad esempio `@using :::no-loc(Blazor):::Sample` e `@using :::no-loc(Blazor):::Sample.Shared` .</span><span class="sxs-lookup"><span data-stu-id="872e5-170">The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using :::no-loc(Blazor):::Sample` and `@using :::no-loc(Blazor):::Sample.Shared`).</span></span> <span data-ttu-id="872e5-171">`MyClass` si trova nello spazio dei nomi dell'app.</span><span class="sxs-lookup"><span data-stu-id="872e5-171">`MyClass` is in the app's namespace.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="498f6-171">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="498f6-171">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="872e5-172">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="872e5-172">Additional resources</span></span>
 
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
