@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: f8b6e65424948aaa7b28023497bbbf2a1ceb47dd
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9ec3900b67897255e321462b83117f5c2e32ab45
+ms.sourcegitcommit: 98f92d766d4f343d7e717b542c1b08da29e789c1
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056049"
+ms.lasthandoff: 11/13/2020
+ms.locfileid: "94595415"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a>BlazorConfigurazione del modello di hosting ASP.NET Core
 
@@ -102,32 +102,21 @@ Nella tabella seguente vengono descritte le classi CSS applicate all' `component
 
 ## <a name="render-mode"></a>Modalità di rendering
 
+::: moniker range=">= aspnetcore-5.0"
+
+*Questa sezione si applica a Hosted Blazor WebAssembly e Blazor Server .*
+
+Blazor per impostazione predefinita, le app sono configurate per eseguire il prerendering dell'interfaccia utente nel server. Per altre informazioni, vedere <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 *Questa sezione si applica a Blazor Server .*
 
-Blazor Server per impostazione predefinita, le app sono configurate per eseguire il prerendering dell'interfaccia utente nel server prima che venga stabilita la connessione client al server. Questa impostazione è configurata nella `_Host.cshtml` Razor pagina:
+Blazor Server per impostazione predefinita, le app sono configurate per eseguire il prerendering dell'interfaccia utente nel server prima che venga stabilita la connessione client al server. Per altre informazioni, vedere <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-```cshtml
-<body>
-    <app>
-      <component type="typeof(App)" render-mode="ServerPrerendered" />
-    </app>
-
-    <script src="_framework/blazor.server.js"></script>
-</body>
-```
-
-<xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> Configura se il componente:
-
-* Viene preeseguito nella pagina.
-* Viene sottoposto a rendering come HTML statico nella pagina o se include le informazioni necessarie per il bootstrap di un' Blazor app dall'agente utente.
-
-| Modalità di rendering | Descrizione |
-| --- | --- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Esegue il rendering del componente in HTML statico e include un marcatore per un' Blazor Server app. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Esegue il rendering di un marcatore per un' Blazor Server app. L'output del componente non è incluso. Quando l'agente utente viene avviato, questo marcatore viene usato per il bootstrap di un' Blazor app. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Esegue il rendering del componente in HTML statico. |
-
-Il rendering dei componenti server da una pagina HTML statica non è supportato.
+::: moniker-end
 
 ## <a name="initialize-the-no-locblazor-circuit"></a>Inizializzare il Blazor circuito
 
