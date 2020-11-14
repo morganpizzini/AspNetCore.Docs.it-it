@@ -7,17 +7,17 @@ ms.custom: mvc
 ms.date: 11/06/2020
 ms.topic: tutorial
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: data/ef-mvc/intro
 ms.openlocfilehash: 428320f9d706b0dd16ced68d183ec4b331451965
 ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
@@ -222,9 +222,9 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
 [!code-csharp[](intro/samples/5cu-snap/Startup.cs?name=snippet&highlight=1-2,22-23)]
 
-<span data-ttu-id="2f627-239">Il nome della stringa di connessione viene passato al contesto chiamando un metodo in un oggetto `DbContextOptionsBuilder`.</span><span class="sxs-lookup"><span data-stu-id="2f627-239">The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object.</span></span> <span data-ttu-id="2f627-240">Per lo sviluppo locale, il [sistema di configurazione ASP.NET Core](xref:fundamentals/configuration/index) legge la stringa di connessione dal *:::no-loc(appsettings.json):::* file.</span><span class="sxs-lookup"><span data-stu-id="2f627-240">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *:::no-loc(appsettings.json):::* file.</span></span>
+<span data-ttu-id="2f627-239">Il nome della stringa di connessione viene passato al contesto chiamando un metodo in un oggetto `DbContextOptionsBuilder`.</span><span class="sxs-lookup"><span data-stu-id="2f627-239">The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object.</span></span> <span data-ttu-id="2f627-240">Per lo sviluppo locale, il [sistema di configurazione ASP.NET Core](xref:fundamentals/configuration/index) legge la stringa di connessione dal *appsettings.json* file.</span><span class="sxs-lookup"><span data-stu-id="2f627-240">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.</span></span>
 
-<span data-ttu-id="2f627-241">Aprire il *:::no-loc(appsettings.json):::* file e aggiungere una stringa di connessione come illustrato nel markup seguente:</span><span class="sxs-lookup"><span data-stu-id="2f627-241">Open the *:::no-loc(appsettings.json):::* file and add a connection string as shown in the following markup:</span></span>
+<span data-ttu-id="2f627-241">Aprire il *appsettings.json* file e aggiungere una stringa di connessione come illustrato nel markup seguente:</span><span class="sxs-lookup"><span data-stu-id="2f627-241">Open the *appsettings.json* file and add a connection string as shown in the following markup:</span></span>
 
 [!code-json[](./intro/samples/5cu/appsettings1.json?highlight=2-4)]
 
@@ -327,7 +327,7 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
 * <span data-ttu-id="2f627-303">Selezionare **Esplora oggetti di SQL Server** dal menu **Visualizza** in Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="2f627-303">Select **SQL Server Object Explorer** from the **View** menu in Visual Studio.</span></span>
 * <span data-ttu-id="2f627-304">In SSOX selezionare (local DB **) \MSSQLLocalDB > database**.</span><span class="sxs-lookup"><span data-stu-id="2f627-304">In SSOX, select **(localdb)\MSSQLLocalDB > Databases**.</span></span>
-* <span data-ttu-id="2f627-305">Selezionare `ContosoUniversity1` la voce relativa al nome del database nella stringa di connessione nel *:::no-loc(appsettings.json):::* file.</span><span class="sxs-lookup"><span data-stu-id="2f627-305">Select `ContosoUniversity1`, the entry for the database name that's in the connection string in the *:::no-loc(appsettings.json):::* file.</span></span>
+* <span data-ttu-id="2f627-305">Selezionare `ContosoUniversity1` la voce relativa al nome del database nella stringa di connessione nel *appsettings.json* file.</span><span class="sxs-lookup"><span data-stu-id="2f627-305">Select `ContosoUniversity1`, the entry for the database name that's in the connection string in the *appsettings.json* file.</span></span>
 * <span data-ttu-id="2f627-306">Espandere il nodo **tabelle** per visualizzare le tabelle nel database.</span><span class="sxs-lookup"><span data-stu-id="2f627-306">Expand the **Tables** node to see the tables in the database.</span></span>
 
 ![Tabelle in SSOX](intro/_static/ssox-tables.png)
@@ -563,13 +563,13 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=9-10)]
 
-<span data-ttu-id="2f627-477">Il nome della stringa di connessione viene passato al contesto chiamando un metodo in un oggetto `DbContextOptionsBuilder`.</span><span class="sxs-lookup"><span data-stu-id="2f627-477">The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object.</span></span> <span data-ttu-id="2f627-478">Per lo sviluppo locale, il [sistema di configurazione ASP.NET Core](xref:fundamentals/configuration/index) legge la stringa di connessione dal *:::no-loc(appsettings.json):::* file.</span><span class="sxs-lookup"><span data-stu-id="2f627-478">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *:::no-loc(appsettings.json):::* file.</span></span>
+<span data-ttu-id="2f627-477">Il nome della stringa di connessione viene passato al contesto chiamando un metodo in un oggetto `DbContextOptionsBuilder`.</span><span class="sxs-lookup"><span data-stu-id="2f627-477">The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object.</span></span> <span data-ttu-id="2f627-478">Per lo sviluppo locale, il [sistema di configurazione ASP.NET Core](xref:fundamentals/configuration/index) legge la stringa di connessione dal *appsettings.json* file.</span><span class="sxs-lookup"><span data-stu-id="2f627-478">For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.</span></span>
 
 <span data-ttu-id="2f627-479">Aggiungere le istruzioni `using` per gli spazi dei nomi `ContosoUniversity.Data` e `Microsoft.EntityFrameworkCore`, quindi compilare il progetto.</span><span class="sxs-lookup"><span data-stu-id="2f627-479">Add `using` statements for `ContosoUniversity.Data` and `Microsoft.EntityFrameworkCore` namespaces, and then build the project.</span></span>
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_Usings)]
 
-<span data-ttu-id="2f627-480">Aprire il *:::no-loc(appsettings.json):::* file e aggiungere una stringa di connessione come illustrato nell'esempio seguente.</span><span class="sxs-lookup"><span data-stu-id="2f627-480">Open the *:::no-loc(appsettings.json):::* file and add a connection string as shown in the following example.</span></span>
+<span data-ttu-id="2f627-480">Aprire il *appsettings.json* file e aggiungere una stringa di connessione come illustrato nell'esempio seguente.</span><span class="sxs-lookup"><span data-stu-id="2f627-480">Open the *appsettings.json* file and add a connection string as shown in the following example.</span></span>
 
 [!code-json[](./intro/samples/cu/appsettings1.json?highlight=2-4)]
 
@@ -653,7 +653,7 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
 <span data-ttu-id="2f627-535">Se la finestra di Esplora oggetti di SQL Server non è già aperta, selezionarla dal menu **Visualizza** in Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="2f627-535">If the SSOX window isn't already open, select it from the **View** menu in Visual Studio.</span></span>
 
-<span data-ttu-id="2f627-536">In SSOX fare clic su (local DB **) \MSSQLLocalDB > database** , quindi fare clic sulla voce relativa al nome del database nella stringa di connessione nel *:::no-loc(appsettings.json):::* file.</span><span class="sxs-lookup"><span data-stu-id="2f627-536">In SSOX, click **(localdb)\MSSQLLocalDB > Databases** , and then click the entry for the database name that's in the connection string in the *:::no-loc(appsettings.json):::* file.</span></span>
+<span data-ttu-id="2f627-536">In SSOX fare clic su (local DB **) \MSSQLLocalDB > database** , quindi fare clic sulla voce relativa al nome del database nella stringa di connessione nel *appsettings.json* file.</span><span class="sxs-lookup"><span data-stu-id="2f627-536">In SSOX, click **(localdb)\MSSQLLocalDB > Databases** , and then click the entry for the database name that's in the connection string in the *appsettings.json* file.</span></span>
 
 <span data-ttu-id="2f627-537">Espandere il nodo **tabelle** per visualizzare le tabelle nel database.</span><span class="sxs-lookup"><span data-stu-id="2f627-537">Expand the **Tables** node to see the tables in the database.</span></span>
 

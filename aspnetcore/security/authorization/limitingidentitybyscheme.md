@@ -6,17 +6,17 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/08/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authorization/limitingidentitybyscheme
 ms.openlocfilehash: a5f2dff7b0e0d4f209ba445b2efb6fb261cbaab1
 ms.sourcegitcommit: fbd5427293d9ecccc388bd5fd305c2eb8ada7281
@@ -27,7 +27,7 @@ ms.locfileid: "94464016"
 ---
 # <a name="authorize-with-a-specific-scheme-in-aspnet-core"></a><span data-ttu-id="779e6-103">Autorizzare con uno schema specifico in ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="779e6-103">Authorize with a specific scheme in ASP.NET Core</span></span>
 
-<span data-ttu-id="779e6-104">In alcuni scenari, ad esempio le applicazioni a pagina singola (Spa), è comune usare più metodi di autenticazione.</span><span class="sxs-lookup"><span data-stu-id="779e6-104">In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods.</span></span> <span data-ttu-id="779e6-105">Ad esempio, l'app può usare l' :::no-loc(cookie)::: autenticazione basata su per accedere e l'autenticazione di connessione JWT per le richieste JavaScript.</span><span class="sxs-lookup"><span data-stu-id="779e6-105">For example, the app may use :::no-loc(cookie):::-based authentication to log in and JWT bearer authentication for JavaScript requests.</span></span> <span data-ttu-id="779e6-106">In alcuni casi, l'app può avere più istanze di un gestore di autenticazione.</span><span class="sxs-lookup"><span data-stu-id="779e6-106">In some cases, the app may have multiple instances of an authentication handler.</span></span> <span data-ttu-id="779e6-107">Ad esempio, due :::no-loc(cookie)::: gestori dove uno contiene un'identità di base e uno viene creato quando viene attivata un'autenticazione a più fattori (multi-factor authentication).</span><span class="sxs-lookup"><span data-stu-id="779e6-107">For example, two :::no-loc(cookie)::: handlers where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered.</span></span> <span data-ttu-id="779e6-108">L'autenticazione a più fattori può essere attivata perché l'utente ha richiesto un'operazione che richiede una maggiore sicurezza.</span><span class="sxs-lookup"><span data-stu-id="779e6-108">MFA may be triggered because the user requested an operation that requires extra security.</span></span> <span data-ttu-id="779e6-109">Per altre informazioni sull'applicazione dell'autenticazione a più fattori quando un utente richiede una risorsa che richiede l'autenticazione a più fattori, vedere la [sezione relativa alla protezione](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195)dei problemi di GitHub con l'autenticazione a</span><span class="sxs-lookup"><span data-stu-id="779e6-109">For more information on enforcing MFA when a user requests a resource that requires MFA, see the GitHub issue [Protect section with MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).</span></span>
+<span data-ttu-id="779e6-104">In alcuni scenari, ad esempio le applicazioni a pagina singola (Spa), è comune usare più metodi di autenticazione.</span><span class="sxs-lookup"><span data-stu-id="779e6-104">In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods.</span></span> <span data-ttu-id="779e6-105">Ad esempio, l'app può usare l' cookie autenticazione basata su per accedere e l'autenticazione di connessione JWT per le richieste JavaScript.</span><span class="sxs-lookup"><span data-stu-id="779e6-105">For example, the app may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests.</span></span> <span data-ttu-id="779e6-106">In alcuni casi, l'app può avere più istanze di un gestore di autenticazione.</span><span class="sxs-lookup"><span data-stu-id="779e6-106">In some cases, the app may have multiple instances of an authentication handler.</span></span> <span data-ttu-id="779e6-107">Ad esempio, due cookie gestori dove uno contiene un'identità di base e uno viene creato quando viene attivata un'autenticazione a più fattori (multi-factor authentication).</span><span class="sxs-lookup"><span data-stu-id="779e6-107">For example, two cookie handlers where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered.</span></span> <span data-ttu-id="779e6-108">L'autenticazione a più fattori può essere attivata perché l'utente ha richiesto un'operazione che richiede una maggiore sicurezza.</span><span class="sxs-lookup"><span data-stu-id="779e6-108">MFA may be triggered because the user requested an operation that requires extra security.</span></span> <span data-ttu-id="779e6-109">Per altre informazioni sull'applicazione dell'autenticazione a più fattori quando un utente richiede una risorsa che richiede l'autenticazione a più fattori, vedere la [sezione relativa alla protezione](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195)dei problemi di GitHub con l'autenticazione a</span><span class="sxs-lookup"><span data-stu-id="779e6-109">For more information on enforcing MFA when a user requests a resource that requires MFA, see the GitHub issue [Protect section with MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).</span></span>
 
 <span data-ttu-id="779e6-110">Uno schema di autenticazione viene denominato quando il servizio di autenticazione viene configurato durante l'autenticazione.</span><span class="sxs-lookup"><span data-stu-id="779e6-110">An authentication scheme is named when the authentication service is configured during authentication.</span></span> <span data-ttu-id="779e6-111">Esempio:</span><span class="sxs-lookup"><span data-stu-id="779e6-111">For example:</span></span>
 
@@ -37,7 +37,7 @@ public void ConfigureServices(IServiceCollection services)
     // Code omitted for brevity
 
     services.AddAuthentication()
-        .Add:::no-loc(Cookie):::(options => {
+        .AddCookie(options => {
             options.LoginPath = "/Account/Unauthorized/";
             options.AccessDeniedPath = "/Account/Forbidden/";
         })
@@ -47,7 +47,7 @@ public void ConfigureServices(IServiceCollection services)
         });
 ```
 
-<span data-ttu-id="779e6-112">Nel codice precedente sono stati aggiunti due gestori di autenticazione: uno per :::no-loc(cookie)::: s e uno per Bearer.</span><span class="sxs-lookup"><span data-stu-id="779e6-112">In the preceding code, two authentication handlers have been added: one for :::no-loc(cookie):::s and one for bearer.</span></span>
+<span data-ttu-id="779e6-112">Nel codice precedente sono stati aggiunti due gestori di autenticazione: uno per cookie s e uno per Bearer.</span><span class="sxs-lookup"><span data-stu-id="779e6-112">In the preceding code, two authentication handlers have been added: one for cookies and one for bearer.</span></span>
 
 >[!NOTE]
 ><span data-ttu-id="779e6-113">Se si specifica lo schema predefinito `HttpContext.User` , la proprietà viene impostata su tale identità.</span><span class="sxs-lookup"><span data-stu-id="779e6-113">Specifying the default scheme results in the `HttpContext.User` property being set to that identity.</span></span> <span data-ttu-id="779e6-114">Se questo comportamento non è necessario, disabilitarlo richiamando il formato senza parametri di `AddAuthentication` .</span><span class="sxs-lookup"><span data-stu-id="779e6-114">If that behavior isn't desired, disable it by invoking the parameterless form of `AddAuthentication`.</span></span>
@@ -60,14 +60,14 @@ public void ConfigureServices(IServiceCollection services)
 [Authorize(AuthenticationSchemes = AuthSchemes)]
 public class MixedController : Controller
     // Requires the following imports:
-    // using Microsoft.AspNetCore.Authentication.:::no-loc(Cookie):::s;
+    // using Microsoft.AspNetCore.Authentication.Cookies;
     // using Microsoft.AspNetCore.Authentication.JwtBearer;
     private const string AuthSchemes =
-        :::no-loc(Cookie):::AuthenticationDefaults.AuthenticationScheme + "," +
+        CookieAuthenticationDefaults.AuthenticationScheme + "," +
         JwtBearerDefaults.AuthenticationScheme;
 ```
 
-<span data-ttu-id="779e6-120">Nell'esempio precedente, entrambi i :::no-loc(cookie)::: gestori di porta e sono eseguiti e hanno la possibilità di creare e aggiungere un'identità per l'utente corrente.</span><span class="sxs-lookup"><span data-stu-id="779e6-120">In the preceding example, both the :::no-loc(cookie)::: and bearer handlers run and have a chance to create and append an identity for the current user.</span></span> <span data-ttu-id="779e6-121">Specificando solo un singolo schema, viene eseguito il gestore corrispondente.</span><span class="sxs-lookup"><span data-stu-id="779e6-121">By specifying a single scheme only, the corresponding handler runs.</span></span>
+<span data-ttu-id="779e6-120">Nell'esempio precedente, entrambi i cookie gestori di porta e sono eseguiti e hanno la possibilità di creare e aggiungere un'identità per l'utente corrente.</span><span class="sxs-lookup"><span data-stu-id="779e6-120">In the preceding example, both the cookie and bearer handlers run and have a chance to create and append an identity for the current user.</span></span> <span data-ttu-id="779e6-121">Specificando solo un singolo schema, viene eseguito il gestore corrispondente.</span><span class="sxs-lookup"><span data-stu-id="779e6-121">By specifying a single scheme only, the corresponding handler runs.</span></span>
 
 ```csharp
 [Authorize(AuthenticationSchemes = 
@@ -75,7 +75,7 @@ public class MixedController : Controller
 public class MixedController : Controller
 ```
 
-<span data-ttu-id="779e6-122">Nel codice precedente viene eseguito solo il gestore con lo schema "Bearer".</span><span class="sxs-lookup"><span data-stu-id="779e6-122">In the preceding code, only the handler with the "Bearer" scheme runs.</span></span> <span data-ttu-id="779e6-123">Qualsiasi :::no-loc(cookie)::: identità basata su viene ignorata.</span><span class="sxs-lookup"><span data-stu-id="779e6-123">Any :::no-loc(cookie):::-based identities are ignored.</span></span>
+<span data-ttu-id="779e6-122">Nel codice precedente viene eseguito solo il gestore con lo schema "Bearer".</span><span class="sxs-lookup"><span data-stu-id="779e6-122">In the preceding code, only the handler with the "Bearer" scheme runs.</span></span> <span data-ttu-id="779e6-123">Qualsiasi cookie identità basata su viene ignorata.</span><span class="sxs-lookup"><span data-stu-id="779e6-123">Any cookie-based identities are ignored.</span></span>
 
 ## <a name="selecting-the-scheme-with-policies"></a><span data-ttu-id="779e6-124">Selezione dello schema con i criteri</span><span class="sxs-lookup"><span data-stu-id="779e6-124">Selecting the scheme with policies</span></span>
 
