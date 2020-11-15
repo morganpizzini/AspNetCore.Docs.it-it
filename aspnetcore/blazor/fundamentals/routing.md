@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: 8f0aa80d092b6678131a2b7152f21ecb8e168257
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: 585b697aedf31bce2305df0ec5f84824c4019156
+ms.sourcegitcommit: e087b6a38e3d38625ebb567a973e75b4d79547b9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94430991"
+ms.lasthandoff: 11/15/2020
+ms.locfileid: "94637691"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>BlazorRouting ASP.NET Core
 
@@ -112,7 +112,31 @@ Usare il <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssembli
 
 ## <a name="route-parameters"></a>Parametri di route
 
-Il router usa parametri di route per popolare i parametri del componente corrispondenti con lo stesso nome (senza distinzione tra maiuscole e minuscole):
+Il router usa parametri di route per popolare i parametri del componente corrispondenti con lo stesso nome (senza distinzione tra maiuscole e minuscole).
+
+::: moniker range=">= aspnetcore-5.0"
+
+Sono supportati i parametri facoltativi. Nell'esempio seguente, il `text` parametro facoltativo assegna il valore del segmento di route alla proprietà del componente `Text` . Se il segmento non è presente, il valore di `Text` viene impostato su `fantastic` :
+
+```razor
+@page "/RouteParameter/{text?}"
+
+<h1>Blazor is @Text!</h1>
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Text = Text ?? "fantastic";
+    }
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 ```razor
 @page "/RouteParameter"
@@ -132,6 +156,8 @@ Il router usa parametri di route per popolare i parametri del componente corrisp
 ```
 
 I parametri facoltativi non sono supportati. `@page`Nell'esempio precedente vengono applicate due direttive. Il primo consente la navigazione al componente senza un parametro. La seconda `@page` direttiva accetta il `{text}` parametro Route e assegna il valore alla `Text` Proprietà.
+
+::: moniker-end
 
 ## <a name="route-constraints"></a>Vincoli di route
 

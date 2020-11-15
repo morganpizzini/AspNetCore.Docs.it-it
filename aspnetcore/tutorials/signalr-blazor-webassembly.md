@@ -1,5 +1,5 @@
 ---
-title: Usare ASP.NET Core SignalR con Blazor WebAssembly
+title: Usare ASP.NET Core SignalR con un'app ospitata Blazor WebAssembly
 author: guardrex
 description: Creare un'app di chat che usa ASP.NET Core SignalR con Blazor WebAssembly .
 monikerRange: '>= aspnetcore-3.1'
@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: afbfc44db8cb833df7a79061f9bd73052859fec2
-ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
+ms.openlocfilehash: 2975ee699a2535cdf63ef2f5af5790f178a09f93
+ms.sourcegitcommit: e087b6a38e3d38625ebb567a973e75b4d79547b9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94508175"
+ms.lasthandoff: 11/15/2020
+ms.locfileid: "94637730"
 ---
-# <a name="use-aspnet-core-no-locsignalr-with-no-locblazor-webassembly"></a>Usare ASP.NET Core SignalR con Blazor WebAssembly
+# <a name="use-aspnet-core-no-locsignalr-with-a-hosted-no-locblazor-webassembly-app"></a>Usare ASP.NET Core SignalR con un'app ospitata Blazor WebAssembly
 
 Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
