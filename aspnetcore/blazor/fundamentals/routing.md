@@ -1,5 +1,5 @@
 ---
-title: :::no-loc(Blazor):::Routing ASP.NET Core
+title: BlazorRouting ASP.NET Core
 author: guardrex
 description: Informazioni su come instradare le richieste nelle app e sul componente NavLink.
 monikerRange: '>= aspnetcore-3.1'
@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/02/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/fundamentals/routing
 ms.openlocfilehash: 585b697aedf31bce2305df0ec5f84824c4019156
 ms.sourcegitcommit: e087b6a38e3d38625ebb567a973e75b4d79547b9
@@ -26,21 +26,21 @@ ms.contentlocale: it-IT
 ms.lasthandoff: 11/15/2020
 ms.locfileid: "94637691"
 ---
-# <a name="aspnet-core-no-locblazor-routing"></a><span data-ttu-id="4f8bd-103">:::no-loc(Blazor):::Routing ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="4f8bd-103">ASP.NET Core :::no-loc(Blazor)::: routing</span></span>
+# <a name="aspnet-core-no-locblazor-routing"></a><span data-ttu-id="4f8bd-103">BlazorRouting ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="4f8bd-103">ASP.NET Core Blazor routing</span></span>
 
 <span data-ttu-id="4f8bd-104">Di [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="4f8bd-104">By [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="4f8bd-105">Informazioni su come instradare le richieste e su come usare il <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componente per creare collegamenti di navigazione nelle :::no-loc(Blazor)::: app.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-105">Learn how to route requests and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links in :::no-loc(Blazor)::: apps.</span></span>
+<span data-ttu-id="4f8bd-105">Informazioni su come instradare le richieste e su come usare il <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componente per creare collegamenti di navigazione nelle Blazor app.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-105">Learn how to route requests and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links in Blazor apps.</span></span>
 
 ## <a name="aspnet-core-endpoint-routing-integration"></a><span data-ttu-id="4f8bd-106">Integrazione di routing endpoint ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="4f8bd-106">ASP.NET Core endpoint routing integration</span></span>
 
-<span data-ttu-id="4f8bd-107">:::no-loc(Blazor Server)::: è integrato in [ASP.net core routing dell'endpoint](xref:fundamentals/routing).</span><span class="sxs-lookup"><span data-stu-id="4f8bd-107">:::no-loc(Blazor Server)::: is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing).</span></span> <span data-ttu-id="4f8bd-108">Un'app ASP.NET Core è configurata in modo da accettare le connessioni in ingresso per i componenti interattivi con <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.Map:::no-loc(Blazor):::Hub%2A> in `Startup.Configure` :</span><span class="sxs-lookup"><span data-stu-id="4f8bd-108">An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.Map:::no-loc(Blazor):::Hub%2A> in `Startup.Configure`:</span></span>
+<span data-ttu-id="4f8bd-107">Blazor Server è integrato in [ASP.net core routing dell'endpoint](xref:fundamentals/routing).</span><span class="sxs-lookup"><span data-stu-id="4f8bd-107">Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing).</span></span> <span data-ttu-id="4f8bd-108">Un'app ASP.NET Core è configurata in modo da accettare le connessioni in ingresso per i componenti interattivi con <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Startup.Configure` :</span><span class="sxs-lookup"><span data-stu-id="4f8bd-108">An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Startup.Configure`:</span></span>
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-<span data-ttu-id="4f8bd-109">La configurazione più tipica consiste nel routing di tutte le richieste a una :::no-loc(Razor)::: pagina, che funge da host per la parte lato server dell' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-109">The most typical configuration is to route all requests to a :::no-loc(Razor)::: page, which acts as the host for the server-side part of the :::no-loc(Blazor Server)::: app.</span></span> <span data-ttu-id="4f8bd-110">Per convenzione, la pagina *host* è in genere denominata `_Host.cshtml` .</span><span class="sxs-lookup"><span data-stu-id="4f8bd-110">By convention, the *host* page is usually named `_Host.cshtml`.</span></span> <span data-ttu-id="4f8bd-111">La route specificata nel file host viene chiamata route di *fallback* perché funziona con una priorità bassa nella corrispondenza della route.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-111">The route specified in the host file is called a *fallback route* because it operates with a low priority in route matching.</span></span> <span data-ttu-id="4f8bd-112">La route di fallback viene considerata quando altre route non corrispondono.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-112">The fallback route is considered when other routes don't match.</span></span> <span data-ttu-id="4f8bd-113">Ciò consente all'app di usare altri controller e pagine senza interferire con l' :::no-loc(Blazor Server)::: app.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-113">This allows the app to use others controllers and pages without interfering with the :::no-loc(Blazor Server)::: app.</span></span>
+<span data-ttu-id="4f8bd-109">La configurazione più tipica consiste nel routing di tutte le richieste a una Razor pagina, che funge da host per la parte lato server dell' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-109">The most typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app.</span></span> <span data-ttu-id="4f8bd-110">Per convenzione, la pagina *host* è in genere denominata `_Host.cshtml` .</span><span class="sxs-lookup"><span data-stu-id="4f8bd-110">By convention, the *host* page is usually named `_Host.cshtml`.</span></span> <span data-ttu-id="4f8bd-111">La route specificata nel file host viene chiamata route di *fallback* perché funziona con una priorità bassa nella corrispondenza della route.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-111">The route specified in the host file is called a *fallback route* because it operates with a low priority in route matching.</span></span> <span data-ttu-id="4f8bd-112">La route di fallback viene considerata quando altre route non corrispondono.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-112">The fallback route is considered when other routes don't match.</span></span> <span data-ttu-id="4f8bd-113">Ciò consente all'app di usare altri controller e pagine senza interferire con l' Blazor Server app.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-113">This allows the app to use others controllers and pages without interfering with the Blazor Server app.</span></span>
 
-<span data-ttu-id="4f8bd-114">Per informazioni sulla configurazione <xref:Microsoft.AspNetCore.Builder.:::no-loc(Razor):::PagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> di per l'hosting di server URL non radice, vedere <xref:blazor/host-and-deploy/index#app-base-path> .</span><span class="sxs-lookup"><span data-stu-id="4f8bd-114">For information on configuring <xref:Microsoft.AspNetCore.Builder.:::no-loc(Razor):::PagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for non-root URL server hosting, see <xref:blazor/host-and-deploy/index#app-base-path>.</span></span>
+<span data-ttu-id="4f8bd-114">Per informazioni sulla configurazione <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> di per l'hosting di server URL non radice, vedere <xref:blazor/host-and-deploy/index#app-base-path> .</span><span class="sxs-lookup"><span data-stu-id="4f8bd-114">For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for non-root URL server hosting, see <xref:blazor/host-and-deploy/index#app-base-path>.</span></span>
 
 ## <a name="route-templates"></a><span data-ttu-id="4f8bd-115">Modelli di route</span><span class="sxs-lookup"><span data-stu-id="4f8bd-115">Route templates</span></span>
 
@@ -64,19 +64,19 @@ ms.locfileid: "94637691"
 * <span data-ttu-id="4f8bd-120">Riceve <xref:Microsoft.AspNetCore.Components.RouteData> da <xref:Microsoft.AspNetCore.Components.Routing.Router> insieme a tutti i parametri desiderati.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-120">Receives the <xref:Microsoft.AspNetCore.Components.RouteData> from the <xref:Microsoft.AspNetCore.Components.Routing.Router> along with any desired parameters.</span></span>
 * <span data-ttu-id="4f8bd-121">Esegue il rendering del componente specificato con il layout (o un layout predefinito facoltativo) utilizzando i parametri specificati.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-121">Renders the specified component with its layout (or an optional default layout) using the specified parameters.</span></span>
 
-<span data-ttu-id="4f8bd-122">Facoltativamente, è possibile specificare un <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parametro con una classe layout da utilizzare per i componenti che non specificano un layout.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-122">You can optionally specify a <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parameter with a layout class to use for components that don't specify a layout.</span></span> <span data-ttu-id="4f8bd-123">I :::no-loc(Blazor)::: modelli predefiniti specificano il `MainLayout` componente.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-123">The default :::no-loc(Blazor)::: templates specify the `MainLayout` component.</span></span> <span data-ttu-id="4f8bd-124">`MainLayout.razor` si trova nella cartella del progetto del modello `Shared` .</span><span class="sxs-lookup"><span data-stu-id="4f8bd-124">`MainLayout.razor` is in the template project's `Shared` folder.</span></span> <span data-ttu-id="4f8bd-125">Per ulteriori informazioni sui layout, vedere <xref:blazor/layouts> .</span><span class="sxs-lookup"><span data-stu-id="4f8bd-125">For more information on layouts, see <xref:blazor/layouts>.</span></span>
+<span data-ttu-id="4f8bd-122">Facoltativamente, è possibile specificare un <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parametro con una classe layout da utilizzare per i componenti che non specificano un layout.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-122">You can optionally specify a <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parameter with a layout class to use for components that don't specify a layout.</span></span> <span data-ttu-id="4f8bd-123">I Blazor modelli predefiniti specificano il `MainLayout` componente.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-123">The default Blazor templates specify the `MainLayout` component.</span></span> <span data-ttu-id="4f8bd-124">`MainLayout.razor` si trova nella cartella del progetto del modello `Shared` .</span><span class="sxs-lookup"><span data-stu-id="4f8bd-124">`MainLayout.razor` is in the template project's `Shared` folder.</span></span> <span data-ttu-id="4f8bd-125">Per ulteriori informazioni sui layout, vedere <xref:blazor/layouts> .</span><span class="sxs-lookup"><span data-stu-id="4f8bd-125">For more information on layouts, see <xref:blazor/layouts>.</span></span>
 
-<span data-ttu-id="4f8bd-126">È possibile applicare più modelli di route a un componente.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-126">Multiple route templates can be applied to a component.</span></span> <span data-ttu-id="4f8bd-127">Il componente seguente risponde alle richieste per `/:::no-loc(Blazor):::Route` e `/Different:::no-loc(Blazor):::Route` :</span><span class="sxs-lookup"><span data-stu-id="4f8bd-127">The following component responds to requests for `/:::no-loc(Blazor):::Route` and `/Different:::no-loc(Blazor):::Route`:</span></span>
+<span data-ttu-id="4f8bd-126">È possibile applicare più modelli di route a un componente.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-126">Multiple route templates can be applied to a component.</span></span> <span data-ttu-id="4f8bd-127">Il componente seguente risponde alle richieste per `/BlazorRoute` e `/DifferentBlazorRoute` :</span><span class="sxs-lookup"><span data-stu-id="4f8bd-127">The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:</span></span>
 
 ```razor
-@page "/:::no-loc(Blazor):::Route"
-@page "/Different:::no-loc(Blazor):::Route"
+@page "/BlazorRoute"
+@page "/DifferentBlazorRoute"
 
-<h1>:::no-loc(Blazor)::: routing</h1>
+<h1>Blazor routing</h1>
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="4f8bd-128">Per la corretta risoluzione degli URL, l'app deve includere un `<base>` tag nel `wwwroot/index.html` file ( :::no-loc(Blazor WebAssembly)::: ) o nel `Pages/_Host.cshtml` file ( :::no-loc(Blazor Server)::: ) con il percorso di base dell'applicazione specificato nell' `href` attributo ( `<base href="/">` ).</span><span class="sxs-lookup"><span data-stu-id="4f8bd-128">For URLs to resolve correctly, the app must include a `<base>` tag in its `wwwroot/index.html` file (:::no-loc(Blazor WebAssembly):::) or `Pages/_Host.cshtml` file (:::no-loc(Blazor Server):::) with the app base path specified in the `href` attribute (`<base href="/">`).</span></span> <span data-ttu-id="4f8bd-129">Per altre informazioni, vedere <xref:blazor/host-and-deploy/index#app-base-path>.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-129">For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.</span></span>
+> <span data-ttu-id="4f8bd-128">Per la corretta risoluzione degli URL, l'app deve includere un `<base>` tag nel `wwwroot/index.html` file ( Blazor WebAssembly ) o nel `Pages/_Host.cshtml` file ( Blazor Server ) con il percorso di base dell'applicazione specificato nell' `href` attributo ( `<base href="/">` ).</span><span class="sxs-lookup"><span data-stu-id="4f8bd-128">For URLs to resolve correctly, the app must include a `<base>` tag in its `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server) with the app base path specified in the `href` attribute (`<base href="/">`).</span></span> <span data-ttu-id="4f8bd-129">Per altre informazioni, vedere <xref:blazor/host-and-deploy/index#app-base-path>.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-129">For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.</span></span>
 
 ## <a name="provide-custom-content-when-content-isnt-found"></a><span data-ttu-id="4f8bd-130">Fornire contenuto personalizzato quando il contenuto non è stato trovato</span><span class="sxs-lookup"><span data-stu-id="4f8bd-130">Provide custom content when content isn't found</span></span>
 
@@ -121,7 +121,7 @@ ms.locfileid: "94637691"
 ```razor
 @page "/RouteParameter/{text?}"
 
-<h1>:::no-loc(Blazor)::: is @Text!</h1>
+<h1>Blazor is @Text!</h1>
 
 @code {
     [Parameter]
@@ -142,7 +142,7 @@ ms.locfileid: "94637691"
 @page "/RouteParameter"
 @page "/RouteParameter/{text}"
 
-<h1>:::no-loc(Blazor)::: is @Text!</h1>
+<h1>Blazor is @Text!</h1>
 
 @code {
     [Parameter]
@@ -188,7 +188,7 @@ ms.locfileid: "94637691"
 
 ### <a name="routing-with-urls-that-contain-dots"></a><span data-ttu-id="4f8bd-180">Routing con URL contenenti punti</span><span class="sxs-lookup"><span data-stu-id="4f8bd-180">Routing with URLs that contain dots</span></span>
 
-<span data-ttu-id="4f8bd-181">Per :::no-loc(Blazor WebAssembly)::: le app e ospitate :::no-loc(Blazor Server)::: , il modello di route predefinito sul lato server presuppone che se l'ultimo segmento di un URL della richiesta contiene un punto ( `.` ) richiesto da un file, ad esempio `https://localhost.com:5001/example/some.thing` .</span><span class="sxs-lookup"><span data-stu-id="4f8bd-181">For hosted :::no-loc(Blazor WebAssembly)::: and :::no-loc(Blazor Server)::: apps, the server-side default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested (for example, `https://localhost.com:5001/example/some.thing`).</span></span> <span data-ttu-id="4f8bd-182">Senza alcuna configurazione aggiuntiva, un'app restituisce una risposta *404 non trovata* se questa era destinata al routing a un componente.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-182">Without additional configuration, an app returns a *404 - Not Found* response if this was meant to route to a component.</span></span> <span data-ttu-id="4f8bd-183">Per usare una route con uno o più parametri che contengono un punto, l'app deve configurare la route con un modello personalizzato.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-183">To use a route with one or more parameters that contains a dot, the app must configure the route with a custom template.</span></span>
+<span data-ttu-id="4f8bd-181">Per Blazor WebAssembly le app e ospitate Blazor Server , il modello di route predefinito sul lato server presuppone che se l'ultimo segmento di un URL della richiesta contiene un punto ( `.` ) richiesto da un file, ad esempio `https://localhost.com:5001/example/some.thing` .</span><span class="sxs-lookup"><span data-stu-id="4f8bd-181">For hosted Blazor WebAssembly and Blazor Server apps, the server-side default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested (for example, `https://localhost.com:5001/example/some.thing`).</span></span> <span data-ttu-id="4f8bd-182">Senza alcuna configurazione aggiuntiva, un'app restituisce una risposta *404 non trovata* se questa era destinata al routing a un componente.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-182">Without additional configuration, an app returns a *404 - Not Found* response if this was meant to route to a component.</span></span> <span data-ttu-id="4f8bd-183">Per usare una route con uno o più parametri che contengono un punto, l'app deve configurare la route con un modello personalizzato.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-183">To use a route with one or more parameters that contains a dot, the app must configure the route with a custom template.</span></span>
 
 <span data-ttu-id="4f8bd-184">Si consideri il `Example` componente seguente che può ricevere un parametro di route dall'ultimo segmento dell'URL:</span><span class="sxs-lookup"><span data-stu-id="4f8bd-184">Consider the following `Example` component that can receive a route parameter from the last segment of the URL:</span></span>
 
@@ -206,13 +206,13 @@ ms.locfileid: "94637691"
 }
 ```
 
-<span data-ttu-id="4f8bd-185">Per consentire all'app *Server* di una soluzione ospitata :::no-loc(Blazor WebAssembly)::: di instradare la richiesta con un punto nel `param` parametro, aggiungere un modello di route per il file di fallback con il parametro facoltativo in `Startup.Configure` ( `Startup.cs` ):</span><span class="sxs-lookup"><span data-stu-id="4f8bd-185">To permit the *Server* app of a hosted :::no-loc(Blazor WebAssembly)::: solution to route the request with a dot in the `param` parameter, add a fallback file route template with the optional parameter in `Startup.Configure` (`Startup.cs`):</span></span>
+<span data-ttu-id="4f8bd-185">Per consentire all'app *Server* di una soluzione ospitata Blazor WebAssembly di instradare la richiesta con un punto nel `param` parametro, aggiungere un modello di route per il file di fallback con il parametro facoltativo in `Startup.Configure` ( `Startup.cs` ):</span><span class="sxs-lookup"><span data-stu-id="4f8bd-185">To permit the *Server* app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` parameter, add a fallback file route template with the optional parameter in `Startup.Configure` (`Startup.cs`):</span></span>
 
 ```csharp
 endpoints.MapFallbackToFile("/example/{param?}", "index.html");
 ```
 
-<span data-ttu-id="4f8bd-186">Per configurare un' :::no-loc(Blazor Server)::: app per instradare la richiesta con un punto nel `param` parametro, aggiungere un modello di route della pagina di fallback con il parametro facoltativo in `Startup.Configure` ( `Startup.cs` ):</span><span class="sxs-lookup"><span data-stu-id="4f8bd-186">To configure a :::no-loc(Blazor Server)::: app to route the request with a dot in the `param` parameter, add a fallback page route template with the optional parameter in `Startup.Configure` (`Startup.cs`):</span></span>
+<span data-ttu-id="4f8bd-186">Per configurare un' Blazor Server app per instradare la richiesta con un punto nel `param` parametro, aggiungere un modello di route della pagina di fallback con il parametro facoltativo in `Startup.Configure` ( `Startup.cs` ):</span><span class="sxs-lookup"><span data-stu-id="4f8bd-186">To configure a Blazor Server app to route the request with a dot in the `param` parameter, add a fallback page route template with the optional parameter in `Startup.Configure` (`Startup.cs`):</span></span>
 
 ```csharp
 endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
@@ -281,7 +281,7 @@ endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
 ```
 
 > [!WARNING]
-> <span data-ttu-id="4f8bd-215">A causa del modo in cui :::no-loc(Blazor)::: viene eseguito il rendering del contenuto figlio, `NavLink` i componenti di rendering all'interno di un `for` ciclo richiedono una variabile di indice locale se la variabile del ciclo di incremento viene utilizzata nel `NavLink` contenuto del componente (figlio):</span><span class="sxs-lookup"><span data-stu-id="4f8bd-215">Due to the way that :::no-loc(Blazor)::: renders child content, rendering `NavLink` components inside a `for` loop requires a local index variable if the incrementing loop variable is used in the `NavLink` (child) component's content:</span></span>
+> <span data-ttu-id="4f8bd-215">A causa del modo in cui Blazor viene eseguito il rendering del contenuto figlio, `NavLink` i componenti di rendering all'interno di un `for` ciclo richiedono una variabile di indice locale se la variabile del ciclo di incremento viene utilizzata nel `NavLink` contenuto del componente (figlio):</span><span class="sxs-lookup"><span data-stu-id="4f8bd-215">Due to the way that Blazor renders child content, rendering `NavLink` components inside a `for` loop requires a local index variable if the incrementing loop variable is used in the `NavLink` (child) component's content:</span></span>
 >
 > ```razor
 > @for (int c = 0; c < 10; c++)
@@ -317,7 +317,7 @@ endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
 | <span data-ttu-id="4f8bd-221">Membro</span><span class="sxs-lookup"><span data-stu-id="4f8bd-221">Member</span></span> | <span data-ttu-id="4f8bd-222">Descrizione</span><span class="sxs-lookup"><span data-stu-id="4f8bd-222">Description</span></span> |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | <span data-ttu-id="4f8bd-223">Ottiene l'URI assoluto corrente.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-223">Gets the current absolute URI.</span></span> |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | <span data-ttu-id="4f8bd-224">Ottiene l'URI di base (con una barra finale) che può essere anteposto ai percorsi URI relativi per produrre un URI assoluto.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-224">Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI.</span></span> <span data-ttu-id="4f8bd-225">In genere, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corrisponde all' `href` attributo sull'elemento del documento `<base>` in `wwwroot/index.html` ( :::no-loc(Blazor WebAssembly)::: ) o `Pages/_Host.cshtml` ( :::no-loc(Blazor Server)::: ).</span><span class="sxs-lookup"><span data-stu-id="4f8bd-225">Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element in `wwwroot/index.html` (:::no-loc(Blazor WebAssembly):::) or `Pages/_Host.cshtml` (:::no-loc(Blazor Server):::).</span></span> |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | <span data-ttu-id="4f8bd-224">Ottiene l'URI di base (con una barra finale) che può essere anteposto ai percorsi URI relativi per produrre un URI assoluto.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-224">Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI.</span></span> <span data-ttu-id="4f8bd-225">In genere, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corrisponde all' `href` attributo sull'elemento del documento `<base>` in `wwwroot/index.html` ( Blazor WebAssembly ) o `Pages/_Host.cshtml` ( Blazor Server ).</span><span class="sxs-lookup"><span data-stu-id="4f8bd-225">Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server).</span></span> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | <span data-ttu-id="4f8bd-226">Passa all'URI specificato.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-226">Navigates to the specified URI.</span></span> <span data-ttu-id="4f8bd-227">Se `forceLoad` è `true` :</span><span class="sxs-lookup"><span data-stu-id="4f8bd-227">If `forceLoad` is `true`:</span></span><ul><li><span data-ttu-id="4f8bd-228">Il routing lato client viene ignorato.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-228">Client-side routing is bypassed.</span></span></li><li><span data-ttu-id="4f8bd-229">Il browser è forzato a caricare la nuova pagina dal server, indipendentemente dal fatto che l'URI venga normalmente gestito dal router lato client.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-229">The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</span></span></li></ul> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | <span data-ttu-id="4f8bd-230">Un evento che viene attivato quando il percorso di navigazione viene modificato.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-230">An event that fires when the navigation location has changed.</span></span> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | <span data-ttu-id="4f8bd-231">Converte un URI relativo in un URI assoluto.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-231">Converts a relative URI into an absolute URI.</span></span> |
@@ -370,7 +370,7 @@ public void Dispose()
 <span data-ttu-id="4f8bd-237"><xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs> fornisce le informazioni seguenti sull'evento:</span><span class="sxs-lookup"><span data-stu-id="4f8bd-237"><xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs> provides the following information about the event:</span></span>
 
 * <span data-ttu-id="4f8bd-238"><xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.Location>: URL della nuova posizione.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-238"><xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.Location>: The URL of the new location.</span></span>
-* <span data-ttu-id="4f8bd-239"><xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted>: Se `true` , :::no-loc(Blazor)::: intercetta la navigazione dal browser.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-239"><xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted>: If `true`, :::no-loc(Blazor)::: intercepted the navigation from the browser.</span></span> <span data-ttu-id="4f8bd-240">Se `false` , <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> ha causato la navigazione.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-240">If `false`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> caused the navigation to occur.</span></span>
+* <span data-ttu-id="4f8bd-239"><xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted>: Se `true` , Blazor intercetta la navigazione dal browser.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-239"><xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted>: If `true`, Blazor intercepted the navigation from the browser.</span></span> <span data-ttu-id="4f8bd-240">Se `false` , <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> ha causato la navigazione.</span><span class="sxs-lookup"><span data-stu-id="4f8bd-240">If `false`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> caused the navigation to occur.</span></span>
 
 <span data-ttu-id="4f8bd-241">Per ulteriori informazioni sull'eliminazione dei componenti, vedere <xref:blazor/components/lifecycle#component-disposal-with-idisposable> .</span><span class="sxs-lookup"><span data-stu-id="4f8bd-241">For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.</span></span>
 
