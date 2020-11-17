@@ -3,7 +3,7 @@ title: "Parte 4: aggiungere un modello a un'app MVC ASP.NET Core"
 author: rick-anderson
 description: Parte 4 della serie di esercitazioni su ASP.NET Core MVC.
 ms.author: riande
-ms.date: 01/13/2020
+ms.date: 11/16/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: fa1d79bed56f17afe69697a7e24ec200e6a0ab22
-ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
+ms.openlocfilehash: 16cef6cc9e772f494515942072c2aaf58913ce91
+ms.sourcegitcommit: fb208f907249cc7aab029afff941a0266c187050
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94422749"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94688449"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Parte 4: aggiungere un modello a un'app MVC ASP.NET Core
 
 Di [Rick Anderson](https://twitter.com/RickAndMSFT) e [Tom Dykstra](https://github.com/tdykstra)
 
-In questa sezione si aggiungono alcune classi per la gestione di filmati in un database. Queste classi saranno la parte " **M** odel" dell'app **M** VC.
+In questa sezione si aggiungono alcune classi per la gestione di filmati in un database. Queste classi saranno la parte "**M** odel" dell'app **M** VC.
 
 Si usano queste classi con [Entity Framework Core](/ef/core) (EF Core) per usare un database. EF Core è un framework object-relational mapping (ORM) che semplifica il codice di accesso ai dati che è necessario scrivere.
 
@@ -105,6 +105,14 @@ Ripetere i passaggi precedenti per installare i pacchetti NuGet seguenti:
 * `Microsoft.EntityFrameworkCore.SqlServer`
 * `Microsoft.EntityFrameworkCore.Design`
 
+Eseguire il comando dell'interfaccia della riga di comando .NET seguente:
+
+```dotnetcli
+dotnet tool install --global dotnet-aspnet-codegenerator
+```
+
+Il comando precedente aggiunge lo [strumento di impalcatura ASPNET-CodeGenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+
 ---
 
 <a name="dc"></a>
@@ -127,7 +135,7 @@ Il codice precedente crea una [proprietà \<Movie> DbSet](/dotnet/api/microsoft.
 
 ASP.NET Core viene compilato con l'[inserimento di dipendenze](xref:fundamentals/dependency-injection). I servizi, ad esempio il contesto di database di EF Core, devono essere registrati per l'inserimento delle dipendenze durante l'avvio dell'applicazione. I componenti che richiedono questi servizi, ad esempio Razor le pagine, vengono forniti tramite i parametri del costruttore. Più avanti nell'esercitazione viene illustrato il codice del costruttore che ottiene un'istanza del contesto di database. In questa sezione viene registrato il contesto di database per il contenitore di inserimento delle dipendenze.
 
-Aggiungere le istruzioni `using` seguenti all'inizio di *Startup.cs* :
+Aggiungere le istruzioni `using` seguenti all'inizio di *Startup.cs*:
 
 ```csharp
 using MvcMovie.Data;
@@ -138,11 +146,11 @@ Aggiungere il codice evidenziato seguente in `Startup.ConfigureServices`:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=6-7)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
 ---
 
@@ -156,11 +164,11 @@ Aggiungere una stringa di connessione al *appsettings.json* file:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings.json?highlight=10-12)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings.json?highlight=10-11)]
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-11)]
 
 ---
 
@@ -180,7 +188,7 @@ Nella finestra di dialogo **Aggiungi scaffolding** selezionare **Controller MVC 
 
 ![Finestra di dialogo Aggiungi scaffolding](adding-model/_static/add_scaffold21.png)
 
-Completare la finestra di dialogo **Aggiungi controller** :
+Completare la finestra di dialogo **Aggiungi controller**:
 
 * **Classe di modello:** *Movie (MvcMovie.Models)*
 * **Classe del contesto dati:** *MvcMovieContext (MvcMovie. Data)*
@@ -193,14 +201,14 @@ Completare la finestra di dialogo **Aggiungi controller** :
 
 Visual Studio crea:
 
-* Un controller di film ( *Controllers/MoviesController.cs* )
-* Razor Visualizza file per le pagine create, DELETE, Details, Edit e index ( *views/Movies/ \* . cshtml* )
+* Un controller di film (*Controllers/MoviesController.cs*)
+* Razor Visualizza file per le pagine create, DELETE, Details, Edit e index (*views/Movies/ \* . cshtml*)
 
 La creazione automatica di questi file è nota come *scaffolding*.
 
 ### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code) 
 
-* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs* , *Startup.cs* e *csproj* ).
+* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs*, *Startup.cs* e *csproj*).
 
 * In Linux esportare il percorso dello strumento di scaffolding:
 
@@ -218,7 +226,7 @@ La creazione automatica di questi file è nota come *scaffolding*.
 
 ### <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs* , *Startup.cs* e *csproj* ).
+* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs*, *Startup.cs* e *csproj*).
 
 * Eseguire il comando seguente:
 
@@ -253,7 +261,7 @@ Update-Database
 
 * `Add-Migration InitialCreate`: Genera un file di migrazione *Migrations/{timestamp} _InitialCreate. cs* . L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database si basa sul modello specificato nella classe `MvcMovieContext`.
 
-* `Update-Database`: Aggiorna il database alla migrazione più recente, che ha creato il comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs* , che crea il database.
+* `Update-Database`: Aggiorna il database alla migrazione più recente, che ha creato il comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs*, che crea il database.
 
   Il comando database update genera l'avviso seguente: 
 
@@ -274,15 +282,15 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-* `ef migrations add InitialCreate`: Genera un file di migrazione *Migrations/{timestamp} _InitialCreate. cs* . L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database è basato sul modello specificato nella classe `MvcMovieContext` (nel file *Data/MvcMovieContext.cs* ).
+* `ef migrations add InitialCreate`: Genera un file di migrazione *Migrations/{timestamp} _InitialCreate. cs* . L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database è basato sul modello specificato nella classe `MvcMovieContext` (nel file *Data/MvcMovieContext.cs*).
 
-* `ef database update`: Aggiorna il database alla migrazione più recente, che ha creato il comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs* , che crea il database.
+* `ef database update`: Aggiorna il database alla migrazione più recente, che ha creato il comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs*, che crea il database.
 
 ---
 
 ### <a name="the-initialcreate-class"></a>Classe InitialCreate
 
-Esaminare il file di migrazione *Migrations/{timestamp}_InitialCreate.cs* :
+Esaminare il file di migrazione *Migrations/{timestamp}_InitialCreate.cs*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
 
@@ -316,7 +324,7 @@ Il metodo `Up` crea la tabella Movie e configura `Id` come chiave primaria. Il m
   > [!NOTE]
   > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per impostazioni locali diverse dall'inglese che usano la virgola (",") come separatore decimale e per formati di data diversi da quello dell'inglese (Stati Uniti), è necessario localizzare l'app. Per istruzioni sulla globalizzazione, vedere [questo problema su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
-* Testare le pagine **Edit** , **Details** e **Delete**.
+* Testare le pagine **Edit**, **Details** e **Delete**.
 
 ## <a name="dependency-injection-in-the-controller"></a>Inserimento delle dipendenze nel controller
 
@@ -354,7 +362,7 @@ In un passaggio precedente di questa esercitazione è stato esaminato come un co
 
 MVC consente anche di passare oggetti modello fortemente tipizzati a una vista. Questo approccio fortemente tipizzato consente il controllo del codice in fase di compilazione. Con il meccanismo di scaffolding è stato usato questo approccio, ovvero il passaggio di un modello fortemente tipizzato, con le viste e la classe `MoviesController`.
 
-Aprire il metodo `Details` nel file *Controllers/MoviesController.cs* :
+Aprire il metodo `Details` nel file *Controllers/MoviesController.cs*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
@@ -383,7 +391,7 @@ Se viene trovato un film, viene passata un'istanza del modello `Movie` alla vist
 return View(movie);
 ```
 
-Esaminare il contenuto del file *Views/Movies/Details.cshtml* :
+Esaminare il contenuto del file *Views/Movies/Details.cshtml*:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
@@ -399,7 +407,7 @@ Esaminare la vista *Index.cshtml* e il metodo `Index` nel controller Movies. Si 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_index)]
 
-Al momento della creazione del controller di film, lo scaffolding ha incluso l'istruzione `@model` all'inizio del file *Index.cshtml* :
+Al momento della creazione del controller di film, lo scaffolding ha incluso l'istruzione `@model` all'inizio del file *Index.cshtml*:
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
@@ -513,7 +521,7 @@ Il codice precedente crea una [proprietà \<Movie> DbSet](/dotnet/api/microsoft.
 
 ASP.NET Core viene compilato con l'[inserimento di dipendenze](xref:fundamentals/dependency-injection). I servizi, ad esempio il contesto di database di EF Core, devono essere registrati per l'inserimento delle dipendenze durante l'avvio dell'applicazione. I componenti che richiedono questi servizi, ad esempio Razor le pagine, vengono forniti tramite i parametri del costruttore. Più avanti nell'esercitazione viene illustrato il codice del costruttore che ottiene un'istanza del contesto di database. In questa sezione viene registrato il contesto di database per il contenitore di inserimento delle dipendenze.
 
-Aggiungere le istruzioni `using` seguenti all'inizio di *Startup.cs* :
+Aggiungere le istruzioni `using` seguenti all'inizio di *Startup.cs*:
 
 ```csharp
 using MvcMovie.Data;
@@ -566,7 +574,7 @@ Nella finestra di dialogo **Aggiungi scaffolding** selezionare **Controller MVC 
 
 ![Finestra di dialogo Aggiungi scaffolding](adding-model/_static/add_scaffold21.png)
 
-Completare la finestra di dialogo **Aggiungi controller** :
+Completare la finestra di dialogo **Aggiungi controller**:
 
 * **Classe di modello:** *Movie (MvcMovie.Models)*
 * **Classe del contesto dati:** *MvcMovieContext (MvcMovie. Data)*
@@ -579,14 +587,14 @@ Completare la finestra di dialogo **Aggiungi controller** :
 
 Visual Studio crea:
 
-* Un controller di film ( *Controllers/MoviesController.cs* )
-* Razor Visualizza file per le pagine create, DELETE, Details, Edit e index ( *views/Movies/ \* . cshtml* )
+* Un controller di film (*Controllers/MoviesController.cs*)
+* Razor Visualizza file per le pagine create, DELETE, Details, Edit e index (*views/Movies/ \* . cshtml*)
 
 La creazione automatica di questi file è nota come *scaffolding*.
 
 ### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code) 
 
-* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs* , *Startup.cs* e *csproj* ).
+* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs*, *Startup.cs* e *csproj*).
 
 * In Linux esportare il percorso dello strumento di scaffolding:
 
@@ -604,7 +612,7 @@ La creazione automatica di questi file è nota come *scaffolding*.
 
 ### <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs* , *Startup.cs* e *csproj* ).
+* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs*, *Startup.cs* e *csproj*).
 
 * Eseguire il comando seguente:
 
@@ -639,7 +647,7 @@ Update-Database
 
 * `Add-Migration InitialCreate`: Genera un file di migrazione *Migrations/{timestamp} _InitialCreate. cs* . L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database si basa sul modello specificato nella classe `MvcMovieContext`.
 
-* `Update-Database`: Aggiorna il database alla migrazione più recente, che ha creato il comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs* , che crea il database.
+* `Update-Database`: Aggiorna il database alla migrazione più recente, che ha creato il comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs*, che crea il database.
 
   Il comando database update genera l'avviso seguente: 
 
@@ -660,15 +668,15 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-* `ef migrations add InitialCreate`: Genera un file di migrazione *Migrations/{timestamp} _InitialCreate. cs* . L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database è basato sul modello specificato nella classe `MvcMovieContext` (nel file *Data/MvcMovieContext.cs* ).
+* `ef migrations add InitialCreate`: Genera un file di migrazione *Migrations/{timestamp} _InitialCreate. cs* . L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione. Trattandosi della prima migrazione, la classe generata contiene il codice per creare lo schema del database. Lo schema del database è basato sul modello specificato nella classe `MvcMovieContext` (nel file *Data/MvcMovieContext.cs*).
 
-* `ef database update`: Aggiorna il database alla migrazione più recente, che ha creato il comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs* , che crea il database.
+* `ef database update`: Aggiorna il database alla migrazione più recente, che ha creato il comando precedente. Il comando esegue il metodo `Up` nel file *Migrations/{time-stamp}_InitialCreate.cs*, che crea il database.
 
 ---
 
 ### <a name="the-initialcreate-class"></a>Classe InitialCreate
 
-Esaminare il file di migrazione *Migrations/{timestamp}_InitialCreate.cs* :
+Esaminare il file di migrazione *Migrations/{timestamp}_InitialCreate.cs*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
 
@@ -702,7 +710,7 @@ Il metodo `Up` crea la tabella Movie e configura `Id` come chiave primaria. Il m
   > [!NOTE]
   > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per impostazioni locali diverse dall'inglese che usano la virgola (",") come separatore decimale e per formati di data diversi da quello dell'inglese (Stati Uniti), è necessario localizzare l'app. Per istruzioni sulla globalizzazione, vedere [questo problema su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
-* Testare le pagine **Edit** , **Details** e **Delete**.
+* Testare le pagine **Edit**, **Details** e **Delete**.
 
 ## <a name="dependency-injection-in-the-controller"></a>Inserimento delle dipendenze nel controller
 
@@ -740,7 +748,7 @@ In un passaggio precedente di questa esercitazione è stato esaminato come un co
 
 MVC consente anche di passare oggetti modello fortemente tipizzati a una vista. Questo approccio fortemente tipizzato consente il controllo del codice in fase di compilazione. Con il meccanismo di scaffolding è stato usato questo approccio, ovvero il passaggio di un modello fortemente tipizzato, con le viste e la classe `MoviesController`.
 
-Aprire il metodo `Details` nel file *Controllers/MoviesController.cs* :
+Aprire il metodo `Details` nel file *Controllers/MoviesController.cs*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
@@ -769,7 +777,7 @@ Se viene trovato un film, viene passata un'istanza del modello `Movie` alla vist
 return View(movie);
 ```
 
-Esaminare il contenuto del file *Views/Movies/Details.cshtml* :
+Esaminare il contenuto del file *Views/Movies/Details.cshtml*:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
@@ -785,7 +793,7 @@ Esaminare la vista *Index.cshtml* e il metodo `Index` nel controller Movies. Si 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_index)]
 
-Al momento della creazione del controller di film, lo scaffolding ha incluso l'istruzione `@model` all'inizio del file *Index.cshtml* :
+Al momento della creazione del controller di film, lo scaffolding ha incluso l'istruzione `@model` all'inizio del file *Index.cshtml*:
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
@@ -841,7 +849,7 @@ Nella finestra di dialogo **Aggiungi scaffolding** selezionare **Controller MVC 
 
 ![Finestra di dialogo Aggiungi scaffolding](adding-model/_static/add_scaffold21.png)
 
-Completare la finestra di dialogo **Aggiungi controller** :
+Completare la finestra di dialogo **Aggiungi controller**:
 
 * **Classe di modello:** *Movie (MvcMovie.Models)*
 * **Classe del contesto dati:** selezionare l'icona **+** e aggiungere il valore predefinito **MvcMovie.Models.MvcMovieContext**
@@ -856,9 +864,9 @@ Completare la finestra di dialogo **Aggiungi controller** :
 
 Visual Studio crea:
 
-* Una [classe del contesto di database](xref:data/ef-mvc/intro#create-the-database-context) Entity Framework Core ( *Data/MvcMovieContext.cs* )
-* Un controller di film ( *Controllers/MoviesController.cs* )
-* Razor Visualizza file per le pagine create, DELETE, Details, Edit e index ( *views/Movies/ \* . cshtml* )
+* Una [classe del contesto di database](xref:data/ef-mvc/intro#create-the-database-context) Entity Framework Core (*Data/MvcMovieContext.cs*)
+* Un controller di film (*Controllers/MoviesController.cs*)
+* Razor Visualizza file per le pagine create, DELETE, Details, Edit e index (*views/Movies/ \* . cshtml*)
 
 La creazione automatica del contesto di database e di viste e metodi di azione [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, delete) è nota come *scaffolding*.
 
@@ -867,7 +875,7 @@ La creazione automatica del contesto di database e di viste e metodi di azione [
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs* , *Startup.cs* e *csproj* ).
+* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs*, *Startup.cs* e *csproj*).
 * Installare lo strumento di scaffolding:
 
   ```dotnetcli
@@ -892,7 +900,7 @@ La creazione automatica del contesto di database e di viste e metodi di azione [
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs* , *Startup.cs* e *csproj* ).
+* Aprire una finestra di comando nella directory del progetto (la directory che contiene i file *Program.cs*, *Startup.cs* e *csproj*).
 * Installare lo strumento di scaffolding:
 
   ```dotnetcli
@@ -911,7 +919,7 @@ La creazione automatica del contesto di database e di viste e metodi di azione [
 
 <!-- End of VS tabs                  -->
 
-Se si esegue l'app e si fa clic sul collegamento **Mvc Movie** , viene visualizzato un errore simile al seguente:
+Se si esegue l'app e si fa clic sul collegamento **Mvc Movie**, viene visualizzato un errore simile al seguente:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -971,7 +979,7 @@ In questa sezione vengono completate le attività seguenti:
 
 Il comando `ef migrations add InitialCreate` genera un codice per creare lo schema del database iniziale.
 
-Lo schema del database è basato sul modello specificato nella classe `MvcMovieContext` (nel file *Data/MvcMovieContext.cs* ). L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione.
+Lo schema del database è basato sul modello specificato nella classe `MvcMovieContext` (nel file *Data/MvcMovieContext.cs*). L'argomento `InitialCreate` è il nome della migrazione. È possibile usare qualsiasi nome, ma per convenzione viene selezionato un nome che descrive la migrazione.
 
 ---
 
@@ -1021,7 +1029,7 @@ Non è stato eseguita la [migrazione](#pmc).
   > [!NOTE]
   > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per impostazioni locali diverse dall'inglese che usano la virgola (",") come separatore decimale e per formati di data diversi da quello dell'inglese (Stati Uniti), è necessario localizzare l'app. Per istruzioni sulla globalizzazione, vedere [questo problema su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
-* Testare i collegamenti **Modifica** , **Dettagli** ed **Elimina**.
+* Testare i collegamenti **Modifica**, **Dettagli** ed **Elimina**.
 
 Esaminare la classe `Startup`:
 
@@ -1049,7 +1057,7 @@ In un passaggio precedente di questa esercitazione è stato esaminato come un co
 
 MVC consente anche di passare oggetti modello fortemente tipizzati a una vista. Questo approccio fortemente tipizzato consente un migliore controllo del codice in fase di compilazione. Con il meccanismo di scaffolding è stato usato questo approccio, ovvero il passaggio di un modello fortemente tipizzato, con le viste e la classe `MoviesController` quando sono stati creati i metodi e le viste.
 
-Aprire il metodo `Details` nel file *Controllers/MoviesController.cs* :
+Aprire il metodo `Details` nel file *Controllers/MoviesController.cs*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
@@ -1078,11 +1086,11 @@ Se viene trovato un film, viene passata un'istanza del modello `Movie` alla vist
 return View(movie);
    ```
 
-Esaminare il contenuto del file *Views/Movies/Details.cshtml* :
+Esaminare il contenuto del file *Views/Movies/Details.cshtml*:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
-Includendo un'istruzione `@model` all'inizio del file di vista, è possibile specificare il tipo di oggetto previsto dalla vista. Al momento della creazione del controller di film, l'istruzione `@model` seguente è stata inclusa automaticamente all'inizio del file *Details.cshtml* :
+Includendo un'istruzione `@model` all'inizio del file di vista, è possibile specificare il tipo di oggetto previsto dalla vista. Al momento della creazione del controller di film, l'istruzione `@model` seguente è stata inclusa automaticamente all'inizio del file *Details.cshtml*:
 
 ```cshtml
 @model MvcMovie.Models.Movie
@@ -1094,7 +1102,7 @@ Esaminare la vista *Index.cshtml* e il metodo `Index` nel controller Movies. Si 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_index)]
 
-Al momento della creazione del controller di film, lo scaffolding ha incluso automaticamente l'istruzione `@model` all'inizio del file *Index.cshtml* :
+Al momento della creazione del controller di film, lo scaffolding ha incluso automaticamente l'istruzione `@model` all'inizio del file *Index.cshtml*:
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 

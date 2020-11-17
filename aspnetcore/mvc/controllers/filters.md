@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: ecb4de3439656eb56507b920db704048d8f96759
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: d075faa951a34fb3856b54eb9e21593b6616b4f1
+ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058506"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94673965"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtri in ASP.NET Core
 
@@ -49,7 +49,7 @@ Questo documento si applica a Razor pagine, controller API e controller con visu
 
 ## <a name="how-filters-work"></a>Funzionamento dei filtri
 
-I filtri vengono eseguiti all'interno della *pipeline di chiamata di azioni ASP.NET Core* , talvolta definita *pipeline di filtro* . La pipeline di filtro viene eseguita dopo che ASP.NET Core ha selezionato l'azione da eseguire.
+I filtri vengono eseguiti all'interno della *pipeline di chiamata di azioni ASP.NET Core*, talvolta definita *pipeline di filtro*. La pipeline di filtro viene eseguita dopo che ASP.NET Core ha selezionato l'azione da eseguire.
 
 ![La richiesta viene elaborata tramite altri middleware, middleware di routing, selezione dell'azione e pipeline di chiamata dell'azione. L'elaborazione della richiesta torna alla selezione azione, al middleware di routing e a diversi altri middleware prima di diventare la risposta che viene inviata al client.](filters/_static/filter-pipeline-1.png)
 
@@ -146,7 +146,7 @@ Il codice seguente applica al `MyActionFilterAttribute` `Index2` Metodo:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet2&highlight=9)]
 
-In **intestazioni di risposta** , `author: Rick Anderson` e `Editor: Joe Smith` viene visualizzato quando `Sample/Index2` viene chiamato l'endpoint.
+In **intestazioni di risposta**, `author: Rick Anderson` e `Editor: Joe Smith` viene visualizzato quando `Sample/Index2` viene chiamato l'endpoint.
 
 Il codice seguente applica `MyActionFilterAttribute` e alla `AddHeaderAttribute` Razor pagina:
 
@@ -167,7 +167,7 @@ Attributi dei filtri:
 
 ## <a name="filter-scopes-and-order-of-execution"></a>Ambiti dei filtri e ordine di esecuzione
 
-È possibile aggiungere un filtro alla pipeline in uno dei tre *ambiti* :
+È possibile aggiungere un filtro alla pipeline in uno dei tre *ambiti*:
 
 * Uso di un attributo in un'azione del controller. Gli attributi di filtro non possono essere applicati ai Razor metodi del gestore di pagine.
 * Uso di un attributo in un controller o in una Razor pagina.
@@ -179,7 +179,7 @@ Attributi dei filtri:
 
 Quando sono presenti più filtri per una particolare fase della pipeline, l'ambito determina l'ordine di esecuzione predefinito dei filtri.  I filtri globali racchiudono i filtri di classe, che a loro volta racchiudono i filtri dei metodi.
 
-Come risultato dell'annidamento dei filtri, il codice *after* dei filtri viene eseguito in ordine inverso rispetto al codice *before* . Sequenza di filtro:
+Come risultato dell'annidamento dei filtri, il codice *after* dei filtri viene eseguito in ordine inverso rispetto al codice *before*. Sequenza di filtro:
 
 * Codice *before* dei filtri globali.
   * Codice *prima* dei filtri di pagina e controller Razor .
@@ -555,6 +555,18 @@ Ad esempio, il filtro seguente viene eseguito sempre e imposta un risultato dell
 
 <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> implementa <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Pertanto, un'istanza di `IFilterFactory` può essere usata come un'istanza di `IFilterMetadata` in un punto qualsiasi della pipeline filtro. Quando il runtime si prepara per richiamare il filtro, cerca di eseguirne il cast a un oggetto `IFilterFactory`. Se l'esecuzione del cast ha esito positivo, viene chiamato il metodo <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> per creare l'istanza di `IFilterMetadata` richiamata. In questo modo viene specificata una struttura flessibile, poiché non è necessario impostare in modo esplicito la pipeline filtro all'avvio dell'app.
 
+`IFilterFactory.IsReusable`:
+
+* È un suggerimento della factory che l'istanza di filtro creata dalla factory può essere riutilizzata all'esterno dell'ambito della richiesta in cui è stata creata.
+* ***Not** _ deve essere utilizzato con un filtro che dipende da servizi con una durata diversa da singleton.
+
+Il runtime di ASP.NET Core non garantisce:
+
+_ Che verrà creata una singola istanza del filtro.
+* Che il filtro non verrà richiesto di nuovo dal contenitore di inserimento delle dipendenze in un momento successivo.
+
+[!WARNING] Configurare `IFilterFactory.IsReusable` per restituire solo `true` se l'origine dei filtri non è ambigua, i filtri sono senza stato e possono essere utilizzati in modo sicuro tra più richieste HTTP. Ad esempio, non restituire i filtri da DI DI cui è stata eseguita la registrazione come ambito o temporaneo se `IFilterFactory.IsReusable` restituisce `true`
+
 Un altro approccio alla creazione di filtri consiste nell'implementare `IFilterFactory` usando implementazioni dell'attributo personalizzate:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/AddHeaderWithFactoryAttribute.cs?name=snippet_IFilterFactory&highlight=1,4,5,6,7)]
@@ -638,7 +650,7 @@ Questo documento si applica a Razor pagine, controller API e controller con visu
 
 ## <a name="how-filters-work"></a>Funzionamento dei filtri
 
-I filtri vengono eseguiti all'interno della *pipeline di chiamata di azioni ASP.NET Core* , talvolta definita *pipeline di filtro* .  La pipeline di filtro viene eseguita dopo che ASP.NET Core ha selezionato l'azione da eseguire.
+I filtri vengono eseguiti all'interno della *pipeline di chiamata di azioni ASP.NET Core*, talvolta definita *pipeline di filtro*.  La pipeline di filtro viene eseguita dopo che ASP.NET Core ha selezionato l'azione da eseguire.
 
 ![La richiesta viene elaborata tramite altro middleware, il middleware di routing, la selezione dell'azione e la pipeline di chiamata di azioni ASP.NET Core. L'elaborazione della richiesta torna alla selezione azione, al middleware di routing e a diversi altri middleware prima di diventare la risposta che viene inviata al client.](filters/_static/filter-pipeline-1.png)
 
@@ -711,7 +723,7 @@ Attributi dei filtri:
 
 ## <a name="filter-scopes-and-order-of-execution"></a>Ambiti dei filtri e ordine di esecuzione
 
-È possibile aggiungere un filtro alla pipeline in uno dei tre *ambiti* :
+È possibile aggiungere un filtro alla pipeline in uno dei tre *ambiti*:
 
 * Usando un attributo di un'azione.
 * Usando un attributo di un controller.
@@ -723,9 +735,9 @@ Il codice precedente aggiunge tre filtri a livello globale tramite la raccolta [
 
 ### <a name="default-order-of-execution"></a>Ordine di esecuzione predefinito
 
-Quando sono presenti più filtri *dello stesso tipo* , scope determina l'ordine predefinito di esecuzione del filtro.  Filtri globali circondano i filtri di classe. Filtri di classe filtri di metodo Racchiudi.
+Quando sono presenti più filtri *dello stesso tipo*, scope determina l'ordine predefinito di esecuzione del filtro.  Filtri globali circondano i filtri di classe. Filtri di classe filtri di metodo Racchiudi.
 
-Come risultato dell'annidamento dei filtri, il codice *after* dei filtri viene eseguito in ordine inverso rispetto al codice *before* . Sequenza di filtro:
+Come risultato dell'annidamento dei filtri, il codice *after* dei filtri viene eseguito in ordine inverso rispetto al codice *before*. Sequenza di filtro:
 
 * Codice *before* dei filtri globali.
   * Codice *before* dei filtri del controller.

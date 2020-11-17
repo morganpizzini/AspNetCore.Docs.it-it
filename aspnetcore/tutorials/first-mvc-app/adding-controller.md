@@ -3,7 +3,7 @@ title: Parte 2, aggiungere un controller a un'app MVC ASP.NET Core
 author: rick-anderson
 description: Parte 2 della serie di esercitazioni su ASP.NET Core MVC.
 ms.author: riande
-ms.date: 08/05/2017
+ms.date: 11/12/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: 1851a61441ed351442f86939022319ad59d10006
-ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
+ms.openlocfilehash: e51edc15b14a5bdd1d53e547e0b469ad608f46d0
+ms.sourcegitcommit: fb208f907249cc7aab029afff941a0266c187050
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94422619"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94688408"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Parte 2, aggiungere un controller a un'app MVC ASP.NET Core
 
@@ -47,19 +47,19 @@ Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Nella **Esplora soluzioni** fare clic con il pulsante destro del mouse su **controller > Aggiungi >** 
-   ![ Esplora soluzioni controller, fare clic con il pulsante destro del mouse su controller > Aggiungi controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllerCopy.png)
+   ![ Esplora soluzioni controller, fare clic con il pulsante destro del mouse su controller > Aggiungi controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllercopyVS19v16.9.png)
 
-* Nella finestra di dialogo **Aggiungi scaffolding** , selezionare **Controller MVC - vuoto**
+* Nella finestra di dialogo **Aggiungi scaffolding**, selezionare **Controller MVC - vuoto**
 
-  ![Aggiungere il controller MVC e assegnarli un nome](~/tutorials/first-mvc-app/adding-controller/_static/acCopy.png)
+  ![Aggiungere il controller MVC e assegnarli un nome](~/tutorials/first-mvc-app/adding-controller/_static/acCopyVS19v16.9.png)
 
-* Nella **finestra di dialogo Aggiungi Controller MVC vuoto** , immettere **HelloWorldController** e selezionare **AGGIUNGI**.
+* Nella **finestra di dialogo Aggiungi nuovo elemento-MvcMovie** immettere **HelloWorldController.cs** e selezionare **Aggiungi**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Selezionare l'icona **EXPLORER** e quindi fare CTRL+clic (clic con il pulsante destro del mouse) su **Controller > Nuovo File** e assegnare al nuovo file il nome *HelloWorldController.cs*.
 
-  ![Menu di scelta rapida](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
+  ![Menu di scelta rapida](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_fileVSC1.51.png)
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
@@ -104,7 +104,7 @@ Passare a `https://localhost:{PORT}/HelloWorld/Welcome`. Il metodo `Welcome` vie
 
 ![Finestra del browser con una risposta dell'applicazione, This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
-Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
+Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4` Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 
@@ -163,11 +163,11 @@ Questi concetti vengono illustrati in questa serie di esercitazioni e descrivono
 * In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **controller > Aggiungi >** 
    ![ menu contestuale](~/tutorials/first-mvc-app/adding-controller/_static/add_controller.png)
 
-* Nella finestra di dialogo **Aggiungi scaffolding** , selezionare **Controller MVC - vuoto**
+* Nella finestra di dialogo **Aggiungi scaffolding**, selezionare **Controller MVC - vuoto**
 
   ![Aggiungere il controller MVC e assegnarli un nome](~/tutorials/first-mvc-app/adding-controller/_static/ac.png)
 
-* Nella **finestra di dialogo Aggiungi Controller MVC vuoto** , immettere **HelloWorldController** e selezionare **AGGIUNGI**.
+* Nella **finestra di dialogo Aggiungi Controller MVC vuoto**, immettere **HelloWorldController** e selezionare **AGGIUNGI**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -223,7 +223,7 @@ Passare a `https://localhost:{PORT}/HelloWorld/Welcome`. Il metodo `Welcome` vie
 
 ![Finestra del browser con una risposta dell'applicazione, This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
-Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
+Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4` Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 

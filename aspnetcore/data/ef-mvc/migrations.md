@@ -1,10 +1,10 @@
 ---
-title: 'Esercitazione: uso della funzionalità Migrations-ASP.NET MVC con EF Core'
-description: In questa esercitazione si inizia a usare la funzionalità delle migrazioni EF Core per la gestione delle modifiche al modello di dati in un'applicazione ASP.NET Core MVC.
+title: "Esercitazione parte 5: applicare le migrazioni all'esempio di Contoso University"
+description: Parte 5 della serie di esercitazioni di Contoso University. Usare la funzionalità migrazioni di EF Core per gestire le modifiche al modello di dati in un'app ASP.NET Core MVC.
 author: rick-anderson
 ms.author: riande
-ms.custom: mvc
-ms.date: 03/27/2019
+ms.custom: contperfq2
+ms.date: 11/13/2020
 ms.topic: tutorial
 no-loc:
 - appsettings.json
@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: 070c18db55956d79560904f53395b5001c7bce6d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ab5be222416e61fcff90c5130ca91ad4a2a5c9b0
+ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054034"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94674004"
 ---
-# <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Esercitazione: uso della funzionalità Migrations-ASP.NET MVC con EF Core
+# <a name="tutorial-part-5-apply-migrations-to-the-contoso-university-sample"></a>Esercitazione: parte 5, applicare le migrazioni all'esempio di Contoso University
 
 In questa esercitazione si inizia a usare la funzionalità delle migrazioni EF Core per la gestione delle modifiche al modello di dati. Nelle esercitazioni successive si aggiungeranno altre migrazioni quando si modifica il modello di dati.
 
@@ -34,7 +34,6 @@ In questa esercitazione:
 
 > [!div class="checklist"]
 > * Ottenere informazioni sulle migrazioni
-> * Modificare la stringa di connessione
 > * Creare una migrazione iniziale
 > * Esaminare i metodi Up e Down
 > * Esaminare lo snapshot del modello di dati
@@ -52,22 +51,15 @@ Questo metodo che consiste nel mantenere il database sincronizzato con il modell
 
 Per lavorare con le migrazioni, è possibile usare la **console di gestione pacchetti** (PMC) o l'interfaccia della riga di comando.  Queste esercitazioni illustrano come usare i comandi dell'interfaccia della riga di comando. Per informazioni sulla Console di Gestione pacchetti, vedere [la fine di questa esercitazione](#pmc).
 
-## <a name="change-the-connection-string"></a>Modificare la stringa di connessione
+## <a name="drop-the-database"></a>Eliminare il database
 
-Nel *appsettings.json* file modificare il nome del database nella stringa di connessione in ContosoUniversity2 o un altro nome che non è stato usato nel computer che si sta usando.
+Eliminare il database. Usare **Esplora oggetti di SQL Server** (SSOX) o il comando CLI `database drop`:
 
-[!code-json[](intro/samples/cu/appsettings2.json?range=1-4)]
+ ```dotnetcli
+ dotnet ef database drop
+ ```
 
-Questa modifica configura il progetto in modo che la prima migrazione crei un nuovo database. Questa operazione non è necessaria per iniziare a usare le migrazioni, ma si capirà più avanti perché è utile eseguirla.
-
-> [!NOTE]
-> In alternativa alla modifica del nome del database, è possibile eliminare il database. Usare **Esplora oggetti di SQL Server** (SSOX) o il comando CLI `database drop`:
->
-> ```dotnetcli
-> dotnet ef database drop
-> ```
->
-> Nella sezione seguente viene illustrato come eseguire i comandi della CLI.
+Nella sezione seguente viene illustrato come eseguire i comandi della CLI.
 
 ## <a name="create-an-initial-migration"></a>Creare una migrazione iniziale
 
@@ -94,15 +86,15 @@ Nei comandi precedenti viene visualizzato un output simile al seguente:
 
 ```console
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
-      Entity Framework Core 2.2.0-rtm-35687 initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+      Entity Framework Core initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 Done. To undo this action, use 'ef migrations remove'
 ```
 
-Se viene visualizzato un messaggio di errore che *indica che non è possibile accedere al file... ContosoUniversity.dll perché è in uso da un altro processo.* ", trovare l'icona IIS Express nella barra delle applicazioni di Windows e fare clic con il pulsante destro del mouse su di essa, quindi fare clic su **ContosoUniversity > arresta sito** .
+Se viene visualizzato un messaggio di errore che *indica che non è possibile accedere al file... ContosoUniversity.dll perché è in uso da un altro processo.*", trovare l'icona IIS Express nella barra delle applicazioni di Windows e fare clic con il pulsante destro del mouse su di essa, quindi fare clic su **ContosoUniversity > arresta sito**.
 
 ## <a name="examine-up-and-down-methods"></a>Esaminare i metodi Up e Down
 
-Quando è stato eseguito il comando `migrations add`, EF ha generato il codice che crea il database da zero. Questo codice si trova nella cartella *migrazioni* , nel file denominato *\<timestamp> _InitialCreate. cs* . Il metodo `Up` della classe `InitialCreate` crea le tabelle di database che corrispondono ai set di entità del modello di dati, e il metodo `Down` le elimina, come illustrato nell'esempio seguente.
+Quando è stato eseguito il comando `migrations add`, EF ha generato il codice che crea il database da zero. Questo codice si trova nella cartella *migrazioni* , nel file denominato *\<timestamp> _InitialCreate. cs*. Il metodo `Up` della classe `InitialCreate` crea le tabelle di database che corrispondono ai set di entità del modello di dati, e il metodo `Down` le elimina, come illustrato nell'esempio seguente.
 
 [!code-csharp[](intro/samples/cu/Migrations/20170215220724_InitialCreate.cs?range=92-118)]
 
@@ -114,7 +106,7 @@ Se la migrazione iniziale è stata creata quando il database esisteva già, il c
 
 ## <a name="the-data-model-snapshot"></a>Snapshot del modello di dati
 
-Le migrazioni creano uno *snapshot* dello schema del database corrente in *Migrations/SchoolContextModelSnapshot.cs* . Quando si aggiunge una migrazione, EF determina le modifiche apportate confrontando il modello di dati con il file dello snapshot.
+Le migrazioni creano uno *snapshot* dello schema del database corrente in *Migrations/SchoolContextModelSnapshot.cs*. Quando si aggiunge una migrazione, EF determina le modifiche apportate confrontando il modello di dati con il file dello snapshot.
 
 Usare il comando [DotNet EF Migrations Remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) per rimuovere una migrazione. `dotnet ef migrations remove` elimina la migrazione e garantisce che lo snapshot venga reimpostato correttamente. Se ha `dotnet ef migrations remove` esito negativo, usare `dotnet ef migrations remove -v` per ottenere altre informazioni sull'errore.
 
@@ -128,11 +120,11 @@ Nella finestra di comando immettere il comando seguente per creare il database e
 dotnet ef database update
 ```
 
-L'output del comando è simile al comando `migrations add`, a eccezione del fatto che vengono visualizzati i log per i comandi SQL che configurano il database. La maggior parte dei log viene omessa nell'output di esempio seguente. Se si vuole ridurre il livello di dettaglio nei messaggi di log, è possibile modificare i livelli di log nel file *appsettings.Development.json* . Per altre informazioni, vedere <xref:fundamentals/logging/index>.
+L'output del comando è simile al comando `migrations add`, a eccezione del fatto che vengono visualizzati i log per i comandi SQL che configurano il database. La maggior parte dei log viene omessa nell'output di esempio seguente. Se si vuole ridurre il livello di dettaglio nei messaggi di log, è possibile modificare i livelli di log nel file *appsettings.Development.json*. Per altre informazioni, vedere <xref:fundamentals/logging/index>.
 
 ```text
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
-      Entity Framework Core 2.2.0-rtm-35687 initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+      Entity Framework Core initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (274ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
       CREATE DATABASE [ContosoUniversity2];
@@ -155,11 +147,11 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-      VALUES (N'20190327172701_InitialCreate', N'2.2.0-rtm-35687');
+      VALUES (N'20190327172701_InitialCreate', N'5.0-rtm');
 Done.
 ```
 
-Per controllare il database come è stato fatto nella prima esercitazione, usare **Esplora oggetti di SQL Server** .  Si noterà l'aggiunta di una tabella \_\_EFMigrationsHistory che tiene traccia di quali migrazioni sono state applicate al database. Visualizzare i dati nella tabella: si noterà la presenza di una riga per la prima migrazione. Nell'ultimo log nell'esempio di output della CLI precedente viene visualizzata l'istruzione INSERT che crea tale riga.
+Per controllare il database come è stato fatto nella prima esercitazione, usare **Esplora oggetti di SQL Server**.  Si noterà l'aggiunta di una tabella \_\_EFMigrationsHistory che tiene traccia di quali migrazioni sono state applicate al database. Visualizzare i dati nella tabella: si noterà la presenza di una riga per la prima migrazione. Nell'ultimo log nell'esempio di output della CLI precedente viene visualizzata l'istruzione INSERT che crea tale riga.
 
 Eseguire l'applicazione per verificare che tutto funzioni come prima.
 
@@ -169,11 +161,11 @@ Eseguire l'applicazione per verificare che tutto funzioni come prima.
 
 ## <a name="compare-cli-and-pmc"></a>Interfaccia della riga di comando e console di gestione pacchetto a confronto
 
-Gli strumenti di EF per la gestione delle migrazioni sono disponibili dai comandi della CLI di .NET Core o dai cmdlet di PowerShell in Visual Studio nella finestra **Console di Gestione pacchetti** . In questa esercitazione viene illustrato come usare la CLI, ma se si preferisce è possibile usare la console di Gestione pacchetti.
+Gli strumenti di EF per la gestione delle migrazioni sono disponibili dai comandi della CLI di .NET Core o dai cmdlet di PowerShell in Visual Studio nella finestra **Console di Gestione pacchetti**. In questa esercitazione viene illustrato come usare la CLI, ma se si preferisce è possibile usare la console di Gestione pacchetti.
 
 I comandi di EF per la console di Gestione pacchetti sono inclusi nel pacchetto [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools). Questo pacchetto è incluso nel [metapacchetto Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app), quindi non è necessario aggiungere un riferimento al pacchetto se l'app dispone di un riferimento al pacchetto per `Microsoft.AspNetCore.App`.
 
-**Importante:** non si tratta dello stesso pacchetto che si installa per l'interfaccia della riga di comando modificando il file con estensione *.csproj* . Il nome di questo pacchetto termina con `Tools`, a differenza del nome del pacchetto della CLI che termina con `Tools.DotNet`.
+**Importante:** non si tratta dello stesso pacchetto che si installa per l'interfaccia della riga di comando modificando il file con estensione *.csproj*. Il nome di questo pacchetto termina con `Tools`, a differenza del nome del pacchetto della CLI che termina con `Tools.DotNet`.
 
 Per altre informazioni sui comandi della CLI, vedere [Strumenti da riga di comando di EF Core .NET](/ef/core/miscellaneous/cli/dotnet).
 
@@ -181,20 +173,9 @@ Per altre informazioni sui comandi della console di Gestione pacchetti, vedere [
 
 ## <a name="get-the-code"></a>Ottenere il codice
 
-[Scaricare o visualizzare l'applicazione completata.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Scaricare o visualizzare l'applicazione completata.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples)
 
 ## <a name="next-step"></a>Passaggio successivo
-
-In questa esercitazione:
-
-> [!div class="checklist"]
-> * Sono state descritte le migrazioni
-> * Sono stati presentati i pacchetti di migrazione NuGet
-> * Modifica della stringa di connessione
-> * È stata creata una migrazione iniziale
-> * Sono stati esaminati i metodi Up e Down
-> * È stato esaminato lo snapshot del modello di dati
-> * È stata applicata la migrazione
 
 Passare all'esercitazione successiva per iniziare a esaminare argomenti più avanzati sull'espansione del modello di dati. Lungo il percorso verranno create e applicate altre migrazioni.
 

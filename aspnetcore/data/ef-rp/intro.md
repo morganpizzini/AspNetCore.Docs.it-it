@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 5849f4bfb9d0355177ceb5c2f4236c6d39dd9e92
-ms.sourcegitcommit: bb475e69cb647f22cf6d2c6f93d0836c160080d7
+ms.openlocfilehash: 7323cf11ad4556443def4068873e6805b449058a
+ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/06/2020
-ms.locfileid: "94340036"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94674017"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pagine con Entity Framework Core in ASP.NET Core-esercitazione 1 di 8
 
@@ -143,13 +143,15 @@ To run the app after downloading the completed project:
 
 ## <a name="set-up-the-site-style"></a>Impostare lo stile del sito
 
-Copiare e incollare il codice seguente nel file *pages/Shared/_Layout. cshtml* : [!code-cshtml[Main](intro/samples/cu50/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
+Copiare e incollare il codice seguente nel file *pages/Shared/_Layout. cshtml* :
+
+[!code-cshtml[Main](intro/samples/cu50/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
 
 Il file di layout imposta l'intestazione, il piè di pagina e il menu del sito. Il codice precedente apporta le modifiche seguenti:
 
 * Ogni occorrenza di "ContosoUniversity" in "Contoso University". Le occorrenze sono tre.
 * Le voci del menu **Home** e **privacy** verranno eliminate.
-* Vengono aggiunte voci per **informazioni su** , **studenti** , **corsi** , **docenti** e **reparti**.
+* Vengono aggiunte voci per **informazioni su**, **studenti**, **corsi**, **docenti** e **reparti**.
 
 In *pages/index. cshtml* sostituire il contenuto del file con il codice seguente:
 
@@ -311,7 +313,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Abbreviare la stringa di connessione SQLite a *cu. DB* :
+Abbreviare la stringa di connessione SQLite a *cu. DB*:
 
 [!code-json[Main](intro/samples/cu50/appsettingsSQLite.json?highlight=11)]
 
@@ -436,7 +438,7 @@ In *Program.cs* sostituire la chiamata di `EnsureCreated` con una chiamata di `D
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Arrestare l'app se è in esecuzione ed eseguire il comando seguente nella **console di Gestione pacchetti** :
+Arrestare l'app se è in esecuzione ed eseguire il comando seguente nella **console di Gestione pacchetti**:
 
 ```powershell
 Drop-Database -Confirm
@@ -585,7 +587,7 @@ Per eseguire l'app dopo il download del progetto completato:
 Per eseguire l'app dopo il download del progetto completato:
 
 * Eliminare *ContosoUniversity.csproj* e rinominare *ContosoUniversitySQLite.csproj* in *ContosoUniversity.csproj*.
-* In *Program.cs* , impostare come commento l' `#define Startup` `StartupSQLite` utilizzo di.
+* In *Program.cs*, impostare come commento l' `#define Startup` `StartupSQLite` utilizzo di.
 * Eliminare *appSettings.json* e rinominare *appSettingsSQLite.json* in *appSettings.json*.
 * Eliminare la cartella *Migrations* e rinominare *MigrationsSQL* in *Migrations*.
 * Eseguire una ricerca globale `#if SQLiteVersion` e rimuovere `#if SQLiteVersion` e l'istruzione associata `#endif` .
@@ -632,11 +634,11 @@ Per eseguire l'app dopo il download del progetto completato:
 
 ## <a name="set-up-the-site-style"></a>Impostare lo stile del sito
 
-Per impostare l'intestazione, il piè di pagina e il menu del sito, aggiornare *Pages/Shared/_Layout.cshtml* :
+Per impostare l'intestazione, il piè di pagina e il menu del sito, aggiornare *Pages/Shared/_Layout.cshtml*:
 
 * Modificare tutte le occorrenze di "ContosoUniversity" in "Contoso University". Le occorrenze sono tre.
 
-* Eliminare le voci di menu **Home** e **Privacy** , quindi aggiungere le voci per **About** (Informazioni su), **Students** (Studenti), **Courses** (Corsi), **Instructors** (Insegnanti) e **Departments** (Dipartimenti).
+* Eliminare le voci di menu **Home** e **Privacy**, quindi aggiungere le voci per **About** (Informazioni su), **Students** (Studenti), **Courses** (Corsi), **Instructors** (Insegnanti) e **Departments** (Dipartimenti).
 
 Le modifiche sono evidenziate.
 
@@ -798,7 +800,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Modificare la stringa di connessione in modo che punti a un file di database SQLite denominato *CU.db* :
+Modificare la stringa di connessione in modo che punti a un file di database SQLite denominato *CU.db*:
 
 [!code-json[Main](intro/samples/cu30/appsettingsSQLite.json?highlight=11)]
 
@@ -887,7 +889,7 @@ Creare *Data/DbInitializer.cs* con il codice seguente:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Arrestare l'app se è in esecuzione ed eseguire il comando seguente nella **console di Gestione pacchetti** :
+Arrestare l'app se è in esecuzione ed eseguire il comando seguente nella **console di Gestione pacchetti**:
 
 ```powershell
 Drop-Database
@@ -1131,7 +1133,7 @@ Il processo di scaffolding ha creato e modificato i file seguenti:
 
 ### <a name="file-updates"></a>Aggiornamenti dei file
 
-* *Startup.cs* : le modifiche a questo file sono descritte in dettaglio nella sezione successiva.
+* *Startup.cs*: le modifiche a questo file sono descritte in dettaglio nella sezione successiva.
 * *appsettings.json* : Viene aggiunta la stringa di connessione utilizzata per connettersi a un database locale.
 
 ## <a name="examine-the-context-registered-with-dependency-injection"></a>Esaminare il contesto registrato con l'inserimento di dipendenze
@@ -1215,7 +1217,7 @@ In *Program.cs* modificare il metodo `Main` per chiamare `Initialize`:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Arrestare l'app se è in esecuzione ed eseguire il comando seguente nella **console di Gestione pacchetti** :
+Arrestare l'app se è in esecuzione ed eseguire il comando seguente nella **console di Gestione pacchetti**:
 
 ```powershell
 Drop-Database

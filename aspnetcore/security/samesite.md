@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Electron
 uid: security/samesite
-ms.openlocfilehash: 6f826416e3045df32abf41e94e667120e71ae717
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: f1aa388015bd540a6fda263eac53753ada63bf79
+ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051616"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94673991"
 ---
 # <a name="work-with-samesite-no-loccookies-in-aspnet-core"></a>Usare navigava sullostesso sito cookie s in ASP.NET Core
 
@@ -166,7 +166,7 @@ In `Startup.Configure` aggiungere il codice che chiama <xref:Microsoft.AspNetCor
 
 In `Startup.ConfigureServices` aggiungere codice simile al seguente:
 
-::: moniker range="= aspnetcore-3.1"
+::: moniker range=">= aspnetcore-3.1"
 
 [!code-csharp[](samesite/sample/Startup31.cs?name=snippet)]
 
@@ -202,7 +202,7 @@ Testare le app Web usando una versione client che può acconsentire esplicitamen
 
 ### <a name="test-with-chrome"></a>Eseguire test con Chrome
 
-Chrome 78 + fornisce risultati fuorvianti perché prevede una mitigazione temporanea. La mitigazione temporanea di Chrome 78 + consente cookie di avere meno di due minuti di età. Chrome 76 o 77 con i flag di test appropriati abilitati fornisce risultati più accurati. Per testare il nuovo comportamento `chrome://flags/#same-site-by-default-cookies` di navigava sullostesso sito, impostare su **Enabled** . Le versioni precedenti di Chrome (75 e versioni precedenti) vengono segnalate per avere esito negativo con la nuova `None` impostazione. Vedere [supporto di browser meno recenti](#sob) in questo documento.
+Chrome 78 + fornisce risultati fuorvianti perché prevede una mitigazione temporanea. La mitigazione temporanea di Chrome 78 + consente cookie di avere meno di due minuti di età. Chrome 76 o 77 con i flag di test appropriati abilitati fornisce risultati più accurati. Per testare il nuovo comportamento `chrome://flags/#same-site-by-default-cookies` di navigava sullostesso sito, impostare su **Enabled**. Le versioni precedenti di Chrome (75 e versioni precedenti) vengono segnalate per avere esito negativo con la nuova `None` impostazione. Vedere [supporto di browser meno recenti](#sob) in questo documento.
 
 Google non rende disponibili versioni precedenti di Chrome. Seguire le istruzioni riportate in [scaricare Chromium](https://www.chromium.org/getting-involved/download-chromium) per testare le versioni precedenti di Chrome. Non **scaricare Chrome** dai collegamenti forniti cercando le versioni precedenti di Chrome.
 
