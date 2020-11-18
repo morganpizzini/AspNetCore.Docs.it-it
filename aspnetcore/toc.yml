@@ -167,7 +167,7 @@
           href: /learn/modules/create-razor-pages-aspnet-core/
         - name: App per le API Web >>
           displayName: tutorial
-          href: /learn/modules/build-web-api-net-core/
+          href: /learn/modules/build-web-api-aspnet-core/
         - name: Microservizi nativi del cloud
           items:
             - name: Creare e distribuire >>
@@ -522,7 +522,7 @@
               uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
             - name: Cache distribuita
               uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
-            - name: Environment
+            - name: Ambiente
               uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
             - name: Form
               href: mvc/views/working-with-forms.md#the-form-tag-helper

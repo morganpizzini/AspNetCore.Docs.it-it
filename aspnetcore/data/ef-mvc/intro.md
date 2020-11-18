@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 428320f9d706b0dd16ced68d183ec4b331451965
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.openlocfilehash: c0623de3c8031b6dbb518a6d25623b55a6500af5
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94550647"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94703735"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Esercitazione: Introduzione a EF Core in un'app Web MVC ASP.NET
 
@@ -110,7 +110,7 @@ Questa esercitazione usa SQL Server e il pacchetto del provider è [Microsoft.En
 
 Il pacchetto EF SQL Server e le relative dipendenze e `Microsoft.EntityFrameworkCore` `Microsoft.EntityFrameworkCore.Relational` forniscono il supporto di runtime per EF.
 
-Aggiungere il pacchetto NuGet [Microsoft. AspNetCore. Diagnostics. EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) e il pacchetto NuGet [Microsoft. AspNetCore. Diagnostics. EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) . Nella console di Program Manager (PMC) immettere i comandi seguenti per aggiungere i pacchetti NuGet:
+Aggiungere il pacchetto NuGet [Microsoft. AspNetCore. Diagnostics. EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) e il pacchetto NuGet [Microsoft. AspNetCore. Diagnostics. EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) . Nella console di gestione pacchetti (PMC) immettere i comandi seguenti per aggiungere i pacchetti NuGet:
 
 ```powershell
 Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
@@ -142,7 +142,7 @@ Nella cartella *Models* creare la `Student` classe con il codice seguente:
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
 
-La `ID` proprietà è la colonna chiave primaria ( **PK** ) della tabella di database che corrisponde a questa classe. Per impostazione predefinita, EF interpreta una proprietà denominata `ID` o `classnameID` come chiave primaria. È ad esempio possibile denominare il PK `StudentID` anziché `ID` .
+La `ID` proprietà è la colonna chiave primaria (**PK**) della tabella di database che corrisponde a questa classe. Per impostazione predefinita, EF interpreta una proprietà denominata `ID` o `classnameID` come chiave primaria. È ad esempio possibile denominare il PK `StudentID` anziché `ID` .
 
 La proprietà `Enrollments` rappresenta una [proprietà di navigazione](/ef/core/modeling/relationships). Le proprietà di navigazione contengono altre entità correlate a questa entità. `Enrollments`Proprietà di un' `Student` entità:
 
@@ -150,7 +150,7 @@ La proprietà `Enrollments` rappresenta una [proprietà di navigazione](/ef/core
 * Se una riga specifica del `Student` database contiene due righe correlate `Enrollment` :
   * La `Student` proprietà di `Enrollments` navigazione dell'entità contiene le due `Enrollment` entità.
   
-`Enrollment` le righe contengono un valore PK dello studente nella `StudentID` colonna chiave esterna ( **FK** ).
+`Enrollment` le righe contengono un valore PK dello studente nella `StudentID` colonna chiave esterna (**FK**).
 
 Se una proprietà di navigazione può ospitare più entità:
 
@@ -231,7 +231,7 @@ Aprire il *appsettings.json* file e aggiungere una stringa di connessione come i
 
 Aggiungere <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> a `ConfigureServices` come illustrato nel codice seguente:
 
-[!code-csharp[](intro/samples/5cu/Startup.cs?name=snippet&highlight=1=2,22-23)]
+[!code-csharp[](intro/samples/5cu/Startup.cs?name=snippet&highlight=6)]
 
 `AddDatabaseDeveloperPageExceptionFilter`Fornisce informazioni utili sull'errore nell' [ambiente di sviluppo](xref:fundamentals/environments).
 
@@ -442,7 +442,7 @@ Gli utenti possono visualizzare e aggiornare le informazioni che riguardano stud
 
 * Attendere che venga visualizzata la finestra di dialogo **Nuova applicazione Web ASP.NET Core**.
 
-* Selezionare **.NET Core** , **ASP.NET Core 2.2** e il modello **Applicazione Web (MVC)**.
+* Selezionare **.NET Core**, **ASP.NET Core 2.2** e il modello **Applicazione Web (MVC)**.
 
 * Assicurarsi che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
 
@@ -652,7 +652,7 @@ Chiudere il browser.
 
 Se la finestra di Esplora oggetti di SQL Server non è già aperta, selezionarla dal menu **Visualizza** in Visual Studio.
 
-In SSOX fare clic su (local DB **) \MSSQLLocalDB > database** , quindi fare clic sulla voce relativa al nome del database nella stringa di connessione nel *appsettings.json* file.
+In SSOX fare clic su (local DB **) \MSSQLLocalDB > database**, quindi fare clic sulla voce relativa al nome del database nella stringa di connessione nel *appsettings.json* file.
 
 Espandere il nodo **tabelle** per visualizzare le tabelle nel database.
 

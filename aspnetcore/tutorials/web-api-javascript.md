@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: 4a80e3e82a18e0066c7628c8f40401155538e32b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: c32c5befe0be3b1ad4bd87649d3cc74b0296a134
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061197"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94703709"
 ---
 # <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Esercitazione: chiamare un'API Web ASP.NET Core con JavaScript
 
@@ -52,7 +52,7 @@ La `fetch` funzione restituisce un oggetto [Promise](https://developer.mozilla.o
 
 La chiamata `fetch` più semplice accetta un solo parametro che rappresenta la route. Un secondo parametro, noto come oggetto `init`, è facoltativo. `init` viene usato per configurare la richiesta HTTP.
 
-1. Configurare l'app in modo da [gestire i file statici](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [abilitare il mapping dei file predefiniti](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_). Il codice evidenziato seguente è necessario nel metodo `Configure` di *Startup.cs* :
+1. Configurare l'app in modo da [gestire i file statici](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [abilitare il mapping dei file predefiniti](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_). Il codice evidenziato seguente è necessario nel metodo `Configure` di *Startup.cs*:
 
     [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJavaScript.cs?highlight=8-9&name=snippet_configure)]
 
@@ -64,20 +64,24 @@ La chiamata `fetch` più semplice accetta un solo parametro che rappresenta la r
 
     [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
+1. Aggiungere un file CSS denominato *site. CSS* alla cartella *wwwroot/CSS* . Sostituire il contenuto di *site. CSS* con gli stili seguenti:
+
+    [!code-css[](first-web-api/samples/3.0/TodoApi/wwwroot/css/site.css)]
+
 1. Aggiungere un file JavaScript denominato *site.js* alla cartella *wwwroot/JS* . Sostituire il contenuto di *site.js* con il codice seguente:
 
     [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
 
 Può essere necessario modificare le impostazioni di avvio del progetto ASP.NET Core per il test della pagina HTML in locale:
 
-1. Aprire *Properties\launchSettings.json* .
+1. Aprire *Properties\launchSettings.json*.
 1. Rimuovere la `launchUrl` proprietà per forzare l'apertura dell'app a *index.html* &mdash; file predefinito del progetto.
 
 In questo esempio vengono chiamati tutti i metodi CRUD dell'API Web. Di seguito sono disponibili spiegazioni per le richieste dell'API Web.
 
 ### <a name="get-a-list-of-to-do-items"></a>Ottenere un elenco di elementi attività
 
-Nel codice seguente viene inviata una richiesta HTTP GET alla route *api/TodoItems* :
+Nel codice seguente viene inviata una richiesta HTTP GET alla route *api/TodoItems*:
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_GetItems)]
 
@@ -92,7 +96,7 @@ Nel codice seguente:
   * `method`&mdash;specifica il verbo di azione HTTP POST.
   * `body`&mdash;specifica la rappresentazione JSON del corpo della richiesta. Il codice JSON viene prodotto passando il valore letterale dell'oggetto archiviato in `item` alla funzione [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
   * `headers`&mdash;specifica le intestazioni della richiesta HTTP `Accept` e `Content-Type`. Entrambe le intestazioni vengono impostate su `application/json` per specificare rispettivamente il tipo di supporto ricevuto e inviato.
-* Una richiesta HTTP POST viene inviata alla route *api/TodoItems* .
+* Una richiesta HTTP POST viene inviata alla route *api/TodoItems*.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_AddItem)]
 
@@ -102,7 +106,7 @@ Quando l'API Web restituisce un codice di stato di esecuzione riuscita, viene ri
 
 L'aggiornamento di un elemento attività è simile all'aggiunta di un elemento. Esistono tuttavia due differenze significative:
 
-* Alla route viene aggiunto come suffisso l'identificatore univoco dell'elemento da aggiornare. Ad esempio, *api/TodoItems/1* .
+* Alla route viene aggiunto come suffisso l'identificatore univoco dell'elemento da aggiornare. Ad esempio, *api/TodoItems/1*.
 * Il verbo di azione HTTP è PUT, come indicato dall'opzione `method`.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_UpdateItem)]

@@ -5,7 +5,7 @@ description: Informazioni su come instradare le richieste nelle app e sul compon
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/02/2020
+ms.date: 11/17/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: 585b697aedf31bce2305df0ec5f84824c4019156
-ms.sourcegitcommit: e087b6a38e3d38625ebb567a973e75b4d79547b9
+ms.openlocfilehash: c4da8bf8447618c9a7a2d0f690164fe48a7ed006
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/15/2020
-ms.locfileid: "94637691"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94703696"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>BlazorRouting ASP.NET Core
 
@@ -159,6 +159,15 @@ I parametri facoltativi non sono supportati. `@page`Nell'esempio precedente veng
 
 ::: moniker-end
 
+Usare on [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set) anziché [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-methods) per consentire l'esplorazione delle app allo stesso componente con un valore di parametro facoltativo diverso. In base all'esempio precedente, usare `OnParametersSet` quando l'utente deve essere in grado di spostarsi da `/RouteParameter` a `/RouteParameter/awesome` o da `/RouteParameter/awesome` a `/RouteParameter` :
+
+```csharp
+protected override void OnParametersSet()
+{
+    Text = Text ?? "fantastic";
+}
+```
+
 ## <a name="route-constraints"></a>Vincoli di route
 
 Un vincolo di route impone la corrispondenza tra i tipi in un segmento di route e un componente.
@@ -264,7 +273,7 @@ Il `NavMenu` componente seguente crea una [`Bootstrap`](https://getbootstrap.com
 Sono disponibili due <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> opzioni che è possibile assegnare all' `Match` attributo dell' `<NavLink>` elemento:
 
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType>: <xref:Microsoft.AspNetCore.Components.Routing.NavLink> È attivo quando corrisponde all'intero URL corrente.
-* <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.Prefix?displayProperty=nameWithType> ( *impostazione predefinita* ): l'oggetto <xref:Microsoft.AspNetCore.Components.Routing.NavLink> è attivo quando corrisponde a qualsiasi prefisso dell'URL corrente.
+* <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.Prefix?displayProperty=nameWithType> (*impostazione predefinita*): l'oggetto <xref:Microsoft.AspNetCore.Components.Routing.NavLink> è attivo quando corrisponde a qualsiasi prefisso dell'URL corrente.
 
 Nell'esempio precedente la Home <xref:Microsoft.AspNetCore.Components.Routing.NavLink> `href=""` corrisponde all'URL Home e riceve solo la `active` classe CSS nell'URL del percorso di base predefinito dell'app (ad esempio, `https://localhost:5001/` ). Il secondo <xref:Microsoft.AspNetCore.Components.Routing.NavLink> riceve la `active` classe quando l'utente visita un URL con un `MyComponent` prefisso, ad esempio `https://localhost:5001/MyComponent` e `https://localhost:5001/MyComponent/AnotherSegment` .
 

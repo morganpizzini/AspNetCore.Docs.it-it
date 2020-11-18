@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 ms.date: 10/27/2020
 uid: blazor/file-uploads
-ms.openlocfilehash: ca49564136e030fdaf86eefac56146fcb79f7bad
-ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
+ms.openlocfilehash: 77c2874eef788b8083758c087913a7a04c55fa2b
+ms.sourcegitcommit: 54fdca99f30b18d69cf0753ca3c84c7dab8f2b0e
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 11/17/2020
-ms.locfileid: "94673952"
+ms.locfileid: "94691170"
 ---
 # <a name="aspnet-core-no-locblazor-file-uploads"></a>BlazorCaricamenti di file ASP.NET Core
 
@@ -53,6 +53,9 @@ Un componente che riceve un file di immagine può chiamare il `RequestImageFileA
 
 Nell'esempio seguente viene illustrato il caricamento di più file di immagine in un componente. `InputFileChangeEventArgs.GetMultipleFiles` consente la lettura di più file. Specificare il numero massimo di file che si prevede di leggere per impedire a un utente malintenzionato di caricare un numero maggiore di file rispetto a quanto previsto dall'app. `InputFileChangeEventArgs.File` consente di leggere il primo e l'unico file se il caricamento del file non supporta più file.
 
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> si trova nello <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> spazio dei nomi, che in genere è uno degli spazi dei nomi nel `_Imports.razor` file dell'app.
+
 ```razor
 <h3>Upload PNG images</h3>
 
@@ -75,7 +78,7 @@ Nell'esempio seguente viene illustrato il caricamento di più file di immagine i
 }
 
 @code {
-    IList<string> imageDataUrls = new List<string>();
+    private IList<string> imageDataUrls = new List<string>();
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {

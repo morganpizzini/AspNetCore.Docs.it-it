@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: e473da9a7cbd91a601ad4af0c7c02c7f576f348c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: aa109aaa89003fd7566e7dc219ecc9799b077355
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051122"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94703670"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Applicare HTTPS in ASP.NET Core
 
@@ -136,7 +136,7 @@ Specificare la porta HTTPS usando uno degli approcci seguenti:
 
 ::: moniker-end
 
-* In sviluppo impostare un URL HTTPS in *launchsettings.json* . Abilitare HTTPS quando viene usato IIS Express.
+* In sviluppo impostare un URL HTTPS in *launchsettings.json*. Abilitare HTTPS quando viene usato IIS Express.
 
 * Configurare un endpoint URL HTTPS per una distribuzione perimetrale pubblica del server [gheppio](xref:fundamentals/servers/kestrel) o del server [HTTP.sys](xref:fundamentals/servers/httpsys) . L'app usa solo **una porta HTTPS** . Il middleware individua la porta tramite <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
 
@@ -193,7 +193,7 @@ Per impostazione predefinita, il middleware Invia un [Status307TemporaryRedirect
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Quando si configurano i servizi in *Startup.cs* :
+Quando si configurano i servizi in *Startup.cs*:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -214,7 +214,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker range="<= aspnetcore-2.2"
 
-Quando si configurano i servizi in *Startup.cs* :
+Quando si configurano i servizi in *Startup.cs*:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -413,7 +413,7 @@ I comandi precedenti risolvono la maggior parte dei problemi di attendibilità d
 ### <a name="docker---certificate-not-trusted"></a>Docker: certificato non attendibile
 
 * Eliminare la cartella *C:\Users \{ utente} \AppData\Roaming\ASP.NET\Https*
-* Pulire la soluzione. Eliminare le cartelle *bin* e *obj* .
+* Pulire la soluzione. Eliminare le cartelle *bin* e *obj*.
 * Riavviare lo strumento di sviluppo. Ad esempio, Visual Studio, Visual Studio Code o Visual Studio per Mac.
 
 ### <a name="windows---certificate-not-trusted"></a>Windows: certificato non attendibile
@@ -450,6 +450,20 @@ Per la risoluzione dei problemi relativi ai certificati con Visual Studio, veder
 ### <a name="iis-express-ssl-certificate-used-with-visual-studio"></a>IIS Express certificato SSL usato con Visual Studio
 
 Per risolvere i problemi relativi al certificato IIS Express, selezionare **Ripristina** dal programma di installazione di Visual Studio. Per altre informazioni, vedere [questo problema di GitHub](https://github.com/dotnet/aspnetcore/issues/16892).
+
+<a name="trust-ff"></a>
+
+### <a name="firefox-sec_error_inadequate_key_usage-certificate-error"></a>Errore del certificato SEC_ERROR_INADEQUATE_KEY_USAGE Firefox
+
+Il browser Firefox usa il proprio archivio certificati e pertanto non considera attendibile i certificati per sviluppatori [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) o [gheppio](xref:fundamentals/servers/kestrel) .
+
+Per usare Firefox con IIS Express o gheppio, impostare  `security.enterprise_roots.enabled` = `true`
+
+1. Immettere `about:config` nel browser Firefox.
+1. Selezionare **accetta il rischio e continua** se si accetta il rischio.
+1. Selezionare **Mostra tutto**
+1. Set `security.enterprise_roots.enabled` = `true`
+1. Uscire e riavviare Firefox
 
 ## <a name="additional-information"></a>Informazioni aggiuntive
 
