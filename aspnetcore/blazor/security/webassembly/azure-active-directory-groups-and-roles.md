@@ -19,16 +19,19 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: 680b44a705b66be0aab824487119cdb118b44d0f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ded70f028b3021574ba260838837d9b23abd72f1
+ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055308"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94981882"
 ---
 # <a name="azure-active-directory-aad-groups-administrator-roles-and-user-defined-roles"></a>Gruppi di Azure Active Directory (AAD), ruoli di amministratore e ruoli definiti dall'utente
 
 Di [Luke Latham](https://github.com/guardrex) e [Javier Calvarro Nelson](https://github.com/javiercn)
+
+> [!NOTE]
+> Questo articolo si applica alle Blazor app ASP.NET Core versione 3,1 con Microsoft Identity v 1.0 ed è pianificato per l'aggiornamento a 5,0 con Identity v 2.0. Per altre informazioni, vedere [ Blazor WASM con i ruoli e i gruppi AAD/B2C (dotnet/AspNetCore.Docs #17683)](https://github.com/dotnet/AspNetCore.Docs/issues/17683).
 
 Azure Active Directory (AAD) fornisce diversi approcci di autorizzazione che possono essere combinati con ASP.NET Core Identity :
 
@@ -506,7 +509,7 @@ Oltre ad autorizzare gli utenti nell'app webassembly sul lato client ad accedere
 > [!NOTE]
 > Questa guida attualmente non include l'autorizzazione degli utenti sulla base dei [ruoli definiti dall'utente di AAD](#user-defined-roles).
 
-Le indicazioni fornite in questa sezione configurano l'app per le API server come [*app daemon*](/azure/active-directory/develop/scenario-daemon-overview) per la chiamata API Microsoft Graph. Questo approccio **non** :
+Le indicazioni fornite in questa sezione configurano l'app per le API server come [*app daemon*](/azure/active-directory/develop/scenario-daemon-overview) per la chiamata API Microsoft Graph. Questo approccio **non**:
 
 * Richiedere l' `access_as_user` ambito.
 * Accedere API Graph per conto dell'utente o del client che effettua la richiesta dell'API.
@@ -515,10 +518,10 @@ La chiamata a API Graph dall'app per le API server richiede solo un' **applicazi
 
 ### <a name="azure-configuration"></a>Configurazione di Azure
 
-* Verificare che alla registrazione dell'app *Server* venga assegnata l' **applicazione** (non **delegata** ) API Graph ambito per `Directory.Read.All` , che rappresenta il livello di accesso con privilegi minimi per i gruppi di sicurezza. Verificare che l'autorizzazione dell'amministratore venga applicata all'ambito dopo aver eseguito l'assegnazione dell'ambito.
+* Verificare che alla registrazione dell'app *Server* venga assegnata l' **applicazione** (non **delegata**) API Graph ambito per `Directory.Read.All` , che rappresenta il livello di accesso con privilegi minimi per i gruppi di sicurezza. Verificare che l'autorizzazione dell'amministratore venga applicata all'ambito dopo aver eseguito l'assegnazione dell'ambito.
 * Assegnare un nuovo segreto client all'app *Server* . Prendere nota del segreto per la configurazione dell'app nella sezione [impostazioni app](#app-settings) .
 
-### <a name="app-settings"></a>Impostazioni delle app
+### <a name="app-settings"></a>Impostazioni app
 
 Nel file di impostazioni dell'app ( `appsettings.json` o `appsettings.Production.json` ) creare una `ClientSecret` voce con il segreto client dell'app *Server* dalla portale di Azure:
 

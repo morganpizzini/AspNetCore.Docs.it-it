@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Kestrel
 uid: aspnetcore-5.0
-ms.openlocfilehash: 84747e2d13275a23e83dc2dc0f666cb0c8d001b1
-ms.sourcegitcommit: 827e8be18cebbcc09b467c089e17fa6f5e430cb2
+ms.openlocfilehash: 7f90e4c424aa4bb76be7c226acd2f16261e0dfe6
+ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/15/2020
-ms.locfileid: "94634626"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94981947"
 ---
 # <a name="whats-new-in-aspnet-core-50"></a>Novità di ASP.NET Core 5,0
 
@@ -148,7 +148,7 @@ Blazor dispone di componenti predefiniti `InputRadio` e `InputRadioGroup` che se
 
 ### <a name="component-virtualization"></a>Virtualizzazione di componenti
 
-Migliorare le prestazioni percepite del rendering dei componenti utilizzando il Blazor supporto della virtualizzazione incorporato del Framework. Per altre informazioni, vedere <xref:blazor/forms-validation#radio-buttons>.
+Migliorare le prestazioni percepite del rendering dei componenti utilizzando il Blazor supporto della virtualizzazione incorporato del Framework. Per altre informazioni, vedere <xref:blazor/components/virtualization>.
 
 ### <a name="ontoggle-event-support"></a>`ontoggle` supporto degli eventi
 
@@ -390,7 +390,7 @@ Vedere [autenticazione Kerberos e controllo degli accessi in base al ruolo (RBAC
 
 I dati JSON possono essere letti e scritti da un oggetto `HttpRequest` e `HttpResponse` usando i <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> nuovi `WriteAsJsonAsync` metodi di estensione e. Questi metodi di estensione usano il [System.Text.Jssul](xref:System.Text.Json) serializzatore per gestire i dati JSON. Il nuovo `HasJsonContentType` metodo di estensione può anche controllare se una richiesta ha un tipo di contenuto JSON.
 
-I metodi di estensione JSON possono essere combinati con il [routing dell'endpoint](xref:fundamentals/routing) per creare API JSON in uno stile di programmazione chiamato * **route to Code** _. Si tratta di una nuova opzione per gli sviluppatori che desiderano creare API JSON di base in modo semplice. Ad esempio, un'app Web che dispone solo di un numero limitato di endpoint può scegliere di usare il routing al codice anziché le funzionalità complete di ASP.NET Core MVC:
+I metodi di estensione JSON possono essere combinati con il [routing dell'endpoint](xref:fundamentals/routing) per creare API JSON in uno stile di programmazione chiamato ***route to Code** _. Si tratta di una nuova opzione per gli sviluppatori che desiderano creare API JSON di base in modo semplice. Ad esempio, un'app Web che dispone solo di un numero limitato di endpoint può scegliere di usare il routing al codice anziché le funzionalità complete di ASP.NET Core MVC:
 
 ```csharp
 endpoints.MapGet("/weather/{city:alpha}", async context =>
