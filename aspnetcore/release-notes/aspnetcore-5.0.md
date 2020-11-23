@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Kestrel
 uid: aspnetcore-5.0
-ms.openlocfilehash: 7f90e4c424aa4bb76be7c226acd2f16261e0dfe6
-ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
+ms.openlocfilehash: 8e848ef57a9164501fd3c4f29f47ad7c72118507
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "94981947"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95417552"
 ---
 # <a name="whats-new-in-aspnet-core-50"></a>Novità di ASP.NET Core 5,0
 
@@ -130,7 +130,7 @@ Con OpenAPI abilitato per impostazione predefinita, l'esperienza di avvio dell'a
 
 ## Blazor
 
-### <a name="performance-improvements"></a>Miglioramenti delle prestazioni
+### <a name="performance-improvements"></a>Miglioramenti alle prestazioni
 
 Per .NET 5 sono stati apportati miglioramenti significativi alle Blazor WebAssembly prestazioni in fase di esecuzione con un particolare interesse per il rendering dell'interfaccia utente complesso e la serializzazione JSON. Nei test delle prestazioni, Blazor WebAssembly in .NET 5 è più veloce da due a tre volte per la maggior parte degli scenari. Per altre informazioni, vedere [ASP.NET Blog: aggiornamenti ASP.NET Core in .NET 5 Release Candidate 1](https://devblogs.microsoft.com/aspnet/asp-net-core-updates-in-net-5-release-candidate-1/#blazor-webassembly-performance-improvements).
 
@@ -328,7 +328,7 @@ Nell'esempio seguente viene illustrato come specificare specifici dell'endpoint 
 
 Indicazione nome server (SNI) è un'estensione TLS per includere un dominio virtuale come parte della negoziazione SSL. Ciò significa che il nome di dominio virtuale, o un nome host, può essere usato per identificare l'endpoint di rete.
 
-## <a name="performance-improvements"></a>Miglioramenti delle prestazioni
+## <a name="performance-improvements"></a>Miglioramenti alle prestazioni
 
 ### <a name="http2"></a>HTTP/2
 
@@ -361,7 +361,7 @@ Prima di .NET 5,0, la compilazione e la pubblicazione di un *Dockerfile* per un'
 
 ### <a name="azure-active-directory-authentication-with-microsoftno-locidentityweb"></a>Azure Active Directory l'autenticazione con Microsoft. Identity . Web
 
-I modelli di progetto ASP.NET Core ora si integrano con <xref:Microsoft.Identity.Web?displayProperty=fullName> per gestire l'autenticazione con la [directory delle attività di Azure](/azure/active-directory/fundamentals/active-directory-whatis) (Azure ad). [Microsoft. Identity . Il pacchetto Web](https://www.nuget.org/packages/Microsoft.Identity.Web/) fornisce:
+I modelli di progetto ASP.NET Core ora si integrano con <xref:Microsoft.Identity.Web?displayProperty=fullName> per gestire l'autenticazione con [Azure Active Directory](/azure/active-directory/fundamentals/active-directory-whatis) (Azure ad). [Microsoft. Identity . Il pacchetto Web](https://www.nuget.org/packages/Microsoft.Identity.Web/) fornisce:
 
 * Un'esperienza migliore per l'autenticazione tramite Azure AD.
 * Un modo più semplice per accedere alle risorse di Azure per conto degli utenti, tra cui [Microsoft Graph](/graph/overview). Vedere [Microsoft. Identity . Web Sample](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2), che inizia con un account di accesso di base e passa attraverso il multi-tenant, usando le API di Azure, usando Microsoft Graph e proteggendo le proprie API. `Microsoft.Identity.Web` è disponibile insieme a .NET 5.

@@ -1,7 +1,7 @@
 ---
 title: Introduzione alle Razor pagine ASP.NET Core
 author: Rick-Anderson
-description: Informazioni Razor sul modo in cui le pagine ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina della codifica rispetto all'utilizzo di MVC
+description: Spiega in che modo Razor le pagine in ASP.NET Core rendono più semplici e più produttivi gli scenari incentrati sulla pagina del codice rispetto all'uso di MVC
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 02/12/2020
@@ -18,16 +18,15 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/index
-ms.openlocfilehash: 89e06d00e9312a428c4e164b0dc60527fe12d904
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: bc5f3c85d7ace120dec8369f4550a097b4f258ce
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94430874"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95417643"
 ---
 # <a name="introduction-to-no-locrazor-pages-in-aspnet-core"></a>Introduzione alle Razor pagine ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
 
 Di [Rick Anderson](https://twitter.com/RickAndMSFT) e [Ryan Nowak](https://github.com/rynowak)
 
@@ -39,19 +38,43 @@ Questo documento fornisce un'introduzione alle Razor pagine. Non è un'esercitaz
 
 ## <a name="prerequisites"></a>Prerequisiti
 
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
 ---
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vs-5.0.md)]
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-5.0.md)]
+
+# <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)]
+
+---
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 <a name="rpvs17"></a>
 
@@ -73,7 +96,7 @@ Per istruzioni dettagliate su come creare un progetto di pagine, vedere [Introdu
 
 ## <a name="no-locrazor-pages"></a>Razor Pagine
 
-Razor Le pagine sono abilitate in *Startup.cs* :
+Razor Le pagine sono abilitate in *Startup.cs*:
 
 [!code-csharp[](index/3.0sample/RazorPagesIntro/Startup.cs?name=snippet_Startup&highlight=12,36)]
 
@@ -83,11 +106,11 @@ Si consideri una pagina di base: <a name="OnGet"></a>
 
 Il codice precedente ha un aspetto molto simile a quello di un [ Razor file di visualizzazione](xref:tutorials/first-mvc-app/adding-view) usato in un'app ASP.NET Core con i controller e le visualizzazioni. Ciò che lo rende diverso è la [`@page`](xref:mvc/views/razor#page) direttiva. `@page` trasforma il file in un'azione MVC, ovvero gestisce le richieste direttamente, senza passare attraverso un controller. `@page` deve essere la prima Razor direttiva in una pagina. `@page` influiscono sul comportamento di altri [Razor](xref:mvc/views/razor) costrutti. Razor I nomi file delle pagine hanno un suffisso *. cshtml* .
 
-Nei due file seguenti viene visualizzata una pagina simile che usa una classe `PageModel`. Il file *Pages/Index2.cshtml* :
+Nei due file seguenti viene visualizzata una pagina simile che usa una classe `PageModel`. Il file *Pages/Index2.cshtml*:
 
 [!code-cshtml[](index/3.0sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
-Il modello di pagina *Pages/Index2.cshtml.cs* :
+Il modello di pagina *Pages/Index2.cshtml.cs*:
 
 [!code-csharp[](index/3.0sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
@@ -125,11 +148,11 @@ Il contesto del database:
 
 [!code-csharp[](index/3.0sample/RazorPagesContacts/Data/CustomerDbContext.cs)]
 
-Il file di visualizzazione *Pages/Create.cshtml* :
+Il file di visualizzazione *Pages/Create.cshtml*:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
-Il modello di pagina *Pages/Create.cshtml.cs* :
+Il modello di pagina *Pages/Create.cshtml.cs*:
 
 [!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_ALL)]
 
@@ -163,11 +186,11 @@ Verificare se sono presenti errori di convalida.
 * Se non sono presenti errori, salvare i dati e reindirizzare.
 * Se sono presenti errori, visualizzare di nuovo la pagina con i messaggi di convalida. In molti casi, gli errori di convalida vengono rilevati nel client e non vengono mai inviati al server.
 
-Il file di visualizzazione *Pages/Create.cshtml* :
+Il file di visualizzazione *Pages/Create.cshtml*:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
-Il codice HTML sottoposto a rendering da *pages/create. cshtml* :
+Il codice HTML sottoposto a rendering da *pages/create. cshtml*:
 
 [!code-html[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
 
@@ -216,7 +239,7 @@ Esaminando il file di visualizzazione *pages/create. cshtml* :
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml)]
 
-La classe `PageModel` associata ( *Index.cshtml.cs* ):
+La classe `PageModel` associata (*Index.cshtml.cs*):
 
 [!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet)]
 
@@ -224,7 +247,7 @@ Il file *index. cshtml* contiene il markup seguente:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=21)]
 
-L' `<a /a>` [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usato l' `asp-route-{value}` attributo per generare un collegamento alla pagina di modifica. Il collegamento contiene i dati della route con l'ID contatto. Ad esempio, `https://localhost:5001/Edit/1` Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file.
+L' `<a /a>` [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usato l' `asp-route-{value}` attributo per generare un collegamento alla pagina di modifica. Il collegamento contiene i dati della route con l'ID contatto. Ad esempio: `https://localhost:5001/Edit/1`. Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file.
 
 Il file *index. cshtml* contiene il markup per la creazione di un pulsante Delete per ogni contatto del cliente:
 
@@ -358,7 +381,7 @@ Le pagine funzionano con tutte le funzionalità del Razor motore di visualizzazi
 
 La pagina verrà ora riorganizzata in modo da usufruire di alcune di queste funzionalità.
 
-Aggiungere una [pagina di layout](xref:mvc/views/layout) a *Pages/Shared/_Layout.cshtml* :
+Aggiungere una [pagina di layout](xref:mvc/views/layout) a *Pages/Shared/_Layout.cshtml*:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Shared/_Layout2.cshtml?hightlight=12)]
 
@@ -370,7 +393,7 @@ Il [layout](xref:mvc/views/layout):
 
 Per ulteriori informazioni, vedere [pagina layout](xref:mvc/views/layout).
 
-La proprietà [Layout](xref:mvc/views/layout#specifying-a-layout) proprietà viene impostata in *Pages/_ViewStart.cshtml* :
+La proprietà [Layout](xref:mvc/views/layout#specifying-a-layout) proprietà viene impostata in *Pages/_ViewStart.cshtml*:
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
@@ -382,7 +405,7 @@ Si consiglia di **non** inserire il file di layout nella cartella *Views/Shared*
 
 Visualizza la ricerca da una Razor pagina include la cartella *pagine* . I layout, i modelli e i parziali utilizzati con i controller MVC e le Razor visualizzazioni convenzionali *funzionano semplicemente*.
 
-Aggiungere un file *Pages/_ViewImports.cshtml* :
+Aggiungere un file *Pages/_ViewImports.cshtml*:
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
@@ -396,7 +419,7 @@ La `@namespace` direttiva impostata in una pagina:
 
 La `@namespace` direttiva imposta lo spazio dei nomi per la pagina. La direttiva `@model` non deve necessariamente includere lo spazio dei nomi.
 
-Se la direttiva `@namespace` è contenuta in *_ViewImports.cshtml* , lo spazio dei nomi specificato indica il prefisso per lo spazio dei nomi generato nella pagina che importa la direttiva `@namespace`. Il resto dello spazio dei nomi generato (la parte del suffisso) è il percorso relativo separato dal punto tra la cartella contenente *_Viewimports.cshtml* e la cartella contenente la pagina.
+Se la direttiva `@namespace` è contenuta in *_ViewImports.cshtml*, lo spazio dei nomi specificato indica il prefisso per lo spazio dei nomi generato nella pagina che importa la direttiva `@namespace`. Il resto dello spazio dei nomi generato (la parte del suffisso) è il percorso relativo separato dal punto tra la cartella contenente *_Viewimports.cshtml* e la cartella contenente la pagina.
 
 Ad esempio, la classe `PageModel`*Pages/Customers/Edit.cshtml.cs* imposta in modo esplicito lo spazio dei nomi:
 
@@ -420,7 +443,7 @@ Il file di visualizzazione *pages/create. cshtml* aggiornato con *_ViewImports. 
 
 Nel codice precedente, il *_ViewImports. cshtml* ha importato lo spazio dei nomi e gli helper tag. Il file di layout ha importato i file JavaScript.
 
-Il [ Razor progetto di avvio pagine](#rpvs17) contiene le *pagine/_ValidationScriptsPartial. cshtml* , che consente di associare la convalida lato client.
+Il [ Razor progetto di avvio pagine](#rpvs17) contiene le *pagine/_ValidationScriptsPartial. cshtml*, che consente di associare la convalida lato client.
 
 Per altre informazioni sulle visualizzazioni parziali, vedere <xref:mvc/views/partial>.
 
@@ -444,19 +467,19 @@ L'applicazione ha la struttura di file o cartella seguente:
     * *Edit.cshtml*
     * *Index.cshtml*
 
-Le pagine *pages/Customers/create. cshtml* e *pages/Customers/Edit. cshtml* reindirizza a *pages/Customers/index. cshtml* dopo l'esito positivo. La stringa `./Index` è un nome di pagina relativo usato per accedere alla pagina precedente. Viene usato per generare gli URL nella pagina *pages/Customers/index. cshtml* . Esempio:
+Le pagine *pages/Customers/create. cshtml* e *pages/Customers/Edit. cshtml* reindirizza a *pages/Customers/index. cshtml* dopo l'esito positivo. La stringa `./Index` è un nome di pagina relativo usato per accedere alla pagina precedente. Viene usato per generare gli URL nella pagina *pages/Customers/index. cshtml* . Ad esempio:
 
 * `Url.Page("./Index", ...)`
 * `<a asp-page="./Index">Customers Index Page</a>`
 * `RedirectToPage("./Index")`
 
-Il nome della pagina assoluta `/Index` viene usato per generare gli URL nella pagina *pages/index. cshtml* . Esempio:
+Il nome della pagina assoluta `/Index` viene usato per generare gli URL nella pagina *pages/index. cshtml* . Ad esempio:
 
 * `Url.Page("/Index", ...)`
 * `<a asp-page="/Index">Home Index Page</a>`
 * `RedirectToPage("/Index")`
 
-Il nome della pagina è il percorso alla pagina dalla cartella radice */Pages* , inclusa una barra iniziale `/`, ad esempio `/Index`. Gli esempi di generazione di URL precedenti offrono opzioni avanzate e funzionalità funzionali rispetto a un URL a livello di codice. La generazione di URL usa il [routing](xref:mvc/controllers/routing) ed è in grado di generare e codificare i parametri in base al modo in cui la route è definita nel percorso di destinazione.
+Il nome della pagina è il percorso alla pagina dalla cartella radice */Pages*, inclusa una barra iniziale `/`, ad esempio `/Index`. Gli esempi di generazione di URL precedenti offrono opzioni avanzate e funzionalità funzionali rispetto a un URL a livello di codice. La generazione di URL usa il [routing](xref:mvc/controllers/routing) ed è in grado di generare e codificare i parametri in base al modo in cui la route è definita nel percorso di destinazione.
 
 La generazione di URL per le pagine supporta i nomi relativi. Nella tabella seguente viene illustrata la pagina di indice selezionata utilizzando `RedirectToPage` parametri diversi in *pages/Customers/create. cshtml*.
 
@@ -555,7 +578,7 @@ Il modello di pagina:
 
 [!code-csharp[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 
-Il codice precedente usa *metodi gestore denominati*. I metodi gestore denominati vengono creati usando il testo che nel nome segue `On<HTTP Verb>` e precede `Async` (se presente). Nell'esempio precedente i metodi della pagina sono OnPost **JoinList** Async e OnPost **JoinListUC** Async. Rimuovendo *OnPost* e *Async* , i nomi dei gestori sono `JoinList` e `JoinListUC`.
+Il codice precedente usa *metodi gestore denominati*. I metodi gestore denominati vengono creati usando il testo che nel nome segue `On<HTTP Verb>` e precede `Async` (se presente). Nell'esempio precedente i metodi della pagina sono OnPost **JoinList** Async e OnPost **JoinListUC** Async. Rimuovendo *OnPost* e *Async*, i nomi dei gestori sono `JoinList` e `JoinListUC`.
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
 
@@ -622,16 +645,6 @@ Aggiungere <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBu
 
 ::: moniker range="< aspnetcore-3.0"
 
-Di [Rick Anderson](https://twitter.com/RickAndMSFT) e [Ryan Nowak](https://github.com/rynowak)
-
-Razor Pages è un nuovo aspetto di ASP.NET Core MVC che rende più semplici e più produttivi gli scenari di codifica della pagina.
-
-Se si sta cercando un'esercitazione in cui si usa l'approccio Model-View-Controller, vedere [Introduzione ad ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
-
-Questo documento fornisce un'introduzione alle Razor pagine. Non è un'esercitazione dettagliata. Se alcune delle sezioni sono troppo avanzate, vedere [Introduzione alle Razor pagine](xref:tutorials/razor-pages/razor-pages-start). Per una panoramica di ASP.NET Core, vedere [Introduzione a ASP.NET Core](xref:index).
-
-## <a name="prerequisites"></a>Prerequisiti
-
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 [!INCLUDE[](~/includes/net-core-prereqs-vs2019-2.2.md)]
@@ -668,7 +681,7 @@ Eseguire `dotnet new webapp` dalla riga di comando.
 
 ## <a name="no-locrazor-pages"></a>Razor Pagine
 
-Razor Le pagine sono abilitate in *Startup.cs* :
+Razor Le pagine sono abilitate in *Startup.cs*:
 
 [!code-csharp[](index/sample/RazorPagesIntro/Startup.cs?name=snippet_Startup)]
 
@@ -678,11 +691,11 @@ Si consideri una pagina di base: <a name="OnGet"></a>
 
 Il codice precedente ha un aspetto molto simile a quello di un [ Razor file di visualizzazione](xref:tutorials/first-mvc-app/adding-view) usato in un'app ASP.NET Core con i controller e le visualizzazioni. Ciò che lo differenzia è la direttiva `@page`. `@page` trasforma il file in un'azione MVC, ovvero gestisce le richieste direttamente, senza passare attraverso un controller. `@page` deve essere la prima Razor direttiva in una pagina. `@page` influiscono sul comportamento di altri Razor costrutti.
 
-Nei due file seguenti viene visualizzata una pagina simile che usa una classe `PageModel`. Il file *Pages/Index2.cshtml* :
+Nei due file seguenti viene visualizzata una pagina simile che usa una classe `PageModel`. Il file *Pages/Index2.cshtml*:
 
 [!code-cshtml[](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
-Il modello di pagina *Pages/Index2.cshtml.cs* :
+Il modello di pagina *Pages/Index2.cshtml.cs*:
 
 [!code-csharp[](index/sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
@@ -718,11 +731,11 @@ Il contesto del database:
 
 [!code-csharp[](index/sample/RazorPagesContacts/Data/AppDbContext.cs)]
 
-Il file di visualizzazione *Pages/Create.cshtml* :
+Il file di visualizzazione *Pages/Create.cshtml*:
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Create.cshtml)]
 
-Il modello di pagina *Pages/Create.cshtml.cs* :
+Il modello di pagina *Pages/Create.cshtml.cs*:
 
 [!code-csharp[](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_ALL)]
 
@@ -768,11 +781,11 @@ Razor Le pagine, per impostazione predefinita, associano proprietà solo con non
 
 [!INCLUDE[](~/includes/bind-get.md)]
 
-La home page ( *Index.cshtml* ):
+La home page (*Index.cshtml*):
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml)]
 
-La classe `PageModel` associata ( *Index.cshtml.cs* ):
+La classe `PageModel` associata (*Index.cshtml.cs*):
 
 [!code-csharp[](index/sample/RazorPagesContacts/Pages/Index.cshtml.cs)]
 
@@ -780,9 +793,9 @@ Il file *Index.cshtml* contiene il markup seguente per creare un collegamento di
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
-L' `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usato l' `asp-route-{value}` attributo per generare un collegamento alla pagina di modifica. Il collegamento contiene i dati della route con l'ID contatto. Ad esempio, `https://localhost:5001/Edit/1` Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file. Gli helper tag sono abilitati da `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+L' `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) ha usato l' `asp-route-{value}` attributo per generare un collegamento alla pagina di modifica. Il collegamento contiene i dati della route con l'ID contatto. Ad esempio: `https://localhost:5001/Edit/1`. Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato server di partecipare alla creazione e al rendering di elementi HTML nei Razor file. Gli helper tag sono abilitati da `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
-Il file *Pages/Edit.cshtml* :
+Il file *Pages/Edit.cshtml*:
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
 
@@ -792,7 +805,7 @@ La prima riga contiene la direttiva `@page "{id:int}"`. Il vincolo di routing `"
 @page "{id:int?}"
 ```
 
-Il file *Pages/Edit.cshtml.cs* :
+Il file *Pages/Edit.cshtml.cs*:
 
 [!code-csharp[](index/sample/RazorPagesContacts/Pages/Edit.cshtml.cs)]
 
@@ -874,11 +887,11 @@ Non è necessario scrivere codice per la [convalida antifalsificazione](xref:sec
 
 ## <a name="using-layouts-partials-templates-and-tag-helpers-with-no-locrazor-pages"></a>Uso di layout, parti parziali, modelli e helper tag con Razor pagine
 
-Le pagine funzionano con tutte le funzionalità del Razor motore di visualizzazione. Layout, parti parziali, modelli, helper tag, *_ViewStart. cshtml* , *_ViewImports. cshtml* funzionano esattamente come per le Razor visualizzazioni convenzionali.
+Le pagine funzionano con tutte le funzionalità del Razor motore di visualizzazione. Layout, parti parziali, modelli, helper tag, *_ViewStart. cshtml*, *_ViewImports. cshtml* funzionano esattamente come per le Razor visualizzazioni convenzionali.
 
 La pagina verrà ora riorganizzata in modo da usufruire di alcune di queste funzionalità.
 
-Aggiungere una [pagina di layout](xref:mvc/views/layout) a *Pages/Shared/_Layout.cshtml* :
+Aggiungere una [pagina di layout](xref:mvc/views/layout) a *Pages/Shared/_Layout.cshtml*:
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
 
@@ -889,7 +902,7 @@ Il [layout](xref:mvc/views/layout):
 
 Vedere l'articolo sulla [pagina Layout](xref:mvc/views/layout) per altre informazioni.
 
-La proprietà [Layout](xref:mvc/views/layout#specifying-a-layout) proprietà viene impostata in *Pages/_ViewStart.cshtml* :
+La proprietà [Layout](xref:mvc/views/layout#specifying-a-layout) proprietà viene impostata in *Pages/_ViewStart.cshtml*:
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
@@ -901,7 +914,7 @@ Si consiglia di **non** inserire il file di layout nella cartella *Views/Shared*
 
 Visualizza la ricerca da una Razor pagina include la cartella *pagine* . I layout, i modelli e i parziali utilizzati con i controller MVC e le Razor visualizzazioni convenzionali *funzionano semplicemente*.
 
-Aggiungere un file *Pages/_ViewImports.cshtml* :
+Aggiungere un file *Pages/_ViewImports.cshtml*:
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
@@ -915,7 +928,7 @@ Quando la direttiva `@namespace` viene usata in modo esplicito in una pagina:
 
 La direttiva imposta lo spazio dei nomi per la pagina. La direttiva `@model` non deve necessariamente includere lo spazio dei nomi.
 
-Se la direttiva `@namespace` è contenuta in *_ViewImports.cshtml* , lo spazio dei nomi specificato indica il prefisso per lo spazio dei nomi generato nella pagina che importa la direttiva `@namespace`. Il resto dello spazio dei nomi generato (la parte del suffisso) è il percorso relativo separato dal punto tra la cartella contenente *_Viewimports.cshtml* e la cartella contenente la pagina.
+Se la direttiva `@namespace` è contenuta in *_ViewImports.cshtml*, lo spazio dei nomi specificato indica il prefisso per lo spazio dei nomi generato nella pagina che importa la direttiva `@namespace`. Il resto dello spazio dei nomi generato (la parte del suffisso) è il percorso relativo separato dal punto tra la cartella contenente *_Viewimports.cshtml* e la cartella contenente la pagina.
 
 Ad esempio, la classe `PageModel`*Pages/Customers/Edit.cshtml.cs* imposta in modo esplicito lo spazio dei nomi:
 
@@ -937,7 +950,7 @@ Il file di visualizzazione *Pages/Create.cshtml* aggiornato:
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/Create.cshtml?highlight=2)]
 
-Il [ Razor progetto di avvio pagine](#rpvs17) contiene le *pagine/_ValidationScriptsPartial. cshtml* , che consente di associare la convalida lato client.
+Il [ Razor progetto di avvio pagine](#rpvs17) contiene le *pagine/_ValidationScriptsPartial. cshtml*, che consente di associare la convalida lato client.
 
 Per altre informazioni sulle visualizzazioni parziali, vedere <xref:mvc/views/partial>.
 
@@ -960,15 +973,15 @@ L'applicazione ha la struttura di file o cartella seguente:
     * *Edit.cshtml*
     * *Index.cshtml*
 
-Le pagine *Pages/Customers/Create.cshtml* e *Pages/Customers/Edit.cshtml* reindirizzano a *Pages/Index.cshtml* dopo l'esecuzione. La stringa `/Index` fa parte dell'URI di accesso alla pagina precedente. La stringa `/Index` può essere usata per generare gli URI alla pagina *Pages/Index.cshtml*. Esempio:
+Le pagine *Pages/Customers/Create.cshtml* e *Pages/Customers/Edit.cshtml* reindirizzano a *Pages/Index.cshtml* dopo l'esecuzione. La stringa `/Index` fa parte dell'URI di accesso alla pagina precedente. La stringa `/Index` può essere usata per generare gli URI alla pagina *Pages/Index.cshtml*. Ad esempio:
 
 * `Url.Page("/Index", ...)`
 * `<a asp-page="/Index">My Index Page</a>`
 * `RedirectToPage("/Index")`
 
-Il nome della pagina è il percorso alla pagina dalla cartella radice */Pages* , inclusa una barra iniziale `/`, ad esempio `/Index`. Gli esempi di generazione di URL precedenti offrono opzioni e caratteristiche funzionali avanzate rispetto agli URL hardcoded. La generazione di URL usa il [routing](xref:mvc/controllers/routing) ed è in grado di generare e codificare i parametri in base al modo in cui la route è definita nel percorso di destinazione.
+Il nome della pagina è il percorso alla pagina dalla cartella radice */Pages*, inclusa una barra iniziale `/`, ad esempio `/Index`. Gli esempi di generazione di URL precedenti offrono opzioni e caratteristiche funzionali avanzate rispetto agli URL hardcoded. La generazione di URL usa il [routing](xref:mvc/controllers/routing) ed è in grado di generare e codificare i parametri in base al modo in cui la route è definita nel percorso di destinazione.
 
-La generazione di URL per le pagine supporta i nomi relativi. La tabella seguente indica quale pagina di indice viene selezionata con diversi parametri `RedirectToPage` da *Pages/Customers/Create.cshtml* :
+La generazione di URL per le pagine supporta i nomi relativi. La tabella seguente indica quale pagina di indice viene selezionata con diversi parametri `RedirectToPage` da *Pages/Customers/Create.cshtml*:
 
 | RedirectToPage(x)| Pagina |
 | ----------------- | ------------ |
@@ -1025,7 +1038,7 @@ Nel layout il titolo viene letto dal dizionario ViewData:
 
 ## <a name="tempdata"></a>TempData
 
-ASP.NET Core espone la proprietà [TempData](/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Controller_TempData) per un [controller](/dotnet/api/microsoft.aspnetcore.mvc.controller). Questa proprietà archivia i dati finché non viene letta. I metodi `Keep` e `Peek` possono essere usati per esaminare i dati senza eliminazione. `TempData` è utile per il reindirizzamento quando i dati sono necessari per più di una singola richiesta.
+ASP.NET Core espone la proprietà [TempData](/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata#Microsoft_AspNetCore_Mvc_Controller_TempData) per un [controller](/dotnet/api/microsoft.aspnetcore.mvc.controller). Questa proprietà archivia i dati finché non viene letta. I metodi `Keep` e `Peek` possono essere usati per esaminare i dati senza eliminazione. `TempData` è utile per il reindirizzamento quando i dati sono necessari per più di una singola richiesta.
 
 Il codice seguente imposta il valore di `Message` usando `TempData`:
 
@@ -1062,7 +1075,7 @@ Il modello di pagina:
 
 [!code-csharp[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 
-Il codice precedente usa *metodi gestore denominati*. I metodi gestore denominati vengono creati usando il testo che nel nome segue `On<HTTP Verb>` e precede `Async` (se presente). Nell'esempio precedente i metodi della pagina sono OnPost **JoinList** Async e OnPost **JoinListUC** Async. Rimuovendo *OnPost* e *Async* , i nomi dei gestori sono `JoinList` e `JoinListUC`.
+Il codice precedente usa *metodi gestore denominati*. I metodi gestore denominati vengono creati usando il testo che nel nome segue `On<HTTP Verb>` e precede `Async` (se presente). Nell'esempio precedente i metodi della pagina sono OnPost **JoinList** Async e OnPost **JoinListUC** Async. Rimuovendo *OnPost* e *Async*, i nomi dei gestori sono `JoinList` e `JoinListUC`.
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
 

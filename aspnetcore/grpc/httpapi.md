@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/httpapi
-ms.openlocfilehash: 45e2a1a5e6a9f00294147db769454b78c5b866e5
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 64d18114e2fe9ee10edb902a98a281c3cd9f3393
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059936"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95417578"
 ---
 # <a name="create-json-web-apis-from-grpc"></a>Create API Web JSON da gRPC
 
@@ -39,7 +39,7 @@ Di [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC è un modo moderno per comunicare tra le app. gRPC Usa HTTP/2, flusso, protobuf e contratti di messaggio per creare servizi in tempo reale ad alte prestazioni.
 
-Una limitazione di gRPC non è la piattaforma che può essere usata da tutte le piattaforme. I browser non supportano completamente HTTP/2, rendendo REST e JSON il modo principale per ottenere i dati nelle app del browser. Anche con i vantaggi offerti da gRPC, REST e JSON hanno un posto importante nelle app moderne. La compilazione di API Web gRPC * **e** _ JSON aggiunge un sovraccarico indesiderato per lo sviluppo di app.
+Una limitazione di gRPC non è la piattaforma che può essere usata da tutte le piattaforme. I browser non supportano completamente HTTP/2, rendendo REST e JSON il modo principale per ottenere i dati nelle app del browser. Anche con i vantaggi offerti da gRPC, REST e JSON hanno un posto importante nelle app moderne. La compilazione di API Web gRPC ***e** _ JSON aggiunge un sovraccarico indesiderato per lo sviluppo di app.
 
 Questo documento illustra come creare API Web JSON usando i servizi gRPC.
 
@@ -137,7 +137,7 @@ Si vuole misurare gli interessi degli sviluppatori nell'API HTTP di gRPC. Se l'A
 
 La differenza principale tra grpc-gateway e l'API HTTP gRPC è grpc-gateway usa la generazione del codice per creare un server proxy inverso. Il proxy inverso converte le chiamate RESTful in gRPC e quindi le invia al servizio gRPC.
 
-Per l'installazione e l'uso di grpc-gateway, vedere la [documentazione di grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/docs/usage.html).
+Per l'installazione e l'uso di grpc-gateway, vedere il [file Leggimi di grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/#grpc-gateway).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

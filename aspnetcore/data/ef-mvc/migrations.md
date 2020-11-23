@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: ab5be222416e61fcff90c5130ca91ad4a2a5c9b0
-ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
+ms.openlocfilehash: 25ada6e3a210ed830514e69da7d5212264b4b91e
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94674004"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95417565"
 ---
 # <a name="tutorial-part-5-apply-migrations-to-the-contoso-university-sample"></a>Esercitazione: parte 5, applicare le migrazioni all'esempio di Contoso University
 
@@ -53,9 +53,10 @@ Per lavorare con le migrazioni, è possibile usare la **console di gestione pacc
 
 ## <a name="drop-the-database"></a>Eliminare il database
 
-Eliminare il database. Usare **Esplora oggetti di SQL Server** (SSOX) o il comando CLI `database drop`:
+Installare EF Core Tools come [strumento globale](/ef/core/miscellaneous/cli/dotnet) ed eliminare il database:
 
  ```dotnetcli
+ dotnet tool install --global dotnet-ef
  dotnet ef database drop
  ```
 
@@ -76,11 +77,8 @@ Salvare le modifiche e compilare il progetto. Aprire una finestra di comando e p
 Immettere il comando seguente nella finestra Comando:
 
 ```dotnetcli
-dotnet tool install --global dotnet-ef
 dotnet ef migrations add InitialCreate
 ```
-
-`dotnet tool install --global dotnet-ef` viene installato `dotnet ef` come [strumento globale](/ef/core/miscellaneous/cli/dotnet).
 
 Nei comandi precedenti viene visualizzato un output simile al seguente:
 
