@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/index
-ms.openlocfilehash: 1f7c8cd0716f1ada3517add0d37a09e419f38774
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ca5fd8f746e759d1994dde9a2a0d5b5fd6c88d1a
+ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053306"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "95870451"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticazione dei provider Facebook, Google ed esterni in ASP.NET Core
 
 Da [Valeriy Novytskyy](https://github.com/01binary) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Questa esercitazione illustra come compilare un'app ASP.NET Core 3,0 che consente agli utenti di accedere usando OAuth 2,0 con le credenziali dei provider di autenticazione esterni.
+Questa esercitazione illustra come compilare un'app ASP.NET Core che consente agli utenti di accedere usando OAuth 2,0 con le credenziali dei provider di autenticazione esterni.
 
 I provider [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins)e [Microsoft](xref:security/authentication/microsoft-logins) sono descritti nelle sezioni seguenti e usano il progetto iniziale creato in questo articolo. Altri provider sono disponibili nei pacchetti di terze parti, ad esempio [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) e [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
@@ -45,11 +45,11 @@ Per degli esempi di come gli account di accesso ai social possano risultare util
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Creare un nuovo progetto.
-* Selezionare **Applicazione Web ASP.NET Core** e **Avanti** .
-* Specificare un **Nome progetto** e confermare o modificare il **Percorso** . Selezionare **Crea** .
-* Selezionare la versione più recente di ASP.NET Core nell'elenco a discesa ( **ASP.NET Core {X. Y}** ), quindi selezionare **applicazione Web** .
-* In **Autenticazione** selezionare **Modifica** e impostare l'autenticazione su **Account utente individuali** . Selezionare **OK** .
-* Nella finestra **Crea una nuova applicazione Web ASP.NET Core** selezionare **Crea** .
+* Selezionare **Applicazione Web ASP.NET Core** e **Avanti**.
+* Specificare un **Nome progetto** e confermare o modificare il **Percorso**. Selezionare **Crea**.
+* Selezionare la versione più recente di ASP.NET Core nell'elenco a discesa (**ASP.NET Core {X. Y}**), quindi selezionare **applicazione Web**.
+* In **Autenticazione** selezionare **Modifica** e impostare l'autenticazione su **Account utente individuali**. Selezionare **OK**.
+* Nella finestra **Crea una nuova applicazione Web ASP.NET Core** selezionare **Crea**.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -78,8 +78,8 @@ Per degli esempi di come gli account di accesso ai social possano risultare util
 
 ## <a name="apply-migrations"></a>Applicare le migrazioni
 
-* Eseguire l'app e selezionare il collegamento **Registra** .
-* Immettere l'indirizzo di posta elettronica e la password per il nuovo account, quindi selezionare **Registra** .
+* Eseguire l'app e selezionare il collegamento **Registra**.
+* Immettere l'indirizzo di posta elettronica e la password per il nuovo account, quindi selezionare **Registra**.
 * Seguire le istruzioni per applicare le migrazioni.
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
@@ -111,7 +111,7 @@ Quando ci si registra con un provider di accesso esterno, non si dispone di una 
 
 Per creare una password e accedere usando la posta elettronica impostata durante il processo di accesso con provider esterni:
 
-* Selezionare il collegamento **Salve &lt;alias di posta elettronica&gt;** nell'angolo superiore destro per passare alla vista **Gestione** .
+* Selezionare il collegamento **Salve &lt;alias di posta elettronica&gt;** nell'angolo superiore destro per passare alla vista **Gestione**.
 
 ![Vista Gestione dell'applicazione Web](index/_static/pass1a.png)
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 827045775d3bca3cd2c467b12172c53f5f9b0625
-ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
+ms.openlocfilehash: a8bbcbd6ac13ec064350a5b885423835baa4c4cc
+ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95417396"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "95870373"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>ASP.NET Core Blazor moduli e convalida
 
@@ -1064,9 +1064,13 @@ private class MyFieldClassProvider : FieldCssClassProvider
 > [!NOTE]
 > Il [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) pacchetto dispone di una versione più recente di *release candidate* in [NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). Continuare a usare il pacchetto *sperimentale* versione finale al momento. L'assembly del pacchetto potrebbe essere spostato nel Framework o nel runtime in una versione futura. Per ulteriori aggiornamenti, vedere il [repository GitHub degli annunci](https://github.com/aspnet/Announcements), il [repository GitHub DotNet/aspnetcore](https://github.com/dotnet/aspnetcore)o questa sezione dell'argomento.
 
-### <a name="compareproperty-attribute"></a>Attributo [CompareProperty]
+::: moniker range="< aspnetcore-5.0"
+
+### <a name="compareproperty-attribute"></a>Attributo `[CompareProperty]`
 
 <xref:System.ComponentModel.DataAnnotations.CompareAttribute>Non funziona bene con il <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente perché non associa il risultato della convalida a un membro specifico. Ciò può comportare un comportamento incoerente tra la convalida a livello di campo e quando l'intero modello viene convalidato in un invio. Il [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) pacchetto *sperimentale* introduce un attributo di convalida aggiuntivo, `ComparePropertyAttribute` , che aggira queste limitazioni. In un' Blazor applicazione, `[CompareProperty]` è una sostituzione diretta per l' [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute) attributo.
+
+::: moniker-end
 
 ### <a name="nested-models-collection-types-and-complex-types"></a>Modelli annidati, tipi di raccolta e tipi complessi
 

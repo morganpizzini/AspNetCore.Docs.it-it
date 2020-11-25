@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/request-features
-ms.openlocfilehash: d906474b0fd291cc4a68390f390b2bf538e21eff
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 88e97d88341789a76a79da8d92098c2e00396fe7
+ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053709"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "95870425"
 ---
 # <a name="request-features-in-aspnet-core"></a>Funzionalità di richiesta in ASP.NET Core
 
 Di [Steve Smith](https://ardalis.com/)
 
-L' `HttpContext` API usata dalle applicazioni e dal middleware per elaborare le richieste ha un livello di astrazione undernieth denominato *interfacce di funzionalità* . Ogni interfaccia della funzionalità fornisce un subset granulare delle funzionalità esposte da `HttpContext` . Queste interfacce possono essere aggiunte, modificate, sottoposto a Wrapped, sostituite o addirittura rimosse dal server o dal middleware, perché la richiesta viene elaborata senza dover implementare nuovamente l'intero `HttpContext` . Possono anche essere usati per simulare le funzionalità durante i test.
+L' `HttpContext` API utilizzata dalle applicazioni e dal middleware per elaborare le richieste dispone di un livello di astrazione sottostante denominato *interfacce di funzionalità*. Ogni interfaccia della funzionalità fornisce un subset granulare delle funzionalità esposte da `HttpContext` . Queste interfacce possono essere aggiunte, modificate, sottoposto a Wrapped, sostituite o addirittura rimosse dal server o dal middleware, perché la richiesta viene elaborata senza dover implementare nuovamente l'intero `HttpContext` . Possono anche essere usati per simulare le funzionalità durante i test.
 
 ## <a name="feature-collections"></a>Raccolte di funzionalità
 

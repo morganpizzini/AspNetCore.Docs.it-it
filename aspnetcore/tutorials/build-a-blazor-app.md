@@ -5,7 +5,7 @@ description: Creare un' Blazor app dettagliata.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2020
+ms.date: 11/24/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 1efcd167d9a45b2def271b239c9b360749d72791
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: a32655b8afedb73ad436f023d2f821b6920c2edd
+ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570185"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "95870438"
 ---
 # <a name="build-a-no-locblazor-todo-list-app"></a>Creare un' Blazor app elenco attività
 
@@ -85,6 +85,8 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
    <h3>Todo</h3>
    ```
 
+   Salvare il file.`Pages/Todo.razor`
+
 1. Aggiungere il componente `Todo` alla barra di spostamento.
 
    Il `NavMenu` componente ( `Shared/NavMenu.razor` ) viene usato nel layout dell'app. I layout sono componenti che consentono di evitare la duplicazione del contenuto nell'app.
@@ -99,7 +101,9 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
    </li>
    ```
 
-1. Compilare ed eseguire l'app eseguendo il `dotnet run` comando nella shell dei comandi dalla `TodoList` cartella. Visitare la nuova pagina todo in `https://localhost:5001/todo` per confermare la funzione del collegamento al `Todo` componente.
+   Salvare il file.`Shared/NavMenu.razor`
+
+1. Compilare ed eseguire l'app eseguendo il [`dotnet watch run`](/aspnet/core/tutorials/dotnet-watch) comando nella shell dei comandi dalla `TodoList` cartella. Visitare la nuova pagina todo in `https://localhost:5001/todo` per confermare che il collegamento di navigazione all'intestazione laterale per il `Todo` componente funziona.
 
 1. Aggiungere un `TodoItem.cs` file alla radice del progetto (la `TodoList` cartella) in cui archiviare una classe che rappresenta un elemento todo. Usare il codice C# seguente per la classe `TodoItem`:
 
@@ -116,7 +120,9 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo3.razor?highlight=12-13)]
 
-1. Arrestare l'app in esecuzione nella shell dei comandi. Molte shell dei comandi accettano il comando della tastiera <kbd>CTRL</kbd> + <kbd>c</kbd> per arrestare un'app. Ricompilare ed eseguire l'app con il `dotnet run` comando. Quando il **`Add todo`** pulsante è selezionato, non accade nulla perché un gestore eventi non è cablato fino al pulsante.
+1. Salvare il `TodoItem.cs` file e il `Pages/Todo.razor` file aggiornato. Nella shell dei comandi l'app viene ricompilata automaticamente quando i file vengono salvati. Il browser perde temporaneamente la connessione all'app e quindi ricarica la pagina quando viene ristabilita la connessione.
+
+1. Quando il **`Add todo`** pulsante è selezionato, non accade nulla perché un gestore eventi non è associato al pulsante.
 
 1. Aggiungere un metodo `AddTodo` al componente `Todo` e registrarlo per le selezioni con pulsante con l'attributo `@onclick`. Il metodo C# `AddTodo` viene chiamato quando viene selezionato il pulsante:
 
@@ -134,7 +140,7 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo6.razor?highlight=19-26)]
 
-1. Arrestare l'app in esecuzione nella shell dei comandi. Ricompilare ed eseguire l'app con il `dotnet run` comando. Aggiungere alcune voci todo all'elenco todo per testare il nuovo codice.
+1. Salvare il file.`Pages/ToDo.razor` L'app viene ricompilata automaticamente nella shell dei comandi. La pagina viene ricaricata nel browser dopo la riconnessione del browser all'app.
 
 1. Il testo del titolo per ogni elemento Todo può essere reso modificabile e una casella di controllo può consentire all'utente di tenere traccia degli elementi completati. Aggiungere un input casella di controllo per ogni elemento attività e associarne il valore alla proprietà `IsDone`. Modificare `@todo.Title` in un elemento `<input>` associato a `@todo.Title`:
 
@@ -150,7 +156,11 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/Todo1.razor)]
 
-1. Arrestare l'app in esecuzione nella shell dei comandi. Ricompilare ed eseguire l'app con il `dotnet run` comando. Aggiungere elementi attività per testare il nuovo codice.
+1. Salvare il file.`Pages/ToDo.razor` L'app viene ricompilata automaticamente nella shell dei comandi. La pagina viene ricaricata nel browser dopo la riconnessione del browser all'app.
+
+1. Aggiungere elementi attività per testare il nuovo codice.
+
+1. Al termine, arrestare l'app nella shell dei comandi. Molte shell dei comandi accettano il comando della tastiera <kbd>CTRL</kbd> + <kbd>c</kbd> per arrestare un'app.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
