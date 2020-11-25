@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 569744b2cbec062ec9abab9db1c94960f1f912e7
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: 9299ba685c95ced522fc725854a66252e67fc799
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570250"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "96024992"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Esercitazione: creare un'API Web con ASP.NET Core
 
@@ -34,7 +34,7 @@ Questa esercitazione illustra le nozioni di base della creazione di un'API Web c
 
 ::: moniker range=">= aspnetcore-5.0"
 
-In questa esercitazione verranno illustrate le procedure per:
+In questa esercitazione viene illustrato come:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -51,11 +51,11 @@ Questa esercitazione consente di creare l'API seguente:
 
 |API | Descrizione | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
-|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | Nessuno | Matrice di elementi attività|
-|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
+|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
+|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
 |`POST /api/TodoItems` | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
-|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
-|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Elimina un elemento &nbsp;&nbsp; | Nessuno | Nessuno|
+|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | nessuno |
+|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
 
 Il diagramma seguente visualizza la struttura dell'app.
 
@@ -121,7 +121,7 @@ Il diagramma seguente visualizza la struttura dell'app.
 
 * Nella finestra di dialogo **Configura nuova ASP.NET Core API Web** selezionare il **Framework di destinazione**.NET Core 5. x più recente. Selezionare **Avanti**.
 
-* Immettere *TodoApi* in **Nome progetto** , quindi selezionare **Crea**.
+* Immettere *TodoApi* in **Nome progetto**, quindi selezionare **Crea**.
 
   ![Finestra di dialogo di configurazione](first-web-api-mac/_static/2.png)
 
@@ -149,7 +149,7 @@ Premere CTRL+F5 per l'esecuzione senza il debugger.
   Visual Studio viene avviato:
 
 * Server Web IIS Express.
-* Il browser predefinito e passa a `https://localhost:<port>/https://localhost:5001/swagger/index.html` , dove `<port>` è un numero di porta scelto in modo casuale.
+* Il browser predefinito e passa a `https://localhost:<port>/swagger/index.html` , dove `<port>` è un numero di porta scelto in modo casuale.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -163,7 +163,7 @@ Selezionare **Esegui**  >  **Avvia debug** per avviare l'app. Visual Studio per 
 
 ---
 
-Viene visualizzata la pagina di spavalderia `/swagger/index.html` . Selezionare **Get**  >  **try it out**  >  **Execute (Esegui** ). Viene visualizzata la pagina:
+Viene visualizzata la pagina di spavalderia `/swagger/index.html` . Selezionare **Get**  >  **try it out**  >  **Execute (Esegui**). Viene visualizzata la pagina:
 
 * Comando [curl](https://curl.haxx.se/) per testare l'API weatherforecast.
 * URL per testare l'API WeatherForecast.
@@ -270,10 +270,8 @@ Il *contesto di database* è la classe principale che coordina le funzionalità 
 ### <a name="add-nuget-packages"></a>Aggiungere pacchetti NuGet
 
 * Dal menu **Strumenti** selezionare **Gestione pacchetti NuGet > Gestisci pacchetti NuGet per la soluzione**.
-* Selezionare la scheda **Sfoglia** e quindi immettere * * Microsoft.
-**EntityFrameworkCore. SqlServer** nella casella di ricerca.
+* Selezionare la scheda **Esplora** e quindi immettere **Microsoft.EntityFrameworkCore.SqlServer** nella casella di ricerca.
 <!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Delete this line at RTM -->
-* Selezionare la casella di controllo **Includi versione preliminare** in modo che sia disponibile la versione 5,0 RC. 
 * Nel riquadro sinistro selezionare **Microsoft. EntityFrameworkCore. SqlServer** .
 * Selezionare la casella di controllo **Progetto** nel riquadro di destra e quindi selezionare **Installa**.
 * Usare le istruzioni precedenti per aggiungere il pacchetto NuGet **Microsoft. EntityFrameworkCore. InMemory** .
@@ -330,8 +328,8 @@ Eseguire i comandi seguenti:
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool update -g Dotnet-aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet tool update -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
@@ -389,7 +387,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
 * Selezionare la scheda **Corpo**.
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)**.
@@ -418,7 +416,7 @@ Per eseguire il test in un post:
   ![Scheda Headers (Intestazioni) della console Postman](first-web-api/_static/3/create.png)
 
 * Impostare il metodo HTTP su `GET`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio, `https://localhost:5001/api/TodoItems/1`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio: `https://localhost:5001/api/TodoItems/1`.
 * Selezionare **Send** (Invia).
 
 ## <a name="examine-the-get-methods"></a>Esaminare i metodi GET
@@ -449,7 +447,7 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su **GET**.
-* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
+* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -560,7 +558,7 @@ Vedere [esercitazione: chiamare un'API web ASP.NET Core con JavaScript](xref:tut
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-In questa esercitazione verranno illustrate le procedure per:
+In questa esercitazione viene illustrato come:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -577,11 +575,11 @@ Questa esercitazione consente di creare l'API seguente:
 
 |API | Descrizione | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
-|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | Nessuno | Matrice di elementi attività|
-|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
+|`GET /api/TodoItems` | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
+|`GET /api/TodoItems/{id}` | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
 |`POST /api/TodoItems` | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
-|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
-|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Elimina un elemento &nbsp;&nbsp; | Nessuno | Nessuno|
+|`PUT /api/TodoItems/{id}` | Aggiorna un elemento esistente &nbsp; | Elemento attività | nessuno |
+|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
 
 Il diagramma seguente visualizza la struttura dell'app.
 
@@ -647,7 +645,7 @@ Il diagramma seguente visualizza la struttura dell'app.
 
 * Nella finestra di dialogo **Configura nuova ASP.NET Core API Web** selezionare il **Framework di destinazione**.NET Core 3. x più recente. Selezionare **Avanti**.
 
-* Immettere *TodoApi* in **Nome progetto** , quindi selezionare **Crea**.
+* Immettere *TodoApi* in **Nome progetto**, quindi selezionare **Crea**.
 
   ![Finestra di dialogo di configurazione](first-web-api-mac/_static/2.png)
 
@@ -880,7 +878,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
 * Selezionare la scheda **Corpo**.
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)**.
@@ -905,7 +903,7 @@ Questa esercitazione usa Postman per testare l'API Web.
   ![Scheda Headers (Intestazioni) della console Postman](first-web-api/_static/3/create.png)
 
 * Impostare il metodo HTTP su `GET`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio, `https://localhost:5001/api/TodoItems/1`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio: `https://localhost:5001/api/TodoItems/1`.
 * Selezionare **Send** (Invia).
 
 ## <a name="examine-the-get-methods"></a>Esaminare i metodi GET
@@ -936,7 +934,7 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su **GET**.
-* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
+* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -1048,7 +1046,7 @@ Vedere [esercitazione: chiamare un'API web ASP.NET Core con JavaScript](xref:tut
 
 ::: moniker range="< aspnetcore-3.0"
 
-In questa esercitazione verranno illustrate le procedure per:
+In questa esercitazione viene illustrato come:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -1068,11 +1066,11 @@ Questa esercitazione consente di creare l'API seguente:
 
 |API | Descrizione | Corpo della richiesta | Corpo della risposta |
 |--- | ---- | ---- | ---- |
-|GET /api/TodoItems | Ottiene tutti gli elementi attività | Nessuno | Matrice di elementi attività|
-|GET /api/TodoItems/{id} | Ottiene un elemento in base all'ID | Nessuno | Elemento attività|
+|GET /api/TodoItems | Ottiene tutti gli elementi attività | nessuno | Matrice di elementi attività|
+|GET /api/TodoItems/{id} | Ottiene un elemento in base all'ID | nessuno | Elemento attività|
 |POST /api/TodoItems | Aggiunge un nuovo elemento | Elemento attività | Elemento attività |
-|PUT /api/TodoItems/{id} | Aggiorna un elemento esistente &nbsp; | Elemento attività | Nessuno |
-|Elimina/api/TodoItems/{id} &nbsp;&nbsp; | Elimina un elemento &nbsp;&nbsp; | Nessuno | Nessuno|
+|PUT /api/TodoItems/{id} | Aggiorna un elemento esistente &nbsp; | Elemento attività | nessuno |
+|Elimina/api/TodoItems/{id} &nbsp;&nbsp; | Elimina un elemento &nbsp;&nbsp; | nessuno | nessuno|
 
 Il diagramma seguente visualizza la struttura dell'app.
 
@@ -1130,7 +1128,7 @@ Il diagramma seguente visualizza la struttura dell'app.
   
 * Nella finestra di dialogo **Configura nuova ASP.NET Core API Web** selezionare il **Framework di destinazione**.NET Core 2. x più recente. Selezionare **Avanti**.
 
-* Immettere *TodoApi* in **Nome progetto** , quindi selezionare **Crea**.
+* Immettere *TodoApi* in **Nome progetto**, quindi selezionare **Crea**.
 
   ![Finestra di dialogo di configurazione](first-web-api-mac/_static/2.png)
 
@@ -1338,7 +1336,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
   * Impostare il metodo HTTP su **GET**.
-  * Impostare l'URI della richiesta su `https://localhost:<port>/api/todo` . Ad esempio, `https://localhost:5001/api/todo`
+  * Impostare l'URI della richiesta su `https://localhost:<port>/api/todo` . Ad esempio: `https://localhost:5001/api/todo`.
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -1346,7 +1344,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 ## <a name="add-a-create-method-21"></a>Aggiungere un metodo Create 2,1
 
-Aggiungere il metodo `PostTodoItem` seguente in *Controllers/TodoController.cs* : 
+Aggiungere il metodo `PostTodoItem` seguente in *Controllers/TodoController.cs*: 
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
@@ -1364,7 +1362,7 @@ Il metodo `CreatedAtAction`:
 
 * Compilare il progetto.
 * In Postman impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/Todo` . Ad esempio, `https://localhost:5001/api/Todo`
+* Impostare l'URI su `https://localhost:<port>/api/Todo` . Ad esempio: `https://localhost:5001/api/Todo`.
 * Selezionare la scheda **Corpo**.
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)**.
@@ -1391,7 +1389,7 @@ Il metodo `CreatedAtAction`:
   ![Scheda Headers (Intestazioni) della console Postman](first-web-api/_static/pmc2.png)
 
 * Impostare il metodo su GET.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems/2` . Ad esempio, `https://localhost:5001/api/TodoItems/2`
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems/2` . Ad esempio: `https://localhost:5001/api/TodoItems/2`.
 * Selezionare **Send** (Invia).
 
 ## <a name="add-a-puttodoitem-method-21"></a>Aggiungere un metodo PutTodoItem 2,1
@@ -1454,7 +1452,7 @@ Aggiungere un file HTML denominato *index.html* alla directory *wwwroot*. Sostit
 
 [!code-html[](first-web-api/samples/2.2/TodoApi/wwwroot/index.html)]
 
-Aggiungere un file JavaScript con nome *site.js* alla directory *wwwroot*. Sostituirne il contenuto con il codice seguente:
+Aggiungere un file JavaScript con nome *site.js* alla directory *wwwroot*. Sostituire il contenuto con il codice seguente:
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_SiteJs)]
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 17f96be762ece8c59577445eb2ae630a8ee3b3dd
-ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
+ms.openlocfilehash: 0542e7556b82c22a8844f4d1f4b2ba852a420246
+ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/03/2020
-ms.locfileid: "93234478"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96025064"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-azure-active-directory"></a>Proteggere un' Blazor WebAssembly app ospitata ASP.NET Core con Azure Active Directory
 
@@ -35,7 +35,11 @@ Questo articolo descrive come creare un' [ Blazor WebAssembly app ospitata](xref
 ::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> Per Blazor WebAssembly le app create in Visual Studio configurate per supportare gli account in una directory organizzativa di AAD, Visual Studio non configura correttamente l'app nella generazione del progetto. Questa operazione verrà risolta in una versione futura di Visual Studio. Questo articolo illustra come creare l'app con il `dotnet new` comando interfaccia della riga di comando di .NET Core. Se si preferisce creare l'app con Visual Studio prima che l'IDE venga aggiornato per i modelli più recenti Blazor in ASP.NET Core 5,0, fare riferimento a ogni sezione di questo articolo e confermare o aggiornare la configurazione dell'app dopo che Visual Studio ha creato l'app.
+> Per Blazor WebAssembly le app create in Visual Studio configurate per il supporto di account in una directory organizzativa di AAD, Visual Studio non configura attualmente i progetti della soluzione o le registrazioni dell'app portale di Azure correttamente durante la generazione del progetto. Questa operazione verrà risolta in una versione futura di Visual Studio.
+>
+> Questo articolo illustra come creare la soluzione e le registrazioni del portale app di Azure con il comando dell'interfaccia della `dotnet new` riga di comando di .NET e creare manualmente le registrazioni dell'app nel portale di Azure.
+>
+> Se si preferisce creare la soluzione e le registrazioni di app di Azure con Visual Studio prima che l'IDE venga aggiornato, fare riferimento a **_ogni sezione di questo articolo_** e confermare o aggiornare le configurazioni delle app e le registrazioni delle app dopo la creazione della soluzione da parte di Visual Studio.
 
 ::: moniker-end
 
@@ -49,12 +53,12 @@ Seguire le istruzioni riportate nella [Guida introduttiva: configurare un tenant
 
 Seguire le istruzioni disponibili in [Guida introduttiva: registrare un'applicazione con la piattaforma di identità Microsoft](/azure/active-directory/develop/quickstart-register-app) e gli argomenti di Azure AAD successivi per registrare un'app AAD per l'app per le *API del server* e quindi eseguire le operazioni seguenti:
 
-1. In **Azure Active Directory**  >  **registrazioni app** selezionare **nuova registrazione** .
-1. Specificare un **nome** per l'app (ad esempio, **Blazor Server AAD** ).
-1. Scegliere i **tipi di conto supportati** . Per questa esperienza è possibile selezionare **solo gli account in questa directory aziendale** (tenant singolo).
+1. In **Azure Active Directory**  >  **registrazioni app** selezionare **nuova registrazione**.
+1. Specificare un **nome** per l'app (ad esempio, **Blazor Server AAD**).
+1. Scegliere i **tipi di conto supportati**. Per questa esperienza è possibile selezionare **solo gli account in questa directory aziendale** (tenant singolo).
 1. L' *app* per le API del server non richiede un **URI di reindirizzamento** in questo scenario, quindi lasciare l'elenco a discesa impostato su **Web** e non immettere un URI di reindirizzamento.
 1. Deselezionare la **Permissions**  >  casella di controllo autorizzazioni **Concedi amministratore per OpenID e autorizzazioni offline_access** .
-1. Selezionare **Registra** .
+1. Selezionare **Registra**.
 
 Registrare le seguenti informazioni:
 
@@ -64,15 +68,15 @@ Registrare le seguenti informazioni:
 
 In **autorizzazioni API** rimuovere l'autorizzazione **Microsoft Graph**  >  **utente. Read** perché l'app non richiede l'accesso o il profilo utente.
 
-In **esporre un'API** :
+In **esporre un'API**:
 
-1. Selezionare **Aggiungi un ambito** .
-1. Fai clic su **Salva e continua** .
+1. Selezionare **Aggiungi un ambito**.
+1. Fai clic su **Salva e continua**.
 1. Specificare un **nome** per l'ambito (ad esempio, `API.Access` ).
 1. Fornire un **nome visualizzato** per il consenso dell'amministratore, ad esempio `Access API` .
 1. Fornire una **Descrizione del consenso dell'amministratore** , ad esempio `Allows the app to access server app API endpoints.` .
-1. Verificare che lo **stato** sia impostato su **abilitato** .
-1. Selezionare **Aggiungi ambito** .
+1. Verificare che lo **stato** sia impostato su **abilitato**.
+1. Selezionare **Aggiungi ambito**.
 
 Registrare le seguenti informazioni:
 
@@ -85,52 +89,52 @@ Seguire le istruzioni disponibili in [Guida introduttiva: registrare un'applicaz
 
 ::: moniker range=">= aspnetcore-5.0"
 
-1. In **Azure Active Directory** > **registrazioni app** selezionare **nuova registrazione** .
-1. Specificare un **nome** per l'app (ad esempio, **Blazor client AAD** ).
-1. Scegliere i **tipi di conto supportati** . Per questa esperienza è possibile selezionare **solo gli account in questa directory aziendale** (tenant singolo).
+1. In **Azure Active Directory** > **registrazioni app** selezionare **nuova registrazione**.
+1. Specificare un **nome** per l'app (ad esempio, **Blazor client AAD**).
+1. Scegliere i **tipi di conto supportati**. Per questa esperienza è possibile selezionare **solo gli account in questa directory aziendale** (tenant singolo).
 1. Impostare l'elenco a discesa **URI di reindirizzamento** sull' **applicazione a pagina singola (Spa)** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione in Kestrel è la 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle *`Server`* proprietà dell'app nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un contrassegno viene visualizzato nella sezione [creare l'app](#create-the-app) per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
 1. Deselezionare la **Permissions** > casella di controllo autorizzazioni **Concedi amministratore per OpenID e autorizzazioni offline_access** .
-1. Selezionare **Registra** .
+1. Selezionare **Registra**.
 
 Registrare l' *`Client`* ID dell'applicazione App (client) (ad esempio, `4369008b-21fa-427c-abaa-9b53bf58e538` ).
 
-Nelle configurazioni della piattaforma di **autenticazione** > **Platform configurations** > **applicazione a pagina singola (Spa)** :
+Nelle configurazioni della piattaforma di **autenticazione** > **Platform configurations** > **applicazione a pagina singola (Spa)**:
 
 1. Verificare che l' **URI di reindirizzamento** di `https://localhost:{PORT}/authentication/login-callback` sia presente.
-1. Per **concessione implicita** , assicurarsi che le caselle di controllo per i **token di accesso** e i **token ID** **non** siano selezionate.
+1. Per **concessione implicita**, assicurarsi che le caselle di controllo per i **token di accesso** e i **token ID** **non** siano selezionate.
 1. Per questa esperienza sono accettabili le impostazioni predefinite rimanenti per l'app.
-1. Fare clic sul pulsante **Salva** .
+1. Fare clic sul pulsante **Salva**.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-1. In **Azure Active Directory** > **registrazioni app** selezionare **nuova registrazione** .
-1. Specificare un **nome** per l'app (ad esempio, **Blazor client AAD** ).
-1. Scegliere i **tipi di conto supportati** . Per questa esperienza è possibile selezionare **solo gli account in questa directory aziendale** (tenant singolo).
+1. In **Azure Active Directory** > **registrazioni app** selezionare **nuova registrazione**.
+1. Specificare un **nome** per l'app (ad esempio, **Blazor client AAD**).
+1. Scegliere i **tipi di conto supportati**. Per questa esperienza è possibile selezionare **solo gli account in questa directory aziendale** (tenant singolo).
 1. Lasciare l'elenco a discesa **URI di reindirizzamento** impostato su **Web** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione in Kestrel è la 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle *`Server`* proprietà dell'app nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un contrassegno viene visualizzato nella sezione [creare l'app](#create-the-app) per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
 1. Deselezionare la **Permissions** > casella di controllo autorizzazioni **Concedi amministratore per OpenID e autorizzazioni offline_access** .
-1. Selezionare **Registra** .
+1. Selezionare **Registra**.
 
 Registrare l' *`Client`* ID dell'applicazione App (client) (ad esempio, `4369008b-21fa-427c-abaa-9b53bf58e538` ).
 
-In **Authentication** > **configurazioni piattaforma** di autenticazione > **Web** :
+In **Authentication** > **configurazioni piattaforma** di autenticazione > **Web**:
 
 1. Verificare che l' **URI di reindirizzamento** di `https://localhost:{PORT}/authentication/login-callback` sia presente.
-1. Per **concessione implicita** , selezionare le caselle di controllo per i token di **accesso** e i **token ID** .
+1. Per **concessione implicita**, selezionare le caselle di controllo per i token di **accesso** e i **token ID**.
 1. Per questa esperienza sono accettabili le impostazioni predefinite rimanenti per l'app.
-1. Fare clic sul pulsante **Salva** .
+1. Fare clic sul pulsante **Salva**.
 
 ::: moniker-end
 
-In **autorizzazioni API** :
+In **autorizzazioni API**:
 
 1. Verificare che l'app disponga **Microsoft Graph**  >  autorizzazione **User. Read** .
-1. Selezionare **Aggiungi un'autorizzazione** seguita da **API personali** .
-1. Selezionare l' *app per le API server* dalla colonna **nome** (ad esempio, **Blazor Server AAD** ).
+1. Selezionare **Aggiungi un'autorizzazione** seguita da **API personali**.
+1. Selezionare l' *app per le API server* dalla colonna **nome** (ad esempio, **Blazor Server AAD**).
 1. Aprire l'elenco di **API** .
 1. Abilitare l'accesso all'API (ad esempio, `API.Access` ).
-1. Selezionare **Aggiungi autorizzazioni** .
+1. Selezionare **Aggiungi autorizzazioni**.
 1. Selezionare il pulsante **concedere il consenso dell'amministratore per {tenant Name}** . Selezionare **Sì** per confermare.
 
 ### <a name="create-the-app"></a>Creare l'app
@@ -263,7 +267,7 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
-### <a name="app-settings"></a>Impostazioni delle app
+### <a name="app-settings"></a>Impostazioni app
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -331,7 +335,7 @@ Esempio:
 
 ### <a name="weatherforecast-controller"></a>Controller WeatherForecast
 
-Il controller WeatherForecast ( *Controllers/WeatherForecastController. cs* ) espone un'API protetta con l' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo applicato al controller. È **importante** comprendere che:
+Il controller WeatherForecast (*Controllers/WeatherForecastController. cs*) espone un'API protetta con l' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo applicato al controller. È **importante** comprendere che:
 
 * L' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo in questo controller API è l'unico elemento che protegge questa API da accessi non autorizzati.
 * L' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo usato nell' Blazor WebAssembly app funge solo da hint per l'app che l'utente deve essere autorizzato affinché l'app funzioni correttamente.
@@ -444,7 +448,7 @@ builder.Services.AddMsalAuthentication(options =>
 > [!NOTE]
 > Il Blazor WebAssembly modello aggiunge automaticamente uno schema `api://` all'argomento Uri ID app passato nel `dotnet new` comando. Quando si genera un'app dal Blazor modello di progetto, verificare che il valore dell'ambito del token di accesso predefinito usi il valore URI dell'ID app personalizzato corretto specificato nell'portale di Azure o un valore con **uno** dei formati seguenti:
 >
-> * Quando il dominio del server di pubblicazione della directory è **attendibile** , l'ambito del token di accesso predefinito è in genere un valore simile all'esempio seguente, dove `API.Access` è il nome dell'ambito predefinito:
+> * Quando il dominio del server di pubblicazione della directory è **attendibile**, l'ambito del token di accesso predefinito è in genere un valore simile all'esempio seguente, dove `API.Access` è il nome dell'ambito predefinito:
 >
 >   ```csharp
 >   options.ProviderOptions.DefaultAccessTokenScopes.Add(
@@ -453,7 +457,7 @@ builder.Services.AddMsalAuthentication(options =>
 >
 >   Esaminare il valore per uno schema doppio ( `api://api://...` ). Se è presente uno schema doppio, rimuovere il primo `api://` schema dal valore.
 >
-> * Quando il dominio del server di pubblicazione della directory non è **attendibile** , l'ambito del token di accesso predefinito è in genere un valore simile all'esempio seguente, dove `API.Access` è il nome dell'ambito predefinito:
+> * Quando il dominio del server di pubblicazione della directory non è **attendibile**, l'ambito del token di accesso predefinito è in genere un valore simile all'esempio seguente, dove `API.Access` è il nome dell'ambito predefinito:
 >
 >   ```csharp
 >   options.ProviderOptions.DefaultAccessTokenScopes.Add(

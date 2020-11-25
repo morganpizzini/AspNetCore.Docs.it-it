@@ -20,12 +20,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: b4dcbe9536107cdc5b0342782abc4bad0b89a8dc
-ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
+ms.openlocfilehash: fa113a3e0a2a69fb4aa1318056dcfc6e261490f6
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/07/2020
-ms.locfileid: "94360928"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "96025026"
 ---
 # <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>Esercitazione: Introduzione alle Razor pagine in ASP.NET Core
 
@@ -79,7 +79,7 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 
     ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/5/np.png)
     
-1. Nella finestra di dialogo **Configura nuovo progetto** immettere `RazorPagesMovie` per **nome progetto**. È importante denominare il progetto *Razor PagesMovie* , inclusa la corrispondenza con le maiuscole, in modo che gli spazi dei nomi corrispondano quando si copia e incolla il codice di esempio.
+1. Nella finestra di dialogo **Configura nuovo progetto** immettere `RazorPagesMovie` per **nome progetto**. È importante denominare il progetto *Razor PagesMovie*, inclusa la corrispondenza con le maiuscole, in modo che gli spazi dei nomi corrispondano quando si copia e incolla il codice di esempio.
 
 1. Selezionare **Create**.
 
@@ -125,7 +125,7 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 1. Nella finestra di dialogo **Configura nuova applicazione Web** :
 
     1. Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
-    1. Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione** , selezionare la versione più recente di .NET 5. x.
+    1. Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione**, selezionare la versione più recente di .NET 5. x.
     1. Selezionare **Avanti**.
 
 1. Denominare il progetto *Razor PagesMovie* e selezionare **Create** .
@@ -225,7 +225,7 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 * Denominare il progetto **Razor PagesMovie**. È importante denominare il progetto *Razor PagesMovie* in modo che gli spazi dei nomi corrispondano quando si copia e incolla il codice.
   ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Selezionare **ASP.NET Core 3,1** nell'elenco a discesa, **applicazione Web** , quindi selezionare **Create** .
+* Selezionare **ASP.NET Core 3,1** nell'elenco a discesa, **applicazione Web**, quindi selezionare **Create** .
 
 ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/3/npx.png)
 
@@ -266,7 +266,7 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 * Nella finestra di dialogo **Configura nuova applicazione Web** :
 
   * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
-  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione** , selezionare la versione 3. x più recente.
+  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione**, selezionare la versione 3. x più recente.
 
   Selezionare **Avanti**.
 
@@ -371,7 +371,7 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 
   ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Selezionare **ASP.NET Core 2,2** nell'elenco a discesa, **applicazione Web** , quindi selezionare **Create** .
+* Selezionare **ASP.NET Core 2,2** nell'elenco a discesa, **applicazione Web**, quindi selezionare **Create** .
 
 ![nuova applicazione Web ASP.NET Core](razor-pages-start/_static/np_2_2.2.png)
 
@@ -410,7 +410,7 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 * Nella finestra di dialogo **Configura nuova applicazione Web** :
 
   * Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**.
-  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione** , selezionare la versione 2. x più recente.
+  * Se viene visualizzata un'opzione per la selezione di un **Framework di destinazione**, selezionare la versione 2. x più recente.
 
   Selezionare **Avanti**.
 
@@ -429,7 +429,6 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 * Premere CTRL+F5 per l'esecuzione senza il debugger.
 
   L'avvio dell'app con <kbd>CTRL + F5</kbd> (modalità non di debug) consente di apportare modifiche al codice, salvare il file, aggiornare il browser e visualizzare le modifiche apportate al codice. Molti sviluppatori preferiscono usare la modalità non di debug per avviare l'app rapidamente e visualizzare le modifiche.
-
 
   [!INCLUDE[](~/includes/trustCertVS.md)]
 

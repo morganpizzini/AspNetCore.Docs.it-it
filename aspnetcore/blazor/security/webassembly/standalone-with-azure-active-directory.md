@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: 4e8c22c56b7023301499fd273a9194b8c7b58f3d
-ms.sourcegitcommit: 45aa1c24c3fdeb939121e856282b00bdcf00ea55
+ms.openlocfilehash: 4f203e57fe69c3a14dc267c0693094fcefa3dd80
+ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93343710"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96024683"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-azure-active-directory"></a>Proteggere un' Blazor WebAssembly app autonoma ASP.NET Core con Azure Active Directory
 
@@ -35,7 +35,11 @@ Questo articolo illustra come creare un' [ Blazor WebAssembly app autonoma](xref
 ::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> Per Blazor WebAssembly le app create in Visual Studio configurate per supportare gli account in una directory organizzativa di AAD, Visual Studio non configura correttamente l'app nella generazione del progetto. Questa operazione verrà risolta in una versione futura di Visual Studio. Questo articolo illustra come creare l'app con il `dotnet new` comando interfaccia della riga di comando di .NET Core. Se si preferisce creare l'app con Visual Studio prima che l'IDE venga aggiornato per i modelli più recenti Blazor in ASP.NET Core 5,0, fare riferimento a ogni sezione di questo articolo e confermare o aggiornare la configurazione dell'app dopo che Visual Studio ha creato l'app.
+> Per le Blazor WebAssembly app create in Visual Studio configurate per il supporto di account in una directory organizzativa di AAD, Visual Studio non configura attualmente portale di Azure registrazioni dell'app correttamente durante la generazione del progetto. Questa operazione verrà risolta in una versione futura di Visual Studio.
+>
+> Questo articolo illustra come creare la soluzione e la registrazione del portale app di Azure con il `dotnet new` comando CLI .NET e creando manualmente la registrazione dell'app nel portale di Azure.
+>
+> Se si preferisce creare la soluzione e la registrazione di app di Azure con Visual Studio prima che l'IDE venga aggiornato, fare riferimento a **_ogni sezione di questo articolo_** e confermare o aggiornare la configurazione dell'app e la registrazione dell'app dopo che Visual Studio crea la soluzione.
 
 Registrare un'app AAD nell'area **Azure Active Directory** > **registrazioni app** del portale di Azure:
 
@@ -50,10 +54,10 @@ Registrare le seguenti informazioni:
 * ID applicazione (client) (ad esempio, `41451fa7-82d9-4673-8fa5-69eff5a761fd` )
 * ID directory (tenant) (ad esempio, `e86c78e2-8bb4-4c41-aefd-918e0565a45e` )
 
-Nelle configurazioni della piattaforma di **autenticazione** > **Platform configurations** > **applicazione a pagina singola (Spa)** :
+Nelle configurazioni della piattaforma di **autenticazione** > **Platform configurations** > **applicazione a pagina singola (Spa)**:
 
 1. Verificare che l' **URI di reindirizzamento** di `https://localhost:{PORT}/authentication/login-callback` sia presente.
-1. Per **concessione implicita** , assicurarsi che le caselle di controllo per i **token di accesso** e i **token ID** **non** siano selezionate.
+1. Per **concessione implicita**, assicurarsi che le caselle di controllo per i **token di accesso** e i **token ID** **non** siano selezionate.
 1. Per questa esperienza sono accettabili le impostazioni predefinite rimanenti per l'app.
 1. Fare clic sul pulsante **Salva**.
 
@@ -74,10 +78,10 @@ Registrare le seguenti informazioni:
 * ID applicazione (client) (ad esempio, `41451fa7-82d9-4673-8fa5-69eff5a761fd` )
 * ID directory (tenant) (ad esempio, `e86c78e2-8bb4-4c41-aefd-918e0565a45e` )
 
-In **Authentication** > **configurazioni piattaforma** di autenticazione > **Web** :
+In **Authentication** > **configurazioni piattaforma** di autenticazione > **Web**:
 
 1. Verificare che l' **URI di reindirizzamento** di `https://localhost:{PORT}/authentication/login-callback` sia presente.
-1. Per **concessione implicita** , selezionare le caselle di controllo per i token di **accesso** e i **token ID**.
+1. Per **concessione implicita**, selezionare le caselle di controllo per i token di **accesso** e i **token ID**.
 1. Per questa esperienza sono accettabili le impostazioni predefinite rimanenti per l'app.
 1. Fare clic sul pulsante **Salva**.
 

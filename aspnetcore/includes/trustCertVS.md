@@ -9,3 +9,5 @@ Verrà visualizzata la finestra di dialogo seguente:
 ![Finestra di dialogo Avviso di sicurezza](~/getting-started/_static/cert.png)
 
 Selezionare **Sì** se si accetta di considerare attendibile il certificato di sviluppo.
+
+[!INCLUDE[trust FF](~/includes/trust-ff.md)]
