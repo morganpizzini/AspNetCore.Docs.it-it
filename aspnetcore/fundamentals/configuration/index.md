@@ -5,7 +5,7 @@ description: Informazioni su come usare l'API di configurazione per configurare 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/23/2020
+ms.date: 11/24/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: c04dcc65f7518d2d8b32cdce7a7fbb756dd8ec3a
-ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
+ms.openlocfilehash: 97ee00dd37ed4eef1c013e0f45b598a79f3f260c
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95417539"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96035866"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configurazione in ASP.NET Core
 
@@ -108,20 +108,20 @@ Per informazioni sull'aggiunta di altri file di configurazione JSON, vedere [pro
 
 <a name="security"></a>
 
-## <a name="security-and-secret-manager"></a>Gestione della sicurezza e del segreto
+## <a name="security-and-user-secrets"></a>Sicurezza e segreti utente
 
 Linee guida sui dati di configurazione:
 
-_ Non archiviare mai le password o altri dati sensibili nel codice del provider di configurazione o nei file di configurazione di testo normale. Il [gestore del segreto](xref:security/app-secrets) può essere usato per archiviare i segreti in fase di sviluppo.
+_ Non archiviare mai le password o altri dati sensibili nel codice del provider di configurazione o nei file di configurazione di testo normale. Lo strumento di [gestione](xref:security/app-secrets) dei segreti può essere usato per archiviare i segreti in fase di sviluppo.
 * Non usare i segreti di produzione in ambienti di sviluppo o di test.
 * Specificare i segreti all'esterno del progetto in modo che non possano essere inavvertitamente inviati a un repository del codice sorgente.
 
-Per [impostazione predefinita](#default), [Secret Manager](xref:security/app-secrets) legge le impostazioni di configurazione dopo *appsettings.json* e *appSettings.* `Environment` *. JSON*.
+Per [impostazione predefinita](#default), l'origine di configurazione dei segreti utente viene registrata dopo le origini di configurazione JSON. Pertanto, le chiavi dei segreti utente hanno la precedenza sulle chiavi in *appsettings.json* e *appSettings.* `Environment` *. JSON*.
 
 Per ulteriori informazioni sull'archiviazione di password o altri dati sensibili:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets>: Include consigli sull'uso delle variabili di ambiente per archiviare dati riservati. Il gestore dei segreti USA il [provider di configurazione file](#fcp) per archiviare i segreti utente in un file JSON nel sistema locale.
+* <xref:security/app-secrets>: Include consigli sull'uso delle variabili di ambiente per archiviare dati riservati. Lo strumento Secret Manager usa il [provider di configurazione file](#fcp) per archiviare i segreti utente in un file JSON nel sistema locale.
 
 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) archivia in modo sicuro i segreti delle app ASP.NET Core. Per altre informazioni, vedere <xref:security/key-vault-configuration>.
 
@@ -129,7 +129,7 @@ Per ulteriori informazioni sull'archiviazione di password o altri dati sensibili
 
 ## <a name="environment-variables"></a>Variabili di ambiente
 
-Utilizzando la configurazione [predefinita](#default) , <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> carica la configurazione dalle coppie chiave-valore della variabile di ambiente dopo la lettura *appsettings.json* , *appSettings.* `Environment` *. JSON* e [gestione segreta](xref:security/app-secrets). Pertanto, i valori di chiave letti dall'ambiente eseguono l'override dei valori letti da *appsettings.json* , *appSettings.* `Environment` *. JSON* e gestione segreta.
+Utilizzando la configurazione [predefinita](#default) , <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> carica la configurazione dalle coppie chiave-valore della variabile di ambiente dopo la lettura *appsettings.json* , *appSettings.* `Environment` *. JSON* e [segreti utente](xref:security/app-secrets). Pertanto, i valori di chiave letti dall'ambiente eseguono l'override dei valori letti da *appsettings.json* , *appSettings.* `Environment` *. JSON* e segreti utente.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
@@ -243,7 +243,7 @@ Le variabili di ambiente impostate in *launchSettings.jssu* sostituiscono quelle
 Utilizzando la configurazione [predefinita](#default) , <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> carica la configurazione dalle coppie chiave-valore dell'argomento della riga di comando dopo le origini di configurazione seguenti:
 
 * *appsettings.json* e *appSettings*. `Environment` . file *JSON* .
-* [Segreti dell'app (gestione segreto)](xref:security/app-secrets) nell'ambiente di sviluppo.
+* [Segreti dell'app](xref:security/app-secrets) nell'ambiente di sviluppo.
 * Variabili di ambiente.
 
 Per [impostazione predefinita](#default), i valori di configurazione impostati nei valori di configurazione di override della riga di comando impostati con tutti gli altri provider di configurazione.
@@ -271,7 +271,7 @@ dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
 Valore chiave:
 
 * Deve seguire `=` oppure la chiave deve avere un prefisso `--` o `/` quando il valore segue uno spazio.
-* Non è obbligatorio se `=` si usa. Ad esempio: `MySetting=`.
+* Non è obbligatorio se `=` si usa. Ad esempio, `MySetting=`
 
 All'interno dello stesso comando, non combinare coppie chiave-valore dell'argomento della riga di comando che usano `=` con coppie chiave-valore che usano uno spazio.
 
@@ -355,7 +355,7 @@ La tabella seguente mostra i provider di configurazione disponibili per le app A
 | [Provider di configurazione file](#file-configuration-provider) | File INI, JSON e XML |
 | [Provider di configurazione chiave per file](#key-per-file-configuration-provider) | File della directory |
 | [Provider di configurazione della memoria](#memory-configuration-provider) | Raccolte in memoria |
-| [Gestione segreta](xref:security/app-secrets)  | File nella directory dei profili utente |
+| [Segreti utente](xref:security/app-secrets) | File nella directory dei profili utente |
 
 Le origini di configurazione vengono lette nell'ordine in cui sono specificati i provider di configurazione. Ordinare i provider di configurazione nel codice in base alle priorità per le origini di configurazione sottostanti richieste dall'app.
 
@@ -363,7 +363,7 @@ Una sequenza tipica di provider di configurazione è:
 
 1. *appsettings.json*
 1. *appSettings*. `Environment` . *JSON*
-1. [Gestione segreta](xref:security/app-secrets)
+1. [Segreti utente](xref:security/app-secrets)
 1. Variabili di ambiente che usano il [provider di configurazione delle variabili di ambiente](#evcp).
 1. Argomenti della riga di comando che usano il [provider di configurazione della riga di comando](#command-line-configuration-provider).
 
@@ -865,11 +865,11 @@ La configurazione seguente si applica alle app che usano l'[host Web](xref:funda
 * La configurazione dell'app viene fornita da:
   * *appsettings.json* utilizzando il [provider di configurazione file](#file-configuration-provider).
   * *appsettings.{Ambiente}.json* mediante il [provider di configurazione dei file](#file-configuration-provider).
-  * [Strumento di gestione dei segreti](xref:security/app-secrets) quando l'app viene eseguita nell'ambiente `Development` usando l'assembly di ingresso.
+  * [Segreti dell'utente](xref:security/app-secrets) quando l'app viene eseguita nell'ambiente `Development` usando l'assembly di ingresso.
   * Variabili di ambiente che usano il [provider di configurazione delle variabili di ambiente](#environment-variables-configuration-provider).
   * Argomenti della riga di comando che usano il [provider di configurazione della riga di comando](#command-line-configuration-provider).
 
-## <a name="security"></a>Security
+## <a name="security"></a>Sicurezza
 
 Per proteggere i dati di configurazione sensibili, adottare le pratiche seguenti:
 
@@ -880,7 +880,7 @@ Per proteggere i dati di configurazione sensibili, adottare le pratiche seguenti
 Per altre informazioni, vedere i seguenti argomenti:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets>: Include consigli sull'uso delle variabili di ambiente per archiviare dati riservati. Secret Manager usa il provider di configurazione dei file per archiviare i segreti utente in un file JSON nel sistema locale. Il provider di configurazione dei file è descritto più avanti in questo argomento.
+* <xref:security/app-secrets>: Include consigli sull'uso delle variabili di ambiente per archiviare dati riservati. Lo strumento Secret Manager usa il provider di configurazione file per archiviare i segreti utente in un file JSON nel sistema locale. Il provider di configurazione dei file è descritto più avanti in questo argomento.
 
 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) archivia in modo sicuro i segreti delle app ASP.NET Core. Per altre informazioni, vedere <xref:security/key-vault-configuration>.
 
@@ -983,15 +983,15 @@ La tabella seguente mostra i provider di configurazione disponibili per le app A
 | [Provider di configurazione file](#file-configuration-provider) | File (INI, JSON, XML) |
 | [Provider di configurazione KeyPerFile](#key-per-file-configuration-provider) | File della directory |
 | [Provider di configurazione della memoria](#memory-configuration-provider) | Raccolte in memoria |
-| [Segreti utente (Secret Manager)](xref:security/app-secrets) (argomenti *Sicurezza*) | File nella directory dei profili utente |
+| [Segreti utente](xref:security/app-secrets) (argomenti *sulla sicurezza* ) | File nella directory dei profili utente |
 
 Le origini di configurazione vengono lette nell'ordine in cui vengono specificati i rispetti provider di configurazione all'avvio. I provider di configurazione descritti in questo argomento sono descritti in ordine alfabetico, non nell'ordine in cui il codice li dispone. Ordinare i provider di configurazione nel codice in base alle priorità per le origini di configurazione sottostanti richieste dall'app.
 
 Una sequenza tipica di provider di configurazione è:
 
 1. File ( *appsettings.json* , *appSettings. { Environment}. JSON*, dove `{Environment}` è l'ambiente host corrente dell'app)
-1. [Azure Key Vault](xref:security/key-vault-configuration)
-1. [Segreti utente (Secret Manager)](xref:security/app-secrets) (solo nell'ambiente di sviluppo)
+1. [Insieme di credenziali chiave Azure](xref:security/key-vault-configuration)
+1. [Segreti utente](xref:security/app-secrets) (solo per l'ambiente di sviluppo)
 1. Variabili di ambiente
 1. Argomenti della riga di comando
 
@@ -1067,7 +1067,7 @@ Per attivare la configurazione della riga di comando, metodo di estensione <xref
 `CreateDefaultBuilder` carica anche:
 
 * Configurazione facoltativa da *appsettings.json* e *appSettings. { Environment} file JSON* .
-* [Segreti utente (Secret Manager)](xref:security/app-secrets) nell'ambiente di sviluppo.
+* [Segreti utente](xref:security/app-secrets) nell'ambiente di sviluppo.
 * Variabili di ambiente.
 
 `CreateDefaultBuilder` aggiunge il provider di configurazione della riga di comando per ultimo. Gli argomenti della riga di comando passati in fase di esecuzione sostituiscono la configurazione impostata dagli altri provider.
@@ -1148,7 +1148,7 @@ Per le app che usano i mapping di sostituzione, la chiamata a `CreateDefaultBuil
 
 Il dizionario dei mapping di sostituzione creato contiene i dati visualizzati nella tabella seguente.
 
-| Chiave       | Valore             |
+| Chiave       | valore             |
 | --------- | ----------------- |
 | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
@@ -1161,7 +1161,7 @@ dotnet run -CLKey1=value1 -CLKey2=value2
 
 Dopo aver eseguito il comando precedente, la configurazione contiene i valori mostrati nella tabella seguente.
 
-| Chiave               | Valore    |
+| Chiave               | valore    |
 | ----------------- | -------- |
 | `CommandLineKey1` | `value1` |
 | `CommandLineKey2` | `value2` |
@@ -1182,7 +1182,7 @@ Per attivare la configurazione delle variabili di ambiente, chiamare il metodo d
 
 * Configurazione delle app dalle variabili di ambiente senza prefisso chiamando `AddEnvironmentVariables` senza prefisso.
 * Configurazione facoltativa da *appsettings.json* e *appSettings. { Environment} file JSON* .
-* [Segreti utente (Secret Manager)](xref:security/app-secrets) nell'ambiente di sviluppo.
+* [Segreti utente](xref:security/app-secrets) nell'ambiente di sviluppo.
 * Argomenti della riga di comando.
 
 Il provider di configurazione delle variabili di ambiente viene chiamato dopo aver stabilito la configurazione dai segreti utente e dai file *appsettings*. La chiamata del provider in questa posizione consente alle variabili di ambiente lette in fase di esecuzione di sostituire la configurazione impostata dai segreti utente e dai file *appsettings*.
@@ -1342,7 +1342,7 @@ Per altre informazioni, vedere la sezione [Configurazione predefinita](#default-
 `CreateDefaultBuilder` carica anche:
 
 * Variabili di ambiente.
-* [Segreti utente (Secret Manager)](xref:security/app-secrets) nell'ambiente di sviluppo.
+* [Segreti utente](xref:security/app-secrets) nell'ambiente di sviluppo.
 * Argomenti della riga di comando.
 
 Il provider di configurazione JSON viene stabilito per primo. I segreti utente, le variabili di ambiente e gli argomenti della riga di comando sostituiscono quindi la configurazione impostata dai file *appsettings*.
@@ -1665,7 +1665,7 @@ Il <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> supporta 
 
 Prendere in considerazione le chiavi di configurazione e i valori indicati nella tabella seguente.
 
-| Chiave             | Valore  |
+| Chiave             | valore  |
 | :-------------: | :----: |
 | array:entries:0 | value0 |
 | array:entries:1 | value1 |
@@ -1725,7 +1725,7 @@ config.AddJsonFile(
 
 La coppia chiave-valore mostrata nella tabella viene caricata nella configurazione.
 
-| Chiave             | Valore  |
+| Chiave             | valore  |
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 
@@ -1748,7 +1748,7 @@ Se un file JSON contiene una matrice, vengono create chiavi di configurazione pe
 
 Il provider di configurazione JSON legge i dati di configurazione nelle coppie chiave-valore seguenti:
 
-| Chiave                     | Valore  |
+| Chiave                     | valore  |
 | ----------------------- | :----: |
 | json_array:key          | valueA |
 | json_array:subsection:0 | valueB |

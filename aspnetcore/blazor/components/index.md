@@ -5,7 +5,7 @@ description: Informazioni su come creare e usare Razor i componenti, tra cui la 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2020
+ms.date: 11/25/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,16 +19,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: cc4604f7f67a6648c96e099572ff27bfed838916
-ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
+ms.openlocfilehash: b87986442bb8127f03df1f7ecff8167cafa27fdf
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "94981869"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96035684"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Creazione e utilizzo di Razor componenti ASP.NET Core
 
-Di [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27)e [Tobias Bartsch](https://www.aveo-solutions.com/)
+Di [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), [Scott Addie](https://github.com/scottaddie)e [Tobias Bartsch](https://www.aveo-solutions.com/)
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
 
@@ -51,7 +51,7 @@ Quando si accede al contenuto sulla Razor sintassi, prestare particolare attenzi
 
 Il nome di un componente deve iniziare con un carattere maiuscolo. Ad esempio, `MyCoolComponent.razor` è valido e `myCoolComponent.razor` non è valido.
 
-### <a name="routing"></a>Routing
+### <a name="routing"></a>Routing.
 
 Il routing in Blazor viene effettuato fornendo un modello di route a ogni componente accessibile nell'app. Quando Razor viene compilato un file con una [`@page`][9] direttiva, alla classe generata viene assegnato un oggetto che <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifica il modello di route. In fase di esecuzione, il router cerca le classi di componenti con un oggetto <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> ed esegue il rendering di qualsiasi componente con un modello di route corrispondente all'URL richiesto. Per altre informazioni, vedere <xref:blazor/fundamentals/routing>.
 
@@ -578,7 +578,7 @@ Nell'esempio precedente `NotifierService` richiama il metodo del componente `OnN
 
 Quando si esegue il rendering di un elenco di elementi o componenti e gli elementi o i componenti cambiano successivamente, l' Blazor algoritmo diffing deve decidere quali elementi o componenti precedenti possono essere conservati e come eseguire il mapping degli oggetti modello. In genere, questo processo è automatico e può essere ignorato, ma in alcuni casi potrebbe essere necessario controllare il processo.
 
-Prendere in considerazione gli esempi seguenti:
+Si consideri l'esempio seguente:
 
 ```csharp
 @foreach (var person in People)
@@ -886,6 +886,64 @@ Analogamente, le immagini SVG sono supportate nelle regole CSS di un file di fog
 ```
 
 Tuttavia, il markup SVG inline non è supportato in tutti gli scenari. Se si inserisce un `<svg>` tag direttamente in un file di componente ( `.razor` ), il rendering delle immagini di base è supportato, ma molti scenari avanzati non sono ancora supportati. Ad esempio, i `<use>` tag non sono attualmente rispettati e [`@bind`][10] non possono essere usati con alcuni tag svg. Per ulteriori informazioni, vedere [supporto per SVG in Blazor (#18271 DotNet/aspnetcore)](https://github.com/dotnet/aspnetcore/issues/18271).
+
+## <a name="whitespace-rendering-behavior"></a>Comportamento di rendering degli spazi vuoti
+
+::: moniker range=">= aspnetcore-5.0"
+
+[`@preservewhitespace`](xref:mvc/views/razor#preservewhitespace)Se la direttiva non viene utilizzata con un valore di `true` , per impostazione predefinita viene rimosso uno spazio vuoto aggiuntivo se:
+
+* Iniziali o finali all'interno di un elemento.
+* Iniziali o finali in un `RenderFragment` parametro. Ad esempio, il contenuto figlio viene passato a un altro componente.
+* Precede o segue un blocco di codice C#, ad esempio `@if` o `@foreach` .
+
+La rimozione degli spazi vuoti può influire sull'output sottoposto a rendering quando si usa una regola CSS, ad esempio `white-space: pre` . Per disabilitare questa ottimizzazione delle prestazioni e mantenere lo spazio vuoto, effettuare una delle operazioni seguenti:
+
+* Aggiungere la `@preservewhitespace true` direttiva all'inizio del `.razor` file per applicare la preferenza a un componente specifico.
+* Aggiungere la `@preservewhitespace true` direttiva all'interno `_Imports.razor` di un file per applicare la preferenza a un'intera sottodirectory o all'intero progetto.
+
+Nella maggior parte dei casi, non è necessaria alcuna azione, perché le app in genere continuano a funzionare normalmente (ma più velocemente). Se la rimozione dello spazio vuoto causa problemi per un particolare componente, utilizzare `@preservewhitespace true` in tale componente per disabilitare questa ottimizzazione.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Lo spazio vuoto viene mantenuto nel codice sorgente di un componente. Viene eseguito il rendering del testo con solo spazi vuoti nell'Document Object Model del browser (DOM) anche quando non è presente alcun effetto visivo.
+
+Si consideri il Razor codice componente seguente:
+
+```razor
+<ul>
+    @foreach (var item in Items)
+    {
+        <li>
+            @item.Text
+        </li>
+    }
+</ul>
+```
+
+Nell'esempio precedente viene eseguito il rendering degli spazi vuoti non necessari seguenti:
+
+* All'esterno del `@foreach` blocco di codice.
+* Intorno all' `<li>` elemento.
+* Intorno all' `@item.Text` output.
+
+Un elenco contenente 100 elementi restituisce 402 aree di spazio vuoto e nessuno degli spazi vuoti influiscono visivamente sull'output sottoposto a rendering.
+
+Quando si esegue il rendering HTML statico per i componenti, gli spazi vuoti all'interno di un tag non vengono conservati Ad esempio, visualizzare l'origine del componente seguente nell'output di cui è stato eseguito il rendering:
+
+```razor
+<img     alt="My image"   src="img.png"     />
+```
+
+Lo spazio vuoto non è mantenuto dal Razor markup precedente:
+
+```razor
+<img alt="My image" src="img.png" />
+```
+
+::: moniker-end
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
