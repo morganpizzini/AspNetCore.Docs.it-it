@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 9299ba685c95ced522fc725854a66252e67fc799
-ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
+ms.openlocfilehash: ccbfc27eb89e23938a69f0ab4cb306d6a4136889
+ms.sourcegitcommit: fe2e3174c34bee1e425c6e52dd8f663fe52b8756
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "96024992"
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "96175052"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Esercitazione: creare un'API Web con ASP.NET Core
 
@@ -34,7 +34,7 @@ Questa esercitazione illustra le nozioni di base della creazione di un'API Web c
 
 ::: moniker range=">= aspnetcore-5.0"
 
-In questa esercitazione viene illustrato come:
+In questa esercitazione verranno illustrate le procedure per:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -387,7 +387,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
 * Selezionare la scheda **Corpo**.
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)**.
@@ -416,7 +416,7 @@ Per eseguire il test in un post:
   ![Scheda Headers (Intestazioni) della console Postman](first-web-api/_static/3/create.png)
 
 * Impostare il metodo HTTP su `GET`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio: `https://localhost:5001/api/TodoItems/1`.
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio, `https://localhost:5001/api/TodoItems/1`
 * Selezionare **Send** (Invia).
 
 ## <a name="examine-the-get-methods"></a>Esaminare i metodi GET
@@ -447,7 +447,7 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su **GET**.
-* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
+* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -558,7 +558,7 @@ Vedere [esercitazione: chiamare un'API web ASP.NET Core con JavaScript](xref:tut
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-In questa esercitazione viene illustrato come:
+In questa esercitazione verranno illustrate le procedure per:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -878,7 +878,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
 * Selezionare la scheda **Corpo**.
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)**.
@@ -903,7 +903,7 @@ Questa esercitazione usa Postman per testare l'API Web.
   ![Scheda Headers (Intestazioni) della console Postman](first-web-api/_static/3/create.png)
 
 * Impostare il metodo HTTP su `GET`.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio: `https://localhost:5001/api/TodoItems/1`.
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems/1` . Ad esempio, `https://localhost:5001/api/TodoItems/1`
 * Selezionare **Send** (Invia).
 
 ## <a name="examine-the-get-methods"></a>Esaminare i metodi GET
@@ -934,7 +934,7 @@ Una risposta simile alla seguente viene generata dalla chiamata a `GetTodoItems`
 
 * Creare una nuova richiesta.
 * Impostare il metodo HTTP su **GET**.
-* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio: `https://localhost:5001/api/TodoItems`.
+* Impostare l'URI della richiesta su `https://localhost:<port>/api/TodoItems` . Ad esempio, `https://localhost:5001/api/TodoItems`
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -1046,7 +1046,7 @@ Vedere [esercitazione: chiamare un'API web ASP.NET Core con JavaScript](xref:tut
 
 ::: moniker range="< aspnetcore-3.0"
 
-In questa esercitazione viene illustrato come:
+In questa esercitazione verranno illustrate le procedure per:
 
 > [!div class="checklist"]
 > * Creare un progetto di API Web.
@@ -1336,7 +1336,7 @@ Questa esercitazione usa Postman per testare l'API Web.
 
 * Creare una nuova richiesta.
   * Impostare il metodo HTTP su **GET**.
-  * Impostare l'URI della richiesta su `https://localhost:<port>/api/todo` . Ad esempio: `https://localhost:5001/api/todo`.
+  * Impostare l'URI della richiesta su `https://localhost:<port>/api/todo` . Ad esempio, `https://localhost:5001/api/todo`
 * Impostare **Two pane view** (Visualizzazione in due riquadri) in Postman.
 * Selezionare **Send** (Invia).
 
@@ -1362,7 +1362,7 @@ Il metodo `CreatedAtAction`:
 
 * Compilare il progetto.
 * In Postman impostare il metodo HTTP su `POST`.
-* Impostare l'URI su `https://localhost:<port>/api/Todo` . Ad esempio: `https://localhost:5001/api/Todo`.
+* Impostare l'URI su `https://localhost:<port>/api/Todo` . Ad esempio, `https://localhost:5001/api/Todo`
 * Selezionare la scheda **Corpo**.
 * Selezionare il pulsante di opzione **raw** (non elaborato).
 * Impostare il tipo su **JSON (application/json)**.
@@ -1389,7 +1389,7 @@ Il metodo `CreatedAtAction`:
   ![Scheda Headers (Intestazioni) della console Postman](first-web-api/_static/pmc2.png)
 
 * Impostare il metodo su GET.
-* Impostare l'URI su `https://localhost:<port>/api/TodoItems/2` . Ad esempio: `https://localhost:5001/api/TodoItems/2`.
+* Impostare l'URI su `https://localhost:<port>/api/TodoItems/2` . Ad esempio, `https://localhost:5001/api/TodoItems/2`
 * Selezionare **Send** (Invia).
 
 ## <a name="add-a-puttodoitem-method-21"></a>Aggiungere un metodo PutTodoItem 2,1

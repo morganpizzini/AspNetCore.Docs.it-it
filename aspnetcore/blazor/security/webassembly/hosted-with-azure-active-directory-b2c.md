@@ -20,11 +20,11 @@ no-loc:
 - SignalR
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ms.openlocfilehash: 8727fa52acbcf59549c326bd5106e5dfe23c36be
-ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
+ms.sourcegitcommit: fe2e3174c34bee1e425c6e52dd8f663fe52b8756
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/03/2020
-ms.locfileid: "93234491"
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "96174267"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Proteggere un' Blazor WebAssembly app ospitata ASP.NET Core con Azure Active Directory B2C
 
@@ -44,27 +44,27 @@ Registrare l'istanza di AAD B2C, ad esempio, `https://contoso.b2clogin.com/` che
 
 Seguire le istruzioni riportate in [esercitazione: registrare un'applicazione in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) per registrare un'app AAD per l'app per le *API del server* e quindi eseguire le operazioni seguenti:
 
-1. In **Azure Active Directory**  >  **registrazioni app** selezionare **nuova registrazione** .
-1. Specificare un **nome** per l'app, ad esempio **Blazor Server AAD B2C** .
-1. Per i **tipi di account supportati** , selezionare l'opzione multi-tenant: **account in qualsiasi provider di identità o directory organizzativa (per l'autenticazione degli utenti con flussi utente)**
+1. In **Azure Active Directory**  >  **registrazioni app** selezionare **nuova registrazione**.
+1. Specificare un **nome** per l'app, ad esempio **Blazor Server AAD B2C**.
+1. Per i **tipi di account supportati**, selezionare l'opzione multi-tenant: **account in qualsiasi provider di identità o directory organizzativa (per l'autenticazione degli utenti con flussi utente)**
 1. L' *app* per le API del server non richiede un **URI di reindirizzamento** in questo scenario, quindi lasciare l'elenco a discesa impostato su **Web** e non immettere un URI di reindirizzamento.
 1. Verificare che **Permissions**  >  **le autorizzazioni concedano il consenso dell'amministratore per OpenID e offline_access autorizzazioni** siano selezionate.
-1. Selezionare **Registra** .
+1. Selezionare **Registra**.
 
 Registrare le seguenti informazioni:
 
 * *App per le API server* ID applicazione (client) (ad esempio, `41451fa7-82d9-4673-8fa5-69eff5a761fd` )
 * Dominio primario/editore/tenant di AAD (ad esempio, `contoso.onmicrosoft.com` ): il dominio è disponibile come **dominio del server di pubblicazione** nel pannello **personalizzazione** del portale di Azure per l'app registrata.
 
-In **esporre un'API** :
+In **esporre un'API**:
 
-1. Selezionare **Aggiungi un ambito** .
-1. Fai clic su **Salva e continua** .
+1. Selezionare **Aggiungi un ambito**.
+1. Fai clic su **Salva e continua**.
 1. Specificare un **nome** per l'ambito (ad esempio, `API.Access` ).
 1. Fornire un **nome visualizzato** per il consenso dell'amministratore, ad esempio `Access API` .
 1. Fornire una **Descrizione del consenso dell'amministratore** , ad esempio `Allows the app to access server app API endpoints.` .
-1. Verificare che lo **stato** sia impostato su **abilitato** .
-1. Selezionare **Aggiungi ambito** .
+1. Verificare che lo **stato** sia impostato su **abilitato**.
+1. Selezionare **Aggiungi ambito**.
 
 Registrare le seguenti informazioni:
 
@@ -77,54 +77,54 @@ Seguire le istruzioni riportate in [esercitazione: registrare un'applicazione in
 
 ::: moniker range=">= aspnetcore-5.0"
 
-1. In **Azure Active Directory** > **registrazioni app** selezionare **nuova registrazione** .
-1. Specificare un **nome** per l'app, ad esempio **Blazor AAD B2C client** .
-1. Per i **tipi di account supportati** , selezionare l'opzione multi-tenant: **account in qualsiasi provider di identità o directory organizzativa (per l'autenticazione degli utenti con flussi utente)**
+1. In **Azure Active Directory** > **registrazioni app** selezionare **nuova registrazione**.
+1. Specificare un **nome** per l'app, ad esempio **Blazor AAD B2C client**.
+1. Per i **tipi di account supportati**, selezionare l'opzione multi-tenant: **account in qualsiasi provider di identità o directory organizzativa (per l'autenticazione degli utenti con flussi utente)**
 1. Impostare l'elenco a discesa **URI di reindirizzamento** sull' **applicazione a pagina singola (Spa)** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione in Kestrel è la 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle *`Server`* proprietà dell'app nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un contrassegno viene visualizzato nella sezione [creare l'app](#create-the-app) per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
 1. Verificare che **Permissions** > **le autorizzazioni concedano il consenso dell'amministratore per OpenID e offline_access autorizzazioni** siano selezionate.
-1. Selezionare **Registra** .
+1. Selezionare **Registra**.
 
 1. Registrare l'ID dell'applicazione (client) (ad esempio, `4369008b-21fa-427c-abaa-9b53bf58e538` ).
 
-Nelle configurazioni della piattaforma di **autenticazione** > **Platform configurations** > **applicazione a pagina singola (Spa)** :
+Nelle configurazioni della piattaforma di **autenticazione** > **Platform configurations** > **applicazione a pagina singola (Spa)**:
 
 1. Verificare che l' **URI di reindirizzamento** di `https://localhost:{PORT}/authentication/login-callback` sia presente.
-1. Per **concessione implicita** , assicurarsi che le caselle di controllo per i **token di accesso** e i **token ID** **non** siano selezionate.
+1. Per **concessione implicita**, assicurarsi che le caselle di controllo per i **token di accesso** e i **token ID** **non** siano selezionate.
 1. Per questa esperienza sono accettabili le impostazioni predefinite rimanenti per l'app.
-1. Fare clic sul pulsante **Salva** .
+1. Fare clic sul pulsante **Salva**.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-1. In **Azure Active Directory** > **registrazioni app** selezionare **nuova registrazione** .
-1. Specificare un **nome** per l'app, ad esempio **Blazor AAD B2C client** .
-1. Per i **tipi di account supportati** , selezionare l'opzione multi-tenant: **account in qualsiasi provider di identità o directory organizzativa (per l'autenticazione degli utenti con flussi utente)**
+1. In **Azure Active Directory** > **registrazioni app** selezionare **nuova registrazione**.
+1. Specificare un **nome** per l'app, ad esempio **Blazor AAD B2C client**.
+1. Per i **tipi di account supportati**, selezionare l'opzione multi-tenant: **account in qualsiasi provider di identità o directory organizzativa (per l'autenticazione degli utenti con flussi utente)**
 1. Lasciare l'elenco a discesa **URI di reindirizzamento** impostato su **Web** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione in Kestrel è la 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle *`Server`* proprietà dell'app nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un contrassegno viene visualizzato nella sezione [creare l'app](#create-the-app) per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
 1. Verificare che **Permissions** > **le autorizzazioni concedano il consenso dell'amministratore per OpenID e offline_access autorizzazioni** siano selezionate.
-1. Selezionare **Registra** .
+1. Selezionare **Registra**.
 
 Registrare l'ID dell'applicazione (client) (ad esempio, `4369008b-21fa-427c-abaa-9b53bf58e538` ).
 
-In **Authentication** > **configurazioni piattaforma** di autenticazione > **Web** :
+In **Authentication** > **configurazioni piattaforma** di autenticazione > **Web**:
 
 1. Verificare che l' **URI di reindirizzamento** di `https://localhost:{PORT}/authentication/login-callback` sia presente.
-1. Per **concessione implicita** , selezionare le caselle di controllo per i token di **accesso** e i **token ID** .
+1. Per **concessione implicita**, selezionare le caselle di controllo per i token di **accesso** e i **token ID**.
 1. Per questa esperienza sono accettabili le impostazioni predefinite rimanenti per l'app.
-1. Fare clic sul pulsante **Salva** .
+1. Fare clic sul pulsante **Salva**.
 
 ::: moniker-end
 
-In **autorizzazioni API** :
+In **autorizzazioni API**:
 
-1. Selezionare **Aggiungi un'autorizzazione** seguita da **API personali** .
-1. Selezionare l' *app per le API server* dalla colonna **nome** , ad esempio **Blazor Server AAD B2C** .
+1. Selezionare **Aggiungi un'autorizzazione** seguita da **API personali**.
+1. Selezionare l' *app per le API server* dalla colonna **nome** , ad esempio **Blazor Server AAD B2C**.
 1. Aprire l'elenco di **API** .
 1. Abilitare l'accesso all'API (ad esempio, `API.Access` ).
-1. Selezionare **Aggiungi autorizzazioni** .
+1. Selezionare **Aggiungi autorizzazioni**.
 1. Selezionare il pulsante **concedere il consenso dell'amministratore per {tenant Name}** . Selezionare **Sì** per confermare.
 
-In **Home**  >  **Azure ad B2C**  >  **flussi utente** :
+In **Home**  >  **Azure ad B2C**  >  **flussi utente**:
 
 [Creare un flusso utente di iscrizione e accesso](/azure/active-directory-b2c/tutorial-create-user-flows)
 
@@ -217,7 +217,7 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
-### <a name="app-settings"></a>Impostazioni delle app
+### <a name="app-settings"></a>Impostazioni app
 
 Il `appsettings.json` file contiene le opzioni per configurare il gestore di connessione JWT usato per convalidare i token di accesso.
 
@@ -247,7 +247,7 @@ Esempio:
 
 ### <a name="weatherforecast-controller"></a>Controller WeatherForecast
 
-Il controller WeatherForecast ( *Controllers/WeatherForecastController. cs* ) espone un'API protetta con l' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo applicato al controller. È **importante** comprendere che:
+Il controller WeatherForecast (*Controllers/WeatherForecastController. cs*) espone un'API protetta con l' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo applicato al controller. È **importante** comprendere che:
 
 * L' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo in questo controller API è l'unico elemento che protegge questa API da accessi non autorizzati.
 * L' [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attributo usato nell' Blazor WebAssembly app funge solo da hint per l'app che l'utente deve essere autorizzato affinché l'app funzioni correttamente.
@@ -360,7 +360,7 @@ builder.Services.AddMsalAuthentication(options =>
 > [!NOTE]
 > Il Blazor WebAssembly modello aggiunge automaticamente uno schema `api://` all'argomento Uri ID app passato nel `dotnet new` comando. Quando si genera un'app dal Blazor modello di progetto, verificare che il valore dell'ambito del token di accesso predefinito usi il valore URI dell'ID app personalizzato corretto specificato nell'portale di Azure o un valore con **uno** dei formati seguenti:
 >
-> * Quando il dominio del server di pubblicazione della directory è **attendibile** , l'ambito del token di accesso predefinito è in genere un valore simile all'esempio seguente, dove `API.Access` è il nome dell'ambito predefinito:
+> * Quando il dominio del server di pubblicazione della directory è **attendibile**, l'ambito del token di accesso predefinito è in genere un valore simile all'esempio seguente, dove `API.Access` è il nome dell'ambito predefinito:
 >
 >   ```csharp
 >   options.ProviderOptions.DefaultAccessTokenScopes.Add(
@@ -369,7 +369,7 @@ builder.Services.AddMsalAuthentication(options =>
 >
 >   Esaminare il valore per uno schema doppio ( `api://api://...` ). Se è presente uno schema doppio, rimuovere il primo `api://` schema dal valore.
 >
-> * Quando il dominio del server di pubblicazione della directory non è **attendibile** , l'ambito del token di accesso predefinito è in genere un valore simile all'esempio seguente, dove `API.Access` è il nome dell'ambito predefinito:
+> * Quando il dominio del server di pubblicazione della directory non è **attendibile**, l'ambito del token di accesso predefinito è in genere un valore simile all'esempio seguente, dove `API.Access` è il nome dell'ambito predefinito:
 >
 >   ```csharp
 >   options.ProviderOptions.DefaultAccessTokenScopes.Add(

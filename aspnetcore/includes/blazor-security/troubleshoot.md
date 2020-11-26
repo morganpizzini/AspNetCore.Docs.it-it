@@ -44,7 +44,7 @@ Un approccio che impedisce ai cookie e ai dati del sito di interferire con i tes
     * Microsoft Edge: usare `-inprivate` .
     * Google Chrome: usare `--incognito --new-window {URL}` , dove il segnaposto `{URL}` è l'URL da aprire, ad esempio `https://localhost:5001` .
     * Mozilla Firefox: usare `-private -url {URL}` , dove il segnaposto `{URL}` è l'URL da aprire, ad esempio `https://localhost:5001` .
-  * Specificare un nome nel campo **nome descrittivo** . Ad esempio: `Firefox Auth Testing`.
+  * Specificare un nome nel campo **nome descrittivo** . Ad esempio, `Firefox Auth Testing`
   * Selezionare il pulsante **OK** .
   * Per evitare di dover selezionare il profilo del browser per ogni iterazione del test con un'app, impostare il profilo come predefinito con il pulsante **Imposta come predefinito** .
   * Verificare che il browser sia chiuso dall'IDE per qualsiasi modifica all'app, all'utente di test o alla configurazione del provider.
