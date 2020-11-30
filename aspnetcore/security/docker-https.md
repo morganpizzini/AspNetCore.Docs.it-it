@@ -7,122 +7,126 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/05/2019
 no-loc:
-- 'appsettings.json'
-- 'ASP.NET Core Identity'
-- 'cookie'
-- 'Cookie'
-- 'Blazor'
-- 'Blazor Server'
-- 'Blazor WebAssembly'
-- 'Identity'
-- "Let's Encrypt"
-- 'Razor'
-- 'SignalR'
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/docker-https
-ms.openlocfilehash: 63d6e220c0f28e552207039c1649041bfdf4a0d4
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: a4aac2ce06fee20bdef157efc361f3099a217b1a
+ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059676"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96332154"
 ---
-# <a name="hosting-aspnet-core-images-with-docker-over-https"></a><span data-ttu-id="88c56-103">Hosting di immagini ASP.NET Core con Docker su HTTPS</span><span class="sxs-lookup"><span data-stu-id="88c56-103">Hosting ASP.NET Core images with Docker over HTTPS</span></span>
+# <a name="hosting-aspnet-core-images-with-docker-over-https"></a><span data-ttu-id="47c85-103">Hosting di immagini ASP.NET Core con Docker su HTTPS</span><span class="sxs-lookup"><span data-stu-id="47c85-103">Hosting ASP.NET Core images with Docker over HTTPS</span></span>
 
-<span data-ttu-id="88c56-104">Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)</span><span class="sxs-lookup"><span data-stu-id="88c56-104">By [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
+<span data-ttu-id="47c85-104">Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)</span><span class="sxs-lookup"><span data-stu-id="47c85-104">By [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
 
-<span data-ttu-id="88c56-105">ASP.NET Core utilizza [https per impostazione predefinita](./enforcing-ssl.md).</span><span class="sxs-lookup"><span data-stu-id="88c56-105">ASP.NET Core uses [HTTPS by default](./enforcing-ssl.md).</span></span> <span data-ttu-id="88c56-106">[Https](https://en.wikipedia.org/wiki/HTTPS) si basa su [certificati](https://en.wikipedia.org/wiki/Public_key_certificate) per l'attendibilità, l'identità e la crittografia.</span><span class="sxs-lookup"><span data-stu-id="88c56-106">[HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.</span></span>
+<span data-ttu-id="47c85-105">ASP.NET Core utilizza [https per impostazione predefinita](./enforcing-ssl.md).</span><span class="sxs-lookup"><span data-stu-id="47c85-105">ASP.NET Core uses [HTTPS by default](./enforcing-ssl.md).</span></span> <span data-ttu-id="47c85-106">[Https](https://en.wikipedia.org/wiki/HTTPS) si basa su [certificati](https://en.wikipedia.org/wiki/Public_key_certificate) per l'attendibilità, l'identità e la crittografia.</span><span class="sxs-lookup"><span data-stu-id="47c85-106">[HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.</span></span>
 
-<span data-ttu-id="88c56-107">Questo documento illustra come eseguire le immagini del contenitore predefinite con HTTPS.</span><span class="sxs-lookup"><span data-stu-id="88c56-107">This document explains how to run pre-built container images with HTTPS.</span></span>
+<span data-ttu-id="47c85-107">Questo documento illustra come eseguire le immagini del contenitore predefinite con HTTPS.</span><span class="sxs-lookup"><span data-stu-id="47c85-107">This document explains how to run pre-built container images with HTTPS.</span></span>
 
-<span data-ttu-id="88c56-108">Per gli scenari di sviluppo, vedere [sviluppo di applicazioni ASP.NET Core con Docker su HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md) .</span><span class="sxs-lookup"><span data-stu-id="88c56-108">See [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md) for development scenarios.</span></span>
+<span data-ttu-id="47c85-108">Per gli scenari di sviluppo, vedere [sviluppo di applicazioni ASP.NET Core con Docker su HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md) .</span><span class="sxs-lookup"><span data-stu-id="47c85-108">See [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md) for development scenarios.</span></span>
 
-<span data-ttu-id="88c56-109">Questo esempio richiede [docker 17,06](https://docs.docker.com/release-notes/docker-ce) o versione successiva del [client Docker](https://www.docker.com/products/docker).</span><span class="sxs-lookup"><span data-stu-id="88c56-109">This sample requires [Docker 17.06](https://docs.docker.com/release-notes/docker-ce) or later of the [Docker client](https://www.docker.com/products/docker).</span></span>
+<span data-ttu-id="47c85-109">Questo esempio richiede [docker 17,06](https://docs.docker.com/release-notes/docker-ce) o versione successiva del [client Docker](https://www.docker.com/products/docker).</span><span class="sxs-lookup"><span data-stu-id="47c85-109">This sample requires [Docker 17.06](https://docs.docker.com/release-notes/docker-ce) or later of the [Docker client](https://www.docker.com/products/docker).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="88c56-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="88c56-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="47c85-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="47c85-110">Prerequisites</span></span>
 
-<span data-ttu-id="88c56-111">Per alcune istruzioni di questo documento è necessario [.NET Core 2,2 SDK](https://dotnet.microsoft.com/download) o versione successiva.</span><span class="sxs-lookup"><span data-stu-id="88c56-111">The [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download) or later is required for some of the instructions in this document.</span></span>
+<span data-ttu-id="47c85-111">Per alcune istruzioni di questo documento è necessario [.NET Core 2,2 SDK](https://dotnet.microsoft.com/download) o versione successiva.</span><span class="sxs-lookup"><span data-stu-id="47c85-111">The [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download) or later is required for some of the instructions in this document.</span></span>
 
-## <a name="certificates"></a><span data-ttu-id="88c56-112">Certificati</span><span class="sxs-lookup"><span data-stu-id="88c56-112">Certificates</span></span>
+## <a name="certificates"></a><span data-ttu-id="47c85-112">Certificati</span><span class="sxs-lookup"><span data-stu-id="47c85-112">Certificates</span></span>
 
-<span data-ttu-id="88c56-113">Un certificato di un' [autorità di certificazione](https://wikipedia.org/wiki/Certificate_authority) è necessario per l' [hosting di produzione](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) per un dominio.</span><span class="sxs-lookup"><span data-stu-id="88c56-113">A certificate from a [certificate authority](https://wikipedia.org/wiki/Certificate_authority) is required for [production hosting](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) for a domain.</span></span> <span data-ttu-id="88c56-114">[Let's Encrypt](https://letsencrypt.org/) è un'autorità di certificazione che offre certificati gratuiti.</span><span class="sxs-lookup"><span data-stu-id="88c56-114">[Let's Encrypt](https://letsencrypt.org/) is a certificate authority that offers free certificates.</span></span>
+<span data-ttu-id="47c85-113">Un certificato di un' [autorità di certificazione](https://wikipedia.org/wiki/Certificate_authority) è necessario per l' [hosting di produzione](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) per un dominio.</span><span class="sxs-lookup"><span data-stu-id="47c85-113">A certificate from a [certificate authority](https://wikipedia.org/wiki/Certificate_authority) is required for [production hosting](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) for a domain.</span></span> <span data-ttu-id="47c85-114">[Let's Encrypt](https://letsencrypt.org/) è un'autorità di certificazione che offre certificati gratuiti.</span><span class="sxs-lookup"><span data-stu-id="47c85-114">[Let's Encrypt](https://letsencrypt.org/) is a certificate authority that offers free certificates.</span></span>
 
-<span data-ttu-id="88c56-115">Questo documento usa [certificati di sviluppo autofirmati](https://en.wikipedia.org/wiki/Self-signed_certificate) per l'hosting di immagini predefinite rispetto a `localhost` .</span><span class="sxs-lookup"><span data-stu-id="88c56-115">This document uses [self-signed development certificates](https://en.wikipedia.org/wiki/Self-signed_certificate) for hosting pre-built images over `localhost`.</span></span> <span data-ttu-id="88c56-116">Le istruzioni sono simili all'uso dei certificati di produzione.</span><span class="sxs-lookup"><span data-stu-id="88c56-116">The instructions are similar to using production certificates.</span></span>
+<span data-ttu-id="47c85-115">Questo documento usa [certificati di sviluppo autofirmati](https://en.wikipedia.org/wiki/Self-signed_certificate) per l'hosting di immagini predefinite rispetto a `localhost` .</span><span class="sxs-lookup"><span data-stu-id="47c85-115">This document uses [self-signed development certificates](https://en.wikipedia.org/wiki/Self-signed_certificate) for hosting pre-built images over `localhost`.</span></span> <span data-ttu-id="47c85-116">Le istruzioni sono simili all'uso dei certificati di produzione.</span><span class="sxs-lookup"><span data-stu-id="47c85-116">The instructions are similar to using production certificates.</span></span>
 
-<span data-ttu-id="88c56-117">Per i certificati di produzione:</span><span class="sxs-lookup"><span data-stu-id="88c56-117">For production certs:</span></span>
+<span data-ttu-id="47c85-117">Usare [DotNet dev-certs](/dotnet/core/additional-tools/self-signed-certificates-guide) per creare certificati autofirmati per lo sviluppo e il test.</span><span class="sxs-lookup"><span data-stu-id="47c85-117">Use [dotnet dev-certs](/dotnet/core/additional-tools/self-signed-certificates-guide) to create self-signed certificates for development and testing.</span></span>
 
-* <span data-ttu-id="88c56-118">Lo `dotnet dev-certs` strumento non è obbligatorio.</span><span class="sxs-lookup"><span data-stu-id="88c56-118">The `dotnet dev-certs` tool is not required.</span></span>
-* <span data-ttu-id="88c56-119">Non è necessario archiviare i certificati nel percorso utilizzato nelle istruzioni.</span><span class="sxs-lookup"><span data-stu-id="88c56-119">Certificates do not need to be stored in the location used in the instructions.</span></span> <span data-ttu-id="88c56-120">Qualsiasi località dovrebbe funzionare, anche se non è consigliabile archiviare i certificati nella directory del sito.</span><span class="sxs-lookup"><span data-stu-id="88c56-120">Any location should work, although storing certs within your site directory is not recommended.</span></span>
+<span data-ttu-id="47c85-118">Per i certificati di produzione:</span><span class="sxs-lookup"><span data-stu-id="47c85-118">For production certs:</span></span>
 
-<span data-ttu-id="88c56-121">Le istruzioni contenute nella sezione seguente comportano i certificati di montaggio nei contenitori con l'opzione della riga di comando di Docker `-v` .</span><span class="sxs-lookup"><span data-stu-id="88c56-121">The instructions contained in the following section volume mount certificates into containers using Docker's `-v` command-line option.</span></span> <span data-ttu-id="88c56-122">È possibile aggiungere certificati alle immagini del contenitore con un `COPY` comando in un *Dockerfile* , ma non è consigliabile.</span><span class="sxs-lookup"><span data-stu-id="88c56-122">You could add certificates into container images with a `COPY` command in a *Dockerfile* , but it's not recommended.</span></span> <span data-ttu-id="88c56-123">La copia di certificati in un'immagine non è consigliata per i motivi seguenti:</span><span class="sxs-lookup"><span data-stu-id="88c56-123">Copying certificates into an image isn't recommended for the following reasons:</span></span>
+* <span data-ttu-id="47c85-119">Lo `dotnet dev-certs` strumento non è obbligatorio.</span><span class="sxs-lookup"><span data-stu-id="47c85-119">The `dotnet dev-certs` tool is not required.</span></span>
+* <span data-ttu-id="47c85-120">Non è necessario archiviare i certificati nel percorso utilizzato nelle istruzioni.</span><span class="sxs-lookup"><span data-stu-id="47c85-120">Certificates do not need to be stored in the location used in the instructions.</span></span> <span data-ttu-id="47c85-121">Qualsiasi località dovrebbe funzionare, anche se non è consigliabile archiviare i certificati nella directory del sito.</span><span class="sxs-lookup"><span data-stu-id="47c85-121">Any location should work, although storing certs within your site directory is not recommended.</span></span>
 
-* <span data-ttu-id="88c56-124">Risulta difficile usare la stessa immagine per i test con certificati per sviluppatori.</span><span class="sxs-lookup"><span data-stu-id="88c56-124">It makes difficult to use the same image for testing with developer certificates.</span></span>
-* <span data-ttu-id="88c56-125">Risulta difficile utilizzare la stessa immagine per l'hosting con certificati di produzione.</span><span class="sxs-lookup"><span data-stu-id="88c56-125">It makes difficult to use the same image for Hosting with production certificates.</span></span>
-* <span data-ttu-id="88c56-126">Il rischio di divulgazione dei certificati è significativo.</span><span class="sxs-lookup"><span data-stu-id="88c56-126">There is significant risk of certificate disclosure.</span></span>
+<span data-ttu-id="47c85-122">Le istruzioni contenute nella sezione seguente comportano i certificati di montaggio nei contenitori con l'opzione della riga di comando di Docker `-v` .</span><span class="sxs-lookup"><span data-stu-id="47c85-122">The instructions contained in the following section volume mount certificates into containers using Docker's `-v` command-line option.</span></span> <span data-ttu-id="47c85-123">È possibile aggiungere certificati alle immagini del contenitore con un `COPY` comando in un *Dockerfile*, ma non è consigliabile.</span><span class="sxs-lookup"><span data-stu-id="47c85-123">You could add certificates into container images with a `COPY` command in a *Dockerfile*, but it's not recommended.</span></span> <span data-ttu-id="47c85-124">La copia di certificati in un'immagine non è consigliata per i motivi seguenti:</span><span class="sxs-lookup"><span data-stu-id="47c85-124">Copying certificates into an image isn't recommended for the following reasons:</span></span>
 
-## <a name="running-pre-built-container-images-with-https"></a><span data-ttu-id="88c56-127">Esecuzione di immagini del contenitore predefinite con HTTPS</span><span class="sxs-lookup"><span data-stu-id="88c56-127">Running pre-built container images with HTTPS</span></span>
+* <span data-ttu-id="47c85-125">Risulta difficile usare la stessa immagine per i test con certificati per sviluppatori.</span><span class="sxs-lookup"><span data-stu-id="47c85-125">It makes difficult to use the same image for testing with developer certificates.</span></span>
+* <span data-ttu-id="47c85-126">Risulta difficile utilizzare la stessa immagine per l'hosting con certificati di produzione.</span><span class="sxs-lookup"><span data-stu-id="47c85-126">It makes difficult to use the same image for Hosting with production certificates.</span></span>
+* <span data-ttu-id="47c85-127">Il rischio di divulgazione dei certificati è significativo.</span><span class="sxs-lookup"><span data-stu-id="47c85-127">There is significant risk of certificate disclosure.</span></span>
 
-<span data-ttu-id="88c56-128">Usare le istruzioni seguenti per la configurazione del sistema operativo.</span><span class="sxs-lookup"><span data-stu-id="88c56-128">Use the following instructions for your operating system configuration.</span></span>
+## <a name="running-pre-built-container-images-with-https"></a><span data-ttu-id="47c85-128">Esecuzione di immagini del contenitore predefinite con HTTPS</span><span class="sxs-lookup"><span data-stu-id="47c85-128">Running pre-built container images with HTTPS</span></span>
 
-### <a name="windows-using-linux-containers"></a><span data-ttu-id="88c56-129">Windows con contenitori Linux</span><span class="sxs-lookup"><span data-stu-id="88c56-129">Windows using Linux containers</span></span>
+<span data-ttu-id="47c85-129">Usare le istruzioni seguenti per la configurazione del sistema operativo.</span><span class="sxs-lookup"><span data-stu-id="47c85-129">Use the following instructions for your operating system configuration.</span></span>
 
-<span data-ttu-id="88c56-130">Generare il certificato e configurare il computer locale:</span><span class="sxs-lookup"><span data-stu-id="88c56-130">Generate certificate and configure local machine:</span></span>
+### <a name="windows-using-linux-containers"></a><span data-ttu-id="47c85-130">Windows con contenitori Linux</span><span class="sxs-lookup"><span data-stu-id="47c85-130">Windows using Linux containers</span></span>
+
+<span data-ttu-id="47c85-131">Generare il certificato e configurare il computer locale:</span><span class="sxs-lookup"><span data-stu-id="47c85-131">Generate certificate and configure local machine:</span></span>
 
 ```dotnetcli
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```
 
-<span data-ttu-id="88c56-131">Nei comandi precedenti sostituire `{ password here }` con una password.</span><span class="sxs-lookup"><span data-stu-id="88c56-131">In the preceding commands, replace `{ password here }` with a password.</span></span>
+<span data-ttu-id="47c85-132">Nei comandi precedenti sostituire `{ password here }` con una password.</span><span class="sxs-lookup"><span data-stu-id="47c85-132">In the preceding commands, replace `{ password here }` with a password.</span></span>
 
-<span data-ttu-id="88c56-132">Eseguire l'immagine del contenitore con ASP.NET Core configurato per HTTPS in una shell dei comandi:</span><span class="sxs-lookup"><span data-stu-id="88c56-132">Run the container image with ASP.NET Core configured for HTTPS in a command shell:</span></span>
+<span data-ttu-id="47c85-133">Eseguire l'immagine del contenitore con ASP.NET Core configurato per HTTPS in una shell dei comandi:</span><span class="sxs-lookup"><span data-stu-id="47c85-133">Run the container image with ASP.NET Core configured for HTTPS in a command shell:</span></span>
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
 docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v %USERPROFILE%\.aspnet\https:/https/ mcr.microsoft.com/dotnet/core/samples:aspnetapp
 ```
 
-<span data-ttu-id="88c56-133">Quando si usa [PowerShell](/powershell/scripting/overview), sostituire `%USERPROFILE%` con `$env:USERPROFILE` .</span><span class="sxs-lookup"><span data-stu-id="88c56-133">When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.</span></span>
+<span data-ttu-id="47c85-134">Quando si usa [PowerShell](/powershell/scripting/overview), sostituire `%USERPROFILE%` con `$env:USERPROFILE` .</span><span class="sxs-lookup"><span data-stu-id="47c85-134">When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.</span></span>
 
-<span data-ttu-id="88c56-134">La password deve corrispondere alla password utilizzata per il certificato.</span><span class="sxs-lookup"><span data-stu-id="88c56-134">The password must match the password used for the certificate.</span></span>
+<span data-ttu-id="47c85-135">La password deve corrispondere alla password utilizzata per il certificato.</span><span class="sxs-lookup"><span data-stu-id="47c85-135">The password must match the password used for the certificate.</span></span>
 
-### <a name="macos-or-linux"></a><span data-ttu-id="88c56-135">macOS o Linux</span><span class="sxs-lookup"><span data-stu-id="88c56-135">macOS or Linux</span></span>
 
-<span data-ttu-id="88c56-136">Generare il certificato e configurare il computer locale:</span><span class="sxs-lookup"><span data-stu-id="88c56-136">Generate certificate and configure local machine:</span></span>
+<span data-ttu-id="47c85-136">Nota: in questo caso il certificato deve essere un `.pfx` file.</span><span class="sxs-lookup"><span data-stu-id="47c85-136">Note: The certificate in this case must be a `.pfx` file.</span></span>  <span data-ttu-id="47c85-137">L'uso di `.crt` un `.key` file o con o senza la password non è supportato con il contenitore di esempio.</span><span class="sxs-lookup"><span data-stu-id="47c85-137">Utilizing a `.crt` or `.key` file with or without the password isn't supported with the sample container.</span></span>  <span data-ttu-id="47c85-138">Ad esempio, quando si specifica un `.crt` file, il contenitore può restituire messaggi di errore, ad esempio "la modalità server SSL deve usare un certificato con la chiave privata associata".</span><span class="sxs-lookup"><span data-stu-id="47c85-138">For example, when specifying a `.crt` file, the container may return error messages such as 'The server mode SSL must use a certificate with the associated private key.'.</span></span> <span data-ttu-id="47c85-139">Quando si usa [WSL](/windows/wsl/about), convalidare il percorso di montaggio per assicurarsi che il certificato venga caricato correttamente.</span><span class="sxs-lookup"><span data-stu-id="47c85-139">When using [WSL](/windows/wsl/about), validate the mount path to ensure that the certificate loads correctly.</span></span>
+
+### <a name="macos-or-linux"></a><span data-ttu-id="47c85-140">macOS o Linux</span><span class="sxs-lookup"><span data-stu-id="47c85-140">macOS or Linux</span></span>
+
+<span data-ttu-id="47c85-141">Generare il certificato e configurare il computer locale:</span><span class="sxs-lookup"><span data-stu-id="47c85-141">Generate certificate and configure local machine:</span></span>
 
 ```dotnetcli
 dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```
 
-<span data-ttu-id="88c56-137">`dotnet dev-certs https --trust` è supportato solo in macOS e Windows.</span><span class="sxs-lookup"><span data-stu-id="88c56-137">`dotnet dev-certs https --trust` is only supported on macOS and Windows.</span></span> <span data-ttu-id="88c56-138">È necessario considerare attendibili i certificati in Linux nel modo supportato dalla distribuzione.</span><span class="sxs-lookup"><span data-stu-id="88c56-138">You need to trust certs on Linux in the way that is supported by your distribution.</span></span> <span data-ttu-id="88c56-139">È probabile che sia necessario considerare attendibile il certificato nel browser.</span><span class="sxs-lookup"><span data-stu-id="88c56-139">It is likely that you need to trust the certificate in your browser.</span></span>
+<span data-ttu-id="47c85-142">`dotnet dev-certs https --trust` è supportato solo in macOS e Windows.</span><span class="sxs-lookup"><span data-stu-id="47c85-142">`dotnet dev-certs https --trust` is only supported on macOS and Windows.</span></span> <span data-ttu-id="47c85-143">È necessario considerare attendibili i certificati in Linux nel modo supportato dalla distribuzione.</span><span class="sxs-lookup"><span data-stu-id="47c85-143">You need to trust certs on Linux in the way that is supported by your distribution.</span></span> <span data-ttu-id="47c85-144">È probabile che sia necessario considerare attendibile il certificato nel browser.</span><span class="sxs-lookup"><span data-stu-id="47c85-144">It is likely that you need to trust the certificate in your browser.</span></span>
 
-<span data-ttu-id="88c56-140">Nei comandi precedenti sostituire `{ password here }` con una password.</span><span class="sxs-lookup"><span data-stu-id="88c56-140">In the preceding commands, replace `{ password here }` with a password.</span></span>
+<span data-ttu-id="47c85-145">Nei comandi precedenti sostituire `{ password here }` con una password.</span><span class="sxs-lookup"><span data-stu-id="47c85-145">In the preceding commands, replace `{ password here }` with a password.</span></span>
 
-<span data-ttu-id="88c56-141">Eseguire l'immagine del contenitore con ASP.NET Core configurato per HTTPS:</span><span class="sxs-lookup"><span data-stu-id="88c56-141">Run the container image with ASP.NET Core configured for HTTPS:</span></span>
+<span data-ttu-id="47c85-146">Eseguire l'immagine del contenitore con ASP.NET Core configurato per HTTPS:</span><span class="sxs-lookup"><span data-stu-id="47c85-146">Run the container image with ASP.NET Core configured for HTTPS:</span></span>
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
 docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v ${HOME}/.aspnet/https:/https/ mcr.microsoft.com/dotnet/core/samples:aspnetapp
 ```
 
-<span data-ttu-id="88c56-142">La password deve corrispondere alla password utilizzata per il certificato.</span><span class="sxs-lookup"><span data-stu-id="88c56-142">The password must match the password used for the certificate.</span></span>
+<span data-ttu-id="47c85-147">La password deve corrispondere alla password utilizzata per il certificato.</span><span class="sxs-lookup"><span data-stu-id="47c85-147">The password must match the password used for the certificate.</span></span>
 
-### <a name="windows-using-windows-containers"></a><span data-ttu-id="88c56-143">Windows con i contenitori di Windows</span><span class="sxs-lookup"><span data-stu-id="88c56-143">Windows using Windows containers</span></span>
+### <a name="windows-using-windows-containers"></a><span data-ttu-id="47c85-148">Windows con i contenitori di Windows</span><span class="sxs-lookup"><span data-stu-id="47c85-148">Windows using Windows containers</span></span>
 
-<span data-ttu-id="88c56-144">Generare il certificato e configurare il computer locale:</span><span class="sxs-lookup"><span data-stu-id="88c56-144">Generate certificate and configure local machine:</span></span>
+<span data-ttu-id="47c85-149">Generare il certificato e configurare il computer locale:</span><span class="sxs-lookup"><span data-stu-id="47c85-149">Generate certificate and configure local machine:</span></span>
 
 ```dotnetcli
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```
 
-<span data-ttu-id="88c56-145">Nei comandi precedenti sostituire `{ password here }` con una password.</span><span class="sxs-lookup"><span data-stu-id="88c56-145">In the preceding commands, replace `{ password here }` with a password.</span></span> <span data-ttu-id="88c56-146">Quando si usa [PowerShell](/powershell/scripting/overview), sostituire `%USERPROFILE%` con `$env:USERPROFILE` .</span><span class="sxs-lookup"><span data-stu-id="88c56-146">When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.</span></span>
+<span data-ttu-id="47c85-150">Nei comandi precedenti sostituire `{ password here }` con una password.</span><span class="sxs-lookup"><span data-stu-id="47c85-150">In the preceding commands, replace `{ password here }` with a password.</span></span> <span data-ttu-id="47c85-151">Quando si usa [PowerShell](/powershell/scripting/overview), sostituire `%USERPROFILE%` con `$env:USERPROFILE` .</span><span class="sxs-lookup"><span data-stu-id="47c85-151">When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.</span></span>
 
-<span data-ttu-id="88c56-147">Eseguire l'immagine del contenitore con ASP.NET Core configurato per HTTPS:</span><span class="sxs-lookup"><span data-stu-id="88c56-147">Run the container image with ASP.NET Core configured for HTTPS:</span></span>
+<span data-ttu-id="47c85-152">Eseguire l'immagine del contenitore con ASP.NET Core configurato per HTTPS:</span><span class="sxs-lookup"><span data-stu-id="47c85-152">Run the container image with ASP.NET Core configured for HTTPS:</span></span>
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
 docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=\https\aspnetapp.pfx -v %USERPROFILE%\.aspnet\https:C:\https\ mcr.microsoft.com/dotnet/core/samples:aspnetapp
 ```
 
-<span data-ttu-id="88c56-148">La password deve corrispondere alla password utilizzata per il certificato.</span><span class="sxs-lookup"><span data-stu-id="88c56-148">The password must match the password used for the certificate.</span></span> <span data-ttu-id="88c56-149">Quando si usa [PowerShell](/powershell/scripting/overview), sostituire `%USERPROFILE%` con `$env:USERPROFILE` .</span><span class="sxs-lookup"><span data-stu-id="88c56-149">When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.</span></span>
+<span data-ttu-id="47c85-153">La password deve corrispondere alla password utilizzata per il certificato.</span><span class="sxs-lookup"><span data-stu-id="47c85-153">The password must match the password used for the certificate.</span></span> <span data-ttu-id="47c85-154">Quando si usa [PowerShell](/powershell/scripting/overview), sostituire `%USERPROFILE%` con `$env:USERPROFILE` .</span><span class="sxs-lookup"><span data-stu-id="47c85-154">When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.</span></span>
