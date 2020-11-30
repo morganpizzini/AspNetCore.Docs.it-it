@@ -21,12 +21,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: 2dca5a9552dd2800212f8cd78ace0578b3d38cdb
-ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
+ms.openlocfilehash: 5263063d82d79dbeeca3e4cec007d240ca8a452a
+ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/07/2020
-ms.locfileid: "94360879"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96332180"
 ---
 # <a name="part-7-add-a-new-field-to-a-no-locrazor-page-in-aspnet-core"></a>Parte 7, aggiungere un nuovo campo a una Razor pagina in ASP.NET Core
 
@@ -397,7 +397,7 @@ Il comando `Update-Database` indica al framework di applicare le modifiche dello
 
 <a name="ssox"></a>
 
-Se si eliminano tutti i record in DdatabaseB, l'inizializzatore eseguirà il seeding di DdatabaseB e includerà il `Rating` campo. È possibile eseguire questa operazione con i collegamenti di eliminazione nel browser o da [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX).
+Se si eliminano tutti i record nel database, l'inizializzatore eseguirà il seeding del database e includerà il `Rating` campo. È possibile eseguire questa operazione con i collegamenti di eliminazione nel browser o da [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX).
 
 Un'altra opzione è quella di eliminare il database e usare le migrazioni per ricreare il database. Per eliminare il database da SSOX:
 
@@ -432,7 +432,7 @@ Un'altra opzione è quella di eliminare il database e usare le migrazioni per ri
 > * [Seeding dei dati](/ef/core/modeling/data-seeding)
 > * [Istruzione ALTER TABLE di SQLite](https://sqlite.org/lang_altertable.html)
 
-Delete il database e utilizzare le migrazioni per ricreare il database. Per eliminare il database, eliminare il file di database ( *MvcMovie.db* ). Eseguire quindi il comando `ef database update`:
+Delete il database e utilizzare le migrazioni per ricreare il database. Per eliminare il database, eliminare il file di database (*MvcMovie.db*). Eseguire quindi il comando `ef database update`:
 
 ```dotnetcli
 dotnet ef database update

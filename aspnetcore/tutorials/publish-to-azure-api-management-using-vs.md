@@ -4,20 +4,20 @@ author: codemillmatt
 description: Informazioni su come pubblicare un'API Web ASP.NET Core in gestione API di Azure con Visual Studio.
 ms.author: masoucou
 ms.custom: devx-track-csharp, mvc
-ms.date: 08/26/2020
+ms.date: 11/22/2020
 uid: tutorials/publish-to-azure-api-management-using-vs
-ms.openlocfilehash: 3cc6b8c0bd93f133151e1c8ad18a55b11975a9be
-ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
+ms.openlocfilehash: 395b5981a3018486235c38f032893f985ab71383
+ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88945696"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96332219"
 ---
 # <a name="publish-an-aspnet-core-web-api-to-azure-api-management-with-visual-studio"></a>Pubblicare un'API Web di ASP.NET Core in gestione API di Azure con Visual Studio
 
 Di [Matt Soucoup](https://twitter.com/codemillmatt)
 
-## <a name="set-up"></a>Configurare
+## <a name="set-up"></a>Configurazione
 
 - Aprire un [account Azure gratuito](https://azure.microsoft.com/free/dotnet/) se non è già disponibile un account.
 - Se non è già stato fatto, [creare una nuova istanza di gestione API di Azure](/azure/api-management/get-started-create-service-instance) .
@@ -77,7 +77,7 @@ Completare i passaggi seguenti per pubblicare l'API Web di ASP.NET Core in gesti
 
 Completare i passaggi seguenti per pubblicare l'API Web di ASP.NET Core in gestione API di Azure:
 
-1. In **Esplora soluzioni**fare clic con il pulsante destro del mouse sul progetto e scegliere **pubblica**:
+1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul progetto e scegliere **pubblica**:
 
     ![Menu di scelta rapida con il collegamento per la pubblicazione evidenziato](publish-to-azure-api-management-using-vs/_static/publish_menu.png)
 
@@ -108,11 +108,15 @@ A questo punto, è necessario aggiungere un'API al servizio gestione API di Azur
 
 1. Aprire l'istanza del servizio gestione API creata in precedenza nel portale di Azure. Selezionare il pannello **API** :
 
-    ![Pannello API selezionato dall'istanza del servizio gestione API](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
+  ![Pannello API selezionato dall'istanza del servizio gestione API](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
+
+1. Selezionare i 3 puntini accanto a **echo API** , quindi scegliere **Elimina** dal menu a comparsa per rimuoverlo.
+
+  ![Eliminazione dell'API Echo dall'istanza del servizio gestione API](publish-to-azure-api-management-using-vs/_static/portal_delete_echo.png)
 
 1. Nel pannello **Aggiungi nuova API** selezionare il riquadro **API vuota** :
 
-    ![Schermata che mostra il riquadro API vuota evidenziato](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
+  ![Schermata che mostra il riquadro API vuota evidenziato](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
 
 1. Immettere i valori seguenti nella finestra di dialogo **Crea un'API vuota** visualizzata:    
 
@@ -198,7 +202,7 @@ Si noti che il nome dell'API è diverso da quello specificato. L'API pubblicata 
 
 1. Aprire la scheda **Test**.
 1. Selezionare **/** o l'operazione **Get** .
-1. Selezionare **Send** (Invia).
+1. Selezionare **Invia**.
 
     ![Screenshot del portale prima del test](publish-to-azure-api-management-using-vs/_static/portal_pre_test.png)
 
@@ -206,7 +210,7 @@ Una risposta con esito positivo avrà un aspetto simile al seguente:
 
 ![Screenshot di una risposta corretta da gestione API](publish-to-azure-api-management-using-vs/_static/portal_successful_response.png)
 
-## <a name="clean-up"></a>Eseguire la pulizia
+## <a name="clean-up"></a>Pulizia
 
 Al termine del test dell'app, passare al [portale di Azure](https://portal.azure.com/) ed eliminare l'app.
 

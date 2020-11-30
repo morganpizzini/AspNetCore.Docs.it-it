@@ -7,7 +7,6 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/05/2019
 no-loc:
-- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -19,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-https
-ms.openlocfilehash: 63d6e220c0f28e552207039c1649041bfdf4a0d4
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: a4aac2ce06fee20bdef157efc361f3099a217b1a
+ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059676"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96332154"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-over-https"></a>Hosting di immagini ASP.NET Core con Docker su HTTPS
 
@@ -48,12 +47,14 @@ Un certificato di un' [autorità di certificazione](https://wikipedia.org/wiki/C
 
 Questo documento usa [certificati di sviluppo autofirmati](https://en.wikipedia.org/wiki/Self-signed_certificate) per l'hosting di immagini predefinite rispetto a `localhost` . Le istruzioni sono simili all'uso dei certificati di produzione.
 
+Usare [DotNet dev-certs](/dotnet/core/additional-tools/self-signed-certificates-guide) per creare certificati autofirmati per lo sviluppo e il test.
+
 Per i certificati di produzione:
 
 * Lo `dotnet dev-certs` strumento non è obbligatorio.
 * Non è necessario archiviare i certificati nel percorso utilizzato nelle istruzioni. Qualsiasi località dovrebbe funzionare, anche se non è consigliabile archiviare i certificati nella directory del sito.
 
-Le istruzioni contenute nella sezione seguente comportano i certificati di montaggio nei contenitori con l'opzione della riga di comando di Docker `-v` . È possibile aggiungere certificati alle immagini del contenitore con un `COPY` comando in un *Dockerfile* , ma non è consigliabile. La copia di certificati in un'immagine non è consigliata per i motivi seguenti:
+Le istruzioni contenute nella sezione seguente comportano i certificati di montaggio nei contenitori con l'opzione della riga di comando di Docker `-v` . È possibile aggiungere certificati alle immagini del contenitore con un `COPY` comando in un *Dockerfile*, ma non è consigliabile. La copia di certificati in un'immagine non è consigliata per i motivi seguenti:
 
 * Risulta difficile usare la stessa immagine per i test con certificati per sviluppatori.
 * Risulta difficile utilizzare la stessa immagine per l'hosting con certificati di produzione.
@@ -84,6 +85,9 @@ docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://
 Quando si usa [PowerShell](/powershell/scripting/overview), sostituire `%USERPROFILE%` con `$env:USERPROFILE` .
 
 La password deve corrispondere alla password utilizzata per il certificato.
+
+
+Nota: in questo caso il certificato deve essere un `.pfx` file.  L'uso di `.crt` un `.key` file o con o senza la password non è supportato con il contenitore di esempio.  Ad esempio, quando si specifica un `.crt` file, il contenitore può restituire messaggi di errore, ad esempio "la modalità server SSL deve usare un certificato con la chiave privata associata". Quando si usa [WSL](/windows/wsl/about), convalidare il percorso di montaggio per assicurarsi che il certificato venga caricato correttamente.
 
 ### <a name="macos-or-linux"></a>macOS o Linux
 
