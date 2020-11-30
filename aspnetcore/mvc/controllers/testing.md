@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/testing
-ms.openlocfilehash: 962c1cf0be0f80ecd6c3adda7d22db7f16519a2a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 348b0fe4da6037933aabdb5b400d36ca073a146a
+ms.sourcegitcommit: 43a540e703b9096921de27abc6b66bc0783fe905
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060352"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320096"
 ---
 # <a name="unit-test-controller-logic-in-aspnet-core"></a>Logica unità test controller in ASP.NET Core
 
@@ -36,7 +36,7 @@ Gli [unit test](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) imp
 
 ## <a name="unit-testing-controllers"></a>Controller di unit test
 
-Configurare unit test delle azioni del controller per concentrare l'attenzione sul comportamento del controller. Uno unit test del controller evita scenari come [filtri](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing) e [associazione di modelli](xref:mvc/models/model-binding). I test che verificano le interazioni tra i componenti che collettivamente rispondono a una richiesta vengono gestiti dai *test di integrazione* . Per altre informazioni sui test di integrazione, vedere <xref:test/integration-tests>.
+Configurare unit test delle azioni del controller per concentrare l'attenzione sul comportamento del controller. Uno unit test del controller evita scenari come [filtri](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing) e [associazione di modelli](xref:mvc/models/model-binding). I test che verificano le interazioni tra i componenti che collettivamente rispondono a una richiesta vengono gestiti dai *test di integrazione*. Per altre informazioni sui test di integrazione, vedere <xref:test/integration-tests>.
 
 Se si scrivono route e filtri personalizzati, sottoporli a unit test in isolamento e non durante i test relativi a una determinata azione del controller.
 
@@ -50,7 +50,7 @@ Il controller Home visualizza un elenco di sessioni di brainstorming e consente 
 
 Il controller precedente:
 
-* Segue il [principio delle dipendenze esplicite](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
+* Segue il [principio delle dipendenze esplicite](/dotnet/architecture/modern-web-apps-azure/architectural-principles#explicit-dependencies).
 * Si aspetta che l'[inserimento delle dipendenze](xref:fundamentals/dependency-injection) fornisca un'istanza di `IBrainstormSessionRepository`.
 * Può essere testato con un servizio `IBrainstormSessionRepository` fittizio tramite il framework di un oggetto fittizio, ad esempio [Moq](https://www.nuget.org/packages/Moq/). Un *oggetto fittizio* è un oggetto creato con un set predeterminato di comportamenti di proprietà e metodi usati per il testing. Per altre informazioni, vedere [Introduction to integration tests](xref:test/integration-tests#introduction-to-integration-tests) (Introduzione ai test di integrazione).
 
@@ -90,7 +90,7 @@ Le chiamate fittizie che non vengono eseguite sono in genere ignorate, ma la chi
 > [!NOTE]
 > La libreria Moq usata in questo esempio consente la combinazione di simulazioni verificabili o "rigide" con simulazioni non verificabili (dette anche simulazioni "generiche" o stub "generici"). Altre informazioni sulla [personalizzazione del comportamento di simulazione con Moq](https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior).
 
-[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) nell'app di esempio visualizza informazioni correlate a una sessione di brainstorming specifica. Il controller include la logica per gestire i valori `id` non validi (nell'esempio seguente sono riportati due scenari `return` in proposito). L'istruzione finale `return` restituisce un nuovo elemento `StormSessionViewModel` alla vista ( *Controllers/SessionController.cs* ):
+[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) nell'app di esempio visualizza informazioni correlate a una sessione di brainstorming specifica. Il controller include la logica per gestire i valori `id` non validi (nell'esempio seguente sono riportati due scenari `return` in proposito). L'istruzione finale `return` restituisce un nuovo elemento `StormSessionViewModel` alla vista (*Controllers/SessionController.cs*):
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs?name=snippet_SessionController&highlight=12-16,18-22,31)]
 
@@ -203,7 +203,7 @@ I [controller](xref:mvc/controllers/actions) hanno un ruolo centrale in qualsias
 
 Gli [unit test](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) implicano l'esecuzione di test su una parte di un'app isolandola dall'infrastruttura e dalle dipendenze. Quando si sottopone a unit test la logica del controller, si verificano solo i contenuti di una singola azione e non il comportamento delle relative dipendenze o del framework.
 
-Configurare unit test delle azioni del controller per concentrare l'attenzione sul comportamento del controller. Uno unit test del controller evita scenari come [filtri](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing) e [associazione di modelli](xref:mvc/models/model-binding). I test che verificano le interazioni tra i componenti che collettivamente rispondono a una richiesta vengono gestiti dai *test di integrazione* . Per altre informazioni sui test di integrazione, vedere <xref:test/integration-tests>.
+Configurare unit test delle azioni del controller per concentrare l'attenzione sul comportamento del controller. Uno unit test del controller evita scenari come [filtri](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing) e [associazione di modelli](xref:mvc/models/model-binding). I test che verificano le interazioni tra i componenti che collettivamente rispondono a una richiesta vengono gestiti dai *test di integrazione*. Per altre informazioni sui test di integrazione, vedere <xref:test/integration-tests>.
 
 Se si scrivono route e filtri personalizzati, sottoporli a unit test in isolamento e non durante i test relativi a una determinata azione del controller.
 
@@ -253,7 +253,7 @@ Le chiamate fittizie che non vengono eseguite sono in genere ignorate, ma la chi
 > [!NOTE]
 > La libreria Moq usata in questo esempio consente la combinazione di simulazioni verificabili o "rigide" con simulazioni non verificabili (dette anche simulazioni "generiche" o stub "generici"). Altre informazioni sulla [personalizzazione del comportamento di simulazione con Moq](https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior).
 
-[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) nell'app di esempio visualizza informazioni correlate a una sessione di brainstorming specifica. Il controller include la logica per gestire i valori `id` non validi (nell'esempio seguente sono riportati due scenari `return` in proposito). L'istruzione finale `return` restituisce un nuovo elemento `StormSessionViewModel` alla vista ( *Controllers/SessionController.cs* ):
+[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) nell'app di esempio visualizza informazioni correlate a una sessione di brainstorming specifica. Il controller include la logica per gestire i valori `id` non validi (nell'esempio seguente sono riportati due scenari `return` in proposito). L'istruzione finale `return` restituisce un nuovo elemento `StormSessionViewModel` alla vista (*Controllers/SessionController.cs*):
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs?name=snippet_SessionController&highlight=12-16,18-22,31)]
 
@@ -360,6 +360,6 @@ Per un `id` di sessione valido, il test finale verifica che:
 
 * <xref:test/integration-tests>
 * [Creazione ed esecuzione di unit test con Visual Studio](/visualstudio/test/unit-test-your-code)
-* [Tested. AspNetCore. Mvc-libreria di test Fluent per ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): libreria di unit test fortemente tipizzata, che fornisce un'interfaccia Fluent per il test di app per le API Web e MVC. ( *Non mantenuto o supportato da Microsoft).*
-* [JustMockLite](https://github.com/telerik/JustMockLite): Framework fittizio per sviluppatori .NET. ( *Non mantenuto o supportato da Microsoft).*
+* [Tested. AspNetCore. Mvc-libreria di test Fluent per ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): libreria di unit test fortemente tipizzata, che fornisce un'interfaccia Fluent per il test di app per le API Web e MVC. (*Non mantenuto o supportato da Microsoft).*
+* [JustMockLite](https://github.com/telerik/JustMockLite): Framework fittizio per sviluppatori .NET. (*Non mantenuto o supportato da Microsoft).*
 
