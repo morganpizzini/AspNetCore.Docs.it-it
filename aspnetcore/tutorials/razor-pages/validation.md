@@ -7,8 +7,6 @@ ms.custom: mvc
 ms.date: 09/29/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -21,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: d69ab3452f4f15e916049e5c772a20fe9f9fac65
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: f155922c9cb5ea7fdbad0963221ceddd19f4fe60
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570224"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96419954"
 ---
 # <a name="part-8-of-tutorial-series-on-no-locrazor-pages"></a>Parte 8 della serie di esercitazioni sulle Razor pagine.
 
@@ -36,7 +34,7 @@ In questa sezione la logica di convalida viene aggiunta al modello `Movie`. Le r
 
 ## <a name="validation"></a>Convalida
 
-Un concetto di base dello sviluppo del software si chiama [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) (" **D** on't **R** epeat **Y** ourself", Non ripeterti). Razor Le pagine favoriscono lo sviluppo in cui la funzionalità è specificata una sola volta e viene riflessa nell'intera app. DRY contribuisce a:
+Un concetto di base dello sviluppo del software si chiama [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("**D** on't **R** epeat **Y** ourself", Non ripeterti). Razor Le pagine favoriscono lo sviluppo in cui la funzionalità è specificata una sola volta e viene riflessa nell'intera app. DRY contribuisce a:
 
 * Ridurre la quantità di codice in un'app.
 * Rendere il codice meno soggetto ad errori e più facile da testare e gestire.
@@ -85,7 +83,7 @@ Le regole di convalida applicate automaticamente da ASP.NET Core consentono di:
 
 Eseguire l'app e passare a Pages/Movies.
 
-Selezionare il **Create nuovo** collegamento. Completare il modulo con alcuni valori non validi. Quando la convalida del lato client jQuery rileva l'errore, viene visualizzato un messaggio di errore.
+Selezionare il collegamento **Crea nuovo**. Completare il modulo con alcuni valori non validi. Quando la convalida del lato client jQuery rileva l'errore, viene visualizzato un messaggio di errore.
 
 ![Il modulo di vista del film con più errori di convalida del lato client jQuery](validation/_static/val.png)
 
@@ -93,11 +91,11 @@ Selezionare il **Create nuovo** collegamento. Completare il modulo con alcuni va
 
 Si noti come il modulo ha eseguito automaticamente il rendering di un messaggio di errore di convalida in ogni campo che contiene un valore non valido. Gli errori vengono applicati sia sul lato client, usando JavaScript che jQuery e sul lato server, quando un utente ha JavaScript disabilitato.
 
-Un vantaggio significativo è che **non** è necessario apportare modifiche al codice nelle Create pagine di modifica o. Una volta applicate le annotazioni dei dati al modello, è stata abilitata l'interfaccia utente di convalida. Le Razor pagine create in questa esercitazione hanno selezionato automaticamente le regole di convalida, usando gli attributi di convalida sulle proprietà della `Movie` classe del modello. Convalida del test tramite la pagina Modifica, viene applicata la stessa convalida.
+Un vantaggio significativo è dovuto al fatto che **non** sono state apportate modifiche al codice nelle pagine di creazione o modifica. Una volta applicate le annotazioni dei dati al modello, è stata abilitata l'interfaccia utente di convalida. Le Razor pagine create in questa esercitazione hanno selezionato automaticamente le regole di convalida, usando gli attributi di convalida sulle proprietà della `Movie` classe del modello. Convalida del test tramite la pagina Modifica, viene applicata la stessa convalida.
 
 I dati del modulo non vengono registrati nel server fino a quando non sono presenti errori di convalida nel lato client. Verificare che i dati del modulo non siano stati registrati da uno o più degli approcci seguenti:
 
-* Inserire un punto di interruzione nel metodo `OnPostAsync`. Inviare il modulo selezionando **Create** o **salvando**. Il punto di interruzione non viene mai raggiunto.
+* Inserire un punto di interruzione nel metodo `OnPostAsync`. Inviare il modulo selezionando **Crea** o **Salva**. Il punto di interruzione non viene mai raggiunto.
 * Usare lo [Strumento Fiddler](https://www.telerik.com/fiddler).
 * Usare gli strumenti di sviluppo del browser per monitorare il traffico di rete.
 
@@ -108,7 +106,7 @@ Quando JavaScript è disabilitato nel browser, l'invio del modulo con errori ver
 Facoltativo, convalida sul lato server del test:
 
 1. Disabilitare JavaScript nel browser. È possibile disabilitare JavaScript usando gli strumenti di sviluppo del browser. Se non è possibile disabilitare JavaScript nel browser, provare con un altro browser.
-1. Impostare un punto di pausa nel `OnPostAsync` metodo della Create pagina di modifica o.
+1. Impostare un punto di interruzione nel metodo `OnPostAsync` della pagina Crea o Modifica.
 1. Inviare un modulo con dati non validi.
 1. Verificare che lo stato del modello non sia valido:
 
@@ -121,7 +119,7 @@ Facoltativo, convalida sul lato server del test:
   
 In alternativa, [disabilitare la convalida lato client sul server](xref:mvc/models/validation#disable-client-side-validation).
 
-Il codice seguente mostra una parte della pagina *Create . cshtml* con impalcature più indietro nell'esercitazione. Viene usato dalle Create pagine e modifica per:
+Il codice seguente mostra una parte della pagina *Create.cshtml* di cui è stato eseguito lo scaffolding in precedenza nell'esercitazione. Viene usato dalle pagine Crea e modifica per:
 
 * Visualizzare il form iniziale.
 * Rivisualizzare il modulo in caso di errore.
@@ -130,7 +128,7 @@ Il codice seguente mostra una parte della pagina *Create . cshtml* con impalcatu
 
 L'[helper tag di input](xref:mvc/views/working-with-forms) usa gli attributi [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) e produce gli attributi HTML necessari per la convalida jQuery sul lato client. L'[helper tag di convalida](xref:mvc/views/working-with-forms#the-validation-tag-helpers) visualizza gli errori di convalida. Per altre informazioni, vedere [Convalida](xref:mvc/models/validation).
 
-Le Create pagine di modifica e non hanno alcuna regola di convalida. Le regole di convalida e le stringhe di errore vengono specificate solo nella classe `Movie`. Queste regole di convalida vengono applicate automaticamente alle Razor pagine che modificano il `Movie` modello.
+Le pagine Create e Edit non dispongono di nessuna regola di convalida. Le regole di convalida e le stringhe di errore vengono specificate solo nella classe `Movie`. Queste regole di convalida vengono applicate automaticamente alle Razor pagine che modificano il `Movie` modello.
 
 Quando la logica di convalida deve cambiare, avviene solo nel modello. La convalida viene applicata in modo coerente in tutta l'applicazione, la logica di convalida viene definita in un'unica posizione. La convalida in un'unica posizione consente di mantenere il codice pulito e rende più semplice la gestione e l'aggiornamento.
 

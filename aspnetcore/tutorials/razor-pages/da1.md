@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 09/20/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: 7146c1955a578502a63578de4f1abce932cb8b32
-ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
+ms.openlocfilehash: 460950413d1dd2d3539c1d62b0eb11f6bb5144a9
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/07/2020
-ms.locfileid: "94360608"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96419967"
 ---
 # <a name="part-5-update-the-generated-pages-in-an-aspnet-core-app"></a>Parte 5: aggiornare le pagine generate in un'app ASP.NET Core
 
@@ -55,7 +53,7 @@ Passare a *pagine/filmati* e passare il puntatore del mouse su un collegamento *
 
 ![Finestra del browser con il passaggio del mouse sul collegamento Edit (Modifica) e un URL di collegamento di https://localhost:1234/Movies/Edit/5](~/tutorials/razor-pages/da1/edit7.png)
 
-I collegamenti **modifica** , **Dettagli** e **Delete** vengono generati dall' [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) nel file *pages/Movies/ Index . cshtml* .
+I collegamenti **modifica**, **Dettagli** ed **Elimina** vengono generati dall' [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) nel file *pages/Movies/ Index . cshtml* .
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
@@ -77,7 +75,7 @@ Usare **Visualizza origine** da un browser per esaminare il markup generato. Di 
 
 ### <a name="add-route-template"></a>Aggiungere un modello di route
 
-Aggiornare la modifica, i dettagli e le Delete Razor pagine per usare il `{id:int}` modello di route. Modificare la direttiva page per ognuna di queste pagine da `@page` a `@page "{id:int}"`. Eseguire l'app e quindi visualizzare l'origine.
+Aggiornare le pagine modifica, dettagli ed Elimina Razor per usare il `{id:int}` modello di route. Modificare la direttiva page per ognuna di queste pagine da `@page` a `@page "{id:int}"`. Eseguire l'app e quindi visualizzare l'origine.
 
 Il codice HTML generato aggiunge l'ID alla parte di percorso dell'URL:
 
@@ -107,7 +105,7 @@ Con l'istruzione `@page "{id:int}"`, il punto di interruzione non viene mai ragg
 
 ### <a name="review-concurrency-exception-handling"></a>Verificare la gestione delle eccezioni di concorrenza
 
-Verificare il metodo `OnPostAsync` nel file *Pages/Movies/Edit.cshtml.cs* :
+Verificare il metodo `OnPostAsync` nel file *Pages/Movies/Edit.cshtml.cs*:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Edit.cshtml.cs?name=snippet)]
 
@@ -117,14 +115,14 @@ Per testare il blocco `catch`:
 
 1. Impostare un punto di interruzione su `catch (DbUpdateConcurrencyException)` .
 1. Selezionare **Edit** (Modifica) per un film, apportare modifiche, ma non immettere **Save** (Salva).
-1. In un'altra finestra del browser selezionare il **Delete** collegamento per lo stesso film e quindi eliminare il film.
+1. In un'altra finestra del browser, selezionare il collegamento **Delete** (Elimina) per lo stesso film e quindi eliminare il film.
 1. Nella finestra del browser precedente inviare le modifiche al film.
 
 In alcuni casi, il codice utilizzabile in ambienti di produzione potrebbe voler rilevare i conflitti di concorrenza. Per altre informazioni, vedere [Gestire i conflitti di concorrenza](xref:data/ef-rp/concurrency).
 
 ### <a name="posting-and-binding-review"></a>Invio di post e analisi delle associazioni
 
-Esaminare il file *Pages/Movies/Edit.cshtml.cs* : 
+Esaminare il file *Pages/Movies/Edit.cshtml.cs*: 
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/SnapShots/Edit.cshtml.cs?name=snippet2)]
 
@@ -146,7 +144,7 @@ Quando viene inviata la pagina Movies/Edit (Film/Modifica):
 * Se si verificano errori nello stato del modello, ad esempio, `ReleaseDate` non può essere convertito in una data, il form viene visualizzato nuovamente con i valori inviati.
 * Se non sono presenti errori del modello, il film viene salvato.
 
-I metodi HTTP GET nelle Index pagine, Create e Delete Razor seguono un modello simile. Il metodo HTTP POST `OnPostAsync` nella Create Razor pagina segue un modello simile al `OnPostAsync` metodo nella pagina Edit (modifica) Razor .
+I metodi HTTP GET nelle Index pagine, create ed Delete Razor seguono un modello simile. Il metodo HTTP POST `OnPostAsync` nella pagina Create Razor segue un modello simile al `OnPostAsync` metodo nella pagina Edit (modifica) Razor .
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -176,7 +174,7 @@ Accedere a Pages/Movies e passare il mouse su un collegamento **Edit** (Modifica
 
 ![Finestra del browser con il passaggio del mouse sul collegamento Edit (Modifica) e un URL di collegamento di http://localhost:1234/Movies/Edit/5](~/tutorials/razor-pages/da1/edit7.png)
 
-I collegamenti **modifica** , **Dettagli** e **Delete** vengono generati dall' [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) nel file *pages/Movies/ Index . cshtml* .
+I collegamenti **modifica**, **Dettagli** ed **Elimina** vengono generati dall' [Helper tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) nel file *pages/Movies/ Index . cshtml* .
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
@@ -194,7 +192,7 @@ Usare **Visualizza origine** da un browser per esaminare il markup generato. Di 
 
 I collegamenti generati dinamicamente passano l'ID del film con una stringa di query. Ad esempio, `?id=1` in  `https://localhost:5001/Movies/Details?id=1` .
 
-Aggiornare la modifica, i dettagli e le Delete Razor pagine per usare il modello di route "{ID: int}". Modificare la direttiva page per ognuna di queste pagine da `@page` a `@page "{id:int}"`. Eseguire l'app e quindi visualizzare l'origine. Il codice HTML generato aggiunge l'ID alla parte di percorso dell'URL:
+Aggiornare le pagine modifica, dettagli ed Elimina Razor per usare il modello di route "{ID: int}". Modificare la direttiva page per ognuna di queste pagine da `@page` a `@page "{id:int}"`. Eseguire l'app e quindi visualizzare l'origine. Il codice HTML generato aggiunge l'ID alla parte di percorso dell'URL:
 
 ```html
 <td>
@@ -222,7 +220,7 @@ Con l'istruzione `@page "{id:int}"`, il punto di interruzione non viene mai ragg
 
 ### <a name="review-concurrency-exception-handling"></a>Verificare la gestione delle eccezioni di concorrenza
 
-Verificare il metodo `OnPostAsync` nel file *Pages/Movies/Edit.cshtml.cs* :
+Verificare il metodo `OnPostAsync` nel file *Pages/Movies/Edit.cshtml.cs*:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Edit.cshtml.cs?name=snippet)]
 
@@ -232,14 +230,14 @@ Per testare il blocco `catch`:
 
 * Impostare un punto di interruzione su `catch (DbUpdateConcurrencyException)`
 * Selezionare **Edit** (Modifica) per un film, apportare modifiche, ma non immettere **Save** (Salva).
-* In un'altra finestra del browser selezionare il **Delete** collegamento per lo stesso film e quindi eliminare il film.
+* In un'altra finestra del browser, selezionare il collegamento **Delete** (Elimina) per lo stesso film e quindi eliminare il film.
 * Nella finestra del browser precedente inviare le modifiche al film.
 
 In alcuni casi, il codice utilizzabile in ambienti di produzione potrebbe voler rilevare i conflitti di concorrenza. Per altre informazioni, vedere [Gestire i conflitti di concorrenza](xref:data/ef-rp/concurrency).
 
 ### <a name="posting-and-binding-review"></a>Invio di post e analisi delle associazioni
 
-Esaminare il file *Pages/Movies/Edit.cshtml.cs* : 
+Esaminare il file *Pages/Movies/Edit.cshtml.cs*: 
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit21.cshtml.cs?name=snippet2)]
 
@@ -261,7 +259,7 @@ Quando viene inviata la pagina Movies/Edit (Film/Modifica):
 * Se si verificano errori nello stato del modello, ad esempio, `ReleaseDate` non può essere convertito in una data, il form viene visualizzato con i valori inviati.
 * Se non sono presenti errori del modello, il film viene salvato.
 
-I metodi HTTP GET nelle Index pagine, Create e Delete Razor seguono un modello simile. Il metodo HTTP POST `OnPostAsync` nella Create Razor pagina segue un modello simile al `OnPostAsync` metodo nella pagina Edit (modifica) Razor .
+I metodi HTTP GET nelle Index pagine, create ed Delete Razor seguono un modello simile. Il metodo HTTP POST `OnPostAsync` nella pagina Create Razor segue un modello simile al `OnPostAsync` metodo nella pagina Edit (modifica) Razor .
 
 La funzionalità di ricerca viene aggiunta nell'esercitazione successiva.
 

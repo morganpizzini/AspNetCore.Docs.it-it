@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: 00c1be2704d92c7d4f868e6eaa346bd8e9901dbf
-ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
+ms.openlocfilehash: 3b95fe117895555ebcd44f971e7bb9d1173e1697
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/07/2020
-ms.locfileid: "94360842"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96419980"
 ---
 # <a name="part-6-add-search-to-aspnet-core-no-locrazor-pages"></a>Parte 6, aggiungere la ricerca a Razor pagine ASP.NET Core
 
@@ -47,7 +45,7 @@ Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Nelle sezioni seguenti viene aggiunta la funzionalità di ricerca di film in base al *genere* oppure al *nome*.
 
-Aggiungere le proprietà e l'istruzione using evidenziate seguenti a *pages/Movies/ Index . cshtml.cs* :
+Aggiungere le proprietà e l'istruzione using evidenziate seguenti a *pages/Movies/ Index . cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=3,23,24,25,26,27)]
 
@@ -83,11 +81,11 @@ Il codice `s => s.Title.Contains()` è un'[espressione lambda](/dotnet/csharp/pr
 > [!NOTE]
 > il metodo [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) viene eseguito nel database, non nel codice C#. La distinzione tra maiuscole/minuscole nella query dipende dal database e dalle regole di confronto. In SQL Server `Contains` esegue il mapping a [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql) che fa distinzione tra maiuscole e minuscole. In SQLite, con le regole di confronto predefinite si fa distinzione tra maiuscole e minuscole.
 
-Passare alla pagina Movies e aggiungere una stringa di query, ad esempio `?searchString=Ghost` all'URL. Ad esempio, `https://localhost:5001/Movies?searchString=Ghost` Vengono visualizzati i film filtrati.
+Passare alla pagina Movies e aggiungere una stringa di query, ad esempio `?searchString=Ghost` all'URL. Ad esempio: `https://localhost:5001/Movies?searchString=Ghost`. Vengono visualizzati i film filtrati.
 
 ![::: NO-LOC (index)::: View](search/_static/ghost.png)
 
-Se il modello di route seguente viene aggiunto alla Index pagina, la stringa di ricerca può essere passata come segmento URL. Ad esempio, `https://localhost:5001/Movies/Ghost`
+Se il modello di route seguente viene aggiunto alla Index pagina, la stringa di ricerca può essere passata come segmento URL. Ad esempio: `https://localhost:5001/Movies/Ghost`.
 
 ```cshtml
 @page "{searchString?}"
@@ -97,7 +95,7 @@ Il vincolo di route precedente consente la ricerca del titolo come dati della ro
 
 ![::: NO-LOC (index)::: View con la parola Ghost aggiunta all'URL e un elenco di film restituito di due film, Ghostbusters e Ghostbusters 2](search/_static/g2.png)
 
-Il runtime di ASP.NET Core usa l'[associazione di modelli](xref:mvc/models/model-binding) per impostare il valore della proprietà `SearchString` dalla stringa di query (`?searchString=Ghost`) o dai dati della route (`https://localhost:5001/Movies/Ghost`). L'associazione di modelli è * *_not_* _ maiuscole/minuscole.
+Il runtime di ASP.NET Core usa l'[associazione di modelli](xref:mvc/models/model-binding) per impostare il valore della proprietà `SearchString` dalla stringa di query (`?searchString=Ghost`) o dai dati della route (`https://localhost:5001/Movies/Ghost`). L'associazione di modelli è **_not_* _ maiuscole/minuscole.
 
 Tuttavia, non è previsto che gli utenti modifichino l'URL per cercare un film. In questo passaggio viene aggiunta l'interfaccia utente per filtrare i film. Rimuovere il vincolo di route `"{searchString?}"`, se è stato aggiunto.
 
@@ -150,7 +148,7 @@ L'elenco `SelectList` di generi viene creato selezionando generi distinti.
 
 Nelle sezioni seguenti viene aggiunta la funzionalità di ricerca di film in base al *genere* oppure al *nome*.
 
-Aggiungere le proprietà evidenziate seguenti a *pages/Movies/ Index . cshtml.cs* :
+Aggiungere le proprietà evidenziate seguenti a *pages/Movies/ Index . cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
@@ -183,11 +181,11 @@ Il codice `s => s.Title.Contains()` è un'[espressione lambda](/dotnet/csharp/pr
 
 **Nota:** il metodo [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) viene eseguito sul database, non nel codice C#. La distinzione tra maiuscole/minuscole nella query dipende dal database e dalle regole di confronto. In SQL Server `Contains` esegue il mapping a [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql) che fa distinzione tra maiuscole e minuscole. In SQLite, con le regole di confronto predefinite si fa distinzione tra maiuscole e minuscole.
 
-Passare alla pagina Movies e aggiungere una stringa di query, ad esempio `?searchString=Ghost` all'URL. Ad esempio, `https://localhost:5001/Movies?searchString=Ghost` Vengono visualizzati i film filtrati.
+Passare alla pagina Movies e aggiungere una stringa di query, ad esempio `?searchString=Ghost` all'URL. Ad esempio: `https://localhost:5001/Movies?searchString=Ghost`. Vengono visualizzati i film filtrati.
 
 ![::: NO-LOC (index)::: View](search/_static/ghost.png)
 
-Se il modello di route seguente viene aggiunto alla Index pagina, la stringa di ricerca può essere passata come segmento URL. Ad esempio, `https://localhost:5001/Movies/Ghost`
+Se il modello di route seguente viene aggiunto alla Index pagina, la stringa di ricerca può essere passata come segmento URL. Ad esempio: `https://localhost:5001/Movies/Ghost`.
 
 ```cshtml
 @page "{searchString?}"
@@ -197,7 +195,7 @@ Il vincolo di route precedente consente la ricerca del titolo come dati della ro
 
 ![::: NO-LOC (index)::: View con la parola Ghost aggiunta all'URL e un elenco di film restituito di due film, Ghostbusters e Ghostbusters 2](search/_static/g2.png)
 
-Il runtime di ASP.NET Core usa l'[associazione di modelli](xref:mvc/models/model-binding) per impostare il valore della proprietà `SearchString` dalla stringa di query (`?searchString=Ghost`) o dai dati della route (`https://localhost:5001/Movies/Ghost`). L'associazione di modelli è * *_not_* _ maiuscole/minuscole.
+Il runtime di ASP.NET Core usa l'[associazione di modelli](xref:mvc/models/model-binding) per impostare il valore della proprietà `SearchString` dalla stringa di query (`?searchString=Ghost`) o dai dati della route (`https://localhost:5001/Movies/Ghost`). L'associazione di modelli è **_not_* _ maiuscole/minuscole.
 
 Tuttavia, non è previsto che gli utenti modifichino l'URL per cercare un film. In questo passaggio viene aggiunta l'interfaccia utente per filtrare i film. Rimuovere il vincolo di route `"{searchString?}"`, se è stato aggiunto.
 

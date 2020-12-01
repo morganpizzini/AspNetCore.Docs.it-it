@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 09/25/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: d655be26a794f87a0be07046ae1d6415256d592c
-ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
+ms.openlocfilehash: 4a5369b9e40de89ac9a1895466e7bdd7afb9d32e
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95417630"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420032"
 ---
 # <a name="part-3-scaffolded-no-locrazor-pages-in-aspnet-core"></a>Parte 3, Razor pagine con impalcatura in ASP.NET Core
 
@@ -47,7 +45,7 @@ Questa esercitazione esamina le Razor pagine create dall'impalcatura nell' [eser
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="the-no-loccreate-no-locdelete-details-and-edit-pages"></a>Le Create Delete pagine,, Details e Edit
+## <a name="the-create-delete-details-and-edit-pages"></a>Pagine di creazione, eliminazione, dettagli e modifica
 
 Esaminare il modello di pagina *pages/Movies/ Index . cshtml.cs* :
 
@@ -65,7 +63,7 @@ Quando `OnGet` restituisce `void` o `OnGetAsync` restituisce `Task` , non viene 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Privacy.cshtml.cs?name=snippet)]
 
-Quando il tipo restituito è `IActionResult` o `Task<IActionResult>`, è necessario specificare un'istruzione return. Ad esempio, il metodo *pages/Movies/ Create . cshtml.cs* `OnPostAsync` :
+Quando il tipo restituito è `IActionResult` o `Task<IActionResult>`, è necessario specificare un'istruzione return. Ad esempio, il metodo *Pages/Movies/Create.cshtml.cs* `OnPostAsync`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
@@ -151,7 +149,7 @@ La riga `@*Markup removed for brevity.*@` è un Razor commento. Diversamente dai
 
 1. Salvare le modifiche ed eseguire il test dell'app selezionando il collegamento **RpMovie** . In caso di problemi, vedere il file [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml) in GitHub.
 
-1. Testare i collegamenti **Home**, **RpMovie**, **Create** , **Edit** e **Delete** . Ogni pagina imposta il titolo, che è possibile visualizzare nella scheda del browser. Quando si aggiunge un segnalibro a una pagina, il titolo viene usato per il segnalibro.
+1. Testare i collegamenti **Home**, **RpMovie**, **create**, **Edit** e **Delete** . Ogni pagina imposta il titolo, che è possibile visualizzare nella scheda del browser. Quando si aggiunge un segnalibro a una pagina, il titolo viene usato per il segnalibro.
 
 > [!NOTE]
 > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per le impostazioni locali diverse dall'inglese che usano una virgola (",") per un separatore decimale e formati non US-English data, è necessario eseguire le operazioni per globalizzare l'app. Vedere questo [problema 4076 su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) per istruzioni sull'aggiunta della virgola decimale.
@@ -162,15 +160,15 @@ La proprietà `Layout` viene impostata nel file *Pages/_ViewStart.cshtml*:
 
 Il markup precedente imposta il file di layout su *pages/Shared/_Layout. cshtml* per tutti Razor i file nella cartella *pages* . Vedere [Layout](xref:razor-pages/index#layout) per altre informazioni.
 
-### <a name="the-no-loccreate-page-model"></a>CreateModello di pagina
+### <a name="the-create-page-model"></a>Modello di pagina di creazione
 
-Esaminare il modello di pagina *pages/Movies/ Create . cshtml.cs* :
+Esaminare il modello di pagina *Pages/Movies/Create.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
-Il metodo `OnGet` inizializza lo stato necessario per la pagina. La Create pagina non dispone di alcuno stato da inizializzare, pertanto `Page` viene restituito. Più avanti nell'esercitazione viene visualizzato un esempio di inizializzazione dello stato con `OnGet`. Il `Page` metodo crea un `PageResult` oggetto che esegue il rendering della pagina *Create . cshtml* .
+Il metodo `OnGet` inizializza lo stato necessario per la pagina. La pagina di creazione non possiede uno stato da inizializzare. Viene restituito `Page`. Più avanti nell'esercitazione viene visualizzato un esempio di inizializzazione dello stato con `OnGet`. Il metodo `Page` crea un oggetto `PageResult` che esegue il rendering della pagina *Create.cshtml*.
 
-La `Movie` Proprietà usa l'attributo [[BindProperty]](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) per acconsentire esplicitamente all' [associazione di modelli](xref:mvc/models/model-binding). Quando il Create form inserisce i valori del form, il runtime di ASP.NET Core associa i valori inviati al `Movie` modello.
+La `Movie` Proprietà usa l'attributo [[BindProperty]](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) per acconsentire esplicitamente all' [associazione di modelli](xref:mvc/models/model-binding). Dopo che il modulo di creazione registra i valori, il runtime di ASP.NET Core associa i valori registrati al modello `Movie`.
 
 Il metodo `OnPostAsync` viene eseguito quando la pagina inserisce i dati del modulo:
 
@@ -183,9 +181,9 @@ Se non sono presenti errori del modello:
 * I dati vengono salvati.
 * Il browser viene reindirizzato alla Index pagina.
 
-### <a name="the-no-loccreate-no-locrazor-page"></a>Create Razor Pagina
+### <a name="the-create-no-locrazor-page"></a>Pagina Crea Razor
 
-Esaminare il file di paging *pages/Movies/ Create . cshtml* Razor :
+Esaminare il file di paging *pages/Movies/create. cshtml* Razor :
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml)]
 
@@ -199,7 +197,7 @@ Visual Studio visualizza i tag seguenti con un tipo di carattere in grassetto di
 * `<input asp-for="Movie.Title" class="form-control" />`
 * `<span asp-validation-for="Movie.Title" class="text-danger"></span>`
 
-![Visualizzazione VS17 della pagina::: NO-LOC (Create):::. cshtml](page/_static/th3.png)
+![Visualizzazione di VS17 della pagina Create.cshtml](page/_static/th3.png)
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -237,7 +235,7 @@ Per altre informazioni sugli helper tag, ad esempio `<form method="post">`, vede
 
 ::: moniker range="< aspnetcore-3.0"
 
-## <a name="the-no-loccreate-no-locdelete-details-and-edit-pages"></a>Le Create Delete pagine,, Details e Edit
+## <a name="the-create-delete-details-and-edit-pages"></a>Pagine di creazione, eliminazione, dettagli e modifica
 
 Esaminare il modello di pagina *pages/Movies/ Index . cshtml.cs* :
 
@@ -247,7 +245,7 @@ Razor Le pagine sono derivate da `PageModel` . Per convenzione, la `PageModel` c
 
 Quando viene effettuata una richiesta per la pagina, il `OnGetAsync` metodo restituisce un elenco di filmati alla Razor pagina. `OnGetAsync` o `OnGet` viene chiamato su una Razor pagina per inizializzare lo stato della pagina. In questo caso, `OnGetAsync` ottiene un elenco di filmati e li visualizza.
 
-Quando `OnGet` restituisce `void` o `OnGetAsync` restituisce `Task` , non viene utilizzato alcun metodo restituito. Quando il tipo restituito è `IActionResult` o `Task<IActionResult>`, è necessario specificare un'istruzione return. Ad esempio, il metodo *pages/Movies/ Create . cshtml.cs* `OnPostAsync` :
+Quando `OnGet` restituisce `void` o `OnGetAsync` restituisce `Task` , non viene utilizzato alcun metodo restituito. Quando il tipo restituito è `IActionResult` o `Task<IActionResult>`, è necessario specificare un'istruzione return. Ad esempio, il metodo *Pages/Movies/Create.cshtml.cs* `OnPostAsync`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
@@ -326,7 +324,7 @@ L'elemento di ancoraggio precedente è un [helper tag](xref:mvc/views/tag-helper
 
 Salvare le modifiche e testare l'app selezionando il collegamento **RpMovie**. In caso di problemi, vedere il file [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml) in GitHub.
 
-Testare gli altri collegamenti (**Home**, **RpMovie**, **Create** , **Edit** e **Delete** ). Ogni pagina imposta il titolo, che è possibile visualizzare nella scheda del browser. Quando si aggiunge un segnalibro a una pagina, il titolo viene usato per il segnalibro.
+Testare gli altri collegamenti (**Home**, **RpMovie**, **Create**, **Edit** e **Delete**). Ogni pagina imposta il titolo, che è possibile visualizzare nella scheda del browser. Quando si aggiunge un segnalibro a una pagina, il titolo viene usato per il segnalibro.
 
 > [!NOTE]
 > Potrebbe non essere possibile immettere virgole decimali nel campo `Price`. Per supportare la [convalida jQuery](https://jqueryvalidation.org/) per le impostazioni locali diverse dall'inglese che usano una virgola (",") per un separatore decimale e formati non US-English data, è necessario eseguire le operazioni per globalizzare l'app. [Problema 4076 su GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) per istruzioni sull'aggiunta della virgola decimale.
@@ -337,15 +335,15 @@ La proprietà `Layout` viene impostata nel file *Pages/_ViewStart.cshtml*:
 
 Il markup precedente imposta il file di layout su *pages/Shared/_Layout. cshtml* per tutti Razor i file nella cartella *pages* . Vedere [Layout](xref:razor-pages/index#layout) per altre informazioni.
 
-### <a name="the-no-loccreate-page-model"></a>CreateModello di pagina
+### <a name="the-create-page-model"></a>Modello di pagina di creazione
 
-Esaminare il modello di pagina *pages/Movies/ Create . cshtml.cs* :
+Esaminare il modello di pagina *Pages/Movies/Create.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
-Il metodo `OnGet` inizializza lo stato necessario per la pagina. La Create pagina non dispone di alcuno stato da inizializzare, pertanto `Page` viene restituito. Più avanti nell'esercitazione viene illustrato lo stato di inizializzazione del metodo `OnGet`. Il `Page` metodo crea un `PageResult` oggetto che esegue il rendering della pagina *Create . cshtml* .
+Il metodo `OnGet` inizializza lo stato necessario per la pagina. La pagina di creazione non possiede uno stato da inizializzare. Viene restituito `Page`. Più avanti nell'esercitazione viene illustrato lo stato di inizializzazione del metodo `OnGet`. Il metodo `Page` crea un oggetto `PageResult` che esegue il rendering della pagina *Create.cshtml*.
 
-La `Movie` Proprietà usa l'attributo [[BindProperty]] <xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute> per acconsentire esplicitamente all' [associazione di modelli](xref:mvc/models/model-binding). Quando il Create form inserisce i valori del form, il runtime di ASP.NET Core associa i valori inviati al `Movie` modello.
+La `Movie` Proprietà usa l'attributo [[BindProperty]] <xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute> per acconsentire esplicitamente all' [associazione di modelli](xref:mvc/models/model-binding). Dopo che il modulo di creazione registra i valori, il runtime di ASP.NET Core associa i valori registrati al modello `Movie`.
 
 Il metodo `OnPostAsync` viene eseguito quando la pagina inserisce i dati del modulo:
 
@@ -355,9 +353,9 @@ Se il modello contiene errori, il modulo viene nuovamente visualizzato insieme a
 
 Se non sono presenti errori del modello, i dati vengono salvati e il browser viene reindirizzato alla Index pagina.
 
-### <a name="the-no-loccreate-no-locrazor-page"></a>Create Razor Pagina
+### <a name="the-create-no-locrazor-page"></a>Pagina Crea Razor
 
-Esaminare il file di paging *pages/Movies/ Create . cshtml* Razor :
+Esaminare il file di paging *pages/Movies/create. cshtml* Razor :
 
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml)]
 
@@ -365,7 +363,7 @@ Esaminare il file di paging *pages/Movies/ Create . cshtml* Razor :
 
 Per visualizzare il tag `<form method="post">`, Visual Studio usa un tipo di carattere in grassetto distintivo specifico per gli helper tag:
 
-![Visualizzazione VS17 della pagina::: NO-LOC (Create):::. cshtml](page/_static/th.png)
+![Visualizzazione di VS17 della pagina Create.cshtml](page/_static/th.png)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 

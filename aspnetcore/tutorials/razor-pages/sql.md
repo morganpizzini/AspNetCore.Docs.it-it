@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 09/26/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: 2c5bc221901d9e41984fb591755a8ad94e7e1420
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: 6627825239d815d2c8bcad98e22340f07f921ab9
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570237"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420019"
 ---
 # <a name="part-4-of-tutorial-series-on-no-locrazor-pages"></a>Parte 4 della serie di esercitazioni sulle Razor pagine
 
@@ -35,7 +33,7 @@ Di [Rick Anderson](https://twitter.com/RickAndMSFT) e [Joe Audette](https://twit
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([procedura per il download](xref:index#how-to-download-a-sample)).
 
-L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs* :
+L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs*:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -74,7 +72,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
    ![Menu Visualizza](sql/_static/5/ssox.png)
 
-1. Fare clic con il pulsante destro del mouse sulla `Movie` tabella e scegliere **Visualizza finestra di progettazione** :
+1. Fare clic con il pulsante destro del mouse sulla `Movie` tabella e scegliere **Visualizza finestra di progettazione**:
 
    ![Menu di scelta rapida aperti per la tabella Movie](sql/_static/5/design.png)
 
@@ -82,7 +80,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
    Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, Entity Framework crea una proprietà denominata `ID` per la chiave primaria.
 
-1. Fare clic con il pulsante destro del mouse sulla `Movie` tabella e selezionare **Visualizza dati** :
+1. Fare clic con il pulsante destro del mouse sulla `Movie` tabella e selezionare **Visualizza dati**:
 
    ![Tabella Movie aperta con i dati della tabella](sql/_static/vd22.png)
 
@@ -118,7 +116,7 @@ Sono disponibili molti strumenti di terze parti che è possibile scaricare per g
 
 ## <a name="seed-the-database"></a>Specificare il valore di inizializzazione del database
 
-Create nuova classe denominata `SeedData` nella cartella *Models* con il codice seguente:
+Creare una nuova classe denominata `SeedData` nella cartella *Models* usando il codice seguente:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
@@ -154,11 +152,11 @@ Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Delete tutti i record del database. Usare i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+1. Eliminare tutti i record nel database. Usare i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 
 1. Forzare l'inizializzazione dell'app chiamando i metodi nella `Startup` classe, in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. Arrestare e riavviare IIS con uno degli approcci seguenti:
 
-   1. Fare clic con il pulsante destro del mouse sull'icona della barra di sistema IIS Express nell'area di notifica e selezionare **Esci** o **Arresta sito** :
+   1. Fare clic con il pulsante destro del mouse sull'icona della barra di sistema IIS Express nell'area di notifica e selezionare **Esci** o **Arresta sito**:
 
       ![Icona dell'area di notifica di IIS Express](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
@@ -169,7 +167,7 @@ Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Delete tutti i record nel database, in modo che venga eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
+Eliminare tutti i record nel database, in modo che venga eseguito il metodo Seed. Arrestare e avviare l'app per inizializzare il database.
 
 ---
 
@@ -189,7 +187,7 @@ L'app visualizza i dati sottoposti a seed:
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30) ([procedura per il download](xref:index#how-to-download-a-sample)).
 
-L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs* :
+L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs*:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -228,7 +226,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
   ![Menu Visualizza](sql/_static/ssox.png)
 
-* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e scegliere **Visualizza finestra di progettazione** :
+* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e scegliere **Visualizza finestra di progettazione**:
 
   ![Menu di scelta rapida aperti per la tabella Movie](sql/_static/design.png)
 
@@ -236,7 +234,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
 Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, Entity Framework crea una proprietà denominata `ID` per la chiave primaria.
 
-* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e selezionare **Visualizza dati** :
+* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e selezionare **Visualizza dati**:
 
   ![Tabella Movie aperta con i dati della tabella](sql/_static/vd22.png)
 
@@ -272,7 +270,7 @@ Sono disponibili molti strumenti di terze parti che è possibile scaricare per g
 
 ## <a name="seed-the-database"></a>Specificare il valore di inizializzazione del database
 
-Create nuova classe denominata `SeedData` nella cartella *Models* con il codice seguente:
+Creare una nuova classe denominata `SeedData` nella cartella *Models* usando il codice seguente:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
@@ -308,10 +306,10 @@ Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Delete tutti i record del database. Usare i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox).
+* Eliminare tutti i record nel database. Usare i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox).
 * Forzare l'inizializzazione dell'app chiamando i metodi nella `Startup` classe, in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. Arrestare e riavviare IIS con uno degli approcci seguenti:
 
-  * Fare clic con il pulsante destro del mouse sull'icona dell'area di notifica di IIS Express e toccare **Esci** o **Arresta sito** :
+  * Fare clic con il pulsante destro del mouse sull'icona dell'area di notifica di IIS Express e toccare **Esci** o **Arresta sito**:
 
     ![Icona dell'area di notifica di IIS Express](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
@@ -322,7 +320,7 @@ Quando `Update-Database` non è stato eseguito, si verifica l'eccezione seguente
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio per Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Delete tutti i record nel database, in modo che venga eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
+Eliminare tutti i record nel database, in modo che venga eseguito il metodo Seed. Arrestare e avviare l'app per inizializzare il database.
 
 ---
 
@@ -342,7 +340,7 @@ L'app visualizza i dati sottoposti a seed:
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start) ([procedura per il download](xref:index#how-to-download-a-sample)).
 
-L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs* :
+L'oggetto `RazorPagesMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato con il contenitore di [inserimento delle dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` di *Startup.cs*:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -390,7 +388,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
   ![Menu Visualizza](sql/_static/ssox.png)
 
-* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e scegliere **Visualizza finestra di progettazione** :
+* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e scegliere **Visualizza finestra di progettazione**:
 
   ![Menu di scelta rapida aperto per la tabella Movie](sql/_static/design.png)
 
@@ -398,7 +396,7 @@ Local DB è una versione leggera del motore di database di SQL Server Express ap
 
 Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, Entity Framework crea una proprietà denominata `ID` per la chiave primaria.
 
-* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e selezionare **Visualizza dati** :
+* Fare clic con il pulsante destro del mouse sulla `Movie` tabella e selezionare **Visualizza dati**:
 
   ![Tabella Movie aperta con i dati della tabella](sql/_static/vd22.png)
 
@@ -416,7 +414,7 @@ Si noti l'icona a forma di chiave accanto a `ID`. Per impostazione predefinita, 
 
 ## <a name="seed-the-database"></a>Specificare il valore di inizializzazione del database
 
-Create nuova classe denominata `SeedData` nella cartella *Models* con il codice seguente:
+Creare una nuova classe denominata `SeedData` nella cartella *Models* usando il codice seguente:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
 
@@ -452,10 +450,10 @@ Accesso non riuscito per l'utente "nome-utente".
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Delete tutti i record del database. Questa operazione può essere eseguita con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+* Eliminare tutti i record nel database. Questa operazione può essere eseguita con i collegamenti di eliminazione nel browser o da [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Forzare l'inizializzazione dell'app chiamando i metodi nella `Startup` classe, in modo che venga eseguito il metodo di inizializzazione. Per forzare l'inizializzazione, IIS Express deve essere arrestato e riavviato. È possibile eseguire questa operazione adottando uno degli approcci seguenti:
 
-  * Fare clic con il pulsante destro del mouse sull'icona dell'area di notifica di IIS Express e toccare **Esci** o **Arresta sito** :
+  * Fare clic con il pulsante destro del mouse sull'icona dell'area di notifica di IIS Express e toccare **Esci** o **Arresta sito**:
 
     ![Icona dell'area di notifica di IIS Express](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
@@ -466,11 +464,11 @@ Accesso non riuscito per l'utente "nome-utente".
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Delete tutti i record nel database, in modo che venga eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
+Eliminare tutti i record nel database, in modo che venga eseguito il metodo Seed. Arrestare e avviare l'app per inizializzare il database.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-Delete tutti i record nel database, in modo che venga eseguito il metodo di inizializzazione. Arrestare e avviare l'app per inizializzare il database.
+Eliminare tutti i record nel database, in modo che venga eseguito il metodo Seed. Arrestare e avviare l'app per inizializzare il database.
 
 ---
 
