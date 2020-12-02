@@ -217,7 +217,7 @@
       uid: fundamentals/environments
     - name: Registrazione
       uid: fundamentals/logging/index
-    - name: Routing.
+    - name: Routing
       uid: fundamentals/routing
     - name: Gestire gli errori
       uid: fundamentals/error-handling
@@ -290,7 +290,7 @@
           uid: mvc/views/partial
         - name: Controllers
           uid: mvc/controllers/actions
-        - name: Routing.
+        - name: Routing
           uid: mvc/controllers/routing
         - name: Inserimento di dipendenze - Controller
           uid: mvc/controllers/dependency-injection
@@ -1301,6 +1301,8 @@
       uid: mvc/compatibility-version
     - name: Scrivere il middleware
       uid: fundamentals/middleware/write
+    - name: API JSON di base con routing al codice
+      uid: web-api/route-to-code
     - name: Operazioni di richieste e risposte
       displayName: middleware
       uid: fundamentals/middleware/request-response

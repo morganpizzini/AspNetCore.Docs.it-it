@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 - Route-to-code
 uid: web-api/route-to-code
-ms.openlocfilehash: 49eaa3ceb47c41226b7a50782436ec270e6e1b7b
-ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
+ms.openlocfilehash: 1f5f532053f8f5ca7f73df8c1a910a484e2488d9
+ms.sourcegitcommit: 0bcc0d6df3145a0727da7c4be2f4bda8f27eeaa3
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96335611"
+ms.lasthandoff: 12/02/2020
+ms.locfileid: "96513096"
 ---
 # <a name="basic-json-apis-with-no-locroute-to-code-in-aspnet-core"></a>API JSON di base con Route-to-code in ASP.NET Core
 
@@ -111,6 +111,21 @@ Si consideri la classe statica seguente `UserApi` che definisce un `Map` metodo.
 Nel `Startup.Configure` metodo, il `Map` metodo e i metodi statici di altre classi vengono chiamati in `UseEndpoints` :
 
 [!code-csharp[](route-to-code/sample/Startup5.cs?name=snippet)]
+
+## <a name="notable-missing-features-compared-to-web-api"></a>Caratteristiche mancanti rilevanti rispetto all'API Web
+
+Route-to-code è progettato per le API JSON di base. Non ha il supporto per molte delle funzionalità avanzate offerte dall'API Web ASP.NET Core.
+
+Le funzionalità non fornite da Route-to-code includono:
+
+* Associazione di modelli
+* Convalida modello
+* OpenAPI/Swagger
+* Negoziazione del contenuto
+* Inserimento delle dipendenze del costruttore
+* `ProblemDetails` ([https://tools.ietf.org/html/rfc7807](RFC 7807))
+
+Si consiglia di usare [ASP.NET Core API Web](xref:web-api/index) per creare un'API se sono necessarie alcune funzionalità nell'elenco precedente.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
