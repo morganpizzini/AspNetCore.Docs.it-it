@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 2975ee699a2535cdf63ef2f5af5790f178a09f93
-ms.sourcegitcommit: e087b6a38e3d38625ebb567a973e75b4d79547b9
+ms.openlocfilehash: 89aeb20d5566447ff86581dfa1d7946d20b9ed2d
+ms.sourcegitcommit: 94c8cc1a8ce2bdba0ebdd9d37c155bf42d3cc62b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/15/2020
-ms.locfileid: "94637730"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96473716"
 ---
 # <a name="use-aspnet-core-no-locsignalr-with-a-hosted-no-locblazor-webassembly-app"></a>Usare ASP.NET Core SignalR con un'app ospitata Blazor WebAssembly
 
@@ -115,15 +115,15 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Creare un nuovo progetto.
 
-1. Selezionare **Blazor app** e fare clic su **Next (avanti** ).
+1. Selezionare **Blazor app** e fare clic su **Next (avanti**).
 
-1. Digitare `BlazorSignalRApp` nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
+1. Digitare `BlazorSignalRApp` nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
 
 1. Scegliere il modello di **Blazor WebAssembly app** .
 
 1. In **Avanzate** selezionare la casella di controllo **ASP.NET Core Hosted** .
 
-1. Selezionare **Crea**.
+1. Selezionare **Create** (Crea).
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -149,7 +149,7 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**. Selezionare la casella di controllo **ASP.NET Core Hosted** . Selezionare **Avanti**.
 
-1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Crea**.
+1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Create** (Crea).
 
    Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare. Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain.
 
@@ -183,7 +183,7 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code/)
 
-Nel **terminale integrato** ( **visualizzare** il  >  **terminale** dalla barra degli strumenti) eseguire i comandi seguenti:
+Nel **terminale integrato** (**visualizzare** il  >  **terminale** dalla barra degli strumenti) eseguire i comandi seguenti:
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
@@ -242,7 +242,7 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
 
 ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,6-10)]
 
 ::: moniker-end
 
@@ -259,7 +259,7 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
 
 ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,26)]
 
 ::: moniker-end
 
