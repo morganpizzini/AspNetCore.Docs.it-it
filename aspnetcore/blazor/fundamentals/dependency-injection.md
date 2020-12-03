@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/dependency-injection
-ms.openlocfilehash: 0cec9a1ea6f6df52103ab190c85518ddc42a573f
-ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
+ms.openlocfilehash: c68deb5237754872e11bfd9c83275b9a3b147319
+ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94507928"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96556515"
 ---
 # <a name="aspnet-core-no-locblazor-dependency-injection"></a>BlazorInserimento di dipendenze ASP.NET Core
 
@@ -154,7 +154,7 @@ I servizi possono essere configurati con le durate mostrate nella tabella seguen
 
 | Durata | Descrizione |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Blazor WebAssembly Attualmente le app non hanno un concetto di ambiti di. `Scoped`-i servizi registrati si comportano come `Singleton` servizi. Tuttavia, il Blazor Server modello di hosting supporta il `Scoped` ciclo di vita. Nelle Blazor Server app, la registrazione di un servizio con ambito ha come ambito la *connessione*. Per questo motivo, è preferibile usare i servizi con ambito per i servizi che devono avere come ambito l'utente corrente, anche se l'obiettivo corrente è eseguire sul lato client nel browser in un' Blazor WebAssembly app. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | <p>Blazor WebAssembly Attualmente le app non hanno un concetto di ambiti di. `Scoped`-i servizi registrati si comportano come `Singleton` servizi.</p><p>Il Blazor Server modello di hosting supporta la `Scoped` durata tra le richieste HTTP, ma non tra i messaggi di connessione/circuito SingalR tra i componenti caricati nel client. Le Razor pagine o la parte MVC dell'app considera i servizi con ambito normalmente e ricrea i servizi in *ogni richiesta http* quando si naviga tra pagine o viste oppure da una pagina o da una vista a un componente. I servizi con ambito non vengono ricostruiti quando ci si sposta tra i componenti nel client, dove la comunicazione con il server avviene tramite la SignalR connessione del circuito dell'utente, non tramite richieste HTTP. Negli scenari dei componenti seguenti nel client, i servizi con ambito vengono ricostruiti perché viene creato un nuovo circuito per l'utente:</p><ul><li>L'utente chiude la finestra del browser. L'utente apre una nuova finestra e torna all'app.</li><li>L'utente chiude l'ultima scheda dell'app in una finestra del browser. L'utente apre una nuova scheda e torna all'app.</li><li>L'utente seleziona il pulsante ricarica/Aggiorna del browser.</li></ul><p>Per ulteriori informazioni sul mantenimento dello stato utente tra i servizi con ambito nelle Blazor Server app, vedere <xref:blazor/hosting-models?pivots=server> .</p> |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | La creazione di una *singola istanza* del servizio. Tutti i componenti che richiedono un `Singleton` servizio ricevono un'istanza dello stesso servizio. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Ogni volta che un componente ottiene un'istanza di un `Transient` servizio dal contenitore del servizio, riceve una *nuova istanza* del servizio. |
 

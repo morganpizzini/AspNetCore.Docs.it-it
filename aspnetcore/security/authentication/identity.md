@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: bfcef860beb07ab81dda1a10a1648491ae187bef
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ad4184fce494ba06acf7e583a42a54d04d37ea20
+ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052019"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96556645"
 ---
 # <a name="introduction-to-no-locidentity-on-aspnet-core"></a>Introduzione a Identity on ASP.NET Core
 
@@ -62,10 +62,10 @@ Creare un progetto di applicazione Web di ASP.NET Core con singoli account utent
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Selezionare **file** > **nuovo** > **progetto** .
-* Selezionare **Applicazione Web ASP.NET Core** . Denominare il progetto **app Web 1** in modo che abbia lo stesso spazio dei nomi del download del progetto. Fare clic su **OK** .
-* Selezionare un' **applicazione Web** ASP.NET Core, quindi selezionare **Modifica autenticazione** .
-* Selezionare **singoli account utente** e fare clic su **OK** .
+* Selezionare **file** > **nuovo** > **progetto**.
+* Selezionare **Applicazione Web ASP.NET Core**. Denominare il progetto **app Web 1** in modo che abbia lo stesso spazio dei nomi del download del progetto. Fare clic su **OK**.
+* Selezionare un' **applicazione Web** ASP.NET Core, quindi selezionare **Modifica autenticazione**.
+* Selezionare **singoli account utente** e fare clic su **OK**.
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
@@ -123,6 +123,10 @@ Eseguire l'app e registrare un utente. A seconda delle dimensioni dello schermo,
 
 I servizi vengono aggiunti in `ConfigureServices` . Il modello tipico consiste nel chiamare tutti i metodi `Add{Service}` e quindi chiamare tutti i metodi `services.Configure{Service}`.
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configureservices&highlight=11-99)]
 
 Il codice evidenziato precedente viene configurato Identity con i valori di opzione predefiniti. I servizi vengono resi disponibili per l'applicazione tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).
@@ -130,6 +134,22 @@ Il codice evidenziato precedente viene configurato Identity con i valori di opzi
 Identity viene abilitato chiamando <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> . `UseAuthentication` aggiunge il [middleware](xref:fundamentals/middleware/index) di autenticazione alla pipeline della richiesta.
 
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configure&highlight=19)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configureservices&highlight=12-99)]
+
+Il codice precedente Configura Identity con i valori di opzione predefiniti. I servizi vengono resi disponibili per l'applicazione tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).
+
+Identity viene abilitato chiamando [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_). `UseAuthentication` aggiunge il [middleware](xref:fundamentals/middleware/index) di autenticazione alla pipeline della richiesta.
+
+[!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configure&highlight=19)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 L'app generata dal modello non usa l' [autorizzazione](xref:security/authorization/secure-data). `app.UseAuthorization` è incluso per assicurarsi che venga aggiunto nell'ordine corretto se l'app aggiunge l'autorizzazione. `UseRouting`, `UseAuthentication` , `UseAuthorization` e `UseEndpoints` devono essere chiamati nell'ordine indicato nel codice precedente.
 
@@ -143,7 +163,7 @@ Aggiungere i `Register` `Login` file,, `LogOut` e `RegisterConfirmation` . Segui
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-Se il progetto è stato creato con il nome **app Web 1** , eseguire i comandi seguenti. In caso contrario, utilizzare lo spazio dei nomi corretto per `ApplicationDbContext` :
+Se il progetto è stato creato con il nome **app Web 1**, eseguire i comandi seguenti. In caso contrario, utilizzare lo spazio dei nomi corretto per `ApplicationDbContext` :
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -190,7 +210,7 @@ Nel codice precedente, il codice `return RedirectToPage();` deve essere un reind
 
 [SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) Cancella le attestazioni dell'utente archiviate in un oggetto cookie .
 
-Post viene specificato nelle *pagine/Shared/_LoginPartial. cshtml* :
+Post viene specificato nelle *pagine/Shared/_LoginPartial. cshtml*:
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
@@ -296,10 +316,10 @@ Creare un progetto di applicazione Web di ASP.NET Core con singoli account utent
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Selezionare **file** > **nuovo** > **progetto** .
-* Selezionare **Applicazione Web ASP.NET Core** . Denominare il progetto **app Web 1** in modo che abbia lo stesso spazio dei nomi del download del progetto. Fare clic su **OK** .
-* Selezionare un' **applicazione Web** ASP.NET Core, quindi selezionare **Modifica autenticazione** .
-* Selezionare **singoli account utente** e fare clic su **OK** .
+* Selezionare **file** > **nuovo** > **progetto**.
+* Selezionare **Applicazione Web ASP.NET Core**. Denominare il progetto **app Web 1** in modo che abbia lo stesso spazio dei nomi del download del progetto. Fare clic su **OK**.
+* Selezionare un' **applicazione Web** ASP.NET Core, quindi selezionare **Modifica autenticazione**.
+* Selezionare **singoli account utente** e fare clic su **OK**.
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
@@ -347,8 +367,6 @@ Eseguire l'app e registrare un utente. A seconda delle dimensioni dello schermo,
 
 I servizi vengono aggiunti in `ConfigureServices` . Il modello tipico consiste nel chiamare tutti i metodi `Add{Service}` e quindi chiamare tutti i metodi `services.Configure{Service}`.
 
-[!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configureservices)]
-
 Il codice precedente Configura Identity con i valori di opzione predefiniti. I servizi vengono resi disponibili per l'applicazione tramite l' [inserimento di dipendenze](xref:fundamentals/dependency-injection).
 
 Identity viene abilitato chiamando [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_). `UseAuthentication` aggiunge il [middleware](xref:fundamentals/middleware/index) di autenticazione alla pipeline della richiesta.
@@ -367,7 +385,7 @@ Aggiungere i file di registro, di accesso e di disconnessione.
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-Se il progetto è stato creato con il nome **app Web 1** , eseguire i comandi seguenti. In caso contrario, utilizzare lo spazio dei nomi corretto per `ApplicationDbContext` :
+Se il progetto è stato creato con il nome **app Web 1**, eseguire i comandi seguenti. In caso contrario, utilizzare lo spazio dei nomi corretto per `ApplicationDbContext` :
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -409,7 +427,7 @@ Il collegamento **Disconnetti** richiama l' `LogoutModel.OnPost` azione.
 
 [SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) Cancella le attestazioni dell'utente archiviate in un oggetto cookie .
 
-Post viene specificato nelle *pagine/Shared/_LoginPartial. cshtml* :
+Post viene specificato nelle *pagine/Shared/_LoginPartial. cshtml*:
 
 [!code-cshtml[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 

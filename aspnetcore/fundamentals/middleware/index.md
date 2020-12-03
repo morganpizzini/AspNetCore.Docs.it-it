@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/index
-ms.openlocfilehash: aa51e53284bc25629b3975ff0e6de967b9a2b866
-ms.sourcegitcommit: 0bcc0d6df3145a0727da7c4be2f4bda8f27eeaa3
+ms.openlocfilehash: bdeccf81a3bb620c2e1fe15a798d5a83375842c8
+ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/02/2020
-ms.locfileid: "96513122"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96556541"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware di ASP.NET Core
 
@@ -113,9 +113,9 @@ Con il codice precedente, la CPU potrebbe essere salvata memorizzando nella cach
 L'ordinamento seguente combina i file statici per consentire la memorizzazione nella cache dei file statici compressi:
 
 ```csharp
-app.UseResponseCaching
-app.UseResponseCompression
-app.UseStaticFiles
+app.UseResponseCaching();
+app.UseResponseCompression();
+app.UseStaticFiles();
 ```
 
 Il metodo `Startup.Configure` seguente aggiunge componenti del middleware per gli scenari di app comuni:
@@ -193,6 +193,8 @@ public void Configure(IApplicationBuilder app)
     // Static files aren't compressed by Static File Middleware.
     app.UseStaticFiles();
 
+    app.UseRouting();
+
     app.UseResponseCompression();
 
     app.UseEndpoints(endpoints =>
@@ -260,7 +262,7 @@ La tabella seguente visualizza le richieste e le risposte da `http://localhost:1
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> dirama anche la pipeline della richiesta in base al risultato del predicato specificato. Diversamente da `MapWhen` , questo ramo viene riunito alla pipeline principale se non esegue un cortocircuito o contiene un middleware terminale:
 
-[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=25-26)]
+[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=18-19)]
 
 Nell'esempio precedente, risposta "Hello from Main pipeline". viene scritto per tutte le richieste. Se la richiesta include una variabile di stringa di query `branch` , il relativo valore viene registrato prima che la pipeline principale venga riaggiunta.
 
