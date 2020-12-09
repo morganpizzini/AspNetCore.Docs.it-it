@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: c5b9be64ea30cce7a3178bfbb244ef893e9639d2
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 4a48fb094888d51aa6f881c82e4f20ffbc84c8e2
+ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053865"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96901171"
 ---
 # <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>Parte 2, Razor pagine con EF core in ASP.NET Core-CRUD
 
@@ -52,7 +52,7 @@ Sostituire il metodo `OnGetAsync` con il codice seguente per leggere i dati di i
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Details.cshtml.cs?name=snippet_OnGetAsync&highlight=8-12)]
 
-I metodi [Include](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include) e [ThenInclude](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.theninclude#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_ThenInclude__3_Microsoft_EntityFrameworkCore_Query_IIncludableQueryable___0_System_Collections_Generic_IEnumerable___1___System_Linq_Expressions_Expression_System_Func___1___2___) fanno in modo che il contesto carichi la proprietà di navigazione `Student.Enrollments` e la proprietà di navigazione `Enrollment.Course` all'interno di ogni iscrizione. Questi metodi vengono esaminati in dettaglio nell'esercitazione [Lettura dei dati correlati](xref:data/ef-rp/read-related-data).
+I metodi [Include](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include) e [ThenInclude](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.theninclude#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_ThenInclude__3_Microsoft_EntityFrameworkCore_Query_IIncludableQueryable___0_System_Collections_Generic_IEnumerable___1___System_Linq_Expressions_Expression_System_Func___1___2___) fanno in modo che il contesto carichi la proprietà di navigazione `Student.Enrollments` e la proprietà di navigazione `Enrollment.Course` all'interno di ogni iscrizione. Questi metodi vengono esaminati in dettaglio nell'esercitazione [leggere i dati correlati](xref:data/ef-rp/read-related-data) .
 
 Il metodo [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) migliora le prestazioni negli scenari in cui le entità restituite non vengono aggiornate nel contesto corrente. `AsNoTracking` è descritto più avanti in questa esercitazione.
 
@@ -91,7 +91,7 @@ Il codice precedente crea un oggetto Student e quindi usa i campi del modulo pub
 
 * Usa i valori del modulo pubblicati dalla proprietà [PageContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) in [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel).
 * Aggiorna solo le proprietà elencate (`s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
-* Cerca i campi del modulo con il prefisso "student". Ad esempio `Student.FirstMidName`. Non viene fatta distinzione tra maiuscole e minuscole.
+* Cerca i campi del modulo con il prefisso "student". Ad esempio: `Student.FirstMidName`. Non viene fatta distinzione tra maiuscole e minuscole.
 * Usa il sistema di [associazione di modelli](xref:mvc/models/model-binding) per convertire i valori dei moduli da stringa ai tipi nel modello `Student`. Ad esempio, `EnrollmentDate` viene convertito in `DateTime` .
 
 Eseguire l'app e creare un'entità Student per testare la pagina Create.
@@ -184,7 +184,7 @@ Il metodo `OnPostAsync` recupera l'entità selezionata, quindi chiama il metodo 
 * Viene rilevata l'eccezione del database.
 * Il metodo `OnGetAsync` delle pagine Delete viene chiamato con `saveChangesError=true`.
 
-Aggiungere un messaggio di errore a *pages/students/Delete. cshtml* :
+Aggiungere un messaggio di errore a *pages/students/Delete. cshtml*:
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -259,7 +259,7 @@ Il codice precedente crea un oggetto Student e quindi usa i campi del modulo pub
 
 * Usa i valori del modulo pubblicati dalla proprietà [PageContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) in [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel).
 * Aggiorna solo le proprietà elencate (`s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
-* Cerca i campi del modulo con il prefisso "student". Ad esempio `Student.FirstMidName`. Non viene fatta distinzione tra maiuscole e minuscole.
+* Cerca i campi del modulo con il prefisso "student". Ad esempio: `Student.FirstMidName`. Non viene fatta distinzione tra maiuscole e minuscole.
 * Usa il sistema di [associazione di modelli](xref:mvc/models/model-binding) per convertire i valori dei moduli da stringa ai tipi nel modello `Student`. Ad esempio, `EnrollmentDate` deve essere convertito in DateTime.
 
 Eseguire l'app e creare un'entità Student per testare la pagina Create.
@@ -345,9 +345,9 @@ Il codice precedente aggiunge il parametro facoltativo `saveChangesError` alla f
 Il metodo `OnPostAsync` recupera l'entità selezionata, quindi chiama il metodo [Remove](/dotnet/api/microsoft.entityframeworkcore.dbcontext.remove#Microsoft_EntityFrameworkCore_DbContext_Remove_System_Object_) per impostare lo stato dell'entità su `Deleted`. Quando viene chiamato `SaveChanges`, viene generato un comando SQL DELETE. Se `Remove` ha esito negativo:
 
 * Viene rilevata l'eccezione del database.
-* Il metodo `OnGetAsync` delle pagine Delete viene chiamato con `saveChangesError=true`.
+* Il metodo della pagina Delete `OnGetAsync` viene chiamato con `saveChangesError=true` .
 
-Aggiungere un messaggio di errore alla Razor pagina Delete ( *pages/students/Delete. cshtml* ):
+Aggiungere un messaggio di errore alla Razor pagina Delete (*pages/students/Delete. cshtml*):
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -405,11 +405,11 @@ Se si vuole usare `Include` per includere altre entità, l'uso di `FindAsync` no
 
 ## <a name="customize-the-details-page"></a>Personalizzare la pagina Details
 
-Passare alla pagina `Pages/Students`. I collegamenti **Edit** , **Details** e **Delete** vengono generati dall' [helper del tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) nel file *Pages/Students/Index.cshtml* .
+Passare alla pagina `Pages/Students`. I collegamenti **Edit**, **Details** e **Delete** vengono generati dall'[helper del tag di ancoraggio](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) nel file *Pages/Students/Index.cshtml*.
 
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Index1.cshtml?name=snippet)]
 
-Eseguire l'app e selezionare un collegamento **Details** . L'URL è nel formato `http://localhost:5000/Students/Details?id=2`. L'ID studente viene passato tramite una stringa di query (`?id=2`).
+Eseguire l'app e selezionare un collegamento **Details**. L'URL è nel formato `http://localhost:5000/Students/Details?id=2`. L'ID studente viene passato tramite una stringa di query (`?id=2`).
 
 Aggiornare le pagine modifica, dettagli ed Elimina Razor per usare il `"{id:int}"` modello di route. Modificare la direttiva page per ognuna di queste pagine da `@page` a `@page "{id:int}"`.
 
@@ -439,7 +439,7 @@ Il metodo [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframewo
 
 ### <a name="display-related-enrollments-on-the-details-page"></a>Visualizzare le registrazioni correlate nella pagina Details
 
-Aprire *Pages/Students/Details.cshtml* . Per visualizzare un elenco delle registrazioni, aggiungere il codice evidenziato seguente:
+Aprire *Pages/Students/Details.cshtml*. Per visualizzare un elenco delle registrazioni, aggiungere il codice evidenziato seguente:
 
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Details.cshtml?highlight=32-53)]
 

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/memory
-ms.openlocfilehash: 4d5f459d54a3c74a2eb23a50db6537eeaf8596b3
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9b19c782d1d42ddaba590f05bab31899402f681a
+ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061444"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96901223"
 ---
 # <a name="cache-in-memory-in-aspnet-core"></a>Memorizzare nella cache in memoria ASP.NET Core
 
@@ -83,6 +83,9 @@ Il codice seguente usa [TryGetValue](/dotnet/api/microsoft.extensions.caching.me
 Vengono visualizzati l'ora corrente e l'ora memorizzata nella cache:
 
 [!code-cshtml[](memory/3.0sample/WebCacheSample/Views/Home/Cache.cshtml)]
+
+Il codice seguente usa il metodo di estensione [set](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.set#Microsoft_Extensions_Caching_Memory_CacheExtensions_Set__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object___0_System_TimeSpan_) per memorizzare i dati nella cache per un'ora relativa senza creare l' `MemoryCacheEntryOptions` oggetto.
+[!code-csharp[](memory/3.0sample/WebCacheSample/Controllers/HomeController.cs?name=snippet_set)]
 
 Il valore memorizzato nella `DateTime` cache rimane nella cache mentre sono presenti richieste entro il periodo di timeout.
 
