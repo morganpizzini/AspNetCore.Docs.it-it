@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/httpapi
-ms.openlocfilehash: 64d18114e2fe9ee10edb902a98a281c3cd9f3393
-ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
+ms.openlocfilehash: cb2855f0293a6bc800bb5758cd1a8400d4434a24
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95417578"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855462"
 ---
 # <a name="create-json-web-apis-from-grpc"></a>Create API Web JSON da gRPC
 
@@ -105,6 +105,21 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 ```
 
 Questo è un esempio di base. Per altre opzioni di personalizzazione, vedere [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) .
+
+### <a name="enable-swaggeropenapi-support"></a>Abilita supporto di spavalderia/OpenAPI
+
+Spavalderia (OpenAPI) è una specifica indipendente dal linguaggio per la descrizione delle API REST. l'API HTTP gRPC può essere integrata con [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) per generare un endpoint di spavalderia per i servizi gRPC RESTful. L'endpoint di spavalderia può quindi essere usato con l' [interfaccia utente di spavalderia](https://swagger.io/swagger-ui/) e altri strumenti.
+
+Per abilitare la spavalderia con l'API HTTP gRPC:
+
+1. Aggiungere un riferimento al pacchetto a [Microsoft. AspNetCore. Grpc. spavalderia](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger).
+2. Configurare Swashbuckle in *Startup.cs*. Il `AddGrpcSwagger` metodo configura Swashbuckle in modo da includere gli endpoint dell'API HTTP di gRPC.
+
+[!code-csharp[](~/grpc/httpapi/Startup.cs?name=snippet_1&highlight=6-10,15-19)]
+
+Per confermare che Swashbuckle genera spavalderia per i servizi gRPC RESTful, avviare l'app e passare alla pagina dell'interfaccia utente di spavalderia:
+
+![Interfaccia utente di Swagger](~/grpc/httpapi/static/swaggerui.png)
 
 ### <a name="grpc-http-api-vs-grpc-web"></a>API gRPC HTTP vs gRPC-Web
 

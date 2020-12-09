@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: c73de0e30b7b564915f30d75f754f89fecccdc78
-ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
+ms.openlocfilehash: a98537f53229d098328f5b14bf1d5060001ebd80
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96035723"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855237"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Chiamare funzioni JavaScript da metodi .NET in ASP.NET Core Blazor
 
@@ -501,10 +501,7 @@ Gli oggetti che contengono riferimenti circolari non possono essere serializzati
 * Chiamate al metodo .NET.
 * Chiamate al metodo JavaScript da C# quando il tipo restituito contiene riferimenti circolari.
 
-Per ulteriori informazioni, vedere i seguenti problemi:
-
-* [I riferimenti circolari non sono supportati, accettano due (DotNet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
-* [Proposta: aggiungere un meccanismo per gestire i riferimenti circolari durante la serializzazione (DotNet/Runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
+Per altre informazioni, vedere [riferimenti circolari non supportati. prendere due (DotNet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525).
 
 ::: moniker range=">= aspnetcore-5.0"
 

@@ -2,7 +2,7 @@ Nella tabella seguente sono specificati i parametri del generatore di codice ASP
 
 | Parametro               | Descrizione|
 | ----------------- | ------------ |
-| -M  | Il nome del modello. |
+| -M  | Nome del modello. |
 | -dc  | Contesto dati. |
 | -udl | Uso del layout predefinito. |
 | --relativeFolderPath | Percorso relativo della cartella di output per creare i file. |

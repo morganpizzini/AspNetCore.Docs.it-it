@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Kestrel
 uid: aspnetcore-5.0
-ms.openlocfilehash: 8e848ef57a9164501fd3c4f29f47ad7c72118507
-ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
+ms.openlocfilehash: d7ffcb67637593ab2909885a9e1f6de74a78361b
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95417552"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855495"
 ---
 # <a name="whats-new-in-aspnet-core-50"></a>Novità di ASP.NET Core 5,0
 
@@ -130,7 +130,7 @@ Con OpenAPI abilitato per impostazione predefinita, l'esperienza di avvio dell'a
 
 ## Blazor
 
-### <a name="performance-improvements"></a>Miglioramenti alle prestazioni
+### <a name="performance-improvements"></a>Miglioramenti delle prestazioni
 
 Per .NET 5 sono stati apportati miglioramenti significativi alle Blazor WebAssembly prestazioni in fase di esecuzione con un particolare interesse per il rendering dell'interfaccia utente complesso e la serializzazione JSON. Nei test delle prestazioni, Blazor WebAssembly in .NET 5 è più veloce da due a tre volte per la maggior parte degli scenari. Per altre informazioni, vedere [ASP.NET Blog: aggiornamenti ASP.NET Core in .NET 5 Release Candidate 1](https://devblogs.microsoft.com/aspnet/asp-net-core-updates-in-net-5-release-candidate-1/#blazor-webassembly-performance-improvements).
 
@@ -285,7 +285,7 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
 * Protocolli HTTP utilizzati
 * Protocolli TLS usati
 * Certificato selezionato
-* Modalità certificato ciente
+* Modalità certificato client
 
 La configurazione consente di specificare il certificato selezionato in base al nome del server specificato. Il nome del server fa parte dell'estensione Indicazione nome server (SNI) al protocollo TLS come indicato dal client. Kestrella configurazione di supporta anche un prefisso con caratteri jolly nel nome host.
 
@@ -328,7 +328,7 @@ Nell'esempio seguente viene illustrato come specificare specifici dell'endpoint 
 
 Indicazione nome server (SNI) è un'estensione TLS per includere un dominio virtuale come parte della negoziazione SSL. Ciò significa che il nome di dominio virtuale, o un nome host, può essere usato per identificare l'endpoint di rete.
 
-## <a name="performance-improvements"></a>Miglioramenti alle prestazioni
+## <a name="performance-improvements"></a>Miglioramenti delle prestazioni
 
 ### <a name="http2"></a>HTTP/2
 

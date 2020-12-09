@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: c8ff2fc0f2f4d4e75f535f379ec94ea9de2e3ecb
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: f400319ef81b3d7768bdbdab84f46d3f9c50bb46
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055698"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855443"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>Creazione di applicazioni Web progressive con ASP.NET Core Blazor WebAssembly
 
@@ -75,7 +75,7 @@ Quando si visita un'app creata usando il modello di PWA, gli utenti hanno la pos
 
 ![La finestra di dialogo di conferma in Google Chrome visualizza un pulsante di installazione all'utente per l'app ' My::: NO-LOC (Blazer):::P WA '.](progressive-web-app/_static/image2.png)
 
-In iOS i visitatori possono installare il PWA usando il pulsante di **condivisione** di Safari e l'opzione **Aggiungi a homescreen** . In Chrome per Android, gli utenti devono selezionare il pulsante di **menu** nell'angolo in alto a destra, seguito da **Aggiungi alla schermata iniziale** .
+In iOS i visitatori possono installare il PWA usando il pulsante di **condivisione** di Safari e l'opzione **Aggiungi a homescreen** . In Chrome per Android, gli utenti devono selezionare il pulsante di **menu** nell'angolo in alto a destra, seguito da **Aggiungi alla schermata iniziale**.
 
 Una volta installato, l'app viene visualizzata nella propria finestra senza una barra degli indirizzi:
 
@@ -145,7 +145,7 @@ Come modello mentale, è possibile pensare a un PWA offline-First come si compor
 
 Il Blazor modello di PWA genera app che tentano automaticamente di aggiornarsi in background ogni volta che l'utente visita e ha una connessione di rete funzionante. Il funzionamento di questo approccio è il seguente:
 
-* Durante la compilazione, il progetto genera un manifesto delle risorse del ruolo di *lavoro del servizio* . Per impostazione predefinita, viene chiamato il metodo `service-worker-assets.js` . Il manifesto elenca tutte le risorse statiche richieste dall'app per funzionare offline, ad esempio assembly .NET, file JavaScript e CSS, inclusi gli hash del contenuto. L'elenco di risorse viene caricato dal ruolo di lavoro del servizio in modo da sapere quali risorse memorizzare nella cache.
+* Durante la compilazione, il progetto genera un manifesto delle risorse del ruolo di *lavoro del servizio*. Per impostazione predefinita, viene chiamato il metodo `service-worker-assets.js` . Il manifesto elenca tutte le risorse statiche richieste dall'app per funzionare offline, ad esempio assembly .NET, file JavaScript e CSS, inclusi gli hash del contenuto. L'elenco di risorse viene caricato dal ruolo di lavoro del servizio in modo da sapere quali risorse memorizzare nella cache.
 * Ogni volta che l'utente visita l'app, il browser richiede nuovamente `service-worker.js` e `service-worker-assets.js` in background. I file vengono confrontati byte per byte con il ruolo di lavoro del servizio installato esistente. Se il server restituisce contenuto modificato per uno di questi file, il ruolo di lavoro del servizio tenta di installare una nuova versione di se stessa.
 * Quando si installa una nuova versione di se stessa, il ruolo di lavoro del servizio crea una nuova cache separata per le risorse offline e inizia a popolare la cache con le risorse elencate in `service-worker-assets.js` . Questa logica viene implementata nella `onInstall` funzione all'interno di `service-worker.published.js` .
 * Il processo viene completato correttamente quando tutte le risorse vengono caricate senza errori e tutti gli hash di contenuto corrispondono. In caso di esito positivo, il nuovo ruolo di lavoro del servizio entra *in attesa dello stato di attivazione* . Non appena l'utente chiude l'app (nessuna scheda o Windows dell'app rimanente), il nuovo Worker del servizio diventa *attivo* e viene usato per le visite successive all'app. Il servizio di lavoro precedente e la relativa cache vengono eliminati.
@@ -301,4 +301,5 @@ L' [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) app di esempio
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
+* [Risolvere i problemi dello script di PowerShell di integrità](xref:blazor/host-and-deploy/webassembly#troubleshoot-integrity-powershell-script)
 * [SignalR negoziazione tra le origini per l'autenticazione](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)

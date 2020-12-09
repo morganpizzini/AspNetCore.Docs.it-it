@@ -14,7 +14,7 @@ Il codice precedente crea una proprietà `DbSet` per il set di entità. Nella te
 
 ### <a name="add-a-database-connection-string"></a>Aggiungere una stringa di connessione del database
 
-Aggiungere una stringa di connessione al file *appsettings.json:Add* a connection string to the appsettings.json file:
+Aggiungere una stringa di connessione al *appsettings.jsnel* file:
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
 
@@ -53,7 +53,7 @@ Il codice precedente crea una proprietà `DbSet` per il set di entità. Nella te
 
 ### <a name="add-a-database-connection-string"></a>Aggiungere una stringa di connessione del database
 
-Aggiungere una stringa di connessione al file *appsettings.json:Add* a connection string to the appsettings.json file:
+Aggiungere una stringa di connessione al *appsettings.jsnel* file:
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 

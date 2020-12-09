@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 7ae462ff9abd06fe4ab4b3e00a71515b76b0ee7d
-ms.sourcegitcommit: bb475e69cb647f22cf6d2c6f93d0836c160080d7
+ms.openlocfilehash: 7edba338716a0545390ec53775f69eaef141d389
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/06/2020
-ms.locfileid: "94339984"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855287"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor WebAssembly
 
@@ -133,7 +133,7 @@ Per informazioni sulla distribuzione in Servizio app di Azure, vedere <xref:tuto
 
 ## <a name="hosted-deployment-with-multiple-no-locblazor-webassembly-apps"></a>Distribuzione ospitata con più Blazor WebAssembly app
 
-### <a name="app-configuration"></a>Configurazione dell'app
+### <a name="app-configuration"></a>Configurazione delle app
 
 Per configurare una soluzione ospitata Blazor per gestire più Blazor WebAssembly app:
 
@@ -922,7 +922,7 @@ Quando viene compilata un'app, il `blazor.boot.json` manifesto generato descrive
 
 I motivi più comuni per cui questo errore sono:
 
- * La risposta del server Web è un errore (ad esempio, *404-non trovato* o un *errore del server interno 500* ) invece del file richiesto dal browser. Viene segnalato dal browser come un errore di controllo dell'integrità e non come un errore di risposta.
+ * La risposta del server Web è un errore (ad esempio, *404-non trovato* o un *errore del server interno 500*) invece del file richiesto dal browser. Viene segnalato dal browser come un errore di controllo dell'integrità e non come un errore di risposta.
  * Un elemento ha modificato il contenuto dei file tra la compilazione e il recapito dei file nel browser. Questo problema può verificarsi:
    * Se gli strumenti di compilazione o di compilazione modificano manualmente l'output di compilazione.
    * Se alcuni aspetti del processo di distribuzione hanno modificato i file. Se, ad esempio, si usa un meccanismo di distribuzione basato su git, tenere presente che git converte in modo trasparente le terminazioni riga di tipo Windows in terminazioni riga di tipo Unix se si esegue il commit di file in Windows e li si estrae in Linux. La modifica delle terminazioni di riga del file modifica gli hash SHA-256. Per evitare questo problema, considerare l' [utilizzo `.gitattributes` di per considerare gli artefatti di compilazione come `binary` file](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).
@@ -934,11 +934,33 @@ Per diagnosticare quali di queste condizioni si applicano nel caso:
  1. Aprire gli strumenti di sviluppo del browser ed esaminare la scheda *rete* . Se necessario, ricaricare la pagina per visualizzare l'elenco di richieste e risposte. Individuare il file che sta attivando l'errore in tale elenco.
  1. Verificare il codice di stato HTTP nella risposta. Se il server restituisce un valore diverso da *200-OK* (o un altro codice di stato 2xx), è necessario un problema sul lato server da diagnosticare. Ad esempio, il codice di stato 403 indica che si è verificato un problema di autorizzazione, mentre il codice di stato 500 indica che il server ha esito negativo in modo non specificato. Consultare log lato server per diagnosticare e correggere l'app.
  1. Se il codice di stato è *200-OK* per la risorsa, esaminare il contenuto della risposta negli strumenti di sviluppo del browser e verificare che il contenuto corrisponda ai dati previsti. Un problema comune, ad esempio, è quello di configurare correttamente il routing, in modo che le richieste restituiscano i `index.html` dati anche per altri file. Assicurarsi che le risposte alle `.wasm` richieste siano file binari webassembly e che le risposte alle `.dll` richieste siano file binari dell'assembly .NET. In caso contrario, si disporrà di un problema di routing lato server da diagnosticare.
+ 1. Cercare per convalidare l'output pubblicato e distribuito dell'app con lo script di PowerShell per la [risoluzione dei problemi di integrità](#troubleshoot-integrity-powershell-script).
 
 Se si conferma che il server restituisce dati corretti in modo plausibile, è necessario modificare il contenuto tra la compilazione e il recapito del file. Per esaminare questa operazione:
 
  * Esaminare il meccanismo di distribuzione e la combinazione di elementi di compilazione nel caso in cui modifichino i file dopo la compilazione dei file. Un esempio è quando git trasforma le terminazioni riga file, come descritto in precedenza.
  * Esaminare la configurazione del server Web o della rete CDN nel caso in cui siano configurati per modificare dinamicamente le risposte, ad esempio provando a minimizzare HTML. Il server Web implementa la compressione HTTP (ad esempio, restituendo `content-encoding: br` o `content-encoding: gzip` ), perché questo non influisce sul risultato dopo la decompressione. Tuttavia, non è corretto per il server Web modificare i dati *non* compressi.
+
+### <a name="troubleshoot-integrity-powershell-script"></a>Risolvere i problemi dello script di PowerShell di integrità
+
+Usare lo [`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) script di PowerShell per convalidare un'app pubblicata e distribuita Blazor . Lo script viene fornito come punto di partenza quando l'app presenta problemi di integrità che il Blazor Framework non è in grado di identificare. Potrebbe essere necessario personalizzare lo script per le app.
+
+Lo script controlla i file nella `publish` cartella e scaricati dall'app distribuita per rilevare i problemi nei diversi manifesti che contengono hash di integrità. Questi controlli dovrebbero rilevare i problemi più comuni:
+
+* È stato modificato un file nell'output pubblicato senza rendersene conto.
+* L'app non è stata distribuita correttamente nella destinazione di distribuzione o è stata modificata nell'ambiente della destinazione di distribuzione.
+* Esistono differenze tra l'app distribuita e l'output della pubblicazione dell'app.
+
+Richiamare lo script con il comando seguente in una shell dei comandi di PowerShell:
+
+```powershell
+.\integrity.ps1 {BASE URL} {PUBLISH OUTPUT FOLDER}
+```
+
+Segnaposto
+
+* `{BASE URL}`: URL dell'app distribuita.
+* `{PUBLISH OUTPUT FOLDER}`: Percorso della cartella o della posizione dell'app in `publish` cui è pubblicata l'app per la distribuzione.
 
 ### <a name="disable-integrity-checking-for-non-pwa-apps"></a>Disabilitare il controllo dell'integrità per le app non PWA
 

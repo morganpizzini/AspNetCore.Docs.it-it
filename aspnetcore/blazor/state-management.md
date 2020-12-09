@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 7e79836e3dd1da175a62a84e11dfd30fee7b2f1b
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: 24f845bc1d98331f2ee54710d17beb6ffa95ad88
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570146"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855417"
 ---
 # <a name="aspnet-core-no-locblazor-state-management"></a>BlazorGestione dello stato ASP.NET Core
 
@@ -43,6 +43,9 @@ Esempi di stato utente contenuti nella memoria del browser includono:
 * Valori impostati tramite chiamate di [interoperabilità JavaScript](xref:blazor/call-javascript-from-dotnet) .
 
 Quando un utente chiude e riapre il browser o ricarica la pagina, lo stato utente contenuto nella memoria del browser viene perso.
+
+> [!NOTE]
+> L' [archiviazione del browser protetto](xref:blazor/state-management?pivots=server#aspnet-core-protected-browser-storage) ( <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage?displayProperty=fullName> spazio dei nomi) si basa sulla protezione dei dati ASP.NET Core ed è supportata solo per le Blazor Server app.
 
 ## <a name="persist-state-across-browser-sessions"></a>Mantieni stato tra le sessioni del browser
 
@@ -70,7 +73,7 @@ Esistono località comuni per lo stato permanente:
 
 Per la persistenza permanente dei dati che si estende su più utenti e dispositivi, l'app può usare l'archiviazione indipendente del lato server a cui si accede tramite un'API Web. Le opzioni includono:
 
-* Archiviazione - BLOB
+* Archiviazione BLOB
 * Archiviazione chiave-valore
 * Database relazionale
 * Archiviazione tabelle
@@ -179,7 +182,7 @@ Esistono località comuni per lo stato permanente:
 
 Per la persistenza permanente dei dati che si estende su più utenti e dispositivi, l'app può usare l'archiviazione sul lato server. Le opzioni includono:
 
-* Archiviazione - BLOB
+* Archiviazione BLOB
 * Archiviazione chiave-valore
 * Database relazionale
 * Archiviazione tabelle

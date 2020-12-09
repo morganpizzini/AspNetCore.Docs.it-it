@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: 3b95fe117895555ebcd44f971e7bb9d1173e1697
-ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
+ms.openlocfilehash: 1e571966b78f93e29e7901dd9648fbe3aca52726
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96419980"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855482"
 ---
 # <a name="part-6-add-search-to-aspnet-core-no-locrazor-pages"></a>Parte 6, aggiungere la ricerca a Razor pagine ASP.NET Core
 
@@ -70,7 +70,7 @@ var movies = from m in _context.Movie
              select m;
 ```
 
-La query viene *solo* definita in questo punto, ma **non** viene eseguita nel database.
+La query è ***definita** _ a questo punto, ma _*_non_*_ è stata eseguita sul database.
 
 Se la proprietà `SearchString` non è null o vuota, la query dei film viene modificata per filtrare gli elementi in base alla stringa di ricerca:
 
@@ -95,7 +95,7 @@ Il vincolo di route precedente consente la ricerca del titolo come dati della ro
 
 ![::: NO-LOC (index)::: View con la parola Ghost aggiunta all'URL e un elenco di film restituito di due film, Ghostbusters e Ghostbusters 2](search/_static/g2.png)
 
-Il runtime di ASP.NET Core usa l'[associazione di modelli](xref:mvc/models/model-binding) per impostare il valore della proprietà `SearchString` dalla stringa di query (`?searchString=Ghost`) o dai dati della route (`https://localhost:5001/Movies/Ghost`). L'associazione di modelli è **_not_* _ maiuscole/minuscole.
+Il runtime di ASP.NET Core usa l'[associazione di modelli](xref:mvc/models/model-binding) per impostare il valore della proprietà `SearchString` dalla stringa di query (`?searchString=Ghost`) o dai dati della route (`https://localhost:5001/Movies/Ghost`). L'associazione di modelli _*_non_*_ distingue tra maiuscole e minuscole
 
 Tuttavia, non è previsto che gli utenti modifichino l'URL per cercare un film. In questo passaggio viene aggiunta l'interfaccia utente per filtrare i film. Rimuovere il vincolo di route `"{searchString?}"`, se è stato aggiunto.
 
