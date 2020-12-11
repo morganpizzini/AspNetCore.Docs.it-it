@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 0e81397d210518854939c6941e7f6da43ed48389
-ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
+ms.openlocfilehash: 86b57a9cad27673b72ad174a18741f5528f9f78a
+ms.sourcegitcommit: c321518bfe367280ef262aecaada287f17fe1bc5
 ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 12/10/2020
-ms.locfileid: "96855508"
+ms.locfileid: "97011858"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pagine con Entity Framework Core in ASP.NET Core-esercitazione 1 di 8
 
@@ -122,7 +122,7 @@ To run the app after downloading the completed project:
 1. Avviare Visual Studio e selezionare **Crea un nuovo progetto**.
 1. Nella finestra di dialogo **Crea un nuovo progetto** selezionare **ASP.NET Core applicazione Web** > **Avanti**.
 1. Nella finestra di dialogo **Configura nuovo progetto** immettere `ContosoUniversity` per **nome progetto**. È importante usare questo nome esatto, incluse le maiuscole, in modo che ogni `namespace` corrisponda al momento della copia del codice.
-1. Selezionare **Crea**.
+1. Selezionare **Create** (Crea).
 1. Nella finestra di dialogo **Crea una nuova applicazione web ASP.NET Core** selezionare:
     1. **.NET Core** e **ASP.NET Core 5,0** negli elenchi a discesa.
     1. **App Web ASP.NET Core**.
@@ -237,7 +237,8 @@ In questa sezione si userà lo strumento di scaffolding di ASP.NET Core per gene
   * Nell'elenco a discesa **Classe modello** selezionare **Student (ContosoUniversity.Models)**.
   * Nella riga **Classe contesto di dati** selezionare il segno più **+**.
     * Modificare il nome del contesto dati in modo `SchoolContext` che termini anziché `ContosoUniversityContext` . Nome del contesto aggiornato: `ContosoUniversity.Data.SchoolContext`
-   * Selezionare **Aggiungi**.
+    * Selezionare **Aggiungi** per completare l'aggiunta della classe del contesto dati.
+   * Selezionare **Aggiungi** per completare la finestra di dialogo **Aggiungi Razor pagine** .
 
 Vengono installati automaticamente i pacchetti seguenti:
 

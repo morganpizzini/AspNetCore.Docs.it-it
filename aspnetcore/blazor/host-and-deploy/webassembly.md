@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 7edba338716a0545390ec53775f69eaef141d389
-ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
+ms.openlocfilehash: 5983cbc1e0256f7cf8e85fb07f9ba1bbc1bf08db
+ms.sourcegitcommit: c321518bfe367280ef262aecaada287f17fe1bc5
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96855287"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "97011871"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor WebAssembly
 
@@ -910,9 +910,7 @@ Quando Blazor WebAssembly Scarica i file di avvio di un'app, indica al browser d
 
 Se il server Web restituisce risposte non corrispondenti agli hash SHA-256 previsti, nella console per sviluppatori del browser verrà visualizzato un errore simile al seguente:
 
-```
-Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
-```
+> Non è stato possibile trovare un digest valido nell'attributo ' Integrity ' per la risorsa ' https://myapp.example.com/\_framework/My BlazorApp.dll' con integrità di SHA-256 calcolata ' IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY ='. La risorsa è stata bloccata.
 
 Nella maggior parte dei casi, *non* si tratta di un problema con il controllo dell'integrità. Al contrario, significa che è presente un altro problema e che il controllo di integrità è in grado di avvisare dell'altro problema.
 
@@ -961,6 +959,13 @@ Segnaposto
 
 * `{BASE URL}`: URL dell'app distribuita.
 * `{PUBLISH OUTPUT FOLDER}`: Percorso della cartella o della posizione dell'app in `publish` cui è pubblicata l'app per la distribuzione.
+
+> [!NOTE]
+> Per clonare il `dotnet/AspNetCore.Docs` repository GitHub in un sistema che usa [BitDefender](https://www.bitdefender.com) virus scanner, aggiungere un'eccezione a BitDefender per lo `integrity.ps1` script. Aggiungere l'eccezione a BitDefender prima di clonare il repository per evitare che lo script venga messo in quarantena dal programma antivirus. L'esempio seguente è un percorso tipico dello script per il repository clonato in un sistema Windows. Modificare il percorso in base alle esigenze. Il segnaposto `{USER}` è il segmento del percorso dell'utente.
+>
+> ```
+> C:\Users\{USER}\Documents\GitHub\AspNetCore.Docs\aspnetcore\blazor\host-and-deploy\webassembly\_samples\integrity.ps1
+> ```
 
 ### <a name="disable-integrity-checking-for-non-pwa-apps"></a>Disabilitare il controllo dell'integrità per le app non PWA
 

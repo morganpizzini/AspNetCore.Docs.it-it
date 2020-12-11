@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/blazor-server-ef-core
-ms.openlocfilehash: 6a74b8c5668a37082f648ae74210d90684c4559c
-ms.sourcegitcommit: 43a540e703b9096921de27abc6b66bc0783fe905
+ms.openlocfilehash: 10fc0afe84065f2c226d1e9c2f4314142369613a
+ms.sourcegitcommit: c321518bfe367280ef262aecaada287f17fe1bc5
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96320109"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "97011884"
 ---
 # <a name="aspnet-core-no-locblazor-server-with-entity-framework-core-efcore"></a>ASP.NET Core Blazor Server con Entity Framework Core (EFCore)
 
@@ -111,7 +111,7 @@ La factory viene inserita in componenti e usata per creare nuove istanze. Ad ese
 > [!NOTE]
 > `Wrapper` è un [riferimento](xref:blazor/components/index#capture-references-to-components) al componente `GridWrapper` . Vedere il `Index` componente ( `Pages/Index.razor` ) nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-È <xref:Microsoft.EntityFrameworkCore.DbContext> possibile creare nuove istanze con una factory che consente di configurare la stringa di connessione per `DbContext` , ad esempio quando si usa [modello di ASP.NET Core Identity ]) (xrif: Security/Authentication/customize_identity_model):
+È <xref:Microsoft.EntityFrameworkCore.DbContext> possibile creare nuove istanze con una factory che consente di configurare la stringa di connessione per `DbContext` , ad esempio quando si usa il [ Identity modello di ASP.NET Core](xref:security/authentication/customize_identity_model):
 
 ```csharp
 services.AddDbContextFactory<ApplicationDbContext>(options =>
