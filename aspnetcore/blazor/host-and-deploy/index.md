@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/index
-ms.openlocfilehash: 082072d2b70abfe60da8e2cd40daa8b93ebcc9ac
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: a23bee120611ee603305a88dabac76566481fa4a
+ms.sourcegitcommit: 6299f08aed5b7f0496001d093aae617559d73240
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055815"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97485888"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor"></a>Ospitare e distribuire ASP.NET Core Blazor
 
@@ -37,12 +37,12 @@ Le app vengono pubblicate per la distribuzione nella configurazione per il rilas
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Selezionare **Compila**  >  **pubblicazione {applicazione}** dalla barra di spostamento.
-1. Selezionare la *destinazione di pubblicazione* . Per pubblicare in locale, selezionare **Cartella** .
-1. Accettare il percorso predefinito nel campo **Scegliere una cartella** oppure specificarne uno diverso. Selezionare il pulsante **`Publish`** .
+1. Selezionare la *destinazione di pubblicazione*. Per pubblicare in locale, selezionare **Cartella**.
+1. Accettare il percorso predefinito nel campo **Scegliere una cartella** oppure specificarne uno diverso. Selezionare il pulsante **`Publish`**.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
 
-1. Selezionare **Compila**  >  **pubblicazione in cartella** .
+1. Selezionare **Compila**  >  **pubblicazione in cartella**.
 1. Confermare la cartella per ricevere gli asset pubblicati e selezionare **`Publish`** .
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
@@ -79,10 +79,18 @@ Il *percorso di base dell'app* è il percorso dell'URL radice dell'app. Si consi
 
 Se non si specifica una configurazione aggiuntiva per `CoolApp` , la sottoapp in questo scenario non è a conoscenza della posizione in cui risiede nel server. Ad esempio, l'app non può costruire URL relativi corretti per le risorse senza sapere che risiede nel percorso URL relativo `/CoolApp/` .
 
-Per fornire la configurazione per il Blazor percorso di base dell'app `https://www.contoso.com/CoolApp/` , l' `<base>` attributo del tag `href` viene impostato sul percorso radice relativo nel `Pages/_Host.cshtml` file ( Blazor Server ) o nel `wwwroot/index.html` file ( Blazor WebAssembly ):
+Per fornire la configurazione per il Blazor percorso di base dell'app `https://www.contoso.com/CoolApp/` , l' `<base>` attributo del tag `href` viene impostato sul percorso radice relativo nel `wwwroot/index.html` file ( Blazor WebAssembly ) o nel `Pages/_Host.cshtml` file ( Blazor Server ).
+
+Blazor WebAssembly (`wwwroot/index.html`):
 
 ```html
 <base href="/CoolApp/">
+```
+
+Blazor Server (`Pages/_Host.cshtml`):
+
+```html
+<base href="~/CoolApp/">
 ```
 
 Blazor Server app consente inoltre di impostare il percorso di base lato server chiamando <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> nella pipeline delle richieste dell'app di `Startup.Configure` :
@@ -95,9 +103,9 @@ Fornendo il percorso URL relativo, un componente che non si trova nella director
 
 In molti scenari di hosting il percorso URL relativo dell'app è la radice dell'app. In questi casi, il percorso di base dell'URL relativo dell'app è una barra ( `<base href="/" />` ), ovvero la configurazione predefinita per un' Blazor app. In altri scenari di hosting, ad esempio pagine di GitHub e sottoapp di IIS, il percorso di base dell'app deve essere impostato sul percorso URL relativo del server dell'app.
 
-Per impostare il percorso di base dell'app, aggiornare il `<base>` tag negli `<head>` elementi tag del `Pages/_Host.cshtml` file ( Blazor Server ) o del `wwwroot/index.html` file ( Blazor WebAssembly ). Impostare il `href` valore dell'attributo su `/{RELATIVE URL PATH}/` (la barra finale è obbligatoria), dove `{RELATIVE URL PATH}` è il percorso URL relativo completo dell'app.
+Per impostare il percorso di base dell'app, aggiornare il `<base>` tag negli `<head>` elementi tag del `Pages/_Host.cshtml` file ( Blazor Server ) o del `wwwroot/index.html` file ( Blazor WebAssembly ). Impostare il `href` valore dell'attributo su `/{RELATIVE URL PATH}/` ( Blazor WebAssembly ) o `~/{RELATIVE URL PATH}/` ( Blazor Server ). **La barra finale è obbligatoria.** Il segnaposto `{RELATIVE URL PATH}` è il percorso URL relativo completo dell'app.
 
-Per un' Blazor WebAssembly app con un percorso URL relativo non radice (ad esempio, `<base href="/CoolApp/">` ), l'app non riesce a trovare le proprie risorse *quando viene eseguita localmente* . Per risolvere questo problema durante sviluppo e test locali, è possibile specificare un argomento *base del percorso* corrispondente al valore `href` del tag `<base>` in fase di esecuzione. Non includere una barra finale. Per passare l'argomento di base del percorso quando si esegue l'app in locale, eseguire il `dotnet run` comando dalla directory dell'app con l' `--pathbase` opzione:
+Per un' Blazor WebAssembly app con un percorso URL relativo non radice (ad esempio, `<base href="/CoolApp/">` ), l'app non riesce a trovare le proprie risorse *quando viene eseguita localmente*. Per risolvere questo problema durante sviluppo e test locali, è possibile specificare un argomento *base del percorso* corrispondente al valore `href` del tag `<base>` in fase di esecuzione. **Non includere una barra finale.** Per passare l'argomento di base del percorso quando si esegue l'app in locale, eseguire il `dotnet run` comando dalla directory dell'app con l' `--pathbase` opzione:
 
 ```dotnetcli
 dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}

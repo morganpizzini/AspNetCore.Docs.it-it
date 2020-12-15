@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: d075faa951a34fb3856b54eb9e21593b6616b4f1
-ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
+ms.openlocfilehash: 72ee8f5dfdf8ffd6cfcb74b13fa0738893d8e214
+ms.sourcegitcommit: 6299f08aed5b7f0496001d093aae617559d73240
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94673965"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97486135"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtri in ASP.NET Core
 
@@ -290,7 +290,7 @@ Nel codice seguente sia il filtro `ShortCircuitingResourceFilter` che il filtro 
 
 Pertanto il filtro `AddHeader` non viene mai eseguito per l'azione `SomeResource`. Questo comportamento sarebbe lo stesso se entrambi i filtri venissero applicati a livello di metodo di azione, a condizione che il filtro `ShortCircuitingResourceFilter` venga eseguito prima. `ShortCircuitingResourceFilter` viene eseguito per primo per il tipo di filtro o per l'uso esplicito della proprietà `Order`.
 
-[!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
+[!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet3&highlight=1,15)]
 
 ## <a name="dependency-injection"></a>Inserimento di dipendenze
 

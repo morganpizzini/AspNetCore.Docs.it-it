@@ -4,6 +4,7 @@ author: rick-anderson
 description: Questa è la prima esercitazione di una serie che illustra le nozioni di base per la creazione di un' Razor app Web di ASP.NET Core Pages.
 ms.author: riande
 ms.date: 09/15/2020
+ms.custom: contperf-fy21q2
 no-loc:
 - Index
 - appsettings.json
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 4b8bd9c886e615add6b0d3e372843a8ddb33ae18
-ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
+ms.openlocfilehash: 4d4e50f8acea73859f5e839616f13f90a42291c4
+ms.sourcegitcommit: 6299f08aed5b7f0496001d093aae617559d73240
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96420045"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97486226"
 ---
 # <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>Esercitazione: Introduzione alle Razor pagine in ASP.NET Core
 
@@ -116,7 +117,7 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 
     ![Nuova soluzione macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-1. In Visual Studio per Mac precedente alla versione 8,6 selezionare **.NET Core**  >  **App**  >  **applicazione Web** app .NET Core  >  **Avanti**. Nella versione 8,6 o successive selezionare applicazione Web **e**  >  **app**  >  **Web dell'** app console  >  **successiva**.
+1. In Visual Studio per Mac precedente alla versione 8,6 selezionare   >    >  **applicazione Web** app .NET Core  >  **Avanti**. Nella versione 8,6 o successive selezionare applicazione Web **e**  >  **app**  >  **Web dell'** app console  >  **successiva**.
 
     ![selezione del modello di app Web macOS](razor-pages-start/_static/web_app_template_vsmac.png)
 
@@ -257,7 +258,7 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 
   ![Nuova soluzione macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* In Visual Studio per Mac precedente alla versione 8,6 selezionare **.NET Core**  >  **App**  >  **applicazione Web** app .NET Core  >  **Avanti**. Nella versione 8,6 o successive selezionare applicazione Web **e**  >  **app**  >  **Web dell'** app console  >  **successiva**.
+* In Visual Studio per Mac precedente alla versione 8,6 selezionare   >    >  **applicazione Web** app .NET Core  >  **Avanti**. Nella versione 8,6 o successive selezionare applicazione Web **e**  >  **app**  >  **Web dell'** app console  >  **successiva**.
 
   ![selezione del modello di app Web macOS](razor-pages-start/_static/web_app_template_vsmac.png)
 
@@ -403,7 +404,7 @@ Al termine di questa esercitazione, si disporrà di un' Razor app Web di pagine 
 
 ![Nuova soluzione macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* In Visual Studio per Mac precedente alla versione 8,6 selezionare **.NET Core**  >  **App**  >  **applicazione Web** app .NET Core  >  **Avanti**. Nella versione 8,6 o successive selezionare applicazione Web **e**  >  **app**  >  **Web dell'** app console  >  **successiva**.
+* In Visual Studio per Mac precedente alla versione 8,6 selezionare   >    >  **applicazione Web** app .NET Core  >  **Avanti**. Nella versione 8,6 o successive selezionare applicazione Web **e**  >  **app**  >  **Web dell'** app console  >  **successiva**.
 
 * Nella finestra di dialogo **Configura nuova applicazione Web** :
 

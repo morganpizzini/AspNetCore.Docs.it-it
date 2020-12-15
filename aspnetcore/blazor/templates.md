@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: 602ad2908d607703a3b77b2047d51d912645b043
-ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
+ms.openlocfilehash: 6d24e65acd44f98540575a3f3880fb137bfc822f
+ms.sourcegitcommit: 6299f08aed5b7f0496001d093aae617559d73240
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94703722"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97485914"
 ---
 # <a name="aspnet-core-no-locblazor-templates"></a>Modelli di ASP.NET Core Blazor
 
@@ -54,7 +54,7 @@ I file e le cartelle seguenti costituiscono un' Blazor app generata da un Blazor
 
   * [Host](xref:fundamentals/host/generic-host) ASP.NET Core ( Blazor Server )
   * Host webassembly ( Blazor WebAssembly ): il codice in questo file è univoco per le app create dal Blazor WebAssembly modello ( `blazorwasm` ).
-    * Il `App` componente è il componente radice dell'app. Il `App` componente viene specificato come `app` elemento DOM ( `<div id="app">Loading...</div>` in `wwwroot/index.html` ) per la raccolta di componenti radice ( `builder.RootComponents.Add<App>("#app")` ).
+    * Il `App` componente è il componente radice dell'app. Il `App` componente viene specificato come `div` elemento DOM con un valore `id` di `app` ( `<div id="app">Loading...</div>` in `wwwroot/index.html` ) per la raccolta di componenti radice ( `builder.RootComponents.Add<App>("#app")` ).
     * I [Servizi](xref:blazor/fundamentals/dependency-injection) vengono aggiunti e configurati, ad esempio `builder.Services.AddSingleton<IMyDependency, MyDependency>()` .
 
 ::: moniker-end
@@ -77,12 +77,27 @@ I file e le cartelle seguenti costituiscono un' Blazor app generata da un Blazor
     * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> viene chiamato per configurare un endpoint per la connessione in tempo reale con il browser. La connessione viene creata con [SignalR](xref:signalr/introduction) , che è un Framework per l'aggiunta di funzionalità Web in tempo reale alle app.
     * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) viene chiamato per impostare la pagina radice dell'app ( `Pages/_Host.cshtml` ) e abilitare la navigazione.
 
+::: moniker range=">= aspnetcore-5.0"
+
 * `wwwroot/index.html` ( Blazor WebAssembly ): La pagina radice dell'app è stata implementata come pagina HTML:
   * Quando viene inizialmente richiesta una pagina dell'app, il rendering della pagina viene eseguito e restituito nella risposta.
-  * La pagina specifica la posizione in cui `App` viene eseguito il rendering del componente radice. Il rendering del componente viene eseguito in corrispondenza della posizione dell' `app` elemento DOM ( `<app>...</app>` ).
+  * La pagina specifica la posizione in cui `App` viene eseguito il rendering del componente radice. Il rendering del componente viene eseguito in corrispondenza della posizione dell' `div` elemento DOM con un valore `id` di `app` ( `<div id="app">Loading...</div>` ).
   * `_framework/blazor.webassembly.js`Viene caricato il file JavaScript, che:
     * Scarica il Runtime .NET, l'app e le dipendenze dell'app.
     * Inizializza il runtime per l'esecuzione dell'app.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* `wwwroot/index.html` ( Blazor WebAssembly ): La pagina radice dell'app è stata implementata come pagina HTML:
+  * Quando viene inizialmente richiesta una pagina dell'app, il rendering della pagina viene eseguito e restituito nella risposta.
+  * La pagina specifica la posizione in cui `App` viene eseguito il rendering del componente radice. Il rendering del componente viene eseguito in corrispondenza della posizione dell' `app` elemento DOM ( `<app>Loading...</app>` ).
+  * `_framework/blazor.webassembly.js`Viene caricato il file JavaScript, che:
+    * Scarica il Runtime .NET, l'app e le dipendenze dell'app.
+    * Inizializza il runtime per l'esecuzione dell'app.
+    
+::: moniker-end
 
 * `App.razor`: Componente radice dell'app che imposta il routing sul lato client usando il <xref:Microsoft.AspNetCore.Components.Routing.Router> componente. Il <xref:Microsoft.AspNetCore.Components.Routing.Router> componente intercetta la navigazione del browser ed esegue il rendering della pagina che corrisponde all'indirizzo richiesto.
 

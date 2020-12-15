@@ -5,7 +5,7 @@ description: Informazioni sulla configurazione delle Blazor app, incluse le impo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/29/2020
+ms.date: 12/10/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,138 +19,60 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/configuration
-ms.openlocfilehash: f8b1c49ab29bb8a88ca6d9785cd7ee151315e065
-ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
+ms.openlocfilehash: 5889d775c09ee23f19bf3ff59344c52d469c4bdc
+ms.sourcegitcommit: 6299f08aed5b7f0496001d093aae617559d73240
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/03/2020
-ms.locfileid: "93234374"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97485967"
 ---
 # <a name="aspnet-core-no-locblazor-configuration"></a>Configurazione di ASP.NET Core Blazor
 
 > [!NOTE]
 > Questo argomento si applica a Blazor WebAssembly . Per indicazioni generali sulla configurazione dell'app ASP.NET Core, vedere <xref:fundamentals/configuration/index> .
 
-Blazor WebAssembly carica la configurazione dai file di impostazioni dell'app per impostazione predefinita:
+Blazor WebAssembly carica la configurazione dai file di impostazioni dell'app seguenti per impostazione predefinita:
 
-* `wwwroot/appsettings.json`
-* `wwwroot/appsettings.{ENVIRONMENT}.json`
+* `wwwroot/appsettings.json`.
+* `wwwroot/appsettings.{ENVIRONMENT}.json`, dove il `{ENVIRONMENT}` segnaposto è l' [ambiente di runtime](xref:fundamentals/environments)dell'app.
 
-Anche altri provider di configurazione registrati dall'app possono fornire la configurazione.
+Altri provider di configurazione registrati dall'app possono anche fornire la configurazione, ma non tutti i provider o le funzionalità del provider sono appropriate per le Blazor WebAssembly app:
 
-Non tutti i provider o le funzionalità del provider sono appropriate per le Blazor WebAssembly app:
-
-* [Provider di configurazione Azure Key Vault](xref:security/key-vault-configuration): il provider non è supportato per l'identità gestita e l'ID applicazione (ID client) con scenari di segreto client. Non è consigliabile usare l'ID applicazione con un segreto client per qualsiasi app ASP.NET Core, in particolare per Blazor WebAssembly le app perché il segreto client non può essere protetto sul lato client per accedere al servizio.
+* [Provider di configurazione Azure Key Vault](xref:security/key-vault-configuration): il provider non è supportato per l'identità gestita e l'ID applicazione (ID client) con scenari di segreto client. L'ID applicazione con un segreto client non è consigliato per nessuna app ASP.NET Core, in particolare per le Blazor WebAssembly app perché il segreto client non può essere protetto sul lato client per accedere al servizio Azure Key Vault.
 * [Provider di configurazione app Azure](/azure/azure-app-configuration/quickstart-aspnet-core-app): il provider non è appropriato per le Blazor WebAssembly app perché le Blazor WebAssembly app non vengono eseguite in un server in Azure.
 
 > [!WARNING]
-> La configurazione in un' Blazor WebAssembly app è visibile agli utenti. **Non archiviare i segreti dell'app o le credenziali nella configurazione.**
+> La configurazione in un' Blazor WebAssembly app è visibile agli utenti. **Non archiviare i segreti delle app, le credenziali o altri dati sensibili nella configurazione di un' Blazor WebAssembly app.**
 
 Per ulteriori informazioni sui provider di configurazione, vedere <xref:fundamentals/configuration/index> .
 
 ## <a name="app-settings-configuration"></a>Configurazione impostazioni app
 
+La configurazione nei file di impostazioni dell'app viene caricata per impostazione predefinita. Nell'esempio seguente un valore di configurazione dell'interfaccia utente viene archiviato in un file di impostazioni dell'app e caricato Blazor automaticamente dal Framework. Il valore viene letto da un componente.
+
 `wwwroot/appsettings.json`:
 
 ```json
 {
-  "message": "Hello from config!"
+  "h1FontSize": "50px"
 }
 ```
 
-Inserire un' <xref:Microsoft.Extensions.Configuration.IConfiguration> istanza in un componente per accedere ai dati di configurazione:
+Inserire un' <xref:Microsoft.Extensions.Configuration.IConfiguration> istanza in un componente per accedere ai dati di configurazione.
+
+`Pages/ConfigurationExample.razor`:
 
 ```razor
-@page "/"
+@page "/configuration-example"
 @using Microsoft.Extensions.Configuration
 @inject IConfiguration Configuration
 
-<h1>Configuration example</h1>
-
-<p>Message: @Configuration["message"]</p>
+<h1 style="font-size:@Configuration["h1FontSize"]">
+    Configuration example
+</h1>
 ```
 
-## <a name="custom-configuration-provider-with-ef-core"></a>Provider di configurazione personalizzato con EF Core
-
-Il provider di configurazione personalizzato con EF Core dimostrato in <xref:fundamentals/configuration/index#custom-configuration-provider> funziona con le Blazor WebAssembly app.
-
-Aggiungere il provider di configurazione dell'esempio con il codice seguente in `Program.Main` ( `Program.cs` ):
-
-```csharp
-builder.Configuration.AddEFConfiguration(
-    options => options.UseInMemoryDatabase("InMemoryDb"));
-```
-
-Inserire un' <xref:Microsoft.Extensions.Configuration.IConfiguration> istanza in un componente per accedere ai dati di configurazione:
-
-```razor
-@using Microsoft.Extensions.Configuration
-@inject IConfiguration Configuration
-
-<ul>
-    <li>@Configuration["quote1"]</li>
-    <li>@Configuration["quote2"]</li>
-    <li>@Configuration["quote3"]</li>
-</ul>
-```
-
-## <a name="memory-configuration-source"></a>Origine configurazione memoria
-
-Nell'esempio seguente viene usato un oggetto <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> per fornire la configurazione aggiuntiva:
-
-`Program.Main`:
-
-```csharp
-using Microsoft.Extensions.Configuration.Memory;
-
-...
-
-var vehicleData = new Dictionary<string, string>()
-{
-    { "color", "blue" },
-    { "type", "car" },
-    { "wheels:count", "3" },
-    { "wheels:brand", "Blazin" },
-    { "wheels:brand:type", "rally" },
-    { "wheels:year", "2008" },
-};
-
-var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
-
-...
-
-builder.Configuration.Add(memoryConfig);
-```
-
-Inserire un' <xref:Microsoft.Extensions.Configuration.IConfiguration> istanza in un componente per accedere ai dati di configurazione:
-
-```razor
-@page "/"
-@using Microsoft.Extensions.Configuration
-@inject IConfiguration Configuration
-
-<h1>Configuration example</h1>
-
-<h2>Wheels</h2>
-
-<ul>
-    <li>Count: @Configuration["wheels:count"]</li>
-    <li>Brand: @Configuration["wheels:brand"]</li>
-    <li>Type: @Configuration["wheels:brand:type"]</li>
-    <li>Year: @Configuration["wheels:year"]</li>
-</ul>
-
-@code {
-    protected override void OnInitialized()
-    {
-        var wheelsSection = Configuration.GetSection("wheels");
-        
-        ...
-    }
-}
-```
-
-Per leggere altri file di configurazione dalla `wwwroot` cartella alla configurazione, usare un <xref:System.Net.Http.HttpClient> per ottenere il contenuto del file. Quando si utilizza questo approccio, la <xref:System.Net.Http.HttpClient> registrazione del servizio esistente può utilizzare il client locale creato per leggere il file, come illustrato nell'esempio seguente:
+Per leggere altri file di configurazione dalla `wwwroot` cartella alla configurazione, usare un <xref:System.Net.Http.HttpClient> per ottenere il contenuto del file. Nell'esempio seguente viene letto un file di configurazione ( `cars.json` ) nella configurazione dell'app.
 
 `wwwroot/cars.json`:
 
@@ -160,13 +82,15 @@ Per leggere altri file di configurazione dalla `wwwroot` cartella alla configura
 }
 ```
 
-`Program.Main`:
+Aggiungere lo spazio dei nomi per <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> a `Program.cs` :
 
 ```csharp
 using Microsoft.Extensions.Configuration;
+```
 
-...
+In `Program.Main` di `Program.cs` modificare la registrazione del <xref:System.Net.Http.HttpClient> servizio esistente per utilizzare il client di per leggere il file:
 
+```csharp
 var http = new HttpClient()
 {
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
@@ -180,7 +104,129 @@ using var stream = await response.Content.ReadAsStreamAsync();
 builder.Configuration.AddJsonStream(stream);
 ```
 
+## <a name="custom-configuration-provider-with-ef-core"></a>Provider di configurazione personalizzato con EF Core
+
+Il provider di configurazione personalizzato con EF Core dimostrato in <xref:fundamentals/configuration/index#custom-configuration-provider> funziona con le Blazor WebAssembly app.
+
+> [!WARNING]
+> Le stringhe di connessione del database e i database caricati con le Blazor WebAssembly app non sono sicuri e non devono essere usati per archiviare dati riservati.
+
+Aggiungere i riferimenti ai pacchetti per [`Microsoft.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore) e [`Microsoft.EntityFrameworkCore.InMemory`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory) al file di progetto dell'app.
+
+Aggiungere le classi di configurazione EF Core descritte in <xref:fundamentals/configuration/index#custom-configuration-provider> .
+
+Aggiungere spazi dei nomi per <xref:Microsoft.EntityFrameworkCore?displayProperty=fullName> e <xref:Microsoft.Extensions.Configuration.Memory?displayProperty=fullName> a `Program.cs` :
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.Memory;
+```
+
+In `Program.Main` di `Program.cs` :
+
+```csharp
+builder.Configuration.AddEFConfiguration(
+    options => options.UseInMemoryDatabase("InMemoryDb"));
+```
+
+Inserire un' <xref:Microsoft.Extensions.Configuration.IConfiguration> istanza in un componente per accedere ai dati di configurazione.
+
+`Pages/EFCoreConfig.razor`:
+
+```razor
+@page "/efcore-config"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<h1>EF Core configuration example</h1>
+
+<h2>Quotes</h2>
+
+<ul>
+    <li>@Configuration["quote1"]</li>
+    <li>@Configuration["quote2"]</li>
+    <li>@Configuration["quote3"]</li>
+</ul>
+
+<p>
+    Quotes &copy;2005 
+    <a href="https://www.uphe.com/">Universal Pictures</a>: 
+    <a href="https://www.uphe.com/movies/serenity">Serenity</a>
+</p>
+```
+
+## <a name="memory-configuration-source"></a>Origine configurazione memoria
+
+Nell'esempio seguente viene usato un <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> in `Program.Main` per fornire la configurazione aggiuntiva.
+
+Aggiungere lo spazio dei nomi per <xref:Microsoft.Extensions.Configuration.Memory?displayProperty=fullName> a `Program.cs` :
+
+```csharp
+using Microsoft.Extensions.Configuration.Memory;
+```
+
+In `Program.Main` di `Program.cs` :
+
+```csharp
+var vehicleData = new Dictionary<string, string>()
+{
+    { "color", "blue" },
+    { "type", "car" },
+    { "wheels:count", "3" },
+    { "wheels:brand", "Blazin" },
+    { "wheels:brand:type", "rally" },
+    { "wheels:year", "2008" },
+};
+
+var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
+
+builder.Configuration.Add(memoryConfig);
+```
+
+Inserire un' <xref:Microsoft.Extensions.Configuration.IConfiguration> istanza in un componente per accedere ai dati di configurazione.
+
+`Pages/MemoryConfig.razor`:
+
+```razor
+@page "/memory-config"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<h1>Memory configuration example</h1>
+
+<h2>General specifications</h2>
+
+<ul>
+    <li>Color: @Configuration["color"]</li>
+    <li>Type: @Configuration["type"]</li>
+</ul>
+
+<h2>Wheels</h2>
+
+<ul>
+    <li>Count: @Configuration["wheels:count"]</li>
+    <li>Brand: @Configuration["wheels:brand"]</li>
+    <li>Type: @Configuration["wheels:brand:type"]</li>
+    <li>Year: @Configuration["wheels:year"]</li>
+</ul>
+```
+
+Ottenere una sezione della configurazione nel codice C# con <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A?displayProperty=nameWithType> . Nell'esempio seguente viene ottenuta la `wheels` sezione per la configurazione nell'esempio precedente:
+
+```razor
+@code {
+    protected override void OnInitialized()
+    {
+        var wheelsSection = Configuration.GetSection("wheels");
+
+        ...
+    }
+}
+```
+
 ## <a name="authentication-configuration"></a>Configurazione dell'autenticazione
+
+Fornire la configurazione di autenticazione in un file di impostazioni dell'app.
 
 `wwwroot/appsettings.json`:
 
@@ -193,7 +239,9 @@ builder.Configuration.AddJsonStream(stream);
 }
 ```
 
-`Program.Main`:
+Caricare la configurazione per un Identity provider con <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> in `Program.Main` . Nell'esempio seguente viene caricata la configurazione per un [provider OIDC](xref:blazor/security/webassembly/standalone-with-authentication-library).
+
+`Program.cs`:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -202,13 +250,7 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## <a name="logging-configuration"></a>Configurazione della registrazione
 
-Aggiungere un riferimento al pacchetto per [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) :
-
-```xml
-<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
-```
-
-Per il segnaposto `{VERSION}` , la versione stabile più recente del pacchetto che corrisponde alla versione del Framework condiviso dell'app è disponibile nella cronologia delle **versioni** del pacchetto in [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
+Aggiungere un riferimento al pacchetto per [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) al file di progetto dell'app. Nel file di impostazioni dell'app fornire la configurazione di registrazione. La configurazione di registrazione viene caricata in `Program.Main` .
 
 `wwwroot/appsettings.json`:
 
@@ -224,20 +266,24 @@ Per il segnaposto `{VERSION}` , la versione stabile più recente del pacchetto c
 }
 ```
 
-`Program.Main`:
+Aggiungere lo spazio dei nomi per <xref:Microsoft.Extensions.Logging?displayProperty=fullName> a `Program.cs` :
 
 ```csharp
 using Microsoft.Extensions.Logging;
+```
 
-...
+In `Program.Main` di `Program.cs` :
 
+```csharp
 builder.Logging.AddConfiguration(
     builder.Configuration.GetSection("Logging"));
 ```
 
 ## <a name="host-builder-configuration"></a>Configurazione del generatore host
 
-`Program.Main`:
+Leggere la configurazione del generatore host da <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Configuration?displayProperty=nameWithType> in `Program.Main` .
+
+In `Program.Main` di `Program.cs` :
 
 ```csharp
 var hostname = builder.Configuration["HostName"];
