@@ -5,7 +5,7 @@ description: Creare un' Blazor app dettagliata.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/24/2020
+ms.date: 12/14/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: a32655b8afedb73ad436f023d2f821b6920c2edd
-ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
+ms.openlocfilehash: 87626ff30589de82a04c95634fc0dcbcf2eeac18
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "95870438"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97507007"
 ---
 # <a name="build-a-no-locblazor-todo-list-app"></a>Creare un' Blazor app elenco attività
 
@@ -62,59 +62,61 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
    dotnet new blazorserver -o TodoList
    ```
 
-   Il comando precedente crea una cartella denominata `TodoList` per ospitare l'app. La `TodoList` cartella è la *cartella radice* del progetto. Passare alla `TodoList` cartella con il comando seguente:
+   Il comando precedente crea una cartella denominata `TodoList` con l' `-o|--output` opzione che consente di mantenere l'app. La `TodoList` cartella è la *cartella radice* del progetto. Passare alla `TodoList` cartella con il comando seguente:
 
    ```dotnetcli
    cd TodoList
    ```
 
-1. Aggiungere un nuovo `Todo` Razor componente all'app nella `Pages` cartella usando il comando seguente:
+1. Aggiungere un nuovo `Todo` Razor componente all'app usando il comando seguente:
 
    ```dotnetcli
    dotnet new razorcomponent -n Todo -o Pages
    ```
 
+   L' `-n|--name` opzione nel comando precedente specifica il nome del nuovo Razor componente. Il nuovo componente viene creato nella cartella del progetto `Pages` con l' `-o|--output` opzione.
+
    > [!IMPORTANT]
    > Razor i nomi dei file di componente richiedono una prima lettera maiuscola. Aprire la `Pages` cartella e verificare che il `Todo` nome del file del componente inizi con una lettera maiuscola `T` . Il nome del file deve essere `Todo.razor` .
 
-1. In `Pages/Todo.razor` fornire il markup iniziale per il componente:
+1. Aprire il `Todo` componente in qualsiasi editor di file e aggiungere una `@page` Razor direttiva all'inizio del file con un URL relativo di `/todo` .
 
-   ```razor
-   @page "/todo"
+   `Pages/Todo.razor`:
 
-   <h3>Todo</h3>
-   ```
+   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo0.razor?highlight=1)]
 
    Salvare il file.`Pages/Todo.razor`
 
 1. Aggiungere il componente `Todo` alla barra di spostamento.
 
-   Il `NavMenu` componente ( `Shared/NavMenu.razor` ) viene usato nel layout dell'app. I layout sono componenti che consentono di evitare la duplicazione del contenuto nell'app.
+   Il `NavMenu` componente viene usato nel layout dell'app. I layout sono componenti che consentono di evitare la duplicazione del contenuto in un'app. Il `NavLink` componente fornisce un segnale nell'interfaccia utente dell'app quando l'URL del componente viene caricato dall'app.
 
-   Aggiungere un `<NavLink>` elemento per il `Todo` componente aggiungendo il markup dell'elemento di elenco seguente sotto le voci di elenco esistenti nel `Shared/NavMenu.razor` file:
+   Nell'elenco non ordinato ( `<ul>...</ul>` ) del `NavMenu` componente aggiungere i seguenti elementi elenco ( `<li>...</li>` ) e `NavLink` componente per il componente `Todo` .
 
-   ```razor
-   <li class="nav-item px-3">
-       <NavLink class="nav-link" href="todo">
-           <span class="oi oi-list-rich" aria-hidden="true"></span> Todo
-       </NavLink>
-   </li>
-   ```
+   In `Shared/NavMenu.razor`:
+
+   [!code-razor[](build-a-blazor-app/samples_snapshot/NavMenu.razor?highlight=5-9)]
 
    Salvare il file.`Shared/NavMenu.razor`
 
-1. Compilare ed eseguire l'app eseguendo il [`dotnet watch run`](/aspnet/core/tutorials/dotnet-watch) comando nella shell dei comandi dalla `TodoList` cartella. Visitare la nuova pagina todo in `https://localhost:5001/todo` per confermare che il collegamento di navigazione all'intestazione laterale per il `Todo` componente funziona.
+1. Compilare ed eseguire l'app eseguendo il [`dotnet watch run`](/aspnet/core/tutorials/dotnet-watch) comando nella shell dei comandi dalla `TodoList` cartella. Quando l'app è in esecuzione, visita la nuova pagina todo selezionando il **`Todo`** collegamento nella barra di spostamento dell'app, che carica la pagina in `/todo` .
 
-1. Aggiungere un `TodoItem.cs` file alla radice del progetto (la `TodoList` cartella) in cui archiviare una classe che rappresenta un elemento todo. Usare il codice C# seguente per la classe `TodoItem`:
+   Lasciare l'app in esecuzione nella shell dei comandi. Ogni volta che un file viene salvato, l'app viene ricompilata automaticamente. Il browser perde temporaneamente la connessione all'app durante la compilazione e il riavvio. La pagina nel browser viene ricaricata automaticamente quando viene ristabilita la connessione.
+
+1. Aggiungere un `TodoItem.cs` file alla radice del progetto (la `TodoList` cartella) in cui archiviare una classe che rappresenta un elemento todo. Usare il codice C# seguente per la classe `TodoItem`.
+
+   `TodoItem.cs`:
 
    [!code-csharp[](build-a-blazor-app/samples_snapshot/TodoItem.cs)]
 
-1. Tornare al `Todo` componente ( `Pages/Todo.razor` ):
+1. Tornare al `Todo` componente ed eseguire le attività seguenti:
 
-   * Aggiungere un campo per le voci todo in un blocco `@code`. Il componente `Todo` usa questo campo per mantenere lo stato dell'elenco attività.
+   * Aggiungere un campo per gli elementi todo nel `@code` blocco. Il componente `Todo` usa questo campo per mantenere lo stato dell'elenco attività.
    * Aggiungere il markup per l'elenco non ordinato e un ciclo `foreach` per eseguire il rendering di ogni elemento Todo come elemento di elenco (`<li>`).
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo2.razor?highlight=5-10,12-14)]
+   `Pages/Todo.razor`:
+
+   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo2.razor?highlight=5-10,13)]
 
 1. L'app richiede elementi dell'interfaccia utente per l'aggiunta di voci todo all'elenco. Aggiungere un input di testo (`<input>`) e un pulsante (`<button>`) sotto l'elenco non ordinato (`<ul>...</ul>`):
 
@@ -124,13 +126,15 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
 1. Quando il **`Add todo`** pulsante è selezionato, non accade nulla perché un gestore eventi non è associato al pulsante.
 
-1. Aggiungere un metodo `AddTodo` al componente `Todo` e registrarlo per le selezioni con pulsante con l'attributo `@onclick`. Il metodo C# `AddTodo` viene chiamato quando viene selezionato il pulsante:
+1. Aggiungere un `AddTodo` metodo al `Todo` componente e registrare il metodo per il pulsante usando l' `@onclick` attributo. Il metodo C# `AddTodo` viene chiamato quando viene selezionato il pulsante:
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo4.razor?highlight=2,7-10)]
 
-1. Per ottenere il titolo del nuovo elemento Todo, aggiungere un campo stringa `newTodo` all'inizio del blocco `@code` e associarlo al valore dell'input di testo tramite l'attributo `bind` dell'elemento `<input>`:
+1. Per ottenere il titolo del nuovo elemento todo, aggiungere un `newTodo` campo stringa nella parte superiore del `@code` blocco:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo5.razor?highlight=2)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo5.razor?highlight=3)]
+
+   Modificare l' `<input>` elemento di testo da associare all' `newTodo` `@bind` attributo:
 
    ```razor
    <input placeholder="Something todo" @bind="newTodo" />
@@ -142,11 +146,11 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
 1. Salvare il file.`Pages/ToDo.razor` L'app viene ricompilata automaticamente nella shell dei comandi. La pagina viene ricaricata nel browser dopo la riconnessione del browser all'app.
 
-1. Il testo del titolo per ogni elemento Todo può essere reso modificabile e una casella di controllo può consentire all'utente di tenere traccia degli elementi completati. Aggiungere un input casella di controllo per ogni elemento attività e associarne il valore alla proprietà `IsDone`. Modificare `@todo.Title` in un elemento `<input>` associato a `@todo.Title`:
+1. Il testo del titolo per ogni elemento Todo può essere reso modificabile e una casella di controllo può consentire all'utente di tenere traccia degli elementi completati. Aggiungere un input casella di controllo per ogni elemento attività e associarne il valore alla proprietà `IsDone`. Passare `@todo.Title` a un `<input>` elemento associato a `todo.Title` con `@bind` :
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo7.razor?highlight=5-6)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo7.razor?highlight=4-7)]
 
-1. Per verificare che questi valori siano associati, aggiornare l'intestazione `<h3>` per visualizzare un conteggio del numero di elementi attività non completati (`IsDone` è `false`).
+1. Aggiornare l' `<h3>` intestazione per visualizzare un conteggio del numero di elementi todo non completi ( `IsDone` is `false` ).
 
    ```razor
    <h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
@@ -158,7 +162,7 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
 1. Salvare il file.`Pages/ToDo.razor` L'app viene ricompilata automaticamente nella shell dei comandi. La pagina viene ricaricata nel browser dopo la riconnessione del browser all'app.
 
-1. Aggiungere elementi attività per testare il nuovo codice.
+1. Aggiungere elementi, modificare elementi e contrassegnare gli elementi todo eseguiti per testare il componente.
 
 1. Al termine, arrestare l'app nella shell dei comandi. Molte shell dei comandi accettano il comando della tastiera <kbd>CTRL</kbd> + <kbd>c</kbd> per arrestare un'app.
 

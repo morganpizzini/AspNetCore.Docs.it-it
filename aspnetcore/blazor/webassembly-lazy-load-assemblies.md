@@ -19,18 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: 6a1feffb5341d432d6d1949a9e26b9537b85ba03
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 6e7fa6e231e97793fbf7e1ac1d208bf3013c6fce
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054788"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506572"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>Assembly di caricamento lazy in ASP.NET Core Blazor WebAssembly
 
 Di [Safia Amodio](https://safia.rocks) e [Luke Latham](https://github.com/guardrex)
 
-Blazor WebAssembly le prestazioni di avvio dell'app possono essere migliorate posticipando il caricamento di alcuni assembly di applicazioni fino a quando non sono necessarie, operazione denominata *caricamento lazy* . Ad esempio, gli assembly che vengono utilizzati solo per il rendering di un singolo componente possono essere impostati per il caricamento solo se l'utente passa a tale componente. Dopo il caricamento, gli assembly vengono memorizzati nella cache sul lato client e sono disponibili per tutte le navigazioni future.
+Blazor WebAssembly le prestazioni di avvio dell'app possono essere migliorate posticipando il caricamento di alcuni assembly di applicazioni fino a quando non sono necessarie, operazione denominata *caricamento lazy*. Ad esempio, gli assembly che vengono utilizzati solo per il rendering di un singolo componente possono essere impostati per il caricamento solo se l'utente passa a tale componente. Dopo il caricamento, gli assembly vengono memorizzati nella cache sul lato client e sono disponibili per tutte le navigazioni future.
 
 Blazorla funzionalità di caricamento lazy consente di contrassegnare gli assembly dell'app per il caricamento lazy, che carica gli assembly in fase di esecuzione quando l'utente passa a una route specifica. La funzionalità è costituita dalle modifiche apportate al file di progetto e dalle modifiche apportate al router dell'applicazione.
 
@@ -74,6 +74,8 @@ Nel componente dell'app `Router` ( `App.razor` ):
     }
 }
 ```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 Se il `OnNavigateAsync` callback genera un'eccezione non gestita, viene richiamata l' [ Blazor interfaccia utente dell'errore](xref:blazor/fundamentals/handle-errors#detailed-errors-during-development) .
 
@@ -133,6 +135,8 @@ Durante il caricamento degli assembly, che possono richiedere alcuni secondi, il
 ...
 ```
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 ### <a name="handle-cancellations-in-onnavigateasync"></a>Gestisci annullamenti in `OnNavigateAsync`
 
 L' `NavigationContext` oggetto passato al `OnNavigateAsync` callback contiene un oggetto `CancellationToken` impostato quando si verifica un nuovo evento di navigazione. Il `OnNavigateAsync` callback deve generare quando questo token di annullamento è impostato in modo da evitare di continuare a eseguire il `OnNavigateAsync` callback in una navigazione obsoleta.
@@ -169,6 +173,8 @@ Se un utente passa a instradare un oggetto e quindi immediatamente alla Route B,
     }
 }
 ```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 > [!NOTE]
 > Se il token di annullamento in `NavigationContext` viene annullato può generare un comportamento imprevisto, ad esempio il rendering di un componente da una navigazione precedente.
@@ -231,7 +237,9 @@ Il componente completo seguente `Router` illustra il caricamento dell' `GrantIma
 }
 ```
 
-## <a name="troubleshoot"></a>Risolvere problemi
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
+## <a name="troubleshoot"></a>Risoluzione dei problemi
 
 * Se si verifica un rendering imprevisto (ad esempio, viene eseguito il rendering di un componente di una navigazione precedente), verificare che il codice venga generato se è impostato il token di annullamento.
 * Se gli assembly vengono ancora caricati all'avvio dell'applicazione, verificare che l'assembly sia contrassegnato come Lazy Loaded nel file di progetto.

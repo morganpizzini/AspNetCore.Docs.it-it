@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: affca6c9b585b91787f94a13144d07bedfefdd37
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: 3402117334548f9d90880d4f536e8baa288e7bc9
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431705"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506981"
 ---
 # <a name="prerender-and-integrate-aspnet-core-no-locrazor-components"></a>Pre-rendering e integrazione dei Razor componenti ASP.NET Core
 
@@ -241,7 +241,7 @@ Un' Razor app MVC o pagine esistente può integrare i Razor componenti in pagine
      <base href="~/" />
      ```
 
-     Il `href` valore (il *percorso di base dell'app* ) nell'esempio precedente presuppone che l'app si trovi nel percorso URL radice ( `/` ). Se l'app è un'applicazione secondaria, seguire le istruzioni nella sezione *percorso di base* dell'applicazione dell' <xref:blazor/host-and-deploy/index#app-base-path> articolo.
+     Il `href` valore (il *percorso di base dell'app*) nell'esempio precedente presuppone che l'app si trovi nel percorso URL radice ( `/` ). Se l'app è un'applicazione secondaria, seguire le istruzioni nella sezione *percorso di base* dell'applicazione dell' <xref:blazor/host-and-deploy/index#app-base-path> articolo.
 
      Il `_Layout.cshtml` file si trova nella `Pages/Shared` cartella in un' Razor app di pagine o `Views/Shared` in una cartella in un'app MVC.
 
@@ -308,6 +308,8 @@ Per supportare componenti instradabili Razor nelle Razor app di pagine:
    </Router>
    ```
 
+   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 1. Aggiungere un `_Host.cshtml` file alla `Pages` cartella con il contenuto seguente:
 
    ```cshtml
@@ -341,7 +343,7 @@ Per supportare componenti instradabili Razor nelle Razor app di pagine:
    });
    ```
 
-1. Aggiungere componenti instradabili all'app. Esempio:
+1. Aggiungere componenti instradabili all'app. ad esempio:
 
    ```razor
    @page "/counter"
@@ -376,6 +378,8 @@ Per supportare componenti instradabili Razor nelle app MVC:
        </NotFound>
    </Router>
    ```
+
+   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 1. Aggiungere un `_Host.cshtml` file alla `Views/Home` cartella con il contenuto seguente:
 
@@ -418,7 +422,7 @@ Per supportare componenti instradabili Razor nelle app MVC:
    });
    ```
 
-1. Creare una `Pages` cartella e aggiungere componenti instradabili all'app. Esempio:
+1. Creare una `Pages` cartella e aggiungere componenti instradabili all'app. ad esempio:
 
    ```razor
    @page "/counter"

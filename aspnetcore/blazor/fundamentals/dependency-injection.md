@@ -5,7 +5,7 @@ description: Informazioni su come le Blazor app possono inserire i servizi nei c
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 12/11/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,114 +19,56 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/dependency-injection
-ms.openlocfilehash: c68deb5237754872e11bfd9c83275b9a3b147319
-ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
+zone_pivot_groups: blazor-hosting-models
+ms.openlocfilehash: af6b645fc3c398414c85c78e1cfeb213e538c2a6
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/03/2020
-ms.locfileid: "96556515"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506799"
 ---
 # <a name="aspnet-core-no-locblazor-dependency-injection"></a>BlazorInserimento di dipendenze ASP.NET Core
 
 Di [Rainer Stropek](https://www.timecockpit.com) e [Mike entusiasmanti](https://github.com/mjrousos)
 
-Blazor supporta l' [inserimento di dipendenze](xref:fundamentals/dependency-injection). Le app possono usare i servizi predefiniti inserendoli in componenti. Le app possono anche definire e registrare servizi personalizzati e renderli disponibili nell'app tramite DI.
+L' [inserimento di dipendenze](xref:fundamentals/dependency-injection) è una tecnica per accedere ai servizi configurati in una posizione centrale:
 
-DI è una tecnica per accedere ai servizi configurati in una posizione centrale. Questa operazione può essere utile nelle Blazor app per:
-
-* Condividere una singola istanza di una classe di servizio in molti componenti, noti come un servizio *singleton* .
-* Separare i componenti da classi di servizi concrete usando astrazioni di riferimento. Si consideri ad esempio un'interfaccia `IDataAccess` per l'accesso ai dati nell'app. L'interfaccia viene implementata da una `DataAccess` classe concreta e registrata come servizio nel contenitore del servizio dell'app. Quando un componente usa il per ricevere un' `IDataAccess` implementazione di, il componente non è associato al tipo concreto. L'implementazione può essere scambiata, ad esempio per un'implementazione fittizia negli unit test.
+* I servizi registrati dal Framework possono essere inseriti direttamente in componenti di Blazor app.
+* Blazor le app definiscono e registrano servizi personalizzati e le rendono disponibili nell'app tramite DI.
 
 ## <a name="default-services"></a>Servizi predefiniti
 
-I servizi predefiniti vengono aggiunti automaticamente alla raccolta di servizi dell'app.
+I servizi illustrati nella tabella seguente sono comunemente usati nelle Blazor app.
 
 | Servizio | Durata | Descrizione |
 | ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Con ambito | Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.<br><br>L'istanza di <xref:System.Net.Http.HttpClient> in un' Blazor WebAssembly applicazione utilizza il browser per gestire il traffico HTTP in background.<br><br>Blazor Server per impostazione predefinita, le app non includono un <xref:System.Net.Http.HttpClient> configurato come servizio. Fornire un <xref:System.Net.Http.HttpClient> a un' Blazor Server app.<br><br>Per altre informazioni, vedere <xref:blazor/call-web-api>.<br><br>Un <xref:System.Net.Http.HttpClient> viene registrato come servizio con ambito, non come singleton. Per ulteriori informazioni, vedere la sezione [durata del servizio](#service-lifetime) . |
-| <xref:Microsoft.JSInterop.IJSRuntime> | Singleton ( Blazor WebAssembly )<br>Con ambito ( Blazor Server ) | Rappresenta un'istanza di un runtime JavaScript in cui vengono inviate le chiamate a JavaScript. Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet>. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager> | Singleton ( Blazor WebAssembly )<br>Con ambito ( Blazor Server ) | Contiene gli helper per lavorare con gli URI e lo stato di navigazione. Per ulteriori informazioni, vedere [URI e Helper dello stato di navigazione](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
+| <xref:System.Net.Http.HttpClient> | Con ambito | <p>Fornisce metodi per l'invio di richieste HTTP e la ricezione di risposte HTTP da una risorsa identificata da un URI.</p><p>L'istanza di <xref:System.Net.Http.HttpClient> in un' Blazor WebAssembly applicazione utilizza il browser per gestire il traffico HTTP in background.</p><p>Blazor Server per impostazione predefinita, le app non includono un <xref:System.Net.Http.HttpClient> configurato come servizio. Fornire un <xref:System.Net.Http.HttpClient> a un' Blazor Server app.</p><p>Per altre informazioni, vedere <xref:blazor/call-web-api>.</p><p>Un <xref:System.Net.Http.HttpClient> viene registrato come servizio con ambito, non come singleton. Per ulteriori informazioni, vedere la sezione [durata del servizio](#service-lifetime) .</p> |
+| <xref:Microsoft.JSInterop.IJSRuntime> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Con ambito</p> | Rappresenta un'istanza di un runtime JavaScript in cui vengono inviate le chiamate a JavaScript. Per altre informazioni, vedere <xref:blazor/call-javascript-from-dotnet>. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Con ambito</p> | Contiene gli helper per lavorare con gli URI e lo stato di navigazione. Per ulteriori informazioni, vedere [URI e Helper dello stato di navigazione](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
 
 Un provider di servizi personalizzato non fornisce automaticamente i servizi predefiniti elencati nella tabella. Se si usa un provider di servizi personalizzato e si richiede uno dei servizi indicati nella tabella, aggiungere i servizi necessari al nuovo provider di servizi.
 
 ## <a name="add-services-to-an-app"></a>Aggiungere servizi a un'app
 
-### Blazor WebAssembly
+::: zone pivot="webassembly"
 
-Configurare i servizi per la raccolta di servizi dell'app nel `Main` metodo di `Program.cs` . Nell'esempio seguente l' `MyDependency` implementazione è registrata per `IMyDependency` :
+Configurare i servizi per la raccolta di servizi dell'app nel `Program.Main` metodo di `Program.cs` . Nell'esempio seguente l' `MyDependency` implementazione è registrata per `IMyDependency` :
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+[!code-csharp[](dependency-injection/samples_snapshot/Program1.cs?highlight=7)]
 
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+Al termine della compilazione dell'host, i servizi sono disponibili nell'ambito radice prima DI eseguire il rendering dei componenti. Questa operazione può essere utile per eseguire la logica di inizializzazione prima del rendering del contenuto:
 
-        builder.Services.AddSingleton<IMyDependency, MyDependency>();
+[!code-csharp[](dependency-injection/samples_snapshot/Program2.cs?highlight=7,12-13)]
 
-        ...
+L'host fornisce un'istanza di configurazione centrale per l'app. Basandosi sull'esempio precedente, l'URL del servizio meteo viene passato da un'origine di configurazione predefinita (ad esempio, `appsettings.json` ) a `InitializeWeatherAsync` :
 
-        await builder.Build().RunAsync();
-    }
-}
-```
+[!code-csharp[](dependency-injection/samples_snapshot/Program3.cs?highlight=13-14)]
 
-Una volta compilato l'host, è possibile accedere ai servizi dall'ambito radice prima DI eseguire il rendering di tutti i componenti. Questa operazione può essere utile per eseguire la logica di inizializzazione prima del rendering del contenuto:
+::: zone-end
 
-```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+::: zone pivot="server"
 
-        builder.Services.AddSingleton<WeatherService>();
-
-        ...
-
-        var host = builder.Build();
-
-        var weatherService = host.Services.GetRequiredService<WeatherService>();
-        await weatherService.InitializeWeatherAsync();
-
-        await host.RunAsync();
-    }
-}
-```
-
-L'host fornisce anche un'istanza di configurazione centrale per l'app. Basandosi sull'esempio precedente, l'URL del servizio meteo viene passato da un'origine di configurazione predefinita (ad esempio, `appsettings.json` ) a `InitializeWeatherAsync` :
-
-```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-
-        builder.Services.AddSingleton<WeatherService>();
-
-        ...
-
-        var host = builder.Build();
-
-        var weatherService = host.Services.GetRequiredService<WeatherService>();
-        await weatherService.InitializeWeatherAsync(
-            host.Configuration["WeatherServiceUrl"]);
-
-        await host.RunAsync();
-    }
-}
-```
-
-### Blazor Server
-
-Dopo aver creato una nuova app, esaminare il `Startup.ConfigureServices` Metodo:
+Dopo aver creato una nuova app, esaminare il `Startup.ConfigureServices` metodo in `Startup.cs` :
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -139,7 +81,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Al <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureServices%2A> metodo viene passato un oggetto <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> , che è un elenco di oggetti del descrittore del servizio ( <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor> ). I servizi vengono aggiunti nel `ConfigureServices` Metodo fornendo descrittori del servizio alla raccolta di servizi. Nell'esempio seguente viene illustrato il concetto con l' `IDataAccess` interfaccia e la relativa implementazione concreta `DataAccess` :
+Al <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureServices%2A> metodo viene passato un oggetto <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> , che è un elenco di oggetti del [descrittore del servizio](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) . I servizi vengono aggiunti nel `ConfigureServices` Metodo fornendo descrittori del servizio alla raccolta di servizi. Nell'esempio seguente viene illustrato il concetto con l' `IDataAccess` interfaccia e la relativa implementazione concreta `DataAccess` :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -147,6 +89,8 @@ public void ConfigureServices(IServiceCollection services)
     services.AddSingleton<IDataAccess, DataAccess>();
 }
 ```
+
+::: zone-end
 
 ### <a name="service-lifetime"></a>Durata del servizio
 
@@ -173,7 +117,7 @@ Usare più [`@inject`](xref:mvc/views/razor#inject) istruzioni per inserire serv
 
 Nell'esempio seguente viene illustrato come utilizzare [`@inject`](xref:mvc/views/razor#inject) . Il servizio che implementa `Services.IDataAccess` viene inserito nella proprietà del componente `DataRepository` . Si noti come il codice usa solo l' `IDataAccess` astrazione:
 
-[!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,20)]
+[!code-razor[](dependency-injection/samples_snapshot/CustomerList.razor?highlight=2-3,20)]
 
 Internamente, la proprietà generata ( `DataRepository` ) utilizza l' [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attributo. In genere, questo attributo non viene utilizzato direttamente. Se è necessaria una classe base per i componenti e le proprietà inserite sono necessarie anche per la classe base, aggiungere manualmente l' [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attributo:
 
@@ -200,9 +144,11 @@ Nei componenti derivati dalla classe di base, la [`@inject`](xref:mvc/views/razo
 
 ## <a name="use-di-in-services"></a>Usare l'inserimento DI dipendenze nei servizi
 
-Servizi complessi potrebbe richiedere servizi aggiuntivi. Nell'esempio precedente, `DataAccess` potrebbe richiedere il <xref:System.Net.Http.HttpClient> servizio predefinito. [`@inject`](xref:mvc/views/razor#inject) (o l' [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attributo) non è disponibile per l'uso nei servizi. È necessario usare invece l' *inserimento del costruttore* . I servizi necessari vengono aggiunti aggiungendo parametri al costruttore del servizio. Quando si crea il servizio, vengono riconosciuti i servizi richiesti nel costruttore e forniti DI conseguenza. Nell'esempio seguente, il costruttore riceve una <xref:System.Net.Http.HttpClient> via di. <xref:System.Net.Http.HttpClient> è un servizio predefinito.
+Servizi complessi potrebbe richiedere servizi aggiuntivi. Nell'esempio seguente `DataAccess` richiede il <xref:System.Net.Http.HttpClient> servizio predefinito. [`@inject`](xref:mvc/views/razor#inject) (o l' [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attributo) non è disponibile per l'uso nei servizi. È necessario usare invece l' *inserimento del costruttore* . I servizi necessari vengono aggiunti aggiungendo parametri al costruttore del servizio. Quando si crea il servizio, vengono riconosciuti i servizi richiesti nel costruttore e forniti DI conseguenza. Nell'esempio seguente, il costruttore riceve una <xref:System.Net.Http.HttpClient> via di. <xref:System.Net.Http.HttpClient> è un servizio predefinito.
 
 ```csharp
+using System.Net.Http;
+
 public class DataAccess : IDataAccess
 {
     public DataAccess(HttpClient http)
@@ -236,58 +182,23 @@ Sono disponibili due versioni del <xref:Microsoft.AspNetCore.Components.OwningCo
 
   I servizi DI inserimento nel componente usando [`@inject`](xref:mvc/views/razor#inject) o l' [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attributo non vengono creati nell'ambito del componente. Per utilizzare l'ambito del componente, i servizi devono essere risolti utilizzando <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> o <xref:System.IServiceProvider.GetService%2A> . Tutti i servizi risolti utilizzando il <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider hanno le dipendenze fornite dallo stesso ambito.
 
-  ```razor
-  @page "/preferences"
-  @using Microsoft.Extensions.DependencyInjection
-  @inherits OwningComponentBase
-
-  <h1>User (@UserService.Name)</h1>
-
-  <ul>
-      @foreach (var setting in SettingService.GetSettings())
-      {
-          <li>@setting.SettingName: @setting.SettingValue</li>
-      }
-  </ul>
-
-  @code {
-      private IUserService UserService { get; set; }
-      private ISettingService SettingService { get; set; }
-
-      protected override void OnInitialized()
-      {
-          UserService = ScopedServices.GetRequiredService<IUserService>();
-          SettingService = ScopedServices.GetRequiredService<ISettingService>();
-      }
-  }
-  ```
+  [!code-razor[](dependency-injection/samples_snapshot/Preferences.razor?highlight=3,20-21)]
 
 * <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> deriva da <xref:Microsoft.AspNetCore.Components.OwningComponentBase> e aggiunge una <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> proprietà che restituisce un'istanza di `T` dal provider dell'ambito di. Questo tipo è un modo pratico per accedere ai servizi con ambito senza usare un'istanza di <xref:System.IServiceProvider> quando è presente un servizio primario richiesto dall'app dal contenitore di inserimento delle dipendenze usando l'ambito del componente. La <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> proprietà è disponibile, in modo che l'app possa ottenere i servizi di altri tipi, se necessario.
 
-  ```razor
-  @page "/users"
-  @attribute [Authorize]
-  @inherits OwningComponentBase<AppDbContext>
-
-  <h1>Users (@Service.Users.Count())</h1>
-
-  <ul>
-      @foreach (var user in Service.Users)
-      {
-          <li>@user.UserName</li>
-      }
-  </ul>
-  ```
+  [!code-razor[](dependency-injection/samples_snapshot/Users.razor?highlight=3,5,8)]
 
 ## <a name="use-of-an-entity-framework-core-ef-core-dbcontext-from-di"></a>Uso di un Entity Framework Core (EF Core) DbContext da DI
 
 Per altre informazioni, vedere <xref:blazor/blazor-server-ef-core>.
 
+::: moniker range="< aspnetcore-5.0"
+
 ## <a name="detect-transient-disposables"></a>Rilevare eliminabili temporanei
 
 Gli esempi seguenti illustrano come rilevare servizi temporanei monouso in un'app che deve usare <xref:Microsoft.AspNetCore.Components.OwningComponentBase> . Per ulteriori informazioni, vedere la sezione relativa [alle classi dei componenti di base dell'utilità per gestire una](#utility-base-component-classes-to-manage-a-di-scope) sezione dell'ambito.
 
-### Blazor WebAssembly
+::: zone pivot="webassembly"
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
@@ -295,31 +206,43 @@ Gli esempi seguenti illustrano come rilevare servizi temporanei monouso in un'ap
 
 Nell' `TransientDisposable` esempio seguente viene rilevato ( `Program.cs` ):
 
-::: moniker range=">= aspnetcore-5.0"
+<!-- moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/wasm-program.cs?highlight=6,9,17,22-25)]
+[!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
-::: moniker-end
+moniker-end 
 
-::: moniker range="< aspnetcore-5.0"
+moniker range="< aspnetcore-5.0" -->
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/wasm-program.cs?highlight=6,9,17,22-25)]
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
-::: moniker-end
+<!-- moniker-end -->
 
-### Blazor Server
+::: zone-end
+
+::: zone pivot="server"
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
 [!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server.cs)]
 
-`Program`:
+Aggiungere lo spazio dei nomi per <xref:Microsoft.Extensions.DependencyInjection?displayProperty=fullName> a `Program.cs` :
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/server-program.cs?highlight=3)]
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+```
+
+In `Program.CreateHostBuilder` di `Program.cs` :
+
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server-program.cs?highlight=3)]
 
 Nell' `TransientDependency` esempio seguente viene rilevato ( `Startup.cs` ):
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/server-startup.cs?highlight=6-8,11-32)]
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server-startup.cs?highlight=6-8,11-32)]
+
+::: zone-end
+
+::: moniker-end
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

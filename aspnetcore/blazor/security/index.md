@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 6435a7c9ce2a30873f0d3475a38270d3dea1b300
-ms.sourcegitcommit: 98f92d766d4f343d7e717b542c1b08da29e789c1
+ms.openlocfilehash: 8a61472da556db48a8572b0a59075beb7737a547
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2020
-ms.locfileid: "94595467"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506825"
 ---
 # <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>BlazorAutenticazione e autorizzazione ASP.NET Core
 
@@ -44,7 +44,7 @@ Le [ Razor convenzioni di autorizzazione pagine](xref:security/authorization/raz
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Identity.SignInManager%601> e <xref:Microsoft.AspNetCore.Identity.UserManager%601> non sono supportati nei Razor componenti di.
 
-## <a name="authentication"></a>Authentication
+## <a name="authentication"></a>Autenticazione
 
 Blazor USA i meccanismi di autenticazione ASP.NET Core esistenti per stabilire l'identità dell'utente. Il meccanismo esatto dipende dalla modalità di Blazor hosting dell'app o da Blazor WebAssembly Blazor Server .
 
@@ -231,6 +231,8 @@ Configurare il parametro di propagazione `Task<` <xref:Microsoft.AspNetCore.Comp
 </CascadingAuthenticationState>
 ```
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 In un' Blazor WebAssembly App aggiungere servizi per le opzioni e l'autorizzazione a `Program.Main` :
 
 ```csharp
@@ -248,7 +250,7 @@ L'accesso viene in genere concesso o negato in base alle condizioni seguenti:
 
 * L'utente è autenticato (ha eseguito l'accesso).
 * L'utente è incluso in un *ruolo*.
-* L'utente ha un' *attestazione*.
+* L'utente ha un'*attestazione*.
 * I *criteri* sono soddisfatti.
 
 Ognuno di questi concetti è identico a quello di un'app ASP.NET Core MVC o Razor pages. Per ulteriori informazioni sulla sicurezza ASP.NET Core, vedere gli articoli in [sicurezza ASP.NET Core e Identity ](xref:security/index).
@@ -422,6 +424,8 @@ Nel modello di Blazor Server progetto predefinito, il `App` componente ( `App.ra
 </CascadingAuthenticationState>
 ```
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 Il contenuto dei `<NotFound>` `<NotAuthorized>` tag, e `<Authorizing>` può includere elementi arbitrari, ad esempio altri componenti interattivi.
 
 Se il `<NotAuthorized>` tag non è specificato, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> utilizza il seguente messaggio di fallback:
@@ -499,6 +503,8 @@ Errori comuni:
     </Router>
 </CascadingAuthenticationState>
 ```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 Fornisce il parametro di propagazione <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> `Task<` <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> `>` , che a sua volta riceve dal <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> servizio di.
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: 0e8b26110a970526b5f6306da236a92f52e64604
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: d0ed36731d78d3e98aa294aca50492f0a3ac8174
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94430955"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506695"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-no-locblazor-server"></a>Linee guida per la mitigazione delle minacce per ASP.NET Core Blazor Server
 
@@ -43,7 +43,7 @@ Negli ambienti vincolati, ad esempio all'interno di reti aziendali o Intranet, a
 
 ## <a name="no-locblazor-and-shared-state"></a>Blazor e stato condiviso
 
-[!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]
+[!INCLUDE[](~/blazor/includes/security/blazor-shared-state.md)]
 
 ## <a name="resource-exhaustion"></a>Esaurimento delle risorse
 
@@ -165,7 +165,7 @@ Non considerare attendibili le chiamate da JavaScript ai metodi .NET. Quando un 
 
 Gli eventi forniscono un punto di ingresso a un' Blazor Server app. Le stesse regole per la salvaguardia degli endpoint nelle app Web si applicano alla gestione degli eventi nelle Blazor Server app. Un client dannoso può inviare tutti i dati che desidera inviare come payload per un evento.
 
-Esempio:
+ad esempio:
 
 * Un evento di modifica per un `<select>` può inviare un valore che non rientra nelle opzioni presentate dall'app al client.
 * Un oggetto `<input>` può inviare dati di testo al server, ignorando la convalida lato client.

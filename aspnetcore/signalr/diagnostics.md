@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 6e5e9d866a1e03e69856cc63dcfe30284048dd6d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 49029bbd53b98425a05bdb82517238e3aa2e3b1f
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061314"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506630"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Registrazione e diagnostica in ASP.NET Core SignalR
 
@@ -106,7 +106,7 @@ La tabella seguente illustra i livelli di log disponibili per il client JavaScri
 
 Dopo aver configurato il livello di dettaglio, i log verranno scritti nella console del browser o nell'output standard in un'app NodeJS.
 
-Se si desidera inviare i log a un sistema di registrazione personalizzato, è possibile fornire un oggetto JavaScript che implementa l' `ILogger` interfaccia. L'unico metodo che deve essere implementato è `log` , che accetta il livello dell'evento e il messaggio associato all'evento. Ad esempio:
+Se si desidera inviare i log a un sistema di registrazione personalizzato, è possibile fornire un oggetto JavaScript che implementa l' `ILogger` interfaccia. L'unico metodo che deve essere implementato è `log` , che accetta il livello dell'evento e il messaggio associato all'evento. ad esempio:
 
 [!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
 
@@ -117,7 +117,7 @@ Se si desidera inviare i log a un sistema di registrazione personalizzato, è po
 
 Per ottenere i log dal client .NET, è possibile usare il `ConfigureLogging` metodo su `HubConnectionBuilder` . Funziona allo stesso modo del `ConfigureLogging` metodo in `WebHostBuilder` e `HostBuilder` . È possibile configurare gli stessi provider di registrazione usati in ASP.NET Core. Tuttavia, è necessario installare e abilitare manualmente i pacchetti NuGet per i singoli provider di registrazione.
 
-Per aggiungere la registrazione del client .NET a un' Blazor WebAssembly app, vedere <xref:blazor/fundamentals/logging#blazor-webassembly-signalr-net-client-logging> .
+Per aggiungere la registrazione del client .NET a un' Blazor WebAssembly app, vedere <xref:blazor/fundamentals/logging#signalr-net-client-logging> .
 
 ### <a name="console-logging"></a>Registrazione console
 
