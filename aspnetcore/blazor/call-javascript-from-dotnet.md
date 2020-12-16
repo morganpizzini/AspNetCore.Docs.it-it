@@ -19,16 +19,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: a98537f53229d098328f5b14bf1d5060001ebd80
-ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
+ms.openlocfilehash: 11312a34dc62dd3bace791819f62379bffbb1c49
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96855237"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97592836"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Chiamare funzioni JavaScript da metodi .NET in ASP.NET Core Blazor
 
-Di [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Pranav Krishnamoorthy](https://github.com/pranavkm)Manuel e [Luke Latham](https://github.com/guardrex)
+Di [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [](https://github.com/pranavkm)Manuel e [Luke Latham](https://github.com/guardrex)
 
 Un' Blazor app può richiamare funzioni JavaScript da metodi .NET e metodi .NET da funzioni JavaScript. Questi scenari sono detti *interoperabilità JavaScript (interoperabilità* *JS*).
 
@@ -172,7 +172,7 @@ Utilizzare <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?disp
 
 ## <a name="detect-when-a-no-locblazor-server-app-is-prerendering"></a>Rileva quando viene eseguito il Blazor Server prerendering di un'app
  
-[!INCLUDE[](~/includes/blazor-prerendering.md)]
+[!INCLUDE[](~/blazor/includes/prerendering.md)]
 
 ## <a name="capture-references-to-elements"></a>Acquisisci riferimenti a elementi
 
@@ -492,7 +492,7 @@ L'interoperabilità JS potrebbe non riuscire a causa di errori di rete e deve es
 
 Per ulteriori informazioni sull'esaurimento delle risorse, vedere <xref:blazor/security/server/threat-mitigation> .
 
-[!INCLUDE[](~/includes/blazor-share-interop-code.md)]
+[!INCLUDE[](~/blazor/includes/share-interop-code.md)]
 
 ## <a name="avoid-circular-object-references"></a>Evitare riferimenti a oggetti circolari
 

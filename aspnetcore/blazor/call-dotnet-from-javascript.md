@@ -19,18 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: c4ab82490a2b16cdb5fef691cfb1ca038f1dca00
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: c1a97919cb41f42a93f28d9b5f1ecf6bd3e64da0
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570068"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97592856"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a>Chiamare i metodi .NET da funzioni JavaScript in ASP.NET Core Blazor
 
 Di [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Rudrawadi](http://wisne.co)e [Luke Latham](https://github.com/guardrex)
 
-Un' Blazor app può richiamare funzioni JavaScript da metodi .NET e metodi .NET da funzioni JavaScript. Questi scenari sono detti *interoperabilità JavaScript (interoperabilità* *JS* ).
+Un' Blazor app può richiamare funzioni JavaScript da metodi .NET e metodi .NET da funzioni JavaScript. Questi scenari sono detti *interoperabilità JavaScript (interoperabilità* *JS*).
 
 Questo articolo descrive come richiamare i metodi .NET da JavaScript. Per informazioni su come chiamare funzioni JavaScript da .NET, vedere <xref:blazor/call-javascript-from-dotnet> .
 
@@ -443,7 +443,7 @@ Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `B
 </ul>
 ```
 
-[!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
+[!INCLUDE[](~/blazor/includes/share-interop-code.md)]
 
 ## <a name="avoid-circular-object-references"></a>Evitare riferimenti a oggetti circolari
 

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 209d055f6205eceb9efb5434427c303345791809
-ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
+ms.openlocfilehash: 3277fda0d1dcb5121a2172b3fc1e4869ed6f8430
+ms.sourcegitcommit: fc4cce2767e34f81079510f34bd54e9d0aa86497
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "94981960"
+ms.lasthandoff: 12/16/2020
+ms.locfileid: "97592869"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Applicare HTTPS in ASP.NET Core
 
@@ -396,6 +396,8 @@ Il sottosistema Windows per Linux (WSL) genera un certificato autofirmato HTTPS.
 ## <a name="troubleshoot-certificate-problems"></a>Risolvere i problemi relativi ai certificati
 
 Questa sezione fornisce assistenza quando il certificato di sviluppo ASP.NET Core HTTPS è stato [installato e considerato attendibile](#trust), ma sono ancora presenti avvisi del browser che non sono attendibili per il certificato. Il certificato di sviluppo HTTPS ASP.NET Core viene usato da [gheppio](xref:fundamentals/servers/kestrel).
+
+Per ripristinare il certificato IIS Express, vedere [questo problema StackOverflow](https://stackoverflow.com/a/20048613/502537) .
 
 ### <a name="all-platforms---certificate-not-trusted"></a>Tutte le piattaforme-certificato non attendibile
 
