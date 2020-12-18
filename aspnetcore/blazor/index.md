@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: ecdf4f59aca0fe71bbfcfe61a99109127c8b92df
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 79c225a0714562a01afe67bf8e59f3b3f98a6265
+ms.sourcegitcommit: e9b8835a02f75b6378b766edb8bab23b14a4192b
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055712"
+ms.lasthandoff: 12/18/2020
+ms.locfileid: "97666859"
 ---
 # <a name="introduction-to-aspnet-core-no-locblazor"></a>Introduzione a ASP.NET Core Blazor
 
@@ -50,7 +50,7 @@ L'uso di .NET per lo sviluppo Web lato client offre i vantaggi seguenti:
 
 ## <a name="components"></a>Componenti
 
-Blazor le app sono basate su *componenti* . Un componente Blazor di è un elemento dell'interfaccia utente, ad esempio una pagina, una finestra di dialogo o un form di immissione dati.
+Blazor le app sono basate su *componenti*. Un componente Blazor di è un elemento dell'interfaccia utente, ad esempio una pagina, una finestra di dialogo o un form di immissione dati.
 
 I componenti sono classi .NET C# compilate in [assembly .NET](/dotnet/standard/assembly/) che:
 
@@ -108,7 +108,7 @@ Il rendering della finestra di dialogo viene eseguito quando `Index` si accede a
 
 ![Componente della finestra di dialogo sottoposto a rendering nel browser annidato all'interno del componente dell'indice. La console degli strumenti di sviluppo del browser Mostra il messaggio scritto dal codice C# quando l'utente seleziona l'impostazione Sì! nell'interfaccia utente.](index/_static/dialog.png)
 
-I componenti eseguono il rendering in una rappresentazione in memoria del Document Object Model del browser [(Dom)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) denominato *albero di rendering* , che viene usato per aggiornare l'interfaccia utente in modo flessibile ed efficiente.
+I componenti eseguono il rendering in una rappresentazione in memoria del Document Object Model del browser [(Dom)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) denominato *albero di rendering*, che viene usato per aggiornare l'interfaccia utente in modo flessibile ed efficiente.
 
 ## Blazor WebAssembly
 
@@ -116,7 +116,7 @@ Blazor WebAssembly è un [Framework di app a singola pagina (Spa)](/dotnet/archi
 
 Il codice .NET in esecuzione all'interno di Web browser è reso possibile dal [webassembly](https://webassembly.org) (abbreviato `wasm` ). WebAssembly è un formato bytecode compatto ottimizzato per il download veloce e la velocità massima di esecuzione. WebAssembly è un standard Web aperto ed è supportato nei Web browser senza plug-in.
 
-Il codice webassembly può accedere alle funzionalità complete del browser tramite JavaScript, denominato *interoperabilità JavaScript* , spesso abbreviato in interoperabilità di *JavaScript* o di interoperabilità *JS* . Il codice .NET eseguito tramite WebAssembly nel browser viene eseguito nella sandbox JavaScript del browser con le misure di sicurezza offerte dalla sandbox per la protezione da azioni dannose nel computer client.
+Il codice webassembly può accedere alle funzionalità complete del browser tramite JavaScript, denominato *interoperabilità JavaScript*, spesso abbreviato in interoperabilità di *JavaScript* o di interoperabilità *JS*. Il codice .NET eseguito tramite WebAssembly nel browser viene eseguito nella sandbox JavaScript del browser con le misure di sicurezza offerte dalla sandbox per la protezione da azioni dannose nel computer client.
 
 ![::: NO-LOC (webassembly Blazer)::: esegue il codice .NET nel browser con webassembly.](index/_static/blazor-webassembly.png)
 
@@ -126,7 +126,7 @@ Quando un' Blazor WebAssembly app viene compilata ed eseguita in un browser:
 * Gli assembly e il [Runtime .NET](/dotnet/framework/get-started/overview) vengono scaricati nel browser.
 * Blazor WebAssembly avvia il Runtime .NET e configura il runtime per caricare gli assembly per l'app. Il Blazor WebAssembly Runtime usa l'interoperabilità JavaScript per gestire la manipolazione Dom e le chiamate API del browser.
 
-La dimensione dell'app pubblicata, ovvero la *dimensione del payload* , è un fattore cruciale per le prestazioni ai fini dell'usabilità dell'app. Un'app di grandi dimensioni impiega relativamente molto tempo a essere scaricata in un browser, influendo negativamente sull'esperienza utente. Blazor WebAssembly Ottimizza le dimensioni del payload per ridurre i tempi di download:
+La dimensione dell'app pubblicata, le *dimensioni del payload*, rappresenta un fattore di prestazioni cruciale per l'usabilità di un'app. Un'app di grandi dimensioni impiega relativamente molto tempo a essere scaricata in un browser, influendo negativamente sull'esperienza utente. Blazor WebAssembly Ottimizza le dimensioni del payload per ridurre i tempi di download:
 
 ::: moniker range=">= aspnetcore-5.0"
 
