@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: blazor/call-web-api
 ms.openlocfilehash: 85b3ded6ec25310a573e99cbedf0df005d92bdbe
-ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/03/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93234413"
 ---
 # <a name="call-a-web-api-from-aspnet-core-no-locblazor"></a>Chiamare un'API Web da ASP.NET Core Blazor
@@ -401,7 +401,7 @@ Per altre informazioni, vedere <xref:blazor/fundamentals/handle-errors>.
 
 ## <a name="cross-origin-resource-sharing-cors"></a>Condivisione di risorse tra le origini (CORS)
 
-La sicurezza del browser impedisce a una pagina Web di effettuare richieste a un dominio diverso da quello che ha servito la pagina Web. Questa restrizione è detta *criterio della stessa origine* . Il criterio della stessa origine impedisce a un sito dannoso di leggere dati sensibili da un altro sito. Per eseguire richieste dal browser a un endpoint con un'origine diversa, l' *endpoint* deve abilitare la [condivisione di risorse tra le origini (CORS)](https://www.w3.org/TR/cors/).
+La sicurezza del browser impedisce a una pagina Web di effettuare richieste a un dominio diverso da quello che ha servito la pagina Web. Questa restrizione è detta *criterio della stessa origine*. Il criterio della stessa origine impedisce a un sito dannoso di leggere dati sensibili da un altro sito. Per eseguire richieste dal browser a un endpoint con un'origine diversa, l' *endpoint* deve abilitare la [condivisione di risorse tra le origini (CORS)](https://www.w3.org/TR/cors/).
 
 L' [ Blazor WebAssembly app di esempio ( Blazor WebAssemblySample)](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) illustra l'uso di CORS nel componente chiamata API Web ( `Pages/CallWebAPI.razor` ).
 

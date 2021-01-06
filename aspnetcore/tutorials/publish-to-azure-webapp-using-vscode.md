@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: tutorials/publish-to-azure-webapp-using-vscode
 ms.openlocfilehash: a5a863682655517e27f6540af76342f95d4ecae0
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93061262"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio-code"></a>Pubblicare un'app ASP.NET Core in Azure con Visual Studio Code
@@ -37,11 +37,11 @@ Per risolvere un problema di distribuzione del Servizio app di Azure, vedere <xr
 
 Con questa esercitazione si apprenderà come creare un'applicazione ASP.Net Core MVC e distribuirla all'interno di Visual Studio Code.
 
-## <a name="set-up"></a>Configurare
+## <a name="set-up"></a>Configurazione
 
 - Aprire un [account Azure gratuito](https://azure.microsoft.com/free/dotnet/) se non è già disponibile un account.
 - Installa [.NET Core SDK](https://dotnet.microsoft.com/download)
-- Installa [Visual Studio Code](https://code.visualstudio.com/Download)
+- Installare [Visual Studio Code](https://code.visualstudio.com/Download)
   - Installare l'[estensione C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) in Visual Studio Code
   - Installare l' [estensione del servizio app Azure](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) per Visual Studio Code e configurarla prima di procedere
 

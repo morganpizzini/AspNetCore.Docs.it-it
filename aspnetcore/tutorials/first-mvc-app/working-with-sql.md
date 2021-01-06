@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: tutorials/first-mvc-app/working-with-sql
 ms.openlocfilehash: c082457258346637499b8ea8000dd8792931112f
-ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/10/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94422652"
 ---
 # <a name="part-5-work-with-a-database-in-an-aspnet-core-mvc-app"></a>Parte 5, usare un database in un'app MVC ASP.NET Core
@@ -30,7 +30,7 @@ ms.locfileid: "94422652"
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-L'oggetto `MvcMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato nel contenitore di [inserimento dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` nel file *Startup.cs* :
+L'oggetto `MvcMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato nel contenitore di [inserimento dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` nel file *Startup.cs*:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -142,7 +142,7 @@ L'app mostra i dati inizializzati.
 
 Autore: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-L'oggetto `MvcMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato nel contenitore di [inserimento dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` nel file *Startup.cs* :
+L'oggetto `MvcMovieContext` gestisce l'attività di connessione al database e di mapping degli oggetti `Movie` ai record di database. Il contesto del database viene registrato nel contenitore di [inserimento dipendenze](xref:fundamentals/dependency-injection) nel metodo `ConfigureServices` nel file *Startup.cs*:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

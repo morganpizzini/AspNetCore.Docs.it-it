@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 5983cbc1e0256f7cf8e85fb07f9ba1bbc1bf08db
-ms.sourcegitcommit: c321518bfe367280ef262aecaada287f17fe1bc5
+ms.openlocfilehash: 55289dd7048c08ac61432c7cc062e74d2e69ee24
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/10/2020
-ms.locfileid: "97011871"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97753127"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Ospitare e distribuire ASP.NET Core Blazor WebAssembly
 
@@ -135,9 +135,17 @@ Per informazioni sulla distribuzione in Servizio app di Azure, vedere <xref:tuto
 
 ### <a name="app-configuration"></a>Configurazione delle app
 
-Per configurare una soluzione ospitata Blazor per gestire più Blazor WebAssembly app:
+Le Blazor soluzioni ospitate possono gestire più Blazor WebAssembly app.
 
-* Usare una soluzione ospitata esistente Blazor o creare una nuova soluzione dal Blazor modello di progetto ospitato.
+> [!NOTE]
+> L'esempio in questa sezione fa riferimento all'uso di una *soluzione* di Visual Studio, ma l'uso di Visual Studio e di una soluzione di Visual Studio non è necessario per il funzionamento di più app client in uno scenario di app ospitate Blazor WebAssembly . Se non si usa Visual Studio, ignorare il `{SOLUTION NAME}.sln` file e tutti gli altri file creati per Visual Studio.
+
+Nell'esempio seguente:
+
+* L'app client iniziale (prima) è il progetto client predefinito di una soluzione creata dal Blazor WebAssembly modello di progetto. La prima app client è accessibile in un browser dall'URL `/FirstApp` sulla porta 5001 o con un host di `firstapp.com` .
+* Alla soluzione viene aggiunta una seconda app client, `SecondBlazorApp.Client` . La seconda app client è accessibile in un browser dall'URL `/SecondApp` sulla porta 5002 o con un host di `secondapp.com` .
+
+Usa una soluzione ospitata esistente Blazor o crea una nuova soluzione dal Blazor modello di progetto ospitato:
 
 * Nel file di progetto dell'app client aggiungere una `<StaticWebAssetBasePath>` proprietà a `<PropertyGroup>` con un valore di `FirstApp` per impostare il percorso di base per gli asset statici del progetto:
 
@@ -150,9 +158,19 @@ Per configurare una soluzione ospitata Blazor per gestire più Blazor WebAssembl
 
 * Aggiungere una seconda app client alla soluzione:
 
-  * Aggiungere una cartella denominata `SecondClient` alla cartella della soluzione.
+  * Aggiungere una cartella denominata `SecondClient` alla cartella della soluzione. La cartella della soluzione creata dal modello di progetto contiene le cartelle e i file di soluzione seguenti dopo l' `SecondClient` aggiunta della cartella:
+  
+    * `Client` cartella
+    * `SecondClient` cartella
+    * `Server` cartella
+    * `Shared` cartella
+    * `{SOLUTION NAME}.sln` file
+    
+    Il segnaposto `{SOLUTION NAME}` è il nome della soluzione.
+
   * Creare un' Blazor WebAssembly App denominata `SecondBlazorApp.Client` nella `SecondClient` cartella dal modello di Blazor WebAssembly progetto.
-  * Nel file di progetto dell'app:
+
+  * Nel `SecondBlazorApp.Client` file di progetto dell'app:
 
     * Aggiungere una `<StaticWebAssetBasePath>` proprietà a `<PropertyGroup>` con un valore di `SecondApp` :
 
@@ -173,14 +191,17 @@ Per configurare una soluzione ospitata Blazor per gestire più Blazor WebAssembl
 
       Il segnaposto `{SOLUTION NAME}` è il nome della soluzione.
 
-* Nel file di progetto dell'app Server creare un riferimento al progetto per l'app client aggiunta:
+* Nel file di progetto dell'app Server creare un riferimento al progetto per l' `SecondBlazorApp.Client` app client aggiunta:
 
   ```xml
   <ItemGroup>
-    ...
+    <ProjectReference Include="..\Client\{SOLUTION NAME}.Client.csproj" />
     <ProjectReference Include="..\SecondClient\SecondBlazorApp.Client.csproj" />
+    <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
   </ItemGroup>
   ```
+  
+  Il segnaposto `{SOLUTION NAME}` è il nome della soluzione.
 
 * Nel file dell'app Server `Properties/launchSettings.json` configurare il `applicationUrl` del profilo gheppio ( `{SOLUTION NAME}.Server` ) per accedere alle app client sulle porte 5001 e 5002:
 

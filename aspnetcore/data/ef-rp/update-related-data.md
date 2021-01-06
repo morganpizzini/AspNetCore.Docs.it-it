@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: data/ef-rp/update-related-data
 ms.openlocfilehash: 3ec88a862697c540a1a98e733c31d76922f81f7c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93060534"
 ---
 # <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Parte 7, Razor pagine con EF core nei dati correlati all'aggiornamento ASP.NET Core
@@ -77,7 +77,7 @@ Aggiornare *Pages/Courses/Create.cshtml* con il codice seguente:
 
 Il codice precedente apporta le modifiche seguenti:
 
-* Modifica la didascalia da **DepartmentID** a **Department** .
+* Modifica la didascalia da **DepartmentID** a **Department**.
 * Sostituisce `"ViewBag.DepartmentID"` con `DepartmentNameSL` (dalla classe di base).
 * Aggiunge l'opzione "Select Department" (Selezionare il dipartimento). Questa modifica esegue il rendering di "Select Department" nell'elenco a discesa quando non è ancora stato selezionato alcun dipartimento, anziché visualizzare il primo dipartimento.
 * Aggiunge un messaggio di convalida quando il dipartimento non è selezionato.
@@ -105,7 +105,7 @@ Aggiornare *Pages/Courses/Edit.cshtml* con il codice seguente:
 Il codice precedente apporta le modifiche seguenti:
 
 * Visualizza l'ID del corso. In genere, la chiave primaria di un'entità non viene visualizzata. Le chiavi primarie di solito non sono significative per gli utenti. In questo caso, la chiave primaria corrisponde al numero del corso.
-* Modifica la didascalia per l'elenco a discesa dei dipartimenti da **DepartmentID** a **Department** .
+* Modifica la didascalia per l'elenco a discesa dei dipartimenti da **DepartmentID** a **Department**.
 * Sostituisce `"ViewBag.DepartmentID"` con `DepartmentNameSL` (dalla classe di base).
 
 La pagina contiene un campo nascosto (`<input type="hidden">`) per il numero del corso. L'aggiunta di un helper tag `<label>` con `asp-for="Course.CourseID"` non elimina la necessità del campo nascosto. `<input type="hidden">` è necessario per includere il numero del corso tra i dati inviati quando l'utente fa clic su **Save** (Salva).
@@ -120,7 +120,7 @@ Aggiornare *Pages/Courses/Delete.cshtml.cs* con il codice seguente per aggiunger
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Delete.cshtml.cs?highlight=29)]
 
-Apportare la stessa modifica nel file *Pages/Courses/Details.cshtml.cs* :
+Apportare la stessa modifica nel file *Pages/Courses/Details.cshtml.cs*:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=28)]
 
@@ -156,7 +156,7 @@ La classe `AssignedCourseData` contiene i dati per la creazione delle caselle di
 
 ### <a name="create-an-instructor-page-model-base-class"></a>Creare una classe di base del modello di pagina Instructor
 
-Creare la classe di base *Pages/Instructors/InstructorCoursesPageModel.cs* :
+Creare la classe di base *Pages/Instructors/InstructorCoursesPageModel.cs*:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_All)]
 
@@ -294,7 +294,7 @@ Aggiornare *Pages/Courses/Create.cshtml* con il codice seguente:
 
 Il markup precedente apporta le modifiche seguenti:
 
-* Modifica la didascalia da **DepartmentID** a **Department** .
+* Modifica la didascalia da **DepartmentID** a **Department**.
 * Sostituisce `"ViewBag.DepartmentID"` con `DepartmentNameSL` (dalla classe di base).
 * Aggiunge l'opzione "Select Department" (Selezionare il dipartimento). Questa modifica esegue il rendering di "Select Department" (Selezionare il dipartimento) anziché del primo dipartimento.
 * Aggiunge un messaggio di convalida quando il dipartimento non è selezionato.
@@ -320,7 +320,7 @@ Aggiornare *Pages/Courses/Edit.cshtml* con il markup seguente:
 Il markup precedente apporta le modifiche seguenti:
 
 * Visualizza l'ID del corso. In genere, la chiave primaria di un'entità non viene visualizzata. Le chiavi primarie di solito non sono significative per gli utenti. In questo caso, la chiave primaria corrisponde al numero del corso.
-* Modifica la didascalia da **DepartmentID** a **Department** .
+* Modifica la didascalia da **DepartmentID** a **Department**.
 * Sostituisce `"ViewBag.DepartmentID"` con `DepartmentNameSL` (dalla classe di base).
 
 La pagina contiene un campo nascosto (`<input type="hidden">`) per il numero del corso. L'aggiunta di un helper tag `<label>` con `asp-for="Course.CourseID"` non elimina la necessità del campo nascosto. `<input type="hidden">` è necessario per includere il numero del corso tra i dati inviati quando l'utente fa clic su **Save** (Salva).
@@ -333,7 +333,7 @@ Testare il codice aggiornato. Creare, modificare ed eliminare un corso.
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 
-Aggiornare il metodo `OnGetAsync` nel file *Pages/Courses/Details.cshtml.cs* :
+Aggiornare il metodo `OnGetAsync` nel file *Pages/Courses/Details.cshtml.cs*:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Details.cshtml.cs?name=snippet)]
 
@@ -400,7 +400,7 @@ Creare *SchoolViewModels/AssignedCourseData.cs* con il codice seguente:
 
 La classe `AssignedCourseData` contiene i dati per la creazione delle caselle di controllo per i corsi assegnati a un insegnante.
 
-Creare la classe di base *Pages/Instructors/InstructorCoursesPageModel.cshtml.cs* :
+Creare la classe di base *Pages/Instructors/InstructorCoursesPageModel.cshtml.cs*:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/InstructorCoursesPageModel.cshtml.cs)]
 
@@ -436,7 +436,7 @@ Aggiornare il modello della pagina Create (Crea) dell'insegnante con il codice s
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Create.cshtml.cs)]
 
-Il codice precedente è simile al codice *Pages/Instructors/Edit.cshtml.cs* .
+Il codice precedente è simile al codice *Pages/Instructors/Edit.cshtml.cs*.
 
 Aggiornare la pagina di creazione dell'insegnante Razor con il markup seguente:
 

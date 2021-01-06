@@ -20,15 +20,15 @@ no-loc:
 ms.date: 10/27/2020
 uid: blazor/file-uploads
 ms.openlocfilehash: 77c2874eef788b8083758c087913a7a04c55fa2b
-ms.sourcegitcommit: 54fdca99f30b18d69cf0753ca3c84c7dab8f2b0e
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/17/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94691170"
 ---
 # <a name="aspnet-core-no-locblazor-file-uploads"></a>BlazorCaricamenti di file ASP.NET Core
 
-Di [Daniel Roth](https://github.com/danroth27) [Pranav Krishnamoorthy](https://github.com/pranavkm)
+Di [Daniel Roth](https://github.com/danroth27) [](https://github.com/pranavkm)
 
 [Visualizzare o scaricare il codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/file-uploads/samples/) ([procedura per il download](xref:index#how-to-download-a-sample))
 

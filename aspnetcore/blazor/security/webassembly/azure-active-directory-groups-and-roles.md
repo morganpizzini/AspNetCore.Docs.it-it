@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
 ms.openlocfilehash: ded70f028b3021574ba260838837d9b23abd72f1
-ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/20/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94981882"
 ---
 # <a name="azure-active-directory-aad-groups-administrator-roles-and-user-defined-roles"></a>Gruppi di Azure Active Directory (AAD), ruoli di amministratore e ruoli definiti dall'utente
@@ -550,7 +550,7 @@ Ad esempio:
 ::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> Se il dominio dell'editore tenant non viene verificato, l'ambito dell'API server per l'accesso utente/client usa un `https://` URI basato su. In questo scenario l'app per le API server richiede la `Audience` configurazione nel `appsettings.json` file. Nella configurazione seguente, la fine del valore non `Audience` include l' **not** ambito predefinito `/{DEFAULT SCOPE}` , in cui il segnaposto `{DEFAULT SCOPE}` è l'ambito predefinito:
+> Se il dominio dell'editore tenant non viene verificato, l'ambito dell'API server per l'accesso utente/client usa un `https://` URI basato su. In questo scenario l'app per le API server richiede la `Audience` configurazione nel `appsettings.json` file. Nella configurazione seguente, la fine del valore non `Audience` include l'  ambito predefinito `/{DEFAULT SCOPE}` , in cui il segnaposto `{DEFAULT SCOPE}` è l'ambito predefinito:
 >
 > ```json
 > {
@@ -630,7 +630,7 @@ Aggiungere i riferimenti al pacchetto all'app *Server* per i pacchetti seguenti:
 
 ### <a name="services"></a>Servizi
 
-Nel metodo *Server* dell'app Server `Startup.ConfigureServices` sono necessari altri spazi dei nomi per il codice nella `Startup` classe dell'app *Server* . Aggiungere gli spazi dei nomi seguenti a `Startup.cs` :
+Nel metodo  dell'app Server `Startup.ConfigureServices` sono necessari altri spazi dei nomi per il codice nella `Startup` classe dell'app *Server* . Aggiungere gli spazi dei nomi seguenti a `Startup.cs` :
 
 ```csharp
 using System;
@@ -761,7 +761,7 @@ Aggiungere i riferimenti al pacchetto all'app *Server* per i pacchetti seguenti:
 
 ### <a name="service-configuration"></a>Configurazione del servizio
 
-Nel metodo *Server* dell'app Server `Startup.ConfigureServices` aggiungere la logica per eseguire la chiamata API Graph e stabilire le `group` attestazioni utente per i gruppi di sicurezza e i ruoli dell'utente.
+Nel metodo  dell'app Server `Startup.ConfigureServices` aggiungere la logica per eseguire la chiamata API Graph e stabilire le `group` attestazioni utente per i gruppi di sicurezza e i ruoli dell'utente.
 
 > [!NOTE]
 > Il codice di esempio in questa sezione usa il Active Directory Authentication Library (ADAL), che è basato su Microsoft Identity Platform v 1.0.

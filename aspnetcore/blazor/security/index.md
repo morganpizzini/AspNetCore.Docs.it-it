@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 8a61472da556db48a8572b0a59075beb7737a547
-ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
+ms.openlocfilehash: fcd4569c72fd33e5135a8469155f470b73c2ff57
+ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/15/2020
-ms.locfileid: "97506825"
+ms.lasthandoff: 01/03/2021
+ms.locfileid: "97854522"
 ---
 # <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>BlazorAutenticazione e autorizzazione ASP.NET Core
 
@@ -44,7 +44,7 @@ Le [ Razor convenzioni di autorizzazione pagine](xref:security/authorization/raz
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Identity.SignInManager%601> e <xref:Microsoft.AspNetCore.Identity.UserManager%601> non sono supportati nei Razor componenti di.
 
-## <a name="authentication"></a>Autenticazione
+## <a name="authentication"></a>Authentication
 
 Blazor USA i meccanismi di autenticazione ASP.NET Core esistenti per stabilire l'identità dell'utente. Il meccanismo esatto dipende dalla modalità di Blazor hosting dell'app o da Blazor WebAssembly Blazor Server .
 
@@ -498,7 +498,7 @@ Errori comuni:
 
 ```razor
 <CascadingAuthenticationState>
-    <Router AppAssembly="typeof(Startup).Assembly">
+    <Router AppAssembly="@typeof(Program).Assembly">
         ...
     </Router>
 </CascadingAuthenticationState>

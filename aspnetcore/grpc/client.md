@@ -4,7 +4,7 @@ author: jamesnk
 description: Informazioni su come chiamare i servizi gRPC con il client gRPC .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 07/27/2020
+ms.date: 12/18/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/client
-ms.openlocfilehash: 9322020083ce25b00b2979633ae8a692cfd4da4a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 39f9b3fde19e31ca970668552e5829308705f513
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060963"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97699133"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>Chiamare servizi gRPC con il client .NET
 
@@ -86,7 +86,7 @@ Una chiamata gRPC viene avviata chiamando un metodo sul client. Il client gRPC g
 
 gRPC dispone di tipi diversi di metodi. Il modo in cui il client viene usato per effettuare una chiamata gRPC dipende dal tipo di metodo chiamato. I tipi di metodo gRPC sono:
 
-* Unario
+* Unaria
 * Streaming Server
 * Flusso client
 * Streaming bidirezionale
@@ -201,11 +201,33 @@ Per ottenere prestazioni ottimali e per evitare errori non necessari nel client 
 
 Durante una chiamata di streaming bidirezionale, il client e il servizio possono inviare messaggi l'uno all'altro in qualsiasi momento. La migliore logica client per l'interazione con una chiamata bidirezionale varia a seconda della logica del servizio.
 
+## <a name="access-grpc-headers"></a>Accedi alle intestazioni gRPC
+
+gRPC chiama le intestazioni di risposta di restituzione. Le intestazioni di risposta HTTP passano i metadati nome/valore per una chiamata che non è correlata al messaggio restituito.
+
+Le intestazioni sono accessibili tramite `ResponseHeadersAsync` , che restituisce una raccolta di metadati. Le intestazioni vengono in genere restituite con il messaggio di risposta. Pertanto, è necessario attenderli.
+
+```csharp
+var client = new Greet.GreeterClient(channel);
+using var call = client.SayHelloAsync(new HelloRequest { Name = "World" });
+
+var headers = await call.ResponseHeadersAsync;
+var myValue = headers.GetValue("my-trailer-name");
+
+var response = await call.ResponseAsync;
+```
+
+`ResponseHeadersAsync` utilizzo
+
+* Deve attendere il risultato di `ResponseHeadersAsync` per ottenere la raccolta di intestazioni.
+* Non è necessario accedere a prima `ResponseAsync` (o al flusso di risposta durante il flusso). Se è stata restituita una risposta, `ResponseHeadersAsync` restituisce immediatamente le intestazioni.
+* Genererà un'eccezione se si verifica un errore di connessione o del server e non sono state restituite intestazioni per la chiamata gRPC.
+
 ## <a name="access-grpc-trailers"></a>Accedi a gRPC Trailers
 
-le chiamate gRPC possono restituire trailer di gRPC. i trailer gRPC vengono usati per fornire i metadati nome/valore relativi a una chiamata. I trailer forniscono funzionalità simili alle intestazioni HTTP, ma vengono ricevute alla fine della chiamata.
+le chiamate gRPC possono restituire trailer di risposta. I trailer vengono utilizzati per fornire i metadati nome/valore relativi a una chiamata. I trailer forniscono funzionalità simili alle intestazioni HTTP, ma vengono ricevute alla fine della chiamata.
 
-i trailer gRPC sono accessibili tramite `GetTrailers()` , che restituisce una raccolta di metadati. I trailer vengono restituiti al termine della risposta, pertanto è necessario attendere tutti i messaggi di risposta prima di accedere ai trailer.
+I trailer sono accessibili tramite `GetTrailers()` , che restituisce una raccolta di metadati. I trailer vengono restituiti al termine della risposta. Pertanto, è necessario attendere tutti i messaggi di risposta prima di accedere ai trailer.
 
 Prima di chiamare, le chiamate di flusso unario e client devono essere attese `ResponseAsync` `GetTrailers()` :
 
@@ -237,7 +259,7 @@ var trailers = call.GetTrailers();
 var myValue = trailers.GetValue("my-trailer-name");
 ```
 
-i trailer gRPC sono accessibili anche da `RpcException` . Un servizio può restituire trailer insieme a uno stato di gRPC non OK. In questa situazione i trailer vengono recuperati dall'eccezione generata dal client gRPC:
+I trailer sono accessibili anche da `RpcException` . Un servizio può restituire trailer insieme a uno stato di gRPC non OK. In questa situazione, i trailer vengono recuperati dall'eccezione generata dal client gRPC:
 
 ```csharp
 var client = new Greet.GreeterClient(channel);

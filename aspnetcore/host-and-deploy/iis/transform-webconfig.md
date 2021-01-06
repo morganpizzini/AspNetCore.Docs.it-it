@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/transform-webconfig
-ms.openlocfilehash: 259b5bf9bf2a6de987494b5771897355e3ea67db
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: d264aaee7889ec1c8ee0fe6b1f52ccc4cf355745
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93057312"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97854626"
 ---
 # <a name="transform-webconfig"></a>Trasformare web.config
 
@@ -32,10 +32,10 @@ Di [Vijay](https://github.com/vijayrkn) ,
 
 Le trasformazioni per il file *web.config* possono essere applicate automaticamente quando viene pubblicata un'app in base a:
 
-* [Configurazione della build](#build-configuration)
+* [Configurare la compilazione](#build-configuration)
 * [Profilo](#profile)
 * [Environment](#environment)
-* [Impostazione personalizzata](#custom)
+* [Personalizzato](#custom)
 
 Queste trasformazioni si verificano per uno degli scenari di generazione di *web.config* seguenti:
 
@@ -46,9 +46,9 @@ Queste trasformazioni si verificano per uno degli scenari di generazione di *web
 
 Le trasformazioni di configurazione della build vengono eseguite per prime.
 
-Includere un file *web.{CONFIGURAZIONE}.config* per ogni [configurazione della build (Debug|Versione)](/dotnet/core/tools/dotnet-publish#options) che richiede una trasformazione di *web.config* .
+Includere un file *web.{CONFIGURAZIONE}.config* per ogni [configurazione della build (Debug|Versione)](/dotnet/core/tools/dotnet-publish#options) che richiede una trasformazione di *web.config*.
 
-Nell'esempio seguente, una variabile di ambiente specifica della configurazione viene impostata in *web.Release.config* :
+Nell'esempio seguente, una variabile di ambiente specifica della configurazione viene impostata in *web.Release.config*:
 
 ```xml
 <?xml version="1.0"?>
@@ -68,7 +68,7 @@ Nell'esempio seguente, una variabile di ambiente specifica della configurazione 
 </configuration>
 ```
 
-La trasformazione viene applicata quando la configurazione è impostata su *Versione* :
+La trasformazione viene applicata quando la configurazione è impostata su *Versione*:
 
 ```dotnetcli
 dotnet publish --configuration Release
@@ -80,7 +80,7 @@ La proprietà di MSBuild per la configurazione è `$(Configuration)`.
 
 Le trasformazioni di profilo vengono eseguite per seconde, dopo le trasformazioni di [configurazione della build](#build-configuration).
 
-Includere un file *web.{PROFILO}.config* per ogni configurazione del profilo che richiede una trasformazione di *web.config* .
+Includere un file *web.{PROFILO}.config* per ogni configurazione del profilo che richiede una trasformazione di *web.config*.
 
 Nell'esempio seguente, una variabile di ambiente per il profilo è impostata in *web.FolderProfile.config* per un profilo di pubblicazione di cartella:
 
@@ -102,7 +102,7 @@ Nell'esempio seguente, una variabile di ambiente per il profilo è impostata in 
 </configuration>
 ```
 
-La trasformazione viene applicata quando il profilo è *FolderProfile* :
+La trasformazione viene applicata quando il profilo è *FolderProfile*:
 
 ```dotnetcli
 dotnet publish --configuration Release /p:PublishProfile=FolderProfile
@@ -116,9 +116,9 @@ Se non viene passato alcun profilo, il nome del profilo predefinito è **FileSys
 
 Le trasformazioni di ambiente vengono eseguite per terze, dopo le trasformazioni di [configurazione della build](#build-configuration) e di [profilo](#profile).
 
-Includere un file *web.{AMBIENTE}.config* per ogni [ambiente](xref:fundamentals/environments) che richiede una trasformazione di *web.config* .
+Includere un file *web.{AMBIENTE}.config* per ogni [ambiente](xref:fundamentals/environments) che richiede una trasformazione di *web.config*.
 
-Nell'esempio seguente, una variabile di ambiente specifica dell'ambiente viene impostata in *web.Production.config* per l'ambiente Production:
+Nell'esempio seguente, una variabile di ambiente specifica dell'ambiente viene impostata in *web.Production.config* per l'ambiente di produzione:
 
 ```xml
 <?xml version="1.0"?>
@@ -138,7 +138,7 @@ Nell'esempio seguente, una variabile di ambiente specifica dell'ambiente viene i
 </configuration>
 ```
 
-La trasformazione viene applicata quando l'ambiente è *Production* :
+La trasformazione viene applicata quando l'ambiente è *Production*:
 
 ```dotnetcli
 dotnet publish --configuration Release /p:EnvironmentName=Production
@@ -154,9 +154,9 @@ La variabile di ambiente `ASPNETCORE_ENVIRONMENT` viene aggiunta automaticamente
 
 Le trasformazioni personalizzate vengono eseguite per ultime, dopo le trasformazioni di [configurazione della build](#build-configuration), di [profilo](#profile) e di [ambiente](#environment).
 
-Includere un file *{NOME_PERSONALIZZATO}.transform* per ogni configurazione personalizzata che richiede una trasformazione di *web.config* .
+Includere un file *{NOME_PERSONALIZZATO}.transform* per ogni configurazione personalizzata che richiede una trasformazione di *web.config*.
 
-Nell'esempio seguente viene impostata una variabile di ambiente per una trasformazione personalizzata in *custom.transform* :
+Nell'esempio seguente viene impostata una variabile di ambiente per una trasformazione personalizzata in *custom.transform*:
 
 ```xml
 <?xml version="1.0"?>
@@ -186,7 +186,7 @@ La proprietà di MSBuild per il nome del profilo è `$(CustomTransformFileName)`
 
 ## <a name="prevent-webconfig-transformation"></a>Impedire trasformazioni di web.config
 
-Per impedire le trasformazioni del file *web.config* , impostare la proprietà MSBuild `$(IsWebConfigTransformDisabled)`:
+Per impedire le trasformazioni del file *web.config*, impostare la proprietà MSBuild `$(IsWebConfigTransformDisabled)`:
 
 ```dotnetcli
 dotnet publish /p:IsWebConfigTransformDisabled=true

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.1
-ms.openlocfilehash: 62fc9d866adcf05ff024501db68cce8bb8b11a98
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 199ca62f71df5c0ee5ca2f78caf53ad8d6be1179
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059715"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97854561"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Novità di ASP.NET Core 2.1
 
@@ -93,7 +93,7 @@ ASP.NET Core offre API e modelli con cui è possibile soddisfare alcuni dei requ
 
 È stato introdotto un nuovo pacchetto che semplifica la creazione e l'esecuzione di test. Con il pacchetto [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/) è possibile gestire le attività seguenti:
 
-* Copia il file di dipendenza ( *\* . Deps* ) dall'app testata nella cartella *bin* del progetto di test.
+* Copia il file di dipendenza (*\* . Deps*) dall'app testata nella cartella *bin* del progetto di test.
 * Impostare la radice del contenuto sulla radice del progetto dell'app testata in modo che i file statici e le pagine/visualizzazioni siano rilevate durante l'esecuzione dei test.
 * Specificare la classe [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) per semplificare il bootstrap dell'app testata con [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver).
 
@@ -141,9 +141,9 @@ ASP.NET Core 2.1 include un nuovo servizio `IHttpClientFactory` che semplifica l
 
 Per altre informazioni, vedere [Inizializzare richieste HTTP](xref:fundamentals/http-requests).
 
-## <a name="kestrel-transport-configuration"></a>Configurazione del trasporto di Kestrel
+## <a name="kestrel-libuv-transport-configuration"></a>Configurazione del trasporto libuv di gheppio
 
-Con la versione ASP.NET Core 2.1, il trasporto predefinito di Kestrel non si basa più su Libuv, ma su socket gestiti. Per altre informazioni, vedere [Implementazione del server Web Kestrel: Configurazione del trasporto](xref:fundamentals/servers/kestrel#transport-configuration).
+Con la versione ASP.NET Core 2.1, il trasporto predefinito di Kestrel non si basa più su Libuv, ma su socket gestiti. Per ulteriori informazioni, vedere la pagina relativa all' [implementazione del server Web gheppio: configurazione del trasporto libuv](xref:fundamentals/servers/kestrel#libuv-transport-configuration).
 
 ## <a name="generic-host-builder"></a>Generatore di host generico
 
@@ -173,7 +173,7 @@ In 2,1 le Razor pagine ricercano Razor risorse (ad esempio layout e parziali) ne
 
 ## <a name="no-locrazor-pages-in-an-area"></a>Razor Pagine in un'area
 
-Razor Le pagine supportano ora le [aree](xref:mvc/controllers/areas). Per visualizzare un esempio di aree, creare una nuova Razor app Web di pagine con singoli account utente. Un' Razor app Web di pagine con account utente singoli include */areas/ Identity /pages* .
+Razor Le pagine supportano ora le [aree](xref:mvc/controllers/areas). Per visualizzare un esempio di aree, creare una nuova Razor app Web di pagine con singoli account utente. Un' Razor app Web di pagine con account utente singoli include */areas/ Identity /pages*.
 
 ## <a name="mvc-compatibility-version"></a>Versione di compatibilità MVC
 

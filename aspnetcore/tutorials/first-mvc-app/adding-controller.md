@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
 ms.openlocfilehash: e51edc15b14a5bdd1d53e547e0b469ad608f46d0
-ms.sourcegitcommit: fb208f907249cc7aab029afff941a0266c187050
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/17/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94688408"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Parte 2, aggiungere un controller a un'app MVC ASP.NET Core
@@ -104,7 +104,7 @@ Passare a `https://localhost:{PORT}/HelloWorld/Welcome`. Il metodo `Welcome` vie
 
 ![Finestra del browser con una risposta dell'applicazione, This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
-Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4` Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
+Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio: `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 
@@ -223,7 +223,7 @@ Passare a `https://localhost:{PORT}/HelloWorld/Welcome`. Il metodo `Welcome` vie
 
 ![Finestra del browser con una risposta dell'applicazione, This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
-Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio, `/HelloWorld/Welcome?name=Rick&numtimes=4` Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
+Modificare il codice in modo da passare le informazioni dei parametri dall'URL al controller. Ad esempio: `/HelloWorld/Welcome?name=Rick&numtimes=4`. Modificare il metodo `Welcome` in modo da includere due parametri, come illustrato nel codice seguente.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 

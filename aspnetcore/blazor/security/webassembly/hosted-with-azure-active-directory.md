@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 0542e7556b82c22a8844f4d1f4b2ba852a420246
-ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
+ms.openlocfilehash: e65be6e2ddc1a9de6f0ba20fe50f63b650e0bff5
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96025064"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97792040"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-azure-active-directory"></a>Proteggere un' Blazor WebAssembly app ospitata ASP.NET Core con Azure Active Directory
 
@@ -51,13 +51,13 @@ Seguire le istruzioni riportate nella [Guida introduttiva: configurare un tenant
 
 ### <a name="register-a-server-api-app"></a>Registrare un'app per le API server
 
-Seguire le istruzioni disponibili in [Guida introduttiva: registrare un'applicazione con la piattaforma di identità Microsoft](/azure/active-directory/develop/quickstart-register-app) e gli argomenti di Azure AAD successivi per registrare un'app AAD per l'app per le *API del server* e quindi eseguire le operazioni seguenti:
+Registrare un'app AAD per l' *app* per le API del server:
 
 1. In **Azure Active Directory**  >  **registrazioni app** selezionare **nuova registrazione**.
 1. Specificare un **nome** per l'app (ad esempio, **Blazor Server AAD**).
 1. Scegliere i **tipi di conto supportati**. Per questa esperienza è possibile selezionare **solo gli account in questa directory aziendale** (tenant singolo).
 1. L' *app* per le API del server non richiede un **URI di reindirizzamento** in questo scenario, quindi lasciare l'elenco a discesa impostato su **Web** e non immettere un URI di reindirizzamento.
-1. Deselezionare la **Permissions**  >  casella di controllo autorizzazioni **Concedi amministratore per OpenID e autorizzazioni offline_access** .
+1. Deselezionare la   >  casella di controllo autorizzazioni **Concedi amministratore per OpenID e autorizzazioni offline_access** .
 1. Selezionare **Registra**.
 
 Registrare le seguenti informazioni:
@@ -85,7 +85,7 @@ Registrare le seguenti informazioni:
 
 ### <a name="register-a-client-app"></a>Registrare un'app client
 
-Seguire le istruzioni disponibili in [Guida introduttiva: registrare un'applicazione con la piattaforma di identità Microsoft](/azure/active-directory/develop/quickstart-register-app) e gli argomenti di Azure AAD successivi per registrare un'app AAD per l' *`Client`* app e quindi eseguire le operazioni seguenti:
+Registrare un'app AAD per l' *app client*:
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -93,12 +93,12 @@ Seguire le istruzioni disponibili in [Guida introduttiva: registrare un'applicaz
 1. Specificare un **nome** per l'app (ad esempio, **Blazor client AAD**).
 1. Scegliere i **tipi di conto supportati**. Per questa esperienza è possibile selezionare **solo gli account in questa directory aziendale** (tenant singolo).
 1. Impostare l'elenco a discesa **URI di reindirizzamento** sull' **applicazione a pagina singola (Spa)** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione in Kestrel è la 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle *`Server`* proprietà dell'app nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un contrassegno viene visualizzato nella sezione [creare l'app](#create-the-app) per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
-1. Deselezionare la **Permissions** > casella di controllo autorizzazioni **Concedi amministratore per OpenID e autorizzazioni offline_access** .
+1. Deselezionare la  > casella di controllo autorizzazioni **Concedi amministratore per OpenID e autorizzazioni offline_access** .
 1. Selezionare **Registra**.
 
 Registrare l' *`Client`* ID dell'applicazione App (client) (ad esempio, `4369008b-21fa-427c-abaa-9b53bf58e538` ).
 
-Nelle configurazioni della piattaforma di **autenticazione** > **Platform configurations** > **applicazione a pagina singola (Spa)**:
+Nelle configurazioni della piattaforma di **autenticazione** >  > **applicazione a pagina singola (Spa)**:
 
 1. Verificare che l' **URI di reindirizzamento** di `https://localhost:{PORT}/authentication/login-callback` sia presente.
 1. Per **concessione implicita**, assicurarsi che le caselle di controllo per i **token di accesso** e i **token ID** **non** siano selezionate.
@@ -113,12 +113,12 @@ Nelle configurazioni della piattaforma di **autenticazione** > **Platform config
 1. Specificare un **nome** per l'app (ad esempio, **Blazor client AAD**).
 1. Scegliere i **tipi di conto supportati**. Per questa esperienza è possibile selezionare **solo gli account in questa directory aziendale** (tenant singolo).
 1. Lasciare l'elenco a discesa **URI di reindirizzamento** impostato su **Web** e specificare l'URI di reindirizzamento seguente: `https://localhost:{PORT}/authentication/login-callback` . La porta predefinita per un'app in esecuzione in Kestrel è la 5001. Se l'app viene eseguita su una porta di Gheppio diversa, usare la porta dell'app. Per IIS Express, la porta generata in modo casuale per l'app si trova nelle *`Server`* proprietà dell'app nel pannello **debug** . Poiché l'app non esiste in questo momento e la porta IIS Express non è nota, tornare a questo passaggio dopo la creazione dell'app e aggiornare l'URI di reindirizzamento. Un contrassegno viene visualizzato nella sezione [creare l'app](#create-the-app) per ricordare IIS Express agli utenti di aggiornare l'URI di reindirizzamento.
-1. Deselezionare la **Permissions** > casella di controllo autorizzazioni **Concedi amministratore per OpenID e autorizzazioni offline_access** .
+1. Deselezionare la  > casella di controllo autorizzazioni **Concedi amministratore per OpenID e autorizzazioni offline_access** .
 1. Selezionare **Registra**.
 
 Registrare l' *`Client`* ID dell'applicazione App (client) (ad esempio, `4369008b-21fa-427c-abaa-9b53bf58e538` ).
 
-In **Authentication** > **configurazioni piattaforma** di autenticazione > **Web**:
+In  > **configurazioni piattaforma** di autenticazione > **Web**:
 
 1. Verificare che l' **URI di reindirizzamento** di `https://localhost:{PORT}/authentication/login-callback` sia presente.
 1. Per **concessione implicita**, selezionare le caselle di controllo per i token di **accesso** e i **token ID**.
@@ -253,19 +253,41 @@ app.UseAuthorization();
 
 Per impostazione predefinita, l' *`Server`* API dell'app viene popolata `User.Identity.Name` con il valore del `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` tipo di attestazione (ad esempio, `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com` ).
 
-Per configurare l'app per la ricezione del valore dal `name` tipo di attestazione, configurare il <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> di <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices` :
+Per configurare l'app per la ricezione del valore dal `name` tipo di attestazione:
 
-```csharp
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+* Aggiungere uno spazio dei nomi per <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> a `Startup.cs` :
 
-...
+  ```csharp
+  using Microsoft.AspNetCore.Authentication.JwtBearer;
+  ```
 
-services.Configure<JwtBearerOptions>(
-    AzureADDefaults.JwtBearerAuthenticationScheme, options =>
-    {
-        options.TokenValidationParameters.NameClaimType = "name";
-    });
-```
+::: moniker range=">= aspnetcore-5.0"
+
+* Configurare <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> di <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices` :
+
+  ```csharp
+  services.Configure<JwtBearerOptions>(
+      JwtBearerDefaults.AuthenticationScheme, options =>
+      {
+          options.TokenValidationParameters.NameClaimType = "name";
+      });
+  ```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* Configurare <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> di <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices` :
+
+  ```csharp
+  services.Configure<JwtBearerOptions>(
+      AzureADDefaults.JwtBearerAuthenticationScheme, options =>
+      {
+          options.TokenValidationParameters.NameClaimType = "name";
+      });
+  ```
+
+::: moniker-end
 
 ### <a name="app-settings"></a>Impostazioni app
 
@@ -299,7 +321,7 @@ Esempio:
 }
 ```
 
-[!INCLUDE[](~/includes/blazor-security/azure-scope-5x.md)]
+[!INCLUDE[](~/blazor/includes/security/azure-scope-5x.md)]
 
 ::: moniker-end
 
@@ -476,7 +498,7 @@ options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!INCLUDE[](~/includes/blazor-security/azure-scope-3x.md)]
+[!INCLUDE[](~/blazor/includes/security/azure-scope-3x.md)]
 
 ::: moniker-end
 
@@ -489,37 +511,37 @@ Per ulteriori informazioni, vedere le sezioni seguenti dell'articolo *scenari ag
 
 ### <a name="login-mode"></a>Modalità di accesso
 
-[!INCLUDE[](~/includes/blazor-security/msal-login-mode.md)]
+[!INCLUDE[](~/blazor/includes/security/msal-login-mode.md)]
 
 ::: moniker-end
 
 ### <a name="imports-file"></a>Importa file
 
-[!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
+[!INCLUDE[](~/blazor/includes/security/imports-file-hosted.md)]
 
 ### <a name="index-page"></a>Pagina di indice
 
-[!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]
+[!INCLUDE[](~/blazor/includes/security/index-page-msal.md)]
 
 ### <a name="app-component"></a>Componente app
 
-[!INCLUDE[](~/includes/blazor-security/app-component.md)]
+[!INCLUDE[](~/blazor/includes/security/app-component.md)]
 
 ### <a name="redirecttologin-component"></a>Componente RedirectToLogin
 
-[!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/includes/security/redirecttologin-component.md)]
 
 ### <a name="logindisplay-component"></a>Componente LoginDisplay
 
-[!INCLUDE[](~/includes/blazor-security/logindisplay-component.md)]
+[!INCLUDE[](~/blazor/includes/security/logindisplay-component.md)]
 
 ### <a name="authentication-component"></a>Componente di autenticazione
 
-[!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
+[!INCLUDE[](~/blazor/includes/security/authentication-component.md)]
 
 ### <a name="fetchdata-component"></a>Componente FetchData
 
-[!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
+[!INCLUDE[](~/blazor/includes/security/fetchdata-component.md)]
 
 ## <a name="run-the-app"></a>Eseguire l'app
 
@@ -529,10 +551,10 @@ Eseguire l'app dal progetto server. Quando si usa Visual Studio, eseguire una de
 * Selezionare il progetto server in **Esplora soluzioni** , quindi fare clic sul pulsante **Esegui** nella barra degli strumenti o avviare l'app dal menu **debug** .
 
 <!-- HOLD
-[!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
+[!INCLUDE[](~/blazor/includes/security/usermanager-signinmanager.md)]
 -->
 
-[!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
+[!INCLUDE[](~/blazor/includes/security/troubleshoot.md)]
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -541,3 +563,4 @@ Eseguire l'app dal progetto server. Quando si usa Visual Studio, eseguire una de
 * <xref:blazor/security/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Documentazione di Microsoft Identity Platform](/azure/active-directory/develop/)
+* [Avvio rapido: Registrare un'applicazione con Microsoft Identity Platform](/azure/active-directory/develop/quickstart-register-app)

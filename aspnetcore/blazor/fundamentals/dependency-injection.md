@@ -5,7 +5,7 @@ description: Informazioni su come le Blazor app possono inserire i servizi nei c
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/11/2020
+ms.date: 12/19/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/fundamentals/dependency-injection
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: af6b645fc3c398414c85c78e1cfeb213e538c2a6
-ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
+ms.openlocfilehash: 3f2b4eff5422acbec80b2fd9b801101271cc3f75
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/15/2020
-ms.locfileid: "97506799"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97808725"
 ---
 # <a name="aspnet-core-no-locblazor-dependency-injection"></a>BlazorInserimento di dipendenze ASP.NET Core
 
@@ -98,7 +98,7 @@ I servizi possono essere configurati con le durate mostrate nella tabella seguen
 
 | Durata | Descrizione |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | <p>Blazor WebAssembly Attualmente le app non hanno un concetto di ambiti di. `Scoped`-i servizi registrati si comportano come `Singleton` servizi.</p><p>Il Blazor Server modello di hosting supporta la `Scoped` durata tra le richieste HTTP, ma non tra i messaggi di connessione/circuito SingalR tra i componenti caricati nel client. Le Razor pagine o la parte MVC dell'app considera i servizi con ambito normalmente e ricrea i servizi in *ogni richiesta http* quando si naviga tra pagine o viste oppure da una pagina o da una vista a un componente. I servizi con ambito non vengono ricostruiti quando ci si sposta tra i componenti nel client, dove la comunicazione con il server avviene tramite la SignalR connessione del circuito dell'utente, non tramite richieste HTTP. Negli scenari dei componenti seguenti nel client, i servizi con ambito vengono ricostruiti perché viene creato un nuovo circuito per l'utente:</p><ul><li>L'utente chiude la finestra del browser. L'utente apre una nuova finestra e torna all'app.</li><li>L'utente chiude l'ultima scheda dell'app in una finestra del browser. L'utente apre una nuova scheda e torna all'app.</li><li>L'utente seleziona il pulsante ricarica/Aggiorna del browser.</li></ul><p>Per ulteriori informazioni sul mantenimento dello stato utente tra i servizi con ambito nelle Blazor Server app, vedere <xref:blazor/hosting-models?pivots=server> .</p> |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | <p>Blazor WebAssembly Attualmente le app non hanno un concetto di ambiti di. `Scoped`-i servizi registrati si comportano come `Singleton` servizi.</p><p>Il Blazor Server modello di hosting supporta la `Scoped` durata tra le richieste HTTP, ma non tra SignalR i messaggi di connessione/circuito tra i componenti caricati nel client. Le Razor pagine o la parte MVC dell'app considera i servizi con ambito normalmente e ricrea i servizi in *ogni richiesta http* quando si naviga tra pagine o viste oppure da una pagina o da una vista a un componente. I servizi con ambito non vengono ricostruiti quando ci si sposta tra i componenti nel client, dove la comunicazione con il server avviene tramite la SignalR connessione del circuito dell'utente, non tramite richieste HTTP. Negli scenari dei componenti seguenti nel client, i servizi con ambito vengono ricostruiti perché viene creato un nuovo circuito per l'utente:</p><ul><li>L'utente chiude la finestra del browser. L'utente apre una nuova finestra e torna all'app.</li><li>L'utente chiude l'ultima scheda dell'app in una finestra del browser. L'utente apre una nuova scheda e torna all'app.</li><li>L'utente seleziona il pulsante ricarica/Aggiorna del browser.</li></ul><p>Per ulteriori informazioni sul mantenimento dello stato utente tra i servizi con ambito nelle Blazor Server app, vedere <xref:blazor/hosting-models?pivots=server> .</p> |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | La creazione di una *singola istanza* del servizio. Tutti i componenti che richiedono un `Singleton` servizio ricevono un'istanza dello stesso servizio. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Ogni volta che un componente ottiene un'istanza di un `Transient` servizio dal contenitore del servizio, riceve una *nuova istanza* del servizio. |
 
@@ -106,7 +106,7 @@ Il sistema DI è basato sul sistema DI ASP.NET Core. Per altre informazioni, ved
 
 ## <a name="request-a-service-in-a-component"></a>Richiedere un servizio in un componente
 
-Una volta aggiunti i servizi alla raccolta di servizi, inserire i servizi nei componenti utilizzando la direttiva [ \@ Inject](xref:mvc/views/razor#inject) Razor . [`@inject`](xref:mvc/views/razor#inject) dispone di due parametri:
+Una volta aggiunti i servizi alla raccolta di servizi, inserire i servizi nei componenti usando la [`@inject`](xref:mvc/views/razor#inject) Razor direttiva, che ha due parametri:
 
 * Tipo: tipo di servizio da inserire.
 * Property: nome della proprietà che riceve il servizio app inserito. La proprietà non richiede la creazione manuale. Il compilatore crea la proprietà.
@@ -192,8 +192,6 @@ Sono disponibili due versioni del <xref:Microsoft.AspNetCore.Components.OwningCo
 
 Per altre informazioni, vedere <xref:blazor/blazor-server-ef-core>.
 
-::: moniker range="< aspnetcore-5.0"
-
 ## <a name="detect-transient-disposables"></a>Rilevare eliminabili temporanei
 
 Gli esempi seguenti illustrano come rilevare servizi temporanei monouso in un'app che deve usare <xref:Microsoft.AspNetCore.Components.OwningComponentBase> . Per ulteriori informazioni, vedere la sezione relativa [alle classi dei componenti di base dell'utilità per gestire una](#utility-base-component-classes-to-manage-a-di-scope) sezione dell'ambito.
@@ -206,17 +204,17 @@ Gli esempi seguenti illustrano come rilevare servizi temporanei monouso in un'ap
 
 Nell' `TransientDisposable` esempio seguente viene rilevato ( `Program.cs` ):
 
-<!-- moniker range=">= aspnetcore-5.0"
+::: moniker range=">= aspnetcore-5.0"
 
 [!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
-moniker-end 
+::: moniker-end 
 
-moniker range="< aspnetcore-5.0" -->
+::: moniker range="< aspnetcore-5.0"
 
 [!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
-<!-- moniker-end -->
+::: moniker-end
 
 ::: zone-end
 
@@ -242,7 +240,20 @@ Nell' `TransientDependency` esempio seguente viene rilevato ( `Startup.cs` ):
 
 ::: zone-end
 
-::: moniker-end
+L'app può registrare gli eliminabili temporanei senza generare un'eccezione. Tuttavia, se si tenta di risolvere i risultati monouso temporanei in un oggetto <xref:System.InvalidOperationException> , come illustrato nell'esempio riportato di seguito.
+
+`Pages/TransientDisposable.razor`:
+
+```razor
+@page "/transient-disposable"
+@inject TransientDisposable TransientDisposable
+
+<h1>Transient Disposable Detection</h1>
+```
+
+Passare al `TransientDisposable` componente in `/transient-disposable` e <xref:System.InvalidOperationException> viene generata un'eccezione quando il Framework tenta di costruire un'istanza di `TransientDisposable` :
+
+> System. InvalidOperationException: si sta tentando di risolvere TransientDisposable di servizio Disposable temporaneo nell'ambito errato. Usare una \<T> classe di base del componente ' OwningComponentBase ' per il servizio ' t'che si sta tentando di risolvere.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: host-and-deploy/directory-structure
 ms.openlocfilehash: 918bc11e06b8f2bea5506d3b61f462e15998efa0
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059858"
 ---
 # <a name="aspnet-core-directory-structure"></a>Struttura di directory di ASP.NET Core
@@ -45,9 +45,9 @@ La directory *publish* contiene gli asset distribuibili prodotti dal comando [do
 
 &dagger;Indica una directory
 
-La directory *publish* rappresenta il *percorso radice del contenuto* , anche denominato *percorso di base dell'applicazione* , della distribuzione. Qualsiasi nome venga assegnato alla directory *publish* dell'applicazione distribuita sul server, il relativo percorso viene usato come percorso fisico del server per l'app ospitata.
+La directory *publish* rappresenta il *percorso radice del contenuto*, anche denominato *percorso di base dell'applicazione*, della distribuzione. Qualsiasi nome venga assegnato alla directory *publish* dell'applicazione distribuita sul server, il relativo percorso viene usato come percorso fisico del server per l'app ospitata.
 
-La directory *wwwroot* , se presente, contiene solo gli asset statici.
+La directory *wwwroot*, se presente, contiene solo gli asset statici.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
@@ -75,9 +75,9 @@ La directory *publish* contiene gli asset distribuibili prodotti dal comando [do
 
 &dagger;Indica una directory
 
-La directory *publish* rappresenta il *percorso radice del contenuto* , anche denominato *percorso di base dell'applicazione* , della distribuzione. Qualsiasi nome venga assegnato alla directory *publish* dell'applicazione distribuita sul server, il relativo percorso viene usato come percorso fisico del server per l'app ospitata.
+La directory *publish* rappresenta il *percorso radice del contenuto*, anche denominato *percorso di base dell'applicazione*, della distribuzione. Qualsiasi nome venga assegnato alla directory *publish* dell'applicazione distribuita sul server, il relativo percorso viene usato come percorso fisico del server per l'app ospitata.
 
-La directory *wwwroot* , se presente, contiene solo gli asset statici.
+La directory *wwwroot*, se presente, contiene solo gli asset statici.
 
 La creazione di una cartella *Logs* è utile per la [registrazione di debug avanzata del modulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Le cartelle nel percorso specificato per il valore `<handlerSetting>` non vengono create automaticamente dal modulo e devono essere già presenti nella distribuzione per consentire al modulo di scrivere il log di debug.
 
@@ -96,7 +96,7 @@ La creazione di una cartella *Logs* è utile per la [registrazione di debug avan
    </Target>
    ```
 
-   L'elemento `<MakeDir>` crea una cartella *Logs* vuota nell'output pubblicato. L'elemento usa la proprietà `PublishDir` per determinare il percorso di destinazione per la creazione della cartella. Diversi metodi di distribuzione, ad esempio Distribuzione Web, ignorano le cartelle vuote durante la distribuzione. L'elemento `<WriteLinesToFile>` genera un file nella cartella *Logs* , che garantisce la distribuzione della cartella nel server. La creazione della cartella con questo metodo ha esito negativo se il processo di lavoro non dispone dell'accesso in scrittura alla cartella di destinazione.
+   L'elemento `<MakeDir>` crea una cartella *Logs* vuota nell'output pubblicato. L'elemento usa la proprietà `PublishDir` per determinare il percorso di destinazione per la creazione della cartella. Diversi metodi di distribuzione, ad esempio Distribuzione Web, ignorano le cartelle vuote durante la distribuzione. L'elemento `<WriteLinesToFile>` genera un file nella cartella *Logs*, che garantisce la distribuzione della cartella nel server. La creazione della cartella con questo metodo ha esito negativo se il processo di lavoro non dispone dell'accesso in scrittura alla cartella di destinazione.
 
 * Creare fisicamente la directory *Logs* sul server nella distribuzione.
 

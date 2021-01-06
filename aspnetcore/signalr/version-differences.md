@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/version-differences
-ms.openlocfilehash: c4c0ff83cb789e9aa35085496daa461404615726
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: c37f0a3c528b6285fbf35f41eed781fb76c68de4
+ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061210"
+ms.lasthandoff: 01/03/2021
+ms.locfileid: "97854600"
 ---
 # <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>Differenze tra ASP.NET SignalR e ASP.NET Core SignalR
 
@@ -35,7 +35,7 @@ ASP.NET Core SignalR non è compatibile con i client o i server per ASP.NET Sign
 
 |                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
-| **Pacchetto NuGet server** | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | Nessuno. Incluso nel Framework condiviso [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) . |
+| **Pacchetto NuGet server** | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | No. Incluso nel Framework condiviso [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) . |
 | **Pacchetti NuGet client** | [Microsoft. AspNet. SignalR . Client](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. AspNet. SignalR . JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft SignalR . AspNetCore. Client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
 | **Pacchetto NPM client JavaScript** | [SignalR](https://www.npmjs.com/package/signalr) | [`@microsoft/signalr`](https://www.npmjs.com/package/@microsoft/signalr) |
 | **Client Java** | [Repository GitHub](https://github.com/SignalR/java-client) (deprecato)  | Pacchetto Maven [com. Microsoft. SignalR](https://search.maven.org/artifact/com.microsoft.signalr/signalr) |
@@ -151,7 +151,7 @@ In ASP.NET Core SignalR , il modello di connessione è stato semplificato. Le co
 
 ASP.NET Core SignalR supporta ora lo [streaming dei dati](xref:signalr/streaming) dall'hub al client.
 
-### <a name="state"></a>Stato
+### <a name="state"></a>State
 
 La possibilità di passare uno stato arbitrario tra i client e l'hub (spesso chiamato `HubState` ) è stata rimossa, oltre al supporto per i messaggi di stato. Al momento non è presente alcuna controparte dei proxy dell'hub.
 
@@ -203,8 +203,8 @@ La dipendenza da jQuery è stata rimossa, tuttavia i progetti possono comunque u
 
 ### <a name="internet-explorer-support"></a>Supporto di Internet Explorer
 
-ASP.NET Core SignalR supporta Microsoft Internet Explorer 11 o versione successiva, mentre ASP.NET SignalR supporta Microsoft Internet Explorer 8 o versione successiva.
-Altre informazioni sul supporto del browser sono disponibili in [piattaforme supportate](xref:signalr/supported-platforms#javascript-client).
+ASP.NET Core SignalR non supporta Microsoft Internet Explorer, mentre ASP.NET SignalR supporta Microsoft Internet Explorer 8 o versione successiva.
+Per altre informazioni, vedere <xref:signalr/supported-platforms#javascript-client>.
 
 ### <a name="javascript-client-method-syntax"></a>Sintassi del metodo client JavaScript
 

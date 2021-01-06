@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 147f1d6cdea0b9992b8be333db4cb06e30c7feaf
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 80196945bc6891d5517d7da0e07ca1b0debddd28
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055217"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97854685"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-no-locidentity-server"></a>Proteggere un' Blazor WebAssembly app ospitata ASP.NET Core Identity con server
 
@@ -39,7 +39,7 @@ Questo articolo illustra come creare un' [ Blazor WebAssembly app ospitata](xref
 
 Per creare un nuovo Blazor WebAssembly progetto con un meccanismo di autenticazione:
 
-1. Dopo aver scelto il modello **Blazor WebAssembly app** nella finestra di dialogo **Crea un nuovo ASP.NET Core applicazione Web** , selezionare **Cambia** in **autenticazione** .
+1. Dopo aver scelto il modello **Blazor WebAssembly app** nella finestra di dialogo **Crea un nuovo ASP.NET Core applicazione Web** , selezionare **Cambia** in **autenticazione**.
 
 1. Selezionare **singoli account utente** con l'opzione **Archivia account utente in-app** per archiviare gli utenti all'interno dell'app usando il sistema di ASP.NET Core [Identity](xref:security/authentication/identity) .
 
@@ -155,7 +155,7 @@ Per ottenere il controllo completo dello schema del database, ereditare da una d
 
 In `OidcConfigurationController` ( `Controllers/OidcConfigurationController.cs` ), viene eseguito il provisioning dell'endpoint client per gestire i parametri OIDC.
 
-### <a name="app-settings"></a>Impostazioni delle app
+### <a name="app-settings"></a>Impostazioni app
 
 Nel file di impostazioni dell'app ( `appsettings.json` ) nella radice del progetto, la `IdentityServer` sezione descrive l'elenco dei client configurati. Nell'esempio seguente è presente un singolo client. Il nome del client corrisponde al nome dell'app e viene mappato per convenzione al `ClientId` parametro OAuth. Il profilo indica il tipo di app da configurare. Il profilo viene utilizzato internamente per guidare le convenzioni che semplificano il processo di configurazione per il server. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
@@ -215,19 +215,19 @@ Per impostazione predefinita, la configurazione per l'app viene caricata per con
 
 ### <a name="imports-file"></a>Importa file
 
-[!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
+[!INCLUDE[](~/blazor/includes/security/imports-file-hosted.md)]
 
 ### <a name="index-page"></a>Pagina di indice
 
-[!INCLUDE[](~/includes/blazor-security/index-page-authentication.md)]
+[!INCLUDE[](~/blazor/includes/security/index-page-authentication.md)]
 
 ### <a name="app-component"></a>Componente app
 
-[!INCLUDE[](~/includes/blazor-security/app-component.md)]
+[!INCLUDE[](~/blazor/includes/security/app-component.md)]
 
 ### <a name="redirecttologin-component"></a>Componente RedirectToLogin
 
-[!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/includes/security/redirecttologin-component.md)]
 
 ### <a name="logindisplay-component"></a>Componente LoginDisplay
 
@@ -271,11 +271,11 @@ Il `LoginDisplay` componente ( `Shared/LoginDisplay.razor` ) viene sottoposto a 
 
 ### <a name="authentication-component"></a>Componente di autenticazione
 
-[!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
+[!INCLUDE[](~/blazor/includes/security/authentication-component.md)]
 
 ### <a name="fetchdata-component"></a>Componente FetchData
 
-[!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
+[!INCLUDE[](~/blazor/includes/security/fetchdata-component.md)]
 
 ## <a name="run-the-app"></a>Eseguire l'app
 
@@ -466,7 +466,7 @@ Nell' *`Client`* app gli approcci di autorizzazione dei componenti sono funziona
 
 `User.Identity.Name` viene popolato nell' *`Client`* app con il nome utente dell'utente, che in genere è l'indirizzo di posta elettronica di accesso.
 
-[!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
+[!INCLUDE[](~/blazor/includes/security/usermanager-signinmanager.md)]
 
 ## <a name="host-in-azure-app-service-with-a-custom-domain"></a>Host in app Azure servizio con un dominio personalizzato
 
@@ -476,7 +476,7 @@ Per questo scenario di hosting, **non** usare lo stesso certificato per la [ Ide
 
 * L'uso di certificati diversi per questi due requisiti è una procedura di sicurezza efficace, in quanto isola le chiavi private per ogni scopo.
 * I certificati TLS per la comunicazione con i browser vengono gestiti in modo indipendente senza influire sulla Identity firma dei token del server.
-* Quando [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) fornisce un certificato a un'app del servizio app per l'associazione di dominio personalizzata, Identity il server non può ottenere lo stesso certificato da Azure Key Vault per la firma di token. Sebbene Identity sia possibile configurare il server per l'utilizzo dello stesso certificato TLS da un percorso fisico, l'inserimento dei certificati di sicurezza nel controllo del codice sorgente non è una **procedura consigliata e deve essere evitato nella maggior parte degli scenari** .
+* Quando [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) fornisce un certificato a un'app del servizio app per l'associazione di dominio personalizzata, Identity il server non può ottenere lo stesso certificato da Azure Key Vault per la firma di token. Sebbene Identity sia possibile configurare il server per l'utilizzo dello stesso certificato TLS da un percorso fisico, l'inserimento dei certificati di sicurezza nel controllo del codice sorgente non è una **procedura consigliata e deve essere evitato nella maggior parte degli scenari**.
 
 Nelle linee guida seguenti viene creato un certificato autofirmato in Azure Key Vault esclusivamente per la Identity firma di token del server. La Identity configurazione del server usa il certificato dell'insieme di credenziali delle chiavi tramite l' `My`  >  `CurrentUser` archivio certificati dell'app. Altri certificati utilizzati per il traffico HTTPS con domini personalizzati vengono creati e configurati separatamente dal Identity certificato di firma del server.
 
@@ -493,7 +493,7 @@ Per configurare un'app, app Azure servizio e Azure Key Vault per ospitare con un
 
    Per creare il certificato, usare uno degli approcci seguenti o qualsiasi altro strumento o servizio online appropriato:
 
-   * [Insieme di credenziali chiave Azure](/azure/key-vault/certificates/quick-create-portal#add-a-certificate-to-key-vault)
+   * [Azure Key Vault](/azure/key-vault/certificates/quick-create-portal#add-a-certificate-to-key-vault)
    * [MakeCert per Windows](/windows/desktop/seccrypto/makecert)
    * [OpenSSL](https://www.openssl.org)
 
@@ -506,19 +506,19 @@ Per configurare un'app, app Azure servizio e Azure Key Vault per ospitare con un
 1. Passare a app Azure servizio nel portale di Azure e creare un nuovo servizio app con la configurazione seguente:
    * **Pubblica** impostare su `Code` .
    * **Stack di runtime** impostato sul runtime dell'app.
-   * Per **SKU e dimensioni** , verificare che il livello di servizio app sia `Basic B1` o superiore.  Il servizio app richiede un `Basic B1` livello di servizio o superiore per l'uso di domini personalizzati.
+   * Per **SKU e dimensioni**, verificare che il livello di servizio app sia `Basic B1` o superiore.  Il servizio app richiede un `Basic B1` livello di servizio o superiore per l'uso di domini personalizzati.
 1. Dopo che Azure ha creato il servizio app, aprire la **configurazione** dell'app e aggiungere una nuova impostazione dell'applicazione specificando le identificazioni personali del certificato registrate in precedenza. La chiave dell'impostazione dell'app è `WEBSITE_LOAD_CERTIFICATES` . Separare le identificazioni personali del certificato nel valore dell'impostazione dell'app con una virgola, come illustrato nell'esempio seguente:
    * Chiave: `WEBSITE_LOAD_CERTIFICATES`
    * Valore: `57443A552A46DB...D55E28D412B943565,29F43A772CB6AF...1D04F0C67F85FB0B1`
 
    Nel portale di Azure il salvataggio delle impostazioni dell'app è un processo in due passaggi: salvare l' `WEBSITE_LOAD_CERTIFICATES` impostazione chiave-valore, quindi selezionare il pulsante **Salva** nella parte superiore del pannello.
-1. Selezionare le **Impostazioni TLS/SSL** dell'app. Selezionare **certificati di chiave privata (con estensione pfx)** . Usare il processo **Import Key Vault certificate** due volte per importare il certificato del sito per la comunicazione HTTPS e il certificato di firma del token del server autofirmato del sito Identity .
+1. Selezionare le **Impostazioni TLS/SSL** dell'app. Selezionare **certificati di chiave privata (con estensione pfx)**. Usare il processo **Import Key Vault certificate** due volte per importare il certificato del sito per la comunicazione HTTPS e il certificato di firma del token del server autofirmato del sito Identity .
 1. Passare al pannello **domini personalizzati** . Nel sito Web del registrar di dominio usare l' **indirizzo IP** e l' **ID di verifica del dominio personalizzato** per configurare il dominio. Una configurazione di dominio tipica include:
    * Un **record a** con un **host** di `@` e un valore dell'indirizzo IP del portale di Azure.
    * Un **record TXT** con un **host** di `asuid` e il valore dell'ID di verifica generato da Azure e fornito dal portale di Azure.
 
    Assicurarsi di salvare correttamente le modifiche nel sito Web del registrar di dominio. Per alcuni siti Web del registrar è necessario un processo in due passaggi per salvare i record di dominio: uno o più record vengono salvati singolarmente seguito dall'aggiornamento della registrazione del dominio con un pulsante separato.
-1. Tornare al pannello **domini personalizzati** nel portale di Azure. Selezionare **Aggiungi dominio personalizzato** . Selezionare l'opzione **A record** . Specificare il dominio e selezionare **convalida** . Se i record di dominio sono corretti e propagati in Internet, il portale consente di selezionare il pulsante **Aggiungi dominio personalizzato** .
+1. Tornare al pannello **domini personalizzati** nel portale di Azure. Selezionare **Aggiungi dominio personalizzato**. Selezionare l'opzione **A record** . Specificare il dominio e selezionare **convalida**. Se i record di dominio sono corretti e propagati in Internet, il portale consente di selezionare il pulsante **Aggiungi dominio personalizzato** .
 
    Potrebbero essere necessari alcuni giorni per la propagazione delle modifiche di registrazione del dominio tra i server dei nomi di dominio Internet (DNS) dopo che sono state elaborate dal registrar. Se i record di dominio non vengono aggiornati entro tre giorni lavorativi, verificare che i record siano impostati correttamente con il registrar e contattare il supporto tecnico.
 1. Nel pannello **domini personalizzati** lo **stato SSL** per il dominio è contrassegnato `Not Secure` . Selezionare il collegamento **Aggiungi binding** . Selezionare il certificato HTTPS del sito dall'insieme di credenziali delle chiavi per l'associazione del dominio personalizzato.
@@ -538,7 +538,7 @@ Per configurare un'app, app Azure servizio e Azure Key Vault per ospitare con un
    },
    ```
 
-1. In Visual Studio creare un [profilo di pubblicazione](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) del servizio app Azure per il progetto *Server* . Dalla barra dei menu selezionare: **Compila**  >  **pubblica**  >  **nuovo**  >  **Azure**  >  **servizio app Azure** di Azure (Windows o Linux). Quando Visual Studio è connesso a una sottoscrizione di Azure, è possibile impostare la **visualizzazione** delle risorse di Azure in base al **tipo di risorsa** . Spostarsi all'interno dell'elenco di **app Web** per trovare il servizio app per l'app e selezionarlo. Selezionare **Fine** .
+1. In Visual Studio creare un [profilo di pubblicazione](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) del servizio app Azure per il progetto *Server* . Dalla barra dei menu selezionare: **Compila**  >  **pubblica**  >  **nuovo**  >    >  **servizio app Azure** di Azure (Windows o Linux). Quando Visual Studio è connesso a una sottoscrizione di Azure, è possibile impostare la **visualizzazione** delle risorse di Azure in base al **tipo di risorsa**. Spostarsi all'interno dell'elenco di **app Web** per trovare il servizio app per l'app e selezionarlo. Selezionare **Fine**.
 1. Quando Visual Studio torna alla finestra di **pubblicazione** , le dipendenze del servizio Key vault e SQL Server database vengono rilevate automaticamente.
 
    Non sono necessarie modifiche di configurazione alle impostazioni predefinite per il servizio Key Vault.
@@ -555,7 +555,7 @@ La documentazione di Azure contiene ulteriori dettagli sull'uso di servizi di Az
 * [Documentazione del servizio app](/azure/app-service/)
 * [Esercitazione: Eseguire il mapping di un nome DNS personalizzato esistente al Servizio app di Azure](/azure/app-service/app-service-web-tutorial-custom-domain)
 * [Proteggere un nome DNS personalizzato con un'associazione TLS/SSL nel Servizio app di Azure](/azure/app-service/configure-ssl-bindings)
-* [Insieme di credenziali chiave Azure](/azure/key-vault/)
+* [Azure Key Vault](/azure/key-vault/)
 
 È consigliabile usare una nuova finestra del browser privata o in incognito per ogni esecuzione dei test dell'app dopo una modifica all'app, alla configurazione dell'app o ai servizi di Azure nella portale di Azure. I residui cookie di un'esecuzione dei test precedente possono causare l'autenticazione o l'autorizzazione non riuscita durante il test del sito anche quando la configurazione del sito è corretta. Per ulteriori informazioni su come configurare Visual Studio per aprire una nuova finestra del browser in modalità privata o in incognito per ogni esecuzione dei test, vedere la sezione relativa ai [ Cookie dati del sito e](#cookies-and-site-data) di.
 
@@ -567,7 +567,7 @@ Per risolvere un problema di caricamento del certificato, eseguire il comando se
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
-[!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
+[!INCLUDE[](~/blazor/includes/security/troubleshoot.md)]
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

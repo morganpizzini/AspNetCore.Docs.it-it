@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: razor-pages/ui-class
 ms.openlocfilehash: 0bfdb1932d829ec00c9de1bd38b7920cb1f40c51
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/12/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94570172"
 ---
 # <a name="create-reusable-ui-using-the-no-locrazor-class-library-project-in-aspnet-core"></a>Creare un'interfaccia utente riutilizzabile usando il Razor progetto libreria di classi in ASP.NET Core
@@ -122,7 +122,7 @@ Nell'esempio seguente, il foglio di stile *lib. CSS* nella cartella *wwwroot* no
 
 Per includere i file TypeScript in un RCL:
 
-1. Inserire i file TypeScript ( *. TS* ) all'esterno della cartella *wwwroot* Inserire, ad esempio, i file in una cartella *client* .
+1. Inserire i file TypeScript (*. TS*) all'esterno della cartella *wwwroot* Inserire, ad esempio, i file in una cartella *client* .
 
 1. Configurare l'output di compilazione TypeScript per la cartella *wwwroot* . Impostare la `TypescriptOutDir` proprietà all'interno di un oggetto `PropertyGroup` nel file di progetto:
 
@@ -156,7 +156,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-Quando si esegue l'app consumer dall'output di compilazione ( `dotnet run` ), le risorse Web statiche sono abilitate per impostazione predefinita nell'ambiente di sviluppo. Per supportare asset in altri ambienti durante l'esecuzione dall'output di compilazione, chiamare `UseStaticWebAssets` sul generatore host in *Program.cs* :
+Quando si esegue l'app consumer dall'output di compilazione ( `dotnet run` ), le risorse Web statiche sono abilitate per impostazione predefinita nell'ambiente di sviluppo. Per supportare asset in altri ambienti durante l'esecuzione dall'output di compilazione, chiamare `UseStaticWebAssets` sul generatore host in *Program.cs*:
 
 ```csharp
 using Microsoft.AspNetCore.Hosting;
@@ -253,7 +253,7 @@ Aprire il file con estensione *sln* in Visual Studio. Eseguire l'app.
 
 # <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli)
 
-Al prompt dei comandi nella directory *cli* , compilare la libreria di classi Razor e l'app Web.
+Al prompt dei comandi nella directory *cli*, compilare la libreria di classi Razor e l'app Web.
 
 ```dotnetcli
 dotnet build
@@ -320,7 +320,7 @@ Il file *_ViewStart. cshtml* è necessario per usare il layout del Razor progett
   dotnet new viewimports -o RazorUIClassLib/Areas/MyFeature/Pages
   ```
 
-  Per altre informazioni su *_ViewImports. cshtml* , vedere [importazione di direttive condivise](xref:mvc/views/layout#importing-shared-directives)
+  Per altre informazioni su *_ViewImports. cshtml*, vedere [importazione di direttive condivise](xref:mvc/views/layout#importing-shared-directives)
 
 * Compilare la libreria di classi per verificare che non siano presenti errori del compilatore:
 

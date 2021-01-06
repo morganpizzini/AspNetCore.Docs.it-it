@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 29f1a1f211688a1edcd31c7230e7216df7c89eef
-ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
+ms.openlocfilehash: 4813668f5278473fbaae36d572e69700b3fe771a
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/15/2020
-ms.locfileid: "97506812"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97764237"
 ---
 # <a name="tooling-for-aspnet-core-no-locblazor"></a>Strumenti per ASP.NET Core Blazor
 
@@ -39,9 +39,9 @@ Di [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.co
 
 1. Selezionare **Blazor app**. Selezionare **Avanti**.
 
-1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
+1. Specificare il nome di un progetto nel campo **Nome progetto** oppure accettare il nome predefinito. Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
 
-1. Per un' Blazor WebAssembly esperienza, scegliere il modello **Blazor WebAssembly app** . Per un' Blazor Server esperienza, scegliere il modello **Blazor Server app** . Selezionare **Create** (Crea).
+1. Per un' Blazor WebAssembly esperienza, scegliere il modello **Blazor WebAssembly app** . Per un' Blazor Server esperienza, scegliere il modello **Blazor Server app** . Selezionare **Crea**.
 
    Per un'esperienza ospitata Blazor WebAssembly , selezionare la casella di controllo **ASP.NET Core Hosted** .
 
@@ -119,7 +119,7 @@ Per ulteriori informazioni, vedere le indicazioni fornite dal produttore del bro
 
 1. Per un'esperienza ospitata Blazor WebAssembly , selezionare la casella di controllo **ASP.NET Core Hosted** .
 
-1. Nel campo **nome progetto** assegnare un nome all'app `WebApplication1` . Selezionare **Create** (Crea).
+1. Nel campo **nome progetto** assegnare un nome all'app `WebApplication1` . Selezionare **Crea**.
 
 1. Selezionare **Esegui**  >  **Avvia senza eseguire debug** per eseguire l'app *senza il debugger*. Eseguire l'app con **Esegui**  >  **debug Avvia debug** o il pulsante Esegui (&#9654;) per eseguire l'app *con il debugger*.
 
@@ -143,6 +143,6 @@ Per ulteriori informazioni sui Blazor modelli di hosting di, vedere <xref:blazor
 Le opzioni del modello sono disponibili passando l'opzione Help ( `-h` o `--help` ) al [`dotnet new`](/dotnet/core/tools/dotnet-new) comando CLI in una shell dei comandi:
 
 ```dotnetcli
-dotnet new blazorwasm --h
-dotnet new blazorserver --h
+dotnet new blazorwasm -h
+dotnet new blazorserver -h
 ```

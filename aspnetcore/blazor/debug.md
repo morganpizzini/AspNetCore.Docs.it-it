@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: blazor/debug
 ms.openlocfilehash: 990882c03ddc14c664aa8da0518fb36087199aca
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/12/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94550517"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core di debug Blazor WebAssembly
@@ -45,7 +45,7 @@ Gli scenari disponibili includono:
 * Nella finestra variabili *locali* osservare i valori delle variabili locali.
 * Vedere lo stack di chiamate, incluse le catene di chiamate tra JavaScript e .NET.
 
-Per il momento *non è possibile* :
+Per il momento *non è possibile*:
 
 * Interrompi in corrispondenza di eccezioni non gestite.
 * Premere i punti di interruzione durante l'avvio dell'app prima che il proxy di debug sia in esecuzione. Sono inclusi i punti di interruzione in `Program.Main` ( `Program.cs` ) e i punti di interruzione nei [ `OnInitialized{Async}` Metodi](xref:blazor/components/lifecycle#component-initialization-methods) dei componenti caricati dalla prima pagina richiesta dall'app.
@@ -95,7 +95,7 @@ Per eseguire il debug di un' Blazor WebAssembly app in Visual Studio:
 1. Premere <kbd>F5</kbd> per eseguire l'app nel debugger.
 
    > [!NOTE]
-   > **Avvia senza eseguire debug** ( <kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
+   > **Avvia senza eseguire debug** (<kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
 
 1. Nell' `*Client*` app, impostare un punto di interruzione nella `currentCount++;` riga in `Pages/Counter.razor` .
 1. Nel browser passare alla `Counter` pagina e selezionare il pulsante **fare clic su me** per raggiungere il punto di interruzione.
@@ -172,13 +172,13 @@ Per informazioni sull'uso di un percorso di base dell'app personalizzato per le 
    Se si riceve la notifica:
 
    * Verificare che sia installata la versione più recente [di C# per Visual Studio Code estensione](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) . Per esaminare le estensioni installate, aprire **View**  >  **Extensions** dalla barra dei menu o selezionare l'icona **Extensions** nella barra laterale **Activity** .
-   * Verificare che l'anteprima JavaScript sia abilitata. Aprire le impostazioni dalla barra dei menu ( **File**  >  **Preferences**  >  **Impostazioni** preferenze file). Eseguire la ricerca usando le parole chiave `debug preview` . Nei risultati della ricerca verificare che la casella di controllo per **Debug > JavaScript: USA anteprima** sia selezionata. Se l'opzione per abilitare il debug in anteprima non è presente, eseguire l'aggiornamento alla versione più recente di VS Code o installare l' [estensione del debugger JavaScript](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code versioni 1,46 o precedenti).
+   * Verificare che l'anteprima JavaScript sia abilitata. Aprire le impostazioni dalla barra dei menu (  >    >  **Impostazioni** preferenze file). Eseguire la ricerca usando le parole chiave `debug preview` . Nei risultati della ricerca verificare che la casella di controllo per **Debug > JavaScript: USA anteprima** sia selezionata. Se l'opzione per abilitare il debug in anteprima non è presente, eseguire l'aggiornamento alla versione più recente di VS Code o installare l' [estensione del debugger JavaScript](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code versioni 1,46 o precedenti).
    * Ricaricare la finestra.
 
 1. Avviare il debug usando il tasto di scelta rapida <kbd>F5</kbd> o la voce di menu.
 
    > [!NOTE]
-   > **Avvia senza eseguire debug** ( <kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
+   > **Avvia senza eseguire debug** (<kbd>CTRL</kbd> + <kbd>F5</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
 
 1. Quando richiesto, selezionare l'opzione **Blazor WebAssembly debug** per avviare il debug.
 
@@ -284,7 +284,7 @@ Per eseguire il debug di un' Blazor WebAssembly app in Visual Studio per Mac:
 1. Premere <kbd>&#8984;</kbd> + <kbd>&#8617;</kbd> per eseguire l'applicazione nel debugger.
 
    > [!NOTE]
-   > **Avvia senza eseguire debug** ( <kbd>&#8997;</kbd> + <kbd>&#8984;</kbd> + <kbd>&#8617;</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
+   > **Avvia senza eseguire debug** (<kbd>&#8997;</kbd> + <kbd>&#8984;</kbd> + <kbd>&#8617;</kbd>) non è supportato. Quando l'app viene eseguita nella configurazione di debug, il sovraccarico del debug comporta sempre una riduzione delle prestazioni.
 
    > [!IMPORTANT]
    > Google Chrome o Microsoft Edge deve essere il browser selezionato per la sessione di debug.
@@ -300,7 +300,7 @@ Durante il debug di un' Blazor WebAssembly app, è anche possibile eseguire il d
 1. Impostare un punto di interruzione in `WeatherForecastController` nel `Get` metodo di azione.
 1. Passare alla `Fetch Data` pagina per raggiungere il primo punto di interruzione nel `FetchData` componente immediatamente prima di eseguire una richiesta HTTP al server.
 1. Premere <kbd>&#8984;</kbd> + <kbd>&#8617;</kbd> per continuare l'esecuzione e quindi raggiungere il punto di interruzione sul server nel `WeatherForecastController` .
-1. Premere <kbd>&#8984;</kbd> + di nuovo&#8984;<kbd>&#8617;</kbd> per consentire l'esecuzione continua e visualizzare la tabella delle previsioni meteorologiche sottoposta a rendering nel browser.
+1. Premere <kbd></kbd> + di nuovo&#8984;<kbd>&#8617;</kbd> per consentire l'esecuzione continua e visualizzare la tabella delle previsioni meteorologiche sottoposta a rendering nel browser.
 
 > [!NOTE]
 > I punti di interruzione **non** vengono raggiunti durante l'avvio dell'app prima che il proxy di debug sia in esecuzione. Sono inclusi i punti di interruzione in `Program.Main` ( `Program.cs` ) e i punti di interruzione nei [ `OnInitialized{Async}` Metodi](xref:blazor/components/lifecycle#component-initialization-methods) dei componenti caricati dalla prima pagina richiesta dall'app.
@@ -334,7 +334,7 @@ Per ulteriori informazioni, vedere [debug con Visual Studio per Mac](/visualstud
 
 1. Dopo qualche istante, la scheda **origini** Mostra un elenco degli assembly .NET dell'app all'interno del `file://` nodo.
 
-1. Nel codice componente ( `.razor` file) e nei file di codice C# ( `.cs` ), i punti di interruzione impostati vengono raggiunti durante l'esecuzione del codice. Quando viene raggiunto un punto di interruzione, l'esecuzione<kbd>F10</kbd>del codice in un singolo passaggio (F10<kbd>) viene</kbd>eseguito normalmente.
+1. Nel codice componente ( `.razor` file) e nei file di codice C# ( `.cs` ), i punti di interruzione impostati vengono raggiunti durante l'esecuzione del codice. Quando viene raggiunto un punto di interruzione, l'esecuzione<kbd></kbd>del codice in un singolo passaggio (F10<kbd>) viene</kbd>eseguito normalmente.
 
 Blazor fornisce un proxy di debug che implementa il [protocollo devtools di Chrome](https://chromedevtools.github.io/devtools-protocol/) e potenzia il protocollo con. Informazioni specifiche del NET. Quando si preme il tasto di scelta rapida Blazor per il debug, punta il devtools di Chrome sul proxy. Il proxy si connette alla finestra del browser che si sta tentando di eseguire il debug, quindi è necessario abilitare il debug remoto.
 

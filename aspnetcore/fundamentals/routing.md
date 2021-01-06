@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/routing
 ms.openlocfilehash: e134832ad00b10bb01239afa06acc74d86707af1
-ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/10/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94422561"
 ---
 # <a name="routing-in-aspnet-core"></a>Routing in ASP.NET Core
@@ -215,7 +215,7 @@ Il codice di esempio precedente ha lo scopo di illustrare i concetti di base deg
 * Accedere a un file o a un database.
 * Includere i dettagli, ad esempio l'utente, l'indirizzo IP, il nome dell'endpoint sensibile e altro ancora.
 
-I metadati dei criteri `AuditPolicyAttribute` di controllo sono definiti come un `Attribute` per un uso più semplice con i Framework basati su classi quali i controller e SignalR . Quando si usa la *Route per il codice* :
+I metadati dei criteri `AuditPolicyAttribute` di controllo sono definiti come un `Attribute` per un uso più semplice con i Framework basati su classi quali i controller e SignalR . Quando si usa la *Route per il codice*:
 
 * I metadati sono collegati a un'API del generatore.
 * I Framework basati su classi includono tutti gli attributi nel metodo e nella classe corrispondenti durante la creazione degli endpoint.
@@ -437,7 +437,7 @@ I modelli di URL che tentano di acquisire un nome file con un'estensione facolta
 * `/files/myFile.txt`
 * `/files/myFile`
 
-I parametri di route possono avere **valori predefiniti** , definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio, `id?`. La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
+I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio: `id?`. La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
 
 * Un parametro di route con un valore predefinito produce sempre un valore.
 * Un parametro facoltativo ha un valore solo quando un valore viene fornito dall'URL della richiesta.
@@ -567,7 +567,7 @@ Per eseguire l'escape dei caratteri di delimitazione del parametro di routing,,,
 
 Le espressioni regolari utilizzate nel routing spesso iniziano con il `^` carattere e corrispondono alla posizione iniziale della stringa. Le espressioni terminano spesso con il `$` carattere e corrispondono alla fine della stringa. I `^` `$` caratteri e assicurano che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i `^` `$` caratteri e, l'espressione regolare trova la corrispondenza con qualsiasi sottostringa all'interno della stringa, che è spesso indesiderata. La tabella seguente fornisce esempi e spiega perché corrispondono o non riescono a corrispondere:
 
-| Expression   | string    | Corrispondente | Commento               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -955,7 +955,7 @@ I test di routing hanno un [esempio di base](https://github.com/aspnet/AspNetCor
 
 **Prendere in considerazione** la definizione di tipi di metadati come interfaccia.
 
-**DO** È possibile utilizzare i tipi di metadati come attributo per classi e metodi.
+ È possibile utilizzare i tipi di metadati come attributo per classi e metodi.
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/ICoolMetadata.cs?name=snippet2)]
 
@@ -973,7 +973,7 @@ La dichiarazione di un tipo di metadati come interfaccia comporta l'aggiunta di 
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/ICoolMetadata.cs?name=snippet)]
 
-Il modo migliore per seguire queste linee guida consiste nell'evitare di definire i **metadati del marcatore** :
+Il modo migliore per seguire queste linee guida consiste nell'evitare di definire i **metadati del marcatore**:
 
 * Non solo cercare la presenza di un tipo di metadati.
 * Definire una proprietà nei metadati e controllare la proprietà.
@@ -1172,20 +1172,20 @@ Tra il routing di endpoint in ASP.NET Core 2.2 o versioni successive e le versio
 
   Con il routing basato su `IRouter`, il risultato è sempre `/Blog/ReadPost/17`, anche se `BlogController` non è presente o non ha un metodo di azione `ReadPost`. Come previsto, il routing di endpoint in ASP.NET Core 2.2 o versioni successive produce `/Blog/ReadPost/17` se è presente il metodo di azione. *Tuttavia, il routing di endpoint produce una stringa vuota se l'azione non è presente.* Concettualmente, il routing di endpoint non presume che l'endpoint sia presente se l'azione non è presente.
 
-* L' *algoritmo di invalidamento dei valori di ambiente* della generazione di collegamenti ha un comportamento diverso quando viene usato con il routing di endpoint.
+* L'*algoritmo di invalidamento dei valori di ambiente* della generazione di collegamenti ha un comportamento diverso quando viene usato con il routing di endpoint.
 
-  L' *invalidamento dei valori di ambiente* è l'algoritmo che decide quali valori di route della richiesta in esecuzione (valori di ambiente) possono essere usati nelle operazioni di generazione di collegamenti. Il routing convenzionale ha sempre invalidato i valori di route aggiuntivi durante il collegamento a un'azione diversa. Prima del rilascio di ASP.NET Core 2.2, il routing degli attributi non aveva questo comportamento. Nelle versioni precedenti di ASP.NET Core i collegamenti a un'altra azione con gli stessi nomi di parametro di route causavano errori nella generazione dei collegamenti. In ASP.NET Core 2.2 o versioni successive entrambi i tipi di routing invalidano i valori in caso di collegamento a un'altra azione.
+  L'*invalidamento dei valori di ambiente* è l'algoritmo che decide quali valori di route della richiesta in esecuzione (valori di ambiente) possono essere usati nelle operazioni di generazione di collegamenti. Il routing convenzionale ha sempre invalidato i valori di route aggiuntivi durante il collegamento a un'azione diversa. Prima del rilascio di ASP.NET Core 2.2, il routing degli attributi non aveva questo comportamento. Nelle versioni precedenti di ASP.NET Core i collegamenti a un'altra azione con gli stessi nomi di parametro di route causavano errori nella generazione dei collegamenti. In ASP.NET Core 2.2 o versioni successive entrambi i tipi di routing invalidano i valori in caso di collegamento a un'altra azione.
 
   Esaminare l'esempio seguente in ASP.NET Core 2.1 o versioni precedenti. In caso di collegamento a un'altra azione o a un'altra pagina, i valori di route possono essere riutilizzati in modi indesiderati.
 
-  In */Pages/Store/Product.cshtml* :
+  In */Pages/Store/Product.cshtml*:
 
   ```cshtml
   @page "{id}"
   @Url.Page("/Login")
   ```
 
-  In */Pages/Login.cshtml* :
+  In */Pages/Login.cshtml*:
 
   ```cshtml
   @page "{id?}"
@@ -1395,7 +1395,7 @@ I modelli di URL che tentano di acquisire un nome file con un'estensione facolta
 
 Il parametro catch-all esegue l'escape dei caratteri appropriati, incluso il separatore di percorso (`/`), quando la route viene usata per generare un URL. Ad esempio, la route `foo/{*path}` con i valori di route `{ path = "my/path" }` genera `foo/my%2Fpath`. Si noti la barra di escape. Per eseguire il round trip dei caratteri di separatore di percorso, usare il prefisso del parametro di route `**`. La route `foo/{**path}` con `{ path = "my/path" }` genera `foo/my/path`.
 
-I parametri di route possono avere *valori predefiniti* , definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo (`?`) alla fine del nome del parametro, come in `id?`. La differenza tra parametri facoltativi e parametri di route predefiniti è che un parametro di route con un valore predefinito produce sempre un valore, mentre un parametro facoltativo ha un valore solo se ne viene specificato uno dall'URL della richiesta.
+I parametri di route possono avere *valori predefiniti*, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo (`?`) alla fine del nome del parametro, come in `id?`. La differenza tra parametri facoltativi e parametri di route predefiniti è che un parametro di route con un valore predefinito produce sempre un valore, mentre un parametro facoltativo ha un valore solo se ne viene specificato uno dall'URL della richiesta.
 
 I parametri di route possono presentare dei vincoli che devono corrispondere al valore di route associato dall'URL. Aggiungendo due punti (`:`) e il nome del vincolo dopo il nome del parametro di route, si specifica un *vincolo inline* per un parametro di route. Se il vincolo richiede argomenti, vengono racchiusi tra parentesi (`(...)`) dopo il nome del vincolo. È possibile specificare più vincoli inline aggiungendo di nuovo i due punti (`:`) e il nome del vincolo.
 
@@ -1434,7 +1434,7 @@ Le parole chiave seguenti sono nomi riservati e non possono essere usate come no
 I vincoli di route vengono eseguiti quando si verifica una corrispondenza nell'URL in ingresso e il percorso URL viene suddiviso in valori di route in formato token. I vincoli di route in genere controllano il valore di route associato usando il modello di route e stabiliscono con una decisione Sì/No se il valore è accettabile o meno. Alcuni vincoli di route usano i dati all'esterno del valore di route per stabilire se la richiesta può essere instradata. Ad esempio, <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> può accettare o rifiutare una richiesta in base al relativo verbo HTTP. I vincoli vengono usati nelle richieste del routing e nella generazione di collegamenti.
 
 > [!WARNING]
-> Non usare i vincoli per la **convalida dell'input**. Se vengono usati vincoli per la **convalida dell'input** , un input non valido causa la visualizzazione di un errore di tipo *404 (Non trovato)* invece di un errore di tipo *400 - Richiesta non valida* con un messaggio di errore appropriato. I vincoli di route vengono usati per evitare **ambiguità** tra route simili, non per convalidare gli input per una route specifica.
+> Non usare i vincoli per la **convalida dell'input**. Se vengono usati vincoli per la **convalida dell'input**, un input non valido causa la visualizzazione di un errore di tipo *404 (Non trovato)* invece di un errore di tipo *400 - Richiesta non valida* con un messaggio di errore appropriato. I vincoli di route vengono usati per evitare **ambiguità** tra route simili, non per convalidare gli input per una route specifica.
 
 La tabella seguente illustra i vincoli di route di esempio e il relativo comportamento.
 
@@ -1488,7 +1488,7 @@ Per eseguire l'escape dei caratteri di delimitazione del parametro di routing,,,
 
 Le espressioni regolari utilizzate nel routing spesso iniziano con il `^` carattere del punto di inserimento e corrispondono alla posizione iniziale della stringa. Le espressioni spesso terminano con il `$` carattere di segno di dollaro e la fine della corrispondenza della stringa. I caratteri `^` e `$` consentono di verificare che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i caratteri `^` e `$` l'espressione regolare corrisponde a qualsiasi sottostringa all'interno della stringa e spesso questo non è il risultato desiderato. La tabella seguente include alcuni esempi e descrive perché si verifica o non si verifica la corrispondenza.
 
-| Expression   | string    | Corrispondente | Commento               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |
@@ -1857,7 +1857,7 @@ I modelli di URL che tentano di acquisire un nome file con un'estensione facolta
 
 Il parametro catch-all esegue l'escape dei caratteri appropriati, incluso il separatore di percorso (`/`), quando la route viene usata per generare un URL. Ad esempio, la route `foo/{*path}` con i valori di route `{ path = "my/path" }` genera `foo/my%2Fpath`. Si noti la barra di escape.
 
-I parametri di route possono avere *valori predefiniti* , definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo (`?`) alla fine del nome del parametro, come in `id?`. La differenza tra parametri facoltativi e parametri di route predefiniti è che un parametro di route con un valore predefinito produce sempre un valore, mentre un parametro facoltativo ha un valore solo se ne viene specificato uno dall'URL della richiesta.
+I parametri di route possono avere *valori predefiniti*, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo (`?`) alla fine del nome del parametro, come in `id?`. La differenza tra parametri facoltativi e parametri di route predefiniti è che un parametro di route con un valore predefinito produce sempre un valore, mentre un parametro facoltativo ha un valore solo se ne viene specificato uno dall'URL della richiesta.
 
 I parametri di route possono presentare dei vincoli che devono corrispondere al valore di route associato dall'URL. Aggiungendo due punti (`:`) e il nome del vincolo dopo il nome del parametro di route, si specifica un *vincolo inline* per un parametro di route. Se il vincolo richiede argomenti, vengono racchiusi tra parentesi (`(...)`) dopo il nome del vincolo. È possibile specificare più vincoli inline aggiungendo di nuovo i due punti (`:`) e il nome del vincolo.
 
@@ -1884,7 +1884,7 @@ L'uso di un modello è in genere l'approccio più semplice al routing. I vincoli
 I vincoli di route vengono eseguiti quando si verifica una corrispondenza nell'URL in ingresso e il percorso URL viene suddiviso in valori di route in formato token. I vincoli di route in genere controllano il valore di route associato usando il modello di route e stabiliscono con una decisione Sì/No se il valore è accettabile o meno. Alcuni vincoli di route usano i dati all'esterno del valore di route per stabilire se la richiesta può essere instradata. Ad esempio, <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> può accettare o rifiutare una richiesta in base al relativo verbo HTTP. I vincoli vengono usati nelle richieste del routing e nella generazione di collegamenti.
 
 > [!WARNING]
-> Non usare i vincoli per la **convalida dell'input**. Se vengono usati vincoli per la **convalida dell'input** , un input non valido causa la visualizzazione di un errore di tipo *404 (Non trovato)* invece di un errore di tipo *400 - Richiesta non valida* con un messaggio di errore appropriato. I vincoli di route vengono usati per evitare **ambiguità** tra route simili, non per convalidare gli input per una route specifica.
+> Non usare i vincoli per la **convalida dell'input**. Se vengono usati vincoli per la **convalida dell'input**, un input non valido causa la visualizzazione di un errore di tipo *404 (Non trovato)* invece di un errore di tipo *400 - Richiesta non valida* con un messaggio di errore appropriato. I vincoli di route vengono usati per evitare **ambiguità** tra route simili, non per convalidare gli input per una route specifica.
 
 La tabella seguente illustra i vincoli di route di esempio e il relativo comportamento.
 
@@ -1932,7 +1932,7 @@ Le espressioni regolari usano delimitatori e token simili a quelli usati dal rou
 
 Le espressioni regolari usate nel routing spesso iniziano con l'accento circonflesso (`^`) e corrispondono alla posizione iniziale della stringa. Le espressioni spesso terminano con il segno di dollaro (`$`) e corrispondono alla fine della stringa. I caratteri `^` e `$` consentono di verificare che l'espressione regolare corrisponda all'intero valore del parametro di route. Senza i caratteri `^` e `$` l'espressione regolare corrisponde a qualsiasi sottostringa all'interno della stringa e spesso questo non è il risultato desiderato. La tabella seguente include alcuni esempi e descrive perché si verifica o non si verifica la corrispondenza.
 
-| Expression   | string    | Corrispondente | Commento               |
+| Expression   | string    | Corrispondenza | Commento               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sì   | Corrispondenze di sottostringhe     |
 | `[a-z]{2}`   | 123abc456 | Sì   | Corrispondenze di sottostringhe     |

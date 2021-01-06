@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/metapackage
 ms.openlocfilehash: b739398c2a440f21c8bdfdc1f4d8e25412358a6a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93060690"
 ---
 # <a name="microsoftaspnetcoreall-metapackage-for-aspnet-core-20"></a>Metapacchetto Microsoft.AspNetCore.All per ASP.NET Core 2.0
@@ -39,7 +39,7 @@ Il `Microsoft.AspNetCore.All` metapacchetto non è incluso in ASP.NET Core 3,0 e
 
 Questa funzionalità richiede ASP.NET Core 2.x con destinazione .NET Core 2.x.
 
-[Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) è un metapacchetto che fa riferimento a un framework condiviso. Un *framework condiviso* è un set di assembly (file *DLL* ) che non sono presenti nelle cartelle dell'app. Il framework condiviso deve essere installato nel computer per eseguire l'app. Per altre informazioni, vedere [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Il framework condiviso).
+[Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) è un metapacchetto che fa riferimento a un framework condiviso. Un *framework condiviso* è un set di assembly (file *DLL*) che non sono presenti nelle cartelle dell'app. Il framework condiviso deve essere installato nel computer per eseguire l'app. Per altre informazioni, vedere [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Il framework condiviso).
 
 Il framework condiviso cui fa riferimento `Microsoft.AspNetCore.All` include:
 

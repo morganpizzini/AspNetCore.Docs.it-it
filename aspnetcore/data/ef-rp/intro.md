@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: data/ef-rp/intro
 ms.openlocfilehash: 86b57a9cad27673b72ad174a18741f5528f9f78a
-ms.sourcegitcommit: c321518bfe367280ef262aecaada287f17fe1bc5
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/10/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "97011858"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pagine con Entity Framework Core in ASP.NET Core-esercitazione 1 di 8
@@ -122,7 +122,7 @@ To run the app after downloading the completed project:
 1. Avviare Visual Studio e selezionare **Crea un nuovo progetto**.
 1. Nella finestra di dialogo **Crea un nuovo progetto** selezionare **ASP.NET Core applicazione Web** > **Avanti**.
 1. Nella finestra di dialogo **Configura nuovo progetto** immettere `ContosoUniversity` per **nome progetto**. È importante usare questo nome esatto, incluse le maiuscole, in modo che ogni `namespace` corrisponda al momento della copia del codice.
-1. Selezionare **Create** (Crea).
+1. Selezionare **Crea**.
 1. Nella finestra di dialogo **Crea una nuova applicazione web ASP.NET Core** selezionare:
     1. **.NET Core** e **ASP.NET Core 5,0** negli elenchi a discesa.
     1. **App Web ASP.NET Core**.

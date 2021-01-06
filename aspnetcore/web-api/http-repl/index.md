@@ -4,7 +4,7 @@ author: scottaddie
 description: Informazioni su come usare lo strumento globale di HttpRepl .NET Core per esplorare e testare un'API Web di ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
-ms.custom: mvc, devx-track-azurecli
+ms.custom: mvc
 ms.date: 11/12/2020
 no-loc:
 - appsettings.json
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: c661141c1bec93c0f7b6404964dc0bca2319b529
-ms.sourcegitcommit: 827e8be18cebbcc09b467c089e17fa6f5e430cb2
+ms.openlocfilehash: 1027887738740d50c30e24e800c0402b1ce4ad02
+ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/15/2020
-ms.locfileid: "94634613"
+ms.lasthandoff: 01/03/2021
+ms.locfileid: "97854665"
 ---
 # <a name="test-web-apis-with-the-httprepl"></a>Testare le API Web con HttpRepl
 
@@ -604,7 +604,7 @@ Parametro di route, se presente, previsto dal metodo di azione del controller as
 
 Per inviare una richiesta HTTP PUT:
 
-1. *Facoltativo* : eseguire il `get` comando per visualizzare i dati prima di modificarli:
+1. *Facoltativo*: eseguire il `get` comando per visualizzare i dati prima di modificarli:
 
     ```console
     https://localhost:5001/fruits> get
@@ -666,7 +666,7 @@ Per inviare una richiesta HTTP PUT:
     Server: Kestrel
     ```
 
-1. *Facoltativo* : eseguire un `get` comando per visualizzare le modifiche. Se ad esempio è stato digitato "Cherry" nell'editor di testo, `get` restituisce l'output seguente:
+1. *Facoltativo*: eseguire un `get` comando per visualizzare le modifiche. Se ad esempio è stato digitato "Cherry" nell'editor di testo, `get` restituisce l'output seguente:
 
     ```console
     https://localhost:5001/fruits> get
@@ -717,7 +717,7 @@ Parametro di route, se presente, previsto dal metodo di azione del controller as
 
 Per inviare una richiesta HTTP DELETE:
 
-1. *Facoltativo* : eseguire il `get` comando per visualizzare i dati prima di modificarli:
+1. *Facoltativo*: eseguire il `get` comando per visualizzare i dati prima di modificarli:
 
     ```console
     https://localhost:5001/fruits> get
@@ -757,7 +757,7 @@ Per inviare una richiesta HTTP DELETE:
     Server: Kestrel
     ```
 
-1. *Facoltativo* : eseguire un `get` comando per visualizzare le modifiche. In questo esempio, `get` restituisce l'output seguente:
+1. *Facoltativo*: eseguire un `get` comando per visualizzare le modifiche. In questo esempio, `get` restituisce l'output seguente:
 
     ```console
     https://localhost:5001/fruits> get
@@ -1059,7 +1059,7 @@ Se si esegue spesso lo stesso set di comandi HttpRepl, è consigliabile archivia
     https://localhost:5001/> run C:\http-repl-scripts\people-script.txt
     ```
 
-    Viene visualizzato l'output seguente:
+    Compare l'output seguente:
 
     ```console
     https://localhost:5001/> set base https://localhost:5001

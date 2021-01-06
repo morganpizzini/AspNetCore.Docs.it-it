@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 87626ff30589de82a04c95634fc0dcbcf2eeac18
-ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
+ms.openlocfilehash: 6659b075f54292d9546466919f6842b920e6ece1
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/15/2020
-ms.locfileid: "97507007"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97808738"
 ---
 # <a name="build-a-no-locblazor-todo-list-app"></a>Creare un' Blazor app elenco attività
 
@@ -83,7 +83,7 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
    `Pages/Todo.razor`:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo0.razor?highlight=1)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo0.razor?highlight=1)]
 
    Salvare il file.`Pages/Todo.razor`
 
@@ -116,11 +116,11 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
    `Pages/Todo.razor`:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo2.razor?highlight=5-10,13)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo2.razor?highlight=5-10,13)]
 
 1. L'app richiede elementi dell'interfaccia utente per l'aggiunta di voci todo all'elenco. Aggiungere un input di testo (`<input>`) e un pulsante (`<button>`) sotto l'elenco non ordinato (`<ul>...</ul>`):
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo3.razor?highlight=12-13)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo3.razor?highlight=12-13)]
 
 1. Salvare il `TodoItem.cs` file e il `Pages/Todo.razor` file aggiornato. Nella shell dei comandi l'app viene ricompilata automaticamente quando i file vengono salvati. Il browser perde temporaneamente la connessione all'app e quindi ricarica la pagina quando viene ristabilita la connessione.
 
@@ -128,11 +128,11 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
 1. Aggiungere un `AddTodo` metodo al `Todo` componente e registrare il metodo per il pulsante usando l' `@onclick` attributo. Il metodo C# `AddTodo` viene chiamato quando viene selezionato il pulsante:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo4.razor?highlight=2,7-10)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo4.razor?highlight=2,7-10)]
 
 1. Per ottenere il titolo del nuovo elemento todo, aggiungere un `newTodo` campo stringa nella parte superiore del `@code` blocco:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo5.razor?highlight=3)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo5.razor?highlight=3)]
 
    Modificare l' `<input>` elemento di testo da associare all' `newTodo` `@bind` attributo:
 
@@ -142,13 +142,13 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
 1. Aggiornare il metodo `AddTodo` per aggiungere l'elemento `TodoItem` con il titolo specificato all'elenco. Cancellare il valore dell'input di testo impostando `newTodo` su una stringa vuota:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo6.razor?highlight=19-26)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo6.razor?highlight=19-26)]
 
-1. Salvare il file.`Pages/ToDo.razor` L'app viene ricompilata automaticamente nella shell dei comandi. La pagina viene ricaricata nel browser dopo la riconnessione del browser all'app.
+1. Salvare il file.`Pages/Todo.razor` L'app viene ricompilata automaticamente nella shell dei comandi. La pagina viene ricaricata nel browser dopo la riconnessione del browser all'app.
 
 1. Il testo del titolo per ogni elemento Todo può essere reso modificabile e una casella di controllo può consentire all'utente di tenere traccia degli elementi completati. Aggiungere un input casella di controllo per ogni elemento attività e associarne il valore alla proprietà `IsDone`. Passare `@todo.Title` a un `<input>` elemento associato a `todo.Title` con `@bind` :
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo7.razor?highlight=4-7)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo7.razor?highlight=4-7)]
 
 1. Aggiornare l' `<h3>` intestazione per visualizzare un conteggio del numero di elementi todo non completi ( `IsDone` is `false` ).
 
@@ -160,7 +160,7 @@ Al termine di questa esercitazione, si disporrà di un'app elenco attività.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/Todo1.razor)]
 
-1. Salvare il file.`Pages/ToDo.razor` L'app viene ricompilata automaticamente nella shell dei comandi. La pagina viene ricaricata nel browser dopo la riconnessione del browser all'app.
+1. Salvare il file.`Pages/Todo.razor` L'app viene ricompilata automaticamente nella shell dei comandi. La pagina viene ricaricata nel browser dopo la riconnessione del browser all'app.
 
 1. Aggiungere elementi, modificare elementi e contrassegnare gli elementi todo eseguiti per testare il componente.
 

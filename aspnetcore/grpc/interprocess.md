@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: grpc/interprocess
 ms.openlocfilehash: d806a340d8540fce8af6ccc6ff68325e4b733922
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059884"
 ---
 # <a name="inter-process-communication-with-grpc"></a>Comunicazione tra processi con gRPC
@@ -33,7 +33,7 @@ le chiamate gRPC tra un client e un servizio vengono in genere inviate tramite s
 
 ## <a name="server-configuration"></a>Configurazione del server
 
-I trasporti personalizzati sono supportati da [gheppio](xref:fundamentals/servers/kestrel). Il gheppio è configurato in *Program.cs* :
+I trasporti personalizzati sono supportati da [gheppio](xref:fundamentals/servers/kestrel). Il gheppio è configurato in *Program.cs*:
 
 ```csharp
 public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");

@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: blazor/security/server/threat-mitigation
 ms.openlocfilehash: d0ed36731d78d3e98aa294aca50492f0a3ac8174
-ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/15/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "97506695"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-no-locblazor-server"></a>Linee guida per la mitigazione delle minacce per ASP.NET Core Blazor Server
@@ -165,7 +165,7 @@ Non considerare attendibili le chiamate da JavaScript ai metodi .NET. Quando un 
 
 Gli eventi forniscono un punto di ingresso a un' Blazor Server app. Le stesse regole per la salvaguardia degli endpoint nelle app Web si applicano alla gestione degli eventi nelle Blazor Server app. Un client dannoso può inviare tutti i dati che desidera inviare come payload per un evento.
 
-ad esempio:
+Ad esempio:
 
 * Un evento di modifica per un `<select>` può inviare un valore che non rientra nelle opzioni presentate dall'app al client.
 * Un oggetto `<input>` può inviare dati di testo al server, ignorando la convalida lato client.

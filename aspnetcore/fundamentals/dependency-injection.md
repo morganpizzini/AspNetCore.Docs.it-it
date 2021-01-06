@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: fundamentals/dependency-injection
 ms.openlocfilehash: 3f7cce475b5c7b0fcbb93644b2c39acd637a6f9d
-ms.sourcegitcommit: 98f92d766d4f343d7e717b542c1b08da29e789c1
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/13/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94595480"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Inserimento delle dipendenze in ASP.NET Core
@@ -80,7 +80,7 @@ L'inserimento delle dipendenze consente di risolvere questi problemi tramite:
 
 * L'uso di un'interfaccia o di una classe di base per astrarre l'implementazione delle dipendenze.
 * La registrazione della dipendenza in un contenitore di servizi. ASP.NET Core offre il contenitore di servizi predefinito <xref:System.IServiceProvider>. I servizi vengono in genere registrati nel metodo dell'app `Startup.ConfigureServices` .
-* L' *inserimento* del servizio nel costruttore della classe in cui viene usato. Il framework si assume la responsabilità della creazione di un'istanza della dipendenza e della sua eliminazione quando non è più necessaria.
+* L'*inserimento* del servizio nel costruttore della classe in cui viene usato. Il framework si assume la responsabilità della creazione di un'istanza della dipendenza e della sua eliminazione quando non è più necessaria.
 
 Nell' [app di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples), l' `IMyDependency` interfaccia definisce il `WriteMessage` Metodo:
 
@@ -328,7 +328,7 @@ Vedere le [raccomandazioni](/dotnet/core/extensions/dependency-injection-guideli
 
     ![Codice errato](dependency-injection/_static/bad.png)
 
-  **Corretto** :
+  **Corretto**:
 
   ```csharp
   public class MyClass
@@ -371,7 +371,7 @@ Vedere le [raccomandazioni](/dotnet/core/extensions/dependency-injection-guideli
 
 È tuttavia possibile che in alcuni casi queste raccomandazioni debbano essere ignorate. Le eccezioni sono rari, soprattutto casi speciali all'interno del Framework stesso.
 
-L'inserimento di dipendenze è un' *alternativa* ai modelli di accesso agli oggetti statici/globali. Se l'inserimento di dipendenze viene usato con l'accesso agli oggetti statico i vantaggi non saranno evidenti.
+L'inserimento di dipendenze è un'*alternativa* ai modelli di accesso agli oggetti statici/globali. Se l'inserimento di dipendenze viene usato con l'accesso agli oggetti statico i vantaggi non saranno evidenti.
 
 ## <a name="recommended-patterns-for-multi-tenancy-in-di"></a>Modelli consigliati per il multi-tenant in DI
 
@@ -475,7 +475,7 @@ L'inserimento delle dipendenze consente di risolvere questi problemi tramite:
 
 * L'uso di un'interfaccia o di una classe di base per astrarre l'implementazione delle dipendenze.
 * La registrazione della dipendenza in un contenitore di servizi. ASP.NET Core offre il contenitore di servizi predefinito <xref:System.IServiceProvider>. I servizi vengono registrati nel metodo `Startup.ConfigureServices` dell'app.
-* L' *inserimento* del servizio nel costruttore della classe in cui viene usato. Il framework si assume la responsabilità della creazione di un'istanza della dipendenza e della sua eliminazione quando non è più necessaria.
+* L'*inserimento* del servizio nel costruttore della classe in cui viene usato. Il framework si assume la responsabilità della creazione di un'istanza della dipendenza e della sua eliminazione quando non è più necessaria.
 
 Nell'[app di esempio](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples), l'interfaccia `IMyDependency` definisce un metodo che il servizio fornisce all'app:
 
@@ -967,7 +967,7 @@ Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [Ad
 * Evitare di archiviare i dati e la configurazione direttamente nel contenitore del servizio. Ad esempio, il carrello acquisti di un utente non dovrebbe in genere essere aggiunto al contenitore del servizio. La configurazione deve usare il [modello di opzioni](xref:fundamentals/configuration/options). Analogamente, evitare gli oggetti "contenitori di dati" che hanno la sola funzione di consentire l'accesso ad altri oggetti. È preferibile richiedere l'elemento effettivo tramite inserimento delle dipendenze.
 * Evitare l'accesso statico ai servizi. Ad esempio, evitare di digitare in modo statico [IApplicationBuilder. ApplicationServices](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices) per l'uso altrove.
 
-* Evitare di usare il *modello del localizzatore di servizi* , che combina [inversione delle strategie di controllo](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) .
+* Evitare di usare il *modello del localizzatore di servizi*, che combina [inversione delle strategie di controllo](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) .
   * Non richiamare <xref:System.IServiceProvider.GetService*> per ottenere un'istanza del servizio quando si può usare invece di:
 
     **Non corretto:**
@@ -985,7 +985,7 @@ Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [Ad
       }
       ```
    
-    **Corretto** :
+    **Corretto**:
 
     ```csharp
     public class MyClass
@@ -1011,7 +1011,7 @@ Il metodo factory di un singolo servizio, ad esempio il secondo argomento di [Ad
 
 È tuttavia possibile che in alcuni casi queste raccomandazioni debbano essere ignorate. Le eccezioni sono rari, soprattutto casi speciali all'interno del Framework stesso.
 
-L'inserimento di dipendenze è un' *alternativa* ai modelli di accesso agli oggetti statici/globali. Se l'inserimento di dipendenze viene usato con l'accesso agli oggetti statico i vantaggi non saranno evidenti.
+L'inserimento di dipendenze è un'*alternativa* ai modelli di accesso agli oggetti statici/globali. Se l'inserimento di dipendenze viene usato con l'accesso agli oggetti statico i vantaggi non saranno evidenti.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

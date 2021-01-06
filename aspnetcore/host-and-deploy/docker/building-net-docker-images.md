@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: host-and-deploy/docker/building-net-docker-images
 ms.openlocfilehash: 81daa1d4a996519f44e513b4f61c27cdf2b6ef5e
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059806"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Immagini Docker per ASP.NET Core
@@ -86,7 +86,7 @@ Il documento Dockerfile di esempio usa la [funzionalità di compilazione in più
 
 ## <a name="run-the-app-locally"></a>Eseguire l'app in locale
 
-* Passare alla cartella del progetto in *dotnet-docker/samples/aspnetapp/aspnetapp* .
+* Passare alla cartella del progetto in *dotnet-docker/samples/aspnetapp/aspnetapp*.
 
 * Eseguire il comando seguente per compilare ed eseguire l'app in locale:
 
@@ -102,7 +102,7 @@ Il documento Dockerfile di esempio usa la [funzionalità di compilazione in più
 
 * Nel client Docker [passare a contenitori Linux](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
-* Passare alla cartella di Dockerfile in *dotnet-docker/samples/aspnetapp* .
+* Passare alla cartella di Dockerfile in *dotnet-docker/samples/aspnetapp*.
 
 * Eseguire i comandi seguenti per compilare ed eseguire l'esempio in Docker:
 
@@ -158,7 +158,7 @@ Passare alla cartella di Dockerfile in `dotnet-docker/samples/aspnetapp`.
 
 In alcuni scenari è necessario distribuire un'app in un contenitore copiandovi i file dell'applicazione necessari in fase di esecuzione. Questa sezione mostra come eseguire manualmente la distribuzione.
 
-* Passare alla cartella del progetto in *dotnet-docker/samples/aspnetapp/aspnetapp* .
+* Passare alla cartella del progetto in *dotnet-docker/samples/aspnetapp/aspnetapp*.
 
 * Eseguire il comando [dotnet publish](/dotnet/core/tools/dotnet-publish):
 
@@ -168,7 +168,7 @@ In alcuni scenari è necessario distribuire un'app in un contenitore copiandovi 
 
   Gli argomenti del comando:
   * Compilano l'applicazione in modalità versione (quella predefinita è la modalità debug).
-  * Creano i file nella cartella *published* .
+  * Creano i file nella cartella *published*.
 
 * Eseguire l'applicazione.
 

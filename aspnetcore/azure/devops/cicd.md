@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: azure/devops/cicd
 ms.openlocfilehash: 2ac7a130d223b21330d0a797c1d460fc0cf467d7
-ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "96901210"
 ---
 # <a name="continuous-integration-and-deployment"></a>Integrazione e distribuzione continua
@@ -136,7 +136,7 @@ Sono disponibili tre passaggi distinti per il completamento. Il completamento de
 
 1. Fare clic sul pulsante **salva & coda** e selezionare l'opzione **Salva** :
 
-    ![Pulsante per il salvataggio](media/cicd/vsts-save-build.png)
+    ![Pulsante Salva](media/cicd/vsts-save-build.png)
 
 1. Viene visualizzata la finestra di dialogo modale seguente:
 
@@ -225,7 +225,7 @@ Sono disponibili tre passaggi distinti per il completamento. Il completamento de
 
     ![Abilita integrazione continua](media/cicd/enable-ci.png)
 
-1. Passare alla scheda in **coda** della **Azure Pipelines**  >  pagina **compilazioni** Azure Pipelines in Azure DevOps Services. La compilazione in coda Mostra il ramo e il commit che ha attivato la compilazione:
+1. Passare alla scheda in **coda** della   >  pagina **compilazioni** Azure Pipelines in Azure DevOps Services. La compilazione in coda Mostra il ramo e il commit che ha attivato la compilazione:
 
     ![compilazione in coda](media/cicd/build-queued.png)
 

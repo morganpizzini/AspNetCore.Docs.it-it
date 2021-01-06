@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 7f5cd3de38f1e45d9b188c513a0e62ca658b2992
-ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
+ms.openlocfilehash: 4b035fe59b8576eb387ddce67943386ccab55492
+ms.sourcegitcommit: 8dfcd2b4be936950c228b4d98430622a04254cd7
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96035905"
+ms.lasthandoff: 12/26/2020
+ms.locfileid: "97792077"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Provider di configurazione di Azure Key Vault in ASP.NET Core
 
@@ -41,7 +41,10 @@ Questo documento illustra come usare il provider di configurazione [Azure Key Va
 
 ## <a name="packages"></a>Pacchetti
 
-Aggiungere un riferimento al pacchetto [Azure.Extensions.AspNetCore.Configuration. ](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.Configuration.Secrets/) Pacchetto di segreti.
+Aggiungere i riferimenti ai pacchetti per i pacchetti seguenti:
+
+* [Azure.Extensions.AspNetCore.Configuration. Segreti](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.Configuration.Secrets)
+* [Azure.Identity](https://www.nuget.org/packages/Azure.Identity)
 
 ## <a name="sample-app"></a>App di esempio
 
@@ -193,7 +196,7 @@ App di esempio:
 
 * Crea un'istanza della `DefaultAzureCredential` classe, la credenziale tenta di ottenere un token di accesso dall'ambiente per le risorse di Azure.
 * [`Azure.Security.KeyVault.Secrets.Secrets`](/dotnet/api/azure.security.keyvault.secrets)Viene creata una nuova istanza di con l' `DefaultAzureCredential` istanza di.
-* L' `Azure.Security.KeyVault.Secrets.Secrets` istanza viene utilizzata con un'implementazione predefinita di `Azure.Extensions.Aspnetcore.Configuration.Secrets` che carica tutti i valori del segreto e sostituisce i doppi trattini ( `--` ) con i due punti ( `:` ) nei nomi delle chiavi.
+* L' `Azure.Security.KeyVault.Secrets.Secrets` istanza viene utilizzata con un'implementazione predefinita di `Azure.Extensions.AspNetCore.Configuration.Secrets` che carica tutti i valori del segreto e sostituisce i doppi trattini ( `--` ) con i due punti ( `:` ) nei nomi delle chiavi.
 
 [!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=12-14)]
 
@@ -227,23 +230,23 @@ config.AddAzureKeyVault(new SecretClient(new URI("Your Key Vault Endpoint"), new
 
 | Proprietà         | Descrizione |
 | ---------------- | ----------- |
-| `Manager`        | `Azure.Extensions.Aspnetcore.Configuration.Secrets` istanza di utilizzata per controllare il caricamento del segreto. |
+| `Manager`        | `Azure.Extensions.AspNetCore.Configuration.Secrets` istanza di utilizzata per controllare il caricamento del segreto. |
 | `ReloadInterval` | `Timespan` per attendere tra i tentativi di polling dell'insieme di credenziali delle chiavi per le modifiche. Il valore predefinito è `null` (la configurazione non viene ricaricata). |
 
 ## <a name="use-a-key-name-prefix"></a>Usa prefisso nome chiave
 
-AddAzureKeyVault fornisce un overload che accetta un'implementazione di `Azure.Extensions.Aspnetcore.Configuration.Secrets` , che consente di controllare il modo in cui i segreti dell'insieme di credenziali delle chiavi vengono convertiti in chiavi di configurazione. Ad esempio, è possibile implementare l'interfaccia per caricare i valori dei segreti in base a un valore di prefisso fornito all'avvio dell'app. Questo consente, ad esempio, di caricare i segreti in base alla versione dell'app.
+AddAzureKeyVault fornisce un overload che accetta un'implementazione di `Azure.Extensions.AspNetCore.Configuration.Secrets` , che consente di controllare il modo in cui i segreti dell'insieme di credenziali delle chiavi vengono convertiti in chiavi di configurazione. Ad esempio, è possibile implementare l'interfaccia per caricare i valori dei segreti in base a un valore di prefisso fornito all'avvio dell'app. Questo consente, ad esempio, di caricare i segreti in base alla versione dell'app.
 
 > [!WARNING]
 > Non usare i prefissi sui segreti dell'insieme di credenziali delle chiavi per collocare i segreti per più app nello stesso insieme di credenziali delle chiavi o per collocare i segreti ambientali (ad esempio, *sviluppo* rispetto ai segreti di *produzione* ) nello stesso insieme di credenziali. È consigliabile che app e ambienti di sviluppo/produzione diversi usino insiemi di credenziali delle chiavi distinti per isolare gli ambienti app per il massimo livello di sicurezza.
 
 Nell'esempio seguente viene stabilito un segreto nell'insieme di credenziali delle chiavi (e usando lo strumento di gestione dei segreti per l'ambiente di sviluppo) per `5000-AppSecret` (i periodi non sono consentiti nei nomi dei segreti dell'insieme di credenziali delle chiavi). Questo segreto rappresenta un segreto app per la versione 5.0.0.0 dell'app. Per un'altra versione dell'app, 5.1.0.0, viene aggiunto un segreto all'insieme di credenziali delle chiavi (e usando lo strumento di gestione dei segreti) per `5100-AppSecret` . Ogni versione dell'app carica il valore del segreto con versione nella configurazione come `AppSecret` , rimuovendo la versione durante il caricamento del segreto.
 
-AddAzureKeyVault viene chiamato con un oggetto personalizzato `Azure.Extensions.Aspnetcore.Configuration.Secrets` :
+AddAzureKeyVault viene chiamato con un oggetto personalizzato `Azure.Extensions.AspNetCore.Configuration.Secrets` :
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
 
-L' `Azure.Extensions.Aspnetcore.Configuration.Secrets` implementazione reagisce ai prefissi di versione dei segreti per caricare il segreto appropriato nella configurazione:
+L' `Azure.Extensions.AspNetCore.Configuration.Secrets` implementazione reagisce ai prefissi di versione dei segreti per caricare il segreto appropriato nella configurazione:
 
 * `Load` carica un segreto quando il nome inizia con il prefisso. Non vengono caricati altri segreti.
 * `GetKey`:
@@ -328,7 +331,7 @@ Esaminare la seguente configurazione del provider di registrazione [Serilog](htt
 
 La configurazione mostrata nel file JSON precedente viene archiviata in Azure Key Vault usando la notazione a doppio trattino ( `--` ) e i segmenti numerici:
 
-| Chiave | valore |
+| Chiave | Valore |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -655,7 +658,7 @@ Esaminare la seguente configurazione del provider di registrazione [Serilog](htt
 
 La configurazione mostrata nel file JSON precedente viene archiviata in Azure Key Vault usando la notazione a doppio trattino ( `--` ) e i segmenti numerici:
 
-| Chiave | valore |
+| Chiave | Valore |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |

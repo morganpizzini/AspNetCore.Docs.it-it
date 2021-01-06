@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/logging/loggermessage
 ms.openlocfilehash: 0224e768bd0e016eac5165dc4d9745f4b0867094
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93060456"
 ---
 # <a name="high-performance-logging-with-loggermessage-in-aspnet-core"></a>Registrazione a prestazioni elevate con LoggerMessage in ASP.NET Core
@@ -47,7 +47,7 @@ L'app di esempio illustra le funzionalità di <xref:Microsoft.Extensions.Logging
 
 La stringa specificata nel metodo <xref:Microsoft.Extensions.Logging.LoggerMessage.Define*> è un modello e non una stringa interpolata. I segnaposto vengono inseriti nell'ordine in cui sono specificati i tipi. I nomi dei segnaposto nel modello devono essere descrittivi e coerenti tra i modelli. Vengono usati come nomi di proprietà all'interno dei dati di log strutturati. Per i nomi dei segnaposto è consigliabile usare la [convenzione Pascal](/dotnet/standard/design-guidelines/capitalization-conventions). Ad esempio, `{Count}`, `{FirstName}`.
 
-Ogni messaggio di log è un elemento <xref:System.Action> contenuto in un campo statico creato da [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define*). Ad esempio, l'app di esempio crea un campo per descrivere un messaggio di log per una richiesta GET per la pagina di indice ( *Internal/LoggerExtensions.cs* ):
+Ogni messaggio di log è un elemento <xref:System.Action> contenuto in un campo statico creato da [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define*). Ad esempio, l'app di esempio crea un campo per descrivere un messaggio di log per una richiesta GET per la pagina di indice (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet1)]
 
@@ -71,7 +71,7 @@ Negli archivi di log strutturati è possibile che venga usato il nome evento qua
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet9)]
 
-`IndexPageRequested` viene chiamato nel logger nel metodo `OnGetAsync` in *Pages/Index.cshtml.cs* :
+`IndexPageRequested` viene chiamato nel logger nel metodo `OnGetAsync` in *Pages/Index.cshtml.cs*:
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet2&highlight=3)]
 
@@ -95,7 +95,7 @@ Il metodo di estensione statico per l'aggiunta di un'offerta, `QuoteAdded`, rice
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-Nel modello di pagina della pagina di indice ( *pages/index. cshtml. cs* ) `QuoteAdded` viene chiamato il metodo per registrare il messaggio:
+Nel modello di pagina della pagina di indice (*pages/index. cshtml. cs*) `QuoteAdded` viene chiamato il metodo per registrare il messaggio:
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
@@ -108,7 +108,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-L'app di esempio implementa un modello [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) per l'eliminazione delle virgolette. Per un'operazione di eliminazione con esito positivo, viene registrato un messaggio informativo. Per un'operazione di eliminazione con la generazione di un'eccezione, viene registrato un messaggio di errore. Il messaggio di log per un'operazione di eliminazione con esito negativo include l'analisi dello stack dell'eccezione ( *Internal/LoggerExtensions.cs* ):
+L'app di esempio implementa un modello [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) per l'eliminazione delle virgolette. Per un'operazione di eliminazione con esito positivo, viene registrato un messaggio informativo. Per un'operazione di eliminazione con la generazione di un'eccezione, viene registrato un messaggio di errore. Il messaggio di log per un'operazione di eliminazione con esito negativo include l'analisi dello stack dell'eccezione (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -118,7 +118,7 @@ Si noti come l'eccezione viene passata al delegato in `QuoteDeleteFailed`:
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-Nel modello di pagina per la pagina di indice l'eliminazione di un'offerta con esito positivo chiama il metodo `QuoteDeleted` nel logger. Quando non viene trovata un'offerta per l'eliminazione, viene generata un'eccezione <xref:System.ArgumentNullException>. L'eccezione viene intercettata dall'istruzione [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrata chiamando il `QuoteDeleteFailed` metodo sul logger nel blocco [catch](/dotnet/csharp/language-reference/keywords/try-catch) ( *pages/index. cshtml. cs* ):
+Nel modello di pagina per la pagina di indice l'eliminazione di un'offerta con esito positivo chiama il metodo `QuoteDeleted` nel logger. Quando non viene trovata un'offerta per l'eliminazione, viene generata un'eccezione <xref:System.ArgumentNullException>. L'eccezione viene intercettata dall'istruzione [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrata chiamando il `QuoteDeleteFailed` metodo sul logger nel blocco [catch](/dotnet/csharp/language-reference/keywords/try-catch) (*pages/index. cshtml. cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=9,13)]
 
@@ -159,7 +159,7 @@ Abilitare `IncludeScopes` nella sezione Logger console di *appsettings.json* :
 
 [!code-json[](loggermessage/samples/3.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
-Per creare un ambito di log, aggiungere un campo per inserire un delegato <xref:System.Func%601> per l'ambito. L'app di esempio crea un campo denominato `_allQuotesDeletedScope` ( *Internal/LoggerExtensions.cs* ):
+Per creare un ambito di log, aggiungere un campo per inserire un delegato <xref:System.Func%601> per l'ambito. L'app di esempio crea un campo denominato `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet4)]
 
@@ -213,7 +213,7 @@ L'app di esempio illustra le funzionalità di <xref:Microsoft.Extensions.Logging
 
 La stringa specificata nel metodo <xref:Microsoft.Extensions.Logging.LoggerMessage.Define*> è un modello e non una stringa interpolata. I segnaposto vengono inseriti nell'ordine in cui sono specificati i tipi. I nomi dei segnaposto nel modello devono essere descrittivi e coerenti tra i modelli. Vengono usati come nomi di proprietà all'interno dei dati di log strutturati. Per i nomi dei segnaposto è consigliabile usare la [convenzione Pascal](/dotnet/standard/design-guidelines/capitalization-conventions). Ad esempio, `{Count}`, `{FirstName}`.
 
-Ogni messaggio di log è un elemento <xref:System.Action> contenuto in un campo statico creato da [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define*). Ad esempio, l'app di esempio crea un campo per descrivere un messaggio di log per una richiesta GET per la pagina di indice ( *Internal/LoggerExtensions.cs* ):
+Ogni messaggio di log è un elemento <xref:System.Action> contenuto in un campo statico creato da [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define*). Ad esempio, l'app di esempio crea un campo per descrivere un messaggio di log per una richiesta GET per la pagina di indice (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet1)]
 
@@ -237,7 +237,7 @@ Negli archivi di log strutturati è possibile che venga usato il nome evento qua
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet9)]
 
-`IndexPageRequested` viene chiamato nel logger nel metodo `OnGetAsync` in *Pages/Index.cshtml.cs* :
+`IndexPageRequested` viene chiamato nel logger nel metodo `OnGetAsync` in *Pages/Index.cshtml.cs*:
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet2&highlight=3)]
 
@@ -261,7 +261,7 @@ Il metodo di estensione statico per l'aggiunta di un'offerta, `QuoteAdded`, rice
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-Nel modello di pagina della pagina di indice ( *pages/index. cshtml. cs* ) `QuoteAdded` viene chiamato il metodo per registrare il messaggio:
+Nel modello di pagina della pagina di indice (*pages/index. cshtml. cs*) `QuoteAdded` viene chiamato il metodo per registrare il messaggio:
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
@@ -274,7 +274,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-L'app di esempio implementa un modello [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) per l'eliminazione delle virgolette. Per un'operazione di eliminazione con esito positivo, viene registrato un messaggio informativo. Per un'operazione di eliminazione con la generazione di un'eccezione, viene registrato un messaggio di errore. Il messaggio di log per un'operazione di eliminazione con esito negativo include l'analisi dello stack dell'eccezione ( *Internal/LoggerExtensions.cs* ):
+L'app di esempio implementa un modello [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) per l'eliminazione delle virgolette. Per un'operazione di eliminazione con esito positivo, viene registrato un messaggio informativo. Per un'operazione di eliminazione con la generazione di un'eccezione, viene registrato un messaggio di errore. Il messaggio di log per un'operazione di eliminazione con esito negativo include l'analisi dello stack dell'eccezione (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -284,7 +284,7 @@ Si noti come l'eccezione viene passata al delegato in `QuoteDeleteFailed`:
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-Nel modello di pagina per la pagina di indice l'eliminazione di un'offerta con esito positivo chiama il metodo `QuoteDeleted` nel logger. Quando non viene trovata un'offerta per l'eliminazione, viene generata un'eccezione <xref:System.ArgumentNullException>. L'eccezione viene intercettata dall'istruzione [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrata chiamando il `QuoteDeleteFailed` metodo sul logger nel blocco [catch](/dotnet/csharp/language-reference/keywords/try-catch) ( *pages/index. cshtml. cs* ):
+Nel modello di pagina per la pagina di indice l'eliminazione di un'offerta con esito positivo chiama il metodo `QuoteDeleted` nel logger. Quando non viene trovata un'offerta per l'eliminazione, viene generata un'eccezione <xref:System.ArgumentNullException>. L'eccezione viene intercettata dall'istruzione [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrata chiamando il `QuoteDeleteFailed` metodo sul logger nel blocco [catch](/dotnet/csharp/language-reference/keywords/try-catch) (*pages/index. cshtml. cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=14,18)]
 
@@ -327,7 +327,7 @@ Abilitare `IncludeScopes` nella sezione Logger console di *appsettings.json* :
 
 [!code-json[](loggermessage/samples/2.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
-Per creare un ambito di log, aggiungere un campo per inserire un delegato <xref:System.Func%601> per l'ambito. L'app di esempio crea un campo denominato `_allQuotesDeletedScope` ( *Internal/LoggerExtensions.cs* ):
+Per creare un ambito di log, aggiungere un campo per inserire un delegato <xref:System.Func%601> per l'ambito. L'app di esempio crea un campo denominato `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet4)]
 
@@ -364,4 +364,4 @@ info: LoggerMessageSample.Pages.IndexModel[4]
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Logging](xref:fundamentals/logging/index)
+* [Registrazione](xref:fundamentals/logging/index)

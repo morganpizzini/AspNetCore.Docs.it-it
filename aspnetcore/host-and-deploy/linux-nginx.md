@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: host-and-deploy/linux-nginx
 ms.openlocfilehash: c4e0d70b41221f272bb4b1fe82cfa531ec6fcf15
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/10/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94431066"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Hosting di ASP.NET Core in Linux con Nginx
@@ -304,7 +304,7 @@ Per filtrare ulteriormente, opzioni come `--since today`, `--until 1 hour ago` o
 sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-10-18 04:00"
 ```
 
-## <a name="data-protection"></a>Protezione dati
+## <a name="data-protection"></a>Protezione dei dati
 
 Lo [stack di protezione dei dati ASP.NET Core](xref:security/data-protection/introduction) viene usato da diversi [middleware](xref:fundamentals/middleware/index)di ASP.NET Core, tra cui il middleware di autenticazione (ad esempio, cookie middleware) e le protezioni di richiesta tra siti (CSRF). Anche se le DPAPI (Data Protection API) non vengono chiamate dal codice dell'utente, è consigliabile configurare la protezione dati per la creazione di un [archivio di chiavi](xref:security/data-protection/implementation/key-management) crittografiche permanente. Se non si configura la protezione dei dati, le chiavi vengono mantenute in memoria ed eliminate al riavvio dell'app.
 
@@ -379,7 +379,7 @@ Il comando [DotNet Run](/dotnet/core/tools/dotnet-run) usa il file dell'app `Pro
 
 Configurare l'app per l'uso di un certificato in fase di sviluppo per il `dotnet run` comando o l'ambiente di sviluppo (<kbd>F5</kbd> o <kbd>CTRL</kbd> + <kbd>F5</kbd> in Visual Studio Code) usando uno degli approcci seguenti:
 
-* [Sostituire il certificato predefinito della configurazione](xref:fundamentals/servers/kestrel#configuration) ( *consigliato* )
+* [Sostituire il certificato predefinito della configurazione](xref:fundamentals/servers/kestrel#configuration) (*consigliato*)
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
 
 **Configurare il proxy inverso per connessioni client sicure (HTTPS)**
@@ -413,7 +413,7 @@ Aggiungere il `/etc/nginx/proxy.conf` file di configurazione:
 
 #### <a name="secure-nginx-from-clickjacking"></a>Proteggere Nginx dal clickjacking
 
-Il [clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger), anche noto come *attacco UI Redress* , è un attacco dannoso in cui un visitatore di un sito Web viene indotto a fare clic su un collegamento o un pulsante in una pagina diversa da quella che sta attualmente visualizzando. Usare `X-FRAME-OPTIONS` per proteggere il sito.
+Il [clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger), anche noto come *attacco UI Redress*, è un attacco dannoso in cui un visitatore di un sito Web viene indotto a fare clic su un collegamento o un pulsante in una pagina diversa da quella che sta attualmente visualizzando. Usare `X-FRAME-OPTIONS` per proteggere il sito.
 
 Per contrastare gli attacchi di clickjacking:
 

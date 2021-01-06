@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ms.openlocfilehash: 8844b0014cac58f414d79df4c64bc0efac75bfe1
-ms.sourcegitcommit: d29535ea0b4197443fd884aaa6e5b4b763d04fc7
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/19/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94920703"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
@@ -65,7 +65,7 @@ dotnet aspnet-codegenerator [arguments] [-p|--project] [-n|--nuget-package-dir] 
 dotnet aspnet-codegenerator [-h|--help]
 ```
 
-## <a name="description"></a>Description
+## <a name="description"></a>Descrizione
 
 Il comando globale `dotnet aspnet-codegenerator` esegue il generatore di codice e il motore di scaffolding di ASP.NET Core.
 
@@ -150,7 +150,7 @@ Nella tabella seguente sono elencate le opzioni per  `aspnet-codegenerator` `con
 
 La tabella seguente contiene un elenco di opzioni specifiche per `aspnet-codegenerator controller`:
 
-| Opzione                         | Description                                                                                               |
+| Opzione                         | Descrizione                                                                                               |
 | ------------------------------ | --------------------------------------------------------------------------------------------------------- |
 | --controllerName o -name      | Nome del controller.                                                                                   |
 | --useAsyncActions o -async    | Genera le azioni del controller asincrone.                                                                        |
@@ -199,7 +199,7 @@ Nella tabella seguente sono elencate le opzioni per  `aspnet-codegenerator` `raz
 
 La tabella seguente contiene un elenco di opzioni specifiche per `aspnet-codegenerator razorpage`:
 
-| Opzione                        | Description                                                                           |
+| Opzione                        | Descrizione                                                                           |
 | ----------------------------- | ------------------------------------------------------------------------------------- |
 | --namespaceName o -namespace | Nome dello spazio dei nomi da usare per il PageModel generato                          |
 | --partialView o -partial     | Genera una visualizzazione parziale. Le opzioni di layout -l e -udl vengono ignorate se viene specificata questa opzione. |

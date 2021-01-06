@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/areas
-ms.openlocfilehash: 42eec406813adce4d7edbc1ab66a1f689c4aca0e
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: f3d76f612e67aeabf1f7fef694199332c732c593
+ms.sourcegitcommit: 53e01d6e9b70a18a05618f0011cf115a16633c21
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053527"
+ms.lasthandoff: 01/05/2021
+ms.locfileid: "97878412"
 ---
 # <a name="areas-in-aspnet-core"></a>Aree in ASP.NET Core
 
@@ -63,7 +63,7 @@ Una tipica app Web ASP.NET Core che usa aree, controller e visualizzazioni conti
 
 ### <a name="area-folder-structure"></a>Struttura di cartelle dell'area
 
-Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi* . Usando le aree, la struttura delle cartelle sarebbe simile alla seguente:
+Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi*. Usando le aree, la struttura delle cartelle sarebbe simile alla seguente:
 
 * Project name (Nome progetto)
   * Aree
@@ -149,7 +149,7 @@ La cartella radice dell'applicazione è la cartella che contiene *Startup.cs* ne
 
 ### <a name="_viewimportscshtml"></a>_ViewImports.cshtml
 
- */Views/_ViewImports. cshtml* , per MVC e */pages/_ViewImports. cshtml* per le Razor pagine, non viene importato nelle viste nelle aree. Usare uno degli approcci seguenti per fornire le importazioni di visualizzazione a tutte le visualizzazioni:
+ */Views/_ViewImports. cshtml*, per MVC e */pages/_ViewImports. cshtml* per le Razor pagine, non viene importato nelle viste nelle aree. Usare uno degli approcci seguenti per fornire le importazioni di visualizzazione a tutte le visualizzazioni:
 
 * Aggiungere *_ViewImports. cshtml* alla [cartella radice dell'applicazione](#arf). Un *_ViewImports. cshtml* nella cartella radice dell'applicazione si applica a tutte le visualizzazioni nell'app.
 * Copiare il file *_ViewImports. cshtml* nella cartella della visualizzazione appropriata in aree.
@@ -173,12 +173,12 @@ Le aree con Razor pagine richiedono una `Areas/<area name>/Pages` cartella nella
 * Project name (Nome progetto)
   * Aree
     * Prodotti
-      * .NET
+      * Pagine
         * _ViewImports
         * Informazioni
         * Indice
     * Servizi
-      * .NET
+      * Pagine
         * Gestione
           * Informazioni
           * Indice
@@ -191,7 +191,7 @@ Il codice seguente dal [download di esempio](https://github.com/dotnet/AspNetCor
 
 Il download di esempio include una [visualizzazione parziale](xref:mvc/views/partial) che contiene i collegamenti precedenti e gli stessi collegamenti senza specificare l'area. La visualizzazione parziale viene referenziata nel [file di layout](xref:mvc/views/layout), in modo che ogni pagina nell'app mostri i collegamenti generati. I collegamenti generati senza specificare l'area sono validi solo in caso di riferimento da una pagina nella stessa area.
 
-Quando l'area non è specificata, il routing dipende dai valori di *ambiente* . I valori di route correnti della richiesta corrente sono considerati valori di ambiente per la generazione del collegamento. In molti casi per l'app di esempio, l'uso dei valori di ambiente genera collegamenti non corretti. Si considerino, ad esempio, i collegamenti generati dal codice seguente:
+Quando l'area non è specificata, il routing dipende dai valori di *ambiente*. I valori di route correnti della richiesta corrente sono considerati valori di ambiente per la generazione del collegamento. In molti casi per l'app di esempio, l'uso dei valori di ambiente genera collegamenti non corretti. Si considerino, ad esempio, i collegamenti generati dal codice seguente:
 
 [!code-cshtml[](areas/31samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet2)]
 
@@ -205,13 +205,13 @@ Per il codice precedente:
 
 È possibile aggiungere un file *_ViewImports. cshtml* a ogni cartella di *pagine* dell'area per importare lo spazio dei nomi e gli helper tag in ogni Razor pagina della cartella.
 
-Prendere in considerazione l'area *Services* del codice di esempio, che non contiene un file *_ViewImports.cshtml* . Il markup seguente mostra la pagina */Services/Manage/about* Razor :
+Prendere in considerazione l'area *Services* del codice di esempio, che non contiene un file *_ViewImports.cshtml*. Il markup seguente mostra la pagina */Services/Manage/about* Razor :
 
 [!code-cshtml[](areas/31samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
 Nel markup precedente:
 
-* Il nome di dominio completo deve essere usato per specificare il modello (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
+* Il nome completo della classe deve essere utilizzato per specificare il modello ( `@model RPareas.Areas.Services.Pages.Manage.AboutModel` ).
 * [Gli helper tag](xref:mvc/views/tag-helpers/intro) sono abilitati da `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 Nel download di esempio, l'area Products contiene il file *_ViewImports.cshtml* seguente:
@@ -222,7 +222,7 @@ Il markup seguente mostra la pagina */Products/about* Razor :
 
 [!code-cshtml[](areas/31samples/RPareas/Areas/Products/Pages/About.cshtml)]
 
-Nel file precedente lo spazio dei nomi e la direttiva `@addTagHelper` vengono importati dal file *Areas/Products/Pages/_ViewImports.cshtml* .
+Nel file precedente lo spazio dei nomi e la direttiva `@addTagHelper` vengono importati dal file *Areas/Products/Pages/_ViewImports.cshtml*.
 
 Per altre informazioni, vedere [Gestione dell'ambito dell'helper tag](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) e [Importazione delle direttive condivise](xref:mvc/views/layout#importing-shared-directives).
 
@@ -265,7 +265,7 @@ Una tipica app Web ASP.NET Core che usa aree, controller e visualizzazioni conti
 
 ### <a name="area-folder-structure"></a>Struttura di cartelle dell'area
 
-Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi* . Usando le aree, la struttura delle cartelle sarebbe simile alla seguente:
+Si consideri un'applicazione che ha due gruppi logici, *Prodotti* e *Servizi*. Usando le aree, la struttura delle cartelle sarebbe simile alla seguente:
 
 * Project name (Nome progetto)
   * Aree
@@ -331,7 +331,7 @@ I collegamenti generati con il codice precedente sono validi ovunque nell'app.
 
 Il download di esempio include una [visualizzazione parziale](xref:mvc/views/partial) che contiene i collegamenti precedenti e gli stessi collegamenti senza specificare l'area. La visualizzazione parziale viene referenziata nel [file di layout](xref:mvc/views/layout), in modo che ogni pagina nell'app mostri i collegamenti generati. I collegamenti generati senza specificare l'area sono validi solo quando sono referenziati da una pagina nella stessa area e controller.
 
-Quando l'area o il controller non sono specificati, il routing dipende dai valori di *ambiente* . I valori di route correnti della richiesta corrente sono considerati valori di ambiente per la generazione del collegamento. In molti casi per l'app di esempio, l'uso dei valori di ambiente genera collegamenti non corretti.
+Quando l'area o il controller non sono specificati, il routing dipende dai valori di *ambiente*. I valori di route correnti della richiesta corrente sono considerati valori di ambiente per la generazione del collegamento. In molti casi per l'app di esempio, l'uso dei valori di ambiente genera collegamenti non corretti.
 
 Per altre informazioni, vedere [Routing ad azioni del controller](xref:mvc/controllers/routing).
 
@@ -360,12 +360,12 @@ Le aree con Razor pagine richiedono una `Areas/<area name>/Pages` cartella nella
 * Project name (Nome progetto)
   * Aree
     * Prodotti
-      * .NET
+      * Pagine
         * _ViewImports
         * Informazioni
         * Indice
     * Servizi
-      * .NET
+      * Pagine
         * Gestione
           * Informazioni
           * Indice
@@ -380,7 +380,7 @@ I collegamenti generati con il codice precedente sono validi ovunque nell'app.
 
 Il download di esempio include una [visualizzazione parziale](xref:mvc/views/partial) che contiene i collegamenti precedenti e gli stessi collegamenti senza specificare l'area. La visualizzazione parziale viene referenziata nel [file di layout](xref:mvc/views/layout), in modo che ogni pagina nell'app mostri i collegamenti generati. I collegamenti generati senza specificare l'area sono validi solo in caso di riferimento da una pagina nella stessa area.
 
-Quando l'area non è specificata, il routing dipende dai valori di *ambiente* . I valori di route correnti della richiesta corrente sono considerati valori di ambiente per la generazione del collegamento. In molti casi per l'app di esempio, l'uso dei valori di ambiente genera collegamenti non corretti. Si considerino, ad esempio, i collegamenti generati dal codice seguente:
+Quando l'area non è specificata, il routing dipende dai valori di *ambiente*. I valori di route correnti della richiesta corrente sono considerati valori di ambiente per la generazione del collegamento. In molti casi per l'app di esempio, l'uso dei valori di ambiente genera collegamenti non corretti. Si considerino, ad esempio, i collegamenti generati dal codice seguente:
 
 [!code-cshtml[](areas/samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet2)]
 
@@ -394,7 +394,7 @@ Per il codice precedente:
 
 È possibile aggiungere un file *_ViewImports. cshtml* a ogni cartella di *pagine* dell'area per importare lo spazio dei nomi e gli helper tag in ogni Razor pagina della cartella.
 
-Prendere in considerazione l'area *Services* del codice di esempio, che non contiene un file *_ViewImports.cshtml* . Il markup seguente mostra la pagina */Services/Manage/about* Razor :
+Prendere in considerazione l'area *Services* del codice di esempio, che non contiene un file *_ViewImports.cshtml*. Il markup seguente mostra la pagina */Services/Manage/about* Razor :
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
@@ -411,7 +411,7 @@ Il markup seguente mostra la pagina */Products/about* Razor :
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/About.cshtml)]
 
-Nel file precedente lo spazio dei nomi e la direttiva `@addTagHelper` vengono importati dal file *Areas/Products/Pages/_ViewImports.cshtml* .
+Nel file precedente lo spazio dei nomi e la direttiva `@addTagHelper` vengono importati dal file *Areas/Products/Pages/_ViewImports.cshtml*.
 
 Per altre informazioni, vedere [Gestione dell'ambito dell'helper tag](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) e [Importazione delle direttive condivise](xref:mvc/views/layout#importing-shared-directives).
 

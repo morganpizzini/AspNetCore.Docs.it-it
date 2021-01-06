@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: azure/devops/deploy-to-app-service
 ms.openlocfilehash: f1c7acba0b7fb7dc07da576b188e580328ff4b89
-ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "96901158"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Distribuire un'app nel servizio app
@@ -236,7 +236,7 @@ Gli slot di distribuzione supportano la gestione temporanea delle modifiche senz
 
     ![Confronto tra le finestre del browser dopo lo scambio](./media/deploying-to-app-service/swapped.png)
 
-## <a name="summary"></a>Riepilogo
+## <a name="summary"></a>Summary
 
 In questa sezione sono state completate le attività seguenti:
 

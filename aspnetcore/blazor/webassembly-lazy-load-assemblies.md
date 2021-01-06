@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
 ms.openlocfilehash: 6e7fa6e231e97793fbf7e1ac1d208bf3013c6fce
-ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/15/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "97506572"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>Assembly di caricamento lazy in ASP.NET Core Blazor WebAssembly
@@ -239,7 +239,7 @@ Il componente completo seguente `Router` illustra il caricamento dell' `GrantIma
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
-## <a name="troubleshoot"></a>Risoluzione dei problemi
+## <a name="troubleshoot"></a>Risolvere problemi
 
 * Se si verifica un rendering imprevisto (ad esempio, viene eseguito il rendering di un componente di una navigazione precedente), verificare che il codice venga generato se è impostato il token di annullamento.
 * Se gli assembly vengono ancora caricati all'avvio dell'applicazione, verificare che l'assembly sia contrassegnato come Lazy Loaded nel file di progetto.

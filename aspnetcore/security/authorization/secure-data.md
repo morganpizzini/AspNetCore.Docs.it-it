@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: accfd46fa72c33976f8af2a39267c993447e036e
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: dc70cfe7cb0c0f044f5f1e7ee68a293b3ea7507f
+ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051941"
+ms.lasthandoff: 01/03/2021
+ms.locfileid: "97854652"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>Creare un'app Web di ASP.NET Core con i dati utente protetti dall'autorizzazione
 
@@ -93,7 +93,7 @@ Questa esercitazione è avanzata. È necessario avere familiarità con:
 
 [Scaricare](xref:index#how-to-download-a-sample) l'app [Starter](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/) .
 
-Eseguire l'app, toccare il collegamento **ContactManager** e verificare che sia possibile creare, modificare ed eliminare un contatto.
+Eseguire l'app, toccare il collegamento **ContactManager** e verificare che sia possibile creare, modificare ed eliminare un contatto. Per creare l'app iniziale, vedere [creare l'app iniziale](#create-the-starter-app).
 
 ## <a name="secure-user-data"></a>Proteggere i dati utente
 
@@ -152,7 +152,7 @@ Aggiungere [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allow
 
 ### <a name="configure-the-test-account"></a>Configurare l'account di test
 
-La `SeedData` classe crea due account: Administrator e Manager. Utilizzare lo [strumento Gestione segreta](xref:security/app-secrets) per impostare una password per questi account. Impostare la password dalla directory del progetto (la directory contenente *Program.cs* ):
+La `SeedData` classe crea due account: Administrator e Manager. Utilizzare lo [strumento Gestione segreta](xref:security/app-secrets) per impostare una password per questi account. Impostare la password dalla directory del progetto (la directory contenente *Program.cs*):
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -343,7 +343,7 @@ Creare un contatto nel browser dell'amministratore. Copiare l'URL da eliminare e
 ## <a name="create-the-starter-app"></a>Creare l'app Starter
 
 * Creare un' Razor app per le pagine denominata "ContactManager"
-  * Creare l'app con **singoli account utente** .
+  * Creare l'app con **singoli account utente**.
   * Denominarlo "ContactManager" in modo che lo spazio dei nomi corrisponda allo spazio dei nomi usato nell'esempio.
   * `-uld` Specifica il database locale anziché SQLite
 
@@ -351,7 +351,7 @@ Creare un contatto nel browser dell'amministratore. Copiare l'URL da eliminare e
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Aggiungi *modelli/Contact. cs* :
+* Aggiungi *modelli/Contact. cs*:
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
@@ -488,7 +488,7 @@ Aggiungere [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allow
 
 ### <a name="configure-the-test-account"></a>Configurare l'account di test
 
-La `SeedData` classe crea due account: Administrator e Manager. Utilizzare lo [strumento Gestione segreta](xref:security/app-secrets) per impostare una password per questi account. Impostare la password dalla directory del progetto (la directory contenente *Program.cs* ):
+La `SeedData` classe crea due account: Administrator e Manager. Utilizzare lo [strumento Gestione segreta](xref:security/app-secrets) per impostare una password per questi account. Impostare la password dalla directory del progetto (la directory contenente *Program.cs*):
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -670,7 +670,7 @@ Creare un contatto nel browser dell'amministratore. Copiare l'URL da eliminare e
 ## <a name="create-the-starter-app"></a>Creare l'app Starter
 
 * Creare un' Razor app per le pagine denominata "ContactManager"
-  * Creare l'app con **singoli account utente** .
+  * Creare l'app con **singoli account utente**.
   * Denominarlo "ContactManager" in modo che lo spazio dei nomi corrisponda allo spazio dei nomi usato nell'esempio.
   * `-uld` Specifica il database locale anziché SQLite
 
@@ -678,7 +678,7 @@ Creare un contatto nel browser dell'amministratore. Copiare l'URL da eliminare e
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Aggiungi *modelli/Contact. cs* :
+* Aggiungi *modelli/Contact. cs*:
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 

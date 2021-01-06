@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 89aeb20d5566447ff86581dfa1d7946d20b9ed2d
-ms.sourcegitcommit: 94c8cc1a8ce2bdba0ebdd9d37c155bf42d3cc62b
+ms.openlocfilehash: b2f58fb29e451628aead4ad35c7272a1409cf3d8
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96473716"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97797353"
 ---
 # <a name="use-aspnet-core-no-locsignalr-with-a-hosted-no-locblazor-webassembly-app"></a>Usare ASP.NET Core SignalR con un'app ospitata Blazor WebAssembly
 
@@ -117,13 +117,13 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Selezionare **Blazor app** e fare clic su **Next (avanti**).
 
-1. Digitare `BlazorSignalRApp` nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
+1. Digitare `BlazorSignalRApp` nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
 
 1. Scegliere il modello di **Blazor WebAssembly app** .
 
 1. In **Avanzate** selezionare la casella di controllo **ASP.NET Core Hosted** .
 
-1. Selezionare **Create** (Crea).
+1. Selezionare **Crea**.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -143,13 +143,13 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Selezionare **file**  >  **nuova soluzione** o creare un **nuovo** progetto dalla **finestra Start**.
 
-1. Nella barra laterale selezionare app **Web e console**  >  **App**.
+1. Nella barra laterale selezionare app **Web e console**  >  .
 
 1. Scegliere il modello di **Blazor WebAssembly app** . Selezionare **Avanti**.
 
 1. Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**. Selezionare la casella di controllo **ASP.NET Core Hosted** . Selezionare **Avanti**.
 
-1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Create** (Crea).
+1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Crea**.
 
    Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare. Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain.
 
@@ -212,6 +212,60 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 ---
 
+::: moniker range="< aspnetcore-5.0"
+
+## <a name="add-the-systemtextencodingsweb-package"></a>Aggiungere il pacchetto System. Text. Encodings. Web
+
+A causa di un problema di risoluzione del pacchetto quando si usa [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json) 5.0.0 in un'app ASP.NET Core 3,1, il `BlazorSignalRApp.Server` progetto richiede un riferimento al pacchetto per [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) . Il problema sottostante verrà risolto in una versione futura della patch di .NET 5. Per altre informazioni, vedere [System.Text.Json definisce netcoreapp 3.0 senza dipendenze (DotNet/runtime #45560)](https://github.com/dotnet/runtime/issues/45560).
+
+Per aggiungere [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) al `BlazorSignalRApp.Server` progetto della soluzione ospitata ASP.NET Core 3,1 Blazor , seguire le istruzioni per la scelta degli strumenti:
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
+
+1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul `BlazorSignalRApp.Server` progetto e scegliere **Gestisci pacchetti NuGet**.
+
+1. Nella finestra di dialogo **Gestisci pacchetti NuGet** verificare che l' **origine del pacchetto** sia impostata su `nuget.org` .
+
+1. Con **Sfoglia** selezionato, digitare `System.Text.Encodings.Web` nella casella di ricerca.
+
+1. Nei risultati della ricerca selezionare il [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) pacchetto e selezionare **Installa**.
+
+1. Se viene visualizzata la finestra di dialogo **Anteprima modifiche** , selezionare **OK**.
+
+1. Se viene visualizzata la finestra di dialogo **accettazione della licenza** , selezionare Accetto se **si accettano le** condizioni di licenza.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code/)
+
+Nel **terminale integrato** (**visualizzare** il > **terminale** dalla barra degli strumenti) eseguire i comandi seguenti:
+
+```dotnetcli
+dotnet add Server package System.Text.Encodings.Web
+```
+
+# <a name="visual-studio-for-mac"></a>[Visual Studio per Mac](#tab/visual-studio-mac)
+
+1. Nella barra laterale **soluzione** fare clic con il pulsante destro del mouse sul `BlazorSignalRApp.Server` progetto e scegliere **Gestisci pacchetti NuGet**.
+
+1. Nella finestra di dialogo **Gestisci pacchetti NuGet** verificare che l'elenco a discesa origine sia impostato su `nuget.org` .
+
+1. Con **Sfoglia** selezionato, digitare `System.Text.Encodings.Web` nella casella di ricerca.
+
+1. Nei risultati della ricerca selezionare la casella di controllo accanto al [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) pacchetto e selezionare **Aggiungi pacchetto**.
+
+1. Se viene visualizzata la finestra di dialogo **accettazione della licenza** , selezionare **Accetto** se si accettano le condizioni di licenza.
+
+# <a name="net-core-cli"></a>[Interfaccia della riga di comando di .NET Core](#tab/netcore-cli/)
+
+In una shell dei comandi eseguire il comando seguente:
+
+```dotnetcli
+dotnet add Server package System.Text.Encodings.Web
+```
+
+---
+
+::: moniker-end
+
 ## <a name="add-a-no-locsignalr-hub"></a>Aggiungere un SignalR Hub
 
 Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e aggiungere la classe seguente `ChatHub` ( `Hubs/ChatHub.cs` ):
@@ -238,32 +292,31 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
    using BlazorSignalRApp.Server.Hubs;
    ```
 
-1. Aggiungere SignalR e rispondere ai servizi middleware di compressione per `Startup.ConfigureServices` :
-
 ::: moniker range=">= aspnetcore-5.0"
 
+1. Aggiungere SignalR e rispondere ai servizi middleware di compressione per `Startup.ConfigureServices` :
+
    [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,6-10)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
-
-::: moniker-end
-
+   
 1. In `Startup.Configure`:
 
    * Usare il middleware della compressione della risposta nella parte superiore della configurazione della pipeline di elaborazione.
    * Tra gli endpoint per i controller e il fallback sul lato client, aggiungere un endpoint per l'hub.
-
-::: moniker range=">= aspnetcore-5.0"
 
    [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,26)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
+1. Aggiungere SignalR e rispondere ai servizi middleware di compressione per `Startup.ConfigureServices` :
+
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+   
+1. In `Startup.Configure`:
+
+   * Usare il middleware della compressione della risposta nella parte superiore della configurazione della pipeline di elaborazione.
+   * Tra gli endpoint per i controller e il fallback sul lato client, aggiungere un endpoint per l'hub.
 
    [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
 
@@ -273,9 +326,9 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
 
 1. Nel progetto `BlazorSignalRApp.Client` aprire il file `Pages/Index.razor`.
 
-1. Sostituire il markup con il codice seguente:
-
 ::: moniker range=">= aspnetcore-5.0"
+
+1. Sostituire il markup con il codice seguente:
 
    [!code-razor[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Client/Pages/Index.razor)]
 
@@ -283,13 +336,15 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
 
 ::: moniker range="< aspnetcore-5.0"
 
+1. Sostituire il markup con il codice seguente:
+
    [!code-razor[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Client/Pages/Index.razor)]
 
 ::: moniker-end
 
 ## <a name="run-the-app"></a>Eseguire l'app
 
-1. Seguire le istruzioni per gli strumenti:
+Seguire le istruzioni per gli strumenti:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -305,9 +360,9 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-1. Quando VS Code offre la creazione di un profilo di avvio per l'app Server ( `.vscode/launch.json` ), la `program` voce appare simile alla seguente per puntare all'assembly dell'app ( `{APPLICATION NAME}.Server.dll` ):
-
 ::: moniker range=">= aspnetcore-5.0"
+
+1. Quando VS Code offre la creazione di un profilo di avvio per l'app Server ( `.vscode/launch.json` ), la `program` voce appare simile alla seguente per puntare all'assembly dell'app ( `{APPLICATION NAME}.Server.dll` ):
 
    ```json
    "program": "${workspaceFolder}/Server/bin/Debug/net5.0/{APPLICATION NAME}.Server.dll"
@@ -316,6 +371,8 @@ Nel `BlazorSignalRApp.Server` progetto creare una `Hubs` cartella (plurale) e ag
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
+1. Quando VS Code offre la creazione di un profilo di avvio per l'app Server ( `.vscode/launch.json` ), la `program` voce appare simile alla seguente per puntare all'assembly dell'app ( `{APPLICATION NAME}.Server.dll` ):
 
    ```json
    "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"

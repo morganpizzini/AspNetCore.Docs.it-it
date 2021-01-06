@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/intro
 ms.openlocfilehash: c0623de3c8031b6dbb518a6d25623b55a6500af5
-ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/17/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94703735"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Esercitazione: Introduzione a EF Core in un'app Web MVC ASP.NET
@@ -80,7 +80,7 @@ Gli utenti possono visualizzare e aggiornare le informazioni che riguardano stud
 1. Nella finestra di dialogo **Crea una nuova applicazione web ASP.NET Core** selezionare:
     1. **.NET Core** e **ASP.NET Core 5,0** negli elenchi a discesa.
     1. **ASP.NET Core app Web (Model-View-Controller)**.
-    1. **Create** 
+    1.  
        Crea ![ Finestra di dialogo nuovo progetto ASP.NET Core](~/data/ef-mvc/intro/_static/new-aspnet5.png)
 
 ## <a name="set-up-the-site-style"></a>Impostare lo stile del sito

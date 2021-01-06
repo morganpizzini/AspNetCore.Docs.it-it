@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: tutorials/publish-to-azure-webapp-using-vs
 ms.openlocfilehash: 817169503a80a771354e32123d65ba2bf388aa2d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93060222"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a>Pubblicare un'app ASP.NET Core in Azure con Visual Studio
@@ -39,7 +39,7 @@ Vedere [pubblicare un'app Web nel servizio app Azure usando Visual Studio per Ma
 
 Per risolvere un problema di distribuzione del Servizio app di Azure, vedere <xref:test/troubleshoot-azure-iis>.
 
-## <a name="set-up"></a>Configurare
+## <a name="set-up"></a>Configurazione
 
 * Aprire un [account Azure gratuito](https://azure.microsoft.com/free/dotnet/) se non è già disponibile un account. 
 
@@ -49,24 +49,24 @@ Nella Pagina iniziale di Visual Studio selezionare **File > Nuovo > Progetto**
 
 ![Menu File](publish-to-azure-webapp-using-vs/_static/file_new_project.png)
 
-Completare la finestra di dialogo **Nuovo progetto** :
+Completare la finestra di dialogo **Nuovo progetto**:
 
-* Selezionare **Applicazione Web ASP.NET Core** .
-* Selezionare **Avanti** .
+* Selezionare **Applicazione Web ASP.NET Core**.
+* Selezionare **Avanti**.
 
 ![Finestra di dialogo Nuovo progetto](publish-to-azure-webapp-using-vs/_static/new_prj.png)
 
-Nella finestra di dialogo **Nuova applicazione Web ASP.NET Core** :
+Nella finestra di dialogo **Nuova applicazione Web ASP.NET Core**:
 
-* Selezionare **applicazione Web** .
+* Selezionare **applicazione Web**.
 * Selezionare **modifica** in autenticazione.
 
 ![Finestra di dialogo nuovo ASP.NET Core Web](publish-to-azure-webapp-using-vs/_static/new_prj_2.png)
 
-Viene visualizzata la finestra di dialogo **Modifica autenticazione** . 
+Viene visualizzata la finestra di dialogo **Modifica autenticazione**. 
 
-* Selezionare **Account utente individuali** .
-* Selezionare **OK** per tornare alla **nuova applicazione Web ASP.NET Core** , quindi selezionare **Crea** .
+* Selezionare **Account utente individuali**.
+* Selezionare **OK** per tornare alla **nuova applicazione Web ASP.NET Core**, quindi selezionare **Crea**.
 
 ![Finestra per autenticazione Nuova applicazione Web ASP.NET Core](publish-to-azure-webapp-using-vs/_static/new_prj_auth.png) 
 
@@ -94,21 +94,21 @@ L'app Visualizza il messaggio di posta elettronica usato per registrare il nuovo
 
 ## <a name="deploy-the-app-to-azure"></a>Distribuire l'app in Azure
 
-Fare clic con il pulsante destro del mouse sul progetto in Esplora soluzioni e scegliere **pubblica.** ...
+Fare clic con il pulsante destro del mouse sul progetto in Esplora soluzioni e scegliere **pubblica.**...
 
 ![Menu di scelta rapida con il collegamento per la pubblicazione evidenziato](publish-to-azure-webapp-using-vs/_static/pub.png)
 
-Nella finestra di dialogo **Pubblica** :
+Nella finestra di dialogo **Pubblica**:
 
-* Selezionare **Azure** .
-* Selezionare **Avanti** .
+* Selezionare **Azure**.
+* Selezionare **Avanti**.
 
 ![Finestra di dialogo Pubblica](publish-to-azure-webapp-using-vs/_static/maas1.png)
 
-Nella finestra di dialogo **Pubblica** :
+Nella finestra di dialogo **Pubblica**:
 
-* Selezionare **servizio app Azure (Linux)** .
-* Selezionare **Avanti** .
+* Selezionare **servizio app Azure (Linux)**.
+* Selezionare **Avanti**.
 
 ![Finestra di dialogo pubblica: selezionare il servizio di Azure](publish-to-azure-webapp-using-vs/_static/maas2.png)
 
@@ -118,26 +118,26 @@ Nella finestra di dialogo **pubblica** selezionare **Crea un nuovo servizio app 
 
 Viene visualizzata la finestra di dialogo **Crea servizio app** :
 
-* I campi di immissione **Nome dell'app** , **Gruppo di risorse** e **Piano di servizio app** vengono popolati automaticamente. È possibile mantenere questi nomi o modificarli.
-* Selezionare **Crea** .
+* I campi di immissione **Nome dell'app**, **Gruppo di risorse** e **Piano di servizio app** vengono popolati automaticamente. È possibile mantenere questi nomi o modificarli.
+* Selezionare **Crea**.
 
 ![Finestra di dialogo Crea servizio app](publish-to-azure-webapp-using-vs/_static/newrg1.png)
 
 Al termine della creazione, la finestra di dialogo viene chiusa automaticamente e la finestra di dialogo di **pubblicazione** viene nuovamente messa a fuoco:
 
 * La nuova istanza appena creata viene selezionata automaticamente.
-* Selezionare **Fine** .
+* Selezionare **Fine**.
 
 ![Finestra di dialogo pubblica: selezionare l'istanza del servizio app](publish-to-azure-webapp-using-vs/_static/select_as.png)
 
-Verrà visualizzata la pagina di **Riepilogo del profilo di pubblicazione** . Visual Studio ha rilevato che questa applicazione richiede un database di SQL Server e chiede di configurarlo. Selezionare **Configura** .
+Verrà visualizzata la pagina di **Riepilogo del profilo di pubblicazione** . Visual Studio ha rilevato che questa applicazione richiede un database di SQL Server e chiede di configurarlo. Selezionare **Configura**.
 
 ![Pagina Riepilogo profilo di pubblicazione: Configura dipendenza SQL Server](publish-to-azure-webapp-using-vs/_static/sql.png)
 
 Verrà visualizzata la finestra di dialogo **Configura dipendenza** :
 
-* Selezionare **database SQL di Azure** .
-* Selezionare **Avanti** .
+* Selezionare **database SQL di Azure**.
+* Selezionare **Avanti**.
 
 ![Configurare la finestra di dialogo SQL Server dipendenza](publish-to-azure-webapp-using-vs/_static/sql1.png)
 
@@ -147,40 +147,40 @@ Nella finestra di dialogo **Configura database SQL di Azure** selezionare **Crea
 
 Viene visualizzato il **database SQL di Azure per creare** :
 
-* Il **nome del database** , il **gruppo di risorse** , il **server di database** e i campi di immissione del **piano di servizio app** sono popolati Questi valori possono essere conservati o modificati.
+* Il **nome del database**, il **gruppo di risorse**, il **server di database** e i campi di immissione del **piano di servizio app** sono popolati Questi valori possono essere conservati o modificati.
 * Immettere il **nome utente dell'amministratore** di database e la **password di amministratore** del database per il **server di database** selezionato (si noti che l'account usato deve avere le autorizzazioni necessarie per creare il nuovo database SQL di Azure)
-* Selezionare **Crea** .
+* Selezionare **Crea**.
 
 ![Finestra di dialogo nuovo database SQL di Azure](publish-to-azure-webapp-using-vs/_static/sql_create.png)
 
 Al termine della creazione, la finestra di dialogo viene chiusa automaticamente e la finestra di dialogo **Configura database SQL di Azure** ottiene nuovamente lo stato attivo:
 
 * La nuova istanza appena creata viene selezionata automaticamente.
-* Selezionare **Avanti** .
+* Selezionare **Avanti**.
 
 ![Finestra di dialogo Configura database SQL di Azure](publish-to-azure-webapp-using-vs/_static/sql_select.png)
 
 Nel passaggio successivo della finestra di dialogo **Configura database SQL di Azure** :
 
 * Immettere i campi **nome utente** e **password** connessione database per la connessione al database. Questi sono i dettagli che verranno usati dall'applicazione per connettersi al database in fase di esecuzione. La procedura consigliata consiste nell'evitare di utilizzare gli stessi dettagli del nome utente amministratore & password utilizzata nel passaggio precedente.
-* Selezionare **Fine** .
+* Selezionare **Fine**.
 
 ![Finestra di dialogo Configura database SQL di Azure, dettagli stringa di connessione](publish-to-azure-webapp-using-vs/_static/sql_connection.png)
 
-Nella pagina di **Riepilogo del profilo di pubblicazione** selezionare **Impostazioni** :
+Nella pagina di **Riepilogo del profilo di pubblicazione** selezionare **Impostazioni**:
 
 ![Pagina Riepilogo profilo di pubblicazione: modifica impostazioni](publish-to-azure-webapp-using-vs/_static/pp_configured.png)
 
-Nella pagina **Impostazioni** della finestra di dialogo **Pubblica** :
+Nella pagina **Impostazioni** della finestra di dialogo **Pubblica**:
 
-* Espandere **database** e selezionare **Usa questa stringa di connessione in fase di esecuzione** .
-* Espandere **Entity Framework migrazioni** e selezionare **applica questa migrazione alla pubblicazione** .
+* Espandere **database** e selezionare **Usa questa stringa di connessione in fase di esecuzione**.
+* Espandere **Entity Framework migrazioni** e selezionare **applica questa migrazione alla pubblicazione**.
 
-* Selezionare **Salva** . Visual Studio torna alla finestra di dialogo **Pubblica** . 
+* Selezionare **Salva**. Visual Studio torna alla finestra di dialogo **Pubblica**. 
 
 ![Finestra di dialogo Pubblica: pannello Impostazioni](publish-to-azure-webapp-using-vs/_static/pp_settings.png)
 
-Fare clic su **Pubblica** . Visual Studio pubblica l'app in Azure. Al termine della distribuzione, l'app viene aperta in un browser.
+Fare clic su **Pubblica**. Visual Studio pubblica l'app in Azure. Al termine della distribuzione, l'app viene aperta in un browser.
 
 ![Finestra di dialogo Pubblica: pannello Impostazioni](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
 
@@ -206,11 +206,11 @@ Al termine del test dell'app accedere al [portale di Azure](https://portal.azure
 
 ![Portale di Azure: Gruppi di risorse nel menu laterale](publish-to-azure-webapp-using-vs/_static/portalrg.png)
 
-* Nella pagina **Gruppi di risorse** selezionare **Elimina** .
+* Nella pagina **Gruppi di risorse** selezionare **Elimina**.
 
 ![Portale di Azure: pagina Gruppi di risorse](publish-to-azure-webapp-using-vs/_static/rgd.png)
 
-* Immettere il nome del gruppo di risorse e selezionare **Elimina** . A questo punto l'app e tutte le altre risorse create in questa esercitazione vengono eliminate da Azure.
+* Immettere il nome del gruppo di risorse e selezionare **Elimina**. A questo punto l'app e tutte le altre risorse create in questa esercitazione vengono eliminate da Azure.
 
 ### <a name="next-steps"></a>Passaggi successivi
 

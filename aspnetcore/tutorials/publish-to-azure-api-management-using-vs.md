@@ -7,10 +7,10 @@ ms.custom: devx-track-csharp, mvc
 ms.date: 11/22/2020
 uid: tutorials/publish-to-azure-api-management-using-vs
 ms.openlocfilehash: 395b5981a3018486235c38f032893f985ab71383
-ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "96332219"
 ---
 # <a name="publish-an-aspnet-core-web-api-to-azure-api-management-with-visual-studio"></a>Pubblicare un'API Web di ASP.NET Core in gestione API di Azure con Visual Studio
@@ -202,7 +202,7 @@ Si noti che il nome dell'API è diverso da quello specificato. L'API pubblicata 
 
 1. Aprire la scheda **Test**.
 1. Selezionare **/** o l'operazione **Get** .
-1. Selezionare **Invia**.
+1. Selezionare **Send** (Invia).
 
     ![Screenshot del portale prima del test](publish-to-azure-api-management-using-vs/_static/portal_pre_test.png)
 
@@ -210,7 +210,7 @@ Una risposta con esito positivo avrà un aspetto simile al seguente:
 
 ![Screenshot di una risposta corretta da gestione API](publish-to-azure-api-management-using-vs/_static/portal_successful_response.png)
 
-## <a name="clean-up"></a>Pulizia
+## <a name="clean-up"></a>Eseguire la pulizia
 
 Al termine del test dell'app, passare al [portale di Azure](https://portal.azure.com/) ed eliminare l'app.
 
