@@ -1,9 +1,9 @@
-<span data-ttu-id="5032f-101">I componenti annidati in genere associano i dati mediante *Binding concatenato* come descritto in <xref:blazor/components/data-binding> .</span><span class="sxs-lookup"><span data-stu-id="5032f-101">Nested components typically bind data using *chained bind* as described in <xref:blazor/components/data-binding>.</span></span> <span data-ttu-id="5032f-102">I componenti annidati e non annidati possono condividere l'accesso ai dati usando un contenitore di stato in memoria registrato.</span><span class="sxs-lookup"><span data-stu-id="5032f-102">Nested and un-nested components can share access to data using a registered in-memory state container.</span></span> <span data-ttu-id="5032f-103">Una classe di contenitori di stato personalizzata può usare un'assegnabile <xref:System.Action> per notificare ai componenti in parti diverse dell'app le modifiche di stato.</span><span class="sxs-lookup"><span data-stu-id="5032f-103">A custom state container class can use an assignable <xref:System.Action> to notify components in different parts of the app of state changes.</span></span> <span data-ttu-id="5032f-104">Nell'esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="5032f-104">In the following example:</span></span>
+<span data-ttu-id="c3f23-101">I componenti annidati in genere associano i dati mediante *Binding concatenato* come descritto in <xref:blazor/components/data-binding> .</span><span class="sxs-lookup"><span data-stu-id="c3f23-101">Nested components typically bind data using *chained bind* as described in <xref:blazor/components/data-binding>.</span></span> <span data-ttu-id="c3f23-102">I componenti annidati e non annidati possono condividere l'accesso ai dati usando un contenitore di stato in memoria registrato.</span><span class="sxs-lookup"><span data-stu-id="c3f23-102">Nested and un-nested components can share access to data using a registered in-memory state container.</span></span> <span data-ttu-id="c3f23-103">Una classe di contenitori di stato personalizzata può usare un'assegnabile <xref:System.Action> per notificare ai componenti in parti diverse dell'app le modifiche di stato.</span><span class="sxs-lookup"><span data-stu-id="c3f23-103">A custom state container class can use an assignable <xref:System.Action> to notify components in different parts of the app of state changes.</span></span> <span data-ttu-id="c3f23-104">Nell'esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="c3f23-104">In the following example:</span></span>
 
-* <span data-ttu-id="5032f-105">Una coppia di componenti usa un contenitore di stato per tenere traccia di una proprietà.</span><span class="sxs-lookup"><span data-stu-id="5032f-105">A pair of components uses a state container to track a property.</span></span>
-* <span data-ttu-id="5032f-106">I componenti dell'esempio sono annidati, ma l'annidamento non è necessario per il funzionamento di questo approccio.</span><span class="sxs-lookup"><span data-stu-id="5032f-106">The components of the example are nested, but nesting isn't required for this approach to work.</span></span>
+* <span data-ttu-id="c3f23-105">Una coppia di componenti usa un contenitore di stato per tenere traccia di una proprietà.</span><span class="sxs-lookup"><span data-stu-id="c3f23-105">A pair of components uses a state container to track a property.</span></span>
+* <span data-ttu-id="c3f23-106">I componenti dell'esempio sono annidati, ma l'annidamento non è necessario per il funzionamento di questo approccio.</span><span class="sxs-lookup"><span data-stu-id="c3f23-106">The components of the example are nested, but nesting isn't required for this approach to work.</span></span>
 
-<span data-ttu-id="5032f-107">`StateContainer.cs`:</span><span class="sxs-lookup"><span data-stu-id="5032f-107">`StateContainer.cs`:</span></span>
+<span data-ttu-id="c3f23-107">`StateContainer.cs`:</span><span class="sxs-lookup"><span data-stu-id="c3f23-107">`StateContainer.cs`:</span></span>
 
 ```csharp
 public class StateContainer
@@ -22,19 +22,19 @@ public class StateContainer
 }
 ```
 
-<span data-ttu-id="5032f-108">In `Program.Main` (webassembly Blazer):</span><span class="sxs-lookup"><span data-stu-id="5032f-108">In `Program.Main` (Blazor WebAssembly):</span></span>
+<span data-ttu-id="c3f23-108">In `Program.Main` (webassembly Blazer):</span><span class="sxs-lookup"><span data-stu-id="c3f23-108">In `Program.Main` (Blazor WebAssembly):</span></span>
 
 ```csharp
 builder.Services.AddSingleton<StateContainer>();
 ```
 
-<span data-ttu-id="5032f-109">In `Startup.ConfigureServices` (server Blazer):</span><span class="sxs-lookup"><span data-stu-id="5032f-109">In `Startup.ConfigureServices` (Blazor Server):</span></span>
+<span data-ttu-id="c3f23-109">In `Startup.ConfigureServices` (server Blazer):</span><span class="sxs-lookup"><span data-stu-id="c3f23-109">In `Startup.ConfigureServices` (Blazor Server):</span></span>
 
 ```csharp
 services.AddSingleton<StateContainer>();
 ```
 
-<span data-ttu-id="5032f-110">`Pages/Component1.razor`:</span><span class="sxs-lookup"><span data-stu-id="5032f-110">`Pages/Component1.razor`:</span></span>
+<span data-ttu-id="c3f23-110">`Pages/Component1.razor`:</span><span class="sxs-lookup"><span data-stu-id="c3f23-110">`Pages/Component1.razor`:</span></span>
 
 ```razor
 @page "/Component1"
@@ -69,7 +69,7 @@ services.AddSingleton<StateContainer>();
 }
 ```
 
-<span data-ttu-id="5032f-111">`Shared/Component2.razor`:</span><span class="sxs-lookup"><span data-stu-id="5032f-111">`Shared/Component2.razor`:</span></span>
+<span data-ttu-id="c3f23-111">`Shared/Component2.razor`:</span><span class="sxs-lookup"><span data-stu-id="c3f23-111">`Shared/Component2.razor`:</span></span>
 
 ```razor
 @inject StateContainer StateContainer
