@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: fundamentals/app-state
 ms.openlocfilehash: c11b748f9d79235b14c9541019da6e1fb3428af6
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93051408"
 ---
 # <a name="session-and-state-management-in-aspnet-core"></a>Gestione di sessioni e stato in ASP.NET Core
@@ -142,7 +142,7 @@ Per eseguire l'override delle cookie impostazioni predefinite della sessione, us
 
 L'app usa la <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> proprietà per determinare per quanto tempo una sessione può rimanere inattiva prima che il relativo contenuto nella cache del server venga abbandonato. Questa proprietà è indipendente dalla cookie scadenza. Ogni richiesta che passa attraverso il [middleware di sessione](xref:Microsoft.AspNetCore.Session.SessionMiddleware) reimposta il timeout.
 
-Lo stato della sessione è *non di blocco* . Se due richieste tentano simultaneamente di modificare il contenuto di una sessione, l'ultima richiesta sostituisce la prima. `Session` viene implementata come *sessione coerente* , ovvero tutto il contenuto viene archiviato insieme. Quando due richieste tentano di modificare diversi valori della sessione, l'ultima richiesta può sostituire le modifiche apportate alla sessione dalla prima.
+Lo stato della sessione è *non di blocco*. Se due richieste tentano simultaneamente di modificare il contenuto di una sessione, l'ultima richiesta sostituisce la prima. `Session` viene implementata come *sessione coerente*, ovvero tutto il contenuto viene archiviato insieme. Quando due richieste tentano di modificare diversi valori della sessione, l'ultima richiesta può sostituire le modifiche apportate alla sessione dalla prima.
 
 ### <a name="set-and-get-session-values"></a>Impostare e ottenere i valori della sessione
 
@@ -402,7 +402,7 @@ Per eseguire l'override delle cookie impostazioni predefinite della sessione, us
 
 L'app usa la <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> proprietà per determinare per quanto tempo una sessione può rimanere inattiva prima che il relativo contenuto nella cache del server venga abbandonato. Questa proprietà è indipendente dalla cookie scadenza. Ogni richiesta che passa attraverso il [middleware di sessione](xref:Microsoft.AspNetCore.Session.SessionMiddleware) reimposta il timeout.
 
-Lo stato della sessione è *non di blocco* . Se due richieste tentano simultaneamente di modificare il contenuto di una sessione, l'ultima richiesta sostituisce la prima. `Session` viene implementata come *sessione coerente* , ovvero tutto il contenuto viene archiviato insieme. Quando due richieste tentano di modificare diversi valori della sessione, l'ultima richiesta può sostituire le modifiche apportate alla sessione dalla prima.
+Lo stato della sessione è *non di blocco*. Se due richieste tentano simultaneamente di modificare il contenuto di una sessione, l'ultima richiesta sostituisce la prima. `Session` viene implementata come *sessione coerente*, ovvero tutto il contenuto viene archiviato insieme. Quando due richieste tentano di modificare diversi valori della sessione, l'ultima richiesta può sostituire le modifiche apportate alla sessione dalla prima.
 
 ### <a name="set-and-get-session-values"></a>Impostare e ottenere i valori della sessione
 

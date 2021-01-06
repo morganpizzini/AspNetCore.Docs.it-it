@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/concurrency
 ms.openlocfilehash: d476c836e8d497ca1291992dda38da1fc9f59ed2
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054372"
 ---
 # <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Esercitazione: gestire la concorrenza ASP.NET MVC con EF Core
@@ -117,7 +117,7 @@ In *Models/Department.cs* aggiungere una proprietà di rilevamento denominata Ro
 
 L'attributo `Timestamp` specifica che questa colonna viene inclusa nella clausola Where dei comandi Update e Delete inviati al database. L'attributo viene chiamato `Timestamp` perché le versioni precedenti di SQL Server usavano un tipo di dati SQL `timestamp` prima che questo fosse sostituito dalla notazione SQL `rowversion`. Il tipo .NET per `rowversion` è una matrice di byte.
 
-Se si preferisce usare l'API Fluent, è possibile usare il metodo `IsConcurrencyToken` (in *Data/SchoolContext.cs* ) per specificare la proprietà di rilevamento, come illustrato nell'esempio seguente:
+Se si preferisce usare l'API Fluent, è possibile usare il metodo `IsConcurrencyToken` (in *Data/SchoolContext.cs*) per specificare la proprietà di rilevamento, come illustrato nell'esempio seguente:
 
 ```csharp
 modelBuilder.Entity<Department>()
@@ -142,7 +142,7 @@ Eseguire lo scaffolding di un controller e di visualizzazioni Departments come g
 
 ![Scaffolding di Department](concurrency/_static/add-departments-controller.png)
 
-Nel file *DepartmentsController.cs* , convertire tutte e quattro le ricorrenze di "FirstMidName" in "FullName" in modo che gli elenchi a discesa degli amministratori di reparto contengano il nome completo dell'insegnante anziché solo il cognome.
+Nel file *DepartmentsController.cs*, convertire tutte e quattro le ricorrenze di "FirstMidName" in "FullName" in modo che gli elenchi a discesa degli amministratori di reparto contengano il nome completo dell'insegnante anziché solo il cognome.
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_Dropdown)]
 
@@ -206,9 +206,9 @@ In *Views/Departments/Edit.cshtml* apportare le modifiche seguenti:
 
 ## <a name="test-concurrency-conflicts"></a>Testare i conflitti di concorrenza
 
-Eseguire l'app e passare alla pagina Departments Index (Indice reparti). Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese) e selezionare **Apri link in nuova scheda** , quindi fare clic sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese). Le due schede del browser ora visualizzano le stesse informazioni.
+Eseguire l'app e passare alla pagina Departments Index (Indice reparti). Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese) e selezionare **Apri link in nuova scheda**, quindi fare clic sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese). Le due schede del browser ora visualizzano le stesse informazioni.
 
-Modificare un campo nella prima scheda del browser e fare clic su **Salva** .
+Modificare un campo nella prima scheda del browser e fare clic su **Salva**.
 
 ![Pagina Department Edit (Modifica - Reparto) 1 dopo la modifica](concurrency/_static/edit-after-change-1.png)
 
@@ -218,11 +218,11 @@ Modificare un campo nella seconda scheda del browser.
 
 ![Pagina Department Edit (Modifica - Reparto) 2 dopo la modifica](concurrency/_static/edit-after-change-2.png)
 
-Fare clic su **Salva** . Viene visualizzato un messaggio di errore:
+Fare clic su **Salva**. Viene visualizzato un messaggio di errore:
 
 ![Messaggio di errore della pagina Department Edit (Modifica - Reparto)](concurrency/_static/edit-error.png)
 
-Fare clic su **Salva** . Il valore immesso nella seconda scheda del browser viene salvato. I valori salvati vengono visualizzati nella pagina Index.
+Fare clic su **Salva**. Il valore immesso nella seconda scheda del browser viene salvato. I valori salvati vengono visualizzati nella pagina Index.
 
 ## <a name="update-the-delete-page"></a>Aggiornare la pagina Delete (Elimina)
 
@@ -230,7 +230,7 @@ Per la pagina Delete (Elimina), Entity Framework rileva conflitti di concorrenza
 
 ### <a name="update-the-delete-methods-in-the-departments-controller"></a>Aggiornare i metodi Delete nel controller Departments
 
-In *DepartmentsController.cs* , sostituire il metodo HttpGet `Delete` con il codice seguente:
+In *DepartmentsController.cs*, sostituire il metodo HttpGet `Delete` con il codice seguente:
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeleteGet&highlight=1,10,14-17,21-29)]
 
@@ -260,7 +260,7 @@ Se viene rilevato un errore di concorrenza, il codice visualizza nuovamente la p
 
 ### <a name="update-the-delete-view"></a>Aggiornare la pagina Delete
 
-In *Views/Departments/Delete.cshtml* , sostituire il codice sottoposto a scaffolding con il codice seguente, che aggiunge un campo messaggio di errore e campi nascosti per le proprietà DepartmentID e RowVersion. Le modifiche sono evidenziate.
+In *Views/Departments/Delete.cshtml*, sostituire il codice sottoposto a scaffolding con il codice seguente, che aggiunge un campo messaggio di errore e campi nascosti per le proprietà DepartmentID e RowVersion. Le modifiche sono evidenziate.
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44,45,48)]
 
@@ -274,9 +274,9 @@ Questa impostazione determina le modifiche seguenti:
 
 * Aggiunge un campo nascosto per la proprietà `RowVersion`.
 
-Eseguire l'app e passare alla pagina Departments Index (Indice reparti). Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese) e selezionare **Apri link in nuova scheda** , quindi fare clic sul collegamento ipertestuale **Edit** per il reparto English.
+Eseguire l'app e passare alla pagina Departments Index (Indice reparti). Fare clic con il pulsante destro del mouse sul collegamento ipertestuale **Edit** (Modifica) per il reparto English (Inglese) e selezionare **Apri link in nuova scheda**, quindi fare clic sul collegamento ipertestuale **Edit** per il reparto English.
 
-Nella prima finestra modificare uno dei valori e fare clic su **Salva** :
+Nella prima finestra modificare uno dei valori e fare clic su **Salva**:
 
 ![Pagina Department Edit (Modifica - Reparto) dopo la modifica e prima dell'eliminazione](concurrency/_static/edit-after-change-for-delete.png)
 

@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: fundamentals/localization
 ms.openlocfilehash: 07e2f561b0e9db58780d6e8a271e32b00132b1b5
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059520"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalizzazione e localizzazione in ASP.NET Core
@@ -140,7 +140,7 @@ ASP.NET Core consente di specificare due valori di impostazioni cultura, `Suppor
 
 Un file di risorse è un meccanismo utile per la separazione delle stringhe localizzabili dal codice. Le stringhe tradotte per la lingua non predefinita sono isolate nei file di risorse *resx* . È possibile ad esempio che si voglia creare un file di risorse spagnolo denominato *Welcome.es.resx* contenente le stringhe tradotte. "es" è il codice di lingua per lo spagnolo. Per creare questo file di risorse in Visual Studio:
 
-1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella che conterrà il file di risorse > **Aggiungi** > **Nuovo elemento** .
+1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella che conterrà il file di risorse > **Aggiungi** > **Nuovo elemento**.
 
    ![Menu contestuale annidato: in Esplora soluzioni viene visualizzato un menu contestuale per le risorse. Un secondo menu contestuale viene visualizzato per Aggiungi con il comando Nuovo elemento evidenziato.](localization/_static/newi.png)
 
@@ -148,19 +148,19 @@ Un file di risorse è un meccanismo utile per la separazione delle stringhe loca
 
    ![Finestra di dialogo Aggiungi nuovo elemento](localization/_static/res.png)
 
-1. Immettere il valore della chiave (stringa nativa) nella colonna **Nome** e la stringa tradotta nella colonna **Valore** .
+1. Immettere il valore della chiave (stringa nativa) nella colonna **Nome** e la stringa tradotta nella colonna **Valore**.
 
    ![File Welcome.es.resx (file di risorse Welcome per lo spagnolo) con la parola Hello nella colonna Nome e la parola Hola nella colonna Valore](localization/_static/hola.png)
 
-   Visual Studio visualizza il file *Welcome.es.resx* .
+   Visual Studio visualizza il file *Welcome.es.resx*.
 
    ![Esplora soluzioni con il file di risorse Welcome per lo spagnolo (es)](localization/_static/se.png)
 
 ## <a name="resource-file-naming"></a>Denominazione dei file di risorse
 
-Le risorse sono denominate con il nome completo del tipo della relativa classe meno il nome dell'assembly. Ad esempio, una risorsa francese di un progetto il cui assembly principale è `LocalizationWebsite.Web.dll` per la classe `LocalizationWebsite.Web.Startup` viene denominata *Startup.fr.resx* . Una risorsa per la classe `LocalizationWebsite.Web.Controllers.HomeController` viene denominata *Controllers.HomeController.fr.resx* . Se lo spazio dei nomi della classe di destinazione non corrisponde al nome dell'assembly è necessario specificare il nome completo del tipo. Ad esempio, nel progetto di esempio una risorsa per il tipo `ExtraNamespace.Tools` verrebbe denominata *ExtraNamespace.Tools.fr.resx* .
+Le risorse sono denominate con il nome completo del tipo della relativa classe meno il nome dell'assembly. Ad esempio, una risorsa francese di un progetto il cui assembly principale è `LocalizationWebsite.Web.dll` per la classe `LocalizationWebsite.Web.Startup` viene denominata *Startup.fr.resx*. Una risorsa per la classe `LocalizationWebsite.Web.Controllers.HomeController` viene denominata *Controllers.HomeController.fr.resx*. Se lo spazio dei nomi della classe di destinazione non corrisponde al nome dell'assembly è necessario specificare il nome completo del tipo. Ad esempio, nel progetto di esempio una risorsa per il tipo `ExtraNamespace.Tools` verrebbe denominata *ExtraNamespace.Tools.fr.resx*.
 
-Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `ResourcesPath` su "Resources", il percorso relativo del progetto per il file di risorse francese del controller principale è *Resources/Controllers.HomeController.fr.resx* . In alternativa, è possibile usare le cartelle per organizzare i file di risorse. Per il controller principale, il percorso sarà *Resources/Controllers/HomeController.fr.resx* . Se non si usa l'opzione `ResourcesPath`, il file con estensione *resx* viene memorizzato nella directory di base del progetto. Il file di risorse per `HomeController` sarà denominato *Controllers.HomeController.fr.resx* . La scelta di usare la convenzione di denominazione con il punto o il percorso dipende da come si vuole organizzare i file di risorse.
+Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `ResourcesPath` su "Resources", il percorso relativo del progetto per il file di risorse francese del controller principale è *Resources/Controllers.HomeController.fr.resx*. In alternativa, è possibile usare le cartelle per organizzare i file di risorse. Per il controller principale, il percorso sarà *Resources/Controllers/HomeController.fr.resx*. Se non si usa l'opzione `ResourcesPath`, il file con estensione *resx* viene memorizzato nella directory di base del progetto. Il file di risorse per `HomeController` sarà denominato *Controllers.HomeController.fr.resx*. La scelta di usare la convenzione di denominazione con il punto o il percorso dipende da come si vuole organizzare i file di risorse.
 
 | Nome risorsa | Denominazione con il punto o il percorso |
 | ------------   | ------------- |
@@ -187,7 +187,7 @@ Se lo spazio dei nomi radice di un assembly è diverso dal nome dell'assembly:
 * Per impostazione predefinita, la localizzazione non funziona.
 * Le risorse vengono cercate all'interno dell'assembly in un modo che impedisce la localizzazione. `RootNamespace` è un valore necessario in fase di compilazione che non è disponibile per il processo in esecuzione. 
 
-Se l'attributo `RootNamespace` è diverso da `AssemblyName`, includere quanto segue in *AssemblyInfo.cs* , sostituendo i valori dei parametri con quelli effettivi:
+Se l'attributo `RootNamespace` è diverso da `AssemblyName`, includere quanto segue in *AssemblyInfo.cs*, sostituendo i valori dei parametri con quelli effettivi:
 
 ```csharp
 using System.Reflection;
@@ -213,11 +213,11 @@ Ad esempio, se si rimuove l'indicatore delle impostazioni cultura ".fr" e le imp
 
 ### <a name="generate-resource-files-with-visual-studio"></a>Generare file di risorse con Visual Studio
 
-Se si crea un file di risorse in Visual Studio senza le impostazioni cultura nel nome del file (ad esempio, *Welcome.resx* ), Visual Studio crea una classe C# con una proprietà per ogni stringa. In genere questo non è il risultato desiderato quando si usa ASP.NET Core. Solitamente non è presente un file di risorse con estensione *resx* predefinito (un file con estensione *resx* senza nome delle impostazioni cultura). Si consiglia di creare il file con estensione *resx* con un nome delle impostazioni cultura, ad esempio *Welcome.fr.resx* . Quando si crea un file con estensione *resx* con un nome delle impostazioni cultura, Visual Studio non genera il file di classe.
+Se si crea un file di risorse in Visual Studio senza le impostazioni cultura nel nome del file (ad esempio, *Welcome.resx*), Visual Studio crea una classe C# con una proprietà per ogni stringa. In genere questo non è il risultato desiderato quando si usa ASP.NET Core. Solitamente non è presente un file di risorse con estensione *resx* predefinito (un file con estensione *resx* senza nome delle impostazioni cultura). Si consiglia di creare il file con estensione *resx* con un nome delle impostazioni cultura, ad esempio *Welcome.fr.resx*. Quando si crea un file con estensione *resx* con un nome delle impostazioni cultura, Visual Studio non genera il file di classe.
 
 ### <a name="add-other-cultures"></a>Aggiungere altre impostazioni cultura
 
-Ogni combinazione di lingua e impostazioni cultura (diversa dalla lingua predefinita) richiede un file di risorse univoco. Creare file di risorse per impostazioni cultura e locali diverse creando nuovi file di risorse in cui i codici di lingua ISO sono inclusi nel nome file, ad esempio **en-us** , **fr-ca** e **en-gb** . I codici ISO vengono inseriti tra il nome file e l'estensione *resx* come in *Welcome.es-MX.resx* (spagnolo/Messico).
+Ogni combinazione di lingua e impostazioni cultura (diversa dalla lingua predefinita) richiede un file di risorse univoco. Creare file di risorse per impostazioni cultura e locali diverse creando nuovi file di risorse in cui i codici di lingua ISO sono inclusi nel nome file, ad esempio **en-us**, **fr-ca** e **en-gb**. I codici ISO vengono inseriti tra il nome file e l'estensione *resx* come in *Welcome.es-MX.resx* (spagnolo/Messico).
 
 ## <a name="implement-a-strategy-to-select-the-languageculture-for-each-request"></a>Implementare una strategia per la selezione della lingua o delle impostazioni cultura per ogni richiesta
 
@@ -229,7 +229,7 @@ La localizzazione è configurata nel metodo `Startup.ConfigureServices`:
 
 * `AddLocalization` aggiunge i servizi di localizzazione al contenitore dei servizi. Il codice precedente imposta anche il percorso delle risorse su "Resources".
 
-* `AddViewLocalization` aggiunge il supporto per i file di visualizzazione localizzati. Nell'esempio la localizzazione delle visualizzazioni è basata sul suffisso dei file di visualizzazione. Ad esempio "fr" nel file *Index.fr.cshtml* .
+* `AddViewLocalization` aggiunge il supporto per i file di visualizzazione localizzati. Nell'esempio la localizzazione delle visualizzazioni è basata sul suffisso dei file di visualizzazione. Ad esempio "fr" nel file *Index.fr.cshtml*.
 
 * `AddDataAnnotationsLocalization` aggiunge il supporto per `DataAnnotations` i messaggi di convalida localizzati tramite `IStringLocalizer` astrazioni.
 
@@ -281,19 +281,19 @@ L'[intestazione Accept-Language](https://www.w3.org/International/questions/qa-a
 
 ### <a name="set-the-accept-language-http-header-in-ie"></a>Impostare l'intestazione HTTP Accept-Language in IE
 
-1. Dall'icona a forma di ingranaggio, toccare **Opzioni Internet** .
+1. Dall'icona a forma di ingranaggio, toccare **Opzioni Internet**.
 
-1. Toccare **Lingue** .
+1. Toccare **Lingue**.
 
    ![Opzioni Internet](localization/_static/lang.png)
 
-1. Toccare **Imposta preferenze lingua** .
+1. Toccare **Imposta preferenze lingua**.
 
-1. Toccare **Aggiungi una lingua** .
+1. Toccare **Aggiungi una lingua**.
 
 1. Aggiungere la lingua.
 
-1. Toccare la lingua e quindi toccare **Sposta su** .
+1. Toccare la lingua e quindi toccare **Sposta su**.
 
 ### <a name="use-a-custom-provider"></a>Usare un provider personalizzato
 
@@ -494,7 +494,7 @@ ASP.NET Core consente di specificare due valori di impostazioni cultura, `Suppor
 
 Un file di risorse è un meccanismo utile per la separazione delle stringhe localizzabili dal codice. Le stringhe tradotte per la lingua non predefinita sono isolate nei file di risorse *resx* . È possibile ad esempio che si voglia creare un file di risorse spagnolo denominato *Welcome.es.resx* contenente le stringhe tradotte. "es" è il codice di lingua per lo spagnolo. Per creare questo file di risorse in Visual Studio:
 
-1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella che conterrà il file di risorse > **Aggiungi** > **Nuovo elemento** .
+1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella che conterrà il file di risorse > **Aggiungi** > **Nuovo elemento**.
 
    ![Menu contestuale annidato: in Esplora soluzioni viene visualizzato un menu contestuale per le risorse. Un secondo menu contestuale viene visualizzato per Aggiungi con il comando Nuovo elemento evidenziato.](localization/_static/newi.png)
 
@@ -502,19 +502,19 @@ Un file di risorse è un meccanismo utile per la separazione delle stringhe loca
 
    ![Finestra di dialogo Aggiungi nuovo elemento](localization/_static/res.png)
 
-1. Immettere il valore della chiave (stringa nativa) nella colonna **Nome** e la stringa tradotta nella colonna **Valore** .
+1. Immettere il valore della chiave (stringa nativa) nella colonna **Nome** e la stringa tradotta nella colonna **Valore**.
 
    ![File Welcome.es.resx (file di risorse Welcome per lo spagnolo) con la parola Hello nella colonna Nome e la parola Hola nella colonna Valore](localization/_static/hola.png)
 
-   Visual Studio visualizza il file *Welcome.es.resx* .
+   Visual Studio visualizza il file *Welcome.es.resx*.
 
    ![Esplora soluzioni con il file di risorse Welcome per lo spagnolo (es)](localization/_static/se.png)
 
 ## <a name="resource-file-naming"></a>Denominazione dei file di risorse
 
-Le risorse sono denominate con il nome completo del tipo della relativa classe meno il nome dell'assembly. Ad esempio, una risorsa francese di un progetto il cui assembly principale è `LocalizationWebsite.Web.dll` per la classe `LocalizationWebsite.Web.Startup` viene denominata *Startup.fr.resx* . Una risorsa per la classe `LocalizationWebsite.Web.Controllers.HomeController` viene denominata *Controllers.HomeController.fr.resx* . Se lo spazio dei nomi della classe di destinazione non corrisponde al nome dell'assembly è necessario specificare il nome completo del tipo. Ad esempio, nel progetto di esempio una risorsa per il tipo `ExtraNamespace.Tools` verrebbe denominata *ExtraNamespace.Tools.fr.resx* .
+Le risorse sono denominate con il nome completo del tipo della relativa classe meno il nome dell'assembly. Ad esempio, una risorsa francese di un progetto il cui assembly principale è `LocalizationWebsite.Web.dll` per la classe `LocalizationWebsite.Web.Startup` viene denominata *Startup.fr.resx*. Una risorsa per la classe `LocalizationWebsite.Web.Controllers.HomeController` viene denominata *Controllers.HomeController.fr.resx*. Se lo spazio dei nomi della classe di destinazione non corrisponde al nome dell'assembly è necessario specificare il nome completo del tipo. Ad esempio, nel progetto di esempio una risorsa per il tipo `ExtraNamespace.Tools` verrebbe denominata *ExtraNamespace.Tools.fr.resx*.
 
-Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `ResourcesPath` su "Resources", il percorso relativo del progetto per il file di risorse francese del controller principale è *Resources/Controllers.HomeController.fr.resx* . In alternativa, è possibile usare le cartelle per organizzare i file di risorse. Per il controller principale, il percorso sarà *Resources/Controllers/HomeController.fr.resx* . Se non si usa l'opzione `ResourcesPath`, il file con estensione *resx* viene memorizzato nella directory di base del progetto. Il file di risorse per `HomeController` sarà denominato *Controllers.HomeController.fr.resx* . La scelta di usare la convenzione di denominazione con il punto o il percorso dipende da come si vuole organizzare i file di risorse.
+Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `ResourcesPath` su "Resources", il percorso relativo del progetto per il file di risorse francese del controller principale è *Resources/Controllers.HomeController.fr.resx*. In alternativa, è possibile usare le cartelle per organizzare i file di risorse. Per il controller principale, il percorso sarà *Resources/Controllers/HomeController.fr.resx*. Se non si usa l'opzione `ResourcesPath`, il file con estensione *resx* viene memorizzato nella directory di base del progetto. Il file di risorse per `HomeController` sarà denominato *Controllers.HomeController.fr.resx*. La scelta di usare la convenzione di denominazione con il punto o il percorso dipende da come si vuole organizzare i file di risorse.
 
 | Nome risorsa | Denominazione con il punto o il percorso |
 | ------------   | ------------- |
@@ -541,7 +541,7 @@ Se lo spazio dei nomi radice di un assembly è diverso dal nome dell'assembly:
 * Per impostazione predefinita, la localizzazione non funziona.
 * Le risorse vengono cercate all'interno dell'assembly in un modo che impedisce la localizzazione. `RootNamespace` è un valore necessario in fase di compilazione che non è disponibile per il processo in esecuzione. 
 
-Se l'attributo `RootNamespace` è diverso da `AssemblyName`, includere quanto segue in *AssemblyInfo.cs* , sostituendo i valori dei parametri con quelli effettivi:
+Se l'attributo `RootNamespace` è diverso da `AssemblyName`, includere quanto segue in *AssemblyInfo.cs*, sostituendo i valori dei parametri con quelli effettivi:
 
 ```csharp
 using System.Reflection;
@@ -567,11 +567,11 @@ Ad esempio, se si rimuove l'indicatore delle impostazioni cultura ".fr" e le imp
 
 ### <a name="generate-resource-files-with-visual-studio"></a>Generare file di risorse con Visual Studio
 
-Se si crea un file di risorse in Visual Studio senza le impostazioni cultura nel nome del file (ad esempio, *Welcome.resx* ), Visual Studio crea una classe C# con una proprietà per ogni stringa. In genere questo non è il risultato desiderato quando si usa ASP.NET Core. Solitamente non è presente un file di risorse con estensione *resx* predefinito (un file con estensione *resx* senza nome delle impostazioni cultura). Si consiglia di creare il file con estensione *resx* con un nome delle impostazioni cultura, ad esempio *Welcome.fr.resx* . Quando si crea un file con estensione *resx* con un nome delle impostazioni cultura, Visual Studio non genera il file di classe.
+Se si crea un file di risorse in Visual Studio senza le impostazioni cultura nel nome del file (ad esempio, *Welcome.resx*), Visual Studio crea una classe C# con una proprietà per ogni stringa. In genere questo non è il risultato desiderato quando si usa ASP.NET Core. Solitamente non è presente un file di risorse con estensione *resx* predefinito (un file con estensione *resx* senza nome delle impostazioni cultura). Si consiglia di creare il file con estensione *resx* con un nome delle impostazioni cultura, ad esempio *Welcome.fr.resx*. Quando si crea un file con estensione *resx* con un nome delle impostazioni cultura, Visual Studio non genera il file di classe.
 
 ### <a name="add-other-cultures"></a>Aggiungere altre impostazioni cultura
 
-Ogni combinazione di lingua e impostazioni cultura (diversa dalla lingua predefinita) richiede un file di risorse univoco. Creare file di risorse per impostazioni cultura e locali diverse creando nuovi file di risorse in cui i codici di lingua ISO sono inclusi nel nome file, ad esempio **en-us** , **fr-ca** e **en-gb** . I codici ISO vengono inseriti tra il nome file e l'estensione *resx* come in *Welcome.es-MX.resx* (spagnolo/Messico).
+Ogni combinazione di lingua e impostazioni cultura (diversa dalla lingua predefinita) richiede un file di risorse univoco. Creare file di risorse per impostazioni cultura e locali diverse creando nuovi file di risorse in cui i codici di lingua ISO sono inclusi nel nome file, ad esempio **en-us**, **fr-ca** e **en-gb**. I codici ISO vengono inseriti tra il nome file e l'estensione *resx* come in *Welcome.es-MX.resx* (spagnolo/Messico).
 
 ## <a name="implement-a-strategy-to-select-the-languageculture-for-each-request"></a>Implementare una strategia per la selezione della lingua o delle impostazioni cultura per ogni richiesta
 
@@ -583,7 +583,7 @@ La localizzazione è configurata nel metodo `Startup.ConfigureServices`:
 
 * `AddLocalization` aggiunge i servizi di localizzazione al contenitore dei servizi. Il codice precedente imposta anche il percorso delle risorse su "Resources".
 
-* `AddViewLocalization` aggiunge il supporto per i file di visualizzazione localizzati. Nell'esempio la localizzazione delle visualizzazioni è basata sul suffisso dei file di visualizzazione. Ad esempio "fr" nel file *Index.fr.cshtml* .
+* `AddViewLocalization` aggiunge il supporto per i file di visualizzazione localizzati. Nell'esempio la localizzazione delle visualizzazioni è basata sul suffisso dei file di visualizzazione. Ad esempio "fr" nel file *Index.fr.cshtml*.
 
 * `AddDataAnnotationsLocalization` aggiunge il supporto per `DataAnnotations` i messaggi di convalida localizzati tramite `IStringLocalizer` astrazioni.
 
@@ -637,19 +637,19 @@ L'[intestazione Accept-Language](https://www.w3.org/International/questions/qa-a
 
 ### <a name="set-the-accept-language-http-header-in-ie"></a>Impostare l'intestazione HTTP Accept-Language in IE
 
-1. Dall'icona a forma di ingranaggio, toccare **Opzioni Internet** .
+1. Dall'icona a forma di ingranaggio, toccare **Opzioni Internet**.
 
-1. Toccare **Lingue** .
+1. Toccare **Lingue**.
 
    ![Opzioni Internet](localization/_static/lang.png)
 
-1. Toccare **Imposta preferenze lingua** .
+1. Toccare **Imposta preferenze lingua**.
 
-1. Toccare **Aggiungi una lingua** .
+1. Toccare **Aggiungi una lingua**.
 
 1. Aggiungere la lingua.
 
-1. Toccare la lingua e quindi toccare **Sposta su** .
+1. Toccare la lingua e quindi toccare **Sposta su**.
 
 ### <a name="use-a-custom-provider"></a>Usare un provider personalizzato
 
@@ -849,7 +849,7 @@ ASP.NET Core consente di specificare due valori di impostazioni cultura, `Suppor
 
 Un file di risorse è un meccanismo utile per la separazione delle stringhe localizzabili dal codice. Le stringhe tradotte per la lingua non predefinita sono isolate nei file di risorse *resx* . È possibile ad esempio che si voglia creare un file di risorse spagnolo denominato *Welcome.es.resx* contenente le stringhe tradotte. "es" è il codice di lingua per lo spagnolo. Per creare questo file di risorse in Visual Studio:
 
-1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella che conterrà il file di risorse > **Aggiungi** > **Nuovo elemento** .
+1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella che conterrà il file di risorse > **Aggiungi** > **Nuovo elemento**.
 
    ![Menu contestuale annidato: in Esplora soluzioni viene visualizzato un menu contestuale per le risorse. Un secondo menu contestuale viene visualizzato per Aggiungi con il comando Nuovo elemento evidenziato.](localization/_static/newi.png)
 
@@ -857,19 +857,19 @@ Un file di risorse è un meccanismo utile per la separazione delle stringhe loca
 
    ![Finestra di dialogo Aggiungi nuovo elemento](localization/_static/res.png)
 
-1. Immettere il valore della chiave (stringa nativa) nella colonna **Nome** e la stringa tradotta nella colonna **Valore** .
+1. Immettere il valore della chiave (stringa nativa) nella colonna **Nome** e la stringa tradotta nella colonna **Valore**.
 
    ![File Welcome.es.resx (file di risorse Welcome per lo spagnolo) con la parola Hello nella colonna Nome e la parola Hola nella colonna Valore](localization/_static/hola.png)
 
-   Visual Studio visualizza il file *Welcome.es.resx* .
+   Visual Studio visualizza il file *Welcome.es.resx*.
 
    ![Esplora soluzioni con il file di risorse Welcome per lo spagnolo (es)](localization/_static/se.png)
 
 ## <a name="resource-file-naming"></a>Denominazione dei file di risorse
 
-Le risorse sono denominate con il nome completo del tipo della relativa classe meno il nome dell'assembly. Ad esempio, una risorsa francese di un progetto il cui assembly principale è `LocalizationWebsite.Web.dll` per la classe `LocalizationWebsite.Web.Startup` viene denominata *Startup.fr.resx* . Una risorsa per la classe `LocalizationWebsite.Web.Controllers.HomeController` viene denominata *Controllers.HomeController.fr.resx* . Se lo spazio dei nomi della classe di destinazione non corrisponde al nome dell'assembly è necessario specificare il nome completo del tipo. Ad esempio, nel progetto di esempio una risorsa per il tipo `ExtraNamespace.Tools` verrebbe denominata *ExtraNamespace.Tools.fr.resx* .
+Le risorse sono denominate con il nome completo del tipo della relativa classe meno il nome dell'assembly. Ad esempio, una risorsa francese di un progetto il cui assembly principale è `LocalizationWebsite.Web.dll` per la classe `LocalizationWebsite.Web.Startup` viene denominata *Startup.fr.resx*. Una risorsa per la classe `LocalizationWebsite.Web.Controllers.HomeController` viene denominata *Controllers.HomeController.fr.resx*. Se lo spazio dei nomi della classe di destinazione non corrisponde al nome dell'assembly è necessario specificare il nome completo del tipo. Ad esempio, nel progetto di esempio una risorsa per il tipo `ExtraNamespace.Tools` verrebbe denominata *ExtraNamespace.Tools.fr.resx*.
 
-Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `ResourcesPath` su "Resources", il percorso relativo del progetto per il file di risorse francese del controller principale è *Resources/Controllers.HomeController.fr.resx* . In alternativa, è possibile usare le cartelle per organizzare i file di risorse. Per il controller principale, il percorso sarà *Resources/Controllers/HomeController.fr.resx* . Se non si usa l'opzione `ResourcesPath`, il file con estensione *resx* viene memorizzato nella directory di base del progetto. Il file di risorse per `HomeController` sarà denominato *Controllers.HomeController.fr.resx* . La scelta di usare la convenzione di denominazione con il punto o il percorso dipende da come si vuole organizzare i file di risorse.
+Poiché nel progetto di esempio il metodo `ConfigureServices` imposta `ResourcesPath` su "Resources", il percorso relativo del progetto per il file di risorse francese del controller principale è *Resources/Controllers.HomeController.fr.resx*. In alternativa, è possibile usare le cartelle per organizzare i file di risorse. Per il controller principale, il percorso sarà *Resources/Controllers/HomeController.fr.resx*. Se non si usa l'opzione `ResourcesPath`, il file con estensione *resx* viene memorizzato nella directory di base del progetto. Il file di risorse per `HomeController` sarà denominato *Controllers.HomeController.fr.resx*. La scelta di usare la convenzione di denominazione con il punto o il percorso dipende da come si vuole organizzare i file di risorse.
 
 | Nome risorsa | Denominazione con il punto o il percorso |
 | ------------   | ------------- |
@@ -896,7 +896,7 @@ Se lo spazio dei nomi radice di un assembly è diverso dal nome dell'assembly:
 * Per impostazione predefinita, la localizzazione non funziona.
 * Le risorse vengono cercate all'interno dell'assembly in un modo che impedisce la localizzazione. `RootNamespace` è un valore necessario in fase di compilazione che non è disponibile per il processo in esecuzione. 
 
-Se l'attributo `RootNamespace` è diverso da `AssemblyName`, includere quanto segue in *AssemblyInfo.cs* , sostituendo i valori dei parametri con quelli effettivi:
+Se l'attributo `RootNamespace` è diverso da `AssemblyName`, includere quanto segue in *AssemblyInfo.cs*, sostituendo i valori dei parametri con quelli effettivi:
 
 ```csharp
 using System.Reflection;
@@ -922,11 +922,11 @@ Ad esempio, se si rimuove l'indicatore delle impostazioni cultura ".fr" e le imp
 
 ### <a name="generate-resource-files-with-visual-studio"></a>Generare file di risorse con Visual Studio
 
-Se si crea un file di risorse in Visual Studio senza le impostazioni cultura nel nome del file (ad esempio, *Welcome.resx* ), Visual Studio crea una classe C# con una proprietà per ogni stringa. In genere questo non è il risultato desiderato quando si usa ASP.NET Core. Solitamente non è presente un file di risorse con estensione *resx* predefinito (un file con estensione *resx* senza nome delle impostazioni cultura). Si consiglia di creare il file con estensione *resx* con un nome delle impostazioni cultura, ad esempio *Welcome.fr.resx* . Quando si crea un file con estensione *resx* con un nome delle impostazioni cultura, Visual Studio non genera il file di classe.
+Se si crea un file di risorse in Visual Studio senza le impostazioni cultura nel nome del file (ad esempio, *Welcome.resx*), Visual Studio crea una classe C# con una proprietà per ogni stringa. In genere questo non è il risultato desiderato quando si usa ASP.NET Core. Solitamente non è presente un file di risorse con estensione *resx* predefinito (un file con estensione *resx* senza nome delle impostazioni cultura). Si consiglia di creare il file con estensione *resx* con un nome delle impostazioni cultura, ad esempio *Welcome.fr.resx*. Quando si crea un file con estensione *resx* con un nome delle impostazioni cultura, Visual Studio non genera il file di classe.
 
 ### <a name="add-other-cultures"></a>Aggiungere altre impostazioni cultura
 
-Ogni combinazione di lingua e impostazioni cultura (diversa dalla lingua predefinita) richiede un file di risorse univoco. Creare file di risorse per impostazioni cultura e locali diverse creando nuovi file di risorse in cui i codici di lingua ISO sono inclusi nel nome file, ad esempio **en-us** , **fr-ca** e **en-gb** . I codici ISO vengono inseriti tra il nome file e l'estensione *resx* come in *Welcome.es-MX.resx* (spagnolo/Messico).
+Ogni combinazione di lingua e impostazioni cultura (diversa dalla lingua predefinita) richiede un file di risorse univoco. Creare file di risorse per impostazioni cultura e locali diverse creando nuovi file di risorse in cui i codici di lingua ISO sono inclusi nel nome file, ad esempio **en-us**, **fr-ca** e **en-gb**. I codici ISO vengono inseriti tra il nome file e l'estensione *resx* come in *Welcome.es-MX.resx* (spagnolo/Messico).
 
 ## <a name="implement-a-strategy-to-select-the-languageculture-for-each-request"></a>Implementare una strategia per la selezione della lingua o delle impostazioni cultura per ogni richiesta
 
@@ -938,7 +938,7 @@ La localizzazione è configurata nel metodo `Startup.ConfigureServices`:
 
 * `AddLocalization` aggiunge i servizi di localizzazione al contenitore dei servizi. Il codice precedente imposta anche il percorso delle risorse su "Resources".
 
-* `AddViewLocalization` aggiunge il supporto per i file di visualizzazione localizzati. Nell'esempio la localizzazione delle visualizzazioni è basata sul suffisso dei file di visualizzazione. Ad esempio "fr" nel file *Index.fr.cshtml* .
+* `AddViewLocalization` aggiunge il supporto per i file di visualizzazione localizzati. Nell'esempio la localizzazione delle visualizzazioni è basata sul suffisso dei file di visualizzazione. Ad esempio "fr" nel file *Index.fr.cshtml*.
 
 * `AddDataAnnotationsLocalization` aggiunge il supporto per `DataAnnotations` i messaggi di convalida localizzati tramite `IStringLocalizer` astrazioni.
 
@@ -992,19 +992,19 @@ L'[intestazione Accept-Language](https://www.w3.org/International/questions/qa-a
 
 ### <a name="set-the-accept-language-http-header-in-ie"></a>Impostare l'intestazione HTTP Accept-Language in IE
 
-1. Dall'icona a forma di ingranaggio, toccare **Opzioni Internet** .
+1. Dall'icona a forma di ingranaggio, toccare **Opzioni Internet**.
 
-1. Toccare **Lingue** .
+1. Toccare **Lingue**.
 
    ![Opzioni Internet](localization/_static/lang.png)
 
-1. Toccare **Imposta preferenze lingua** .
+1. Toccare **Imposta preferenze lingua**.
 
-1. Toccare **Aggiungi una lingua** .
+1. Toccare **Aggiungi una lingua**.
 
 1. Aggiungere la lingua.
 
-1. Toccare la lingua e quindi toccare **Sposta su** .
+1. Toccare la lingua e quindi toccare **Sposta su**.
 
 ### <a name="the-content-language-http-header"></a>Intestazione HTTP Content-Language
 

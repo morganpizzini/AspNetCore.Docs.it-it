@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/advanced
 ms.openlocfilehash: 386be395399bf4131e4b6c8cac8221f994e8b7c5
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054385"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Esercitazione: informazioni sugli scenari avanzati-MVC ASP.NET con EF Core
@@ -101,21 +101,21 @@ In *CoursesController.cs* aggiungere i metodi UpdateCourseCredits per HttpGet e 
 
 Quando il controller elabora una richiesta HttpGet, non viene restituito alcun elemento in `ViewData["RowsAffected"]` e la visualizzazione mostra una casella di testo vuota e un pulsante di invio, come illustrato nella figura precedente.
 
-Quando viene fatto clic sul pulsante **Aggiorna** , viene chiamato il metodo HttpPost e il moltiplicatore ha il valore immesso nella casella di testo. Il codice esegue quindi l'SQL che aggiorna i corsi e restituisce il numero di righe interessate nella visualizzazione in `ViewData`. Quando riceve un valore `RowsAffected`, la visualizzazione mostra il numero di righe aggiornate.
+Quando viene fatto clic sul pulsante **Aggiorna**, viene chiamato il metodo HttpPost e il moltiplicatore ha il valore immesso nella casella di testo. Il codice esegue quindi l'SQL che aggiorna i corsi e restituisce il numero di righe interessate nella visualizzazione in `ViewData`. Quando riceve un valore `RowsAffected`, la visualizzazione mostra il numero di righe aggiornate.
 
-In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Views/Courses* e quindi fare clic su **Aggiungi > Nuovo elemento** .
+In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla cartella *Views/Courses* e quindi fare clic su **Aggiungi > Nuovo elemento**.
 
-Nella finestra di dialogo **Aggiungi nuovo elemento** fare clic su **ASP.NET Core** in **installato** nel riquadro sinistro, fare clic su **Razor Visualizza** e denominare la nuova vista *UpdateCourseCredits. cshtml* .
+Nella finestra di dialogo **Aggiungi nuovo elemento** fare clic su **ASP.NET Core** in **installato** nel riquadro sinistro, fare clic su **Razor Visualizza** e denominare la nuova vista *UpdateCourseCredits. cshtml*.
 
 In *Views/Courses/UpdateCourseCredits.cshtml* sostituire il codice del modello con il codice seguente:
 
 [!code-cshtml[](intro/samples/cu/Views/Courses/UpdateCourseCredits.cshtml)]
 
-Eseguire il metodo `UpdateCourseCredits` selezionando la scheda **Courses** , quindi aggiungendo "/UpdateCourseCredits" alla fine dell'URL nella barra degli indirizzi del browser (ad esempio: `http://localhost:5813/Courses/UpdateCourseCredits`). Immettere un numero nella casella di testo:
+Eseguire il metodo `UpdateCourseCredits` selezionando la scheda **Courses**, quindi aggiungendo "/UpdateCourseCredits" alla fine dell'URL nella barra degli indirizzi del browser (ad esempio: `http://localhost:5813/Courses/UpdateCourseCredits`). Immettere un numero nella casella di testo:
 
 ![Pagina di aggiornamento dei crediti dei corsi](advanced/_static/update-credits.png)
 
-Fare clic su **Update** . Viene visualizzato il numero di righe interessate:
+Fare clic su **Update**. Viene visualizzato il numero di righe interessate:
 
 ![Righe interessate della pagina Update Course Credits](advanced/_static/update-credits-rows-affected.png)
 
@@ -159,7 +159,7 @@ Si noti che il codice SQL seleziona un massimo di 2 righe (`TOP(2)`) dalla tabel
 * Se la query restituisse più righe, il metodo restituirebbe un valore Null.
 * Per determinare se la query restituirà più righe, EF deve controllare se restituisce almeno 2 righe.
 
-Si noti che non è necessario usare la modalità di debug e arrestarsi in un punto di interruzione per visualizzare l'output di registrazione nella finestra **Output** . Si tratta soltanto di un metodo pratico per arrestare la registrazione nel punto in cui si desidera visualizzare l'output. Se non si esegue questa operazione, la registrazione continua ed è necessario scorrere indietro per individuare le parti desiderate.
+Si noti che non è necessario usare la modalità di debug e arrestarsi in un punto di interruzione per visualizzare l'output di registrazione nella finestra **Output**. Si tratta soltanto di un metodo pratico per arrestare la registrazione nel punto in cui si desidera visualizzare l'output. Se non si esegue questa operazione, la registrazione continua ed è necessario scorrere indietro per individuare le parti desiderate.
 
 ## <a name="create-an-abstraction-layer"></a>Creare un livello di astrazione
 
@@ -225,7 +225,7 @@ Messaggio di errore:
 
 Soluzione:
 
-Arrestare il sito in IIS Express. Passare alla barra delle applicazioni di Windows, trovare IIS Express e fare clic con il pulsante destro del mouse sull'icona, selezionare il sito Contoso University e quindi fare clic su **Arresta sito** .
+Arrestare il sito in IIS Express. Passare alla barra delle applicazioni di Windows, trovare IIS Express e fare clic con il pulsante destro del mouse sull'icona, selezionare il sito Contoso University e quindi fare clic su **Arresta sito**.
 
 ### <a name="migration-scaffolded-with-no-code-in-up-and-down-methods"></a>Migrazione con scaffolding senza codice nei metodi Up e Down
 
@@ -243,7 +243,7 @@ Quando si apportano modifiche allo schema in un database con dati esistenti è p
 
 L'approccio più semplice consiste nel rinominare il database in *appsettings.json* . Alla successiva esecuzione di `database update`, verrà creato un nuovo database.
 
-Per eliminare un database in SSOX, fare clic con il pulsante destro del mouse sul database, fare clic su **Elimina** e quindi nella finestra di dialogo **Elimina database** selezionare **Chiudi connessioni esistenti** e fare clic su **OK** .
+Per eliminare un database in SSOX, fare clic con il pulsante destro del mouse sul database, fare clic su **Elimina** e quindi nella finestra di dialogo **Elimina database** selezionare **Chiudi connessioni esistenti** e fare clic su **OK**.
 
 Per eliminare un database tramite l'interfaccia CLI, eseguire il comando CLI `database drop`:
 

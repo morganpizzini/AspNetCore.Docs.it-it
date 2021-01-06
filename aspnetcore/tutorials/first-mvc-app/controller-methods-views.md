@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
 ms.openlocfilehash: b4850821317b6907452793ef09194844c90c0137
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93050771"
 ---
 # <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>Parte 6, metodi e viste del controller in ASP.NET Core
@@ -44,7 +44,7 @@ Passare al controller `Movies` e posizionare il puntatore del mouse su un colleg
 
 ![Finestra del browser con il passaggio del mouse sul collegamento Edit (Modifica) e un URL di collegamento di https://localhost:5001/Movies/Edit/5](~/tutorials/first-mvc-app/controller-methods-views/_static/edit7.png)
 
-I collegamenti **Edit** (Modifica), **Details** (Dettagli) e **Delete** (Elimina) vengono generati dall'helper per i tag di ancoraggio di Core MVC nel file *Views/Movies/Index.cshtml* .
+I collegamenti **Edit** (Modifica), **Details** (Dettagli) e **Delete** (Elimina) vengono generati dall'helper per i tag di ancoraggio di Core MVC nel file *Views/Movies/Index.cshtml*.
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
 
@@ -58,7 +58,7 @@ Gli [Helper Tag](xref:mvc/views/tag-helpers/intro) consentono al codice lato ser
 </td>
 ```
 
-Tenere presente il formato per il [routing](xref:mvc/controllers/routing) impostato nel file *Startup.cs* :
+Tenere presente il formato per il [routing](xref:mvc/controllers/routing) impostato nel file *Startup.cs*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
@@ -108,7 +108,7 @@ Si noti che il secondo metodo di azione `Edit` è preceduto dall'attributo `[Htt
 
 L'attributo `HttpPost` specifica che questo metodo `Edit` può essere richiamato *solo* per le richieste `POST`. È possibile applicare l'attributo `[HttpGet]` al primo metodo di modifica, ma non è necessario perché l'impostazione predefinita è `[HttpGet]`.
 
-L'attributo `ValidateAntiForgeryToken` viene usato per [impedire la falsificazione di una richiesta](xref:security/anti-request-forgery) ed è accoppiato a un token antifalsificazione generato nel file di vista di modifica ( *Views/Movies/Edit.cshtml* ). Il file di vista di modifica genera il token antifalsificazione con l'[helper tag di modulo](xref:mvc/views/working-with-forms).
+L'attributo `ValidateAntiForgeryToken` viene usato per [impedire la falsificazione di una richiesta](xref:security/anti-request-forgery) ed è accoppiato a un token antifalsificazione generato nel file di vista di modifica (*Views/Movies/Edit.cshtml*). Il file di vista di modifica genera il token antifalsificazione con l'[helper tag di modulo](xref:mvc/views/working-with-forms).
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
 
@@ -152,7 +152,7 @@ L'attributo `[ValidateAntiForgeryToken]` convalida il token [XSRF](xref:security
 
 Il sistema di [associazione di modelli](xref:mvc/models/model-binding) accetta i valori del modulo inseriti e crea un oggetto `Movie` passato come parametro `movie`. La `ModelState.IsValid` proprietà verifica che i dati inviati nel form possano essere utilizzati per modificare (modificare o aggiornare) un `Movie` oggetto. Se sono validi, i dati vengono salvati. I dati dei film aggiornati (modificati) vengono salvati nel database chiamando il metodo `SaveChangesAsync` del contesto di database. Dopo avere salvato i dati, il codice reindirizza l'utente al metodo di azione `Index` della classe `MoviesController`, che visualizza la raccolta di film, incluse le modifiche appena apportate.
 
-Prima di inviare il modulo al server, la convalida sul lato client controlla tutte le regole di convalida nei campi. Se sono presenti errori di convalida, viene visualizzato un messaggio di errore e il modulo non viene inviato. Se JavaScript è disabilitato, non verrà eseguita la convalida sul lato client, ma il server rileverà i valori inviati non validi e i valori del modulo verranno visualizzati nuovamente con messaggi di errore. Più avanti in questa esercitazione la [convalida del modello](xref:mvc/models/validation) verrà esaminata in maggiore dettaglio. L' [helper tag di convalida](xref:mvc/views/working-with-forms) nel modello di vista *Views/Movies/Edit.cshtml* gestisce la visualizzazione dei messaggi di errore appropriati.
+Prima di inviare il modulo al server, la convalida sul lato client controlla tutte le regole di convalida nei campi. Se sono presenti errori di convalida, viene visualizzato un messaggio di errore e il modulo non viene inviato. Se JavaScript è disabilitato, non verrà eseguita la convalida sul lato client, ma il server rileverà i valori inviati non validi e i valori del modulo verranno visualizzati nuovamente con messaggi di errore. Più avanti in questa esercitazione la [convalida del modello](xref:mvc/models/validation) verrà esaminata in maggiore dettaglio. L'[helper tag di convalida](xref:mvc/views/working-with-forms) nel modello di vista *Views/Movies/Edit.cshtml* gestisce la visualizzazione dei messaggi di errore appropriati.
 
 ![Vista Edit (Modifica): un'eccezione per un valore di prezzo non corretto di abc indica che il campo del prezzo deve essere un numero. Un'eccezione per un valore della data di rilascio non corretto di xyz indica di immettere una data valida.](~/tutorials/first-mvc-app/controller-methods-views/_static/val.png)
 

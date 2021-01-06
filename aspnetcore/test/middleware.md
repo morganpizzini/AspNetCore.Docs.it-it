@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: test/middleware
 ms.openlocfilehash: 2dd5fa127af4432c612bb654d50eb4147aea6868
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93051434"
 ---
 # <a name="test-aspnet-core-middleware"></a>Test del middleware ASP.NET Core
@@ -68,7 +68,7 @@ Invia una richiesta tramite <xref:System.Net.Http.HttpClient> :
 
 Asserire il risultato. Prima di tutto, creare un'asserzione anziché il risultato previsto. Un'esecuzione iniziale con un'asserzione falsa positiva conferma che il test ha esito negativo quando il middleware viene eseguito correttamente. Eseguire il test e verificare che il test abbia esito negativo.
 
-Nell'esempio seguente il middleware deve restituire un codice di stato 404 ( *non trovato* ) quando viene richiesto l'endpoint radice. Eseguire la prima esecuzione dei test con `Assert.NotEqual( ... );` , che dovrebbe avere esito negativo:
+Nell'esempio seguente il middleware deve restituire un codice di stato 404 (*non trovato*) quando viene richiesto l'endpoint radice. Eseguire la prima esecuzione dei test con `Assert.NotEqual( ... );` , che dovrebbe avere esito negativo:
 
 [!code-csharp[](middleware/samples_snapshot/3.x/false-failure-check.cs?highlight=22)]
 
@@ -136,13 +136,13 @@ Come per l'esempio precedente che ha testato una risposta *404 non trovata* , co
 TestServer
 
 * È stato creato per replicare i comportamenti del server nel middleware di test.
-* Does * **not** _ provare a replicare tutti i <xref:System.Net.Http.HttpClient> comportamenti.
+* Does ***not** _ provare a replicare tutti i <xref:System.Net.Http.HttpClient> comportamenti.
 _ Tenta di concedere al client l'accesso a un maggior controllo sul server e con la massima visibilità su ciò che accade nel server. Ad esempio, può generare eccezioni non generate normalmente da `HttpClient` per comunicare direttamente lo stato del server.
 * Per impostazione predefinita, alcune intestazioni specifiche del trasporto non vengono impostate perché non sono in genere rilevanti per il middleware. Per ulteriori informazioni, vedere la sezione successiva.
 
 ### <a name="content-length-and-transfer-encoding-headers"></a>Intestazioni Content-Length e Transfer-Encoding
 
-TestServer esegue * **not** _ imposta le intestazioni di richiesta o risposta relative al trasporto, ad esempio la [lunghezza del contenuto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length) o la [codifica di trasferimento](https://developer.mozilla.org/docs/Web/HTTP/Headers/Transfer-Encoding). Le applicazioni devono evitare a seconda di queste intestazioni perché l'utilizzo varia in base a client, scenario e protocollo. Se `Content-Length` e `Transfer-Encoding` sono necessari per testare uno scenario specifico, è possibile specificarli nel test quando si compone <xref:System.Net.Http.HttpRequestMessage> o <xref:Microsoft.AspNetCore.Http.HttpContext> . Per ulteriori informazioni, vedere i seguenti problemi di GitHub:
+TestServer esegue ***not** _ imposta le intestazioni di richiesta o risposta relative al trasporto, ad esempio la [lunghezza del contenuto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length) o la [codifica di trasferimento](https://developer.mozilla.org/docs/Web/HTTP/Headers/Transfer-Encoding). Le applicazioni devono evitare a seconda di queste intestazioni perché l'utilizzo varia in base a client, scenario e protocollo. Se `Content-Length` e `Transfer-Encoding` sono necessari per testare uno scenario specifico, è possibile specificarli nel test quando si compone <xref:System.Net.Http.HttpRequestMessage> o <xref:Microsoft.AspNetCore.Http.HttpContext> . Per ulteriori informazioni, vedere i seguenti problemi di GitHub:
 
 _ [DotNet/aspnetcore # 21677](https://github.com/dotnet/aspnetcore/issues/21677)
 * [DotNet/aspnetcore # 18463](https://github.com/dotnet/aspnetcore/issues/18463)

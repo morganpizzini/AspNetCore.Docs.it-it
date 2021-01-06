@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: spa/angular
 ms.openlocfilehash: 2fff0d60b71bbbab9347dbe74cad023264247388
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054567"
 ---
 # <a name="use-the-angular-project-template-with-aspnet-core"></a>Usare il modello di progetto per Angular con ASP.NET Core
@@ -66,11 +66,11 @@ Now listening on: http://localhost:<port>
 Passare a questo URL in un browser.
 
 > [!WARNING]
-> L'app avvia in background un'istanza del server dell'interfaccia della riga di comando di Angular. Viene registrato un messaggio simile al seguente: *ng Live server di sviluppo è in ascolto su localhost: &lt; otherport &gt; , apre un browser a http://localhost:&lt ; otherport &gt; /* . Ignorare questo messaggio: **non** si tratta dell'URL per l'app combinata per ASP.NET Core e l'interfaccia della riga di comando di Angular.
+> L'app avvia in background un'istanza del server dell'interfaccia della riga di comando di Angular. Viene registrato un messaggio simile al seguente: *ng Live server di sviluppo è in ascolto su localhost: &lt; otherport &gt; , apre un browser a http://localhost:&lt ; otherport &gt; /*. Ignorare questo messaggio: **non** si tratta dell'URL per l'app combinata per ASP.NET Core e l'interfaccia della riga di comando di Angular.
 
 ---
 
-Il modello di progetto crea un'app ASP.NET Core e un'app Angular. L'app ASP.NET Core è destinata all'uso per l'accesso ai dati, l'autorizzazione e altri elementi sul lato server. L'app Angular, disponibile nella sottodirectory *ClientApp* , è destinata all'uso per tutti gli aspetti relativi all'interfaccia utente.
+Il modello di progetto crea un'app ASP.NET Core e un'app Angular. L'app ASP.NET Core è destinata all'uso per l'accesso ai dati, l'autorizzazione e altri elementi sul lato server. L'app Angular, disponibile nella sottodirectory *ClientApp*, è destinata all'uso per tutti gli aspetti relativi all'interfaccia utente.
 
 ## <a name="add-pages-images-styles-modules-etc"></a>Aggiungere pagine, immagini, stili, moduli e così via.
 
@@ -80,7 +80,7 @@ Vi sono piccole differenze tra l'app Angular creata tramite questo modello e que
 
 ## <a name="run-ng-commands"></a>Eseguire i comandi ng
 
-In un prompt dei comandi passare alla sottodirectory *ClientApp* :
+In un prompt dei comandi passare alla sottodirectory *ClientApp*:
 
 ```console
 cd ClientApp
@@ -92,7 +92,7 @@ Se lo strumento `ng` non è installato, eseguire `npm run ng`. Ad esempio, è po
 
 ## <a name="install-npm-packages"></a>Installa nuovi pacchetti npm
 
-Per installare i pacchetti npm di terze parti, usare un prompt dei comandi nella sottodirectory *ClientApp* . Ad esempio:
+Per installare i pacchetti npm di terze parti, usare un prompt dei comandi nella sottodirectory *ClientApp*. Ad esempio:
 
 ```console
 cd ClientApp
@@ -121,7 +121,7 @@ Questa configurazione predefinita presenta tuttavia uno svantaggio. Ogni volta c
     ```
 
     > [!IMPORTANT]
-    > Usare `npm start` per avviare il server di sviluppo dell'interfaccia della riga di comando di Angular, anziché `ng serve`, in modo che la configurazione in *package.json* venga rispettata. Per passare parametri aggiuntivi al server dell'interfaccia della riga di comando di Angular, aggiungerli alla riga appropriata `scripts` nel file *package.json* .
+    > Usare `npm start` per avviare il server di sviluppo dell'interfaccia della riga di comando di Angular, anziché `ng serve`, in modo che la configurazione in *package.json* venga rispettata. Per passare parametri aggiuntivi al server dell'interfaccia della riga di comando di Angular, aggiungerli alla riga appropriata `scripts` nel file *package.json*.
 
 2. Modificare l'app ASP.NET Core in modo da usare l'istanza dell'interfaccia della riga di comando di Angular esterna anziché avviarne una autonomamente. Nella classe *Startup* sostituire la chiamata `spa.UseAngularCliServer` con quanto segue:
 
@@ -133,7 +133,7 @@ All'avvio dell'app ASP.NET Core, questa non avvierà un server dell'interfaccia 
 
 ### <a name="pass-data-from-net-code-into-typescript-code"></a>Passare dati dal codice .NET nel codice TypeScript
 
-Durante il rendering lato server, potrebbe essere necessario passare dati per ogni richiesta dall'app ASP.NET Core nell'app Angular. Ad esempio, è possibile passare cookie informazioni o leggere da un database. A tale scopo, modificare la classe *Startup* . Nel callback per `UseSpaPrerendering`, impostare un valore per `options.SupplyData` come il seguente:
+Durante il rendering lato server, potrebbe essere necessario passare dati per ogni richiesta dall'app ASP.NET Core nell'app Angular. Ad esempio, è possibile passare cookie informazioni o leggere da un database. A tale scopo, modificare la classe *Startup*. Nel callback per `UseSpaPrerendering`, impostare un valore per `options.SupplyData` come il seguente:
 
 ```csharp
 options.SupplyData = (context, data) =>
@@ -152,7 +152,7 @@ Non tutte le app traggono vantaggio dal rendering lato server. Il vantaggio prin
 Allo stesso tempo, l'abilitazione del rendering lato server presenta alcuni svantaggi significativi. Aumenta la complessità del processo di sviluppo. Il codice deve essere eseguito in due diversi ambienti: lato client e lato server (in un ambiente Node.js richiamato da ASP.NET Core). Di seguito sono illustrati alcuni aspetti da tenere presente:
 
 * Il rendering lato server richiede un'installazione di Node.js nei server di produzione. Ciò avviene automaticamente per alcuni scenari di distribuzione, ad esempio Servizio app di Azure, ma non per altri, come Azure Service Fabric.
-* L'abilitazione del flag di compilazione `BuildServerSideRenderer` determina la pubblicazione della directory *node_modules* . Questa cartella contiene oltre 20.000 file, che aumentano il tempo di distribuzione.
+* L'abilitazione del flag di compilazione `BuildServerSideRenderer` determina la pubblicazione della directory *node_modules*. Questa cartella contiene oltre 20.000 file, che aumentano il tempo di distribuzione.
 * Per eseguire il codice in un ambiente Node.js, non è possibile basarsi sull'esistenza di API JavaScript specifiche del browser, come `window` o `localStorage`. Se il codice (o una libreria di terze parti a cui si fa riferimento) tenta di usare queste API, verrà visualizzato un errore durante il rendering lato server. Ad esempio, non usare jQuery perché fa riferimento ad API specifiche del browser in numerose posizioni. Per evitare errori, è necessario non usare il rendering lato server o evitare API o librerie specifiche del browser. È possibile eseguire il wrapping di tutte le chiamate a tali API nei controlli per assicurarsi che non vengano richiamate durante il rendering lato server. Nel codice JavaScript o TypeScript, ad esempio, usare un controllo simile al seguente:
 
     ```javascript

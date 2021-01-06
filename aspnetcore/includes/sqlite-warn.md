@@ -11,7 +11,7 @@
 > * Eliminazione della tabella precedente.
 > * Ridenominazione della nuova tabella.
 >
-> La scrittura di codice specifico del database di questo tipo esula dall'ambito di questa esercitazione. Al contrario, in questa esercitazione viene eliminato e ricreato il database ogni volta che un tentativo di applicare una migrazione ha esito negativo. Per altre informazioni, vedere le seguenti risorse:
+> La scrittura di codice specifico del database di questo tipo esula dall'ambito di questa esercitazione. Al contrario, in questa esercitazione viene eliminato e ricreato il database ogni volta che un tentativo di applicare una migrazione ha esito negativo. Per altre informazioni, vedere le risorse seguenti:
 >
 > * [Limitazioni del provider di database SQLite per EF Core](/ef/core/providers/sqlite/limitations)
 > * [Personalizzare il codice di migrazione](/ef/core/managing-schemas/migrations/#customize-migration-code)

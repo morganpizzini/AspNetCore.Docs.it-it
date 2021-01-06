@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/websockets
 ms.openlocfilehash: 83a41d503b2d56bca3f1bac14eeb9d54a8257642
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93057778"
 ---
 # <a name="websockets-support-in-aspnet-core"></a>Supporto di WebSocket in ASP.NET Core
@@ -128,7 +128,7 @@ Se il client non invia messaggi con una certa frequenza e non si vuole impostare
 
 ## <a name="websocket-origin-restriction"></a>Restrizione per le origini WebSocket
 
-La protezione fornita da CORS non si applica agli oggetti WebSocket. I browser **non** :
+La protezione fornita da CORS non si applica agli oggetti WebSocket. I browser **non**:
 
 * Eseguono richieste CORS preventive.
 * Rispettano le restrizioni specificate nelle intestazioni `Access-Control` quando eseguono richieste WebSocket.
@@ -158,13 +158,13 @@ Per abilitare il supporto per il protocollo WebSocket in Windows Server 2012 o v
 > [!NOTE]
 > Questi passaggi non sono necessari quando si usa IIS Express
 
-1. Usare la procedura guidata **Aggiungi ruoli e funzionalità** accessibile tramite il menu **Gestisci** o il collegamento in **Server Manager** .
-1. Selezionare **Installazione basata su ruoli o basata su funzionalità** . Selezionare **Avanti** .
-1. Selezionare il server appropriato (il server locale è selezionato per impostazione predefinita). Selezionare **Avanti** .
-1. Espandere **Server Web (IIS)** nella struttura **Ruoli** , espandere **Server Web** , quindi **Sviluppo applicazioni** .
-1. Selezionare **Protocollo WebSocket** . Selezionare **Avanti** .
-1. Se non sono necessarie le funzionalità aggiuntive, selezionare **Avanti** .
-1. Selezionare **Installa** .
+1. Usare la procedura guidata **Aggiungi ruoli e funzionalità** accessibile tramite il menu **Gestisci** o il collegamento in **Server Manager**.
+1. Selezionare **Installazione basata su ruoli o basata su funzionalità**. Selezionare **Avanti**.
+1. Selezionare il server appropriato (il server locale è selezionato per impostazione predefinita). Selezionare **Avanti**.
+1. Espandere **Server Web (IIS)** nella struttura **Ruoli**, espandere **Server Web**, quindi **Sviluppo applicazioni**.
+1. Selezionare **Protocollo WebSocket**. Selezionare **Avanti**.
+1. Se non sono necessarie le funzionalità aggiuntive, selezionare **Avanti**.
+1. Selezionare **Installa**.
 1. Al termine dell'installazione, selezionare **Chiudi** per chiudere la procedura guidata.
 
 Per abilitare il supporto per il protocollo WebSocket in Windows 8 o versioni successive:
@@ -173,12 +173,12 @@ Per abilitare il supporto per il protocollo WebSocket in Windows 8 o versioni su
 > Questi passaggi non sono necessari quando si usa IIS Express
 
 1. Passare a **Pannello di controllo**  >  **programmi** programmi  >  **e funzionalità**  >  **attiva o disattiva funzionalità Windows** (lato sinistro dello schermo).
-1. Aprire i nodi seguenti: **Internet Information Services**  >  funzionalità di sviluppo di applicazioni **World Wide Web Services**  >  **Application Development Features** .
-1. Selezionare la funzionalità **Protocollo WebSocket** . Selezionare **OK** .
+1. Aprire i nodi seguenti: **Internet Information Services**  >  funzionalità di sviluppo di applicazioni **World Wide Web Services**  >  .
+1. Selezionare la funzionalità **Protocollo WebSocket**. Selezionare **OK**.
 
 ### <a name="disable-websocket-when-using-socketio-on-nodejs"></a>Disabilitare WebSocket quando si usa socket.io su node.js
 
-Se si usa il supporto WebSocket in [Socket.io](https://socket.io/) in [Node.js](https://nodejs.org/), disabilitare il modulo WebSocket IIS predefinito usando l' `webSocket` elemento in *web.config* o *applicationHost.config* . Se questo passaggio non viene eseguito, il modulo WebSocket di IIS tenta di gestire la comunicazione WebSocket anziché Node.js e l'app.
+Se si usa il supporto WebSocket in [Socket.io](https://socket.io/) in [Node.js](https://nodejs.org/), disabilitare il modulo WebSocket IIS predefinito usando l' `webSocket` elemento in *web.config* o *applicationHost.config*. Se questo passaggio non viene eseguito, il modulo WebSocket di IIS tenta di gestire la comunicazione WebSocket anziché Node.js e l'app.
 
 ```xml
 <system.webServer>

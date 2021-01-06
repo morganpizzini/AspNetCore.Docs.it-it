@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: client-side/libman/libman-cli
 ms.openlocfilehash: dad9136439b61ad98523061d181fe44d3bf1273d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054749"
 ---
 # <a name="use-the-libman-cli-with-aspnet-core"></a>Usare l'interfaccia della riga di comando di LibMan con ASP.NET Core
@@ -119,17 +119,17 @@ Per il comando `libman init` sono disponibili le opzioni seguenti:
 
 * `-d|--default-destination <PATH>`
 
-  Percorso relativo alla cartella corrente. Se non `destination` è stata definita alcuna proprietà per una libreria in *libman.json* , i file di libreria vengono installati in questo percorso. Il `<PATH>` valore viene scritto nella `defaultDestination` proprietà di *libman.jssu* .
+  Percorso relativo alla cartella corrente. Se non `destination` è stata definita alcuna proprietà per una libreria in *libman.json*, i file di libreria vengono installati in questo percorso. Il `<PATH>` valore viene scritto nella `defaultDestination` proprietà di *libman.jssu*.
 
 * `-p|--default-provider <PROVIDER>`
 
-  Provider da utilizzare se non è definito alcun provider per una determinata libreria. Il `<PROVIDER>` valore viene scritto nella `defaultProvider` proprietà di *libman.jssu* . Sostituire `<PROVIDER>` con uno dei valori seguenti:
+  Provider da utilizzare se non è definito alcun provider per una determinata libreria. Il `<PROVIDER>` valore viene scritto nella `defaultProvider` proprietà di *libman.jssu*. Sostituire `<PROVIDER>` con uno dei valori seguenti:
 
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 Per creare un *libman.jssu* file in un progetto ASP.NET Core:
 
@@ -179,7 +179,7 @@ Per il comando `libman install` sono disponibili le opzioni seguenti:
 
 * `-d|--destination <PATH>`
 
-  Percorso in cui installare la libreria. Se non specificato, viene utilizzato il percorso predefinito. Se non `defaultDestination` è specificata alcuna proprietà in *libman.json* , questa opzione è obbligatoria.
+  Percorso in cui installare la libreria. Se non specificato, viene utilizzato il percorso predefinito. Se non `defaultDestination` è specificata alcuna proprietà in *libman.json*, questa opzione è obbligatoria.
 
 * `--files <FILE>`
 
@@ -191,11 +191,11 @@ Per il comando `libman install` sono disponibili le opzioni seguenti:
   
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
-  Se non è specificato, `defaultProvider` viene utilizzata la proprietà in *libman.js* . Se non `defaultProvider` è specificata alcuna proprietà in *libman.json* , questa opzione è obbligatoria.
+  Se non è specificato, `defaultProvider` viene utilizzata la proprietà in *libman.js* . Se non `defaultProvider` è specificata alcuna proprietà in *libman.json*, questa opzione è obbligatoria.
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 Si considerino i *libman.jsseguenti nel* file:
 
@@ -273,7 +273,7 @@ Dopo aver accettato la destinazione predefinita, il *libman.jsnel* file è simil
 
 ## <a name="restore-library-files"></a>Ripristinare i file di libreria
 
-Il `libman restore` comando installa i file di libreria definiti in *libman.json* . Sono applicabili le regole seguenti:
+Il `libman restore` comando installa i file di libreria definiti in *libman.json*. Sono applicabili le regole seguenti:
 
 * Se nella radice del progetto non è presente alcun *libman.js* nel file, viene restituito un errore.
 * Se una libreria specifica un provider, la `defaultProvider` Proprietà in *libman.js* in viene ignorata.
@@ -292,9 +292,9 @@ Per il comando `libman restore` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
-Per ripristinare i file di libreria definiti in *libman.jsin* :
+Per ripristinare i file di libreria definiti in *libman.jsin*:
 
 ```console
 libman restore
@@ -317,7 +317,7 @@ Per il comando `libman clean` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 Per eliminare i file di libreria installati tramite LibMan:
 
@@ -329,8 +329,8 @@ libman clean
 
 Il `libman uninstall` comando:
 
-* Elimina tutti i file associati alla libreria specificata dalla destinazione nel *libman.js* .
-* Rimuove la configurazione della libreria associata dal *libman.js* .
+* Elimina tutti i file associati alla libreria specificata dalla destinazione nel *libman.js*.
+* Rimuove la configurazione della libreria associata dal *libman.js*.
 
 Si verifica un errore quando:
 
@@ -358,7 +358,7 @@ Per il comando `libman uninstall` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 Si considerino i *libman.jsseguenti nel* file:
 
@@ -418,7 +418,7 @@ Per il comando `libman update` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 * Per aggiornare jQuery alla versione più recente:
 
@@ -472,7 +472,7 @@ Per il comando `libman cache` sono disponibili le opzioni seguenti:
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a>Esempio
+### <a name="examples"></a>Esempi
 
 * Per visualizzare i nomi delle librerie memorizzate nella cache per ogni provider, usare uno dei comandi seguenti:
 

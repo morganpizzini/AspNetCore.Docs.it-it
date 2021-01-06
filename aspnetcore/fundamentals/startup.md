@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/startup
 ms.openlocfilehash: 747b13abb0ce3fed2d1dc018c6dbf82db1ae7130
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93052240"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Avvio dell'app in ASP.NET Core
@@ -38,7 +38,7 @@ La classe `Startup` configura i servizi e la pipeline delle richieste dell'app.
 
 Le app ASP.NET Core usano una classe `Startup` denominata `Startup` per convenzione. La classe `Startup`:
 
-* Include facoltativamente un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> per configurare i *servizi* dell'app. Un servizio è un componente riutilizzabile che fornisce la funzionalità delle app. I servizi *registered* vengono registrati `ConfigureServices` e utilizzati nell'app tramite l' [inserimento DI dipendenze (di)](xref:fundamentals/dependency-injection) o <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*> .
+* Include facoltativamente un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> per configurare i *servizi* dell'app. Un servizio è un componente riutilizzabile che fornisce la funzionalità delle app. I servizi  vengono registrati `ConfigureServices` e utilizzati nell'app tramite l' [inserimento DI dipendenze (di)](xref:fundamentals/dependency-injection) o <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*> .
 * Include un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> per creare la pipeline di elaborazione delle richieste dell'app.
 
 `ConfigureServices` e `Configure` sono chiamate dal runtime di ASP.NET Core all'avvio dell'app:
@@ -173,7 +173,7 @@ Un'implementazione <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> consente 
 
 Le app ASP.NET Core usano una classe `Startup` denominata `Startup` per convenzione. La classe `Startup`:
 
-* Include facoltativamente un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> per configurare i *servizi* dell'app. Un servizio è un componente riutilizzabile che fornisce la funzionalità delle app. I servizi *registered* vengono registrati `ConfigureServices` e utilizzati nell'app tramite l' [inserimento DI dipendenze (di)](xref:fundamentals/dependency-injection) o <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*> .
+* Include facoltativamente un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> per configurare i *servizi* dell'app. Un servizio è un componente riutilizzabile che fornisce la funzionalità delle app. I servizi  vengono registrati `ConfigureServices` e utilizzati nell'app tramite l' [inserimento DI dipendenze (di)](xref:fundamentals/dependency-injection) o <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*> .
 * Include un metodo <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> per creare la pipeline di elaborazione delle richieste dell'app.
 
 `ConfigureServices` e `Configure` sono chiamate dal runtime di ASP.NET Core all'avvio dell'app:

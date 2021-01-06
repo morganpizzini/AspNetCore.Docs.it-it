@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: test/troubleshoot
 ms.openlocfilehash: 8e6c640cd775e5d4cbe6e34c1cecc391baf57344
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059572"
 ---
 # <a name="troubleshoot-and-debug-aspnet-core-projects"></a>Risolvere i problemi ed eseguire il debug di progetti ASP.NET Core
@@ -50,7 +50,7 @@ Questo avviso viene visualizzato quando vengono installate entrambe le versioni 
 * Il .NET Core SDK a 32 bit è stato installato da un'altra applicazione.
 * È stata scaricata e installata la versione errata.
 
-Disinstallare la .NET Core SDK a 32 bit per evitare questo avviso. Disinstallare da **Pannello di controllo**  >  **programmi e funzionalità**  >  **disinstallare o modificare un programma** . Se si comprende il motivo per cui si verifica l'avviso e le relative implicazioni, è possibile ignorare l'avviso.
+Disinstallare la .NET Core SDK a 32 bit per evitare questo avviso. Disinstallare da **Pannello di controllo**  >  **programmi e funzionalità**  >  **disinstallare o modificare un programma**. Se si comprende il motivo per cui si verifica l'avviso e le relative implicazioni, è possibile ignorare l'avviso.
 
 ### <a name="the-net-core-sdk-is-installed-in-multiple-locations"></a>Il .NET Core SDK viene installato in più posizioni
 
@@ -58,9 +58,9 @@ Nella finestra di dialogo **nuovo progetto** per ASP.NET Core, è possibile che 
 
 > Il .NET Core SDK viene installato in più posizioni. Vengono visualizzati solo i modelli degli SDK installati in ' C: \\ programmi \\ DotNet \\ SDK \\ '.
 
-Questo messaggio viene visualizzato quando si dispone di almeno un'installazione del .NET Core SDK in una directory al di fuori di *C: \\ Program Files \\ DotNet \\ SDK \\* . Questa situazione si verifica in genere quando il .NET Core SDK è stato distribuito in un computer tramite copia/incolla anziché il programma di installazione MSI.
+Questo messaggio viene visualizzato quando si dispone di almeno un'installazione del .NET Core SDK in una directory al di fuori di *C: \\ Program Files \\ DotNet \\ SDK \\*. Questa situazione si verifica in genere quando il .NET Core SDK è stato distribuito in un computer tramite copia/incolla anziché il programma di installazione MSI.
 
-Disinstallare tutti i runtime e gli SDK di .NET Core a 32 bit per evitare questo avviso. Disinstallare da **Pannello di controllo**  >  **programmi e funzionalità**  >  **disinstallare o modificare un programma** . Se si comprende il motivo per cui si verifica l'avviso e le relative implicazioni, è possibile ignorare l'avviso.
+Disinstallare tutti i runtime e gli SDK di .NET Core a 32 bit per evitare questo avviso. Disinstallare da **Pannello di controllo**  >  **programmi e funzionalità**  >  **disinstallare o modificare un programma**. Se si comprende il motivo per cui si verifica l'avviso e le relative implicazioni, è possibile ignorare l'avviso.
 
 ### <a name="no-net-core-sdks-were-detected"></a>Non sono stati rilevati SDK .NET Core
 

@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: blazor/test
 ms.openlocfilehash: cd4aee66fd6df6cc0ce520d8ca66e0a2cf130eff
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054866"
 ---
 # <a name="test-components-in-aspnet-core-no-locblazor"></a>Componenti di test in ASP.NET Core Blazor
@@ -42,7 +42,7 @@ Per testare un Blazor componente, il *componente* sottoposto a test (taglia) è:
 
 Due approcci comuni per i test dei Blazor componenti sono i test end-to-end (E2E) e gli unit test:
 
-* **Unit test** : gli [unit test](/dotnet/core/testing/) vengono scritti con una libreria di unit test che fornisce:
+* **Unit test**: gli [unit test](/dotnet/core/testing/) vengono scritti con una libreria di unit test che fornisce:
   * Rendering di componenti.
   * Ispezione dell'output e dello stato dei componenti.
   * Attivazione di gestori eventi e metodi del ciclo di vita.
@@ -50,7 +50,7 @@ Due approcci comuni per i test dei Blazor componenti sono i test end-to-end (E2E
 
   [bUnit](https://github.com/egil/bUnit) è un esempio di libreria che consente di eseguire Razor unit test dei componenti.
 
-* **Test di E2E** : un test runner esegue un' Blazor app che contiene il taglia e automatizza un'istanza del browser. Lo strumento di test esamina e interagisce con il taglio tramite il browser. [Selenium](https://github.com/SeleniumHQ/selenium) è un esempio di Framework di test E2E che può essere usato con le Blazor app.
+* **Test di E2E**: un test runner esegue un' Blazor app che contiene il taglia e automatizza un'istanza del browser. Lo strumento di test esamina e interagisce con il taglio tramite il browser. [Selenium](https://github.com/SeleniumHQ/selenium) è un esempio di Framework di test E2E che può essere usato con le Blazor app.
 
 Negli unit test Blazor viene richiesto solo il componente ( Razor /c #). Le dipendenze esterne, ad esempio servizi e interoperabilità JS, devono essere simulate. Nel test di E2E, il Blazor componente e l'intera infrastruttura ausiliaria fanno parte del test, tra cui CSS, js e le API DOM e browser.
 
@@ -64,7 +64,7 @@ Il test di E2E comporta l'avvio di più processi, l'I/O su rete e su disco e alt
 
 Nella tabella seguente sono riepilogate le differenze tra i due approcci di testing.
 
-| Funzionalità                       | Testing unità                     | Test di E2E                             |
+| Funzionalità                       | Unit test                     | Test di E2E                             |
 | -------------------------------- | -------------------------------- | --------------------------------------- |
 | Ambito del test                       | Blazor solo componente ( Razor /c #) | Blazor componente ( Razor /c #) con CSS/JS |
 | Tempo di esecuzione del test              | Millisecondi                     | Secondi                                 |
@@ -78,8 +78,8 @@ Si consideri lo scenario in cui si sceglie il tipo di test da eseguire. Alcune c
 
 | Scenario | Approccio consigliato | Commenti |
 | -------- | ------------------ | ------- |
-| Componente senza logica di interoperabilità JS | Testing unità | Quando non esiste alcuna dipendenza dall'interoperabilità JS in un Blazor componente, il componente può essere testato senza accedere a js o all'API DOM. In questo scenario, non vi sono svantaggi nella scelta del testing unità. |
-| Componente con logica di interoperabilità JS semplice | Testing unità | È frequente che i componenti eseguono una query sul DOM o attivano le animazioni tramite l'interoperabilità JS. Il testing unità è in genere preferibile in questo scenario, poiché è semplice simulare l'interazione JS tramite l' <xref:Microsoft.JSInterop.IJSRuntime> interfaccia. |
+| Componente senza logica di interoperabilità JS | Unit test | Quando non esiste alcuna dipendenza dall'interoperabilità JS in un Blazor componente, il componente può essere testato senza accedere a js o all'API DOM. In questo scenario, non vi sono svantaggi nella scelta del testing unità. |
+| Componente con logica di interoperabilità JS semplice | Unit test | È frequente che i componenti eseguono una query sul DOM o attivano le animazioni tramite l'interoperabilità JS. Il testing unità è in genere preferibile in questo scenario, poiché è semplice simulare l'interazione JS tramite l' <xref:Microsoft.JSInterop.IJSRuntime> interfaccia. |
 | Componente che dipende dal codice JS complesso | Unit test e test JS distinti | Se un componente usa l'interoperabilità JS per chiamare una libreria JS grande o complessa, ma l'interazione tra il Blazor componente e la libreria JS è semplice, l'approccio migliore è probabilmente trattare il componente e la libreria JS o il codice come due parti separate e testarle singolarmente. Testare il Blazor componente con una libreria di unit test e testare js con una libreria di test js. |
 | Componente con logica che dipende dalla manipolazione JS del DOM del browser | Test di E2E | Quando la funzionalità di un componente dipende da JS e dalla relativa manipolazione del DOM, verificare sia il codice JS sia il Blazor codice insieme in un test di E2E. Si tratta dell'approccio Blazor adottato dagli sviluppatori del Framework con la Blazor logica di rendering del browser, che include codice C# e JS strettamente accoppiato. Il codice C# e JS deve collaborare per eseguire correttamente il rendering dei Blazor componenti in un browser.
 | Componente che dipende dalla libreria di componenti di terze parti con dipendenze difficili da simulare | Test di E2E | Quando la funzionalità di un componente dipende da una libreria di componenti di terze parti con dipendenze difficili da simulare, ad esempio l'interoperabilità JS, il test di E2E potrebbe essere l'unica opzione per testare il componente. |
@@ -143,11 +143,11 @@ public void CounterShouldIncrementWhenSelected()
 
 Le azioni seguenti si verificano a ogni passaggio del test:
 
-* *Arrange* : il `Counter` componente viene sottoposto a rendering usando bUnit `TestContext` . L'elemento Paragraph del taglio ( `<p>` ) viene trovato e assegnato a `paraElm` .
+* *Arrange*: il `Counter` componente viene sottoposto a rendering usando bUnit `TestContext` . L'elemento Paragraph del taglio ( `<p>` ) viene trovato e assegnato a `paraElm` .
 
-* *Act* : l'elemento del pulsante ( `<button>` ) viene individuato e quindi selezionato chiamando `Click` , che deve incrementare il contatore e aggiornare il contenuto del tag di paragrafo ( `<p>` ). Il contenuto di testo dell'elemento Paragraph viene ottenuto chiamando `TextContent` .
+* *Act*: l'elemento del pulsante ( `<button>` ) viene individuato e quindi selezionato chiamando `Click` , che deve incrementare il contatore e aggiornare il contenuto del tag di paragrafo ( `<p>` ). Il contenuto di testo dell'elemento Paragraph viene ottenuto chiamando `TextContent` .
 
-* *Assert* : `MarkupMatches` viene chiamato sul contenuto di testo per verificare che corrisponda alla stringa prevista, ovvero `Current count: 1` .
+* *Assert*: `MarkupMatches` viene chiamato sul contenuto di testo per verificare che corrisponda alla stringa prevista, ovvero `Current count: 1` .
 
 > [!NOTE]
 > Il `MarkupMatches` Metodo Assert è diverso da un'asserzione di confronto di stringhe normale (ad esempio, `Assert.Equal("Current count: 1", paraElmText);` ) `MarkupMatches` esegue un confronto semantico tra l'input e il markup HTML previsto. Un confronto semantico è consapevole della semantica HTML, il che significa che gli spazi vuoti non significativi vengono ignorati. Ciò comporta test più stabili. Per altre informazioni, vedere [personalizzazione del confronto tra HTML semantico](https://bunit.egilhansen.com/docs/verification/semantic-html-comparison).

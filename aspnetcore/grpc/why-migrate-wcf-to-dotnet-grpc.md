@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: grpc/wcf
 ms.openlocfilehash: 26629b4aa5510f4ef5f53f57b64e45f6c32d4014
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93058688"
 ---
 # <a name="grpc-for-windows-communication-foundation-wcf-developers"></a>gRPC per sviluppatori Windows Communication Foundation (WCF)
@@ -86,6 +86,6 @@ Esistono due percorsi consigliati per la modernizzazione delle app WCF:
 
 * [CoreWCF](https://github.com/CoreWCF/CoreWCF) è uno sforzo della community per fornire supporto per l'hosting di servizi WCF a .NET Core e .NET 5. È disponibile una versione di anteprima e il progetto sta lavorando per prepararsi alla produzione. CoreWCF supporta solo un subset delle funzionalità di WCF e .NET Framework le app di cui è stata eseguita la migrazione per usarle saranno necessarie modifiche al codice e test per avere esito positivo. CoreWCF è una scelta ottimale se un'applicazione deve mantenere la compatibilità con i client esistenti che chiamano i servizi WCF.
 
-## <a name="get-started"></a>Introduzione
+## <a name="get-started"></a>Operazioni preliminari
 
 Per istruzioni dettagliate sulla creazione di servizi gRPC in ASP.NET Core per gli sviluppatori WCF, vedere [ASP.NET Core gRPC per sviluppatori WCF](/dotnet/architecture/grpc-for-wcf-developers)

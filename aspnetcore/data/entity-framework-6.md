@@ -17,10 +17,10 @@ no-loc:
 - SignalR
 uid: data/entity-framework-6
 ms.openlocfilehash: 086418c161677f585b08ed360555c93d8575e701
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059455"
 ---
 # <a name="aspnet-core-and-entity-framework-6"></a>ASP.NET Core e Entity Framework 6
@@ -50,7 +50,7 @@ Per l'uso di Entity Framework 6, il progetto deve eseguire la compilazione con .
 
 Il modo consigliato per usare Entity Framework 6 in un'applicazione ASP.NET Core consiste nell'inserire il contesto EF6 e le classi del modello in un progetto di libreria di classi destinato .NET Framework. Aggiungere un riferimento alla libreria di classi dal progetto ASP.NET Core. Vedere l'esempio [soluzione di Visual Studio con progetti EF6 e ASP.NET Core](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/entity-framework-6/sample/).  
 
-Non è possibile inserire un contesto EF6 in un progetto ASP.NET poiché i progetti .NET Core non supportano tutte le funzionalità che i comandi EF6, come *Enable-Migrations* , richiedono.    
+Non è possibile inserire un contesto EF6 in un progetto ASP.NET poiché i progetti .NET Core non supportano tutte le funzionalità che i comandi EF6, come *Enable-Migrations*, richiedono.    
 
 Indipendentemente dal tipo di progetto in cui si trova il contesto EF6, solo gli strumenti da riga di comando EF6 funzionano con un contesto EF6. Ad esempio, `Scaffold-DbContext` è disponibile solo in Entity Framework Core. Se è necessario eseguire reverse engineering di un database in un modello EF6, vedere <https://docs.microsoft.com/ef/ef6/modeling/code-first/workflows/existing-database> .    
 
@@ -60,7 +60,7 @@ Il progetto ASP.NET Core deve avere come destinazione .NET Framework e fare rife
 
 [!code-xml[](entity-framework-6/sample/MVCCore/MVCCore.csproj?range=3-9&highlight=2)]   
 
-Quando si crea un nuovo progetto, usare il modello **Applicazione Web di ASP.NET Core (.NET Framework)** .    
+Quando si crea un nuovo progetto, usare il modello **Applicazione Web di ASP.NET Core (.NET Framework)**.    
 
 ## <a name="handle-connection-strings"></a>Gestire le stringhe di connessione    
 
@@ -105,7 +105,7 @@ Questo esempio può essere creato da zero tramite i passaggi seguenti in Visual 
 
 * Nel progetto Core aggiungere un riferimento al progetto di libreria di classi.    
 
-* Nel progetto Core, in *Startup.cs* , registrare il contesto per l'inserimento delle dipendenze.    
+* Nel progetto Core, in *Startup.cs*, registrare il contesto per l'inserimento delle dipendenze.    
 
 * Nel progetto principale, in *appsettings.json* , aggiungere la stringa di connessione.  
 

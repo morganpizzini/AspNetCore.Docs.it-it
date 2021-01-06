@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/update-related-data
 ms.openlocfilehash: f41d0b1d7ba46ef4867e0d160dc61f21042ce403
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93053943"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: aggiornare i dati correlati-ASP.NET MVC con EF Core
@@ -93,7 +93,7 @@ In *Views/Courses/Create.cshtml* aggiungere l'opzione "Select Department" (Selez
 
 [!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
 
-In *Views/Courses/Edit.cshtml* apportare al campo Department (Dipartimento) la stessa modifica effettuata in *Create.cshtml* .
+In *Views/Courses/Edit.cshtml* apportare al campo Department (Dipartimento) la stessa modifica effettuata in *Create.cshtml*.
 
 In *Views/Courses/Edit.cshtml* aggiungere anche il campo per il numero di corso prima del campo **Title** (Titolo). Poiché il numero di corso è la chiave primaria, viene visualizzato, ma non può essere modificato.
 
@@ -105,7 +105,7 @@ In *Views/Courses/Delete.cshtml* aggiungere il campo del numero di corso nella p
 
 [!code-cshtml[](intro/samples/cu/Views/Courses/Delete.cshtml?highlight=14-19,36)]
 
-In *Views/Courses/Details.cshtml* apportare la stessa modifica appena effettuata in *Delete.cshtml* .
+In *Views/Courses/Details.cshtml* apportare la stessa modifica appena effettuata in *Delete.cshtml*.
 
 ### <a name="test-the-course-pages"></a>Testare le pagine del corso
 
@@ -113,7 +113,7 @@ Eseguire l'app, selezionare la scheda **Courses** (Corsi), fare clic su **Create
 
 ![Pagina di creazione del corso](update-related-data/_static/course-create.png)
 
-Fare clic su **Crea** . La pagina di indice dei corsi viene visualizzata con il nuovo corso aggiunto all'elenco. Il nome del dipartimento nell'elenco della pagina di indice deriva dalla proprietà di navigazione, che mostra che la relazione è stata stabilita correttamente.
+Fare clic su **Crea**. La pagina di indice dei corsi viene visualizzata con il nuovo corso aggiunto all'elenco. Il nome del dipartimento nell'elenco della pagina di indice deriva dalla proprietà di navigazione, che mostra che la relazione è stata stabilita correttamente.
 
 Fare clic su **Edit** (Modifica) per un corso nella pagina di indice dei corsi.
 
@@ -268,7 +268,7 @@ Questo codice apporta le modifiche seguenti:
 
 ## <a name="add-office-location-and-courses-to-create-page"></a>Aggiungere posizione dell'ufficio e corsi alla pagina Create
 
-In *InstructorsController.cs* , eliminare i metodi `Create` HttpGet e HttpPost e quindi sostituirli con il codice seguente:
+In *InstructorsController.cs*, eliminare i metodi `Create` HttpGet e HttpPost e quindi sostituirli con il codice seguente:
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=3-5,12,14-22,29)]
 

@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: index
 ms.openlocfilehash: 4301e0d59364573767ab4cae25a4818ff84b9abc
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93052227"
 ---
 # <a name="introduction-to-aspnet-core"></a>Introduzione a ASP.NET Core
@@ -58,7 +58,7 @@ ASP.NET Core MVC offre funzionalità per la compilazione di [API Web](xref:tutor
 
 ## <a name="client-side-development"></a>Sviluppo lato client
 
-ASP.NET Core si integra facilmente con le librerie e i framework lato client più diffusi, tra cui [Blazor](xref:blazor/index) , [angolare](xref:spa/angular), [reagire](xref:spa/react)e [bootstrap](https://getbootstrap.com/). Per altre informazioni, vedere <xref:blazor/index> e gli argomenti correlati in *Sviluppo lato client* .
+ASP.NET Core si integra facilmente con le librerie e i framework lato client più diffusi, tra cui [Blazor](xref:blazor/index) , [angolare](xref:spa/angular), [reagire](xref:spa/react)e [bootstrap](https://getbootstrap.com/). Per altre informazioni, vedere <xref:blazor/index> e gli argomenti correlati in *Sviluppo lato client*.
 
 <a name="target-framework"></a>
 
@@ -137,7 +137,7 @@ ASP.NET Core MVC offre funzionalità per la compilazione di [API Web](xref:tutor
 
 ## <a name="client-side-development"></a>Sviluppo lato client
 
-ASP.NET Core si integra facilmente con le librerie e i framework lato client più diffusi, tra cui [Blazor](xref:blazor/index) , [angolare](xref:spa/angular), [reagire](xref:spa/react)e [bootstrap](https://getbootstrap.com/). Per altre informazioni, vedere <xref:blazor/index> e gli argomenti correlati in *Sviluppo lato client* .
+ASP.NET Core si integra facilmente con le librerie e i framework lato client più diffusi, tra cui [Blazor](xref:blazor/index) , [angolare](xref:spa/angular), [reagire](xref:spa/react)e [bootstrap](https://getbootstrap.com/). Per altre informazioni, vedere <xref:blazor/index> e gli argomenti correlati in *Sviluppo lato client*.
 
 <a name="target-framework"></a>
 
@@ -199,7 +199,7 @@ Per una guida di riferimento alla migrazione delle app ASP.NET ai ASP.NET Core, 
 Molti articoli ed esercitazioni includono collegamenti al codice di esempio.
 
 1. [Scaricare il file ZIP del repository ASP.NET](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/master).
-1. Decomprimere il file *Docs-master.zip* .
+1. Decomprimere il file *Docs-master.zip*.
 1. Usare l'URL nel collegamento di esempio per passare alla directory di esempio.
 
 ### <a name="preprocessor-directives-in-sample-code"></a>Direttive per il preprocessore nel codice di esempio

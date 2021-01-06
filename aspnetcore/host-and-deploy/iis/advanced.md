@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: host-and-deploy/iis/advanced
 ms.openlocfilehash: 9f14929a7d298d6f4d66abcc88665db34fc072bf
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93058612"
 ---
 # <a name="advanced-configuration-of-the-aspnet-core-module-and-iis"></a>Configurazione avanzata del modulo ASP.NET Core e di IIS
@@ -99,7 +99,7 @@ Per configurare la protezione dati in IIS in modo da rendere permanente il grupp
 
   È necessario abilitare anche l' [ `setProfileEnvironment` attributo](/iis/configuration/system.applicationhost/applicationpools/add/processmodel#configuration) del pool di app. Il valore predefinito di `setProfileEnvironment` è `true`. In alcuni scenari (ad esempio, per il sistema operativo Windows), `setProfileEnvironment` è impostato su `false`. Se le chiavi non vengono archiviate nella directory del profilo utente come previsto:
 
-  1. Passare alla cartella `%windir%/system32/inetsrv/config`.
+  1. Passa alla cartella `%windir%/system32/inetsrv/config`.
   1. Aprire il file `applicationHost.config` .
   1. Individuare l'elemento `<system.applicationHost><applicationPools><applicationPoolDefaults><processModel>`.
   1. Verificare che l'attributo `setProfileEnvironment` non sia presente, condizione che corrisponde all'impostazione predefinita `true`, o impostare in modo esplicito il valore dell'attributo su `true`.
@@ -123,41 +123,41 @@ Per configurare la protezione dati in IIS in modo da rendere permanente il grupp
 
 Abilitare il ruolo del server **Server Web (IIS)** e stabilire i servizi di ruolo.
 
-1. Usare la procedura guidata **Aggiungi ruoli e funzionalità** accessibile tramite il menu **Gestisci** o il collegamento in **Server Manager** . Nel passaggio **Ruoli del server** selezionare la casella per **Server Web (IIS)** .
+1. Usare la procedura guidata **Aggiungi ruoli e funzionalità** accessibile tramite il menu **Gestisci** o il collegamento in **Server Manager**. Nel passaggio **Ruoli del server** selezionare la casella per **Server Web (IIS)**.
 
    ![Il ruolo Server Web IIS viene selezionato nel passaggio dei ruoli del server Selezionare.](index/_static/server-roles-ws2016.png)
 
-1. Dopo il passaggio **Funzionalità** , viene caricato il passaggio **Servizi ruolo** per Server Web (IIS). Selezionare i servizi ruolo IIS desiderati o accettare i servizi ruolo predefiniti specificati.
+1. Dopo il passaggio **Funzionalità**, viene caricato il passaggio **Servizi ruolo** per Server Web (IIS). Selezionare i servizi ruolo IIS desiderati o accettare i servizi ruolo predefiniti specificati.
 
    ![I servizi ruolo predefiniti vengono selezionati nel passaggio Selezionare i servizi ruolo.](index/_static/role-services-ws2016.png)
 
    **Autenticazione di Windows (facoltativa)**  
-   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: sicurezza del **server Web**  >  **Security** . Selezionare la funzionalità **Autenticazione di Windows** . Per ulteriori informazioni, vedere [ `<windowsAuthentication>` autenticazione di Windows](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [configurare l'autenticazione di Windows](xref:security/authentication/windowsauth).
+   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: sicurezza del **server Web**  >  . Selezionare la funzionalità **Autenticazione di Windows**. Per ulteriori informazioni, vedere [ `<windowsAuthentication>` autenticazione di Windows](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [configurare l'autenticazione di Windows](xref:security/authentication/windowsauth).
 
    **WebSockets (facoltativo)**  
-   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: sviluppo di applicazioni **server Web**  >  **Application Development** . Selezionare la funzionalità **Protocollo WebSocket** . Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
+   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: sviluppo di applicazioni **server Web**  >  . Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
 
 1. Procedere con il passaggio **Conferma** per installare il ruolo del server web e i servizi. Dopo l'installazione del ruolo **server Web (IIS)** non è necessario riavviare il server o IIS.
 
 **Sistemi operativi desktop di Windows**
 
-Abilitare **Console di gestione IIS** e **Servizi Web** .
+Abilitare **Console di gestione IIS** e **Servizi Web**.
 
 1. Passare a **Pannello di controllo**  >  **programmi** programmi  >  **e funzionalità**  >  **attiva o disattiva funzionalità Windows** (lato sinistro dello schermo).
 
-1. Aprire il nodo **Internet Information Services** . Aprire il nodo **Strumenti di gestione Web** .
+1. Aprire il nodo **Internet Information Services**. Aprire il nodo **Strumenti di gestione Web**.
 
-1. Selezionare la casella per **Console di gestione IIS** .
+1. Selezionare la casella per **Console di gestione IIS**.
 
-1. Selezionare la casella per **Servizi World Wide Web** .
+1. Selezionare la casella per **Servizi World Wide Web**.
 
 1. Accettare le funzionalità predefinite per **Servizi World Wide Web** o personalizzare le funzionalità IIS.
 
    **Autenticazione di Windows (facoltativa)**  
-   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: **World Wide Web sicurezza dei servizi**  >  **Security** . Selezionare la funzionalità **Autenticazione di Windows** . Per ulteriori informazioni, vedere [ `<windowsAuthentication>` autenticazione di Windows](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [configurare l'autenticazione di Windows](xref:security/authentication/windowsauth).
+   Per abilitare l'autenticazione di Windows, espandere i nodi seguenti: **World Wide Web sicurezza dei servizi**  >  . Selezionare la funzionalità **Autenticazione di Windows**. Per ulteriori informazioni, vedere [ `<windowsAuthentication>` autenticazione di Windows](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [configurare l'autenticazione di Windows](xref:security/authentication/windowsauth).
 
    **WebSockets (facoltativo)**  
-   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: funzionalità di sviluppo di applicazioni di **World Wide Web Services**  >  **Application Development Features** . Selezionare la funzionalità **Protocollo WebSocket** . Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
+   WebSockets è supportato con ASP.NET Core 1.1 o versioni successive. Per abilitare i WebSocket, espandere i nodi seguenti: funzionalità di sviluppo di applicazioni di **World Wide Web Services**  >  . Selezionare la funzionalità **Protocollo WebSocket**. Per altre informazioni, vedere [Oggetti WebSocket](xref:fundamentals/websockets).
 
 1. Se l'installazione di IIS richiede un riavvio, riavviare il sistema.
 
@@ -173,7 +173,7 @@ Un'app ASP.NET Core può essere ospitata come [applicazione secondaria di IIS (a
 
 I collegamenti ad asset statici all'interno dell'app secondaria devono usare la notazione con tilde-barra (`~/`). La notazione con tilde-barra attiva un [helper tag](xref:mvc/views/tag-helpers/intro) per anteporre la base del percorso dell'app secondaria al collegamento relativo sottoposto a rendering. Per un'app secondaria in `/subapp_path`, il rendering di un'immagine collegata con `src="~/image.png"` viene eseguito come `src="/subapp_path/image.png"`. Il middleware dei file statici dell'app radice non elabora la richiesta di file statici. La richiesta viene elaborata dal middleware dei file statici dell'app secondaria.
 
-Se l'attributo `src` di un asset statico viene impostato su un percorso assoluto (ad esempio, `src="/image.png"`), il rendering del collegamento viene eseguito senza la base del percorso dell'app secondaria. Il middleware dei file statici dell'app radice prova a servire l'asset dalla [radice Web](xref:fundamentals/index#web-root) dell'app radice con conseguente risposta *404 - Non trovato* , a meno che l'asset statico non sia disponibile dal'app radice.
+Se l'attributo `src` di un asset statico viene impostato su un percorso assoluto (ad esempio, `src="/image.png"`), il rendering del collegamento viene eseguito senza la base del percorso dell'app secondaria. Il middleware dei file statici dell'app radice prova a servire l'asset dalla [radice Web](xref:fundamentals/index#web-root) dell'app radice con conseguente risposta *404 - Non trovato*, a meno che l'asset statico non sia disponibile dal'app radice.
 
 Per ospitare un'app ASP.NET Core come app secondaria in un'altra app ASP.NET Core:
 
@@ -181,9 +181,9 @@ Per ospitare un'app ASP.NET Core come app secondaria in un'altra app ASP.NET Cor
 
 1. Aggiungere il sito radice in Gestione IIS con l'applicazione secondaria in una cartella all'interno del sito principale.
 
-1. Fare clic con il pulsante destro del mouse sulla cartella dell'applicazione secondaria in Gestione IIS e scegliere **Converti in applicazione** .
+1. Fare clic con il pulsante destro del mouse sulla cartella dell'applicazione secondaria in Gestione IIS e scegliere **Converti in applicazione**.
 
-1. Nella finestra di dialogo **Aggiungi applicazione** usare il pulsante **Seleziona** per **Pool di applicazioni** per assegnare il pool di app creato per l'app secondaria. Selezionare **OK** .
+1. Nella finestra di dialogo **Aggiungi applicazione** usare il pulsante **Seleziona** per **Pool di applicazioni** per assegnare il pool di app creato per l'app secondaria. Selezionare **OK**.
 
 L'assegnazione di un pool di app separato all'app secondaria è un requisito quando si usa il modello di hosting in-process.
 
@@ -196,7 +196,7 @@ L'isolamento dei pool di app è determinato dal modello di hosting:
 * Hosting in-process: le app sono necessarie per l'esecuzione in pool di applicazioni separati.
 * Hosting out-of-process: è consigliabile isolare le app le une dalle altre eseguendo ogni app nel proprio pool di applicazioni.
 
-Nella finestra di dialogo **Aggiungi sito Web** è selezionato per impostazione predefinita un singolo pool di app per ogni app. Quando si specifica un valore in **Nome del sito** , il testo viene automaticamente trasferito alla casella di testo **Pool di applicazioni** . Quando si aggiunge il sito viene creato un nuovo pool di applicazioni con il nome del sito.
+Nella finestra di dialogo **Aggiungi sito Web** è selezionato per impostazione predefinita un singolo pool di app per ogni app. Quando si specifica un valore in **Nome del sito**, il testo viene automaticamente trasferito alla casella di testo **Pool di applicazioni**. Quando si aggiunge il sito viene creato un nuovo pool di applicazioni con il nome del sito.
 
 ## <a name="application-pool-no-locidentity"></a>Pool di applicazioni Identity
 
@@ -210,23 +210,23 @@ Se il processo di lavoro IIS richiede l'accesso con privilegi elevati all'app, m
 
 1. Aprire Esplora risorse, quindi spostarsi nella directory.
 
-1. Fare clic con il pulsante destro del mouse sulla directory e scegliere **Proprietà** .
+1. Fare clic con il pulsante destro del mouse sulla directory e scegliere **Proprietà**.
 
-1. Nella scheda **Sicurezza** selezionare il pulsante **Modifica** e quindi il pulsante **Aggiungi** .
+1. Nella scheda **Sicurezza** selezionare il pulsante **Modifica** e quindi il pulsante **Aggiungi**.
 
 1. Fare clic sul pulsante **Percorsi** e verificare che il sistema sia selezionato.
 
-1. Immettere il `IIS AppPool\{APP POOL NAME}` formato, dove il segnaposto `{APP POOL NAME}` è il nome del pool di applicazioni, in **immettere i nomi degli oggetti da selezionare** . Fare clic sul pulsante **Controlla nomi** . Per *DefaultAppPool* controllare i nomi usando `IIS AppPool\DefaultAppPool` . Quando si seleziona il pulsante **Controlla nomi** , il valore `DefaultAppPool` è indicato nell'area dei nomi degli oggetti. Non è possibile immettere il nome del pool di applicazioni direttamente nell'area dei nomi degli oggetti. Usare il `IIS AppPool\{APP POOL NAME}` formato, dove il segnaposto `{APP POOL NAME}` è il nome del pool di applicazioni, quando si verifica il nome dell'oggetto.
+1. Immettere il `IIS AppPool\{APP POOL NAME}` formato, dove il segnaposto `{APP POOL NAME}` è il nome del pool di applicazioni, in **immettere i nomi degli oggetti da selezionare** . Fare clic sul pulsante **Controlla nomi**. Per *DefaultAppPool* controllare i nomi usando `IIS AppPool\DefaultAppPool` . Quando si seleziona il pulsante **Controlla nomi** , il valore `DefaultAppPool` è indicato nell'area dei nomi degli oggetti. Non è possibile immettere il nome del pool di applicazioni direttamente nell'area dei nomi degli oggetti. Usare il `IIS AppPool\{APP POOL NAME}` formato, dove il segnaposto `{APP POOL NAME}` è il nome del pool di applicazioni, quando si verifica il nome dell'oggetto.
 
    ![Finestra di dialogo Seleziona utenti o gruppi per la cartella dell'app: il nome del pool di applicazioni "DefaultAppPool" viene aggiunto in coda a "IIS AppPool\" nell'area dei nomi degli oggetti prima di selezionare "Controlla nomi".](index/_static/select-users-or-groups-1.png)
 
-1. Selezionare **OK** .
+1. Selezionare **OK**.
 
    ![Finestra di dialogo Seleziona utenti o gruppi per la cartella dell'app: dopo aver selezionato "Controlla nomi", il nome dell'oggetto "DefaultAppPool" viene visualizzato nell'area dei nomi degli oggetti.](index/_static/select-users-or-groups-2.png)
 
 1. Le autorizzazioni di lettura ed esecuzione devono essere concesse per impostazione predefinita. Fornire autorizzazioni aggiuntive in base alle necessità.
 
-L'accesso può essere concesso anche dal prompt dei comandi usando lo strumento **ICACLS** . Usando *DefaultAppPool* come esempio, viene eseguito il comando seguente:
+L'accesso può essere concesso anche dal prompt dei comandi usando lo strumento **ICACLS**. Usando *DefaultAppPool* come esempio, viene eseguito il comando seguente:
 
 ```console
 ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
@@ -276,25 +276,25 @@ Verificare che la funzionalità del ruolo Inizializzazione applicazione di IIS s
 Nei sistemi desktop Windows 7 o versioni successive quando si usa IIS in locale:
 
 1. Passare a **Pannello di controllo**  >  **programmi** programmi  >  **e funzionalità**  >  **attiva o disattiva funzionalità Windows** (lato sinistro dello schermo).
-1. Aprire **Internet Information Services**  >  funzionalità di sviluppo di applicazioni **World Wide Web Services**  >  **Application Development Features** .
-1. Selezionare la casella di controllo **Inizializzazione applicazione** .
+1. Aprire **Internet Information Services**  >  funzionalità di sviluppo di applicazioni **World Wide Web Services**  >  .
+1. Selezionare la casella di controllo **Inizializzazione applicazione**.
 
 In Windows Server 2008 R2 o versioni successive:
 
-1. Aprire l' **Aggiunta guidata ruoli e funzionalità** .
-1. Nel pannello **Selezione servizi ruolo** aprire il nodo **Sviluppo applicazioni** .
-1. Selezionare la casella di controllo **Inizializzazione applicazione** .
+1. Aprire l'**Aggiunta guidata ruoli e funzionalità**.
+1. Nel pannello **Selezione servizi ruolo** aprire il nodo **Sviluppo applicazioni**.
+1. Selezionare la casella di controllo **Inizializzazione applicazione**.
 
 Per abilitare il modulo Inizializzazione applicazione per il sito, usare uno degli approcci seguenti:
 
 * In Gestione IIS:
 
-  1. Selezionare **Pool di applicazioni** nel pannello **Connessioni** .
-  1. Fare clic con il pulsante destro del mouse sul pool di app dell'app nell'elenco e scegliere **Impostazioni avanzate** .
-  1. La **modalità di avvio** predefinita è `OnDemand` . Impostare la **modalità di avvio** su `AlwaysRunning` . Selezionare **OK** .
-  1. Aprire il nodo **Siti** nel pannello **Connessioni** .
+  1. Selezionare **Pool di applicazioni** nel pannello **Connessioni**.
+  1. Fare clic con il pulsante destro del mouse sul pool di app dell'app nell'elenco e scegliere **Impostazioni avanzate**.
+  1. La **modalità di avvio** predefinita è `OnDemand` . Impostare la **modalità di avvio** su `AlwaysRunning` . Selezionare **OK**.
+  1. Aprire il nodo **Siti** nel pannello **Connessioni**.
   1. Fare clic con il pulsante destro del mouse sull'app e scegliere **Gestisci**  >  **Impostazioni avanzate** sito Web.
-  1. L'impostazione predefinita di **precaricamento abilitato** è `False` . Impostare **preload abilitato** su `True` . Selezionare **OK** .
+  1. L'impostazione predefinita di **precaricamento abilitato** è `False` . Impostare **preload abilitato** su `True` . Selezionare **OK**.
 
 * Usando `web.config` , aggiungere l' `<applicationInitialization>` elemento con `doAppInitAfterRestart` impostato su `true` agli `<system.webServer>` elementi nel file dell'app `web.config` :
 
@@ -315,9 +315,9 @@ Per abilitare il modulo Inizializzazione applicazione per il sito, usare uno deg
 
 Per evitare l'inattività dell'app, impostare il timeout di inattività del pool di app tramite Gestione IIS:
 
-1. Selezionare **Pool di applicazioni** nel pannello **Connessioni** .
-1. Fare clic con il pulsante destro del mouse sul pool di app dell'app nell'elenco e scegliere **Impostazioni avanzate** .
-1. Il **timeout di inattività predefinito (minuti)** è `20` minuti. Imposta il **timeout di inattività (minuti)** su `0` (zero). Selezionare **OK** .
+1. Selezionare **Pool di applicazioni** nel pannello **Connessioni**.
+1. Fare clic con il pulsante destro del mouse sul pool di app dell'app nell'elenco e scegliere **Impostazioni avanzate**.
+1. Il **timeout di inattività predefinito (minuti)** è `20` minuti. Imposta il **timeout di inattività (minuti)** su `0` (zero). Selezionare **OK**.
 1. Riciclare il processo di lavoro.
 
 Per evitare il timeout delle app ospitate [out-of-process](xref:host-and-deploy/iis/out-of-process-hosting), usare uno degli approcci seguenti:
@@ -335,7 +335,7 @@ Per evitare il timeout delle app ospitate [out-of-process](xref:host-and-deploy/
 
 ### <a name="module"></a>Modulo
 
-**IIS (x86/amd64)** :
+**IIS (x86/amd64)**:
 
 * `%windir%\System32\inetsrv\aspnetcore.dll`
 
@@ -345,7 +345,7 @@ Per evitare il timeout delle app ospitate [out-of-process](xref:host-and-deploy/
 
 * `%ProgramFiles(x86)%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll`
 
-**IIS Express (x86/amd64)** :
+**IIS Express (x86/amd64)**:
 
 * `%ProgramFiles%\IIS Express\aspnetcore.dll`
 

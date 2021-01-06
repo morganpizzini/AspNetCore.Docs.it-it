@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/file-providers
 ms.openlocfilehash: 16e5ead9898125c804da4d60322510474201d897
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059442"
 ---
 # <a name="file-providers-in-aspnet-core"></a>Provider di file in ASP.NET Core
@@ -115,7 +115,7 @@ Usare [modelli GLOB](#glob-patterns) per specificare uno o più file da incorpor
 
 L'app di esempio *FileProviderSample* crea `ManifestEmbeddedFileProvider` e passa l'assembly attualmente in esecuzione al relativo costruttore.
 
-*Startup.cs* :
+*Startup.cs*:
 
 ```csharp
 var manifestEmbeddedProvider = 
@@ -162,7 +162,7 @@ L'app di esempio *WatchConsole* scrive un messaggio ogni volta che viene modific
 
 ### <a name="glob-patterns"></a>Modelli GLOB
 
-Nei percorsi del file system vengono usati criteri con caratteri jolly chiamati *criteri GLOB (o globbing)* . Specificare gruppi di file con questi criteri. I due caratteri jolly sono `*` e `**`:
+Nei percorsi del file system vengono usati criteri con caratteri jolly chiamati *criteri GLOB (o globbing)*. Specificare gruppi di file con questi criteri. I due caratteri jolly sono `*` e `**`:
 
 **`*`**  
 Cerca qualsiasi elemento a livello della cartella corrente, qualsiasi nome di file o qualsiasi estensione di file. Le corrispondenze vengono terminate con i caratteri `/` e `.` nel percorso dei file.
@@ -262,7 +262,7 @@ Usare [modelli GLOB](#glob-patterns) per specificare uno o più file da incorpor
 
 L'app di esempio crea un `ManifestEmbeddedFileProvider` e passa l'assembly attualmente in esecuzione al rispettivo costruttore.
 
-*Startup.cs* :
+*Startup.cs*:
 
 ```csharp
 var manifestEmbeddedProvider = 
@@ -304,7 +304,7 @@ Nell'app di esempio, l'app console *WatchConsole* viene configurata per visualiz
 
 ## <a name="glob-patterns"></a>Modelli GLOB
 
-Nei percorsi del file system vengono usati criteri con caratteri jolly chiamati *criteri GLOB (o globbing)* . Specificare gruppi di file con questi criteri. I due caratteri jolly sono `*` e `**`:
+Nei percorsi del file system vengono usati criteri con caratteri jolly chiamati *criteri GLOB (o globbing)*. Specificare gruppi di file con questi criteri. I due caratteri jolly sono `*` e `**`:
 
 **`*`**  
 Cerca qualsiasi elemento a livello della cartella corrente, qualsiasi nome di file o qualsiasi estensione di file. Le corrispondenze vengono terminate con i caratteri `/` e `.` nel percorso dei file.
@@ -321,9 +321,9 @@ Cerca un file specifico in una directory specifica.
 Cerca tutti i file con estensione *txt* in una directory specifica.
 
 **`directory/*/appsettings.json`**  
-Cerca tutti i file `appsettings.json` nelle directory esattamente un livello sotto la cartella *directory* .
+Cerca tutti i file `appsettings.json` nelle directory esattamente un livello sotto la cartella *directory*.
 
 **`directory/**/*.txt`**  
-Cerca tutti i file con estensione *txt* che si trovano in qualsiasi posizione nella cartella *directory* .
+Cerca tutti i file con estensione *txt* che si trovano in qualsiasi posizione nella cartella *directory*.
 
 ::: moniker-end

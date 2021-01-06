@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: grpc/services
 ms.openlocfilehash: cc9fc50871cbad1f2ddf63d3c13c3253f24a995b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93058740"
 ---
 # <a name="create-grpc-services-and-methods"></a>Creare i servizi e i metodi di gRPC
@@ -110,7 +110,7 @@ Per altre informazioni, vedere <xref:grpc/aspnetcore>.
 
 Un servizio gRPC può disporre di tipi diversi di metodi. Il modo in cui i messaggi vengono inviati e ricevuti da un servizio dipende dal tipo di metodo definito. I tipi di metodo gRPC sono:
 
-* Unario
+* Unaria
 * Streaming Server
 * Flusso client
 * Streaming bidirezionale

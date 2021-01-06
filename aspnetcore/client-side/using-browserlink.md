@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: client-side/using-browserlink
 ms.openlocfilehash: 80f05acab55af973faf08b5db79ea4cbaf896b14
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054489"
 ---
 # <a name="browser-link-in-aspnet-core"></a>Browser Link in ASP.NET Core
@@ -35,7 +35,7 @@ Browser Link è una funzionalità di Visual Studio. Viene creato un canale di co
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Aggiungere il pacchetto [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) al progetto. Per ASP.NET Core Razor pagine o progetti MVC, abilitare anche la compilazione in fase di esecuzione dei Razor file (con *estensione cshtml* ) come descritto in <xref:mvc/views/view-compilation> . Razor le modifiche alla sintassi vengono applicate solo quando è stata abilitata la compilazione del runtime.
+Aggiungere il pacchetto [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) al progetto. Per ASP.NET Core Razor pagine o progetti MVC, abilitare anche la compilazione in fase di esecuzione dei Razor file (con *estensione cshtml*) come descritto in <xref:mvc/views/view-compilation> . Razor le modifiche alla sintassi vengono applicate solo quando è stata abilitata la compilazione del runtime.
 
 ::: moniker-end
 
@@ -47,7 +47,7 @@ Quando si converte un progetto ASP.NET Core 2,0 in ASP.NET Core 2,1 e si esegue 
 
 ::: moniker range="= aspnetcore-2.0"
 
-I modelli di progetto **applicazione Web** , **vuoto** e **API Web** di ASP.NET Core 2,0 usano il [metapacchetto Microsoft. AspNetCore. All](xref:fundamentals/metapackage), che contiene un riferimento al pacchetto per [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Pertanto, l'utilizzo del `Microsoft.AspNetCore.All` metapacchetto non richiede ulteriori azioni per rendere browser link disponibili per l'utilizzo.
+I modelli di progetto **applicazione Web**, **vuoto** e **API Web** di ASP.NET Core 2,0 usano il [metapacchetto Microsoft. AspNetCore. All](xref:fundamentals/metapackage), che contiene un riferimento al pacchetto per [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Pertanto, l'utilizzo del `Microsoft.AspNetCore.All` metapacchetto non richiede ulteriori azioni per rendere browser link disponibili per l'utilizzo.
 
 ::: moniker-end
 
@@ -86,8 +86,8 @@ Quando si dispone di un progetto ASP.NET Core aperto, Visual Studio Mostra il co
 Dal controllo Browser Link barra degli strumenti è possibile:
 
 * Aggiornare l'app Web in più browser contemporaneamente.
-* Aprire il **Dashboard browser link** .
-* Abilitare o disabilitare **browser link** . Nota: per impostazione predefinita, Browser Link è disabilitato in Visual Studio.
+* Aprire il **Dashboard browser link**.
+* Abilitare o disabilitare **browser link**. Nota: per impostazione predefinita, Browser Link è disabilitato in Visual Studio.
 * Abilitare o disabilitare la [sincronizzazione automatica CSS](#enable-or-disable-css-auto-sync).
 
 ## <a name="refresh-the-web-app-in-several-browsers-at-once"></a>Aggiornare l'app Web in più browser contemporaneamente
@@ -96,7 +96,7 @@ Per scegliere un singolo Web browser da avviare all'avvio del progetto, usare il
 
 ![Menu a discesa F5](using-browserlink/_static/debug-target-dropdown-menu.png)
 
-Per aprire più browser contemporaneamente, scegliere **Sfoglia con...** dallo stesso elenco a discesa. Tenere premuto il tasto <kbd>CTRL</kbd> per selezionare i browser desiderati, quindi fare clic su **Sfoglia** :
+Per aprire più browser contemporaneamente, scegliere **Sfoglia con...** dallo stesso elenco a discesa. Tenere premuto il tasto <kbd>CTRL</kbd> per selezionare i browser desiderati, quindi fare clic su **Sfoglia**:
 
 ![Apri molti browser contemporaneamente](using-browserlink/_static/open-many-browsers-at-once.png)
 

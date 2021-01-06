@@ -4,7 +4,7 @@ Questo documento illustra il processo per offrire il proprio contributo per gli 
 
 ## <a name="how-to-make-a-simple-correction-or-suggestion"></a>Come effettuare una semplice correzione o suggerire una modifica
 
-Gli articoli sono archiviati nel repository come file markdown. È possibile apportare modifiche semplici al contenuto di un file markdown nel browser selezionando il collegamento **Edit** (Modifica) nell'angolo superiore destro della finestra del browser. In una finestra del browser ristretta, espandere la barra delle **opzioni** per visualizzare il collegamento **Modifica.** Seguire le istruzioni per creare una richiesta pull (PR). La richiesta pull verrà rivista e accettata oppure verranno suggerite modifiche.
+Gli articoli sono archiviati nel repository come file markdown. È possibile apportare modifiche semplici al contenuto di un file markdown nel browser selezionando il collegamento **Edit** (Modifica) nell'angolo superiore destro della finestra del browser. In una finestra del browser ristretta espandere la barra delle **Opzioni** per visualizzare il collegamento **modifica** . Seguire le istruzioni per creare una richiesta pull (PR). La richiesta pull verrà rivista e accettata oppure verranno suggerite modifiche.
 
 ## <a name="how-to-make-a-more-complex-submission"></a>Come effettuare un invio più complesso
 

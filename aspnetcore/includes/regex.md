@@ -1,2 +1,2 @@
 > [!WARNING]
-> Quando si <xref:System.Text.RegularExpressions> USA per elaborare un input non attendibile, passare un timeout. Un utente malintenzionato può fornire `RegularExpressions` l'input per provocare un [attacco Denial of Service](https://www.us-cert.gov/ncas/tips/ST04-015). Le API di ASP.NET Core Framework `RegularExpressions` che usano passano un timeout.
+> Quando <xref:System.Text.RegularExpressions> si usa per elaborare un input non attendibile, passare un timeout. Un utente malintenzionato può fornire l'input per `RegularExpressions` provocare un [attacco Denial of Service](https://www.us-cert.gov/ncas/tips/ST04-015). Le API di ASP.NET Core Framework che usano `RegularExpressions` passano un timeout.

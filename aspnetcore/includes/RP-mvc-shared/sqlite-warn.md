@@ -9,7 +9,7 @@
 >* Eliminazione della tabella precedente.
 >* Ridenominazione della nuova tabella.
 >
->Per altre informazioni, vedere le seguenti risorse:
+>Per altre informazioni, vedere le risorse seguenti:
 >
 > * [Limitazioni del provider di database SQLite per EF Core](/ef/core/providers/sqlite/limitations)
 > * [Personalizzare il codice di migrazione](/ef/core/managing-schemas/migrations/#customize-migration-code)

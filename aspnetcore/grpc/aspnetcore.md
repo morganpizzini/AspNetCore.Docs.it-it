@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: grpc/aspnetcore
 ms.openlocfilehash: b120aa4ab6922445f2c53f3b1cb3bd5c159d8a84
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93057830"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>Servizi gRPC con ASP.NET Core
@@ -67,7 +67,7 @@ gRPC richiede il pacchetto [gRPC. AspNetCore](https://www.nuget.org/packages/Grp
 
 ### <a name="configure-grpc"></a>Configurare gRPC
 
-In *Startup.cs* :
+In *Startup.cs*:
 
 * gRPC è abilitato con il `AddGrpc` metodo.
 * Ogni servizio gRPC viene aggiunto alla pipeline di routing tramite il `MapGrpcService` metodo.
@@ -98,7 +98,7 @@ In produzione, è necessario configurare in modo esplicito TLS. Nell'esempio seg
 
 [!code-json[](~/grpc/aspnetcore/sample/appsettings.json?highlight=4)]
 
-In alternativa, è possibile configurare gli endpoint gheppio in *Program.cs* :
+In alternativa, è possibile configurare gli endpoint gheppio in *Program.cs*:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 

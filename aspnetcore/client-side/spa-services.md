@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: client-side/spa-services
 ms.openlocfilehash: 1b9f5b4b4e066cdd3dd5fbfa666c7a087949979f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054645"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>Usare i servizi JavaScript per creare applicazioni a pagina singola in ASP.NET Core
@@ -133,7 +133,7 @@ L'argomento received `UserName` viene serializzato usando il serializzatore JSON
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,38-52,79-)]
 
-I nomi delle proprietà passati negli Helper tag sono rappresentati con la notazione **PascalCase** . A differenza di JavaScript, in cui gli stessi nomi di proprietà sono rappresentati con **CamelCase** . La configurazione della serializzazione JSON predefinita è responsabile di questa differenza.
+I nomi delle proprietà passati negli Helper tag sono rappresentati con la notazione **PascalCase** . A differenza di JavaScript, in cui gli stessi nomi di proprietà sono rappresentati con **CamelCase**. La configurazione della serializzazione JSON predefinita è responsabile di questa differenza.
 
 Per espandersi sull'esempio di codice precedente, è possibile passare i dati dal server alla visualizzazione idratando la `globals` proprietà fornita alla `resolve` funzione:
 
@@ -253,10 +253,10 @@ dotnet new angular
 
 Esistono due modalità di configurazione di runtime primarie:
 
-* **Sviluppo** :
+* **Sviluppo**:
   * Include i mapping di origine per semplificare il debug.
   * Non ottimizza il codice lato client per le prestazioni.
-* **Produzione** :
+* **Produzione**:
   * Esclude i mapping di origine.
   * Ottimizza il codice lato client tramite la creazione di bundle e minification.
 
