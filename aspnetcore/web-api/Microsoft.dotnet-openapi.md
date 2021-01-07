@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/Microsoft.dotnet-openapi
-ms.openlocfilehash: 28a71c7040667c7544cc17c1184c09b5b39959b9
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5d9f1684aa333c38c73673138a703b04d318c6df
+ms.sourcegitcommit: b64c44ba5e3abb4ad4d50de93b7e282bf0f251e4
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052552"
+ms.lasthandoff: 01/07/2021
+ms.locfileid: "97972028"
 ---
 # <a name="develop-aspnet-core-apps-using-openapi-tools"></a>Sviluppare app ASP.NET Core usando gli strumenti di OpenAPI
 
@@ -88,7 +88,7 @@ Il riferimento precedente è necessario per l'app per chiamare il codice client 
 |-------|------|-------------|---------|
 | -p|--updateProject | Progetto su cui operare. |URL di aggiunta di DotNet openapi *--updateProject .\Ref.csproj*`https://contoso.com/openapi.json` |
 | -o|--output-file | Posizione in cui inserire la copia locale del file OpenAPI. |DotNet openapi Add URL `https://contoso.com/openapi.json` *--output-file myclient.json* |
-| -c|--generatore di codice| Generatore di codice da applicare al riferimento. Le opzioni sono `NSwagCSharp` e `NSwagTypeScript` . |DotNet openapi Add file .\OpenApi.json--Code-Generator
+| -c|--generatore di codice| Generatore di codice da applicare al riferimento. Le opzioni sono `NSwagCSharp` e `NSwagTypeScript` . |URL di aggiunta di DotNet openapi `https://contoso.com/openapi.json` --Generatore del codice
 | -H|--help|Mostra le informazioni della Guida|URL di aggiunta di DotNet openapi--Help|
 
 #### <a name="arguments"></a>Argomenti

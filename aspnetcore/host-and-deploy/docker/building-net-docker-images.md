@@ -1,10 +1,10 @@
 ---
 title: Immagini Docker per ASP.NET Core
 author: rick-anderson
-description: Informazioni su come usare le immagini Docker per .NET Core pubblicate dal registro Docker. Eseguire il pull di immagini e compilare immagini personalizzate.
+description: Informazioni su come usare le immagini Docker ASP.NET Core pubblicate dal registro docker. Esegui il pull e crea immagini personalizzate.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2020
+ms.date: 01/04/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: 81daa1d4a996519f44e513b4f61c27cdf2b6ef5e
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 2cd21722082af88e536bc1001b606ee96e7cf59b
+ms.sourcegitcommit: b64c44ba5e3abb4ad4d50de93b7e282bf0f251e4
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059806"
+ms.lasthandoff: 01/07/2021
+ms.locfileid: "97972054"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Immagini Docker per ASP.NET Core
 
@@ -31,7 +31,7 @@ Questa esercitazione mostra come eseguire un'app ASP.NET Core in contenitori Doc
 
 In questa esercitazione:
 > [!div class="checklist"]
-> * Informazioni sulle immagini Docker per Microsoft .NET Core
+> * Informazioni sulle ASP.NET Core immagini Docker
 > * Download di un'app di esempio ASP.NET Core
 > * Eseguire l'app di esempio in locale
 > * Esecuzione dell'app di esempio in contenitori Linux
@@ -44,23 +44,53 @@ Per questa esercitazione si scaricherà un'app di esempio ASP.NET Core, che verr
 
 Il documento Dockerfile di esempio usa la [funzionalità di compilazione in più fasi di Docker](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) per la compilazione e l'esecuzione in contenitori diversi. I contenitori di compilazione ed esecuzione vengono creati da immagini fornite nell'hub Docker da Microsoft:
 
+::: moniker range=">= aspnetcore-5.0"
+
+* `dotnet/sdk`
+
+  L'esempio usa questa immagine per la compilazione dell'app. L'immagine contiene .NET SDK, che include gli strumenti da riga di comando (CLI). L'immagine è ottimizzata per lo sviluppo, il debug e il testing unità locali. Gli strumenti installati per lo sviluppo e la compilazione rendono l'immagine relativamente grande.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * `dotnet/core/sdk`
 
-  L'esempio usa questa immagine per la compilazione dell'app. L'immagine contiene .NET Core SDK, che include strumenti da riga di comando (interfaccia della riga di comando). L'immagine è ottimizzata per lo sviluppo, il debug e il testing unità locali. Gli strumenti installati per lo sviluppo e la compilazione rendono questa immagine relativamente grande. 
+  L'esempio usa questa immagine per la compilazione dell'app. L'immagine contiene .NET Core SDK, che include strumenti da riga di comando (interfaccia della riga di comando). L'immagine è ottimizzata per lo sviluppo, il debug e il testing unità locali. Gli strumenti installati per lo sviluppo e la compilazione rendono l'immagine relativamente grande.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+* `dotnet/aspnet`
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 * `dotnet/core/aspnet`
 
-   L'esempio usa questa immagine per l'esecuzione dell'app. L'immagine contiene il runtime e le librerie ASP.NET Core ed è ottimizzata per l'esecuzione di app nell'ambiente di produzione. Progettata per offrire velocità di distribuzione e avvio dell'app, l'immagine è relativamente piccola, in modo da ottimizzare le prestazioni di rete dal registro Docker all'host Docker. Solo i file binari e i contenuti necessari per eseguire un'app vengono copiati nel contenitore. I contenuti sono pronti per l'esecuzione, fornendo i tempi più rapidi da `Docker run` all'avvio dell'app. La compilazione dinamica del codice non è necessaria nel modello di Docker.
+::: moniker-end
+
+   L'esempio usa questa immagine per l'esecuzione dell'app. L'immagine contiene il runtime e le librerie ASP.NET Core ed è ottimizzata per l'esecuzione di app nell'ambiente di produzione. Progettata per offrire velocità di distribuzione e avvio dell'app, l'immagine è relativamente piccola, in modo da ottimizzare le prestazioni di rete dal registro Docker all'host Docker. Solo i file binari e i contenuti necessari per eseguire un'app vengono copiati nel contenitore. I contenuti sono pronti per l'esecuzione, fornendo i tempi più rapidi da `docker run` all'avvio dell'app. La compilazione dinamica del codice non è necessaria nel modello di Docker.
 
 ## <a name="prerequisites"></a>Prerequisiti
+
+::: moniker range=">= aspnetcore-5.0"
+
+* [.NET SDK 5.0](https://dotnet.microsoft.com/download)
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
+* [.NET Core SDK 3.1](https://dotnet.microsoft.com/download)
+
+::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 * [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core)
-::: moniker-end
-
-::: moniker range=">= aspnetcore-3.0"
-
-* [.NET Core SDK 3.0](https://dotnet.microsoft.com/download)
 
 ::: moniker-end
 
@@ -78,7 +108,7 @@ Il documento Dockerfile di esempio usa la [funzionalità di compilazione in più
 
 ## <a name="download-the-sample-app"></a>Scaricare l'app di esempio
 
-* Scaricare l'esempio clonando il [repository di Docker per .NET Core](https://github.com/dotnet/dotnet-docker): 
+* Scaricare l'esempio clonando il [repository docker .NET](https://github.com/dotnet/dotnet-docker): 
 
   ```console
   git clone https://github.com/dotnet/dotnet-docker
@@ -156,7 +186,7 @@ Passare alla cartella di Dockerfile in `dotnet-docker/samples/aspnetapp`.
 
 ## <a name="build-and-deploy-manually"></a>Compilazione e distribuzione manuali
 
-In alcuni scenari è necessario distribuire un'app in un contenitore copiandovi i file dell'applicazione necessari in fase di esecuzione. Questa sezione mostra come eseguire manualmente la distribuzione.
+In alcuni scenari potrebbe essere necessario distribuire un'app in un contenitore copiando gli asset necessari in fase di esecuzione. Questa sezione mostra come eseguire manualmente la distribuzione.
 
 * Passare alla cartella del progetto in *dotnet-docker/samples/aspnetapp/aspnetapp*.
 
@@ -167,10 +197,10 @@ In alcuni scenari è necessario distribuire un'app in un contenitore copiandovi 
   ```
 
   Gli argomenti del comando:
-  * Compilano l'applicazione in modalità versione (quella predefinita è la modalità debug).
-  * Creano i file nella cartella *published*.
+  * Compilare l'app in modalità di rilascio (il valore predefinito è modalità di debug).
+  * Creare gli asset nella cartella *pubblicata* .
 
-* Eseguire l'applicazione.
+* Eseguire l'app.
 
   * Windows:
 
@@ -186,12 +216,12 @@ In alcuni scenari è necessario distribuire un'app in un contenitore copiandovi 
 
 * Passare a `http://localhost:5000`per visualizzare la home page.
 
-Per usare l'applicazione pubblicata manualmente in un contenitore Docker, creare un nuovo documento Dockerfile e usare il comando `docker build .` per compilare il contenitore.
+Per usare l'app pubblicata manualmente in un contenitore Docker, creare un nuovo *Dockerfile* e usare il `docker build .` comando per compilare il contenitore.
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range=">= aspnetcore-5.0"
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
@@ -202,8 +232,9 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 Ecco il *Dockerfile* usato dal `docker build` comando che è stato eseguito in precedenza.  Usa `dotnet publish` allo stesso modo in cui è stato usato in questa sezione per la compilazione e la distribuzione.  
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
-WORKDIR /app
+# https://hub.docker.com/_/microsoft-dotnet
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /source
 
 # copy csproj and restore as distinct layers
 COPY *.sln .
@@ -212,18 +243,21 @@ RUN dotnet restore
 
 # copy everything else and build app
 COPY aspnetapp/. ./aspnetapp/
-WORKDIR /app/aspnetapp
-RUN dotnet publish -c Release -o out
+WORKDIR /source/aspnetapp
+RUN dotnet publish -c release -o /app --no-restore
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+# final stage/image
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
-COPY --from=build /app/aspnetapp/out ./
+COPY --from=build /app ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
+Nel *Dockerfile* precedente, i `*.csproj` file vengono copiati e ripristinati come *livelli* distinti. Quando il `docker build` comando compila un'immagine, usa una cache predefinita. Se i `*.csproj` file non sono stati modificati dopo l'ultima esecuzione del `docker build` comando, `dotnet restore` non è necessario eseguire di nuovo il comando. Viene invece riutilizzata la cache predefinita per il `dotnet restore` livello corrispondente. Per ulteriori informazioni, vedere [procedure consigliate per la scrittura di dockerfile](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
+
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
@@ -257,6 +291,41 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
 Come indicato nel Dockerfile precedente, i `*.csproj` file vengono copiati e ripristinati come *livelli* distinti. Quando il `docker build` comando compila un'immagine, usa una cache predefinita. Se i `*.csproj` file non sono stati modificati dopo l'ultima esecuzione del `docker build` comando, `dotnet restore` non è necessario eseguire di nuovo il comando. Viene invece riutilizzata la cache predefinita per il `dotnet restore` livello corrispondente. Per ulteriori informazioni, vedere [procedure consigliate per la scrittura di dockerfile](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+WORKDIR /app
+COPY published/aspnetapp.dll ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
+### <a name="the-dockerfile"></a>Dockerfile
+
+Ecco il *Dockerfile* usato dal `docker build` comando che è stato eseguito in precedenza. Usa `dotnet publish` allo stesso modo in cui è stato usato in questa sezione per la compilazione e la distribuzione.  
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+WORKDIR /app
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY aspnetapp/*.csproj ./aspnetapp/
+RUN dotnet restore
+
+# copy everything else and build app
+COPY aspnetapp/. ./aspnetapp/
+WORKDIR /app/aspnetapp
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+WORKDIR /app
+COPY --from=build /app/aspnetapp/out ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
 
 ::: moniker-end
 
