@@ -539,7 +539,7 @@
               href: mvc/views/working-with-forms.md#the-label-tag-helper
             - name: Collegamento
               uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
-            - name: Partial
+            - name: Parziale
               uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
             - name: Script
               uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
@@ -766,6 +766,8 @@
       uid: grpc/interprocess
     - name: Create API Web JSON da gRPC
       uid: grpc/httpapi
+    - name: Servizi e client Code First gRPC
+      uid: grpc/code-first
     - name: Gestire i riferimenti Protobuf con dotnet-grpc
       uid: grpc/dotnet-grpc
     - name: Testare i servizi gRPC con gRPCurl
