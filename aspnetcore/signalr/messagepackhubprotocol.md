@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/messagepackhubprotocol
-ms.openlocfilehash: e7d19a42e48048d2be4b87d6b0ac1ba6b2596ff1
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 7c3640e9cd2c5d392400a115813584861f789554
+ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058168"
+ms.lasthandoff: 01/08/2021
+ms.locfileid: "98024691"
 ---
 # <a name="use-messagepack-hub-protocol-in-no-locsignalr-for-aspnet-core"></a>Usare il protocollo dell'hub MessagePack in SignalR per ASP.NET Core
 
@@ -97,10 +97,10 @@ Dopo l'installazione del pacchetto NPM, il modulo può essere usato direttamente
 
 *node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
 
-In un browser `msgpack5` è necessario fare riferimento anche alla raccolta. Usare un `<script>` tag per creare un riferimento. La libreria si trova in *node_modules\msgpack5\dist\msgpack5.js* .
+In un browser `msgpack5` è necessario fare riferimento anche alla raccolta. Usare un `<script>` tag per creare un riferimento. La libreria si trova in *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
-> Quando si usa l' `<script>` elemento, l'ordine è importante. Se *signalr-protocol-msgpack.js* viene fatto riferimento prima *msgpack5.js* , si verifica un errore durante il tentativo di connessione a MessagePack. *signalr.js* è necessario anche prima di *signalr-protocol-msgpack.js* .
+> Quando si usa l' `<script>` elemento, l'ordine è importante. Se *signalr-protocol-msgpack.js* viene fatto riferimento prima *msgpack5.js*, si verifica un errore durante il tentativo di connessione a MessagePack. *signalr.js* è necessario anche prima di *signalr-protocol-msgpack.js*.
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -119,6 +119,26 @@ const connection = new signalR.HubConnectionBuilder()
 
 > [!NOTE]
 > Al momento non sono disponibili opzioni di configurazione per il protocollo MessagePack nel client JavaScript.
+
+### <a name="java-client"></a>Client Java
+
+Per abilitare MessagePack con Java, installare il `com.microsoft.signalr.messagepack` pacchetto. Quando si usa Gradle, aggiungere la riga seguente alla `dependencies` sezione del file *Build. Gradle* :
+
+```gradle
+implementation 'com.microsoft.signalr.messagepack:signalr-messagepack:5.0.0'
+```
+
+Quando si usa Maven, aggiungere le righe seguenti all'interno dell' `<dependencies>` elemento del file di *pom.xml* :
+
+[!code-xml[pom.xml dependency element messagePack](java-client/sample/pom.xml?name=snippet_dependencyElement_messagePack)]
+
+Chiamare `withHubProtocol(new MessagePackHubProtocol())` il `HubConnectionBuilder` .
+
+```java
+HubConnection messagePackConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
+    .withHubProtocol(new MessagePackHubProtocol())
+    .build();
+```
 
 ## <a name="messagepack-quirks"></a>Peculiarità di MessagePack
 
@@ -187,6 +207,10 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 ```
 
 Per ulteriori informazioni su questa limitazione, vedere la pagina relativa al problema di GitHub [/ SignalR #2937](https://github.com/aspnet/SignalR/issues/2937).
+
+### <a name="chars-and-strings-in-java"></a>Caratteri e stringhe in Java
+
+Nel client Java gli `char` oggetti verranno serializzati come oggetti di un solo carattere `String` . Questo si differenzia dal client C# e JavaScript, che li serializza come `short` oggetti. La specifica MessagePack non definisce il comportamento degli `char` oggetti, pertanto spetta all'autore della libreria determinare come serializzarli. La differenza nel comportamento tra i client è il risultato delle librerie usate per le implementazioni.
 
 ## <a name="related-resources"></a>Risorse correlate
 
@@ -277,10 +301,10 @@ Dopo l'installazione del pacchetto NPM, il modulo può essere usato direttamente
 
 *node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
 
-In un browser `msgpack5` è necessario fare riferimento anche alla raccolta. Usare un `<script>` tag per creare un riferimento. La libreria si trova in *node_modules\msgpack5\dist\msgpack5.js* .
+In un browser `msgpack5` è necessario fare riferimento anche alla raccolta. Usare un `<script>` tag per creare un riferimento. La libreria si trova in *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
-> Quando si usa l' `<script>` elemento, l'ordine è importante. Se *signalr-protocol-msgpack.js* viene fatto riferimento prima *msgpack5.js* , si verifica un errore durante il tentativo di connessione a MessagePack. *signalr.js* è necessario anche prima di *signalr-protocol-msgpack.js* .
+> Quando si usa l' `<script>` elemento, l'ordine è importante. Se *signalr-protocol-msgpack.js* viene fatto riferimento prima *msgpack5.js*, si verifica un errore durante il tentativo di connessione a MessagePack. *signalr.js* è necessario anche prima di *signalr-protocol-msgpack.js*.
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -457,10 +481,10 @@ Dopo l'installazione del pacchetto NPM, il modulo può essere usato direttamente
 
 *node_modules\\@aspnet\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js*
 
-In un browser `msgpack5` è necessario fare riferimento anche alla raccolta. Usare un `<script>` tag per creare un riferimento. La libreria si trova in *node_modules\msgpack5\dist\msgpack5.js* .
+In un browser `msgpack5` è necessario fare riferimento anche alla raccolta. Usare un `<script>` tag per creare un riferimento. La libreria si trova in *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
-> Quando si usa l' `<script>` elemento, l'ordine è importante. Se *signalr-protocol-msgpack.js* viene fatto riferimento prima *msgpack5.js* , si verifica un errore durante il tentativo di connessione a MessagePack. *signalr.js* è necessario anche prima di *signalr-protocol-msgpack.js* .
+> Quando si usa l' `<script>` elemento, l'ordine è importante. Se *signalr-protocol-msgpack.js* viene fatto riferimento prima *msgpack5.js*, si verifica un errore durante il tentativo di connessione a MessagePack. *signalr.js* è necessario anche prima di *signalr-protocol-msgpack.js*.
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 108fb3a8a24295cad43fd8c83303abd95a7ecd33
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: aa24def1a003a2c2608691e6168066c740f47205
+ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055477"
+ms.lasthandoff: 01/08/2021
+ms.locfileid: "98024626"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Proteggere le Blazor Server app ASP.NET Core
 
@@ -40,12 +40,12 @@ Il Blazor Server modello di progetto può essere configurato per l'autenticazion
 
 Seguire le istruzioni di Visual Studio in <xref:blazor/tooling> per creare un nuovo Blazor Server progetto con un meccanismo di autenticazione.
 
-Dopo aver scelto il modello **Blazor Server app** nella finestra di dialogo **Crea un nuovo ASP.NET Core applicazione Web** , selezionare **Cambia** in **autenticazione** .
+Dopo aver scelto il modello **Blazor Server app** nella finestra di dialogo **Crea un nuovo ASP.NET Core applicazione Web** , selezionare **Cambia** in **autenticazione**.
 
 Viene visualizzata una finestra di dialogo che offre lo stesso set di meccanismi di autenticazione disponibili per altri progetti ASP.NET Core:
 
 * **Nessuna autenticazione**
-* **Account utente singoli** : è possibile archiviare gli account utente:
+* **Account utente singoli**: è possibile archiviare gli account utente:
   * All'interno dell'app usando il [Identity](xref:security/authentication/identity) sistema di ASP.NET Core.
   * Con [Azure AD B2C](xref:security/authentication/azure-ad-b2c).
 * **Account aziendali o dell'Istituto di istruzione**
@@ -131,3 +131,6 @@ Impalcatura Identity in un Blazor Server progetto:
 
 * [Avvio rapido: Aggiungere l'accesso con Microsoft a un'app Web ASP.NET Core](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
 * [Avvio rapido: Proteggere un'API Web ASP.NET Core con Microsoft Identity Platform](/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)
+* <xref:host-and-deploy/proxy-load-balancer>: Include informazioni aggiuntive su:
+  * Uso del middleware intestazioni con inoltro per mantenere le informazioni sullo schema HTTPS tra i server proxy e le reti interne.
+  * Scenari e casi d'uso aggiuntivi, tra cui la configurazione manuale dello schema, la modifica del percorso della richiesta per il routing delle richieste corretto e l'inoltro dello schema di richiesta per i proxy inversi Linux e non IIS.
