@@ -5,7 +5,7 @@ description: Informazioni sulla gestione degli errori con ASP.NET Core le API We
 monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
-ms.date: 07/23/2020
+ms.date: 1/11/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/handle-errors
-ms.openlocfilehash: 0efcf1bbeeb65cf7f4420f8c50fb4adf7d1d016d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 92e9350a7892f8f38f64d4ebd68d54a97ec7e994
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052526"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058376"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>Gestire gli errori nelle API Web di ASP.NET Core
 
@@ -46,7 +46,7 @@ curl -i https://localhost:5001/weatherforecast/chicago
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In ASP.NET Core 3,0 e versioni successive, la pagina delle eccezioni per sviluppatori Visualizza una risposta di testo normale se il client non richiede l'output in formato HTML. Viene visualizzato l'output seguente:
+In ASP.NET Core 3,0 e versioni successive, la pagina delle eccezioni per sviluppatori Visualizza una risposta di testo normale se il client non richiede l'output in formato HTML. Compare l'output seguente:
 
 ```console
 HTTP/1.1 500 Internal Server Error
@@ -127,7 +127,9 @@ La risposta in formato HTML risulta utile quando si esegue il test tramite strum
 ::: moniker-end
 
 > [!WARNING]
-> Abilitare la pagina delle eccezioni **per gli sviluppatori solo quando l'app è in esecuzione nell'ambiente di sviluppo** . per non condividere pubblicamente le informazioni dettagliate sulle eccezioni quando l'app è in esecuzione nell'ambiente di produzione. Per altre informazioni sulla configurazione di ambienti, vedere <xref:fundamentals/environments>.
+> Abilitare la pagina delle eccezioni **per gli sviluppatori solo quando l'app è in esecuzione nell'ambiente di sviluppo**. Non condividere informazioni dettagliate sulle eccezioni pubblicamente quando l'app viene eseguita nell'ambiente di produzione. Per altre informazioni sulla configurazione di ambienti, vedere <xref:fundamentals/environments>.
+>
+> Non contrassegnare il metodo di azione del gestore errori con attributi di metodo HTTP, ad esempio `HttpGet` . I verbi espliciti impediscono che alcune richieste raggiungano il metodo di azione. Consentire l'accesso anonimo al metodo se gli utenti non autenticati dovrebbero visualizzare l'errore.
 
 ## <a name="exception-handler"></a>Gestore di eccezioni
 
@@ -222,6 +224,8 @@ Il middleware di gestione delle eccezioni può inoltre fornire un output più de
 
     ::: moniker-end
 
+    Il codice precedente chiama [ControllerBase. problem](xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A) per creare una <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> risposta.
+
 ## <a name="use-exceptions-to-modify-the-response"></a>Usare le eccezioni per modificare la risposta
 
 Il contenuto della risposta può essere modificato dall'esterno del controller. Nell'API Web ASP.NET 4. x, un modo per eseguire questa operazione consiste nell'usare il <xref:System.Web.Http.HttpResponseException> tipo. ASP.NET Core non include un tipo equivalente. `HttpResponseException`È possibile aggiungere il supporto per con i passaggi seguenti:
@@ -234,7 +238,7 @@ Il contenuto della risposta può essere modificato dall'esterno del controller. 
 
     [!code-csharp[](handle-errors/samples/3.x/Filters/HttpResponseExceptionFilter.cs?name=snippet_HttpResponseExceptionFilter)]
 
-    Nel filtro precedente, il numero magico 10 viene sottratto dal valore integer massimo. La sottrazione di questo numero consente l'esecuzione di altri filtri alla fine della pipeline.
+    Il filtro precedente specifica un `Order` valore integer massimo meno 10. In questo modo è possibile eseguire altri filtri alla fine della pipeline.
 
 1. In `Startup.ConfigureServices` aggiungere il filtro azioni alla raccolta filters:
 
@@ -337,3 +341,7 @@ Usare la proprietà <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErro
 [!code-csharp[](index/samples/2.x/2.2/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=9-10)]
 
 ::: moniker-end
+
+## <a name="custom-middleware-to-handle-exceptions"></a>Middleware personalizzato per la gestione delle eccezioni
+
+Le impostazioni predefinite nel middleware di gestione delle eccezioni funzionano correttamente per la maggior parte delle app. Per le app che richiedono una gestione delle eccezioni specializzata, provare a [personalizzare il middleware di gestione delle eccezioni](xref:fundamentals/error-handling#exception-handler-lambda).

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: 610a9e9b0007fb468ea9cdae6fadd2e756de4290
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: b1adca435b48db22a176d33a216c07d6647a6695
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93054060"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058311"
 ---
 # <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: leggere dati correlati-MVC ASP.NET con EF Core
 
@@ -183,7 +183,17 @@ Se è stato selezionato un corso, questo viene quindi recuperato dall'elenco dei
 
 In *Views/Instructors/Index.cshtml* sostituire il codice del modello con il codice seguente. Le modifiche sono evidenziate.
 
-[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
+::: moniker range=">= aspnetcore-2.2"
+
+[!code-cshtml[](intro/samples/5cu-snap/Views/Instructors/Index.cshtml?range=1-62&highlight=1,3-7,15-19,24,26-31,41-52,54)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.1"
+
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-62&highlight=1,3-7,15-19,24,26-31,41-52,54)]
+
+::: moniker-end
 
 Al codice esistente sono state apportate le modifiche seguenti:
 
@@ -193,7 +203,7 @@ Al codice esistente sono state apportate le modifiche seguenti:
 
 * È stata aggiunta la colonna **Office** (Ufficio) che visualizza `item.OfficeAssignment.Location` solo se `item.OfficeAssignment` non è Null. Poiché questa è una relazione uno-a-zero-o-uno, potrebbe non esserci un'entità OfficeAssignment correlata.
 
-  ```html
+  ```cshtml
   @if (item.OfficeAssignment != null)
   {
       @item.OfficeAssignment.Location
@@ -202,20 +212,11 @@ Al codice esistente sono state apportate le modifiche seguenti:
 
 * È stata aggiunta la colonna **Courses** (Corsi) che visualizza i corsi tenuti da ogni insegnante. Per ulteriori informazioni, vedere la sezione relativa alla [transizione di riga esplicita](xref:mvc/views/razor#explicit-line-transition) dell' Razor articolo della sintassi.
 
-* È stato aggiunto codice che aggiunge `class="success"` in modo dinamico all'elemento `tr` dell'insegnante selezionato. In questo modo viene impostato un colore di sfondo per la riga selezionata tramite una classe Bootstrap.
-
-  ```html
-  string selectedRow = "";
-  if (item.ID == (int?)ViewData["InstructorID"])
-  {
-      selectedRow = "success";
-  }
-  <tr class="@selectedRow">
-  ```
+* Aggiunto codice che aggiunge in modo condizionale una classe CSS bootstrap all' `tr` elemento dell'insegnante selezionato. Questa classe imposta un colore di sfondo per la riga selezionata.
 
 * È stato aggiunto un nuovo collegamento ipertestuale con etichetta **Select** (Seleziona) immediatamente prima degli altri collegamenti in ogni riga.Ciò comporta l'invio dell'ID dell'insegnante selezionato al metodo `Index`.
 
-  ```html
+  ```cshtml
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 

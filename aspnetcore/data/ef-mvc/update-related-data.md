@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: f41d0b1d7ba46ef4867e0d160dc61f21042ce403
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 9ad0de9984b42c2b14dfaf48c74660915de93be1
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93053943"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058324"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Esercitazione: aggiornare i dati correlati-ASP.NET MVC con EF Core
 
@@ -34,7 +34,7 @@ Le figure seguenti illustrano alcune delle pagine che verranno usate.
 
 ![Pagina di modifica del corso](update-related-data/_static/course-edit.png)
 
-![Pagina di modifica dell'insegnante](update-related-data/_static/instructor-edit-courses.png)
+![Pagina modifica insegnante](update-related-data/_static/instructor-edit-courses.png)
 
 In questa esercitazione:
 
@@ -91,7 +91,7 @@ Per ottimizzare le prestazioni delle pagine dei dettagli e di eliminazione del c
 
 In *Views/Courses/Create.cshtml* aggiungere l'opzione "Select Department" (Selezionare il dipartimento) all'elenco a discesa **Department** (Dipartimento), modificare la didascalia da **DepartmentID** (ID dipartimento) a **Department** (Dipartimento) e aggiungere un messaggio di convalida.
 
-[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-35)]
 
 In *Views/Courses/Edit.cshtml* apportare al campo Department (Dipartimento) la stessa modifica effettuata in *Create.cshtml*.
 

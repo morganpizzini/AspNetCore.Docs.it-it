@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: b2f58fb29e451628aead4ad35c7272a1409cf3d8
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 2f5630eac65b880bdefff2a4baf4f1878e981536
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97797353"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058389"
 ---
 # <a name="use-aspnet-core-no-locsignalr-with-a-hosted-no-locblazor-webassembly-app"></a>Usare ASP.NET Core SignalR con un'app ospitata Blazor WebAssembly
 
@@ -117,13 +117,13 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Selezionare **Blazor app** e fare clic su **Next (avanti**).
 
-1. Digitare `BlazorSignalRApp` nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Crea**.
+1. Digitare `BlazorSignalRApp` nel campo **nome progetto** . Confermare che la voce relativa al **percorso** sia corretta o specificare un percorso per il progetto. Selezionare **Create** (Crea).
 
 1. Scegliere il modello di **Blazor WebAssembly app** .
 
 1. In **Avanzate** selezionare la casella di controllo **ASP.NET Core Hosted** .
 
-1. Selezionare **Crea**.
+1. Selezionare **Create** (Crea).
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -149,7 +149,7 @@ Seguire le istruzioni per la scelta degli strumenti:
 
 1. Verificare che **l'autenticazione** sia impostata su **Nessuna autenticazione**. Selezionare la casella di controllo **ASP.NET Core Hosted** . Selezionare **Avanti**.
 
-1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Crea**.
+1. Nel campo **nome progetto** assegnare un nome all'app `BlazorSignalRApp` . Selezionare **Create** (Crea).
 
    Se viene visualizzato un messaggio per considerare attendibile il certificato di sviluppo, considerare attendibile il certificato e continuare. Per considerare attendibile il certificato, è necessario specificare le password dell'utente e del keychain.
 
@@ -360,26 +360,6 @@ Seguire le istruzioni per gli strumenti:
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-::: moniker range=">= aspnetcore-5.0"
-
-1. Quando VS Code offre la creazione di un profilo di avvio per l'app Server ( `.vscode/launch.json` ), la `program` voce appare simile alla seguente per puntare all'assembly dell'app ( `{APPLICATION NAME}.Server.dll` ):
-
-   ```json
-   "program": "${workspaceFolder}/Server/bin/Debug/net5.0/{APPLICATION NAME}.Server.dll"
-   ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-1. Quando VS Code offre la creazione di un profilo di avvio per l'app Server ( `.vscode/launch.json` ), la `program` voce appare simile alla seguente per puntare all'assembly dell'app ( `{APPLICATION NAME}.Server.dll` ):
-
-   ```json
-   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"
-   ```
-
-::: moniker-end
-
 1. Premere <kbd>F5</kbd> per eseguire l'app con il debug o <kbd>CTRL</kbd> + <kbd>F5</kbd> per eseguire l'app senza debug.
 
 1. Copiare l'URL dalla barra degli indirizzi, aprire un'altra istanza o scheda del browser e incollare l'URL nella barra degli indirizzi.
@@ -442,3 +422,4 @@ Per altre informazioni sulla creazione di Blazor app, vedere la Blazor documenta
 
 * <xref:signalr/introduction>
 * [SignalR negoziazione tra le origini per l'autenticazione](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
+* <xref:blazor/debug>

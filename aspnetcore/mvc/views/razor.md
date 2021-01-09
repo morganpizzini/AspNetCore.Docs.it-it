@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: 91e35a7cbd97e2bd6e77566362f02409915de7d7
-ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
+ms.openlocfilehash: cb9ffab19062bf726dd519c782d502f76e372073
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96035710"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058285"
 ---
 # <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>Razor informazioni di riferimento sulla sintassi per ASP.NET Core
 
@@ -611,7 +611,7 @@ La `@inject` direttiva consente alla Razor pagina di inserire un servizio dal [c
 
 *Questo scenario si applica solo ai Razor componenti (Razor).*
 
-La `@layout` direttiva specifica un layout per un Razor componente. I componenti di layout vengono usati per evitare la duplicazione e l'incoerenza del codice. Per altre informazioni, vedere <xref:blazor/layouts>.
+La `@layout` direttiva specifica un layout per i componenti instradabili con Razor una [`@page`](#page) direttiva. I componenti di layout vengono usati per evitare la duplicazione e l'incoerenza del codice. Per altre informazioni, vedere <xref:blazor/layouts>.
 
 ::: moniker-end
 

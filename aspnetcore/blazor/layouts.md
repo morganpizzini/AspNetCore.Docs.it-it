@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: 3cb7c6184c13a003b4f4294f887d8938caa42f97
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 417f69e797296cdcd01fc4ce326388512a406368
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506903"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058272"
 ---
 # <a name="aspnet-core-no-locblazor-layouts"></a>BlazorLayout ASP.NET Core
 
@@ -32,7 +32,7 @@ Di [Rainer Stropek](https://www.timecockpit.com) e [Luke Latham](https://github.
 
 Alcuni elementi dell'app, ad esempio i menu, i messaggi di copyright e i logo aziendali, fanno in genere parte del layout generale dell'app e vengono usati da ogni componente nell'app. La copia del codice di questi elementi in tutti i componenti di un'app non è un approccio efficace. Ogni volta che uno degli elementi richiede un aggiornamento, è necessario aggiornare ogni componente. Tale duplicazione è difficile da gestire e può causare contenuti incoerenti nel tempo. I *layout* risolvono questo problema.
 
-Tecnicamente, un layout è semplicemente un altro componente. Un layout è definito in un Razor modello o nel codice C# e può usare [Data Binding](xref:blazor/components/data-binding), l' [inserimento delle dipendenze](xref:blazor/fundamentals/dependency-injection)e altri scenari di componenti.
+Tecnicamente, un layout è semplicemente un altro componente. Un layout è definito in un Razor modello o nel codice C# e può usare [Data Binding](xref:blazor/components/data-binding), l' [inserimento delle dipendenze](xref:blazor/fundamentals/dependency-injection)e altri scenari di componenti. I layout si applicano solo ai componenti instradabili con Razor [`@page`](xref:mvc/views/razor#page) direttive.
 
 Per convertire un componente in un layout:
 
@@ -79,7 +79,7 @@ La specifica del layout come layout predefinito nel router è una procedura util
 
 ## <a name="specify-a-layout-in-a-component"></a>Specificare un layout in un componente
 
-Utilizzare la Razor direttiva `@layout` per applicare un layout a un componente. Il compilatore esegue la conversione `@layout` in un oggetto <xref:Microsoft.AspNetCore.Components.LayoutAttribute> , che viene applicato alla classe Component.
+Utilizzare la [`@layout`](xref:mvc/views/razor#layout) Razor direttiva per applicare un layout a un componente instradabile Razor che dispone anche di una [`@page`](xref:mvc/views/razor#page) direttiva. Il compilatore esegue la conversione `@layout` in un oggetto <xref:Microsoft.AspNetCore.Components.LayoutAttribute> , che viene applicato alla classe Component.
 
 Il contenuto del componente seguente `MasterList` viene inserito nella `MasterLayout` posizione di `@Body` :
 
@@ -105,6 +105,9 @@ La specifica di un layout in `_Imports.razor` sostituisce un layout specificato 
 
 > [!WARNING]
 > **Non** aggiungere una Razor `@layout` direttiva al `_Imports.razor` file radice, il che comporta un ciclo infinito di layout nell'app. Per controllare il layout predefinito dell'app, specificare il layout nel `Router` componente. Per ulteriori informazioni, vedere la sezione [layout predefinito](#default-layout) .
+
+> [!NOTE]
+> La [`@layout`](xref:mvc/views/razor#layout) Razor direttiva applica solo un layout ai componenti instradabili Razor con le [`@page`](xref:mvc/views/razor#page) direttive.
 
 ## <a name="nested-layouts"></a>Layout annidati
 
