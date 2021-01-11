@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/virtualization
-ms.openlocfilehash: 706564bb8607d0bb25c092c31a72e5790c825ee4
-ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
+ms.openlocfilehash: afd2da19641b41871f06426934c39348daa54b1f
+ms.sourcegitcommit: 2fea9bfe6127bbbdbb438406c82529b2bc331944
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2021
-ms.locfileid: "98024678"
+ms.lasthandoff: 01/11/2021
+ms.locfileid: "98065532"
 ---
 # <a name="aspnet-core-no-locblazor-component-virtualization"></a>BlazorVirtualizzazione componenti ASP.NET Core
 
@@ -41,10 +41,10 @@ Il `Virtualize` componente può essere usato nei casi seguenti:
 Senza virtualizzazione, un elenco tipico potrebbe usare un [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) ciclo C# per eseguire il rendering di ogni elemento nell'elenco:
 
 ```razor
-<div class="all-flights" style="height:500px;overflow-y:scroll">
+<div style="height:500px;overflow-y:scroll">
     @foreach (var flight in allFlights)
     {
-        <FlightSummary @key="flight.FlightId" Flight="@flight" />
+        <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
     }
 </div>
 ```
@@ -54,17 +54,17 @@ Se l'elenco contiene migliaia di elementi, il rendering dell'elenco potrebbe ric
 Anziché eseguire il rendering di ogni elemento nell'elenco in una sola volta, sostituire il [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) ciclo con il `Virtualize` componente e specificare un'origine di elemento fisso con <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType> . Vengono visualizzati solo gli elementi attualmente visibili:
 
 ```razor
-<div class="all-flights" style="height:500px;overflow-y:scroll">
+<div style="height:500px;overflow-y:scroll">
     <Virtualize Items="@allFlights" Context="flight">
         <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
     </Virtualize>
 </div>
 ```
 
-Se non si specifica un contesto per il componente con `Context` , usare il `context` valore ( `context.{PROPERTY}` / `@context.{PROPERTY}` ) nel modello di contenuto dell'elemento:
+Se non si specifica un contesto per il componente con `Context` , usare il `context` valore nel modello di contenuto dell'elemento:
 
 ```razor
-<div class="all-flights" style="height:500px;overflow-y:scroll">
+<div style="height:500px;overflow-y:scroll">
     <Virtualize Items="@allFlights">
         <FlightSummary @key="context.FlightId" Details="@context.Summary" />
     </Virtualize>
@@ -72,12 +72,12 @@ Se non si specifica un contesto per il componente con `Context` , usare il `cont
 ```
 
 > [!NOTE]
-> Il processo di mapping degli oggetti modello a elementi e componenti può essere controllato con l' `@key` attributo della direttiva [] [xrif: MVC/views/Razor # Key]. `@key` fa in modo che l'algoritmo diffe garantisca la conservazione di elementi o componenti in base al valore della chiave.
+> Il processo di mapping degli oggetti modello a elementi e componenti può essere controllato con l' [`@key`](xref:mvc/views/razor#key) attributo della direttiva. `@key` fa in modo che l'algoritmo diffe garantisca la conservazione di elementi o componenti in base al valore della chiave.
 >
 > Per altre informazioni, vedere gli articoli seguenti:
 >
-> <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>
-> <xref:mvc/views/razor#key>
+> * <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>
+> * <xref:mvc/views/razor#key>
 
 Il `Virtualize` componente:
 
@@ -93,7 +93,7 @@ Il contenuto dell'elemento per il `Virtualize` componente può includere:
 
 ## <a name="item-provider-delegate"></a>Delegato del provider di elementi
 
-Se non si desidera caricare tutti gli elementi in memoria, è possibile specificare un metodo delegato del provider di elementi per il parametro del componente <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> che recupera in modo asincrono gli elementi richiesti su richiesta:
+Se non si desidera caricare tutti gli elementi in memoria, è possibile specificare un metodo delegato del provider di elementi per il parametro del componente <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> che recupera in modo asincrono gli elementi richiesti su richiesta. Nell'esempio seguente il `LoadEmployees` metodo fornisce gli elementi al `Virtualize` componente:
 
 ```razor
 <Virtualize Context="employee" ItemsProvider="@LoadEmployees">
@@ -108,7 +108,7 @@ Il provider Items riceve un oggetto <xref:Microsoft.AspNetCore.Components.Web.Vi
 
 Un `Virtualize` componente può accettare solo **un'origine elemento** dai relativi parametri, quindi non tentare di usare contemporaneamente un provider di elementi e assegnare una raccolta a `Items` . Se entrambi sono assegnati, <xref:System.InvalidOperationException> viene generata un'eccezione quando i parametri del componente vengono impostati in fase di esecuzione.
 
-Nell'esempio seguente vengono caricati i dipendenti da un `EmployeeService` :
+Nell' `LoadEmployees` esempio di metodo seguente vengono caricati i dipendenti da un `EmployeeService` (non visualizzato):
 
 ```csharp
 private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
@@ -149,7 +149,7 @@ Poiché la richiesta di elementi da un'origine dati remota potrebbe richiedere d
 
 ## <a name="item-size"></a>Dimensioni dell'elemento
 
-È possibile impostare le dimensioni di ogni elemento in pixel con <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (impostazione predefinita: 50px):
+È possibile impostare le dimensioni di ogni elemento in pixel <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (impostazione predefinita: 50):
 
 ```razor
 <Virtualize Context="employee" Items="@employees" ItemSize="25">
