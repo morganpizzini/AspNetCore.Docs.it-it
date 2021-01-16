@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: 0bae3f888a1b7a3c2860b85754779189c636d86f
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: e81ad43e1c3b86900848671d9da377a5c04a2a82
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93057700"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253007"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hosting di ASP.NET Core in Linux con Apache
 
@@ -70,7 +70,7 @@ Copiare l'app ASP.NET Core sul server usando uno strumento integrato nel flusso 
 
 Un proxy inverso è una configurazione comune per la gestione delle app Web dinamiche. Il proxy inverso termina la richiesta HTTP e la inoltra all'app ASP.NET.
 
-Un server proxy inoltra le richieste del client a un altro server anziché evaderle da solo. Un proxy inverso inoltra a una destinazione fissa, in genere per conto di client non autorizzati. In questa guida Apache viene configurato come proxy inverso in esecuzione nello stesso server usato da Kestrel per gestire l'app ASP.NET Core.
+Un server proxy invia le richieste client a un altro server anziché soddisfare le richieste stesse. Un proxy inverso inoltra a una destinazione fissa, in genere per conto di client non autorizzati. In questa guida Apache viene configurato come proxy inverso in esecuzione nello stesso server usato da Kestrel per gestire l'app ASP.NET Core.
 
 Poiché le richieste vengono inviate dal proxy inverso, usare il [middleware delle intestazioni inoltro](xref:host-and-deploy/proxy-load-balancer) dal pacchetto [Microsoft. AspNetCore. HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) . Il middleware aggiorna `Request.Scheme` usando l'intestazione `X-Forwarded-Proto`, in modo che gli URI di reindirizzamento e altri criteri di sicurezza funzionino correttamente.
 
@@ -78,7 +78,7 @@ Qualsiasi componente che dipende dallo schema, ad esempio l'autenticazione, la g
 
 [!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
-Richiamare il <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> metodo all'inizio di `Startup.Configure` prima di chiamare altro middleware. Configurare il middleware per l'inoltro delle intestazioni `X-Forwarded-For` e `X-Forwarded-Proto`:
+Richiamare il <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> metodo all'inizio di `Startup.Configure` prima di chiamare altro middleware. Configurare il middleware per l'inoltro delle intestazioni `X-Forwarded-For` e `X-Forwarded-Proto`:
 
 ```csharp
 // using Microsoft.AspNetCore.HttpOverrides;
@@ -93,7 +93,7 @@ app.UseAuthentication();
 
 Se non vengono specificate opzioni <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> per il middleware, le intestazioni predefinite per l'inoltro sono `None`.
 
-I proxy in esecuzione su indirizzi di loopback (127.0.0.0/8, [::1]), incluso l'indirizzo localhost standard (127.0.0.1), sono considerati attendibili per impostazione predefinita. Se le richieste tra Internet e il server Web vengono gestite anche da altri proxy o reti attendibili all'interno dell'organizzazione, aggiungerli all'elenco di <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> o <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> con <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. L'esempio seguente aggiunge un server proxy attendibile all'indirizzo IP 10.0.0.100 nel middleware delle intestazioni inoltrate `KnownProxies` in `Startup.ConfigureServices`:
+I proxy eseguiti sugli indirizzi di loopback ( `127.0.0.0/8, [::1]` ), incluso l'indirizzo localhost standard (127.0.0.1), sono considerati attendibili per impostazione predefinita. Se le richieste tra Internet e il server Web vengono gestite anche da altri proxy o reti attendibili all'interno dell'organizzazione, aggiungerli all'elenco di <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> o <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> con <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. L'esempio seguente aggiunge un server proxy attendibile all'indirizzo IP 10.0.0.100 nel middleware delle intestazioni inoltrate `KnownProxies` in `Startup.ConfigureServices`:
 
 ```csharp
 // using System.Net;
@@ -163,10 +163,20 @@ Creare un file di configurazione denominato *helloapp.conf*, per l'app:
 </VirtualHost>
 ```
 
-Il blocco `VirtualHost` può comparire più volte, in uno o più file su un server. Nel file di configurazione precedente Apache accetta il traffico pubblico sulla porta 80. Il dominio `www.example.com` viene gestito e l'alias `*.example.com` viene risolto nello stesso sito. Per altre informazioni, vedere [Name-based virtual host support](https://httpd.apache.org/docs/current/vhosts/name-based.html) (Supporto degli host virtuali basati sul nome). Le richieste vengono trasmesse tramite proxy alla radice sulla porta 5000 del server all'indirizzo 127.0.0.1. Per la comunicazione bidirezionale, sono necessari `ProxyPass` e `ProxyPassReverse`. Per cambiare porta/IP di Kestrel, vedere [Kestrel: Configurazione dell'endpoint](xref:fundamentals/servers/kestrel#endpoint-configuration).
+::: moniker range=">= aspnetcore-5.0"
+
+Il blocco `VirtualHost` può comparire più volte, in uno o più file su un server. Nel file di configurazione precedente Apache accetta il traffico pubblico sulla porta 80. Il dominio `www.example.com` viene gestito e l'alias `*.example.com` viene risolto nello stesso sito. Per ulteriori informazioni, vedere [supporto per host virtuali basato su nome](https://httpd.apache.org/docs/current/vhosts/name-based.html). Le richieste vengono trasmesse tramite proxy alla radice sulla porta 5000 del server all'indirizzo 127.0.0.1. Per la comunicazione bidirezionale, sono necessari `ProxyPass` e `ProxyPassReverse`. Per cambiare porta/IP di Kestrel, vedere [Kestrel: Configurazione dell'endpoint](xref:fundamentals/servers/kestrel/endpoints).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Il blocco `VirtualHost` può comparire più volte, in uno o più file su un server. Nel file di configurazione precedente Apache accetta il traffico pubblico sulla porta 80. Il dominio `www.example.com` viene gestito e l'alias `*.example.com` viene risolto nello stesso sito. Per ulteriori informazioni, vedere [supporto per host virtuali basato su nome](https://httpd.apache.org/docs/current/vhosts/name-based.html). Le richieste vengono trasmesse tramite proxy alla radice sulla porta 5000 del server all'indirizzo 127.0.0.1. Per la comunicazione bidirezionale, sono necessari `ProxyPass` e `ProxyPassReverse`. Per cambiare porta/IP di Kestrel, vedere [Kestrel: Configurazione dell'endpoint](xref:fundamentals/servers/kestrel#endpoint-configuration).
+
+::: moniker-end
 
 > [!WARNING]
-> Se non si specifica una [direttiva ServerName](https://httpd.apache.org/docs/current/mod/core.html#servername) corretta nel blocco **VirtualHost**, l'app può risultare esposta a vulnerabilità di sicurezza. L'associazione con caratteri jolly del sottodominio (ad esempio, `*.example.com`) non costituisce un rischio per la sicurezza se viene controllato l'intero dominio padre (a differenza di `*.com`, che è vulnerabile). Vedere la [sezione 5.4 di RFC7230](https://tools.ietf.org/html/rfc7230#section-5.4) per altre informazioni.
+> Se non si specifica una [direttiva ServerName](https://httpd.apache.org/docs/current/mod/core.html#servername) corretta nel blocco **VirtualHost**, l'app può risultare esposta a vulnerabilità di sicurezza. L'associazione con caratteri jolly del sottodominio (ad esempio, `*.example.com`) non costituisce un rischio per la sicurezza se viene controllato l'intero dominio padre (a differenza di `*.com`, che è vulnerabile). Per ulteriori informazioni, vedere la [sezione rfc7230-5,4](https://tools.ietf.org/html/rfc7230#section-5.4).
 
 La registrazione può essere configurata per ogni `VirtualHost` usando le direttive `ErrorLog` e `CustomLog`. `ErrorLog` è la posizione in cui il server registra gli errori e `CustomLog` imposta il nome del file e il formato del file di log. In questo caso, si tratta della posizione in cui vengono registrate le informazioni sulla richiesta. È presente una riga per ogni richiesta.
 
@@ -185,7 +195,7 @@ sudo systemctl enable httpd
 
 ## <a name="monitor-the-app"></a>Monitorare l'app
 
-Apache è ora configurato in modo da inoltrare le richieste eseguite a `http://localhost:80` all'app ASP.NET Core eseguita in Kestrel all'indirizzo `http://127.0.0.1:5000`. Tuttavia, Apache non è configurato per la gestione del processo Kestrel. Usare *systemd* e creare un file del servizio per avviare e monitorare l'app Web sottostante. *systemd* è un sistema di inizializzazione che offre molte funzionalità potenti per l'avvio, l'arresto e la gestione dei processi.
+Apache è ora configurato per l'invio delle richieste effettuate a `http://localhost:80` all'app ASP.NET Core in esecuzione in gheppio all'indirizzo `http://127.0.0.1:5000` . Tuttavia, Apache non è configurato per la gestione del processo Kestrel. Usare *systemd* e creare un file del servizio per avviare e monitorare l'app Web sottostante. *systemd* è un sistema di inizializzazione che offre molte funzionalità potenti per l'avvio, l'arresto e la gestione dei processi.
 
 ### <a name="create-the-service-file"></a>Creare il file del servizio
 
@@ -236,6 +246,7 @@ systemd-escape "<value-to-escape>"
 I due punti (`:`) separatori non sono supportati nei nomi delle variabili di ambiente. Usare un doppio carattere di sottolineatura (`__`) al posto dei due punti. Il [provider di configurazione delle variabili di ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider) converte le doppie sottolineature in due punti quando le variabili di ambiente vengono lette nella configurazione. Nell'esempio seguente la chiave della stringa di connessione `ConnectionStrings:DefaultConnection` è impostata nel file di definizione del servizio come `ConnectionStrings__DefaultConnection`:
 
 ::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 I due punti (`:`) separatori non sono supportati nei nomi delle variabili di ambiente. Usare un doppio carattere di sottolineatura (`__`) al posto dei due punti. Il [provider di configurazione delle variabili di ambiente](xref:fundamentals/configuration/index#environment-variables) converte le doppie sottolineature in due punti quando le variabili di ambiente vengono lette nella configurazione. Nell'esempio seguente la chiave della stringa di connessione `ConnectionStrings:DefaultConnection` è impostata nel file di definizione del servizio come `ConnectionStrings__DefaultConnection`:
@@ -350,8 +361,19 @@ Il comando [dotnet run](/dotnet/core/tools/dotnet-run) usa il file *Properties/l
 
 Configurare l'app per l'uso di un certificato nello sviluppo per il comando `dotnet run` o l'ambiente di sviluppo (F5 o CTRL+F5 in Visual Studio Code) usando uno degli approcci seguenti:
 
+::: moniker range=">= aspnetcore-5.0"
+
+* [Sostituire il certificato predefinito della configurazione](xref:fundamentals/servers/kestrel/endpoints#configuration) (*consigliato*)
+* [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel/endpoints#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * [Sostituire il certificato predefinito della configurazione](xref:fundamentals/servers/kestrel#configuration) (*consigliato*)
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+
+::: moniker-end
 
 **Configurare il proxy inverso per connessioni client sicure (HTTPS)**
 
@@ -417,7 +439,7 @@ Dopo aver aggiornato il Framework condiviso sul server, riavviare le app ASP.NET
 
 ### <a name="additional-headers"></a>Intestazioni aggiuntive
 
-Al fine di garantire la protezione dagli attacchi dannosi, vi sono alcune intestazioni che devono essere modificate o aggiunte. Verificare che il modulo `mod_headers` sia installato:
+Per proteggersi da attacchi dannosi, è necessario modificare o aggiungere alcune intestazioni. Verificare che il modulo `mod_headers` sia installato:
 
 ```bash
 sudo yum install mod_headers
@@ -453,7 +475,7 @@ Aggiungere la riga `Header set X-Content-Type-Options "nosniff"`. Salvare il fil
 
 ### <a name="load-balancing"></a>Bilanciamento del carico
 
-Questo esempio illustra come impostare e configurare Apache CentOS 7 e Kestrel nello stesso computer dell'istanza. Per evitare di avere un singolo punto di errore, l'uso di *mod_proxy_balancer* e la modifica di **VirtualHost** consentono la gestione di più istanze delle app Web dietro il server proxy di Apache.
+Questo esempio illustra come impostare e configurare Apache CentOS 7 e Kestrel nello stesso computer dell'istanza. Per non avere un singolo punto di errore; l'uso di *mod_proxy_balancer* e la modifica di **VirtualHost** consente di gestire più istanze delle app Web dietro il server proxy Apache.
 
 ```bash
 sudo yum install mod_proxy_balancer

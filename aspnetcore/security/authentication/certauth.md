@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 83525a4c1e87a60b57130c1bba14360c7d03f552
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 71f05163c075a2ef88d5c606814925cdcef879d2
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061379"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253046"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurare l'autenticazione del certificato in ASP.NET Core
 
@@ -152,37 +152,37 @@ Il gestore dispone di due eventi:
   * Determinare se il certificato è noto ai servizi.
   * Creazione di un'entità personalizzata. Si consideri l'esempio seguente in `Startup.ConfigureServices`:
 
-```csharp
-services.AddAuthentication(
-    CertificateAuthenticationDefaults.AuthenticationScheme)
-    .AddCertificate(options =>
-    {
-        options.Events = new CertificateAuthenticationEvents
+    ```csharp
+    services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+        .AddCertificate(options =>
         {
-            OnCertificateValidated = context =>
+            options.Events = new CertificateAuthenticationEvents
             {
-                var claims = new[]
+                OnCertificateValidated = context =>
                 {
-                    new Claim(
-                        ClaimTypes.NameIdentifier, 
-                        context.ClientCertificate.Subject,
-                        ClaimValueTypes.String, 
-                        context.Options.ClaimsIssuer),
-                    new Claim(ClaimTypes.Name,
-                        context.ClientCertificate.Subject,
-                        ClaimValueTypes.String, 
-                        context.Options.ClaimsIssuer)
-                };
-
-                context.Principal = new ClaimsPrincipal(
-                    new ClaimsIdentity(claims, context.Scheme.Name));
-                context.Success();
-
-                return Task.CompletedTask;
-            }
-        };
-    });
-```
+                    var claims = new[]
+                    {
+                        new Claim(
+                            ClaimTypes.NameIdentifier, 
+                            context.ClientCertificate.Subject,
+                            ClaimValueTypes.String, 
+                            context.Options.ClaimsIssuer),
+                        new Claim(ClaimTypes.Name,
+                            context.ClientCertificate.Subject,
+                            ClaimValueTypes.String, 
+                            context.Options.ClaimsIssuer)
+                    };
+    
+                    context.Principal = new ClaimsPrincipal(
+                        new ClaimsIdentity(claims, context.Scheme.Name));
+                    context.Success();
+    
+                    return Task.CompletedTask;
+                }
+            };
+        });
+    ```
 
 Se il certificato in ingresso non soddisfa la convalida aggiuntiva, chiamare `context.Fail("failure reason")` con un motivo dell'errore.
 
@@ -301,7 +301,7 @@ public void ConfigureServices(IServiceCollection services)
         options.HeaderConverter = (headerValue) =>
         {
             X509Certificate2 clientCertificate = null;
-        
+
             if(!string.IsNullOrWhiteSpace(headerValue))
             {
                 byte[] bytes = StringToByteArray(headerValue);
@@ -618,7 +618,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-L'implementazione della memorizzazione nella cache predefinita archivia i risultati in memoria. È possibile fornire la propria cache implementando `ICertificateValidationCache` e registrando l'inserimento delle dipendenze. Ad esempio `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
+L'implementazione della memorizzazione nella cache predefinita archivia i risultati in memoria. È possibile fornire la propria cache implementando `ICertificateValidationCache` e registrando l'inserimento delle dipendenze. Ad esempio, `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
 
 ::: moniker-end
 
@@ -638,6 +638,24 @@ ASP.NET Core 5 Preview 7 e versioni successive aggiunge un supporto più pratico
 
 L'approccio seguente supporta i certificati client facoltativi:
 
+::: moniker range=">= aspnetcore-5.0"
+
+* Configurare l'associazione per il dominio e il sottodominio:
+  * Ad esempio, impostare Binding in `contoso.com` e `myClient.contoso.com` . L' `contoso.com` host non richiede un certificato client ma lo `myClient.contoso.com` fa.
+  * Per altre informazioni, vedere:
+    * [Gheppio](/fundamentals/servers/kestrel):
+      * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps)
+      * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
+      * Si noti che il gheppio non supporta attualmente più configurazioni TLS in un'associazione. sono necessarie due associazioni con indirizzi IP o porte univoci. Vedere https://github.com/dotnet/runtime/issues/31097
+    * IIS
+      * [Hosting di IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
+      * [Configurare la sicurezza in IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
+    * Http.Sys: [configurare Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * Configurare l'associazione per il dominio e il sottodominio:
   * Ad esempio, impostare Binding in `contoso.com` e `myClient.contoso.com` . L' `contoso.com` host non richiede un certificato client ma lo `myClient.contoso.com` fa.
   * Per altre informazioni, vedere:
@@ -649,6 +667,9 @@ L'approccio seguente supporta i certificati client facoltativi:
       * [Hosting di IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
       * [Configurare la sicurezza in IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
     * Http.Sys: [configurare Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
+
+::: moniker-end
+
 * Per le richieste all'app Web che richiedono un certificato client e non dispongono di un certificato:
   * Reindirizza alla stessa pagina usando il sottodominio protetto del certificato client.
   * Ad esempio, reindirizza a `myClient.contoso.com/requestedPage` . Poiché la richiesta a `myClient.contoso.com/requestedPage` è un nome host diverso da `contoso.com/requestedPage` , il client stabilisce una connessione diversa e viene fornito il certificato client.

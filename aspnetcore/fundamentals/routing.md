@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: e134832ad00b10bb01239afa06acc74d86707af1
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 1355fdaeae58b6f4e0cf8d41a74b1c28aee0e8fe
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94422561"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253085"
 ---
 # <a name="routing-in-aspnet-core"></a>Routing in ASP.NET Core
 
@@ -437,7 +437,7 @@ I modelli di URL che tentano di acquisire un nome file con un'estensione facolta
 * `/files/myFile.txt`
 * `/files/myFile`
 
-I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio: `id?`. La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
+I parametri di route possono avere **valori predefiniti**, definiti specificando il valore predefinito dopo il nome del parametro, separato da un segno di uguale (`=`). Ad esempio, `{controller=Home}` definisce `Home` come valore predefinito per `controller`. Il valore predefinito viene usato se nell'URL non è presente alcun valore per il parametro. I parametri di route vengono resi facoltativi aggiungendo un punto interrogativo ( `?` ) alla fine del nome del parametro. Ad esempio, `id?`. La differenza tra i valori facoltativi e i parametri di route predefiniti è la seguente:
 
 * Un parametro di route con un valore predefinito produce sempre un valore.
 * Un parametro facoltativo ha un valore solo quando un valore viene fornito dall'URL della richiesta.
@@ -663,7 +663,7 @@ Il processo di generazione dell'URL inizia con una chiamata a [LinkGenerator. Ge
 
 Il primo passaggio consiste nell'usare l'indirizzo per risolvere un set di endpoint candidati usando un oggetto [`IEndpointAddressScheme<TAddress>`](xref:Microsoft.AspNetCore.Routing.IEndpointAddressScheme`1) che corrisponde al tipo dell'indirizzo.
 
-Una volta che il set di candidati è stato trovato dallo schema degli indirizzi, gli endpoint vengono ordinati ed elaborati in modo iterativo fino a quando un'operazione di generazione URL non riesce. La generazione di URL **non** controlla le ambiguità, il primo risultato restituito è il risultato finale.
+Una volta che il set di candidati viene trovato dallo schema degli indirizzi, gli endpoint vengono ordinati ed elaborati in modo iterativo fino a quando un'operazione di generazione URL non riesce. La generazione di URL **non** controlla le ambiguità, il primo risultato restituito è il risultato finale.
 
 ### <a name="troubleshooting-url-generation-with-logging"></a>Risoluzione dei problemi di generazione URL con registrazione
 

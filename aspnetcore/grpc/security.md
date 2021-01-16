@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/security
-ms.openlocfilehash: a7a595a71f988377bf25c500f04da2add3d85aef
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 45ac0916a368cf68f4d40e14298a7628446989ee
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93058831"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252812"
 ---
 # <a name="security-considerations-in-grpc-for-aspnet-core"></a>Considerazioni sulla sicurezza in gRPC per ASP.NET Core
 
@@ -39,7 +39,13 @@ i messaggi gRPC vengono inviati e ricevuti tramite HTTP/2. È consigliabile:
 * [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) viene usato per proteggere i messaggi nelle app gRPC di produzione.
 * i servizi gRPC devono restare in ascolto e rispondere solo su porte protette.
 
+::: moniker range=">= aspnetcore-5.0"
+TLS è configurato in gheppio. Per altre informazioni sulla configurazione degli endpoint di gheppio, vedere la pagina relativa alla [configurazione dell'endpoint gheppio](xref:fundamentals/servers/kestrel/endpoints).
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 TLS è configurato in gheppio. Per altre informazioni sulla configurazione degli endpoint di gheppio, vedere la pagina relativa alla [configurazione dell'endpoint gheppio](xref:fundamentals/servers/kestrel#endpoint-configuration).
+::: moniker-end
 
 ## <a name="exceptions"></a>Eccezioni
 

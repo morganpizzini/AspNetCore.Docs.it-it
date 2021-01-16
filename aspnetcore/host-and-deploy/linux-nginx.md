@@ -1,7 +1,7 @@
 ---
 title: Hosting di ASP.NET Core in Linux con Nginx
 author: rick-anderson
-description: Informazioni su come configurare Nginx come proxy inverso in Ubuntu 16.04 per inoltrare il traffico HTTP a un'app Web ASP.NET Core in esecuzione su Kestrel.
+description: Informazioni su come configurare nginx come proxy inverso in Ubuntu 16,04 per l'inoltro del traffico HTTP a una ASP.NET Core app Web in esecuzione in gheppio.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: c4e0d70b41221f272bb4b1fe82cfa531ec6fcf15
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 6a8fd8e3498dda9b7c10834791e64df6276e2823
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94431066"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253020"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Hosting di ASP.NET Core in Linux con Nginx
 
@@ -97,7 +97,7 @@ Poiché le richieste vengono inviate dal proxy inverso, utilizzare il [middlewar
 
 [!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
-Richiamare il <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> metodo all'inizio di `Startup.Configure` prima di chiamare altro middleware. Configurare il middleware per l'inoltro delle intestazioni `X-Forwarded-For` e `X-Forwarded-Proto`:
+Richiamare il <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> metodo all'inizio di `Startup.Configure` prima di chiamare altro middleware. Configurare il middleware per l'inoltro delle intestazioni `X-Forwarded-For` e `X-Forwarded-Proto`:
 
 ```csharp
 using Microsoft.AspNetCore.HttpOverrides;
@@ -114,7 +114,7 @@ app.UseAuthentication();
 
 Se non vengono specificate opzioni <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> per il middleware, le intestazioni predefinite per l'inoltro sono `None`.
 
-I proxy eseguiti sugli indirizzi di loopback ( `127.0.0.0/8` , `[::1]` ), incluso l'indirizzo localhost standard ( `127.0.0.1` ), sono considerati attendibili per impostazione predefinita. Se le richieste tra Internet e il server Web vengono gestite anche da altri proxy o reti attendibili all'interno dell'organizzazione, aggiungerli all'elenco di <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> o <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> con <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. L'esempio seguente aggiunge un server proxy attendibile all'indirizzo IP 10.0.0.100 nel middleware delle intestazioni inoltrate `KnownProxies` in `Startup.ConfigureServices`:
+I proxy eseguiti sugli indirizzi di loopback ( `127.0.0.0/8` , `[::1]` ), incluso l'indirizzo localhost standard ( `127.0.0.1` ), sono considerati attendibili per impostazione predefinita. Se le richieste tra Internet e il server Web vengono gestite anche da altri proxy o reti attendibili all'interno dell'organizzazione, aggiungerli all'elenco di <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> o <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> con <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. L'esempio seguente aggiunge un server proxy attendibile all'indirizzo IP 10.0.0.100 nel middleware delle intestazioni inoltrate `KnownProxies` in `Startup.ConfigureServices`:
 
 ```csharp
 using System.Net;
@@ -146,7 +146,7 @@ Verificare che un browser visualizzi la pagina di destinazione predefinita per N
 
 ### <a name="configure-nginx"></a>Configurare Nginx
 
-Per configurare nginx come proxy inverso per l'inoltro delle richieste HTTP all'app ASP.NET Core, modificare `/etc/nginx/sites-available/default` . Aprirlo in un editor di testo e sostituire il contenuto con quanto segue:
+Per configurare nginx come proxy inverso per l'inoltro delle richieste HTTP all'app ASP.NET Core, modificare `/etc/nginx/sites-available/default` . Aprirlo in un editor di testo e sostituire il contenuto con il frammento di codice seguente:
 
 ```nginx
 server {
@@ -165,9 +165,9 @@ server {
 }
 ```
 
-Se l'app è un' SignalR Blazor Server app o <xref:signalr/scale#linux-with-nginx> , vedere <xref:blazor/host-and-deploy/server#linux-with-nginx> rispettivamente e per altre informazioni.
+Se l'app è un' SignalR Blazor Server app o, vedere <xref:signalr/scale#linux-with-nginx> <xref:blazor/host-and-deploy/server#linux-with-nginx> rispettivamente e per altre informazioni.
 
-Se nessun `server_name` corrisponde, Nginx usa il server predefinito. Se non è definito alcun server predefinito, il primo server nel file di configurazione è il server predefinito. Come procedura consigliata, aggiungere un server predefinito specifico che restituisce un codice di stato 444 nel file di configurazione. Un esempio di configurazione del server predefinito è il seguente:
+Se nessun `server_name` corrisponde, Nginx usa il server predefinito. Se non è definito alcun server predefinito, il primo server nel file di configurazione è il server predefinito. Come procedura consigliata, aggiungere un server predefinito specifico che restituisca un codice di stato 444 nel file di configurazione. Un esempio di configurazione del server predefinito è il seguente:
 
 ```nginx
 server {
@@ -177,10 +177,20 @@ server {
 }
 ```
 
-Con il file di configurazione precedente e il server predefinito, Nginx accetta il traffico pubblico sulla porta 80 con l'intestazione host `example.com` o `*.example.com`. Le richieste che non corrispondono a questi host non verranno inoltrate a Kestrel. Nginx inoltra a Kestrel le richieste corrispondenti a `http://localhost:5000`. Per altre informazioni, vedere [How nginx processes a request](https://nginx.org/docs/http/request_processing.html) (Elaborazione di una richiesta in nginx). Per cambiare porta/IP di Kestrel, vedere [Kestrel: Configurazione dell'endpoint](xref:fundamentals/servers/kestrel#endpoint-configuration).
+::: moniker range=">= aspnetcore-5.0"
+
+Con il file di configurazione precedente e il server predefinito, Nginx accetta il traffico pubblico sulla porta 80 con l'intestazione host `example.com` o `*.example.com`. Le richieste che non corrispondono a questi host non verranno inoltrate a Kestrel. Nginx inoltra a Kestrel le richieste corrispondenti a `http://localhost:5000`. Per altre informazioni, vedere [come Nginx elabora una richiesta](https://nginx.org/docs/http/request_processing.html). Per cambiare porta/IP di Kestrel, vedere [Kestrel: Configurazione dell'endpoint](xref:fundamentals/servers/kestrel/endpoints).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Con il file di configurazione precedente e il server predefinito, Nginx accetta il traffico pubblico sulla porta 80 con l'intestazione host `example.com` o `*.example.com`. Le richieste che non corrispondono a questi host non verranno inoltrate a Kestrel. Nginx inoltra a Kestrel le richieste corrispondenti a `http://localhost:5000`. Per altre informazioni, vedere [come Nginx elabora una richiesta](https://nginx.org/docs/http/request_processing.html). Per cambiare porta/IP di Kestrel, vedere [Kestrel: Configurazione dell'endpoint](xref:fundamentals/servers/kestrel#endpoint-configuration).
+
+::: moniker-end
 
 > [!WARNING]
-> Se non si specifica una [direttiva server_name](https://nginx.org/docs/http/server_names.html) corretta, l'app può risultare esposta a vulnerabilità di sicurezza. L'associazione con caratteri jolly del sottodominio (ad esempio, `*.example.com`) non costituisce un rischio per la sicurezza se viene controllato l'intero dominio padre (a differenza di `*.com`, che è vulnerabile). Vedere la [sezione 5.4 di RFC7230](https://tools.ietf.org/html/rfc7230#section-5.4) per altre informazioni.
+> Se non si specifica una [direttiva server_name](https://nginx.org/docs/http/server_names.html) corretta, l'app può risultare esposta a vulnerabilità di sicurezza. L'associazione con caratteri jolly del sottodominio (ad esempio, `*.example.com`) non costituisce un rischio per la sicurezza se viene controllato l'intero dominio padre (a differenza di `*.com`, che è vulnerabile). Per ulteriori informazioni, vedere la [sezione rfc7230-5,4](https://tools.ietf.org/html/rfc7230#section-5.4).
 
 Una volta stabilita la configurazione di Nginx, eseguire `sudo nginx -t` per verificare la sintassi dei file di configurazione. Se il test dei file di configurazione ha esito positivo, è possibile forzare Nginx ad applicare le modifiche eseguendo `sudo nginx -s reload`.
 
@@ -189,13 +199,13 @@ Per eseguire direttamente l'app nel server:
 1. Passare alla directory dell'app.
 1. Eseguire l'app: `dotnet <app_assembly.dll>`, dove `app_assembly.dll` è il nome di file di assembly dell'app.
 
-Se l'app viene eseguita nel server ma non risponde tramite Internet, controllare il firewall del server e verificare che la porta 80 sia aperta. Se si usa una macchina virtuale Ubuntu di Azure, aggiungere una regola del gruppo di sicurezza di rete (NSG) che abiliti il traffico in ingresso della porta 80. Non è necessario abilitare una regola per il traffico in uscita della porta 80, poiché il traffico in uscita viene autorizzato automaticamente quando viene abilitata la regola in ingresso.
+Se l'app viene eseguita nel server ma non riesce a rispondere tramite Internet, controllare il firewall del server e verificare che la porta 80 sia aperta. Se si usa una macchina virtuale Ubuntu di Azure, aggiungere una regola del gruppo di sicurezza di rete (NSG) che abiliti il traffico in ingresso della porta 80. Non è necessario abilitare una regola per il traffico in uscita della porta 80, poiché il traffico in uscita viene autorizzato automaticamente quando viene abilitata la regola in ingresso.
 
-Dopo aver eseguito il test dell'app, arrestare l'app con `Ctrl+C` al prompt dei comandi.
+Al termine del test dell'app, arrestare l'app con <kbd>CTRL</kbd>  +  <kbd>C</kbd> al prompt dei comandi.
 
 ## <a name="monitor-the-app"></a>Monitorare l'app
 
-Il server è configurato in modo da inoltrare le richieste eseguite a `http://<serveraddress>:80` all'app ASP.NET Core eseguita in Kestrel all'indirizzo `http://127.0.0.1:5000`. Tuttavia, Nginx non è configurato per la gestione del processo Kestrel. `systemd` può essere usato per creare un file di servizio per avviare e monitorare l'app Web sottostante. `systemd` è un sistema di inizializzazione che offre molte funzionalità potenti per l'avvio, l'arresto e la gestione dei processi. 
+Il server è configurato per l'invio delle richieste effettuate a al `http://<serveraddress>:80` ASP.NET Core app in esecuzione in gheppio all'indirizzo `http://127.0.0.1:5000` . Tuttavia, Nginx non è configurato per la gestione del processo Kestrel. `systemd` può essere usato per creare un file di servizio per avviare e monitorare l'app Web sottostante. `systemd` è un sistema di inizializzazione che offre molte funzionalità potenti per l'avvio, l'arresto e la gestione dei processi. 
 
 ### <a name="create-the-service-file"></a>Creare il file del servizio
 
@@ -205,7 +215,7 @@ Creare il file di definizione del servizio:
 sudo nano /etc/systemd/system/kestrel-helloapp.service
 ```
 
-Di seguito è riportato un esempio di file del servizio per l'app:
+L'esempio seguente è un file del servizio per l'app:
 
 ```ini
 [Unit]
@@ -298,7 +308,7 @@ Poiché l'app Web che usa Kestrel viene gestita con `systemd`, tutti gli eventi 
 sudo journalctl -fu kestrel-helloapp.service
 ```
 
-Per filtrare ulteriormente, opzioni come `--since today`, `--until 1 hour ago` o una combinazione delle stesse consentono di ridurre la quantità di voci restituite.
+Per un ulteriore filtro, le opzioni relative all'ora, ad esempio `--since today` , `--until 1 hour ago` o una combinazione di questi elementi possono ridurre il numero di voci restituite.
 
 ```bash
 sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-10-18 04:00"
@@ -335,7 +345,7 @@ Le impostazioni predefinite del server proxy limitano in genere i campi di intes
 
 ### <a name="enable-apparmor"></a>Abilitare AppArmor
 
-Linux Security Modules (LSM) è un framework che fa parte del kernel Linux a partire da Linux 2.6. LSM supporta diverse implementazioni di moduli di protezione. [AppArmor](https://wiki.ubuntu.com/AppArmor) è un modulo LSM che implementa un sistema di controllo di accesso obbligatorio che consente di circoscrivere il programma a un set limitato di risorse. Verificare che AppArmor sia abilitato e configurato correttamente.
+Linux Security Modules (LSM) è un framework che fa parte del kernel Linux a partire da Linux 2.6. LSM supporta diverse implementazioni di moduli di protezione. [AppArmor](https://wiki.ubuntu.com/AppArmor) è un LSM che implementa un sistema di controllo degli accessi obbligatorio, che consente di limitare il programma a un set limitato di risorse. Verificare che AppArmor sia abilitato e configurato correttamente.
 
 ### <a name="configure-the-firewall"></a>Configurare il firewall
 
@@ -375,18 +385,29 @@ Configurare il server con moduli aggiuntivi obbligatori. Può essere utile usare
 
 **Configurare l'app per connessioni locali sicure (HTTPS)**
 
-Il comando [DotNet Run](/dotnet/core/tools/dotnet-run) usa il file dell'app `Properties/launchSettings.json` , che configura l'app in modo che sia in ascolto sugli URL forniti dalla `applicationUrl` Proprietà (ad esempio, `https://localhost:5001;http://localhost:5000` ).
+Il comando [DotNet Run](/dotnet/core/tools/dotnet-run) usa le *Proprietà/launchSettings.js* dell'app nel file, che configura l'app in modo che sia in ascolto sugli URL forniti dalla `applicationUrl` Proprietà. Ad esempio, `https://localhost:5001;http://localhost:5000`.
 
 Configurare l'app per l'uso di un certificato in fase di sviluppo per il `dotnet run` comando o l'ambiente di sviluppo (<kbd>F5</kbd> o <kbd>CTRL</kbd> + <kbd>F5</kbd> in Visual Studio Code) usando uno degli approcci seguenti:
+
+::: moniker range=">= aspnetcore-5.0"
+
+* [Sostituire il certificato predefinito della configurazione](xref:fundamentals/servers/kestrel/endpoints#configuration) (*consigliato*)
+* [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel/endpoints#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 * [Sostituire il certificato predefinito della configurazione](xref:fundamentals/servers/kestrel#configuration) (*consigliato*)
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
 
+::: moniker-end
+
 **Configurare il proxy inverso per connessioni client sicure (HTTPS)**
 
-* Configurare il server in modo che sia in ascolto del traffico HTTPS sulla porta `443` specificando un certificato valido emesso da un'autorità di certificazione attendibile.
+* Configurare il server per l'ascolto del traffico HTTPS sulla porta 443 specificando un certificato valido emesso da un'autorità di certificazione (CA) attendibile.
 
-* Per rafforzare la sicurezza, è necessario adottare alcune delle procedure descritte nel file seguente `/etc/nginx/nginx.conf` . Gli esempi includono la scelta di una crittografia più complessa e il reindirizzamento di tutto il traffico su HTTP a HTTPS.
+* Rafforzare la protezione adottando alcune delle procedure descritte nel file */etc/nginx/nginx.conf* che segue. Gli esempi includono la scelta di una crittografia più complessa e il reindirizzamento di tutto il traffico su HTTP a HTTPS.
 
   > [!NOTE]
   > Per gli ambienti di sviluppo, è consigliabile usare reindirizzamenti temporanei (302) invece dei reindirizzamenti permanenti (301). La memorizzazione nella cache dei collegamenti può causare un comportamento instabile negli ambienti di sviluppo.
@@ -400,11 +421,11 @@ Configurare l'app per l'uso di un certificato in fase di sviluppo per il `dotnet
   * Non aggiungere l'intestazione HSTS.
   * Scegliere un `max-age` valore breve.
 
-Aggiungere il `/etc/nginx/proxy.conf` file di configurazione:
+Aggiungere il file di configurazione */etc/nginx/proxy.conf*:
 
 [!code-nginx[](linux-nginx/proxy.conf)]
 
-**Sostituire** il contenuto del `/etc/nginx/nginx.conf` file di configurazione con il file seguente. L'esempio contiene entrambe le sezioni `http` e `server` in un unico file di configurazione.
+**Sostituire** il contenuto del file di configurazione */etc/nginx/nginx.conf* con il file seguente. L'esempio contiene entrambe le sezioni `http` e `server` in un unico file di configurazione.
 
 [!code-nginx[](linux-nginx/nginx.conf?highlight=2)]
 
@@ -417,7 +438,7 @@ Il [clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a
 
 Per contrastare gli attacchi di clickjacking:
 
-1. Modificare il `nginx.conf` file:
+1. Modificare il file *nginx.conf*:
 
    ```bash
    sudo nano /etc/nginx/nginx.conf
@@ -432,7 +453,7 @@ Per contrastare gli attacchi di clickjacking:
 
 Questa intestazione impedisce alla maggior parte dei browser di dedurre dall'analisi del tipo MIME un tipo di contenuto diverso da quello dichiarato, poiché l'intestazione indica al browser di non eseguire l'override del tipo di contenuto della risposta. Con l' `nosniff` opzione, se il server indica che il contenuto è `text/html` , il browser ne esegue il rendering come `text/html` .
 
-1. Modificare il `nginx.conf` file:
+1. Modificare il file *nginx.conf*:
 
    ```bash
    sudo nano /etc/nginx/nginx.conf

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: a2738ab40e2a463a0166ce8916ed6f1b05ea1d08
-ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
+ms.openlocfilehash: 12a1f528bdff0230bbf17075284d27de654a423e
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96855378"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252422"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Creazione e utilizzo di Razor componenti ASP.NET Core
 
@@ -40,7 +40,7 @@ I componenti sono implementati in [Razor](xref:mvc/views/razor) file componente 
 
 ### <a name="no-locrazor-syntax"></a>Sintassi Razor
 
-Razor i componenti nelle Blazor app utilizzano ampiamente la Razor sintassi. Se non si ha familiarità con il Razor linguaggio di markup, è consigliabile leggere <xref:mvc/views/razor> prima di procedere.
+Razor i componenti nelle Blazor app utilizzano ampiamente la Razor sintassi. Se non si ha familiarità con il Razor linguaggio di markup, è consigliabile leggere il [ Razor riferimento alla sintassi per ASP.NET Core prima di](xref:mvc/views/razor) procedere.
 
 Quando si accede al contenuto sulla Razor sintassi, prestare particolare attenzione alle sezioni seguenti:
 
@@ -51,7 +51,7 @@ Quando si accede al contenuto sulla Razor sintassi, prestare particolare attenzi
 
 Il nome di un componente deve iniziare con un carattere maiuscolo. Ad esempio, `MyCoolComponent.razor` è valido e `myCoolComponent.razor` non è valido.
 
-### <a name="routing"></a>Routing.
+### <a name="routing"></a>Routing
 
 Il routing in Blazor viene effettuato fornendo un modello di route a ogni componente accessibile nell'app. Quando Razor viene compilato un file con una [`@page`][9] direttiva, alla classe generata viene assegnato un oggetto che <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifica il modello di route. In fase di esecuzione, il router cerca le classi di componenti con un oggetto <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> ed esegue il rendering di qualsiasi componente con un modello di route corrispondente all'URL richiesto. Per altre informazioni, vedere <xref:blazor/fundamentals/routing>.
 
@@ -81,7 +81,7 @@ I membri dei componenti possono essere usati come parte della logica di renderin
 }
 ```
 
-Una volta eseguito il rendering iniziale del componente, il componente rigenera l'albero di rendering in risposta agli eventi. Blazor Confronta quindi il nuovo albero di rendering con quello precedente e applica le modifiche apportate al Document Object Model (DOM) del browser.
+Una volta eseguito il rendering iniziale del componente, il componente rigenera l'albero di rendering in risposta agli eventi. Blazor Confronta quindi il nuovo albero di rendering con quello precedente e applica le modifiche apportate al Document Object Model (DOM) del browser. Ulteriori dettagli sono disponibili in <xref:blazor/components/rendering> .
 
 I componenti sono classi C# ordinarie e possono essere inseriti in qualsiasi punto all'interno di un progetto. I componenti che producono pagine Web in genere risiedono nella `Pages` cartella. I componenti non di pagina vengono spesso inseriti nella `Shared` cartella o in una cartella personalizzata aggiunta al progetto.
 
@@ -293,7 +293,7 @@ Per convenzione, un valore di attributo costituito da codice C# viene assegnato 
 * Risultato di un metodo: `Title="@{METHOD}"` , dove il segnaposto `{METHOD}` è un metodo C# del componente padre.
 * [Espressione implicita o esplicita](xref:mvc/views/razor#implicit-razor-expressions): `Title="@({EXPRESSION})"` , dove il segnaposto `{EXPRESSION}` è un'espressione C#.
   
-Per altre informazioni, vedere <xref:mvc/views/razor>.
+Per ulteriori informazioni, vedere [ Razor riferimento alla sintassi per ASP.NET Core](xref:mvc/views/razor).
 
 > [!WARNING]
 > Non creare componenti che scrivono nei propri *parametri del componente*, usare invece un campo privato. Per ulteriori informazioni, vedere la sezione [parametri sovrascritti](#overwritten-parameters) .
@@ -579,7 +579,7 @@ Usare `NotifierService` per aggiornare un componente:
 }
 ```
 
-Nell'esempio precedente `NotifierService` richiama il metodo del componente `OnNotify` all'esterno del contesto di Blazor sincronizzazione di. `InvokeAsync` viene usato per passare al contesto corretto e accodare un rendering.
+Nell'esempio precedente `NotifierService` richiama il metodo del componente `OnNotify` all'esterno del contesto di Blazor sincronizzazione di. `InvokeAsync` viene usato per passare al contesto corretto e accodare un rendering. Per altre informazioni, vedere <xref:blazor/components/rendering>.
 
 ## <a name="use-key-to-control-the-preservation-of-elements-and-components"></a>Usare \@ la chiave per controllare la conservazione di elementi e componenti
 
@@ -801,7 +801,7 @@ Se `IsCompleted` è `false` , viene eseguito il rendering della casella di contr
 <input type="checkbox" />
 ```
 
-Per altre informazioni, vedere <xref:mvc/views/razor>.
+Per ulteriori informazioni, vedere [ Razor riferimento alla sintassi per ASP.NET Core](xref:mvc/views/razor).
 
 > [!WARNING]
 > Alcuni attributi HTML, ad esempio [`aria-pressed`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons) , non funzionano correttamente quando il tipo .NET è un `bool` . In questi casi, usare un `string` tipo anziché un `bool` .
@@ -957,13 +957,13 @@ Lo spazio vuoto non è mantenuto dal Razor markup precedente:
 * <xref:blazor/security/server/threat-mitigation>: Include informazioni aggiuntive sulla creazione di Blazor Server app che devono essere confrontate con l'esaurimento delle risorse.
 
 <!--Reference links in article-->
-[1]: <xref:mvc/views/razor#code>
-[2]: <xref:mvc/views/razor#using>
-[3]: <xref:mvc/views/razor#attributes>
-[4]: <xref:mvc/views/razor#ref>
-[5]: <xref:mvc/views/razor#key>
-[6]: <xref:mvc/views/razor#inherits>
-[7]: <xref:mvc/views/razor#attribute>
-[8]: <xref:mvc/views/razor#namespace>
-[9]: <xref:mvc/views/razor#page>
-[10]: <xref:mvc/views/razor#bind>
+[1]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#code)
+[2]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#using)
+[3]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#attributes)
+[4]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#ref)
+[5]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#key)
+[6]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#inherits)
+[7]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#attribute)
+[8]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#namespace)
+[9]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#page)
+[10]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#bind)

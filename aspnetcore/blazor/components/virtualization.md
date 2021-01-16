@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/virtualization
-ms.openlocfilehash: afd2da19641b41871f06426934c39348daa54b1f
-ms.sourcegitcommit: 2fea9bfe6127bbbdbb438406c82529b2bc331944
+ms.openlocfilehash: c2b16f4bc8e69265b1d59082c3f029541f277d8b
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/11/2021
-ms.locfileid: "98065532"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252289"
 ---
 # <a name="aspnet-core-no-locblazor-component-virtualization"></a>BlazorVirtualizzazione componenti ASP.NET Core
 
@@ -77,7 +77,7 @@ Se non si specifica un contesto per il componente con `Context` , usare il `cont
 > Per altre informazioni, vedere gli articoli seguenti:
 >
 > * <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>
-> * <xref:mvc/views/razor#key>
+> * [Razor informazioni di riferimento sulla sintassi per ASP.NET Core](xref:mvc/views/razor#key)
 
 Il `Virtualize` componente:
 
@@ -169,4 +169,4 @@ Poiché la richiesta di elementi da un'origine dati remota potrebbe richiedere d
 
 ## <a name="state-changes"></a>Modifiche stato
 
-Quando si apportano modifiche agli elementi di cui è stato eseguito il rendering dal `Virtualize` componente, chiamare <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> per forzare nuovamente la valutazione e il rendering del componente.
+Quando si apportano modifiche agli elementi di cui è stato eseguito il rendering dal `Virtualize` componente, chiamare <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> per forzare nuovamente la valutazione e il rendering del componente. Per altre informazioni, vedere <xref:blazor/components/rendering>.

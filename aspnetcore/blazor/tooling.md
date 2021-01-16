@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 4813668f5278473fbaae36d572e69700b3fe771a
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5901a1cb693dfe8e34e62ce2a28456bcf584221c
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97764237"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252266"
 ---
 # <a name="tooling-for-aspnet-core-no-locblazor"></a>Strumenti per ASP.NET Core Blazor
 
@@ -129,7 +129,7 @@ Se viene visualizzato un messaggio per considerare attendibile il certificato di
 
 ## <a name="use-visual-studio-code-for-cross-platform-no-locblazor-development"></a>Usare Visual Studio Code per Blazor lo sviluppo multipiattaforma
 
-[Visual Studio Code](https://code.visualstudio.com/) è un ambiente di sviluppo integrato (IDE) open source e multipiattaforma che può essere usato per sviluppare Blazor app. Usare l'interfaccia della riga di comando di .NET per creare una nuova Blazor app per lo sviluppo con Visual Studio Code. Per altre informazioni, vedere la [versione di questo articolo](/aspnet/core/blazor/tooling?pivots=linux)relativa a Linux.
+[Visual Studio Code](https://code.visualstudio.com/) è un ambiente di sviluppo integrato (IDE) open source e multipiattaforma che può essere usato per sviluppare Blazor app. Usare l'interfaccia della riga di comando di .NET per creare una nuova Blazor app per lo sviluppo con Visual Studio Code. Per altre informazioni, vedere la [versione di questo articolo](?pivots=linux)relativa a Linux.
 
 ## <a name="no-locblazor-template-options"></a>Blazor opzioni del modello
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 14561bace565c104d0a9c926cad3105c4865e72a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: c32d20d4616650db004c78fb4d8ea9a4d5a3beab
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061171"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252799"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Caricare file in ASP.NET Core
 
@@ -125,7 +125,7 @@ Il flusso di file di grandi dimensioni è trattato nella sezione [caricare file 
 
 Per caricare file di piccole dimensioni, usare un modulo multipart o creare una richiesta POST usando JavaScript.
 
-L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file ( *pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
+L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file (*pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -436,7 +436,7 @@ Metodo completo `StreamingController.UploadDatabase` per lo streaming in un data
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` ( *Utilities/MultipartRequestHelper. cs* ):
+`MultipartRequestHelper` (*Utilities/MultipartRequestHelper. cs*):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -651,7 +651,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
 ### <a name="kestrel-maximum-request-body-size"></a>Dimensioni massime del corpo della richiesta di gheppio
 
-Per le app ospitate da gheppio, le dimensioni massime predefinite del corpo della richiesta sono pari a 30 milioni byte, ovvero circa 28,6 MB. Personalizzare il limite usando l'opzione del server [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) gheppio:
+Per le app ospitate da gheppio, le dimensioni massime predefinite del corpo della richiesta sono pari a 30 milioni byte, ovvero circa 28,6 MB. Personalizzare il limite usando l'opzione del server [MaxRequestBodySize](xref:fundamentals/servers/kestrel/options#maximum-request-body-size) gheppio:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -667,7 +667,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> viene usato per impostare [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) per una singola pagina o un'azione.
+<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> viene usato per impostare [MaxRequestBodySize](xref:fundamentals/servers/kestrel/options#maximum-request-body-size) per una singola pagina o un'azione.
 
 In un' Razor app pagine, applicare il filtro con una [convenzione](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices` :
 
@@ -706,8 +706,8 @@ Il `RequestSizeLimitAttribute` può essere applicato anche usando la [`@attribut
 
 Per le app ospitate da gheppio possono essere applicati altri limiti di Gheppio:
 
-* [Numero massimo di connessioni client](xref:fundamentals/servers/kestrel#maximum-client-connections)
-* [Frequenza dei dati di richiesta e risposta](xref:fundamentals/servers/kestrel#minimum-request-body-data-rate)
+* [Numero massimo di connessioni client](xref:fundamentals/servers/kestrel/options#maximum-client-connections)
+* [Frequenza dei dati di richiesta e risposta](xref:fundamentals/servers/kestrel/options#minimum-request-body-data-rate)
 
 ### <a name="iis"></a>IIS
 
@@ -849,7 +849,7 @@ Il flusso di file di grandi dimensioni è trattato nella sezione [caricare file 
 
 Per caricare file di piccole dimensioni, usare un modulo multipart o creare una richiesta POST usando JavaScript.
 
-L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file ( *pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
+L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file (*pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -1160,7 +1160,7 @@ Metodo completo `StreamingController.UploadDatabase` per lo streaming in un data
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` ( *Utilities/MultipartRequestHelper. cs* ):
+`MultipartRequestHelper` (*Utilities/MultipartRequestHelper. cs*):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -1584,7 +1584,7 @@ Il flusso di file di grandi dimensioni è trattato nella sezione [caricare file 
 
 Per caricare file di piccole dimensioni, usare un modulo multipart o creare una richiesta POST usando JavaScript.
 
-L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file ( *pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
+L'esempio seguente illustra l'uso di un Razor form di pagine per caricare un singolo file (*pages/BufferedSingleFileUploadPhysical. cshtml* nell'app di esempio):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -1895,7 +1895,7 @@ Metodo completo `StreamingController.UploadDatabase` per lo streaming in un data
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` ( *Utilities/MultipartRequestHelper. cs* ):
+`MultipartRequestHelper` (*Utilities/MultipartRequestHelper. cs*):
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -2222,7 +2222,13 @@ Gli esempi in questo argomento si basano su <xref:System.IO.MemoryStream> per co
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
+::: moniker range="< aspnetcore-5.0"
 * [Svuotamento della richiesta di connessione HTTP](xref:fundamentals/servers/kestrel#http11-request-draining)
+::: moniker-end
+::: moniker range=">= aspnetcore-5.0"
+* [Svuotamento della richiesta di connessione HTTP](xref:fundamentals/servers/kestrel/request-draining)
+::: moniker-end
+
 * [Caricamento di file senza restrizioni](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 * [Sicurezza di Azure: frame di sicurezza: convalida dell'input | Attenuazioni](/azure/security/azure-security-threat-modeling-tool-input-validation)
 * [Modelli di progettazione cloud di Azure: modello di chiave del posteggiatore](/azure/architecture/patterns/valet-key)

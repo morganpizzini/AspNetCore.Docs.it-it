@@ -37,7 +37,7 @@ Nel componente seguente viene illustrato come utilizzare l'interoperabilità Jav
 
 Dove <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType> viene chiamato, `ElementRef` viene usato solo in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> e non in nessun metodo del ciclo di vita precedente perché non è presente alcun elemento JavaScript finché non viene eseguito il rendering del componente.
 
-[StateHasChanged](xref:blazor/components/lifecycle#state-changes) viene chiamato per eseguire nuovamente il rendering del componente con il nuovo stato ottenuto dalla chiamata di interoperabilità JavaScript. Il codice non crea un ciclo infinito perché `StateHasChanged` viene chiamato solo quando `infoFromJs` è `null` .
+[StateHasChanged](xref:blazor/components/lifecycle#state-changes) viene chiamato per eseguire nuovamente il rendering del componente con il nuovo stato ottenuto dalla chiamata di interoperabilità JavaScript (per ulteriori informazioni, vedere <xref:blazor/components/rendering> ). Il codice non crea un ciclo infinito perché `StateHasChanged` viene chiamato solo quando `infoFromJs` è `null` .
 
 ```cshtml
 @page "/prerendered-interop"

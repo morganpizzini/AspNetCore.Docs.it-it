@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: a163c87fdb9a02c1b074ab32c19c11932c66cfd4
-ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
+ms.openlocfilehash: 44c507fb5e0ff4477a84bfc1e4d0c62180c8dd37
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/03/2021
-ms.locfileid: "97854535"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252838"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing ad azioni del controller in ASP.NET Core
 
@@ -570,7 +570,7 @@ Le route con attributi supportano la stessa sintassi inline delle route convenzi
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8&highlight=3)]
 
-Nel codice precedente, `[HttpPost("product/{id:int}")]` applica un vincolo di route. L' `ProductsController.ShowProduct` azione corrisponde solo ai percorsi URL, ad esempio `/product/3` . La parte del modello `{id:int}` di route vincola tale segmento ai soli numeri interi.
+Nel codice precedente, `[HttpPost("product14/{id:int}")]` applica un vincolo di route. L' `Products14Controller.ShowProduct` azione corrisponde solo ai percorsi URL, ad esempio `/product14/3` . La parte del modello `{id:int}` di route vincola tale segmento ai soli numeri interi.
 
 Vedere [Riferimento per i modelli di route](xref:fundamentals/routing#route-template-reference) per una descrizione dettagliata della sintassi del modello di route.
 
@@ -720,7 +720,7 @@ Se il valore `{ d = Donovan }` viene aggiunto:
 
 È possibile che si verifichi questo problema con la route predefinita `{controller}/{action}/{id?}` . Questo problema è raro in pratica perché `Url.Action` specifica sempre in modo esplicito un `controller` `action` valore e.
 
-Diversi overload di [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) accettano un oggetto dei valori di route per fornire valori per i parametri di route diversi da `controller` e `action` . L'oggetto valori di route viene spesso usato con `id` . Ad esempio: `Url.Action("Buy", "Products", new { id = 17 })`. Oggetto valori di route:
+Diversi overload di [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) accettano un oggetto dei valori di route per fornire valori per i parametri di route diversi da `controller` e `action` . L'oggetto valori di route viene spesso usato con `id` . Ad esempio, `Url.Action("Buy", "Products", new { id = 17 })`. Oggetto valori di route:
 
 * Per convenzione è in genere un oggetto di tipo anonimo.
 * Può essere un oggetto `IDictionary<>` o un oggetto [poco](https://wikipedia.org/wiki/Plain_old_CLR_object)).
