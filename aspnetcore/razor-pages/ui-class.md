@@ -3,7 +3,7 @@ title: Interfaccia utente riutilizzabile Razor nelle librerie di classi con ASP.
 author: Rick-Anderson
 description: Viene illustrato come creare Razor un'interfaccia utente riutilizzabile usando visualizzazioni parziali in una libreria di classi in ASP.NET Core.
 ms.author: riande
-ms.date: 01/25/2020
+ms.date: 01/19/2021
 ms.custom: mvc, seodec18
 no-loc:
 - appsettings.json
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: 0bfdb1932d829ec00c9de1bd38b7920cb1f40c51
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: a878a3485ecee0782b21ac69c5ec6ff832b9f06c
+ms.sourcegitcommit: cb984e0d7dc23a88c3a4121f23acfaea0acbfe1e
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94570172"
+ms.lasthandoff: 01/19/2021
+ms.locfileid: "98571016"
 ---
 # <a name="create-reusable-ui-using-the-no-locrazor-class-library-project-in-aspnet-core"></a>Creare un'interfaccia utente riutilizzabile usando il Razor progetto libreria di classi in ASP.NET Core
 
@@ -42,7 +42,7 @@ Razorle visualizzazioni, le pagine, i controller, i modelli di pagina, i [ Razor
 * In Visual Studio selezionare **Crea nuovo nuovo progetto**.
 * Selezionare **Razor libreria di classi** > **Avanti**.
 * Assegnare un nome alla libreria (ad esempio, " Razor CLASSLIB") > **creare**. Per evitare un conflitto di nomi di file con la libreria di visualizzazione generata, verificare che il nome della libreria non finisca per `.Views`.
-* Se è necessario supportare le visualizzazioni, selezionare **pagine e visualizzazioni di supporto** . Per impostazione predefinita, Razor sono supportate solo le pagine. Selezionare **Crea**.
+* Se è necessario supportare le visualizzazioni, selezionare **pagine e visualizzazioni di supporto** . Per impostazione predefinita, Razor sono supportate solo le pagine. Selezionare **Create** (Crea).
 
 Per impostazione predefinita, il Razor modello libreria di classi (RCL) prevede Razor lo sviluppo di componenti. L'opzione **pagine e visualizzazioni di supporto** supporta pagine e viste.
 
@@ -94,6 +94,14 @@ Si supponga che *Razor UIClassLib/Pages/Shared* contenga due file parziali: *_He
   @RenderBody()
   <partial name="_Footer">
 </body>
+```
+
+Aggiungere il file *_ViewStart. cshtml* alla cartella *pagine* del progetto RCL per usare il file *_Layout. cshtml* dall'app Web host:
+
+```cshtml
+@{
+    Layout = "_Layout";
+}
 ```
 
 ## <a name="create-an-rcl-with-static-assets"></a>Creare un RCL con asset statici
