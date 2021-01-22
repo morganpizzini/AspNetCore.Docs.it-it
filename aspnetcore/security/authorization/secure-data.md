@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: dc70cfe7cb0c0f044f5f1e7ee68a293b3ea7507f
-ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
+ms.openlocfilehash: ebd3c0dc9baa63b30f142773d7a3d621ce4082d9
+ms.sourcegitcommit: ebc5beccba5f3f7619de20baa58ad727d2a3d18c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/03/2021
-ms.locfileid: "97854652"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98689305"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>Creare un'app Web di ASP.NET Core con i dati utente protetti dall'autorizzazione
 
@@ -129,6 +129,8 @@ Impostare i criteri di autenticazione di fallback per richiedere l'autenticazion
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
 Il codice evidenziato precedente imposta i [criteri di autenticazione di fallback](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). I criteri di autenticazione di fallback richiedono che *_tutti_* gli utenti siano autenticati, ad eccezione di Razor pagine, controller o metodi di azione con un attributo di autenticazione. Ad esempio, Razor pagine, controller o metodi di azione con `[AllowAnonymous]` o `[Authorize(PolicyName="MyPolicy")]` utilizzano l'attributo di autenticazione applicato anziché i criteri di autenticazione di fallback.
+
+<xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> aggiunge <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> all'istanza corrente che impone che l'utente corrente sia autenticato.
 
 I criteri di autenticazione di fallback:
 
@@ -332,7 +334,7 @@ Un modo semplice per testare l'app completata consiste nell'avviare tre diversi 
 * I responsabili possono approvare/rifiutare i dati di contatto. La `Details` visualizzazione Mostra i pulsanti **approva** e **rifiuta** .
 * Gli amministratori possono approvare/rifiutare e modificare/eliminare tutti i dati.
 
-| Utente                | Seeding dall'app | Opzioni                                  |
+| User                | Seeding dall'app | Opzioni                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | No                | Modificare/eliminare i dati personali.                |
 | manager@contoso.com | Sì               | Approva/rifiuta e modifica/elimina i dati personali. |
@@ -659,7 +661,7 @@ Un modo semplice per testare l'app completata consiste nell'avviare tre diversi 
 * I responsabili possono approvare/rifiutare i dati di contatto. La `Details` visualizzazione Mostra i pulsanti **approva** e **rifiuta** .
 * Gli amministratori possono approvare/rifiutare e modificare/eliminare tutti i dati.
 
-| Utente                | Seeding dall'app | Opzioni                                  |
+| User                | Seeding dall'app | Opzioni                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | No                | Modificare/eliminare i dati personali.                |
 | manager@contoso.com | Sì               | Approva/rifiuta e modifica/elimina i dati personali. |

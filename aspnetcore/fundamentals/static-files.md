@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 2e25af03a8a6aaff5b343885711c6ebb68340fac
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: d97caeffc6e8beebddb01a5bd126d61ba988de65
+ms.sourcegitcommit: ebc5beccba5f3f7619de20baa58ad727d2a3d18c
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93057856"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98689292"
 ---
 # <a name="static-files-in-aspnet-core"></a>File statici in ASP.NET Core
 
@@ -50,11 +50,11 @@ I file statici sono accessibili tramite un percorso relativo alla [radice Web](x
   * `js`
   * `lib`
 
-Si consiglia di creare la cartella *wwwroot/images* e di aggiungere il file *wwwroot/images/MyImage.jpg* . Il formato dell'URI per accedere a un file nella `images` cartella è `https://<hostname>/images/<image_file_name>` . Ad esempio, usare `https://localhost:5001/images/MyImage.jpg`
+Si consiglia di creare la cartella *wwwroot/images* e di aggiungere il file *wwwroot/images/MyImage.jpg* . Il formato dell'URI per accedere a un file nella `images` cartella è `https://<hostname>/images/<image_file_name>` . Ad esempio: `https://localhost:5001/images/MyImage.jpg`
 
 ### <a name="serve-files-in-web-root"></a>Gestire i file nella radice Web
 
-I modelli di app Web predefiniti chiamano il <xref:Owin.StaticFileExtensions.UseStaticFiles%2A> metodo in `Startup.Configure` , che consente di servire i file statici:
+I modelli di app Web predefiniti chiamano il <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> metodo in `Startup.Configure` , che consente di servire i file statici:
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/Startup.cs?name=snippet_Configure&highlight=15)]
 
@@ -104,23 +104,31 @@ I file statici possono essere memorizzati nella cache pubblicamente per 600 seco
 
 ## <a name="static-file-authorization"></a>Autorizzazione dei file statici
 
-Il middleware dei file statici non offre controlli di autorizzazione. Tutti i file serviti, inclusi quelli in `wwwroot` , sono accessibili pubblicamente. Per usare i file in base alle autorizzazioni:
+I modelli di ASP.NET Core chiamano <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> prima di chiamare <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> . La maggior parte delle app segue questo modello. Quando il middleware dei file statici viene chiamato prima del middleware di autorizzazione:
 
-* Archiviarli all'esterno di `wwwroot` e di qualsiasi directory accessibile al middleware dei file statici predefiniti.
-* Chiamare `UseStaticFiles` dopo `UseAuthorization` e specificare il percorso:
-
-  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2)]
+  * Non vengono eseguiti controlli di autorizzazione sui file statici.
+  * I file statici serviti dal middleware dei file statici, ad esempio quelli in `wwwroot` , sono accessibili pubblicamente.
   
-  Per l'approccio precedente è necessario che gli utenti siano autenticati:
+Per gestire i file statici in base all'autorizzazione:
 
-  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-99)]
+  * Archiviarli all'esterno di `wwwroot` .
+  * Chiamare `UseStaticFiles` , specificando un percorso, dopo la chiamata a `UseAuthorization` .
+  * Impostare i [criteri di autorizzazione di fallback](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy).
 
-   [!INCLUDE[](~/includes/requireAuth.md)]
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2&highlight=24-29)]
+  
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-25)]
 
-Un approccio alternativo per gestire i file in base all'autorizzazione:
+  Nel codice precedente, i criteri di autorizzazione di fallback richiedono che **tutti** gli utenti siano autenticati. Gli endpoint, ad esempio i controller, le Razor pagine e così via, che specificano i propri requisiti di autorizzazione, non usano i criteri di autorizzazione di fallback. Ad esempio, Razor le pagine, i controller o i metodi di azione con `[AllowAnonymous]` o `[Authorize(PolicyName="MyPolicy")]` utilizzano l'attributo di autorizzazione applicato anziché i criteri di autorizzazione di fallback.
 
-* Archiviarli all'esterno di `wwwroot` e di qualsiasi directory accessibile al middleware di file statici.
-* Servirle tramite un metodo di azione a cui viene applicata l'autorizzazione e restituire un <xref:Microsoft.AspNetCore.Mvc.FileResult> oggetto:
+  <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> aggiunge <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> all'istanza corrente che impone che l'utente corrente sia autenticato.
+
+  Gli asset statici in `wwwroot` sono accessibili pubblicamente, perché il middleware del file statico predefinito ( `app.UseStaticFiles();` ) viene chiamato prima `UseAuthentication` . Per gli asset statici nella cartella _MyStaticFiles * è richiesta l'autenticazione. Il [codice di esempio](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples) illustra questa operazione.
+
+Un approccio alternativo per gestire i file in base all'autorizzazione è:
+
+  * Archiviarli all'esterno di `wwwroot` e di qualsiasi directory accessibile al middleware di file statici.
+  * Servirle tramite un metodo di azione a cui viene applicata l'autorizzazione e restituire un <xref:Microsoft.AspNetCore.Mvc.FileResult> oggetto:
 
   [!code-csharp[](static-files/samples/3.x/StaticFilesSample/Controllers/HomeController.cs?name=snippet_BannerImage)]
 
