@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: 0fb50f07153f5f9953b667fe32062ad24b2bd66d
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 1ec553d54a9cad170cb322bc186bb67ac8bbded4
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059949"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658729"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Confrontare servizi gRPC e API HTTP
 
@@ -43,7 +43,7 @@ La tabella seguente offre un confronto di alto livello tra le funzionalità tra 
 | Prescriptiveness | [Specifica Strict](#strict-specification)      | Sciolto. Qualsiasi HTTP è valido.     |
 | Streaming        | [Client, server, bidirezionale](#streaming)       | Client, server                |
 | Supporto browser  | [No (richiede grpc-Web)](#limited-browser-support) | Sì                           |
-| Sicurezza         | Trasporto (TLS)                                    | Trasporto (TLS)               |
+| Security         | Trasporto (TLS)                                    | Trasporto (TLS)               |
 | Generazione di codice client | [Sì](#code-generation)                      | OpenAPI + strumenti di terze parti |
 
 ## <a name="grpc-strengths"></a>punti di forza di gRPC
@@ -61,7 +61,7 @@ HTTP/2 non è esclusivo per gRPC. Molti tipi di richiesta, incluse le API HTTP c
 
 ### <a name="code-generation"></a>Generazione del codice
 
-Tutti i Framework gRPC offrono supporto di prima classe per la generazione di codice. Un file principale per lo sviluppo gRPC è il [file. proto](https://developers.google.com/protocol-buffers/docs/proto3), che definisce il contratto di servizi e messaggi di gRPC. Da questo file gRPC Frameworks codice genererà una classe di base del servizio, i messaggi e un client completo.
+Tutti i Framework gRPC offrono supporto di prima classe per la generazione di codice. Un file principale per lo sviluppo gRPC è il [ `.proto` file](https://developers.google.com/protocol-buffers/docs/proto3), che definisce il contratto dei servizi e dei messaggi di gRPC. Da questo file, i Framework gRPC generano una classe di base del servizio, i messaggi e un client completo.
 
 Condividendo il file con *estensione proto* tra il server e il client, i messaggi e il codice client possono essere generati da end-to-end. La generazione di codice del client elimina la duplicazione dei messaggi nel client e nel server e crea automaticamente un client fortemente tipizzato. Non è necessario scrivere un client per risparmiare tempo di sviluppo significativo nelle applicazioni con molti servizi.
 

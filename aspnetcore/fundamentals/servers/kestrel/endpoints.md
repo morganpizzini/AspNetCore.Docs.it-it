@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/kestrel/endpoints
-ms.openlocfilehash: 780250feab456fa3eedee4e023c9bc774e748291
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 5fec573013da5bcb5039b7a189fd84d964349b3a
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253987"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658742"
 ---
 # <a name="configure-endpoints-for-the-aspnet-core-kestrel-web-server"></a>Configurare gli endpoint per il server Web ASP.NET Core gheppio
 
@@ -169,7 +169,7 @@ Kestrel è in ascolto su `http://localhost:5000` e `https://localhost:5001` (se 
 Nell'esempio seguente *appsettings.json* :
 
 * Impostare `AllowInvalid` su `true` per consentire l'utilizzo di certificati non validi, ad esempio certificati autofirmati.
-* Qualsiasi endpoint HTTPS che non specifica un certificato ( `HttpsDefaultCert` nell'esempio seguente) esegue il fallback al certificato definito in `Certificates`  >  `Default` o al certificato di sviluppo.
+* Qualsiasi endpoint HTTPS che non specifica un certificato ( `HttpsDefaultCert` nell'esempio seguente) esegue il fallback al certificato definito in `Certificates:Default` o al certificato di sviluppo.
 
 ```json
 {
@@ -185,8 +185,16 @@ Nell'esempio seguente *appsettings.json* :
           "Password": "<certificate password>"
         }
       },
-      "HttpsInlineCertStore": {
+      "HttpsInlineCertAndKeyFile": {
         "Url": "https://localhost:5002",
+        "Certificate": {
+          "Path": "<path to .pem/.crt file>",
+          "KeyPath": "<path to .key file>",
+          "Password": "<certificate password>"
+        }
+      },
+      "HttpsInlineCertStore": {
+        "Url": "https://localhost:5003",
         "Certificate": {
           "Subject": "<subject; required>",
           "Store": "<certificate store; required>",
@@ -195,14 +203,7 @@ Nell'esempio seguente *appsettings.json* :
         }
       },
       "HttpsDefaultCert": {
-        "Url": "https://localhost:5003"
-      },
-      "Https": {
-        "Url": "https://*:5004",
-        "Certificate": {
-          "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
-        }
+        "Url": "https://localhost:5004"
       }
     },
     "Certificates": {
@@ -215,7 +216,24 @@ Nell'esempio seguente *appsettings.json* :
 }
 ```
 
-Un'alternativa all'utilizzo di `Path` e `Password` per qualsiasi nodo del certificato consiste nel specificare il certificato utilizzando i campi dell'archivio certificati. Ad esempio, il `Certificates`  >  `Default` certificato può essere specificato come:
+Note di schema:
+
+* I nomi degli endpoint non fanno [distinzione tra maiuscole e](xref:fundamentals/configuration/index#configuration-keys-and-values)minuscole. Ad esempio, la sintassi di `HTTPS` and `Https` sono equivalenti.
+* Il parametro `Url` è obbligatorio per ogni endpoint. Il formato per questo parametro è uguale a quello del parametro di configurazione di primo livello `Urls`, con la differenza che si limita a un singolo valore.
+* Questi endpoint sostituiscono quelli definiti nella configurazione di primo livello `Urls`, non vi si aggiungono. Gli endpoint definiti nel codice tramite `Listen` si aggiungono agli endpoint definiti nella sezione di configurazione.
+* La sezione `Certificate` è facoltativa. Se la `Certificate` sezione non è specificata, vengono usati i valori predefiniti definiti in `Certificates:Default` . Se non sono disponibili impostazioni predefinite, viene utilizzato il certificato di sviluppo. Se non sono presenti valori predefiniti e il certificato di sviluppo non è presente, il server genera un'eccezione e non viene avviato.
+* La `Certificate` sezione supporta più [origini di certificati](#certificate-sources).
+* È possibile definire un numero qualsiasi di endpoint nella [configurazione](xref:fundamentals/configuration/index) purché non causino conflitti di porta.
+
+#### <a name="certificate-sources"></a>Origini certificati
+
+È possibile configurare i nodi certificato per caricare i certificati da diverse origini:
+
+* `Path` e `Password` per caricare i file con *estensione pfx* .
+* `Path`, `KeyPath` e `Password` per caricare i file con estensione *PEM*. / *CRT* e *. Key* .
+* `Subject` e da `Store` caricare dall'archivio certificati.
+
+Ad esempio, il `Certificates:Default` certificato può essere specificato come:
 
 ```json
 "Default": {
@@ -226,15 +244,9 @@ Un'alternativa all'utilizzo di `Path` e `Password` per qualsiasi nodo del certif
 }
 ```
 
-Note di schema:
+#### <a name="configurationloader"></a>ConfigurationLoader
 
-* I nomi degli endpoint non applicano la distinzione tra maiuscole e minuscole. Ad esempio, sono validi sia `HTTPS` che `Https`.
-* Il parametro `Url` è obbligatorio per ogni endpoint. Il formato per questo parametro è uguale a quello del parametro di configurazione di primo livello `Urls`, con la differenza che si limita a un singolo valore.
-* Questi endpoint sostituiscono quelli definiti nella configurazione di primo livello `Urls`, non vi si aggiungono. Gli endpoint definiti nel codice tramite `Listen` si aggiungono agli endpoint definiti nella sezione di configurazione.
-* La sezione `Certificate` è facoltativa. Se la sezione `Certificate` non è specificata, vengono usati i valori predefiniti definiti negli scenari precedenti. Se non è disponibile alcun valore predefinito, il server genera un'eccezione e non viene avviato.
-* La `Certificate` sezione supporta entrambi i `Path` &ndash; `Password` `Subject` &ndash; `Store` certificati e.
-* In questo modo è possibile definire un numero qualsiasi di endpoint, purché non provochino conflitti di porte.
-* `options.Configure(context.Configuration.GetSection("{SECTION}"))` restituisce un oggetto `KestrelConfigurationLoader` con un metodo `.Endpoint(string name, listenOptions => { })` che può essere usato per integrare le impostazioni dell'endpoint configurato:
+`options.Configure(context.Configuration.GetSection("{SECTION}"))` restituisce un oggetto <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader> con un metodo `.Endpoint(string name, listenOptions => { })` che può essere usato per integrare le impostazioni dell'endpoint configurato:
 
 ```csharp
 webBuilder.UseKestrel((context, serverOptions) =>

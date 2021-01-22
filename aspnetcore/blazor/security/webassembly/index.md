@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: c4d1095d3c3b457ca4d94cb1a573c3dc49548ff3
-ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
+ms.openlocfilehash: 2df938f3ace47472536020f9848e954fc4446f15
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/08/2021
-ms.locfileid: "98024639"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658586"
 ---
 # <a name="secure-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core protetto Blazor WebAssembly
 
@@ -106,6 +106,10 @@ Le app richiedono spesso attestazioni per gli utenti in base a una chiamata API 
 
 * [Scenari aggiuntivi: personalizzare l'utente](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
 * <xref:blazor/security/webassembly/aad-groups-roles>
+
+## <a name="azure-app-service-on-linux-with-no-locidentity-server"></a>Servizio app Azure in Linux con Identity Server
+
+Specificare l'autorità emittente in modo esplicito quando si distribuisce in app Azure servizio in Linux con Identity Server. Per altre informazioni, vedere <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
 
 ## <a name="implementation-guidance"></a>Indicazioni relative all'implementazione
 

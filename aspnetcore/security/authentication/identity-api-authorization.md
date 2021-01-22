@@ -19,30 +19,30 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 8acc34c88bf62b3da1b920acc7318c94435c100e
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5a6c160ebdda3ec600980aa839770f4f22a9c2fc
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051980"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658664"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Autenticazione e autorizzazione per le ZPS
 
 I modelli ASP.NET Core 3,1 e versioni successive offrono l'autenticazione in app a pagina singola (Spa) usando il supporto per l'autorizzazione dell'API. ASP.NET Core Identityper l'autenticazione e l'archiviazione degli utenti è combinato con [ Identity Server](https://identityserver.io/) per l'implementazione di OpenID Connect.
 
-Un parametro di autenticazione è stato aggiunto ai modelli di progetto **angolari** e **React** , che è simile al parametro Authentication nei modelli di progetto **applicazione Web** (MVC) e **applicazione Web** ( Razor pagine). I valori dei parametri consentiti sono **None** e **individual** . Il modello di progetto **React.js e Redux** non supporta il parametro Authentication al momento.
+Un parametro di autenticazione è stato aggiunto ai modelli di progetto **angolari** e **React** , che è simile al parametro Authentication nei modelli di progetto **applicazione Web** (MVC) e **applicazione Web** ( Razor pagine). I valori dei parametri consentiti sono **None** e **individual**. Il modello di progetto **React.js e Redux** non supporta il parametro Authentication al momento.
 
 ## <a name="create-an-app-with-api-authorization-support"></a>Creare un'app con supporto per l'autorizzazione API
 
 L'autenticazione e l'autorizzazione degli utenti possono essere usate sia con le ZPS angolari che React. Aprire una shell dei comandi ed eseguire il comando seguente:
 
-**Angolare** :
+**Angolare**:
 
 ```dotnetcli
 dotnet new angular -o <output_directory_name> -au Individual
 ```
 
-**Reagire** :
+**Reagire**:
 
 ```dotnetcli
 dotnet new react -o <output_directory_name> -au Individual
@@ -98,6 +98,27 @@ La `Startup` classe presenta le aggiunte seguenti:
     app.UseIdentityServer();
     ```
 
+### <a name="azure-app-service-on-linux"></a>Servizio app di Azure in Linux
+
+Per le distribuzioni del servizio app Azure in Linux, specificare in modo esplicito l'autorità di certificazione in `Startup.ConfigureServices` :
+
+```csharp
+services.Configure<JwtBearerOptions>(
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme, 
+    options =>
+    {
+        options.Authority = "{AUTHORITY}";
+    });
+```
+
+Nel codice precedente, il `{AUTHORITY}` segnaposto è l'oggetto <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority> da usare quando si effettuano chiamate a OpenID Connect.
+
+Esempio:
+
+```csharp
+options.Authority = "https://contoso-service.azurewebsites.net";
+```
+
 ### <a name="addapiauthorization"></a>AddApiAuthorization
 
 Questo metodo helper configura il Identity Server per l'uso della configurazione supportata. IdentityServer è un Framework potente ed estendibile per la gestione dei problemi di sicurezza delle app. Allo stesso tempo, che espone complessità superflua per gli scenari più comuni. Di conseguenza, viene fornito un set di convenzioni e opzioni di configurazione che sono considerati un valido punto di partenza. Una volta che le esigenze di autenticazione cambiano, l'intera potenza del Identity Server è ancora disponibile per personalizzare l'autenticazione in base alle esigenze.
@@ -151,9 +172,9 @@ Nella *appsettings.Development.jssul* file della radice del progetto è presente
 Il supporto per l'autenticazione e l'autorizzazione API nel modello angolare si trova nel proprio modulo angolare nella directory *ClientApp\src\api-Authorization* Il modulo è costituito dagli elementi seguenti:
 
 * 3 componenti:
-  * *login. Component. TS* : gestisce il flusso di accesso dell'app.
-  * *Logout. Component. TS* : gestisce il flusso di disconnessione dell'app.
-  * *login-menu. Component. TS* : widget che visualizza uno dei seguenti set di collegamenti:
+  * *login. Component. TS*: gestisce il flusso di accesso dell'app.
+  * *Logout. Component. TS*: gestisce il flusso di disconnessione dell'app.
+  * *login-menu. Component. TS*: widget che visualizza uno dei seguenti set di collegamenti:
     * Collegamenti di gestione dei profili utente e disconnessione quando l'utente viene autenticato.
     * Collegamenti per la registrazione e l'accesso quando l'utente non è autenticato.
 * Una protezione `AuthorizeGuard` della route che può essere aggiunta alle route e richiede che un utente venga autenticato prima di visitare la route.
@@ -166,12 +187,12 @@ Il supporto per l'autenticazione e l'autorizzazione API nel modello angolare si 
 Il supporto per l'autenticazione e l'autorizzazione API nel modello React risiede nella directory *ClientApp\src\components\api-Authorization* È costituito dagli elementi seguenti:
 
 * 4 componenti:
-  * *Login.js* : gestisce il flusso di accesso dell'app.
-  * *Logout.js* : gestisce il flusso di disconnessione dell'app.
-  * *LoginMenu.js* : widget che visualizza uno dei seguenti set di collegamenti:
+  * *Login.js*: gestisce il flusso di accesso dell'app.
+  * *Logout.js*: gestisce il flusso di disconnessione dell'app.
+  * *LoginMenu.js*: widget che visualizza uno dei seguenti set di collegamenti:
     * Collegamenti di gestione dei profili utente e disconnessione quando l'utente viene autenticato.
     * Collegamenti per la registrazione e l'accesso quando l'utente non è autenticato.
-  * *AuthorizeRoute.js* : componente di route che richiede l'autenticazione di un utente prima di eseguire il rendering del componente indicato nel `Component` parametro.
+  * *AuthorizeRoute.js*: componente di route che richiede l'autenticazione di un utente prima di eseguire il rendering del componente indicato nel `Component` parametro.
 * Istanza esportata `authService` della classe `AuthorizeService` che gestisce i dettagli di basso livello del processo di autenticazione ed espone le informazioni relative all'utente autenticato al resto dell'app per l'utilizzo.
 
 Ora che sono stati esaminati i componenti principali della soluzione, è possibile approfondire i singoli scenari per l'app.

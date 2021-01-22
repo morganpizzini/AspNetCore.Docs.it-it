@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 196e19528341e98ac06cefb08ba92f9e47d265ea
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 1706d3502dc68f1c25e0c35ba8f5dd44b55ce690
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252474"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658651"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>Creazione di applicazioni Web progressive con ASP.NET Core Blazor WebAssembly
 
@@ -272,10 +272,20 @@ Modificare il codice nel modo seguente:
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate'
-    && !event.request.url.includes('/Identity/');
+  && !event.request.url.includes('/Identity/');
 ```
 
 Se non si esegue questa operazione, indipendentemente dalla connettività di rete, il ruolo di lavoro del servizio intercetta le richieste per tali URL e le risolve utilizzando `/index.html` .
+
+Aggiungere al controllo altri endpoint per i provider di autenticazione esterni. Nell'esempio seguente, `/signin-google` per l'autenticazione Google viene aggiunto al controllo:
+
+```javascript
+const shouldServeIndexHtml = event.request.mode === 'navigate'
+  && !event.request.url.includes('/Identity/')
+  && !event.request.url.includes('/signin-google');
+```
+
+Non è necessaria alcuna azione per l'ambiente di sviluppo, in cui il contenuto viene sempre recuperato dalla rete.
 
 ### <a name="control-asset-caching"></a>Controllare la memorizzazione nella cache degli asset
 
