@@ -18,58 +18,58 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
-ms.openlocfilehash: 95ac4784634d38add5e28644d42b0182e15c6de9
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 192784b4f2cb3b80511814de4f777c4a49fc594b
+ms.sourcegitcommit: da5a5bed5718a9f8db59356ef8890b4b60ced6e9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93060027"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98710737"
 ---
-# <a name="choose-between-aspnet-4x-and-aspnet-core"></a><span data-ttu-id="10d28-103">Scegliere tra ASP.NET 4.x e ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="10d28-103">Choose between ASP.NET 4.x and ASP.NET Core</span></span>
+# <a name="choose-between-aspnet-4x-and-aspnet-core"></a><span data-ttu-id="db0ce-103">Scegliere tra ASP.NET 4.x e ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="db0ce-103">Choose between ASP.NET 4.x and ASP.NET Core</span></span>
 
-<span data-ttu-id="10d28-104">ASP.NET Core è una riprogettazione di ASP.NET 4.x.</span><span class="sxs-lookup"><span data-stu-id="10d28-104">ASP.NET Core is a redesign of ASP.NET 4.x.</span></span> <span data-ttu-id="10d28-105">Questo articolo elenca le differenze tra i due.</span><span class="sxs-lookup"><span data-stu-id="10d28-105">This article lists the differences between them.</span></span>
+<span data-ttu-id="db0ce-104">ASP.NET Core è una riprogettazione di ASP.NET 4.x.</span><span class="sxs-lookup"><span data-stu-id="db0ce-104">ASP.NET Core is a redesign of ASP.NET 4.x.</span></span> <span data-ttu-id="db0ce-105">Questo articolo elenca le differenze tra i due.</span><span class="sxs-lookup"><span data-stu-id="db0ce-105">This article lists the differences between them.</span></span>
 
-## <a name="aspnet-core"></a><span data-ttu-id="10d28-106">ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="10d28-106">ASP.NET Core</span></span>
+## <a name="aspnet-core"></a><span data-ttu-id="db0ce-106">ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="db0ce-106">ASP.NET Core</span></span>
 
-<span data-ttu-id="10d28-107">ASP.NET Core è un framework open source, multipiattaforma per la compilazione di moderne app Web basate sul cloud in Windows, Mac OS o Linux.</span><span class="sxs-lookup"><span data-stu-id="10d28-107">ASP.NET Core is an open-source, cross-platform framework for building modern, cloud-based web apps on Windows, macOS, or Linux.</span></span>
+<span data-ttu-id="db0ce-107">ASP.NET Core è un framework open source, multipiattaforma per la compilazione di moderne app Web basate sul cloud in Windows, Mac OS o Linux.</span><span class="sxs-lookup"><span data-stu-id="db0ce-107">ASP.NET Core is an open-source, cross-platform framework for building modern, cloud-based web apps on Windows, macOS, or Linux.</span></span>
 
 [!INCLUDE[](~/includes/benefits.md)]
 
-## <a name="aspnet-4x"></a><span data-ttu-id="10d28-108">ASP.NET 4.x</span><span class="sxs-lookup"><span data-stu-id="10d28-108">ASP.NET 4.x</span></span>
+## <a name="aspnet-4x"></a><span data-ttu-id="db0ce-108">ASP.NET 4.x</span><span class="sxs-lookup"><span data-stu-id="db0ce-108">ASP.NET 4.x</span></span>
 
-<span data-ttu-id="10d28-109">ASP.NET 4.x è un framework consolidato che offre i servizi necessari per la compilazione di app Web di livello aziendale basate su server in Windows.</span><span class="sxs-lookup"><span data-stu-id="10d28-109">ASP.NET 4.x is a mature framework that provides the services needed to build enterprise-grade, server-based web apps on Windows.</span></span>
+<span data-ttu-id="db0ce-109">ASP.NET 4.x è un framework consolidato che offre i servizi necessari per la compilazione di app Web di livello aziendale basate su server in Windows.</span><span class="sxs-lookup"><span data-stu-id="db0ce-109">ASP.NET 4.x is a mature framework that provides the services needed to build enterprise-grade, server-based web apps on Windows.</span></span>
 
-## <a name="framework-selection"></a><span data-ttu-id="10d28-110">Selezione del framework</span><span class="sxs-lookup"><span data-stu-id="10d28-110">Framework selection</span></span>
+## <a name="framework-selection"></a><span data-ttu-id="db0ce-110">Selezione del framework</span><span class="sxs-lookup"><span data-stu-id="db0ce-110">Framework selection</span></span>
 
-<span data-ttu-id="10d28-111">La tabella seguente mette a confronto ASP.NET Core e ASP.NET 4.x.</span><span class="sxs-lookup"><span data-stu-id="10d28-111">The following table compares ASP.NET Core to ASP.NET 4.x.</span></span>
+<span data-ttu-id="db0ce-111">La tabella seguente mette a confronto ASP.NET Core e ASP.NET 4.x.</span><span class="sxs-lookup"><span data-stu-id="db0ce-111">The following table compares ASP.NET Core to ASP.NET 4.x.</span></span>
 
-| <span data-ttu-id="10d28-112">ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="10d28-112">ASP.NET Core</span></span> | <span data-ttu-id="10d28-113">ASP.NET 4.x</span><span class="sxs-lookup"><span data-stu-id="10d28-113">ASP.NET 4.x</span></span> |
+| <span data-ttu-id="db0ce-112">ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="db0ce-112">ASP.NET Core</span></span> | <span data-ttu-id="db0ce-113">ASP.NET 4.x</span><span class="sxs-lookup"><span data-stu-id="db0ce-113">ASP.NET 4.x</span></span> |
 |---|---|
-|<span data-ttu-id="10d28-114">Compilare per Windows, Mac OS o Linux</span><span class="sxs-lookup"><span data-stu-id="10d28-114">Build for Windows, macOS, or Linux</span></span>|<span data-ttu-id="10d28-115">Compilare per Windows</span><span class="sxs-lookup"><span data-stu-id="10d28-115">Build for Windows</span></span>|
-|<span data-ttu-id="10d28-116">[ Razor Pages](xref:razor-pages/index) è l'approccio consigliato per creare un'interfaccia utente Web a partire da ASP.NET Core 2. x.</span><span class="sxs-lookup"><span data-stu-id="10d28-116">[Razor Pages](xref:razor-pages/index) is the recommended approach to create a Web UI as of ASP.NET Core 2.x.</span></span> <span data-ttu-id="10d28-117">Vedere anche [MVC](xref:mvc/overview), [API Web](xref:tutorials/first-web-api)e [SignalR](xref:signalr/introduction) .</span><span class="sxs-lookup"><span data-stu-id="10d28-117">See also [MVC](xref:mvc/overview), [Web API](xref:tutorials/first-web-api), and [SignalR](xref:signalr/introduction).</span></span>|<span data-ttu-id="10d28-118">Usare [Web Form](/aspnet/web-forms), [SignalR](/aspnet/signalr) , [MVC](/aspnet/mvc), [API Web](/aspnet/web-api/), [webhook](/aspnet/webhooks/)o [pagine Web](/aspnet/web-pages)</span><span class="sxs-lookup"><span data-stu-id="10d28-118">Use [Web Forms](/aspnet/web-forms), [SignalR](/aspnet/signalr), [MVC](/aspnet/mvc), [Web API](/aspnet/web-api/), [WebHooks](/aspnet/webhooks/), or [Web Pages](/aspnet/web-pages)</span></span>|
-|<span data-ttu-id="10d28-119">Più versioni per computer</span><span class="sxs-lookup"><span data-stu-id="10d28-119">Multiple versions per machine</span></span>|<span data-ttu-id="10d28-120">Una versione per computer</span><span class="sxs-lookup"><span data-stu-id="10d28-120">One version per machine</span></span>|
-|<span data-ttu-id="10d28-121">Sviluppare con [Visual Studio](https://visualstudio.microsoft.com/vs/), [Visual Studio per Mac](https://visualstudio.microsoft.com/vs/mac/) o [Visual Studio Code](https://code.visualstudio.com/) tramite C# o F#</span><span class="sxs-lookup"><span data-stu-id="10d28-121">Develop with [Visual Studio](https://visualstudio.microsoft.com/vs/), [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/), or [Visual Studio Code](https://code.visualstudio.com/) using C# or F#</span></span>|<span data-ttu-id="10d28-122">Sviluppare con [Visual Studio](https://visualstudio.microsoft.com/vs/) con C#, VB o F #</span><span class="sxs-lookup"><span data-stu-id="10d28-122">Develop with [Visual Studio](https://visualstudio.microsoft.com/vs/) using C#, VB, or F#</span></span>|
-|<span data-ttu-id="10d28-123">Prestazioni più elevate rispetto ad ASP.NET 4.x</span><span class="sxs-lookup"><span data-stu-id="10d28-123">Higher performance than ASP.NET 4.x</span></span>|<span data-ttu-id="10d28-124">Buone prestazioni</span><span class="sxs-lookup"><span data-stu-id="10d28-124">Good performance</span></span>|
-|[<span data-ttu-id="10d28-125">Usare il runtime di .NET Core</span><span class="sxs-lookup"><span data-stu-id="10d28-125">Use .NET Core runtime</span></span>](/dotnet/standard/choosing-core-framework-server)|<span data-ttu-id="10d28-126">Usare runtime .NET Framework</span><span class="sxs-lookup"><span data-stu-id="10d28-126">Use .NET Framework runtime</span></span>|
+|<span data-ttu-id="db0ce-114">Compilare per Windows, Mac OS o Linux</span><span class="sxs-lookup"><span data-stu-id="db0ce-114">Build for Windows, macOS, or Linux</span></span>|<span data-ttu-id="db0ce-115">Compilare per Windows</span><span class="sxs-lookup"><span data-stu-id="db0ce-115">Build for Windows</span></span>|
+|<span data-ttu-id="db0ce-116">[ Razor Pages](xref:razor-pages/index) è l'approccio consigliato per creare un'interfaccia utente Web a partire da ASP.NET Core 2. x.</span><span class="sxs-lookup"><span data-stu-id="db0ce-116">[Razor Pages](xref:razor-pages/index) is the recommended approach to create a Web UI as of ASP.NET Core 2.x.</span></span> <span data-ttu-id="db0ce-117">Vedere anche [MVC](xref:mvc/overview), [API Web](xref:tutorials/first-web-api)e [SignalR](xref:signalr/introduction) .</span><span class="sxs-lookup"><span data-stu-id="db0ce-117">See also [MVC](xref:mvc/overview), [Web API](xref:tutorials/first-web-api), and [SignalR](xref:signalr/introduction).</span></span>|<span data-ttu-id="db0ce-118">Usare [Web Form](/aspnet/web-forms), [SignalR](/aspnet/signalr) , [MVC](/aspnet/mvc), [API Web](/aspnet/web-api/), [webhook](/aspnet/webhooks/)o [pagine Web](/aspnet/web-pages)</span><span class="sxs-lookup"><span data-stu-id="db0ce-118">Use [Web Forms](/aspnet/web-forms), [SignalR](/aspnet/signalr), [MVC](/aspnet/mvc), [Web API](/aspnet/web-api/), [WebHooks](/aspnet/webhooks/), or [Web Pages](/aspnet/web-pages)</span></span>|
+|<span data-ttu-id="db0ce-119">Più versioni per computer</span><span class="sxs-lookup"><span data-stu-id="db0ce-119">Multiple versions per machine</span></span>|<span data-ttu-id="db0ce-120">Una versione per computer</span><span class="sxs-lookup"><span data-stu-id="db0ce-120">One version per machine</span></span>|
+|<span data-ttu-id="db0ce-121">Sviluppare con [Visual Studio](https://visualstudio.microsoft.com/vs/), [Visual Studio per Mac](https://visualstudio.microsoft.com/vs/mac/) o [Visual Studio Code](https://code.visualstudio.com/) tramite C# o F#</span><span class="sxs-lookup"><span data-stu-id="db0ce-121">Develop with [Visual Studio](https://visualstudio.microsoft.com/vs/), [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/), or [Visual Studio Code](https://code.visualstudio.com/) using C# or F#</span></span>|<span data-ttu-id="db0ce-122">Sviluppare con [Visual Studio](https://visualstudio.microsoft.com/vs/) con C#, VB o F #</span><span class="sxs-lookup"><span data-stu-id="db0ce-122">Develop with [Visual Studio](https://visualstudio.microsoft.com/vs/) using C#, VB, or F#</span></span>|
+|<span data-ttu-id="db0ce-123">Prestazioni più elevate rispetto ad ASP.NET 4.x</span><span class="sxs-lookup"><span data-stu-id="db0ce-123">Higher performance than ASP.NET 4.x</span></span>|<span data-ttu-id="db0ce-124">Buone prestazioni</span><span class="sxs-lookup"><span data-stu-id="db0ce-124">Good performance</span></span>|
+|[<span data-ttu-id="db0ce-125">Usare il runtime di .NET Core</span><span class="sxs-lookup"><span data-stu-id="db0ce-125">Use .NET Core runtime</span></span>](/dotnet/standard/choosing-core-framework-server)|<span data-ttu-id="db0ce-126">Usare runtime .NET Framework</span><span class="sxs-lookup"><span data-stu-id="db0ce-126">Use .NET Framework runtime</span></span>|
 
-<span data-ttu-id="10d28-127">Vedere [ASP.NET Core per .NET Framework](xref:index#target-framework) per informazioni sul supporto per ASP.NET Core 2.x in .NET Framework.</span><span class="sxs-lookup"><span data-stu-id="10d28-127">See [ASP.NET Core targeting .NET Framework](xref:index#target-framework) for information on ASP.NET Core 2.x support on .NET Framework.</span></span>
+<span data-ttu-id="db0ce-127">Vedere [ASP.NET Core per .NET Framework](xref:index#target-framework) per informazioni sul supporto per ASP.NET Core 2.x in .NET Framework.</span><span class="sxs-lookup"><span data-stu-id="db0ce-127">See [ASP.NET Core targeting .NET Framework](xref:index#target-framework) for information on ASP.NET Core 2.x support on .NET Framework.</span></span>
 
-## <a name="aspnet-core-scenarios"></a><span data-ttu-id="10d28-128">Scenari ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="10d28-128">ASP.NET Core scenarios</span></span>
+## <a name="aspnet-core-scenarios"></a><span data-ttu-id="db0ce-128">Scenari ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="db0ce-128">ASP.NET Core scenarios</span></span>
 
-* [<span data-ttu-id="10d28-129">Siti Web</span><span class="sxs-lookup"><span data-stu-id="10d28-129">Websites</span></span>](xref:tutorials/first-mvc-app/index)
-* [<span data-ttu-id="10d28-130">API</span><span class="sxs-lookup"><span data-stu-id="10d28-130">APIs</span></span>](xref:tutorials/first-web-api)
-* [<span data-ttu-id="10d28-131">Tempo reale</span><span class="sxs-lookup"><span data-stu-id="10d28-131">Real-time</span></span>](xref:signalr/introduction)
-* [<span data-ttu-id="10d28-132">Distribuire un'app ASP.NET Core in Azure</span><span class="sxs-lookup"><span data-stu-id="10d28-132">Deploy an ASP.NET Core app to Azure</span></span>](/azure/app-service/app-service-web-get-started-dotnet)
+* [<span data-ttu-id="db0ce-129">Siti Web</span><span class="sxs-lookup"><span data-stu-id="db0ce-129">Websites</span></span>](xref:tutorials/first-mvc-app/start-mvc)
+* [<span data-ttu-id="db0ce-130">API</span><span class="sxs-lookup"><span data-stu-id="db0ce-130">APIs</span></span>](xref:tutorials/first-web-api)
+* [<span data-ttu-id="db0ce-131">Tempo reale</span><span class="sxs-lookup"><span data-stu-id="db0ce-131">Real-time</span></span>](xref:signalr/introduction)
+* [<span data-ttu-id="db0ce-132">Distribuire un'app ASP.NET Core in Azure</span><span class="sxs-lookup"><span data-stu-id="db0ce-132">Deploy an ASP.NET Core app to Azure</span></span>](/azure/app-service/app-service-web-get-started-dotnet)
 
-## <a name="aspnet-4x-scenarios"></a><span data-ttu-id="10d28-133">Scenari ASP.NET 4.x</span><span class="sxs-lookup"><span data-stu-id="10d28-133">ASP.NET 4.x scenarios</span></span>
+## <a name="aspnet-4x-scenarios"></a><span data-ttu-id="db0ce-133">Scenari ASP.NET 4.x</span><span class="sxs-lookup"><span data-stu-id="db0ce-133">ASP.NET 4.x scenarios</span></span>
 
-* [<span data-ttu-id="10d28-134">Siti Web</span><span class="sxs-lookup"><span data-stu-id="10d28-134">Websites</span></span>](/aspnet/mvc)
-* [<span data-ttu-id="10d28-135">API</span><span class="sxs-lookup"><span data-stu-id="10d28-135">APIs</span></span>](/aspnet/web-api)
-* [<span data-ttu-id="10d28-136">Tempo reale</span><span class="sxs-lookup"><span data-stu-id="10d28-136">Real-time</span></span>](/aspnet/signalr)
-* [<span data-ttu-id="10d28-137">Creare un'app Web ASP.NET 4.x in Azure</span><span class="sxs-lookup"><span data-stu-id="10d28-137">Create an ASP.NET 4.x web app in Azure</span></span>](/azure/app-service/app-service-web-get-started-dotnet-framework)
+* [<span data-ttu-id="db0ce-134">Siti Web</span><span class="sxs-lookup"><span data-stu-id="db0ce-134">Websites</span></span>](/aspnet/mvc)
+* [<span data-ttu-id="db0ce-135">API</span><span class="sxs-lookup"><span data-stu-id="db0ce-135">APIs</span></span>](/aspnet/web-api)
+* [<span data-ttu-id="db0ce-136">Tempo reale</span><span class="sxs-lookup"><span data-stu-id="db0ce-136">Real-time</span></span>](/aspnet/signalr)
+* [<span data-ttu-id="db0ce-137">Creare un'app Web ASP.NET 4.x in Azure</span><span class="sxs-lookup"><span data-stu-id="db0ce-137">Create an ASP.NET 4.x web app in Azure</span></span>](/azure/app-service/app-service-web-get-started-dotnet-framework)
 
-## <a name="additional-resources"></a><span data-ttu-id="10d28-138">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="10d28-138">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="db0ce-138">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="db0ce-138">Additional resources</span></span>
 
-* [<span data-ttu-id="10d28-139">Introduzione ad ASP.NET</span><span class="sxs-lookup"><span data-stu-id="10d28-139">Introduction to ASP.NET</span></span>](/aspnet/overview)
-* [<span data-ttu-id="10d28-140">Introduzione ad ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="10d28-140">Introduction to ASP.NET Core</span></span>](xref:index)
+* [<span data-ttu-id="db0ce-139">Introduzione ad ASP.NET</span><span class="sxs-lookup"><span data-stu-id="db0ce-139">Introduction to ASP.NET</span></span>](/aspnet/overview)
+* [<span data-ttu-id="db0ce-140">Introduzione ad ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="db0ce-140">Introduction to ASP.NET Core</span></span>](xref:index)
 * <xref:host-and-deploy/azure-apps/index>
