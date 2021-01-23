@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: bb502533bca24e82792db8814b75b16407f20339
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: fb5b6f75959d9933e228b0288e70498ef05efc4a
+ms.sourcegitcommit: da5a5bed5718a9f8db59356ef8890b4b60ced6e9
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "95870386"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98710633"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor WebAssembly scenari di sicurezza aggiuntivi
 
@@ -1077,6 +1077,17 @@ Server response: <strong>@serverResponse</strong>
 Il segnaposto `{APP ASSEMBLY}` è il nome dell'assembly dell'app (ad esempio, `BlazorSample` ). Per usare la `Status.DebugException` proprietà, usare [Grpc .NET. client](https://www.nuget.org/packages/Grpc.Net.Client) versione 2.30.0 o successiva.
 
 Per altre informazioni, vedere <xref:grpc/browser>.
+
+## <a name="build-a-custom-version-of-the-authenticationmsal-javascript-library"></a>Compilare una versione personalizzata della libreria JavaScript Authentication. MSAL
+
+Se un'app richiede una versione personalizzata di [Microsoft Authentication Library per JavaScript (MSAL.js)](https://www.npmjs.com/package/@azure/msal-browser), seguire questa procedura:
+
+1. Verificare che il sistema disponga della versione più recente di Developer .NET SDK oppure ottenere e installare la versione più recente di Developer SDK da [.NET Core SDK: programmi di installazione e file binari](https://github.com/dotnet/installer#installers-and-binaries). La configurazione dei feed NuGet interni non è necessaria per questo scenario.
+1. Configurare il `dotnet/aspnetcore` repository GitHub per lo sviluppo in base ai documenti in [Build ASP.NET Core dall'origine](https://github.com/dotnet/aspnetcore/blob/main/docs/BuildFromSource.md). Creare un fork e clonare o scaricare un archivio ZIP del [repository GitHub DotNet/aspnetcore](https://github.com/dotnet/aspnetcore).
+1. Aprire il `src/Components/WebAssembly/Authentication.Msal/src/Interop/package.json` file e impostare la versione desiderata di `@azure/msal-browser` . Per un elenco delle versioni rilasciate, visitare il [ `@azure/msal-browser` sito Web NPM](https://www.npmjs.com/package/@azure/msal-browser) e selezionare la scheda **versioni** .
+1. Compilare il `Authentication.Msal` progetto nella `src/Components/WebAssembly/Authentication.Msal/src` cartella con il `yarn build` comando in una shell dei comandi.
+1. Se l'app usa [Asset compressi (Brotli/gzip)](xref:blazor/host-and-deploy/webassembly#compression), comprimere il `Interop/dist/Release/AuthenticationService.js` file.
+1. Copiare il `AuthenticationService.js` file e le versioni compresse ( `.br` / `.gz` ) del file, se generato, dalla `Interop/dist/Release` cartella alla cartella dell'app `publish/wwwroot/_content/Microsoft.Authentication.WebAssembly.Msal` negli asset pubblicati dell'app.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
